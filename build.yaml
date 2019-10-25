@@ -1,0 +1,14 @@
+targets:
+  $default:
+    builders:
+      flutter_deriv_api|api:
+        generate_for:
+        - lib/api/*_send.json
+        - lib/api/*_receive.json
+builders:
+  api:
+    import: 'package:flutter_deriv_api/api_builder.dart'
+    builder_factories: ["apiBuilder"]
+    auto_apply: root_package
+    build_extensions: {".json": [".dart"]}
+    build_to: source
