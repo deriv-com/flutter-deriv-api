@@ -50,7 +50,7 @@ class APIBuilder extends Builder {
         if (prop.typeList?.isNotEmpty ?? false) {
           type = typeMap[prop.type?.toString() ?? 'string'];
         } else {
-          log.warn('The property $k on ${buildStep.inputId} does not appear to have a type: defaulting to string');
+          log.warning('The property $k on ${buildStep.inputId} does not appear to have a type: defaulting to string');
           type = 'string';
         }
         return 'final ${type ?? "unknown"} ${name ?? "unknown"};';
