@@ -5,28 +5,27 @@ import 'package:json_schema/json_schema.dart';
 import 'package:recase/recase.dart';
 
 import 'package:build/build.dart';
-import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 
 Builder apiBuilder(_) => APIBuilder();
 
 class APIBuilder extends Builder {
-  static const Map<String, String> typeMap = {
+  static const Map<String, String> typeMap = <String, String>{
     'integer': 'int',
-    'string': 'String',
-    'number': 'num',
-    'object': 'Map<String, dynamic>',
-    'array': 'List<String>',
+    'string':  'String',
+    'number':  'num',
+    'object':  'Map<String, dynamic>',
+    'array':   'List<String>',
   };
-  static const Map<String, String> schemaTypeMap = {
-    'send': 'Request',
+  static const Map<String, String> schemaTypeMap = <String, String>{
+    'send':    'Request',
     'receive': 'Response',
   };
 
   @override
   Map<String, List<String>> get buildExtensions => const <String, List<String>>{
-        '.json': const ['.dart']
-      };
+	'.json': <String>['.dart']
+  };
 
   @override
   Future<void> build(BuildStep buildStep) async {
@@ -36,7 +35,7 @@ class APIBuilder extends Builder {
         jsonDecode(await buildStep.readAsString(buildStep.inputId));
 
     log.info('Processing schema definition from ${buildStep.inputId}');
-    final schema = JsonSchema.createSchema(schemaDefinition);
+    final JsonSchema schema = JsonSchema.createSchema(schemaDefinition);
 
     /* We keep our list of property keys in original form here so we can iterate over and map them */
     final List<String> props = schema.properties.keys.toList();
@@ -44,7 +43,7 @@ class APIBuilder extends Builder {
     /* Instead of trying anything too fancy here, we just provide a simple conversion from original
        JSON schema name - which is snake_cased - to something more Dart-suitable, and apply type
        mapping via "it's a string unless we have a better guess" heuristic. */
-    log.info('Iterating over ${props}');
+    log.info('Iterating over $props');
     final String attrList = props.map((String k) {
       final String name = ReCase(k).camelCase;
       final JsonSchema prop = schema.properties[k];
@@ -52,7 +51,7 @@ class APIBuilder extends Builder {
       if (prop.typeList?.isNotEmpty ?? false) {
         type = typeMap[prop.type?.toString() ?? 'string'];
       } else {
-        log.severe('Failed to do anything with the type on property ${k}');
+        log.severe('Failed to do anything with the type on property $k');
         type = 'string';
       }
       return 'final ${type ?? "unknown"} ${name ?? "unknown"};';
@@ -62,9 +61,9 @@ class APIBuilder extends Builder {
     final matches = RegExp(r'^([^\|]+)\|.*/([^/]+)_(send|receive).json$')
         .allMatches(buildStep.inputId.toString());
     final items = matches.elementAt(0);
-    log.info('Matched items are ${items}');
+    log.info('Matched items are $items');
     if (items.groupCount < 3) {
-      log.severe('Had fewer groups than expected from ${items}');
+      log.severe('Had fewer groups than expected from $items');
     }
     final libName = items.group(1);
     final methodName = items.group(2);
@@ -72,9 +71,9 @@ class APIBuilder extends Builder {
     final className = ReCase(methodName).pascalCase;
 
     log.info(
-        'Will write ${className} for ${methodName} as ${schemaType} under ${libName}');
+        'Will write $className for $methodName as $schemaType under $libName');
     final fullClassName = className + schemaTypeMap[schemaType];
-    final fileName = methodName + '_' + schemaType;
+    final fileName = '${methodName}_${schemaType}';
     await buildStep.writeAsString(
         // Ideally we'd move somewhere else and reconstruct, but the builder is tediously
         // over-specific about where it lets you write things - you *can* navigate to parent
