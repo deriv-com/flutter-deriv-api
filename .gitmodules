@@ -1,0 +1,4 @@
+[submodule "websockets"]
+	path = websockets
+	url = git@github.com:binary-com/websockets
+	branch = gh-pages
