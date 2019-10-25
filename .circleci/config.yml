@@ -24,6 +24,10 @@ jobs:
           command: ./setup.sh
 
       - run:
+          name: pub get
+          command: flutter pub get
+
+      - run:
           name: Build step
           command: flutter pub run build_runner build
 
