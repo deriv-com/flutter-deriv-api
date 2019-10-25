@@ -12,20 +12,20 @@ Builder apiBuilder(_) => APIBuilder();
 class APIBuilder extends Builder {
   static const Map<String, String> typeMap = <String, String>{
     'integer': 'int',
-    'string':  'String',
-    'number':  'num',
-    'object':  'Map<String, dynamic>',
-    'array':   'List<String>',
+    'string': 'String',
+    'number': 'num',
+    'object': 'Map<String, dynamic>',
+    'array': 'List<String>',
   };
   static const Map<String, String> schemaTypeMap = <String, String>{
-    'send':    'Request',
+    'send': 'Request',
     'receive': 'Response',
   };
 
   @override
   Map<String, List<String>> get buildExtensions => const <String, List<String>>{
-	'.json': <String>['.dart']
-  };
+        '.json': <String>['.dart']
+      };
 
   @override
   Future<void> build(BuildStep buildStep) async {
