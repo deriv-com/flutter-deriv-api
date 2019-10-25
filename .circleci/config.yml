@@ -20,6 +20,14 @@ jobs:
           command: flutter doctor
 
       - run:
+          name: Link JSON files for API autobuild
+          command: ./setup.sh
+
+      - run:
+          name: Build step
+          command: flutter pub run build_runner build
+
+      - run:
           name: Run the application tests
           command: flutter test --coverage
 
