@@ -39,8 +39,13 @@ jobs:
               - gradle
 
       - run:
-          name: Build the Android version
-          command: flutter build apk 
+          name: Check that the package is ready for publishing
+          command: flutter packages pub publish --dry-run
+
+      - run:
+          name: Check that the package is ready for publishing
+          command: |
+              cd example && flutter build apk
 
       - save_cache:
           key: android-sdk-licenses
@@ -54,7 +59,7 @@ jobs:
       - run:
           name: Copy APK
           command: |
-              sudo mkdir -p /artifacts && sudo chown "$(whoami)" /artifacts && cp build/app/outputs/apk/release/app-release.apk /artifacts
+              sudo mkdir -p /artifacts && sudo chown "$(whoami)" /artifacts && cp example/build/app/outputs/apk/release/app-release.apk /artifacts/deriv-api-example.apk
 
       - store_artifacts:
           path: /artifacts
