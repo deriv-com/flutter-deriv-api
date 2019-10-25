@@ -8,9 +8,7 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   setUp(() {
-    channel.setMockMethodCallHandler((MethodCall methodCall) async {
-      return '42';
-    });
+    channel.setMockMethodCallHandler((MethodCall methodCall) async => '42');
   });
 
   tearDown(() {
