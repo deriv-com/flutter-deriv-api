@@ -1,0 +1,60 @@
+version: 2
+jobs:
+  build:    
+    docker:
+      - image: cirrusci/flutter:stable
+
+    branches:
+      only: master
+
+    steps:
+      - checkout
+      - run:
+          name: Update submodules
+          command: |
+              git submodule init
+              git submodule update --remote
+
+      - run:
+          name: Run Flutter doctor
+          command: flutter doctor
+
+      - run:
+          name: Run the application tests
+          command: flutter test --coverage
+
+      - run:
+          name: Upload coverage
+          command: |
+              bash <(curl -s https://codecov.io/bash)
+
+      - run:
+          name: Code analysis
+          command: |
+              dartanalyzer --options analysis_options.yaml --fatal-warnings lib
+
+      - restore_cache:
+          keys:
+              - android-sdk-licenses
+              - gradle
+
+      - run:
+          name: Build the Android version
+          command: flutter build apk 
+
+      - save_cache:
+          key: android-sdk-licenses
+          paths:
+              - /opt/android-sdk-linux/licenses
+      - save_cache:
+          key: gradle
+          paths:
+              - ~/.gradle
+
+      - run:
+          name: Copy APK
+          command: |
+              sudo mkdir -p /artifacts && sudo chown "$(whoami)" /artifacts && cp build/app/outputs/apk/release/app-release.apk /artifacts
+
+      - store_artifacts:
+          path: /artifacts
