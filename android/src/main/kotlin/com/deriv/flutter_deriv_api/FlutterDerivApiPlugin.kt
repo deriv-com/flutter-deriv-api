@@ -1,4 +1,4 @@
-package com.example.flutter_deriv_api
+package com.deriv.flutter_deriv_api
 
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
