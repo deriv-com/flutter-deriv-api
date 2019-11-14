@@ -10,6 +10,7 @@ environment:
 dependencies:
   json_annotation: ^3.0.0
   web_socket_channel: ^1.0.15
+  flutter_webview_plugin: ^0.3.8
   connectivity: ^0.4.4
   build: ^1.2.0
   build_config: ^0.4.1
