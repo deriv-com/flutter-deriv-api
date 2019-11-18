@@ -35,4 +35,3 @@ flutter:
   plugin:
     androidPackage: com.deriv.flutter_deriv_api
     pluginClass: FlutterDerivApiPlugin
-
