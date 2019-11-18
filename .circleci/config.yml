@@ -46,7 +46,8 @@ jobs:
       - run:
           name: Code analysis
           command: |
-              dartanalyzer --options analysis_options.yaml --fatal-warnings lib
+              flutter pub global activate tuneup
+              flutter pub global run tuneup check
 
       - restore_cache:
           keys:
