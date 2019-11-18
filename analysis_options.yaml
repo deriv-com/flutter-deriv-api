@@ -1,6 +1,6 @@
 analyzer:
   exclude:
-    - lib/api/*.dart
+    - lib/api/**
   strong-mode:
     implicit-dynamic: false
   errors:
