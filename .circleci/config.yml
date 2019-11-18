@@ -20,6 +20,12 @@ jobs:
           name: Link JSON files for API autobuild
           command: ./setup.sh
 
+      - restore_cache:
+          keys:
+              - android-sdk-licenses
+              - gradle
+              - pub-cache
+
       - run:
           name: pub get
           command: flutter pub get
