@@ -49,12 +49,6 @@ jobs:
               flutter pub global activate tuneup
               flutter pub global run tuneup check
 
-      - restore_cache:
-          keys:
-              - android-sdk-licenses
-              - gradle
-              - pub-cache
-
       - run:
           name: Check that the package is ready for publishing
           command: flutter packages pub publish --dry-run
