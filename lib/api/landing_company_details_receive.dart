@@ -13,18 +13,17 @@ class LandingCompanyDetailsResponse {
   Map<String, dynamic> toJson() => _$LandingCompanyDetailsResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> landingCompanyDetails;
-
-  /// The detailed information of the requested landing company.
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
-  String msgType;
+  /// The detailed information of the requested landing company.
+  Map<String, dynamic> landingCompanyDetails;
 
   /// Action name of the request made.
-  int reqId;
+  String msgType;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

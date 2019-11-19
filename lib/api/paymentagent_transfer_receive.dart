@@ -13,27 +13,26 @@ class PaymentagentTransferResponse {
   Map<String, dynamic> toJson() => _$PaymentagentTransferResponseToJson(this);
 
   // Properties
-  int paymentagentTransfer;
-
-  /// If set to 1, transfer success. If set to 2, dry-run success.
+  /// The transfer_to client full name
   String clientToFullName;
 
-  /// The transfer_to client full name
+  /// The transfer_to client loginid
   String clientToLoginid;
 
-  /// The transfer_to client loginid
-  int transactionId;
-
-  /// Reference ID of transfer performed
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
-  int reqId;
+  /// If set to 1, transfer success. If set to 2, dry-run success.
+  int paymentagentTransfer;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
+
+  /// Reference ID of transfer performed
+  int transactionId;
 
   // @override
   // String toString() => name;

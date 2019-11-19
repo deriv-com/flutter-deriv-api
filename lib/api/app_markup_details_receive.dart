@@ -13,18 +13,17 @@ class AppMarkupDetailsResponse {
   Map<String, dynamic> toJson() => _$AppMarkupDetailsResponseToJson(this);
 
   // Properties
+  /// App Markup transaction details
   Map<String, dynamic> appMarkupDetails;
 
-  /// App Markup transaction details
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
-  int reqId;
-
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

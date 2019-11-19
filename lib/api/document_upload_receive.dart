@@ -13,18 +13,17 @@ class DocumentUploadResponse {
   Map<String, dynamic> toJson() => _$DocumentUploadResponseToJson(this);
 
   // Properties
+  /// Details of the uploaded documents.
   Map<String, dynamic> documentUpload;
 
-  /// Details of the uploaded documents.
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
-  int reqId;
-
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

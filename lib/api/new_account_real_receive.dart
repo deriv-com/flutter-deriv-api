@@ -13,18 +13,17 @@ class NewAccountRealResponse {
   Map<String, dynamic> toJson() => _$NewAccountRealResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> newAccountReal;
-
-  /// New real money account details
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
-  int reqId;
+  /// New real money account details
+  Map<String, dynamic> newAccountReal;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

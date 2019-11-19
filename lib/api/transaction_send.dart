@@ -13,18 +13,17 @@ class TransactionRequest {
   Map<String, dynamic> toJson() => _$TransactionRequestToJson(this);
 
   // Properties
-  int transaction;
-
-  /// Must be 1
-  int subscribe;
-
-  /// If set to 1, will send updates whenever there is an update to transactions. If not to 1 then it will not return any records.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to map request to response.
   int reqId;
 
-  /// [Optional] Used to map request to response.
+  /// If set to 1, will send updates whenever there is an update to transactions. If not to 1 then it will not return any records.
+  int subscribe;
+
+  /// Must be 1
+  int transaction;
 
   // @override
   // String toString() => name;

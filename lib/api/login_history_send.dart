@@ -13,18 +13,17 @@ class LoginHistoryRequest {
   Map<String, dynamic> toJson() => _$LoginHistoryRequestToJson(this);
 
   // Properties
-  int loginHistory;
-
-  /// Must be 1
+  /// Apply limit to count of login history records, default to 10. Max:50
   int limit;
 
-  /// Apply limit to count of login history records, default to 10. Max:50
-  Map<String, dynamic> passthrough;
+  /// Must be 1
+  int loginHistory;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
+  int reqId;
 
   // @override
   // String toString() => name;

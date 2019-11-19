@@ -13,18 +13,17 @@ class VerifyEmailResponse {
   Map<String, dynamic> toJson() => _$VerifyEmailResponseToJson(this);
 
   // Properties
-  int verifyEmail;
-
-  /// 1 for success (secure code has been sent to the email address)
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
+  /// Optional field sent in request to map to response, present only when request contains req_id.
   int reqId;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// 1 for success (secure code has been sent to the email address)
+  int verifyEmail;
 
   // @override
   // String toString() => name;

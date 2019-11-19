@@ -13,18 +13,17 @@ class GetSettingsResponse {
   Map<String, dynamic> toJson() => _$GetSettingsResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> getSettings;
-
-  /// User information and settings.
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
-  String msgType;
+  /// User information and settings.
+  Map<String, dynamic> getSettings;
 
   /// Action name of the request made.
-  int reqId;
+  String msgType;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

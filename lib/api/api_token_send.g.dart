@@ -13,9 +13,9 @@ ApiTokenRequest _$ApiTokenRequestFromJson(Map<String, dynamic> json) {
     ..newToken = json['new_token'] as String
     ..newTokenScopes =
         (json['new_token_scopes'] as List).map((e) => e as String).toList()
-    ..validForCurrentIpOnly = json['valid_for_current_ip_only'] as int
     ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+    ..reqId = json['req_id'] as int
+    ..validForCurrentIpOnly = json['valid_for_current_ip_only'] as int;
 }
 
 Map<String, dynamic> _$ApiTokenRequestToJson(ApiTokenRequest instance) =>
@@ -24,7 +24,7 @@ Map<String, dynamic> _$ApiTokenRequestToJson(ApiTokenRequest instance) =>
       'delete_token': instance.deleteToken,
       'new_token': instance.newToken,
       'new_token_scopes': instance.newTokenScopes,
-      'valid_for_current_ip_only': instance.validForCurrentIpOnly,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'valid_for_current_ip_only': instance.validForCurrentIpOnly,
     };

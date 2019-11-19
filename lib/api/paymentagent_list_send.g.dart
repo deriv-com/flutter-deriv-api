@@ -9,17 +9,17 @@ part of 'paymentagent_list_send.dart';
 PaymentagentListRequest _$PaymentagentListRequestFromJson(
     Map<String, dynamic> json) {
   return PaymentagentListRequest()
-    ..paymentagentList = json['paymentagent_list'] as String
     ..currency = json['currency'] as String
     ..passthrough = json['passthrough'] as Map<String, dynamic>
+    ..paymentagentList = json['paymentagent_list'] as String
     ..reqId = json['req_id'] as int;
 }
 
 Map<String, dynamic> _$PaymentagentListRequestToJson(
         PaymentagentListRequest instance) =>
     <String, dynamic>{
-      'paymentagent_list': instance.paymentagentList,
       'currency': instance.currency,
       'passthrough': instance.passthrough,
+      'paymentagent_list': instance.paymentagentList,
       'req_id': instance.reqId,
     };

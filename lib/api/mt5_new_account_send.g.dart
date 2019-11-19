@@ -8,7 +8,6 @@ part of 'mt5_new_account_send.dart';
 
 Mt5NewAccountRequest _$Mt5NewAccountRequestFromJson(Map<String, dynamic> json) {
   return Mt5NewAccountRequest()
-    ..mt5NewAccount = json['mt5_new_account'] as int
     ..accountType = json['account_type'] as String
     ..address = json['address'] as String
     ..city = json['city'] as String
@@ -19,19 +18,19 @@ Mt5NewAccountRequest _$Mt5NewAccountRequestFromJson(Map<String, dynamic> json) {
     ..leverage = json['leverage'] as String
     ..mainPassword = json['main_password'] as String
     ..mt5AccountType = json['mt5_account_type'] as String
+    ..mt5NewAccount = json['mt5_new_account'] as int
     ..name = json['name'] as String
+    ..passthrough = json['passthrough'] as Map<String, dynamic>
     ..phone = json['phone'] as String
     ..phonePassword = json['phone_password'] as String
+    ..reqId = json['req_id'] as int
     ..state = json['state'] as String
-    ..zipCode = json['zip_code'] as String
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+    ..zipCode = json['zip_code'] as String;
 }
 
 Map<String, dynamic> _$Mt5NewAccountRequestToJson(
         Mt5NewAccountRequest instance) =>
     <String, dynamic>{
-      'mt5_new_account': instance.mt5NewAccount,
       'account_type': instance.accountType,
       'address': instance.address,
       'city': instance.city,
@@ -42,11 +41,12 @@ Map<String, dynamic> _$Mt5NewAccountRequestToJson(
       'leverage': instance.leverage,
       'main_password': instance.mainPassword,
       'mt5_account_type': instance.mt5AccountType,
+      'mt5_new_account': instance.mt5NewAccount,
       'name': instance.name,
+      'passthrough': instance.passthrough,
       'phone': instance.phone,
       'phone_password': instance.phonePassword,
+      'req_id': instance.reqId,
       'state': instance.state,
       'zip_code': instance.zipCode,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
     };

@@ -9,17 +9,17 @@ part of 'cashier_send.dart';
 CashierRequest _$CashierRequestFromJson(Map<String, dynamic> json) {
   return CashierRequest()
     ..cashier = json['cashier'] as String
-    ..provider = json['provider'] as String
-    ..verificationCode = json['verification_code'] as String
     ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+    ..provider = json['provider'] as String
+    ..reqId = json['req_id'] as int
+    ..verificationCode = json['verification_code'] as String;
 }
 
 Map<String, dynamic> _$CashierRequestToJson(CashierRequest instance) =>
     <String, dynamic>{
       'cashier': instance.cashier,
-      'provider': instance.provider,
-      'verification_code': instance.verificationCode,
       'passthrough': instance.passthrough,
+      'provider': instance.provider,
       'req_id': instance.reqId,
+      'verification_code': instance.verificationCode,
     };

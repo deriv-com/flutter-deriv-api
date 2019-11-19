@@ -13,27 +13,26 @@ class ApiTokenRequest {
   Map<String, dynamic> toJson() => _$ApiTokenRequestToJson(this);
 
   // Properties
+  /// Must be 1
   int apiToken;
 
-  /// Must be 1
+  /// The token to remove
   String deleteToken;
 
-  /// The token to remove
+  /// The name of the created token
   String newToken;
 
-  /// The name of the created token
+  /// List of permission scopes to provide with the token.
   List<String> newTokenScopes;
 
-  /// List of permission scopes to provide with the token.
-  int validForCurrentIpOnly;
-
-  /// Optional field, if you set this parameter during token creation, then the token created will only work for the IP address that was used to create the token
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to map request to response.
   int reqId;
 
-  /// [Optional] Used to map request to response.
+  /// Optional field, if you set this parameter during token creation, then the token created will only work for the IP address that was used to create the token
+  int validForCurrentIpOnly;
 
   // @override
   // String toString() => name;

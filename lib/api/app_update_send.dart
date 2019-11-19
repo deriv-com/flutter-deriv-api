@@ -13,42 +13,41 @@ class AppUpdateRequest {
   Map<String, dynamic> toJson() => _$AppUpdateRequestToJson(this);
 
   // Properties
-  int appUpdate;
-
-  /// Application app_id
+  /// Markup to be added to contract prices (as a percentage of contract payout). Min: 0, Max: 5
   num appMarkupPercentage;
 
-  /// Markup to be added to contract prices (as a percentage of contract payout). Min: 0, Max: 5
-  String appstore;
+  /// Application app_id
+  int appUpdate;
 
   /// Application's App Store URL (if applicable)
-  String github;
+  String appstore;
 
   /// Application's GitHub page (for open-source projects)
-  String googleplay;
+  String github;
 
   /// Application's Google Play URL (if applicable)
-  String homepage;
+  String googleplay;
 
   /// Application's homepage
-  String name;
+  String homepage;
 
   /// Application name
-  String redirectUri;
-
-  /// Application redirect_uri
-  List<String> scopes;
-
-  /// Change scopes will revoke all user's grants and log them out.
-  String verificationUri;
-
-  /// Application verification_uri
-  Map<String, dynamic> passthrough;
+  String name;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
+
+  /// Application redirect_uri
+  String redirectUri;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// Change scopes will revoke all user's grants and log them out.
+  List<String> scopes;
+
+  /// Application verification_uri
+  String verificationUri;
 
   // @override
   // String toString() => name;

@@ -13,18 +13,17 @@ class AuthorizeRequest {
   Map<String, dynamic> toJson() => _$AuthorizeRequestToJson(this);
 
   // Properties
-  String authorize;
-
-  /// Authentication token. May be retrieved from https://www.binary.com/en/user/security/api_tokenws.html
+  /// [Optional] Send this when you use api tokens for authorization and want to track activity using login_history call.
   int addToLoginHistory;
 
-  /// [Optional] Send this when you use api tokens for authorization and want to track activity using login_history call.
-  Map<String, dynamic> passthrough;
+  /// Authentication token. May be retrieved from https://www.binary.com/en/user/security/api_tokenws.html
+  String authorize;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
+  int reqId;
 
   // @override
   // String toString() => name;

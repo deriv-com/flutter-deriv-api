@@ -13,66 +13,65 @@ class SetFinancialAssessmentRequest {
   Map<String, dynamic> toJson() => _$SetFinancialAssessmentRequestToJson(this);
 
   // Properties
-  int setFinancialAssessment;
-
-  /// Must be 1
+  /// The anticipated account turnover
   String accountTurnover;
 
-  /// The anticipated account turnover
+  /// Binary options trading experience
   String binaryOptionsTradingExperience;
 
-  /// Binary options trading experience
+  /// Binary options trading frequency
   String binaryOptionsTradingFrequency;
 
-  /// Binary options trading frequency
+  /// CFDs trading experience
   String cfdTradingExperience;
 
-  /// CFDs trading experience
+  /// CFDs trading frequency
   String cfdTradingFrequency;
 
-  /// CFDs trading frequency
+  /// Level of Education
   String educationLevel;
 
-  /// Level of Education
+  /// Industry of Employment
   String employmentIndustry;
 
-  /// Industry of Employment
+  /// Employment Status
   String employmentStatus;
 
-  /// Employment Status
+  /// Estimated Net Worth
   String estimatedWorth;
 
-  /// Estimated Net Worth
+  /// Forex trading experience
   String forexTradingExperience;
 
-  /// Forex trading experience
+  /// Forex trading frequency
   String forexTradingFrequency;
 
-  /// Forex trading frequency
+  /// Income Source
   String incomeSource;
 
-  /// Income Source
+  /// Net Annual Income
   String netIncome;
 
-  /// Net Annual Income
+  /// Occupation
   String occupation;
 
-  /// Occupation
+  /// Trading experience in other financial instruments
   String otherInstrumentsTradingExperience;
 
-  /// Trading experience in other financial instruments
+  /// Trading frequency in other financial instruments
   String otherInstrumentsTradingFrequency;
 
-  /// Trading frequency in other financial instruments
-  String sourceOfWealth;
-
-  /// Source of wealth
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to map request to response.
   int reqId;
 
-  /// [Optional] Used to map request to response.
+  /// Must be 1
+  int setFinancialAssessment;
+
+  /// Source of wealth
+  String sourceOfWealth;
 
   // @override
   // String toString() => name;

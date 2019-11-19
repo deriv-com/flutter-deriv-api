@@ -13,24 +13,23 @@ class Mt5PasswordCheckRequest {
   Map<String, dynamic> toJson() => _$Mt5PasswordCheckRequestToJson(this);
 
   // Properties
-  int mt5PasswordCheck;
-
-  /// Must be 1
+  /// MT5 user login
   String login;
 
-  /// MT5 user login
-  String password;
-
-  /// The password of the account.
-  String passwordType;
-
-  /// The password type main/investor (default: 'main')
-  Map<String, dynamic> passthrough;
+  /// Must be 1
+  int mt5PasswordCheck;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
+
+  /// The password of the account.
+  String password;
+
+  /// The password type main/investor (default: 'main')
+  String passwordType;
 
   /// [Optional] Used to map request to response.
+  int reqId;
 
   // @override
   // String toString() => name;

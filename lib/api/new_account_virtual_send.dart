@@ -13,45 +13,44 @@ class NewAccountVirtualRequest {
   Map<String, dynamic> toJson() => _$NewAccountVirtualRequestToJson(this);
 
   // Properties
-  int newAccountVirtual;
-
-  /// Must be 1
+  /// [Optional] Affiliate token, within 32 characters.
   String affiliateToken;
 
-  /// [Optional] Affiliate token, within 32 characters.
+  /// Password (length within 6-25 chars, accepts any printable ASCII character).
   String clientPassword;
 
-  /// Password (length within 6-25 chars, accepts any printable ASCII character).
+  /// [Optional] Date of first contact, format: yyyy-mm-dd in GMT timezone.
   String dateFirstContact;
 
-  /// [Optional] Date of first contact, format: yyyy-mm-dd in GMT timezone.
+  /// [Optional] Google Click Identifier to track source.
   String gclidUrl;
 
-  /// [Optional] Google Click Identifier to track source.
-  String residence;
-
-  /// 2-letter country code (obtained from residence_list call).
-  String signupDevice;
-
-  /// [Optional] Show whether user has used mobile or desktop.
-  String utmCampaign;
-
-  /// [Optional] Identifies a specific product promotion or strategic campaign such as a spring sale or other promotions.
-  String utmMedium;
-
-  /// [Optional] Identifies the medium the link was used upon such as: email, CPC, or other methods of sharing.
-  String utmSource;
-
-  /// [Optional] Identifies the source of traffic such as: search engine, newsletter, or other referral.
-  String verificationCode;
-
-  /// Email verification code (received from a verify_email call, which must be done first).
-  Map<String, dynamic> passthrough;
+  /// Must be 1
+  int newAccountVirtual;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// 2-letter country code (obtained from residence_list call).
+  String residence;
+
+  /// [Optional] Show whether user has used mobile or desktop.
+  String signupDevice;
+
+  /// [Optional] Identifies a specific product promotion or strategic campaign such as a spring sale or other promotions.
+  String utmCampaign;
+
+  /// [Optional] Identifies the medium the link was used upon such as: email, CPC, or other methods of sharing.
+  String utmMedium;
+
+  /// [Optional] Identifies the source of traffic such as: search engine, newsletter, or other referral.
+  String utmSource;
+
+  /// Email verification code (received from a verify_email call, which must be done first).
+  String verificationCode;
 
   // @override
   // String toString() => name;

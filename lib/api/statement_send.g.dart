@@ -8,26 +8,26 @@ part of 'statement_send.dart';
 
 StatementRequest _$StatementRequestFromJson(Map<String, dynamic> json) {
   return StatementRequest()
-    ..statement = json['statement'] as int
-    ..description = json['description'] as int
     ..actionType = json['action_type'] as String
     ..dateFrom = json['date_from'] as int
     ..dateTo = json['date_to'] as int
+    ..description = json['description'] as int
     ..limit = json['limit'] as num
     ..offset = json['offset'] as num
     ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+    ..reqId = json['req_id'] as int
+    ..statement = json['statement'] as int;
 }
 
 Map<String, dynamic> _$StatementRequestToJson(StatementRequest instance) =>
     <String, dynamic>{
-      'statement': instance.statement,
-      'description': instance.description,
       'action_type': instance.actionType,
       'date_from': instance.dateFrom,
       'date_to': instance.dateTo,
+      'description': instance.description,
       'limit': instance.limit,
       'offset': instance.offset,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'statement': instance.statement,
     };

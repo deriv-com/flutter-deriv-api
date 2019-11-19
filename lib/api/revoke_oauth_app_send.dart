@@ -13,15 +13,14 @@ class RevokeOauthAppRequest {
   Map<String, dynamic> toJson() => _$RevokeOauthAppRequestToJson(this);
 
   // Properties
-  int revokeOauthApp;
-
-  /// The application ID to revoke.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to map request to response.
   int reqId;
 
-  /// [Optional] Used to map request to response.
+  /// The application ID to revoke.
+  int revokeOauthApp;
 
   // @override
   // String toString() => name;

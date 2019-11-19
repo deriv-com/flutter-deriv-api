@@ -13,18 +13,17 @@ class OauthAppsResponse {
   Map<String, dynamic> toJson() => _$OauthAppsResponseToJson(this);
 
   // Properties
-  List<String> oauthApps;
-
-  /// List of OAuth applications that used for the authorized account.
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
-  int reqId;
+  /// List of OAuth applications that used for the authorized account.
+  List<Map<String, dynamic>> oauthApps;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

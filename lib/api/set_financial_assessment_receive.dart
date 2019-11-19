@@ -13,18 +13,17 @@ class SetFinancialAssessmentResponse {
   Map<String, dynamic> toJson() => _$SetFinancialAssessmentResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> setFinancialAssessment;
-
-  /// The financial assessment score assigned to the submitted financial assessment
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
+  /// Optional field sent in request to map to response, present only when request contains req_id.
   int reqId;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// The financial assessment score assigned to the submitted financial assessment
+  Map<String, dynamic> setFinancialAssessment;
 
   // @override
   // String toString() => name;

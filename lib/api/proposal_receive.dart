@@ -13,21 +13,20 @@ class ProposalResponse {
   Map<String, dynamic> toJson() => _$ProposalResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> proposal;
-
-  /// Latest price and other details for a given contract
-  Map<String, dynamic> subscription;
-
-  /// For subscription requests only
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
-  int reqId;
+  /// Latest price and other details for a given contract
+  Map<String, dynamic> proposal;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
+
+  /// For subscription requests only
+  Map<String, dynamic> subscription;
 
   // @override
   // String toString() => name;

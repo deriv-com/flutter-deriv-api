@@ -13,21 +13,20 @@ class Mt5DepositResponse {
   Map<String, dynamic> toJson() => _$Mt5DepositResponseToJson(this);
 
   // Properties
-  int mt5Deposit;
-
-  /// 1 on success
+  /// Withdrawal reference ID of Binary account
   int binaryTransactionId;
 
-  /// Withdrawal reference ID of Binary account
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
-  int reqId;
+  /// 1 on success
+  int mt5Deposit;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

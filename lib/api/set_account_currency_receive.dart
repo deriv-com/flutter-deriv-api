@@ -13,18 +13,17 @@ class SetAccountCurrencyResponse {
   Map<String, dynamic> toJson() => _$SetAccountCurrencyResponseToJson(this);
 
   // Properties
-  int setAccountCurrency;
-
-  /// 1: success, 0: no change
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
+  /// Optional field sent in request to map to response, present only when request contains req_id.
   int reqId;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// 1: success, 0: no change
+  int setAccountCurrency;
 
   // @override
   // String toString() => name;

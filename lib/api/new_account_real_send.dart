@@ -13,81 +13,80 @@ class NewAccountRealRequest {
   Map<String, dynamic> toJson() => _$NewAccountRealRequestToJson(this);
 
   // Properties
-  int newAccountReal;
-
-  /// Must be 1
+  /// Purpose and reason for requesting the account opening
   String accountOpeningReason;
 
-  /// Purpose and reason for requesting the account opening
+  /// The anticipated account turnover
   String accountTurnover;
 
-  /// The anticipated account turnover
+  /// Within 35 characters
   String addressCity;
 
-  /// Within 35 characters
+  /// Mailing address.
   String addressLine1;
 
-  /// Mailing address.
+  /// Optional field, within 70 characters.
   String addressLine2;
 
-  /// Optional field, within 70 characters.
+  /// Optional field, within 20 characters and may not contain '+'.
   String addressPostcode;
 
-  /// Optional field, within 20 characters and may not contain '+'.
+  /// Optional field, possible value receive from 'states_list' call.
   String addressState;
 
-  /// Optional field, possible value receive from 'states_list' call.
+  /// Affiliate token, within 32 characters.
   String affiliateToken;
 
-  /// Affiliate token, within 32 characters.
+  /// Country of legal citizenship, 2-letter country code.
   String citizen;
 
-  /// Country of legal citizenship, 2-letter country code.
+  /// Optional field, indicates whether this is for a client requesting an account with professional status. Defaults to retail.
   String clientType;
 
-  /// Optional field, indicates whether this is for a client requesting an account with professional status. Defaults to retail.
+  /// Optional field to set currency of the account. List of supported currencies can be acquired with 'payout_currencies' call
   String currency;
 
-  /// Optional field to set currency of the account. List of supported currencies can be acquired with 'payout_currencies' call
+  /// Date of birth format: yyyy-mm-dd.
   String dateOfBirth;
 
-  /// Date of birth format: yyyy-mm-dd.
+  /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   String firstName;
 
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   String lastName;
 
-  /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
-  String phone;
-
-  /// Within 8-35 digits, allowing '+' in front, numbers, hyphens or space.
-  String placeOfBirth;
-
-  /// Place of birth, 2-letter country code.
-  String residence;
-
-  /// 2-letter country code, possible value receive from residence_list call.
-  String salutation;
-
-  /// Accept any value in enum list.
-  String secretAnswer;
-
-  /// Answer to secret question, within 4-50 characters. Required for new account and existing client details will be used if client open another account.
-  String secretQuestion;
-
-  /// Accept any value in enum list. Required for new account and existing client details will be used if client open another account.
-  String taxIdentificationNumber;
-
-  /// Tax identification number. Only applicable for real money account. Required for maltainvest landing company.
-  String taxResidence;
-
-  /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for maltainvest landing company.
-  Map<String, dynamic> passthrough;
+  /// Must be 1
+  int newAccountReal;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
+
+  /// Within 8-35 digits, allowing '+' in front, numbers, hyphens or space.
+  String phone;
+
+  /// Place of birth, 2-letter country code.
+  String placeOfBirth;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// 2-letter country code, possible value receive from residence_list call.
+  String residence;
+
+  /// Accept any value in enum list.
+  String salutation;
+
+  /// Answer to secret question, within 4-50 characters. Required for new account and existing client details will be used if client open another account.
+  String secretAnswer;
+
+  /// Accept any value in enum list. Required for new account and existing client details will be used if client open another account.
+  String secretQuestion;
+
+  /// Tax identification number. Only applicable for real money account. Required for maltainvest landing company.
+  String taxIdentificationNumber;
+
+  /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for maltainvest landing company.
+  String taxResidence;
 
   // @override
   // String toString() => name;

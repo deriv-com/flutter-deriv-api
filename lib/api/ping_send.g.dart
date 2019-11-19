@@ -8,14 +8,14 @@ part of 'ping_send.dart';
 
 PingRequest _$PingRequestFromJson(Map<String, dynamic> json) {
   return PingRequest()
-    ..ping = json['ping'] as int
     ..passthrough = json['passthrough'] as Map<String, dynamic>
+    ..ping = json['ping'] as int
     ..reqId = json['req_id'] as int;
 }
 
 Map<String, dynamic> _$PingRequestToJson(PingRequest instance) =>
     <String, dynamic>{
-      'ping': instance.ping,
       'passthrough': instance.passthrough,
+      'ping': instance.ping,
       'req_id': instance.reqId,
     };

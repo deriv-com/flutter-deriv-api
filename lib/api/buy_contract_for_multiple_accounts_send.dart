@@ -15,24 +15,23 @@ class BuyContractForMultipleAccountsRequest {
       _$BuyContractForMultipleAccountsRequestToJson(this);
 
   // Properties
+  /// Either the ID received from a Price Proposal (proposal) call, or 1 if contract buy parameters are passed in the parameters field
   String buyContractForMultipleAccounts;
 
-  /// Either the ID received from a Price Proposal (proposal) call, or 1 if contract buy parameters are passed in the parameters field
+  /// Optional field, used to pass the parameters for contract buy
   Map<String, dynamic> parameters;
 
-  /// Optional field, used to pass the parameters for contract buy
-  num price;
-
-  /// Maximum price at which to purchase the contract.
-  List<String> tokens;
-
-  /// List of API tokens identifying the accounts for which the contract is bought. Note: If the same token appears multiple times or if multiple tokens designate the same account, the contract is bought multiple times for this account.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  /// Maximum price at which to purchase the contract.
+  num price;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// List of API tokens identifying the accounts for which the contract is bought. Note: If the same token appears multiple times or if multiple tokens designate the same account, the contract is bought multiple times for this account.
+  List<String> tokens;
 
   // @override
   // String toString() => name;

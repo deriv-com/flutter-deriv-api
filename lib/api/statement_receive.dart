@@ -13,18 +13,17 @@ class StatementResponse {
   Map<String, dynamic> toJson() => _$StatementResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> statement;
-
-  /// Account statement.
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
+  /// Optional field sent in request to map to response, present only when request contains req_id.
   int reqId;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Account statement.
+  Map<String, dynamic> statement;
 
   // @override
   // String toString() => name;

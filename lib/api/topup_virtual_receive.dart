@@ -13,18 +13,17 @@ class TopupVirtualResponse {
   Map<String, dynamic> toJson() => _$TopupVirtualResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> topupVirtual;
-
-  /// The information regarding a successful top up for a virtual money account
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
+  /// Optional field sent in request to map to response, present only when request contains req_id.
   int reqId;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// The information regarding a successful top up for a virtual money account
+  Map<String, dynamic> topupVirtual;
 
   // @override
   // String toString() => name;

@@ -13,42 +13,41 @@ class AppMarkupDetailsRequest {
   Map<String, dynamic> toJson() => _$AppMarkupDetailsRequestToJson(this);
 
   // Properties
-  int appMarkupDetails;
-
-  /// Must be 1
-  int description;
-
-  /// If set to 1, will return app_markup transaction details.
+  /// Optional: specific application app_id to report on
   int appId;
 
-  /// Optional: specific application app_id to report on
-  String clientLoginid;
+  /// Must be 1
+  int appMarkupDetails;
 
   /// Optional: specific client loginid to report on, like CR12345
-  String dateFrom;
+  String clientLoginid;
 
   /// Start date (epoch or YYYY-MM-DD HH:MM:SS). Results are inclusive of this time.
-  String dateTo;
+  String dateFrom;
 
   /// End date (epoch or YYYY-MM-DD HH::MM::SS). Results are inclusive of this time.
-  num limit;
+  String dateTo;
+
+  /// If set to 1, will return app_markup transaction details.
+  int description;
 
   /// Optional: (default 1000): Apply upper limit to count of transactions received
-  num offset;
+  num limit;
 
   /// Optional: Skip this many transactions
-  String sort;
-
-  /// Optional transaction_time sort direction, default DESC. Other fields sort order is ASC.
-  List<String> sortFields;
-
-  /// Optional one or more of the specified fields to sort on. Default sort field is by transaction_time.
-  Map<String, dynamic> passthrough;
+  num offset;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// Optional transaction_time sort direction, default DESC. Other fields sort order is ASC.
+  String sort;
+
+  /// Optional one or more of the specified fields to sort on. Default sort field is by transaction_time.
+  List<String> sortFields;
 
   // @override
   // String toString() => name;

@@ -13,18 +13,17 @@ class Mt5GetSettingsRequest {
   Map<String, dynamic> toJson() => _$Mt5GetSettingsRequestToJson(this);
 
   // Properties
-  int mt5GetSettings;
-
-  /// Must be 1
+  /// MT5 user login
   String login;
 
-  /// MT5 user login
-  Map<String, dynamic> passthrough;
+  /// Must be 1
+  int mt5GetSettings;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
+  int reqId;
 
   // @override
   // String toString() => name;

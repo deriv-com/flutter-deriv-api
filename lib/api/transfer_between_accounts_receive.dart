@@ -14,30 +14,29 @@ class TransferBetweenAccountsResponse {
       _$TransferBetweenAccountsResponseToJson(this);
 
   // Properties
-  int transferBetweenAccounts;
-
-  /// If set to 1, transfer succeeded.
-  List<String> accounts;
-
   /// The available accounts to transfer, or the accounts affected by a successful transfer.
-  String clientToFullName;
+  List<Map<String, dynamic>> accounts;
 
   /// The account to client full name
-  String clientToLoginid;
+  String clientToFullName;
 
   /// The account to client loginid
-  int transactionId;
-
-  /// Reference ID of transfer performed
-  Map<String, dynamic> echoReq;
+  String clientToLoginid;
 
   /// Echo of the request made.
-  String msgType;
+  Map<String, dynamic> echoReq;
 
   /// Action name of the request made.
-  int reqId;
+  String msgType;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
+
+  /// Reference ID of transfer performed
+  int transactionId;
+
+  /// If set to 1, transfer succeeded.
+  int transferBetweenAccounts;
 
   // @override
   // String toString() => name;

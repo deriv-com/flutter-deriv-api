@@ -13,18 +13,17 @@ class RealityCheckResponse {
   Map<String, dynamic> toJson() => _$RealityCheckResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> realityCheck;
-
-  /// Reality check summary of trades.
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
-  int reqId;
+  /// Reality check summary of trades.
+  Map<String, dynamic> realityCheck;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

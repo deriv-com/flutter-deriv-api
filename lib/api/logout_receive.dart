@@ -13,18 +13,17 @@ class LogoutResponse {
   Map<String, dynamic> toJson() => _$LogoutResponseToJson(this);
 
   // Properties
-  int logout;
-
-  /// The result of logout request which is 1
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
-  String msgType;
+  /// The result of logout request which is 1
+  int logout;
 
   /// Action name of the request made.
-  int reqId;
+  String msgType;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

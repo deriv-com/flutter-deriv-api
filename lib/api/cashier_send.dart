@@ -13,21 +13,20 @@ class CashierRequest {
   Map<String, dynamic> toJson() => _$CashierRequestToJson(this);
 
   // Properties
+  /// Either deposit or withdraw, default to deposit.
   String cashier;
 
-  /// Either deposit or withdraw, default to deposit.
-  String provider;
-
-  /// Note only doughflow is supported currently.
-  String verificationCode;
-
-  /// Email verification code (received from a verify_email call, which must be done first)
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  /// Note only doughflow is supported currently.
+  String provider;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// Email verification code (received from a verify_email call, which must be done first)
+  String verificationCode;
 
   // @override
   // String toString() => name;

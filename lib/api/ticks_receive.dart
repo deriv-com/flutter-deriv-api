@@ -13,21 +13,20 @@ class TicksResponse {
   Map<String, dynamic> toJson() => _$TicksResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> subscription;
-
-  /// For subscription requests only
-  Map<String, dynamic> tick;
-
-  /// Tick by tick list of streamed data
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Type of the response.
   String msgType;
 
-  /// Type of the response.
+  /// Optional field sent in request to map to response, present only when request contains req_id.
   int reqId;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// For subscription requests only
+  Map<String, dynamic> subscription;
+
+  /// Tick by tick list of streamed data
+  Map<String, dynamic> tick;
 
   // @override
   // String toString() => name;

@@ -13,15 +13,14 @@ class PingRequest {
   Map<String, dynamic> toJson() => _$PingRequestToJson(this);
 
   // Properties
-  int ping;
-
-  /// Must be 1
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  /// Must be 1
+  int ping;
 
   /// [Optional] Used to map request to response.
+  int reqId;
 
   // @override
   // String toString() => name;

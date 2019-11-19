@@ -9,19 +9,19 @@ part of 'website_status_receive.dart';
 WebsiteStatusResponse _$WebsiteStatusResponseFromJson(
     Map<String, dynamic> json) {
   return WebsiteStatusResponse()
-    ..websiteStatus = json['website_status'] as Map<String, dynamic>
-    ..subscription = json['subscription'] as Map<String, dynamic>
     ..echoReq = json['echo_req'] as Map<String, dynamic>
     ..msgType = json['msg_type'] as String
-    ..reqId = json['req_id'] as int;
+    ..reqId = json['req_id'] as int
+    ..subscription = json['subscription'] as Map<String, dynamic>
+    ..websiteStatus = json['website_status'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$WebsiteStatusResponseToJson(
         WebsiteStatusResponse instance) =>
     <String, dynamic>{
-      'website_status': instance.websiteStatus,
-      'subscription': instance.subscription,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
       'req_id': instance.reqId,
+      'subscription': instance.subscription,
+      'website_status': instance.websiteStatus,
     };

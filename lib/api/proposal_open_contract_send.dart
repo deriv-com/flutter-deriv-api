@@ -13,21 +13,20 @@ class ProposalOpenContractRequest {
   Map<String, dynamic> toJson() => _$ProposalOpenContractRequestToJson(this);
 
   // Properties
-  int proposalOpenContract;
-
-  /// Must be 1
+  /// Contract ID received from a Portfolio request. If not set, you will receive stream of all open contracts.
   int contractId;
 
-  /// Contract ID received from a Portfolio request. If not set, you will receive stream of all open contracts.
-  int subscribe;
-
-  /// 1 - to stream
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  /// Must be 1
+  int proposalOpenContract;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// 1 - to stream
+  int subscribe;
 
   // @override
   // String toString() => name;

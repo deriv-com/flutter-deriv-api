@@ -13,15 +13,14 @@ class AppDeleteRequest {
   Map<String, dynamic> toJson() => _$AppDeleteRequestToJson(this);
 
   // Properties
+  /// Application app_id
   int appDelete;
 
-  /// Application app_id
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
-
   /// [Optional] Used to map request to response.
+  int reqId;
 
   // @override
   // String toString() => name;

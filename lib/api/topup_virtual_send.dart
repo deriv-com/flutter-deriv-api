@@ -13,15 +13,14 @@ class TopupVirtualRequest {
   Map<String, dynamic> toJson() => _$TopupVirtualRequestToJson(this);
 
   // Properties
-  int topupVirtual;
-
-  /// It's only allowed for virtual account.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to map request to response.
   int reqId;
 
-  /// [Optional] Used to map request to response.
+  /// It's only allowed for virtual account.
+  int topupVirtual;
 
   // @override
   // String toString() => name;

@@ -13,30 +13,29 @@ class PaymentagentTransferRequest {
   Map<String, dynamic> toJson() => _$PaymentagentTransferRequestToJson(this);
 
   // Properties
-  int paymentagentTransfer;
-
-  /// Must be 1
-  String description;
-
-  /// Optional field for remarks about the transfer.
+  /// The amount to transfer.
   num amount;
 
-  /// The amount to transfer.
+  /// Currency code.
   String currency;
 
-  /// Currency code.
-  int dryRun;
+  /// Optional field for remarks about the transfer.
+  String description;
 
   /// If set to 1, just do validation.
-  String transferTo;
-
-  /// The loginid of the recipient account.
-  Map<String, dynamic> passthrough;
+  int dryRun;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
+
+  /// Must be 1
+  int paymentagentTransfer;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// The loginid of the recipient account.
+  String transferTo;
 
   // @override
   // String toString() => name;

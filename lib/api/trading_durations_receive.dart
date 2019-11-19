@@ -13,18 +13,17 @@ class TradingDurationsResponse {
   Map<String, dynamic> toJson() => _$TradingDurationsResponseToJson(this);
 
   // Properties
-  List<String> tradingDurations;
-
-  /// List of underlyings by their display name and symbol followed by their available contract types and trading duration boundaries.
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
+  /// Optional field sent in request to map to response, present only when request contains req_id.
   int reqId;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// List of underlyings by their display name and symbol followed by their available contract types and trading duration boundaries.
+  List<Map<String, dynamic>> tradingDurations;
 
   // @override
   // String toString() => name;

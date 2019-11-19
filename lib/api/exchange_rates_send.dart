@@ -13,18 +13,17 @@ class ExchangeRatesRequest {
   Map<String, dynamic> toJson() => _$ExchangeRatesRequestToJson(this);
 
   // Properties
-  int exchangeRates;
-
-  /// Must be 1
+  /// Base currency (can be obtained from payout_currencies call)
   String baseCurrency;
 
-  /// Base currency (can be obtained from payout_currencies call)
-  Map<String, dynamic> passthrough;
+  /// Must be 1
+  int exchangeRates;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
+  int reqId;
 
   // @override
   // String toString() => name;

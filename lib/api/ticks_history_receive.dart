@@ -13,27 +13,26 @@ class TicksHistoryResponse {
   Map<String, dynamic> toJson() => _$TicksHistoryResponseToJson(this);
 
   // Properties
-  List<String> candles;
-
   /// Array of OHLC (open/high/low/close) price values for the given time (only for style='candles')
-  Map<String, dynamic> history;
-
-  /// Historic tick data for a given symbol. Note: this will always return the latest possible set of ticks with accordance to the parameters specified.
-  num pipSize;
-
-  /// Indicates the number of decimal points that the returned amounts must be displayed with
-  Map<String, dynamic> subscription;
-
-  /// For subscription requests only
-  Map<String, dynamic> echoReq;
+  List<Map<String, dynamic>> candles;
 
   /// Echo of the request made.
-  String msgType;
+  Map<String, dynamic> echoReq;
+
+  /// Historic tick data for a given symbol. Note: this will always return the latest possible set of ticks with accordance to the parameters specified.
+  Map<String, dynamic> history;
 
   /// Type of the response according to the 'style' sent in request. Would be 'history' or 'candles' for the first response, and 'tick' or 'ohlc' for the rest when subscribed.
-  int reqId;
+  String msgType;
+
+  /// Indicates the number of decimal points that the returned amounts must be displayed with
+  num pipSize;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
+
+  /// For subscription requests only
+  Map<String, dynamic> subscription;
 
   // @override
   // String toString() => name;

@@ -13,24 +13,23 @@ class ContractsForRequest {
   Map<String, dynamic> toJson() => _$ContractsForRequestToJson(this);
 
   // Properties
+  /// The short symbol name (obtained from active_symbols call).
   String contractsFor;
 
-  /// The short symbol name (obtained from active_symbols call).
+  /// [Optional] Currency of the contract's stake and payout (obtained from payout_currencies call).
   String currency;
 
-  /// [Optional] Currency of the contract's stake and payout (obtained from payout_currencies call).
+  /// [Optional] Indicates which landing_company to get a list of contracts for. If you are logged in, your landing company will override this field.
   String landingCompany;
 
-  /// [Optional] Indicates which landing_company to get a list of contracts for. If you are logged in, your landing company will override this field.
-  String productType;
-
-  /// [Optional] If you specify this field, only contracts tradable through that contract type will be returned.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  /// [Optional] If you specify this field, only contracts tradable through that contract type will be returned.
+  String productType;
 
   /// [Optional] Used to map request to response.
+  int reqId;
 
   // @override
   // String toString() => name;

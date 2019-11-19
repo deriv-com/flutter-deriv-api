@@ -13,18 +13,17 @@ class GetLimitsResponse {
   Map<String, dynamic> toJson() => _$GetLimitsResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> getLimits;
-
-  /// Trading limits of real account user
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
-  String msgType;
+  /// Trading limits of real account user
+  Map<String, dynamic> getLimits;
 
   /// Action name of the request made.
-  int reqId;
+  String msgType;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

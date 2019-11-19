@@ -13,18 +13,17 @@ class TradingTimesResponse {
   Map<String, dynamic> toJson() => _$TradingTimesResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> tradingTimes;
-
-  /// The trading times structure is a hierarchy as follows: Market -> SubMarket -> Underlyings
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
+  /// Optional field sent in request to map to response, present only when request contains req_id.
   int reqId;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// The trading times structure is a hierarchy as follows: Market -> SubMarket -> Underlyings
+  Map<String, dynamic> tradingTimes;
 
   // @override
   // String toString() => name;

@@ -13,21 +13,20 @@ class ActiveSymbolsRequest {
   Map<String, dynamic> toJson() => _$ActiveSymbolsRequestToJson(this);
 
   // Properties
+  /// If you use 'brief', only a subset of fields will be returned.
   String activeSymbols;
 
-  /// If you use 'brief', only a subset of fields will be returned.
+  /// [Optional] If you specify this field, only symbols available for trading by that landing company will be returned. If you are logged in, only symbols available for trading by your landing company will be returned regardless of what you specify in this field.
   String landingCompany;
 
-  /// [Optional] If you specify this field, only symbols available for trading by that landing company will be returned. If you are logged in, only symbols available for trading by your landing company will be returned regardless of what you specify in this field.
-  String productType;
-
-  /// [Optional] If you specify this field, only symbols that can be traded through that product type will be returned.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  /// [Optional] If you specify this field, only symbols that can be traded through that product type will be returned.
+  String productType;
 
   /// [Optional] Used to map request to response.
+  int reqId;
 
   // @override
   // String toString() => name;

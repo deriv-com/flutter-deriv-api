@@ -13,18 +13,17 @@ class LoginHistoryResponse {
   Map<String, dynamic> toJson() => _$LoginHistoryResponseToJson(this);
 
   // Properties
-  List<String> loginHistory;
-
-  /// Array of records of client login/logout activities
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
-  String msgType;
+  /// Array of records of client login/logout activities
+  List<Map<String, dynamic>> loginHistory;
 
   /// Action name of the request made.
-  int reqId;
+  String msgType;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

@@ -13,24 +13,23 @@ class BuyRequest {
   Map<String, dynamic> toJson() => _$BuyRequestToJson(this);
 
   // Properties
+  /// Either the ID received from a Price Proposal (proposal) call, or '1' if contract buy parameters are passed in the parameters field.
   String buy;
 
-  /// Either the ID received from a Price Proposal (proposal) call, or '1' if contract buy parameters are passed in the parameters field.
+  /// Optional field, used to pass the parameters for contract buy
   Map<String, dynamic> parameters;
 
-  /// Optional field, used to pass the parameters for contract buy
-  num price;
-
-  /// Maximum price at which to purchase the contract.
-  int subscribe;
-
-  /// 1 - to stream
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  /// Maximum price at which to purchase the contract.
+  num price;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// 1 - to stream
+  int subscribe;
 
   // @override
   // String toString() => name;

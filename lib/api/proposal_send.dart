@@ -13,63 +13,62 @@ class ProposalRequest {
   Map<String, dynamic> toJson() => _$ProposalRequestToJson(this);
 
   // Properties
-  int proposal;
-
-  /// Must be 1
+  /// Proposed contract payout or stake, or multiplier (for lookbacks).
   num amount;
 
-  /// Proposed contract payout or stake, or multiplier (for lookbacks).
+  /// Barrier for the contract (or last digit prediction for digit contracts). Contracts less than 24 hours in duration would need a relative barrier (barriers which need +/-), where entry spot would be adjusted accordingly with that amount to define a barrier, except for Volatility Indices as they support both relative and absolute barriers. Not needed for lookbacks.
   String barrier;
 
-  /// Barrier for the contract (or last digit prediction for digit contracts). Contracts less than 24 hours in duration would need a relative barrier (barriers which need +/-), where entry spot would be adjusted accordingly with that amount to define a barrier, except for Volatility Indices as they support both relative and absolute barriers. Not needed for lookbacks.
+  /// Low barrier for the contract (for contracts with two barriers). Contracts less than 24 hours in duration would need a relative barrier (barriers which need +/-), where entry spot would be adjusted accordingly with that amount to define a barrier, except for Volatility Indices as they support both relative and absolute barriers. Not needed for lookbacks.
   String barrier2;
 
-  /// Low barrier for the contract (for contracts with two barriers). Contracts less than 24 hours in duration would need a relative barrier (barriers which need +/-), where entry spot would be adjusted accordingly with that amount to define a barrier, except for Volatility Indices as they support both relative and absolute barriers. Not needed for lookbacks.
+  /// Indicates whether amount is 'payout' or 'stake'.
   String basis;
 
-  /// Indicates whether amount is 'payout' or 'stake'.
+  /// The proposed contract type
   String contractType;
 
-  /// The proposed contract type
+  /// This can only be the account-holder's currency (obtained from payout_currencies call).
   String currency;
 
-  /// This can only be the account-holder's currency (obtained from payout_currencies call).
+  /// Epoch value of the expiry time of the contract. Either date_expiry or duration is required.
   int dateExpiry;
 
-  /// Epoch value of the expiry time of the contract. Either date_expiry or duration is required.
+  /// [Optional] Indicates epoch value of the starting time of the contract. If left empty, the start time of the contract is now.
   int dateStart;
 
-  /// [Optional] Indicates epoch value of the starting time of the contract. If left empty, the start time of the contract is now.
+  /// Duration quantity. Either date_expiry or duration is required.
   int duration;
 
-  /// Duration quantity. Either date_expiry or duration is required.
+  /// [Optional] Duration unit - s(seconds), m(minutes), h(hours), d(days), t(ticks).
   String durationUnit;
 
-  /// [Optional] Duration unit - s(seconds), m(minutes), h(hours), d(days), t(ticks).
+  /// The multiplier for non-binary options. E.g. lookbacks.
   num multiplier;
 
-  /// The multiplier for non-binary options. E.g. lookbacks.
-  String productType;
-
-  /// The product type.
-  int selectedTick;
-
-  /// The tick that is predicted to have the highest/lowest value - for tickhigh and ticklow contracts.
-  int subscribe;
-
-  /// [Optional] 1 - to initiate a realtime stream of prices. Note that tick trades (without a user-defined barrier), digit trades and less than 24 hours at-the-money contracts for the following underlying symbols are not streamed: R_10, R_25, R_50, R_75, R_100, RDBULL, RDBEAR (this is because their price is constant).
-  String symbol;
-
-  /// The short symbol name (obtained from active_symbols call).
-  int tradingPeriodStart;
-
-  /// Required only for multi-barrier trading. Defines the epoch value of the trading period start time.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  /// The product type.
+  String productType;
+
+  /// Must be 1
+  int proposal;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// The tick that is predicted to have the highest/lowest value - for tickhigh and ticklow contracts.
+  int selectedTick;
+
+  /// [Optional] 1 - to initiate a realtime stream of prices. Note that tick trades (without a user-defined barrier), digit trades and less than 24 hours at-the-money contracts for the following underlying symbols are not streamed: R_10, R_25, R_50, R_75, R_100, RDBULL, RDBEAR (this is because their price is constant).
+  int subscribe;
+
+  /// The short symbol name (obtained from active_symbols call).
+  String symbol;
+
+  /// Required only for multi-barrier trading. Defines the epoch value of the trading period start time.
+  int tradingPeriodStart;
 
   // @override
   // String toString() => name;

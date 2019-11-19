@@ -13,15 +13,14 @@ class TradingTimesRequest {
   Map<String, dynamic> toJson() => _$TradingTimesRequestToJson(this);
 
   // Properties
-  String tradingTimes;
-
-  /// Date to receive market opening times for. (yyyy-mm-dd format. 'today' can also be specified).
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to map request to response.
   int reqId;
 
-  /// [Optional] Used to map request to response.
+  /// Date to receive market opening times for. (yyyy-mm-dd format. 'today' can also be specified).
+  String tradingTimes;
 
   // @override
   // String toString() => name;

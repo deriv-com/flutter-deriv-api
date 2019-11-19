@@ -13,33 +13,32 @@ class StatementRequest {
   Map<String, dynamic> toJson() => _$StatementRequestToJson(this);
 
   // Properties
-  int statement;
-
-  /// Must be 1
-  int description;
-
-  /// If set to 1, will return full contracts description.
+  /// Optional filter for statement (deposit,withdrawal,buy,sell)
   String actionType;
 
-  /// Optional filter for statement (deposit,withdrawal,buy,sell)
+  /// Optional start date (epoch)
   int dateFrom;
 
-  /// Optional start date (epoch)
+  /// Optional end date (epoch)
   int dateTo;
 
-  /// Optional end date (epoch)
-  num limit;
+  /// If set to 1, will return full contracts description.
+  int description;
 
   /// Apply upper limit to count of transactions received
-  num offset;
+  num limit;
 
   /// Skip this many transactions
-  Map<String, dynamic> passthrough;
+  num offset;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// Must be 1
+  int statement;
 
   // @override
   // String toString() => name;

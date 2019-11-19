@@ -9,8 +9,8 @@ part of 'exchange_rates_receive.dart';
 ExchangeRatesResponse _$ExchangeRatesResponseFromJson(
     Map<String, dynamic> json) {
   return ExchangeRatesResponse()
-    ..exchangeRates = json['exchange_rates'] as Map<String, dynamic>
     ..echoReq = json['echo_req'] as Map<String, dynamic>
+    ..exchangeRates = json['exchange_rates'] as Map<String, dynamic>
     ..msgType = json['msg_type'] as String
     ..reqId = json['req_id'] as int;
 }
@@ -18,8 +18,8 @@ ExchangeRatesResponse _$ExchangeRatesResponseFromJson(
 Map<String, dynamic> _$ExchangeRatesResponseToJson(
         ExchangeRatesResponse instance) =>
     <String, dynamic>{
-      'exchange_rates': instance.exchangeRates,
       'echo_req': instance.echoReq,
+      'exchange_rates': instance.exchangeRates,
       'msg_type': instance.msgType,
       'req_id': instance.reqId,
     };

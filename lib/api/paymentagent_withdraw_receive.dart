@@ -13,24 +13,23 @@ class PaymentagentWithdrawResponse {
   Map<String, dynamic> toJson() => _$PaymentagentWithdrawResponseToJson(this);
 
   // Properties
-  int paymentagentWithdraw;
-
-  /// If set to 1, withdrawal success. If set to 2, dry-run success.
-  String paymentagentName;
-
-  /// Payment agent name.
-  int transactionId;
-
-  /// Reference ID of withdrawal performed.
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
-  int reqId;
+  /// Payment agent name.
+  String paymentagentName;
+
+  /// If set to 1, withdrawal success. If set to 2, dry-run success.
+  int paymentagentWithdraw;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
+
+  /// Reference ID of withdrawal performed.
+  int transactionId;
 
   // @override
   // String toString() => name;

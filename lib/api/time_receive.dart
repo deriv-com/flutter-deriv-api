@@ -13,18 +13,17 @@ class TimeResponse {
   Map<String, dynamic> toJson() => _$TimeResponseToJson(this);
 
   // Properties
-  int time;
-
-  /// Epoch of server time.
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
+  /// Optional field sent in request to map to response, present only when request contains req_id.
   int reqId;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Epoch of server time.
+  int time;
 
   // @override
   // String toString() => name;

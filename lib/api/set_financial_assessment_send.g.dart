@@ -9,7 +9,6 @@ part of 'set_financial_assessment_send.dart';
 SetFinancialAssessmentRequest _$SetFinancialAssessmentRequestFromJson(
     Map<String, dynamic> json) {
   return SetFinancialAssessmentRequest()
-    ..setFinancialAssessment = json['set_financial_assessment'] as int
     ..accountTurnover = json['account_turnover'] as String
     ..binaryOptionsTradingExperience =
         json['binary_options_trading_experience'] as String
@@ -30,15 +29,15 @@ SetFinancialAssessmentRequest _$SetFinancialAssessmentRequestFromJson(
         json['other_instruments_trading_experience'] as String
     ..otherInstrumentsTradingFrequency =
         json['other_instruments_trading_frequency'] as String
-    ..sourceOfWealth = json['source_of_wealth'] as String
     ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+    ..reqId = json['req_id'] as int
+    ..setFinancialAssessment = json['set_financial_assessment'] as int
+    ..sourceOfWealth = json['source_of_wealth'] as String;
 }
 
 Map<String, dynamic> _$SetFinancialAssessmentRequestToJson(
         SetFinancialAssessmentRequest instance) =>
     <String, dynamic>{
-      'set_financial_assessment': instance.setFinancialAssessment,
       'account_turnover': instance.accountTurnover,
       'binary_options_trading_experience':
           instance.binaryOptionsTradingExperience,
@@ -59,7 +58,8 @@ Map<String, dynamic> _$SetFinancialAssessmentRequestToJson(
           instance.otherInstrumentsTradingExperience,
       'other_instruments_trading_frequency':
           instance.otherInstrumentsTradingFrequency,
-      'source_of_wealth': instance.sourceOfWealth,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'set_financial_assessment': instance.setFinancialAssessment,
+      'source_of_wealth': instance.sourceOfWealth,
     };

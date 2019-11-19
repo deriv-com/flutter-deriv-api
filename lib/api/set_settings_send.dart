@@ -13,18 +13,16 @@ class SetSettingsRequest {
   Map<String, dynamic> toJson() => _$SetSettingsRequestToJson(this);
 
   // Properties
-  int setSettings;
-
-  /// Must be 1
+  /// Purpose and reason for requesting the account opening. Only applicable for real money account. Required for clients that have not set it yet. Can only be set once.
   String accountOpeningReason;
 
-  /// Purpose and reason for requesting the account opening. Only applicable for real money account. Required for clients that have not set it yet. Can only be set once.
+  /// Note: not applicable for virtual account. Required field for real money account.
   String addressCity;
 
   /// Note: not applicable for virtual account. Required field for real money account.
   String addressLine1;
 
-  /// Note: not applicable for virtual account. Required field for real money account.
+  /// Note: not applicable for virtual account. Optional field for real money account.
   String addressLine2;
 
   /// Note: not applicable for virtual account. Optional field for real money account.
@@ -33,58 +31,59 @@ class SetSettingsRequest {
   /// Note: not applicable for virtual account. Optional field for real money account.
   String addressState;
 
-  /// Note: not applicable for virtual account. Optional field for real money account.
+  /// Boolean value 1 or 0, indicating permission to allow others to follow your trades. Note: not applicable for Virtual account. Only allow for real money account.
   int allowCopiers;
 
-  /// Boolean value 1 or 0, indicating permission to allow others to follow your trades. Note: not applicable for Virtual account. Only allow for real money account.
+  /// Country of legal citizenship, 2-letter country code.
   String citizen;
 
-  /// Country of legal citizenship, 2-letter country code.
+  /// Date of birth format: yyyy-mm-dd (can only be changed on unauthenticated svg accounts).
   String dateOfBirth;
 
-  /// Date of birth format: yyyy-mm-dd (can only be changed on unauthenticated svg accounts).
+  /// Boolean value 1 or 0, indicating permission to use email address for any contact which may include marketing
   int emailConsent;
 
-  /// Boolean value 1 or 0, indicating permission to use email address for any contact which may include marketing
+  /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
   String firstName;
 
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
   String lastName;
 
-  /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
-  String phone;
-
-  /// Note: not applicable for virtual account. Required field for real money account and within 8-35 digits, allowing '+' in front, numbers, hyphens or space.
-  String placeOfBirth;
-
-  /// Place of birth, 2-letter country code.
-  int requestProfessionalStatus;
-
-  /// Required when client wants to be treated as professional. Applicable for financial accounts only.
-  String residence;
-
-  /// 2-letter country code. Note: not applicable for real money account. Only allow for Virtual account without residence set.
-  String salutation;
-
-  /// Accept any value in enum list (can only be changed on unauthenticated svg accounts).
-  String secretAnswer;
-
-  /// Answer to secret question, within 4-50 characters. Required for new account and existing client details will be used if client opens another account.
-  String secretQuestion;
-
-  /// Accept any value in enum list. Required for new account and existing client details will be used if client opens another account.
-  String taxIdentificationNumber;
-
-  /// Tax identification number. Only applicable for real money account. Required for maltainvest landing company.
-  String taxResidence;
-
-  /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for maltainvest landing company.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  /// Note: not applicable for virtual account. Required field for real money account and within 8-35 digits, allowing '+' in front, numbers, hyphens or space.
+  String phone;
+
+  /// Place of birth, 2-letter country code.
+  String placeOfBirth;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// Required when client wants to be treated as professional. Applicable for financial accounts only.
+  int requestProfessionalStatus;
+
+  /// 2-letter country code. Note: not applicable for real money account. Only allow for Virtual account without residence set.
+  String residence;
+
+  /// Accept any value in enum list (can only be changed on unauthenticated svg accounts).
+  String salutation;
+
+  /// Answer to secret question, within 4-50 characters. Required for new account and existing client details will be used if client opens another account.
+  String secretAnswer;
+
+  /// Accept any value in enum list. Required for new account and existing client details will be used if client opens another account.
+  String secretQuestion;
+
+  /// Must be 1
+  int setSettings;
+
+  /// Tax identification number. Only applicable for real money account. Required for maltainvest landing company.
+  String taxIdentificationNumber;
+
+  /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for maltainvest landing company.
+  String taxResidence;
 
   // @override
   // String toString() => name;

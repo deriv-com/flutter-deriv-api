@@ -13,15 +13,14 @@ class CopyStopRequest {
   Map<String, dynamic> toJson() => _$CopyStopRequestToJson(this);
 
   // Properties
+  /// API tokens identifying the accounts which needs not to be copied
   String copyStop;
 
-  /// API tokens identifying the accounts which needs not to be copied
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
-
   /// [Optional] Used to map request to response.
+  int reqId;
 
   // @override
   // String toString() => name;

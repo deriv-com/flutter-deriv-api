@@ -13,18 +13,17 @@ class ResidenceListResponse {
   Map<String, dynamic> toJson() => _$ResidenceListResponseToJson(this);
 
   // Properties
-  List<String> residenceList;
-
-  /// List of countries for account opening
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
+  /// Optional field sent in request to map to response, present only when request contains req_id.
   int reqId;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// List of countries for account opening
+  List<Map<String, dynamic>> residenceList;
 
   // @override
   // String toString() => name;

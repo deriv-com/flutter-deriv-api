@@ -13,18 +13,17 @@ class ContractsForResponse {
   Map<String, dynamic> toJson() => _$ContractsForResponseToJson(this);
 
   // Properties
+  /// List of available contracts. Note: if the user is authenticated, then only contracts allowed under his account will be returned.
   Map<String, dynamic> contractsFor;
 
-  /// List of available contracts. Note: if the user is authenticated, then only contracts allowed under his account will be returned.
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
-  int reqId;
-
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

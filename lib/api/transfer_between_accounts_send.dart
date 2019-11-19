@@ -13,30 +13,29 @@ class TransferBetweenAccountsRequest {
   Map<String, dynamic> toJson() => _$TransferBetweenAccountsRequestToJson(this);
 
   // Properties
-  int transferBetweenAccounts;
-
-  /// If account_from or account_to is not provided, we'll just return available accounts.
+  /// The account_from loginid
   String accountFrom;
 
-  /// The account_from loginid
+  /// The account_to loginid
   String accountTo;
 
-  /// The account_to loginid
+  /// Optional field to control the list of accounts returned when account_from or account_to is not provided. 'Brief' will only include standard trading accounts and can be faster.
   String accounts;
 
-  /// Optional field to control the list of accounts returned when account_from or account_to is not provided. 'Brief' will only include standard trading accounts and can be faster.
+  /// The amount to transfer.
   num amount;
 
-  /// The amount to transfer.
+  /// Currency code
   String currency;
 
-  /// Currency code
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to map request to response.
   int reqId;
 
-  /// [Optional] Used to map request to response.
+  /// If account_from or account_to is not provided, we'll just return available accounts.
+  int transferBetweenAccounts;
 
   // @override
   // String toString() => name;

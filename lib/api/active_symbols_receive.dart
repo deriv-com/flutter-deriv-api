@@ -13,18 +13,17 @@ class ActiveSymbolsResponse {
   Map<String, dynamic> toJson() => _$ActiveSymbolsResponseToJson(this);
 
   // Properties
-  List<String> activeSymbols;
-
   /// List of active symbols.
-  Map<String, dynamic> echoReq;
+  List<Map<String, dynamic>> activeSymbols;
 
   /// Echo of the request made.
-  String msgType;
+  Map<String, dynamic> echoReq;
 
   /// Action name of the request made.
-  int reqId;
+  String msgType;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

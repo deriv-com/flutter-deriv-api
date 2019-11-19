@@ -8,32 +8,32 @@ part of 'app_register_send.dart';
 
 AppRegisterRequest _$AppRegisterRequestFromJson(Map<String, dynamic> json) {
   return AppRegisterRequest()
-    ..appRegister = json['app_register'] as int
     ..appMarkupPercentage = json['app_markup_percentage'] as num
+    ..appRegister = json['app_register'] as int
     ..appstore = json['appstore'] as String
     ..github = json['github'] as String
     ..googleplay = json['googleplay'] as String
     ..homepage = json['homepage'] as String
     ..name = json['name'] as String
-    ..redirectUri = json['redirect_uri'] as String
-    ..scopes = (json['scopes'] as List).map((e) => e as String).toList()
-    ..verificationUri = json['verification_uri'] as String
     ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+    ..redirectUri = json['redirect_uri'] as String
+    ..reqId = json['req_id'] as int
+    ..scopes = (json['scopes'] as List).map((e) => e as String).toList()
+    ..verificationUri = json['verification_uri'] as String;
 }
 
 Map<String, dynamic> _$AppRegisterRequestToJson(AppRegisterRequest instance) =>
     <String, dynamic>{
-      'app_register': instance.appRegister,
       'app_markup_percentage': instance.appMarkupPercentage,
+      'app_register': instance.appRegister,
       'appstore': instance.appstore,
       'github': instance.github,
       'googleplay': instance.googleplay,
       'homepage': instance.homepage,
       'name': instance.name,
+      'passthrough': instance.passthrough,
       'redirect_uri': instance.redirectUri,
+      'req_id': instance.reqId,
       'scopes': instance.scopes,
       'verification_uri': instance.verificationUri,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
     };

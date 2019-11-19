@@ -13,18 +13,17 @@ class CopytradingListResponse {
   Map<String, dynamic> toJson() => _$CopytradingListResponseToJson(this);
 
   // Properties
+  /// The trading information of copiers or traders.
   Map<String, dynamic> copytradingList;
 
-  /// The trading information of copiers or traders.
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
-  int reqId;
-
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

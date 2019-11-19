@@ -8,18 +8,18 @@ part of 'balance_send.dart';
 
 BalanceRequest _$BalanceRequestFromJson(Map<String, dynamic> json) {
   return BalanceRequest()
-    ..balance = json['balance'] as int
     ..account = json['account'] as String
-    ..subscribe = json['subscribe'] as int
+    ..balance = json['balance'] as int
     ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+    ..reqId = json['req_id'] as int
+    ..subscribe = json['subscribe'] as int;
 }
 
 Map<String, dynamic> _$BalanceRequestToJson(BalanceRequest instance) =>
     <String, dynamic>{
-      'balance': instance.balance,
       'account': instance.account,
-      'subscribe': instance.subscribe,
+      'balance': instance.balance,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'subscribe': instance.subscribe,
     };

@@ -13,18 +13,17 @@ class ForgetResponse {
   Map<String, dynamic> toJson() => _$ForgetResponseToJson(this);
 
   // Properties
-  int forget;
-
-  /// If set to 1, stream exited and stopped. If set to 0, stream did not exist.
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
-  String msgType;
+  /// If set to 1, stream exited and stopped. If set to 0, stream did not exist.
+  int forget;
 
   /// Action name of the request made.
-  int reqId;
+  String msgType;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

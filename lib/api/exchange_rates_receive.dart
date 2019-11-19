@@ -13,18 +13,17 @@ class ExchangeRatesResponse {
   Map<String, dynamic> toJson() => _$ExchangeRatesResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> exchangeRates;
-
-  /// Exchange rate values from base to all other currencies
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
-  String msgType;
+  /// Exchange rate values from base to all other currencies
+  Map<String, dynamic> exchangeRates;
 
   /// Action name of the request made.
-  int reqId;
+  String msgType;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

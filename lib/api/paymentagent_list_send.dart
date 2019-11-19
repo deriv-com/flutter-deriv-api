@@ -13,18 +13,17 @@ class PaymentagentListRequest {
   Map<String, dynamic> toJson() => _$PaymentagentListRequestToJson(this);
 
   // Properties
-  String paymentagentList;
-
-  /// Client's 2-letter country code (obtained from residence_list call).
+  /// [Optional] If specified, only payment agents that supports that currency will be returned (obtained from payout_currencies call).
   String currency;
 
-  /// [Optional] If specified, only payment agents that supports that currency will be returned (obtained from payout_currencies call).
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  /// Client's 2-letter country code (obtained from residence_list call).
+  String paymentagentList;
 
   /// [Optional] Used to map request to response.
+  int reqId;
 
   // @override
   // String toString() => name;

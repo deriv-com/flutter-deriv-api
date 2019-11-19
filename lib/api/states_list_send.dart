@@ -13,15 +13,14 @@ class StatesListRequest {
   Map<String, dynamic> toJson() => _$StatesListRequestToJson(this);
 
   // Properties
-  String statesList;
-
-  /// Client's 2-letter country code (obtained from residence_list call)
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to map request to response.
   int reqId;
 
-  /// [Optional] Used to map request to response.
+  /// Client's 2-letter country code (obtained from residence_list call)
+  String statesList;
 
   // @override
   // String toString() => name;

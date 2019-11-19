@@ -13,18 +13,17 @@ class WebsiteStatusRequest {
   Map<String, dynamic> toJson() => _$WebsiteStatusRequestToJson(this);
 
   // Properties
-  int websiteStatus;
-
-  /// Must be 1
-  int subscribe;
-
-  /// [Optional] 1 - to stream the server/website status updates (default = 1)
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to map request to response.
   int reqId;
 
-  /// [Optional] Used to map request to response.
+  /// [Optional] 1 - to stream the server/website status updates (default = 1)
+  int subscribe;
+
+  /// Must be 1
+  int websiteStatus;
 
   // @override
   // String toString() => name;

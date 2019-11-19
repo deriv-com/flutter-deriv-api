@@ -9,27 +9,27 @@ part of 'paymentagent_withdraw_send.dart';
 PaymentagentWithdrawRequest _$PaymentagentWithdrawRequestFromJson(
     Map<String, dynamic> json) {
   return PaymentagentWithdrawRequest()
-    ..paymentagentWithdraw = json['paymentagent_withdraw'] as int
-    ..description = json['description'] as String
     ..amount = json['amount'] as num
     ..currency = json['currency'] as String
+    ..description = json['description'] as String
     ..dryRun = json['dry_run'] as int
-    ..paymentagentLoginid = json['paymentagent_loginid'] as String
-    ..verificationCode = json['verification_code'] as String
     ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+    ..paymentagentLoginid = json['paymentagent_loginid'] as String
+    ..paymentagentWithdraw = json['paymentagent_withdraw'] as int
+    ..reqId = json['req_id'] as int
+    ..verificationCode = json['verification_code'] as String;
 }
 
 Map<String, dynamic> _$PaymentagentWithdrawRequestToJson(
         PaymentagentWithdrawRequest instance) =>
     <String, dynamic>{
-      'paymentagent_withdraw': instance.paymentagentWithdraw,
-      'description': instance.description,
       'amount': instance.amount,
       'currency': instance.currency,
+      'description': instance.description,
       'dry_run': instance.dryRun,
-      'paymentagent_loginid': instance.paymentagentLoginid,
-      'verification_code': instance.verificationCode,
       'passthrough': instance.passthrough,
+      'paymentagent_loginid': instance.paymentagentLoginid,
+      'paymentagent_withdraw': instance.paymentagentWithdraw,
       'req_id': instance.reqId,
+      'verification_code': instance.verificationCode,
     };

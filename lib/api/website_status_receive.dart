@@ -13,21 +13,20 @@ class WebsiteStatusResponse {
   Map<String, dynamic> toJson() => _$WebsiteStatusResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> websiteStatus;
-
-  /// Server status and other information regarding general settings
-  Map<String, dynamic> subscription;
-
-  /// For subscription requests only
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
+  /// Optional field sent in request to map to response, present only when request contains req_id.
   int reqId;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// For subscription requests only
+  Map<String, dynamic> subscription;
+
+  /// Server status and other information regarding general settings
+  Map<String, dynamic> websiteStatus;
 
   // @override
   // String toString() => name;

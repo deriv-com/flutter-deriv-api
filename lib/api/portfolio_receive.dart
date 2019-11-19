@@ -13,18 +13,17 @@ class PortfolioResponse {
   Map<String, dynamic> toJson() => _$PortfolioResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> portfolio;
-
-  /// Client open positions
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
-  int reqId;
+  /// Client open positions
+  Map<String, dynamic> portfolio;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

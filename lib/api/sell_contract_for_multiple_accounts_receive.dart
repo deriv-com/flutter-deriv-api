@@ -15,18 +15,17 @@ class SellContractForMultipleAccountsResponse {
       _$SellContractForMultipleAccountsResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> sellContractForMultipleAccounts;
-
-  /// Status information for each affected account.
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
+  /// Optional field sent in request to map to response, present only when request contains req_id.
   int reqId;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Status information for each affected account.
+  Map<String, dynamic> sellContractForMultipleAccounts;
 
   // @override
   // String toString() => name;

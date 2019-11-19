@@ -9,7 +9,6 @@ part of 'set_self_exclusion_send.dart';
 SetSelfExclusionRequest _$SetSelfExclusionRequestFromJson(
     Map<String, dynamic> json) {
   return SetSelfExclusionRequest()
-    ..setSelfExclusion = json['set_self_exclusion'] as int
     ..excludeUntil = json['exclude_until'] as String
     ..max30dayLosses = json['max30day_losses'] as String
     ..max30dayTurnover = json['max30day_turnover'] as String
@@ -21,16 +20,16 @@ SetSelfExclusionRequest _$SetSelfExclusionRequestFromJson(
     ..maxLosses = json['max_losses'] as String
     ..maxOpenBets = json['max_open_bets'] as String
     ..maxTurnover = json['max_turnover'] as String
-    ..sessionDurationLimit = json['session_duration_limit'] as String
-    ..timeoutUntil = json['timeout_until'] as String
     ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+    ..reqId = json['req_id'] as int
+    ..sessionDurationLimit = json['session_duration_limit'] as String
+    ..setSelfExclusion = json['set_self_exclusion'] as int
+    ..timeoutUntil = json['timeout_until'] as String;
 }
 
 Map<String, dynamic> _$SetSelfExclusionRequestToJson(
         SetSelfExclusionRequest instance) =>
     <String, dynamic>{
-      'set_self_exclusion': instance.setSelfExclusion,
       'exclude_until': instance.excludeUntil,
       'max30day_losses': instance.max30dayLosses,
       'max30day_turnover': instance.max30dayTurnover,
@@ -42,8 +41,9 @@ Map<String, dynamic> _$SetSelfExclusionRequestToJson(
       'max_losses': instance.maxLosses,
       'max_open_bets': instance.maxOpenBets,
       'max_turnover': instance.maxTurnover,
-      'session_duration_limit': instance.sessionDurationLimit,
-      'timeout_until': instance.timeoutUntil,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'session_duration_limit': instance.sessionDurationLimit,
+      'set_self_exclusion': instance.setSelfExclusion,
+      'timeout_until': instance.timeoutUntil,
     };

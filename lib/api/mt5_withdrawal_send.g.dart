@@ -8,21 +8,21 @@ part of 'mt5_withdrawal_send.dart';
 
 Mt5WithdrawalRequest _$Mt5WithdrawalRequestFromJson(Map<String, dynamic> json) {
   return Mt5WithdrawalRequest()
-    ..mt5Withdrawal = json['mt5_withdrawal'] as int
     ..amount = json['amount'] as num
     ..fromMt5 = json['from_mt5'] as String
-    ..toBinary = json['to_binary'] as String
+    ..mt5Withdrawal = json['mt5_withdrawal'] as int
     ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+    ..reqId = json['req_id'] as int
+    ..toBinary = json['to_binary'] as String;
 }
 
 Map<String, dynamic> _$Mt5WithdrawalRequestToJson(
         Mt5WithdrawalRequest instance) =>
     <String, dynamic>{
-      'mt5_withdrawal': instance.mt5Withdrawal,
       'amount': instance.amount,
       'from_mt5': instance.fromMt5,
-      'to_binary': instance.toBinary,
+      'mt5_withdrawal': instance.mt5Withdrawal,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'to_binary': instance.toBinary,
     };

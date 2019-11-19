@@ -13,27 +13,26 @@ class Mt5PasswordChangeRequest {
   Map<String, dynamic> toJson() => _$Mt5PasswordChangeRequestToJson(this);
 
   // Properties
-  int mt5PasswordChange;
-
-  /// Must be 1
+  /// MT5 user login
   String login;
 
-  /// MT5 user login
-  String newPassword;
+  /// Must be 1
+  int mt5PasswordChange;
 
   /// New password (length within 8-25 chars, accepts any printable ASCII character)
-  String oldPassword;
+  String newPassword;
 
   /// Old password for validation (non-empty string, accepts any printable ASCII character)
-  String passwordType;
-
-  /// Password type main/investor (default: 'main')
-  Map<String, dynamic> passthrough;
+  String oldPassword;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
+
+  /// Password type main/investor (default: 'main')
+  String passwordType;
 
   /// [Optional] Used to map request to response.
+  int reqId;
 
   // @override
   // String toString() => name;

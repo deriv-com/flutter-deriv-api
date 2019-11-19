@@ -8,17 +8,17 @@ part of 'website_status_send.dart';
 
 WebsiteStatusRequest _$WebsiteStatusRequestFromJson(Map<String, dynamic> json) {
   return WebsiteStatusRequest()
-    ..websiteStatus = json['website_status'] as int
-    ..subscribe = json['subscribe'] as int
     ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+    ..reqId = json['req_id'] as int
+    ..subscribe = json['subscribe'] as int
+    ..websiteStatus = json['website_status'] as int;
 }
 
 Map<String, dynamic> _$WebsiteStatusRequestToJson(
         WebsiteStatusRequest instance) =>
     <String, dynamic>{
-      'website_status': instance.websiteStatus,
-      'subscribe': instance.subscribe,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'subscribe': instance.subscribe,
+      'website_status': instance.websiteStatus,
     };

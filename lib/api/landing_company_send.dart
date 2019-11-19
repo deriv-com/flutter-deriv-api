@@ -13,15 +13,14 @@ class LandingCompanyRequest {
   Map<String, dynamic> toJson() => _$LandingCompanyRequestToJson(this);
 
   // Properties
+  /// Client's 2-letter country code (obtained from residence_list call).
   String landingCompany;
 
-  /// Client's 2-letter country code (obtained from residence_list call).
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
-
   /// [Optional] Used to map request to response.
+  int reqId;
 
   // @override
   // String toString() => name;

@@ -8,8 +8,8 @@ part of 'login_history_send.dart';
 
 LoginHistoryRequest _$LoginHistoryRequestFromJson(Map<String, dynamic> json) {
   return LoginHistoryRequest()
-    ..loginHistory = json['login_history'] as int
     ..limit = json['limit'] as int
+    ..loginHistory = json['login_history'] as int
     ..passthrough = json['passthrough'] as Map<String, dynamic>
     ..reqId = json['req_id'] as int;
 }
@@ -17,8 +17,8 @@ LoginHistoryRequest _$LoginHistoryRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$LoginHistoryRequestToJson(
         LoginHistoryRequest instance) =>
     <String, dynamic>{
-      'login_history': instance.loginHistory,
       'limit': instance.limit,
+      'login_history': instance.loginHistory,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
     };

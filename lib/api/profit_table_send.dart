@@ -13,33 +13,32 @@ class ProfitTableRequest {
   Map<String, dynamic> toJson() => _$ProfitTableRequestToJson(this);
 
   // Properties
-  int profitTable;
-
-  /// Must be 1
-  int description;
-
-  /// If set to 1, will return full contracts description.
+  /// Optional start date (epoch or YYYY-MM-DD)
   String dateFrom;
 
-  /// Optional start date (epoch or YYYY-MM-DD)
+  /// Optional end date (epoch or YYYY-MM-DD)
   String dateTo;
 
-  /// Optional end date (epoch or YYYY-MM-DD)
-  num limit;
+  /// If set to 1, will return full contracts description.
+  int description;
 
   /// Apply upper limit to count of transactions received
-  num offset;
+  num limit;
 
   /// Skip this many transactions
-  String sort;
-
-  /// Sort direction, default DESC
-  Map<String, dynamic> passthrough;
+  num offset;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
+
+  /// Must be 1
+  int profitTable;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// Sort direction, default DESC
+  String sort;
 
   // @override
   // String toString() => name;

@@ -13,18 +13,17 @@ class SellRequest {
   Map<String, dynamic> toJson() => _$SellRequestToJson(this);
 
   // Properties
-  int sell;
-
-  /// Pass contract_id received from the Portfolio call
-  num price;
-
-  /// Minimum price at which to sell the contract, or '0' for 'sell at market'
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  /// Minimum price at which to sell the contract, or '0' for 'sell at market'
+  num price;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// Pass contract_id received from the Portfolio call
+  int sell;
 
   // @override
   // String toString() => name;

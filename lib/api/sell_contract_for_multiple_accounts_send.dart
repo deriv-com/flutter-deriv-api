@@ -15,24 +15,23 @@ class SellContractForMultipleAccountsRequest {
       _$SellContractForMultipleAccountsRequestToJson(this);
 
   // Properties
-  int sellContractForMultipleAccounts;
-
-  /// Must be 1
-  num price;
-
-  /// Minimum price at which to sell the contract, or '0' for 'sell at market'
-  String shortcode;
-
-  /// An internal ID used to identify the contract which was originally bought. This is returned from the buy and buy_for_multiple_accounts calls
-  List<String> tokens;
-
-  /// Authorisation tokens which select the accounts to sell use for the affected accounts
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  /// Minimum price at which to sell the contract, or '0' for 'sell at market'
+  num price;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// Must be 1
+  int sellContractForMultipleAccounts;
+
+  /// An internal ID used to identify the contract which was originally bought. This is returned from the buy and buy_for_multiple_accounts calls
+  String shortcode;
+
+  /// Authorisation tokens which select the accounts to sell use for the affected accounts
+  List<String> tokens;
 
   // @override
   // String toString() => name;

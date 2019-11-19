@@ -13,15 +13,14 @@ class SellExpiredRequest {
   Map<String, dynamic> toJson() => _$SellExpiredRequestToJson(this);
 
   // Properties
-  int sellExpired;
-
-  /// Must be 1
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to map request to response.
   int reqId;
 
-  /// [Optional] Used to map request to response.
+  /// Must be 1
+  int sellExpired;
 
   // @override
   // String toString() => name;

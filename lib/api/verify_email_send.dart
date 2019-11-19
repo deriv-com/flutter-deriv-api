@@ -13,21 +13,20 @@ class VerifyEmailRequest {
   Map<String, dynamic> toJson() => _$VerifyEmailRequestToJson(this);
 
   // Properties
-  String verifyEmail;
-
-  /// Email address to be verified.
-  String type;
-
-  /// Purpose of the email verification call.
-  Map<String, dynamic> urlParameters;
-
-  /// Extra parameters that can be attached to the verify email link url
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to map request to response.
   int reqId;
 
-  /// [Optional] Used to map request to response.
+  /// Purpose of the email verification call.
+  String type;
+
+  /// Extra parameters that can be attached to the verify email link url
+  Map<String, dynamic> urlParameters;
+
+  /// Email address to be verified.
+  String verifyEmail;
 
   // @override
   // String toString() => name;

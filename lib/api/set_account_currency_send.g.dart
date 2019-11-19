@@ -9,15 +9,15 @@ part of 'set_account_currency_send.dart';
 SetAccountCurrencyRequest _$SetAccountCurrencyRequestFromJson(
     Map<String, dynamic> json) {
   return SetAccountCurrencyRequest()
-    ..setAccountCurrency = json['set_account_currency'] as String
     ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+    ..reqId = json['req_id'] as int
+    ..setAccountCurrency = json['set_account_currency'] as String;
 }
 
 Map<String, dynamic> _$SetAccountCurrencyRequestToJson(
         SetAccountCurrencyRequest instance) =>
     <String, dynamic>{
-      'set_account_currency': instance.setAccountCurrency,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'set_account_currency': instance.setAccountCurrency,
     };

@@ -13,24 +13,23 @@ class Mt5DepositRequest {
   Map<String, dynamic> toJson() => _$Mt5DepositRequestToJson(this);
 
   // Properties
-  int mt5Deposit;
-
-  /// Must be 1
+  /// Amount to deposit (in the currency of from_binary); min = $1 or an equivalent amount, max = $20000 or an equivalent amount
   num amount;
 
-  /// Amount to deposit (in the currency of from_binary); min = $1 or an equivalent amount, max = $20000 or an equivalent amount
+  /// Binary account loginid to transfer money from
   String fromBinary;
 
-  /// Binary account loginid to transfer money from
-  String toMt5;
-
-  /// MT5 account login to deposit money to
-  Map<String, dynamic> passthrough;
+  /// Must be 1
+  int mt5Deposit;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// MT5 account login to deposit money to
+  String toMt5;
 
   // @override
   // String toString() => name;

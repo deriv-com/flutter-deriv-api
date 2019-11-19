@@ -13,15 +13,14 @@ class OauthAppsRequest {
   Map<String, dynamic> toJson() => _$OauthAppsRequestToJson(this);
 
   // Properties
+  /// Must be 1
   int oauthApps;
 
-  /// Must be 1
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
-
   /// [Optional] Used to map request to response.
+  int reqId;
 
   // @override
   // String toString() => name;

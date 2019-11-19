@@ -13,18 +13,17 @@ class Mt5GetSettingsResponse {
   Map<String, dynamic> toJson() => _$Mt5GetSettingsResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> mt5GetSettings;
-
-  /// MT5 user account details
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
-  int reqId;
+  /// MT5 user account details
+  Map<String, dynamic> mt5GetSettings;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

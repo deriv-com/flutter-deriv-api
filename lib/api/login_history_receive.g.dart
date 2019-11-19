@@ -8,9 +8,10 @@ part of 'login_history_receive.dart';
 
 LoginHistoryResponse _$LoginHistoryResponseFromJson(Map<String, dynamic> json) {
   return LoginHistoryResponse()
-    ..loginHistory =
-        (json['login_history'] as List).map((e) => e as String).toList()
     ..echoReq = json['echo_req'] as Map<String, dynamic>
+    ..loginHistory = (json['login_history'] as List)
+        .map((e) => e as Map<String, dynamic>)
+        .toList()
     ..msgType = json['msg_type'] as String
     ..reqId = json['req_id'] as int;
 }
@@ -18,8 +19,8 @@ LoginHistoryResponse _$LoginHistoryResponseFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$LoginHistoryResponseToJson(
         LoginHistoryResponse instance) =>
     <String, dynamic>{
-      'login_history': instance.loginHistory,
       'echo_req': instance.echoReq,
+      'login_history': instance.loginHistory,
       'msg_type': instance.msgType,
       'req_id': instance.reqId,
     };

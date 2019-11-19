@@ -13,18 +13,17 @@ class NewAccountVirtualResponse {
   Map<String, dynamic> toJson() => _$NewAccountVirtualResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> newAccountVirtual;
-
-  /// New virtual-money account details
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
-  int reqId;
+  /// New virtual-money account details
+  Map<String, dynamic> newAccountVirtual;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

@@ -13,18 +13,17 @@ class PingResponse {
   Map<String, dynamic> toJson() => _$PingResponseToJson(this);
 
   // Properties
-  String ping;
-
-  /// Will return 'pong'
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
-  int reqId;
+  /// Will return 'pong'
+  String ping;
 
   /// Optional field sent in request to map to response, present only when request contains req_id.
+  int reqId;
 
   // @override
   // String toString() => name;

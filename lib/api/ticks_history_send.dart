@@ -13,36 +13,35 @@ class TicksHistoryRequest {
   Map<String, dynamic> toJson() => _$TicksHistoryRequestToJson(this);
 
   // Properties
-  String ticksHistory;
-
-  /// Short symbol name (obtained from the active_symbols call).
+  /// [Optional] 1 - if the market is closed at the end time, or license limit is before end time, adjust interval backwards to compensate.
   int adjustStartTime;
 
-  /// [Optional] 1 - if the market is closed at the end time, or license limit is before end time, adjust interval backwards to compensate.
+  /// An upper limit on ticks to receive.
   int count;
 
-  /// An upper limit on ticks to receive.
+  /// Epoch value representing the latest boundary of the returned ticks. If "latest" is specified, this will be the latest available timestamp.
   String end;
 
-  /// Epoch value representing the latest boundary of the returned ticks. If "latest" is specified, this will be the latest available timestamp.
+  /// Only applicable for style : "candles". Candle time-dimension width setting. Allowed values 60, 120, 180, 300, 600, 900, 1800, 3600, 7200, 14400, 28800, 86400 (default: '60').
   int granularity;
 
-  /// Only applicable for style : "candles". Candle time-dimension width setting. Allowed values 60, 120, 180, 300, 600, 900, 1800, 3600, 7200, 14400, 28800, 86400 (default: '60').
-  int start;
-
-  /// Epoch value representing the earliest boundary of the returned ticks (For styles: 'ticks', this will default to 1 day ago. For styles: 'candle', it will default to 1 day ago if count or granularity is undefined).
-  String style;
-
-  /// The tick-output style.
-  int subscribe;
-
-  /// [Optional] 1 - to send updates whenever a new tick is received.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to map request to response.
   int reqId;
 
-  /// [Optional] Used to map request to response.
+  /// Epoch value representing the earliest boundary of the returned ticks (For styles: 'ticks', this will default to 1 day ago. For styles: 'candle', it will default to 1 day ago if count or granularity is undefined).
+  int start;
+
+  /// The tick-output style.
+  String style;
+
+  /// [Optional] 1 - to send updates whenever a new tick is received.
+  int subscribe;
+
+  /// Short symbol name (obtained from the active_symbols call).
+  String ticksHistory;
 
   // @override
   // String toString() => name;

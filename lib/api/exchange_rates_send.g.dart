@@ -8,8 +8,8 @@ part of 'exchange_rates_send.dart';
 
 ExchangeRatesRequest _$ExchangeRatesRequestFromJson(Map<String, dynamic> json) {
   return ExchangeRatesRequest()
-    ..exchangeRates = json['exchange_rates'] as int
     ..baseCurrency = json['base_currency'] as String
+    ..exchangeRates = json['exchange_rates'] as int
     ..passthrough = json['passthrough'] as Map<String, dynamic>
     ..reqId = json['req_id'] as int;
 }
@@ -17,8 +17,8 @@ ExchangeRatesRequest _$ExchangeRatesRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$ExchangeRatesRequestToJson(
         ExchangeRatesRequest instance) =>
     <String, dynamic>{
-      'exchange_rates': instance.exchangeRates,
       'base_currency': instance.baseCurrency,
+      'exchange_rates': instance.exchangeRates,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
     };

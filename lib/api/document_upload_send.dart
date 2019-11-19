@@ -13,36 +13,35 @@ class DocumentUploadRequest {
   Map<String, dynamic> toJson() => _$DocumentUploadRequestToJson(this);
 
   // Properties
-  int documentUpload;
-
-  /// Must be 1
+  /// Document file format
   String documentFormat;
 
-  /// Document file format
+  /// [Optional] Document ID (required for Passport, Proof of ID and Driver's License)
   String documentId;
 
-  /// [Optional] Document ID (required for Passport, Proof of ID and Driver's License)
+  /// Document type
   String documentType;
 
-  /// Document type
-  String expectedChecksum;
+  /// Must be 1
+  int documentUpload;
 
   /// The checksum of the file to be uploaded
-  String expirationDate;
+  String expectedChecksum;
 
   /// [Optional] Document expiration date (required for Passport, Proof of ID and Driver's License)
-  int fileSize;
+  String expirationDate;
 
   /// Document size (should be less than 3MB)
-  String pageType;
+  int fileSize;
 
   /// Optional field to determine document side
-  Map<String, dynamic> passthrough;
+  String pageType;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
+  int reqId;
 
   // @override
   // String toString() => name;

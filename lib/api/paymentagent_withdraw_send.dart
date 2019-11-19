@@ -13,33 +13,32 @@ class PaymentagentWithdrawRequest {
   Map<String, dynamic> toJson() => _$PaymentagentWithdrawRequestToJson(this);
 
   // Properties
-  int paymentagentWithdraw;
-
-  /// Must be 1
-  String description;
-
-  /// Optional field for remarks about the withdraw. Only letters, numbers, space, period, comma, - ' are allowed.
+  /// The amount to withdraw to the payment agent.
   num amount;
 
-  /// The amount to withdraw to the payment agent.
+  /// The currency code.
   String currency;
 
-  /// The currency code.
-  int dryRun;
+  /// Optional field for remarks about the withdraw. Only letters, numbers, space, period, comma, - ' are allowed.
+  String description;
 
   /// If set to 1, just do validation
-  String paymentagentLoginid;
-
-  /// The payment agent loginid received from the paymentagent_list call
-  String verificationCode;
-
-  /// Email verification code (received from a verify_email call, which must be done first)
-  Map<String, dynamic> passthrough;
+  int dryRun;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
+
+  /// The payment agent loginid received from the paymentagent_list call
+  String paymentagentLoginid;
+
+  /// Must be 1
+  int paymentagentWithdraw;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// Email verification code (received from a verify_email call, which must be done first)
+  String verificationCode;
 
   // @override
   // String toString() => name;

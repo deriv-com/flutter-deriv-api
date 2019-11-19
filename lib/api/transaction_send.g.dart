@@ -8,16 +8,16 @@ part of 'transaction_send.dart';
 
 TransactionRequest _$TransactionRequestFromJson(Map<String, dynamic> json) {
   return TransactionRequest()
-    ..transaction = json['transaction'] as int
-    ..subscribe = json['subscribe'] as int
     ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+    ..reqId = json['req_id'] as int
+    ..subscribe = json['subscribe'] as int
+    ..transaction = json['transaction'] as int;
 }
 
 Map<String, dynamic> _$TransactionRequestToJson(TransactionRequest instance) =>
     <String, dynamic>{
-      'transaction': instance.transaction,
-      'subscribe': instance.subscribe,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'subscribe': instance.subscribe,
+      'transaction': instance.transaction,
     };

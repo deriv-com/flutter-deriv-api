@@ -13,18 +13,17 @@ class SellResponse {
   Map<String, dynamic> toJson() => _$SellResponseToJson(this);
 
   // Properties
-  Map<String, dynamic> sell;
-
-  /// Receipt for the transaction
+  /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Echo of the request made.
+  /// Action name of the request made.
   String msgType;
 
-  /// Action name of the request made.
+  /// Optional field sent in request to map to response, present only when request contains req_id.
   int reqId;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Receipt for the transaction
+  Map<String, dynamic> sell;
 
   // @override
   // String toString() => name;

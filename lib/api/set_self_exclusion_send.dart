@@ -13,54 +13,53 @@ class SetSelfExclusionRequest {
   Map<String, dynamic> toJson() => _$SetSelfExclusionRequestToJson(this);
 
   // Properties
-  int setSelfExclusion;
-
-  /// Must be 1
+  /// Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
   String excludeUntil;
 
-  /// Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
+  /// 30-day limit on losses
   String max30dayLosses;
 
-  /// 30-day limit on losses
+  /// 30-day turnover limit
   String max30dayTurnover;
 
-  /// 30-day turnover limit
+  /// 7-day limit on losses
   String max7dayLosses;
 
-  /// 7-day limit on losses
+  /// 7-day turnover limit
   String max7dayTurnover;
 
-  /// 7-day turnover limit
+  /// Maximum account cash balance
   String maxBalance;
 
-  /// Maximum account cash balance
+  /// Deposit limit.
   String maxDeposit;
 
-  /// Deposit limit.
+  /// Exclude me from making deposits when the cumulative sum of deposits exceeds specified deposit limit.
   String maxDepositEndDate;
 
-  /// Exclude me from making deposits when the cumulative sum of deposits exceeds specified deposit limit.
+  /// Daily limit on losses
   String maxLosses;
 
-  /// Daily limit on losses
+  /// Maximum number of open positions
   String maxOpenBets;
 
-  /// Maximum number of open positions
+  /// Daily turnover limit
   String maxTurnover;
 
-  /// Daily turnover limit
-  String sessionDurationLimit;
-
-  /// Session duration limit, in minutes
-  String timeoutUntil;
-
-  /// Exclude me from the website (for up to 6 weeks). Requires time in epoch format. Note: unlike exclude_until, this self-exclusion will be lifted automatically at the expiry of the timeout period.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to map request to response.
   int reqId;
 
-  /// [Optional] Used to map request to response.
+  /// Session duration limit, in minutes
+  String sessionDurationLimit;
+
+  /// Must be 1
+  int setSelfExclusion;
+
+  /// Exclude me from the website (for up to 6 weeks). Requires time in epoch format. Note: unlike exclude_until, this self-exclusion will be lifted automatically at the expiry of the timeout period.
+  String timeoutUntil;
 
   // @override
   // String toString() => name;

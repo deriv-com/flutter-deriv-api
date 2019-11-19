@@ -9,7 +9,6 @@ part of 'new_account_maltainvest_send.dart';
 NewAccountMaltainvestRequest _$NewAccountMaltainvestRequestFromJson(
     Map<String, dynamic> json) {
   return NewAccountMaltainvestRequest()
-    ..newAccountMaltainvest = json['new_account_maltainvest'] as int
     ..acceptRisk = json['accept_risk'] as int
     ..accountOpeningReason = json['account_opening_reason'] as String
     ..accountTurnover = json['account_turnover'] as String
@@ -38,28 +37,28 @@ NewAccountMaltainvestRequest _$NewAccountMaltainvestRequestFromJson(
     ..incomeSource = json['income_source'] as String
     ..lastName = json['last_name'] as String
     ..netIncome = json['net_income'] as String
+    ..newAccountMaltainvest = json['new_account_maltainvest'] as int
     ..occupation = json['occupation'] as String
     ..otherInstrumentsTradingExperience =
         json['other_instruments_trading_experience'] as String
     ..otherInstrumentsTradingFrequency =
         json['other_instruments_trading_frequency'] as String
+    ..passthrough = json['passthrough'] as Map<String, dynamic>
     ..phone = json['phone'] as String
     ..placeOfBirth = json['place_of_birth'] as String
+    ..reqId = json['req_id'] as int
     ..residence = json['residence'] as String
     ..salutation = json['salutation'] as String
     ..secretAnswer = json['secret_answer'] as String
     ..secretQuestion = json['secret_question'] as String
     ..sourceOfWealth = json['source_of_wealth'] as String
     ..taxIdentificationNumber = json['tax_identification_number'] as String
-    ..taxResidence = json['tax_residence'] as String
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+    ..taxResidence = json['tax_residence'] as String;
 }
 
 Map<String, dynamic> _$NewAccountMaltainvestRequestToJson(
         NewAccountMaltainvestRequest instance) =>
     <String, dynamic>{
-      'new_account_maltainvest': instance.newAccountMaltainvest,
       'accept_risk': instance.acceptRisk,
       'account_opening_reason': instance.accountOpeningReason,
       'account_turnover': instance.accountTurnover,
@@ -88,13 +87,16 @@ Map<String, dynamic> _$NewAccountMaltainvestRequestToJson(
       'income_source': instance.incomeSource,
       'last_name': instance.lastName,
       'net_income': instance.netIncome,
+      'new_account_maltainvest': instance.newAccountMaltainvest,
       'occupation': instance.occupation,
       'other_instruments_trading_experience':
           instance.otherInstrumentsTradingExperience,
       'other_instruments_trading_frequency':
           instance.otherInstrumentsTradingFrequency,
+      'passthrough': instance.passthrough,
       'phone': instance.phone,
       'place_of_birth': instance.placeOfBirth,
+      'req_id': instance.reqId,
       'residence': instance.residence,
       'salutation': instance.salutation,
       'secret_answer': instance.secretAnswer,
@@ -102,6 +104,4 @@ Map<String, dynamic> _$NewAccountMaltainvestRequestToJson(
       'source_of_wealth': instance.sourceOfWealth,
       'tax_identification_number': instance.taxIdentificationNumber,
       'tax_residence': instance.taxResidence,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
     };

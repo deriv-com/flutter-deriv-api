@@ -13,24 +13,23 @@ class Mt5WithdrawalRequest {
   Map<String, dynamic> toJson() => _$Mt5WithdrawalRequestToJson(this);
 
   // Properties
-  int mt5Withdrawal;
-
-  /// Must be 1
+  /// Amount to withdraw (in the currency of the MT5 account); min = $1 or an equivalent amount, max = $20000 or an equivalent amount.
   num amount;
 
-  /// Amount to withdraw (in the currency of the MT5 account); min = $1 or an equivalent amount, max = $20000 or an equivalent amount.
+  /// MT5 account login to withdraw money from
   String fromMt5;
 
-  /// MT5 account login to withdraw money from
-  String toBinary;
-
-  /// Binary account loginid to transfer money to
-  Map<String, dynamic> passthrough;
+  /// Must be 1
+  int mt5Withdrawal;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
-  int reqId;
+  Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// Binary account loginid to transfer money to
+  String toBinary;
 
   // @override
   // String toString() => name;

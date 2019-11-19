@@ -13,18 +13,17 @@ class TradingDurationsRequest {
   Map<String, dynamic> toJson() => _$TradingDurationsRequestToJson(this);
 
   // Properties
-  int tradingDurations;
-
-  /// Must be 1
+  /// [Optional] If specified, will return only the underlyings for the specified landing company.
   String landingCompany;
 
-  /// [Optional] If specified, will return only the underlyings for the specified landing company.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to map request to response.
   int reqId;
 
-  /// [Optional] Used to map request to response.
+  /// Must be 1
+  int tradingDurations;
 
   // @override
   // String toString() => name;
