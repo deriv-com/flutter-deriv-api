@@ -46,18 +46,34 @@ class APIBuilder extends Builder {
       /* Instead of trying anything too fancy here, we just provide a simple conversion from original
        JSON schema name - which is snake_cased - to something more Dart-suitable, and apply type
        mapping via "it's a string unless we have a better guess" heuristic. */
-      log.info('Iterating over $props');
+      props.sort();
       final String attrList = props.map((String k) {
         final String name = ReCase(k).camelCase;
         final JsonSchema prop = schema.properties[k];
         String type;
-        if (prop.typeList?.isNotEmpty ?? false) {
-          type = typeMap[prop.type?.toString() ?? 'string'] ?? 'String';
+        // Currently we don't handle multiple types, could
+        // treat those as `dynamic` but so far we don't have
+        // enough of them to care too much
+        if (prop.typeList?.isNotEmpty) {
+          // The `.type` values are objects, not strings,
+          // which leads to some confusing results when you
+          // try to compare them as strings or use them as
+          // map lookups... so we extract them out to separate
+          // variables instead.
+          final String schemaType = prop.type.toString();
+          if(schemaType == 'array') {
+            final String itemType = prop.items.type.toString();
+            type = 'List<${typeMap[itemType]}>';
+          } else {
+            type = typeMap[schemaType] ?? 'String';
+          }
         } else {
           log.warning('The property $k on ${buildStep.inputId} does not appear to have a type: defaulting to string');
           type = 'String';
         }
-        return '${type ?? "unknown"} ${name ?? "unknown"}; /// ${prop.description}';
+        return '''/// ${prop.description}
+  ${type ?? "unknown"} ${name ?? "unknown"};
+''';
       }).join('\n');
 
       /* Some minor chicanery here to find out which API method we're supposed to be processing */
