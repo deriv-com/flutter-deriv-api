@@ -54,19 +54,23 @@ class APIBuilder extends Builder {
         // Currently we don't handle multiple types, could
         // treat those as `dynamic` but so far we don't have
         // enough of them to care too much
-        if (prop.typeList?.isNotEmpty) {
+        if (prop.typeList?.isNotEmpty ?? false) {
           // The `.type` values are objects, not strings,
           // which leads to some confusing results when you
           // try to compare them as strings or use them as
           // map lookups... so we extract them out to separate
           // variables instead.
-          final String schemaType = prop.type.toString();
-          if(schemaType == 'array') {
-            // Some types aren't specified - forget_all for example
-            final String itemType = prop.items.type?.toString() ?? 'string';
-            type = 'List<${typeMap[itemType]}>';
+          if(prop.oneOf.isNotEmpty) {
+            type = 'dynamic';
           } else {
-            type = typeMap[schemaType] ?? 'String';
+            final String schemaType = prop.type?.toString() ?? 'string';
+            if(schemaType == 'array') {
+              // Some types aren't specified - forget_all for example
+              final String itemType = prop.items?.type?.toString() ?? 'string';
+              type = 'List<${typeMap[itemType]}>';
+            } else {
+              type = typeMap[schemaType] ?? 'String';
+            }
           }
         } else {
           log.warning('The property $k on ${buildStep.inputId} does not appear to have a type: defaulting to string');
