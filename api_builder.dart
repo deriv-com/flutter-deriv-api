@@ -126,8 +126,9 @@ class ${fullClassName} {
   static int _fromBoolean(bool v) => v ? 1 : 0;
 }
 '''));
-    } catch (e) {
+    } catch (e, stack) {
       log.severe('Failed to process ${buildStep.inputId} - $e');
+      log.severe('Stack trace $stack');
       return;
     }
   }
