@@ -4,6 +4,8 @@
 .packages
 .pub/
 
+.idea/
+
 build/
 
 lib/api/*.json
