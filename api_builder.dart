@@ -62,7 +62,8 @@ class APIBuilder extends Builder {
           // variables instead.
           final String schemaType = prop.type.toString();
           if(schemaType == 'array') {
-            final String itemType = prop.items.type.toString();
+            // Some types aren't specified - forget_all for example
+            final String itemType = prop.items.type?.toString() ?? 'string';
             type = 'List<${typeMap[itemType]}>';
           } else {
             type = typeMap[schemaType] ?? 'String';
