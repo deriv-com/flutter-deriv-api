@@ -1,4 +1,6 @@
 analyzer:
+  exclude:
+    - lib/api/**
   strong-mode:
     implicit-dynamic: false
   errors:
