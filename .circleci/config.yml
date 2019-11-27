@@ -20,13 +20,19 @@ jobs:
           name: Link JSON files for API autobuild
           command: ./setup.sh
 
+      - restore_cache:
+          keys:
+              - android-sdk-licenses
+              - gradle
+              - pub-cache
+
       - run:
           name: pub get
           command: flutter pub get
 
       - run:
           name: Build step
-          command: flutter pub run build_runner build
+          command: flutter pub run build_runner build --delete-conflicting-outputs
 
       - run:
           name: Run the application tests
@@ -40,13 +46,8 @@ jobs:
       - run:
           name: Code analysis
           command: |
-              dartanalyzer --options analysis_options.yaml --fatal-warnings lib
-
-      - restore_cache:
-          keys:
-              - android-sdk-licenses
-              - gradle
-              - pub-cache
+              flutter pub global activate tuneup
+              flutter pub global run tuneup check
 
       - run:
           name: Check that the package is ready for publishing
