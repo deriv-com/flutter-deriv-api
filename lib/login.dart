@@ -2,32 +2,37 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
+/// A webview to show login page and retrieve account information from
+/// the redirect url.
 class LoginScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => new _LoginScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
+/// A data class to present an account infomation.
 class Account {
-  /// Login ID, e.g. CR1234
-  String acct;
-  /// Auth token, suitable for use with `authorise`
-  String token;
-  /// Currency
-  String cur;
-
+  /// Account cunstructor
   Account(
-      String acct,
-      String cur,
-      String token,
-  ):acct = acct,
-    token = token,
-    cur = cur;
+    this.acct,
+    this.cur,
+    this.token,
+  );
 
+  /// Construct from a map
   Account.fromMap(
-      Map<String, String> data,
-    ):acct = data['acct'],
+    Map<String, String> data,
+  )   : acct = data['acct'],
         token = data['token'],
         cur = data['cur'];
+
+  /// Login ID, e.g. CR1234
+  String acct;
+
+  /// Auth token, suitable for use with `authorise`
+  String token;
+
+  /// Currency
+  String cur;
 }
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -37,21 +42,21 @@ class _LoginScreenState extends State<LoginScreen> {
   /// However, it usually doesn't even get that far: we also watch state
   /// changes on the webview widget, so if we load this URL then we'll
   /// hope to see that before the OS starts the redirect.
-  final redirectURL = 'https://api-demo.deriv.com';
-  final webview = FlutterWebviewPlugin();
+  final String redirectURL = 'https://api-demo.deriv.com';
+  final FlutterWebviewPlugin webview = FlutterWebviewPlugin();
 
-  StreamSubscription onDestroy;
-  StreamSubscription<String> onUrlChanged;
-  StreamSubscription<WebViewStateChanged> onStateChanged;
+  StreamSubscription<void> _onDestroy;
+  StreamSubscription<String> _onUrlChanged;
+  StreamSubscription<WebViewStateChanged> _onStateChanged;
 
   String token;
 
   @override
   void dispose() {
     // Every listener should be cancelled, the same should be done with this stream.
-    onDestroy.cancel();
-    onUrlChanged.cancel();
-    onStateChanged.cancel();
+    _onDestroy.cancel();
+    _onUrlChanged.cancel();
+    _onStateChanged.cancel();
     webview.dispose();
     super.dispose();
   }
@@ -62,23 +67,20 @@ class _LoginScreenState extends State<LoginScreen> {
 
     webview.close();
 
-    onDestroy = webview.onDestroy.listen(
-        (_) {
-          // Presumably we'd want to notify and trigger any cleanup events in here
-        }
-    );
+    _onDestroy = webview.onDestroy.listen((_) {
+      // Presumably we'd want to notify and trigger any cleanup events in here
+    });
 
-    onStateChanged = webview.onStateChanged.listen(
-      (final WebViewStateChanged state) {
-        print("onStateChanged: ${state.type} ${state.url}");
-      }
-    );
+    _onStateChanged =
+        webview.onStateChanged.listen((final WebViewStateChanged state) {
+      print('onStateChanged: ${state.type} ${state.url}');
+    });
 
     // Add a listener to on url changed
-    onUrlChanged = webview.onUrlChanged.listen((final String url) {
+    _onUrlChanged = webview.onUrlChanged.listen((final String url) {
       if (mounted) {
         setState(() {
-          print("URL changed: $url");
+          print('URL changed: $url');
           if (url.startsWith(redirectURL)) {
             emitURL(url);
 
@@ -91,7 +93,8 @@ class _LoginScreenState extends State<LoginScreen> {
           }
         });
       } else {
-        print('Failure to handle URL event, since this route is not currently mounted');
+        print(
+            'Failure to handle URL event, since this route is not currently mounted');
       }
     });
   }
@@ -106,39 +109,37 @@ class _LoginScreenState extends State<LoginScreen> {
       // type and index for each. This would be something like `acct1`, `curr1`
       // etc. and the ordering of the parameters is really not something we can
       // rely on.
-      var items = Map<int, Map<String, String>>();
-      u.queryParameters.forEach((k, v) {
+      final Map<int, Map<String, String>> items = <int, Map<String, String>>{};
+      u.queryParameters.forEach((String k, String v) {
         if (re.hasMatch(k)) {
           // At the time of writing, we don't have access to
           // https://github.com/DirectMyFile/dep-destructuring/blob/master/proposal.md
-          final match = re.firstMatch(k);
+          final RegExpMatch match = re.firstMatch(k);
           final int idx = num.parse(match.group(2)) - 1;
           final String key = match.group(1);
 
-          items.putIfAbsent(idx, () => Map<String, String>());
+          items.putIfAbsent(idx, () => <String, String>{});
           items[idx].putIfAbsent(key, () => v);
         }
       });
 
-      var accountList = <Account>[];
+      final List<Account> accountList = <Account>[];
       // Slightly cumbersome, could be neater with rx but for a tiny static
       // list it really doesn't seem worth the effort.
-      final List<int> keys = items.keys.toList();
-      keys.sort();
-      keys.forEach((final int k) {
-        final Map<String, String> map = items[k];
+      items.keys.toList()
+        ..sort()
+        ..forEach((final int k) {
+          final Map<String, String> map = items[k];
 
-        accountList.add(
-            Account.fromMap(map)
-        );
-      });
+          accountList.add(Account.fromMap(map));
+        });
 
       // At this point, we have a collection of accounts, and presumably something
       // is going to react to that in a suitably-surprised fashion.
       print('Account list:');
-      accountList.forEach((a) {
-        print("${a.acct} currency ${a.cur} and token ${a.token}");
-      });
+      for (Account a in accountList) {
+        print('${a.acct} currency ${a.cur} and token ${a.token}');
+      }
 
       // Things we could be doing here!
       // saveToken(token);
@@ -149,13 +150,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String loginUrl = "https://oauth.binary.com/oauth2/authorize?app_id=19175";
+    const String loginUrl =
+        'https://oauth.binary.com/oauth2/authorize?app_id=19175';
 
     return WebviewScaffold(
-      url: loginUrl,
-      appBar: AppBar(
-        title: Text("Sign in"),
-      )
-    );
+        url: loginUrl,
+        appBar: AppBar(
+          title: const Text('Sign in'),
+        ));
   }
 }
