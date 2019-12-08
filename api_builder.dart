@@ -35,18 +35,18 @@ class APIBuilder extends Builder {
   Future<void> build(BuildStep buildStep) async {
     try {
       log.info('Reading ${buildStep.inputId} as JSON');
-      final Map<dynamic, dynamic> schemaDefinition = jsonDecode(await buildStep.readAsString(buildStep.inputId));
+      final Map<dynamic, dynamic> schemaDefinition =
+          jsonDecode(await buildStep.readAsString(buildStep.inputId));
 
       log.info('Processing schema definition from ${buildStep.inputId}');
       final JsonSchema schema = JsonSchema.createSchema(schemaDefinition);
 
       /* We keep our list of property keys in original form here so we can iterate over and map them */
-      final List<String> props = schema.properties.keys.toList();
+      final List<String> props = schema.properties.keys.toList()..sort();
 
       /* Instead of trying anything too fancy here, we just provide a simple conversion from original
        JSON schema name - which is snake_cased - to something more Dart-suitable, and apply type
        mapping via "it's a string unless we have a better guess" heuristic. */
-      props.sort();
       final String attrList = props.map((String k) {
         final String name = ReCase(k).camelCase;
         final JsonSchema prop = schema.properties[k];
@@ -60,11 +60,11 @@ class APIBuilder extends Builder {
           // try to compare them as strings or use them as
           // map lookups... so we extract them out to separate
           // variables instead.
-          if(prop.oneOf.isNotEmpty) {
+          if (prop.oneOf.isNotEmpty) {
             type = 'dynamic';
           } else {
             final String schemaType = prop.type?.toString() ?? 'string';
-            if(schemaType == 'array') {
+            if (schemaType == 'array') {
               // Some types aren't specified - forget_all for example
               final String itemType = prop.items?.type?.toString() ?? 'string';
               type = 'List<${typeMap[itemType]}>';
@@ -73,7 +73,8 @@ class APIBuilder extends Builder {
             }
           }
         } else {
-          log.warning('The property $k on ${buildStep.inputId} does not appear to have a type: defaulting to string');
+          log.warning(
+              'The property $k on ${buildStep.inputId} does not appear to have a type: defaulting to string');
           type = 'String';
         }
         return '''/// ${prop.description}
@@ -82,20 +83,24 @@ class APIBuilder extends Builder {
       }).join('\n');
 
       /* Some minor chicanery here to find out which API method we're supposed to be processing */
-      final matches = RegExp(r'^([^\|]+)\|.*/([^/]+)_(send|receive).json$').allMatches(buildStep.inputId.toString());
-      final items = matches.elementAt(0);
+      final Iterable<RegExpMatch> matches =
+          RegExp(r'^([^\|]+)\|.*/([^/]+)_(send|receive).json$')
+              .allMatches(buildStep.inputId.toString());
+      final RegExpMatch items = matches.elementAt(0);
       if (items.groupCount < 3) {
-        log.info('Had fewer groups than expected from $items - this is likely not a send/receive request');
+        log.info(
+            'Had fewer groups than expected from $items - this is likely not a send/receive request');
         return;
       }
-      final libName = items.group(1);
-      final methodName = items.group(2);
-      final schemaType = items.group(3);
-      final className = ReCase(methodName).pascalCase;
+      final String libName = items.group(1);
+      final String methodName = items.group(2);
+      final String schemaType = items.group(3);
+      final String className = ReCase(methodName).pascalCase;
 
-      log.info('Will write $className for $methodName as $schemaType under $libName');
-      final fullClassName = className + schemaTypeMap[schemaType];
-      final fileName = '${methodName}_${schemaType}';
+      log.info(
+          'Will write $className for $methodName as $schemaType under $libName');
+      final String fullClassName = className + schemaTypeMap[schemaType];
+      final String fileName = '${methodName}_${schemaType}';
       await buildStep.writeAsString(
           // Ideally we'd move somewhere else and reconstruct, but the builder is tediously
           // over-specific about where it lets you write things - you *can* navigate to parent
@@ -126,9 +131,10 @@ class ${fullClassName} {
   static int _fromBoolean(bool v) => v ? 1 : 0;
 }
 '''));
-    } catch (e, stack) {
-      log.severe('Failed to process ${buildStep.inputId} - $e');
-      log.severe('Stack trace $stack');
+    } on Exception catch (e, stack) {
+      log
+        ..severe('Failed to process ${buildStep.inputId} - $e')
+        ..severe('Stack trace $stack');
       return;
     }
   }
