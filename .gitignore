@@ -23,6 +23,7 @@ lib/api/*.json
 .flutter-plugins
 .packages
 .pub-cache/
+pubspec.lock
 .pub/
 /build/
 coverage/
