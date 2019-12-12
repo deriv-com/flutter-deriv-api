@@ -7,7 +7,8 @@ part 'login_history_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LoginHistoryResponse {
-  LoginHistoryResponse();
+  LoginHistoryResponse(
+      {this.echoReq, this.loginHistory, this.msgType, this.reqId});
   factory LoginHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$LoginHistoryResponseFromJson(json);
   Map<String, dynamic> toJson() => _$LoginHistoryResponseToJson(this);
@@ -22,7 +23,7 @@ class LoginHistoryResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

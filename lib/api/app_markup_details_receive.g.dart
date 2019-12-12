@@ -8,11 +8,12 @@ part of 'app_markup_details_receive.dart';
 
 AppMarkupDetailsResponse _$AppMarkupDetailsResponseFromJson(
     Map<String, dynamic> json) {
-  return AppMarkupDetailsResponse()
-    ..appMarkupDetails = json['app_markup_details'] as Map<String, dynamic>
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..reqId = json['req_id'] as int;
+  return AppMarkupDetailsResponse(
+    appMarkupDetails: json['app_markup_details'] as Map<String, dynamic>,
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$AppMarkupDetailsResponseToJson(

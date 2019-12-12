@@ -7,19 +7,20 @@ part 'asset_index_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AssetIndexRequest {
-  AssetIndexRequest();
+  AssetIndexRequest(
+      {this.assetIndex, this.landingCompany, this.passthrough, this.reqId});
   factory AssetIndexRequest.fromJson(Map<String, dynamic> json) =>
       _$AssetIndexRequestFromJson(json);
   Map<String, dynamic> toJson() => _$AssetIndexRequestToJson(this);
 
   // Properties
-  /// Must be 1
+  /// Must be `1`
   int assetIndex;
 
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
   String landingCompany;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

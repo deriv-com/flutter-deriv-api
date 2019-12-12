@@ -7,7 +7,13 @@ part 'sell_contract_for_multiple_accounts_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellContractForMultipleAccountsRequest {
-  SellContractForMultipleAccountsRequest();
+  SellContractForMultipleAccountsRequest(
+      {this.passthrough,
+      this.price,
+      this.reqId,
+      this.sellContractForMultipleAccounts,
+      this.shortcode,
+      this.tokens});
   factory SellContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       _$SellContractForMultipleAccountsRequestFromJson(json);
@@ -15,22 +21,22 @@ class SellContractForMultipleAccountsRequest {
       _$SellContractForMultipleAccountsRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
-  /// Minimum price at which to sell the contract, or '0' for 'sell at market'
+  /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
   num price;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// Must be 1
+  /// Must be `1`
   int sellContractForMultipleAccounts;
 
-  /// An internal ID used to identify the contract which was originally bought. This is returned from the buy and buy_for_multiple_accounts calls
+  /// An internal ID used to identify the contract which was originally bought. This is returned from the `buy` and `buy_contract_for_multiple_accounts` calls.
   String shortcode;
 
-  /// Authorisation tokens which select the accounts to sell use for the affected accounts
+  /// Authorisation tokens which select the accounts to sell use for the affected accounts.
   List<String> tokens;
 
   // @override

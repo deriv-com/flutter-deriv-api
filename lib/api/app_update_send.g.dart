@@ -7,19 +7,20 @@ part of 'app_update_send.dart';
 // **************************************************************************
 
 AppUpdateRequest _$AppUpdateRequestFromJson(Map<String, dynamic> json) {
-  return AppUpdateRequest()
-    ..appMarkupPercentage = json['app_markup_percentage'] as num
-    ..appUpdate = json['app_update'] as int
-    ..appstore = json['appstore'] as String
-    ..github = json['github'] as String
-    ..googleplay = json['googleplay'] as String
-    ..homepage = json['homepage'] as String
-    ..name = json['name'] as String
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..redirectUri = json['redirect_uri'] as String
-    ..reqId = json['req_id'] as int
-    ..scopes = (json['scopes'] as List).map((e) => e as String).toList()
-    ..verificationUri = json['verification_uri'] as String;
+  return AppUpdateRequest(
+    appMarkupPercentage: json['app_markup_percentage'] as num,
+    appUpdate: json['app_update'] as int,
+    appstore: json['appstore'] as String,
+    github: json['github'] as String,
+    googleplay: json['googleplay'] as String,
+    homepage: json['homepage'] as String,
+    name: json['name'] as String,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    redirectUri: json['redirect_uri'] as String,
+    reqId: json['req_id'] as int,
+    scopes: (json['scopes'] as List).map((e) => e as String).toList(),
+    verificationUri: json['verification_uri'] as String,
+  );
 }
 
 Map<String, dynamic> _$AppUpdateRequestToJson(AppUpdateRequest instance) =>

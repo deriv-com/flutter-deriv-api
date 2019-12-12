@@ -7,16 +7,16 @@ part 'landing_company_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LandingCompanyRequest {
-  LandingCompanyRequest();
+  LandingCompanyRequest({this.landingCompany, this.passthrough, this.reqId});
   factory LandingCompanyRequest.fromJson(Map<String, dynamic> json) =>
       _$LandingCompanyRequestFromJson(json);
   Map<String, dynamic> toJson() => _$LandingCompanyRequestToJson(this);
 
   // Properties
-  /// Client's 2-letter country code (obtained from residence_list call).
+  /// Client's 2-letter country code (obtained from `residence_list` call).
   String landingCompany;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

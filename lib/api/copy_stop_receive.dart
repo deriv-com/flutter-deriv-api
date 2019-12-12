@@ -7,7 +7,7 @@ part 'copy_stop_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStopResponse {
-  CopyStopResponse();
+  CopyStopResponse({this.copyStop, this.echoReq, this.msgType, this.reqId});
   factory CopyStopResponse.fromJson(Map<String, dynamic> json) =>
       _$CopyStopResponseFromJson(json);
   Map<String, dynamic> toJson() => _$CopyStopResponseToJson(this);
@@ -22,7 +22,7 @@ class CopyStopResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

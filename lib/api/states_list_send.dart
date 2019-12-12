@@ -7,13 +7,13 @@ part 'states_list_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class StatesListRequest {
-  StatesListRequest();
+  StatesListRequest({this.passthrough, this.reqId, this.statesList});
   factory StatesListRequest.fromJson(Map<String, dynamic> json) =>
       _$StatesListRequestFromJson(json);
   Map<String, dynamic> toJson() => _$StatesListRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

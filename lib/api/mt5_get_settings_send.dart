@@ -7,7 +7,8 @@ part 'mt5_get_settings_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5GetSettingsRequest {
-  Mt5GetSettingsRequest();
+  Mt5GetSettingsRequest(
+      {this.login, this.mt5GetSettings, this.passthrough, this.reqId});
   factory Mt5GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5GetSettingsRequestFromJson(json);
   Map<String, dynamic> toJson() => _$Mt5GetSettingsRequestToJson(this);
@@ -16,10 +17,10 @@ class Mt5GetSettingsRequest {
   /// MT5 user login
   String login;
 
-  /// Must be 1
+  /// Must be `1`
   int mt5GetSettings;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

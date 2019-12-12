@@ -7,7 +7,7 @@ part 'portfolio_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PortfolioResponse {
-  PortfolioResponse();
+  PortfolioResponse({this.echoReq, this.msgType, this.portfolio, this.reqId});
   factory PortfolioResponse.fromJson(Map<String, dynamic> json) =>
       _$PortfolioResponseFromJson(json);
   Map<String, dynamic> toJson() => _$PortfolioResponseToJson(this);
@@ -19,10 +19,10 @@ class PortfolioResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Client open positions
+  /// Current account's open positions.
   Map<String, dynamic> portfolio;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

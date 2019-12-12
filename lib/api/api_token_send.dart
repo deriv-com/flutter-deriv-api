@@ -7,31 +7,38 @@ part 'api_token_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ApiTokenRequest {
-  ApiTokenRequest();
+  ApiTokenRequest(
+      {this.apiToken,
+      this.deleteToken,
+      this.newToken,
+      this.newTokenScopes,
+      this.passthrough,
+      this.reqId,
+      this.validForCurrentIpOnly});
   factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiTokenRequestFromJson(json);
   Map<String, dynamic> toJson() => _$ApiTokenRequestToJson(this);
 
   // Properties
-  /// Must be 1
+  /// Must be `1`
   int apiToken;
 
-  /// The token to remove
+  /// [Optional] The token to remove.
   String deleteToken;
 
-  /// The name of the created token
+  /// [Optional] The name of the created token.
   String newToken;
 
-  /// List of permission scopes to provide with the token.
+  /// [Optional] List of permission scopes to provide with the token.
   List<String> newTokenScopes;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// Optional field, if you set this parameter during token creation, then the token created will only work for the IP address that was used to create the token
+  /// [Optional] If you set this parameter during token creation, then the token created will only work for the IP address that was used to create the token
   int validForCurrentIpOnly;
 
   // @override

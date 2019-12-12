@@ -8,20 +8,20 @@ part of 'app_markup_details_send.dart';
 
 AppMarkupDetailsRequest _$AppMarkupDetailsRequestFromJson(
     Map<String, dynamic> json) {
-  return AppMarkupDetailsRequest()
-    ..appId = json['app_id'] as int
-    ..appMarkupDetails = json['app_markup_details'] as int
-    ..clientLoginid = json['client_loginid'] as String
-    ..dateFrom = json['date_from'] as String
-    ..dateTo = json['date_to'] as String
-    ..description = json['description'] as int
-    ..limit = json['limit'] as num
-    ..offset = json['offset'] as num
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int
-    ..sort = json['sort'] as String
-    ..sortFields =
-        (json['sort_fields'] as List).map((e) => e as String).toList();
+  return AppMarkupDetailsRequest(
+    appId: json['app_id'] as int,
+    appMarkupDetails: json['app_markup_details'] as int,
+    clientLoginid: json['client_loginid'] as String,
+    dateFrom: json['date_from'] as String,
+    dateTo: json['date_to'] as String,
+    description: json['description'] as int,
+    limit: json['limit'] as num,
+    offset: json['offset'] as num,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+    sort: json['sort'] as String,
+    sortFields: (json['sort_fields'] as List).map((e) => e as String).toList(),
+  );
 }
 
 Map<String, dynamic> _$AppMarkupDetailsRequestToJson(

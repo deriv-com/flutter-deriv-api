@@ -7,11 +7,12 @@ part of 'profit_table_receive.dart';
 // **************************************************************************
 
 ProfitTableResponse _$ProfitTableResponseFromJson(Map<String, dynamic> json) {
-  return ProfitTableResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..profitTable = json['profit_table'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+  return ProfitTableResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    profitTable: json['profit_table'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$ProfitTableResponseToJson(

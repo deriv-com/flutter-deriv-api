@@ -9,12 +9,13 @@ part of 'sell_contract_for_multiple_accounts_receive.dart';
 SellContractForMultipleAccountsResponse
     _$SellContractForMultipleAccountsResponseFromJson(
         Map<String, dynamic> json) {
-  return SellContractForMultipleAccountsResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..reqId = json['req_id'] as int
-    ..sellContractForMultipleAccounts =
-        json['sell_contract_for_multiple_accounts'] as Map<String, dynamic>;
+  return SellContractForMultipleAccountsResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    reqId: json['req_id'] as int,
+    sellContractForMultipleAccounts:
+        json['sell_contract_for_multiple_accounts'] as Map<String, dynamic>,
+  );
 }
 
 Map<String, dynamic> _$SellContractForMultipleAccountsResponseToJson(

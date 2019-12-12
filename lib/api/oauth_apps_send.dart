@@ -7,16 +7,16 @@ part 'oauth_apps_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class OauthAppsRequest {
-  OauthAppsRequest();
+  OauthAppsRequest({this.oauthApps, this.passthrough, this.reqId});
   factory OauthAppsRequest.fromJson(Map<String, dynamic> json) =>
       _$OauthAppsRequestFromJson(json);
   Map<String, dynamic> toJson() => _$OauthAppsRequestToJson(this);
 
   // Properties
-  /// Must be 1
+  /// Must be `1`
   int oauthApps;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

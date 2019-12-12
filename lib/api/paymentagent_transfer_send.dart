@@ -7,7 +7,15 @@ part 'paymentagent_transfer_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PaymentagentTransferRequest {
-  PaymentagentTransferRequest();
+  PaymentagentTransferRequest(
+      {this.amount,
+      this.currency,
+      this.description,
+      this.dryRun,
+      this.passthrough,
+      this.paymentagentTransfer,
+      this.reqId,
+      this.transferTo});
   factory PaymentagentTransferRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentTransferRequestFromJson(json);
   Map<String, dynamic> toJson() => _$PaymentagentTransferRequestToJson(this);
@@ -19,16 +27,16 @@ class PaymentagentTransferRequest {
   /// Currency code.
   String currency;
 
-  /// Optional field for remarks about the transfer.
+  /// [Optional] Remarks about the transfer.
   String description;
 
-  /// If set to 1, just do validation.
+  /// [Optional] If set to `1`, just do validation.
   int dryRun;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
-  /// Must be 1
+  /// Must be `1`
   int paymentagentTransfer;
 
   /// [Optional] Used to map request to response.

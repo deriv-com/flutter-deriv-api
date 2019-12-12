@@ -7,19 +7,20 @@ part 'exchange_rates_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ExchangeRatesRequest {
-  ExchangeRatesRequest();
+  ExchangeRatesRequest(
+      {this.baseCurrency, this.exchangeRates, this.passthrough, this.reqId});
   factory ExchangeRatesRequest.fromJson(Map<String, dynamic> json) =>
       _$ExchangeRatesRequestFromJson(json);
   Map<String, dynamic> toJson() => _$ExchangeRatesRequestToJson(this);
 
   // Properties
-  /// Base currency (can be obtained from payout_currencies call)
+  /// Base currency (can be obtained from `payout_currencies` call)
   String baseCurrency;
 
-  /// Must be 1
+  /// Must be `1`
   int exchangeRates;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

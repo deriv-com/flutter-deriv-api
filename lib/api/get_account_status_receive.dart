@@ -7,7 +7,8 @@ part 'get_account_status_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetAccountStatusResponse {
-  GetAccountStatusResponse();
+  GetAccountStatusResponse(
+      {this.echoReq, this.getAccountStatus, this.msgType, this.reqId});
   factory GetAccountStatusResponse.fromJson(Map<String, dynamic> json) =>
       _$GetAccountStatusResponseFromJson(json);
   Map<String, dynamic> toJson() => _$GetAccountStatusResponseToJson(this);
@@ -22,7 +23,7 @@ class GetAccountStatusResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

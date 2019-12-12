@@ -7,16 +7,17 @@ part 'get_account_status_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetAccountStatusRequest {
-  GetAccountStatusRequest();
+  GetAccountStatusRequest(
+      {this.getAccountStatus, this.passthrough, this.reqId});
   factory GetAccountStatusRequest.fromJson(Map<String, dynamic> json) =>
       _$GetAccountStatusRequestFromJson(json);
   Map<String, dynamic> toJson() => _$GetAccountStatusRequestToJson(this);
 
   // Properties
-  /// Must be 1
+  /// Must be `1`
   int getAccountStatus;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

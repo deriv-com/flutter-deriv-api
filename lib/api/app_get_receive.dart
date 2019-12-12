@@ -7,7 +7,7 @@ part 'app_get_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppGetResponse {
-  AppGetResponse();
+  AppGetResponse({this.appGet, this.echoReq, this.msgType, this.reqId});
   factory AppGetResponse.fromJson(Map<String, dynamic> json) =>
       _$AppGetResponseFromJson(json);
   Map<String, dynamic> toJson() => _$AppGetResponseToJson(this);
@@ -22,7 +22,7 @@ class AppGetResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

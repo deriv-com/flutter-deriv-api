@@ -7,7 +7,14 @@ part 'mt5_password_change_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5PasswordChangeRequest {
-  Mt5PasswordChangeRequest();
+  Mt5PasswordChangeRequest(
+      {this.login,
+      this.mt5PasswordChange,
+      this.newPassword,
+      this.oldPassword,
+      this.passthrough,
+      this.passwordType,
+      this.reqId});
   factory Mt5PasswordChangeRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordChangeRequestFromJson(json);
   Map<String, dynamic> toJson() => _$Mt5PasswordChangeRequestToJson(this);
@@ -16,7 +23,7 @@ class Mt5PasswordChangeRequest {
   /// MT5 user login
   String login;
 
-  /// Must be 1
+  /// Must be `1`
   int mt5PasswordChange;
 
   /// New password (length within 8-25 chars, accepts any printable ASCII character)
@@ -25,10 +32,10 @@ class Mt5PasswordChangeRequest {
   /// Old password for validation (non-empty string, accepts any printable ASCII character)
   String oldPassword;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
-  /// Password type main/investor (default: 'main')
+  /// [Optional] Type of the password to change.
   String passwordType;
 
   /// [Optional] Used to map request to response.

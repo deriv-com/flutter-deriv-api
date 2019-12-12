@@ -7,11 +7,12 @@ part of 'portfolio_receive.dart';
 // **************************************************************************
 
 PortfolioResponse _$PortfolioResponseFromJson(Map<String, dynamic> json) {
-  return PortfolioResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..portfolio = json['portfolio'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+  return PortfolioResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    portfolio: json['portfolio'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$PortfolioResponseToJson(PortfolioResponse instance) =>

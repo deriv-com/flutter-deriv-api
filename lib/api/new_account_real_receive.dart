@@ -7,7 +7,8 @@ part 'new_account_real_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountRealResponse {
-  NewAccountRealResponse();
+  NewAccountRealResponse(
+      {this.echoReq, this.msgType, this.newAccountReal, this.reqId});
   factory NewAccountRealResponse.fromJson(Map<String, dynamic> json) =>
       _$NewAccountRealResponseFromJson(json);
   Map<String, dynamic> toJson() => _$NewAccountRealResponseToJson(this);
@@ -22,7 +23,7 @@ class NewAccountRealResponse {
   /// New real money account details
   Map<String, dynamic> newAccountReal;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

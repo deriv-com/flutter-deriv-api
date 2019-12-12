@@ -7,19 +7,24 @@ part 'active_symbols_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ActiveSymbolsRequest {
-  ActiveSymbolsRequest();
+  ActiveSymbolsRequest(
+      {this.activeSymbols,
+      this.landingCompany,
+      this.passthrough,
+      this.productType,
+      this.reqId});
   factory ActiveSymbolsRequest.fromJson(Map<String, dynamic> json) =>
       _$ActiveSymbolsRequestFromJson(json);
   Map<String, dynamic> toJson() => _$ActiveSymbolsRequestToJson(this);
 
   // Properties
-  /// If you use 'brief', only a subset of fields will be returned.
+  /// If you use `brief`, only a subset of fields will be returned.
   String activeSymbols;
 
   /// [Optional] If you specify this field, only symbols available for trading by that landing company will be returned. If you are logged in, only symbols available for trading by your landing company will be returned regardless of what you specify in this field.
   String landingCompany;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] If you specify this field, only symbols that can be traded through that product type will be returned.

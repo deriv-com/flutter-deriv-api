@@ -7,7 +7,8 @@ part 'app_register_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppRegisterResponse {
-  AppRegisterResponse();
+  AppRegisterResponse(
+      {this.appRegister, this.echoReq, this.msgType, this.reqId});
   factory AppRegisterResponse.fromJson(Map<String, dynamic> json) =>
       _$AppRegisterResponseFromJson(json);
   Map<String, dynamic> toJson() => _$AppRegisterResponseToJson(this);
@@ -22,7 +23,7 @@ class AppRegisterResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

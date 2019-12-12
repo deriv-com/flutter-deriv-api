@@ -7,19 +7,31 @@ part 'app_markup_details_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppMarkupDetailsRequest {
-  AppMarkupDetailsRequest();
+  AppMarkupDetailsRequest(
+      {this.appId,
+      this.appMarkupDetails,
+      this.clientLoginid,
+      this.dateFrom,
+      this.dateTo,
+      this.description,
+      this.limit,
+      this.offset,
+      this.passthrough,
+      this.reqId,
+      this.sort,
+      this.sortFields});
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>
       _$AppMarkupDetailsRequestFromJson(json);
   Map<String, dynamic> toJson() => _$AppMarkupDetailsRequestToJson(this);
 
   // Properties
-  /// Optional: specific application app_id to report on
+  /// [Optional] Specific application `app_id` to report on.
   int appId;
 
-  /// Must be 1
+  /// Must be `1`
   int appMarkupDetails;
 
-  /// Optional: specific client loginid to report on, like CR12345
+  /// [Optional] Specific client loginid to report on, like CR12345
   String clientLoginid;
 
   /// Start date (epoch or YYYY-MM-DD HH:MM:SS). Results are inclusive of this time.
@@ -28,25 +40,25 @@ class AppMarkupDetailsRequest {
   /// End date (epoch or YYYY-MM-DD HH::MM::SS). Results are inclusive of this time.
   String dateTo;
 
-  /// If set to 1, will return app_markup transaction details.
+  /// [Optional] If set to 1, will return `app_markup` transaction details.
   int description;
 
-  /// Optional: (default 1000): Apply upper limit to count of transactions received
+  /// [Optional] Apply upper limit to count of transactions received.
   num limit;
 
-  /// Optional: Skip this many transactions
+  /// [Optional] Number of transactions to skip.
   num offset;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// Optional transaction_time sort direction, default DESC. Other fields sort order is ASC.
+  /// [Optional] Sort direction on `transaction_time`. Other fields sort order is ASC.
   String sort;
 
-  /// Optional one or more of the specified fields to sort on. Default sort field is by transaction_time.
+  /// [Optional] One or more of the specified fields to sort on. Default sort field is by `transaction_time`.
   List<String> sortFields;
 
   // @override

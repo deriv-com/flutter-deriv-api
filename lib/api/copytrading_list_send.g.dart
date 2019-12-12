@@ -8,10 +8,11 @@ part of 'copytrading_list_send.dart';
 
 CopytradingListRequest _$CopytradingListRequestFromJson(
     Map<String, dynamic> json) {
-  return CopytradingListRequest()
-    ..copytradingList = json['copytrading_list'] as int
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+  return CopytradingListRequest(
+    copytradingList: json['copytrading_list'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$CopytradingListRequestToJson(

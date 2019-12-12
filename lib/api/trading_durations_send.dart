@@ -7,7 +7,11 @@ part 'trading_durations_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TradingDurationsRequest {
-  TradingDurationsRequest();
+  TradingDurationsRequest(
+      {this.landingCompany,
+      this.passthrough,
+      this.reqId,
+      this.tradingDurations});
   factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>
       _$TradingDurationsRequestFromJson(json);
   Map<String, dynamic> toJson() => _$TradingDurationsRequestToJson(this);
@@ -16,13 +20,13 @@ class TradingDurationsRequest {
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
   String landingCompany;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// Must be 1
+  /// Must be `1`
   int tradingDurations;
 
   // @override

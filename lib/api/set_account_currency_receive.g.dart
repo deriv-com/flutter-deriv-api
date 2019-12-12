@@ -8,11 +8,12 @@ part of 'set_account_currency_receive.dart';
 
 SetAccountCurrencyResponse _$SetAccountCurrencyResponseFromJson(
     Map<String, dynamic> json) {
-  return SetAccountCurrencyResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..reqId = json['req_id'] as int
-    ..setAccountCurrency = json['set_account_currency'] as int;
+  return SetAccountCurrencyResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    reqId: json['req_id'] as int,
+    setAccountCurrency: json['set_account_currency'] as int,
+  );
 }
 
 Map<String, dynamic> _$SetAccountCurrencyResponseToJson(

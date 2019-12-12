@@ -7,7 +7,12 @@ part 'transaction_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TransactionResponse {
-  TransactionResponse();
+  TransactionResponse(
+      {this.echoReq,
+      this.msgType,
+      this.reqId,
+      this.subscription,
+      this.transaction});
   factory TransactionResponse.fromJson(Map<String, dynamic> json) =>
       _$TransactionResponseFromJson(json);
   Map<String, dynamic> toJson() => _$TransactionResponseToJson(this);
@@ -19,7 +24,7 @@ class TransactionResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   /// For subscription requests only

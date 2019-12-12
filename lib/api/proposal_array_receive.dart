@@ -7,7 +7,8 @@ part 'proposal_array_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ProposalArrayResponse {
-  ProposalArrayResponse();
+  ProposalArrayResponse(
+      {this.echoReq, this.msgType, this.proposalArray, this.reqId});
   factory ProposalArrayResponse.fromJson(Map<String, dynamic> json) =>
       _$ProposalArrayResponseFromJson(json);
   Map<String, dynamic> toJson() => _$ProposalArrayResponseToJson(this);
@@ -22,7 +23,7 @@ class ProposalArrayResponse {
   /// Latest price and other details for a given contract
   Map<String, dynamic> proposalArray;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

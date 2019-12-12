@@ -7,37 +7,46 @@ part 'statement_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class StatementRequest {
-  StatementRequest();
+  StatementRequest(
+      {this.actionType,
+      this.dateFrom,
+      this.dateTo,
+      this.description,
+      this.limit,
+      this.offset,
+      this.passthrough,
+      this.reqId,
+      this.statement});
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>
       _$StatementRequestFromJson(json);
   Map<String, dynamic> toJson() => _$StatementRequestToJson(this);
 
   // Properties
-  /// Optional filter for statement (deposit,withdrawal,buy,sell)
+  /// [Optional] To filter the statement according to the type of transaction.
   String actionType;
 
-  /// Optional start date (epoch)
+  /// [Optional] Start date (epoch)
   int dateFrom;
 
-  /// Optional end date (epoch)
+  /// [Optional] End date (epoch)
   int dateTo;
 
-  /// If set to 1, will return full contracts description.
+  /// [Optional] If set to 1, will return full contracts description.
   int description;
 
-  /// Apply upper limit to count of transactions received
+  /// [Optional] Maximum number of transactions to receive.
   num limit;
 
-  /// Skip this many transactions
+  /// [Optional] Number of transactions to skip.
   num offset;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// Must be 1
+  /// Must be `1`
   int statement;
 
   // @override

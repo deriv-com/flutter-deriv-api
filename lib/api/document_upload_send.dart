@@ -7,7 +7,17 @@ part 'document_upload_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class DocumentUploadRequest {
-  DocumentUploadRequest();
+  DocumentUploadRequest(
+      {this.documentFormat,
+      this.documentId,
+      this.documentType,
+      this.documentUpload,
+      this.expectedChecksum,
+      this.expirationDate,
+      this.fileSize,
+      this.pageType,
+      this.passthrough,
+      this.reqId});
   factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>
       _$DocumentUploadRequestFromJson(json);
   Map<String, dynamic> toJson() => _$DocumentUploadRequestToJson(this);
@@ -22,7 +32,7 @@ class DocumentUploadRequest {
   /// Document type
   String documentType;
 
-  /// Must be 1
+  /// Must be `1`
   int documentUpload;
 
   /// The checksum of the file to be uploaded
@@ -34,10 +44,10 @@ class DocumentUploadRequest {
   /// Document size (should be less than 3MB)
   int fileSize;
 
-  /// Optional field to determine document side
+  /// [Optional] To determine document side
   String pageType;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

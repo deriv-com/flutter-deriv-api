@@ -8,10 +8,11 @@ part of 'get_account_status_send.dart';
 
 GetAccountStatusRequest _$GetAccountStatusRequestFromJson(
     Map<String, dynamic> json) {
-  return GetAccountStatusRequest()
-    ..getAccountStatus = json['get_account_status'] as int
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+  return GetAccountStatusRequest(
+    getAccountStatus: json['get_account_status'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$GetAccountStatusRequestToJson(

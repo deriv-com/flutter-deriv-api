@@ -7,7 +7,8 @@ part 'copytrading_statistics_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopytradingStatisticsResponse {
-  CopytradingStatisticsResponse();
+  CopytradingStatisticsResponse(
+      {this.copytradingStatistics, this.echoReq, this.msgType, this.reqId});
   factory CopytradingStatisticsResponse.fromJson(Map<String, dynamic> json) =>
       _$CopytradingStatisticsResponseFromJson(json);
   Map<String, dynamic> toJson() => _$CopytradingStatisticsResponseToJson(this);
@@ -22,7 +23,7 @@ class CopytradingStatisticsResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

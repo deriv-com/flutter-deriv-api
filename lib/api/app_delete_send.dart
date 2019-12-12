@@ -7,7 +7,7 @@ part 'app_delete_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppDeleteRequest {
-  AppDeleteRequest();
+  AppDeleteRequest({this.appDelete, this.passthrough, this.reqId});
   factory AppDeleteRequest.fromJson(Map<String, dynamic> json) =>
       _$AppDeleteRequestFromJson(json);
   Map<String, dynamic> toJson() => _$AppDeleteRequestToJson(this);
@@ -16,7 +16,7 @@ class AppDeleteRequest {
   /// Application app_id
   int appDelete;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

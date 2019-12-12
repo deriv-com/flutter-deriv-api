@@ -7,7 +7,13 @@ part 'mt5_password_check_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5PasswordCheckRequest {
-  Mt5PasswordCheckRequest();
+  Mt5PasswordCheckRequest(
+      {this.login,
+      this.mt5PasswordCheck,
+      this.passthrough,
+      this.password,
+      this.passwordType,
+      this.reqId});
   factory Mt5PasswordCheckRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordCheckRequestFromJson(json);
   Map<String, dynamic> toJson() => _$Mt5PasswordCheckRequestToJson(this);
@@ -16,16 +22,16 @@ class Mt5PasswordCheckRequest {
   /// MT5 user login
   String login;
 
-  /// Must be 1
+  /// Must be `1`
   int mt5PasswordCheck;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// The password of the account.
   String password;
 
-  /// The password type main/investor (default: 'main')
+  /// [Optional] Type of the password to check.
   String passwordType;
 
   /// [Optional] Used to map request to response.

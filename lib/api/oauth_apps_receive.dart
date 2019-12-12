@@ -7,7 +7,7 @@ part 'oauth_apps_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class OauthAppsResponse {
-  OauthAppsResponse();
+  OauthAppsResponse({this.echoReq, this.msgType, this.oauthApps, this.reqId});
   factory OauthAppsResponse.fromJson(Map<String, dynamic> json) =>
       _$OauthAppsResponseFromJson(json);
   Map<String, dynamic> toJson() => _$OauthAppsResponseToJson(this);
@@ -22,7 +22,7 @@ class OauthAppsResponse {
   /// List of OAuth applications that used for the authorized account.
   List<Map<String, dynamic>> oauthApps;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

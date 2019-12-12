@@ -7,7 +7,15 @@ part 'transfer_between_accounts_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TransferBetweenAccountsResponse {
-  TransferBetweenAccountsResponse();
+  TransferBetweenAccountsResponse(
+      {this.accounts,
+      this.clientToFullName,
+      this.clientToLoginid,
+      this.echoReq,
+      this.msgType,
+      this.reqId,
+      this.transactionId,
+      this.transferBetweenAccounts});
   factory TransferBetweenAccountsResponse.fromJson(Map<String, dynamic> json) =>
       _$TransferBetweenAccountsResponseFromJson(json);
   Map<String, dynamic> toJson() =>
@@ -29,7 +37,7 @@ class TransferBetweenAccountsResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   /// Reference ID of transfer performed

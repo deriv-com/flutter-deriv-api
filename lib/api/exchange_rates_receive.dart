@@ -7,7 +7,8 @@ part 'exchange_rates_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ExchangeRatesResponse {
-  ExchangeRatesResponse();
+  ExchangeRatesResponse(
+      {this.echoReq, this.exchangeRates, this.msgType, this.reqId});
   factory ExchangeRatesResponse.fromJson(Map<String, dynamic> json) =>
       _$ExchangeRatesResponseFromJson(json);
   Map<String, dynamic> toJson() => _$ExchangeRatesResponseToJson(this);
@@ -22,7 +23,7 @@ class ExchangeRatesResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

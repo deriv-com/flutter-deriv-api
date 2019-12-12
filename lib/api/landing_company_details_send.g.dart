@@ -8,10 +8,11 @@ part of 'landing_company_details_send.dart';
 
 LandingCompanyDetailsRequest _$LandingCompanyDetailsRequestFromJson(
     Map<String, dynamic> json) {
-  return LandingCompanyDetailsRequest()
-    ..landingCompanyDetails = json['landing_company_details'] as String
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+  return LandingCompanyDetailsRequest(
+    landingCompanyDetails: json['landing_company_details'] as String,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$LandingCompanyDetailsRequestToJson(

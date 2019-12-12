@@ -8,12 +8,13 @@ part of 'website_status_receive.dart';
 
 WebsiteStatusResponse _$WebsiteStatusResponseFromJson(
     Map<String, dynamic> json) {
-  return WebsiteStatusResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..reqId = json['req_id'] as int
-    ..subscription = json['subscription'] as Map<String, dynamic>
-    ..websiteStatus = json['website_status'] as Map<String, dynamic>;
+  return WebsiteStatusResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    reqId: json['req_id'] as int,
+    subscription: json['subscription'] as Map<String, dynamic>,
+    websiteStatus: json['website_status'] as Map<String, dynamic>,
+  );
 }
 
 Map<String, dynamic> _$WebsiteStatusResponseToJson(
