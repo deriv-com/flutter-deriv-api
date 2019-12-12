@@ -82,6 +82,9 @@ class APIBuilder extends Builder {
 ''';
       }).join('\n');
 
+      // Allow constructor parameters as well
+      final String namedParameters = props.map((String k) => "this.${ReCase(k).camelCase}").join(', ');
+
       /* Some minor chicanery here to find out which API method we're supposed to be processing */
       final Iterable<RegExpMatch> matches =
           RegExp(r'^([^\|]+)\|.*/([^/]+)_(send|receive).json$')
@@ -118,7 +121,7 @@ part '${fileName}.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ${fullClassName} {
-  ${fullClassName}();
+  ${fullClassName}({$namedParameters});
   factory ${fullClassName}.fromJson(Map<String, dynamic> json) => _\$${fullClassName}FromJson(json);
   Map<String, dynamic> toJson() => _\$${fullClassName}ToJson(this);
 
