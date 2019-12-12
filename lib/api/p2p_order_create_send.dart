@@ -8,7 +8,11 @@ part 'p2p_order_create_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderCreateRequest {
   P2pOrderCreateRequest(
-      {this.amount, this.p2pOrderCreate, this.passthrough, this.reqId});
+      {this.amount,
+      this.offerId,
+      this.p2pOrderCreate,
+      this.passthrough,
+      this.reqId});
   factory P2pOrderCreateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCreateRequestFromJson(json);
   Map<String, dynamic> toJson() => _$P2pOrderCreateRequestToJson(this);
@@ -16,6 +20,9 @@ class P2pOrderCreateRequest {
   // Properties
   /// The amount of order.
   num amount;
+
+  /// The unique identifier for the offer to create an order against.
+  String offerId;
 
   /// Must be 1
   int p2pOrderCreate;

@@ -1,28 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'p2p_order_create_send.dart';
+part of 'p2p_order_confirm_send.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-P2pOrderCreateRequest _$P2pOrderCreateRequestFromJson(
+P2pOrderConfirmRequest _$P2pOrderConfirmRequestFromJson(
     Map<String, dynamic> json) {
-  return P2pOrderCreateRequest(
-    amount: json['amount'] as num,
-    offerId: json['offer_id'] as String,
-    p2pOrderCreate: json['p2p_order_create'] as int,
+  return P2pOrderConfirmRequest(
+    orderId: json['order_id'] as String,
+    p2pOrderConfirm: json['p2p_order_confirm'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
   );
 }
 
-Map<String, dynamic> _$P2pOrderCreateRequestToJson(
-        P2pOrderCreateRequest instance) =>
+Map<String, dynamic> _$P2pOrderConfirmRequestToJson(
+        P2pOrderConfirmRequest instance) =>
     <String, dynamic>{
-      'amount': instance.amount,
-      'offer_id': instance.offerId,
-      'p2p_order_create': instance.p2pOrderCreate,
+      'order_id': instance.orderId,
+      'p2p_order_confirm': instance.p2pOrderConfirm,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
     };

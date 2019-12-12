@@ -8,7 +8,8 @@ part 'p2p_offer_list_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOfferListRequest {
   P2pOfferListRequest(
-      {this.amount,
+      {this.agentId,
+      this.amount,
       this.country,
       this.currency,
       this.limit,
@@ -23,6 +24,9 @@ class P2pOfferListRequest {
   Map<String, dynamic> toJson() => _$P2pOfferListRequestToJson(this);
 
   // Properties
+  /// Which agent to list offers for.
+  String agentId;
+
   /// How much to buy or sell, used to calculate prices.
   num amount;
 

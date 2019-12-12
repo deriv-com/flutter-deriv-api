@@ -8,6 +8,7 @@ part of 'p2p_offer_list_send.dart';
 
 P2pOfferListRequest _$P2pOfferListRequestFromJson(Map<String, dynamic> json) {
   return P2pOfferListRequest(
+    agentId: json['agent_id'] as String,
     amount: json['amount'] as num,
     country: json['country'] as String,
     currency: json['currency'] as String,
@@ -24,6 +25,7 @@ P2pOfferListRequest _$P2pOfferListRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$P2pOfferListRequestToJson(
         P2pOfferListRequest instance) =>
     <String, dynamic>{
+      'agent_id': instance.agentId,
       'amount': instance.amount,
       'country': instance.country,
       'currency': instance.currency,
