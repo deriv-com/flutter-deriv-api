@@ -24,25 +24,25 @@ class P2pOfferListRequest {
   Map<String, dynamic> toJson() => _$P2pOfferListRequestToJson(this);
 
   // Properties
-  /// Which agent to list offers for.
+  /// [Optional] Which agent to list offers for.
   String agentId;
 
-  /// How much to buy or sell, used to calculate prices.
+  /// [Optional] How much to buy or sell, used to calculate prices.
   num amount;
 
-  /// Which country to find offers from.
+  /// [Optional] Which country to find offers from.
   String country;
 
-  /// Target currency, defaults to client account currency.
+  /// [Optional] Target currency, defaults to client account currency.
   String currency;
 
-  /// Used for paging.
+  /// [Optional] Used for paging.
   int limit;
 
-  /// Currency to conduct payment transaction in, defaults to the main currency for the client's country.
+  /// [Optional] Currency to conduct payment transaction in, defaults to the main currency for the client's country.
   String localCurrency;
 
-  /// Used for paging.
+  /// [Optional] Used for paging.
   int offset;
 
   /// Must be 1
@@ -54,7 +54,7 @@ class P2pOfferListRequest {
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// Which offers to list - buy or sell.
+  /// [Optional] Filter the offers by type.
   String type;
 
   // @override

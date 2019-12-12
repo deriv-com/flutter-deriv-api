@@ -18,10 +18,10 @@ class P2pOrderListRequest {
   Map<String, dynamic> toJson() => _$P2pOrderListRequestToJson(this);
 
   // Properties
-  /// Should be 1 to list active, 0 to list inactive (historical).
+  /// [Optional] Should be 1 to list active, 0 to list inactive (historical).
   num active;
 
-  /// If present, lists orders applying to a specific offer.
+  /// [Optional] If present, lists orders applying to a specific offer.
   String offerId;
 
   /// Must be 1

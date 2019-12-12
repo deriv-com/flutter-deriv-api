@@ -14,7 +14,7 @@ class P2pOrderInfoRequest {
   Map<String, dynamic> toJson() => _$P2pOrderInfoRequestToJson(this);
 
   // Properties
-  /// Order identification number.
+  /// The unique identifier for the order.
   String orderId;
 
   /// Must be 1

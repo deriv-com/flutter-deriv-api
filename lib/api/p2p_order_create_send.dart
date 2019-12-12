@@ -21,7 +21,7 @@ class P2pOrderCreateRequest {
   /// The amount of order.
   num amount;
 
-  /// The unique identifier for the offer to create an order against.
+  /// [Optional] The unique identifier for the offer to create an order against.
   String offerId;
 
   /// Must be 1
