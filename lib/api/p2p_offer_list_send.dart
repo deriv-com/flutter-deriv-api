@@ -8,10 +8,10 @@ part 'p2p_offer_list_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOfferListRequest {
   P2pOfferListRequest(
-      {this.agentId,
+      {this.accountCurrency,
+      this.agentId,
       this.amount,
       this.country,
-      this.currency,
       this.limit,
       this.localCurrency,
       this.offset,
@@ -24,6 +24,9 @@ class P2pOfferListRequest {
   Map<String, dynamic> toJson() => _$P2pOfferListRequestToJson(this);
 
   // Properties
+  /// [Optional] Target currency, defaults to client account currency.
+  String accountCurrency;
+
   /// [Optional] Which agent to list offers for.
   String agentId;
 
@@ -32,9 +35,6 @@ class P2pOfferListRequest {
 
   /// [Optional] Which country to find offers from.
   String country;
-
-  /// [Optional] Target currency, defaults to client account currency.
-  String currency;
 
   /// [Optional] Used for paging.
   int limit;

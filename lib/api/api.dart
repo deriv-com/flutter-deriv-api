@@ -114,8 +114,6 @@ import "p2p_order_info_send.dart";
 import "p2p_order_info_receive.dart";
 import "p2p_order_list_send.dart";
 import "p2p_order_list_receive.dart";
-import "p2p_order_update_send.dart";
-import "p2p_order_update_receive.dart";
 import "paymentagent_list_send.dart";
 import "paymentagent_list_receive.dart";
 import "paymentagent_transfer_send.dart";
