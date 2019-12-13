@@ -7,7 +7,8 @@ part 'get_settings_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetSettingsResponse {
-  GetSettingsResponse();
+  GetSettingsResponse(
+      {this.echoReq, this.getSettings, this.msgType, this.reqId});
   factory GetSettingsResponse.fromJson(Map<String, dynamic> json) =>
       _$GetSettingsResponseFromJson(json);
   Map<String, dynamic> toJson() => _$GetSettingsResponseToJson(this);
@@ -22,7 +23,7 @@ class GetSettingsResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

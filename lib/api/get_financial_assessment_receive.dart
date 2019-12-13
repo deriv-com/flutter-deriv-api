@@ -7,7 +7,8 @@ part 'get_financial_assessment_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetFinancialAssessmentResponse {
-  GetFinancialAssessmentResponse();
+  GetFinancialAssessmentResponse(
+      {this.echoReq, this.getFinancialAssessment, this.msgType, this.reqId});
   factory GetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>
       _$GetFinancialAssessmentResponseFromJson(json);
   Map<String, dynamic> toJson() => _$GetFinancialAssessmentResponseToJson(this);
@@ -16,13 +17,13 @@ class GetFinancialAssessmentResponse {
   /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
-  /// Client's financial asessment details
+  /// Client's financial assessment details
   Map<String, dynamic> getFinancialAssessment;
 
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

@@ -7,11 +7,12 @@ part of 'reality_check_receive.dart';
 // **************************************************************************
 
 RealityCheckResponse _$RealityCheckResponseFromJson(Map<String, dynamic> json) {
-  return RealityCheckResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..realityCheck = json['reality_check'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+  return RealityCheckResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    realityCheck: json['reality_check'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$RealityCheckResponseToJson(

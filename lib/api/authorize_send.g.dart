@@ -7,11 +7,12 @@ part of 'authorize_send.dart';
 // **************************************************************************
 
 AuthorizeRequest _$AuthorizeRequestFromJson(Map<String, dynamic> json) {
-  return AuthorizeRequest()
-    ..addToLoginHistory = json['add_to_login_history'] as int
-    ..authorize = json['authorize'] as String
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+  return AuthorizeRequest(
+    addToLoginHistory: json['add_to_login_history'] as int,
+    authorize: json['authorize'] as String,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$AuthorizeRequestToJson(AuthorizeRequest instance) =>

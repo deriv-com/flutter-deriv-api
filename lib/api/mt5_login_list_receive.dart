@@ -7,7 +7,8 @@ part 'mt5_login_list_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5LoginListResponse {
-  Mt5LoginListResponse();
+  Mt5LoginListResponse(
+      {this.echoReq, this.msgType, this.mt5LoginList, this.reqId});
   factory Mt5LoginListResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5LoginListResponseFromJson(json);
   Map<String, dynamic> toJson() => _$Mt5LoginListResponseToJson(this);
@@ -22,7 +23,7 @@ class Mt5LoginListResponse {
   /// Array containing MT5 account objects.
   List<Map<String, dynamic>> mt5LoginList;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

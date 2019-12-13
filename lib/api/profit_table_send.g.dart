@@ -7,16 +7,17 @@ part of 'profit_table_send.dart';
 // **************************************************************************
 
 ProfitTableRequest _$ProfitTableRequestFromJson(Map<String, dynamic> json) {
-  return ProfitTableRequest()
-    ..dateFrom = json['date_from'] as String
-    ..dateTo = json['date_to'] as String
-    ..description = json['description'] as int
-    ..limit = json['limit'] as num
-    ..offset = json['offset'] as num
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..profitTable = json['profit_table'] as int
-    ..reqId = json['req_id'] as int
-    ..sort = json['sort'] as String;
+  return ProfitTableRequest(
+    dateFrom: json['date_from'] as String,
+    dateTo: json['date_to'] as String,
+    description: json['description'] as int,
+    limit: json['limit'] as num,
+    offset: json['offset'] as num,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    profitTable: json['profit_table'] as int,
+    reqId: json['req_id'] as int,
+    sort: json['sort'] as String,
+  );
 }
 
 Map<String, dynamic> _$ProfitTableRequestToJson(ProfitTableRequest instance) =>

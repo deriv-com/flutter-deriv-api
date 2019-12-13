@@ -7,11 +7,12 @@ part of 'forget_receive.dart';
 // **************************************************************************
 
 ForgetResponse _$ForgetResponseFromJson(Map<String, dynamic> json) {
-  return ForgetResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..forget = json['forget'] as int
-    ..msgType = json['msg_type'] as String
-    ..reqId = json['req_id'] as int;
+  return ForgetResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    forget: json['forget'] as int,
+    msgType: json['msg_type'] as String,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$ForgetResponseToJson(ForgetResponse instance) =>

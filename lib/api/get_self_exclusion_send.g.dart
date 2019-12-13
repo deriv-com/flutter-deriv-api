@@ -8,10 +8,11 @@ part of 'get_self_exclusion_send.dart';
 
 GetSelfExclusionRequest _$GetSelfExclusionRequestFromJson(
     Map<String, dynamic> json) {
-  return GetSelfExclusionRequest()
-    ..getSelfExclusion = json['get_self_exclusion'] as int
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+  return GetSelfExclusionRequest(
+    getSelfExclusion: json['get_self_exclusion'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$GetSelfExclusionRequestToJson(

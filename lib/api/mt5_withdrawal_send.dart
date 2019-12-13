@@ -7,7 +7,13 @@ part 'mt5_withdrawal_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5WithdrawalRequest {
-  Mt5WithdrawalRequest();
+  Mt5WithdrawalRequest(
+      {this.amount,
+      this.fromMt5,
+      this.mt5Withdrawal,
+      this.passthrough,
+      this.reqId,
+      this.toBinary});
   factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5WithdrawalRequestFromJson(json);
   Map<String, dynamic> toJson() => _$Mt5WithdrawalRequestToJson(this);
@@ -19,10 +25,10 @@ class Mt5WithdrawalRequest {
   /// MT5 account login to withdraw money from
   String fromMt5;
 
-  /// Must be 1
+  /// Must be `1`
   int mt5Withdrawal;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

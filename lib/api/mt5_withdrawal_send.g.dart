@@ -7,13 +7,14 @@ part of 'mt5_withdrawal_send.dart';
 // **************************************************************************
 
 Mt5WithdrawalRequest _$Mt5WithdrawalRequestFromJson(Map<String, dynamic> json) {
-  return Mt5WithdrawalRequest()
-    ..amount = json['amount'] as num
-    ..fromMt5 = json['from_mt5'] as String
-    ..mt5Withdrawal = json['mt5_withdrawal'] as int
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int
-    ..toBinary = json['to_binary'] as String;
+  return Mt5WithdrawalRequest(
+    amount: json['amount'] as num,
+    fromMt5: json['from_mt5'] as String,
+    mt5Withdrawal: json['mt5_withdrawal'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+    toBinary: json['to_binary'] as String,
+  );
 }
 
 Map<String, dynamic> _$Mt5WithdrawalRequestToJson(

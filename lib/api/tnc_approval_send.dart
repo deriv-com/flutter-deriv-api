@@ -7,22 +7,26 @@ part 'tnc_approval_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TncApprovalRequest {
-  TncApprovalRequest();
+  TncApprovalRequest(
+      {this.passthrough,
+      this.reqId,
+      this.tncApproval,
+      this.ukgcFundsProtection});
   factory TncApprovalRequest.fromJson(Map<String, dynamic> json) =>
       _$TncApprovalRequestFromJson(json);
   Map<String, dynamic> toJson() => _$TncApprovalRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// Must be 1
+  /// Must be `1`
   num tncApproval;
 
-  /// For ASK_UK_FUNDS_PROTECTION in cashier
+  /// [Optional] For 'ASK_UK_FUNDS_PROTECTION' in cashier.
   int ukgcFundsProtection;
 
   // @override

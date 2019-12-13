@@ -7,7 +7,8 @@ part 'trading_durations_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TradingDurationsResponse {
-  TradingDurationsResponse();
+  TradingDurationsResponse(
+      {this.echoReq, this.msgType, this.reqId, this.tradingDurations});
   factory TradingDurationsResponse.fromJson(Map<String, dynamic> json) =>
       _$TradingDurationsResponseFromJson(json);
   Map<String, dynamic> toJson() => _$TradingDurationsResponseToJson(this);
@@ -19,7 +20,7 @@ class TradingDurationsResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   /// List of underlyings by their display name and symbol followed by their available contract types and trading duration boundaries.

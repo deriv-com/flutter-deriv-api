@@ -7,11 +7,12 @@ part of 'time_receive.dart';
 // **************************************************************************
 
 TimeResponse _$TimeResponseFromJson(Map<String, dynamic> json) {
-  return TimeResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..reqId = json['req_id'] as int
-    ..time = json['time'] as int;
+  return TimeResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    reqId: json['req_id'] as int,
+    time: json['time'] as int,
+  );
 }
 
 Map<String, dynamic> _$TimeResponseToJson(TimeResponse instance) =>

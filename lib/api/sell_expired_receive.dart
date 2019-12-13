@@ -7,7 +7,8 @@ part 'sell_expired_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellExpiredResponse {
-  SellExpiredResponse();
+  SellExpiredResponse(
+      {this.echoReq, this.msgType, this.reqId, this.sellExpired});
   factory SellExpiredResponse.fromJson(Map<String, dynamic> json) =>
       _$SellExpiredResponseFromJson(json);
   Map<String, dynamic> toJson() => _$SellExpiredResponseToJson(this);
@@ -19,7 +20,7 @@ class SellExpiredResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   /// Sell expired contract object containing count of contracts sold

@@ -7,16 +7,17 @@ part 'get_financial_assessment_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetFinancialAssessmentRequest {
-  GetFinancialAssessmentRequest();
+  GetFinancialAssessmentRequest(
+      {this.getFinancialAssessment, this.passthrough, this.reqId});
   factory GetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       _$GetFinancialAssessmentRequestFromJson(json);
   Map<String, dynamic> toJson() => _$GetFinancialAssessmentRequestToJson(this);
 
   // Properties
-  /// Must be 1
+  /// Must be `1`
   int getFinancialAssessment;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

@@ -7,11 +7,12 @@ part of 'ping_receive.dart';
 // **************************************************************************
 
 PingResponse _$PingResponseFromJson(Map<String, dynamic> json) {
-  return PingResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..ping = json['ping'] as String
-    ..reqId = json['req_id'] as int;
+  return PingResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    ping: json['ping'] as String,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$PingResponseToJson(PingResponse instance) =>

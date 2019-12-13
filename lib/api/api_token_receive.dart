@@ -7,7 +7,7 @@ part 'api_token_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ApiTokenResponse {
-  ApiTokenResponse();
+  ApiTokenResponse({this.apiToken, this.echoReq, this.msgType, this.reqId});
   factory ApiTokenResponse.fromJson(Map<String, dynamic> json) =>
       _$ApiTokenResponseFromJson(json);
   Map<String, dynamic> toJson() => _$ApiTokenResponseToJson(this);
@@ -22,7 +22,7 @@ class ApiTokenResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

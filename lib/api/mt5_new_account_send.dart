@@ -7,7 +7,25 @@ part 'mt5_new_account_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5NewAccountRequest {
-  Mt5NewAccountRequest();
+  Mt5NewAccountRequest(
+      {this.accountType,
+      this.address,
+      this.city,
+      this.company,
+      this.country,
+      this.email,
+      this.investPassword,
+      this.leverage,
+      this.mainPassword,
+      this.mt5AccountType,
+      this.mt5NewAccount,
+      this.name,
+      this.passthrough,
+      this.phone,
+      this.phonePassword,
+      this.reqId,
+      this.state,
+      this.zipCode});
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5NewAccountRequestFromJson(json);
   Map<String, dynamic> toJson() => _$Mt5NewAccountRequestToJson(this);
@@ -25,37 +43,37 @@ class Mt5NewAccountRequest {
   /// [Optional] Name of the client's company. The maximum length of the company name is 64 characters.
   String company;
 
-  /// [Optional] 2-letter country code (value received from residence_list call).
+  /// [Optional] 2-letter country code (value received from `residence_list` call).
   String country;
 
   /// Email address
   String email;
 
-  /// The investor password of the account. The password must contain at least two of three types of characters (lower case, upper case and digits) and meet the minimum length requirements set for the group. This field is required.
+  /// [Optional] The investor password of the account. The password must contain at least two of three types of characters (lower case, upper case and digits) and meet the minimum length requirements set for the group. This field is required.
   String investPassword;
 
   /// Client leverage (from 1 to 1000).
-  String leverage;
+  num leverage;
 
   /// The master password of the account. The password must contain at least two of three types of characters (lower case, upper case and digits) and meet the minimum length requirements set for the group. This field is required.
   String mainPassword;
 
-  /// Standard: Variable spreads, High leverage. Advanced: Variable spreads, Medium Leverage, more products.
+  /// [Optional] Standard: Variable spreads, High leverage. Advanced: Variable spreads, Medium Leverage, more products.
   String mt5AccountType;
 
-  /// Must be 1
+  /// Must be `1`
   int mt5NewAccount;
 
   /// Client's name. The maximum length here is 101 characters.
   String name;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] User's phone number. Max length 50.
+  /// [Optional] User's phone number.
   String phone;
 
-  /// The user's phone password. Max length 50.
+  /// [Optional] The user's phone password.
   String phonePassword;
 
   /// [Optional] Used to map request to response.
@@ -64,7 +82,7 @@ class Mt5NewAccountRequest {
   /// [Optional] User's state (region) of residence.
   String state;
 
-  /// [Optional] User's zip code. Max length 50.
+  /// [Optional] User's zip code.
   String zipCode;
 
   // @override

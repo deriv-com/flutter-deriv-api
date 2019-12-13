@@ -7,12 +7,13 @@ part of 'buy_receive.dart';
 // **************************************************************************
 
 BuyResponse _$BuyResponseFromJson(Map<String, dynamic> json) {
-  return BuyResponse()
-    ..buy = json['buy'] as Map<String, dynamic>
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..reqId = json['req_id'] as int
-    ..subscription = json['subscription'] as Map<String, dynamic>;
+  return BuyResponse(
+    buy: json['buy'] as Map<String, dynamic>,
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    reqId: json['req_id'] as int,
+    subscription: json['subscription'] as Map<String, dynamic>,
+  );
 }
 
 Map<String, dynamic> _$BuyResponseToJson(BuyResponse instance) =>

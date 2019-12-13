@@ -7,7 +7,8 @@ part 'new_account_virtual_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountVirtualResponse {
-  NewAccountVirtualResponse();
+  NewAccountVirtualResponse(
+      {this.echoReq, this.msgType, this.newAccountVirtual, this.reqId});
   factory NewAccountVirtualResponse.fromJson(Map<String, dynamic> json) =>
       _$NewAccountVirtualResponseFromJson(json);
   Map<String, dynamic> toJson() => _$NewAccountVirtualResponseToJson(this);
@@ -22,7 +23,7 @@ class NewAccountVirtualResponse {
   /// New virtual-money account details
   Map<String, dynamic> newAccountVirtual;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

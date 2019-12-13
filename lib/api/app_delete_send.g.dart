@@ -7,10 +7,11 @@ part of 'app_delete_send.dart';
 // **************************************************************************
 
 AppDeleteRequest _$AppDeleteRequestFromJson(Map<String, dynamic> json) {
-  return AppDeleteRequest()
-    ..appDelete = json['app_delete'] as int
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+  return AppDeleteRequest(
+    appDelete: json['app_delete'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$AppDeleteRequestToJson(AppDeleteRequest instance) =>

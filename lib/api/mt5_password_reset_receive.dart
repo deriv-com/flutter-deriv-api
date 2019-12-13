@@ -7,7 +7,8 @@ part 'mt5_password_reset_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5PasswordResetResponse {
-  Mt5PasswordResetResponse();
+  Mt5PasswordResetResponse(
+      {this.echoReq, this.msgType, this.mt5PasswordReset, this.reqId});
   factory Mt5PasswordResetResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordResetResponseFromJson(json);
   Map<String, dynamic> toJson() => _$Mt5PasswordResetResponseToJson(this);
@@ -19,10 +20,10 @@ class Mt5PasswordResetResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// 1 on success
+  /// `1` on success
   int mt5PasswordReset;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

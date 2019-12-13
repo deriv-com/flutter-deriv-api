@@ -7,12 +7,13 @@ part of 'cashier_send.dart';
 // **************************************************************************
 
 CashierRequest _$CashierRequestFromJson(Map<String, dynamic> json) {
-  return CashierRequest()
-    ..cashier = json['cashier'] as String
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..provider = json['provider'] as String
-    ..reqId = json['req_id'] as int
-    ..verificationCode = json['verification_code'] as String;
+  return CashierRequest(
+    cashier: json['cashier'] as String,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    provider: json['provider'] as String,
+    reqId: json['req_id'] as int,
+    verificationCode: json['verification_code'] as String,
+  );
 }
 
 Map<String, dynamic> _$CashierRequestToJson(CashierRequest instance) =>

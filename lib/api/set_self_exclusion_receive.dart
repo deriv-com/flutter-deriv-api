@@ -7,7 +7,8 @@ part 'set_self_exclusion_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetSelfExclusionResponse {
-  SetSelfExclusionResponse();
+  SetSelfExclusionResponse(
+      {this.echoReq, this.msgType, this.reqId, this.setSelfExclusion});
   factory SetSelfExclusionResponse.fromJson(Map<String, dynamic> json) =>
       _$SetSelfExclusionResponseFromJson(json);
   Map<String, dynamic> toJson() => _$SetSelfExclusionResponseToJson(this);
@@ -19,10 +20,10 @@ class SetSelfExclusionResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
-  /// 1 on success
+  /// `1` on success
   int setSelfExclusion;
 
   // @override

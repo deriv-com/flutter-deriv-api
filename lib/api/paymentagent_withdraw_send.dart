@@ -7,7 +7,16 @@ part 'paymentagent_withdraw_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PaymentagentWithdrawRequest {
-  PaymentagentWithdrawRequest();
+  PaymentagentWithdrawRequest(
+      {this.amount,
+      this.currency,
+      this.description,
+      this.dryRun,
+      this.passthrough,
+      this.paymentagentLoginid,
+      this.paymentagentWithdraw,
+      this.reqId,
+      this.verificationCode});
   factory PaymentagentWithdrawRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentWithdrawRequestFromJson(json);
   Map<String, dynamic> toJson() => _$PaymentagentWithdrawRequestToJson(this);
@@ -19,25 +28,25 @@ class PaymentagentWithdrawRequest {
   /// The currency code.
   String currency;
 
-  /// Optional field for remarks about the withdraw. Only letters, numbers, space, period, comma, - ' are allowed.
+  /// [Optional] Remarks about the withdraw. Only letters, numbers, space, period, comma, - ' are allowed.
   String description;
 
-  /// If set to 1, just do validation
+  /// [Optional] If set to 1, just do validation.
   int dryRun;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
-  /// The payment agent loginid received from the paymentagent_list call
+  /// The payment agent loginid received from the `paymentagent_list` call.
   String paymentagentLoginid;
 
-  /// Must be 1
+  /// Must be `1`
   int paymentagentWithdraw;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// Email verification code (received from a verify_email call, which must be done first)
+  /// Email verification code (received from a `verify_email` call, which must be done first)
   String verificationCode;
 
   // @override

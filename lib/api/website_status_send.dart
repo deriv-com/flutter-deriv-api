@@ -7,22 +7,23 @@ part 'website_status_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class WebsiteStatusRequest {
-  WebsiteStatusRequest();
+  WebsiteStatusRequest(
+      {this.passthrough, this.reqId, this.subscribe, this.websiteStatus});
   factory WebsiteStatusRequest.fromJson(Map<String, dynamic> json) =>
       _$WebsiteStatusRequestFromJson(json);
   Map<String, dynamic> toJson() => _$WebsiteStatusRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// [Optional] 1 - to stream the server/website status updates (default = 1)
+  /// [Optional] `1` to stream the server/website status updates.
   int subscribe;
 
-  /// Must be 1
+  /// Must be `1`
   int websiteStatus;
 
   // @override

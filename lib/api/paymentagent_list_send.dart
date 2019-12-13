@@ -7,19 +7,20 @@ part 'paymentagent_list_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PaymentagentListRequest {
-  PaymentagentListRequest();
+  PaymentagentListRequest(
+      {this.currency, this.passthrough, this.paymentagentList, this.reqId});
   factory PaymentagentListRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentListRequestFromJson(json);
   Map<String, dynamic> toJson() => _$PaymentagentListRequestToJson(this);
 
   // Properties
-  /// [Optional] If specified, only payment agents that supports that currency will be returned (obtained from payout_currencies call).
+  /// [Optional] If specified, only payment agents that supports that currency will be returned (obtained from `payout_currencies` call).
   String currency;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
-  /// Client's 2-letter country code (obtained from residence_list call).
+  /// Client's 2-letter country code (obtained from `residence_list` call).
   String paymentagentList;
 
   /// [Optional] Used to map request to response.

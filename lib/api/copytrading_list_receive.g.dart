@@ -8,11 +8,12 @@ part of 'copytrading_list_receive.dart';
 
 CopytradingListResponse _$CopytradingListResponseFromJson(
     Map<String, dynamic> json) {
-  return CopytradingListResponse()
-    ..copytradingList = json['copytrading_list'] as Map<String, dynamic>
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..reqId = json['req_id'] as int;
+  return CopytradingListResponse(
+    copytradingList: json['copytrading_list'] as Map<String, dynamic>,
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$CopytradingListResponseToJson(

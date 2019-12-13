@@ -7,7 +7,12 @@ part 'mt5_withdrawal_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5WithdrawalResponse {
-  Mt5WithdrawalResponse();
+  Mt5WithdrawalResponse(
+      {this.binaryTransactionId,
+      this.echoReq,
+      this.msgType,
+      this.mt5Withdrawal,
+      this.reqId});
   factory Mt5WithdrawalResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5WithdrawalResponseFromJson(json);
   Map<String, dynamic> toJson() => _$Mt5WithdrawalResponseToJson(this);
@@ -22,10 +27,10 @@ class Mt5WithdrawalResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// 1 on success
+  /// `1` on success
   int mt5Withdrawal;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

@@ -8,10 +8,11 @@ part of 'payout_currencies_send.dart';
 
 PayoutCurrenciesRequest _$PayoutCurrenciesRequestFromJson(
     Map<String, dynamic> json) {
-  return PayoutCurrenciesRequest()
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..payoutCurrencies = json['payout_currencies'] as int
-    ..reqId = json['req_id'] as int;
+  return PayoutCurrenciesRequest(
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    payoutCurrencies: json['payout_currencies'] as int,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$PayoutCurrenciesRequestToJson(

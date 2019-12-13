@@ -7,7 +7,7 @@ part 'app_get_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppGetRequest {
-  AppGetRequest();
+  AppGetRequest({this.appGet, this.passthrough, this.reqId});
   factory AppGetRequest.fromJson(Map<String, dynamic> json) =>
       _$AppGetRequestFromJson(json);
   Map<String, dynamic> toJson() => _$AppGetRequestToJson(this);
@@ -16,7 +16,7 @@ class AppGetRequest {
   /// Application app_id
   int appGet;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

@@ -7,13 +7,14 @@ part of 'buy_send.dart';
 // **************************************************************************
 
 BuyRequest _$BuyRequestFromJson(Map<String, dynamic> json) {
-  return BuyRequest()
-    ..buy = json['buy'] as String
-    ..parameters = json['parameters'] as Map<String, dynamic>
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..price = json['price'] as num
-    ..reqId = json['req_id'] as int
-    ..subscribe = json['subscribe'] as int;
+  return BuyRequest(
+    buy: json['buy'] as String,
+    parameters: json['parameters'] as Map<String, dynamic>,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    price: json['price'] as num,
+    reqId: json['req_id'] as int,
+    subscribe: json['subscribe'] as int,
+  );
 }
 
 Map<String, dynamic> _$BuyRequestToJson(BuyRequest instance) =>

@@ -7,16 +7,17 @@ part 'payout_currencies_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PayoutCurrenciesRequest {
-  PayoutCurrenciesRequest();
+  PayoutCurrenciesRequest(
+      {this.passthrough, this.payoutCurrencies, this.reqId});
   factory PayoutCurrenciesRequest.fromJson(Map<String, dynamic> json) =>
       _$PayoutCurrenciesRequestFromJson(json);
   Map<String, dynamic> toJson() => _$PayoutCurrenciesRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
-  /// Must be 1
+  /// Must be `1`
   int payoutCurrencies;
 
   /// [Optional] Used to map request to response.

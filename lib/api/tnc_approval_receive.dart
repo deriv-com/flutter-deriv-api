@@ -7,7 +7,8 @@ part 'tnc_approval_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TncApprovalResponse {
-  TncApprovalResponse();
+  TncApprovalResponse(
+      {this.echoReq, this.msgType, this.reqId, this.tncApproval});
   factory TncApprovalResponse.fromJson(Map<String, dynamic> json) =>
       _$TncApprovalResponseFromJson(json);
   Map<String, dynamic> toJson() => _$TncApprovalResponseToJson(this);
@@ -19,7 +20,7 @@ class TncApprovalResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   /// Set terms and conditions 1: success

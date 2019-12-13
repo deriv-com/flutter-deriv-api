@@ -7,16 +7,16 @@ part 'logout_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LogoutRequest {
-  LogoutRequest();
+  LogoutRequest({this.logout, this.passthrough, this.reqId});
   factory LogoutRequest.fromJson(Map<String, dynamic> json) =>
       _$LogoutRequestFromJson(json);
   Map<String, dynamic> toJson() => _$LogoutRequestToJson(this);
 
   // Properties
-  /// Must be 1
+  /// Must be `1`
   int logout;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

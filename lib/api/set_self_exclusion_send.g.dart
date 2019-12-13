@@ -8,23 +8,24 @@ part of 'set_self_exclusion_send.dart';
 
 SetSelfExclusionRequest _$SetSelfExclusionRequestFromJson(
     Map<String, dynamic> json) {
-  return SetSelfExclusionRequest()
-    ..excludeUntil = json['exclude_until'] as String
-    ..max30dayLosses = json['max30day_losses'] as String
-    ..max30dayTurnover = json['max30day_turnover'] as String
-    ..max7dayLosses = json['max7day_losses'] as String
-    ..max7dayTurnover = json['max7day_turnover'] as String
-    ..maxBalance = json['max_balance'] as String
-    ..maxDeposit = json['max_deposit'] as String
-    ..maxDepositEndDate = json['max_deposit_end_date'] as String
-    ..maxLosses = json['max_losses'] as String
-    ..maxOpenBets = json['max_open_bets'] as String
-    ..maxTurnover = json['max_turnover'] as String
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int
-    ..sessionDurationLimit = json['session_duration_limit'] as String
-    ..setSelfExclusion = json['set_self_exclusion'] as int
-    ..timeoutUntil = json['timeout_until'] as String;
+  return SetSelfExclusionRequest(
+    excludeUntil: json['exclude_until'] as String,
+    max30dayLosses: json['max30day_losses'] as String,
+    max30dayTurnover: json['max30day_turnover'] as String,
+    max7dayLosses: json['max7day_losses'] as String,
+    max7dayTurnover: json['max7day_turnover'] as String,
+    maxBalance: json['max_balance'] as String,
+    maxDeposit: json['max_deposit'] as String,
+    maxDepositEndDate: json['max_deposit_end_date'] as String,
+    maxLosses: json['max_losses'] as String,
+    maxOpenBets: json['max_open_bets'] as String,
+    maxTurnover: json['max_turnover'] as String,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+    sessionDurationLimit: json['session_duration_limit'] as String,
+    setSelfExclusion: json['set_self_exclusion'] as int,
+    timeoutUntil: json['timeout_until'] as String,
+  );
 }
 
 Map<String, dynamic> _$SetSelfExclusionRequestToJson(

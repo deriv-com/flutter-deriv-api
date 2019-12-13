@@ -7,10 +7,11 @@ part of 'sell_expired_send.dart';
 // **************************************************************************
 
 SellExpiredRequest _$SellExpiredRequestFromJson(Map<String, dynamic> json) {
-  return SellExpiredRequest()
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int
-    ..sellExpired = json['sell_expired'] as int;
+  return SellExpiredRequest(
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+    sellExpired: json['sell_expired'] as int,
+  );
 }
 
 Map<String, dynamic> _$SellExpiredRequestToJson(SellExpiredRequest instance) =>

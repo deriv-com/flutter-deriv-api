@@ -7,7 +7,12 @@ part 'balance_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BalanceResponse {
-  BalanceResponse();
+  BalanceResponse(
+      {this.balance,
+      this.echoReq,
+      this.msgType,
+      this.reqId,
+      this.subscription});
   factory BalanceResponse.fromJson(Map<String, dynamic> json) =>
       _$BalanceResponseFromJson(json);
   Map<String, dynamic> toJson() => _$BalanceResponseToJson(this);
@@ -22,7 +27,7 @@ class BalanceResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   /// For subscription requests only

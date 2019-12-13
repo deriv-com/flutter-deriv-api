@@ -7,19 +7,19 @@ part 'ticks_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TicksRequest {
-  TicksRequest();
+  TicksRequest({this.passthrough, this.reqId, this.subscribe, this.ticks});
   factory TicksRequest.fromJson(Map<String, dynamic> json) =>
       _$TicksRequestFromJson(json);
   Map<String, dynamic> toJson() => _$TicksRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// If set to 1, will send updates whenever a new tick is received.
+  /// [Optional] If set to 1, will send updates whenever a new tick is received.
   int subscribe;
 
   /// The short symbol name or array of symbols (obtained from active_symbols call).

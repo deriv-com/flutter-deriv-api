@@ -7,27 +7,28 @@ part of 'proposal_array_send.dart';
 // **************************************************************************
 
 ProposalArrayRequest _$ProposalArrayRequestFromJson(Map<String, dynamic> json) {
-  return ProposalArrayRequest()
-    ..amount = json['amount'] as num
-    ..barriers = (json['barriers'] as List)
+  return ProposalArrayRequest(
+    amount: json['amount'] as num,
+    barriers: (json['barriers'] as List)
         .map((e) => e as Map<String, dynamic>)
-        .toList()
-    ..basis = json['basis'] as String
-    ..contractType =
-        (json['contract_type'] as List).map((e) => e as String).toList()
-    ..currency = json['currency'] as String
-    ..dateExpiry = json['date_expiry'] as int
-    ..dateStart = json['date_start'] as int
-    ..duration = json['duration'] as int
-    ..durationUnit = json['duration_unit'] as String
-    ..multiplier = json['multiplier'] as num
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..productType = json['product_type'] as String
-    ..proposalArray = json['proposal_array'] as int
-    ..reqId = json['req_id'] as int
-    ..subscribe = json['subscribe'] as int
-    ..symbol = json['symbol'] as String
-    ..tradingPeriodStart = json['trading_period_start'] as int;
+        .toList(),
+    basis: json['basis'] as String,
+    contractType:
+        (json['contract_type'] as List).map((e) => e as String).toList(),
+    currency: json['currency'] as String,
+    dateExpiry: json['date_expiry'] as int,
+    dateStart: json['date_start'] as int,
+    duration: json['duration'] as int,
+    durationUnit: json['duration_unit'] as String,
+    multiplier: json['multiplier'] as num,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    productType: json['product_type'] as String,
+    proposalArray: json['proposal_array'] as int,
+    reqId: json['req_id'] as int,
+    subscribe: json['subscribe'] as int,
+    symbol: json['symbol'] as String,
+    tradingPeriodStart: json['trading_period_start'] as int,
+  );
 }
 
 Map<String, dynamic> _$ProposalArrayRequestToJson(

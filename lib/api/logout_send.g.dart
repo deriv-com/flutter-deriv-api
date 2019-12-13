@@ -7,10 +7,11 @@ part of 'logout_send.dart';
 // **************************************************************************
 
 LogoutRequest _$LogoutRequestFromJson(Map<String, dynamic> json) {
-  return LogoutRequest()
-    ..logout = json['logout'] as int
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+  return LogoutRequest(
+    logout: json['logout'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$LogoutRequestToJson(LogoutRequest instance) =>

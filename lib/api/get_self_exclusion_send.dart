@@ -7,16 +7,17 @@ part 'get_self_exclusion_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetSelfExclusionRequest {
-  GetSelfExclusionRequest();
+  GetSelfExclusionRequest(
+      {this.getSelfExclusion, this.passthrough, this.reqId});
   factory GetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       _$GetSelfExclusionRequestFromJson(json);
   Map<String, dynamic> toJson() => _$GetSelfExclusionRequestToJson(this);
 
   // Properties
-  /// Must be 1
+  /// Must be `1`
   int getSelfExclusion;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

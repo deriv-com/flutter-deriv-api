@@ -41,12 +41,12 @@ class APIBuilder extends Builder {
       log.info('Processing schema definition from ${buildStep.inputId}');
       final JsonSchema schema = JsonSchema.createSchema(schemaDefinition);
 
-      /* We keep our list of property keys in original form here so we can iterate over and map them */
+      // We keep our list of property keys in original form here so we can iterate over and map them
       final List<String> props = schema.properties.keys.toList()..sort();
 
-      /* Instead of trying anything too fancy here, we just provide a simple conversion from original
-       JSON schema name - which is snake_cased - to something more Dart-suitable, and apply type
-       mapping via "it's a string unless we have a better guess" heuristic. */
+      // Instead of trying anything too fancy here, we just provide a simple conversion from original
+      // JSON schema name - which is snake_cased - to something more Dart-suitable, and apply type
+      // mapping via "it's a string unless we have a better guess" heuristic.
       final String attrList = props.map((String k) {
         final String name = ReCase(k).camelCase;
         final JsonSchema prop = schema.properties[k];
@@ -81,6 +81,10 @@ class APIBuilder extends Builder {
   ${type ?? "unknown"} ${name ?? "unknown"};
 ''';
       }).join('\n');
+
+      // Allow constructor parameters as well
+      final String namedParameters =
+          props.map((String k) => 'this.${ReCase(k).camelCase}').join(', ');
 
       /* Some minor chicanery here to find out which API method we're supposed to be processing */
       final Iterable<RegExpMatch> matches =
@@ -118,7 +122,7 @@ part '${fileName}.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ${fullClassName} {
-  ${fullClassName}();
+  ${fullClassName}({$namedParameters});
   factory ${fullClassName}.fromJson(Map<String, dynamic> json) => _\$${fullClassName}FromJson(json);
   Map<String, dynamic> toJson() => _\$${fullClassName}ToJson(this);
 

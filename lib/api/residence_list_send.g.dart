@@ -7,10 +7,11 @@ part of 'residence_list_send.dart';
 // **************************************************************************
 
 ResidenceListRequest _$ResidenceListRequestFromJson(Map<String, dynamic> json) {
-  return ResidenceListRequest()
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int
-    ..residenceList = json['residence_list'] as int;
+  return ResidenceListRequest(
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+    residenceList: json['residence_list'] as int,
+  );
 }
 
 Map<String, dynamic> _$ResidenceListRequestToJson(

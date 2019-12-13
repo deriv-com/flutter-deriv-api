@@ -7,25 +7,30 @@ part 'balance_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BalanceRequest {
-  BalanceRequest();
+  BalanceRequest(
+      {this.account,
+      this.balance,
+      this.passthrough,
+      this.reqId,
+      this.subscribe});
   factory BalanceRequest.fromJson(Map<String, dynamic> json) =>
       _$BalanceRequestFromJson(json);
   Map<String, dynamic> toJson() => _$BalanceRequestToJson(this);
 
   // Properties
-  /// [Optional] If set to 'all', return the balances of all accounts one by one; if set to 'current', return the balance of current account; if set as an account id,  return the balance of that account. Default is current
+  /// [Optional] If set to 'all', return the balances of all accounts one by one; if set to 'current', return the balance of current account; if set as an account id, return the balance of that account.
   String account;
 
-  /// Must be 1
+  /// Must be `1`
   int balance;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// If set to 1, will send updates whenever the balance changes.
+  /// [Optional] If set to 1, will send updates whenever the balance changes.
   int subscribe;
 
   // @override

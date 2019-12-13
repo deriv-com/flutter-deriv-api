@@ -7,10 +7,11 @@ part of 'app_list_send.dart';
 // **************************************************************************
 
 AppListRequest _$AppListRequestFromJson(Map<String, dynamic> json) {
-  return AppListRequest()
-    ..appList = json['app_list'] as int
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+  return AppListRequest(
+    appList: json['app_list'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$AppListRequestToJson(AppListRequest instance) =>

@@ -7,19 +7,20 @@ part 'login_history_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LoginHistoryRequest {
-  LoginHistoryRequest();
+  LoginHistoryRequest(
+      {this.limit, this.loginHistory, this.passthrough, this.reqId});
   factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$LoginHistoryRequestFromJson(json);
   Map<String, dynamic> toJson() => _$LoginHistoryRequestToJson(this);
 
   // Properties
-  /// Apply limit to count of login history records, default to 10. Max:50
+  /// [Optional] Apply limit to count of login history records.
   int limit;
 
-  /// Must be 1
+  /// Must be `1`
   int loginHistory;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

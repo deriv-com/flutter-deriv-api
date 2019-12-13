@@ -8,15 +8,16 @@ part of 'transfer_between_accounts_send.dart';
 
 TransferBetweenAccountsRequest _$TransferBetweenAccountsRequestFromJson(
     Map<String, dynamic> json) {
-  return TransferBetweenAccountsRequest()
-    ..accountFrom = json['account_from'] as String
-    ..accountTo = json['account_to'] as String
-    ..accounts = json['accounts'] as String
-    ..amount = json['amount'] as num
-    ..currency = json['currency'] as String
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int
-    ..transferBetweenAccounts = json['transfer_between_accounts'] as int;
+  return TransferBetweenAccountsRequest(
+    accountFrom: json['account_from'] as String,
+    accountTo: json['account_to'] as String,
+    accounts: json['accounts'] as String,
+    amount: json['amount'] as num,
+    currency: json['currency'] as String,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+    transferBetweenAccounts: json['transfer_between_accounts'] as int,
+  );
 }
 
 Map<String, dynamic> _$TransferBetweenAccountsRequestToJson(

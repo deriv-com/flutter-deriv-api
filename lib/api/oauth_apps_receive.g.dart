@@ -7,13 +7,14 @@ part of 'oauth_apps_receive.dart';
 // **************************************************************************
 
 OauthAppsResponse _$OauthAppsResponseFromJson(Map<String, dynamic> json) {
-  return OauthAppsResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..oauthApps = (json['oauth_apps'] as List)
+  return OauthAppsResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    oauthApps: (json['oauth_apps'] as List)
         .map((e) => e as Map<String, dynamic>)
-        .toList()
-    ..reqId = json['req_id'] as int;
+        .toList(),
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$OauthAppsResponseToJson(OauthAppsResponse instance) =>

@@ -7,25 +7,30 @@ part 'cashier_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CashierRequest {
-  CashierRequest();
+  CashierRequest(
+      {this.cashier,
+      this.passthrough,
+      this.provider,
+      this.reqId,
+      this.verificationCode});
   factory CashierRequest.fromJson(Map<String, dynamic> json) =>
       _$CashierRequestFromJson(json);
   Map<String, dynamic> toJson() => _$CashierRequestToJson(this);
 
   // Properties
-  /// Either deposit or withdraw, default to deposit.
+  /// The cashier type to request the URL for.
   String cashier;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
-  /// Note only doughflow is supported currently.
+  /// [Optional] Note: only 'doughflow' is supported currently.
   String provider;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// Email verification code (received from a verify_email call, which must be done first)
+  /// [Optional] Email verification code (received from a verify_email call, which must be done first)
   String verificationCode;
 
   // @override
