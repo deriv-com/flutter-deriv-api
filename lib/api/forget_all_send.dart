@@ -7,7 +7,7 @@ part 'forget_all_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ForgetAllRequest {
-  ForgetAllRequest();
+  ForgetAllRequest({this.forgetAll, this.passthrough, this.reqId});
   factory ForgetAllRequest.fromJson(Map<String, dynamic> json) =>
       _$ForgetAllRequestFromJson(json);
   Map<String, dynamic> toJson() => _$ForgetAllRequestToJson(this);
@@ -16,7 +16,7 @@ class ForgetAllRequest {
   /// Cancel all streams by type (it can be a single string e.g. 'ticks', or an array of multiple values, e.g. ['ticks', 'candles']). Possible values are: 'ticks', 'candles', 'proposal', 'proposal_open_contract', 'balance', 'transaction', 'proposal_array', 'website_status'.
   String forgetAll;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

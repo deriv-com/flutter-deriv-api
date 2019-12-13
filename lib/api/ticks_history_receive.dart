@@ -7,13 +7,20 @@ part 'ticks_history_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TicksHistoryResponse {
-  TicksHistoryResponse();
+  TicksHistoryResponse(
+      {this.candles,
+      this.echoReq,
+      this.history,
+      this.msgType,
+      this.pipSize,
+      this.reqId,
+      this.subscription});
   factory TicksHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$TicksHistoryResponseFromJson(json);
   Map<String, dynamic> toJson() => _$TicksHistoryResponseToJson(this);
 
   // Properties
-  /// Array of OHLC (open/high/low/close) price values for the given time (only for style='candles')
+  /// Array of OHLC (open/high/low/close) price values for the given time (only for style=`candles`)
   List<Map<String, dynamic>> candles;
 
   /// Echo of the request made.
@@ -22,13 +29,13 @@ class TicksHistoryResponse {
   /// Historic tick data for a given symbol. Note: this will always return the latest possible set of ticks with accordance to the parameters specified.
   Map<String, dynamic> history;
 
-  /// Type of the response according to the 'style' sent in request. Would be 'history' or 'candles' for the first response, and 'tick' or 'ohlc' for the rest when subscribed.
+  /// Type of the response according to the `style` sent in request. Would be `history` or `candles` for the first response, and `tick` or `ohlc` for the rest when subscribed.
   String msgType;
 
   /// Indicates the number of decimal points that the returned amounts must be displayed with
   num pipSize;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   /// For subscription requests only

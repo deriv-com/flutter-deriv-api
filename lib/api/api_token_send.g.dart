@@ -7,15 +7,16 @@ part of 'api_token_send.dart';
 // **************************************************************************
 
 ApiTokenRequest _$ApiTokenRequestFromJson(Map<String, dynamic> json) {
-  return ApiTokenRequest()
-    ..apiToken = json['api_token'] as int
-    ..deleteToken = json['delete_token'] as String
-    ..newToken = json['new_token'] as String
-    ..newTokenScopes =
-        (json['new_token_scopes'] as List).map((e) => e as String).toList()
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int
-    ..validForCurrentIpOnly = json['valid_for_current_ip_only'] as int;
+  return ApiTokenRequest(
+    apiToken: json['api_token'] as int,
+    deleteToken: json['delete_token'] as String,
+    newToken: json['new_token'] as String,
+    newTokenScopes:
+        (json['new_token_scopes'] as List).map((e) => e as String).toList(),
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+    validForCurrentIpOnly: json['valid_for_current_ip_only'] as int,
+  );
 }
 
 Map<String, dynamic> _$ApiTokenRequestToJson(ApiTokenRequest instance) =>

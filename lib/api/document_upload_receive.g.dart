@@ -8,11 +8,12 @@ part of 'document_upload_receive.dart';
 
 DocumentUploadResponse _$DocumentUploadResponseFromJson(
     Map<String, dynamic> json) {
-  return DocumentUploadResponse()
-    ..documentUpload = json['document_upload'] as Map<String, dynamic>
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..reqId = json['req_id'] as int;
+  return DocumentUploadResponse(
+    documentUpload: json['document_upload'] as Map<String, dynamic>,
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$DocumentUploadResponseToJson(

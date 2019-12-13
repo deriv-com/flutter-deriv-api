@@ -8,31 +8,32 @@ part of 'set_financial_assessment_send.dart';
 
 SetFinancialAssessmentRequest _$SetFinancialAssessmentRequestFromJson(
     Map<String, dynamic> json) {
-  return SetFinancialAssessmentRequest()
-    ..accountTurnover = json['account_turnover'] as String
-    ..binaryOptionsTradingExperience =
-        json['binary_options_trading_experience'] as String
-    ..binaryOptionsTradingFrequency =
-        json['binary_options_trading_frequency'] as String
-    ..cfdTradingExperience = json['cfd_trading_experience'] as String
-    ..cfdTradingFrequency = json['cfd_trading_frequency'] as String
-    ..educationLevel = json['education_level'] as String
-    ..employmentIndustry = json['employment_industry'] as String
-    ..employmentStatus = json['employment_status'] as String
-    ..estimatedWorth = json['estimated_worth'] as String
-    ..forexTradingExperience = json['forex_trading_experience'] as String
-    ..forexTradingFrequency = json['forex_trading_frequency'] as String
-    ..incomeSource = json['income_source'] as String
-    ..netIncome = json['net_income'] as String
-    ..occupation = json['occupation'] as String
-    ..otherInstrumentsTradingExperience =
-        json['other_instruments_trading_experience'] as String
-    ..otherInstrumentsTradingFrequency =
-        json['other_instruments_trading_frequency'] as String
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int
-    ..setFinancialAssessment = json['set_financial_assessment'] as int
-    ..sourceOfWealth = json['source_of_wealth'] as String;
+  return SetFinancialAssessmentRequest(
+    accountTurnover: json['account_turnover'] as String,
+    binaryOptionsTradingExperience:
+        json['binary_options_trading_experience'] as String,
+    binaryOptionsTradingFrequency:
+        json['binary_options_trading_frequency'] as String,
+    cfdTradingExperience: json['cfd_trading_experience'] as String,
+    cfdTradingFrequency: json['cfd_trading_frequency'] as String,
+    educationLevel: json['education_level'] as String,
+    employmentIndustry: json['employment_industry'] as String,
+    employmentStatus: json['employment_status'] as String,
+    estimatedWorth: json['estimated_worth'] as String,
+    forexTradingExperience: json['forex_trading_experience'] as String,
+    forexTradingFrequency: json['forex_trading_frequency'] as String,
+    incomeSource: json['income_source'] as String,
+    netIncome: json['net_income'] as String,
+    occupation: json['occupation'] as String,
+    otherInstrumentsTradingExperience:
+        json['other_instruments_trading_experience'] as String,
+    otherInstrumentsTradingFrequency:
+        json['other_instruments_trading_frequency'] as String,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+    setFinancialAssessment: json['set_financial_assessment'] as int,
+    sourceOfWealth: json['source_of_wealth'] as String,
+  );
 }
 
 Map<String, dynamic> _$SetFinancialAssessmentRequestToJson(

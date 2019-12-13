@@ -7,7 +7,8 @@ part 'active_symbols_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ActiveSymbolsResponse {
-  ActiveSymbolsResponse();
+  ActiveSymbolsResponse(
+      {this.activeSymbols, this.echoReq, this.msgType, this.reqId});
   factory ActiveSymbolsResponse.fromJson(Map<String, dynamic> json) =>
       _$ActiveSymbolsResponseFromJson(json);
   Map<String, dynamic> toJson() => _$ActiveSymbolsResponseToJson(this);
@@ -22,7 +23,7 @@ class ActiveSymbolsResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

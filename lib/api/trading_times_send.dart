@@ -7,19 +7,19 @@ part 'trading_times_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TradingTimesRequest {
-  TradingTimesRequest();
+  TradingTimesRequest({this.passthrough, this.reqId, this.tradingTimes});
   factory TradingTimesRequest.fromJson(Map<String, dynamic> json) =>
       _$TradingTimesRequestFromJson(json);
   Map<String, dynamic> toJson() => _$TradingTimesRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// Date to receive market opening times for. (yyyy-mm-dd format. 'today' can also be specified).
+  /// Date to receive market opening times for. (`yyyy-mm-dd` format. `today` can also be specified).
   String tradingTimes;
 
   // @override

@@ -7,25 +7,26 @@ part of 'mt5_new_account_send.dart';
 // **************************************************************************
 
 Mt5NewAccountRequest _$Mt5NewAccountRequestFromJson(Map<String, dynamic> json) {
-  return Mt5NewAccountRequest()
-    ..accountType = json['account_type'] as String
-    ..address = json['address'] as String
-    ..city = json['city'] as String
-    ..company = json['company'] as String
-    ..country = json['country'] as String
-    ..email = json['email'] as String
-    ..investPassword = json['invest_password'] as String
-    ..leverage = json['leverage'] as String
-    ..mainPassword = json['main_password'] as String
-    ..mt5AccountType = json['mt5_account_type'] as String
-    ..mt5NewAccount = json['mt5_new_account'] as int
-    ..name = json['name'] as String
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..phone = json['phone'] as String
-    ..phonePassword = json['phone_password'] as String
-    ..reqId = json['req_id'] as int
-    ..state = json['state'] as String
-    ..zipCode = json['zip_code'] as String;
+  return Mt5NewAccountRequest(
+    accountType: json['account_type'] as String,
+    address: json['address'] as String,
+    city: json['city'] as String,
+    company: json['company'] as String,
+    country: json['country'] as String,
+    email: json['email'] as String,
+    investPassword: json['invest_password'] as String,
+    leverage: json['leverage'] as num,
+    mainPassword: json['main_password'] as String,
+    mt5AccountType: json['mt5_account_type'] as String,
+    mt5NewAccount: json['mt5_new_account'] as int,
+    name: json['name'] as String,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    phone: json['phone'] as String,
+    phonePassword: json['phone_password'] as String,
+    reqId: json['req_id'] as int,
+    state: json['state'] as String,
+    zipCode: json['zip_code'] as String,
+  );
 }
 
 Map<String, dynamic> _$Mt5NewAccountRequestToJson(

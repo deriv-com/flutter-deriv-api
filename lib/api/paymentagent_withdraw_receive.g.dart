@@ -8,13 +8,14 @@ part of 'paymentagent_withdraw_receive.dart';
 
 PaymentagentWithdrawResponse _$PaymentagentWithdrawResponseFromJson(
     Map<String, dynamic> json) {
-  return PaymentagentWithdrawResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..paymentagentName = json['paymentagent_name'] as String
-    ..paymentagentWithdraw = json['paymentagent_withdraw'] as int
-    ..reqId = json['req_id'] as int
-    ..transactionId = json['transaction_id'] as int;
+  return PaymentagentWithdrawResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    paymentagentName: json['paymentagent_name'] as String,
+    paymentagentWithdraw: json['paymentagent_withdraw'] as int,
+    reqId: json['req_id'] as int,
+    transactionId: json['transaction_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$PaymentagentWithdrawResponseToJson(

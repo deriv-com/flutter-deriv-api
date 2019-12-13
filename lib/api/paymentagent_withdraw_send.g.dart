@@ -8,16 +8,17 @@ part of 'paymentagent_withdraw_send.dart';
 
 PaymentagentWithdrawRequest _$PaymentagentWithdrawRequestFromJson(
     Map<String, dynamic> json) {
-  return PaymentagentWithdrawRequest()
-    ..amount = json['amount'] as num
-    ..currency = json['currency'] as String
-    ..description = json['description'] as String
-    ..dryRun = json['dry_run'] as int
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..paymentagentLoginid = json['paymentagent_loginid'] as String
-    ..paymentagentWithdraw = json['paymentagent_withdraw'] as int
-    ..reqId = json['req_id'] as int
-    ..verificationCode = json['verification_code'] as String;
+  return PaymentagentWithdrawRequest(
+    amount: json['amount'] as num,
+    currency: json['currency'] as String,
+    description: json['description'] as String,
+    dryRun: json['dry_run'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    paymentagentLoginid: json['paymentagent_loginid'] as String,
+    paymentagentWithdraw: json['paymentagent_withdraw'] as int,
+    reqId: json['req_id'] as int,
+    verificationCode: json['verification_code'] as String,
+  );
 }
 
 Map<String, dynamic> _$PaymentagentWithdrawRequestToJson(

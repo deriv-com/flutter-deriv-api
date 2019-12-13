@@ -7,7 +7,12 @@ part 'proposal_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ProposalResponse {
-  ProposalResponse();
+  ProposalResponse(
+      {this.echoReq,
+      this.msgType,
+      this.proposal,
+      this.reqId,
+      this.subscription});
   factory ProposalResponse.fromJson(Map<String, dynamic> json) =>
       _$ProposalResponseFromJson(json);
   Map<String, dynamic> toJson() => _$ProposalResponseToJson(this);
@@ -22,7 +27,7 @@ class ProposalResponse {
   /// Latest price and other details for a given contract
   Map<String, dynamic> proposal;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   /// For subscription requests only

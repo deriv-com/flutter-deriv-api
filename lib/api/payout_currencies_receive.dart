@@ -7,7 +7,8 @@ part 'payout_currencies_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PayoutCurrenciesResponse {
-  PayoutCurrenciesResponse();
+  PayoutCurrenciesResponse(
+      {this.echoReq, this.msgType, this.payoutCurrencies, this.reqId});
   factory PayoutCurrenciesResponse.fromJson(Map<String, dynamic> json) =>
       _$PayoutCurrenciesResponseFromJson(json);
   Map<String, dynamic> toJson() => _$PayoutCurrenciesResponseToJson(this);
@@ -19,10 +20,10 @@ class PayoutCurrenciesResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Available payout currencies. Note: if a user is logged in, only the currency available for his account will be returned.
+  /// Available payout currencies. Note: if a user is logged in, only the currency available for the account will be returned.
   List<String> payoutCurrencies;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

@@ -8,11 +8,12 @@ part of 'landing_company_receive.dart';
 
 LandingCompanyResponse _$LandingCompanyResponseFromJson(
     Map<String, dynamic> json) {
-  return LandingCompanyResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..landingCompany = json['landing_company'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..reqId = json['req_id'] as int;
+  return LandingCompanyResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    landingCompany: json['landing_company'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$LandingCompanyResponseToJson(

@@ -7,7 +7,12 @@ part 'website_status_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class WebsiteStatusResponse {
-  WebsiteStatusResponse();
+  WebsiteStatusResponse(
+      {this.echoReq,
+      this.msgType,
+      this.reqId,
+      this.subscription,
+      this.websiteStatus});
   factory WebsiteStatusResponse.fromJson(Map<String, dynamic> json) =>
       _$WebsiteStatusResponseFromJson(json);
   Map<String, dynamic> toJson() => _$WebsiteStatusResponseToJson(this);
@@ -19,7 +24,7 @@ class WebsiteStatusResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   /// For subscription requests only

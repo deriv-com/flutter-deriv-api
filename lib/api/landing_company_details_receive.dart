@@ -7,7 +7,8 @@ part 'landing_company_details_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LandingCompanyDetailsResponse {
-  LandingCompanyDetailsResponse();
+  LandingCompanyDetailsResponse(
+      {this.echoReq, this.landingCompanyDetails, this.msgType, this.reqId});
   factory LandingCompanyDetailsResponse.fromJson(Map<String, dynamic> json) =>
       _$LandingCompanyDetailsResponseFromJson(json);
   Map<String, dynamic> toJson() => _$LandingCompanyDetailsResponseToJson(this);
@@ -22,7 +23,7 @@ class LandingCompanyDetailsResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

@@ -7,13 +7,14 @@ part of 'contracts_for_send.dart';
 // **************************************************************************
 
 ContractsForRequest _$ContractsForRequestFromJson(Map<String, dynamic> json) {
-  return ContractsForRequest()
-    ..contractsFor = json['contracts_for'] as String
-    ..currency = json['currency'] as String
-    ..landingCompany = json['landing_company'] as String
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..productType = json['product_type'] as String
-    ..reqId = json['req_id'] as int;
+  return ContractsForRequest(
+    contractsFor: json['contracts_for'] as String,
+    currency: json['currency'] as String,
+    landingCompany: json['landing_company'] as String,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    productType: json['product_type'] as String,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$ContractsForRequestToJson(

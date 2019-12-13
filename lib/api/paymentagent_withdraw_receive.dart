@@ -7,7 +7,13 @@ part 'paymentagent_withdraw_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PaymentagentWithdrawResponse {
-  PaymentagentWithdrawResponse();
+  PaymentagentWithdrawResponse(
+      {this.echoReq,
+      this.msgType,
+      this.paymentagentName,
+      this.paymentagentWithdraw,
+      this.reqId,
+      this.transactionId});
   factory PaymentagentWithdrawResponse.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentWithdrawResponseFromJson(json);
   Map<String, dynamic> toJson() => _$PaymentagentWithdrawResponseToJson(this);
@@ -22,10 +28,10 @@ class PaymentagentWithdrawResponse {
   /// Payment agent name.
   String paymentagentName;
 
-  /// If set to 1, withdrawal success. If set to 2, dry-run success.
+  /// If set to `1`, withdrawal success. If set to `2`, dry-run success.
   int paymentagentWithdraw;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   /// Reference ID of withdrawal performed.

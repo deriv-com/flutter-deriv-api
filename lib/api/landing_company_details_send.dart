@@ -7,7 +7,8 @@ part 'landing_company_details_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LandingCompanyDetailsRequest {
-  LandingCompanyDetailsRequest();
+  LandingCompanyDetailsRequest(
+      {this.landingCompanyDetails, this.passthrough, this.reqId});
   factory LandingCompanyDetailsRequest.fromJson(Map<String, dynamic> json) =>
       _$LandingCompanyDetailsRequestFromJson(json);
   Map<String, dynamic> toJson() => _$LandingCompanyDetailsRequestToJson(this);
@@ -16,7 +17,7 @@ class LandingCompanyDetailsRequest {
   /// Landing company shortcode.
   String landingCompanyDetails;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.

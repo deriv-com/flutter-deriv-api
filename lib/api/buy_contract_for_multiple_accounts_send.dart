@@ -7,7 +7,13 @@ part 'buy_contract_for_multiple_accounts_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BuyContractForMultipleAccountsRequest {
-  BuyContractForMultipleAccountsRequest();
+  BuyContractForMultipleAccountsRequest(
+      {this.buyContractForMultipleAccounts,
+      this.parameters,
+      this.passthrough,
+      this.price,
+      this.reqId,
+      this.tokens});
   factory BuyContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       _$BuyContractForMultipleAccountsRequestFromJson(json);
@@ -18,10 +24,10 @@ class BuyContractForMultipleAccountsRequest {
   /// Either the ID received from a Price Proposal (proposal) call, or 1 if contract buy parameters are passed in the parameters field
   String buyContractForMultipleAccounts;
 
-  /// Optional field, used to pass the parameters for contract buy
+  /// [Optional] Used to pass the parameters for contract buy.
   Map<String, dynamic> parameters;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// Maximum price at which to purchase the contract.

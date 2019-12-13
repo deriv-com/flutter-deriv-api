@@ -8,17 +8,18 @@ part of 'transfer_between_accounts_receive.dart';
 
 TransferBetweenAccountsResponse _$TransferBetweenAccountsResponseFromJson(
     Map<String, dynamic> json) {
-  return TransferBetweenAccountsResponse()
-    ..accounts = (json['accounts'] as List)
+  return TransferBetweenAccountsResponse(
+    accounts: (json['accounts'] as List)
         .map((e) => e as Map<String, dynamic>)
-        .toList()
-    ..clientToFullName = json['client_to_full_name'] as String
-    ..clientToLoginid = json['client_to_loginid'] as String
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..reqId = json['req_id'] as int
-    ..transactionId = json['transaction_id'] as int
-    ..transferBetweenAccounts = json['transfer_between_accounts'] as int;
+        .toList(),
+    clientToFullName: json['client_to_full_name'] as String,
+    clientToLoginid: json['client_to_loginid'] as String,
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    reqId: json['req_id'] as int,
+    transactionId: json['transaction_id'] as int,
+    transferBetweenAccounts: json['transfer_between_accounts'] as int,
+  );
 }
 
 Map<String, dynamic> _$TransferBetweenAccountsResponseToJson(

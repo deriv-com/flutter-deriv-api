@@ -7,7 +7,8 @@ part 'revoke_oauth_app_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class RevokeOauthAppResponse {
-  RevokeOauthAppResponse();
+  RevokeOauthAppResponse(
+      {this.echoReq, this.msgType, this.reqId, this.revokeOauthApp});
   factory RevokeOauthAppResponse.fromJson(Map<String, dynamic> json) =>
       _$RevokeOauthAppResponseFromJson(json);
   Map<String, dynamic> toJson() => _$RevokeOauthAppResponseToJson(this);
@@ -19,10 +20,10 @@ class RevokeOauthAppResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
-  /// 1 on success
+  /// `1` on success
   int revokeOauthApp;
 
   // @override

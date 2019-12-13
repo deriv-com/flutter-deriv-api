@@ -7,11 +7,12 @@ part of 'exchange_rates_send.dart';
 // **************************************************************************
 
 ExchangeRatesRequest _$ExchangeRatesRequestFromJson(Map<String, dynamic> json) {
-  return ExchangeRatesRequest()
-    ..baseCurrency = json['base_currency'] as String
-    ..exchangeRates = json['exchange_rates'] as int
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+  return ExchangeRatesRequest(
+    baseCurrency: json['base_currency'] as String,
+    exchangeRates: json['exchange_rates'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$ExchangeRatesRequestToJson(

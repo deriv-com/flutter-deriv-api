@@ -7,7 +7,7 @@ part 'authorize_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AuthorizeResponse {
-  AuthorizeResponse();
+  AuthorizeResponse({this.authorize, this.echoReq, this.msgType, this.reqId});
   factory AuthorizeResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthorizeResponseFromJson(json);
   Map<String, dynamic> toJson() => _$AuthorizeResponseToJson(this);
@@ -22,7 +22,7 @@ class AuthorizeResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

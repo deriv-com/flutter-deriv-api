@@ -7,11 +7,12 @@ part of 'topup_virtual_receive.dart';
 // **************************************************************************
 
 TopupVirtualResponse _$TopupVirtualResponseFromJson(Map<String, dynamic> json) {
-  return TopupVirtualResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..reqId = json['req_id'] as int
-    ..topupVirtual = json['topup_virtual'] as Map<String, dynamic>;
+  return TopupVirtualResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    reqId: json['req_id'] as int,
+    topupVirtual: json['topup_virtual'] as Map<String, dynamic>,
+  );
 }
 
 Map<String, dynamic> _$TopupVirtualResponseToJson(

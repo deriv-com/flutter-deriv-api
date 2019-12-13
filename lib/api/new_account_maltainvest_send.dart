@@ -7,19 +7,60 @@ part 'new_account_maltainvest_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountMaltainvestRequest {
-  NewAccountMaltainvestRequest();
+  NewAccountMaltainvestRequest(
+      {this.acceptRisk,
+      this.accountOpeningReason,
+      this.accountTurnover,
+      this.addressCity,
+      this.addressLine1,
+      this.addressLine2,
+      this.addressPostcode,
+      this.addressState,
+      this.affiliateToken,
+      this.binaryOptionsTradingExperience,
+      this.binaryOptionsTradingFrequency,
+      this.cfdTradingExperience,
+      this.cfdTradingFrequency,
+      this.citizen,
+      this.clientType,
+      this.dateOfBirth,
+      this.educationLevel,
+      this.employmentIndustry,
+      this.employmentStatus,
+      this.estimatedWorth,
+      this.firstName,
+      this.forexTradingExperience,
+      this.forexTradingFrequency,
+      this.incomeSource,
+      this.lastName,
+      this.netIncome,
+      this.newAccountMaltainvest,
+      this.occupation,
+      this.otherInstrumentsTradingExperience,
+      this.otherInstrumentsTradingFrequency,
+      this.passthrough,
+      this.phone,
+      this.placeOfBirth,
+      this.reqId,
+      this.residence,
+      this.salutation,
+      this.secretAnswer,
+      this.secretQuestion,
+      this.sourceOfWealth,
+      this.taxIdentificationNumber,
+      this.taxResidence});
   factory NewAccountMaltainvestRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountMaltainvestRequestFromJson(json);
   Map<String, dynamic> toJson() => _$NewAccountMaltainvestRequestToJson(this);
 
   // Properties
-  /// Show whether client has accepted risk disclaimer, boolean value 1 or 0
+  /// Show whether client has accepted risk disclaimer.
   int acceptRisk;
 
-  /// Purpose and reason for requesting the account opening
+  /// [Optional] Purpose and reason for requesting the account opening.
   String accountOpeningReason;
 
-  /// The anticipated account turnover
+  /// [Optional] The anticipated account turnover.
   String accountTurnover;
 
   /// Within 35 characters
@@ -28,34 +69,34 @@ class NewAccountMaltainvestRequest {
   /// Within 70 characters.
   String addressLine1;
 
-  /// Optional field, within 70 characters.
+  /// [Optional] Within 70 characters.
   String addressLine2;
 
-  /// Optional field, within 20 characters and may not contain '+'.
+  /// [Optional] Within 20 characters and may not contain '+'.
   String addressPostcode;
 
-  /// Optional field, possible value receive from states_list call.
+  /// [Optional] Possible value receive from `states_list` call.
   String addressState;
 
-  /// Affiliate token, within 32 characters.
+  /// [Optional] Affiliate token, within 32 characters.
   String affiliateToken;
 
-  /// Binary options trading experience
+  /// [Optional] Binary options trading experience.
   String binaryOptionsTradingExperience;
 
-  /// Binary options trading frequency
+  /// [Optional] Binary options trading frequency.
   String binaryOptionsTradingFrequency;
 
-  /// CFDs trading experience
+  /// [Optional] CFDs trading experience.
   String cfdTradingExperience;
 
-  /// CFDs trading frequency
+  /// [Optional] CFDs trading frequency.
   String cfdTradingFrequency;
 
-  /// Country of legal citizenship, 2-letter country code.
+  /// [Optional] Country of legal citizenship, 2-letter country code. Possible value receive from `residence_list` call.
   String citizen;
 
-  /// Optional field, indicates whether this is for a client requesting an account with professional status. Defaults to retail.
+  /// [Optional] Indicates whether this is for a client requesting an account with professional status.
   String clientType;
 
   /// Date of birth format: yyyy-mm-dd.
@@ -64,76 +105,76 @@ class NewAccountMaltainvestRequest {
   /// Level of Education
   String educationLevel;
 
-  /// Industry of Employment
+  /// Industry of Employment.
   String employmentIndustry;
 
-  /// Employment Status
+  /// [Optional] Employment Status.
   String employmentStatus;
 
-  /// Estimated Net Worth
+  /// Estimated Net Worth.
   String estimatedWorth;
 
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   String firstName;
 
-  /// Forex trading experience
+  /// [Optional] Forex trading experience.
   String forexTradingExperience;
 
-  /// Forex trading frequency
+  /// [Optional] Forex trading frequency.
   String forexTradingFrequency;
 
-  /// Income Source
+  /// Income Source.
   String incomeSource;
 
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   String lastName;
 
-  /// Net Annual Income
+  /// Net Annual Income.
   String netIncome;
 
-  /// Must be 1
+  /// Must be `1`
   int newAccountMaltainvest;
 
-  /// Occupation
+  /// Occupation.
   String occupation;
 
-  /// Trading experience in other financial instruments
+  /// [Optional] Trading experience in other financial instruments.
   String otherInstrumentsTradingExperience;
 
-  /// Trading frequency in other financial instruments
+  /// [Optional] Trading frequency in other financial instruments.
   String otherInstrumentsTradingFrequency;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
-  /// Within 8-35 digits, allowing '+' in front, numbers, hyphens or space.
+  /// [Optional] Within 8-35 digits, allowing '+' in front, numbers, hyphens or space.
   String phone;
 
-  /// Place of birth, 2-letter country code.
+  /// [Optional] Place of birth, 2-letter country code.
   String placeOfBirth;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// 2-letter country code, possible value receive from residence_list call.
+  /// 2-letter country code, possible value receive from `residence_list` call.
   String residence;
 
   /// Accept any value in enum list.
   String salutation;
 
-  /// Answer to secret question, within 4-50 characters.
+  /// [Optional] Answer to secret question, within 4-50 characters.
   String secretAnswer;
 
-  /// Accept any value in enum list.
+  /// [Optional] Accept any value in enum list.
   String secretQuestion;
 
-  /// Source of wealth
+  /// [Optional] Source of wealth.
   String sourceOfWealth;
 
-  /// Tax identification number. Only applicable for real money account. Required for maltainvest landing company.
+  /// Tax identification number. Only applicable for real money account. Required for `maltainvest` landing company.
   String taxIdentificationNumber;
 
-  /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for maltainvest landing company.
+  /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   String taxResidence;
 
   // @override

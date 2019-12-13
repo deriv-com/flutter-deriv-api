@@ -7,25 +7,30 @@ part 'proposal_open_contract_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ProposalOpenContractRequest {
-  ProposalOpenContractRequest();
+  ProposalOpenContractRequest(
+      {this.contractId,
+      this.passthrough,
+      this.proposalOpenContract,
+      this.reqId,
+      this.subscribe});
   factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>
       _$ProposalOpenContractRequestFromJson(json);
   Map<String, dynamic> toJson() => _$ProposalOpenContractRequestToJson(this);
 
   // Properties
-  /// Contract ID received from a Portfolio request. If not set, you will receive stream of all open contracts.
+  /// [Optional] Contract ID received from a Portfolio request. If not set, you will receive stream of all open contracts.
   int contractId;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
-  /// Must be 1
+  /// Must be `1`
   int proposalOpenContract;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// 1 - to stream
+  /// [Optional] `1` to stream.
   int subscribe;
 
   // @override

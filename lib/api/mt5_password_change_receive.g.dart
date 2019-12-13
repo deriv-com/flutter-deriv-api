@@ -8,11 +8,12 @@ part of 'mt5_password_change_receive.dart';
 
 Mt5PasswordChangeResponse _$Mt5PasswordChangeResponseFromJson(
     Map<String, dynamic> json) {
-  return Mt5PasswordChangeResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..mt5PasswordChange = json['mt5_password_change'] as int
-    ..reqId = json['req_id'] as int;
+  return Mt5PasswordChangeResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    mt5PasswordChange: json['mt5_password_change'] as int,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$Mt5PasswordChangeResponseToJson(

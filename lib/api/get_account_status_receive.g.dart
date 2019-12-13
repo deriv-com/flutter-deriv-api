@@ -8,11 +8,12 @@ part of 'get_account_status_receive.dart';
 
 GetAccountStatusResponse _$GetAccountStatusResponseFromJson(
     Map<String, dynamic> json) {
-  return GetAccountStatusResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..getAccountStatus = json['get_account_status'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..reqId = json['req_id'] as int;
+  return GetAccountStatusResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    getAccountStatus: json['get_account_status'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$GetAccountStatusResponseToJson(

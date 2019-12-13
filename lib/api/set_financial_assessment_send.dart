@@ -7,70 +7,90 @@ part 'set_financial_assessment_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetFinancialAssessmentRequest {
-  SetFinancialAssessmentRequest();
+  SetFinancialAssessmentRequest(
+      {this.accountTurnover,
+      this.binaryOptionsTradingExperience,
+      this.binaryOptionsTradingFrequency,
+      this.cfdTradingExperience,
+      this.cfdTradingFrequency,
+      this.educationLevel,
+      this.employmentIndustry,
+      this.employmentStatus,
+      this.estimatedWorth,
+      this.forexTradingExperience,
+      this.forexTradingFrequency,
+      this.incomeSource,
+      this.netIncome,
+      this.occupation,
+      this.otherInstrumentsTradingExperience,
+      this.otherInstrumentsTradingFrequency,
+      this.passthrough,
+      this.reqId,
+      this.setFinancialAssessment,
+      this.sourceOfWealth});
   factory SetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       _$SetFinancialAssessmentRequestFromJson(json);
   Map<String, dynamic> toJson() => _$SetFinancialAssessmentRequestToJson(this);
 
   // Properties
-  /// The anticipated account turnover
+  /// [Optional] The anticipated account turnover.
   String accountTurnover;
 
-  /// Binary options trading experience
+  /// [Optional] Binary options trading experience.
   String binaryOptionsTradingExperience;
 
-  /// Binary options trading frequency
+  /// [Optional] Binary options trading frequency.
   String binaryOptionsTradingFrequency;
 
-  /// CFDs trading experience
+  /// [Optional] CFDs trading experience.
   String cfdTradingExperience;
 
-  /// CFDs trading frequency
+  /// [Optional] CFDs trading frequency.
   String cfdTradingFrequency;
 
-  /// Level of Education
+  /// Level of Education.
   String educationLevel;
 
-  /// Industry of Employment
+  /// Industry of Employment.
   String employmentIndustry;
 
-  /// Employment Status
+  /// [Optional] Employment Status.
   String employmentStatus;
 
-  /// Estimated Net Worth
+  /// Estimated Net Worth.
   String estimatedWorth;
 
-  /// Forex trading experience
+  /// [Optional] Forex trading experience.
   String forexTradingExperience;
 
-  /// Forex trading frequency
+  /// [Optional] Forex trading frequency.
   String forexTradingFrequency;
 
-  /// Income Source
+  /// Income Source.
   String incomeSource;
 
-  /// Net Annual Income
+  /// Net Annual Income.
   String netIncome;
 
-  /// Occupation
+  /// Occupation.
   String occupation;
 
-  /// Trading experience in other financial instruments
+  /// [Optional] Trading experience in other financial instruments.
   String otherInstrumentsTradingExperience;
 
-  /// Trading frequency in other financial instruments
+  /// [Optional] Trading frequency in other financial instruments.
   String otherInstrumentsTradingFrequency;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// Must be 1
+  /// Must be `1`
   int setFinancialAssessment;
 
-  /// Source of wealth
+  /// [Optional] Source of wealth.
   String sourceOfWealth;
 
   // @override

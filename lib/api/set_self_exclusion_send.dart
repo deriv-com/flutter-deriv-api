@@ -7,58 +7,74 @@ part 'set_self_exclusion_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetSelfExclusionRequest {
-  SetSelfExclusionRequest();
+  SetSelfExclusionRequest(
+      {this.excludeUntil,
+      this.max30dayLosses,
+      this.max30dayTurnover,
+      this.max7dayLosses,
+      this.max7dayTurnover,
+      this.maxBalance,
+      this.maxDeposit,
+      this.maxDepositEndDate,
+      this.maxLosses,
+      this.maxOpenBets,
+      this.maxTurnover,
+      this.passthrough,
+      this.reqId,
+      this.sessionDurationLimit,
+      this.setSelfExclusion,
+      this.timeoutUntil});
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       _$SetSelfExclusionRequestFromJson(json);
   Map<String, dynamic> toJson() => _$SetSelfExclusionRequestToJson(this);
 
   // Properties
-  /// Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
+  /// [Optional] Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
   String excludeUntil;
 
-  /// 30-day limit on losses
+  /// [Optional] 30-day limit on losses.
   String max30dayLosses;
 
-  /// 30-day turnover limit
+  /// [Optional] 30-day turnover limit.
   String max30dayTurnover;
 
-  /// 7-day limit on losses
+  /// [Optional] 7-day limit on losses.
   String max7dayLosses;
 
-  /// 7-day turnover limit
+  /// [Optional] 7-day turnover limit.
   String max7dayTurnover;
 
-  /// Maximum account cash balance
+  /// [Optional] Maximum account cash balance.
   String maxBalance;
 
-  /// Deposit limit.
+  /// [Optional] Deposit limit.
   String maxDeposit;
 
-  /// Exclude me from making deposits when the cumulative sum of deposits exceeds specified deposit limit.
+  /// [Optional] Exclude me from making deposits when the cumulative sum of deposits exceeds specified deposit limit.
   String maxDepositEndDate;
 
-  /// Daily limit on losses
+  /// [Optional] Daily limit on losses.
   String maxLosses;
 
-  /// Maximum number of open positions
+  /// [Optional] Maximum number of open positions.
   String maxOpenBets;
 
-  /// Daily turnover limit
+  /// [Optional] Daily turnover limit.
   String maxTurnover;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// Session duration limit, in minutes
+  /// [Optional] Session duration limit, in minutes.
   String sessionDurationLimit;
 
-  /// Must be 1
+  /// Must be `1`
   int setSelfExclusion;
 
-  /// Exclude me from the website (for up to 6 weeks). Requires time in epoch format. Note: unlike exclude_until, this self-exclusion will be lifted automatically at the expiry of the timeout period.
+  /// [Optional] Exclude me from the website (for up to 6 weeks). Requires time in epoch format. Note: unlike `exclude_until`, this self-exclusion will be lifted automatically at the expiry of the timeout period.
   String timeoutUntil;
 
   // @override

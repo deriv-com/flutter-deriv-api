@@ -7,10 +7,11 @@ part of 'states_list_send.dart';
 // **************************************************************************
 
 StatesListRequest _$StatesListRequestFromJson(Map<String, dynamic> json) {
-  return StatesListRequest()
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int
-    ..statesList = json['states_list'] as String;
+  return StatesListRequest(
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+    statesList: json['states_list'] as String,
+  );
 }
 
 Map<String, dynamic> _$StatesListRequestToJson(StatesListRequest instance) =>

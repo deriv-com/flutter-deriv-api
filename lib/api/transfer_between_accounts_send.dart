@@ -7,34 +7,42 @@ part 'transfer_between_accounts_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TransferBetweenAccountsRequest {
-  TransferBetweenAccountsRequest();
+  TransferBetweenAccountsRequest(
+      {this.accountFrom,
+      this.accountTo,
+      this.accounts,
+      this.amount,
+      this.currency,
+      this.passthrough,
+      this.reqId,
+      this.transferBetweenAccounts});
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>
       _$TransferBetweenAccountsRequestFromJson(json);
   Map<String, dynamic> toJson() => _$TransferBetweenAccountsRequestToJson(this);
 
   // Properties
-  /// The account_from loginid
+  /// [Optional] The loginid of the account to transfer funds from.
   String accountFrom;
 
-  /// The account_to loginid
+  /// [Optional] The loginid of the account to transfer funds to.
   String accountTo;
 
-  /// Optional field to control the list of accounts returned when account_from or account_to is not provided. 'Brief' will only include standard trading accounts and can be faster.
+  /// [Optional] To control the list of accounts returned when `account_from` or `account_to` is not provided. `brief` will only include standard trading accounts and can be faster.
   String accounts;
 
-  /// The amount to transfer.
+  /// [Optional] The amount to transfer.
   num amount;
 
-  /// Currency code
+  /// [Optional] Currency code.
   String currency;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// If account_from or account_to is not provided, we'll just return available accounts.
+  /// If `account_from` or `account_to` is not provided, it just returns the available accounts.
   int transferBetweenAccounts;
 
   // @override

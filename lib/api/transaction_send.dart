@@ -7,13 +7,14 @@ part 'transaction_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TransactionRequest {
-  TransactionRequest();
+  TransactionRequest(
+      {this.passthrough, this.reqId, this.subscribe, this.transaction});
   factory TransactionRequest.fromJson(Map<String, dynamic> json) =>
       _$TransactionRequestFromJson(json);
   Map<String, dynamic> toJson() => _$TransactionRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
@@ -22,7 +23,7 @@ class TransactionRequest {
   /// If set to 1, will send updates whenever there is an update to transactions. If not to 1 then it will not return any records.
   int subscribe;
 
-  /// Must be 1
+  /// Must be `1`
   int transaction;
 
   // @override

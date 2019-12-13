@@ -7,7 +7,8 @@ part 'trading_times_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TradingTimesResponse {
-  TradingTimesResponse();
+  TradingTimesResponse(
+      {this.echoReq, this.msgType, this.reqId, this.tradingTimes});
   factory TradingTimesResponse.fromJson(Map<String, dynamic> json) =>
       _$TradingTimesResponseFromJson(json);
   Map<String, dynamic> toJson() => _$TradingTimesResponseToJson(this);
@@ -19,7 +20,7 @@ class TradingTimesResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   /// The trading times structure is a hierarchy as follows: Market -> SubMarket -> Underlyings

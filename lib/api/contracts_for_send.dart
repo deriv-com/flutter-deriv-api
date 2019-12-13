@@ -7,7 +7,13 @@ part 'contracts_for_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ContractsForRequest {
-  ContractsForRequest();
+  ContractsForRequest(
+      {this.contractsFor,
+      this.currency,
+      this.landingCompany,
+      this.passthrough,
+      this.productType,
+      this.reqId});
   factory ContractsForRequest.fromJson(Map<String, dynamic> json) =>
       _$ContractsForRequestFromJson(json);
   Map<String, dynamic> toJson() => _$ContractsForRequestToJson(this);
@@ -22,7 +28,7 @@ class ContractsForRequest {
   /// [Optional] Indicates which landing_company to get a list of contracts for. If you are logged in, your landing company will override this field.
   String landingCompany;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] If you specify this field, only contracts tradable through that contract type will be returned.

@@ -7,7 +7,20 @@ part 'new_account_virtual_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountVirtualRequest {
-  NewAccountVirtualRequest();
+  NewAccountVirtualRequest(
+      {this.affiliateToken,
+      this.clientPassword,
+      this.dateFirstContact,
+      this.gclidUrl,
+      this.newAccountVirtual,
+      this.passthrough,
+      this.reqId,
+      this.residence,
+      this.signupDevice,
+      this.utmCampaign,
+      this.utmMedium,
+      this.utmSource,
+      this.verificationCode});
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountVirtualRequestFromJson(json);
   Map<String, dynamic> toJson() => _$NewAccountVirtualRequestToJson(this);
@@ -19,22 +32,22 @@ class NewAccountVirtualRequest {
   /// Password (length within 6-25 chars, accepts any printable ASCII character).
   String clientPassword;
 
-  /// [Optional] Date of first contact, format: yyyy-mm-dd in GMT timezone.
+  /// [Optional] Date of first contact, format: `yyyy-mm-dd` in GMT timezone.
   String dateFirstContact;
 
   /// [Optional] Google Click Identifier to track source.
   String gclidUrl;
 
-  /// Must be 1
+  /// Must be `1`
   int newAccountVirtual;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// 2-letter country code (obtained from residence_list call).
+  /// 2-letter country code (obtained from `residence_list` call).
   String residence;
 
   /// [Optional] Show whether user has used mobile or desktop.
@@ -49,7 +62,7 @@ class NewAccountVirtualRequest {
   /// [Optional] Identifies the source of traffic such as: search engine, newsletter, or other referral.
   String utmSource;
 
-  /// Email verification code (received from a verify_email call, which must be done first).
+  /// Email verification code (received from a `verify_email` call, which must be done first).
   String verificationCode;
 
   // @override

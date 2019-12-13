@@ -7,31 +7,38 @@ part 'copy_start_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStartRequest {
-  CopyStartRequest();
+  CopyStartRequest(
+      {this.assets,
+      this.copyStart,
+      this.maxTradeStake,
+      this.minTradeStake,
+      this.passthrough,
+      this.reqId,
+      this.tradeTypes});
   factory CopyStartRequest.fromJson(Map<String, dynamic> json) =>
       _$CopyStartRequestFromJson(json);
   Map<String, dynamic> toJson() => _$CopyStartRequestToJson(this);
 
   // Properties
-  /// Optional field, used to set assets to be copied. E.x ["frxUSDJPY", "R_50"]
+  /// [Optional] Used to set assets to be copied. E.x ["frxUSDJPY", "R_50"]
   String assets;
 
   /// API tokens identifying the accounts of trader which will be used to copy trades
   String copyStart;
 
-  /// Optional field, used to set maximum trade stake to be copied
+  /// [Optional] Used to set maximum trade stake to be copied.
   num maxTradeStake;
 
-  /// Optional field, used to set minimal trade stake to be copied
+  /// [Optional] Used to set minimal trade stake to be copied.
   num minTradeStake;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// Optional field, used to set trade types to be copied. E.x ["CALL", "PUT"]
+  /// [Optional] Used to set trade types to be copied. E.x ["CALL", "PUT"]
   String tradeTypes;
 
   // @override

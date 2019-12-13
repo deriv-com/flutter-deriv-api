@@ -7,11 +7,12 @@ part of 'login_history_send.dart';
 // **************************************************************************
 
 LoginHistoryRequest _$LoginHistoryRequestFromJson(Map<String, dynamic> json) {
-  return LoginHistoryRequest()
-    ..limit = json['limit'] as int
-    ..loginHistory = json['login_history'] as int
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int;
+  return LoginHistoryRequest(
+    limit: json['limit'] as int,
+    loginHistory: json['login_history'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$LoginHistoryRequestToJson(

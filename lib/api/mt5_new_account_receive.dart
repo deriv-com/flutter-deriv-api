@@ -7,7 +7,8 @@ part 'mt5_new_account_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5NewAccountResponse {
-  Mt5NewAccountResponse();
+  Mt5NewAccountResponse(
+      {this.echoReq, this.msgType, this.mt5NewAccount, this.reqId});
   factory Mt5NewAccountResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5NewAccountResponseFromJson(json);
   Map<String, dynamic> toJson() => _$Mt5NewAccountResponseToJson(this);
@@ -22,7 +23,7 @@ class Mt5NewAccountResponse {
   /// New MT5 account details
   Map<String, dynamic> mt5NewAccount;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

@@ -7,7 +7,17 @@ part 'ticks_history_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TicksHistoryRequest {
-  TicksHistoryRequest();
+  TicksHistoryRequest(
+      {this.adjustStartTime,
+      this.count,
+      this.end,
+      this.granularity,
+      this.passthrough,
+      this.reqId,
+      this.start,
+      this.style,
+      this.subscribe,
+      this.ticksHistory});
   factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$TicksHistoryRequestFromJson(json);
   Map<String, dynamic> toJson() => _$TicksHistoryRequestToJson(this);
@@ -16,31 +26,31 @@ class TicksHistoryRequest {
   /// [Optional] 1 - if the market is closed at the end time, or license limit is before end time, adjust interval backwards to compensate.
   int adjustStartTime;
 
-  /// An upper limit on ticks to receive.
+  /// [Optional] An upper limit on ticks to receive.
   int count;
 
-  /// Epoch value representing the latest boundary of the returned ticks. If "latest" is specified, this will be the latest available timestamp.
+  /// Epoch value representing the latest boundary of the returned ticks. If `latest` is specified, this will be the latest available timestamp.
   String end;
 
-  /// Only applicable for style : "candles". Candle time-dimension width setting. Allowed values 60, 120, 180, 300, 600, 900, 1800, 3600, 7200, 14400, 28800, 86400 (default: '60').
+  /// [Optional] Only applicable for style: `candles`. Candle time-dimension width setting. (default: `60`).
   int granularity;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
   int reqId;
 
-  /// Epoch value representing the earliest boundary of the returned ticks (For styles: 'ticks', this will default to 1 day ago. For styles: 'candle', it will default to 1 day ago if count or granularity is undefined).
+  /// [Optional] Epoch value representing the earliest boundary of the returned ticks (For styles: 'ticks', this will default to 1 day ago. For styles: 'candle', it will default to 1 day ago if count or granularity is undefined).
   int start;
 
-  /// The tick-output style.
+  /// [Optional] The tick-output style.
   String style;
 
   /// [Optional] 1 - to send updates whenever a new tick is received.
   int subscribe;
 
-  /// Short symbol name (obtained from the active_symbols call).
+  /// Short symbol name (obtained from the `active_symbols` call).
   String ticksHistory;
 
   // @override

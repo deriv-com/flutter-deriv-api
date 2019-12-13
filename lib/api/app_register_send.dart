@@ -7,37 +7,49 @@ part 'app_register_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppRegisterRequest {
-  AppRegisterRequest();
+  AppRegisterRequest(
+      {this.appMarkupPercentage,
+      this.appRegister,
+      this.appstore,
+      this.github,
+      this.googleplay,
+      this.homepage,
+      this.name,
+      this.passthrough,
+      this.redirectUri,
+      this.reqId,
+      this.scopes,
+      this.verificationUri});
   factory AppRegisterRequest.fromJson(Map<String, dynamic> json) =>
       _$AppRegisterRequestFromJson(json);
   Map<String, dynamic> toJson() => _$AppRegisterRequestToJson(this);
 
   // Properties
-  /// Markup to be added to contract prices (as a percentage of contract payout). Min: 0, Max: 5
+  /// [Optional] Markup to be added to contract prices (as a percentage of contract payout).
   num appMarkupPercentage;
 
-  /// Must be 1
+  /// Must be `1`
   int appRegister;
 
-  /// Application's App Store URL (if applicable)
+  /// [Optional] Application's App Store URL (if applicable).
   String appstore;
 
-  /// Application's GitHub page (for open-source projects)
+  /// [Optional] Application's GitHub page (for open-source projects).
   String github;
 
-  /// Application's Google Play URL (if applicable)
+  /// [Optional] Application's Google Play URL (if applicable).
   String googleplay;
 
-  /// Application's homepage
+  /// [Optional] Application's homepage URL.
   String homepage;
 
-  /// Application name
+  /// Application name.
   String name;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
-  /// Application redirect_uri
+  /// The URL to redirect to after a successful login.
   String redirectUri;
 
   /// [Optional] Used to map request to response.
@@ -46,7 +58,7 @@ class AppRegisterRequest {
   /// List of permission scopes to grant the application.
   List<String> scopes;
 
-  /// Application verification_uri
+  /// [Optional] Used when 'verify_email' called. If available, a URL containing the verification token will send to the client's email, otherwise only the token will be sent.
   String verificationUri;
 
   // @override

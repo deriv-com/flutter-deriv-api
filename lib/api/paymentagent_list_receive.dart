@@ -7,7 +7,8 @@ part 'paymentagent_list_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PaymentagentListResponse {
-  PaymentagentListResponse();
+  PaymentagentListResponse(
+      {this.echoReq, this.msgType, this.paymentagentList, this.reqId});
   factory PaymentagentListResponse.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentListResponseFromJson(json);
   Map<String, dynamic> toJson() => _$PaymentagentListResponseToJson(this);
@@ -22,7 +23,7 @@ class PaymentagentListResponse {
   /// Payment Agent List
   Map<String, dynamic> paymentagentList;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

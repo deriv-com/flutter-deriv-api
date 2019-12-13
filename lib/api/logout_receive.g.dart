@@ -7,11 +7,12 @@ part of 'logout_receive.dart';
 // **************************************************************************
 
 LogoutResponse _$LogoutResponseFromJson(Map<String, dynamic> json) {
-  return LogoutResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..logout = json['logout'] as int
-    ..msgType = json['msg_type'] as String
-    ..reqId = json['req_id'] as int;
+  return LogoutResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    logout: json['logout'] as int,
+    msgType: json['msg_type'] as String,
+    reqId: json['req_id'] as int,
+  );
 }
 
 Map<String, dynamic> _$LogoutResponseToJson(LogoutResponse instance) =>

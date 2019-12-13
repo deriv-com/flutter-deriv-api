@@ -7,7 +7,8 @@ part 'set_financial_assessment_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetFinancialAssessmentResponse {
-  SetFinancialAssessmentResponse();
+  SetFinancialAssessmentResponse(
+      {this.echoReq, this.msgType, this.reqId, this.setFinancialAssessment});
   factory SetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>
       _$SetFinancialAssessmentResponseFromJson(json);
   Map<String, dynamic> toJson() => _$SetFinancialAssessmentResponseToJson(this);
@@ -19,7 +20,7 @@ class SetFinancialAssessmentResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   /// The financial assessment score assigned to the submitted financial assessment

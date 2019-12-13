@@ -7,13 +7,18 @@ part 'verify_email_send.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class VerifyEmailRequest {
-  VerifyEmailRequest();
+  VerifyEmailRequest(
+      {this.passthrough,
+      this.reqId,
+      this.type,
+      this.urlParameters,
+      this.verifyEmail});
   factory VerifyEmailRequest.fromJson(Map<String, dynamic> json) =>
       _$VerifyEmailRequestFromJson(json);
   Map<String, dynamic> toJson() => _$VerifyEmailRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the echo_req output field.
+  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
   /// [Optional] Used to map request to response.
@@ -22,7 +27,7 @@ class VerifyEmailRequest {
   /// Purpose of the email verification call.
   String type;
 
-  /// Extra parameters that can be attached to the verify email link url
+  /// [Optional] Extra parameters that can be attached to the verify email link URL.
   Map<String, dynamic> urlParameters;
 
   /// Email address to be verified.

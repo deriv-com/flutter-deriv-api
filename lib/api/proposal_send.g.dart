@@ -7,26 +7,28 @@ part of 'proposal_send.dart';
 // **************************************************************************
 
 ProposalRequest _$ProposalRequestFromJson(Map<String, dynamic> json) {
-  return ProposalRequest()
-    ..amount = json['amount'] as num
-    ..barrier = json['barrier'] as String
-    ..barrier2 = json['barrier2'] as String
-    ..basis = json['basis'] as String
-    ..contractType = json['contract_type'] as String
-    ..currency = json['currency'] as String
-    ..dateExpiry = json['date_expiry'] as int
-    ..dateStart = json['date_start'] as int
-    ..duration = json['duration'] as int
-    ..durationUnit = json['duration_unit'] as String
-    ..multiplier = json['multiplier'] as num
-    ..passthrough = json['passthrough'] as Map<String, dynamic>
-    ..productType = json['product_type'] as String
-    ..proposal = json['proposal'] as int
-    ..reqId = json['req_id'] as int
-    ..selectedTick = json['selected_tick'] as int
-    ..subscribe = json['subscribe'] as int
-    ..symbol = json['symbol'] as String
-    ..tradingPeriodStart = json['trading_period_start'] as int;
+  return ProposalRequest(
+    amount: json['amount'] as num,
+    barrier: json['barrier'] as String,
+    barrier2: json['barrier2'] as String,
+    basis: json['basis'] as String,
+    contractType: json['contract_type'] as String,
+    currency: json['currency'] as String,
+    dateExpiry: json['date_expiry'] as int,
+    dateStart: json['date_start'] as int,
+    duration: json['duration'] as int,
+    durationUnit: json['duration_unit'] as String,
+    limitOrder: json['limit_order'] as Map<String, dynamic>,
+    multiplier: json['multiplier'] as num,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    productType: json['product_type'] as String,
+    proposal: json['proposal'] as int,
+    reqId: json['req_id'] as int,
+    selectedTick: json['selected_tick'] as int,
+    subscribe: json['subscribe'] as int,
+    symbol: json['symbol'] as String,
+    tradingPeriodStart: json['trading_period_start'] as int,
+  );
 }
 
 Map<String, dynamic> _$ProposalRequestToJson(ProposalRequest instance) =>
@@ -41,6 +43,7 @@ Map<String, dynamic> _$ProposalRequestToJson(ProposalRequest instance) =>
       'date_start': instance.dateStart,
       'duration': instance.duration,
       'duration_unit': instance.durationUnit,
+      'limit_order': instance.limitOrder,
       'multiplier': instance.multiplier,
       'passthrough': instance.passthrough,
       'product_type': instance.productType,

@@ -8,13 +8,14 @@ part of 'proposal_open_contract_receive.dart';
 
 ProposalOpenContractResponse _$ProposalOpenContractResponseFromJson(
     Map<String, dynamic> json) {
-  return ProposalOpenContractResponse()
-    ..echoReq = json['echo_req'] as Map<String, dynamic>
-    ..msgType = json['msg_type'] as String
-    ..proposalOpenContract =
-        json['proposal_open_contract'] as Map<String, dynamic>
-    ..reqId = json['req_id'] as int
-    ..subscription = json['subscription'] as Map<String, dynamic>;
+  return ProposalOpenContractResponse(
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    proposalOpenContract:
+        json['proposal_open_contract'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
+    subscription: json['subscription'] as Map<String, dynamic>,
+  );
 }
 
 Map<String, dynamic> _$ProposalOpenContractResponseToJson(

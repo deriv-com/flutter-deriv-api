@@ -7,7 +7,7 @@ part 'copy_start_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStartResponse {
-  CopyStartResponse();
+  CopyStartResponse({this.copyStart, this.echoReq, this.msgType, this.reqId});
   factory CopyStartResponse.fromJson(Map<String, dynamic> json) =>
       _$CopyStartResponseFromJson(json);
   Map<String, dynamic> toJson() => _$CopyStartResponseToJson(this);
@@ -22,7 +22,7 @@ class CopyStartResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override

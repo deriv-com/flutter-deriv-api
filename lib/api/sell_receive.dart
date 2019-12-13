@@ -7,7 +7,7 @@ part 'sell_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellResponse {
-  SellResponse();
+  SellResponse({this.echoReq, this.msgType, this.reqId, this.sell});
   factory SellResponse.fromJson(Map<String, dynamic> json) =>
       _$SellResponseFromJson(json);
   Map<String, dynamic> toJson() => _$SellResponseToJson(this);
@@ -19,7 +19,7 @@ class SellResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   /// Receipt for the transaction

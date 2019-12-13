@@ -7,7 +7,12 @@ part 'mt5_deposit_receive.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5DepositResponse {
-  Mt5DepositResponse();
+  Mt5DepositResponse(
+      {this.binaryTransactionId,
+      this.echoReq,
+      this.msgType,
+      this.mt5Deposit,
+      this.reqId});
   factory Mt5DepositResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5DepositResponseFromJson(json);
   Map<String, dynamic> toJson() => _$Mt5DepositResponseToJson(this);
@@ -25,7 +30,7 @@ class Mt5DepositResponse {
   /// 1 on success
   int mt5Deposit;
 
-  /// Optional field sent in request to map to response, present only when request contains req_id.
+  /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
 
   // @override
