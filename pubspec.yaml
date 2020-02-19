@@ -5,7 +5,7 @@ author: binary.com <api-support@binary.com>
 homepage: https://developers.binary.com
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   json_annotation: ^3.0.0
@@ -16,6 +16,8 @@ dependencies:
   build_config: ^0.4.1
   code_builder: ^3.1.1
   dart_style: ^1.0.0
+  preferences: ^5.0.2
+  flutter_bloc: ^3.2.0
   flutter:
     sdk: flutter
 
