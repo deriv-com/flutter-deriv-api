@@ -25,17 +25,15 @@ class JsonSchemaParser {
           ? ReCase(name).pascalCase
           : type == _arrayType
               ? convertToSingular(ReCase(name).pascalCase)
-              : null;
+              : _typeMap[type];
 
   static String _getObjectType({
     @required String type,
     @required String name,
   }) =>
-      type == _objectType
-          ? _getClassName(type: type, name: name)
-          : type == _arrayType
-              ? 'List<${_getClassName(type: type, name: name)}>'
-              : _typeMap[type];
+      type == _arrayType
+          ? 'List<${_getClassName(type: type, name: name)}>'
+          : _getClassName(type: type, name: name);
 
   static String _createClass({
     @required String className,
@@ -82,24 +80,29 @@ class JsonSchemaParser {
     result.write('$className.fromJson(Map<String, dynamic> json) {');
 
     for (SchemaModel model in models) {
-      if (model.schemaType == _objectType) {
+      final String className = model.className;
+      final String title = model.title;
+      final String schemaTitle = model.schemaTitle;
+      final String schemaType = model.schemaType;
+
+      if (schemaType == _objectType) {
         result.write('''
-          ${model.title} = json['${model.schemaTitle}'] != null
-            ? ${model.className}.fromJson(json['${model.schemaTitle}'])
+          ${title} = json['${schemaTitle}'] != null
+            ? ${className}.fromJson(json['${schemaTitle}'])
             : null;
         ''');
-      } else if (model.schemaType == _arrayType) {
+      } else if (schemaType == _arrayType) {
         result.write('''
-          if (json['${model.schemaTitle}'] != null) {
-            ${model.title} = List<${model.className}>();
+          if (json['${schemaTitle}'] != null) {
+            ${title} = List<${className}>();
             
-            json['${model.schemaTitle}'].forEach((item) {
-              ${model.className}.add(${model.className}.fromJson(item));
+            json['${schemaTitle}'].forEach((item) {
+              ${title}.add(${className}.fromJson(item));
             });
           }
         ''');
       } else {
-        result.write('''${model.title} = json['${model.schemaTitle}'];''');
+        result.write('''${title} = json['${schemaTitle}'];''');
       }
     }
 
@@ -117,21 +120,25 @@ class JsonSchemaParser {
     result.write('final Map<String, dynamic> data = Map<String, dynamic>();');
 
     for (SchemaModel model in models) {
-      if (model.schemaType == _objectType) {
+      final String title = model.title;
+      final String schemaTitle = model.schemaTitle;
+      final String schemaType = model.schemaType;
+
+      if (schemaType == _objectType) {
         result.write('''
-          if (${model.title} != null) {
-            data['${model.schemaTitle}'] = ${model.title}.toJson();
+          if (${title} != null) {
+            data['${schemaTitle}'] = ${title}.toJson();
           }
         ''');
-      } else if (model.schemaType == _arrayType) {
+      } else if (schemaType == _arrayType) {
         result.write('''
-          if (${model.title} != null) {
-            data['${model.schemaTitle}'] =
-                ${model.title}.map((item) => item.toJson()).toList();
+          if (${title} != null) {
+            data['${schemaTitle}'] =
+                ${title}.map((item) => item.toJson()).toList();
           }
         ''');
       } else {
-        result.write('''data['${model.schemaTitle}'] = ${model.title};''');
+        result.write('''data['${schemaTitle}'] = ${title};''');
       }
     }
 
@@ -142,31 +149,34 @@ class JsonSchemaParser {
   }
 
   static List<SchemaModel> getModel({@required Map<String, dynamic> schema}) {
-    final List<SchemaModel> parent = <SchemaModel>[];
+    final List<SchemaModel> parentModel = <SchemaModel>[];
+    final Map<String, dynamic> schemaProperties = schema['properties'];
 
-    if (schema['properties'] != null) {
-      for (dynamic entry in schema['properties'].entries) {
-        final SchemaModel child = SchemaModel();
+    if (schemaProperties != null) {
+      for (dynamic entry in schemaProperties.entries) {
+        final SchemaModel childModel = SchemaModel();
 
-        child.className =
-            _getClassName(type: entry.value['type'], name: entry.key);
-        child.title = ReCase(entry.key).camelCase;
-        child.type = _getObjectType(type: entry.value['type'], name: entry.key);
-        child.schemaTitle = entry.key;
-        child.schemaType = entry.value['type'];
-        child.children = <SchemaModel>[];
+        final String name = entry.key;
+        final String type = entry.value['type'];
 
-        if (entry.value['type'] == _objectType) {
-          child.children.addAll(getModel(schema: entry.value));
-        } else if (entry.value['type'] == _arrayType) {
-          child.children.addAll(getModel(schema: entry.value['items']));
+        childModel.className = _getClassName(type: type, name: name);
+        childModel.title = ReCase(name).camelCase;
+        childModel.type = _getObjectType(type: type, name: name);
+        childModel.schemaTitle = name;
+        childModel.schemaType = type;
+        childModel.children = <SchemaModel>[];
+
+        if (type == _objectType) {
+          childModel.children.addAll(getModel(schema: entry.value));
+        } else if (type == _arrayType) {
+          childModel.children.addAll(getModel(schema: entry.value['items']));
         }
 
-        parent.add(child);
+        parentModel.add(childModel);
       }
     }
 
-    return parent;
+    return parentModel;
   }
 
   static List<StringBuffer> getClasses({
@@ -179,10 +189,14 @@ class JsonSchemaParser {
     }
 
     if (models.isNotEmpty) {
-      _result.add(StringBuffer(JsonSchemaParser._createClass(
-        className: className,
-        models: models,
-      )));
+      _result.add(
+        StringBuffer(
+          JsonSchemaParser._createClass(
+            className: className,
+            models: models,
+          ),
+        ),
+      );
     }
 
     for (SchemaModel model in models) {
