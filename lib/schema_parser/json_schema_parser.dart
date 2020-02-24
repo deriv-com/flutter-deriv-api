@@ -120,7 +120,7 @@ class JsonSchemaParser {
   }
 
   static List<SchemaModel> getModel(Map<String, dynamic> schema) {
-    final List<SchemaModel> parent = [];
+    final List<SchemaModel> parent = <SchemaModel>[];
 
     if (schema['properties'] != null) {
       for (dynamic entry in schema['properties'].entries) {
@@ -131,7 +131,7 @@ class JsonSchemaParser {
         child.type = _getObjectType(entry.value['type'], entry.key);
         child.schemaTitle = entry.key;
         child.schemaType = entry.value['type'];
-        child.children = [];
+        child.children = <SchemaModel>[];
 
         if (entry.value['type'] == _objectType) {
           child.children.addAll(getModel(entry.value));
