@@ -54,7 +54,6 @@ linter:
     - await_only_futures
     - camel_case_types
     - cancel_subscriptions
-    - cascade_invocations # maybe?
     - close_sinks
     # - comment_references # doesn't really work
     - constant_identifier_names
