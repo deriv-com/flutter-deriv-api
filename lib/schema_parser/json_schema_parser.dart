@@ -18,8 +18,8 @@ class JsonSchemaParser {
   };
 
   static String _getClassName({
-    @required String type,
     @required String name,
+    @required String type,
   }) =>
       type == _objectType
           ? ReCase(name).pascalCase
@@ -28,24 +28,23 @@ class JsonSchemaParser {
               : _typeMap[type];
 
   static String _getObjectType({
-    @required String type,
     @required String name,
+    @required String type,
   }) =>
       type == _arrayType
-          ? 'List<${_getClassName(type: type, name: name)}>'
-          : _getClassName(type: type, name: name);
+          ? 'List<${_getClassName(name: name, type: type)}>'
+          : _getClassName(name: name, type: type);
 
   static String _createClass({
     @required String className,
     @required List<SchemaModel> models,
   }) {
-    final StringBuffer result = StringBuffer();
-
-    result.write('class $className {');
-    result.write(_createContractor(className: className, models: models));
-    result.write(_createFromJsonMethod(className: className, models: models));
-    result.write(_createToJsonMethod(models: models));
-    result.write('}');
+    final StringBuffer result = StringBuffer()
+      ..write('class $className {')
+      ..write(_createContractor(className: className, models: models))
+      ..write(_createFromJsonMethod(className: className, models: models))
+      ..write(_createToJsonMethod(models: models))
+      ..write('}');
 
     return DartFormatter().format(result.toString());
   }
@@ -75,9 +74,9 @@ class JsonSchemaParser {
     @required String className,
     @required List<SchemaModel> models,
   }) {
-    final StringBuffer result = StringBuffer();
-
-    result.write('$className.fromJson(Map<String, dynamic> json) {');
+    final StringBuffer result = StringBuffer(
+      '$className.fromJson(Map<String, dynamic> json) {',
+    );
 
     for (SchemaModel model in models) {
       final String className = model.className;
@@ -87,22 +86,22 @@ class JsonSchemaParser {
 
       if (schemaType == _objectType) {
         result.write('''
-          ${title} = json['${schemaTitle}'] != null
-            ? ${className}.fromJson(json['${schemaTitle}'])
+          $title = json['$schemaTitle'] != null
+            ? $className.fromJson(json['$schemaTitle'])
             : null;
         ''');
       } else if (schemaType == _arrayType) {
         result.write('''
-          if (json['${schemaTitle}'] != null) {
-            ${title} = List<${className}>();
+          if (json['$schemaTitle'] != null) {
+            $title = List<$className>();
             
-            json['${schemaTitle}'].forEach((item) {
-              ${title}.add(${className}.fromJson(item));
+            json['$schemaTitle'].forEach((item) {
+              $title.add($className.fromJson(item));
             });
           }
         ''');
       } else {
-        result.write('''${title} = json['${schemaTitle}'];''');
+        result.write('''$title = json['$schemaTitle'];''');
       }
     }
 
@@ -114,10 +113,9 @@ class JsonSchemaParser {
   static StringBuffer _createToJsonMethod({
     @required List<SchemaModel> models,
   }) {
-    final StringBuffer result = StringBuffer();
-
-    result.write('Map<String, dynamic> toJson() {');
-    result.write('final Map<String, dynamic> data = Map<String, dynamic>();');
+    final StringBuffer result = StringBuffer()
+      ..write('Map<String, dynamic> toJson() {')
+      ..write('final Map<String, dynamic> data = Map<String, dynamic>();');
 
     for (SchemaModel model in models) {
       final String title = model.title;
@@ -126,24 +124,23 @@ class JsonSchemaParser {
 
       if (schemaType == _objectType) {
         result.write('''
-          if (${title} != null) {
-            data['${schemaTitle}'] = ${title}.toJson();
+          if ($title != null) {
+            data['$schemaTitle'] = $title.toJson();
           }
         ''');
       } else if (schemaType == _arrayType) {
         result.write('''
-          if (${title} != null) {
-            data['${schemaTitle}'] =
-                ${title}.map((item) => item.toJson()).toList();
+          if ($title != null) {
+            data['$schemaTitle'] =
+                $title.map((item) => item.toJson()).toList();
           }
         ''');
       } else {
-        result.write('''data['${schemaTitle}'] = ${title};''');
+        result.write('''data['$schemaTitle'] = $title;''');
       }
     }
 
-    result.write('return data;');
-    result.write('}');
+    result.write('return data; }');
 
     return result;
   }
@@ -154,17 +151,16 @@ class JsonSchemaParser {
 
     if (schemaProperties != null) {
       for (dynamic entry in schemaProperties.entries) {
-        final SchemaModel childModel = SchemaModel();
-
         final String name = entry.key;
         final String type = entry.value['type'];
 
-        childModel.className = _getClassName(type: type, name: name);
-        childModel.title = ReCase(name).camelCase;
-        childModel.type = _getObjectType(type: type, name: name);
-        childModel.schemaTitle = name;
-        childModel.schemaType = type;
-        childModel.children = <SchemaModel>[];
+        final SchemaModel childModel = SchemaModel()
+          ..className = _getClassName(name: name, type: type)
+          ..title = ReCase(name).camelCase
+          ..type = _getObjectType(name: name, type: type)
+          ..schemaTitle = name
+          ..schemaType = type
+          ..children = <SchemaModel>[];
 
         if (type == _objectType) {
           childModel.children.addAll(getModel(schema: entry.value));
