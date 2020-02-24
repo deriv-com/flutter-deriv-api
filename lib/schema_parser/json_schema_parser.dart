@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:inflection2/inflection2.dart';
@@ -8,54 +7,37 @@ import 'package:flutter_deriv_api/schema_parser/schema_model.dart';
 const String _objectType = 'object';
 const String _arrayType = 'array';
 
+const Map<String, String> _typeMap = <String, String>{
+  'integer': 'int',
+  'string': 'String',
+  'number': 'num',
+};
+
 class JsonSchemaParser {
-  static List<StringBuffer> _result;
+  static String _getClassName(String type, String name) => type == _objectType
+      ? ReCase(name).pascalCase
+      : type == _arrayType ? convertToSingular(ReCase(name).pascalCase) : null;
 
-  static final Map<String, String> _typeMap = <String, String>{
-    'integer': 'int',
-    'string': 'String',
-    'number': 'num',
-  };
+  static String _getObjectType(String type, String name) => type == _objectType
+      ? _getClassName(type, name)
+      : type == _arrayType
+          ? 'List<${_getClassName(type, name)}>'
+          : _typeMap[type];
 
-  static String _getClassName({
-    @required String type,
-    @required String name,
-  }) =>
-      type == _objectType
-          ? ReCase(name).pascalCase
-          : type == _arrayType
-              ? convertToSingular(ReCase(name).pascalCase)
-              : null;
-
-  static String _getObjectType({
-    @required String type,
-    @required String name,
-  }) =>
-      type == _objectType
-          ? _getClassName(type: type, name: name)
-          : type == _arrayType
-              ? 'List<${_getClassName(type: type, name: name)}>'
-              : _typeMap[type];
-
-  static String _createClass({
-    @required String className,
-    @required List<SchemaModel> models,
-  }) {
+  static String _getClasses(String className, List<SchemaModel> models) {
     final StringBuffer result = StringBuffer();
 
     result.write('class $className {');
-    result.write(_createContractor(className: className, models: models));
-    result.write(_createFromJsonMethod(className: className, models: models));
-    result.write(_createToJsonMethod(models: models));
+    result.write(_buildContractor(className, models));
+    result.write(_buildFromJson(className, models));
+    result.write(_buildToJson(models));
     result.write('}');
 
     return DartFormatter().format(result.toString());
   }
 
-  static StringBuffer _createContractor({
-    @required String className,
-    @required List<SchemaModel> models,
-  }) {
+  static StringBuffer _buildContractor(
+      String className, List<SchemaModel> models) {
     final StringBuffer result = StringBuffer();
 
     for (SchemaModel model in models) {
@@ -73,10 +55,8 @@ class JsonSchemaParser {
     return result;
   }
 
-  static StringBuffer _createFromJsonMethod({
-    @required String className,
-    @required List<SchemaModel> models,
-  }) {
+  static StringBuffer _buildFromJson(
+      String className, List<SchemaModel> models) {
     final StringBuffer result = StringBuffer();
 
     result.write('$className.fromJson(Map<String, dynamic> json) {');
@@ -108,9 +88,7 @@ class JsonSchemaParser {
     return result;
   }
 
-  static StringBuffer _createToJsonMethod({
-    @required List<SchemaModel> models,
-  }) {
+  static StringBuffer _buildToJson(List<SchemaModel> models) {
     final StringBuffer result = StringBuffer();
 
     result.write('Map<String, dynamic> toJson() {');
@@ -141,25 +119,24 @@ class JsonSchemaParser {
     return result;
   }
 
-  static List<SchemaModel> getModel({@required Map<String, dynamic> schema}) {
+  static List<SchemaModel> getModel(Map<String, dynamic> schema) {
     final List<SchemaModel> parent = <SchemaModel>[];
 
     if (schema['properties'] != null) {
       for (dynamic entry in schema['properties'].entries) {
         final SchemaModel child = SchemaModel();
 
-        child.className =
-            _getClassName(type: entry.value['type'], name: entry.key);
+        child.className = _getClassName(entry.value['type'], entry.key);
         child.title = ReCase(entry.key).camelCase;
-        child.type = _getObjectType(type: entry.value['type'], name: entry.key);
+        child.type = _getObjectType(entry.value['type'], entry.key);
         child.schemaTitle = entry.key;
         child.schemaType = entry.value['type'];
         child.children = <SchemaModel>[];
 
         if (entry.value['type'] == _objectType) {
-          child.children.addAll(getModel(schema: entry.value));
+          child.children.addAll(getModel(entry.value));
         } else if (entry.value['type'] == _arrayType) {
-          child.children.addAll(getModel(schema: entry.value['items']));
+          child.children.addAll(getModel(entry.value['items']));
         }
 
         parent.add(child);
@@ -169,30 +146,13 @@ class JsonSchemaParser {
     return parent;
   }
 
-  static List<StringBuffer> getClasses({
-    @required String className,
-    @required List<SchemaModel> models,
-    bool clearResult = true,
-  }) {
-    if (clearResult) {
-      _result = <StringBuffer>[];
-    }
-
+  static void getAllClasses(String className, List<SchemaModel> models) {
     if (models.isNotEmpty) {
-      _result.add(StringBuffer(JsonSchemaParser._createClass(
-        className: className,
-        models: models,
-      )));
+      print(JsonSchemaParser._getClasses(className, models));
     }
 
     for (SchemaModel model in models) {
-      getClasses(
-        className: model.className,
-        models: model.children,
-        clearResult: false,
-      );
+      getAllClasses(model.className, model.children);
     }
-
-    return _result;
   }
 }
