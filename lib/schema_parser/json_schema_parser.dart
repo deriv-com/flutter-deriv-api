@@ -9,7 +9,7 @@ const String _objectType = 'object';
 const String _arrayType = 'array';
 
 class JsonSchemaParser {
-  static List<StringBuffer> _result;
+  List<StringBuffer> _result;
 
   static final Map<String, String> _typeMap = <String, String>{
     'integer': 'int',
@@ -175,7 +175,7 @@ class JsonSchemaParser {
     return parentModel;
   }
 
-  static List<StringBuffer> getClasses({
+  List<StringBuffer> getClasses({
     @required String className,
     @required List<SchemaModel> models,
     bool clearResult = true,
@@ -187,7 +187,7 @@ class JsonSchemaParser {
     if (models.isNotEmpty) {
       _result.add(
         StringBuffer(
-          JsonSchemaParser._createClass(
+          _createClass(
             className: className,
             models: models,
           ),
