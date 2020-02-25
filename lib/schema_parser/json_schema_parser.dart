@@ -43,9 +43,6 @@ class JsonSchemaParser {
     final StringBuffer result = StringBuffer()
       ..write(
         '''
-          import 'package:json_annotation/json_annotation.dart';
-
-          @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
           class $className {
             ${_createContractor(className: className, models: models)}
 
