@@ -41,11 +41,15 @@ class JsonSchemaParser {
     @required List<SchemaModel> models,
   }) {
     final StringBuffer result = StringBuffer()
-      ..write('class $className {')
-      ..write(_createContractor(className: className, models: models))
-      ..write(_createFromJsonMethod(className: className, models: models))
-      ..write(_createToJsonMethod(models: models))
-      ..write('}');
+      ..write(
+        '''
+          class $className {
+            ${_createContractor(className: className, models: models)}
+            ${_createFromJsonMethod(className: className, models: models)}
+            ${_createToJsonMethod(models: models)}
+          }
+        ''',
+      );
 
     return DartFormatter().format(result.toString());
   }
@@ -115,8 +119,12 @@ class JsonSchemaParser {
     @required List<SchemaModel> models,
   }) {
     final StringBuffer result = StringBuffer()
-      ..write('Map<String, dynamic> toJson() {')
-      ..write('final Map<String, dynamic> data = Map<String, dynamic>();');
+      ..write(
+        '''
+          Map<String, dynamic> toJson() {
+            final Map<String, dynamic> data = Map<String, dynamic>();
+        ''',
+      );
 
     for (SchemaModel model in models) {
       final String title = model.title;
@@ -132,8 +140,7 @@ class JsonSchemaParser {
       } else if (schemaType == _arrayType) {
         result.write('''
           if ($title != null) {
-            data['$schemaTitle'] =
-                $title.map((item) => item.toJson()).toList();
+            data['$schemaTitle'] = $title.map((item) => item.toJson()).toList();
           }
         ''');
       } else {

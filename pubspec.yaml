@@ -20,6 +20,7 @@ dependencies:
   dart_style: ^1.0.0
   inflection2: ^0.4.3
   recase: ^2.0.1
+  meta: ^1.1.8
 
 dev_dependencies:
   flutter_test:
