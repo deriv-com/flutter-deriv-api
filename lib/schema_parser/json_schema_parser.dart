@@ -10,7 +10,7 @@ const String _arrayType = 'array';
 
 /// A Class for Parsing Receive and Send JSON Schemas.
 class JsonSchemaParser {
-  List<StringBuffer> _result;
+  final List<StringBuffer> _result = <StringBuffer>[];
 
   static final Map<String, String> _typeMap = <String, String>{
     'integer': 'int',
@@ -191,7 +191,7 @@ class JsonSchemaParser {
     bool clearResult = true,
   }) {
     if (clearResult) {
-      _result = <StringBuffer>[];
+      _result.clear();
     }
 
     if (models.isNotEmpty) {
