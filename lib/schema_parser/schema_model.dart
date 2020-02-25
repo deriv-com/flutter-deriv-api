@@ -9,6 +9,9 @@ class SchemaModel {
   /// Dart Object Type
   String type;
 
+  /// Field Description
+  String description;
+
   /// Schema Object Field Title
   String schemaTitle;
 

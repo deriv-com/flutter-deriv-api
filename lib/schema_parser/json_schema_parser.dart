@@ -43,9 +43,14 @@ class JsonSchemaParser {
     final StringBuffer result = StringBuffer()
       ..write(
         '''
+          import 'package:json_annotation/json_annotation.dart';
+
+          @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
           class $className {
             ${_createContractor(className: className, models: models)}
+
             ${_createFromJsonMethod(className: className, models: models)}
+
             ${_createToJsonMethod(models: models)}
           }
         ''',
@@ -61,10 +66,20 @@ class JsonSchemaParser {
     final StringBuffer result = StringBuffer();
 
     for (SchemaModel model in models) {
-      result.write('${model.type} ${model.title};');
+      result.write(
+        '''
+          /// ${model.description}
+          ${model.type} ${model.title};
+        ''',
+      );
     }
 
-    result.write('$className({');
+    result.write(
+      '''
+      
+        $className({
+      ''',
+    );
 
     for (SchemaModel model in models) {
       result.write('${model.title},');
@@ -100,9 +115,9 @@ class JsonSchemaParser {
           if (json['$schemaTitle'] != null) {
             $title = List<$className>();
             
-            json['$schemaTitle'].forEach((item) {
-              $title.add($className.fromJson(item));
-            });
+            json['$schemaTitle'].forEach((item) =>
+              $title.add($className.fromJson(item)),
+            );
           }
         ''');
       } else {
@@ -162,11 +177,13 @@ class JsonSchemaParser {
       for (dynamic entry in schemaProperties.entries) {
         final String name = entry.key;
         final String type = entry.value['type'];
+        final String description = entry.value['description'];
 
         final SchemaModel childModel = SchemaModel()
           ..className = _getClassName(name: name, type: type)
           ..title = ReCase(name).camelCase
           ..type = _getObjectType(name: name, type: type)
+          ..description = description.replaceAll('\n', '\n/// ')
           ..schemaTitle = name
           ..schemaType = type
           ..children = <SchemaModel>[];
