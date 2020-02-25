@@ -8,6 +8,7 @@ import 'package:flutter_deriv_api/schema_parser/schema_model.dart';
 const String _objectType = 'object';
 const String _arrayType = 'array';
 
+/// A Class for Parsing Receive and Send JSON Schemas.
 class JsonSchemaParser {
   List<StringBuffer> _result;
 
@@ -145,6 +146,7 @@ class JsonSchemaParser {
     return result;
   }
 
+  /// Pass Decoded JSON Schema to This Method for Getting List of Objects.
   static List<SchemaModel> getModel({@required Map<String, dynamic> schema}) {
     final List<SchemaModel> parentModel = <SchemaModel>[];
     final Map<String, dynamic> schemaProperties = schema['properties'];
@@ -175,6 +177,7 @@ class JsonSchemaParser {
     return parentModel;
   }
 
+  /// Generating Main and Nested Classes from Schema Models that Comes from getModel() Method.
   List<StringBuffer> getClasses({
     @required String className,
     @required List<SchemaModel> models,
