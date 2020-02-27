@@ -4,7 +4,7 @@ analyzer:
     - lib/generated/**
     - test/**
   strong-mode:
-    implicit-dynamic: true
+    implicit-dynamic: false
   errors:
     todo: ignore
     missing_required_param: warning

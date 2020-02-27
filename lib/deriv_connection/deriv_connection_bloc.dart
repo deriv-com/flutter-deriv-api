@@ -6,25 +6,29 @@ import 'package:meta/meta.dart';
 import 'deriv_connection_websocket.dart';
 
 part 'deriv_connection_event.dart';
+
 part 'deriv_connection_state.dart';
 
+/// Bringing ConnectionBloc to flutter-deriv-api to simplify the usage of api
 class DerivConnectionBloc
     extends Bloc<DerivConnectionEvent, DerivConnectionState> {
-  Timer _serverTimeInterval;
-
+  ///
   DerivConnectionBloc() {
     connectWS();
   }
 
+  Timer _serverTimeInterval;
+
   @override
   DerivConnectionState get initialState => InitialDerivConnectionState();
 
+  /// connects the [BinaryAPI] to the web socket
   void connectWS() {
-    BinaryAPI _api = BinaryAPI();
+    final BinaryAPI _api = BinaryAPI();
 
     _api.run(
-      onDone: () => this.add(Reconnect()),
-      onOpen: () => this.add(Connect(api: _api)),
+      onDone: () => add(Reconnect()),
+      onOpen: () => add(Connect(api: _api)),
     );
   }
 
@@ -34,18 +38,18 @@ class DerivConnectionBloc
     if (event is Connect) {
       try {
         yield Connected(event.api);
-        this.add(FetchServerTime());
-        _serverTimeInterval = Timer.periodic(Duration(seconds: 90),
-            (Timer timer) => this.add(FetchServerTime()));
-      } catch (e, stackTrace) {
+        add(FetchServerTime());
+        _serverTimeInterval = Timer.periodic(const Duration(seconds: 90),
+            (Timer timer) => add(FetchServerTime()));
+      } on Exception catch (e, stackTrace) {
         print(e);
         print(stackTrace);
-        yield ConnectionError(e);
+        yield ConnectionError(e.toString());
       }
     } else if (event is FetchServerTime) {
       if (state is Connected) {
-        final currentState = (state as Connected);
-        final resp = await currentState.api.time();
+        final Connected currentState = state;
+        final Map<String, dynamic> resp = await currentState.api.time();
 
         if (resp.containsKey('error')) {
           print('Fetching server time failed: ${resp['error']}');
@@ -59,7 +63,8 @@ class DerivConnectionBloc
       }
     } else if (event is Disconnect) {
       if (state is Connected) {
-        await (state as Connected).api.close();
+        final Connected currentState = state;
+        await currentState.api.close();
       }
 
       if (_serverTimeInterval != null && _serverTimeInterval.isActive) {
@@ -71,7 +76,8 @@ class DerivConnectionBloc
 
       // api.close should be always invoked before changing the state otherwise the onDone function which is passed to the run funciton will be invoked one more time.
       if (state is Connected) {
-        await (state as Connected).api.close();
+        final Connected currentState = state;
+        await currentState.api.close();
       }
 
       yield InitialDerivConnectionState();
@@ -79,7 +85,7 @@ class DerivConnectionBloc
       if (_serverTimeInterval != null && _serverTimeInterval.isActive) {
         _serverTimeInterval.cancel();
       }
-      await Future.delayed(Duration(seconds: 10));
+      await Future<void>.delayed(const Duration(seconds: 10));
       connectWS();
     }
   }
