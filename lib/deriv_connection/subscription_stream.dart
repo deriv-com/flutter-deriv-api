@@ -4,16 +4,16 @@ import 'dart:async';
 /// It provides a StreamController to broadcast new messages of a subscription request
 /// to it's listener.
 class SubscriptionStream<T> {
-  final StreamController<T> _streamController = StreamController.broadcast();
+  final StreamController<T> _streamController = StreamController<T>.broadcast();
 
   /// Returns true if the stream has listener
   bool get hasListener => _streamController.hasListener;
 
   /// Returns the stream object
-  Stream get stream => _streamController.stream;
+  Stream<T> get stream => _streamController.stream;
 
   /// Returns the sink object of the stream.
-  StreamSink get sink => _streamController.sink;
+  StreamSink<T> get sink => _streamController.sink;
 
   /// It used to broadcast a new message.
   void add(T msg) => _streamController.add(msg);
