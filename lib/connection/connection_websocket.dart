@@ -3,6 +3,7 @@ library wsapi;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
+import 'package:flutter_deriv_api/connection/subscription_stream.dart';
 import 'package:preferences/preference_service.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
@@ -10,11 +11,9 @@ import 'package:web_socket_channel/status.dart' as status;
 import 'package:flutter_deriv_api/api/balance_send.dart';
 import 'package:flutter_deriv_api/api/authorize_send.dart';
 import 'package:flutter_deriv_api/api/balance_receive.dart';
-import 'package:flutter_deriv_api/mock_data/mock_server.dart';
 import 'package:flutter_deriv_api/api/authorize_receive.dart';
 import 'package:flutter_deriv_api/api/get_settings_receive.dart';
 import 'package:flutter_deriv_api/api/website_status_receive.dart';
-import 'package:flutter_deriv_api/deriv_connection/subscription_stream.dart';
 
 import '../helpers.dart';
 
@@ -115,8 +114,6 @@ class APIHistory {
 
 /// contains the API call
 class BinaryAPI {
-  bool _isMockData = false;
-
   final List<String> _mockServerBlockList = <String>[
     'authorize',
     'balance',
@@ -135,12 +132,6 @@ class BinaryAPI {
 
   /// stream subscription to API date
   StreamSubscription<String> wsListener;
-
-  /// Represent MockServer
-  MockServer mockServer;
-
-  /// stream subscription to mock date
-  StreamSubscription<Map<String, dynamic>> mockServerListener;
 
   /// Tracks our internal counter for requests, always increments until the connection is closed
   int lastRequestId = 0;
@@ -194,10 +185,8 @@ class BinaryAPI {
       message: req,
       method: method,
     );
-    if (!_isMockData || _mockServerBlockList.contains(method)) {
+    if (_mockServerBlockList.contains(method)) {
       chan.sink.add(data);
-    } else {
-      mockServer.add(req);
     }
     return f.future;
   }
@@ -343,7 +332,6 @@ class BinaryAPI {
     SocketCallback onOpen,
   }) async {
     _connected = false;
-    _isMockData = PrefService.get('mock') ?? false;
 
     final Uri uri = Uri(
       scheme: 'wss',
@@ -380,13 +368,6 @@ class BinaryAPI {
       }
     });
 
-    // initialize mock server
-    if (_isMockData) {
-      mockServer = MockServer.instance();
-      mockServerListener = mockServer.stream.listen(
-          (dynamic message) => handleResponse(connectionCompleter, message));
-    }
-
     print('Send initial message');
     await call('ping');
     await connectionCompleter.future;
@@ -411,15 +392,8 @@ class BinaryAPI {
       await chan.sink.close(status.goingAway);
     }
 
-    if (_isMockData) {
-      await mockServerListener.cancel();
-      await mockServer.sink.close();
-      await mockServer.closeStream();
-    }
     wsListener = null;
     chan = null;
-    mockServer = null;
-    mockServerListener = null;
   }
 
   ///

@@ -3,24 +3,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_deriv_api/helpers.dart';
 import 'package:meta/meta.dart';
 
-import 'deriv_connection_websocket.dart';
+import '../../connection/connection_websocket.dart';
 
-part 'deriv_connection_event.dart';
 
-part 'deriv_connection_state.dart';
+part 'connection_state.dart';
+part 'connection_event.dart';
 
 /// Bringing ConnectionBloc to flutter-deriv-api to simplify the usage of api
-class DerivConnectionBloc
-    extends Bloc<DerivConnectionEvent, DerivConnectionState> {
+class ConnectionBloc
+    extends Bloc<ConnectionEvent, ConnectionState> {
   ///
-  DerivConnectionBloc() {
+  ConnectionBloc() {
     connectWS();
   }
 
   Timer _serverTimeInterval;
 
   @override
-  DerivConnectionState get initialState => InitialDerivConnectionState();
+  ConnectionState get initialState => InitialConnectionState();
 
   /// connects the [BinaryAPI] to the web socket
   void connectWS() {
@@ -33,8 +33,8 @@ class DerivConnectionBloc
   }
 
   @override
-  Stream<DerivConnectionState> mapEventToState(
-      DerivConnectionEvent event) async* {
+  Stream<ConnectionState> mapEventToState(
+      ConnectionEvent event) async* {
     if (event is Connect) {
       try {
         yield Connected(event.api);
@@ -58,7 +58,7 @@ class DerivConnectionBloc
 
         print('Server time is: ${resp['time']}');
         yield currentState.copyWith(serverTime: resp['time']);
-      } else if (state is InitialDerivConnectionState) {
+      } else if (state is InitialConnectionState) {
         _serverTimeInterval.cancel();
       }
     } else if (event is Disconnect) {
@@ -70,7 +70,7 @@ class DerivConnectionBloc
       if (_serverTimeInterval != null && _serverTimeInterval.isActive) {
         _serverTimeInterval.cancel();
       }
-      yield InitialDerivConnectionState();
+      yield InitialConnectionState();
     } else if (event is Reconnect) {
       print('Reconnecting ws connection!');
 
@@ -80,7 +80,7 @@ class DerivConnectionBloc
         await currentState.api.close();
       }
 
-      yield InitialDerivConnectionState();
+      yield InitialConnectionState();
 
       if (_serverTimeInterval != null && _serverTimeInterval.isActive) {
         _serverTimeInterval.cancel();
