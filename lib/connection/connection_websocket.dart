@@ -114,15 +114,6 @@ class APIHistory {
 
 /// contains the API call
 class BinaryAPI {
-  final List<String> _mockServerBlockList = <String>[
-    'authorize',
-    'balance',
-    'get_settings',
-    'time',
-    'ping',
-    'p2p_advertiser_info',
-  ];
-
   /// Indicates current connection status - only set `true` once
   /// we have established SSL *and* WebSocket handshake steps
   bool _connected = false;
@@ -185,9 +176,9 @@ class BinaryAPI {
       message: req,
       method: method,
     );
-    if (_mockServerBlockList.contains(method)) {
-      chan.sink.add(data);
-    }
+
+    chan.sink.add(data);
+
     return f.future;
   }
 
