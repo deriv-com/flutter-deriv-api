@@ -1,17 +1,17 @@
-part of 'deriv_connection_bloc.dart';
+part of 'connection_bloc.dart';
 
 ///
 @immutable
-abstract class DerivConnectionState {}
+abstract class ConnectionState {}
 
 /// Initial state
-class InitialDerivConnectionState extends DerivConnectionState {
+class InitialConnectionState extends ConnectionState {
   @override
-  String toString() => 'InitialDerivConnectionState';
+  String toString() => 'InitialConnectionState';
 }
 
 /// shows that we are in the process of connecting
-class Connecting extends DerivConnectionState {
+class Connecting extends ConnectionState {
   ///
   Connecting(this.api);
 
@@ -19,11 +19,11 @@ class Connecting extends DerivConnectionState {
   final BinaryAPI api;
 
   @override
-  String toString() => 'DerivConnectionState(Connecting)';
+  String toString() => 'ConnectionState(Connecting)';
 }
 
 /// connected state
-class Connected extends DerivConnectionState {
+class Connected extends ConnectionState {
   ///
   Connected(this.api, {this.serverTime})
       : timeDifference =
@@ -42,11 +42,11 @@ class Connected extends DerivConnectionState {
 
   @override
   String toString() =>
-      'DerivConnectionState(Connected, serverTime: $serverTime, timeDifference: $timeDifference)';
+      'ConnectionState(Connected, serverTime: $serverTime, timeDifference: $timeDifference)';
 }
 
 ///
-class ConnectionError extends DerivConnectionState {
+class ConnectionError extends ConnectionState {
   ///
   ConnectionError(this.error);
 
@@ -55,5 +55,5 @@ class ConnectionError extends DerivConnectionState {
 
 
   @override
-  String toString() => 'DerivConnectionState(Error)';
+  String toString() => 'ConnectionState(Error)';
 }
