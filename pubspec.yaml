@@ -1,7 +1,6 @@
 name: flutter_deriv_api
 description: Support for the deriv.com websockets API
 version: 0.0.1
-author: binary.com <api-support@binary.com>
 homepage: https://developers.binary.com
 
 environment:
@@ -18,6 +17,8 @@ dependencies:
   dart_style: ^1.0.0
   preferences: ^5.0.2
   flutter_bloc: ^3.2.0
+  intl: ^0.15.7
+  meta: ^1.1.8
   flutter:
     sdk: flutter
 
