@@ -5,13 +5,12 @@ import 'package:meta/meta.dart';
 
 import '../../connection/connection_websocket.dart';
 
-
 part 'connection_state.dart';
+
 part 'connection_event.dart';
 
 /// Bringing ConnectionBloc to flutter-deriv-api to simplify the usage of api
-class ConnectionBloc
-    extends Bloc<ConnectionEvent, ConnectionState> {
+class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   ///
   ConnectionBloc() {
     connectWS();
@@ -33,8 +32,7 @@ class ConnectionBloc
   }
 
   @override
-  Stream<ConnectionState> mapEventToState(
-      ConnectionEvent event) async* {
+  Stream<ConnectionState> mapEventToState(ConnectionEvent event) async* {
     if (event is Connect) {
       try {
         yield Connected(event.api);

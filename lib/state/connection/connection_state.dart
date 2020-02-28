@@ -31,8 +31,10 @@ class Connected extends ConnectionState {
 
   /// a reference of BinaryAPI is currently connected
   final BinaryAPI api;
+
   /// fetched server time
   final int serverTime;
+
   /// difference between [serverTime] and the time of the device
   final int timeDifference;
 
@@ -52,7 +54,6 @@ class ConnectionError extends ConnectionState {
 
   /// An exception or message from the server
   final String error;
-
 
   @override
   String toString() => 'ConnectionState(Error)';
