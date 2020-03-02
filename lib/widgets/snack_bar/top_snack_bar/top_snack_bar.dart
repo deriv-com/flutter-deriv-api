@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../snack_bar_content.dart';
-import 'top_snack_bar_manager.dart';
 import 'top_snack_bar_widget.dart';
 
 /// creates [OverlayEntry] for [TopSnackBarWidget] and manages adding and
