@@ -10,7 +10,9 @@ part 'get_settings_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetSettingsRequest extends Request {
   ///
-  GetSettingsRequest({this.getSettings, this.passthrough, this.reqId});
+  GetSettingsRequest(
+      {this.getSettings, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
@@ -23,12 +25,6 @@ class GetSettingsRequest extends Request {
   // Properties
   /// Must be `1`
   int getSettings;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

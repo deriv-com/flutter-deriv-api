@@ -18,8 +18,8 @@ VerifyEmailRequest _$VerifyEmailRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$VerifyEmailRequestToJson(VerifyEmailRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'type': instance.type,
       'url_parameters': instance.urlParameters,
       'verify_email': instance.verifyEmail,

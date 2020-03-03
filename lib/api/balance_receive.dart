@@ -12,10 +12,11 @@ class BalanceResponse extends Response {
   ///
   BalanceResponse(
       {this.balance,
-      this.echoReq,
-      this.msgType,
-      this.reqId,
-      this.subscription});
+      Map<String, dynamic> echoReq,
+      String msgType,
+      int reqId,
+      this.subscription})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory BalanceResponse.fromJson(Map<String, dynamic> json) =>
@@ -28,15 +29,6 @@ class BalanceResponse extends Response {
   // Properties
   /// Realtime stream of user balance changes.
   Map<String, dynamic> balance;
-
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   /// For subscription requests only
   Map<String, dynamic> subscription;

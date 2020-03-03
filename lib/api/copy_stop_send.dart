@@ -10,7 +10,8 @@ part 'copy_stop_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStopRequest extends Request {
   ///
-  CopyStopRequest({this.copyStop, this.passthrough, this.reqId});
+  CopyStopRequest({this.copyStop, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory CopyStopRequest.fromJson(Map<String, dynamic> json) =>
@@ -23,12 +24,6 @@ class CopyStopRequest extends Request {
   // Properties
   /// API tokens identifying the accounts which needs not to be copied
   String copyStop;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

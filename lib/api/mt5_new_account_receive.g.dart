@@ -19,9 +19,9 @@ Mt5NewAccountResponse _$Mt5NewAccountResponseFromJson(
 Map<String, dynamic> _$Mt5NewAccountResponseToJson(
         Mt5NewAccountResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'mt5_new_account': instance.mt5NewAccount,
-      'req_id': instance.reqId,
     };

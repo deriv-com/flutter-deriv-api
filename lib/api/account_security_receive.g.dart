@@ -19,9 +19,9 @@ AccountSecurityResponse _$AccountSecurityResponseFromJson(
 Map<String, dynamic> _$AccountSecurityResponseToJson(
         AccountSecurityResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'account_security': instance.accountSecurity,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
+      'account_security': instance.accountSecurity,
     };

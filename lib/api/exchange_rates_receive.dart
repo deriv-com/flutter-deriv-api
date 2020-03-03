@@ -11,7 +11,11 @@ part 'exchange_rates_receive.g.dart';
 class ExchangeRatesResponse extends Response {
   ///
   ExchangeRatesResponse(
-      {this.echoReq, this.exchangeRates, this.msgType, this.reqId});
+      {Map<String, dynamic> echoReq,
+      this.exchangeRates,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory ExchangeRatesResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class ExchangeRatesResponse extends Response {
   Map<String, dynamic> toJson() => _$ExchangeRatesResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
 
   /// Exchange rate values from base to all other currencies
   Map<String, dynamic> exchangeRates;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

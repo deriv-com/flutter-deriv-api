@@ -10,7 +10,9 @@ part 'ticks_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TicksRequest extends Request {
   ///
-  TicksRequest({this.passthrough, this.reqId, this.subscribe, this.ticks});
+  TicksRequest(
+      {Map<String, dynamic> passthrough, int reqId, this.subscribe, this.ticks})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory TicksRequest.fromJson(Map<String, dynamic> json) =>
@@ -21,11 +23,6 @@ class TicksRequest extends Request {
   Map<String, dynamic> toJson() => _$TicksRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] If set to 1, will send updates whenever a new tick is received.
   int subscribe;

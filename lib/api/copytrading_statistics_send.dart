@@ -12,9 +12,10 @@ class CopytradingStatisticsRequest extends Request {
   ///
   CopytradingStatisticsRequest(
       {this.copytradingStatistics,
-      this.passthrough,
-      this.reqId,
-      this.traderId});
+      Map<String, dynamic> passthrough,
+      int reqId,
+      this.traderId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory CopytradingStatisticsRequest.fromJson(Map<String, dynamic> json) =>
@@ -27,12 +28,6 @@ class CopytradingStatisticsRequest extends Request {
   // Properties
   /// Must be `1`
   int copytradingStatistics;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// The ID of the target trader.
   String traderId;

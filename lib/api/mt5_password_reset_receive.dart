@@ -11,7 +11,11 @@ part 'mt5_password_reset_receive.g.dart';
 class Mt5PasswordResetResponse extends Response {
   ///
   Mt5PasswordResetResponse(
-      {this.echoReq, this.msgType, this.mt5PasswordReset, this.reqId});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      this.mt5PasswordReset,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory Mt5PasswordResetResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class Mt5PasswordResetResponse extends Response {
   Map<String, dynamic> toJson() => _$Mt5PasswordResetResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// `1` on success
   int mt5PasswordReset;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

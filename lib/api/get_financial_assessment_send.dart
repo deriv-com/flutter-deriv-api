@@ -11,7 +11,10 @@ part 'get_financial_assessment_send.g.dart';
 class GetFinancialAssessmentRequest extends Request {
   ///
   GetFinancialAssessmentRequest(
-      {this.getFinancialAssessment, this.passthrough, this.reqId});
+      {this.getFinancialAssessment,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory GetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
@@ -24,12 +27,6 @@ class GetFinancialAssessmentRequest extends Request {
   // Properties
   /// Must be `1`
   int getFinancialAssessment;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

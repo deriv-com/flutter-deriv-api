@@ -10,7 +10,9 @@ part 'copytrading_list_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopytradingListRequest extends Request {
   ///
-  CopytradingListRequest({this.copytradingList, this.passthrough, this.reqId});
+  CopytradingListRequest(
+      {this.copytradingList, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory CopytradingListRequest.fromJson(Map<String, dynamic> json) =>
@@ -23,12 +25,6 @@ class CopytradingListRequest extends Request {
   // Properties
   /// Must be `1`
   int copytradingList;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

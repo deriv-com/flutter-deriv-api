@@ -16,7 +16,7 @@ PortfolioRequest _$PortfolioRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$PortfolioRequestToJson(PortfolioRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
       'portfolio': instance.portfolio,
-      'req_id': instance.reqId,
     };

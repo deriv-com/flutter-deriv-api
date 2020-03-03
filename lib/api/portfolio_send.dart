@@ -10,7 +10,9 @@ part 'portfolio_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PortfolioRequest extends Request {
   ///
-  PortfolioRequest({this.passthrough, this.portfolio, this.reqId});
+  PortfolioRequest(
+      {Map<String, dynamic> passthrough, this.portfolio, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>
@@ -21,14 +23,9 @@ class PortfolioRequest extends Request {
   Map<String, dynamic> toJson() => _$PortfolioRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
 
   /// Must be `1`
   int portfolio;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

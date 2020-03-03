@@ -11,7 +11,11 @@ part 'contracts_for_receive.g.dart';
 class ContractsForResponse extends Response {
   ///
   ContractsForResponse(
-      {this.contractsFor, this.echoReq, this.msgType, this.reqId});
+      {this.contractsFor,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory ContractsForResponse.fromJson(Map<String, dynamic> json) =>
@@ -24,15 +28,6 @@ class ContractsForResponse extends Response {
   // Properties
   /// List of available contracts. Note: if the user is authenticated, then only contracts allowed under his account will be returned.
   Map<String, dynamic> contractsFor;
-
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

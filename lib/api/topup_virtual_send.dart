@@ -10,7 +10,9 @@ part 'topup_virtual_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TopupVirtualRequest extends Request {
   ///
-  TopupVirtualRequest({this.passthrough, this.reqId, this.topupVirtual});
+  TopupVirtualRequest(
+      {Map<String, dynamic> passthrough, int reqId, this.topupVirtual})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory TopupVirtualRequest.fromJson(Map<String, dynamic> json) =>
@@ -21,11 +23,6 @@ class TopupVirtualRequest extends Request {
   Map<String, dynamic> toJson() => _$TopupVirtualRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Must be `1`
   int topupVirtual;

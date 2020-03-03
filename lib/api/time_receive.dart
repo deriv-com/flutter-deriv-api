@@ -10,7 +10,9 @@ part 'time_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TimeResponse extends Response {
   ///
-  TimeResponse({this.echoReq, this.msgType, this.reqId, this.time});
+  TimeResponse(
+      {Map<String, dynamic> echoReq, String msgType, int reqId, this.time})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory TimeResponse.fromJson(Map<String, dynamic> json) =>
@@ -21,14 +23,6 @@ class TimeResponse extends Response {
   Map<String, dynamic> toJson() => _$TimeResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   /// Epoch of server time.
   int time;

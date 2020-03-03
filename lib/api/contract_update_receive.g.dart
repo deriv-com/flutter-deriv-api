@@ -19,9 +19,9 @@ ContractUpdateResponse _$ContractUpdateResponseFromJson(
 Map<String, dynamic> _$ContractUpdateResponseToJson(
         ContractUpdateResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'contract_update': instance.contractUpdate,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
+      'contract_update': instance.contractUpdate,
     };

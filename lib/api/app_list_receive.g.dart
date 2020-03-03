@@ -19,9 +19,9 @@ AppListResponse _$AppListResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$AppListResponseToJson(AppListResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'app_list': instance.appList,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
+      'app_list': instance.appList,
     };

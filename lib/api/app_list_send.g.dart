@@ -16,7 +16,7 @@ AppListRequest _$AppListRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$AppListRequestToJson(AppListRequest instance) =>
     <String, dynamic>{
-      'app_list': instance.appList,
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
+      'app_list': instance.appList,
     };

@@ -10,7 +10,8 @@ part 'forget_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ForgetRequest extends Request {
   ///
-  ForgetRequest({this.forget, this.passthrough, this.reqId});
+  ForgetRequest({this.forget, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory ForgetRequest.fromJson(Map<String, dynamic> json) =>
@@ -23,12 +24,6 @@ class ForgetRequest extends Request {
   // Properties
   /// ID of the real-time stream of messages to cancel.
   String forget;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

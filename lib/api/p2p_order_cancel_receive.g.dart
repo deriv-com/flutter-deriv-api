@@ -19,9 +19,9 @@ P2pOrderCancelResponse _$P2pOrderCancelResponseFromJson(
 Map<String, dynamic> _$P2pOrderCancelResponseToJson(
         P2pOrderCancelResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'p2p_order_cancel': instance.p2pOrderCancel,
-      'req_id': instance.reqId,
     };

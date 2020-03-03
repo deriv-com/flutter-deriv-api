@@ -11,7 +11,11 @@ part 'mt5_get_settings_send.g.dart';
 class Mt5GetSettingsRequest extends Request {
   ///
   Mt5GetSettingsRequest(
-      {this.login, this.mt5GetSettings, this.passthrough, this.reqId});
+      {this.login,
+      this.mt5GetSettings,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory Mt5GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
@@ -27,12 +31,6 @@ class Mt5GetSettingsRequest extends Request {
 
   /// Must be `1`
   int mt5GetSettings;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

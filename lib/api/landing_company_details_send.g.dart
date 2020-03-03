@@ -18,7 +18,7 @@ LandingCompanyDetailsRequest _$LandingCompanyDetailsRequestFromJson(
 Map<String, dynamic> _$LandingCompanyDetailsRequestToJson(
         LandingCompanyDetailsRequest instance) =>
     <String, dynamic>{
-      'landing_company_details': instance.landingCompanyDetails,
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
+      'landing_company_details': instance.landingCompanyDetails,
     };

@@ -11,7 +11,11 @@ part 'new_account_virtual_receive.g.dart';
 class NewAccountVirtualResponse extends Response {
   ///
   NewAccountVirtualResponse(
-      {this.echoReq, this.msgType, this.newAccountVirtual, this.reqId});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      this.newAccountVirtual,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory NewAccountVirtualResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class NewAccountVirtualResponse extends Response {
   Map<String, dynamic> toJson() => _$NewAccountVirtualResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// New virtual-money account details
   Map<String, dynamic> newAccountVirtual;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

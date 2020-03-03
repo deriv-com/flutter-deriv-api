@@ -28,13 +28,13 @@ NewAccountVirtualRequest _$NewAccountVirtualRequestFromJson(
 Map<String, dynamic> _$NewAccountVirtualRequestToJson(
         NewAccountVirtualRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'affiliate_token': instance.affiliateToken,
       'client_password': instance.clientPassword,
       'date_first_contact': instance.dateFirstContact,
       'gclid_url': instance.gclidUrl,
       'new_account_virtual': instance.newAccountVirtual,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
       'residence': instance.residence,
       'signup_device': instance.signupDevice,
       'utm_campaign': instance.utmCampaign,

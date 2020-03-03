@@ -11,7 +11,11 @@ part 'exchange_rates_send.g.dart';
 class ExchangeRatesRequest extends Request {
   ///
   ExchangeRatesRequest(
-      {this.baseCurrency, this.exchangeRates, this.passthrough, this.reqId});
+      {this.baseCurrency,
+      this.exchangeRates,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory ExchangeRatesRequest.fromJson(Map<String, dynamic> json) =>
@@ -27,12 +31,6 @@ class ExchangeRatesRequest extends Request {
 
   /// Must be `1`
   int exchangeRates;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

@@ -11,7 +11,11 @@ part 'payout_currencies_receive.g.dart';
 class PayoutCurrenciesResponse extends Response {
   ///
   PayoutCurrenciesResponse(
-      {this.echoReq, this.msgType, this.payoutCurrencies, this.reqId});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      this.payoutCurrencies,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory PayoutCurrenciesResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class PayoutCurrenciesResponse extends Response {
   Map<String, dynamic> toJson() => _$PayoutCurrenciesResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// Available payout currencies. Note: if a user is logged in, only the currency available for the account will be returned.
   List<String> payoutCurrencies;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

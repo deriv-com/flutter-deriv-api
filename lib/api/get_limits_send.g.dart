@@ -16,7 +16,7 @@ GetLimitsRequest _$GetLimitsRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$GetLimitsRequestToJson(GetLimitsRequest instance) =>
     <String, dynamic>{
-      'get_limits': instance.getLimits,
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
+      'get_limits': instance.getLimits,
     };

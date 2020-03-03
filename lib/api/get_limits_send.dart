@@ -10,7 +10,9 @@ part 'get_limits_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetLimitsRequest extends Request {
   ///
-  GetLimitsRequest({this.getLimits, this.passthrough, this.reqId});
+  GetLimitsRequest(
+      {this.getLimits, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory GetLimitsRequest.fromJson(Map<String, dynamic> json) =>
@@ -23,12 +25,6 @@ class GetLimitsRequest extends Request {
   // Properties
   /// Must be `1`
   int getLimits;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

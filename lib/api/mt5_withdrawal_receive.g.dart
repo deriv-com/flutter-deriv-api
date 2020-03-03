@@ -20,10 +20,10 @@ Mt5WithdrawalResponse _$Mt5WithdrawalResponseFromJson(
 Map<String, dynamic> _$Mt5WithdrawalResponseToJson(
         Mt5WithdrawalResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'binary_transaction_id': instance.binaryTransactionId,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
+      'binary_transaction_id': instance.binaryTransactionId,
       'mt5_withdrawal': instance.mt5Withdrawal,
-      'req_id': instance.reqId,
     };

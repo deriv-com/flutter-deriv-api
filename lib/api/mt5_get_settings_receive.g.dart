@@ -19,9 +19,9 @@ Mt5GetSettingsResponse _$Mt5GetSettingsResponseFromJson(
 Map<String, dynamic> _$Mt5GetSettingsResponseToJson(
         Mt5GetSettingsResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'mt5_get_settings': instance.mt5GetSettings,
-      'req_id': instance.reqId,
     };

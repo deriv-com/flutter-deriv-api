@@ -11,7 +11,11 @@ part 'reality_check_receive.g.dart';
 class RealityCheckResponse extends Response {
   ///
   RealityCheckResponse(
-      {this.echoReq, this.msgType, this.realityCheck, this.reqId});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      this.realityCheck,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory RealityCheckResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class RealityCheckResponse extends Response {
   Map<String, dynamic> toJson() => _$RealityCheckResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// Reality check summary of trades.
   Map<String, dynamic> realityCheck;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

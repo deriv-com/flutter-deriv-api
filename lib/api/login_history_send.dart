@@ -11,7 +11,11 @@ part 'login_history_send.g.dart';
 class LoginHistoryRequest extends Request {
   ///
   LoginHistoryRequest(
-      {this.limit, this.loginHistory, this.passthrough, this.reqId});
+      {this.limit,
+      this.loginHistory,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>
@@ -27,12 +31,6 @@ class LoginHistoryRequest extends Request {
 
   /// Must be `1`
   int loginHistory;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

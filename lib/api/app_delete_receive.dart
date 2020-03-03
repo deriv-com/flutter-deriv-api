@@ -10,7 +10,9 @@ part 'app_delete_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppDeleteResponse extends Response {
   ///
-  AppDeleteResponse({this.appDelete, this.echoReq, this.msgType, this.reqId});
+  AppDeleteResponse(
+      {this.appDelete, Map<String, dynamic> echoReq, String msgType, int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory AppDeleteResponse.fromJson(Map<String, dynamic> json) =>
@@ -23,15 +25,6 @@ class AppDeleteResponse extends Response {
   // Properties
   /// 1 on success
   int appDelete;
-
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

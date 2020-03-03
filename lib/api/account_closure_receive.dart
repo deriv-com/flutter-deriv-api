@@ -11,7 +11,11 @@ part 'account_closure_receive.g.dart';
 class AccountClosureResponse extends Response {
   ///
   AccountClosureResponse(
-      {this.accountClosure, this.echoReq, this.msgType, this.reqId});
+      {this.accountClosure,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory AccountClosureResponse.fromJson(Map<String, dynamic> json) =>
@@ -24,15 +28,6 @@ class AccountClosureResponse extends Response {
   // Properties
   /// If set to `1`, all accounts are closed.
   int accountClosure;
-
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

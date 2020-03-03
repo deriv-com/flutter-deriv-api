@@ -10,7 +10,9 @@ part 'revoke_oauth_app_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class RevokeOauthAppRequest extends Request {
   ///
-  RevokeOauthAppRequest({this.passthrough, this.reqId, this.revokeOauthApp});
+  RevokeOauthAppRequest(
+      {Map<String, dynamic> passthrough, int reqId, this.revokeOauthApp})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory RevokeOauthAppRequest.fromJson(Map<String, dynamic> json) =>
@@ -21,11 +23,6 @@ class RevokeOauthAppRequest extends Request {
   Map<String, dynamic> toJson() => _$RevokeOauthAppRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// The application ID to revoke.
   int revokeOauthApp;

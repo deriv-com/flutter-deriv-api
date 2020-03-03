@@ -18,7 +18,7 @@ PayoutCurrenciesRequest _$PayoutCurrenciesRequestFromJson(
 Map<String, dynamic> _$PayoutCurrenciesRequestToJson(
         PayoutCurrenciesRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
       'payout_currencies': instance.payoutCurrencies,
-      'req_id': instance.reqId,
     };

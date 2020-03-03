@@ -11,7 +11,11 @@ part 'proposal_array_receive.g.dart';
 class ProposalArrayResponse extends Response {
   ///
   ProposalArrayResponse(
-      {this.echoReq, this.msgType, this.proposalArray, this.reqId});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      this.proposalArray,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory ProposalArrayResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class ProposalArrayResponse extends Response {
   Map<String, dynamic> toJson() => _$ProposalArrayResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// Latest price and other details for a given contract
   Map<String, dynamic> proposalArray;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

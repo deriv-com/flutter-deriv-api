@@ -10,7 +10,8 @@ part 'time_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TimeRequest extends Request {
   ///
-  TimeRequest({this.passthrough, this.reqId, this.time});
+  TimeRequest({Map<String, dynamic> passthrough, int reqId, this.time})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory TimeRequest.fromJson(Map<String, dynamic> json) =>
@@ -21,11 +22,6 @@ class TimeRequest extends Request {
   Map<String, dynamic> toJson() => _$TimeRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Must be `1`
   int time;

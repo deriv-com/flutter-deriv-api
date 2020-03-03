@@ -20,9 +20,9 @@ LoginHistoryResponse _$LoginHistoryResponseFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$LoginHistoryResponseToJson(
         LoginHistoryResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'echo_req': instance.echoReq,
-      'login_history': instance.loginHistory,
-      'msg_type': instance.msgType,
       'req_id': instance.reqId,
+      'echo_req': instance.echoReq,
+      'msg_type': instance.msgType,
+      'error': instance.error,
+      'login_history': instance.loginHistory,
     };

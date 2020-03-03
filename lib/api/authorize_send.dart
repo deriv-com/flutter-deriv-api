@@ -11,7 +11,11 @@ part 'authorize_send.g.dart';
 class AuthorizeRequest extends Request {
   ///
   AuthorizeRequest(
-      {this.addToLoginHistory, this.authorize, this.passthrough, this.reqId});
+      {this.addToLoginHistory,
+      this.authorize,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory AuthorizeRequest.fromJson(Map<String, dynamic> json) =>
@@ -27,12 +31,6 @@ class AuthorizeRequest extends Request {
 
   /// Authentication token. May be retrieved from https://www.binary.com/en/user/security/api_tokenws.html
   String authorize;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

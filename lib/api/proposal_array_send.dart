@@ -21,13 +21,14 @@ class ProposalArrayRequest extends Request {
       this.duration,
       this.durationUnit,
       this.multiplier,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.productType,
       this.proposalArray,
-      this.reqId,
+      int reqId,
       this.subscribe,
       this.symbol,
-      this.tradingPeriodStart});
+      this.tradingPeriodStart})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory ProposalArrayRequest.fromJson(Map<String, dynamic> json) =>
@@ -68,17 +69,11 @@ class ProposalArrayRequest extends Request {
   /// The multiplier for non-binary options. E.g. lookbacks.
   num multiplier;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] If you specify this field, only contracts tradable through that contract type will be returned.
   String productType;
 
   /// Must be `1`
   int proposalArray;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] 1 - to initiate a realtime stream of prices. Note that tick trades (without a user-defined barrier), digit trades and less than 24 hours at-the-money contracts for the following underlying symbols are not streamed: `R_10`, `R_25`, `R_50`, `R_75`, `R_100`, `RDBULL`, `RDBEAR` (this is because their price is constant).
   int subscribe;

@@ -11,7 +11,11 @@ part 'active_symbols_receive.g.dart';
 class ActiveSymbolsResponse extends Response {
   ///
   ActiveSymbolsResponse(
-      {this.activeSymbols, this.echoReq, this.msgType, this.reqId});
+      {this.activeSymbols,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory ActiveSymbolsResponse.fromJson(Map<String, dynamic> json) =>
@@ -24,15 +28,6 @@ class ActiveSymbolsResponse extends Response {
   // Properties
   /// List of active symbols.
   List<Map<String, dynamic>> activeSymbols;
-
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

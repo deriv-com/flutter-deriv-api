@@ -17,9 +17,9 @@ AppUpdateResponse _$AppUpdateResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$AppUpdateResponseToJson(AppUpdateResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'app_update': instance.appUpdate,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
+      'app_update': instance.appUpdate,
     };

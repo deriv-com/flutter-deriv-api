@@ -18,9 +18,9 @@ GetSettingsResponse _$GetSettingsResponseFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$GetSettingsResponseToJson(
         GetSettingsResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'echo_req': instance.echoReq,
-      'get_settings': instance.getSettings,
-      'msg_type': instance.msgType,
       'req_id': instance.reqId,
+      'echo_req': instance.echoReq,
+      'msg_type': instance.msgType,
+      'error': instance.error,
+      'get_settings': instance.getSettings,
     };

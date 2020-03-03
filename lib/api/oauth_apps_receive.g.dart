@@ -19,9 +19,9 @@ OauthAppsResponse _$OauthAppsResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$OauthAppsResponseToJson(OauthAppsResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'oauth_apps': instance.oauthApps,
-      'req_id': instance.reqId,
     };

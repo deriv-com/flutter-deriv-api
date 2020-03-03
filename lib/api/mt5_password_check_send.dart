@@ -13,10 +13,11 @@ class Mt5PasswordCheckRequest extends Request {
   Mt5PasswordCheckRequest(
       {this.login,
       this.mt5PasswordCheck,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.password,
       this.passwordType,
-      this.reqId});
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory Mt5PasswordCheckRequest.fromJson(Map<String, dynamic> json) =>
@@ -33,17 +34,11 @@ class Mt5PasswordCheckRequest extends Request {
   /// Must be `1`
   int mt5PasswordCheck;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// The password of the account.
   String password;
 
   /// [Optional] Type of the password to check.
   String passwordType;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

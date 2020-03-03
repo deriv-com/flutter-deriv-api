@@ -11,7 +11,11 @@ part 'notification_event_receive.g.dart';
 class NotificationEventResponse extends Response {
   ///
   NotificationEventResponse(
-      {this.echoReq, this.msgType, this.notificationEvent, this.reqId});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      this.notificationEvent,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory NotificationEventResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class NotificationEventResponse extends Response {
   Map<String, dynamic> toJson() => _$NotificationEventResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// `1`: all actions finished successfully, `0`: at least one or more actions failed.
   int notificationEvent;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

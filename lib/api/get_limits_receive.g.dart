@@ -17,9 +17,9 @@ GetLimitsResponse _$GetLimitsResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$GetLimitsResponseToJson(GetLimitsResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'echo_req': instance.echoReq,
-      'get_limits': instance.getLimits,
-      'msg_type': instance.msgType,
       'req_id': instance.reqId,
+      'echo_req': instance.echoReq,
+      'msg_type': instance.msgType,
+      'error': instance.error,
+      'get_limits': instance.getLimits,
     };

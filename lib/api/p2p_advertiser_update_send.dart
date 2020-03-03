@@ -16,9 +16,10 @@ class P2pAdvertiserUpdateRequest extends Request {
       this.isListed,
       this.name,
       this.p2pAdvertiserUpdate,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.paymentInfo,
-      this.reqId});
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory P2pAdvertiserUpdateRequest.fromJson(Map<String, dynamic> json) =>
@@ -44,14 +45,8 @@ class P2pAdvertiserUpdateRequest extends Request {
   /// Must be 1
   int p2pAdvertiserUpdate;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] Advertiser's payment information, to be used as a default for new sell adverts.
   String paymentInfo;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

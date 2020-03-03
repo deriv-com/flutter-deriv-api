@@ -19,9 +19,9 @@ Mt5PasswordResetResponse _$Mt5PasswordResetResponseFromJson(
 Map<String, dynamic> _$Mt5PasswordResetResponseToJson(
         Mt5PasswordResetResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'mt5_password_reset': instance.mt5PasswordReset,
-      'req_id': instance.reqId,
     };

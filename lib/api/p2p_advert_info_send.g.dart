@@ -18,8 +18,8 @@ P2pAdvertInfoRequest _$P2pAdvertInfoRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$P2pAdvertInfoRequestToJson(
         P2pAdvertInfoRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'id': instance.id,
       'p2p_advert_info': instance.p2pAdvertInfo,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
     };

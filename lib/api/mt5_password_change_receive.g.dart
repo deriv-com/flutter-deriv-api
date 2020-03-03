@@ -19,9 +19,9 @@ Mt5PasswordChangeResponse _$Mt5PasswordChangeResponseFromJson(
 Map<String, dynamic> _$Mt5PasswordChangeResponseToJson(
         Mt5PasswordChangeResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'mt5_password_change': instance.mt5PasswordChange,
-      'req_id': instance.reqId,
     };

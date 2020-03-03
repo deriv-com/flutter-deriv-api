@@ -11,11 +11,12 @@ part 'service_token_send.g.dart';
 class ServiceTokenRequest extends Request {
   ///
   ServiceTokenRequest(
-      {this.passthrough,
+      {Map<String, dynamic> passthrough,
       this.referrer,
-      this.reqId,
+      int reqId,
       this.service,
-      this.serviceToken});
+      this.serviceToken})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory ServiceTokenRequest.fromJson(Map<String, dynamic> json) =>
@@ -26,14 +27,9 @@ class ServiceTokenRequest extends Request {
   Map<String, dynamic> toJson() => _$ServiceTokenRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
 
   /// [Optional] The URL of the web page where the Web SDK will be used.
   String referrer;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// The service name to retrieve the token for.
   String service;

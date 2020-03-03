@@ -17,9 +17,9 @@ StatementResponse _$StatementResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$StatementResponseToJson(StatementResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
       'statement': instance.statement,
     };

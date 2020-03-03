@@ -16,7 +16,7 @@ SellExpiredRequest _$SellExpiredRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$SellExpiredRequestToJson(SellExpiredRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'sell_expired': instance.sellExpired,
     };

@@ -16,7 +16,7 @@ LogoutRequest _$LogoutRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$LogoutRequestToJson(LogoutRequest instance) =>
     <String, dynamic>{
-      'logout': instance.logout,
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
+      'logout': instance.logout,
     };

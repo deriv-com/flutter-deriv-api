@@ -12,10 +12,11 @@ class ProposalOpenContractRequest extends Request {
   ///
   ProposalOpenContractRequest(
       {this.contractId,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.proposalOpenContract,
-      this.reqId,
-      this.subscribe});
+      int reqId,
+      this.subscribe})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>
@@ -29,14 +30,8 @@ class ProposalOpenContractRequest extends Request {
   /// [Optional] Contract ID received from a Portfolio request. If not set, you will receive stream of all open contracts.
   int contractId;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// Must be `1`
   int proposalOpenContract;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] `1` to stream.
   int subscribe;

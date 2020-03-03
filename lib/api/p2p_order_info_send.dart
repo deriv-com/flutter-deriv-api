@@ -13,9 +13,10 @@ class P2pOrderInfoRequest extends Request {
   P2pOrderInfoRequest(
       {this.id,
       this.p2pOrderInfo,
-      this.passthrough,
-      this.reqId,
-      this.subscribe});
+      Map<String, dynamic> passthrough,
+      int reqId,
+      this.subscribe})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory P2pOrderInfoRequest.fromJson(Map<String, dynamic> json) =>
@@ -31,12 +32,6 @@ class P2pOrderInfoRequest extends Request {
 
   /// Must be 1
   int p2pOrderInfo;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] If set to 1, will send updates whenever there is an update to order
   int subscribe;

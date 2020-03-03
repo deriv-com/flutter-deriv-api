@@ -11,7 +11,8 @@ part 'get_self_exclusion_send.g.dart';
 class GetSelfExclusionRequest extends Request {
   ///
   GetSelfExclusionRequest(
-      {this.getSelfExclusion, this.passthrough, this.reqId});
+      {this.getSelfExclusion, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory GetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
@@ -24,12 +25,6 @@ class GetSelfExclusionRequest extends Request {
   // Properties
   /// Must be `1`
   int getSelfExclusion;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

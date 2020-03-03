@@ -11,7 +11,11 @@ part 'request_report_receive.g.dart';
 class RequestReportResponse extends Response {
   ///
   RequestReportResponse(
-      {this.echoReq, this.msgType, this.reqId, this.requestReport});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      int reqId,
+      this.requestReport})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory RequestReportResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,14 +26,6 @@ class RequestReportResponse extends Response {
   Map<String, dynamic> toJson() => _$RequestReportResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   /// Response of request report
   Map<String, dynamic> requestReport;

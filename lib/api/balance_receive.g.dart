@@ -18,10 +18,10 @@ BalanceResponse _$BalanceResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$BalanceResponseToJson(BalanceResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'balance': instance.balance,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
+      'balance': instance.balance,
       'subscription': instance.subscription,
     };

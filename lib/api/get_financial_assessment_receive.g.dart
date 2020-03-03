@@ -20,9 +20,9 @@ GetFinancialAssessmentResponse _$GetFinancialAssessmentResponseFromJson(
 Map<String, dynamic> _$GetFinancialAssessmentResponseToJson(
         GetFinancialAssessmentResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'echo_req': instance.echoReq,
-      'get_financial_assessment': instance.getFinancialAssessment,
-      'msg_type': instance.msgType,
       'req_id': instance.reqId,
+      'echo_req': instance.echoReq,
+      'msg_type': instance.msgType,
+      'error': instance.error,
+      'get_financial_assessment': instance.getFinancialAssessment,
     };

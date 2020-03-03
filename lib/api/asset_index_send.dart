@@ -11,7 +11,11 @@ part 'asset_index_send.g.dart';
 class AssetIndexRequest extends Request {
   ///
   AssetIndexRequest(
-      {this.assetIndex, this.landingCompany, this.passthrough, this.reqId});
+      {this.assetIndex,
+      this.landingCompany,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory AssetIndexRequest.fromJson(Map<String, dynamic> json) =>
@@ -27,12 +31,6 @@ class AssetIndexRequest extends Request {
 
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
   String landingCompany;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

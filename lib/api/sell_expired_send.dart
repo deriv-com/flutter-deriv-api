@@ -10,7 +10,9 @@ part 'sell_expired_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellExpiredRequest extends Request {
   ///
-  SellExpiredRequest({this.passthrough, this.reqId, this.sellExpired});
+  SellExpiredRequest(
+      {Map<String, dynamic> passthrough, int reqId, this.sellExpired})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory SellExpiredRequest.fromJson(Map<String, dynamic> json) =>
@@ -21,11 +23,6 @@ class SellExpiredRequest extends Request {
   Map<String, dynamic> toJson() => _$SellExpiredRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Must be `1`
   int sellExpired;

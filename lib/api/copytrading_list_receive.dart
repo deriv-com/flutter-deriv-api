@@ -11,7 +11,11 @@ part 'copytrading_list_receive.g.dart';
 class CopytradingListResponse extends Response {
   ///
   CopytradingListResponse(
-      {this.copytradingList, this.echoReq, this.msgType, this.reqId});
+      {this.copytradingList,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory CopytradingListResponse.fromJson(Map<String, dynamic> json) =>
@@ -24,15 +28,6 @@ class CopytradingListResponse extends Response {
   // Properties
   /// The trading information of copiers or traders.
   Map<String, dynamic> copytradingList;
-
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

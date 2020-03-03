@@ -26,16 +26,17 @@ class NewAccountRealRequest extends Request {
       this.firstName,
       this.lastName,
       this.newAccountReal,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.phone,
       this.placeOfBirth,
-      this.reqId,
+      int reqId,
       this.residence,
       this.salutation,
       this.secretAnswer,
       this.secretQuestion,
       this.taxIdentificationNumber,
-      this.taxResidence});
+      this.taxResidence})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory NewAccountRealRequest.fromJson(Map<String, dynamic> json) =>
@@ -91,17 +92,11 @@ class NewAccountRealRequest extends Request {
   /// Must be `1`
   int newAccountReal;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] Starting with '+' followed by 8-35 digits, allowing hyphens or space.
   String phone;
 
   /// [Optional] Place of birth, 2-letter country code.
   String placeOfBirth;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// 2-letter country code, possible value receive from `residence_list` call.
   String residence;

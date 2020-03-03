@@ -19,9 +19,9 @@ ProposalArrayResponse _$ProposalArrayResponseFromJson(
 Map<String, dynamic> _$ProposalArrayResponseToJson(
         ProposalArrayResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'proposal_array': instance.proposalArray,
-      'req_id': instance.reqId,
     };

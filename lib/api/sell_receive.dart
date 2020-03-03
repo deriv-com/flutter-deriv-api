@@ -10,7 +10,9 @@ part 'sell_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellResponse extends Response {
   ///
-  SellResponse({this.echoReq, this.msgType, this.reqId, this.sell});
+  SellResponse(
+      {Map<String, dynamic> echoReq, String msgType, int reqId, this.sell})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory SellResponse.fromJson(Map<String, dynamic> json) =>
@@ -21,14 +23,6 @@ class SellResponse extends Response {
   Map<String, dynamic> toJson() => _$SellResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   /// Receipt for the transaction
   Map<String, dynamic> sell;

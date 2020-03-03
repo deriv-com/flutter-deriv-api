@@ -17,7 +17,7 @@ TopupVirtualRequest _$TopupVirtualRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$TopupVirtualRequestToJson(
         TopupVirtualRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'topup_virtual': instance.topupVirtual,
     };

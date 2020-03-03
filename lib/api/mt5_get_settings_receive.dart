@@ -11,7 +11,11 @@ part 'mt5_get_settings_receive.g.dart';
 class Mt5GetSettingsResponse extends Response {
   ///
   Mt5GetSettingsResponse(
-      {this.echoReq, this.msgType, this.mt5GetSettings, this.reqId});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      this.mt5GetSettings,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory Mt5GetSettingsResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class Mt5GetSettingsResponse extends Response {
   Map<String, dynamic> toJson() => _$Mt5GetSettingsResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// MT5 user account details
   Map<String, dynamic> mt5GetSettings;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

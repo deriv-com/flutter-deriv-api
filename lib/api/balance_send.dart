@@ -13,9 +13,10 @@ class BalanceRequest extends Request {
   BalanceRequest(
       {this.account,
       this.balance,
-      this.passthrough,
-      this.reqId,
-      this.subscribe});
+      Map<String, dynamic> passthrough,
+      int reqId,
+      this.subscribe})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory BalanceRequest.fromJson(Map<String, dynamic> json) =>
@@ -31,12 +32,6 @@ class BalanceRequest extends Request {
 
   /// Must be `1`
   int balance;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] If set to 1, will send updates whenever the balance changes.
   int subscribe;

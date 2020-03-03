@@ -14,8 +14,9 @@ class ContractUpdateRequest extends Request {
       {this.contractId,
       this.contractUpdate,
       this.limitOrder,
-      this.passthrough,
-      this.reqId});
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory ContractUpdateRequest.fromJson(Map<String, dynamic> json) =>
@@ -34,12 +35,6 @@ class ContractUpdateRequest extends Request {
 
   /// Specify limit order to update.
   Map<String, dynamic> limitOrder;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

@@ -19,12 +19,13 @@ class P2pAdvertCreateRequest extends Request {
       this.maxOrderAmount,
       this.minOrderAmount,
       this.p2pAdvertCreate,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.paymentInfo,
       this.paymentMethod,
       this.rate,
-      this.reqId,
-      this.type});
+      int reqId,
+      this.type})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory P2pAdvertCreateRequest.fromJson(Map<String, dynamic> json) =>
@@ -59,9 +60,6 @@ class P2pAdvertCreateRequest extends Request {
   /// Must be 1
   int p2pAdvertCreate;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] Only applicable for sell adverts. Payment instructions for the buyer to transfer funds, for example: bank name and account number, or E-Wallet id.
   String paymentInfo;
 
@@ -70,9 +68,6 @@ class P2pAdvertCreateRequest extends Request {
 
   /// Conversion rate from advertiser's account currency to `local_currency`.
   num rate;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Whether this is a buy or a sell.
   String type;

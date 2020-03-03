@@ -11,7 +11,8 @@ part 'account_statistics_send.g.dart';
 class AccountStatisticsRequest extends Request {
   ///
   AccountStatisticsRequest(
-      {this.accountStatistics, this.passthrough, this.reqId});
+      {this.accountStatistics, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory AccountStatisticsRequest.fromJson(Map<String, dynamic> json) =>
@@ -24,12 +25,6 @@ class AccountStatisticsRequest extends Request {
   // Properties
   /// Must be `1`
   int accountStatistics;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

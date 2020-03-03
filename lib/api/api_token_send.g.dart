@@ -21,11 +21,11 @@ ApiTokenRequest _$ApiTokenRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$ApiTokenRequestToJson(ApiTokenRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'api_token': instance.apiToken,
       'delete_token': instance.deleteToken,
       'new_token': instance.newToken,
       'new_token_scopes': instance.newTokenScopes,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
       'valid_for_current_ip_only': instance.validForCurrentIpOnly,
     };

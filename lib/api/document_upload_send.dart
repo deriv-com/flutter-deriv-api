@@ -19,8 +19,9 @@ class DocumentUploadRequest extends Request {
       this.expirationDate,
       this.fileSize,
       this.pageType,
-      this.passthrough,
-      this.reqId});
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>
@@ -54,12 +55,6 @@ class DocumentUploadRequest extends Request {
 
   /// [Optional] To determine document side
   String pageType;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

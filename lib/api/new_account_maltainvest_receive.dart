@@ -11,7 +11,11 @@ part 'new_account_maltainvest_receive.g.dart';
 class NewAccountMaltainvestResponse extends Response {
   ///
   NewAccountMaltainvestResponse(
-      {this.echoReq, this.msgType, this.newAccountMaltainvest, this.reqId});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      this.newAccountMaltainvest,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory NewAccountMaltainvestResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class NewAccountMaltainvestResponse extends Response {
   Map<String, dynamic> toJson() => _$NewAccountMaltainvestResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// New `maltainvest` account details
   Map<String, dynamic> newAccountMaltainvest;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

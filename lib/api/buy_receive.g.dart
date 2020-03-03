@@ -18,10 +18,10 @@ BuyResponse _$BuyResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$BuyResponseToJson(BuyResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'buy': instance.buy,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
+      'buy': instance.buy,
       'subscription': instance.subscription,
     };

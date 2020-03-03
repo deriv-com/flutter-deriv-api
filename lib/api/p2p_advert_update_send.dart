@@ -15,8 +15,9 @@ class P2pAdvertUpdateRequest extends Request {
       this.id,
       this.isActive,
       this.p2pAdvertUpdate,
-      this.passthrough,
-      this.reqId});
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory P2pAdvertUpdateRequest.fromJson(Map<String, dynamic> json) =>
@@ -38,12 +39,6 @@ class P2pAdvertUpdateRequest extends Request {
 
   /// Must be 1
   int p2pAdvertUpdate;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

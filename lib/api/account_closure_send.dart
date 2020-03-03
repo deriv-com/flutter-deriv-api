@@ -11,7 +11,11 @@ part 'account_closure_send.g.dart';
 class AccountClosureRequest extends Request {
   ///
   AccountClosureRequest(
-      {this.accountClosure, this.passthrough, this.reason, this.reqId});
+      {this.accountClosure,
+      Map<String, dynamic> passthrough,
+      this.reason,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory AccountClosureRequest.fromJson(Map<String, dynamic> json) =>
@@ -25,14 +29,8 @@ class AccountClosureRequest extends Request {
   /// Must be `1`
   int accountClosure;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// Reason for closing off accounts.
   String reason;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

@@ -14,8 +14,9 @@ class ChangePasswordRequest extends Request {
       {this.changePassword,
       this.newPassword,
       this.oldPassword,
-      this.passthrough,
-      this.reqId});
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory ChangePasswordRequest.fromJson(Map<String, dynamic> json) =>
@@ -34,12 +35,6 @@ class ChangePasswordRequest extends Request {
 
   /// Old password for validation (non-empty string, accepts any printable ASCII character)
   String oldPassword;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

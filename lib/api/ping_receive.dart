@@ -10,7 +10,9 @@ part 'ping_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PingResponse extends Response {
   ///
-  PingResponse({this.echoReq, this.msgType, this.ping, this.reqId});
+  PingResponse(
+      {Map<String, dynamic> echoReq, String msgType, this.ping, int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory PingResponse.fromJson(Map<String, dynamic> json) =>
@@ -21,17 +23,9 @@ class PingResponse extends Response {
   Map<String, dynamic> toJson() => _$PingResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// Will return 'pong'
   String ping;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

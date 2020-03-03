@@ -20,9 +20,9 @@ AccountSecurityRequest _$AccountSecurityRequestFromJson(
 Map<String, dynamic> _$AccountSecurityRequestToJson(
         AccountSecurityRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'account_security': instance.accountSecurity,
       'otp': instance.otp,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
       'totp_action': instance.totpAction,
     };

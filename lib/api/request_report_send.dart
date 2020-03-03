@@ -13,10 +13,11 @@ class RequestReportRequest extends Request {
   RequestReportRequest(
       {this.dateFrom,
       this.dateTo,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.reportType,
-      this.reqId,
-      this.requestReport});
+      int reqId,
+      this.requestReport})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory RequestReportRequest.fromJson(Map<String, dynamic> json) =>
@@ -33,14 +34,8 @@ class RequestReportRequest extends Request {
   /// End date of the report
   int dateTo;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// Type of report to be sent to client's registered e-mail address
   String reportType;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Must be `1`
   int requestReport;

@@ -10,7 +10,9 @@ part 'reality_check_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class RealityCheckRequest extends Request {
   ///
-  RealityCheckRequest({this.passthrough, this.realityCheck, this.reqId});
+  RealityCheckRequest(
+      {Map<String, dynamic> passthrough, this.realityCheck, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory RealityCheckRequest.fromJson(Map<String, dynamic> json) =>
@@ -21,14 +23,9 @@ class RealityCheckRequest extends Request {
   Map<String, dynamic> toJson() => _$RealityCheckRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
 
   /// Must be `1`
   int realityCheck;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

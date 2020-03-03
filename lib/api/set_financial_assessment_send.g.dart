@@ -39,6 +39,8 @@ SetFinancialAssessmentRequest _$SetFinancialAssessmentRequestFromJson(
 Map<String, dynamic> _$SetFinancialAssessmentRequestToJson(
         SetFinancialAssessmentRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'account_turnover': instance.accountTurnover,
       'binary_options_trading_experience':
           instance.binaryOptionsTradingExperience,
@@ -59,8 +61,6 @@ Map<String, dynamic> _$SetFinancialAssessmentRequestToJson(
           instance.otherInstrumentsTradingExperience,
       'other_instruments_trading_frequency':
           instance.otherInstrumentsTradingFrequency,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
       'set_financial_assessment': instance.setFinancialAssessment,
       'source_of_wealth': instance.sourceOfWealth,
     };

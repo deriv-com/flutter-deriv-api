@@ -14,9 +14,10 @@ class Mt5DepositRequest extends Request {
       {this.amount,
       this.fromBinary,
       this.mt5Deposit,
-      this.passthrough,
-      this.reqId,
-      this.toMt5});
+      Map<String, dynamic> passthrough,
+      int reqId,
+      this.toMt5})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>
@@ -35,12 +36,6 @@ class Mt5DepositRequest extends Request {
 
   /// Must be `1`
   int mt5Deposit;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// MT5 account login to deposit money to
   String toMt5;

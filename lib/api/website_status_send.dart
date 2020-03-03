@@ -11,7 +11,11 @@ part 'website_status_send.g.dart';
 class WebsiteStatusRequest extends Request {
   ///
   WebsiteStatusRequest(
-      {this.passthrough, this.reqId, this.subscribe, this.websiteStatus});
+      {Map<String, dynamic> passthrough,
+      int reqId,
+      this.subscribe,
+      this.websiteStatus})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory WebsiteStatusRequest.fromJson(Map<String, dynamic> json) =>
@@ -22,11 +26,6 @@ class WebsiteStatusRequest extends Request {
   Map<String, dynamic> toJson() => _$WebsiteStatusRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] `1` to stream the server/website status updates.
   int subscribe;

@@ -11,7 +11,11 @@ part 'topup_virtual_receive.g.dart';
 class TopupVirtualResponse extends Response {
   ///
   TopupVirtualResponse(
-      {this.echoReq, this.msgType, this.reqId, this.topupVirtual});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      int reqId,
+      this.topupVirtual})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory TopupVirtualResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,14 +26,6 @@ class TopupVirtualResponse extends Response {
   Map<String, dynamic> toJson() => _$TopupVirtualResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   /// The information regarding a successful top up for a virtual money account
   Map<String, dynamic> topupVirtual;

@@ -21,9 +21,9 @@ TradingDurationsResponse _$TradingDurationsResponseFromJson(
 Map<String, dynamic> _$TradingDurationsResponseToJson(
         TradingDurationsResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
       'trading_durations': instance.tradingDurations,
     };

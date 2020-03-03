@@ -18,11 +18,12 @@ class AppRegisterRequest extends Request {
       this.googleplay,
       this.homepage,
       this.name,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.redirectUri,
-      this.reqId,
+      int reqId,
       this.scopes,
-      this.verificationUri});
+      this.verificationUri})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory AppRegisterRequest.fromJson(Map<String, dynamic> json) =>
@@ -54,14 +55,8 @@ class AppRegisterRequest extends Request {
   /// Application name.
   String name;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// The URL to redirect to after a successful login.
   String redirectUri;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// List of permission scopes to grant the application.
   List<String> scopes;

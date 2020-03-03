@@ -10,7 +10,9 @@ part 'residence_list_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ResidenceListRequest extends Request {
   ///
-  ResidenceListRequest({this.passthrough, this.reqId, this.residenceList});
+  ResidenceListRequest(
+      {Map<String, dynamic> passthrough, int reqId, this.residenceList})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory ResidenceListRequest.fromJson(Map<String, dynamic> json) =>
@@ -21,11 +23,6 @@ class ResidenceListRequest extends Request {
   Map<String, dynamic> toJson() => _$ResidenceListRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Must be `1`
   int residenceList;

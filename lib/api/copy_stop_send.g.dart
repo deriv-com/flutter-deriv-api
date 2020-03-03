@@ -16,7 +16,7 @@ CopyStopRequest _$CopyStopRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$CopyStopRequestToJson(CopyStopRequest instance) =>
     <String, dynamic>{
-      'copy_stop': instance.copyStop,
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
+      'copy_stop': instance.copyStop,
     };

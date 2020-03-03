@@ -10,7 +10,9 @@ part 'statement_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class StatementResponse extends Response {
   ///
-  StatementResponse({this.echoReq, this.msgType, this.reqId, this.statement});
+  StatementResponse(
+      {Map<String, dynamic> echoReq, String msgType, int reqId, this.statement})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory StatementResponse.fromJson(Map<String, dynamic> json) =>
@@ -21,14 +23,6 @@ class StatementResponse extends Response {
   Map<String, dynamic> toJson() => _$StatementResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   /// Account statement.
   Map<String, dynamic> statement;

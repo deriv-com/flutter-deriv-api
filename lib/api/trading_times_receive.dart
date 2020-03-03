@@ -11,7 +11,11 @@ part 'trading_times_receive.g.dart';
 class TradingTimesResponse extends Response {
   ///
   TradingTimesResponse(
-      {this.echoReq, this.msgType, this.reqId, this.tradingTimes});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      int reqId,
+      this.tradingTimes})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory TradingTimesResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,14 +26,6 @@ class TradingTimesResponse extends Response {
   Map<String, dynamic> toJson() => _$TradingTimesResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   /// The trading times structure is a hierarchy as follows: Market -> SubMarket -> Underlyings
   Map<String, dynamic> tradingTimes;

@@ -12,10 +12,11 @@ class CashierRequest extends Request {
   ///
   CashierRequest(
       {this.cashier,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.provider,
-      this.reqId,
-      this.verificationCode});
+      int reqId,
+      this.verificationCode})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory CashierRequest.fromJson(Map<String, dynamic> json) =>
@@ -29,14 +30,8 @@ class CashierRequest extends Request {
   /// The cashier type to request the URL for.
   String cashier;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] Note: only 'doughflow' is supported currently.
   String provider;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] Email verification code (received from a verify_email call, which must be done first)
   String verificationCode;

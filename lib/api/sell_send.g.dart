@@ -17,8 +17,8 @@ SellRequest _$SellRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$SellRequestToJson(SellRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
       'price': instance.price,
-      'req_id': instance.reqId,
       'sell': instance.sell,
     };

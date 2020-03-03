@@ -19,10 +19,11 @@ class AppMarkupDetailsRequest extends Request {
       this.description,
       this.limit,
       this.offset,
-      this.passthrough,
-      this.reqId,
+      Map<String, dynamic> passthrough,
+      int reqId,
       this.sort,
-      this.sortFields});
+      this.sortFields})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>
@@ -56,12 +57,6 @@ class AppMarkupDetailsRequest extends Request {
 
   /// [Optional] Number of transactions to skip.
   num offset;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] Sort direction on `transaction_time`. Other fields sort order is ASC.
   String sort;

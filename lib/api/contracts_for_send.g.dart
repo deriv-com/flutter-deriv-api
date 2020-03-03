@@ -20,10 +20,10 @@ ContractsForRequest _$ContractsForRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$ContractsForRequestToJson(
         ContractsForRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'contracts_for': instance.contractsFor,
       'currency': instance.currency,
       'landing_company': instance.landingCompany,
-      'passthrough': instance.passthrough,
       'product_type': instance.productType,
-      'req_id': instance.reqId,
     };

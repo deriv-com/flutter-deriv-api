@@ -21,11 +21,11 @@ PaymentagentWithdrawResponse _$PaymentagentWithdrawResponseFromJson(
 Map<String, dynamic> _$PaymentagentWithdrawResponseToJson(
         PaymentagentWithdrawResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'paymentagent_name': instance.paymentagentName,
       'paymentagent_withdraw': instance.paymentagentWithdraw,
-      'req_id': instance.reqId,
       'transaction_id': instance.transactionId,
     };

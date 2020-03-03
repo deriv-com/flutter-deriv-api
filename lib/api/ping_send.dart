@@ -10,7 +10,8 @@ part 'ping_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PingRequest extends Request {
   ///
-  PingRequest({this.passthrough, this.ping, this.reqId});
+  PingRequest({Map<String, dynamic> passthrough, this.ping, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory PingRequest.fromJson(Map<String, dynamic> json) =>
@@ -21,14 +22,9 @@ class PingRequest extends Request {
   Map<String, dynamic> toJson() => _$PingRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
 
   /// Must be `1`
   int ping;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

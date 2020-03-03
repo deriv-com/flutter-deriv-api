@@ -17,8 +17,8 @@ TncApprovalRequest _$TncApprovalRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$TncApprovalRequestToJson(TncApprovalRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'tnc_approval': instance.tncApproval,
       'ukgc_funds_protection': instance.ukgcFundsProtection,
     };

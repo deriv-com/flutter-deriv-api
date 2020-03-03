@@ -13,10 +13,11 @@ class BuyRequest extends Request {
   BuyRequest(
       {this.buy,
       this.parameters,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.price,
-      this.reqId,
-      this.subscribe});
+      int reqId,
+      this.subscribe})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory BuyRequest.fromJson(Map<String, dynamic> json) =>
@@ -33,14 +34,8 @@ class BuyRequest extends Request {
   /// [Optional] Used to pass the parameters for contract buy.
   Map<String, dynamic> parameters;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// Maximum price at which to purchase the contract.
   num price;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] `1` to stream.
   int subscribe;

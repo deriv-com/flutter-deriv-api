@@ -11,11 +11,12 @@ part 'proposal_open_contract_receive.g.dart';
 class ProposalOpenContractResponse extends Response {
   ///
   ProposalOpenContractResponse(
-      {this.echoReq,
-      this.msgType,
+      {Map<String, dynamic> echoReq,
+      String msgType,
       this.proposalOpenContract,
-      this.reqId,
-      this.subscription});
+      int reqId,
+      this.subscription})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory ProposalOpenContractResponse.fromJson(Map<String, dynamic> json) =>
@@ -26,17 +27,9 @@ class ProposalOpenContractResponse extends Response {
   Map<String, dynamic> toJson() => _$ProposalOpenContractResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// Latest price and other details for an open contract
   Map<String, dynamic> proposalOpenContract;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   /// For subscription requests only
   Map<String, dynamic> subscription;

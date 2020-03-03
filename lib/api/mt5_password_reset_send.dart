@@ -14,10 +14,11 @@ class Mt5PasswordResetRequest extends Request {
       {this.login,
       this.mt5PasswordReset,
       this.newPassword,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.passwordType,
-      this.reqId,
-      this.verificationCode});
+      int reqId,
+      this.verificationCode})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory Mt5PasswordResetRequest.fromJson(Map<String, dynamic> json) =>
@@ -37,14 +38,8 @@ class Mt5PasswordResetRequest extends Request {
   /// New password of the account. For validation (length within 8-25 chars, accepts at least 2 out of the following 3 types of characters: uppercase letters, lowercase letters, and numbers).
   String newPassword;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] Type of the password to reset.
   String passwordType;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Email verification code (received from a `verify_email` call, which must be done first)
   String verificationCode;

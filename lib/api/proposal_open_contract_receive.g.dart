@@ -21,10 +21,10 @@ ProposalOpenContractResponse _$ProposalOpenContractResponseFromJson(
 Map<String, dynamic> _$ProposalOpenContractResponseToJson(
         ProposalOpenContractResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'proposal_open_contract': instance.proposalOpenContract,
-      'req_id': instance.reqId,
       'subscription': instance.subscription,
     };

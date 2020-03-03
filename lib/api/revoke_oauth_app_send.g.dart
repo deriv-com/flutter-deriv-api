@@ -18,7 +18,7 @@ RevokeOauthAppRequest _$RevokeOauthAppRequestFromJson(
 Map<String, dynamic> _$RevokeOauthAppRequestToJson(
         RevokeOauthAppRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'revoke_oauth_app': instance.revokeOauthApp,
     };

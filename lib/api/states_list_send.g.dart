@@ -16,7 +16,7 @@ StatesListRequest _$StatesListRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$StatesListRequestToJson(StatesListRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'states_list': instance.statesList,
     };

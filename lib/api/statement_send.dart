@@ -17,9 +17,10 @@ class StatementRequest extends Request {
       this.description,
       this.limit,
       this.offset,
-      this.passthrough,
-      this.reqId,
-      this.statement});
+      Map<String, dynamic> passthrough,
+      int reqId,
+      this.statement})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>
@@ -47,12 +48,6 @@ class StatementRequest extends Request {
 
   /// [Optional] Number of transactions to skip.
   num offset;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Must be `1`
   int statement;

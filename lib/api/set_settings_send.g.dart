@@ -37,6 +37,8 @@ SetSettingsRequest _$SetSettingsRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$SetSettingsRequestToJson(SetSettingsRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'account_opening_reason': instance.accountOpeningReason,
       'address_city': instance.addressCity,
       'address_line1': instance.addressLine1,
@@ -49,10 +51,8 @@ Map<String, dynamic> _$SetSettingsRequestToJson(SetSettingsRequest instance) =>
       'email_consent': instance.emailConsent,
       'first_name': instance.firstName,
       'last_name': instance.lastName,
-      'passthrough': instance.passthrough,
       'phone': instance.phone,
       'place_of_birth': instance.placeOfBirth,
-      'req_id': instance.reqId,
       'request_professional_status': instance.requestProfessionalStatus,
       'residence': instance.residence,
       'salutation': instance.salutation,

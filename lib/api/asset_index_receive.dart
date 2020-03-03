@@ -10,7 +10,12 @@ part 'asset_index_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AssetIndexResponse extends Response {
   ///
-  AssetIndexResponse({this.assetIndex, this.echoReq, this.msgType, this.reqId});
+  AssetIndexResponse(
+      {this.assetIndex,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory AssetIndexResponse.fromJson(Map<String, dynamic> json) =>
@@ -23,15 +28,6 @@ class AssetIndexResponse extends Response {
   // Properties
   /// List of underlyings by their display name and symbol followed by their available contract types and duration boundaries.
   List<String> assetIndex;
-
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

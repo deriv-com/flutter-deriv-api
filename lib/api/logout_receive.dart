@@ -10,7 +10,9 @@ part 'logout_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LogoutResponse extends Response {
   ///
-  LogoutResponse({this.echoReq, this.logout, this.msgType, this.reqId});
+  LogoutResponse(
+      {Map<String, dynamic> echoReq, this.logout, String msgType, int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory LogoutResponse.fromJson(Map<String, dynamic> json) =>
@@ -21,17 +23,9 @@ class LogoutResponse extends Response {
   Map<String, dynamic> toJson() => _$LogoutResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
 
   /// The result of logout request which is 1
   int logout;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

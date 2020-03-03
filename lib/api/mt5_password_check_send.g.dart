@@ -21,10 +21,10 @@ Mt5PasswordCheckRequest _$Mt5PasswordCheckRequestFromJson(
 Map<String, dynamic> _$Mt5PasswordCheckRequestToJson(
         Mt5PasswordCheckRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'login': instance.login,
       'mt5_password_check': instance.mt5PasswordCheck,
-      'passthrough': instance.passthrough,
       'password': instance.password,
       'password_type': instance.passwordType,
-      'req_id': instance.reqId,
     };

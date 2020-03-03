@@ -10,7 +10,9 @@ part 'portfolio_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PortfolioResponse extends Response {
   ///
-  PortfolioResponse({this.echoReq, this.msgType, this.portfolio, this.reqId});
+  PortfolioResponse(
+      {Map<String, dynamic> echoReq, String msgType, this.portfolio, int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory PortfolioResponse.fromJson(Map<String, dynamic> json) =>
@@ -21,17 +23,9 @@ class PortfolioResponse extends Response {
   Map<String, dynamic> toJson() => _$PortfolioResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// Current account's open positions.
   Map<String, dynamic> portfolio;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

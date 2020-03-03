@@ -18,9 +18,9 @@ AppRegisterResponse _$AppRegisterResponseFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$AppRegisterResponseToJson(
         AppRegisterResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'app_register': instance.appRegister,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
+      'app_register': instance.appRegister,
     };

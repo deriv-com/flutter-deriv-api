@@ -22,11 +22,11 @@ BuyContractForMultipleAccountsRequest
 Map<String, dynamic> _$BuyContractForMultipleAccountsRequestToJson(
         BuyContractForMultipleAccountsRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'buy_contract_for_multiple_accounts':
           instance.buyContractForMultipleAccounts,
       'parameters': instance.parameters,
-      'passthrough': instance.passthrough,
       'price': instance.price,
-      'req_id': instance.reqId,
       'tokens': instance.tokens,
     };

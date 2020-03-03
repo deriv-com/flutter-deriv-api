@@ -27,6 +27,8 @@ AppMarkupDetailsRequest _$AppMarkupDetailsRequestFromJson(
 Map<String, dynamic> _$AppMarkupDetailsRequestToJson(
         AppMarkupDetailsRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'app_id': instance.appId,
       'app_markup_details': instance.appMarkupDetails,
       'client_loginid': instance.clientLoginid,
@@ -35,8 +37,6 @@ Map<String, dynamic> _$AppMarkupDetailsRequestToJson(
       'description': instance.description,
       'limit': instance.limit,
       'offset': instance.offset,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
       'sort': instance.sort,
       'sort_fields': instance.sortFields,
     };

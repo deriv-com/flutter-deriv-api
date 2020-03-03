@@ -19,9 +19,9 @@ AppMarkupDetailsResponse _$AppMarkupDetailsResponseFromJson(
 Map<String, dynamic> _$AppMarkupDetailsResponseToJson(
         AppMarkupDetailsResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'app_markup_details': instance.appMarkupDetails,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
+      'app_markup_details': instance.appMarkupDetails,
     };

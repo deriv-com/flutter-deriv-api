@@ -11,7 +11,11 @@ part 'account_security_receive.g.dart';
 class AccountSecurityResponse extends Response {
   ///
   AccountSecurityResponse(
-      {this.accountSecurity, this.echoReq, this.msgType, this.reqId});
+      {this.accountSecurity,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory AccountSecurityResponse.fromJson(Map<String, dynamic> json) =>
@@ -24,15 +28,6 @@ class AccountSecurityResponse extends Response {
   // Properties
   /// The information of 2-Factor authentication.
   Map<String, dynamic> accountSecurity;
-
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

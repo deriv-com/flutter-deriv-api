@@ -15,9 +15,10 @@ class Mt5PasswordChangeRequest extends Request {
       this.mt5PasswordChange,
       this.newPassword,
       this.oldPassword,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.passwordType,
-      this.reqId});
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory Mt5PasswordChangeRequest.fromJson(Map<String, dynamic> json) =>
@@ -40,14 +41,8 @@ class Mt5PasswordChangeRequest extends Request {
   /// Old password for validation (non-empty string, accepts any printable ASCII character)
   String oldPassword;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] Type of the password to change.
   String passwordType;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

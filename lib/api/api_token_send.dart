@@ -15,9 +15,10 @@ class ApiTokenRequest extends Request {
       this.deleteToken,
       this.newToken,
       this.newTokenScopes,
-      this.passthrough,
-      this.reqId,
-      this.validForCurrentIpOnly});
+      Map<String, dynamic> passthrough,
+      int reqId,
+      this.validForCurrentIpOnly})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>
@@ -39,12 +40,6 @@ class ApiTokenRequest extends Request {
 
   /// [Optional] List of permission scopes to provide with the token.
   List<String> newTokenScopes;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] If you set this parameter during token creation, then the token created will only work for the IP address that was used to create the token
   int validForCurrentIpOnly;

@@ -11,7 +11,11 @@ part 'mt5_new_account_receive.g.dart';
 class Mt5NewAccountResponse extends Response {
   ///
   Mt5NewAccountResponse(
-      {this.echoReq, this.msgType, this.mt5NewAccount, this.reqId});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      this.mt5NewAccount,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory Mt5NewAccountResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class Mt5NewAccountResponse extends Response {
   Map<String, dynamic> toJson() => _$Mt5NewAccountResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// New MT5 account details
   Map<String, dynamic> mt5NewAccount;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

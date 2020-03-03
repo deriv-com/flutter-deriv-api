@@ -19,8 +19,8 @@ TradingDurationsRequest _$TradingDurationsRequestFromJson(
 Map<String, dynamic> _$TradingDurationsRequestToJson(
         TradingDurationsRequest instance) =>
     <String, dynamic>{
-      'landing_company': instance.landingCompany,
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
+      'landing_company': instance.landingCompany,
       'trading_durations': instance.tradingDurations,
     };

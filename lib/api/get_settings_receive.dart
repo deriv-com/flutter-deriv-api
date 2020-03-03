@@ -11,7 +11,11 @@ part 'get_settings_receive.g.dart';
 class GetSettingsResponse extends Response {
   ///
   GetSettingsResponse(
-      {this.echoReq, this.getSettings, this.msgType, this.reqId});
+      {Map<String, dynamic> echoReq,
+      this.getSettings,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory GetSettingsResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class GetSettingsResponse extends Response {
   Map<String, dynamic> toJson() => _$GetSettingsResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
 
   /// User information and settings.
   Map<String, dynamic> getSettings;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

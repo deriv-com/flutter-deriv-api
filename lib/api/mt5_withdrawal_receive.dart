@@ -12,10 +12,11 @@ class Mt5WithdrawalResponse extends Response {
   ///
   Mt5WithdrawalResponse(
       {this.binaryTransactionId,
-      this.echoReq,
-      this.msgType,
+      Map<String, dynamic> echoReq,
+      String msgType,
       this.mt5Withdrawal,
-      this.reqId});
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory Mt5WithdrawalResponse.fromJson(Map<String, dynamic> json) =>
@@ -29,17 +30,8 @@ class Mt5WithdrawalResponse extends Response {
   /// Deposit reference ID of Binary account.
   int binaryTransactionId;
 
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
   /// `1` on success
   int mt5Withdrawal;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

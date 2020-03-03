@@ -11,7 +11,11 @@ part 'profit_table_receive.g.dart';
 class ProfitTableResponse extends Response {
   ///
   ProfitTableResponse(
-      {this.echoReq, this.msgType, this.profitTable, this.reqId});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      this.profitTable,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory ProfitTableResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class ProfitTableResponse extends Response {
   Map<String, dynamic> toJson() => _$ProfitTableResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// Account Profit Table.
   Map<String, dynamic> profitTable;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;
