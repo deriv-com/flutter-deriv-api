@@ -17,9 +17,9 @@ CopyStopResponse _$CopyStopResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$CopyStopResponseToJson(CopyStopResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'copy_stop': instance.copyStop,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
+      'copy_stop': instance.copyStop,
     };

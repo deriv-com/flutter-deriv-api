@@ -17,9 +17,9 @@ AppDeleteResponse _$AppDeleteResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$AppDeleteResponseToJson(AppDeleteResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'app_delete': instance.appDelete,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
+      'app_delete': instance.appDelete,
     };

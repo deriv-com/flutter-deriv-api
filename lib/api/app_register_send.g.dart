@@ -25,6 +25,8 @@ AppRegisterRequest _$AppRegisterRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$AppRegisterRequestToJson(AppRegisterRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'app_markup_percentage': instance.appMarkupPercentage,
       'app_register': instance.appRegister,
       'appstore': instance.appstore,
@@ -32,9 +34,7 @@ Map<String, dynamic> _$AppRegisterRequestToJson(AppRegisterRequest instance) =>
       'googleplay': instance.googleplay,
       'homepage': instance.homepage,
       'name': instance.name,
-      'passthrough': instance.passthrough,
       'redirect_uri': instance.redirectUri,
-      'req_id': instance.reqId,
       'scopes': instance.scopes,
       'verification_uri': instance.verificationUri,
     };

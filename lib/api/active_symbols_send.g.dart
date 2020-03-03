@@ -19,9 +19,9 @@ ActiveSymbolsRequest _$ActiveSymbolsRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$ActiveSymbolsRequestToJson(
         ActiveSymbolsRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'active_symbols': instance.activeSymbols,
       'landing_company': instance.landingCompany,
-      'passthrough': instance.passthrough,
       'product_type': instance.productType,
-      'req_id': instance.reqId,
     };

@@ -23,9 +23,9 @@ SellContractForMultipleAccountsRequest
 Map<String, dynamic> _$SellContractForMultipleAccountsRequestToJson(
         SellContractForMultipleAccountsRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
       'price': instance.price,
-      'req_id': instance.reqId,
       'sell_contract_for_multiple_accounts':
           instance.sellContractForMultipleAccounts,
       'shortcode': instance.shortcode,

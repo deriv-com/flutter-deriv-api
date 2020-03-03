@@ -17,7 +17,7 @@ RealityCheckRequest _$RealityCheckRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$RealityCheckRequestToJson(
         RealityCheckRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
       'reality_check': instance.realityCheck,
-      'req_id': instance.reqId,
     };

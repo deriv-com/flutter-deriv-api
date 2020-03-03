@@ -11,7 +11,12 @@ part 'ticks_receive.g.dart';
 class TicksResponse extends Response {
   ///
   TicksResponse(
-      {this.echoReq, this.msgType, this.reqId, this.subscription, this.tick});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      int reqId,
+      this.subscription,
+      this.tick})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory TicksResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,14 +27,6 @@ class TicksResponse extends Response {
   Map<String, dynamic> toJson() => _$TicksResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Type of the response.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   /// For subscription requests only
   Map<String, dynamic> subscription;

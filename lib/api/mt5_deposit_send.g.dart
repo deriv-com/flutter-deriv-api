@@ -19,10 +19,10 @@ Mt5DepositRequest _$Mt5DepositRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$Mt5DepositRequestToJson(Mt5DepositRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'amount': instance.amount,
       'from_binary': instance.fromBinary,
       'mt5_deposit': instance.mt5Deposit,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
       'to_mt5': instance.toMt5,
     };

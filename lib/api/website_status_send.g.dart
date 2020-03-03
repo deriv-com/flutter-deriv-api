@@ -18,8 +18,8 @@ WebsiteStatusRequest _$WebsiteStatusRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$WebsiteStatusRequestToJson(
         WebsiteStatusRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'subscribe': instance.subscribe,
       'website_status': instance.websiteStatus,
     };

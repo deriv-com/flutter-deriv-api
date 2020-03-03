@@ -23,12 +23,12 @@ PaymentagentTransferRequest _$PaymentagentTransferRequestFromJson(
 Map<String, dynamic> _$PaymentagentTransferRequestToJson(
         PaymentagentTransferRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'amount': instance.amount,
       'currency': instance.currency,
       'description': instance.description,
       'dry_run': instance.dryRun,
-      'passthrough': instance.passthrough,
       'paymentagent_transfer': instance.paymentagentTransfer,
-      'req_id': instance.reqId,
       'transfer_to': instance.transferTo,
     };

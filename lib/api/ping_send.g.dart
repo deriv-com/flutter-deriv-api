@@ -16,7 +16,7 @@ PingRequest _$PingRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$PingRequestToJson(PingRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
       'ping': instance.ping,
-      'req_id': instance.reqId,
     };

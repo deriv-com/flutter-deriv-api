@@ -11,7 +11,11 @@ part 'get_financial_assessment_receive.g.dart';
 class GetFinancialAssessmentResponse extends Response {
   ///
   GetFinancialAssessmentResponse(
-      {this.echoReq, this.getFinancialAssessment, this.msgType, this.reqId});
+      {Map<String, dynamic> echoReq,
+      this.getFinancialAssessment,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory GetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class GetFinancialAssessmentResponse extends Response {
   Map<String, dynamic> toJson() => _$GetFinancialAssessmentResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
 
   /// Client's financial assessment details
   Map<String, dynamic> getFinancialAssessment;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

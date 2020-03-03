@@ -17,9 +17,9 @@ LogoutResponse _$LogoutResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$LogoutResponseToJson(LogoutResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'echo_req': instance.echoReq,
-      'logout': instance.logout,
-      'msg_type': instance.msgType,
       'req_id': instance.reqId,
+      'echo_req': instance.echoReq,
+      'msg_type': instance.msgType,
+      'error': instance.error,
+      'logout': instance.logout,
     };

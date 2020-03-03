@@ -15,11 +15,12 @@ class PaymentagentWithdrawRequest extends Request {
       this.currency,
       this.description,
       this.dryRun,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.paymentagentLoginid,
       this.paymentagentWithdraw,
-      this.reqId,
-      this.verificationCode});
+      int reqId,
+      this.verificationCode})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory PaymentagentWithdrawRequest.fromJson(Map<String, dynamic> json) =>
@@ -42,17 +43,11 @@ class PaymentagentWithdrawRequest extends Request {
   /// [Optional] If set to 1, just do validation.
   int dryRun;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// The payment agent loginid received from the `paymentagent_list` call.
   String paymentagentLoginid;
 
   /// Must be `1`
   int paymentagentWithdraw;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Email verification code (received from a `verify_email` call, which must be done first)
   String verificationCode;

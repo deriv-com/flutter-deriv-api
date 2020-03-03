@@ -10,7 +10,9 @@ part 'forget_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ForgetResponse extends Response {
   ///
-  ForgetResponse({this.echoReq, this.forget, this.msgType, this.reqId});
+  ForgetResponse(
+      {Map<String, dynamic> echoReq, this.forget, String msgType, int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory ForgetResponse.fromJson(Map<String, dynamic> json) =>
@@ -21,17 +23,9 @@ class ForgetResponse extends Response {
   Map<String, dynamic> toJson() => _$ForgetResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
 
   /// If set to 1, stream exited and stopped. If set to 0, stream did not exist.
   int forget;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

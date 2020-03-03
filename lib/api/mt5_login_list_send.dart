@@ -10,7 +10,9 @@ part 'mt5_login_list_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5LoginListRequest extends Request {
   ///
-  Mt5LoginListRequest({this.mt5LoginList, this.passthrough, this.reqId});
+  Mt5LoginListRequest(
+      {this.mt5LoginList, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory Mt5LoginListRequest.fromJson(Map<String, dynamic> json) =>
@@ -23,12 +25,6 @@ class Mt5LoginListRequest extends Request {
   // Properties
   /// Must be `1`
   int mt5LoginList;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

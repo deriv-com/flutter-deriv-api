@@ -18,9 +18,9 @@ ProfitTableResponse _$ProfitTableResponseFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$ProfitTableResponseToJson(
         ProfitTableResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'profit_table': instance.profitTable,
-      'req_id': instance.reqId,
     };

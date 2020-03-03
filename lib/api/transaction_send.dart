@@ -11,7 +11,11 @@ part 'transaction_send.g.dart';
 class TransactionRequest extends Request {
   ///
   TransactionRequest(
-      {this.passthrough, this.reqId, this.subscribe, this.transaction});
+      {Map<String, dynamic> passthrough,
+      int reqId,
+      this.subscribe,
+      this.transaction})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory TransactionRequest.fromJson(Map<String, dynamic> json) =>
@@ -22,11 +26,6 @@ class TransactionRequest extends Request {
   Map<String, dynamic> toJson() => _$TransactionRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// If set to 1, will send updates whenever there is an update to transactions. If not to 1 then it will not return any records.
   int subscribe;

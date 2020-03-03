@@ -19,9 +19,9 @@ AccountClosureResponse _$AccountClosureResponseFromJson(
 Map<String, dynamic> _$AccountClosureResponseToJson(
         AccountClosureResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'account_closure': instance.accountClosure,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
+      'account_closure': instance.accountClosure,
     };

@@ -20,9 +20,9 @@ Mt5LoginListResponse _$Mt5LoginListResponseFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$Mt5LoginListResponseToJson(
         Mt5LoginListResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'mt5_login_list': instance.mt5LoginList,
-      'req_id': instance.reqId,
     };

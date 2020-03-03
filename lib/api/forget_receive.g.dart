@@ -17,9 +17,9 @@ ForgetResponse _$ForgetResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$ForgetResponseToJson(ForgetResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'echo_req': instance.echoReq,
-      'forget': instance.forget,
-      'msg_type': instance.msgType,
       'req_id': instance.reqId,
+      'echo_req': instance.echoReq,
+      'msg_type': instance.msgType,
+      'error': instance.error,
+      'forget': instance.forget,
     };

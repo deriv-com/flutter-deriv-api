@@ -40,6 +40,8 @@ NewAccountRealRequest _$NewAccountRealRequestFromJson(
 Map<String, dynamic> _$NewAccountRealRequestToJson(
         NewAccountRealRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'account_opening_reason': instance.accountOpeningReason,
       'account_turnover': instance.accountTurnover,
       'address_city': instance.addressCity,
@@ -55,10 +57,8 @@ Map<String, dynamic> _$NewAccountRealRequestToJson(
       'first_name': instance.firstName,
       'last_name': instance.lastName,
       'new_account_real': instance.newAccountReal,
-      'passthrough': instance.passthrough,
       'phone': instance.phone,
       'place_of_birth': instance.placeOfBirth,
-      'req_id': instance.reqId,
       'residence': instance.residence,
       'salutation': instance.salutation,
       'secret_answer': instance.secretAnswer,

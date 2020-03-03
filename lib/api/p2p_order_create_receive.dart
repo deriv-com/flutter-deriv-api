@@ -11,11 +11,12 @@ part 'p2p_order_create_receive.g.dart';
 class P2pOrderCreateResponse extends Response {
   ///
   P2pOrderCreateResponse(
-      {this.echoReq,
-      this.msgType,
+      {Map<String, dynamic> echoReq,
+      String msgType,
       this.p2pOrderCreate,
-      this.reqId,
-      this.subscription});
+      int reqId,
+      this.subscription})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory P2pOrderCreateResponse.fromJson(Map<String, dynamic> json) =>
@@ -26,17 +27,9 @@ class P2pOrderCreateResponse extends Response {
   Map<String, dynamic> toJson() => _$P2pOrderCreateResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// Information of the creates P2P order.
   Map<String, dynamic> p2pOrderCreate;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   /// For subscription requests only
   Map<String, dynamic> subscription;

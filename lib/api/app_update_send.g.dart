@@ -25,6 +25,8 @@ AppUpdateRequest _$AppUpdateRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$AppUpdateRequestToJson(AppUpdateRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'app_markup_percentage': instance.appMarkupPercentage,
       'app_update': instance.appUpdate,
       'appstore': instance.appstore,
@@ -32,9 +34,7 @@ Map<String, dynamic> _$AppUpdateRequestToJson(AppUpdateRequest instance) =>
       'googleplay': instance.googleplay,
       'homepage': instance.homepage,
       'name': instance.name,
-      'passthrough': instance.passthrough,
       'redirect_uri': instance.redirectUri,
-      'req_id': instance.reqId,
       'scopes': instance.scopes,
       'verification_uri': instance.verificationUri,
     };

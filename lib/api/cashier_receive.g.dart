@@ -17,9 +17,9 @@ CashierResponse _$CashierResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$CashierResponseToJson(CashierResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'cashier': instance.cashier,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
+      'cashier': instance.cashier,
     };

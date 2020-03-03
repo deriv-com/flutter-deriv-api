@@ -19,8 +19,8 @@ Mt5GetSettingsRequest _$Mt5GetSettingsRequestFromJson(
 Map<String, dynamic> _$Mt5GetSettingsRequestToJson(
         Mt5GetSettingsRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'login': instance.login,
       'mt5_get_settings': instance.mt5GetSettings,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
     };

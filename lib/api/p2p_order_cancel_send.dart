@@ -11,7 +11,11 @@ part 'p2p_order_cancel_send.g.dart';
 class P2pOrderCancelRequest extends Request {
   ///
   P2pOrderCancelRequest(
-      {this.id, this.p2pOrderCancel, this.passthrough, this.reqId});
+      {this.id,
+      this.p2pOrderCancel,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory P2pOrderCancelRequest.fromJson(Map<String, dynamic> json) =>
@@ -27,12 +31,6 @@ class P2pOrderCancelRequest extends Request {
 
   /// Must be 1
   int p2pOrderCancel;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

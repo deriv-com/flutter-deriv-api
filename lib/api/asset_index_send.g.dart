@@ -17,8 +17,8 @@ AssetIndexRequest _$AssetIndexRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$AssetIndexRequestToJson(AssetIndexRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'asset_index': instance.assetIndex,
       'landing_company': instance.landingCompany,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
     };

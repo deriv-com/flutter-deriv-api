@@ -23,12 +23,12 @@ TransferBetweenAccountsRequest _$TransferBetweenAccountsRequestFromJson(
 Map<String, dynamic> _$TransferBetweenAccountsRequestToJson(
         TransferBetweenAccountsRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'account_from': instance.accountFrom,
       'account_to': instance.accountTo,
       'accounts': instance.accounts,
       'amount': instance.amount,
       'currency': instance.currency,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
       'transfer_between_accounts': instance.transferBetweenAccounts,
     };

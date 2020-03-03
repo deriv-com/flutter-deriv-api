@@ -16,7 +16,7 @@ ForgetAllRequest _$ForgetAllRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$ForgetAllRequestToJson(ForgetAllRequest instance) =>
     <String, dynamic>{
-      'forget_all': instance.forgetAll,
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
+      'forget_all': instance.forgetAll,
     };

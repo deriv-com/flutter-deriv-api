@@ -29,6 +29,8 @@ P2pAdvertCreateRequest _$P2pAdvertCreateRequestFromJson(
 Map<String, dynamic> _$P2pAdvertCreateRequestToJson(
         P2pAdvertCreateRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'amount': instance.amount,
       'contact_info': instance.contactInfo,
       'country': instance.country,
@@ -37,10 +39,8 @@ Map<String, dynamic> _$P2pAdvertCreateRequestToJson(
       'max_order_amount': instance.maxOrderAmount,
       'min_order_amount': instance.minOrderAmount,
       'p2p_advert_create': instance.p2pAdvertCreate,
-      'passthrough': instance.passthrough,
       'payment_info': instance.paymentInfo,
       'payment_method': instance.paymentMethod,
       'rate': instance.rate,
-      'req_id': instance.reqId,
       'type': instance.type,
     };

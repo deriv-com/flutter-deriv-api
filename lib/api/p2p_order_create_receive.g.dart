@@ -20,10 +20,10 @@ P2pOrderCreateResponse _$P2pOrderCreateResponseFromJson(
 Map<String, dynamic> _$P2pOrderCreateResponseToJson(
         P2pOrderCreateResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'p2p_order_create': instance.p2pOrderCreate,
-      'req_id': instance.reqId,
       'subscription': instance.subscription,
     };

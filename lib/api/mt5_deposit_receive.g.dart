@@ -18,10 +18,10 @@ Mt5DepositResponse _$Mt5DepositResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$Mt5DepositResponseToJson(Mt5DepositResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'binary_transaction_id': instance.binaryTransactionId,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
+      'binary_transaction_id': instance.binaryTransactionId,
       'mt5_deposit': instance.mt5Deposit,
-      'req_id': instance.reqId,
     };

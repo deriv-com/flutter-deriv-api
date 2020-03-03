@@ -19,8 +19,8 @@ CopytradingStatisticsRequest _$CopytradingStatisticsRequestFromJson(
 Map<String, dynamic> _$CopytradingStatisticsRequestToJson(
         CopytradingStatisticsRequest instance) =>
     <String, dynamic>{
-      'copytrading_statistics': instance.copytradingStatistics,
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
+      'copytrading_statistics': instance.copytradingStatistics,
       'trader_id': instance.traderId,
     };

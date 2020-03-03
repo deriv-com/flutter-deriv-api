@@ -10,7 +10,9 @@ part 'states_list_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class StatesListRequest extends Request {
   ///
-  StatesListRequest({this.passthrough, this.reqId, this.statesList});
+  StatesListRequest(
+      {Map<String, dynamic> passthrough, int reqId, this.statesList})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory StatesListRequest.fromJson(Map<String, dynamic> json) =>
@@ -21,11 +23,6 @@ class StatesListRequest extends Request {
   Map<String, dynamic> toJson() => _$StatesListRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Client's 2-letter country code (obtained from residence_list call)
   String statesList;

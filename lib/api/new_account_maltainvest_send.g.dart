@@ -60,6 +60,8 @@ NewAccountMaltainvestRequest _$NewAccountMaltainvestRequestFromJson(
 Map<String, dynamic> _$NewAccountMaltainvestRequestToJson(
         NewAccountMaltainvestRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'accept_risk': instance.acceptRisk,
       'account_opening_reason': instance.accountOpeningReason,
       'account_turnover': instance.accountTurnover,
@@ -94,10 +96,8 @@ Map<String, dynamic> _$NewAccountMaltainvestRequestToJson(
           instance.otherInstrumentsTradingExperience,
       'other_instruments_trading_frequency':
           instance.otherInstrumentsTradingFrequency,
-      'passthrough': instance.passthrough,
       'phone': instance.phone,
       'place_of_birth': instance.placeOfBirth,
-      'req_id': instance.reqId,
       'residence': instance.residence,
       'salutation': instance.salutation,
       'secret_answer': instance.secretAnswer,

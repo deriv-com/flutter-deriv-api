@@ -15,10 +15,11 @@ class PaymentagentTransferRequest extends Request {
       this.currency,
       this.description,
       this.dryRun,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.paymentagentTransfer,
-      this.reqId,
-      this.transferTo});
+      int reqId,
+      this.transferTo})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory PaymentagentTransferRequest.fromJson(Map<String, dynamic> json) =>
@@ -41,14 +42,8 @@ class PaymentagentTransferRequest extends Request {
   /// [Optional] If set to `1`, just do validation.
   int dryRun;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// Must be `1`
   int paymentagentTransfer;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// The loginid of the recipient account.
   String transferTo;

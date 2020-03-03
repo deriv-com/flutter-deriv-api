@@ -11,7 +11,11 @@ part 'paymentagent_list_receive.g.dart';
 class PaymentagentListResponse extends Response {
   ///
   PaymentagentListResponse(
-      {this.echoReq, this.msgType, this.paymentagentList, this.reqId});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      this.paymentagentList,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory PaymentagentListResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class PaymentagentListResponse extends Response {
   Map<String, dynamic> toJson() => _$PaymentagentListResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// Payment Agent List
   Map<String, dynamic> paymentagentList;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

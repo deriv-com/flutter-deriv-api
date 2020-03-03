@@ -11,7 +11,11 @@ part 'p2p_advert_create_receive.g.dart';
 class P2pAdvertCreateResponse extends Response {
   ///
   P2pAdvertCreateResponse(
-      {this.echoReq, this.msgType, this.p2pAdvertCreate, this.reqId});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      this.p2pAdvertCreate,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory P2pAdvertCreateResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class P2pAdvertCreateResponse extends Response {
   Map<String, dynamic> toJson() => _$P2pAdvertCreateResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// The information of the created P2P advert.
   Map<String, dynamic> p2pAdvertCreate;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

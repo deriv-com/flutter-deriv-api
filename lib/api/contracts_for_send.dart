@@ -14,9 +14,10 @@ class ContractsForRequest extends Request {
       {this.contractsFor,
       this.currency,
       this.landingCompany,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.productType,
-      this.reqId});
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory ContractsForRequest.fromJson(Map<String, dynamic> json) =>
@@ -36,14 +37,8 @@ class ContractsForRequest extends Request {
   /// [Optional] Indicates which landing_company to get a list of contracts for. If you are logged in, your landing company will override this field.
   String landingCompany;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] If you specify this field, only contracts tradable through that contract type will be returned.
   String productType;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

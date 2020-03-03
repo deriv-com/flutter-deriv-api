@@ -24,12 +24,13 @@ class Mt5NewAccountRequest extends Request {
       this.mt5AccountType,
       this.mt5NewAccount,
       this.name,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.phone,
       this.phonePassword,
-      this.reqId,
+      int reqId,
       this.state,
-      this.zipCode});
+      this.zipCode})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>
@@ -79,17 +80,11 @@ class Mt5NewAccountRequest extends Request {
   /// Client's name. The maximum length here is 101 characters.
   String name;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] User's phone number.
   String phone;
 
   /// [Optional] The user's phone password.
   String phonePassword;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] User's state (region) of residence.
   String state;

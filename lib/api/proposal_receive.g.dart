@@ -18,10 +18,10 @@ ProposalResponse _$ProposalResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$ProposalResponseToJson(ProposalResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'proposal': instance.proposal,
-      'req_id': instance.reqId,
       'subscription': instance.subscription,
     };

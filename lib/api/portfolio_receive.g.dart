@@ -17,9 +17,9 @@ PortfolioResponse _$PortfolioResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$PortfolioResponseToJson(PortfolioResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'portfolio': instance.portfolio,
-      'req_id': instance.reqId,
     };

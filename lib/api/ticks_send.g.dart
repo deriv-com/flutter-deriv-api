@@ -17,8 +17,8 @@ TicksRequest _$TicksRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$TicksRequestToJson(TicksRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'subscribe': instance.subscribe,
       'ticks': instance.ticks,
     };

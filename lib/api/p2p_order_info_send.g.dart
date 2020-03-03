@@ -19,9 +19,9 @@ P2pOrderInfoRequest _$P2pOrderInfoRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$P2pOrderInfoRequestToJson(
         P2pOrderInfoRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'id': instance.id,
       'p2p_order_info': instance.p2pOrderInfo,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
       'subscribe': instance.subscribe,
     };

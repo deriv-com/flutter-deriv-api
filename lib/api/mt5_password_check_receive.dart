@@ -11,7 +11,11 @@ part 'mt5_password_check_receive.g.dart';
 class Mt5PasswordCheckResponse extends Response {
   ///
   Mt5PasswordCheckResponse(
-      {this.echoReq, this.msgType, this.mt5PasswordCheck, this.reqId});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      this.mt5PasswordCheck,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory Mt5PasswordCheckResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class Mt5PasswordCheckResponse extends Response {
   Map<String, dynamic> toJson() => _$Mt5PasswordCheckResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// `1` on success
   int mt5PasswordCheck;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

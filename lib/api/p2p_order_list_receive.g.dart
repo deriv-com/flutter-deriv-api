@@ -19,10 +19,10 @@ P2pOrderListResponse _$P2pOrderListResponseFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$P2pOrderListResponseToJson(
         P2pOrderListResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'p2p_order_list': instance.p2pOrderList,
-      'req_id': instance.reqId,
       'subscription': instance.subscription,
     };

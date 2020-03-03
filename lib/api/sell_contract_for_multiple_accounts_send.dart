@@ -11,12 +11,13 @@ part 'sell_contract_for_multiple_accounts_send.g.dart';
 class SellContractForMultipleAccountsRequest extends Request {
   ///
   SellContractForMultipleAccountsRequest(
-      {this.passthrough,
+      {Map<String, dynamic> passthrough,
       this.price,
-      this.reqId,
+      int reqId,
       this.sellContractForMultipleAccounts,
       this.shortcode,
-      this.tokens});
+      this.tokens})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory SellContractForMultipleAccountsRequest.fromJson(
@@ -29,14 +30,9 @@ class SellContractForMultipleAccountsRequest extends Request {
       _$SellContractForMultipleAccountsRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
 
   /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
   num price;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Must be `1`
   int sellContractForMultipleAccounts;

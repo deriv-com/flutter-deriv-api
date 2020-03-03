@@ -15,12 +15,13 @@ class TicksHistoryRequest extends Request {
       this.count,
       this.end,
       this.granularity,
-      this.passthrough,
-      this.reqId,
+      Map<String, dynamic> passthrough,
+      int reqId,
       this.start,
       this.style,
       this.subscribe,
-      this.ticksHistory});
+      this.ticksHistory})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>
@@ -42,12 +43,6 @@ class TicksHistoryRequest extends Request {
 
   /// [Optional] Only applicable for style: `candles`. Candle time-dimension width setting. (default: `60`).
   int granularity;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] Epoch value representing the earliest boundary of the returned ticks (For styles: 'ticks', this will default to 1 day ago. For styles: 'candle', it will default to 1 day ago if count or granularity is undefined).
   int start;

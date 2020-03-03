@@ -19,9 +19,9 @@ GetAccountStatusResponse _$GetAccountStatusResponseFromJson(
 Map<String, dynamic> _$GetAccountStatusResponseToJson(
         GetAccountStatusResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'echo_req': instance.echoReq,
-      'get_account_status': instance.getAccountStatus,
-      'msg_type': instance.msgType,
       'req_id': instance.reqId,
+      'echo_req': instance.echoReq,
+      'msg_type': instance.msgType,
+      'error': instance.error,
+      'get_account_status': instance.getAccountStatus,
     };

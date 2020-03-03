@@ -11,7 +11,11 @@ part 'get_account_status_receive.g.dart';
 class GetAccountStatusResponse extends Response {
   ///
   GetAccountStatusResponse(
-      {this.echoReq, this.getAccountStatus, this.msgType, this.reqId});
+      {Map<String, dynamic> echoReq,
+      this.getAccountStatus,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory GetAccountStatusResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class GetAccountStatusResponse extends Response {
   Map<String, dynamic> toJson() => _$GetAccountStatusResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
 
   /// Account status details
   Map<String, dynamic> getAccountStatus;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

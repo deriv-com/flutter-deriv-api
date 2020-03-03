@@ -16,10 +16,11 @@ class ProfitTableRequest extends Request {
       this.description,
       this.limit,
       this.offset,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.profitTable,
-      this.reqId,
-      this.sort});
+      int reqId,
+      this.sort})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>
@@ -45,14 +46,8 @@ class ProfitTableRequest extends Request {
   /// [Optional] Number of transactions to skip.
   num offset;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// Must be `1`
   int profitTable;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] Sort direction.
   String sort;

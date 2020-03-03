@@ -13,10 +13,11 @@ class ResetPasswordRequest extends Request {
   ResetPasswordRequest(
       {this.dateOfBirth,
       this.newPassword,
-      this.passthrough,
-      this.reqId,
+      Map<String, dynamic> passthrough,
+      int reqId,
       this.resetPassword,
-      this.verificationCode});
+      this.verificationCode})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory ResetPasswordRequest.fromJson(Map<String, dynamic> json) =>
@@ -32,12 +33,6 @@ class ResetPasswordRequest extends Request {
 
   /// New password for validation (length within 6-25 chars, accepts any printable ASCII characters, need to include capital and lowercase letters with numbers). Password strength is evaluated with: http://archive.geekwisdom.com/js/passwordmeter.js
   String newPassword;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Must be `1`
   int resetPassword;

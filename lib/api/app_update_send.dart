@@ -18,11 +18,12 @@ class AppUpdateRequest extends Request {
       this.googleplay,
       this.homepage,
       this.name,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.redirectUri,
-      this.reqId,
+      int reqId,
       this.scopes,
-      this.verificationUri});
+      this.verificationUri})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory AppUpdateRequest.fromJson(Map<String, dynamic> json) =>
@@ -54,14 +55,8 @@ class AppUpdateRequest extends Request {
   /// Application name.
   String name;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// The URL to redirect to after a successful login.
   String redirectUri;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Change scopes will revoke all user's grants and log them out.
   List<String> scopes;

@@ -15,10 +15,11 @@ class P2pOrderCreateRequest extends Request {
       this.amount,
       this.contactInfo,
       this.p2pOrderCreate,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.paymentInfo,
-      this.reqId,
-      this.subscribe});
+      int reqId,
+      this.subscribe})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory P2pOrderCreateRequest.fromJson(Map<String, dynamic> json) =>
@@ -41,14 +42,8 @@ class P2pOrderCreateRequest extends Request {
   /// Must be 1
   int p2pOrderCreate;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] Only available for sell orders. Instructions for how the buyer can transfer funds, for example: bank name and account number, or E-Wallet id.
   String paymentInfo;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] If set to 1, will send updates whenever there is an update to the order.
   int subscribe;

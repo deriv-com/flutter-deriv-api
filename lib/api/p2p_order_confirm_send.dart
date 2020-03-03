@@ -11,7 +11,11 @@ part 'p2p_order_confirm_send.g.dart';
 class P2pOrderConfirmRequest extends Request {
   ///
   P2pOrderConfirmRequest(
-      {this.id, this.p2pOrderConfirm, this.passthrough, this.reqId});
+      {this.id,
+      this.p2pOrderConfirm,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory P2pOrderConfirmRequest.fromJson(Map<String, dynamic> json) =>
@@ -27,12 +31,6 @@ class P2pOrderConfirmRequest extends Request {
 
   /// Must be 1
   int p2pOrderConfirm;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

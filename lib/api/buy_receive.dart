@@ -11,7 +11,12 @@ part 'buy_receive.g.dart';
 class BuyResponse extends Response {
   ///
   BuyResponse(
-      {this.buy, this.echoReq, this.msgType, this.reqId, this.subscription});
+      {this.buy,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      int reqId,
+      this.subscription})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory BuyResponse.fromJson(Map<String, dynamic> json) =>
@@ -24,15 +29,6 @@ class BuyResponse extends Response {
   // Properties
   /// Receipt confirmation for the purchase
   Map<String, dynamic> buy;
-
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   /// For subscription requests only
   Map<String, dynamic> subscription;

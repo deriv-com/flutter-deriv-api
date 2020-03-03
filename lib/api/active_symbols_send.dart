@@ -13,9 +13,10 @@ class ActiveSymbolsRequest extends Request {
   ActiveSymbolsRequest(
       {this.activeSymbols,
       this.landingCompany,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.productType,
-      this.reqId});
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory ActiveSymbolsRequest.fromJson(Map<String, dynamic> json) =>
@@ -32,14 +33,8 @@ class ActiveSymbolsRequest extends Request {
   /// [Optional] If you specify this field, only symbols available for trading by that landing company will be returned. If you are logged in, only symbols available for trading by your landing company will be returned regardless of what you specify in this field.
   String landingCompany;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] If you specify this field, only symbols that can be traded through that product type will be returned.
   String productType;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

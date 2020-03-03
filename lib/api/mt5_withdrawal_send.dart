@@ -14,9 +14,10 @@ class Mt5WithdrawalRequest extends Request {
       {this.amount,
       this.fromMt5,
       this.mt5Withdrawal,
-      this.passthrough,
-      this.reqId,
-      this.toBinary});
+      Map<String, dynamic> passthrough,
+      int reqId,
+      this.toBinary})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>
@@ -35,12 +36,6 @@ class Mt5WithdrawalRequest extends Request {
 
   /// Must be `1`
   int mt5Withdrawal;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Binary account loginid to transfer money to
   String toBinary;

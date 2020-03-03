@@ -12,9 +12,10 @@ class TradingDurationsRequest extends Request {
   ///
   TradingDurationsRequest(
       {this.landingCompany,
-      this.passthrough,
-      this.reqId,
-      this.tradingDurations});
+      Map<String, dynamic> passthrough,
+      int reqId,
+      this.tradingDurations})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>
@@ -27,12 +28,6 @@ class TradingDurationsRequest extends Request {
   // Properties
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
   String landingCompany;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Must be `1`
   int tradingDurations;

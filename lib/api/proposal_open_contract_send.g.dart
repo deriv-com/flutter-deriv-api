@@ -20,9 +20,9 @@ ProposalOpenContractRequest _$ProposalOpenContractRequestFromJson(
 Map<String, dynamic> _$ProposalOpenContractRequestToJson(
         ProposalOpenContractRequest instance) =>
     <String, dynamic>{
-      'contract_id': instance.contractId,
-      'passthrough': instance.passthrough,
-      'proposal_open_contract': instance.proposalOpenContract,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
+      'contract_id': instance.contractId,
+      'proposal_open_contract': instance.proposalOpenContract,
       'subscribe': instance.subscribe,
     };

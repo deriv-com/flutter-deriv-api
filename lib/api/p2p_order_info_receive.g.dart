@@ -19,10 +19,10 @@ P2pOrderInfoResponse _$P2pOrderInfoResponseFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$P2pOrderInfoResponseToJson(
         P2pOrderInfoResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'p2p_order_info': instance.p2pOrderInfo,
-      'req_id': instance.reqId,
       'subscription': instance.subscription,
     };

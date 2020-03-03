@@ -19,8 +19,8 @@ P2pOrderCancelRequest _$P2pOrderCancelRequestFromJson(
 Map<String, dynamic> _$P2pOrderCancelRequestToJson(
         P2pOrderCancelRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'id': instance.id,
       'p2p_order_cancel': instance.p2pOrderCancel,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
     };

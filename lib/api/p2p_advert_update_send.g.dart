@@ -21,10 +21,10 @@ P2pAdvertUpdateRequest _$P2pAdvertUpdateRequestFromJson(
 Map<String, dynamic> _$P2pAdvertUpdateRequestToJson(
         P2pAdvertUpdateRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'delete': instance.delete,
       'id': instance.id,
       'is_active': instance.isActive,
       'p2p_advert_update': instance.p2pAdvertUpdate,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
     };

@@ -11,11 +11,12 @@ part 'verify_email_send.g.dart';
 class VerifyEmailRequest extends Request {
   ///
   VerifyEmailRequest(
-      {this.passthrough,
-      this.reqId,
+      {Map<String, dynamic> passthrough,
+      int reqId,
       this.type,
       this.urlParameters,
-      this.verifyEmail});
+      this.verifyEmail})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory VerifyEmailRequest.fromJson(Map<String, dynamic> json) =>
@@ -26,11 +27,6 @@ class VerifyEmailRequest extends Request {
   Map<String, dynamic> toJson() => _$VerifyEmailRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Purpose of the email verification call.
   String type;

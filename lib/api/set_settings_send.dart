@@ -23,10 +23,10 @@ class SetSettingsRequest extends Request {
       this.emailConsent,
       this.firstName,
       this.lastName,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.phone,
       this.placeOfBirth,
-      this.reqId,
+      int reqId,
       this.requestProfessionalStatus,
       this.residence,
       this.salutation,
@@ -34,7 +34,8 @@ class SetSettingsRequest extends Request {
       this.secretQuestion,
       this.setSettings,
       this.taxIdentificationNumber,
-      this.taxResidence});
+      this.taxResidence})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory SetSettingsRequest.fromJson(Map<String, dynamic> json) =>
@@ -81,17 +82,11 @@ class SetSettingsRequest extends Request {
   /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
   String lastName;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] Note: not applicable for virtual account. Required field for real money account and within 8-35 digits, allowing '+' in front, numbers, hyphens or space.
   String phone;
 
   /// [Optional] Place of birth, 2-letter country code.
   String placeOfBirth;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] Required when client wants to be treated as professional. Applicable for financial accounts only.
   int requestProfessionalStatus;

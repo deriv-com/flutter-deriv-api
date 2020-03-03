@@ -10,7 +10,9 @@ part 'authorize_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AuthorizeResponse extends Response {
   ///
-  AuthorizeResponse({this.authorize, this.echoReq, this.msgType, this.reqId});
+  AuthorizeResponse(
+      {this.authorize, Map<String, dynamic> echoReq, String msgType, int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory AuthorizeResponse.fromJson(Map<String, dynamic> json) =>
@@ -23,15 +25,6 @@ class AuthorizeResponse extends Response {
   // Properties
   /// Account information for the holder of the token.
   Map<String, dynamic> authorize;
-
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

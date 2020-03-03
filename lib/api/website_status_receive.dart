@@ -11,11 +11,12 @@ part 'website_status_receive.g.dart';
 class WebsiteStatusResponse extends Response {
   ///
   WebsiteStatusResponse(
-      {this.echoReq,
-      this.msgType,
-      this.reqId,
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      int reqId,
       this.subscription,
-      this.websiteStatus});
+      this.websiteStatus})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory WebsiteStatusResponse.fromJson(Map<String, dynamic> json) =>
@@ -26,14 +27,6 @@ class WebsiteStatusResponse extends Response {
   Map<String, dynamic> toJson() => _$WebsiteStatusResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   /// For subscription requests only
   Map<String, dynamic> subscription;

@@ -26,6 +26,18 @@ class APIBuilder extends Builder {
     'receive': 'Response',
   };
 
+  static const List<String> responseFields = <String>[
+    'req_id',
+    'echo_req',
+    'msg_type',
+    'error',
+  ];
+
+  static const List<String> requestFields = <String>[
+    'req_id',
+    'passthrough',
+  ];
+
   @override
   Map<String, List<String>> get buildExtensions => const <String, List<String>>{
         '.json': <String>['.dart']
@@ -44,10 +56,55 @@ class APIBuilder extends Builder {
       // We keep our list of property keys in original form here so we can iterate over and map them
       final List<String> props = schema.properties.keys.toList()..sort();
 
+      /* Some minor chicanery here to find out which API method we're supposed to be processing */
+      final Iterable<RegExpMatch> matches =
+          RegExp(r'^([^\|]+)\|.*/([^/]+)_(send|receive).json$')
+              .allMatches(buildStep.inputId.toString());
+      final RegExpMatch items = matches.elementAt(0);
+      if (items.groupCount < 3) {
+        log.info(
+            'Had fewer groups than expected from $items - this is likely not a send/receive request');
+        return;
+      }
+      final String libName = items.group(1);
+      final String methodName = items.group(2);
+      final String schemaType = items.group(3);
+      final String className = ReCase(methodName).pascalCase;
+
+      // Allow constructor parameters as well
+      final String namedParameters = props.map((String k) {
+        if (requestFields.contains(k) || responseFields.contains(k)) {
+          final JsonSchema prop = schema.properties[k];
+          final String schemaType = prop.type?.toString() ?? 'string';
+          final String type = typeMap[schemaType];
+
+          return '$type ${ReCase(k).camelCase}';
+        }
+        return 'this.${ReCase(k).camelCase}';
+      }).join(', ');
+
+      // Allow constructor parameters as well
+      final String superParameters = props
+          .where((String k) =>
+              requestFields.contains(k) || responseFields.contains(k))
+          .map((String k) => '${ReCase(k).camelCase}: ${ReCase(k).camelCase}')
+          .join(', ');
+
+      log.info(
+          'Will write $className for $methodName as $schemaType under $libName');
+      final String fullClassName = className + schemaTypeMap[schemaType];
+      final String fileName = '${methodName}_${schemaType}';
+
       // Instead of trying anything too fancy here, we just provide a simple conversion from original
       // JSON schema name - which is snake_cased - to something more Dart-suitable, and apply type
       // mapping via "it's a string unless we have a better guess" heuristic.
       final String attrList = props.map((String k) {
+        if (schemaType == 'send' && requestFields.contains(k)) {
+          return '';
+        } else if (schemaType == 'receive' && responseFields.contains(k)) {
+          return '';
+        }
+
         final String name = ReCase(k).camelCase;
         final JsonSchema prop = schema.properties[k];
         String type;
@@ -82,29 +139,6 @@ class APIBuilder extends Builder {
 ''';
       }).join('\n');
 
-      // Allow constructor parameters as well
-      final String namedParameters =
-          props.map((String k) => 'this.${ReCase(k).camelCase}').join(', ');
-
-      /* Some minor chicanery here to find out which API method we're supposed to be processing */
-      final Iterable<RegExpMatch> matches =
-          RegExp(r'^([^\|]+)\|.*/([^/]+)_(send|receive).json$')
-              .allMatches(buildStep.inputId.toString());
-      final RegExpMatch items = matches.elementAt(0);
-      if (items.groupCount < 3) {
-        log.info(
-            'Had fewer groups than expected from $items - this is likely not a send/receive request');
-        return;
-      }
-      final String libName = items.group(1);
-      final String methodName = items.group(2);
-      final String schemaType = items.group(3);
-      final String className = ReCase(methodName).pascalCase;
-
-      log.info(
-          'Will write $className for $methodName as $schemaType under $libName');
-      final String fullClassName = className + schemaTypeMap[schemaType];
-      final String fileName = '${methodName}_${schemaType}';
       await buildStep.writeAsString(
           // Ideally we'd move somewhere else and reconstruct, but the builder is tediously
           // over-specific about where it lets you write things - you *can* navigate to parent
@@ -125,7 +159,7 @@ part '${fileName}.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ${fullClassName} extends ${schemaType == 'send' ? 'Request' : 'Response'}{
   ///
-  ${fullClassName}({$namedParameters});
+  ${fullClassName}({$namedParameters}): super($superParameters);
   
   ///
   factory ${fullClassName}.fromJson(Map<String, dynamic> json) => _\$${fullClassName}FromJson(json);

@@ -19,8 +19,8 @@ PaymentagentListRequest _$PaymentagentListRequestFromJson(
 Map<String, dynamic> _$PaymentagentListRequestToJson(
         PaymentagentListRequest instance) =>
     <String, dynamic>{
-      'currency': instance.currency,
-      'passthrough': instance.passthrough,
-      'paymentagent_list': instance.paymentagentList,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
+      'currency': instance.currency,
+      'paymentagent_list': instance.paymentagentList,
     };

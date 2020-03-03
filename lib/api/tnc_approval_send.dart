@@ -11,10 +11,11 @@ part 'tnc_approval_send.g.dart';
 class TncApprovalRequest extends Request {
   ///
   TncApprovalRequest(
-      {this.passthrough,
-      this.reqId,
+      {Map<String, dynamic> passthrough,
+      int reqId,
       this.tncApproval,
-      this.ukgcFundsProtection});
+      this.ukgcFundsProtection})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory TncApprovalRequest.fromJson(Map<String, dynamic> json) =>
@@ -25,11 +26,6 @@ class TncApprovalRequest extends Request {
   Map<String, dynamic> toJson() => _$TncApprovalRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Must be `1`
   num tncApproval;

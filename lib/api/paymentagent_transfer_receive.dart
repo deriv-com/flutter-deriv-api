@@ -13,11 +13,12 @@ class PaymentagentTransferResponse extends Response {
   PaymentagentTransferResponse(
       {this.clientToFullName,
       this.clientToLoginid,
-      this.echoReq,
-      this.msgType,
+      Map<String, dynamic> echoReq,
+      String msgType,
       this.paymentagentTransfer,
-      this.reqId,
-      this.transactionId});
+      int reqId,
+      this.transactionId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory PaymentagentTransferResponse.fromJson(Map<String, dynamic> json) =>
@@ -34,17 +35,8 @@ class PaymentagentTransferResponse extends Response {
   /// The `transfer_to` client loginid
   String clientToLoginid;
 
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
   /// If set to `1`, transfer success. If set to `2`, dry-run success.
   int paymentagentTransfer;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   /// Reference ID of transfer performed
   int transactionId;

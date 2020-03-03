@@ -11,7 +11,8 @@ part 'payout_currencies_send.g.dart';
 class PayoutCurrenciesRequest extends Request {
   ///
   PayoutCurrenciesRequest(
-      {this.passthrough, this.payoutCurrencies, this.reqId});
+      {Map<String, dynamic> passthrough, this.payoutCurrencies, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory PayoutCurrenciesRequest.fromJson(Map<String, dynamic> json) =>
@@ -22,14 +23,9 @@ class PayoutCurrenciesRequest extends Request {
   Map<String, dynamic> toJson() => _$PayoutCurrenciesRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
 
   /// Must be `1`
   int payoutCurrencies;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

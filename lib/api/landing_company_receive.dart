@@ -11,7 +11,11 @@ part 'landing_company_receive.g.dart';
 class LandingCompanyResponse extends Response {
   ///
   LandingCompanyResponse(
-      {this.echoReq, this.landingCompany, this.msgType, this.reqId});
+      {Map<String, dynamic> echoReq,
+      this.landingCompany,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory LandingCompanyResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class LandingCompanyResponse extends Response {
   Map<String, dynamic> toJson() => _$LandingCompanyResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
 
   /// Landing Company
   Map<String, dynamic> landingCompany;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

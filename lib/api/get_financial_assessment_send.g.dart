@@ -18,7 +18,7 @@ GetFinancialAssessmentRequest _$GetFinancialAssessmentRequestFromJson(
 Map<String, dynamic> _$GetFinancialAssessmentRequestToJson(
         GetFinancialAssessmentRequest instance) =>
     <String, dynamic>{
-      'get_financial_assessment': instance.getFinancialAssessment,
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
+      'get_financial_assessment': instance.getFinancialAssessment,
     };

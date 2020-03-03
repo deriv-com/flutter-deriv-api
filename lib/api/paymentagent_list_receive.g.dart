@@ -19,9 +19,9 @@ PaymentagentListResponse _$PaymentagentListResponseFromJson(
 Map<String, dynamic> _$PaymentagentListResponseToJson(
         PaymentagentListResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'paymentagent_list': instance.paymentagentList,
-      'req_id': instance.reqId,
     };

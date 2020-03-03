@@ -19,9 +19,9 @@ P2pAdvertiserInfoResponse _$P2pAdvertiserInfoResponseFromJson(
 Map<String, dynamic> _$P2pAdvertiserInfoResponseToJson(
         P2pAdvertiserInfoResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'p2p_advertiser_info': instance.p2pAdvertiserInfo,
-      'req_id': instance.reqId,
     };

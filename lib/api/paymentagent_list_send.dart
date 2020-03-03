@@ -11,7 +11,11 @@ part 'paymentagent_list_send.g.dart';
 class PaymentagentListRequest extends Request {
   ///
   PaymentagentListRequest(
-      {this.currency, this.passthrough, this.paymentagentList, this.reqId});
+      {this.currency,
+      Map<String, dynamic> passthrough,
+      this.paymentagentList,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory PaymentagentListRequest.fromJson(Map<String, dynamic> json) =>
@@ -25,14 +29,8 @@ class PaymentagentListRequest extends Request {
   /// [Optional] If specified, only payment agents that supports that currency will be returned (obtained from `payout_currencies` call).
   String currency;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// Client's 2-letter country code (obtained from `residence_list` call).
   String paymentagentList;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

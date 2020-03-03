@@ -22,11 +22,12 @@ class SetSelfExclusionRequest extends Request {
       this.maxLosses,
       this.maxOpenBets,
       this.maxTurnover,
-      this.passthrough,
-      this.reqId,
+      Map<String, dynamic> passthrough,
+      int reqId,
       this.sessionDurationLimit,
       this.setSelfExclusion,
-      this.timeoutUntil});
+      this.timeoutUntil})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
@@ -69,12 +70,6 @@ class SetSelfExclusionRequest extends Request {
 
   /// [Optional] Daily turnover limit.
   String maxTurnover;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] Session duration limit, in minutes.
   String sessionDurationLimit;

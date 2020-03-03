@@ -11,7 +11,11 @@ part 'revoke_oauth_app_receive.g.dart';
 class RevokeOauthAppResponse extends Response {
   ///
   RevokeOauthAppResponse(
-      {this.echoReq, this.msgType, this.reqId, this.revokeOauthApp});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      int reqId,
+      this.revokeOauthApp})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory RevokeOauthAppResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,14 +26,6 @@ class RevokeOauthAppResponse extends Response {
   Map<String, dynamic> toJson() => _$RevokeOauthAppResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   /// `1` on success
   int revokeOauthApp;

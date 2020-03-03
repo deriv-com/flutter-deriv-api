@@ -11,7 +11,11 @@ part 'p2p_advert_info_send.g.dart';
 class P2pAdvertInfoRequest extends Request {
   ///
   P2pAdvertInfoRequest(
-      {this.id, this.p2pAdvertInfo, this.passthrough, this.reqId});
+      {this.id,
+      this.p2pAdvertInfo,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory P2pAdvertInfoRequest.fromJson(Map<String, dynamic> json) =>
@@ -27,12 +31,6 @@ class P2pAdvertInfoRequest extends Request {
 
   /// Must be 1
   int p2pAdvertInfo;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   // @override
   // String toString() => name;

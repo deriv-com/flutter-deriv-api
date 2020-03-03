@@ -10,7 +10,9 @@ part 'sell_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellRequest extends Request {
   ///
-  SellRequest({this.passthrough, this.price, this.reqId, this.sell});
+  SellRequest(
+      {Map<String, dynamic> passthrough, this.price, int reqId, this.sell})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory SellRequest.fromJson(Map<String, dynamic> json) =>
@@ -21,14 +23,9 @@ class SellRequest extends Request {
   Map<String, dynamic> toJson() => _$SellRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
 
   /// Minimum price at which to sell the contract, or '0' for 'sell at market'
   num price;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Pass contract_id received from the Portfolio call
   int sell;

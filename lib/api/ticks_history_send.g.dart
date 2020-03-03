@@ -24,12 +24,12 @@ TicksHistoryRequest _$TicksHistoryRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$TicksHistoryRequestToJson(
         TicksHistoryRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'adjust_start_time': instance.adjustStartTime,
       'count': instance.count,
       'end': instance.end,
       'granularity': instance.granularity,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
       'start': instance.start,
       'style': instance.style,
       'subscribe': instance.subscribe,

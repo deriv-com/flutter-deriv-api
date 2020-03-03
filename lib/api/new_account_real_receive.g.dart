@@ -19,9 +19,9 @@ NewAccountRealResponse _$NewAccountRealResponseFromJson(
 Map<String, dynamic> _$NewAccountRealResponseToJson(
         NewAccountRealResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'new_account_real': instance.newAccountReal,
-      'req_id': instance.reqId,
     };

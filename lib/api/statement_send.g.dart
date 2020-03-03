@@ -22,13 +22,13 @@ StatementRequest _$StatementRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$StatementRequestToJson(StatementRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'action_type': instance.actionType,
       'date_from': instance.dateFrom,
       'date_to': instance.dateTo,
       'description': instance.description,
       'limit': instance.limit,
       'offset': instance.offset,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
       'statement': instance.statement,
     };

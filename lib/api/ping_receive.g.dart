@@ -17,9 +17,9 @@ PingResponse _$PingResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$PingResponseToJson(PingResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'ping': instance.ping,
-      'req_id': instance.reqId,
     };

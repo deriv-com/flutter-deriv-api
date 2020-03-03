@@ -23,14 +23,15 @@ class ProposalRequest extends Request {
       this.durationUnit,
       this.limitOrder,
       this.multiplier,
-      this.passthrough,
+      Map<String, dynamic> passthrough,
       this.productType,
       this.proposal,
-      this.reqId,
+      int reqId,
       this.selectedTick,
       this.subscribe,
       this.symbol,
-      this.tradingPeriodStart});
+      this.tradingPeriodStart})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory ProposalRequest.fromJson(Map<String, dynamic> json) =>
@@ -77,17 +78,11 @@ class ProposalRequest extends Request {
   /// [Optional] The multiplier for non-binary options. E.g. lookbacks.
   num multiplier;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] The product type.
   String productType;
 
   /// Must be `1`
   int proposal;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] The tick that is predicted to have the highest/lowest value - for `TICKHIGH` and `TICKLOW` contracts.
   int selectedTick;

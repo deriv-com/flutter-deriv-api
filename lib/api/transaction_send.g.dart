@@ -17,8 +17,8 @@ TransactionRequest _$TransactionRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$TransactionRequestToJson(TransactionRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'subscribe': instance.subscribe,
       'transaction': instance.transaction,
     };

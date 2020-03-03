@@ -11,7 +11,11 @@ part 'verify_email_receive.g.dart';
 class VerifyEmailResponse extends Response {
   ///
   VerifyEmailResponse(
-      {this.echoReq, this.msgType, this.reqId, this.verifyEmail});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      int reqId,
+      this.verifyEmail})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory VerifyEmailResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,14 +26,6 @@ class VerifyEmailResponse extends Response {
   Map<String, dynamic> toJson() => _$VerifyEmailResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   /// 1 for success (secure code has been sent to the email address)
   int verifyEmail;

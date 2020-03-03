@@ -16,9 +16,10 @@ class TransferBetweenAccountsRequest extends Request {
       this.accounts,
       this.amount,
       this.currency,
-      this.passthrough,
-      this.reqId,
-      this.transferBetweenAccounts});
+      Map<String, dynamic> passthrough,
+      int reqId,
+      this.transferBetweenAccounts})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>
@@ -43,12 +44,6 @@ class TransferBetweenAccountsRequest extends Request {
 
   /// [Optional] Currency code.
   String currency;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// If `account_from` or `account_to` is not provided, it just returns the available accounts.
   int transferBetweenAccounts;

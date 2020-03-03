@@ -17,9 +17,9 @@ SellResponse _$SellResponseFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$SellResponseToJson(SellResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
       'sell': instance.sell,
     };

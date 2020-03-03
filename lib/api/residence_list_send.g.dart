@@ -17,7 +17,7 @@ ResidenceListRequest _$ResidenceListRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$ResidenceListRequestToJson(
         ResidenceListRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'residence_list': instance.residenceList,
     };

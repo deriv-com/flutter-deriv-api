@@ -11,7 +11,8 @@ part 'set_account_currency_send.g.dart';
 class SetAccountCurrencyRequest extends Request {
   ///
   SetAccountCurrencyRequest(
-      {this.passthrough, this.reqId, this.setAccountCurrency});
+      {Map<String, dynamic> passthrough, int reqId, this.setAccountCurrency})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory SetAccountCurrencyRequest.fromJson(Map<String, dynamic> json) =>
@@ -22,11 +23,6 @@ class SetAccountCurrencyRequest extends Request {
   Map<String, dynamic> toJson() => _$SetAccountCurrencyRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Currency of the account. List of supported currencies can be acquired with `payout_currencies` call.
   String setAccountCurrency;

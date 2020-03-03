@@ -11,7 +11,11 @@ part 'new_account_real_receive.g.dart';
 class NewAccountRealResponse extends Response {
   ///
   NewAccountRealResponse(
-      {this.echoReq, this.msgType, this.newAccountReal, this.reqId});
+      {Map<String, dynamic> echoReq,
+      String msgType,
+      this.newAccountReal,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory NewAccountRealResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class NewAccountRealResponse extends Response {
   Map<String, dynamic> toJson() => _$NewAccountRealResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
 
   /// New real money account details
   Map<String, dynamic> newAccountReal;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

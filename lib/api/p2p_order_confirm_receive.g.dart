@@ -19,9 +19,9 @@ P2pOrderConfirmResponse _$P2pOrderConfirmResponseFromJson(
 Map<String, dynamic> _$P2pOrderConfirmResponseToJson(
         P2pOrderConfirmResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'p2p_order_confirm': instance.p2pOrderConfirm,
-      'req_id': instance.reqId,
     };

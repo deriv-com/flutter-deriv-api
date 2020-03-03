@@ -27,10 +27,11 @@ class SetFinancialAssessmentRequest extends Request {
       this.occupation,
       this.otherInstrumentsTradingExperience,
       this.otherInstrumentsTradingFrequency,
-      this.passthrough,
-      this.reqId,
+      Map<String, dynamic> passthrough,
+      int reqId,
       this.setFinancialAssessment,
-      this.sourceOfWealth});
+      this.sourceOfWealth})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory SetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
@@ -88,12 +89,6 @@ class SetFinancialAssessmentRequest extends Request {
 
   /// [Optional] Trading frequency in other financial instruments.
   String otherInstrumentsTradingFrequency;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Must be `1`
   int setFinancialAssessment;

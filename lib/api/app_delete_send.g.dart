@@ -16,7 +16,7 @@ AppDeleteRequest _$AppDeleteRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$AppDeleteRequestToJson(AppDeleteRequest instance) =>
     <String, dynamic>{
-      'app_delete': instance.appDelete,
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
+      'app_delete': instance.appDelete,
     };

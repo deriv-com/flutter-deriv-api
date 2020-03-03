@@ -11,7 +11,11 @@ part 'get_self_exclusion_receive.g.dart';
 class GetSelfExclusionResponse extends Response {
   ///
   GetSelfExclusionResponse(
-      {this.echoReq, this.getSelfExclusion, this.msgType, this.reqId});
+      {Map<String, dynamic> echoReq,
+      this.getSelfExclusion,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory GetSelfExclusionResponse.fromJson(Map<String, dynamic> json) =>
@@ -22,17 +26,9 @@ class GetSelfExclusionResponse extends Response {
   Map<String, dynamic> toJson() => _$GetSelfExclusionResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
 
   /// List of values set for self exclusion.
   Map<String, dynamic> getSelfExclusion;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

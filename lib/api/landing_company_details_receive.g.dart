@@ -20,9 +20,9 @@ LandingCompanyDetailsResponse _$LandingCompanyDetailsResponseFromJson(
 Map<String, dynamic> _$LandingCompanyDetailsResponseToJson(
         LandingCompanyDetailsResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'echo_req': instance.echoReq,
-      'landing_company_details': instance.landingCompanyDetails,
-      'msg_type': instance.msgType,
       'req_id': instance.reqId,
+      'echo_req': instance.echoReq,
+      'msg_type': instance.msgType,
+      'error': instance.error,
+      'landing_company_details': instance.landingCompanyDetails,
     };

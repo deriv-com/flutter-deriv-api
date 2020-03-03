@@ -11,7 +11,11 @@ part 'contract_update_receive.g.dart';
 class ContractUpdateResponse extends Response {
   ///
   ContractUpdateResponse(
-      {this.contractUpdate, this.echoReq, this.msgType, this.reqId});
+      {this.contractUpdate,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
 
   ///
   factory ContractUpdateResponse.fromJson(Map<String, dynamic> json) =>
@@ -24,15 +28,6 @@ class ContractUpdateResponse extends Response {
   // Properties
   /// Contains the update status of the request
   Map<String, dynamic> contractUpdate;
-
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   // @override
   // String toString() => name;

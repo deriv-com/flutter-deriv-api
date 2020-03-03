@@ -21,9 +21,9 @@ ActiveSymbolsResponse _$ActiveSymbolsResponseFromJson(
 Map<String, dynamic> _$ActiveSymbolsResponseToJson(
         ActiveSymbolsResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'active_symbols': instance.activeSymbols,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
+      'active_symbols': instance.activeSymbols,
     };

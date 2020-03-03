@@ -20,9 +20,9 @@ NewAccountMaltainvestResponse _$NewAccountMaltainvestResponseFromJson(
 Map<String, dynamic> _$NewAccountMaltainvestResponseToJson(
         NewAccountMaltainvestResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'new_account_maltainvest': instance.newAccountMaltainvest,
-      'req_id': instance.reqId,
     };

@@ -16,14 +16,15 @@ class NewAccountVirtualRequest extends Request {
       this.dateFirstContact,
       this.gclidUrl,
       this.newAccountVirtual,
-      this.passthrough,
-      this.reqId,
+      Map<String, dynamic> passthrough,
+      int reqId,
       this.residence,
       this.signupDevice,
       this.utmCampaign,
       this.utmMedium,
       this.utmSource,
-      this.verificationCode});
+      this.verificationCode})
+      : super(passthrough: passthrough, reqId: reqId);
 
   ///
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>
@@ -48,12 +49,6 @@ class NewAccountVirtualRequest extends Request {
 
   /// Must be `1`
   int newAccountVirtual;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// 2-letter country code (obtained from `residence_list` call).
   String residence;

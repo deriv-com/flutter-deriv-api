@@ -22,13 +22,13 @@ ProfitTableRequest _$ProfitTableRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$ProfitTableRequestToJson(ProfitTableRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'date_from': instance.dateFrom,
       'date_to': instance.dateTo,
       'description': instance.description,
       'limit': instance.limit,
       'offset': instance.offset,
-      'passthrough': instance.passthrough,
       'profit_table': instance.profitTable,
-      'req_id': instance.reqId,
       'sort': instance.sort,
     };

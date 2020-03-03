@@ -18,9 +18,9 @@ BalanceRequest _$BalanceRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$BalanceRequestToJson(BalanceRequest instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'account': instance.account,
       'balance': instance.balance,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
       'subscribe': instance.subscribe,
     };

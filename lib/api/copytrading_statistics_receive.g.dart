@@ -20,9 +20,9 @@ CopytradingStatisticsResponse _$CopytradingStatisticsResponseFromJson(
 Map<String, dynamic> _$CopytradingStatisticsResponseToJson(
         CopytradingStatisticsResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
-      'copytrading_statistics': instance.copytradingStatistics,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
+      'copytrading_statistics': instance.copytradingStatistics,
     };

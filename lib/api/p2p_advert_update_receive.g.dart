@@ -19,9 +19,9 @@ P2pAdvertUpdateResponse _$P2pAdvertUpdateResponseFromJson(
 Map<String, dynamic> _$P2pAdvertUpdateResponseToJson(
         P2pAdvertUpdateResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
+      'error': instance.error,
       'p2p_advert_update': instance.p2pAdvertUpdate,
-      'req_id': instance.reqId,
     };

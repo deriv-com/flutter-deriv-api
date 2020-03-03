@@ -19,9 +19,9 @@ RevokeOauthAppResponse _$RevokeOauthAppResponseFromJson(
 Map<String, dynamic> _$RevokeOauthAppResponseToJson(
         RevokeOauthAppResponse instance) =>
     <String, dynamic>{
-      'error': instance.error,
+      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
-      'req_id': instance.reqId,
+      'error': instance.error,
       'revoke_oauth_app': instance.revokeOauthApp,
     };
