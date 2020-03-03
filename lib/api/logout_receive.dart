@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'logout_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class LogoutResponse {
+class LogoutResponse extends Response {
+  ///
   LogoutResponse({this.echoReq, this.logout, this.msgType, this.reqId});
+
+  ///
   factory LogoutResponse.fromJson(Map<String, dynamic> json) =>
       _$LogoutResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$LogoutResponseToJson(this);
 
   // Properties

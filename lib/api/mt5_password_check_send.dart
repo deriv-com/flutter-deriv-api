@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'mt5_password_check_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Mt5PasswordCheckRequest {
+class Mt5PasswordCheckRequest extends Request {
+  ///
   Mt5PasswordCheckRequest(
       {this.login,
       this.mt5PasswordCheck,
@@ -14,8 +17,13 @@ class Mt5PasswordCheckRequest {
       this.password,
       this.passwordType,
       this.reqId});
+
+  ///
   factory Mt5PasswordCheckRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordCheckRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$Mt5PasswordCheckRequestToJson(this);
 
   // Properties

@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'copy_stop_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class CopyStopRequest {
+class CopyStopRequest extends Request {
+  ///
   CopyStopRequest({this.copyStop, this.passthrough, this.reqId});
+
+  ///
   factory CopyStopRequest.fromJson(Map<String, dynamic> json) =>
       _$CopyStopRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$CopyStopRequestToJson(this);
 
   // Properties

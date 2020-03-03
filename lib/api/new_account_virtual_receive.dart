@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'new_account_virtual_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class NewAccountVirtualResponse {
+class NewAccountVirtualResponse extends Response {
+  ///
   NewAccountVirtualResponse(
       {this.echoReq, this.msgType, this.newAccountVirtual, this.reqId});
+
+  ///
   factory NewAccountVirtualResponse.fromJson(Map<String, dynamic> json) =>
       _$NewAccountVirtualResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$NewAccountVirtualResponseToJson(this);
 
   // Properties

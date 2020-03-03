@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'oauth_apps_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class OauthAppsRequest {
+class OauthAppsRequest extends Request {
+  ///
   OauthAppsRequest({this.oauthApps, this.passthrough, this.reqId});
+
+  ///
   factory OauthAppsRequest.fromJson(Map<String, dynamic> json) =>
       _$OauthAppsRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$OauthAppsRequestToJson(this);
 
   // Properties

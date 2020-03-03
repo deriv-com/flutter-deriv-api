@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'account_statistics_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AccountStatisticsRequest {
+class AccountStatisticsRequest extends Request {
+  ///
   AccountStatisticsRequest(
       {this.accountStatistics, this.passthrough, this.reqId});
+
+  ///
   factory AccountStatisticsRequest.fromJson(Map<String, dynamic> json) =>
       _$AccountStatisticsRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$AccountStatisticsRequestToJson(this);
 
   // Properties

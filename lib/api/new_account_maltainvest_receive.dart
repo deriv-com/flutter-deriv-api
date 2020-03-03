@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'new_account_maltainvest_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class NewAccountMaltainvestResponse {
+class NewAccountMaltainvestResponse extends Response {
+  ///
   NewAccountMaltainvestResponse(
       {this.echoReq, this.msgType, this.newAccountMaltainvest, this.reqId});
+
+  ///
   factory NewAccountMaltainvestResponse.fromJson(Map<String, dynamic> json) =>
       _$NewAccountMaltainvestResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$NewAccountMaltainvestResponseToJson(this);
 
   // Properties

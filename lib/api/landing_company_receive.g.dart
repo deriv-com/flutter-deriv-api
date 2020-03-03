@@ -13,12 +13,13 @@ LandingCompanyResponse _$LandingCompanyResponseFromJson(
     landingCompany: json['landing_company'] as Map<String, dynamic>,
     msgType: json['msg_type'] as String,
     reqId: json['req_id'] as int,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$LandingCompanyResponseToJson(
         LandingCompanyResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'echo_req': instance.echoReq,
       'landing_company': instance.landingCompany,
       'msg_type': instance.msgType,

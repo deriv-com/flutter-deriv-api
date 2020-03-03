@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'new_account_real_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class NewAccountRealRequest {
+class NewAccountRealRequest extends Request {
+  ///
   NewAccountRealRequest(
       {this.accountOpeningReason,
       this.accountTurnover,
@@ -33,8 +36,13 @@ class NewAccountRealRequest {
       this.secretQuestion,
       this.taxIdentificationNumber,
       this.taxResidence});
+
+  ///
   factory NewAccountRealRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountRealRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$NewAccountRealRequestToJson(this);
 
   // Properties
@@ -86,7 +94,7 @@ class NewAccountRealRequest {
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Within 8-35 digits, allowing '+' in front, numbers, hyphens or space.
+  /// [Optional] Starting with '+' followed by 8-35 digits, allowing hyphens or space.
   String phone;
 
   /// [Optional] Place of birth, 2-letter country code.

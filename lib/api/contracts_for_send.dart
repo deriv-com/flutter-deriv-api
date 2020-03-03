@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'contracts_for_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ContractsForRequest {
+class ContractsForRequest extends Request {
+  ///
   ContractsForRequest(
       {this.contractsFor,
       this.currency,
@@ -14,8 +17,13 @@ class ContractsForRequest {
       this.passthrough,
       this.productType,
       this.reqId});
+
+  ///
   factory ContractsForRequest.fromJson(Map<String, dynamic> json) =>
       _$ContractsForRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$ContractsForRequestToJson(this);
 
   // Properties

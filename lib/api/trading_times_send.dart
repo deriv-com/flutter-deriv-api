@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'trading_times_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TradingTimesRequest {
+class TradingTimesRequest extends Request {
+  ///
   TradingTimesRequest({this.passthrough, this.reqId, this.tradingTimes});
+
+  ///
   factory TradingTimesRequest.fromJson(Map<String, dynamic> json) =>
       _$TradingTimesRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$TradingTimesRequestToJson(this);
 
   // Properties

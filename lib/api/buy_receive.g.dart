@@ -13,11 +13,12 @@ BuyResponse _$BuyResponseFromJson(Map<String, dynamic> json) {
     msgType: json['msg_type'] as String,
     reqId: json['req_id'] as int,
     subscription: json['subscription'] as Map<String, dynamic>,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$BuyResponseToJson(BuyResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'buy': instance.buy,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,

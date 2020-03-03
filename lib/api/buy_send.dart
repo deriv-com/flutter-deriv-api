@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'buy_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class BuyRequest {
+class BuyRequest extends Request {
+  ///
   BuyRequest(
       {this.buy,
       this.parameters,
@@ -14,8 +17,13 @@ class BuyRequest {
       this.price,
       this.reqId,
       this.subscribe});
+
+  ///
   factory BuyRequest.fromJson(Map<String, dynamic> json) =>
       _$BuyRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$BuyRequestToJson(this);
 
   // Properties

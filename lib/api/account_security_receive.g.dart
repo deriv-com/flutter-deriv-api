@@ -13,12 +13,13 @@ AccountSecurityResponse _$AccountSecurityResponseFromJson(
     echoReq: json['echo_req'] as Map<String, dynamic>,
     msgType: json['msg_type'] as String,
     reqId: json['req_id'] as int,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$AccountSecurityResponseToJson(
         AccountSecurityResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'account_security': instance.accountSecurity,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,

@@ -2,20 +2,28 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'p2p_order_cancel_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class P2pOrderCancelRequest {
+class P2pOrderCancelRequest extends Request {
+  ///
   P2pOrderCancelRequest(
-      {this.orderId, this.p2pOrderCancel, this.passthrough, this.reqId});
+      {this.id, this.p2pOrderCancel, this.passthrough, this.reqId});
+
+  ///
   factory P2pOrderCancelRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCancelRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$P2pOrderCancelRequestToJson(this);
 
   // Properties
   /// The unique identifier for this order.
-  String orderId;
+  String id;
 
   /// Must be 1
   int p2pOrderCancel;

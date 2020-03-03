@@ -14,12 +14,13 @@ Mt5WithdrawalResponse _$Mt5WithdrawalResponseFromJson(
     msgType: json['msg_type'] as String,
     mt5Withdrawal: json['mt5_withdrawal'] as int,
     reqId: json['req_id'] as int,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$Mt5WithdrawalResponseToJson(
         Mt5WithdrawalResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'binary_transaction_id': instance.binaryTransactionId,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,

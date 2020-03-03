@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'reality_check_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class RealityCheckResponse {
+class RealityCheckResponse extends Response {
+  ///
   RealityCheckResponse(
       {this.echoReq, this.msgType, this.realityCheck, this.reqId});
+
+  ///
   factory RealityCheckResponse.fromJson(Map<String, dynamic> json) =>
       _$RealityCheckResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$RealityCheckResponseToJson(this);
 
   // Properties

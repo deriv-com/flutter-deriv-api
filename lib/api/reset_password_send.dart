@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'reset_password_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ResetPasswordRequest {
+class ResetPasswordRequest extends Request {
+  ///
   ResetPasswordRequest(
       {this.dateOfBirth,
       this.newPassword,
@@ -14,8 +17,13 @@ class ResetPasswordRequest {
       this.reqId,
       this.resetPassword,
       this.verificationCode});
+
+  ///
   factory ResetPasswordRequest.fromJson(Map<String, dynamic> json) =>
       _$ResetPasswordRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$ResetPasswordRequestToJson(this);
 
   // Properties

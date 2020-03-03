@@ -2,15 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'p2p_order_info_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class P2pOrderInfoResponse {
+class P2pOrderInfoResponse extends Response {
+  ///
   P2pOrderInfoResponse(
-      {this.echoReq, this.msgType, this.p2pOrderInfo, this.reqId});
+      {this.echoReq,
+      this.msgType,
+      this.p2pOrderInfo,
+      this.reqId,
+      this.subscription});
+
+  ///
   factory P2pOrderInfoResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderInfoResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$P2pOrderInfoResponseToJson(this);
 
   // Properties
@@ -25,6 +37,9 @@ class P2pOrderInfoResponse {
 
   /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
+
+  /// For subscription requests only
+  Map<String, dynamic> subscription;
 
   // @override
   // String toString() => name;

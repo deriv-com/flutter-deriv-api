@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'portfolio_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class PortfolioRequest {
+class PortfolioRequest extends Request {
+  ///
   PortfolioRequest({this.passthrough, this.portfolio, this.reqId});
+
+  ///
   factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>
       _$PortfolioRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$PortfolioRequestToJson(this);
 
   // Properties

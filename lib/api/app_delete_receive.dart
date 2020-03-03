@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'app_delete_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AppDeleteResponse {
+class AppDeleteResponse extends Response {
+  ///
   AppDeleteResponse({this.appDelete, this.echoReq, this.msgType, this.reqId});
+
+  ///
   factory AppDeleteResponse.fromJson(Map<String, dynamic> json) =>
       _$AppDeleteResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$AppDeleteResponseToJson(this);
 
   // Properties

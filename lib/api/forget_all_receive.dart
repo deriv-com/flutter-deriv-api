@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'forget_all_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ForgetAllResponse {
+class ForgetAllResponse extends Response {
+  ///
   ForgetAllResponse({this.echoReq, this.forgetAll, this.msgType, this.reqId});
+
+  ///
   factory ForgetAllResponse.fromJson(Map<String, dynamic> json) =>
       _$ForgetAllResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$ForgetAllResponseToJson(this);
 
   // Properties

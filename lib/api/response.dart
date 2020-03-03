@@ -11,7 +11,7 @@ class Response {
 
   ///
   factory Response.fromJson(Map<String, dynamic> json) =>
-      _$RequestFromJson(json);
+      _$ResponseFromJson(json);
 
   ///
   Map<String, dynamic> toJson() => _$ResponseToJson(this);

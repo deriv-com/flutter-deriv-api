@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'portfolio_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class PortfolioResponse {
+class PortfolioResponse extends Response {
+  ///
   PortfolioResponse({this.echoReq, this.msgType, this.portfolio, this.reqId});
+
+  ///
   factory PortfolioResponse.fromJson(Map<String, dynamic> json) =>
       _$PortfolioResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$PortfolioResponseToJson(this);
 
   // Properties

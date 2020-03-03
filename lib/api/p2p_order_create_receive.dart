@@ -2,15 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'p2p_order_create_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class P2pOrderCreateResponse {
+class P2pOrderCreateResponse extends Response {
+  ///
   P2pOrderCreateResponse(
-      {this.echoReq, this.msgType, this.p2pOrderCreate, this.reqId});
+      {this.echoReq,
+      this.msgType,
+      this.p2pOrderCreate,
+      this.reqId,
+      this.subscription});
+
+  ///
   factory P2pOrderCreateResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCreateResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$P2pOrderCreateResponseToJson(this);
 
   // Properties
@@ -20,11 +32,14 @@ class P2pOrderCreateResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// Create a P2P offer.
+  /// Information of the creates P2P order.
   Map<String, dynamic> p2pOrderCreate;
 
   /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
+
+  /// For subscription requests only
+  Map<String, dynamic> subscription;
 
   // @override
   // String toString() => name;

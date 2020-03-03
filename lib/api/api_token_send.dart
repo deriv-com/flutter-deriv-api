@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'api_token_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ApiTokenRequest {
+class ApiTokenRequest extends Request {
+  ///
   ApiTokenRequest(
       {this.apiToken,
       this.deleteToken,
@@ -15,8 +18,13 @@ class ApiTokenRequest {
       this.passthrough,
       this.reqId,
       this.validForCurrentIpOnly});
+
+  ///
   factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiTokenRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$ApiTokenRequestToJson(this);
 
   // Properties

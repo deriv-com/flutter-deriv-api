@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'mt5_password_reset_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Mt5PasswordResetRequest {
+class Mt5PasswordResetRequest extends Request {
+  ///
   Mt5PasswordResetRequest(
       {this.login,
       this.mt5PasswordReset,
@@ -15,8 +18,13 @@ class Mt5PasswordResetRequest {
       this.passwordType,
       this.reqId,
       this.verificationCode});
+
+  ///
   factory Mt5PasswordResetRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordResetRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$Mt5PasswordResetRequestToJson(this);
 
   // Properties
@@ -26,7 +34,7 @@ class Mt5PasswordResetRequest {
   /// Must be `1`
   int mt5PasswordReset;
 
-  /// New password of the account (length within 8-25 chars, accepts any printable ASCII character).
+  /// New password of the account. For validation (length within 8-25 chars, accepts at least 2 out of the following 3 types of characters: uppercase letters, lowercase letters, and numbers).
   String newPassword;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.

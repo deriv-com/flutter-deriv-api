@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'paymentagent_transfer_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class PaymentagentTransferResponse {
+class PaymentagentTransferResponse extends Response {
+  ///
   PaymentagentTransferResponse(
       {this.clientToFullName,
       this.clientToLoginid,
@@ -15,8 +18,13 @@ class PaymentagentTransferResponse {
       this.paymentagentTransfer,
       this.reqId,
       this.transactionId});
+
+  ///
   factory PaymentagentTransferResponse.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentTransferResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$PaymentagentTransferResponseToJson(this);
 
   // Properties

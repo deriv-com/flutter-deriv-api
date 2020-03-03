@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'sell_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class SellRequest {
+class SellRequest extends Request {
+  ///
   SellRequest({this.passthrough, this.price, this.reqId, this.sell});
+
+  ///
   factory SellRequest.fromJson(Map<String, dynamic> json) =>
       _$SellRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$SellRequestToJson(this);
 
   // Properties

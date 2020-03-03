@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'cashier_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class CashierResponse {
+class CashierResponse extends Response {
+  ///
   CashierResponse({this.cashier, this.echoReq, this.msgType, this.reqId});
+
+  ///
   factory CashierResponse.fromJson(Map<String, dynamic> json) =>
       _$CashierResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$CashierResponseToJson(this);
 
   // Properties

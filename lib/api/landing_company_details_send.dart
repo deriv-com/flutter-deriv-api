@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'landing_company_details_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class LandingCompanyDetailsRequest {
+class LandingCompanyDetailsRequest extends Request {
+  ///
   LandingCompanyDetailsRequest(
       {this.landingCompanyDetails, this.passthrough, this.reqId});
+
+  ///
   factory LandingCompanyDetailsRequest.fromJson(Map<String, dynamic> json) =>
       _$LandingCompanyDetailsRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$LandingCompanyDetailsRequestToJson(this);
 
   // Properties

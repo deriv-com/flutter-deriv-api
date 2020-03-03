@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'mt5_new_account_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Mt5NewAccountResponse {
+class Mt5NewAccountResponse extends Response {
+  ///
   Mt5NewAccountResponse(
       {this.echoReq, this.msgType, this.mt5NewAccount, this.reqId});
+
+  ///
   factory Mt5NewAccountResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5NewAccountResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$Mt5NewAccountResponseToJson(this);
 
   // Properties

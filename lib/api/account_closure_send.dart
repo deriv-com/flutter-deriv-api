@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'account_closure_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AccountClosureRequest {
+class AccountClosureRequest extends Request {
+  ///
   AccountClosureRequest(
       {this.accountClosure, this.passthrough, this.reason, this.reqId});
+
+  ///
   factory AccountClosureRequest.fromJson(Map<String, dynamic> json) =>
       _$AccountClosureRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$AccountClosureRequestToJson(this);
 
   // Properties

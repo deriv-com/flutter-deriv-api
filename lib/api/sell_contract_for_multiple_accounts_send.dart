@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'sell_contract_for_multiple_accounts_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class SellContractForMultipleAccountsRequest {
+class SellContractForMultipleAccountsRequest extends Request {
+  ///
   SellContractForMultipleAccountsRequest(
       {this.passthrough,
       this.price,
@@ -14,9 +17,14 @@ class SellContractForMultipleAccountsRequest {
       this.sellContractForMultipleAccounts,
       this.shortcode,
       this.tokens});
+
+  ///
   factory SellContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       _$SellContractForMultipleAccountsRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() =>
       _$SellContractForMultipleAccountsRequestToJson(this);
 

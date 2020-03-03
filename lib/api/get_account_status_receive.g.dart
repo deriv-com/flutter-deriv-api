@@ -13,12 +13,13 @@ GetAccountStatusResponse _$GetAccountStatusResponseFromJson(
     getAccountStatus: json['get_account_status'] as Map<String, dynamic>,
     msgType: json['msg_type'] as String,
     reqId: json['req_id'] as int,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$GetAccountStatusResponseToJson(
         GetAccountStatusResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'echo_req': instance.echoReq,
       'get_account_status': instance.getAccountStatus,
       'msg_type': instance.msgType,

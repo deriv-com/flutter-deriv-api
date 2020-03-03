@@ -2,19 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'change_password_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ChangePasswordRequest {
+class ChangePasswordRequest extends Request {
+  ///
   ChangePasswordRequest(
       {this.changePassword,
       this.newPassword,
       this.oldPassword,
       this.passthrough,
       this.reqId});
+
+  ///
   factory ChangePasswordRequest.fromJson(Map<String, dynamic> json) =>
       _$ChangePasswordRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$ChangePasswordRequestToJson(this);
 
   // Properties

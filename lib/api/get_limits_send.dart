@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'get_limits_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class GetLimitsRequest {
+class GetLimitsRequest extends Request {
+  ///
   GetLimitsRequest({this.getLimits, this.passthrough, this.reqId});
+
+  ///
   factory GetLimitsRequest.fromJson(Map<String, dynamic> json) =>
       _$GetLimitsRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$GetLimitsRequestToJson(this);
 
   // Properties

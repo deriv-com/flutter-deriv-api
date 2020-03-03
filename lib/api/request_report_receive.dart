@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'request_report_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class RequestReportResponse {
+class RequestReportResponse extends Response {
+  ///
   RequestReportResponse(
       {this.echoReq, this.msgType, this.reqId, this.requestReport});
+
+  ///
   factory RequestReportResponse.fromJson(Map<String, dynamic> json) =>
       _$RequestReportResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$RequestReportResponseToJson(this);
 
   // Properties

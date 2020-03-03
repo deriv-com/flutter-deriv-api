@@ -14,12 +14,13 @@ SetFinancialAssessmentResponse _$SetFinancialAssessmentResponseFromJson(
     reqId: json['req_id'] as int,
     setFinancialAssessment:
         json['set_financial_assessment'] as Map<String, dynamic>,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$SetFinancialAssessmentResponseToJson(
         SetFinancialAssessmentResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
       'req_id': instance.reqId,

@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'mt5_login_list_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Mt5LoginListResponse {
+class Mt5LoginListResponse extends Response {
+  ///
   Mt5LoginListResponse(
       {this.echoReq, this.msgType, this.mt5LoginList, this.reqId});
+
+  ///
   factory Mt5LoginListResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5LoginListResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$Mt5LoginListResponseToJson(this);
 
   // Properties

@@ -16,12 +16,13 @@ PaymentagentTransferResponse _$PaymentagentTransferResponseFromJson(
     paymentagentTransfer: json['paymentagent_transfer'] as int,
     reqId: json['req_id'] as int,
     transactionId: json['transaction_id'] as int,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$PaymentagentTransferResponseToJson(
         PaymentagentTransferResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'client_to_full_name': instance.clientToFullName,
       'client_to_loginid': instance.clientToLoginid,
       'echo_req': instance.echoReq,

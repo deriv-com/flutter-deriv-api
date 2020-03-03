@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'sell_expired_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class SellExpiredResponse {
+class SellExpiredResponse extends Response {
+  ///
   SellExpiredResponse(
       {this.echoReq, this.msgType, this.reqId, this.sellExpired});
+
+  ///
   factory SellExpiredResponse.fromJson(Map<String, dynamic> json) =>
       _$SellExpiredResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$SellExpiredResponseToJson(this);
 
   // Properties

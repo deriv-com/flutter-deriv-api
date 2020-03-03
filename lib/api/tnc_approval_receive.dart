@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'tnc_approval_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TncApprovalResponse {
+class TncApprovalResponse extends Response {
+  ///
   TncApprovalResponse(
       {this.echoReq, this.msgType, this.reqId, this.tncApproval});
+
+  ///
   factory TncApprovalResponse.fromJson(Map<String, dynamic> json) =>
       _$TncApprovalResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$TncApprovalResponseToJson(this);
 
   // Properties

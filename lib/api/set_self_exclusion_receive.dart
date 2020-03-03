@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'set_self_exclusion_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class SetSelfExclusionResponse {
+class SetSelfExclusionResponse extends Response {
+  ///
   SetSelfExclusionResponse(
       {this.echoReq, this.msgType, this.reqId, this.setSelfExclusion});
+
+  ///
   factory SetSelfExclusionResponse.fromJson(Map<String, dynamic> json) =>
       _$SetSelfExclusionResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$SetSelfExclusionResponseToJson(this);
 
   // Properties

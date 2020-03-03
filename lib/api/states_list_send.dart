@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'states_list_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class StatesListRequest {
+class StatesListRequest extends Request {
+  ///
   StatesListRequest({this.passthrough, this.reqId, this.statesList});
+
+  ///
   factory StatesListRequest.fromJson(Map<String, dynamic> json) =>
       _$StatesListRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$StatesListRequestToJson(this);
 
   // Properties

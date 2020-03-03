@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'app_markup_details_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AppMarkupDetailsResponse {
+class AppMarkupDetailsResponse extends Response {
+  ///
   AppMarkupDetailsResponse(
       {this.appMarkupDetails, this.echoReq, this.msgType, this.reqId});
+
+  ///
   factory AppMarkupDetailsResponse.fromJson(Map<String, dynamic> json) =>
       _$AppMarkupDetailsResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$AppMarkupDetailsResponseToJson(this);
 
   // Properties

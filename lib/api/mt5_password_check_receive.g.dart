@@ -13,12 +13,13 @@ Mt5PasswordCheckResponse _$Mt5PasswordCheckResponseFromJson(
     msgType: json['msg_type'] as String,
     mt5PasswordCheck: json['mt5_password_check'] as int,
     reqId: json['req_id'] as int,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$Mt5PasswordCheckResponseToJson(
         Mt5PasswordCheckResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
       'mt5_password_check': instance.mt5PasswordCheck,

@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'request_report_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class RequestReportRequest {
+class RequestReportRequest extends Request {
+  ///
   RequestReportRequest(
       {this.dateFrom,
       this.dateTo,
@@ -14,8 +17,13 @@ class RequestReportRequest {
       this.reportType,
       this.reqId,
       this.requestReport});
+
+  ///
   factory RequestReportRequest.fromJson(Map<String, dynamic> json) =>
       _$RequestReportRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$RequestReportRequestToJson(this);
 
   // Properties

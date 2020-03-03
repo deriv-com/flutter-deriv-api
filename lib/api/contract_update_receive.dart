@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'contract_update_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ContractUpdateResponse {
+class ContractUpdateResponse extends Response {
+  ///
   ContractUpdateResponse(
       {this.contractUpdate, this.echoReq, this.msgType, this.reqId});
+
+  ///
   factory ContractUpdateResponse.fromJson(Map<String, dynamic> json) =>
       _$ContractUpdateResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$ContractUpdateResponseToJson(this);
 
   // Properties

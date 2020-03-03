@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'payout_currencies_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class PayoutCurrenciesRequest {
+class PayoutCurrenciesRequest extends Request {
+  ///
   PayoutCurrenciesRequest(
       {this.passthrough, this.payoutCurrencies, this.reqId});
+
+  ///
   factory PayoutCurrenciesRequest.fromJson(Map<String, dynamic> json) =>
       _$PayoutCurrenciesRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$PayoutCurrenciesRequestToJson(this);
 
   // Properties

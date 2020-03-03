@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'set_account_currency_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class SetAccountCurrencyRequest {
+class SetAccountCurrencyRequest extends Request {
+  ///
   SetAccountCurrencyRequest(
       {this.passthrough, this.reqId, this.setAccountCurrency});
+
+  ///
   factory SetAccountCurrencyRequest.fromJson(Map<String, dynamic> json) =>
       _$SetAccountCurrencyRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$SetAccountCurrencyRequestToJson(this);
 
   // Properties

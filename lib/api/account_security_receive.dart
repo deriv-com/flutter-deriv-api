@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'account_security_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AccountSecurityResponse {
+class AccountSecurityResponse extends Response {
+  ///
   AccountSecurityResponse(
       {this.accountSecurity, this.echoReq, this.msgType, this.reqId});
+
+  ///
   factory AccountSecurityResponse.fromJson(Map<String, dynamic> json) =>
       _$AccountSecurityResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$AccountSecurityResponseToJson(this);
 
   // Properties

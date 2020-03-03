@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'new_account_maltainvest_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class NewAccountMaltainvestRequest {
+class NewAccountMaltainvestRequest extends Request {
+  ///
   NewAccountMaltainvestRequest(
       {this.acceptRisk,
       this.accountOpeningReason,
@@ -49,8 +52,13 @@ class NewAccountMaltainvestRequest {
       this.sourceOfWealth,
       this.taxIdentificationNumber,
       this.taxResidence});
+
+  ///
   factory NewAccountMaltainvestRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountMaltainvestRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$NewAccountMaltainvestRequestToJson(this);
 
   // Properties

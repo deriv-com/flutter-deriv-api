@@ -2,19 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'mt5_withdrawal_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Mt5WithdrawalResponse {
+class Mt5WithdrawalResponse extends Response {
+  ///
   Mt5WithdrawalResponse(
       {this.binaryTransactionId,
       this.echoReq,
       this.msgType,
       this.mt5Withdrawal,
       this.reqId});
+
+  ///
   factory Mt5WithdrawalResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5WithdrawalResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$Mt5WithdrawalResponseToJson(this);
 
   // Properties

@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'get_financial_assessment_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class GetFinancialAssessmentResponse {
+class GetFinancialAssessmentResponse extends Response {
+  ///
   GetFinancialAssessmentResponse(
       {this.echoReq, this.getFinancialAssessment, this.msgType, this.reqId});
+
+  ///
   factory GetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>
       _$GetFinancialAssessmentResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$GetFinancialAssessmentResponseToJson(this);
 
   // Properties

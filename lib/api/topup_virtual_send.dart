@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'topup_virtual_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TopupVirtualRequest {
+class TopupVirtualRequest extends Request {
+  ///
   TopupVirtualRequest({this.passthrough, this.reqId, this.topupVirtual});
+
+  ///
   factory TopupVirtualRequest.fromJson(Map<String, dynamic> json) =>
       _$TopupVirtualRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$TopupVirtualRequestToJson(this);
 
   // Properties

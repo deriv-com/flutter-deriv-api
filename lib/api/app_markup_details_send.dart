@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'app_markup_details_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AppMarkupDetailsRequest {
+class AppMarkupDetailsRequest extends Request {
+  ///
   AppMarkupDetailsRequest(
       {this.appId,
       this.appMarkupDetails,
@@ -20,8 +23,13 @@ class AppMarkupDetailsRequest {
       this.reqId,
       this.sort,
       this.sortFields});
+
+  ///
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>
       _$AppMarkupDetailsRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$AppMarkupDetailsRequestToJson(this);
 
   // Properties

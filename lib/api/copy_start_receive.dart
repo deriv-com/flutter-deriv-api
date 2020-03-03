@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'copy_start_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class CopyStartResponse {
+class CopyStartResponse extends Response {
+  ///
   CopyStartResponse({this.copyStart, this.echoReq, this.msgType, this.reqId});
+
+  ///
   factory CopyStartResponse.fromJson(Map<String, dynamic> json) =>
       _$CopyStartResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$CopyStartResponseToJson(this);
 
   // Properties

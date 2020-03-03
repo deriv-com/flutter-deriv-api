@@ -13,12 +13,13 @@ Mt5NewAccountResponse _$Mt5NewAccountResponseFromJson(
     msgType: json['msg_type'] as String,
     mt5NewAccount: json['mt5_new_account'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$Mt5NewAccountResponseToJson(
         Mt5NewAccountResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
       'mt5_new_account': instance.mt5NewAccount,

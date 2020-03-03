@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'get_financial_assessment_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class GetFinancialAssessmentRequest {
+class GetFinancialAssessmentRequest extends Request {
+  ///
   GetFinancialAssessmentRequest(
       {this.getFinancialAssessment, this.passthrough, this.reqId});
+
+  ///
   factory GetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       _$GetFinancialAssessmentRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$GetFinancialAssessmentRequestToJson(this);
 
   // Properties

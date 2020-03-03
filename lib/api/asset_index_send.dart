@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'asset_index_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AssetIndexRequest {
+class AssetIndexRequest extends Request {
+  ///
   AssetIndexRequest(
       {this.assetIndex, this.landingCompany, this.passthrough, this.reqId});
+
+  ///
   factory AssetIndexRequest.fromJson(Map<String, dynamic> json) =>
       _$AssetIndexRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$AssetIndexRequestToJson(this);
 
   // Properties

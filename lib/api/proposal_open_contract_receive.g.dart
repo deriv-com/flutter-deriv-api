@@ -15,12 +15,13 @@ ProposalOpenContractResponse _$ProposalOpenContractResponseFromJson(
         json['proposal_open_contract'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
     subscription: json['subscription'] as Map<String, dynamic>,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$ProposalOpenContractResponseToJson(
         ProposalOpenContractResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
       'proposal_open_contract': instance.proposalOpenContract,

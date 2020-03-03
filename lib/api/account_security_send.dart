@@ -2,19 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'account_security_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AccountSecurityRequest {
+class AccountSecurityRequest extends Request {
+  ///
   AccountSecurityRequest(
       {this.accountSecurity,
       this.otp,
       this.passthrough,
       this.reqId,
       this.totpAction});
+
+  ///
   factory AccountSecurityRequest.fromJson(Map<String, dynamic> json) =>
       _$AccountSecurityRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$AccountSecurityRequestToJson(this);
 
   // Properties

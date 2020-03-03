@@ -2,19 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'website_status_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class WebsiteStatusResponse {
+class WebsiteStatusResponse extends Response {
+  ///
   WebsiteStatusResponse(
       {this.echoReq,
       this.msgType,
       this.reqId,
       this.subscription,
       this.websiteStatus});
+
+  ///
   factory WebsiteStatusResponse.fromJson(Map<String, dynamic> json) =>
       _$WebsiteStatusResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$WebsiteStatusResponseToJson(this);
 
   // Properties
