@@ -2,19 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'mt5_deposit_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Mt5DepositResponse {
+class Mt5DepositResponse extends Response {
+  ///
   Mt5DepositResponse(
       {this.binaryTransactionId,
       this.echoReq,
       this.msgType,
       this.mt5Deposit,
       this.reqId});
+
+  ///
   factory Mt5DepositResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5DepositResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$Mt5DepositResponseToJson(this);
 
   // Properties

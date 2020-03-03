@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'app_update_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AppUpdateRequest {
+class AppUpdateRequest extends Request {
+  ///
   AppUpdateRequest(
       {this.appMarkupPercentage,
       this.appUpdate,
@@ -20,8 +23,13 @@ class AppUpdateRequest {
       this.reqId,
       this.scopes,
       this.verificationUri});
+
+  ///
   factory AppUpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$AppUpdateRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$AppUpdateRequestToJson(this);
 
   // Properties

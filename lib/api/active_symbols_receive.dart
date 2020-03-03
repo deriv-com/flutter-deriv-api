@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'active_symbols_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ActiveSymbolsResponse {
+class ActiveSymbolsResponse extends Response {
+  ///
   ActiveSymbolsResponse(
       {this.activeSymbols, this.echoReq, this.msgType, this.reqId});
+
+  ///
   factory ActiveSymbolsResponse.fromJson(Map<String, dynamic> json) =>
       _$ActiveSymbolsResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$ActiveSymbolsResponseToJson(this);
 
   // Properties

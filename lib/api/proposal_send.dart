@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'proposal_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ProposalRequest {
+class ProposalRequest extends Request {
+  ///
   ProposalRequest(
       {this.amount,
       this.barrier,
@@ -28,8 +31,13 @@ class ProposalRequest {
       this.subscribe,
       this.symbol,
       this.tradingPeriodStart});
+
+  ///
   factory ProposalRequest.fromJson(Map<String, dynamic> json) =>
       _$ProposalRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$ProposalRequestToJson(this);
 
   // Properties

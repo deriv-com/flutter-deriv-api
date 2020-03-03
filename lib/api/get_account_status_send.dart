@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'get_account_status_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class GetAccountStatusRequest {
+class GetAccountStatusRequest extends Request {
+  ///
   GetAccountStatusRequest(
       {this.getAccountStatus, this.passthrough, this.reqId});
+
+  ///
   factory GetAccountStatusRequest.fromJson(Map<String, dynamic> json) =>
       _$GetAccountStatusRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$GetAccountStatusRequestToJson(this);
 
   // Properties

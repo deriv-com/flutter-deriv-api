@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'revoke_oauth_app_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class RevokeOauthAppRequest {
+class RevokeOauthAppRequest extends Request {
+  ///
   RevokeOauthAppRequest({this.passthrough, this.reqId, this.revokeOauthApp});
+
+  ///
   factory RevokeOauthAppRequest.fromJson(Map<String, dynamic> json) =>
       _$RevokeOauthAppRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$RevokeOauthAppRequestToJson(this);
 
   // Properties

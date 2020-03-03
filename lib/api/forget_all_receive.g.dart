@@ -12,11 +12,12 @@ ForgetAllResponse _$ForgetAllResponseFromJson(Map<String, dynamic> json) {
     forgetAll: (json['forget_all'] as List).map((e) => e as String).toList(),
     msgType: json['msg_type'] as String,
     reqId: json['req_id'] as int,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$ForgetAllResponseToJson(ForgetAllResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'echo_req': instance.echoReq,
       'forget_all': instance.forgetAll,
       'msg_type': instance.msgType,

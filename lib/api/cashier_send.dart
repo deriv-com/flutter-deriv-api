@@ -2,19 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'cashier_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class CashierRequest {
+class CashierRequest extends Request {
+  ///
   CashierRequest(
       {this.cashier,
       this.passthrough,
       this.provider,
       this.reqId,
       this.verificationCode});
+
+  ///
   factory CashierRequest.fromJson(Map<String, dynamic> json) =>
       _$CashierRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$CashierRequestToJson(this);
 
   // Properties

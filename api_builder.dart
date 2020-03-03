@@ -131,6 +131,7 @@ class ${fullClassName} extends ${schemaType == 'send' ? 'Request' : 'Response'}{
   factory ${fullClassName}.fromJson(Map<String, dynamic> json) => _\$${fullClassName}FromJson(json);
   
   ///
+  @override
   Map<String, dynamic> toJson() => _\$${fullClassName}ToJson(this);
 
   // Properties

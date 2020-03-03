@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'paymentagent_list_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class PaymentagentListRequest {
+class PaymentagentListRequest extends Request {
+  ///
   PaymentagentListRequest(
       {this.currency, this.passthrough, this.paymentagentList, this.reqId});
+
+  ///
   factory PaymentagentListRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentListRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$PaymentagentListRequestToJson(this);
 
   // Properties

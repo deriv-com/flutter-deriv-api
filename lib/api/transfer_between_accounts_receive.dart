@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'transfer_between_accounts_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TransferBetweenAccountsResponse {
+class TransferBetweenAccountsResponse extends Response {
+  ///
   TransferBetweenAccountsResponse(
       {this.accounts,
       this.clientToFullName,
@@ -16,8 +19,13 @@ class TransferBetweenAccountsResponse {
       this.reqId,
       this.transactionId,
       this.transferBetweenAccounts});
+
+  ///
   factory TransferBetweenAccountsResponse.fromJson(Map<String, dynamic> json) =>
       _$TransferBetweenAccountsResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() =>
       _$TransferBetweenAccountsResponseToJson(this);
 

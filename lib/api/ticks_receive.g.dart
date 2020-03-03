@@ -13,11 +13,12 @@ TicksResponse _$TicksResponseFromJson(Map<String, dynamic> json) {
     reqId: json['req_id'] as int,
     subscription: json['subscription'] as Map<String, dynamic>,
     tick: json['tick'] as Map<String, dynamic>,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$TicksResponseToJson(TicksResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
       'req_id': instance.reqId,

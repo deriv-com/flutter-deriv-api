@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'mt5_get_settings_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Mt5GetSettingsRequest {
+class Mt5GetSettingsRequest extends Request {
+  ///
   Mt5GetSettingsRequest(
       {this.login, this.mt5GetSettings, this.passthrough, this.reqId});
+
+  ///
   factory Mt5GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5GetSettingsRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$Mt5GetSettingsRequestToJson(this);
 
   // Properties

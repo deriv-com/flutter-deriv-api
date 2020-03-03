@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'verify_email_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class VerifyEmailResponse {
+class VerifyEmailResponse extends Response {
+  ///
   VerifyEmailResponse(
       {this.echoReq, this.msgType, this.reqId, this.verifyEmail});
+
+  ///
   factory VerifyEmailResponse.fromJson(Map<String, dynamic> json) =>
       _$VerifyEmailResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$VerifyEmailResponseToJson(this);
 
   // Properties

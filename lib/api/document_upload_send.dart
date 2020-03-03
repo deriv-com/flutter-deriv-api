@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'document_upload_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class DocumentUploadRequest {
+class DocumentUploadRequest extends Request {
+  ///
   DocumentUploadRequest(
       {this.documentFormat,
       this.documentId,
@@ -18,8 +21,13 @@ class DocumentUploadRequest {
       this.pageType,
       this.passthrough,
       this.reqId});
+
+  ///
   factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>
       _$DocumentUploadRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$DocumentUploadRequestToJson(this);
 
   // Properties

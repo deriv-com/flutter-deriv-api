@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'set_settings_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class SetSettingsRequest {
+class SetSettingsRequest extends Request {
+  ///
   SetSettingsRequest(
       {this.accountOpeningReason,
       this.addressCity,
@@ -32,8 +35,13 @@ class SetSettingsRequest {
       this.setSettings,
       this.taxIdentificationNumber,
       this.taxResidence});
+
+  ///
   factory SetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       _$SetSettingsRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$SetSettingsRequestToJson(this);
 
   // Properties

@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'ticks_history_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TicksHistoryResponse {
+class TicksHistoryResponse extends Response {
+  ///
   TicksHistoryResponse(
       {this.candles,
       this.echoReq,
@@ -15,8 +18,13 @@ class TicksHistoryResponse {
       this.pipSize,
       this.reqId,
       this.subscription});
+
+  ///
   factory TicksHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$TicksHistoryResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$TicksHistoryResponseToJson(this);
 
   // Properties

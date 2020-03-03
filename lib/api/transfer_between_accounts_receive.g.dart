@@ -19,12 +19,13 @@ TransferBetweenAccountsResponse _$TransferBetweenAccountsResponseFromJson(
     reqId: json['req_id'] as int,
     transactionId: json['transaction_id'] as int,
     transferBetweenAccounts: json['transfer_between_accounts'] as int,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$TransferBetweenAccountsResponseToJson(
         TransferBetweenAccountsResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'accounts': instance.accounts,
       'client_to_full_name': instance.clientToFullName,
       'client_to_loginid': instance.clientToLoginid,

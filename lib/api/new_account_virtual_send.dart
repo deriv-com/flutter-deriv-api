@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'new_account_virtual_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class NewAccountVirtualRequest {
+class NewAccountVirtualRequest extends Request {
+  ///
   NewAccountVirtualRequest(
       {this.affiliateToken,
       this.clientPassword,
@@ -21,8 +24,13 @@ class NewAccountVirtualRequest {
       this.utmMedium,
       this.utmSource,
       this.verificationCode});
+
+  ///
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountVirtualRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$NewAccountVirtualRequestToJson(this);
 
   // Properties

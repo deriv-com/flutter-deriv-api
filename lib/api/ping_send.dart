@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'ping_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class PingRequest {
+class PingRequest extends Request {
+  ///
   PingRequest({this.passthrough, this.ping, this.reqId});
+
+  ///
   factory PingRequest.fromJson(Map<String, dynamic> json) =>
       _$PingRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$PingRequestToJson(this);
 
   // Properties

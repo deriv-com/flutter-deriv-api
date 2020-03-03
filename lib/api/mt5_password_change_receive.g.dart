@@ -13,12 +13,13 @@ Mt5PasswordChangeResponse _$Mt5PasswordChangeResponseFromJson(
     msgType: json['msg_type'] as String,
     mt5PasswordChange: json['mt5_password_change'] as int,
     reqId: json['req_id'] as int,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$Mt5PasswordChangeResponseToJson(
         Mt5PasswordChangeResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
       'mt5_password_change': instance.mt5PasswordChange,

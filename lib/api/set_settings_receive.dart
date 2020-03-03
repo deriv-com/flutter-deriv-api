@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'set_settings_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class SetSettingsResponse {
+class SetSettingsResponse extends Response {
+  ///
   SetSettingsResponse(
       {this.echoReq, this.msgType, this.reqId, this.setSettings});
+
+  ///
   factory SetSettingsResponse.fromJson(Map<String, dynamic> json) =>
       _$SetSettingsResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$SetSettingsResponseToJson(this);
 
   // Properties

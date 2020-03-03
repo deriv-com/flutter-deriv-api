@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'get_account_status_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class GetAccountStatusResponse {
+class GetAccountStatusResponse extends Response {
+  ///
   GetAccountStatusResponse(
       {this.echoReq, this.getAccountStatus, this.msgType, this.reqId});
+
+  ///
   factory GetAccountStatusResponse.fromJson(Map<String, dynamic> json) =>
       _$GetAccountStatusResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$GetAccountStatusResponseToJson(this);
 
   // Properties

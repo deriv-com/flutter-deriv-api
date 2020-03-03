@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'asset_index_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AssetIndexResponse {
+class AssetIndexResponse extends Response {
+  ///
   AssetIndexResponse({this.assetIndex, this.echoReq, this.msgType, this.reqId});
+
+  ///
   factory AssetIndexResponse.fromJson(Map<String, dynamic> json) =>
       _$AssetIndexResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$AssetIndexResponseToJson(this);
 
   // Properties

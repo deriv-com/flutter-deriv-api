@@ -2,19 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'proposal_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ProposalResponse {
+class ProposalResponse extends Response {
+  ///
   ProposalResponse(
       {this.echoReq,
       this.msgType,
       this.proposal,
       this.reqId,
       this.subscription});
+
+  ///
   factory ProposalResponse.fromJson(Map<String, dynamic> json) =>
       _$ProposalResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$ProposalResponseToJson(this);
 
   // Properties

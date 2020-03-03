@@ -13,12 +13,13 @@ P2pOrderConfirmResponse _$P2pOrderConfirmResponseFromJson(
     msgType: json['msg_type'] as String,
     p2pOrderConfirm: json['p2p_order_confirm'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$P2pOrderConfirmResponseToJson(
         P2pOrderConfirmResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
       'p2p_order_confirm': instance.p2pOrderConfirm,

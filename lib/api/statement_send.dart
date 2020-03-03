@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'statement_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class StatementRequest {
+class StatementRequest extends Request {
+  ///
   StatementRequest(
       {this.actionType,
       this.dateFrom,
@@ -17,8 +20,13 @@ class StatementRequest {
       this.passthrough,
       this.reqId,
       this.statement});
+
+  ///
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>
       _$StatementRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$StatementRequestToJson(this);
 
   // Properties

@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'authorize_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AuthorizeResponse {
+class AuthorizeResponse extends Response {
+  ///
   AuthorizeResponse({this.authorize, this.echoReq, this.msgType, this.reqId});
+
+  ///
   factory AuthorizeResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthorizeResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$AuthorizeResponseToJson(this);
 
   // Properties

@@ -12,11 +12,12 @@ LogoutResponse _$LogoutResponseFromJson(Map<String, dynamic> json) {
     logout: json['logout'] as int,
     msgType: json['msg_type'] as String,
     reqId: json['req_id'] as int,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$LogoutResponseToJson(LogoutResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'echo_req': instance.echoReq,
       'logout': instance.logout,
       'msg_type': instance.msgType,

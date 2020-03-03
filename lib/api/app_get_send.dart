@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'app_get_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AppGetRequest {
+class AppGetRequest extends Request {
+  ///
   AppGetRequest({this.appGet, this.passthrough, this.reqId});
+
+  ///
   factory AppGetRequest.fromJson(Map<String, dynamic> json) =>
       _$AppGetRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$AppGetRequestToJson(this);
 
   // Properties

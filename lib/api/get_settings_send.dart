@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'get_settings_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class GetSettingsRequest {
+class GetSettingsRequest extends Request {
+  ///
   GetSettingsRequest({this.getSettings, this.passthrough, this.reqId});
+
+  ///
   factory GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       _$GetSettingsRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$GetSettingsRequestToJson(this);
 
   // Properties

@@ -13,12 +13,13 @@ GetSelfExclusionResponse _$GetSelfExclusionResponseFromJson(
     getSelfExclusion: json['get_self_exclusion'] as Map<String, dynamic>,
     msgType: json['msg_type'] as String,
     reqId: json['req_id'] as int,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$GetSelfExclusionResponseToJson(
         GetSelfExclusionResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'echo_req': instance.echoReq,
       'get_self_exclusion': instance.getSelfExclusion,
       'msg_type': instance.msgType,

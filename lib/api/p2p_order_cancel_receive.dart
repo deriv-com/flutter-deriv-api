@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'p2p_order_cancel_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class P2pOrderCancelResponse {
+class P2pOrderCancelResponse extends Response {
+  ///
   P2pOrderCancelResponse(
       {this.echoReq, this.msgType, this.p2pOrderCancel, this.reqId});
+
+  ///
   factory P2pOrderCancelResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCancelResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$P2pOrderCancelResponseToJson(this);
 
   // Properties

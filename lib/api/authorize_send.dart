@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'authorize_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AuthorizeRequest {
+class AuthorizeRequest extends Request {
+  ///
   AuthorizeRequest(
       {this.addToLoginHistory, this.authorize, this.passthrough, this.reqId});
+
+  ///
   factory AuthorizeRequest.fromJson(Map<String, dynamic> json) =>
       _$AuthorizeRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$AuthorizeRequestToJson(this);
 
   // Properties

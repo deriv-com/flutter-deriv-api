@@ -2,19 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'balance_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class BalanceRequest {
+class BalanceRequest extends Request {
+  ///
   BalanceRequest(
       {this.account,
       this.balance,
       this.passthrough,
       this.reqId,
       this.subscribe});
+
+  ///
   factory BalanceRequest.fromJson(Map<String, dynamic> json) =>
       _$BalanceRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$BalanceRequestToJson(this);
 
   // Properties

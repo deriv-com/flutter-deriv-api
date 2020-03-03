@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'profit_table_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ProfitTableRequest {
+class ProfitTableRequest extends Request {
+  ///
   ProfitTableRequest(
       {this.dateFrom,
       this.dateTo,
@@ -17,8 +20,13 @@ class ProfitTableRequest {
       this.profitTable,
       this.reqId,
       this.sort});
+
+  ///
   factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>
       _$ProfitTableRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$ProfitTableRequestToJson(this);
 
   // Properties

@@ -2,19 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'service_token_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ServiceTokenRequest {
+class ServiceTokenRequest extends Request {
+  ///
   ServiceTokenRequest(
       {this.passthrough,
       this.referrer,
       this.reqId,
       this.service,
       this.serviceToken});
+
+  ///
   factory ServiceTokenRequest.fromJson(Map<String, dynamic> json) =>
       _$ServiceTokenRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$ServiceTokenRequestToJson(this);
 
   // Properties

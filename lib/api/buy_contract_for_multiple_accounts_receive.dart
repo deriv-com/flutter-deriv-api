@@ -2,19 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'buy_contract_for_multiple_accounts_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class BuyContractForMultipleAccountsResponse {
+class BuyContractForMultipleAccountsResponse extends Response {
+  ///
   BuyContractForMultipleAccountsResponse(
       {this.buyContractForMultipleAccounts,
       this.echoReq,
       this.msgType,
       this.reqId});
+
+  ///
   factory BuyContractForMultipleAccountsResponse.fromJson(
           Map<String, dynamic> json) =>
       _$BuyContractForMultipleAccountsResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() =>
       _$BuyContractForMultipleAccountsResponseToJson(this);
 

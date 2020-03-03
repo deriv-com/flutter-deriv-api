@@ -2,19 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'notification_event_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class NotificationEventRequest {
+class NotificationEventRequest extends Request {
+  ///
   NotificationEventRequest(
       {this.category,
       this.event,
       this.notificationEvent,
       this.passthrough,
       this.reqId});
+
+  ///
   factory NotificationEventRequest.fromJson(Map<String, dynamic> json) =>
       _$NotificationEventRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$NotificationEventRequestToJson(this);
 
   // Properties

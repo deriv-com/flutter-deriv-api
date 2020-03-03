@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'mt5_password_change_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Mt5PasswordChangeRequest {
+class Mt5PasswordChangeRequest extends Request {
+  ///
   Mt5PasswordChangeRequest(
       {this.login,
       this.mt5PasswordChange,
@@ -15,8 +18,13 @@ class Mt5PasswordChangeRequest {
       this.passthrough,
       this.passwordType,
       this.reqId});
+
+  ///
   factory Mt5PasswordChangeRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordChangeRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$Mt5PasswordChangeRequestToJson(this);
 
   // Properties
@@ -26,7 +34,7 @@ class Mt5PasswordChangeRequest {
   /// Must be `1`
   int mt5PasswordChange;
 
-  /// New password (length within 8-25 chars, accepts any printable ASCII character)
+  /// New password of the account. For validation (length within 8-25 chars, accepts at least 2 out of the following 3 types of characters: uppercase letters, lowercase letters, and numbers).
   String newPassword;
 
   /// Old password for validation (non-empty string, accepts any printable ASCII character)

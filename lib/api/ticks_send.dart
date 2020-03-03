@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'ticks_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TicksRequest {
+class TicksRequest extends Request {
+  ///
   TicksRequest({this.passthrough, this.reqId, this.subscribe, this.ticks});
+
+  ///
   factory TicksRequest.fromJson(Map<String, dynamic> json) =>
       _$TicksRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$TicksRequestToJson(this);
 
   // Properties

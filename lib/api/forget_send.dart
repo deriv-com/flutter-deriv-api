@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'forget_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ForgetRequest {
+class ForgetRequest extends Request {
+  ///
   ForgetRequest({this.forget, this.passthrough, this.reqId});
+
+  ///
   factory ForgetRequest.fromJson(Map<String, dynamic> json) =>
       _$ForgetRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$ForgetRequestToJson(this);
 
   // Properties

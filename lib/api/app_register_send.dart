@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'app_register_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AppRegisterRequest {
+class AppRegisterRequest extends Request {
+  ///
   AppRegisterRequest(
       {this.appMarkupPercentage,
       this.appRegister,
@@ -20,8 +23,13 @@ class AppRegisterRequest {
       this.reqId,
       this.scopes,
       this.verificationUri});
+
+  ///
   factory AppRegisterRequest.fromJson(Map<String, dynamic> json) =>
       _$AppRegisterRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$AppRegisterRequestToJson(this);
 
   // Properties

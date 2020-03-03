@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'mt5_password_change_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Mt5PasswordChangeResponse {
+class Mt5PasswordChangeResponse extends Response {
+  ///
   Mt5PasswordChangeResponse(
       {this.echoReq, this.msgType, this.mt5PasswordChange, this.reqId});
+
+  ///
   factory Mt5PasswordChangeResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordChangeResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$Mt5PasswordChangeResponseToJson(this);
 
   // Properties

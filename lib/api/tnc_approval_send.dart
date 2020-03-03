@@ -2,18 +2,26 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'tnc_approval_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TncApprovalRequest {
+class TncApprovalRequest extends Request {
+  ///
   TncApprovalRequest(
       {this.passthrough,
       this.reqId,
       this.tncApproval,
       this.ukgcFundsProtection});
+
+  ///
   factory TncApprovalRequest.fromJson(Map<String, dynamic> json) =>
       _$TncApprovalRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$TncApprovalRequestToJson(this);
 
   // Properties

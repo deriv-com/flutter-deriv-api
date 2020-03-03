@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'time_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TimeResponse {
+class TimeResponse extends Response {
+  ///
   TimeResponse({this.echoReq, this.msgType, this.reqId, this.time});
+
+  ///
   factory TimeResponse.fromJson(Map<String, dynamic> json) =>
       _$TimeResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$TimeResponseToJson(this);
 
   // Properties

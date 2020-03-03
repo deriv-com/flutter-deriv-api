@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'transfer_between_accounts_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TransferBetweenAccountsRequest {
+class TransferBetweenAccountsRequest extends Request {
+  ///
   TransferBetweenAccountsRequest(
       {this.accountFrom,
       this.accountTo,
@@ -16,8 +19,13 @@ class TransferBetweenAccountsRequest {
       this.passthrough,
       this.reqId,
       this.transferBetweenAccounts});
+
+  ///
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>
       _$TransferBetweenAccountsRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$TransferBetweenAccountsRequestToJson(this);
 
   // Properties

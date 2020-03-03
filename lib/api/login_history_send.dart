@@ -2,15 +2,23 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'login_history_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class LoginHistoryRequest {
+class LoginHistoryRequest extends Request {
+  ///
   LoginHistoryRequest(
       {this.limit, this.loginHistory, this.passthrough, this.reqId});
+
+  ///
   factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$LoginHistoryRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$LoginHistoryRequestToJson(this);
 
   // Properties

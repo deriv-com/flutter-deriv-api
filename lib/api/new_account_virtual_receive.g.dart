@@ -13,12 +13,13 @@ NewAccountVirtualResponse _$NewAccountVirtualResponseFromJson(
     msgType: json['msg_type'] as String,
     newAccountVirtual: json['new_account_virtual'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$NewAccountVirtualResponseToJson(
         NewAccountVirtualResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
       'new_account_virtual': instance.newAccountVirtual,

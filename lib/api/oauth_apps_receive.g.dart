@@ -14,11 +14,12 @@ OauthAppsResponse _$OauthAppsResponseFromJson(Map<String, dynamic> json) {
         .map((e) => e as Map<String, dynamic>)
         .toList(),
     reqId: json['req_id'] as int,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$OauthAppsResponseToJson(OauthAppsResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'echo_req': instance.echoReq,
       'msg_type': instance.msgType,
       'oauth_apps': instance.oauthApps,

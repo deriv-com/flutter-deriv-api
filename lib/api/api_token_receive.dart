@@ -2,14 +2,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'api_token_receive.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ApiTokenResponse {
+class ApiTokenResponse extends Response {
+  ///
   ApiTokenResponse({this.apiToken, this.echoReq, this.msgType, this.reqId});
+
+  ///
   factory ApiTokenResponse.fromJson(Map<String, dynamic> json) =>
       _$ApiTokenResponseFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$ApiTokenResponseToJson(this);
 
   // Properties

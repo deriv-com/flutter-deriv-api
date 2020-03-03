@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'mt5_withdrawal_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Mt5WithdrawalRequest {
+class Mt5WithdrawalRequest extends Request {
+  ///
   Mt5WithdrawalRequest(
       {this.amount,
       this.fromMt5,
@@ -14,8 +17,13 @@ class Mt5WithdrawalRequest {
       this.passthrough,
       this.reqId,
       this.toBinary});
+
+  ///
   factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5WithdrawalRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$Mt5WithdrawalRequestToJson(this);
 
   // Properties

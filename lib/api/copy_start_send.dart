@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'copy_start_send.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class CopyStartRequest {
+class CopyStartRequest extends Request {
+  ///
   CopyStartRequest(
       {this.assets,
       this.copyStart,
@@ -15,8 +18,13 @@ class CopyStartRequest {
       this.passthrough,
       this.reqId,
       this.tradeTypes});
+
+  ///
   factory CopyStartRequest.fromJson(Map<String, dynamic> json) =>
       _$CopyStartRequestFromJson(json);
+
+  ///
+  @override
   Map<String, dynamic> toJson() => _$CopyStartRequestToJson(this);
 
   // Properties

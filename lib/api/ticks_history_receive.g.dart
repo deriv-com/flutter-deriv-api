@@ -17,12 +17,13 @@ TicksHistoryResponse _$TicksHistoryResponseFromJson(Map<String, dynamic> json) {
     pipSize: json['pip_size'] as num,
     reqId: json['req_id'] as int,
     subscription: json['subscription'] as Map<String, dynamic>,
-  );
+  )..error = json['error'] as Map<String, dynamic>;
 }
 
 Map<String, dynamic> _$TicksHistoryResponseToJson(
         TicksHistoryResponse instance) =>
     <String, dynamic>{
+      'error': instance.error,
       'candles': instance.candles,
       'echo_req': instance.echoReq,
       'history': instance.history,
