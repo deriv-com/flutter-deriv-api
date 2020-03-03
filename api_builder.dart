@@ -117,13 +117,20 @@ class APIBuilder extends Builder {
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import '${schemaType == 'send' ? 'request' : 'response'}.dart';
 
 part '${fileName}.g.dart';
 
+///
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ${fullClassName} {
+class ${fullClassName} extends ${schemaType == 'send' ? 'Request' : 'Response'}{
+  ///
   ${fullClassName}({$namedParameters});
+  
+  ///
   factory ${fullClassName}.fromJson(Map<String, dynamic> json) => _\$${fullClassName}FromJson(json);
+  
+  ///
   Map<String, dynamic> toJson() => _\$${fullClassName}ToJson(this);
 
   // Properties
