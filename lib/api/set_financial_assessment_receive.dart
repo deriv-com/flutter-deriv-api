@@ -11,11 +11,12 @@ part 'set_financial_assessment_receive.g.dart';
 class SetFinancialAssessmentResponse extends Response {
   ///
   SetFinancialAssessmentResponse(
-      {Map<String, dynamic> echoReq,
-      String msgType,
+      {this.setFinancialAssessment,
       int reqId,
-      this.setFinancialAssessment})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory SetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>

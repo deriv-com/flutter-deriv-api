@@ -11,11 +11,12 @@ part 'reset_password_receive.g.dart';
 class ResetPasswordResponse extends Response {
   ///
   ResetPasswordResponse(
-      {Map<String, dynamic> echoReq,
-      String msgType,
+      {this.resetPassword,
       int reqId,
-      this.resetPassword})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory ResetPasswordResponse.fromJson(Map<String, dynamic> json) =>

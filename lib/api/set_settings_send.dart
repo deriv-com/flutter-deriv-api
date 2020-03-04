@@ -23,10 +23,8 @@ class SetSettingsRequest extends Request {
       this.emailConsent,
       this.firstName,
       this.lastName,
-      Map<String, dynamic> passthrough,
       this.phone,
       this.placeOfBirth,
-      int reqId,
       this.requestProfessionalStatus,
       this.residence,
       this.salutation,
@@ -34,8 +32,10 @@ class SetSettingsRequest extends Request {
       this.secretQuestion,
       this.setSettings,
       this.taxIdentificationNumber,
-      this.taxResidence})
-      : super(passthrough: passthrough, reqId: reqId);
+      this.taxResidence,
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory SetSettingsRequest.fromJson(Map<String, dynamic> json) =>

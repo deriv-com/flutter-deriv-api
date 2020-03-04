@@ -16,10 +16,10 @@ class TransferBetweenAccountsRequest extends Request {
       this.accounts,
       this.amount,
       this.currency,
-      Map<String, dynamic> passthrough,
+      this.transferBetweenAccounts,
       int reqId,
-      this.transferBetweenAccounts})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>

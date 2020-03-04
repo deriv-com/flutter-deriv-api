@@ -11,8 +11,8 @@ part 'reality_check_send.g.dart';
 class RealityCheckRequest extends Request {
   ///
   RealityCheckRequest(
-      {Map<String, dynamic> passthrough, this.realityCheck, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.realityCheck, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory RealityCheckRequest.fromJson(Map<String, dynamic> json) =>

@@ -11,11 +11,12 @@ part 'new_account_maltainvest_receive.g.dart';
 class NewAccountMaltainvestResponse extends Response {
   ///
   NewAccountMaltainvestResponse(
-      {Map<String, dynamic> echoReq,
+      {this.newAccountMaltainvest,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      this.newAccountMaltainvest,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory NewAccountMaltainvestResponse.fromJson(Map<String, dynamic> json) =>

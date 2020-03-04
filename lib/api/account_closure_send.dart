@@ -12,10 +12,10 @@ class AccountClosureRequest extends Request {
   ///
   AccountClosureRequest(
       {this.accountClosure,
-      Map<String, dynamic> passthrough,
       this.reason,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory AccountClosureRequest.fromJson(Map<String, dynamic> json) =>

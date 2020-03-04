@@ -10,8 +10,8 @@ AuthorizeRequest _$AuthorizeRequestFromJson(Map<String, dynamic> json) {
   return AuthorizeRequest(
     addToLoginHistory: json['add_to_login_history'] as int,
     authorize: json['authorize'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

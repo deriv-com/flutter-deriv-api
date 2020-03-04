@@ -8,13 +8,14 @@ part of 'login_history_receive.dart';
 
 LoginHistoryResponse _$LoginHistoryResponseFromJson(Map<String, dynamic> json) {
   return LoginHistoryResponse(
-    echoReq: json['echo_req'] as Map<String, dynamic>,
     loginHistory: (json['login_history'] as List)
         .map((e) => e as Map<String, dynamic>)
         .toList(),
-    msgType: json['msg_type'] as String,
     reqId: json['req_id'] as int,
-  )..error = json['error'] as Map<String, dynamic>;
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    error: json['error'] as Map<String, dynamic>,
+  );
 }
 
 Map<String, dynamic> _$LoginHistoryResponseToJson(

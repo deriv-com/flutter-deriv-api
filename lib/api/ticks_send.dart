@@ -11,8 +11,8 @@ part 'ticks_send.g.dart';
 class TicksRequest extends Request {
   ///
   TicksRequest(
-      {Map<String, dynamic> passthrough, int reqId, this.subscribe, this.ticks})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.subscribe, this.ticks, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory TicksRequest.fromJson(Map<String, dynamic> json) =>

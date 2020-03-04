@@ -9,8 +9,8 @@ part of 'app_get_send.dart';
 AppGetRequest _$AppGetRequestFromJson(Map<String, dynamic> json) {
   return AppGetRequest(
     appGet: json['app_get'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

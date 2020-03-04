@@ -19,13 +19,13 @@ class P2pAdvertCreateRequest extends Request {
       this.maxOrderAmount,
       this.minOrderAmount,
       this.p2pAdvertCreate,
-      Map<String, dynamic> passthrough,
       this.paymentInfo,
       this.paymentMethod,
       this.rate,
+      this.type,
       int reqId,
-      this.type})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory P2pAdvertCreateRequest.fromJson(Map<String, dynamic> json) =>

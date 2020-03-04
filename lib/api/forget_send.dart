@@ -10,8 +10,8 @@ part 'forget_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ForgetRequest extends Request {
   ///
-  ForgetRequest({this.forget, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  ForgetRequest({this.forget, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory ForgetRequest.fromJson(Map<String, dynamic> json) =>

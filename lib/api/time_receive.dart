@@ -11,8 +11,12 @@ part 'time_receive.g.dart';
 class TimeResponse extends Response {
   ///
   TimeResponse(
-      {Map<String, dynamic> echoReq, String msgType, int reqId, this.time})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.time,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory TimeResponse.fromJson(Map<String, dynamic> json) =>

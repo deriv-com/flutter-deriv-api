@@ -21,12 +21,12 @@ Mt5NewAccountRequest _$Mt5NewAccountRequestFromJson(Map<String, dynamic> json) {
     mt5AccountType: json['mt5_account_type'] as String,
     mt5NewAccount: json['mt5_new_account'] as int,
     name: json['name'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     phone: json['phone'] as String,
     phonePassword: json['phone_password'] as String,
-    reqId: json['req_id'] as int,
     state: json['state'] as String,
     zipCode: json['zip_code'] as String,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

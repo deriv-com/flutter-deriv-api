@@ -12,12 +12,12 @@ TicksHistoryRequest _$TicksHistoryRequestFromJson(Map<String, dynamic> json) {
     count: json['count'] as int,
     end: json['end'] as String,
     granularity: json['granularity'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     start: json['start'] as int,
     style: json['style'] as String,
     subscribe: json['subscribe'] as int,
     ticksHistory: json['ticks_history'] as String,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

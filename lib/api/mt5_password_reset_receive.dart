@@ -11,11 +11,12 @@ part 'mt5_password_reset_receive.g.dart';
 class Mt5PasswordResetResponse extends Response {
   ///
   Mt5PasswordResetResponse(
-      {Map<String, dynamic> echoReq,
+      {this.mt5PasswordReset,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      this.mt5PasswordReset,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory Mt5PasswordResetResponse.fromJson(Map<String, dynamic> json) =>

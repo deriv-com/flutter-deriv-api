@@ -11,11 +11,11 @@ part 'transaction_send.g.dart';
 class TransactionRequest extends Request {
   ///
   TransactionRequest(
-      {Map<String, dynamic> passthrough,
+      {this.subscribe,
+      this.transaction,
       int reqId,
-      this.subscribe,
-      this.transaction})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory TransactionRequest.fromJson(Map<String, dynamic> json) =>

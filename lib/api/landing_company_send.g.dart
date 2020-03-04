@@ -10,8 +10,8 @@ LandingCompanyRequest _$LandingCompanyRequestFromJson(
     Map<String, dynamic> json) {
   return LandingCompanyRequest(
     landingCompany: json['landing_company'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

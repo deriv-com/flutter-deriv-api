@@ -13,9 +13,9 @@ class AuthorizeRequest extends Request {
   AuthorizeRequest(
       {this.addToLoginHistory,
       this.authorize,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory AuthorizeRequest.fromJson(Map<String, dynamic> json) =>

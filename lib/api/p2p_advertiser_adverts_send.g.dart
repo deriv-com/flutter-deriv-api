@@ -12,8 +12,8 @@ P2pAdvertiserAdvertsRequest _$P2pAdvertiserAdvertsRequestFromJson(
     limit: json['limit'] as int,
     offset: json['offset'] as int,
     p2pAdvertiserAdverts: json['p2p_advertiser_adverts'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

@@ -11,11 +11,12 @@ part 'residence_list_receive.g.dart';
 class ResidenceListResponse extends Response {
   ///
   ResidenceListResponse(
-      {Map<String, dynamic> echoReq,
-      String msgType,
+      {this.residenceList,
       int reqId,
-      this.residenceList})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory ResidenceListResponse.fromJson(Map<String, dynamic> json) =>

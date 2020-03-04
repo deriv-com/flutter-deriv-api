@@ -15,11 +15,11 @@ class P2pOrderCreateRequest extends Request {
       this.amount,
       this.contactInfo,
       this.p2pOrderCreate,
-      Map<String, dynamic> passthrough,
       this.paymentInfo,
+      this.subscribe,
       int reqId,
-      this.subscribe})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory P2pOrderCreateRequest.fromJson(Map<String, dynamic> json) =>

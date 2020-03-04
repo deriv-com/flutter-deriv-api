@@ -11,8 +11,8 @@ part 'app_delete_send.g.dart';
 class AppDeleteRequest extends Request {
   ///
   AppDeleteRequest(
-      {this.appDelete, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.appDelete, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory AppDeleteRequest.fromJson(Map<String, dynamic> json) =>

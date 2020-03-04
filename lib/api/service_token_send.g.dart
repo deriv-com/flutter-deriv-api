@@ -8,11 +8,11 @@ part of 'service_token_send.dart';
 
 ServiceTokenRequest _$ServiceTokenRequestFromJson(Map<String, dynamic> json) {
   return ServiceTokenRequest(
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     referrer: json['referrer'] as String,
-    reqId: json['req_id'] as int,
     service: json['service'] as String,
     serviceToken: json['service_token'] as int,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

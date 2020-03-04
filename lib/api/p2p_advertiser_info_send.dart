@@ -13,9 +13,9 @@ class P2pAdvertiserInfoRequest extends Request {
   P2pAdvertiserInfoRequest(
       {this.id,
       this.p2pAdvertiserInfo,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory P2pAdvertiserInfoRequest.fromJson(Map<String, dynamic> json) =>

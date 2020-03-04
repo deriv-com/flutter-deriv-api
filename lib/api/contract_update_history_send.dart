@@ -13,9 +13,9 @@ class ContractUpdateHistoryRequest extends Request {
   ContractUpdateHistoryRequest(
       {this.contractId,
       this.contractUpdateHistory,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory ContractUpdateHistoryRequest.fromJson(Map<String, dynamic> json) =>

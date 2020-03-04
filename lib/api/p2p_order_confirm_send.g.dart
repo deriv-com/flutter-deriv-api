@@ -11,8 +11,8 @@ P2pOrderConfirmRequest _$P2pOrderConfirmRequestFromJson(
   return P2pOrderConfirmRequest(
     id: json['id'] as String,
     p2pOrderConfirm: json['p2p_order_confirm'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

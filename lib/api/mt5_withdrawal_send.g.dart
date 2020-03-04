@@ -11,9 +11,9 @@ Mt5WithdrawalRequest _$Mt5WithdrawalRequestFromJson(Map<String, dynamic> json) {
     amount: json['amount'] as num,
     fromMt5: json['from_mt5'] as String,
     mt5Withdrawal: json['mt5_withdrawal'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     toBinary: json['to_binary'] as String,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

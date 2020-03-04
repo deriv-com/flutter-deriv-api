@@ -13,10 +13,10 @@ class AccountSecurityRequest extends Request {
   AccountSecurityRequest(
       {this.accountSecurity,
       this.otp,
-      Map<String, dynamic> passthrough,
+      this.totpAction,
       int reqId,
-      this.totpAction})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory AccountSecurityRequest.fromJson(Map<String, dynamic> json) =>

@@ -11,8 +11,8 @@ part 'sell_expired_send.g.dart';
 class SellExpiredRequest extends Request {
   ///
   SellExpiredRequest(
-      {Map<String, dynamic> passthrough, int reqId, this.sellExpired})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.sellExpired, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory SellExpiredRequest.fromJson(Map<String, dynamic> json) =>

@@ -11,8 +11,8 @@ P2pOrderCancelRequest _$P2pOrderCancelRequestFromJson(
   return P2pOrderCancelRequest(
     id: json['id'] as String,
     p2pOrderCancel: json['p2p_order_cancel'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

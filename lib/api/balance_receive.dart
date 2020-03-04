@@ -12,11 +12,12 @@ class BalanceResponse extends Response {
   ///
   BalanceResponse(
       {this.balance,
+      this.subscription,
+      int reqId,
       Map<String, dynamic> echoReq,
       String msgType,
-      int reqId,
-      this.subscription})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory BalanceResponse.fromJson(Map<String, dynamic> json) =>

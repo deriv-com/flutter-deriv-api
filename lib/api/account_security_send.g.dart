@@ -11,9 +11,9 @@ AccountSecurityRequest _$AccountSecurityRequestFromJson(
   return AccountSecurityRequest(
     accountSecurity: json['account_security'] as int,
     otp: json['otp'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     totpAction: json['totp_action'] as String,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

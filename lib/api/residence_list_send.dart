@@ -11,8 +11,8 @@ part 'residence_list_send.g.dart';
 class ResidenceListRequest extends Request {
   ///
   ResidenceListRequest(
-      {Map<String, dynamic> passthrough, int reqId, this.residenceList})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.residenceList, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory ResidenceListRequest.fromJson(Map<String, dynamic> json) =>

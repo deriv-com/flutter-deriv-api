@@ -9,8 +9,8 @@ part of 'forget_all_send.dart';
 ForgetAllRequest _$ForgetAllRequestFromJson(Map<String, dynamic> json) {
   return ForgetAllRequest(
     forgetAll: json['forget_all'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

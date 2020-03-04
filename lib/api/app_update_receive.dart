@@ -11,8 +11,12 @@ part 'app_update_receive.g.dart';
 class AppUpdateResponse extends Response {
   ///
   AppUpdateResponse(
-      {this.appUpdate, Map<String, dynamic> echoReq, String msgType, int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.appUpdate,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory AppUpdateResponse.fromJson(Map<String, dynamic> json) =>

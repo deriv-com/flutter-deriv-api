@@ -13,8 +13,8 @@ P2pAdvertUpdateRequest _$P2pAdvertUpdateRequestFromJson(
     id: json['id'] as String,
     isActive: json['is_active'] as int,
     p2pAdvertUpdate: json['p2p_advert_update'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

@@ -12,10 +12,11 @@ class ActiveSymbolsResponse extends Response {
   ///
   ActiveSymbolsResponse(
       {this.activeSymbols,
+      int reqId,
       Map<String, dynamic> echoReq,
       String msgType,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory ActiveSymbolsResponse.fromJson(Map<String, dynamic> json) =>

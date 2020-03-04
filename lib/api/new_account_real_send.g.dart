@@ -24,16 +24,16 @@ NewAccountRealRequest _$NewAccountRealRequestFromJson(
     firstName: json['first_name'] as String,
     lastName: json['last_name'] as String,
     newAccountReal: json['new_account_real'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     phone: json['phone'] as String,
     placeOfBirth: json['place_of_birth'] as String,
-    reqId: json['req_id'] as int,
     residence: json['residence'] as String,
     salutation: json['salutation'] as String,
     secretAnswer: json['secret_answer'] as String,
     secretQuestion: json['secret_question'] as String,
     taxIdentificationNumber: json['tax_identification_number'] as String,
     taxResidence: json['tax_residence'] as String,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

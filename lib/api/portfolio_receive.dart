@@ -11,8 +11,12 @@ part 'portfolio_receive.g.dart';
 class PortfolioResponse extends Response {
   ///
   PortfolioResponse(
-      {Map<String, dynamic> echoReq, String msgType, this.portfolio, int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.portfolio,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory PortfolioResponse.fromJson(Map<String, dynamic> json) =>

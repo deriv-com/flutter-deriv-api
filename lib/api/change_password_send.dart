@@ -14,9 +14,9 @@ class ChangePasswordRequest extends Request {
       {this.changePassword,
       this.newPassword,
       this.oldPassword,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory ChangePasswordRequest.fromJson(Map<String, dynamic> json) =>

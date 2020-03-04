@@ -8,9 +8,9 @@ part of 'trading_times_send.dart';
 
 TradingTimesRequest _$TradingTimesRequestFromJson(Map<String, dynamic> json) {
   return TradingTimesRequest(
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     tradingTimes: json['trading_times'] as String,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

@@ -8,11 +8,12 @@ part of 'get_settings_receive.dart';
 
 GetSettingsResponse _$GetSettingsResponseFromJson(Map<String, dynamic> json) {
   return GetSettingsResponse(
-    echoReq: json['echo_req'] as Map<String, dynamic>,
     getSettings: json['get_settings'] as Map<String, dynamic>,
-    msgType: json['msg_type'] as String,
     reqId: json['req_id'] as int,
-  )..error = json['error'] as Map<String, dynamic>;
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    error: json['error'] as Map<String, dynamic>,
+  );
 }
 
 Map<String, dynamic> _$GetSettingsResponseToJson(

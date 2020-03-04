@@ -12,10 +12,10 @@ Mt5PasswordResetRequest _$Mt5PasswordResetRequestFromJson(
     login: json['login'] as String,
     mt5PasswordReset: json['mt5_password_reset'] as int,
     newPassword: json['new_password'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     passwordType: json['password_type'] as String,
-    reqId: json['req_id'] as int,
     verificationCode: json['verification_code'] as String,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

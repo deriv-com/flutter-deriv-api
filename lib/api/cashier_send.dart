@@ -12,11 +12,11 @@ class CashierRequest extends Request {
   ///
   CashierRequest(
       {this.cashier,
-      Map<String, dynamic> passthrough,
       this.provider,
+      this.verificationCode,
       int reqId,
-      this.verificationCode})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory CashierRequest.fromJson(Map<String, dynamic> json) =>

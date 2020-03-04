@@ -9,12 +9,13 @@ part of 'new_account_maltainvest_receive.dart';
 NewAccountMaltainvestResponse _$NewAccountMaltainvestResponseFromJson(
     Map<String, dynamic> json) {
   return NewAccountMaltainvestResponse(
-    echoReq: json['echo_req'] as Map<String, dynamic>,
-    msgType: json['msg_type'] as String,
     newAccountMaltainvest:
         json['new_account_maltainvest'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
-  )..error = json['error'] as Map<String, dynamic>;
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    error: json['error'] as Map<String, dynamic>,
+  );
 }
 
 Map<String, dynamic> _$NewAccountMaltainvestResponseToJson(

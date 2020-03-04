@@ -27,11 +27,11 @@ class SetFinancialAssessmentRequest extends Request {
       this.occupation,
       this.otherInstrumentsTradingExperience,
       this.otherInstrumentsTradingFrequency,
-      Map<String, dynamic> passthrough,
-      int reqId,
       this.setFinancialAssessment,
-      this.sourceOfWealth})
-      : super(passthrough: passthrough, reqId: reqId);
+      this.sourceOfWealth,
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory SetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>

@@ -11,8 +11,8 @@ ContractUpdateHistoryRequest _$ContractUpdateHistoryRequestFromJson(
   return ContractUpdateHistoryRequest(
     contractId: json['contract_id'] as int,
     contractUpdateHistory: json['contract_update_history'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

@@ -11,8 +11,8 @@ part 'get_settings_send.g.dart';
 class GetSettingsRequest extends Request {
   ///
   GetSettingsRequest(
-      {this.getSettings, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.getSettings, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory GetSettingsRequest.fromJson(Map<String, dynamic> json) =>

@@ -11,8 +11,8 @@ part 'mt5_login_list_send.g.dart';
 class Mt5LoginListRequest extends Request {
   ///
   Mt5LoginListRequest(
-      {this.mt5LoginList, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.mt5LoginList, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory Mt5LoginListRequest.fromJson(Map<String, dynamic> json) =>

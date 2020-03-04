@@ -11,8 +11,8 @@ part 'forget_all_send.g.dart';
 class ForgetAllRequest extends Request {
   ///
   ForgetAllRequest(
-      {this.forgetAll, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.forgetAll, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory ForgetAllRequest.fromJson(Map<String, dynamic> json) =>

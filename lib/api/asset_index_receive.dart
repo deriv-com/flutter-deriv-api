@@ -12,10 +12,11 @@ class AssetIndexResponse extends Response {
   ///
   AssetIndexResponse(
       {this.assetIndex,
+      int reqId,
       Map<String, dynamic> echoReq,
       String msgType,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory AssetIndexResponse.fromJson(Map<String, dynamic> json) =>

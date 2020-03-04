@@ -13,11 +13,11 @@ class ResetPasswordRequest extends Request {
   ResetPasswordRequest(
       {this.dateOfBirth,
       this.newPassword,
-      Map<String, dynamic> passthrough,
-      int reqId,
       this.resetPassword,
-      this.verificationCode})
-      : super(passthrough: passthrough, reqId: reqId);
+      this.verificationCode,
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory ResetPasswordRequest.fromJson(Map<String, dynamic> json) =>

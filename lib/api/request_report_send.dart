@@ -13,11 +13,11 @@ class RequestReportRequest extends Request {
   RequestReportRequest(
       {this.dateFrom,
       this.dateTo,
-      Map<String, dynamic> passthrough,
       this.reportType,
+      this.requestReport,
       int reqId,
-      this.requestReport})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory RequestReportRequest.fromJson(Map<String, dynamic> json) =>

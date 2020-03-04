@@ -11,11 +11,12 @@ part 'get_account_status_receive.g.dart';
 class GetAccountStatusResponse extends Response {
   ///
   GetAccountStatusResponse(
-      {Map<String, dynamic> echoReq,
-      this.getAccountStatus,
+      {this.getAccountStatus,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory GetAccountStatusResponse.fromJson(Map<String, dynamic> json) =>

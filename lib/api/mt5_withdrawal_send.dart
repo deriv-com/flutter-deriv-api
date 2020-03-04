@@ -14,10 +14,10 @@ class Mt5WithdrawalRequest extends Request {
       {this.amount,
       this.fromMt5,
       this.mt5Withdrawal,
-      Map<String, dynamic> passthrough,
+      this.toBinary,
       int reqId,
-      this.toBinary})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>

@@ -10,8 +10,8 @@ CopytradingListRequest _$CopytradingListRequestFromJson(
     Map<String, dynamic> json) {
   return CopytradingListRequest(
     copytradingList: json['copytrading_list'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

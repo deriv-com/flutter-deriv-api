@@ -11,11 +11,12 @@ part 'reality_check_receive.g.dart';
 class RealityCheckResponse extends Response {
   ///
   RealityCheckResponse(
-      {Map<String, dynamic> echoReq,
+      {this.realityCheck,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      this.realityCheck,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory RealityCheckResponse.fromJson(Map<String, dynamic> json) =>

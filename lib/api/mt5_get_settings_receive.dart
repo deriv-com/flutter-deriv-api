@@ -11,11 +11,12 @@ part 'mt5_get_settings_receive.g.dart';
 class Mt5GetSettingsResponse extends Response {
   ///
   Mt5GetSettingsResponse(
-      {Map<String, dynamic> echoReq,
+      {this.mt5GetSettings,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      this.mt5GetSettings,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory Mt5GetSettingsResponse.fromJson(Map<String, dynamic> json) =>

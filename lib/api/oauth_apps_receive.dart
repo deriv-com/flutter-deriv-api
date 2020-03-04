@@ -11,8 +11,12 @@ part 'oauth_apps_receive.g.dart';
 class OauthAppsResponse extends Response {
   ///
   OauthAppsResponse(
-      {Map<String, dynamic> echoReq, String msgType, this.oauthApps, int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.oauthApps,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory OauthAppsResponse.fromJson(Map<String, dynamic> json) =>

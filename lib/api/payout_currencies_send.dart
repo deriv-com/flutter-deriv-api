@@ -11,8 +11,8 @@ part 'payout_currencies_send.g.dart';
 class PayoutCurrenciesRequest extends Request {
   ///
   PayoutCurrenciesRequest(
-      {Map<String, dynamic> passthrough, this.payoutCurrencies, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.payoutCurrencies, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory PayoutCurrenciesRequest.fromJson(Map<String, dynamic> json) =>

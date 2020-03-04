@@ -11,11 +11,12 @@ part 'service_token_receive.g.dart';
 class ServiceTokenResponse extends Response {
   ///
   ServiceTokenResponse(
-      {Map<String, dynamic> echoReq,
-      String msgType,
+      {this.serviceToken,
       int reqId,
-      this.serviceToken})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory ServiceTokenResponse.fromJson(Map<String, dynamic> json) =>

@@ -9,10 +9,11 @@ part of 'app_register_receive.dart';
 AppRegisterResponse _$AppRegisterResponseFromJson(Map<String, dynamic> json) {
   return AppRegisterResponse(
     appRegister: json['app_register'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
     echoReq: json['echo_req'] as Map<String, dynamic>,
     msgType: json['msg_type'] as String,
-    reqId: json['req_id'] as int,
-  )..error = json['error'] as Map<String, dynamic>;
+    error: json['error'] as Map<String, dynamic>,
+  );
 }
 
 Map<String, dynamic> _$AppRegisterResponseToJson(

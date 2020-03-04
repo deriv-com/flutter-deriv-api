@@ -11,11 +11,12 @@ part 'notification_event_receive.g.dart';
 class NotificationEventResponse extends Response {
   ///
   NotificationEventResponse(
-      {Map<String, dynamic> echoReq,
+      {this.notificationEvent,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      this.notificationEvent,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory NotificationEventResponse.fromJson(Map<String, dynamic> json) =>

@@ -15,12 +15,12 @@ class PaymentagentWithdrawRequest extends Request {
       this.currency,
       this.description,
       this.dryRun,
-      Map<String, dynamic> passthrough,
       this.paymentagentLoginid,
       this.paymentagentWithdraw,
+      this.verificationCode,
       int reqId,
-      this.verificationCode})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory PaymentagentWithdrawRequest.fromJson(Map<String, dynamic> json) =>

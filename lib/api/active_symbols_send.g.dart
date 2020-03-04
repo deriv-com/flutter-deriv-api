@@ -10,9 +10,9 @@ ActiveSymbolsRequest _$ActiveSymbolsRequestFromJson(Map<String, dynamic> json) {
   return ActiveSymbolsRequest(
     activeSymbols: json['active_symbols'] as String,
     landingCompany: json['landing_company'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     productType: json['product_type'] as String,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

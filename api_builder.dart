@@ -26,17 +26,17 @@ class APIBuilder extends Builder {
     'receive': 'Response',
   };
 
-  static const List<String> responseFields = <String>[
-    'req_id',
-    'echo_req',
-    'msg_type',
-    'error',
-  ];
+  static const Map<String, String> responseFields = <String, String>{
+    'req_id': 'integer',
+    'echo_req': 'object',
+    'msg_type': 'string',
+    'error': 'object',
+  };
 
-  static const List<String> requestFields = <String>[
-    'req_id',
-    'passthrough',
-  ];
+  static const Map<String, String> requestFields = <String, String>{
+    'req_id': 'integer',
+    'passthrough': 'object',
+  };
 
   @override
   Map<String, List<String>> get buildExtensions => const <String, List<String>>{
@@ -72,23 +72,37 @@ class APIBuilder extends Builder {
       final String className = ReCase(methodName).pascalCase;
 
       // Allow constructor parameters as well
-      final String namedParameters = props.map((String k) {
-        if (requestFields.contains(k) || responseFields.contains(k)) {
-          final JsonSchema prop = schema.properties[k];
-          final String schemaType = prop.type?.toString() ?? 'string';
-          final String type = typeMap[schemaType];
+      final String namedParameters = props
+          .where((String k) =>
+              !requestFields.containsKey(k) && !responseFields.containsKey(k))
+          .map((String k) => 'this.${ReCase(k).camelCase}')
+          .join(', ');
 
-          return '$type ${ReCase(k).camelCase}';
-        }
-        return 'this.${ReCase(k).camelCase}';
-      }).join(', ');
+      String superTypeNameParameters;
+
+      if (schemaType == 'send') {
+        superTypeNameParameters = requestFields.keys
+            .map((String k) =>
+                '${typeMap[requestFields[k]]} ${ReCase(k).camelCase}')
+            .join(', ');
+      } else {
+        superTypeNameParameters = responseFields.keys
+            .map((String k) =>
+                '${typeMap[responseFields[k]]} ${ReCase(k).camelCase}')
+            .join(', ');
+      }
 
       // Allow constructor parameters as well
-      final String superParameters = props
-          .where((String k) =>
-              requestFields.contains(k) || responseFields.contains(k))
-          .map((String k) => '${ReCase(k).camelCase}: ${ReCase(k).camelCase}')
-          .join(', ');
+      String superParameters;
+      if (schemaType == 'send') {
+        superParameters = requestFields.keys
+            .map((String k) => '${ReCase(k).camelCase}: ${ReCase(k).camelCase}')
+            .join(', ');
+      } else {
+        superParameters = responseFields.keys
+            .map((String k) => '${ReCase(k).camelCase}: ${ReCase(k).camelCase}')
+            .join(', ');
+      }
 
       log.info(
           'Will write $className for $methodName as $schemaType under $libName');
@@ -99,9 +113,9 @@ class APIBuilder extends Builder {
       // JSON schema name - which is snake_cased - to something more Dart-suitable, and apply type
       // mapping via "it's a string unless we have a better guess" heuristic.
       final String attrList = props.map((String k) {
-        if (schemaType == 'send' && requestFields.contains(k)) {
+        if (schemaType == 'send' && requestFields.containsKey(k)) {
           return '';
-        } else if (schemaType == 'receive' && responseFields.contains(k)) {
+        } else if (schemaType == 'receive' && responseFields.containsKey(k)) {
           return '';
         }
 
@@ -159,7 +173,7 @@ part '${fileName}.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ${fullClassName} extends ${schemaType == 'send' ? 'Request' : 'Response'}{
   ///
-  ${fullClassName}({$namedParameters}): super($superParameters);
+  ${fullClassName}({$namedParameters, $superTypeNameParameters}): super($superParameters);
   
   ///
   factory ${fullClassName}.fromJson(Map<String, dynamic> json) => _\$${fullClassName}FromJson(json);
@@ -184,4 +198,11 @@ class ${fullClassName} extends ${schemaType == 'send' ? 'Request' : 'Response'}{
       return;
     }
   }
+}
+
+class SuperClassField {
+  const SuperClassField({this.name, this.type});
+
+  final String name;
+  final String type;
 }

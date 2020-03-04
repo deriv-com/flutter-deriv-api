@@ -12,11 +12,12 @@ class Mt5DepositResponse extends Response {
   ///
   Mt5DepositResponse(
       {this.binaryTransactionId,
+      this.mt5Deposit,
+      int reqId,
       Map<String, dynamic> echoReq,
       String msgType,
-      this.mt5Deposit,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory Mt5DepositResponse.fromJson(Map<String, dynamic> json) =>

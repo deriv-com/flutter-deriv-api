@@ -10,8 +10,8 @@ AssetIndexRequest _$AssetIndexRequestFromJson(Map<String, dynamic> json) {
   return AssetIndexRequest(
     assetIndex: json['asset_index'] as int,
     landingCompany: json['landing_company'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

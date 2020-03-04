@@ -11,8 +11,8 @@ part 'oauth_apps_send.g.dart';
 class OauthAppsRequest extends Request {
   ///
   OauthAppsRequest(
-      {this.oauthApps, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.oauthApps, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory OauthAppsRequest.fromJson(Map<String, dynamic> json) =>

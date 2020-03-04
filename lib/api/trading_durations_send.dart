@@ -12,10 +12,10 @@ class TradingDurationsRequest extends Request {
   ///
   TradingDurationsRequest(
       {this.landingCompany,
-      Map<String, dynamic> passthrough,
+      this.tradingDurations,
       int reqId,
-      this.tradingDurations})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>

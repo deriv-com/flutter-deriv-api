@@ -10,8 +10,8 @@ part 'app_get_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppGetRequest extends Request {
   ///
-  AppGetRequest({this.appGet, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  AppGetRequest({this.appGet, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory AppGetRequest.fromJson(Map<String, dynamic> json) =>

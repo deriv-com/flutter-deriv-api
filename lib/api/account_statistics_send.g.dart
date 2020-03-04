@@ -10,8 +10,8 @@ AccountStatisticsRequest _$AccountStatisticsRequestFromJson(
     Map<String, dynamic> json) {
   return AccountStatisticsRequest(
     accountStatistics: json['account_statistics'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

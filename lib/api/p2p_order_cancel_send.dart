@@ -13,9 +13,9 @@ class P2pOrderCancelRequest extends Request {
   P2pOrderCancelRequest(
       {this.id,
       this.p2pOrderCancel,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory P2pOrderCancelRequest.fromJson(Map<String, dynamic> json) =>

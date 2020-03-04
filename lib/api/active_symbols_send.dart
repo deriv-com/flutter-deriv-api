@@ -13,10 +13,10 @@ class ActiveSymbolsRequest extends Request {
   ActiveSymbolsRequest(
       {this.activeSymbols,
       this.landingCompany,
-      Map<String, dynamic> passthrough,
       this.productType,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory ActiveSymbolsRequest.fromJson(Map<String, dynamic> json) =>

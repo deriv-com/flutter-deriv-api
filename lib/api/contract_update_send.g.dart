@@ -12,8 +12,8 @@ ContractUpdateRequest _$ContractUpdateRequestFromJson(
     contractId: json['contract_id'] as int,
     contractUpdate: json['contract_update'] as int,
     limitOrder: json['limit_order'] as Map<String, dynamic>,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

@@ -11,9 +11,9 @@ ContractsForRequest _$ContractsForRequestFromJson(Map<String, dynamic> json) {
     contractsFor: json['contracts_for'] as String,
     currency: json['currency'] as String,
     landingCompany: json['landing_company'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     productType: json['product_type'] as String,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

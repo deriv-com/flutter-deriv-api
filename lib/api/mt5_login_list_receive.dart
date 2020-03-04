@@ -11,11 +11,12 @@ part 'mt5_login_list_receive.g.dart';
 class Mt5LoginListResponse extends Response {
   ///
   Mt5LoginListResponse(
-      {Map<String, dynamic> echoReq,
+      {this.mt5LoginList,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      this.mt5LoginList,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory Mt5LoginListResponse.fromJson(Map<String, dynamic> json) =>

@@ -9,8 +9,8 @@ part of 'get_settings_send.dart';
 GetSettingsRequest _$GetSettingsRequestFromJson(Map<String, dynamic> json) {
   return GetSettingsRequest(
     getSettings: json['get_settings'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

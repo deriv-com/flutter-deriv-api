@@ -19,9 +19,9 @@ class DocumentUploadRequest extends Request {
       this.expirationDate,
       this.fileSize,
       this.pageType,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>

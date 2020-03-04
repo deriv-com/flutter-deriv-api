@@ -11,8 +11,12 @@ part 'statement_receive.g.dart';
 class StatementResponse extends Response {
   ///
   StatementResponse(
-      {Map<String, dynamic> echoReq, String msgType, int reqId, this.statement})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.statement,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory StatementResponse.fromJson(Map<String, dynamic> json) =>

@@ -11,8 +11,8 @@ part 'copytrading_list_send.g.dart';
 class CopytradingListRequest extends Request {
   ///
   CopytradingListRequest(
-      {this.copytradingList, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.copytradingList, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory CopytradingListRequest.fromJson(Map<String, dynamic> json) =>

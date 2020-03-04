@@ -11,8 +11,8 @@ part 'sell_send.g.dart';
 class SellRequest extends Request {
   ///
   SellRequest(
-      {Map<String, dynamic> passthrough, this.price, int reqId, this.sell})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.price, this.sell, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory SellRequest.fromJson(Map<String, dynamic> json) =>

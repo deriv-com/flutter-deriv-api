@@ -13,10 +13,10 @@ class BalanceRequest extends Request {
   BalanceRequest(
       {this.account,
       this.balance,
-      Map<String, dynamic> passthrough,
+      this.subscribe,
       int reqId,
-      this.subscribe})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory BalanceRequest.fromJson(Map<String, dynamic> json) =>

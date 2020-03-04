@@ -11,11 +11,12 @@ part 'p2p_order_confirm_receive.g.dart';
 class P2pOrderConfirmResponse extends Response {
   ///
   P2pOrderConfirmResponse(
-      {Map<String, dynamic> echoReq,
+      {this.p2pOrderConfirm,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      this.p2pOrderConfirm,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory P2pOrderConfirmResponse.fromJson(Map<String, dynamic> json) =>

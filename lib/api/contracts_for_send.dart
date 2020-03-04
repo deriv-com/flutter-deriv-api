@@ -14,10 +14,10 @@ class ContractsForRequest extends Request {
       {this.contractsFor,
       this.currency,
       this.landingCompany,
-      Map<String, dynamic> passthrough,
       this.productType,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory ContractsForRequest.fromJson(Map<String, dynamic> json) =>

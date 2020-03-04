@@ -11,8 +11,8 @@ part 'landing_company_details_send.g.dart';
 class LandingCompanyDetailsRequest extends Request {
   ///
   LandingCompanyDetailsRequest(
-      {this.landingCompanyDetails, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.landingCompanyDetails, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory LandingCompanyDetailsRequest.fromJson(Map<String, dynamic> json) =>

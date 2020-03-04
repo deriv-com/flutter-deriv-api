@@ -9,8 +9,8 @@ part of 'mt5_login_list_send.dart';
 Mt5LoginListRequest _$Mt5LoginListRequestFromJson(Map<String, dynamic> json) {
   return Mt5LoginListRequest(
     mt5LoginList: json['mt5_login_list'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

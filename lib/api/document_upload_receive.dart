@@ -12,10 +12,11 @@ class DocumentUploadResponse extends Response {
   ///
   DocumentUploadResponse(
       {this.documentUpload,
+      int reqId,
       Map<String, dynamic> echoReq,
       String msgType,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory DocumentUploadResponse.fromJson(Map<String, dynamic> json) =>

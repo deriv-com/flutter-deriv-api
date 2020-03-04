@@ -12,10 +12,11 @@ class AppRegisterResponse extends Response {
   ///
   AppRegisterResponse(
       {this.appRegister,
+      int reqId,
       Map<String, dynamic> echoReq,
       String msgType,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory AppRegisterResponse.fromJson(Map<String, dynamic> json) =>

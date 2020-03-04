@@ -13,9 +13,9 @@ Mt5PasswordChangeRequest _$Mt5PasswordChangeRequestFromJson(
     mt5PasswordChange: json['mt5_password_change'] as int,
     newPassword: json['new_password'] as String,
     oldPassword: json['old_password'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     passwordType: json['password_type'] as String,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

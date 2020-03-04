@@ -11,8 +11,12 @@ part 'copy_start_receive.g.dart';
 class CopyStartResponse extends Response {
   ///
   CopyStartResponse(
-      {this.copyStart, Map<String, dynamic> echoReq, String msgType, int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.copyStart,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory CopyStartResponse.fromJson(Map<String, dynamic> json) =>

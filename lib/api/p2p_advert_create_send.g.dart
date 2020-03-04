@@ -17,12 +17,12 @@ P2pAdvertCreateRequest _$P2pAdvertCreateRequestFromJson(
     maxOrderAmount: json['max_order_amount'] as num,
     minOrderAmount: json['min_order_amount'] as num,
     p2pAdvertCreate: json['p2p_advert_create'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     paymentInfo: json['payment_info'] as String,
     paymentMethod: json['payment_method'] as String,
     rate: json['rate'] as num,
-    reqId: json['req_id'] as int,
     type: json['type'] as String,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

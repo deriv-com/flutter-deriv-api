@@ -20,9 +20,9 @@ class P2pAdvertListRequest extends Request {
       this.localCurrency,
       this.offset,
       this.p2pAdvertList,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory P2pAdvertListRequest.fromJson(Map<String, dynamic> json) =>

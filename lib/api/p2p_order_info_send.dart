@@ -13,10 +13,10 @@ class P2pOrderInfoRequest extends Request {
   P2pOrderInfoRequest(
       {this.id,
       this.p2pOrderInfo,
-      Map<String, dynamic> passthrough,
+      this.subscribe,
       int reqId,
-      this.subscribe})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory P2pOrderInfoRequest.fromJson(Map<String, dynamic> json) =>

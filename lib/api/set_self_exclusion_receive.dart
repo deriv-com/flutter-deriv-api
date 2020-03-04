@@ -11,11 +11,12 @@ part 'set_self_exclusion_receive.g.dart';
 class SetSelfExclusionResponse extends Response {
   ///
   SetSelfExclusionResponse(
-      {Map<String, dynamic> echoReq,
-      String msgType,
+      {this.setSelfExclusion,
       int reqId,
-      this.setSelfExclusion})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory SetSelfExclusionResponse.fromJson(Map<String, dynamic> json) =>
