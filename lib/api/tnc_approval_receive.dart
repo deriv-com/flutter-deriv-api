@@ -11,11 +11,12 @@ part 'tnc_approval_receive.g.dart';
 class TncApprovalResponse extends Response {
   ///
   TncApprovalResponse(
-      {Map<String, dynamic> echoReq,
-      String msgType,
+      {this.tncApproval,
       int reqId,
-      this.tncApproval})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory TncApprovalResponse.fromJson(Map<String, dynamic> json) =>

@@ -10,8 +10,8 @@ LoginHistoryRequest _$LoginHistoryRequestFromJson(Map<String, dynamic> json) {
   return LoginHistoryRequest(
     limit: json['limit'] as int,
     loginHistory: json['login_history'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

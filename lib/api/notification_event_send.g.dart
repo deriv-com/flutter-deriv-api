@@ -12,8 +12,8 @@ NotificationEventRequest _$NotificationEventRequestFromJson(
     category: json['category'] as String,
     event: json['event'] as String,
     notificationEvent: json['notification_event'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

@@ -17,10 +17,10 @@ AppMarkupDetailsRequest _$AppMarkupDetailsRequestFromJson(
     description: json['description'] as int,
     limit: json['limit'] as num,
     offset: json['offset'] as num,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     sort: json['sort'] as String,
     sortFields: (json['sort_fields'] as List).map((e) => e as String).toList(),
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

@@ -11,11 +11,12 @@ part 'paymentagent_list_receive.g.dart';
 class PaymentagentListResponse extends Response {
   ///
   PaymentagentListResponse(
-      {Map<String, dynamic> echoReq,
+      {this.paymentagentList,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      this.paymentagentList,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory PaymentagentListResponse.fromJson(Map<String, dynamic> json) =>

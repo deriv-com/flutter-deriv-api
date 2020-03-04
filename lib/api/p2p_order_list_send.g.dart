@@ -13,9 +13,9 @@ P2pOrderListRequest _$P2pOrderListRequestFromJson(Map<String, dynamic> json) {
     limit: json['limit'] as int,
     offset: json['offset'] as int,
     p2pOrderList: json['p2p_order_list'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     subscribe: json['subscribe'] as int,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

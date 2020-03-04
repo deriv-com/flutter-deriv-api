@@ -16,11 +16,11 @@ class ProfitTableRequest extends Request {
       this.description,
       this.limit,
       this.offset,
-      Map<String, dynamic> passthrough,
       this.profitTable,
+      this.sort,
       int reqId,
-      this.sort})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>

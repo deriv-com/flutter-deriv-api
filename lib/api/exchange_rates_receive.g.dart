@@ -9,11 +9,12 @@ part of 'exchange_rates_receive.dart';
 ExchangeRatesResponse _$ExchangeRatesResponseFromJson(
     Map<String, dynamic> json) {
   return ExchangeRatesResponse(
-    echoReq: json['echo_req'] as Map<String, dynamic>,
     exchangeRates: json['exchange_rates'] as Map<String, dynamic>,
-    msgType: json['msg_type'] as String,
     reqId: json['req_id'] as int,
-  )..error = json['error'] as Map<String, dynamic>;
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    error: json['error'] as Map<String, dynamic>,
+  );
 }
 
 Map<String, dynamic> _$ExchangeRatesResponseToJson(

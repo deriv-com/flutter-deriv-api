@@ -10,9 +10,9 @@ P2pOrderInfoRequest _$P2pOrderInfoRequestFromJson(Map<String, dynamic> json) {
   return P2pOrderInfoRequest(
     id: json['id'] as String,
     p2pOrderInfo: json['p2p_order_info'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     subscribe: json['subscribe'] as int,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

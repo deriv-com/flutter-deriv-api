@@ -8,9 +8,9 @@ part of 'topup_virtual_send.dart';
 
 TopupVirtualRequest _$TopupVirtualRequestFromJson(Map<String, dynamic> json) {
   return TopupVirtualRequest(
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     topupVirtual: json['topup_virtual'] as int,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

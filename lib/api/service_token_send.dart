@@ -11,12 +11,12 @@ part 'service_token_send.g.dart';
 class ServiceTokenRequest extends Request {
   ///
   ServiceTokenRequest(
-      {Map<String, dynamic> passthrough,
-      this.referrer,
-      int reqId,
+      {this.referrer,
       this.service,
-      this.serviceToken})
-      : super(passthrough: passthrough, reqId: reqId);
+      this.serviceToken,
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory ServiceTokenRequest.fromJson(Map<String, dynamic> json) =>

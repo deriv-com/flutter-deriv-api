@@ -14,9 +14,9 @@ StatementRequest _$StatementRequestFromJson(Map<String, dynamic> json) {
     description: json['description'] as int,
     limit: json['limit'] as num,
     offset: json['offset'] as num,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     statement: json['statement'] as int,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

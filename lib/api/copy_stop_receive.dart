@@ -11,8 +11,12 @@ part 'copy_stop_receive.g.dart';
 class CopyStopResponse extends Response {
   ///
   CopyStopResponse(
-      {this.copyStop, Map<String, dynamic> echoReq, String msgType, int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.copyStop,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory CopyStopResponse.fromJson(Map<String, dynamic> json) =>

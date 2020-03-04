@@ -8,10 +8,10 @@ part of 'tnc_approval_send.dart';
 
 TncApprovalRequest _$TncApprovalRequestFromJson(Map<String, dynamic> json) {
   return TncApprovalRequest(
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     tncApproval: json['tnc_approval'] as num,
     ukgcFundsProtection: json['ukgc_funds_protection'] as int,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

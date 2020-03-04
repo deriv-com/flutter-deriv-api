@@ -11,11 +11,12 @@ part 'set_account_currency_receive.g.dart';
 class SetAccountCurrencyResponse extends Response {
   ///
   SetAccountCurrencyResponse(
-      {Map<String, dynamic> echoReq,
-      String msgType,
+      {this.setAccountCurrency,
       int reqId,
-      this.setAccountCurrency})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory SetAccountCurrencyResponse.fromJson(Map<String, dynamic> json) =>

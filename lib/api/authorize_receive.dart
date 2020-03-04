@@ -11,8 +11,12 @@ part 'authorize_receive.g.dart';
 class AuthorizeResponse extends Response {
   ///
   AuthorizeResponse(
-      {this.authorize, Map<String, dynamic> echoReq, String msgType, int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.authorize,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory AuthorizeResponse.fromJson(Map<String, dynamic> json) =>

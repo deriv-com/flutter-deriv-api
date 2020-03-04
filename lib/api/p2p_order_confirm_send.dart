@@ -13,9 +13,9 @@ class P2pOrderConfirmRequest extends Request {
   P2pOrderConfirmRequest(
       {this.id,
       this.p2pOrderConfirm,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory P2pOrderConfirmRequest.fromJson(Map<String, dynamic> json) =>

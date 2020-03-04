@@ -11,8 +11,8 @@ part 'topup_virtual_send.g.dart';
 class TopupVirtualRequest extends Request {
   ///
   TopupVirtualRequest(
-      {Map<String, dynamic> passthrough, int reqId, this.topupVirtual})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.topupVirtual, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory TopupVirtualRequest.fromJson(Map<String, dynamic> json) =>

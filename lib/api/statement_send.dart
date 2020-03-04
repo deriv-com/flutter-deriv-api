@@ -17,10 +17,10 @@ class StatementRequest extends Request {
       this.description,
       this.limit,
       this.offset,
-      Map<String, dynamic> passthrough,
+      this.statement,
       int reqId,
-      this.statement})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>

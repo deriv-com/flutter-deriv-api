@@ -11,12 +11,12 @@ part 'verify_email_send.g.dart';
 class VerifyEmailRequest extends Request {
   ///
   VerifyEmailRequest(
-      {Map<String, dynamic> passthrough,
-      int reqId,
-      this.type,
+      {this.type,
       this.urlParameters,
-      this.verifyEmail})
-      : super(passthrough: passthrough, reqId: reqId);
+      this.verifyEmail,
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory VerifyEmailRequest.fromJson(Map<String, dynamic> json) =>

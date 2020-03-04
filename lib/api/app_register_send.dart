@@ -18,12 +18,12 @@ class AppRegisterRequest extends Request {
       this.googleplay,
       this.homepage,
       this.name,
-      Map<String, dynamic> passthrough,
       this.redirectUri,
-      int reqId,
       this.scopes,
-      this.verificationUri})
-      : super(passthrough: passthrough, reqId: reqId);
+      this.verificationUri,
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory AppRegisterRequest.fromJson(Map<String, dynamic> json) =>

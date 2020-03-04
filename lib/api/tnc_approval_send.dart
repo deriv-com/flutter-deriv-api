@@ -11,11 +11,11 @@ part 'tnc_approval_send.g.dart';
 class TncApprovalRequest extends Request {
   ///
   TncApprovalRequest(
-      {Map<String, dynamic> passthrough,
+      {this.tncApproval,
+      this.ukgcFundsProtection,
       int reqId,
-      this.tncApproval,
-      this.ukgcFundsProtection})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory TncApprovalRequest.fromJson(Map<String, dynamic> json) =>

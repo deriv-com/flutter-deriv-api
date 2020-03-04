@@ -11,11 +11,12 @@ part 'proposal_array_receive.g.dart';
 class ProposalArrayResponse extends Response {
   ///
   ProposalArrayResponse(
-      {Map<String, dynamic> echoReq,
+      {this.proposalArray,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      this.proposalArray,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory ProposalArrayResponse.fromJson(Map<String, dynamic> json) =>

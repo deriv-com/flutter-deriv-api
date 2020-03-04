@@ -11,8 +11,12 @@ part 'cashier_receive.g.dart';
 class CashierResponse extends Response {
   ///
   CashierResponse(
-      {this.cashier, Map<String, dynamic> echoReq, String msgType, int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.cashier,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory CashierResponse.fromJson(Map<String, dynamic> json) =>

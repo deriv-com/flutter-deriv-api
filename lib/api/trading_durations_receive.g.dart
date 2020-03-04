@@ -9,13 +9,14 @@ part of 'trading_durations_receive.dart';
 TradingDurationsResponse _$TradingDurationsResponseFromJson(
     Map<String, dynamic> json) {
   return TradingDurationsResponse(
-    echoReq: json['echo_req'] as Map<String, dynamic>,
-    msgType: json['msg_type'] as String,
-    reqId: json['req_id'] as int,
     tradingDurations: (json['trading_durations'] as List)
         .map((e) => e as Map<String, dynamic>)
         .toList(),
-  )..error = json['error'] as Map<String, dynamic>;
+    reqId: json['req_id'] as int,
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    error: json['error'] as Map<String, dynamic>,
+  );
 }
 
 Map<String, dynamic> _$TradingDurationsResponseToJson(

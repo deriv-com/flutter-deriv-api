@@ -19,11 +19,11 @@ class AppMarkupDetailsRequest extends Request {
       this.description,
       this.limit,
       this.offset,
-      Map<String, dynamic> passthrough,
-      int reqId,
       this.sort,
-      this.sortFields})
-      : super(passthrough: passthrough, reqId: reqId);
+      this.sortFields,
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>

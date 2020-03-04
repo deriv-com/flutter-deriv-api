@@ -11,8 +11,12 @@ part 'api_token_receive.g.dart';
 class ApiTokenResponse extends Response {
   ///
   ApiTokenResponse(
-      {this.apiToken, Map<String, dynamic> echoReq, String msgType, int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.apiToken,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory ApiTokenResponse.fromJson(Map<String, dynamic> json) =>

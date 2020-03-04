@@ -15,10 +15,10 @@ class Mt5PasswordChangeRequest extends Request {
       this.mt5PasswordChange,
       this.newPassword,
       this.oldPassword,
-      Map<String, dynamic> passthrough,
       this.passwordType,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory Mt5PasswordChangeRequest.fromJson(Map<String, dynamic> json) =>

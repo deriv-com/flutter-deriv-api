@@ -14,10 +14,10 @@ class Mt5DepositRequest extends Request {
       {this.amount,
       this.fromBinary,
       this.mt5Deposit,
-      Map<String, dynamic> passthrough,
+      this.toMt5,
       int reqId,
-      this.toMt5})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>

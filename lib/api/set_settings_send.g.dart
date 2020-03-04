@@ -20,10 +20,8 @@ SetSettingsRequest _$SetSettingsRequestFromJson(Map<String, dynamic> json) {
     emailConsent: json['email_consent'] as int,
     firstName: json['first_name'] as String,
     lastName: json['last_name'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     phone: json['phone'] as String,
     placeOfBirth: json['place_of_birth'] as String,
-    reqId: json['req_id'] as int,
     requestProfessionalStatus: json['request_professional_status'] as int,
     residence: json['residence'] as String,
     salutation: json['salutation'] as String,
@@ -32,6 +30,8 @@ SetSettingsRequest _$SetSettingsRequestFromJson(Map<String, dynamic> json) {
     setSettings: json['set_settings'] as int,
     taxIdentificationNumber: json['tax_identification_number'] as String,
     taxResidence: json['tax_residence'] as String,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

@@ -10,9 +10,9 @@ CopytradingStatisticsRequest _$CopytradingStatisticsRequestFromJson(
     Map<String, dynamic> json) {
   return CopytradingStatisticsRequest(
     copytradingStatistics: json['copytrading_statistics'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     traderId: json['trader_id'] as String,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

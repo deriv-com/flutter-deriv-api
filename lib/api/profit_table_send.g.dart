@@ -13,10 +13,10 @@ ProfitTableRequest _$ProfitTableRequestFromJson(Map<String, dynamic> json) {
     description: json['description'] as int,
     limit: json['limit'] as num,
     offset: json['offset'] as num,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     profitTable: json['profit_table'] as int,
-    reqId: json['req_id'] as int,
     sort: json['sort'] as String,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

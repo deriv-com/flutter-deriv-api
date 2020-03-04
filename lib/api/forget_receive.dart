@@ -11,8 +11,12 @@ part 'forget_receive.g.dart';
 class ForgetResponse extends Response {
   ///
   ForgetResponse(
-      {Map<String, dynamic> echoReq, this.forget, String msgType, int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.forget,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory ForgetResponse.fromJson(Map<String, dynamic> json) =>

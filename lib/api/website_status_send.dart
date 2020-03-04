@@ -11,11 +11,11 @@ part 'website_status_send.g.dart';
 class WebsiteStatusRequest extends Request {
   ///
   WebsiteStatusRequest(
-      {Map<String, dynamic> passthrough,
+      {this.subscribe,
+      this.websiteStatus,
       int reqId,
-      this.subscribe,
-      this.websiteStatus})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory WebsiteStatusRequest.fromJson(Map<String, dynamic> json) =>

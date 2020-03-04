@@ -24,13 +24,13 @@ class Mt5NewAccountRequest extends Request {
       this.mt5AccountType,
       this.mt5NewAccount,
       this.name,
-      Map<String, dynamic> passthrough,
       this.phone,
       this.phonePassword,
-      int reqId,
       this.state,
-      this.zipCode})
-      : super(passthrough: passthrough, reqId: reqId);
+      this.zipCode,
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>

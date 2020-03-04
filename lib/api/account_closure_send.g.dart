@@ -10,9 +10,9 @@ AccountClosureRequest _$AccountClosureRequestFromJson(
     Map<String, dynamic> json) {
   return AccountClosureRequest(
     accountClosure: json['account_closure'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reason: json['reason'] as String,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

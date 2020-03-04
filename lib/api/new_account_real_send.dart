@@ -26,17 +26,17 @@ class NewAccountRealRequest extends Request {
       this.firstName,
       this.lastName,
       this.newAccountReal,
-      Map<String, dynamic> passthrough,
       this.phone,
       this.placeOfBirth,
-      int reqId,
       this.residence,
       this.salutation,
       this.secretAnswer,
       this.secretQuestion,
       this.taxIdentificationNumber,
-      this.taxResidence})
-      : super(passthrough: passthrough, reqId: reqId);
+      this.taxResidence,
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory NewAccountRealRequest.fromJson(Map<String, dynamic> json) =>

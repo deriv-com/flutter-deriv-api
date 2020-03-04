@@ -11,11 +11,12 @@ part 'payout_currencies_receive.g.dart';
 class PayoutCurrenciesResponse extends Response {
   ///
   PayoutCurrenciesResponse(
-      {Map<String, dynamic> echoReq,
+      {this.payoutCurrencies,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      this.payoutCurrencies,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory PayoutCurrenciesResponse.fromJson(Map<String, dynamic> json) =>

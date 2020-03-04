@@ -9,9 +9,9 @@ part of 'revoke_oauth_app_send.dart';
 RevokeOauthAppRequest _$RevokeOauthAppRequestFromJson(
     Map<String, dynamic> json) {
   return RevokeOauthAppRequest(
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     revokeOauthApp: json['revoke_oauth_app'] as int,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

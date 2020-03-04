@@ -11,11 +11,12 @@ part 'topup_virtual_receive.g.dart';
 class TopupVirtualResponse extends Response {
   ///
   TopupVirtualResponse(
-      {Map<String, dynamic> echoReq,
-      String msgType,
+      {this.topupVirtual,
       int reqId,
-      this.topupVirtual})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory TopupVirtualResponse.fromJson(Map<String, dynamic> json) =>

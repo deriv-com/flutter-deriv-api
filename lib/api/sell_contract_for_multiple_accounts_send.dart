@@ -11,13 +11,13 @@ part 'sell_contract_for_multiple_accounts_send.g.dart';
 class SellContractForMultipleAccountsRequest extends Request {
   ///
   SellContractForMultipleAccountsRequest(
-      {Map<String, dynamic> passthrough,
-      this.price,
-      int reqId,
+      {this.price,
       this.sellContractForMultipleAccounts,
       this.shortcode,
-      this.tokens})
-      : super(passthrough: passthrough, reqId: reqId);
+      this.tokens,
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory SellContractForMultipleAccountsRequest.fromJson(

@@ -12,10 +12,10 @@ class CopytradingStatisticsRequest extends Request {
   ///
   CopytradingStatisticsRequest(
       {this.copytradingStatistics,
-      Map<String, dynamic> passthrough,
+      this.traderId,
       int reqId,
-      this.traderId})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory CopytradingStatisticsRequest.fromJson(Map<String, dynamic> json) =>

@@ -11,11 +11,12 @@ part 'profit_table_receive.g.dart';
 class ProfitTableResponse extends Response {
   ///
   ProfitTableResponse(
-      {Map<String, dynamic> echoReq,
+      {this.profitTable,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      this.profitTable,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory ProfitTableResponse.fromJson(Map<String, dynamic> json) =>

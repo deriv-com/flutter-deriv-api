@@ -10,8 +10,8 @@ GetAccountStatusRequest _$GetAccountStatusRequestFromJson(
     Map<String, dynamic> json) {
   return GetAccountStatusRequest(
     getAccountStatus: json['get_account_status'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

@@ -22,12 +22,12 @@ class SetSelfExclusionRequest extends Request {
       this.maxLosses,
       this.maxOpenBets,
       this.maxTurnover,
-      Map<String, dynamic> passthrough,
-      int reqId,
       this.sessionDurationLimit,
       this.setSelfExclusion,
-      this.timeoutUntil})
-      : super(passthrough: passthrough, reqId: reqId);
+      this.timeoutUntil,
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>

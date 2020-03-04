@@ -11,8 +11,12 @@ part 'app_delete_receive.g.dart';
 class AppDeleteResponse extends Response {
   ///
   AppDeleteResponse(
-      {this.appDelete, Map<String, dynamic> echoReq, String msgType, int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.appDelete,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory AppDeleteResponse.fromJson(Map<String, dynamic> json) =>

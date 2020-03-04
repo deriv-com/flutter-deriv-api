@@ -11,8 +11,8 @@ part 'get_limits_send.g.dart';
 class GetLimitsRequest extends Request {
   ///
   GetLimitsRequest(
-      {this.getLimits, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.getLimits, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory GetLimitsRequest.fromJson(Map<String, dynamic> json) =>

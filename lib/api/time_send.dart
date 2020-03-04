@@ -10,8 +10,8 @@ part 'time_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TimeRequest extends Request {
   ///
-  TimeRequest({Map<String, dynamic> passthrough, int reqId, this.time})
-      : super(passthrough: passthrough, reqId: reqId);
+  TimeRequest({this.time, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory TimeRequest.fromJson(Map<String, dynamic> json) =>

@@ -13,11 +13,11 @@ PaymentagentWithdrawRequest _$PaymentagentWithdrawRequestFromJson(
     currency: json['currency'] as String,
     description: json['description'] as String,
     dryRun: json['dry_run'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     paymentagentLoginid: json['paymentagent_loginid'] as String,
     paymentagentWithdraw: json['paymentagent_withdraw'] as int,
-    reqId: json['req_id'] as int,
     verificationCode: json['verification_code'] as String,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

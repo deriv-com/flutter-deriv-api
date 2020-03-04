@@ -13,11 +13,11 @@ class BuyContractForMultipleAccountsRequest extends Request {
   BuyContractForMultipleAccountsRequest(
       {this.buyContractForMultipleAccounts,
       this.parameters,
-      Map<String, dynamic> passthrough,
       this.price,
+      this.tokens,
       int reqId,
-      this.tokens})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory BuyContractForMultipleAccountsRequest.fromJson(

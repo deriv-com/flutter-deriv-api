@@ -16,15 +16,15 @@ class NewAccountVirtualRequest extends Request {
       this.dateFirstContact,
       this.gclidUrl,
       this.newAccountVirtual,
-      Map<String, dynamic> passthrough,
-      int reqId,
       this.residence,
       this.signupDevice,
       this.utmCampaign,
       this.utmMedium,
       this.utmSource,
-      this.verificationCode})
-      : super(passthrough: passthrough, reqId: reqId);
+      this.verificationCode,
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>

@@ -29,10 +29,10 @@ SetFinancialAssessmentRequest _$SetFinancialAssessmentRequestFromJson(
         json['other_instruments_trading_experience'] as String,
     otherInstrumentsTradingFrequency:
         json['other_instruments_trading_frequency'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     setFinancialAssessment: json['set_financial_assessment'] as int,
     sourceOfWealth: json['source_of_wealth'] as String,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

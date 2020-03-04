@@ -11,8 +11,12 @@ part 'ping_receive.g.dart';
 class PingResponse extends Response {
   ///
   PingResponse(
-      {Map<String, dynamic> echoReq, String msgType, this.ping, int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.ping,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory PingResponse.fromJson(Map<String, dynamic> json) =>

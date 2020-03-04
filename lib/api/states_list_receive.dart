@@ -11,11 +11,12 @@ part 'states_list_receive.g.dart';
 class StatesListResponse extends Response {
   ///
   StatesListResponse(
-      {Map<String, dynamic> echoReq,
-      String msgType,
+      {this.statesList,
       int reqId,
-      this.statesList})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory StatesListResponse.fromJson(Map<String, dynamic> json) =>

@@ -11,11 +11,12 @@ part 'new_account_real_receive.g.dart';
 class NewAccountRealResponse extends Response {
   ///
   NewAccountRealResponse(
-      {Map<String, dynamic> echoReq,
+      {this.newAccountReal,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      this.newAccountReal,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory NewAccountRealResponse.fromJson(Map<String, dynamic> json) =>

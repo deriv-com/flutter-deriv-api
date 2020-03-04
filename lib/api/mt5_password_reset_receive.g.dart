@@ -9,11 +9,12 @@ part of 'mt5_password_reset_receive.dart';
 Mt5PasswordResetResponse _$Mt5PasswordResetResponseFromJson(
     Map<String, dynamic> json) {
   return Mt5PasswordResetResponse(
-    echoReq: json['echo_req'] as Map<String, dynamic>,
-    msgType: json['msg_type'] as String,
     mt5PasswordReset: json['mt5_password_reset'] as int,
     reqId: json['req_id'] as int,
-  )..error = json['error'] as Map<String, dynamic>;
+    echoReq: json['echo_req'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    error: json['error'] as Map<String, dynamic>,
+  );
 }
 
 Map<String, dynamic> _$Mt5PasswordResetResponseToJson(

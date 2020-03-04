@@ -13,11 +13,11 @@ class BuyRequest extends Request {
   BuyRequest(
       {this.buy,
       this.parameters,
-      Map<String, dynamic> passthrough,
       this.price,
+      this.subscribe,
       int reqId,
-      this.subscribe})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory BuyRequest.fromJson(Map<String, dynamic> json) =>

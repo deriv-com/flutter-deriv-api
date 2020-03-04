@@ -11,11 +11,12 @@ part 'landing_company_details_receive.g.dart';
 class LandingCompanyDetailsResponse extends Response {
   ///
   LandingCompanyDetailsResponse(
-      {Map<String, dynamic> echoReq,
-      this.landingCompanyDetails,
+      {this.landingCompanyDetails,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory LandingCompanyDetailsResponse.fromJson(Map<String, dynamic> json) =>

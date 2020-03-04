@@ -11,8 +11,8 @@ part 'portfolio_send.g.dart';
 class PortfolioRequest extends Request {
   ///
   PortfolioRequest(
-      {Map<String, dynamic> passthrough, this.portfolio, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.portfolio, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>

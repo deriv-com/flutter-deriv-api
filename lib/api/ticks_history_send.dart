@@ -15,13 +15,13 @@ class TicksHistoryRequest extends Request {
       this.count,
       this.end,
       this.granularity,
-      Map<String, dynamic> passthrough,
-      int reqId,
       this.start,
       this.style,
       this.subscribe,
-      this.ticksHistory})
-      : super(passthrough: passthrough, reqId: reqId);
+      this.ticksHistory,
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>

@@ -14,14 +14,14 @@ NewAccountVirtualRequest _$NewAccountVirtualRequestFromJson(
     dateFirstContact: json['date_first_contact'] as String,
     gclidUrl: json['gclid_url'] as String,
     newAccountVirtual: json['new_account_virtual'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     residence: json['residence'] as String,
     signupDevice: json['signup_device'] as String,
     utmCampaign: json['utm_campaign'] as String,
     utmMedium: json['utm_medium'] as String,
     utmSource: json['utm_source'] as String,
     verificationCode: json['verification_code'] as String,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

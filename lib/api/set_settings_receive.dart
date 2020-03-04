@@ -11,11 +11,12 @@ part 'set_settings_receive.g.dart';
 class SetSettingsResponse extends Response {
   ///
   SetSettingsResponse(
-      {Map<String, dynamic> echoReq,
-      String msgType,
+      {this.setSettings,
       int reqId,
-      this.setSettings})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory SetSettingsResponse.fromJson(Map<String, dynamic> json) =>

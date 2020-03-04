@@ -41,18 +41,18 @@ class NewAccountMaltainvestRequest extends Request {
       this.occupation,
       this.otherInstrumentsTradingExperience,
       this.otherInstrumentsTradingFrequency,
-      Map<String, dynamic> passthrough,
       this.phone,
       this.placeOfBirth,
-      int reqId,
       this.residence,
       this.salutation,
       this.secretAnswer,
       this.secretQuestion,
       this.sourceOfWealth,
       this.taxIdentificationNumber,
-      this.taxResidence})
-      : super(passthrough: passthrough, reqId: reqId);
+      this.taxResidence,
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory NewAccountMaltainvestRequest.fromJson(Map<String, dynamic> json) =>

@@ -14,9 +14,9 @@ P2pAdvertiserUpdateRequest _$P2pAdvertiserUpdateRequestFromJson(
     isListed: json['is_listed'] as int,
     name: json['name'] as String,
     p2pAdvertiserUpdate: json['p2p_advertiser_update'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     paymentInfo: json['payment_info'] as String,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

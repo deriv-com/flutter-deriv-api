@@ -8,9 +8,9 @@ part of 'states_list_send.dart';
 
 StatesListRequest _$StatesListRequestFromJson(Map<String, dynamic> json) {
   return StatesListRequest(
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     statesList: json['states_list'] as String,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

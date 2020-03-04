@@ -10,10 +10,10 @@ BuyRequest _$BuyRequestFromJson(Map<String, dynamic> json) {
   return BuyRequest(
     buy: json['buy'] as String,
     parameters: json['parameters'] as Map<String, dynamic>,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     price: json['price'] as num,
-    reqId: json['req_id'] as int,
     subscribe: json['subscribe'] as int,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

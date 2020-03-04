@@ -11,11 +11,12 @@ part 'sell_expired_receive.g.dart';
 class SellExpiredResponse extends Response {
   ///
   SellExpiredResponse(
-      {Map<String, dynamic> echoReq,
-      String msgType,
+      {this.sellExpired,
       int reqId,
-      this.sellExpired})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory SellExpiredResponse.fromJson(Map<String, dynamic> json) =>

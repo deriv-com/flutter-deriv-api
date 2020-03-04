@@ -15,10 +15,10 @@ class ApiTokenRequest extends Request {
       this.deleteToken,
       this.newToken,
       this.newTokenScopes,
-      Map<String, dynamic> passthrough,
+      this.validForCurrentIpOnly,
       int reqId,
-      this.validForCurrentIpOnly})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>

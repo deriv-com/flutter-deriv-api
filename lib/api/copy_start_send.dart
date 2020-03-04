@@ -15,10 +15,10 @@ class CopyStartRequest extends Request {
       this.copyStart,
       this.maxTradeStake,
       this.minTradeStake,
-      Map<String, dynamic> passthrough,
+      this.tradeTypes,
       int reqId,
-      this.tradeTypes})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory CopyStartRequest.fromJson(Map<String, dynamic> json) =>

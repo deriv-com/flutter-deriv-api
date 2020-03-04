@@ -15,11 +15,11 @@ class PaymentagentTransferRequest extends Request {
       this.currency,
       this.description,
       this.dryRun,
-      Map<String, dynamic> passthrough,
       this.paymentagentTransfer,
+      this.transferTo,
       int reqId,
-      this.transferTo})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory PaymentagentTransferRequest.fromJson(Map<String, dynamic> json) =>

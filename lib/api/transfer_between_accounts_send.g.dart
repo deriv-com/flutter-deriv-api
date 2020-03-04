@@ -14,9 +14,9 @@ TransferBetweenAccountsRequest _$TransferBetweenAccountsRequestFromJson(
     accounts: json['accounts'] as String,
     amount: json['amount'] as num,
     currency: json['currency'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     transferBetweenAccounts: json['transfer_between_accounts'] as int,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

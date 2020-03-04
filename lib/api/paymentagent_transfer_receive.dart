@@ -13,12 +13,13 @@ class PaymentagentTransferResponse extends Response {
   PaymentagentTransferResponse(
       {this.clientToFullName,
       this.clientToLoginid,
+      this.paymentagentTransfer,
+      this.transactionId,
+      int reqId,
       Map<String, dynamic> echoReq,
       String msgType,
-      this.paymentagentTransfer,
-      int reqId,
-      this.transactionId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory PaymentagentTransferResponse.fromJson(Map<String, dynamic> json) =>

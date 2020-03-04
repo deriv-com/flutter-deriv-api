@@ -11,12 +11,13 @@ part 'ticks_receive.g.dart';
 class TicksResponse extends Response {
   ///
   TicksResponse(
-      {Map<String, dynamic> echoReq,
-      String msgType,
+      {this.subscription,
+      this.tick,
       int reqId,
-      this.subscription,
-      this.tick})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory TicksResponse.fromJson(Map<String, dynamic> json) =>

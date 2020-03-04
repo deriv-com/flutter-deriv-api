@@ -12,11 +12,12 @@ class Mt5WithdrawalResponse extends Response {
   ///
   Mt5WithdrawalResponse(
       {this.binaryTransactionId,
+      this.mt5Withdrawal,
+      int reqId,
       Map<String, dynamic> echoReq,
       String msgType,
-      this.mt5Withdrawal,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory Mt5WithdrawalResponse.fromJson(Map<String, dynamic> json) =>

@@ -11,8 +11,8 @@ part 'set_account_currency_send.g.dart';
 class SetAccountCurrencyRequest extends Request {
   ///
   SetAccountCurrencyRequest(
-      {Map<String, dynamic> passthrough, int reqId, this.setAccountCurrency})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.setAccountCurrency, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory SetAccountCurrencyRequest.fromJson(Map<String, dynamic> json) =>

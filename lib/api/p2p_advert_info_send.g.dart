@@ -10,8 +10,8 @@ P2pAdvertInfoRequest _$P2pAdvertInfoRequestFromJson(Map<String, dynamic> json) {
   return P2pAdvertInfoRequest(
     id: json['id'] as String,
     p2pAdvertInfo: json['p2p_advert_info'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

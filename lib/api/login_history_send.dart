@@ -13,9 +13,9 @@ class LoginHistoryRequest extends Request {
   LoginHistoryRequest(
       {this.limit,
       this.loginHistory,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>

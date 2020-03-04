@@ -8,10 +8,10 @@ part of 'sell_send.dart';
 
 SellRequest _$SellRequestFromJson(Map<String, dynamic> json) {
   return SellRequest(
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     price: json['price'] as num,
-    reqId: json['req_id'] as int,
     sell: json['sell'] as int,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

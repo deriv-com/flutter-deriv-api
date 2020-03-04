@@ -11,11 +11,12 @@ part 'p2p_advertiser_adverts_receive.g.dart';
 class P2pAdvertiserAdvertsResponse extends Response {
   ///
   P2pAdvertiserAdvertsResponse(
-      {Map<String, dynamic> echoReq,
+      {this.p2pAdvertiserAdverts,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      this.p2pAdvertiserAdverts,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory P2pAdvertiserAdvertsResponse.fromJson(Map<String, dynamic> json) =>

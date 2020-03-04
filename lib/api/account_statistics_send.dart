@@ -11,8 +11,8 @@ part 'account_statistics_send.g.dart';
 class AccountStatisticsRequest extends Request {
   ///
   AccountStatisticsRequest(
-      {this.accountStatistics, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.accountStatistics, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory AccountStatisticsRequest.fromJson(Map<String, dynamic> json) =>

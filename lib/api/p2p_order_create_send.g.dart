@@ -13,10 +13,10 @@ P2pOrderCreateRequest _$P2pOrderCreateRequestFromJson(
     amount: json['amount'] as num,
     contactInfo: json['contact_info'] as String,
     p2pOrderCreate: json['p2p_order_create'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     paymentInfo: json['payment_info'] as String,
-    reqId: json['req_id'] as int,
     subscribe: json['subscribe'] as int,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

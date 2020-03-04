@@ -11,8 +11,12 @@ part 'get_limits_receive.g.dart';
 class GetLimitsResponse extends Response {
   ///
   GetLimitsResponse(
-      {Map<String, dynamic> echoReq, this.getLimits, String msgType, int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.getLimits,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory GetLimitsResponse.fromJson(Map<String, dynamic> json) =>

@@ -11,8 +11,12 @@ part 'sell_receive.g.dart';
 class SellResponse extends Response {
   ///
   SellResponse(
-      {Map<String, dynamic> echoReq, String msgType, int reqId, this.sell})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.sell,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory SellResponse.fromJson(Map<String, dynamic> json) =>

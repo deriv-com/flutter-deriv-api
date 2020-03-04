@@ -11,11 +11,12 @@ part 'login_history_receive.g.dart';
 class LoginHistoryResponse extends Response {
   ///
   LoginHistoryResponse(
-      {Map<String, dynamic> echoReq,
-      this.loginHistory,
+      {this.loginHistory,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory LoginHistoryResponse.fromJson(Map<String, dynamic> json) =>

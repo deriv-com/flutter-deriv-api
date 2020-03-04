@@ -14,12 +14,13 @@ class TransferBetweenAccountsResponse extends Response {
       {this.accounts,
       this.clientToFullName,
       this.clientToLoginid,
+      this.transactionId,
+      this.transferBetweenAccounts,
+      int reqId,
       Map<String, dynamic> echoReq,
       String msgType,
-      int reqId,
-      this.transactionId,
-      this.transferBetweenAccounts})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory TransferBetweenAccountsResponse.fromJson(Map<String, dynamic> json) =>

@@ -10,9 +10,9 @@ TradingDurationsRequest _$TradingDurationsRequestFromJson(
     Map<String, dynamic> json) {
   return TradingDurationsRequest(
     landingCompany: json['landing_company'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     tradingDurations: json['trading_durations'] as int,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

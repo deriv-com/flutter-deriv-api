@@ -11,12 +11,13 @@ part 'proposal_open_contract_receive.g.dart';
 class ProposalOpenContractResponse extends Response {
   ///
   ProposalOpenContractResponse(
-      {Map<String, dynamic> echoReq,
-      String msgType,
-      this.proposalOpenContract,
+      {this.proposalOpenContract,
+      this.subscription,
       int reqId,
-      this.subscription})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory ProposalOpenContractResponse.fromJson(Map<String, dynamic> json) =>

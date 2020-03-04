@@ -11,8 +11,8 @@ part 'revoke_oauth_app_send.g.dart';
 class RevokeOauthAppRequest extends Request {
   ///
   RevokeOauthAppRequest(
-      {Map<String, dynamic> passthrough, int reqId, this.revokeOauthApp})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.revokeOauthApp, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory RevokeOauthAppRequest.fromJson(Map<String, dynamic> json) =>

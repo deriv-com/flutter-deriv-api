@@ -12,10 +12,10 @@ class PaymentagentListRequest extends Request {
   ///
   PaymentagentListRequest(
       {this.currency,
-      Map<String, dynamic> passthrough,
       this.paymentagentList,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory PaymentagentListRequest.fromJson(Map<String, dynamic> json) =>

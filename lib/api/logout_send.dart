@@ -10,8 +10,8 @@ part 'logout_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LogoutRequest extends Request {
   ///
-  LogoutRequest({this.logout, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  LogoutRequest({this.logout, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory LogoutRequest.fromJson(Map<String, dynamic> json) =>

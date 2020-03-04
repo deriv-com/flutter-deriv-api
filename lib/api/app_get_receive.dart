@@ -11,8 +11,12 @@ part 'app_get_receive.g.dart';
 class AppGetResponse extends Response {
   ///
   AppGetResponse(
-      {this.appGet, Map<String, dynamic> echoReq, String msgType, int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.appGet,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory AppGetResponse.fromJson(Map<String, dynamic> json) =>

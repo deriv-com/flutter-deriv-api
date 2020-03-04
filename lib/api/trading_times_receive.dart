@@ -11,11 +11,12 @@ part 'trading_times_receive.g.dart';
 class TradingTimesResponse extends Response {
   ///
   TradingTimesResponse(
-      {Map<String, dynamic> echoReq,
-      String msgType,
+      {this.tradingTimes,
       int reqId,
-      this.tradingTimes})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory TradingTimesResponse.fromJson(Map<String, dynamic> json) =>

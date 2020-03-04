@@ -11,8 +11,12 @@ part 'logout_receive.g.dart';
 class LogoutResponse extends Response {
   ///
   LogoutResponse(
-      {Map<String, dynamic> echoReq, this.logout, String msgType, int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      {this.logout,
+      int reqId,
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory LogoutResponse.fromJson(Map<String, dynamic> json) =>

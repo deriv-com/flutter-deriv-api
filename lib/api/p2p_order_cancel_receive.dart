@@ -11,11 +11,12 @@ part 'p2p_order_cancel_receive.g.dart';
 class P2pOrderCancelResponse extends Response {
   ///
   P2pOrderCancelResponse(
-      {Map<String, dynamic> echoReq,
+      {this.p2pOrderCancel,
+      int reqId,
+      Map<String, dynamic> echoReq,
       String msgType,
-      this.p2pOrderCancel,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory P2pOrderCancelResponse.fromJson(Map<String, dynamic> json) =>

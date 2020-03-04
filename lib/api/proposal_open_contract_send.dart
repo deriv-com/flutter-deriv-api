@@ -12,11 +12,11 @@ class ProposalOpenContractRequest extends Request {
   ///
   ProposalOpenContractRequest(
       {this.contractId,
-      Map<String, dynamic> passthrough,
       this.proposalOpenContract,
+      this.subscribe,
       int reqId,
-      this.subscribe})
-      : super(passthrough: passthrough, reqId: reqId);
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>

@@ -11,8 +11,8 @@ part 'trading_times_send.g.dart';
 class TradingTimesRequest extends Request {
   ///
   TradingTimesRequest(
-      {Map<String, dynamic> passthrough, int reqId, this.tradingTimes})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.tradingTimes, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory TradingTimesRequest.fromJson(Map<String, dynamic> json) =>

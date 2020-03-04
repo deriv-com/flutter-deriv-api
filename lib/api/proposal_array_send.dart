@@ -21,14 +21,14 @@ class ProposalArrayRequest extends Request {
       this.duration,
       this.durationUnit,
       this.multiplier,
-      Map<String, dynamic> passthrough,
       this.productType,
       this.proposalArray,
-      int reqId,
       this.subscribe,
       this.symbol,
-      this.tradingPeriodStart})
-      : super(passthrough: passthrough, reqId: reqId);
+      this.tradingPeriodStart,
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory ProposalArrayRequest.fromJson(Map<String, dynamic> json) =>

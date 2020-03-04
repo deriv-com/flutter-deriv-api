@@ -11,11 +11,12 @@ part 'sell_contract_for_multiple_accounts_receive.g.dart';
 class SellContractForMultipleAccountsResponse extends Response {
   ///
   SellContractForMultipleAccountsResponse(
-      {Map<String, dynamic> echoReq,
-      String msgType,
+      {this.sellContractForMultipleAccounts,
       int reqId,
-      this.sellContractForMultipleAccounts})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory SellContractForMultipleAccountsResponse.fromJson(

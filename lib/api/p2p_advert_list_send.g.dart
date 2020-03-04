@@ -17,8 +17,8 @@ P2pAdvertListRequest _$P2pAdvertListRequestFromJson(Map<String, dynamic> json) {
     localCurrency: json['local_currency'] as String,
     offset: json['offset'] as int,
     p2pAdvertList: json['p2p_advert_list'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

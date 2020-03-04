@@ -13,9 +13,9 @@ class AssetIndexRequest extends Request {
   AssetIndexRequest(
       {this.assetIndex,
       this.landingCompany,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      int reqId,
+      Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory AssetIndexRequest.fromJson(Map<String, dynamic> json) =>

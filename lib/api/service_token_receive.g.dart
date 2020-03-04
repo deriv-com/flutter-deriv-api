@@ -8,11 +8,12 @@ part of 'service_token_receive.dart';
 
 ServiceTokenResponse _$ServiceTokenResponseFromJson(Map<String, dynamic> json) {
   return ServiceTokenResponse(
+    serviceToken: json['service_token'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
     echoReq: json['echo_req'] as Map<String, dynamic>,
     msgType: json['msg_type'] as String,
-    reqId: json['req_id'] as int,
-    serviceToken: json['service_token'] as Map<String, dynamic>,
-  )..error = json['error'] as Map<String, dynamic>;
+    error: json['error'] as Map<String, dynamic>,
+  );
 }
 
 Map<String, dynamic> _$ServiceTokenResponseToJson(

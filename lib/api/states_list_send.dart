@@ -11,8 +11,8 @@ part 'states_list_send.g.dart';
 class StatesListRequest extends Request {
   ///
   StatesListRequest(
-      {Map<String, dynamic> passthrough, int reqId, this.statesList})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.statesList, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory StatesListRequest.fromJson(Map<String, dynamic> json) =>

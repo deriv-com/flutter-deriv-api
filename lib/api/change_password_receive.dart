@@ -12,10 +12,11 @@ class ChangePasswordResponse extends Response {
   ///
   ChangePasswordResponse(
       {this.changePassword,
+      int reqId,
       Map<String, dynamic> echoReq,
       String msgType,
-      int reqId})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory ChangePasswordResponse.fromJson(Map<String, dynamic> json) =>

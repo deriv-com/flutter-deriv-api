@@ -11,8 +11,8 @@ part 'get_self_exclusion_send.g.dart';
 class GetSelfExclusionRequest extends Request {
   ///
   GetSelfExclusionRequest(
-      {this.getSelfExclusion, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.getSelfExclusion, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory GetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>

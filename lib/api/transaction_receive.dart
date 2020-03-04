@@ -11,12 +11,13 @@ part 'transaction_receive.g.dart';
 class TransactionResponse extends Response {
   ///
   TransactionResponse(
-      {Map<String, dynamic> echoReq,
-      String msgType,
+      {this.subscription,
+      this.transaction,
       int reqId,
-      this.subscription,
-      this.transaction})
-      : super(echoReq: echoReq, msgType: msgType, reqId: reqId);
+      Map<String, dynamic> echoReq,
+      String msgType,
+      Map<String, dynamic> error})
+      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
   ///
   factory TransactionResponse.fromJson(Map<String, dynamic> json) =>

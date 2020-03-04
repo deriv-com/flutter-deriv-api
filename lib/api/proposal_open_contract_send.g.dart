@@ -10,10 +10,10 @@ ProposalOpenContractRequest _$ProposalOpenContractRequestFromJson(
     Map<String, dynamic> json) {
   return ProposalOpenContractRequest(
     contractId: json['contract_id'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     proposalOpenContract: json['proposal_open_contract'] as int,
-    reqId: json['req_id'] as int,
     subscribe: json['subscribe'] as int,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

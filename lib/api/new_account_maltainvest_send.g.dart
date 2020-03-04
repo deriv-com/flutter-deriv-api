@@ -43,10 +43,8 @@ NewAccountMaltainvestRequest _$NewAccountMaltainvestRequestFromJson(
         json['other_instruments_trading_experience'] as String,
     otherInstrumentsTradingFrequency:
         json['other_instruments_trading_frequency'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     phone: json['phone'] as String,
     placeOfBirth: json['place_of_birth'] as String,
-    reqId: json['req_id'] as int,
     residence: json['residence'] as String,
     salutation: json['salutation'] as String,
     secretAnswer: json['secret_answer'] as String,
@@ -54,6 +52,8 @@ NewAccountMaltainvestRequest _$NewAccountMaltainvestRequestFromJson(
     sourceOfWealth: json['source_of_wealth'] as String,
     taxIdentificationNumber: json['tax_identification_number'] as String,
     taxResidence: json['tax_residence'] as String,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

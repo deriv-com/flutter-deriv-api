@@ -10,10 +10,10 @@ RequestReportRequest _$RequestReportRequestFromJson(Map<String, dynamic> json) {
   return RequestReportRequest(
     dateFrom: json['date_from'] as int,
     dateTo: json['date_to'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reportType: json['report_type'] as String,
-    reqId: json['req_id'] as int,
     requestReport: json['request_report'] as int,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

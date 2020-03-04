@@ -20,14 +20,14 @@ ProposalRequest _$ProposalRequestFromJson(Map<String, dynamic> json) {
     durationUnit: json['duration_unit'] as String,
     limitOrder: json['limit_order'] as Map<String, dynamic>,
     multiplier: json['multiplier'] as num,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     productType: json['product_type'] as String,
     proposal: json['proposal'] as int,
-    reqId: json['req_id'] as int,
     selectedTick: json['selected_tick'] as int,
     subscribe: json['subscribe'] as int,
     symbol: json['symbol'] as String,
     tradingPeriodStart: json['trading_period_start'] as int,
+    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 

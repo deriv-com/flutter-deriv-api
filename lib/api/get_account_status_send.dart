@@ -11,8 +11,8 @@ part 'get_account_status_send.g.dart';
 class GetAccountStatusRequest extends Request {
   ///
   GetAccountStatusRequest(
-      {this.getAccountStatus, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+      {this.getAccountStatus, int reqId, Map<String, dynamic> passthrough})
+      : super(reqId: reqId, passthrough: passthrough);
 
   ///
   factory GetAccountStatusRequest.fromJson(Map<String, dynamic> json) =>
