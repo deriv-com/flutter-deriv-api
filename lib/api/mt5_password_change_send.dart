@@ -20,11 +20,11 @@ class Mt5PasswordChangeRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory Mt5PasswordChangeRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordChangeRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5PasswordChangeRequestToJson(this);
 
@@ -43,9 +43,4 @@ class Mt5PasswordChangeRequest extends Request {
 
   /// [Optional] Type of the password to change.
   String passwordType;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

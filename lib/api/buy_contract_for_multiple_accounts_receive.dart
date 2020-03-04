@@ -18,12 +18,12 @@ class BuyContractForMultipleAccountsResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory BuyContractForMultipleAccountsResponse.fromJson(
           Map<String, dynamic> json) =>
       _$BuyContractForMultipleAccountsResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() =>
       _$BuyContractForMultipleAccountsResponseToJson(this);
@@ -31,9 +31,4 @@ class BuyContractForMultipleAccountsResponse extends Response {
   // Properties
   /// Receipt confirmation for the purchase
   Map<String, dynamic> buyContractForMultipleAccounts;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

@@ -13,20 +13,15 @@ class AppListRequest extends Request {
   AppListRequest({this.appList, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory AppListRequest.fromJson(Map<String, dynamic> json) =>
       _$AppListRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AppListRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int appList;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

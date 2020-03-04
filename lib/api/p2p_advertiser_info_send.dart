@@ -17,11 +17,11 @@ class P2pAdvertiserInfoRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory P2pAdvertiserInfoRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertiserInfoRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertiserInfoRequestToJson(this);
 
@@ -31,9 +31,4 @@ class P2pAdvertiserInfoRequest extends Request {
 
   /// Must be 1
   int p2pAdvertiserInfo;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

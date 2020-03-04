@@ -18,20 +18,15 @@ class CopyStopResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory CopyStopResponse.fromJson(Map<String, dynamic> json) =>
       _$CopyStopResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$CopyStopResponseToJson(this);
 
   // Properties
   /// Copy stopping confirmation. Returns 1 is success.
   int copyStop;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

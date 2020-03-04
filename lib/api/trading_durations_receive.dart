@@ -18,21 +18,15 @@ class TradingDurationsResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory TradingDurationsResponse.fromJson(Map<String, dynamic> json) =>
       _$TradingDurationsResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TradingDurationsResponseToJson(this);
 
   // Properties
-
   /// List of underlyings by their display name and symbol followed by their available contract types and trading duration boundaries.
   List<Map<String, dynamic>> tradingDurations;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

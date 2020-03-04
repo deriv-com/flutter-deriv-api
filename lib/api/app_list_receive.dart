@@ -18,20 +18,15 @@ class AppListResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory AppListResponse.fromJson(Map<String, dynamic> json) =>
       _$AppListResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AppListResponseToJson(this);
 
   // Properties
   /// List of created applications for the authorized account.
   List<Map<String, dynamic>> appList;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

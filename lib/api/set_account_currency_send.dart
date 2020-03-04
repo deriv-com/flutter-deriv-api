@@ -14,21 +14,15 @@ class SetAccountCurrencyRequest extends Request {
       {this.setAccountCurrency, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory SetAccountCurrencyRequest.fromJson(Map<String, dynamic> json) =>
       _$SetAccountCurrencyRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$SetAccountCurrencyRequestToJson(this);
 
   // Properties
-
   /// Currency of the account. List of supported currencies can be acquired with `payout_currencies` call.
   String setAccountCurrency;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

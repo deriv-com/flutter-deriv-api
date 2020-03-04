@@ -25,11 +25,11 @@ class AppMarkupDetailsRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>
       _$AppMarkupDetailsRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AppMarkupDetailsRequestToJson(this);
 
@@ -63,9 +63,4 @@ class AppMarkupDetailsRequest extends Request {
 
   /// [Optional] One or more of the specified fields to sort on. Default sort field is by `transaction_time`.
   List<String> sortFields;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

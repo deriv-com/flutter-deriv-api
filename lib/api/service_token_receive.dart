@@ -18,21 +18,15 @@ class ServiceTokenResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory ServiceTokenResponse.fromJson(Map<String, dynamic> json) =>
       _$ServiceTokenResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ServiceTokenResponseToJson(this);
 
   // Properties
-
   /// The object containing the retrieved token
   Map<String, dynamic> serviceToken;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

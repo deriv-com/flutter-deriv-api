@@ -14,20 +14,15 @@ class OauthAppsRequest extends Request {
       {this.oauthApps, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory OauthAppsRequest.fromJson(Map<String, dynamic> json) =>
       _$OauthAppsRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$OauthAppsRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int oauthApps;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

@@ -20,11 +20,11 @@ class ApiTokenRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiTokenRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ApiTokenRequestToJson(this);
 
@@ -43,9 +43,4 @@ class ApiTokenRequest extends Request {
 
   /// [Optional] If you set this parameter during token creation, then the token created will only work for the IP address that was used to create the token
   int validForCurrentIpOnly;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

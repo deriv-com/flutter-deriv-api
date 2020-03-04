@@ -18,11 +18,11 @@ class ContractUpdateRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory ContractUpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$ContractUpdateRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ContractUpdateRequestToJson(this);
 
@@ -35,9 +35,4 @@ class ContractUpdateRequest extends Request {
 
   /// Specify limit order to update.
   Map<String, dynamic> limitOrder;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

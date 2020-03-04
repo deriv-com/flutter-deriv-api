@@ -22,11 +22,11 @@ class PaymentagentWithdrawRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory PaymentagentWithdrawRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentWithdrawRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$PaymentagentWithdrawRequestToJson(this);
 
@@ -51,9 +51,4 @@ class PaymentagentWithdrawRequest extends Request {
 
   /// Email verification code (received from a `verify_email` call, which must be done first)
   String verificationCode;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

@@ -23,11 +23,11 @@ class TicksHistoryRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$TicksHistoryRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TicksHistoryRequestToJson(this);
 
@@ -55,9 +55,4 @@ class TicksHistoryRequest extends Request {
 
   /// Short symbol name (obtained from the `active_symbols` call).
   String ticksHistory;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

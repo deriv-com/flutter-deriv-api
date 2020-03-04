@@ -21,11 +21,11 @@ class PaymentagentTransferRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory PaymentagentTransferRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentTransferRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$PaymentagentTransferRequestToJson(this);
 
@@ -47,9 +47,4 @@ class PaymentagentTransferRequest extends Request {
 
   /// The loginid of the recipient account.
   String transferTo;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

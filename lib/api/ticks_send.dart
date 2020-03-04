@@ -14,24 +14,18 @@ class TicksRequest extends Request {
       {this.subscribe, this.ticks, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory TicksRequest.fromJson(Map<String, dynamic> json) =>
       _$TicksRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TicksRequestToJson(this);
 
   // Properties
-
   /// [Optional] If set to 1, will send updates whenever a new tick is received.
   int subscribe;
 
   /// The short symbol name or array of symbols (obtained from active_symbols call).
   String ticks;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

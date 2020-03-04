@@ -18,11 +18,11 @@ class BalanceRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory BalanceRequest.fromJson(Map<String, dynamic> json) =>
       _$BalanceRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$BalanceRequestToJson(this);
 
@@ -35,9 +35,4 @@ class BalanceRequest extends Request {
 
   /// [Optional] If set to 1, will send updates whenever the balance changes.
   int subscribe;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

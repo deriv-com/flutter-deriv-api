@@ -17,11 +17,11 @@ class PaymentagentListRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory PaymentagentListRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentListRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$PaymentagentListRequestToJson(this);
 
@@ -31,9 +31,4 @@ class PaymentagentListRequest extends Request {
 
   /// Client's 2-letter country code (obtained from `residence_list` call).
   String paymentagentList;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

@@ -17,24 +17,18 @@ class TncApprovalRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory TncApprovalRequest.fromJson(Map<String, dynamic> json) =>
       _$TncApprovalRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TncApprovalRequestToJson(this);
 
   // Properties
-
   /// Must be `1`
   num tncApproval;
 
   /// [Optional] For 'ASK_UK_FUNDS_PROTECTION' in cashier.
   int ukgcFundsProtection;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

@@ -18,11 +18,11 @@ class P2pOrderInfoRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory P2pOrderInfoRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderInfoRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pOrderInfoRequestToJson(this);
 
@@ -35,9 +35,4 @@ class P2pOrderInfoRequest extends Request {
 
   /// [Optional] If set to 1, will send updates whenever there is an update to order
   int subscribe;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

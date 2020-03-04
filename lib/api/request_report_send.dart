@@ -19,11 +19,11 @@ class RequestReportRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory RequestReportRequest.fromJson(Map<String, dynamic> json) =>
       _$RequestReportRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$RequestReportRequestToJson(this);
 
@@ -39,9 +39,4 @@ class RequestReportRequest extends Request {
 
   /// Must be `1`
   int requestReport;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

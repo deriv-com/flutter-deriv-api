@@ -19,11 +19,11 @@ class Mt5PasswordCheckRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory Mt5PasswordCheckRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordCheckRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5PasswordCheckRequestToJson(this);
 
@@ -39,9 +39,4 @@ class Mt5PasswordCheckRequest extends Request {
 
   /// [Optional] Type of the password to check.
   String passwordType;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

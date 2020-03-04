@@ -20,11 +20,11 @@ class CopyStartRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory CopyStartRequest.fromJson(Map<String, dynamic> json) =>
       _$CopyStartRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$CopyStartRequestToJson(this);
 
@@ -43,9 +43,4 @@ class CopyStartRequest extends Request {
 
   /// [Optional] Used to set trade types to be copied. E.x ["CALL", "PUT"]
   String tradeTypes;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

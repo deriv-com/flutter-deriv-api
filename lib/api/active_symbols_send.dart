@@ -18,11 +18,11 @@ class ActiveSymbolsRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory ActiveSymbolsRequest.fromJson(Map<String, dynamic> json) =>
       _$ActiveSymbolsRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ActiveSymbolsRequestToJson(this);
 
@@ -35,9 +35,4 @@ class ActiveSymbolsRequest extends Request {
 
   /// [Optional] If you specify this field, only symbols that can be traded through that product type will be returned.
   String productType;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

@@ -14,21 +14,15 @@ class SellExpiredRequest extends Request {
       {this.sellExpired, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory SellExpiredRequest.fromJson(Map<String, dynamic> json) =>
       _$SellExpiredRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$SellExpiredRequestToJson(this);
 
   // Properties
-
   /// Must be `1`
   int sellExpired;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

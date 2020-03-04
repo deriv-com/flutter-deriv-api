@@ -18,11 +18,11 @@ class AccountSecurityRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory AccountSecurityRequest.fromJson(Map<String, dynamic> json) =>
       _$AccountSecurityRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AccountSecurityRequestToJson(this);
 
@@ -35,9 +35,4 @@ class AccountSecurityRequest extends Request {
 
   /// [Optional] Action to be taken for managing TOTP (time-based one-time password, RFC6238). Generate will create a secret key which is then returned in the secret_key response field, you can then enable by using that code in a 2FA application.
   String totpAction;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

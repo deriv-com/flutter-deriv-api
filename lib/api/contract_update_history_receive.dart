@@ -18,20 +18,15 @@ class ContractUpdateHistoryResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory ContractUpdateHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$ContractUpdateHistoryResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ContractUpdateHistoryResponseToJson(this);
 
   // Properties
   /// Contains the historical and the most recent update status of the contract
   List<String> contractUpdateHistory;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

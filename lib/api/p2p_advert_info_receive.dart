@@ -18,21 +18,15 @@ class P2pAdvertInfoResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory P2pAdvertInfoResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertInfoResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertInfoResponseToJson(this);
 
   // Properties
-
   /// P2P advert information.
   Map<String, dynamic> p2pAdvertInfo;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }
