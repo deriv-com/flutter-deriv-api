@@ -19,11 +19,11 @@ class ContractsForRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory ContractsForRequest.fromJson(Map<String, dynamic> json) =>
       _$ContractsForRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ContractsForRequestToJson(this);
 
@@ -39,9 +39,4 @@ class ContractsForRequest extends Request {
 
   /// [Optional] If you specify this field, only contracts tradable through that contract type will be returned.
   String productType;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

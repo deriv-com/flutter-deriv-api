@@ -18,20 +18,15 @@ class ApiTokenResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory ApiTokenResponse.fromJson(Map<String, dynamic> json) =>
       _$ApiTokenResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ApiTokenResponseToJson(this);
 
   // Properties
   /// Contains the result of API token according to the type of request.
   Map<String, dynamic> apiToken;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

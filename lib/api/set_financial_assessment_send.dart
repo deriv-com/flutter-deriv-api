@@ -33,11 +33,11 @@ class SetFinancialAssessmentRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory SetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       _$SetFinancialAssessmentRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$SetFinancialAssessmentRequestToJson(this);
 
@@ -95,9 +95,4 @@ class SetFinancialAssessmentRequest extends Request {
 
   /// [Optional] Source of wealth.
   String sourceOfWealth;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

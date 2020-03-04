@@ -18,21 +18,15 @@ class LoginHistoryResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory LoginHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$LoginHistoryResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$LoginHistoryResponseToJson(this);
 
   // Properties
-
   /// Array of records of client login/logout activities
   List<Map<String, dynamic>> loginHistory;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

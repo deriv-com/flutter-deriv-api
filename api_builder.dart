@@ -11,7 +11,7 @@ Builder apiBuilder(final BuilderOptions _) => APIBuilder();
 
 /// This class is responsible for parsing the morass of JSON schema
 /// definition files for our API, and assembling them into request/response
-/// objects suitable for marshalling and deserialising from our websockets
+/// objects suitable for marshalling and deserialization from our WebSockets
 /// API.
 class APIBuilder extends Builder {
   static const Map<String, String> typeMap = <String, String>{
@@ -26,14 +26,14 @@ class APIBuilder extends Builder {
     'receive': 'Response',
   };
 
-  static const Map<String, String> responseFields = <String, String>{
+  static const Map<String, String> responseCommonFields = <String, String>{
     'req_id': 'integer',
     'echo_req': 'object',
     'msg_type': 'string',
     'error': 'object',
   };
 
-  static const Map<String, String> requestFields = <String, String>{
+  static const Map<String, String> requestCommonFields = <String, String>{
     'req_id': 'integer',
     'passthrough': 'object',
   };
@@ -56,7 +56,7 @@ class APIBuilder extends Builder {
       // We keep our list of property keys in original form here so we can iterate over and map them
       final List<String> props = schema.properties.keys.toList()..sort();
 
-      /* Some minor chicanery here to find out which API method we're supposed to be processing */
+      // Some minor chicanery here to find out which API method we're supposed to be processing
       final Iterable<RegExpMatch> matches =
           RegExp(r'^([^\|]+)\|.*/([^/]+)_(send|receive).json$')
               .allMatches(buildStep.inputId.toString());
@@ -72,55 +72,54 @@ class APIBuilder extends Builder {
       final String className = ReCase(methodName).pascalCase;
 
       // Allow constructor parameters as well
-      final String namedParameters = props
+      final String constructorParameters = props
           .where((String k) =>
-              !requestFields.containsKey(k) && !responseFields.containsKey(k))
+              !requestCommonFields.containsKey(k) &&
+              !responseCommonFields.containsKey(k))
           .map((String k) => 'this.${ReCase(k).camelCase}')
           .join(', ');
 
       String superTypeNameParameters;
-
       if (schemaType == 'send') {
-        superTypeNameParameters = requestFields.keys
+        superTypeNameParameters = requestCommonFields.keys
             .map((String k) =>
-                '${typeMap[requestFields[k]]} ${ReCase(k).camelCase}')
+                '${typeMap[requestCommonFields[k]]} ${ReCase(k).camelCase}')
             .join(', ');
       } else {
-        superTypeNameParameters = responseFields.keys
+        superTypeNameParameters = responseCommonFields.keys
             .map((String k) =>
-                '${typeMap[responseFields[k]]} ${ReCase(k).camelCase}')
+                '${typeMap[responseCommonFields[k]]} ${ReCase(k).camelCase}')
             .join(', ');
       }
 
-      // Allow constructor parameters as well
-      String superParameters;
+      String superCallParameters;
       if (schemaType == 'send') {
-        superParameters = requestFields.keys
+        superCallParameters = requestCommonFields.keys
             .map((String k) => '${ReCase(k).camelCase}: ${ReCase(k).camelCase}')
             .join(', ');
       } else {
-        superParameters = responseFields.keys
+        superCallParameters = responseCommonFields.keys
             .map((String k) => '${ReCase(k).camelCase}: ${ReCase(k).camelCase}')
             .join(', ');
       }
 
       log.info(
           'Will write $className for $methodName as $schemaType under $libName');
+
       final String fullClassName = className + schemaTypeMap[schemaType];
       final String fileName = '${methodName}_${schemaType}';
 
       // Instead of trying anything too fancy here, we just provide a simple conversion from original
       // JSON schema name - which is snake_cased - to something more Dart-suitable, and apply type
       // mapping via "it's a string unless we have a better guess" heuristic.
-      final String attrList = props.map((String k) {
-        if (schemaType == 'send' && requestFields.containsKey(k)) {
-          return '';
-        } else if (schemaType == 'receive' && responseFields.containsKey(k)) {
-          return '';
-        }
-
+      final String attributeList = props
+          .where((String k) =>
+              !requestCommonFields.containsKey(k) &&
+              !responseCommonFields.containsKey(k))
+          .map((String k) {
         final String name = ReCase(k).camelCase;
         final JsonSchema prop = schema.properties[k];
+
         String type;
         // Currently we don't handle multiple types, could
         // treat those as `dynamic` but so far we don't have
@@ -173,22 +172,18 @@ part '${fileName}.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ${fullClassName} extends ${schemaType == 'send' ? 'Request' : 'Response'}{
   ///
-  ${fullClassName}({$namedParameters, $superTypeNameParameters}): super($superParameters);
+  ${fullClassName}({$constructorParameters, $superTypeNameParameters}): super($superCallParameters);
   
-  ///
+  /// Instance from JSON
   factory ${fullClassName}.fromJson(Map<String, dynamic> json) => _\$${fullClassName}FromJson(json);
   
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _\$${fullClassName}ToJson(this);
 
   // Properties
-  ${attrList}
+  ${attributeList}
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }
 '''));
     } on Exception catch (e, stack) {
@@ -198,11 +193,4 @@ class ${fullClassName} extends ${schemaType == 'send' ? 'Request' : 'Response'}{
       return;
     }
   }
-}
-
-class SuperClassField {
-  const SuperClassField({this.name, this.type});
-
-  final String name;
-  final String type;
 }

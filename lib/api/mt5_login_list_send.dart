@@ -14,20 +14,15 @@ class Mt5LoginListRequest extends Request {
       {this.mt5LoginList, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory Mt5LoginListRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5LoginListRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5LoginListRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int mt5LoginList;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

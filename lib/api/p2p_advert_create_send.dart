@@ -27,11 +27,11 @@ class P2pAdvertCreateRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory P2pAdvertCreateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertCreateRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertCreateRequestToJson(this);
 
@@ -71,9 +71,4 @@ class P2pAdvertCreateRequest extends Request {
 
   /// Whether this is a buy or a sell.
   String type;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

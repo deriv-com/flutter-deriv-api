@@ -18,20 +18,15 @@ class AuthorizeResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory AuthorizeResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthorizeResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AuthorizeResponseToJson(this);
 
   // Properties
   /// Account information for the holder of the token.
   Map<String, dynamic> authorize;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

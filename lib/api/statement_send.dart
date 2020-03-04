@@ -22,11 +22,11 @@ class StatementRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>
       _$StatementRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$StatementRequestToJson(this);
 
@@ -51,9 +51,4 @@ class StatementRequest extends Request {
 
   /// Must be `1`
   int statement;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

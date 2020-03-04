@@ -19,11 +19,11 @@ class Mt5WithdrawalRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5WithdrawalRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5WithdrawalRequestToJson(this);
 
@@ -39,9 +39,4 @@ class Mt5WithdrawalRequest extends Request {
 
   /// Binary account loginid to transfer money to
   String toBinary;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

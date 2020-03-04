@@ -18,21 +18,15 @@ class Mt5GetSettingsResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory Mt5GetSettingsResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5GetSettingsResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5GetSettingsResponseToJson(this);
 
   // Properties
-
   /// MT5 user account details
   Map<String, dynamic> mt5GetSettings;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

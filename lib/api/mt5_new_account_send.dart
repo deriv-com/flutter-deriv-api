@@ -32,11 +32,11 @@ class Mt5NewAccountRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5NewAccountRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5NewAccountRequestToJson(this);
 
@@ -91,9 +91,4 @@ class Mt5NewAccountRequest extends Request {
 
   /// [Optional] User's zip code.
   String zipCode;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

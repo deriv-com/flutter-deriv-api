@@ -13,20 +13,15 @@ class CopyStopRequest extends Request {
   CopyStopRequest({this.copyStop, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory CopyStopRequest.fromJson(Map<String, dynamic> json) =>
       _$CopyStopRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$CopyStopRequestToJson(this);
 
   // Properties
   /// API tokens identifying the accounts which needs not to be copied
   String copyStop;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

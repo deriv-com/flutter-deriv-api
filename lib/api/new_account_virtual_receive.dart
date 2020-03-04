@@ -18,21 +18,15 @@ class NewAccountVirtualResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory NewAccountVirtualResponse.fromJson(Map<String, dynamic> json) =>
       _$NewAccountVirtualResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$NewAccountVirtualResponseToJson(this);
 
   // Properties
-
   /// New virtual-money account details
   Map<String, dynamic> newAccountVirtual;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

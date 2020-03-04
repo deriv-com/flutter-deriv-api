@@ -26,11 +26,11 @@ class NewAccountVirtualRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountVirtualRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$NewAccountVirtualRequestToJson(this);
 
@@ -67,9 +67,4 @@ class NewAccountVirtualRequest extends Request {
 
   /// Email verification code (received from a `verify_email` call, which must be done first).
   String verificationCode;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

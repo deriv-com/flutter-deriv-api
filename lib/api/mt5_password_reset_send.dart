@@ -20,11 +20,11 @@ class Mt5PasswordResetRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory Mt5PasswordResetRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordResetRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5PasswordResetRequestToJson(this);
 
@@ -43,9 +43,4 @@ class Mt5PasswordResetRequest extends Request {
 
   /// Email verification code (received from a `verify_email` call, which must be done first)
   String verificationCode;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

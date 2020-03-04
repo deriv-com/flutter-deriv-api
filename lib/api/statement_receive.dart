@@ -18,21 +18,15 @@ class StatementResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory StatementResponse.fromJson(Map<String, dynamic> json) =>
       _$StatementResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$StatementResponseToJson(this);
 
   // Properties
-
   /// Account statement.
   Map<String, dynamic> statement;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

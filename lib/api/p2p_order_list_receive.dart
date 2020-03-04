@@ -19,24 +19,18 @@ class P2pOrderListResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory P2pOrderListResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderListResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pOrderListResponseToJson(this);
 
   // Properties
-
   /// List of P2P orders.
   Map<String, dynamic> p2pOrderList;
 
   /// For subscription requests only
   Map<String, dynamic> subscription;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

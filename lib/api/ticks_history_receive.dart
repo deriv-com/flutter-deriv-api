@@ -21,11 +21,11 @@ class TicksHistoryResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory TicksHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$TicksHistoryResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TicksHistoryResponseToJson(this);
 
@@ -41,9 +41,4 @@ class TicksHistoryResponse extends Response {
 
   /// For subscription requests only
   Map<String, dynamic> subscription;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

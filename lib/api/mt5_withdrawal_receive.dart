@@ -19,11 +19,11 @@ class Mt5WithdrawalResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory Mt5WithdrawalResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5WithdrawalResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5WithdrawalResponseToJson(this);
 
@@ -33,9 +33,4 @@ class Mt5WithdrawalResponse extends Response {
 
   /// `1` on success
   int mt5Withdrawal;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

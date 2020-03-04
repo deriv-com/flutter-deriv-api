@@ -14,21 +14,15 @@ class RevokeOauthAppRequest extends Request {
       {this.revokeOauthApp, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory RevokeOauthAppRequest.fromJson(Map<String, dynamic> json) =>
       _$RevokeOauthAppRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$RevokeOauthAppRequestToJson(this);
 
   // Properties
-
   /// The application ID to revoke.
   int revokeOauthApp;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

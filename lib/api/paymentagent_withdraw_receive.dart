@@ -20,16 +20,15 @@ class PaymentagentWithdrawResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory PaymentagentWithdrawResponse.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentWithdrawResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$PaymentagentWithdrawResponseToJson(this);
 
   // Properties
-
   /// Payment agent name.
   String paymentagentName;
 
@@ -38,9 +37,4 @@ class PaymentagentWithdrawResponse extends Response {
 
   /// Reference ID of withdrawal performed.
   int transactionId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

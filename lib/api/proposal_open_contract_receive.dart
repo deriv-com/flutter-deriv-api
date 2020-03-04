@@ -19,24 +19,18 @@ class ProposalOpenContractResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory ProposalOpenContractResponse.fromJson(Map<String, dynamic> json) =>
       _$ProposalOpenContractResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ProposalOpenContractResponseToJson(this);
 
   // Properties
-
   /// Latest price and other details for an open contract
   Map<String, dynamic> proposalOpenContract;
 
   /// For subscription requests only
   Map<String, dynamic> subscription;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

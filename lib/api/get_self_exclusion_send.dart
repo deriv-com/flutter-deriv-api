@@ -14,20 +14,15 @@ class GetSelfExclusionRequest extends Request {
       {this.getSelfExclusion, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory GetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       _$GetSelfExclusionRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$GetSelfExclusionRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int getSelfExclusion;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

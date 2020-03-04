@@ -19,12 +19,12 @@ class BuyContractForMultipleAccountsRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory BuyContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       _$BuyContractForMultipleAccountsRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() =>
       _$BuyContractForMultipleAccountsRequestToJson(this);
@@ -41,9 +41,4 @@ class BuyContractForMultipleAccountsRequest extends Request {
 
   /// List of API tokens identifying the accounts for which the contract is bought. Note: If the same token appears multiple times or if multiple tokens designate the same account, the contract is bought multiple times for this account.
   List<String> tokens;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

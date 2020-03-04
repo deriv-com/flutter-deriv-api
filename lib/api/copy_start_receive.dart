@@ -18,20 +18,15 @@ class CopyStartResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory CopyStartResponse.fromJson(Map<String, dynamic> json) =>
       _$CopyStartResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$CopyStartResponseToJson(this);
 
   // Properties
   /// Copy start confirmation. Returns 1 is success.
   int copyStart;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

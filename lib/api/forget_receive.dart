@@ -18,21 +18,15 @@ class ForgetResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  ///
+  /// Instance from JSON
   factory ForgetResponse.fromJson(Map<String, dynamic> json) =>
       _$ForgetResponseFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ForgetResponseToJson(this);
 
   // Properties
-
   /// If set to 1, stream exited and stopped. If set to 0, stream did not exist.
   int forget;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

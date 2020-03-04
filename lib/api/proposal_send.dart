@@ -33,11 +33,11 @@ class ProposalRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory ProposalRequest.fromJson(Map<String, dynamic> json) =>
       _$ProposalRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ProposalRequestToJson(this);
 
@@ -95,9 +95,4 @@ class ProposalRequest extends Request {
 
   /// [Optional] Required only for multi-barrier trading. Defines the epoch value of the trading period start time.
   int tradingPeriodStart;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

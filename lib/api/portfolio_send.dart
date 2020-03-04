@@ -14,21 +14,15 @@ class PortfolioRequest extends Request {
       {this.portfolio, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>
       _$PortfolioRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$PortfolioRequestToJson(this);
 
   // Properties
-
   /// Must be `1`
   int portfolio;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

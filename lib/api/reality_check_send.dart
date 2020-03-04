@@ -14,21 +14,15 @@ class RealityCheckRequest extends Request {
       {this.realityCheck, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory RealityCheckRequest.fromJson(Map<String, dynamic> json) =>
       _$RealityCheckRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$RealityCheckRequestToJson(this);
 
   // Properties
-
   /// Must be `1`
   int realityCheck;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

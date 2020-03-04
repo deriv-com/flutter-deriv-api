@@ -13,20 +13,15 @@ class AppGetRequest extends Request {
   AppGetRequest({this.appGet, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory AppGetRequest.fromJson(Map<String, dynamic> json) =>
       _$AppGetRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AppGetRequestToJson(this);
 
   // Properties
   /// Application app_id
   int appGet;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

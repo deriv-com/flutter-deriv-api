@@ -14,24 +14,18 @@ class SellRequest extends Request {
       {this.price, this.sell, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory SellRequest.fromJson(Map<String, dynamic> json) =>
       _$SellRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$SellRequestToJson(this);
 
   // Properties
-
   /// Minimum price at which to sell the contract, or '0' for 'sell at market'
   num price;
 
   /// Pass contract_id received from the Portfolio call
   int sell;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

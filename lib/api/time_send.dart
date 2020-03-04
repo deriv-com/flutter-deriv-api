@@ -13,21 +13,15 @@ class TimeRequest extends Request {
   TimeRequest({this.time, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory TimeRequest.fromJson(Map<String, dynamic> json) =>
       _$TimeRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TimeRequestToJson(this);
 
   // Properties
-
   /// Must be `1`
   int time;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

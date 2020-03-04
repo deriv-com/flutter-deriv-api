@@ -14,20 +14,15 @@ class CopytradingListRequest extends Request {
       {this.copytradingList, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory CopytradingListRequest.fromJson(Map<String, dynamic> json) =>
       _$CopytradingListRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$CopytradingListRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int copytradingList;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }

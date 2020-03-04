@@ -29,11 +29,11 @@ class SetSelfExclusionRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  ///
+  /// Instance from JSON
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       _$SetSelfExclusionRequestFromJson(json);
 
-  ///
+  /// Instance to JSON
   @override
   Map<String, dynamic> toJson() => _$SetSelfExclusionRequestToJson(this);
 
@@ -79,9 +79,4 @@ class SetSelfExclusionRequest extends Request {
 
   /// [Optional] Exclude me from the website (for up to 6 weeks). Requires time in epoch format. Note: unlike `exclude_until`, this self-exclusion will be lifted automatically at the expiry of the timeout period.
   String timeoutUntil;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
 }
