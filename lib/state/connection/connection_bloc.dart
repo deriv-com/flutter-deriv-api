@@ -11,7 +11,7 @@ part 'connection_event.dart';
 
 /// Bringing ConnectionBloc to flutter-deriv-api to simplify the usage of api
 class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
-  ///
+  /// Initializes
   ConnectionBloc() {
     connectWS();
   }

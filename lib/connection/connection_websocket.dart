@@ -17,11 +17,12 @@ import 'package:flutter_deriv_api/api/website_status_receive.dart';
 
 import '../helpers.dart';
 
+/// Callbacks for WS connection
 typedef SocketCallback = void Function();
 
 /// Represent a pending request.
 class PendingRequest<T> {
-  ///
+  /// Initializes
   PendingRequest({this.method, this.request, this.response});
 
   /// api call method (e.g. 'active_symbols')
@@ -42,16 +43,16 @@ class PendingRequest<T> {
   /// true if subscribed
   bool get isSubscribed => _streamController != null;
 
-  ///
+  /// Stream If API call is subscribe mode
   SubscriptionStream<T> get streamController => _streamController;
 
-  ///
+  /// Subscription ID which returned from server
   String get subscriptionId => _subscriptionId;
 }
 
 /// Represents a message sent or received via the webSockets connection
 class HistoryEntry {
-  ///
+  /// Initializes
   HistoryEntry({this.timeStamp, this.method, this.message});
 
   /// time stamp when is created
@@ -74,7 +75,7 @@ class APIHistory {
 
   int _limit = 1000;
 
-  ///
+  /// Messages limit
   int get limit => _limit;
 
   set limit(int limit) {
@@ -182,7 +183,8 @@ class BinaryAPI {
     return f.future;
   }
 
-  ///
+  /// Calls the API method with subscribe set to '1' and return the stream
+  /// to caller for responses
   Stream<dynamic> subscribe(final String method, {Map<String, dynamic> req}) {
     req ??= <String, dynamic>{};
 
@@ -228,7 +230,7 @@ class BinaryAPI {
     return response;
   }
 
-  ///
+  /// Unsubscribe to multiple [method]s all at once
   Future<dynamic> unsubscribeAll(String method,
       {bool shouldForced = false}) async {
     final List<int> reqIds = pendingRequests.keys.where((int id) =>
@@ -248,13 +250,17 @@ class BinaryAPI {
     return response;
   }
 
-  ///
+  /// Generates reqId for the next request which is going to be sent to server
+  /// Each API call can have a reqID which can be used to identifying its
+  /// response (Its response will have the same reqId)
   int nextRequestId() {
     dev.log('Assigning ID, last was $lastRequestId');
     return ++lastRequestId;
   }
 
-  ///
+  /// Handles responses that come from server, by using its reqId, and completes
+  /// caller's Future or add the response to caller's stream if it was a
+  /// subscription call
   void handleResponse(
       Completer<bool> connectionCompleter, Map<String, dynamic> msg) {
     try {
@@ -317,7 +323,7 @@ class BinaryAPI {
     }
   }
 
-  ///
+  /// Connects to binary web socket
   Future<IOWebSocketChannel> run({
     SocketCallback onDone,
     SocketCallback onOpen,
@@ -369,7 +375,7 @@ class BinaryAPI {
     return chan;
   }
 
-  ///
+  /// Closes the stream channels related to WS
   Future<void> close() async {
     // The onDone function of the listener is set to null intentionally
     // to prevent it from being invoked after destroying the WebSocket object.
@@ -387,7 +393,7 @@ class BinaryAPI {
     chan = null;
   }
 
-  ///
+  /// Calls the authorize method with the giver [token]
   Future<AuthorizeResponse> authorize(String token) async {
     AuthorizeResponse authObj;
     try {
@@ -409,7 +415,7 @@ class BinaryAPI {
     return authObj;
   }
 
-  ///
+  /// Balance API call
   Future<BalanceResponse> balance() async {
     BalanceResponse balanceResponse;
     try {
@@ -427,7 +433,7 @@ class BinaryAPI {
     return balanceResponse;
   }
 
-  ///
+  /// GetSetting API call
   Future<GetSettingsResponse> getSetting() async {
     final Map<String, dynamic> resp = await call('get_settings');
 
@@ -462,7 +468,8 @@ class BinaryAPI {
         },
       );
 
-  ///
+  /// Calls p2p_advert_info for getting details of an advert based on the
+  /// giver [id]
   Future<Map<String, dynamic>> p2pAdvertInfo(int id,
       {double amount, bool subscribe}) {
     final Map<String, dynamic> req = <String, dynamic>{
@@ -476,7 +483,8 @@ class BinaryAPI {
     return call('p2p_advert_info', req: req);
   }
 
-  ///
+  /// Calls p2p_order_create to place an order on the [advertId] with
+  /// the [amount] specified
   Future<Map<String, dynamic>> p2pOrderCreate(String advertId, double amount,
       {bool subscribe = false}) {
     final Map<String, dynamic> req = <String, dynamic>{
@@ -491,7 +499,7 @@ class BinaryAPI {
     return call('p2p_order_create', req: req);
   }
 
-  ///
+  /// Calls p2p_advert_create (Allowed only for advertisers)
   Future<Map<String, dynamic>> p2pAdvertCreate(Map<String, dynamic> advert) {
     final Map<String, dynamic> req = <String, dynamic>{
       'type': advert['type'],
@@ -505,23 +513,25 @@ class BinaryAPI {
     return call('p2p_advert_create', req: req);
   }
 
-  ///
+  /// Cancel an order if possible
   Future<Map<String, dynamic>> p2pOrderCancel(String id) {
     final Map<String, dynamic> req = <String, dynamic>{'id': id};
     return call('p2p_order_cancel', req: req);
   }
 
-  ///
+  /// Edit an advert
   Future<Map<String, dynamic>> p2pAdvertUpdate(
     Map<String, dynamic> req,
   ) =>
       call('p2p_advert_update', req: req);
 
-  ///
+  /// Remove an advert
   Future<Map<String, dynamic>> p2pAdvertRemove(String id) =>
       call('p2p_advert_remove', req: <String, dynamic>{'id': id});
 
-  ///
+  /// Gets the list of orders
+  /// if [advertId] specified will get the orders for that advert
+  /// [isActive] only gets orders that are not completed, timed-out or canceled
   Future<Map<String, dynamic>> p2pOrderList(
           {int advertId, int offset, int limit, bool isActive}) =>
       call('p2p_order_list', req: <String, dynamic>{
@@ -531,7 +541,7 @@ class BinaryAPI {
         if (limit != null) 'limit': limit,
       });
 
-  ///
+  /// Subscribes to p2p_order_list
   Stream<Map<String, dynamic>> subscribeP2pOrderList(
           {int advertId, int offset, int limit, bool isHistorical}) =>
       subscribe('p2p_order_list', req: <String, dynamic>{
@@ -541,17 +551,17 @@ class BinaryAPI {
         if (limit != null) 'limit': limit,
       });
 
-  ///
+  /// Gets the details of an order by its [id]
   Future<Map<String, dynamic>> p2pOrderInfo({String id}) =>
       call('p2p_order_info', req: <String, dynamic>{
         'id': id,
       });
 
-  ///
+  /// Subscribes to p2p_order_info
   Stream<Map<String, dynamic>> subscribeOrderInfo({String id}) =>
       subscribe('p2p_order_info', req: <String, dynamic>{'id': id});
 
-  ///
+  /// Confirms an order, Either as a confirmation that is paid or released
   Future<Map<String, dynamic>> p2pOrderConfirm(String id,
       {Map<String, dynamic> options}) {
     options ??= <String, dynamic>{};
@@ -560,34 +570,35 @@ class BinaryAPI {
     return call('p2p_order_confirm', req: options);
   }
 
-  ///
-  Future<Map<String, dynamic>> p2pAgentInfo({Map<String, dynamic> options}) =>
+  /// Gets the information of advertiser
+  Future<Map<String, dynamic>> p2pAdvertiserInfo(
+          {Map<String, dynamic> options}) =>
       call('p2p_advertiser_info', req: options);
 
-  /// Later, we should use derivAPI schema classes to convert request and response
+  /// Adverts for this advertiser who is logged in
   Future<Map<String, dynamic>> p2pAdvertiserAdverts(
           {final int limit, final int offset}) =>
       call('p2p_advertiser_adverts',
           req: <String, dynamic>{'limit': limit, 'offset': offset});
 
-  ///
-  Future<Map<String, dynamic>> p2pAgentUpdate(
+  /// Updates an advertiser
+  Future<Map<String, dynamic>> p2pAdvertiserUpdate(
     Map<String, dynamic> advertiser,
   ) =>
       call('p2p_advertiser_update', req: advertiser);
 
-  ///
+  /// Gets the server time
   Future<Map<String, dynamic>> time() => call('time');
 
-  ///
+  /// Subscribes to account balance
   Stream<BalanceResponse> subscribeBalance() =>
       subscribe('balance').map<BalanceResponse>(
           (final dynamic balance) => BalanceResponse.fromJson(balance));
 
-  ///
+  /// Logs out from WS
   Future<Map<String, dynamic>> logout() => call('logout');
 
-  ///
+  /// Subscribes to website_status
   Stream<WebsiteStatusResponse> subscribeWebsiteStatus() =>
       subscribe('website_status').map<WebsiteStatusResponse>(
         (final dynamic status) => WebsiteStatusResponse.fromJson(status),

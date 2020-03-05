@@ -1,6 +1,6 @@
 part of 'connection_bloc.dart';
 
-///
+/// Connection States
 @immutable
 abstract class ConnectionState {}
 
@@ -12,10 +12,10 @@ class InitialConnectionState extends ConnectionState {
 
 /// shows that we are in the process of connecting
 class Connecting extends ConnectionState {
-  ///
+  /// Initializes
   Connecting(this.api);
 
-  ///
+  /// a reference of BinaryAPI
   final BinaryAPI api;
 
   @override
@@ -24,7 +24,7 @@ class Connecting extends ConnectionState {
 
 /// connected state
 class Connected extends ConnectionState {
-  ///
+  /// Initializes
   Connected(this.api, {this.serverTime})
       : timeDifference =
             serverTime != null ? serverTime - getCurrentLocalEpoch() : null;
@@ -38,7 +38,7 @@ class Connected extends ConnectionState {
   /// difference between [serverTime] and the time of the device
   final int timeDifference;
 
-  ///
+  /// Creates copy of instance with given parameters
   Connected copyWith({BinaryAPI api, int serverTime}) =>
       Connected(api ?? this.api, serverTime: serverTime ?? this.serverTime);
 
@@ -47,9 +47,9 @@ class Connected extends ConnectionState {
       'ConnectionState(Connected, serverTime: $serverTime, timeDifference: $timeDifference)';
 }
 
-///
+/// Connection error state
 class ConnectionError extends ConnectionState {
-  ///
+  /// Initializes with the this [error] message
   ConnectionError(this.error);
 
   /// An exception or message from the server
