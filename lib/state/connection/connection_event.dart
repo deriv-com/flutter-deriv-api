@@ -1,15 +1,15 @@
 part of 'connection_bloc.dart';
 
-///
+/// Connection Events
 @immutable
 abstract class ConnectionEvent {}
 
 /// add this event when we are connected to the WS
 class Connect extends ConnectionEvent {
-  ///
+  /// Initializes
   Connect({this.api});
 
-  ///
+  /// A reference to BinaryAPI
   final BinaryAPI api;
 
   @override

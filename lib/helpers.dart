@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
 
-///
+/// Parses the [url] and gets the endpoint out of it
 String parseWSUrl(String url, {bool isAuthUrl = false}) {
   if (url == null) {
     return null;
@@ -25,13 +25,13 @@ String parseWSUrl(String url, {bool isAuthUrl = false}) {
   return result;
 }
 
-///
+/// Calculates the number of decimal digits for string [value] of a number
 int getDecimalDigits(String value) {
   final List<String> parts = value.split('.');
   return parts.length > 1 && parts.isNotEmpty ? parts.last.length : 2;
 }
 
-///
+/// Creates [NumberFormat] with options specified
 NumberFormat getValueFormatter({
   String locale = 'en_US',
   String currency,
@@ -48,29 +48,30 @@ NumberFormat getValueFormatter({
   return formatter;
 }
 
-///
+/// Formats a string [value] of number [decimalDigits] and [currency] symbol
 String getFormattedValue({
   String value,
   int decimalDigits,
   String currency,
   bool showSymbol = true,
-}) => getValueFormatter(
-  decimalDigits: decimalDigits ?? getDecimalDigits(value),
-  currency: currency,
-  showSymbol: showSymbol,
-).format(double.parse(value));
+}) =>
+    getValueFormatter(
+      decimalDigits: decimalDigits ?? getDecimalDigits(value),
+      currency: currency,
+      showSymbol: showSymbol,
+    ).format(double.parse(value));
 
-///
+/// Fetches the device time
 int getCurrentLocalEpoch() =>
     (DateTime.now().millisecondsSinceEpoch / 1000).round();
 
-///
+/// Calculates the server time
 DateTime getCurrentServerTime(int timeDifference) =>
     DateTime.fromMillisecondsSinceEpoch(
       (getCurrentLocalEpoch() + timeDifference) * 1000,
     );
 
-///
+/// Checks if a string value of number is a valid number
 class NumberValidator {
   /// checks if the given [stringValue] is a number
   static bool isANumber(String stringValue) {
@@ -78,21 +79,23 @@ class NumberValidator {
     double result;
     try {
       result = double.parse(newString);
-    } on Exception{
+    } on Exception {
       return false;
     }
     return result != null;
   }
 
-  ///
+  /// Checks if [stringValue] of a number is in the range of
+  /// [lowerLimit] & [upperLimit]
   static bool isBetweenLimits({
     @required String stringValue,
     @required double upperLimit,
     @required double lowerLimit,
-  }) => isMoreThanLimit(stringValue: stringValue, lowerLimit: lowerLimit) &&
+  }) =>
+      isMoreThanLimit(stringValue: stringValue, lowerLimit: lowerLimit) &&
       isLessThanLimit(stringValue: stringValue, upperLimit: upperLimit);
 
-  ///
+  /// Checks if [stringValue] of a number is less than [upperLimit]
   static bool isLessThanLimit({
     @required String stringValue,
     @required double upperLimit,
@@ -101,7 +104,7 @@ class NumberValidator {
     return num <= upperLimit;
   }
 
-  ///
+  /// Checks if [stringValue] of number exceeds the given value
   static bool isMoreThanLimit({
     @required String stringValue,
     @required double lowerLimit,
@@ -110,13 +113,14 @@ class NumberValidator {
     return num >= lowerLimit;
   }
 
-  ///
+  /// Checks if number is positive
   static bool isAPositiveNumber(String stringValue) {
     final double num = double.parse(stringValue);
     return num > 0;
   }
 
-  ///
+  /// Checks if the [stringValue] of number matches
+  /// with the [validDecimalNumber]
   static bool hasValidPrecision({
     @required String stringValue,
     @required int validDecimalNumber,
@@ -133,7 +137,7 @@ class NumberValidator {
   }
 }
 
-///
+/// Generates random int numbers
 class RandomGenerator {
   /// Random int between [min] & [max]
   static int generateRandomInt({
