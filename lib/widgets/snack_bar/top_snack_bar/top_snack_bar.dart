@@ -6,7 +6,7 @@ import 'top_snack_bar_widget.dart';
 /// creates [OverlayEntry] for [TopSnackBarWidget] and manages adding and
 /// removing them to/from [Overlay]
 class TopSnackBar {
-  ///
+  /// Initializes
   TopSnackBar(
     this.context,
     this.vsync, {
@@ -27,7 +27,7 @@ class TopSnackBar {
   /// title of snack bar
   final String title;
 
-  ///
+  /// Subtitle
   final String subtitle;
 
   /// If true snack bar won't dismiss until
@@ -36,13 +36,13 @@ class TopSnackBar {
   /// SnackBarContent background color
   final Color backgroundColor;
 
-  ///
+  /// Title text style
   final TextStyle titleStyle;
 
-  ///
+  /// Subtitle text style
   final TextStyle subtitleStyle;
 
-  ///
+  /// [BuildContext] from [Scaffold]
   final BuildContext context;
 
   /// will be visible for this duration if [dismissible] is true
@@ -65,7 +65,7 @@ class TopSnackBar {
     });
   }
 
-  ///
+  /// Initializes [OverlayEntry] with its [TopSnackBarWidget]
   TopSnackBarAnimationController _initializeOverlayEntry(BuildContext context) {
     final TopSnackBarAnimationController snackController =
         TopSnackBarAnimationController(vsync);
@@ -100,7 +100,7 @@ class TopSnackBar {
 /// Controls the Snack bar animation state and its vertical position
 class TopSnackBarAnimationController extends ChangeNotifier
     with AnimationLocalStatusListenersMixin {
-  ///
+  /// Initializes
   TopSnackBarAnimationController(this.vsync) {
     _addListeners();
   }
@@ -141,10 +141,10 @@ class TopSnackBarAnimationController extends ChangeNotifier
       });
   }
 
-  ///
+  /// Callback when pn gesture starts
   void onPanStart(DragStartDetails dragStartDetails, double snackHeight) {}
 
-  ///
+  /// Gets called during pan gesture
   void onPanUpdate(DragUpdateDetails dragUpdateDetails, double snackHeight) {
     final double deltaY = dragUpdateDetails.delta.dy;
     if (deltaY < 0) {
@@ -153,7 +153,7 @@ class TopSnackBarAnimationController extends ChangeNotifier
     }
   }
 
-  ///
+  /// Gets called when the pan gesture ends
   void onPanEnd(DragEndDetails dragEndDetails, double snackHeight) {
     if (verticalOffset > snackHeight / 3) {
       hide();
@@ -194,12 +194,12 @@ class TopSnackBarAnimationController extends ChangeNotifier
   @override
   void didUnregisterListener() {}
 
-  /// show snack bar
+  /// Shows the snack bar
   void show() {
     _mainAnimationController.forward();
   }
 
-  /// hide snack bar
+  /// Hides the snack bar
   void hide() {
     if (_mainAnimationController.status == AnimationStatus.completed ||
         _mainAnimationController.status == AnimationStatus.forward) {

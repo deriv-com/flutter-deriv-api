@@ -4,7 +4,7 @@ import 'top_snack_bar.dart';
 
 /// Uses the [TopSnackBarAnimationController] to animate its [child]
 class TopSnackBarWidget extends StatefulWidget {
-  ///
+  /// Initializes
   const TopSnackBarWidget({
     Key key,
     @required this.child,

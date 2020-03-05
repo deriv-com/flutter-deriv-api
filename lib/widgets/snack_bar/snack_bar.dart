@@ -6,7 +6,7 @@ import 'top_snack_bar/top_snack_bar_manager.dart';
 
 /// Calls snack bar appropriate classes based on [position]
 class SnackBarNotification {
-  ///
+  /// Initializes
   SnackBarNotification(
     this.context, {
     this.snackBarBehavior,
@@ -19,7 +19,7 @@ class SnackBarNotification {
     this.position = SnackBarPosition.bottom,
   });
 
-  ///
+  /// BuildContext of and [Scaffold]
   final BuildContext context;
 
   /// To show snackBar above the FAB and other widgets in the scaffold while the
@@ -39,10 +39,10 @@ class SnackBarNotification {
   /// [SnackBarContent] background color
   final Color backgroundColor;
 
-  ///
+  /// Title text style
   final TextStyle titleStyle;
 
-  ///
+  /// Subtitle text style
   final TextStyle subtitleStyle;
 
   /// Snack bar position, either [SnackBarPosition.top]
@@ -89,11 +89,11 @@ class SnackBarNotification {
       );
 }
 
-/// defines the snack bar position
+/// Defines the snack bar position
 enum SnackBarPosition {
-  /// revealing from top of screen
+  /// Revealing from top of screen
   top,
 
-  /// revealing from bottom of screen
+  /// Revealing from bottom of screen
   bottom,
 }

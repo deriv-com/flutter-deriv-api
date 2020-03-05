@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// The content of snack bar
 class SnackBarContent extends StatelessWidget {
-  ///
+  /// Initializes
   const SnackBarContent({
     this.title = '',
     this.subtitle = '',
@@ -20,10 +20,10 @@ class SnackBarContent extends StatelessWidget {
   ///background color
   final Color backgroundColor;
 
-  ///
+  /// Title text style
   final TextStyle titleStyle;
 
-  ///
+  /// Subtitle text style
   final TextStyle subtitleStyle;
 
   @override
