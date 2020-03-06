@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'copy_stop_receive.g.dart';
 
-///
+/// JSON conversion for 'copy_stop_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStopResponse extends Response {
-  ///
+  /// Initialize CopyStopResponse
   CopyStopResponse(
       {this.copyStop,
       int reqId,
@@ -18,15 +18,15 @@ class CopyStopResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory CopyStopResponse.fromJson(Map<String, dynamic> json) =>
       _$CopyStopResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$CopyStopResponseToJson(this);
 
   // Properties
   /// Copy stopping confirmation. Returns 1 is success.
   int copyStop;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$CopyStopResponseToJson(this);
 }

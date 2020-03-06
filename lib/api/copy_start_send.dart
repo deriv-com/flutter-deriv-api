@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'copy_start_send.g.dart';
 
-///
+/// JSON conversion for 'copy_start_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStartRequest extends Request {
-  ///
+  /// Initialize CopyStartRequest
   CopyStartRequest(
       {this.assets,
       this.copyStart,
@@ -20,13 +20,9 @@ class CopyStartRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory CopyStartRequest.fromJson(Map<String, dynamic> json) =>
       _$CopyStartRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$CopyStartRequestToJson(this);
 
   // Properties
   /// [Optional] Used to set assets to be copied. E.x ["frxUSDJPY", "R_50"]
@@ -43,4 +39,8 @@ class CopyStartRequest extends Request {
 
   /// [Optional] Used to set trade types to be copied. E.x ["CALL", "PUT"]
   String tradeTypes;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$CopyStartRequestToJson(this);
 }

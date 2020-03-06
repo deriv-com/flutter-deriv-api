@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'set_settings_receive.g.dart';
 
-///
+/// JSON conversion for 'set_settings_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetSettingsResponse extends Response {
-  ///
+  /// Initialize SetSettingsResponse
   SetSettingsResponse(
       {this.setSettings,
       int reqId,
@@ -18,15 +18,15 @@ class SetSettingsResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory SetSettingsResponse.fromJson(Map<String, dynamic> json) =>
       _$SetSettingsResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$SetSettingsResponseToJson(this);
 
   // Properties
   /// 1 on success
   int setSettings;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$SetSettingsResponseToJson(this);
 }

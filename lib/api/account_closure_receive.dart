@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'account_closure_receive.g.dart';
 
-///
+/// JSON conversion for 'account_closure_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AccountClosureResponse extends Response {
-  ///
+  /// Initialize AccountClosureResponse
   AccountClosureResponse(
       {this.accountClosure,
       int reqId,
@@ -18,15 +18,15 @@ class AccountClosureResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory AccountClosureResponse.fromJson(Map<String, dynamic> json) =>
       _$AccountClosureResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$AccountClosureResponseToJson(this);
 
   // Properties
   /// If set to `1`, all accounts are closed.
   int accountClosure;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AccountClosureResponseToJson(this);
 }

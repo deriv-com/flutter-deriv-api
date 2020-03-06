@@ -6,23 +6,23 @@ import 'request.dart';
 
 part 'app_delete_send.g.dart';
 
-///
+/// JSON conversion for 'app_delete_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppDeleteRequest extends Request {
-  ///
+  /// Initialize AppDeleteRequest
   AppDeleteRequest(
       {this.appDelete, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory AppDeleteRequest.fromJson(Map<String, dynamic> json) =>
       _$AppDeleteRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$AppDeleteRequestToJson(this);
 
   // Properties
   /// Application app_id
   int appDelete;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AppDeleteRequestToJson(this);
 }

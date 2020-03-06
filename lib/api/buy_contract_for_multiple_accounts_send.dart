@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'buy_contract_for_multiple_accounts_send.g.dart';
 
-///
+/// JSON conversion for 'buy_contract_for_multiple_accounts_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BuyContractForMultipleAccountsRequest extends Request {
-  ///
+  /// Initialize BuyContractForMultipleAccountsRequest
   BuyContractForMultipleAccountsRequest(
       {this.buyContractForMultipleAccounts,
       this.parameters,
@@ -19,15 +19,10 @@ class BuyContractForMultipleAccountsRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory BuyContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       _$BuyContractForMultipleAccountsRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() =>
-      _$BuyContractForMultipleAccountsRequestToJson(this);
 
   // Properties
   /// Either the ID received from a Price Proposal (proposal) call, or 1 if contract buy parameters are passed in the parameters field
@@ -41,4 +36,9 @@ class BuyContractForMultipleAccountsRequest extends Request {
 
   /// List of API tokens identifying the accounts for which the contract is bought. Note: If the same token appears multiple times or if multiple tokens designate the same account, the contract is bought multiple times for this account.
   List<String> tokens;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() =>
+      _$BuyContractForMultipleAccountsRequestToJson(this);
 }

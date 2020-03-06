@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'authorize_send.g.dart';
 
-///
+/// JSON conversion for 'authorize_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AuthorizeRequest extends Request {
-  ///
+  /// Initialize AuthorizeRequest
   AuthorizeRequest(
       {this.addToLoginHistory,
       this.authorize,
@@ -17,13 +17,9 @@ class AuthorizeRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory AuthorizeRequest.fromJson(Map<String, dynamic> json) =>
       _$AuthorizeRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$AuthorizeRequestToJson(this);
 
   // Properties
   /// [Optional] Send this when you use api tokens for authorization and want to track activity using `login_history` call.
@@ -31,4 +27,8 @@ class AuthorizeRequest extends Request {
 
   /// Authentication token. May be retrieved from https://www.binary.com/en/user/security/api_tokenws.html
   String authorize;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AuthorizeRequestToJson(this);
 }

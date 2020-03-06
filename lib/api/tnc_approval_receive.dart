@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'tnc_approval_receive.g.dart';
 
-///
+/// JSON conversion for 'tnc_approval_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TncApprovalResponse extends Response {
-  ///
+  /// Initialize TncApprovalResponse
   TncApprovalResponse(
       {this.tncApproval,
       int reqId,
@@ -18,15 +18,15 @@ class TncApprovalResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory TncApprovalResponse.fromJson(Map<String, dynamic> json) =>
       _$TncApprovalResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$TncApprovalResponseToJson(this);
 
   // Properties
   /// Set terms and conditions 1: success
   int tncApproval;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TncApprovalResponseToJson(this);
 }

@@ -6,23 +6,23 @@ import 'request.dart';
 
 part 'topup_virtual_send.g.dart';
 
-///
+/// JSON conversion for 'topup_virtual_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TopupVirtualRequest extends Request {
-  ///
+  /// Initialize TopupVirtualRequest
   TopupVirtualRequest(
       {this.topupVirtual, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory TopupVirtualRequest.fromJson(Map<String, dynamic> json) =>
       _$TopupVirtualRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$TopupVirtualRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int topupVirtual;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TopupVirtualRequestToJson(this);
 }

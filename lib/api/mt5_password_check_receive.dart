@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'mt5_password_check_receive.g.dart';
 
-///
+/// JSON conversion for 'mt5_password_check_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5PasswordCheckResponse extends Response {
-  ///
+  /// Initialize Mt5PasswordCheckResponse
   Mt5PasswordCheckResponse(
       {this.mt5PasswordCheck,
       int reqId,
@@ -18,15 +18,15 @@ class Mt5PasswordCheckResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory Mt5PasswordCheckResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordCheckResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$Mt5PasswordCheckResponseToJson(this);
 
   // Properties
   /// `1` on success
   int mt5PasswordCheck;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$Mt5PasswordCheckResponseToJson(this);
 }

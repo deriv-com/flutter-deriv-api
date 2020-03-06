@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'exchange_rates_receive.g.dart';
 
-///
+/// JSON conversion for 'exchange_rates_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ExchangeRatesResponse extends Response {
-  ///
+  /// Initialize ExchangeRatesResponse
   ExchangeRatesResponse(
       {this.exchangeRates,
       int reqId,
@@ -18,15 +18,15 @@ class ExchangeRatesResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ExchangeRatesResponse.fromJson(Map<String, dynamic> json) =>
       _$ExchangeRatesResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ExchangeRatesResponseToJson(this);
 
   // Properties
   /// Exchange rate values from base to all other currencies
   Map<String, dynamic> exchangeRates;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ExchangeRatesResponseToJson(this);
 }

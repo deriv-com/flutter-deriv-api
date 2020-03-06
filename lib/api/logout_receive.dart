@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'logout_receive.g.dart';
 
-///
+/// JSON conversion for 'logout_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LogoutResponse extends Response {
-  ///
+  /// Initialize LogoutResponse
   LogoutResponse(
       {this.logout,
       int reqId,
@@ -18,15 +18,15 @@ class LogoutResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory LogoutResponse.fromJson(Map<String, dynamic> json) =>
       _$LogoutResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$LogoutResponseToJson(this);
 
   // Properties
   /// The result of logout request which is 1
   int logout;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$LogoutResponseToJson(this);
 }

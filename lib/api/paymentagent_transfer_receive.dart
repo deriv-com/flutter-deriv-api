@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'paymentagent_transfer_receive.g.dart';
 
-///
+/// JSON conversion for 'paymentagent_transfer_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PaymentagentTransferResponse extends Response {
-  ///
+  /// Initialize PaymentagentTransferResponse
   PaymentagentTransferResponse(
       {this.clientToFullName,
       this.clientToLoginid,
@@ -21,13 +21,9 @@ class PaymentagentTransferResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory PaymentagentTransferResponse.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentTransferResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$PaymentagentTransferResponseToJson(this);
 
   // Properties
   /// The `transfer_to` client full name
@@ -41,4 +37,8 @@ class PaymentagentTransferResponse extends Response {
 
   /// Reference ID of transfer performed
   int transactionId;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$PaymentagentTransferResponseToJson(this);
 }

@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'buy_send.g.dart';
 
-///
+/// JSON conversion for 'buy_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BuyRequest extends Request {
-  ///
+  /// Initialize BuyRequest
   BuyRequest(
       {this.buy,
       this.parameters,
@@ -19,13 +19,9 @@ class BuyRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory BuyRequest.fromJson(Map<String, dynamic> json) =>
       _$BuyRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$BuyRequestToJson(this);
 
   // Properties
   /// Either the ID received from a Price Proposal (proposal) call, or '1' if contract buy parameters are passed in the parameters field.
@@ -39,4 +35,8 @@ class BuyRequest extends Request {
 
   /// [Optional] `1` to stream.
   int subscribe;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$BuyRequestToJson(this);
 }

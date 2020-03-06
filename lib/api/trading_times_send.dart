@@ -6,23 +6,23 @@ import 'request.dart';
 
 part 'trading_times_send.g.dart';
 
-///
+/// JSON conversion for 'trading_times_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TradingTimesRequest extends Request {
-  ///
+  /// Initialize TradingTimesRequest
   TradingTimesRequest(
       {this.tradingTimes, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory TradingTimesRequest.fromJson(Map<String, dynamic> json) =>
       _$TradingTimesRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$TradingTimesRequestToJson(this);
 
   // Properties
   /// Date to receive market opening times for. (`yyyy-mm-dd` format. `today` can also be specified).
   String tradingTimes;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TradingTimesRequestToJson(this);
 }

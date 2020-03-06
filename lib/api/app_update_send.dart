@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'app_update_send.g.dart';
 
-///
+/// JSON conversion for 'app_update_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppUpdateRequest extends Request {
-  ///
+  /// Initialize AppUpdateRequest
   AppUpdateRequest(
       {this.appMarkupPercentage,
       this.appUpdate,
@@ -25,13 +25,9 @@ class AppUpdateRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory AppUpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$AppUpdateRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$AppUpdateRequestToJson(this);
 
   // Properties
   /// [Optional] Markup to be added to contract prices (as a percentage of contract payout).
@@ -63,4 +59,8 @@ class AppUpdateRequest extends Request {
 
   /// [Optional] Used when 'verify_email' called. If available, a URL containing the verification token will send to the client's email, otherwise only the token will be sent.
   String verificationUri;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AppUpdateRequestToJson(this);
 }

@@ -168,21 +168,21 @@ import '${schemaType == 'send' ? 'request' : 'response'}.dart';
 
 part '${fileName}.g.dart';
 
-///
+/// JSON conversion for '$fileName'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ${fullClassName} extends ${schemaType == 'send' ? 'Request' : 'Response'}{
-  ///
+  /// Initialize $fullClassName
   ${fullClassName}({$constructorParameters, $superTypeNameParameters}): super($superCallParameters);
   
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ${fullClassName}.fromJson(Map<String, dynamic> json) => _\$${fullClassName}FromJson(json);
   
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _\$${fullClassName}ToJson(this);
-
   // Properties
   ${attributeList}
+  
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _\$${fullClassName}ToJson(this);
 
 }
 '''));

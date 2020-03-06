@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'p2p_order_confirm_receive.g.dart';
 
-///
+/// JSON conversion for 'p2p_order_confirm_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderConfirmResponse extends Response {
-  ///
+  /// Initialize P2pOrderConfirmResponse
   P2pOrderConfirmResponse(
       {this.p2pOrderConfirm,
       int reqId,
@@ -18,15 +18,15 @@ class P2pOrderConfirmResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory P2pOrderConfirmResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderConfirmResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$P2pOrderConfirmResponseToJson(this);
 
   // Properties
   /// Confirmation details
   Map<String, dynamic> p2pOrderConfirm;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$P2pOrderConfirmResponseToJson(this);
 }

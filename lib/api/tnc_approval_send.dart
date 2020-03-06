@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'tnc_approval_send.g.dart';
 
-///
+/// JSON conversion for 'tnc_approval_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TncApprovalRequest extends Request {
-  ///
+  /// Initialize TncApprovalRequest
   TncApprovalRequest(
       {this.tncApproval,
       this.ukgcFundsProtection,
@@ -17,13 +17,9 @@ class TncApprovalRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory TncApprovalRequest.fromJson(Map<String, dynamic> json) =>
       _$TncApprovalRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$TncApprovalRequestToJson(this);
 
   // Properties
   /// Must be `1`
@@ -31,4 +27,8 @@ class TncApprovalRequest extends Request {
 
   /// [Optional] For 'ASK_UK_FUNDS_PROTECTION' in cashier.
   int ukgcFundsProtection;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TncApprovalRequestToJson(this);
 }

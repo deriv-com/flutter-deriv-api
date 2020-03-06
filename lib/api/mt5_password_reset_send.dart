@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'mt5_password_reset_send.g.dart';
 
-///
+/// JSON conversion for 'mt5_password_reset_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5PasswordResetRequest extends Request {
-  ///
+  /// Initialize Mt5PasswordResetRequest
   Mt5PasswordResetRequest(
       {this.login,
       this.mt5PasswordReset,
@@ -20,13 +20,9 @@ class Mt5PasswordResetRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory Mt5PasswordResetRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordResetRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$Mt5PasswordResetRequestToJson(this);
 
   // Properties
   /// MT5 user login
@@ -43,4 +39,8 @@ class Mt5PasswordResetRequest extends Request {
 
   /// Email verification code (received from a `verify_email` call, which must be done first)
   String verificationCode;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$Mt5PasswordResetRequestToJson(this);
 }

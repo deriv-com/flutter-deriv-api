@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'login_history_send.g.dart';
 
-///
+/// JSON conversion for 'login_history_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LoginHistoryRequest extends Request {
-  ///
+  /// Initialize LoginHistoryRequest
   LoginHistoryRequest(
       {this.limit,
       this.loginHistory,
@@ -17,13 +17,9 @@ class LoginHistoryRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$LoginHistoryRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$LoginHistoryRequestToJson(this);
 
   // Properties
   /// [Optional] Apply limit to count of login history records.
@@ -31,4 +27,8 @@ class LoginHistoryRequest extends Request {
 
   /// Must be `1`
   int loginHistory;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$LoginHistoryRequestToJson(this);
 }

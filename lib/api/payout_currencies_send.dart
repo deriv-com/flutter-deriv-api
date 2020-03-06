@@ -6,23 +6,23 @@ import 'request.dart';
 
 part 'payout_currencies_send.g.dart';
 
-///
+/// JSON conversion for 'payout_currencies_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PayoutCurrenciesRequest extends Request {
-  ///
+  /// Initialize PayoutCurrenciesRequest
   PayoutCurrenciesRequest(
       {this.payoutCurrencies, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory PayoutCurrenciesRequest.fromJson(Map<String, dynamic> json) =>
       _$PayoutCurrenciesRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$PayoutCurrenciesRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int payoutCurrencies;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$PayoutCurrenciesRequestToJson(this);
 }

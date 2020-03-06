@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'copytrading_statistics_receive.g.dart';
 
-///
+/// JSON conversion for 'copytrading_statistics_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopytradingStatisticsResponse extends Response {
-  ///
+  /// Initialize CopytradingStatisticsResponse
   CopytradingStatisticsResponse(
       {this.copytradingStatistics,
       int reqId,
@@ -18,15 +18,15 @@ class CopytradingStatisticsResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory CopytradingStatisticsResponse.fromJson(Map<String, dynamic> json) =>
       _$CopytradingStatisticsResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$CopytradingStatisticsResponseToJson(this);
 
   // Properties
   /// Statistics of the trader
   Map<String, dynamic> copytradingStatistics;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$CopytradingStatisticsResponseToJson(this);
 }

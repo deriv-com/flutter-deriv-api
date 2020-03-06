@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'authorize_receive.g.dart';
 
-///
+/// JSON conversion for 'authorize_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AuthorizeResponse extends Response {
-  ///
+  /// Initialize AuthorizeResponse
   AuthorizeResponse(
       {this.authorize,
       int reqId,
@@ -18,15 +18,15 @@ class AuthorizeResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory AuthorizeResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthorizeResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$AuthorizeResponseToJson(this);
 
   // Properties
   /// Account information for the holder of the token.
   Map<String, dynamic> authorize;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AuthorizeResponseToJson(this);
 }

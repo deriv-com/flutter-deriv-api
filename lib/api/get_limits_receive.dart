@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'get_limits_receive.g.dart';
 
-///
+/// JSON conversion for 'get_limits_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetLimitsResponse extends Response {
-  ///
+  /// Initialize GetLimitsResponse
   GetLimitsResponse(
       {this.getLimits,
       int reqId,
@@ -18,15 +18,15 @@ class GetLimitsResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory GetLimitsResponse.fromJson(Map<String, dynamic> json) =>
       _$GetLimitsResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$GetLimitsResponseToJson(this);
 
   // Properties
   /// Trading limits of real account user
   Map<String, dynamic> getLimits;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$GetLimitsResponseToJson(this);
 }

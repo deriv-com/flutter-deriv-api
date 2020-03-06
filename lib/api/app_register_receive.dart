@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'app_register_receive.g.dart';
 
-///
+/// JSON conversion for 'app_register_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppRegisterResponse extends Response {
-  ///
+  /// Initialize AppRegisterResponse
   AppRegisterResponse(
       {this.appRegister,
       int reqId,
@@ -18,15 +18,15 @@ class AppRegisterResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory AppRegisterResponse.fromJson(Map<String, dynamic> json) =>
       _$AppRegisterResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$AppRegisterResponseToJson(this);
 
   // Properties
   /// The information of the created application.
   Map<String, dynamic> appRegister;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AppRegisterResponseToJson(this);
 }

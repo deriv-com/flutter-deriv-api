@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'new_account_virtual_receive.g.dart';
 
-///
+/// JSON conversion for 'new_account_virtual_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountVirtualResponse extends Response {
-  ///
+  /// Initialize NewAccountVirtualResponse
   NewAccountVirtualResponse(
       {this.newAccountVirtual,
       int reqId,
@@ -18,15 +18,15 @@ class NewAccountVirtualResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory NewAccountVirtualResponse.fromJson(Map<String, dynamic> json) =>
       _$NewAccountVirtualResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$NewAccountVirtualResponseToJson(this);
 
   // Properties
   /// New virtual-money account details
   Map<String, dynamic> newAccountVirtual;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$NewAccountVirtualResponseToJson(this);
 }

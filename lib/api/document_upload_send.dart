@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'document_upload_send.g.dart';
 
-///
+/// JSON conversion for 'document_upload_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class DocumentUploadRequest extends Request {
-  ///
+  /// Initialize DocumentUploadRequest
   DocumentUploadRequest(
       {this.documentFormat,
       this.documentId,
@@ -23,13 +23,9 @@ class DocumentUploadRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>
       _$DocumentUploadRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$DocumentUploadRequestToJson(this);
 
   // Properties
   /// Document file format
@@ -55,4 +51,8 @@ class DocumentUploadRequest extends Request {
 
   /// [Optional] To determine document side
   String pageType;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$DocumentUploadRequestToJson(this);
 }

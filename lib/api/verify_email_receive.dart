@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'verify_email_receive.g.dart';
 
-///
+/// JSON conversion for 'verify_email_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class VerifyEmailResponse extends Response {
-  ///
+  /// Initialize VerifyEmailResponse
   VerifyEmailResponse(
       {this.verifyEmail,
       int reqId,
@@ -18,15 +18,15 @@ class VerifyEmailResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory VerifyEmailResponse.fromJson(Map<String, dynamic> json) =>
       _$VerifyEmailResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$VerifyEmailResponseToJson(this);
 
   // Properties
   /// 1 for success (secure code has been sent to the email address)
   int verifyEmail;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$VerifyEmailResponseToJson(this);
 }

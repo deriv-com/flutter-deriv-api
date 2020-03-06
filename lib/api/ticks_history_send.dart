@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'ticks_history_send.g.dart';
 
-///
+/// JSON conversion for 'ticks_history_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TicksHistoryRequest extends Request {
-  ///
+  /// Initialize TicksHistoryRequest
   TicksHistoryRequest(
       {this.adjustStartTime,
       this.count,
@@ -23,13 +23,9 @@ class TicksHistoryRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$TicksHistoryRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$TicksHistoryRequestToJson(this);
 
   // Properties
   /// [Optional] 1 - if the market is closed at the end time, or license limit is before end time, adjust interval backwards to compensate.
@@ -55,4 +51,8 @@ class TicksHistoryRequest extends Request {
 
   /// Short symbol name (obtained from the `active_symbols` call).
   String ticksHistory;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TicksHistoryRequestToJson(this);
 }

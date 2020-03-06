@@ -6,23 +6,23 @@ import 'request.dart';
 
 part 'landing_company_details_send.g.dart';
 
-///
+/// JSON conversion for 'landing_company_details_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LandingCompanyDetailsRequest extends Request {
-  ///
+  /// Initialize LandingCompanyDetailsRequest
   LandingCompanyDetailsRequest(
       {this.landingCompanyDetails, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory LandingCompanyDetailsRequest.fromJson(Map<String, dynamic> json) =>
       _$LandingCompanyDetailsRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$LandingCompanyDetailsRequestToJson(this);
 
   // Properties
   /// Landing company shortcode.
   String landingCompanyDetails;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$LandingCompanyDetailsRequestToJson(this);
 }

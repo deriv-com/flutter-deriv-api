@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'set_financial_assessment_send.g.dart';
 
-///
+/// JSON conversion for 'set_financial_assessment_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetFinancialAssessmentRequest extends Request {
-  ///
+  /// Initialize SetFinancialAssessmentRequest
   SetFinancialAssessmentRequest(
       {this.accountTurnover,
       this.binaryOptionsTradingExperience,
@@ -33,13 +33,9 @@ class SetFinancialAssessmentRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory SetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       _$SetFinancialAssessmentRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$SetFinancialAssessmentRequestToJson(this);
 
   // Properties
   /// [Optional] The anticipated account turnover.
@@ -95,4 +91,8 @@ class SetFinancialAssessmentRequest extends Request {
 
   /// [Optional] Source of wealth.
   String sourceOfWealth;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$SetFinancialAssessmentRequestToJson(this);
 }

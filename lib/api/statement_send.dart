@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'statement_send.g.dart';
 
-///
+/// JSON conversion for 'statement_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class StatementRequest extends Request {
-  ///
+  /// Initialize StatementRequest
   StatementRequest(
       {this.actionType,
       this.dateFrom,
@@ -22,13 +22,9 @@ class StatementRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>
       _$StatementRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$StatementRequestToJson(this);
 
   // Properties
   /// [Optional] To filter the statement according to the type of transaction.
@@ -51,4 +47,8 @@ class StatementRequest extends Request {
 
   /// Must be `1`
   int statement;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$StatementRequestToJson(this);
 }

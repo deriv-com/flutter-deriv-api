@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'contract_update_send.g.dart';
 
-///
+/// JSON conversion for 'contract_update_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ContractUpdateRequest extends Request {
-  ///
+  /// Initialize ContractUpdateRequest
   ContractUpdateRequest(
       {this.contractId,
       this.contractUpdate,
@@ -18,13 +18,9 @@ class ContractUpdateRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ContractUpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$ContractUpdateRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ContractUpdateRequestToJson(this);
 
   // Properties
   /// Internal unique contract identifier.
@@ -35,4 +31,8 @@ class ContractUpdateRequest extends Request {
 
   /// Specify limit order to update.
   Map<String, dynamic> limitOrder;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ContractUpdateRequestToJson(this);
 }

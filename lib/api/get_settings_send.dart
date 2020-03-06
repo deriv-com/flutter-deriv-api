@@ -6,23 +6,23 @@ import 'request.dart';
 
 part 'get_settings_send.g.dart';
 
-///
+/// JSON conversion for 'get_settings_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetSettingsRequest extends Request {
-  ///
+  /// Initialize GetSettingsRequest
   GetSettingsRequest(
       {this.getSettings, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       _$GetSettingsRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$GetSettingsRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int getSettings;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$GetSettingsRequestToJson(this);
 }

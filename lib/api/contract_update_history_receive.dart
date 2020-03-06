@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'contract_update_history_receive.g.dart';
 
-///
+/// JSON conversion for 'contract_update_history_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ContractUpdateHistoryResponse extends Response {
-  ///
+  /// Initialize ContractUpdateHistoryResponse
   ContractUpdateHistoryResponse(
       {this.contractUpdateHistory,
       int reqId,
@@ -18,15 +18,15 @@ class ContractUpdateHistoryResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ContractUpdateHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$ContractUpdateHistoryResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ContractUpdateHistoryResponseToJson(this);
 
   // Properties
   /// Contains the historical and the most recent update status of the contract
   List<String> contractUpdateHistory;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ContractUpdateHistoryResponseToJson(this);
 }

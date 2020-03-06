@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'active_symbols_send.g.dart';
 
-///
+/// JSON conversion for 'active_symbols_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ActiveSymbolsRequest extends Request {
-  ///
+  /// Initialize ActiveSymbolsRequest
   ActiveSymbolsRequest(
       {this.activeSymbols,
       this.landingCompany,
@@ -18,13 +18,9 @@ class ActiveSymbolsRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ActiveSymbolsRequest.fromJson(Map<String, dynamic> json) =>
       _$ActiveSymbolsRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ActiveSymbolsRequestToJson(this);
 
   // Properties
   /// If you use `brief`, only a subset of fields will be returned.
@@ -35,4 +31,8 @@ class ActiveSymbolsRequest extends Request {
 
   /// [Optional] If you specify this field, only symbols that can be traded through that product type will be returned.
   String productType;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ActiveSymbolsRequestToJson(this);
 }

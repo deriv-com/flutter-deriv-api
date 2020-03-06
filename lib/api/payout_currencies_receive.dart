@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'payout_currencies_receive.g.dart';
 
-///
+/// JSON conversion for 'payout_currencies_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PayoutCurrenciesResponse extends Response {
-  ///
+  /// Initialize PayoutCurrenciesResponse
   PayoutCurrenciesResponse(
       {this.payoutCurrencies,
       int reqId,
@@ -18,15 +18,15 @@ class PayoutCurrenciesResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory PayoutCurrenciesResponse.fromJson(Map<String, dynamic> json) =>
       _$PayoutCurrenciesResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$PayoutCurrenciesResponseToJson(this);
 
   // Properties
   /// Available payout currencies. Note: if a user is logged in, only the currency available for the account will be returned.
   List<String> payoutCurrencies;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$PayoutCurrenciesResponseToJson(this);
 }

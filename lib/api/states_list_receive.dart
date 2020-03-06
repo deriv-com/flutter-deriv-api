@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'states_list_receive.g.dart';
 
-///
+/// JSON conversion for 'states_list_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class StatesListResponse extends Response {
-  ///
+  /// Initialize StatesListResponse
   StatesListResponse(
       {this.statesList,
       int reqId,
@@ -18,15 +18,15 @@ class StatesListResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory StatesListResponse.fromJson(Map<String, dynamic> json) =>
       _$StatesListResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$StatesListResponseToJson(this);
 
   // Properties
   /// List of states.
   List<Map<String, dynamic>> statesList;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$StatesListResponseToJson(this);
 }

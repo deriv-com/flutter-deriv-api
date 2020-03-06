@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'ticks_receive.g.dart';
 
-///
+/// JSON conversion for 'ticks_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TicksResponse extends Response {
-  ///
+  /// Initialize TicksResponse
   TicksResponse(
       {this.subscription,
       this.tick,
@@ -19,13 +19,9 @@ class TicksResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory TicksResponse.fromJson(Map<String, dynamic> json) =>
       _$TicksResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$TicksResponseToJson(this);
 
   // Properties
   /// For subscription requests only
@@ -33,4 +29,8 @@ class TicksResponse extends Response {
 
   /// Tick by tick list of streamed data
   Map<String, dynamic> tick;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TicksResponseToJson(this);
 }

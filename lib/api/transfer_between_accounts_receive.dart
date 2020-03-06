@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'transfer_between_accounts_receive.g.dart';
 
-///
+/// JSON conversion for 'transfer_between_accounts_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TransferBetweenAccountsResponse extends Response {
-  ///
+  /// Initialize TransferBetweenAccountsResponse
   TransferBetweenAccountsResponse(
       {this.accounts,
       this.clientToFullName,
@@ -22,14 +22,9 @@ class TransferBetweenAccountsResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory TransferBetweenAccountsResponse.fromJson(Map<String, dynamic> json) =>
       _$TransferBetweenAccountsResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() =>
-      _$TransferBetweenAccountsResponseToJson(this);
 
   // Properties
   /// The available accounts to transfer, or the accounts affected by a successful transfer.
@@ -46,4 +41,9 @@ class TransferBetweenAccountsResponse extends Response {
 
   /// If set to 1, transfer succeeded.
   int transferBetweenAccounts;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() =>
+      _$TransferBetweenAccountsResponseToJson(this);
 }

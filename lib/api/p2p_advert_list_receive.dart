@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'p2p_advert_list_receive.g.dart';
 
-///
+/// JSON conversion for 'p2p_advert_list_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pAdvertListResponse extends Response {
-  ///
+  /// Initialize P2pAdvertListResponse
   P2pAdvertListResponse(
       {this.p2pAdvertList,
       int reqId,
@@ -18,15 +18,15 @@ class P2pAdvertListResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory P2pAdvertListResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertListResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$P2pAdvertListResponseToJson(this);
 
   // Properties
   /// P2P adverts list.
   Map<String, dynamic> p2pAdvertList;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$P2pAdvertListResponseToJson(this);
 }

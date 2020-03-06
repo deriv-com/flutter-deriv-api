@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'app_delete_receive.g.dart';
 
-///
+/// JSON conversion for 'app_delete_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppDeleteResponse extends Response {
-  ///
+  /// Initialize AppDeleteResponse
   AppDeleteResponse(
       {this.appDelete,
       int reqId,
@@ -18,15 +18,15 @@ class AppDeleteResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory AppDeleteResponse.fromJson(Map<String, dynamic> json) =>
       _$AppDeleteResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$AppDeleteResponseToJson(this);
 
   // Properties
   /// 1 on success
   int appDelete;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AppDeleteResponseToJson(this);
 }

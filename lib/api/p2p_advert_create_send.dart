@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'p2p_advert_create_send.g.dart';
 
-///
+/// JSON conversion for 'p2p_advert_create_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pAdvertCreateRequest extends Request {
-  ///
+  /// Initialize P2pAdvertCreateRequest
   P2pAdvertCreateRequest(
       {this.amount,
       this.contactInfo,
@@ -27,13 +27,9 @@ class P2pAdvertCreateRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory P2pAdvertCreateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertCreateRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$P2pAdvertCreateRequestToJson(this);
 
   // Properties
   /// The total amount of the advert, in advertiser's account currency.
@@ -71,4 +67,8 @@ class P2pAdvertCreateRequest extends Request {
 
   /// Whether this is a buy or a sell.
   String type;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$P2pAdvertCreateRequestToJson(this);
 }

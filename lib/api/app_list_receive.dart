@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'app_list_receive.g.dart';
 
-///
+/// JSON conversion for 'app_list_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppListResponse extends Response {
-  ///
+  /// Initialize AppListResponse
   AppListResponse(
       {this.appList,
       int reqId,
@@ -18,15 +18,15 @@ class AppListResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory AppListResponse.fromJson(Map<String, dynamic> json) =>
       _$AppListResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$AppListResponseToJson(this);
 
   // Properties
   /// List of created applications for the authorized account.
   List<Map<String, dynamic>> appList;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AppListResponseToJson(this);
 }

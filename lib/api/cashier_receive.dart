@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'cashier_receive.g.dart';
 
-///
+/// JSON conversion for 'cashier_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CashierResponse extends Response {
-  ///
+  /// Initialize CashierResponse
   CashierResponse(
       {this.cashier,
       int reqId,
@@ -18,15 +18,15 @@ class CashierResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory CashierResponse.fromJson(Map<String, dynamic> json) =>
       _$CashierResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$CashierResponseToJson(this);
 
   // Properties
   /// Cashier URL. Note: possible error codes are: ASK_TNC_APPROVAL (API tnc_approval), ASK_AUTHENTICATE, ASK_UK_FUNDS_PROTECTION (API tnc_approval), ASK_CURRENCY (API set_account_currency), ASK_EMAIL_VERIFY (verify_email), ASK_FIX_DETAILS (API set_settings).
   String cashier;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$CashierResponseToJson(this);
 }

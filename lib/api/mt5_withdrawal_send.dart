@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'mt5_withdrawal_send.g.dart';
 
-///
+/// JSON conversion for 'mt5_withdrawal_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5WithdrawalRequest extends Request {
-  ///
+  /// Initialize Mt5WithdrawalRequest
   Mt5WithdrawalRequest(
       {this.amount,
       this.fromMt5,
@@ -19,13 +19,9 @@ class Mt5WithdrawalRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5WithdrawalRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$Mt5WithdrawalRequestToJson(this);
 
   // Properties
   /// Amount to withdraw (in the currency of the MT5 account); min = $1 or an equivalent amount, max = $20000 or an equivalent amount.
@@ -39,4 +35,8 @@ class Mt5WithdrawalRequest extends Request {
 
   /// Binary account loginid to transfer money to
   String toBinary;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$Mt5WithdrawalRequestToJson(this);
 }

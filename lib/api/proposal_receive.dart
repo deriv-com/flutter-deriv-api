@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'proposal_receive.g.dart';
 
-///
+/// JSON conversion for 'proposal_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ProposalResponse extends Response {
-  ///
+  /// Initialize ProposalResponse
   ProposalResponse(
       {this.proposal,
       this.subscription,
@@ -19,13 +19,9 @@ class ProposalResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ProposalResponse.fromJson(Map<String, dynamic> json) =>
       _$ProposalResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ProposalResponseToJson(this);
 
   // Properties
   /// Latest price and other details for a given contract
@@ -33,4 +29,8 @@ class ProposalResponse extends Response {
 
   /// For subscription requests only
   Map<String, dynamic> subscription;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ProposalResponseToJson(this);
 }

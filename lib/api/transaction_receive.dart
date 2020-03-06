@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'transaction_receive.g.dart';
 
-///
+/// JSON conversion for 'transaction_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TransactionResponse extends Response {
-  ///
+  /// Initialize TransactionResponse
   TransactionResponse(
       {this.subscription,
       this.transaction,
@@ -19,13 +19,9 @@ class TransactionResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory TransactionResponse.fromJson(Map<String, dynamic> json) =>
       _$TransactionResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$TransactionResponseToJson(this);
 
   // Properties
   /// For subscription requests only
@@ -33,4 +29,8 @@ class TransactionResponse extends Response {
 
   /// Realtime stream of user transaction updates.
   Map<String, dynamic> transaction;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TransactionResponseToJson(this);
 }

@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'get_financial_assessment_receive.g.dart';
 
-///
+/// JSON conversion for 'get_financial_assessment_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetFinancialAssessmentResponse extends Response {
-  ///
+  /// Initialize GetFinancialAssessmentResponse
   GetFinancialAssessmentResponse(
       {this.getFinancialAssessment,
       int reqId,
@@ -18,15 +18,15 @@ class GetFinancialAssessmentResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory GetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>
       _$GetFinancialAssessmentResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$GetFinancialAssessmentResponseToJson(this);
 
   // Properties
   /// Client's financial assessment details
   Map<String, dynamic> getFinancialAssessment;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$GetFinancialAssessmentResponseToJson(this);
 }

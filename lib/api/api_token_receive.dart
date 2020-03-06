@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'api_token_receive.g.dart';
 
-///
+/// JSON conversion for 'api_token_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ApiTokenResponse extends Response {
-  ///
+  /// Initialize ApiTokenResponse
   ApiTokenResponse(
       {this.apiToken,
       int reqId,
@@ -18,15 +18,15 @@ class ApiTokenResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ApiTokenResponse.fromJson(Map<String, dynamic> json) =>
       _$ApiTokenResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ApiTokenResponseToJson(this);
 
   // Properties
   /// Contains the result of API token according to the type of request.
   Map<String, dynamic> apiToken;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ApiTokenResponseToJson(this);
 }

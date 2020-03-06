@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'contract_update_receive.g.dart';
 
-///
+/// JSON conversion for 'contract_update_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ContractUpdateResponse extends Response {
-  ///
+  /// Initialize ContractUpdateResponse
   ContractUpdateResponse(
       {this.contractUpdate,
       int reqId,
@@ -18,15 +18,15 @@ class ContractUpdateResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ContractUpdateResponse.fromJson(Map<String, dynamic> json) =>
       _$ContractUpdateResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ContractUpdateResponseToJson(this);
 
   // Properties
   /// Contains the update status of the request
   Map<String, dynamic> contractUpdate;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ContractUpdateResponseToJson(this);
 }

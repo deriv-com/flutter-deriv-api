@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'change_password_send.g.dart';
 
-///
+/// JSON conversion for 'change_password_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ChangePasswordRequest extends Request {
-  ///
+  /// Initialize ChangePasswordRequest
   ChangePasswordRequest(
       {this.changePassword,
       this.newPassword,
@@ -18,13 +18,9 @@ class ChangePasswordRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ChangePasswordRequest.fromJson(Map<String, dynamic> json) =>
       _$ChangePasswordRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ChangePasswordRequestToJson(this);
 
   // Properties
   /// Must be `1`
@@ -35,4 +31,8 @@ class ChangePasswordRequest extends Request {
 
   /// Old password for validation (non-empty string, accepts any printable ASCII character)
   String oldPassword;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ChangePasswordRequestToJson(this);
 }

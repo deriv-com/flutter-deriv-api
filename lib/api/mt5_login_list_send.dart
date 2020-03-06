@@ -6,23 +6,23 @@ import 'request.dart';
 
 part 'mt5_login_list_send.g.dart';
 
-///
+/// JSON conversion for 'mt5_login_list_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5LoginListRequest extends Request {
-  ///
+  /// Initialize Mt5LoginListRequest
   Mt5LoginListRequest(
       {this.mt5LoginList, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory Mt5LoginListRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5LoginListRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$Mt5LoginListRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int mt5LoginList;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$Mt5LoginListRequestToJson(this);
 }

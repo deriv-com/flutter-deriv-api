@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'copytrading_statistics_send.g.dart';
 
-///
+/// JSON conversion for 'copytrading_statistics_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopytradingStatisticsRequest extends Request {
-  ///
+  /// Initialize CopytradingStatisticsRequest
   CopytradingStatisticsRequest(
       {this.copytradingStatistics,
       this.traderId,
@@ -17,13 +17,9 @@ class CopytradingStatisticsRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory CopytradingStatisticsRequest.fromJson(Map<String, dynamic> json) =>
       _$CopytradingStatisticsRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$CopytradingStatisticsRequestToJson(this);
 
   // Properties
   /// Must be `1`
@@ -31,4 +27,8 @@ class CopytradingStatisticsRequest extends Request {
 
   /// The ID of the target trader.
   String traderId;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$CopytradingStatisticsRequestToJson(this);
 }

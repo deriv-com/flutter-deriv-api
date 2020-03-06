@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'contracts_for_send.g.dart';
 
-///
+/// JSON conversion for 'contracts_for_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ContractsForRequest extends Request {
-  ///
+  /// Initialize ContractsForRequest
   ContractsForRequest(
       {this.contractsFor,
       this.currency,
@@ -19,13 +19,9 @@ class ContractsForRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ContractsForRequest.fromJson(Map<String, dynamic> json) =>
       _$ContractsForRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ContractsForRequestToJson(this);
 
   // Properties
   /// The short symbol name (obtained from active_symbols call).
@@ -39,4 +35,8 @@ class ContractsForRequest extends Request {
 
   /// [Optional] If you specify this field, only contracts tradable through that contract type will be returned.
   String productType;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ContractsForRequestToJson(this);
 }

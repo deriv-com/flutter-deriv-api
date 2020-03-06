@@ -6,23 +6,23 @@ import 'request.dart';
 
 part 'account_statistics_send.g.dart';
 
-///
+/// JSON conversion for 'account_statistics_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AccountStatisticsRequest extends Request {
-  ///
+  /// Initialize AccountStatisticsRequest
   AccountStatisticsRequest(
       {this.accountStatistics, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory AccountStatisticsRequest.fromJson(Map<String, dynamic> json) =>
       _$AccountStatisticsRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$AccountStatisticsRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int accountStatistics;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AccountStatisticsRequestToJson(this);
 }

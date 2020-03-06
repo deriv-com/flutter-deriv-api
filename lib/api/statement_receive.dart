@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'statement_receive.g.dart';
 
-///
+/// JSON conversion for 'statement_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class StatementResponse extends Response {
-  ///
+  /// Initialize StatementResponse
   StatementResponse(
       {this.statement,
       int reqId,
@@ -18,15 +18,15 @@ class StatementResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory StatementResponse.fromJson(Map<String, dynamic> json) =>
       _$StatementResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$StatementResponseToJson(this);
 
   // Properties
   /// Account statement.
   Map<String, dynamic> statement;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$StatementResponseToJson(this);
 }
