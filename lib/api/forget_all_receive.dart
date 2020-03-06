@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'forget_all_receive.g.dart';
 
-///
+/// JSON conversion for 'forget_all_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ForgetAllResponse extends Response {
-  ///
+  /// Initialize ForgetAllResponse
   ForgetAllResponse(
       {this.forgetAll,
       int reqId,
@@ -18,15 +18,15 @@ class ForgetAllResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ForgetAllResponse.fromJson(Map<String, dynamic> json) =>
       _$ForgetAllResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ForgetAllResponseToJson(this);
 
   // Properties
   /// IDs of the cancelled streams
   List<String> forgetAll;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ForgetAllResponseToJson(this);
 }

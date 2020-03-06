@@ -6,23 +6,23 @@ import 'request.dart';
 
 part 'states_list_send.g.dart';
 
-///
+/// JSON conversion for 'states_list_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class StatesListRequest extends Request {
-  ///
+  /// Initialize StatesListRequest
   StatesListRequest(
       {this.statesList, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory StatesListRequest.fromJson(Map<String, dynamic> json) =>
       _$StatesListRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$StatesListRequestToJson(this);
 
   // Properties
   /// Client's 2-letter country code (obtained from residence_list call)
   String statesList;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$StatesListRequestToJson(this);
 }

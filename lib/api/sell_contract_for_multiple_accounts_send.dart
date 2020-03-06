@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'sell_contract_for_multiple_accounts_send.g.dart';
 
-///
+/// JSON conversion for 'sell_contract_for_multiple_accounts_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellContractForMultipleAccountsRequest extends Request {
-  ///
+  /// Initialize SellContractForMultipleAccountsRequest
   SellContractForMultipleAccountsRequest(
       {this.price,
       this.sellContractForMultipleAccounts,
@@ -19,15 +19,10 @@ class SellContractForMultipleAccountsRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory SellContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       _$SellContractForMultipleAccountsRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() =>
-      _$SellContractForMultipleAccountsRequestToJson(this);
 
   // Properties
   /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
@@ -41,4 +36,9 @@ class SellContractForMultipleAccountsRequest extends Request {
 
   /// Authorisation tokens which select the accounts to sell use for the affected accounts.
   List<String> tokens;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() =>
+      _$SellContractForMultipleAccountsRequestToJson(this);
 }

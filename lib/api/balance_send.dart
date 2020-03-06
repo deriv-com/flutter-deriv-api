@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'balance_send.g.dart';
 
-///
+/// JSON conversion for 'balance_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BalanceRequest extends Request {
-  ///
+  /// Initialize BalanceRequest
   BalanceRequest(
       {this.account,
       this.balance,
@@ -18,13 +18,9 @@ class BalanceRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory BalanceRequest.fromJson(Map<String, dynamic> json) =>
       _$BalanceRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$BalanceRequestToJson(this);
 
   // Properties
   /// [Optional] If set to 'all', return the balances of all accounts one by one; if set to 'current', return the balance of current account; if set as an account id, return the balance of that account.
@@ -35,4 +31,8 @@ class BalanceRequest extends Request {
 
   /// [Optional] If set to 1, will send updates whenever the balance changes.
   int subscribe;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$BalanceRequestToJson(this);
 }

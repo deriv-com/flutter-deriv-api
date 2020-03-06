@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'profit_table_send.g.dart';
 
-///
+/// JSON conversion for 'profit_table_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ProfitTableRequest extends Request {
-  ///
+  /// Initialize ProfitTableRequest
   ProfitTableRequest(
       {this.dateFrom,
       this.dateTo,
@@ -22,13 +22,9 @@ class ProfitTableRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>
       _$ProfitTableRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ProfitTableRequestToJson(this);
 
   // Properties
   /// [Optional] Start date (epoch or YYYY-MM-DD)
@@ -51,4 +47,8 @@ class ProfitTableRequest extends Request {
 
   /// [Optional] Sort direction.
   String sort;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ProfitTableRequestToJson(this);
 }

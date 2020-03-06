@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'new_account_virtual_send.g.dart';
 
-///
+/// JSON conversion for 'new_account_virtual_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountVirtualRequest extends Request {
-  ///
+  /// Initialize NewAccountVirtualRequest
   NewAccountVirtualRequest(
       {this.affiliateToken,
       this.clientPassword,
@@ -26,13 +26,9 @@ class NewAccountVirtualRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountVirtualRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$NewAccountVirtualRequestToJson(this);
 
   // Properties
   /// [Optional] Affiliate token, within 32 characters.
@@ -67,4 +63,8 @@ class NewAccountVirtualRequest extends Request {
 
   /// Email verification code (received from a `verify_email` call, which must be done first).
   String verificationCode;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$NewAccountVirtualRequestToJson(this);
 }

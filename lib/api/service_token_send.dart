@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'service_token_send.g.dart';
 
-///
+/// JSON conversion for 'service_token_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ServiceTokenRequest extends Request {
-  ///
+  /// Initialize ServiceTokenRequest
   ServiceTokenRequest(
       {this.referrer,
       this.service,
@@ -18,13 +18,9 @@ class ServiceTokenRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ServiceTokenRequest.fromJson(Map<String, dynamic> json) =>
       _$ServiceTokenRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ServiceTokenRequestToJson(this);
 
   // Properties
   /// [Optional] The URL of the web page where the Web SDK will be used.
@@ -35,4 +31,8 @@ class ServiceTokenRequest extends Request {
 
   /// Must be `1`
   int serviceToken;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ServiceTokenRequestToJson(this);
 }

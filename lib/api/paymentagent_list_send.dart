@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'paymentagent_list_send.g.dart';
 
-///
+/// JSON conversion for 'paymentagent_list_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PaymentagentListRequest extends Request {
-  ///
+  /// Initialize PaymentagentListRequest
   PaymentagentListRequest(
       {this.currency,
       this.paymentagentList,
@@ -17,13 +17,9 @@ class PaymentagentListRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory PaymentagentListRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentListRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$PaymentagentListRequestToJson(this);
 
   // Properties
   /// [Optional] If specified, only payment agents that supports that currency will be returned (obtained from `payout_currencies` call).
@@ -31,4 +27,8 @@ class PaymentagentListRequest extends Request {
 
   /// Client's 2-letter country code (obtained from `residence_list` call).
   String paymentagentList;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$PaymentagentListRequestToJson(this);
 }

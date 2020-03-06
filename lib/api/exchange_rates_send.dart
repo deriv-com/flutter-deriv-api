@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'exchange_rates_send.g.dart';
 
-///
+/// JSON conversion for 'exchange_rates_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ExchangeRatesRequest extends Request {
-  ///
+  /// Initialize ExchangeRatesRequest
   ExchangeRatesRequest(
       {this.baseCurrency,
       this.exchangeRates,
@@ -17,13 +17,9 @@ class ExchangeRatesRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ExchangeRatesRequest.fromJson(Map<String, dynamic> json) =>
       _$ExchangeRatesRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ExchangeRatesRequestToJson(this);
 
   // Properties
   /// Base currency (can be obtained from `payout_currencies` call)
@@ -31,4 +27,8 @@ class ExchangeRatesRequest extends Request {
 
   /// Must be `1`
   int exchangeRates;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ExchangeRatesRequestToJson(this);
 }

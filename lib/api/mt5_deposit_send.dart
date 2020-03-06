@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'mt5_deposit_send.g.dart';
 
-///
+/// JSON conversion for 'mt5_deposit_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5DepositRequest extends Request {
-  ///
+  /// Initialize Mt5DepositRequest
   Mt5DepositRequest(
       {this.amount,
       this.fromBinary,
@@ -19,13 +19,9 @@ class Mt5DepositRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5DepositRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$Mt5DepositRequestToJson(this);
 
   // Properties
   /// Amount to deposit (in the currency of from_binary); min = $1 or an equivalent amount, max = $20000 or an equivalent amount
@@ -39,4 +35,8 @@ class Mt5DepositRequest extends Request {
 
   /// MT5 account login to deposit money to
   String toMt5;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$Mt5DepositRequestToJson(this);
 }

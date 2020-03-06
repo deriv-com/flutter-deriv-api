@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'paymentagent_withdraw_send.g.dart';
 
-///
+/// JSON conversion for 'paymentagent_withdraw_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PaymentagentWithdrawRequest extends Request {
-  ///
+  /// Initialize PaymentagentWithdrawRequest
   PaymentagentWithdrawRequest(
       {this.amount,
       this.currency,
@@ -22,13 +22,9 @@ class PaymentagentWithdrawRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory PaymentagentWithdrawRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentWithdrawRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$PaymentagentWithdrawRequestToJson(this);
 
   // Properties
   /// The amount to withdraw to the payment agent.
@@ -51,4 +47,8 @@ class PaymentagentWithdrawRequest extends Request {
 
   /// Email verification code (received from a `verify_email` call, which must be done first)
   String verificationCode;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$PaymentagentWithdrawRequestToJson(this);
 }

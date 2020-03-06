@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'website_status_receive.g.dart';
 
-///
+/// JSON conversion for 'website_status_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class WebsiteStatusResponse extends Response {
-  ///
+  /// Initialize WebsiteStatusResponse
   WebsiteStatusResponse(
       {this.subscription,
       this.websiteStatus,
@@ -19,13 +19,9 @@ class WebsiteStatusResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory WebsiteStatusResponse.fromJson(Map<String, dynamic> json) =>
       _$WebsiteStatusResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$WebsiteStatusResponseToJson(this);
 
   // Properties
   /// For subscription requests only
@@ -33,4 +29,8 @@ class WebsiteStatusResponse extends Response {
 
   /// Server status and other information regarding general settings
   Map<String, dynamic> websiteStatus;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$WebsiteStatusResponseToJson(this);
 }

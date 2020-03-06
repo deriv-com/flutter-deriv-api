@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'p2p_order_list_send.g.dart';
 
-///
+/// JSON conversion for 'p2p_order_list_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderListRequest extends Request {
-  ///
+  /// Initialize P2pOrderListRequest
   P2pOrderListRequest(
       {this.active,
       this.advertId,
@@ -21,13 +21,9 @@ class P2pOrderListRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory P2pOrderListRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderListRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$P2pOrderListRequestToJson(this);
 
   // Properties
   /// [Optional] Should be 1 to list active, 0 to list inactive (historical).
@@ -47,4 +43,8 @@ class P2pOrderListRequest extends Request {
 
   /// [Optional] If set to 1, will send updates whenever there is a change to any order belonging to you.
   int subscribe;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$P2pOrderListRequestToJson(this);
 }

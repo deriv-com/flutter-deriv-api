@@ -6,21 +6,17 @@ import 'request.dart';
 
 part 'ticks_send.g.dart';
 
-///
+/// JSON conversion for 'ticks_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TicksRequest extends Request {
-  ///
+  /// Initialize TicksRequest
   TicksRequest(
       {this.subscribe, this.ticks, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory TicksRequest.fromJson(Map<String, dynamic> json) =>
       _$TicksRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$TicksRequestToJson(this);
 
   // Properties
   /// [Optional] If set to 1, will send updates whenever a new tick is received.
@@ -28,4 +24,8 @@ class TicksRequest extends Request {
 
   /// The short symbol name or array of symbols (obtained from active_symbols call).
   String ticks;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TicksRequestToJson(this);
 }

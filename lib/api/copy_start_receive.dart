@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'copy_start_receive.g.dart';
 
-///
+/// JSON conversion for 'copy_start_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStartResponse extends Response {
-  ///
+  /// Initialize CopyStartResponse
   CopyStartResponse(
       {this.copyStart,
       int reqId,
@@ -18,15 +18,15 @@ class CopyStartResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory CopyStartResponse.fromJson(Map<String, dynamic> json) =>
       _$CopyStartResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$CopyStartResponseToJson(this);
 
   // Properties
   /// Copy start confirmation. Returns 1 is success.
   int copyStart;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$CopyStartResponseToJson(this);
 }

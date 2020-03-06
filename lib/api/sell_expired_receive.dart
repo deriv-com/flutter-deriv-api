@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'sell_expired_receive.g.dart';
 
-///
+/// JSON conversion for 'sell_expired_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellExpiredResponse extends Response {
-  ///
+  /// Initialize SellExpiredResponse
   SellExpiredResponse(
       {this.sellExpired,
       int reqId,
@@ -18,15 +18,15 @@ class SellExpiredResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory SellExpiredResponse.fromJson(Map<String, dynamic> json) =>
       _$SellExpiredResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$SellExpiredResponseToJson(this);
 
   // Properties
   /// Sell expired contract object containing count of contracts sold
   Map<String, dynamic> sellExpired;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$SellExpiredResponseToJson(this);
 }

@@ -6,23 +6,23 @@ import 'request.dart';
 
 part 'portfolio_send.g.dart';
 
-///
+/// JSON conversion for 'portfolio_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PortfolioRequest extends Request {
-  ///
+  /// Initialize PortfolioRequest
   PortfolioRequest(
       {this.portfolio, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>
       _$PortfolioRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$PortfolioRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int portfolio;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$PortfolioRequestToJson(this);
 }

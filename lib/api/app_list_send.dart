@@ -6,22 +6,22 @@ import 'request.dart';
 
 part 'app_list_send.g.dart';
 
-///
+/// JSON conversion for 'app_list_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppListRequest extends Request {
-  ///
+  /// Initialize AppListRequest
   AppListRequest({this.appList, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory AppListRequest.fromJson(Map<String, dynamic> json) =>
       _$AppListRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$AppListRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int appList;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AppListRequestToJson(this);
 }

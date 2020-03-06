@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'notification_event_send.g.dart';
 
-///
+/// JSON conversion for 'notification_event_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NotificationEventRequest extends Request {
-  ///
+  /// Initialize NotificationEventRequest
   NotificationEventRequest(
       {this.category,
       this.event,
@@ -18,13 +18,9 @@ class NotificationEventRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory NotificationEventRequest.fromJson(Map<String, dynamic> json) =>
       _$NotificationEventRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$NotificationEventRequestToJson(this);
 
   // Properties
   /// The category or nature of the event.
@@ -35,4 +31,8 @@ class NotificationEventRequest extends Request {
 
   /// Must be `1`
   int notificationEvent;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$NotificationEventRequestToJson(this);
 }

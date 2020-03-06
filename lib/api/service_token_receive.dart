@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'service_token_receive.g.dart';
 
-///
+/// JSON conversion for 'service_token_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ServiceTokenResponse extends Response {
-  ///
+  /// Initialize ServiceTokenResponse
   ServiceTokenResponse(
       {this.serviceToken,
       int reqId,
@@ -18,15 +18,15 @@ class ServiceTokenResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ServiceTokenResponse.fromJson(Map<String, dynamic> json) =>
       _$ServiceTokenResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ServiceTokenResponseToJson(this);
 
   // Properties
   /// The object containing the retrieved token
   Map<String, dynamic> serviceToken;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ServiceTokenResponseToJson(this);
 }

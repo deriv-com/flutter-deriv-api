@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'mt5_withdrawal_receive.g.dart';
 
-///
+/// JSON conversion for 'mt5_withdrawal_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5WithdrawalResponse extends Response {
-  ///
+  /// Initialize Mt5WithdrawalResponse
   Mt5WithdrawalResponse(
       {this.binaryTransactionId,
       this.mt5Withdrawal,
@@ -19,13 +19,9 @@ class Mt5WithdrawalResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory Mt5WithdrawalResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5WithdrawalResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$Mt5WithdrawalResponseToJson(this);
 
   // Properties
   /// Deposit reference ID of Binary account.
@@ -33,4 +29,8 @@ class Mt5WithdrawalResponse extends Response {
 
   /// `1` on success
   int mt5Withdrawal;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$Mt5WithdrawalResponseToJson(this);
 }

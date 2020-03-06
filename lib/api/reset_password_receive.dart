@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'reset_password_receive.g.dart';
 
-///
+/// JSON conversion for 'reset_password_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ResetPasswordResponse extends Response {
-  ///
+  /// Initialize ResetPasswordResponse
   ResetPasswordResponse(
       {this.resetPassword,
       int reqId,
@@ -18,15 +18,15 @@ class ResetPasswordResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ResetPasswordResponse.fromJson(Map<String, dynamic> json) =>
       _$ResetPasswordResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ResetPasswordResponseToJson(this);
 
   // Properties
   /// `1`: password reset success, `0`: password reset failure
   int resetPassword;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ResetPasswordResponseToJson(this);
 }

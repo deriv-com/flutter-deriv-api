@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'verify_email_send.g.dart';
 
-///
+/// JSON conversion for 'verify_email_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class VerifyEmailRequest extends Request {
-  ///
+  /// Initialize VerifyEmailRequest
   VerifyEmailRequest(
       {this.type,
       this.urlParameters,
@@ -18,13 +18,9 @@ class VerifyEmailRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory VerifyEmailRequest.fromJson(Map<String, dynamic> json) =>
       _$VerifyEmailRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$VerifyEmailRequestToJson(this);
 
   // Properties
   /// Purpose of the email verification call.
@@ -35,4 +31,8 @@ class VerifyEmailRequest extends Request {
 
   /// Email address to be verified.
   String verifyEmail;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$VerifyEmailRequestToJson(this);
 }

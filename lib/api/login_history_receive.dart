@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'login_history_receive.g.dart';
 
-///
+/// JSON conversion for 'login_history_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LoginHistoryResponse extends Response {
-  ///
+  /// Initialize LoginHistoryResponse
   LoginHistoryResponse(
       {this.loginHistory,
       int reqId,
@@ -18,15 +18,15 @@ class LoginHistoryResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory LoginHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$LoginHistoryResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$LoginHistoryResponseToJson(this);
 
   // Properties
   /// Array of records of client login/logout activities
   List<Map<String, dynamic>> loginHistory;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$LoginHistoryResponseToJson(this);
 }

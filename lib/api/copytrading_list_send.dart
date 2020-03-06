@@ -6,23 +6,23 @@ import 'request.dart';
 
 part 'copytrading_list_send.g.dart';
 
-///
+/// JSON conversion for 'copytrading_list_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopytradingListRequest extends Request {
-  ///
+  /// Initialize CopytradingListRequest
   CopytradingListRequest(
       {this.copytradingList, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory CopytradingListRequest.fromJson(Map<String, dynamic> json) =>
       _$CopytradingListRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$CopytradingListRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int copytradingList;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$CopytradingListRequestToJson(this);
 }

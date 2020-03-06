@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'mt5_new_account_send.g.dart';
 
-///
+/// JSON conversion for 'mt5_new_account_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5NewAccountRequest extends Request {
-  ///
+  /// Initialize Mt5NewAccountRequest
   Mt5NewAccountRequest(
       {this.accountType,
       this.address,
@@ -32,13 +32,9 @@ class Mt5NewAccountRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5NewAccountRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$Mt5NewAccountRequestToJson(this);
 
   // Properties
   /// Account type
@@ -91,4 +87,8 @@ class Mt5NewAccountRequest extends Request {
 
   /// [Optional] User's zip code.
   String zipCode;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$Mt5NewAccountRequestToJson(this);
 }

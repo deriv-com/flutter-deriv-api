@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'mt5_password_change_receive.g.dart';
 
-///
+/// JSON conversion for 'mt5_password_change_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5PasswordChangeResponse extends Response {
-  ///
+  /// Initialize Mt5PasswordChangeResponse
   Mt5PasswordChangeResponse(
       {this.mt5PasswordChange,
       int reqId,
@@ -18,15 +18,15 @@ class Mt5PasswordChangeResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory Mt5PasswordChangeResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordChangeResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$Mt5PasswordChangeResponseToJson(this);
 
   // Properties
   /// `1` on success
   int mt5PasswordChange;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$Mt5PasswordChangeResponseToJson(this);
 }

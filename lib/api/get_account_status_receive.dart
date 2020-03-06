@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'get_account_status_receive.g.dart';
 
-///
+/// JSON conversion for 'get_account_status_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetAccountStatusResponse extends Response {
-  ///
+  /// Initialize GetAccountStatusResponse
   GetAccountStatusResponse(
       {this.getAccountStatus,
       int reqId,
@@ -18,15 +18,15 @@ class GetAccountStatusResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory GetAccountStatusResponse.fromJson(Map<String, dynamic> json) =>
       _$GetAccountStatusResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$GetAccountStatusResponseToJson(this);
 
   // Properties
   /// Account status details
   Map<String, dynamic> getAccountStatus;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$GetAccountStatusResponseToJson(this);
 }

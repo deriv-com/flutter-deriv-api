@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'app_markup_details_receive.g.dart';
 
-///
+/// JSON conversion for 'app_markup_details_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppMarkupDetailsResponse extends Response {
-  ///
+  /// Initialize AppMarkupDetailsResponse
   AppMarkupDetailsResponse(
       {this.appMarkupDetails,
       int reqId,
@@ -18,15 +18,15 @@ class AppMarkupDetailsResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory AppMarkupDetailsResponse.fromJson(Map<String, dynamic> json) =>
       _$AppMarkupDetailsResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$AppMarkupDetailsResponseToJson(this);
 
   // Properties
   /// App Markup transaction details
   Map<String, dynamic> appMarkupDetails;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AppMarkupDetailsResponseToJson(this);
 }

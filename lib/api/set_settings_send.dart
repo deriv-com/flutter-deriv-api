@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'set_settings_send.g.dart';
 
-///
+/// JSON conversion for 'set_settings_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetSettingsRequest extends Request {
-  ///
+  /// Initialize SetSettingsRequest
   SetSettingsRequest(
       {this.accountOpeningReason,
       this.addressCity,
@@ -37,13 +37,9 @@ class SetSettingsRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory SetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       _$SetSettingsRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$SetSettingsRequestToJson(this);
 
   // Properties
   /// [Optional] Purpose and reason for requesting the account opening. Only applicable for real money account. Required for clients that have not set it yet. Can only be set once.
@@ -111,4 +107,8 @@ class SetSettingsRequest extends Request {
 
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for maltainvest landing company.
   String taxResidence;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$SetSettingsRequestToJson(this);
 }

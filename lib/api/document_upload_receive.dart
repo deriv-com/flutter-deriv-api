@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'document_upload_receive.g.dart';
 
-///
+/// JSON conversion for 'document_upload_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class DocumentUploadResponse extends Response {
-  ///
+  /// Initialize DocumentUploadResponse
   DocumentUploadResponse(
       {this.documentUpload,
       int reqId,
@@ -18,15 +18,15 @@ class DocumentUploadResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory DocumentUploadResponse.fromJson(Map<String, dynamic> json) =>
       _$DocumentUploadResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$DocumentUploadResponseToJson(this);
 
   // Properties
   /// Details of the uploaded documents.
   Map<String, dynamic> documentUpload;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$DocumentUploadResponseToJson(this);
 }

@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'buy_contract_for_multiple_accounts_receive.g.dart';
 
-///
+/// JSON conversion for 'buy_contract_for_multiple_accounts_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BuyContractForMultipleAccountsResponse extends Response {
-  ///
+  /// Initialize BuyContractForMultipleAccountsResponse
   BuyContractForMultipleAccountsResponse(
       {this.buyContractForMultipleAccounts,
       int reqId,
@@ -18,17 +18,17 @@ class BuyContractForMultipleAccountsResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory BuyContractForMultipleAccountsResponse.fromJson(
           Map<String, dynamic> json) =>
       _$BuyContractForMultipleAccountsResponseFromJson(json);
 
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() =>
-      _$BuyContractForMultipleAccountsResponseToJson(this);
-
   // Properties
   /// Receipt confirmation for the purchase
   Map<String, dynamic> buyContractForMultipleAccounts;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() =>
+      _$BuyContractForMultipleAccountsResponseToJson(this);
 }

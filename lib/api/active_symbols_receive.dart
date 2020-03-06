@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'active_symbols_receive.g.dart';
 
-///
+/// JSON conversion for 'active_symbols_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ActiveSymbolsResponse extends Response {
-  ///
+  /// Initialize ActiveSymbolsResponse
   ActiveSymbolsResponse(
       {this.activeSymbols,
       int reqId,
@@ -18,15 +18,15 @@ class ActiveSymbolsResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ActiveSymbolsResponse.fromJson(Map<String, dynamic> json) =>
       _$ActiveSymbolsResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ActiveSymbolsResponseToJson(this);
 
   // Properties
   /// List of active symbols.
   List<Map<String, dynamic>> activeSymbols;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ActiveSymbolsResponseToJson(this);
 }

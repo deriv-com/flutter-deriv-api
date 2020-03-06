@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'reset_password_send.g.dart';
 
-///
+/// JSON conversion for 'reset_password_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ResetPasswordRequest extends Request {
-  ///
+  /// Initialize ResetPasswordRequest
   ResetPasswordRequest(
       {this.dateOfBirth,
       this.newPassword,
@@ -19,13 +19,9 @@ class ResetPasswordRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ResetPasswordRequest.fromJson(Map<String, dynamic> json) =>
       _$ResetPasswordRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ResetPasswordRequestToJson(this);
 
   // Properties
   /// [Optional] Date of birth format: `yyyy-mm-dd`. Only required for clients with real-money accounts.
@@ -39,4 +35,8 @@ class ResetPasswordRequest extends Request {
 
   /// Email verification code (received from a `verify_email` call, which must be done first)
   String verificationCode;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ResetPasswordRequestToJson(this);
 }

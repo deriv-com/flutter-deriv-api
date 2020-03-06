@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'cashier_send.g.dart';
 
-///
+/// JSON conversion for 'cashier_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CashierRequest extends Request {
-  ///
+  /// Initialize CashierRequest
   CashierRequest(
       {this.cashier,
       this.provider,
@@ -18,13 +18,9 @@ class CashierRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory CashierRequest.fromJson(Map<String, dynamic> json) =>
       _$CashierRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$CashierRequestToJson(this);
 
   // Properties
   /// The cashier type to request the URL for.
@@ -35,4 +31,8 @@ class CashierRequest extends Request {
 
   /// [Optional] Email verification code (received from a verify_email call, which must be done first)
   String verificationCode;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$CashierRequestToJson(this);
 }

@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'proposal_open_contract_send.g.dart';
 
-///
+/// JSON conversion for 'proposal_open_contract_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ProposalOpenContractRequest extends Request {
-  ///
+  /// Initialize ProposalOpenContractRequest
   ProposalOpenContractRequest(
       {this.contractId,
       this.proposalOpenContract,
@@ -18,13 +18,9 @@ class ProposalOpenContractRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>
       _$ProposalOpenContractRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ProposalOpenContractRequestToJson(this);
 
   // Properties
   /// [Optional] Contract ID received from a Portfolio request. If not set, you will receive stream of all open contracts.
@@ -35,4 +31,8 @@ class ProposalOpenContractRequest extends Request {
 
   /// [Optional] `1` to stream.
   int subscribe;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ProposalOpenContractRequestToJson(this);
 }

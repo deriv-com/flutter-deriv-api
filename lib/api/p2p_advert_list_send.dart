@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'p2p_advert_list_send.g.dart';
 
-///
+/// JSON conversion for 'p2p_advert_list_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pAdvertListRequest extends Request {
-  ///
+  /// Initialize P2pAdvertListRequest
   P2pAdvertListRequest(
       {this.accountCurrency,
       this.advertiserId,
@@ -24,13 +24,9 @@ class P2pAdvertListRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory P2pAdvertListRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertListRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$P2pAdvertListRequestToJson(this);
 
   // Properties
   /// [Optional] Target currency, defaults to client account currency.
@@ -59,4 +55,8 @@ class P2pAdvertListRequest extends Request {
 
   /// Must be 1
   int p2pAdvertList;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$P2pAdvertListRequestToJson(this);
 }

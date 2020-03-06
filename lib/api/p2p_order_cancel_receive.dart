@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'p2p_order_cancel_receive.g.dart';
 
-///
+/// JSON conversion for 'p2p_order_cancel_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderCancelResponse extends Response {
-  ///
+  /// Initialize P2pOrderCancelResponse
   P2pOrderCancelResponse(
       {this.p2pOrderCancel,
       int reqId,
@@ -18,15 +18,15 @@ class P2pOrderCancelResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory P2pOrderCancelResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCancelResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$P2pOrderCancelResponseToJson(this);
 
   // Properties
   /// Cancellation details
   Map<String, dynamic> p2pOrderCancel;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$P2pOrderCancelResponseToJson(this);
 }

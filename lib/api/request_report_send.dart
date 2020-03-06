@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'request_report_send.g.dart';
 
-///
+/// JSON conversion for 'request_report_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class RequestReportRequest extends Request {
-  ///
+  /// Initialize RequestReportRequest
   RequestReportRequest(
       {this.dateFrom,
       this.dateTo,
@@ -19,13 +19,9 @@ class RequestReportRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory RequestReportRequest.fromJson(Map<String, dynamic> json) =>
       _$RequestReportRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$RequestReportRequestToJson(this);
 
   // Properties
   /// Start date of the report
@@ -39,4 +35,8 @@ class RequestReportRequest extends Request {
 
   /// Must be `1`
   int requestReport;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$RequestReportRequestToJson(this);
 }

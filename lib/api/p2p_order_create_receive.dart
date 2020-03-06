@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'p2p_order_create_receive.g.dart';
 
-///
+/// JSON conversion for 'p2p_order_create_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderCreateResponse extends Response {
-  ///
+  /// Initialize P2pOrderCreateResponse
   P2pOrderCreateResponse(
       {this.p2pOrderCreate,
       this.subscription,
@@ -19,13 +19,9 @@ class P2pOrderCreateResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory P2pOrderCreateResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCreateResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$P2pOrderCreateResponseToJson(this);
 
   // Properties
   /// Information of the creates P2P order.
@@ -33,4 +29,8 @@ class P2pOrderCreateResponse extends Response {
 
   /// For subscription requests only
   Map<String, dynamic> subscription;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$P2pOrderCreateResponseToJson(this);
 }

@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'new_account_maltainvest_send.g.dart';
 
-///
+/// JSON conversion for 'new_account_maltainvest_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountMaltainvestRequest extends Request {
-  ///
+  /// Initialize NewAccountMaltainvestRequest
   NewAccountMaltainvestRequest(
       {this.acceptRisk,
       this.accountOpeningReason,
@@ -54,13 +54,9 @@ class NewAccountMaltainvestRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory NewAccountMaltainvestRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountMaltainvestRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$NewAccountMaltainvestRequestToJson(this);
 
   // Properties
   /// Show whether client has accepted risk disclaimer.
@@ -179,4 +175,8 @@ class NewAccountMaltainvestRequest extends Request {
 
   /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   String taxResidence;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$NewAccountMaltainvestRequestToJson(this);
 }

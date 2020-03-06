@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'trading_durations_send.g.dart';
 
-///
+/// JSON conversion for 'trading_durations_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TradingDurationsRequest extends Request {
-  ///
+  /// Initialize TradingDurationsRequest
   TradingDurationsRequest(
       {this.landingCompany,
       this.tradingDurations,
@@ -17,13 +17,9 @@ class TradingDurationsRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>
       _$TradingDurationsRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$TradingDurationsRequestToJson(this);
 
   // Properties
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
@@ -31,4 +27,8 @@ class TradingDurationsRequest extends Request {
 
   /// Must be `1`
   int tradingDurations;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TradingDurationsRequestToJson(this);
 }

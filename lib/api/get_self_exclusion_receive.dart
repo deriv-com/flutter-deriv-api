@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'get_self_exclusion_receive.g.dart';
 
-///
+/// JSON conversion for 'get_self_exclusion_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetSelfExclusionResponse extends Response {
-  ///
+  /// Initialize GetSelfExclusionResponse
   GetSelfExclusionResponse(
       {this.getSelfExclusion,
       int reqId,
@@ -18,15 +18,15 @@ class GetSelfExclusionResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory GetSelfExclusionResponse.fromJson(Map<String, dynamic> json) =>
       _$GetSelfExclusionResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$GetSelfExclusionResponseToJson(this);
 
   // Properties
   /// List of values set for self exclusion.
   Map<String, dynamic> getSelfExclusion;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$GetSelfExclusionResponseToJson(this);
 }

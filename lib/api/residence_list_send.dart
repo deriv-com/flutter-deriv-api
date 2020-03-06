@@ -6,23 +6,23 @@ import 'request.dart';
 
 part 'residence_list_send.g.dart';
 
-///
+/// JSON conversion for 'residence_list_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ResidenceListRequest extends Request {
-  ///
+  /// Initialize ResidenceListRequest
   ResidenceListRequest(
       {this.residenceList, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ResidenceListRequest.fromJson(Map<String, dynamic> json) =>
       _$ResidenceListRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ResidenceListRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int residenceList;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ResidenceListRequestToJson(this);
 }

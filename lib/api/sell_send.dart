@@ -6,21 +6,17 @@ import 'request.dart';
 
 part 'sell_send.g.dart';
 
-///
+/// JSON conversion for 'sell_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellRequest extends Request {
-  ///
+  /// Initialize SellRequest
   SellRequest(
       {this.price, this.sell, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory SellRequest.fromJson(Map<String, dynamic> json) =>
       _$SellRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$SellRequestToJson(this);
 
   // Properties
   /// Minimum price at which to sell the contract, or '0' for 'sell at market'
@@ -28,4 +24,8 @@ class SellRequest extends Request {
 
   /// Pass contract_id received from the Portfolio call
   int sell;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$SellRequestToJson(this);
 }

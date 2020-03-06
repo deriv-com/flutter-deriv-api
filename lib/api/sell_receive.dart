@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'sell_receive.g.dart';
 
-///
+/// JSON conversion for 'sell_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellResponse extends Response {
-  ///
+  /// Initialize SellResponse
   SellResponse(
       {this.sell,
       int reqId,
@@ -18,15 +18,15 @@ class SellResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory SellResponse.fromJson(Map<String, dynamic> json) =>
       _$SellResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$SellResponseToJson(this);
 
   // Properties
   /// Receipt for the transaction
   Map<String, dynamic> sell;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$SellResponseToJson(this);
 }

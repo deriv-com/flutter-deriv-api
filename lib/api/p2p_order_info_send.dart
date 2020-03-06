@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'p2p_order_info_send.g.dart';
 
-///
+/// JSON conversion for 'p2p_order_info_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderInfoRequest extends Request {
-  ///
+  /// Initialize P2pOrderInfoRequest
   P2pOrderInfoRequest(
       {this.id,
       this.p2pOrderInfo,
@@ -18,13 +18,9 @@ class P2pOrderInfoRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory P2pOrderInfoRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderInfoRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$P2pOrderInfoRequestToJson(this);
 
   // Properties
   /// The unique identifier for the order.
@@ -35,4 +31,8 @@ class P2pOrderInfoRequest extends Request {
 
   /// [Optional] If set to 1, will send updates whenever there is an update to order
   int subscribe;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$P2pOrderInfoRequestToJson(this);
 }

@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'topup_virtual_receive.g.dart';
 
-///
+/// JSON conversion for 'topup_virtual_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TopupVirtualResponse extends Response {
-  ///
+  /// Initialize TopupVirtualResponse
   TopupVirtualResponse(
       {this.topupVirtual,
       int reqId,
@@ -18,15 +18,15 @@ class TopupVirtualResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory TopupVirtualResponse.fromJson(Map<String, dynamic> json) =>
       _$TopupVirtualResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$TopupVirtualResponseToJson(this);
 
   // Properties
   /// The information regarding a successful top up for a virtual money account
   Map<String, dynamic> topupVirtual;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TopupVirtualResponseToJson(this);
 }

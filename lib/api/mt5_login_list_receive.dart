@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'mt5_login_list_receive.g.dart';
 
-///
+/// JSON conversion for 'mt5_login_list_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5LoginListResponse extends Response {
-  ///
+  /// Initialize Mt5LoginListResponse
   Mt5LoginListResponse(
       {this.mt5LoginList,
       int reqId,
@@ -18,15 +18,15 @@ class Mt5LoginListResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory Mt5LoginListResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5LoginListResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$Mt5LoginListResponseToJson(this);
 
   // Properties
   /// Array containing MT5 account objects.
   List<Map<String, dynamic>> mt5LoginList;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$Mt5LoginListResponseToJson(this);
 }

@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'set_account_currency_receive.g.dart';
 
-///
+/// JSON conversion for 'set_account_currency_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetAccountCurrencyResponse extends Response {
-  ///
+  /// Initialize SetAccountCurrencyResponse
   SetAccountCurrencyResponse(
       {this.setAccountCurrency,
       int reqId,
@@ -18,15 +18,15 @@ class SetAccountCurrencyResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory SetAccountCurrencyResponse.fromJson(Map<String, dynamic> json) =>
       _$SetAccountCurrencyResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$SetAccountCurrencyResponseToJson(this);
 
   // Properties
   /// `1`: success, `0`: no change
   int setAccountCurrency;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$SetAccountCurrencyResponseToJson(this);
 }

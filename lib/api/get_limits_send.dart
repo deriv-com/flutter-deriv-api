@@ -6,23 +6,23 @@ import 'request.dart';
 
 part 'get_limits_send.g.dart';
 
-///
+/// JSON conversion for 'get_limits_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetLimitsRequest extends Request {
-  ///
+  /// Initialize GetLimitsRequest
   GetLimitsRequest(
       {this.getLimits, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory GetLimitsRequest.fromJson(Map<String, dynamic> json) =>
       _$GetLimitsRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$GetLimitsRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int getLimits;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$GetLimitsRequestToJson(this);
 }

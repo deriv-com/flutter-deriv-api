@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'contracts_for_receive.g.dart';
 
-///
+/// JSON conversion for 'contracts_for_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ContractsForResponse extends Response {
-  ///
+  /// Initialize ContractsForResponse
   ContractsForResponse(
       {this.contractsFor,
       int reqId,
@@ -18,15 +18,15 @@ class ContractsForResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ContractsForResponse.fromJson(Map<String, dynamic> json) =>
       _$ContractsForResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ContractsForResponseToJson(this);
 
   // Properties
   /// List of available contracts. Note: if the user is authenticated, then only contracts allowed under his account will be returned.
   Map<String, dynamic> contractsFor;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ContractsForResponseToJson(this);
 }

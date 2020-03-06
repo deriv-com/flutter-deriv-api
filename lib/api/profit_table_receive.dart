@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'profit_table_receive.g.dart';
 
-///
+/// JSON conversion for 'profit_table_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ProfitTableResponse extends Response {
-  ///
+  /// Initialize ProfitTableResponse
   ProfitTableResponse(
       {this.profitTable,
       int reqId,
@@ -18,15 +18,15 @@ class ProfitTableResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ProfitTableResponse.fromJson(Map<String, dynamic> json) =>
       _$ProfitTableResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ProfitTableResponseToJson(this);
 
   // Properties
   /// Account Profit Table.
   Map<String, dynamic> profitTable;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ProfitTableResponseToJson(this);
 }

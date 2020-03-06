@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'proposal_array_send.g.dart';
 
-///
+/// JSON conversion for 'proposal_array_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ProposalArrayRequest extends Request {
-  ///
+  /// Initialize ProposalArrayRequest
   ProposalArrayRequest(
       {this.amount,
       this.barriers,
@@ -30,13 +30,9 @@ class ProposalArrayRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory ProposalArrayRequest.fromJson(Map<String, dynamic> json) =>
       _$ProposalArrayRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$ProposalArrayRequestToJson(this);
 
   // Properties
   /// Proposed contract `payout` or `stake` value.
@@ -83,4 +79,8 @@ class ProposalArrayRequest extends Request {
 
   /// Required only for multi-barrier trading. Defines the epoch value of the trading period start time.
   int tradingPeriodStart;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ProposalArrayRequestToJson(this);
 }

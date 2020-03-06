@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'transfer_between_accounts_send.g.dart';
 
-///
+/// JSON conversion for 'transfer_between_accounts_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TransferBetweenAccountsRequest extends Request {
-  ///
+  /// Initialize TransferBetweenAccountsRequest
   TransferBetweenAccountsRequest(
       {this.accountFrom,
       this.accountTo,
@@ -21,13 +21,9 @@ class TransferBetweenAccountsRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>
       _$TransferBetweenAccountsRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$TransferBetweenAccountsRequestToJson(this);
 
   // Properties
   /// [Optional] The loginid of the account to transfer funds from.
@@ -47,4 +43,8 @@ class TransferBetweenAccountsRequest extends Request {
 
   /// If `account_from` or `account_to` is not provided, it just returns the available accounts.
   int transferBetweenAccounts;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TransferBetweenAccountsRequestToJson(this);
 }

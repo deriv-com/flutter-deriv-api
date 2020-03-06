@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'ticks_history_receive.g.dart';
 
-///
+/// JSON conversion for 'ticks_history_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TicksHistoryResponse extends Response {
-  ///
+  /// Initialize TicksHistoryResponse
   TicksHistoryResponse(
       {this.candles,
       this.history,
@@ -21,13 +21,9 @@ class TicksHistoryResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory TicksHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$TicksHistoryResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$TicksHistoryResponseToJson(this);
 
   // Properties
   /// Array of OHLC (open/high/low/close) price values for the given time (only for style=`candles`)
@@ -41,4 +37,8 @@ class TicksHistoryResponse extends Response {
 
   /// For subscription requests only
   Map<String, dynamic> subscription;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TicksHistoryResponseToJson(this);
 }

@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'mt5_password_check_send.g.dart';
 
-///
+/// JSON conversion for 'mt5_password_check_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5PasswordCheckRequest extends Request {
-  ///
+  /// Initialize Mt5PasswordCheckRequest
   Mt5PasswordCheckRequest(
       {this.login,
       this.mt5PasswordCheck,
@@ -19,13 +19,9 @@ class Mt5PasswordCheckRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory Mt5PasswordCheckRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordCheckRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$Mt5PasswordCheckRequestToJson(this);
 
   // Properties
   /// MT5 user login
@@ -39,4 +35,8 @@ class Mt5PasswordCheckRequest extends Request {
 
   /// [Optional] Type of the password to check.
   String passwordType;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$Mt5PasswordCheckRequestToJson(this);
 }

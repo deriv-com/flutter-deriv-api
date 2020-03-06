@@ -6,25 +6,25 @@ import 'request.dart';
 
 part 'get_financial_assessment_send.g.dart';
 
-///
+/// JSON conversion for 'get_financial_assessment_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetFinancialAssessmentRequest extends Request {
-  ///
+  /// Initialize GetFinancialAssessmentRequest
   GetFinancialAssessmentRequest(
       {this.getFinancialAssessment,
       int reqId,
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory GetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       _$GetFinancialAssessmentRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$GetFinancialAssessmentRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int getFinancialAssessment;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$GetFinancialAssessmentRequestToJson(this);
 }

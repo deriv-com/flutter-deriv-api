@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'transaction_send.g.dart';
 
-///
+/// JSON conversion for 'transaction_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TransactionRequest extends Request {
-  ///
+  /// Initialize TransactionRequest
   TransactionRequest(
       {this.subscribe,
       this.transaction,
@@ -17,13 +17,9 @@ class TransactionRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory TransactionRequest.fromJson(Map<String, dynamic> json) =>
       _$TransactionRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$TransactionRequestToJson(this);
 
   // Properties
   /// If set to 1, will send updates whenever there is an update to transactions. If not to 1 then it will not return any records.
@@ -31,4 +27,8 @@ class TransactionRequest extends Request {
 
   /// Must be `1`
   int transaction;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TransactionRequestToJson(this);
 }

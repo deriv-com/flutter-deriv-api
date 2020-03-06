@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'landing_company_details_receive.g.dart';
 
-///
+/// JSON conversion for 'landing_company_details_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LandingCompanyDetailsResponse extends Response {
-  ///
+  /// Initialize LandingCompanyDetailsResponse
   LandingCompanyDetailsResponse(
       {this.landingCompanyDetails,
       int reqId,
@@ -18,15 +18,15 @@ class LandingCompanyDetailsResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory LandingCompanyDetailsResponse.fromJson(Map<String, dynamic> json) =>
       _$LandingCompanyDetailsResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$LandingCompanyDetailsResponseToJson(this);
 
   // Properties
   /// The detailed information of the requested landing company.
   Map<String, dynamic> landingCompanyDetails;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$LandingCompanyDetailsResponseToJson(this);
 }

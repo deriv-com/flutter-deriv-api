@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'oauth_apps_receive.g.dart';
 
-///
+/// JSON conversion for 'oauth_apps_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class OauthAppsResponse extends Response {
-  ///
+  /// Initialize OauthAppsResponse
   OauthAppsResponse(
       {this.oauthApps,
       int reqId,
@@ -18,15 +18,15 @@ class OauthAppsResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory OauthAppsResponse.fromJson(Map<String, dynamic> json) =>
       _$OauthAppsResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$OauthAppsResponseToJson(this);
 
   // Properties
   /// List of OAuth applications that used for the authorized account.
   List<Map<String, dynamic>> oauthApps;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$OauthAppsResponseToJson(this);
 }

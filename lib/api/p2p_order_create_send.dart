@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'p2p_order_create_send.g.dart';
 
-///
+/// JSON conversion for 'p2p_order_create_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderCreateRequest extends Request {
-  ///
+  /// Initialize P2pOrderCreateRequest
   P2pOrderCreateRequest(
       {this.advertId,
       this.amount,
@@ -21,13 +21,9 @@ class P2pOrderCreateRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory P2pOrderCreateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCreateRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$P2pOrderCreateRequestToJson(this);
 
   // Properties
   /// The unique identifier for the advert to create an order against.
@@ -47,4 +43,8 @@ class P2pOrderCreateRequest extends Request {
 
   /// [Optional] If set to 1, will send updates whenever there is an update to the order.
   int subscribe;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$P2pOrderCreateRequestToJson(this);
 }

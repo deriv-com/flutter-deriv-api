@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'account_security_receive.g.dart';
 
-///
+/// JSON conversion for 'account_security_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AccountSecurityResponse extends Response {
-  ///
+  /// Initialize AccountSecurityResponse
   AccountSecurityResponse(
       {this.accountSecurity,
       int reqId,
@@ -18,15 +18,15 @@ class AccountSecurityResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory AccountSecurityResponse.fromJson(Map<String, dynamic> json) =>
       _$AccountSecurityResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$AccountSecurityResponseToJson(this);
 
   // Properties
   /// The information of 2-Factor authentication.
   Map<String, dynamic> accountSecurity;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AccountSecurityResponseToJson(this);
 }

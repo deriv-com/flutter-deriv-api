@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'p2p_advertiser_update_send.g.dart';
 
-///
+/// JSON conversion for 'p2p_advertiser_update_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pAdvertiserUpdateRequest extends Request {
-  ///
+  /// Initialize P2pAdvertiserUpdateRequest
   P2pAdvertiserUpdateRequest(
       {this.contactInfo,
       this.defaultAdvertDescription,
@@ -21,13 +21,9 @@ class P2pAdvertiserUpdateRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory P2pAdvertiserUpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertiserUpdateRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$P2pAdvertiserUpdateRequestToJson(this);
 
   // Properties
   /// [Optional] Advertiser's contact information, to be used as a default for new sell adverts.
@@ -47,4 +43,8 @@ class P2pAdvertiserUpdateRequest extends Request {
 
   /// [Optional] Advertiser's payment information, to be used as a default for new sell adverts.
   String paymentInfo;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$P2pAdvertiserUpdateRequestToJson(this);
 }

@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'app_markup_details_send.g.dart';
 
-///
+/// JSON conversion for 'app_markup_details_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppMarkupDetailsRequest extends Request {
-  ///
+  /// Initialize AppMarkupDetailsRequest
   AppMarkupDetailsRequest(
       {this.appId,
       this.appMarkupDetails,
@@ -25,13 +25,9 @@ class AppMarkupDetailsRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>
       _$AppMarkupDetailsRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$AppMarkupDetailsRequestToJson(this);
 
   // Properties
   /// [Optional] Specific application `app_id` to report on.
@@ -63,4 +59,8 @@ class AppMarkupDetailsRequest extends Request {
 
   /// [Optional] One or more of the specified fields to sort on. Default sort field is by `transaction_time`.
   List<String> sortFields;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AppMarkupDetailsRequestToJson(this);
 }

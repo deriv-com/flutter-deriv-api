@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'ping_receive.g.dart';
 
-///
+/// JSON conversion for 'ping_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PingResponse extends Response {
-  ///
+  /// Initialize PingResponse
   PingResponse(
       {this.ping,
       int reqId,
@@ -18,15 +18,15 @@ class PingResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory PingResponse.fromJson(Map<String, dynamic> json) =>
       _$PingResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$PingResponseToJson(this);
 
   // Properties
   /// Will return 'pong'
   String ping;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$PingResponseToJson(this);
 }

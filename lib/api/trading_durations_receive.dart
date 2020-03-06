@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'trading_durations_receive.g.dart';
 
-///
+/// JSON conversion for 'trading_durations_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TradingDurationsResponse extends Response {
-  ///
+  /// Initialize TradingDurationsResponse
   TradingDurationsResponse(
       {this.tradingDurations,
       int reqId,
@@ -18,15 +18,15 @@ class TradingDurationsResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory TradingDurationsResponse.fromJson(Map<String, dynamic> json) =>
       _$TradingDurationsResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$TradingDurationsResponseToJson(this);
 
   // Properties
   /// List of underlyings by their display name and symbol followed by their available contract types and trading duration boundaries.
   List<Map<String, dynamic>> tradingDurations;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TradingDurationsResponseToJson(this);
 }

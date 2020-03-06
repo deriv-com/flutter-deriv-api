@@ -6,10 +6,10 @@ import 'response.dart';
 
 part 'reality_check_receive.g.dart';
 
-///
+/// JSON conversion for 'reality_check_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class RealityCheckResponse extends Response {
-  ///
+  /// Initialize RealityCheckResponse
   RealityCheckResponse(
       {this.realityCheck,
       int reqId,
@@ -18,15 +18,15 @@ class RealityCheckResponse extends Response {
       Map<String, dynamic> error})
       : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory RealityCheckResponse.fromJson(Map<String, dynamic> json) =>
       _$RealityCheckResponseFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$RealityCheckResponseToJson(this);
 
   // Properties
   /// Reality check summary of trades.
   Map<String, dynamic> realityCheck;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$RealityCheckResponseToJson(this);
 }

@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'new_account_real_send.g.dart';
 
-///
+/// JSON conversion for 'new_account_real_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountRealRequest extends Request {
-  ///
+  /// Initialize NewAccountRealRequest
   NewAccountRealRequest(
       {this.accountOpeningReason,
       this.accountTurnover,
@@ -38,13 +38,9 @@ class NewAccountRealRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory NewAccountRealRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountRealRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$NewAccountRealRequestToJson(this);
 
   // Properties
   /// [Optional] Purpose and reason for requesting the account opening.
@@ -115,4 +111,8 @@ class NewAccountRealRequest extends Request {
 
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   String taxResidence;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$NewAccountRealRequestToJson(this);
 }

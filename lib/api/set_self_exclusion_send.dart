@@ -6,10 +6,10 @@ import 'request.dart';
 
 part 'set_self_exclusion_send.g.dart';
 
-///
+/// JSON conversion for 'set_self_exclusion_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetSelfExclusionRequest extends Request {
-  ///
+  /// Initialize SetSelfExclusionRequest
   SetSelfExclusionRequest(
       {this.excludeUntil,
       this.max30dayLosses,
@@ -29,13 +29,9 @@ class SetSelfExclusionRequest extends Request {
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
-  /// Instance from JSON
+  /// Factory constructor to initialize from JSON
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       _$SetSelfExclusionRequestFromJson(json);
-
-  /// Instance to JSON
-  @override
-  Map<String, dynamic> toJson() => _$SetSelfExclusionRequestToJson(this);
 
   // Properties
   /// [Optional] Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
@@ -79,4 +75,8 @@ class SetSelfExclusionRequest extends Request {
 
   /// [Optional] Exclude me from the website (for up to 6 weeks). Requires time in epoch format. Note: unlike `exclude_until`, this self-exclusion will be lifted automatically at the expiry of the timeout period.
   String timeoutUntil;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => _$SetSelfExclusionRequestToJson(this);
 }
