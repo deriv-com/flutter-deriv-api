@@ -17,8 +17,6 @@ dependencies:
   dart_style: ^1.0.0
   preferences: ^5.0.2
   flutter_bloc: ^3.2.0
-  intl: ^0.15.7
-  meta: ^1.1.8
   flutter:
     sdk: flutter
 
