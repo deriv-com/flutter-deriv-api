@@ -86,7 +86,7 @@ class NewAccountRealRequest {
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
-  /// [Optional] Within 8-35 digits, allowing '+' in front, numbers, hyphens or space.
+  /// [Optional] Starting with '+' followed by 8-35 digits, allowing hyphens or space.
   String phone;
 
   /// [Optional] Place of birth, 2-letter country code.

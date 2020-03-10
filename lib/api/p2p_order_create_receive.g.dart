@@ -13,6 +13,7 @@ P2pOrderCreateResponse _$P2pOrderCreateResponseFromJson(
     msgType: json['msg_type'] as String,
     p2pOrderCreate: json['p2p_order_create'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    subscription: json['subscription'] as Map<String, dynamic>,
   );
 }
 
@@ -23,4 +24,5 @@ Map<String, dynamic> _$P2pOrderCreateResponseToJson(
       'msg_type': instance.msgType,
       'p2p_order_create': instance.p2pOrderCreate,
       'req_id': instance.reqId,
+      'subscription': instance.subscription,
     };
