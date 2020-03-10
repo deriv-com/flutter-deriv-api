@@ -12,6 +12,7 @@ P2pOrderListResponse _$P2pOrderListResponseFromJson(Map<String, dynamic> json) {
     msgType: json['msg_type'] as String,
     p2pOrderList: json['p2p_order_list'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    subscription: json['subscription'] as Map<String, dynamic>,
   );
 }
 
@@ -22,4 +23,5 @@ Map<String, dynamic> _$P2pOrderListResponseToJson(
       'msg_type': instance.msgType,
       'p2p_order_list': instance.p2pOrderList,
       'req_id': instance.reqId,
+      'subscription': instance.subscription,
     };

@@ -8,21 +8,27 @@ part 'p2p_order_create_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderCreateRequest {
   P2pOrderCreateRequest(
-      {this.amount,
-      this.offerId,
+      {this.advertId,
+      this.amount,
+      this.contactInfo,
       this.p2pOrderCreate,
       this.passthrough,
-      this.reqId});
+      this.paymentInfo,
+      this.reqId,
+      this.subscribe});
   factory P2pOrderCreateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCreateRequestFromJson(json);
   Map<String, dynamic> toJson() => _$P2pOrderCreateRequestToJson(this);
 
   // Properties
-  /// The amount of order.
+  /// The unique identifier for the advert to create an order against.
+  String advertId;
+
+  /// The amount of currency to be bought or sold.
   num amount;
 
-  /// [Optional] The unique identifier for the offer to create an order against.
-  String offerId;
+  /// [Optional] Only available for sell orders. Details for how the buyer can contact the seller.
+  String contactInfo;
 
   /// Must be 1
   int p2pOrderCreate;
@@ -30,8 +36,14 @@ class P2pOrderCreateRequest {
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
   Map<String, dynamic> passthrough;
 
+  /// [Optional] Only available for sell orders. Instructions for how the buyer can transfer funds, for example: bank name and account number, or E-Wallet id.
+  String paymentInfo;
+
   /// [Optional] Used to map request to response.
   int reqId;
+
+  /// [Optional] If set to 1, will send updates whenever there is an update to the order.
+  int subscribe;
 
   // @override
   // String toString() => name;

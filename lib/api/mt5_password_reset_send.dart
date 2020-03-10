@@ -26,7 +26,7 @@ class Mt5PasswordResetRequest {
   /// Must be `1`
   int mt5PasswordReset;
 
-  /// New password of the account (length within 8-25 chars, accepts any printable ASCII character).
+  /// New password of the account. For validation (length within 8-25 chars, accepts at least 2 out of the following 3 types of characters: uppercase letters, lowercase letters, and numbers).
   String newPassword;
 
   /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
