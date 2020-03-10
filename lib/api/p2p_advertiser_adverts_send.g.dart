@@ -1,33 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'p2p_order_list_send.dart';
+part of 'p2p_advertiser_adverts_send.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-P2pOrderListRequest _$P2pOrderListRequestFromJson(Map<String, dynamic> json) {
-  return P2pOrderListRequest(
-    active: json['active'] as num,
-    advertId: json['advert_id'] as String,
+P2pAdvertiserAdvertsRequest _$P2pAdvertiserAdvertsRequestFromJson(
+    Map<String, dynamic> json) {
+  return P2pAdvertiserAdvertsRequest(
     limit: json['limit'] as int,
     offset: json['offset'] as int,
-    p2pOrderList: json['p2p_order_list'] as int,
+    p2pAdvertiserAdverts: json['p2p_advertiser_adverts'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
-    subscribe: json['subscribe'] as int,
   );
 }
 
-Map<String, dynamic> _$P2pOrderListRequestToJson(
-        P2pOrderListRequest instance) =>
+Map<String, dynamic> _$P2pAdvertiserAdvertsRequestToJson(
+        P2pAdvertiserAdvertsRequest instance) =>
     <String, dynamic>{
-      'active': instance.active,
-      'advert_id': instance.advertId,
       'limit': instance.limit,
       'offset': instance.offset,
-      'p2p_order_list': instance.p2pOrderList,
+      'p2p_advertiser_adverts': instance.p2pAdvertiserAdverts,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
-      'subscribe': instance.subscribe,
     };

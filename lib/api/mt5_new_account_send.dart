@@ -13,6 +13,7 @@ class Mt5NewAccountRequest {
       this.city,
       this.company,
       this.country,
+      this.dryRun,
       this.email,
       this.investPassword,
       this.leverage,
@@ -46,16 +47,19 @@ class Mt5NewAccountRequest {
   /// [Optional] 2-letter country code (value received from `residence_list` call).
   String country;
 
+  /// [Optional] If set to 1, only validation is performed.
+  int dryRun;
+
   /// Email address
   String email;
 
-  /// [Optional] The investor password of the account. The password must contain at least two of three types of characters (lower case, upper case and digits) and meet the minimum length requirements set for the group. This field is required.
+  /// [Optional] The investor password of the account. For validation (length within 8-25 chars, accepts at least 2 out of the following 3 types of characters: uppercase letters, lowercase letters, and numbers).
   String investPassword;
 
   /// Client leverage (from 1 to 1000).
   num leverage;
 
-  /// The master password of the account. The password must contain at least two of three types of characters (lower case, upper case and digits) and meet the minimum length requirements set for the group. This field is required.
+  /// The master password of the account. For validation (length within 8-25 chars, accepts at least 2 out of the following 3 types of characters: uppercase letters, lowercase letters, and numbers). This field is required.
   String mainPassword;
 
   /// [Optional] Standard: Variable spreads, High leverage. Advanced: Variable spreads, Medium Leverage, more products.

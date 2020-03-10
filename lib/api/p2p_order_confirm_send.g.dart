@@ -9,7 +9,7 @@ part of 'p2p_order_confirm_send.dart';
 P2pOrderConfirmRequest _$P2pOrderConfirmRequestFromJson(
     Map<String, dynamic> json) {
   return P2pOrderConfirmRequest(
-    orderId: json['order_id'] as String,
+    id: json['id'] as String,
     p2pOrderConfirm: json['p2p_order_confirm'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
@@ -19,7 +19,7 @@ P2pOrderConfirmRequest _$P2pOrderConfirmRequestFromJson(
 Map<String, dynamic> _$P2pOrderConfirmRequestToJson(
         P2pOrderConfirmRequest instance) =>
     <String, dynamic>{
-      'order_id': instance.orderId,
+      'id': instance.id,
       'p2p_order_confirm': instance.p2pOrderConfirm,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,

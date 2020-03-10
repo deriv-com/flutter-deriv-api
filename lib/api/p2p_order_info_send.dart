@@ -8,14 +8,18 @@ part 'p2p_order_info_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderInfoRequest {
   P2pOrderInfoRequest(
-      {this.orderId, this.p2pOrderInfo, this.passthrough, this.reqId});
+      {this.id,
+      this.p2pOrderInfo,
+      this.passthrough,
+      this.reqId,
+      this.subscribe});
   factory P2pOrderInfoRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderInfoRequestFromJson(json);
   Map<String, dynamic> toJson() => _$P2pOrderInfoRequestToJson(this);
 
   // Properties
   /// The unique identifier for the order.
-  String orderId;
+  String id;
 
   /// Must be 1
   int p2pOrderInfo;
@@ -25,6 +29,9 @@ class P2pOrderInfoRequest {
 
   /// [Optional] Used to map request to response.
   int reqId;
+
+  /// [Optional] If set to 1, will send updates whenever there is an update to order
+  int subscribe;
 
   // @override
   // String toString() => name;

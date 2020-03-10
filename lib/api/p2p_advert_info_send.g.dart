@@ -1,26 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'p2p_order_cancel_send.dart';
+part of 'p2p_advert_info_send.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-P2pOrderCancelRequest _$P2pOrderCancelRequestFromJson(
-    Map<String, dynamic> json) {
-  return P2pOrderCancelRequest(
+P2pAdvertInfoRequest _$P2pAdvertInfoRequestFromJson(Map<String, dynamic> json) {
+  return P2pAdvertInfoRequest(
     id: json['id'] as String,
-    p2pOrderCancel: json['p2p_order_cancel'] as int,
+    p2pAdvertInfo: json['p2p_advert_info'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
   );
 }
 
-Map<String, dynamic> _$P2pOrderCancelRequestToJson(
-        P2pOrderCancelRequest instance) =>
+Map<String, dynamic> _$P2pAdvertInfoRequestToJson(
+        P2pAdvertInfoRequest instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'p2p_order_cancel': instance.p2pOrderCancel,
+      'p2p_advert_info': instance.p2pAdvertInfo,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
     };
