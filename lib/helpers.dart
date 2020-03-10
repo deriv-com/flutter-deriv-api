@@ -1,5 +1,5 @@
 import 'dart:math';
-// TODO Unfortunately, the `json_schema` lib has conflicts with the latest version of Intl.
+// TODO(Morteza): Unfortunately, the `json_schema` lib has conflicts with the latest version of Intl.
 // import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ int getDecimalDigits(String value) {
 }
 
 /// Creates [NumberFormat] with options specified
-// TODO The funciton has been commented since it need Intl lib. Unfortunately, the `json_schema` lib has conflicts with the latest version of Intl.
+// TODO(Morteza): The funciton has been commented since it need Intl lib. Unfortunately, the `json_schema` lib has conflicts with the latest version of Intl.
 // NumberFormat getValueFormatter({
 //   String locale = 'en_US',
 //   String currency,
@@ -51,7 +51,7 @@ int getDecimalDigits(String value) {
 // }
 
 /// Formats a string [value] of number [decimalDigits] and [currency] symbol
-// TODO The funciton has been commented since it need Intl lib. Unfortunately, the `json_schema` lib has conflicts with the latest version of Intl.
+// TODO(Morteza): The funciton has been commented since it need Intl lib. Unfortunately, the `json_schema` lib has conflicts with the latest version of Intl.
 // String getFormattedValue({
 //   String value,
 //   int decimalDigits,
