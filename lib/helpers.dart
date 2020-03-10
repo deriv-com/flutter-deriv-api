@@ -1,5 +1,6 @@
 import 'dart:math';
-import 'package:intl/intl.dart';
+// TODO Unfortunately, the `json_schema` lib has conflicts with the latest version of Intl.
+// import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
 
@@ -32,34 +33,36 @@ int getDecimalDigits(String value) {
 }
 
 /// Creates [NumberFormat] with options specified
-NumberFormat getValueFormatter({
-  String locale = 'en_US',
-  String currency,
-  @required int decimalDigits,
-  bool showSymbol = true,
-}) {
-  final NumberFormat formatter = NumberFormat.currency(
-    decimalDigits: decimalDigits,
-    symbol: (showSymbol && currency != null)
-        ? NumberFormat().simpleCurrencySymbol(currency)
-        : '',
-  );
-
-  return formatter;
-}
+// TODO The funciton has been commented since it need Intl lib. Unfortunately, the `json_schema` lib has conflicts with the latest version of Intl.
+// NumberFormat getValueFormatter({
+//   String locale = 'en_US',
+//   String currency,
+//   @required int decimalDigits,
+//   bool showSymbol = true,
+// }) {
+//   final NumberFormat formatter = NumberFormat.currency(
+//     decimalDigits: decimalDigits,
+//     symbol: (showSymbol && currency != null)
+//         ? NumberFormat().simpleCurrencySymbol(currency)
+//         : '',
+//   );
+//
+//   return formatter;
+// }
 
 /// Formats a string [value] of number [decimalDigits] and [currency] symbol
-String getFormattedValue({
-  String value,
-  int decimalDigits,
-  String currency,
-  bool showSymbol = true,
-}) =>
-    getValueFormatter(
-      decimalDigits: decimalDigits ?? getDecimalDigits(value),
-      currency: currency,
-      showSymbol: showSymbol,
-    ).format(double.parse(value));
+// TODO The funciton has been commented since it need Intl lib. Unfortunately, the `json_schema` lib has conflicts with the latest version of Intl.
+// String getFormattedValue({
+//   String value,
+//   int decimalDigits,
+//   String currency,
+//   bool showSymbol = true,
+// }) =>
+//     getValueFormatter(
+//       decimalDigits: decimalDigits ?? getDecimalDigits(value),
+//       currency: currency,
+//       showSymbol: showSymbol,
+//     ).format(double.parse(value));
 
 /// Fetches the device time
 int getCurrentLocalEpoch() =>
