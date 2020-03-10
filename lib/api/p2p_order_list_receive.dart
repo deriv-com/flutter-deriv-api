@@ -8,7 +8,11 @@ part 'p2p_order_list_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderListResponse {
   P2pOrderListResponse(
-      {this.echoReq, this.msgType, this.p2pOrderList, this.reqId});
+      {this.echoReq,
+      this.msgType,
+      this.p2pOrderList,
+      this.reqId,
+      this.subscription});
   factory P2pOrderListResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderListResponseFromJson(json);
   Map<String, dynamic> toJson() => _$P2pOrderListResponseToJson(this);
@@ -20,11 +24,14 @@ class P2pOrderListResponse {
   /// Action name of the request made.
   String msgType;
 
-  /// P2P order list
+  /// List of P2P orders.
   Map<String, dynamic> p2pOrderList;
 
   /// Optional field sent in request to map to response, present only when request contains `req_id`.
   int reqId;
+
+  /// For subscription requests only
+  Map<String, dynamic> subscription;
 
   // @override
   // String toString() => name;

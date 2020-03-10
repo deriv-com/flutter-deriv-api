@@ -9,10 +9,13 @@ part 'p2p_order_list_send.g.dart';
 class P2pOrderListRequest {
   P2pOrderListRequest(
       {this.active,
-      this.offerId,
+      this.advertId,
+      this.limit,
+      this.offset,
       this.p2pOrderList,
       this.passthrough,
-      this.reqId});
+      this.reqId,
+      this.subscribe});
   factory P2pOrderListRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderListRequestFromJson(json);
   Map<String, dynamic> toJson() => _$P2pOrderListRequestToJson(this);
@@ -21,8 +24,14 @@ class P2pOrderListRequest {
   /// [Optional] Should be 1 to list active, 0 to list inactive (historical).
   num active;
 
-  /// [Optional] If present, lists orders applying to a specific offer.
-  String offerId;
+  /// [Optional] If present, lists orders applying to a specific advert.
+  String advertId;
+
+  /// [Optional] Used for paging.
+  int limit;
+
+  /// [Optional] Used for paging.
+  int offset;
 
   /// Must be 1
   int p2pOrderList;
@@ -32,6 +41,9 @@ class P2pOrderListRequest {
 
   /// [Optional] Used to map request to response.
   int reqId;
+
+  /// [Optional] If set to 1, will send updates whenever there is a change to any order belonging to you.
+  int subscribe;
 
   // @override
   // String toString() => name;
