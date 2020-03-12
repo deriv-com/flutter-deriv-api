@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_deriv_api/models/api_error.dart';
 
 import 'package:flutter_deriv_api/secure_storage.dart';
