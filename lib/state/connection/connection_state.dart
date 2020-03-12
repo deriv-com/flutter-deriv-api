@@ -1,7 +1,6 @@
 part of 'connection_bloc.dart';
 
 /// Connection States
-@immutable
 abstract class ConnectionState {}
 
 /// Initial state
@@ -45,6 +44,12 @@ class Connected extends ConnectionState {
   @override
   String toString() =>
       'ConnectionState(Connected, serverTime: $serverTime, timeDifference: $timeDifference)';
+}
+
+/// Disconnected state
+class Disconnected extends ConnectionState {
+  @override
+  String toString() => 'Disconnected';
 }
 
 /// Connection error state

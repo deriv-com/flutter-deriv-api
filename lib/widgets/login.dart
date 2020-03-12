@@ -2,37 +2,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
+import 'package:flutter_deriv_api/models/account.dart';
+
 /// A webview to show login page and retrieve account information from
 /// the redirect url.
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
-}
-
-/// A data class to present an account infomation.
-class Account {
-  /// Account cunstructor
-  Account(
-    this.acct,
-    this.cur,
-    this.token,
-  );
-
-  /// Construct from a map
-  Account.fromMap(
-    Map<String, String> data,
-  )   : acct = data['acct'],
-        token = data['token'],
-        cur = data['cur'];
-
-  /// Login ID, e.g. CR1234
-  String acct;
-
-  /// Auth token, suitable for use with `authorise`
-  String token;
-
-  /// Currency
-  String cur;
 }
 
 class _LoginScreenState extends State<LoginScreen> {

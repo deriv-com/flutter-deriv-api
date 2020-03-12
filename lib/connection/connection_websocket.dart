@@ -603,4 +603,8 @@ class BinaryAPI {
       subscribe('website_status').map<WebsiteStatusResponse>(
         (final dynamic status) => WebsiteStatusResponse.fromJson(status),
       );
+
+  /// Get agent information
+  Future<Map<String, dynamic>> p2pAgentInfo({Map<String, dynamic> options}) =>
+      call('p2p_advertiser_info', req: options);
 }
