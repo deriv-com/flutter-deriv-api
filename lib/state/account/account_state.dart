@@ -43,7 +43,6 @@ class AccountLoaded extends AccountState {
   /// List of accounts
   final List<Account> accounts;
 
-  // TODO It needs to create an data class for `authorize` response.
   /// Account information
   final Map<String, dynamic> accountInfo;
 

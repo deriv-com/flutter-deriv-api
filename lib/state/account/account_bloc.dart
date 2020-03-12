@@ -153,7 +153,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
             final AuthorizeResponse authResponse =
                 await connectionState.api.authorize(crUSDAccounts.first.token);
             if (authResponse.authorize == null) {
-              // TODO Currently, the AuthorizeResponse doesn't contain error object when there is error in the response.
               yield AccountError(
                 error: APIError(
                   code: 'FailedToLogin',
