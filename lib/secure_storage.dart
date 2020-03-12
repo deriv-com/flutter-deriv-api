@@ -55,7 +55,7 @@ class SecureStorage {
   }
 
   /// Remove all accounts
-  Future<void> get clearAllAccounts async {
+  Future<void> clearAllAccounts() async {
     await storage.delete(key: 'accounts');
     await storage.delete(key: 'defaultAccount');
     await storage.delete(key: 'defaultUser');

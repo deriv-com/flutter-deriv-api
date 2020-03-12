@@ -54,7 +54,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
             await connectionState.api.authorize(token);
 
         if (authResponse.authorize == null) {
-          await SecureStorage().clearAllAccounts;
+          await SecureStorage().clearAllAccounts();
 
           throw Exception('Authorization Failed');
         }
@@ -95,7 +95,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     } else if (event is LogoutAccount) {
       if (connectionState is Connected) {
         await connectionState.api.logout();
-        await SecureStorage().clearAllAccounts;
+        await SecureStorage().clearAllAccounts();
       }
 
       yield InitialAccountState();
