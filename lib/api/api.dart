@@ -26,11 +26,8 @@ import "buy_contract_for_multiple_accounts_send.dart";
 import "buy_contract_for_multiple_accounts_receive.dart";
 import "cashier_send.dart";
 import "cashier_receive.dart";
-<<<<<<< HEAD
 import "change_password_send.dart";
 import "change_password_receive.dart";
-=======
->>>>>>> master
 import "contract_update_send.dart";
 import "contract_update_receive.dart";
 import "contract_update_history_send.dart";
