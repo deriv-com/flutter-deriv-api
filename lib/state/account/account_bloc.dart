@@ -2,10 +2,10 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_deriv_api/models/api_error.dart';
 
-import 'package:flutter_deriv_api/secure_storage.dart';
 import 'package:flutter_deriv_api/models/account.dart';
 import 'package:flutter_deriv_api/models/advertiser.dart';
 import 'package:flutter_deriv_api/api/authorize_receive.dart';
+import 'package:flutter_deriv_api/services/secure_storage.dart';
 import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
 
 part 'account_event.dart';

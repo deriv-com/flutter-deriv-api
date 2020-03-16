@@ -19,7 +19,7 @@ class SecureStorage {
 
     try {
       final Map<String, dynamic> accounts = Map<String, List<dynamic>>.from(
-        jsonDecode((await storage.read(key: 'accounts')) ?? '{}'),
+        jsonDecode(await storage.read(key: 'accounts') ?? '{}'),
       );
 
       for (String key in accounts.keys) {
@@ -89,7 +89,7 @@ class SecureStorage {
   Future<void> setDefaultUser(String email) async =>
       storage.write(key: 'defaultUser', value: email);
 
-  /// Set Default Account
+  /// Set default Account
   Future<void> setDefaultAccount(String acct) async =>
       storage.write(key: 'defaultAccount', value: acct);
 
@@ -101,12 +101,12 @@ class SecureStorage {
     await setDefaultAccount(userAccounts.first.acct);
   }
 
-  /// Save last input of user
+  /// Save last user input
   Future<void> saveUserInput(double userInput) async => storage.write(
         key: 'lastUserInput',
         value: userInput.toString(),
       );
 
-  /// Get last input of user
+  /// Get last user input
   Future<String> getLastUserInput() async => storage.read(key: 'lastUserInput');
 }
