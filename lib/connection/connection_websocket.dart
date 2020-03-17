@@ -8,7 +8,9 @@ import 'package:flutter_deriv_api/api/forget_all_receive.dart';
 import 'package:flutter_deriv_api/api/forget_all_send.dart';
 import 'package:flutter_deriv_api/api/forget_receive.dart';
 import 'package:flutter_deriv_api/api/forget_send.dart';
+import 'package:flutter_deriv_api/api/get_settings_send.dart';
 import 'package:flutter_deriv_api/api/logout_receive.dart';
+import 'package:flutter_deriv_api/api/logout_send.dart';
 import 'package:flutter_deriv_api/api/p2p_advert_create_receive.dart';
 import 'package:flutter_deriv_api/api/p2p_advert_create_send.dart';
 import 'package:flutter_deriv_api/api/p2p_advert_info_receive.dart';
@@ -37,6 +39,7 @@ import 'package:flutter_deriv_api/api/ping_send.dart';
 import 'package:flutter_deriv_api/api/request.dart';
 import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/api/time_receive.dart';
+import 'package:flutter_deriv_api/api/time_send.dart';
 import 'package:flutter_deriv_api/api/website_status_send.dart';
 import 'package:flutter_deriv_api/connection/subscription_stream.dart';
 import 'package:web_socket_channel/io.dart';
@@ -188,8 +191,11 @@ class BinaryAPI {
   String brand = 'deriv';
 
   /// Calls the WebSocket API with the given method name and parameters.
-  Future<Response> _call(final String method,
-      {Request request, bool subscribeCall = false}) {
+  Future<Response> _call(
+    final String method,
+    Request request, {
+    bool subscribeCall = false,
+  }) {
     request.reqId = nextRequestId();
 
     final Map<String, dynamic> req = request.toJson()
@@ -223,10 +229,8 @@ class BinaryAPI {
   }
 
   /// Normal API call without subscription
-  Future<Response> call(String method, Request request) => _call(
-        method,
-        request: request,
-      );
+  Future<Response> call(String method, Request request) =>
+      _call(method, request);
 
   /// Calls the API method with subscribe set to '1' and return the stream
   /// to caller for responses
@@ -234,7 +238,7 @@ class BinaryAPI {
     final SubscriptionStream<Response> subscriptionStream =
         SubscriptionStream<Response>();
 
-    _call(method, request: request, subscribeCall: true);
+    _call(method, request, subscribeCall: true);
 
     pendingRequests[request.reqId]._streamController = subscriptionStream;
 
@@ -256,8 +260,8 @@ class BinaryAPI {
     }
 
     // Send forget request
-    final Response response = await _call('forget',
-        request: ForgetRequest(forget: pendingRequest.subscriptionId));
+    final Response response = await _call(
+        'forget', ForgetRequest(forget: pendingRequest.subscriptionId));
 
     if (response.error != null) {
       // Remove the the request from pending requests
@@ -276,7 +280,7 @@ class BinaryAPI {
         pendingRequests[id].isSubscribed);
 
     final ForgetAllResponse response =
-        await _call('forget_all', request: ForgetAllRequest(forgetAll: method));
+        await _call('forget_all', ForgetAllRequest(forgetAll: method));
 
     if (response.error != null) {
       for (int id in reqIds) {
@@ -407,7 +411,7 @@ class BinaryAPI {
     });
 
     print('Send initial message');
-    await _call('ping', request: PingRequest());
+    await _call('ping', PingRequest());
     await connectionCompleter.future;
     print('WS is connected!');
     if (onOpen != null) {
@@ -441,7 +445,7 @@ class BinaryAPI {
       final AuthorizeRequest authorizeRequest = AuthorizeRequest()
         ..authorize = token;
       print('Auth Request is ${authorizeRequest.toJson()}');
-      authResponse = await _call('authorize', request: authorizeRequest);
+      authResponse = await _call('authorize', authorizeRequest);
 
       print('Auth response is $authResponse');
     } on Exception catch (e, stackTrace) {
@@ -458,7 +462,7 @@ class BinaryAPI {
     BalanceResponse balanceResponse;
     try {
       final BalanceRequest balanceReq = BalanceRequest();
-      balanceResponse = await _call('balance', request: balanceReq);
+      balanceResponse = await _call('balance', balanceReq);
     } on Exception catch (e, stackTrace) {
       print(e);
       print(stackTrace);
@@ -470,7 +474,8 @@ class BinaryAPI {
 
   /// GetSetting API call
   Future<GetSettingsResponse> getSetting() async {
-    final GetSettingsResponse resp = await _call('get_settings');
+    final GetSettingsResponse resp =
+        await _call('get_settings', GetSettingsRequest());
     print('Account Settings: $resp');
     return resp;
   }
@@ -487,7 +492,7 @@ class BinaryAPI {
   }) =>
       _call(
         'p2p_advert_list',
-        request: P2pAdvertListRequest(
+        P2pAdvertListRequest(
           accountCurrency: accountCurrency,
           counterpartyType: counterpartyType,
           country: country,
@@ -500,7 +505,7 @@ class BinaryAPI {
   /// Calls p2p_advert_info for getting details of an advert based on the
   /// giver [id]
   Future<P2pAdvertInfoResponse> p2pAdvertInfo(String id) =>
-      _call('p2p_advert_info', request: P2pAdvertInfoRequest(id: id));
+      _call('p2p_advert_info', P2pAdvertInfoRequest(id: id));
 
   /// Calls p2p_order_create to place an order on the [advertId] with
   /// the [amount] specified
@@ -509,14 +514,14 @@ class BinaryAPI {
     double amount,
   ) =>
       _call('p2p_order_create',
-          request: P2pOrderCreateRequest(advertId: advertId, amount: amount));
+          P2pOrderCreateRequest(advertId: advertId, amount: amount));
 
   /// Calls p2p_advert_create (Allowed only for advertisers)
   Future<P2pAdvertCreateResponse> p2pAdvertCreate(
     Map<String, dynamic> advert,
   ) =>
       _call('p2p_advert_create',
-          request: P2pAdvertCreateRequest(
+          P2pAdvertCreateRequest(
             type: advert['type'],
             amount: advert['amount'],
             maxOrderAmount: advert['max_order_amount'],
@@ -528,11 +533,11 @@ class BinaryAPI {
 
   /// Cancel an order if possible
   Future<P2pOrderCancelResponse> p2pOrderCancel(String id) =>
-      _call('p2p_order_cancel', request: P2pOrderCancelRequest(id: id));
+      _call('p2p_order_cancel', P2pOrderCancelRequest(id: id));
 
   /// Edit an advert
   Future<P2pAdvertUpdateResponse> p2pAdvertUpdate(Map<String, dynamic> req) =>
-      _call('p2p_advert_update', request: P2pAdvertUpdateRequest());
+      _call('p2p_advert_update', P2pAdvertUpdateRequest());
 
   /// Gets the list of orders
   /// if [advertId] specified will get the orders for that advert
@@ -540,7 +545,7 @@ class BinaryAPI {
   Future<Response> p2pOrderList(
           {String advertId, int offset, int limit, bool isActive}) =>
       _call('p2p_order_list',
-          request: P2pOrderListRequest(
+          P2pOrderListRequest(
             advertId: advertId,
             active: (isActive ?? false) ? 0 : 1,
             offset: offset,
@@ -561,7 +566,7 @@ class BinaryAPI {
 
   /// Gets the details of an order by its [id]
   Future<P2pOrderInfoResponse> p2pOrderInfo(String orderId) =>
-      _call('p2p_order_info', request: P2pOrderInfoRequest(id: orderId));
+      _call('p2p_order_info', P2pOrderInfoRequest(id: orderId));
 
   /// Subscribes to p2p_order_info
   Stream<P2pOrderInfoResponse> subscribeOrderInfo({String id}) =>
@@ -569,26 +574,24 @@ class BinaryAPI {
 
   /// Confirms an order, Either as a confirmation that is paid or released
   Future<P2pOrderConfirmResponse> p2pOrderConfirm(String id) =>
-      _call('p2p_order_confirm', request: P2pOrderConfirmRequest(id: id));
+      _call('p2p_order_confirm', P2pOrderConfirmRequest(id: id));
 
   /// Gets the information of advertiser
   Future<P2pAdvertiserInfoResponse> p2pAdvertiserInfo(String id) =>
-      _call('p2p_advertiser_info', request: P2pAdvertiserInfoRequest(id: id));
+      _call('p2p_advertiser_info', P2pAdvertiserInfoRequest(id: id));
 
   /// Adverts for this advertiser who is logged in
   Future<P2pAdvertiserAdvertsResponse> p2pAdvertiserAdverts(
           {final int limit, final int offset}) =>
       _call('p2p_advertiser_adverts',
-          request: P2pAdvertiserAdvertsRequest(limit: limit, offset: offset));
+          P2pAdvertiserAdvertsRequest(limit: limit, offset: offset));
 
   /// Updates an advertiser
   Future<P2pAdvertiserUpdateResponse> p2pAdvertiserUpdate(
           Map<String, dynamic> advertiser) =>
       _call('p2p_advertiser_update',
-          request: P2pAdvertiserUpdateRequest.fromJson(advertiser));
+          P2pAdvertiserUpdateRequest.fromJson(advertiser));
 
-  /// Gets the server time
-  Future<TimeResponse> time() => _call('time');
 
   /// Subscribes to account balance
   Stream<BalanceResponse> subscribeBalance() =>
@@ -596,7 +599,7 @@ class BinaryAPI {
           (final dynamic balance) => BalanceResponse.fromJson(balance));
 
   /// Logs out from WS
-  Future<LogoutResponse> logout() => _call('logout');
+  Future<LogoutResponse> logout() => _call('logout', LogoutRequest());
 
   /// Subscribes to website_status
   Stream<WebsiteStatusResponse> subscribeWebsiteStatus() =>

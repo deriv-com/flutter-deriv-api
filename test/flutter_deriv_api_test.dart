@@ -32,13 +32,19 @@ void main() {
     final BinaryAPI api = BinaryAPI();
     await api.run();
     final AuthorizeResponse response = await api.call(
-        'authorize', AuthorizeRequest(authorize: ''));
+        'authorize', AuthorizeRequest(authorize: 'LO7lmvEDYYbGomo'));
+
+    print('Test result: authorize: ${response.authorize}');
 
     final P2pOrderListResponse orderListResponse = await api.call(
         'p2p_order_list', P2pOrderListRequest(offset: 0, limit: 10));
 
+    print('Test result: orderList length: ${orderListResponse.p2pOrderList.length}');
+
     final P2pAdvertListResponse advertListResponse =
         await api.call('p2p_advert_list', P2pAdvertListRequest());
+
+    print('Test result: advertList length: ${advertListResponse.p2pAdvertList.length}');
 
     api
         .subscribe('p2p_order_list', P2pOrderListRequest())
@@ -48,6 +54,5 @@ void main() {
 
     await Future<void>.delayed(const Duration(seconds: 2));
 
-    print('');
   });
 }
