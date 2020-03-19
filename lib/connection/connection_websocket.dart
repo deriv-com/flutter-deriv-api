@@ -3,7 +3,7 @@ library wsapi;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
-import 'package:flutter_deriv_api/api/api_helper.api.dart';
+import 'package:flutter_deriv_api/api/helper/api_helper.api.dart';
 import 'package:flutter_deriv_api/api/forget_all_receive.dart';
 import 'package:flutter_deriv_api/api/forget_all_send.dart';
 import 'package:flutter_deriv_api/api/forget_receive.dart';

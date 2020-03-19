@@ -229,8 +229,8 @@ class APIHelperBuilder extends Builder {
           // uses collected `msg_type`s from the 1st step to create a helper
           // function that maps the `msg_type`s to equivalent Response objects
           
-          import 'response.dart';
-      ${switchCases.map((GeneratedResponseJson gj) => 'import \'${gj.fileName}.dart\';').join('\n')}
+          import '../response.dart';
+      ${switchCases.map((GeneratedResponseJson gj) => 'import \'../${gj.fileName}.dart\';').join('\n')}
       
       /// A function that create a sub-type of [Response] based on
       /// [responseMap]'s 'msg_type' 
