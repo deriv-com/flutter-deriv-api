@@ -9,9 +9,8 @@ import 'package:dart_style/dart_style.dart';
 
 Builder apiBuilder(final BuilderOptions _) => APIBuilder();
 
-final List<GeneratedResponseJson> switchCases = <GeneratedResponseJson>[];
-
-Builder apiHelperBuilder(final BuilderOptions _) => APIHelperBuilder();
+final List<GeneratedResponseJson> generatedResponses =
+    <GeneratedResponseJson>[];
 
 /// This class is responsible for parsing the morass of JSON schema
 /// definition files for our API, and assembling them into request/response
@@ -161,7 +160,7 @@ class APIBuilder extends Builder {
         if (propsMap.containsKey('msg_type')) {
           final Map<String, dynamic> m = propsMap['msg_type'];
           if (m.containsKey('enum')) {
-            switchCases.add(GeneratedResponseJson(
+            generatedResponses.add(GeneratedResponseJson(
               msgType: m['enum'][0],
               fileName: fileName,
               fullClassName: fullClassName,
@@ -213,46 +212,6 @@ class ${fullClassName} extends ${schemaType == 'send' ? 'Request' : 'Response'}{
   }
 }
 
-class APIHelperBuilder extends Builder {
-  @override
-  Map<String, List<String>> get buildExtensions => const <String, List<String>>{
-        '.dart': <String>['.api.dart']
-      };
-
-  @override
-  Future<void> build(BuildStep buildStep) async {
-    try {
-      await buildStep.writeAsString(
-          buildStep.inputId.changeExtension('.api.dart'),
-          DartFormatter().format('''// AUTO-GENERATED - DO NOT MODIFY BY HAND
-          // Auto generated from 1st step of the flutter_deriv_api code generation process
-          // uses collected `msg_type`s from the 1st step to create a helper
-          // function that maps the `msg_type`s to equivalent Response objects
-          
-          import '../response.dart';
-      ${switchCases.map((GeneratedResponseJson gj) => 'import \'../${gj.fileName}.dart\';').join('\n')}
-      
-      /// A function that create a sub-type of [Response] based on
-      /// [responseMap]'s 'msg_type' 
-      Response getResponseByMsgType(Map<String, dynamic> responseMap) {
-        switch (responseMap['msg_type']) {
-        ${switchCases.map((GeneratedResponseJson rj) => '''case '${rj.msgType}':
-            return ${rj.fullClassName}.fromJson(responseMap);
-         ''').join('')}
-         default:
-            return Response.fromJson(responseMap);
-        }
-      }
-      '''));
-    } on Exception catch (e, stack) {
-      log
-        ..severe('Failed to process ${buildStep.inputId} - $e')
-        ..severe('Stack trace $stack');
-      return;
-    }
-  }
-}
-
 class GeneratedResponseJson {
   GeneratedResponseJson({this.msgType, this.fileName, this.fullClassName});
 
@@ -260,4 +219,3 @@ class GeneratedResponseJson {
   final String fileName;
   final String fullClassName;
 }
-

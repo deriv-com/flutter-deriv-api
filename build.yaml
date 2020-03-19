@@ -23,7 +23,7 @@ builders:
         include:
           - lib/api/**
   apiHelper:
-    import: './api_builder.dart'
+    import: './api_helper_builder.dart'
     builder_factories: ["apiHelperBuilder"]
     build_extensions: {".dart": [".api.dart"]}
     is_optional: False

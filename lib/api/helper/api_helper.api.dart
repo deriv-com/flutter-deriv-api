@@ -38,8 +38,8 @@ import '../new_account_real_receive.dart';
 import '../statement_receive.dart';
 import '../landing_company_details_receive.dart';
 import '../api_token_receive.dart';
-import '../copy_stop_receive.dart';
 import '../payout_currencies_receive.dart';
+import '../copy_stop_receive.dart';
 import '../tnc_approval_receive.dart';
 import '../set_financial_assessment_receive.dart';
 import '../forget_all_receive.dart';
@@ -176,10 +176,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return LandingCompanyDetailsResponse.fromJson(responseMap);
     case 'api_token':
       return ApiTokenResponse.fromJson(responseMap);
-    case 'copy_stop':
-      return CopyStopResponse.fromJson(responseMap);
     case 'payout_currencies':
       return PayoutCurrenciesResponse.fromJson(responseMap);
+    case 'copy_stop':
+      return CopyStopResponse.fromJson(responseMap);
     case 'tnc_approval':
       return TncApprovalResponse.fromJson(responseMap);
     case 'set_financial_assessment':
