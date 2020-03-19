@@ -3,7 +3,7 @@ library wsapi;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
-import 'package:flutter_deriv_api/api/active_symbols_receive.dart';
+import 'package:flutter_deriv_api/api/api_helper.api.dart';
 import 'package:flutter_deriv_api/api/forget_all_receive.dart';
 import 'package:flutter_deriv_api/api/forget_all_send.dart';
 import 'package:flutter_deriv_api/api/forget_receive.dart';
@@ -15,7 +15,6 @@ import 'package:flutter_deriv_api/api/p2p_advert_create_receive.dart';
 import 'package:flutter_deriv_api/api/p2p_advert_create_send.dart';
 import 'package:flutter_deriv_api/api/p2p_advert_info_receive.dart';
 import 'package:flutter_deriv_api/api/p2p_advert_info_send.dart';
-import 'package:flutter_deriv_api/api/p2p_advert_list_receive.dart';
 import 'package:flutter_deriv_api/api/p2p_advert_list_send.dart';
 import 'package:flutter_deriv_api/api/p2p_advert_update_receive.dart';
 import 'package:flutter_deriv_api/api/p2p_advert_update_send.dart';
@@ -38,8 +37,6 @@ import 'package:flutter_deriv_api/api/p2p_order_list_send.dart';
 import 'package:flutter_deriv_api/api/ping_send.dart';
 import 'package:flutter_deriv_api/api/request.dart';
 import 'package:flutter_deriv_api/api/response.dart';
-import 'package:flutter_deriv_api/api/time_receive.dart';
-import 'package:flutter_deriv_api/api/time_send.dart';
 import 'package:flutter_deriv_api/api/website_status_send.dart';
 import 'package:flutter_deriv_api/connection/subscription_stream.dart';
 import 'package:web_socket_channel/io.dart';
@@ -48,11 +45,8 @@ import 'package:web_socket_channel/status.dart' as status;
 import 'package:flutter_deriv_api/api/balance_send.dart';
 import 'package:flutter_deriv_api/api/authorize_send.dart';
 import 'package:flutter_deriv_api/api/balance_receive.dart';
-import 'package:flutter_deriv_api/api/authorize_receive.dart';
 import 'package:flutter_deriv_api/api/get_settings_receive.dart';
 import 'package:flutter_deriv_api/api/website_status_receive.dart';
-
-import '../helpers.dart';
 
 /// Callbacks for WS connection
 typedef SocketCallback = void Function();
@@ -335,7 +329,7 @@ class BinaryAPI {
               pendingRequests[reqId].response;
 
           if (!requestCompleter.isCompleted) {
-            final Response response = _getResponseByMessageType(m);
+            final Response response = getResponseByMsgType(m);
             requestCompleter.complete(response);
           }
 
@@ -349,7 +343,7 @@ class BinaryAPI {
             // Broadcasts the new message into the stream.
             pendingRequests[reqId]
                 .streamController
-                .add(_getResponseByMessageType(m));
+                .add(getResponseByMsgType(m));
           } else {
             // Removes the pendingRequest when it's not a subscription, the subscription requests will be remove after unsubscribing.
             pendingRequests.remove(reqId);
@@ -520,7 +514,8 @@ class BinaryAPI {
   Future<P2pAdvertCreateResponse> p2pAdvertCreate(
     Map<String, dynamic> advert,
   ) =>
-      _call('p2p_advert_create',
+      _call(
+          'p2p_advert_create',
           P2pAdvertCreateRequest(
             type: advert['type'],
             amount: advert['amount'],
@@ -544,7 +539,8 @@ class BinaryAPI {
   /// [isActive] only gets orders that are not completed, timed-out or canceled
   Future<Response> p2pOrderList(
           {String advertId, int offset, int limit, bool isActive}) =>
-      _call('p2p_order_list',
+      _call(
+          'p2p_order_list',
           P2pOrderListRequest(
             advertId: advertId,
             active: (isActive ?? false) ? 0 : 1,
@@ -592,7 +588,6 @@ class BinaryAPI {
       _call('p2p_advertiser_update',
           P2pAdvertiserUpdateRequest.fromJson(advertiser));
 
-
   /// Subscribes to account balance
   Stream<BalanceResponse> subscribeBalance() =>
       subscribe('balance', BalanceRequest()).map<BalanceResponse>(
@@ -607,19 +602,4 @@ class BinaryAPI {
           .map<WebsiteStatusResponse>(
         (final dynamic status) => WebsiteStatusResponse.fromJson(status),
       );
-
-  Response _getResponseByMessageType(Map<String, dynamic> map) {
-    switch (map['msg_type']) {
-      case 'active_symbols':
-        return ActiveSymbolsResponse.fromJson(map);
-      case 'authorize':
-        return AuthorizeResponse.fromJson(map);
-      case 'p2p_order_list':
-        return P2pOrderListResponse.fromJson(map);
-      case 'p2p_advert_list':
-        return P2pAdvertListResponse.fromJson(map);
-      default:
-        return Response.fromJson(map);
-    }
-  }
 }
