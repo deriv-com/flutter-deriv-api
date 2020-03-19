@@ -34,4 +34,4 @@ builders:
     defaults:
       generate_for:
         include:
-          - lib/api/api_helper.dart
+          - lib/api/helper/api_helper.dart
