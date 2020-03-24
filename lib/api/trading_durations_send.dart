@@ -12,12 +12,12 @@ class TradingDurationsRequest extends Request {
   /// Initialize TradingDurationsRequest
   TradingDurationsRequest(
       {this.landingCompany,
-      this.tradingDurations,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      this.tradingDurations = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>
       _$TradingDurationsRequestFromJson(json);
 
@@ -28,7 +28,7 @@ class TradingDurationsRequest extends Request {
   /// Must be `1`
   int tradingDurations;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TradingDurationsRequestToJson(this);
 }

@@ -11,10 +11,10 @@ part 'payout_currencies_send.g.dart';
 class PayoutCurrenciesRequest extends Request {
   /// Initialize PayoutCurrenciesRequest
   PayoutCurrenciesRequest(
-      {this.payoutCurrencies, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.payoutCurrencies = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory PayoutCurrenciesRequest.fromJson(Map<String, dynamic> json) =>
       _$PayoutCurrenciesRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class PayoutCurrenciesRequest extends Request {
   /// Must be `1`
   int payoutCurrencies;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$PayoutCurrenciesRequestToJson(this);
 }

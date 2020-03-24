@@ -52,16 +52,16 @@ NewAccountMaltainvestRequest _$NewAccountMaltainvestRequestFromJson(
     sourceOfWealth: json['source_of_wealth'] as String,
     taxIdentificationNumber: json['tax_identification_number'] as String,
     taxResidence: json['tax_residence'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$NewAccountMaltainvestRequestToJson(
         NewAccountMaltainvestRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'accept_risk': instance.acceptRisk,
       'account_opening_reason': instance.accountOpeningReason,
       'account_turnover': instance.accountTurnover,

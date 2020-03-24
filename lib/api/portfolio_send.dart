@@ -11,10 +11,10 @@ part 'portfolio_send.g.dart';
 class PortfolioRequest extends Request {
   /// Initialize PortfolioRequest
   PortfolioRequest(
-      {this.portfolio, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.portfolio = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>
       _$PortfolioRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class PortfolioRequest extends Request {
   /// Must be `1`
   int portfolio;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$PortfolioRequestToJson(this);
 }

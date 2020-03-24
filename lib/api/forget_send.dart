@@ -10,10 +10,10 @@ part 'forget_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ForgetRequest extends Request {
   /// Initialize ForgetRequest
-  ForgetRequest({this.forget, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+  ForgetRequest({this.forget, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ForgetRequest.fromJson(Map<String, dynamic> json) =>
       _$ForgetRequestFromJson(json);
 
@@ -21,7 +21,7 @@ class ForgetRequest extends Request {
   /// ID of the real-time stream of messages to cancel.
   String forget;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ForgetRequestToJson(this);
 }

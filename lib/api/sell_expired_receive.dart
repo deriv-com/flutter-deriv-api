@@ -12,13 +12,13 @@ class SellExpiredResponse extends Response {
   /// Initialize SellExpiredResponse
   SellExpiredResponse(
       {this.sellExpired,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory SellExpiredResponse.fromJson(Map<String, dynamic> json) =>
       _$SellExpiredResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class SellExpiredResponse extends Response {
   /// Sell expired contract object containing count of contracts sold
   Map<String, dynamic> sellExpired;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$SellExpiredResponseToJson(this);
 }

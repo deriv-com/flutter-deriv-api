@@ -12,13 +12,13 @@ class CashierResponse extends Response {
   /// Initialize CashierResponse
   CashierResponse(
       {this.cashier,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory CashierResponse.fromJson(Map<String, dynamic> json) =>
       _$CashierResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class CashierResponse extends Response {
   /// Cashier URL. Note: possible error codes are: ASK_TNC_APPROVAL (API tnc_approval), ASK_AUTHENTICATE, ASK_UK_FUNDS_PROTECTION (API tnc_approval), ASK_CURRENCY (API set_account_currency), ASK_EMAIL_VERIFY (verify_email), ASK_FIX_DETAILS (API set_settings).
   String cashier;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$CashierResponseToJson(this);
 }

@@ -11,10 +11,10 @@ part 'get_settings_send.g.dart';
 class GetSettingsRequest extends Request {
   /// Initialize GetSettingsRequest
   GetSettingsRequest(
-      {this.getSettings, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.getSettings = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       _$GetSettingsRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class GetSettingsRequest extends Request {
   /// Must be `1`
   int getSettings;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$GetSettingsRequestToJson(this);
 }

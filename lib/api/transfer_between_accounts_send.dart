@@ -16,12 +16,12 @@ class TransferBetweenAccountsRequest extends Request {
       this.accounts,
       this.amount,
       this.currency,
-      this.transferBetweenAccounts,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      this.transferBetweenAccounts = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>
       _$TransferBetweenAccountsRequestFromJson(json);
 
@@ -44,7 +44,7 @@ class TransferBetweenAccountsRequest extends Request {
   /// If `account_from` or `account_to` is not provided, it just returns the available accounts.
   int transferBetweenAccounts;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TransferBetweenAccountsRequestToJson(this);
 }

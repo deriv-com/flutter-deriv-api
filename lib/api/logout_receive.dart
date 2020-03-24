@@ -12,13 +12,13 @@ class LogoutResponse extends Response {
   /// Initialize LogoutResponse
   LogoutResponse(
       {this.logout,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory LogoutResponse.fromJson(Map<String, dynamic> json) =>
       _$LogoutResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class LogoutResponse extends Response {
   /// The result of logout request which is 1
   int logout;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$LogoutResponseToJson(this);
 }

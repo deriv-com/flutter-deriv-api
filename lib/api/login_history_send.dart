@@ -12,12 +12,12 @@ class LoginHistoryRequest extends Request {
   /// Initialize LoginHistoryRequest
   LoginHistoryRequest(
       {this.limit,
-      this.loginHistory,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      this.loginHistory = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$LoginHistoryRequestFromJson(json);
 
@@ -28,7 +28,7 @@ class LoginHistoryRequest extends Request {
   /// Must be `1`
   int loginHistory;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$LoginHistoryRequestToJson(this);
 }

@@ -12,13 +12,13 @@ class AppDeleteResponse extends Response {
   /// Initialize AppDeleteResponse
   AppDeleteResponse(
       {this.appDelete,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory AppDeleteResponse.fromJson(Map<String, dynamic> json) =>
       _$AppDeleteResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class AppDeleteResponse extends Response {
   /// 1 on success
   int appDelete;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AppDeleteResponseToJson(this);
 }

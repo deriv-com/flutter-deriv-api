@@ -16,13 +16,13 @@ class PaymentagentWithdrawRequest extends Request {
       this.description,
       this.dryRun,
       this.paymentagentLoginid,
-      this.paymentagentWithdraw,
+      this.paymentagentWithdraw = 1,
       this.verificationCode,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory PaymentagentWithdrawRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentWithdrawRequestFromJson(json);
 
@@ -48,7 +48,7 @@ class PaymentagentWithdrawRequest extends Request {
   /// Email verification code (received from a `verify_email` call, which must be done first)
   String verificationCode;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$PaymentagentWithdrawRequestToJson(this);
 }

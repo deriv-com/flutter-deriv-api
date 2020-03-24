@@ -12,13 +12,13 @@ class Mt5LoginListResponse extends Response {
   /// Initialize Mt5LoginListResponse
   Mt5LoginListResponse(
       {this.mt5LoginList,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory Mt5LoginListResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5LoginListResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class Mt5LoginListResponse extends Response {
   /// Array containing MT5 account objects.
   List<Map<String, dynamic>> mt5LoginList;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5LoginListResponseToJson(this);
 }

@@ -15,13 +15,13 @@ class P2pAdvertiserUpdateRequest extends Request {
       this.defaultAdvertDescription,
       this.isListed,
       this.name,
-      this.p2pAdvertiserUpdate,
+      this.p2pAdvertiserUpdate = 1,
       this.paymentInfo,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory P2pAdvertiserUpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertiserUpdateRequestFromJson(json);
 
@@ -44,7 +44,7 @@ class P2pAdvertiserUpdateRequest extends Request {
   /// [Optional] Advertiser's payment information, to be used as a default for new sell adverts.
   String paymentInfo;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertiserUpdateRequestToJson(this);
 }

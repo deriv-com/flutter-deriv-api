@@ -24,16 +24,16 @@ class ProposalRequest extends Request {
       this.limitOrder,
       this.multiplier,
       this.productType,
-      this.proposal,
+      this.proposal = 1,
       this.selectedTick,
       this.subscribe,
       this.symbol,
       this.tradingPeriodStart,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ProposalRequest.fromJson(Map<String, dynamic> json) =>
       _$ProposalRequestFromJson(json);
 
@@ -92,7 +92,7 @@ class ProposalRequest extends Request {
   /// [Optional] Required only for multi-barrier trading. Defines the epoch value of the trading period start time.
   int tradingPeriodStart;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ProposalRequestToJson(this);
 }

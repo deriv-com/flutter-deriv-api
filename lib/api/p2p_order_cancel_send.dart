@@ -12,12 +12,12 @@ class P2pOrderCancelRequest extends Request {
   /// Initialize P2pOrderCancelRequest
   P2pOrderCancelRequest(
       {this.id,
-      this.p2pOrderCancel,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      this.p2pOrderCancel = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory P2pOrderCancelRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCancelRequestFromJson(json);
 
@@ -28,7 +28,7 @@ class P2pOrderCancelRequest extends Request {
   /// Must be 1
   int p2pOrderCancel;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pOrderCancelRequestToJson(this);
 }

@@ -11,10 +11,10 @@ part 'sell_expired_send.g.dart';
 class SellExpiredRequest extends Request {
   /// Initialize SellExpiredRequest
   SellExpiredRequest(
-      {this.sellExpired, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.sellExpired = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory SellExpiredRequest.fromJson(Map<String, dynamic> json) =>
       _$SellExpiredRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class SellExpiredRequest extends Request {
   /// Must be `1`
   int sellExpired;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$SellExpiredRequestToJson(this);
 }

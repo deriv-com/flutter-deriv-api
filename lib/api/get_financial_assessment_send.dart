@@ -11,12 +11,12 @@ part 'get_financial_assessment_send.g.dart';
 class GetFinancialAssessmentRequest extends Request {
   /// Initialize GetFinancialAssessmentRequest
   GetFinancialAssessmentRequest(
-      {this.getFinancialAssessment,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.getFinancialAssessment = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory GetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       _$GetFinancialAssessmentRequestFromJson(json);
 
@@ -24,7 +24,7 @@ class GetFinancialAssessmentRequest extends Request {
   /// Must be `1`
   int getFinancialAssessment;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$GetFinancialAssessmentRequestToJson(this);
 }

@@ -13,13 +13,13 @@ class Mt5DepositRequest extends Request {
   Mt5DepositRequest(
       {this.amount,
       this.fromBinary,
-      this.mt5Deposit,
+      this.mt5Deposit = 1,
       this.toMt5,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5DepositRequestFromJson(json);
 
@@ -36,7 +36,7 @@ class Mt5DepositRequest extends Request {
   /// MT5 account login to deposit money to
   String toMt5;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5DepositRequestToJson(this);
 }

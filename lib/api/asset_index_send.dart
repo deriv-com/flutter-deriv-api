@@ -11,13 +11,13 @@ part 'asset_index_send.g.dart';
 class AssetIndexRequest extends Request {
   /// Initialize AssetIndexRequest
   AssetIndexRequest(
-      {this.assetIndex,
+      {this.assetIndex = 1,
       this.landingCompany,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory AssetIndexRequest.fromJson(Map<String, dynamic> json) =>
       _$AssetIndexRequestFromJson(json);
 
@@ -28,7 +28,7 @@ class AssetIndexRequest extends Request {
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
   String landingCompany;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AssetIndexRequestToJson(this);
 }

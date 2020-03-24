@@ -11,10 +11,10 @@ part 'get_account_status_send.g.dart';
 class GetAccountStatusRequest extends Request {
   /// Initialize GetAccountStatusRequest
   GetAccountStatusRequest(
-      {this.getAccountStatus, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.getAccountStatus = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory GetAccountStatusRequest.fromJson(Map<String, dynamic> json) =>
       _$GetAccountStatusRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class GetAccountStatusRequest extends Request {
   /// Must be `1`
   int getAccountStatus;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$GetAccountStatusRequestToJson(this);
 }

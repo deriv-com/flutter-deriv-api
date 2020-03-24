@@ -12,13 +12,13 @@ class LandingCompanyDetailsResponse extends Response {
   /// Initialize LandingCompanyDetailsResponse
   LandingCompanyDetailsResponse(
       {this.landingCompanyDetails,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory LandingCompanyDetailsResponse.fromJson(Map<String, dynamic> json) =>
       _$LandingCompanyDetailsResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class LandingCompanyDetailsResponse extends Response {
   /// The detailed information of the requested landing company.
   Map<String, dynamic> landingCompanyDetails;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$LandingCompanyDetailsResponseToJson(this);
 }

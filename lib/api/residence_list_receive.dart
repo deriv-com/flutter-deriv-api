@@ -12,13 +12,13 @@ class ResidenceListResponse extends Response {
   /// Initialize ResidenceListResponse
   ResidenceListResponse(
       {this.residenceList,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ResidenceListResponse.fromJson(Map<String, dynamic> json) =>
       _$ResidenceListResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class ResidenceListResponse extends Response {
   /// List of countries for account opening
   List<Map<String, dynamic>> residenceList;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ResidenceListResponseToJson(this);
 }

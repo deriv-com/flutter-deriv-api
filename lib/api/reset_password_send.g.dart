@@ -12,16 +12,16 @@ ResetPasswordRequest _$ResetPasswordRequestFromJson(Map<String, dynamic> json) {
     newPassword: json['new_password'] as String,
     resetPassword: json['reset_password'] as int,
     verificationCode: json['verification_code'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$ResetPasswordRequestToJson(
         ResetPasswordRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'date_of_birth': instance.dateOfBirth,
       'new_password': instance.newPassword,
       'reset_password': instance.resetPassword,

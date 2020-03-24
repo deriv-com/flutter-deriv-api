@@ -12,12 +12,12 @@ class Mt5GetSettingsRequest extends Request {
   /// Initialize Mt5GetSettingsRequest
   Mt5GetSettingsRequest(
       {this.login,
-      this.mt5GetSettings,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      this.mt5GetSettings = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory Mt5GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5GetSettingsRequestFromJson(json);
 
@@ -28,7 +28,7 @@ class Mt5GetSettingsRequest extends Request {
   /// Must be `1`
   int mt5GetSettings;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5GetSettingsRequestToJson(this);
 }

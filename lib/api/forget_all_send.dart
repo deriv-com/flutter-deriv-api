@@ -11,10 +11,10 @@ part 'forget_all_send.g.dart';
 class ForgetAllRequest extends Request {
   /// Initialize ForgetAllRequest
   ForgetAllRequest(
-      {this.forgetAll, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.forgetAll, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ForgetAllRequest.fromJson(Map<String, dynamic> json) =>
       _$ForgetAllRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class ForgetAllRequest extends Request {
   /// Cancel all streams by type (it can be a single string e.g. 'ticks', or an array of multiple values, e.g. ['ticks', 'candles']). Possible values are: 'ticks', 'candles', 'proposal', 'proposal_open_contract', 'balance', 'transaction', 'proposal_array', 'website_status', 'p2p_order'.
   String forgetAll;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ForgetAllRequestToJson(this);
 }

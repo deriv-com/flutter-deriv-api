@@ -10,16 +10,16 @@ WebsiteStatusRequest _$WebsiteStatusRequestFromJson(Map<String, dynamic> json) {
   return WebsiteStatusRequest(
     subscribe: json['subscribe'] as int,
     websiteStatus: json['website_status'] as int,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$WebsiteStatusRequestToJson(
         WebsiteStatusRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'subscribe': instance.subscribe,
       'website_status': instance.websiteStatus,
     };

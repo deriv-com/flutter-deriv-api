@@ -12,13 +12,13 @@ class SellContractForMultipleAccountsResponse extends Response {
   /// Initialize SellContractForMultipleAccountsResponse
   SellContractForMultipleAccountsResponse(
       {this.sellContractForMultipleAccounts,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory SellContractForMultipleAccountsResponse.fromJson(
           Map<String, dynamic> json) =>
       _$SellContractForMultipleAccountsResponseFromJson(json);
@@ -27,7 +27,7 @@ class SellContractForMultipleAccountsResponse extends Response {
   /// Status information for each affected account.
   Map<String, dynamic> sellContractForMultipleAccounts;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() =>
       _$SellContractForMultipleAccountsResponseToJson(this);

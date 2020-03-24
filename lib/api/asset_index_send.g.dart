@@ -10,15 +10,15 @@ AssetIndexRequest _$AssetIndexRequestFromJson(Map<String, dynamic> json) {
   return AssetIndexRequest(
     assetIndex: json['asset_index'] as int,
     landingCompany: json['landing_company'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$AssetIndexRequestToJson(AssetIndexRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'asset_index': instance.assetIndex,
       'landing_company': instance.landingCompany,
     };

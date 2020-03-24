@@ -11,10 +11,10 @@ part 'topup_virtual_send.g.dart';
 class TopupVirtualRequest extends Request {
   /// Initialize TopupVirtualRequest
   TopupVirtualRequest(
-      {this.topupVirtual, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.topupVirtual = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory TopupVirtualRequest.fromJson(Map<String, dynamic> json) =>
       _$TopupVirtualRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class TopupVirtualRequest extends Request {
   /// Must be `1`
   int topupVirtual;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TopupVirtualRequestToJson(this);
 }

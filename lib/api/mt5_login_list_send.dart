@@ -11,10 +11,10 @@ part 'mt5_login_list_send.g.dart';
 class Mt5LoginListRequest extends Request {
   /// Initialize Mt5LoginListRequest
   Mt5LoginListRequest(
-      {this.mt5LoginList, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.mt5LoginList = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory Mt5LoginListRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5LoginListRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class Mt5LoginListRequest extends Request {
   /// Must be `1`
   int mt5LoginList;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5LoginListRequestToJson(this);
 }

@@ -12,13 +12,13 @@ class StatementResponse extends Response {
   /// Initialize StatementResponse
   StatementResponse(
       {this.statement,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory StatementResponse.fromJson(Map<String, dynamic> json) =>
       _$StatementResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class StatementResponse extends Response {
   /// Account statement.
   Map<String, dynamic> statement;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$StatementResponseToJson(this);
 }

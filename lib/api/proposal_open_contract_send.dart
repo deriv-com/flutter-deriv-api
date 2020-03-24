@@ -12,13 +12,13 @@ class ProposalOpenContractRequest extends Request {
   /// Initialize ProposalOpenContractRequest
   ProposalOpenContractRequest(
       {this.contractId,
-      this.proposalOpenContract,
+      this.proposalOpenContract = 1,
       this.subscribe,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>
       _$ProposalOpenContractRequestFromJson(json);
 
@@ -32,7 +32,7 @@ class ProposalOpenContractRequest extends Request {
   /// [Optional] `1` to stream.
   int subscribe;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ProposalOpenContractRequestToJson(this);
 }

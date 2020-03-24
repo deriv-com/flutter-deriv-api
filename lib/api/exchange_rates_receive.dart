@@ -12,13 +12,13 @@ class ExchangeRatesResponse extends Response {
   /// Initialize ExchangeRatesResponse
   ExchangeRatesResponse(
       {this.exchangeRates,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ExchangeRatesResponse.fromJson(Map<String, dynamic> json) =>
       _$ExchangeRatesResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class ExchangeRatesResponse extends Response {
   /// Exchange rate values from base to all other currencies
   Map<String, dynamic> exchangeRates;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ExchangeRatesResponseToJson(this);
 }

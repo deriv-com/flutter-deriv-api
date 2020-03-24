@@ -22,17 +22,17 @@ class Mt5NewAccountRequest extends Request {
       this.leverage,
       this.mainPassword,
       this.mt5AccountType,
-      this.mt5NewAccount,
+      this.mt5NewAccount = 1,
       this.name,
       this.phone,
       this.phonePassword,
       this.state,
       this.zipCode,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5NewAccountRequestFromJson(json);
 
@@ -88,7 +88,7 @@ class Mt5NewAccountRequest extends Request {
   /// [Optional] User's zip code.
   String zipCode;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5NewAccountRequestToJson(this);
 }

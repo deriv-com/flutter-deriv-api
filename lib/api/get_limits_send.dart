@@ -11,10 +11,10 @@ part 'get_limits_send.g.dart';
 class GetLimitsRequest extends Request {
   /// Initialize GetLimitsRequest
   GetLimitsRequest(
-      {this.getLimits, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.getLimits = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory GetLimitsRequest.fromJson(Map<String, dynamic> json) =>
       _$GetLimitsRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class GetLimitsRequest extends Request {
   /// Must be `1`
   int getLimits;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$GetLimitsRequestToJson(this);
 }

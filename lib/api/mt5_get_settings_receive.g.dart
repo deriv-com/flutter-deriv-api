@@ -10,19 +10,19 @@ Mt5GetSettingsResponse _$Mt5GetSettingsResponseFromJson(
     Map<String, dynamic> json) {
   return Mt5GetSettingsResponse(
     mt5GetSettings: json['mt5_get_settings'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     echoReq: json['echo_req'] as Map<String, dynamic>,
-    msgType: json['msg_type'] as String,
     error: json['error'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$Mt5GetSettingsResponseToJson(
         Mt5GetSettingsResponse instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
-      'msg_type': instance.msgType,
       'error': instance.error,
+      'msg_type': instance.msgType,
+      'req_id': instance.reqId,
       'mt5_get_settings': instance.mt5GetSettings,
     };

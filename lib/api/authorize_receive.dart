@@ -12,13 +12,13 @@ class AuthorizeResponse extends Response {
   /// Initialize AuthorizeResponse
   AuthorizeResponse(
       {this.authorize,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory AuthorizeResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthorizeResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class AuthorizeResponse extends Response {
   /// Account information for the holder of the token.
   Map<String, dynamic> authorize;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AuthorizeResponseToJson(this);
 }

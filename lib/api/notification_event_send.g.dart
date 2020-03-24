@@ -12,16 +12,16 @@ NotificationEventRequest _$NotificationEventRequestFromJson(
     category: json['category'] as String,
     event: json['event'] as String,
     notificationEvent: json['notification_event'] as int,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$NotificationEventRequestToJson(
         NotificationEventRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'category': instance.category,
       'event': instance.event,
       'notification_event': instance.notificationEvent,

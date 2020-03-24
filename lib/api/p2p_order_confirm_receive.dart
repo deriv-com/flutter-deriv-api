@@ -12,13 +12,13 @@ class P2pOrderConfirmResponse extends Response {
   /// Initialize P2pOrderConfirmResponse
   P2pOrderConfirmResponse(
       {this.p2pOrderConfirm,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory P2pOrderConfirmResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderConfirmResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class P2pOrderConfirmResponse extends Response {
   /// Confirmation details
   Map<String, dynamic> p2pOrderConfirm;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pOrderConfirmResponseToJson(this);
 }

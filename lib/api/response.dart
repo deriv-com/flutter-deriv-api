@@ -6,25 +6,25 @@ part 'response.g.dart';
 /// Super-class of all requests
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Response {
-  ///
-  Response({this.reqId, this.echoReq, this.msgType, this.error});
+  /// Initializes
+  Response({this.echoReq, this.error, this.msgType, this.reqId});
 
-  ///
+  /// Creates instance from JSON
   factory Response.fromJson(Map<String, dynamic> json) =>
       _$ResponseFromJson(json);
-
-  ///
-  Map<String, dynamic> toJson() => _$ResponseToJson(this);
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Echo of the request made.
   Map<String, dynamic> echoReq;
 
+  /// Error
+  Map<String, dynamic> error;
+
   /// Action name of the request made.
   String msgType;
 
-  /// Error
-  Map<String, dynamic> error;
+  /// [Optional] Used to map request to response.
+  int reqId;
+
+  /// Converts to JSON
+  Map<String, dynamic> toJson() => _$ResponseToJson(this);
 }

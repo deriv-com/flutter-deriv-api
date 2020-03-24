@@ -13,13 +13,13 @@ class Mt5WithdrawalRequest extends Request {
   Mt5WithdrawalRequest(
       {this.amount,
       this.fromMt5,
-      this.mt5Withdrawal,
+      this.mt5Withdrawal = 1,
       this.toBinary,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5WithdrawalRequestFromJson(json);
 
@@ -36,7 +36,7 @@ class Mt5WithdrawalRequest extends Request {
   /// Binary account loginid to transfer money to
   String toBinary;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5WithdrawalRequestToJson(this);
 }

@@ -31,16 +31,16 @@ SetFinancialAssessmentRequest _$SetFinancialAssessmentRequestFromJson(
         json['other_instruments_trading_frequency'] as String,
     setFinancialAssessment: json['set_financial_assessment'] as int,
     sourceOfWealth: json['source_of_wealth'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$SetFinancialAssessmentRequestToJson(
         SetFinancialAssessmentRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'account_turnover': instance.accountTurnover,
       'binary_options_trading_experience':
           instance.binaryOptionsTradingExperience,

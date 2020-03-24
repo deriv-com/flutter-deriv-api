@@ -16,11 +16,11 @@ class CopyStartRequest extends Request {
       this.maxTradeStake,
       this.minTradeStake,
       this.tradeTypes,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory CopyStartRequest.fromJson(Map<String, dynamic> json) =>
       _$CopyStartRequestFromJson(json);
 
@@ -40,7 +40,7 @@ class CopyStartRequest extends Request {
   /// [Optional] Used to set trade types to be copied. E.x ["CALL", "PUT"]
   String tradeTypes;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$CopyStartRequestToJson(this);
 }

@@ -11,10 +11,10 @@ part 'landing_company_send.g.dart';
 class LandingCompanyRequest extends Request {
   /// Initialize LandingCompanyRequest
   LandingCompanyRequest(
-      {this.landingCompany, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.landingCompany, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory LandingCompanyRequest.fromJson(Map<String, dynamic> json) =>
       _$LandingCompanyRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class LandingCompanyRequest extends Request {
   /// Client's 2-letter country code (obtained from `residence_list` call).
   String landingCompany;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$LandingCompanyRequestToJson(this);
 }

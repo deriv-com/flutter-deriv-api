@@ -12,13 +12,13 @@ class ApiTokenResponse extends Response {
   /// Initialize ApiTokenResponse
   ApiTokenResponse(
       {this.apiToken,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ApiTokenResponse.fromJson(Map<String, dynamic> json) =>
       _$ApiTokenResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class ApiTokenResponse extends Response {
   /// Contains the result of API token according to the type of request.
   Map<String, dynamic> apiToken;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ApiTokenResponseToJson(this);
 }

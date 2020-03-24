@@ -11,10 +11,10 @@ part 'oauth_apps_send.g.dart';
 class OauthAppsRequest extends Request {
   /// Initialize OauthAppsRequest
   OauthAppsRequest(
-      {this.oauthApps, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.oauthApps = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory OauthAppsRequest.fromJson(Map<String, dynamic> json) =>
       _$OauthAppsRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class OauthAppsRequest extends Request {
   /// Must be `1`
   int oauthApps;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$OauthAppsRequestToJson(this);
 }

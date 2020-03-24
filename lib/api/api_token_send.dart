@@ -11,16 +11,16 @@ part 'api_token_send.g.dart';
 class ApiTokenRequest extends Request {
   /// Initialize ApiTokenRequest
   ApiTokenRequest(
-      {this.apiToken,
+      {this.apiToken = 1,
       this.deleteToken,
       this.newToken,
       this.newTokenScopes,
       this.validForCurrentIpOnly,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiTokenRequestFromJson(json);
 
@@ -40,7 +40,7 @@ class ApiTokenRequest extends Request {
   /// [Optional] If you set this parameter during token creation, then the token created will only work for the IP address that was used to create the token
   int validForCurrentIpOnly;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ApiTokenRequestToJson(this);
 }

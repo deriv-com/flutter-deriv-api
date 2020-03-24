@@ -12,13 +12,13 @@ class ForgetAllResponse extends Response {
   /// Initialize ForgetAllResponse
   ForgetAllResponse(
       {this.forgetAll,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ForgetAllResponse.fromJson(Map<String, dynamic> json) =>
       _$ForgetAllResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class ForgetAllResponse extends Response {
   /// IDs of the cancelled streams
   List<String> forgetAll;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ForgetAllResponseToJson(this);
 }

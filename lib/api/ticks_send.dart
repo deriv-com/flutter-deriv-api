@@ -11,10 +11,10 @@ part 'ticks_send.g.dart';
 class TicksRequest extends Request {
   /// Initialize TicksRequest
   TicksRequest(
-      {this.subscribe, this.ticks, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.subscribe, this.ticks, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory TicksRequest.fromJson(Map<String, dynamic> json) =>
       _$TicksRequestFromJson(json);
 
@@ -25,7 +25,7 @@ class TicksRequest extends Request {
   /// The short symbol name or array of symbols (obtained from active_symbols call).
   String ticks;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TicksRequestToJson(this);
 }

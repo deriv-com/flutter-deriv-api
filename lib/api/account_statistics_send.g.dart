@@ -10,15 +10,15 @@ AccountStatisticsRequest _$AccountStatisticsRequestFromJson(
     Map<String, dynamic> json) {
   return AccountStatisticsRequest(
     accountStatistics: json['account_statistics'] as int,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$AccountStatisticsRequestToJson(
         AccountStatisticsRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'account_statistics': instance.accountStatistics,
     };

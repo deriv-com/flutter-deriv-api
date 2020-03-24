@@ -13,11 +13,11 @@ class AuthorizeRequest extends Request {
   AuthorizeRequest(
       {this.addToLoginHistory,
       this.authorize,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory AuthorizeRequest.fromJson(Map<String, dynamic> json) =>
       _$AuthorizeRequestFromJson(json);
 
@@ -28,7 +28,7 @@ class AuthorizeRequest extends Request {
   /// Authentication token. May be retrieved from https://www.binary.com/en/user/security/api_tokenws.html
   String authorize;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AuthorizeRequestToJson(this);
 }

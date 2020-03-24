@@ -11,14 +11,14 @@ part 'account_security_send.g.dart';
 class AccountSecurityRequest extends Request {
   /// Initialize AccountSecurityRequest
   AccountSecurityRequest(
-      {this.accountSecurity,
+      {this.accountSecurity = 1,
       this.otp,
       this.totpAction,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory AccountSecurityRequest.fromJson(Map<String, dynamic> json) =>
       _$AccountSecurityRequestFromJson(json);
 
@@ -32,7 +32,7 @@ class AccountSecurityRequest extends Request {
   /// [Optional] Action to be taken for managing TOTP (time-based one-time password, RFC6238). Generate will create a secret key which is then returned in the secret_key response field, you can then enable by using that code in a 2FA application.
   String totpAction;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AccountSecurityRequestToJson(this);
 }

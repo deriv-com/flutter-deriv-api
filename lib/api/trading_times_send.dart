@@ -11,10 +11,10 @@ part 'trading_times_send.g.dart';
 class TradingTimesRequest extends Request {
   /// Initialize TradingTimesRequest
   TradingTimesRequest(
-      {this.tradingTimes, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.tradingTimes, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory TradingTimesRequest.fromJson(Map<String, dynamic> json) =>
       _$TradingTimesRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class TradingTimesRequest extends Request {
   /// Date to receive market opening times for. (`yyyy-mm-dd` format. `today` can also be specified).
   String tradingTimes;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TradingTimesRequestToJson(this);
 }

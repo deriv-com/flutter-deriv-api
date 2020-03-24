@@ -23,13 +23,13 @@ class SetSelfExclusionRequest extends Request {
       this.maxOpenBets,
       this.maxTurnover,
       this.sessionDurationLimit,
-      this.setSelfExclusion,
+      this.setSelfExclusion = 1,
       this.timeoutUntil,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       _$SetSelfExclusionRequestFromJson(json);
 
@@ -76,7 +76,7 @@ class SetSelfExclusionRequest extends Request {
   /// [Optional] Exclude me from the website (for up to 6 weeks). Requires time in epoch format. Note: unlike `exclude_until`, this self-exclusion will be lifted automatically at the expiry of the timeout period.
   String timeoutUntil;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$SetSelfExclusionRequestToJson(this);
 }

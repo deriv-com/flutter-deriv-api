@@ -12,13 +12,13 @@ class ProposalArrayResponse extends Response {
   /// Initialize ProposalArrayResponse
   ProposalArrayResponse(
       {this.proposalArray,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ProposalArrayResponse.fromJson(Map<String, dynamic> json) =>
       _$ProposalArrayResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class ProposalArrayResponse extends Response {
   /// Latest price and other details for a given contract
   Map<String, dynamic> proposalArray;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ProposalArrayResponseToJson(this);
 }

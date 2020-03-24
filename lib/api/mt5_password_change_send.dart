@@ -12,15 +12,15 @@ class Mt5PasswordChangeRequest extends Request {
   /// Initialize Mt5PasswordChangeRequest
   Mt5PasswordChangeRequest(
       {this.login,
-      this.mt5PasswordChange,
+      this.mt5PasswordChange = 1,
       this.newPassword,
       this.oldPassword,
       this.passwordType,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory Mt5PasswordChangeRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordChangeRequestFromJson(json);
 
@@ -40,7 +40,7 @@ class Mt5PasswordChangeRequest extends Request {
   /// [Optional] Type of the password to change.
   String passwordType;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5PasswordChangeRequestToJson(this);
 }

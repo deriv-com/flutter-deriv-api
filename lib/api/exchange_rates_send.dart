@@ -12,12 +12,12 @@ class ExchangeRatesRequest extends Request {
   /// Initialize ExchangeRatesRequest
   ExchangeRatesRequest(
       {this.baseCurrency,
-      this.exchangeRates,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      this.exchangeRates = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ExchangeRatesRequest.fromJson(Map<String, dynamic> json) =>
       _$ExchangeRatesRequestFromJson(json);
 
@@ -28,7 +28,7 @@ class ExchangeRatesRequest extends Request {
   /// Must be `1`
   int exchangeRates;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ExchangeRatesRequestToJson(this);
 }

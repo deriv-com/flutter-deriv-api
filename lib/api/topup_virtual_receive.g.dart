@@ -9,19 +9,19 @@ part of 'topup_virtual_receive.dart';
 TopupVirtualResponse _$TopupVirtualResponseFromJson(Map<String, dynamic> json) {
   return TopupVirtualResponse(
     topupVirtual: json['topup_virtual'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     echoReq: json['echo_req'] as Map<String, dynamic>,
-    msgType: json['msg_type'] as String,
     error: json['error'] as Map<String, dynamic>,
+    msgType: json['msg_type'] as String,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$TopupVirtualResponseToJson(
         TopupVirtualResponse instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'echo_req': instance.echoReq,
-      'msg_type': instance.msgType,
       'error': instance.error,
+      'msg_type': instance.msgType,
+      'req_id': instance.reqId,
       'topup_virtual': instance.topupVirtual,
     };

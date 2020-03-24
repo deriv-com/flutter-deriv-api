@@ -16,16 +16,16 @@ PaymentagentWithdrawRequest _$PaymentagentWithdrawRequestFromJson(
     paymentagentLoginid: json['paymentagent_loginid'] as String,
     paymentagentWithdraw: json['paymentagent_withdraw'] as int,
     verificationCode: json['verification_code'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$PaymentagentWithdrawRequestToJson(
         PaymentagentWithdrawRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'amount': instance.amount,
       'currency': instance.currency,
       'description': instance.description,

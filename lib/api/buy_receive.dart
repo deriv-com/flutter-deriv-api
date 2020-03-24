@@ -13,13 +13,13 @@ class BuyResponse extends Response {
   BuyResponse(
       {this.buy,
       this.subscription,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory BuyResponse.fromJson(Map<String, dynamic> json) =>
       _$BuyResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class BuyResponse extends Response {
   /// For subscription requests only
   Map<String, dynamic> subscription;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$BuyResponseToJson(this);
 }

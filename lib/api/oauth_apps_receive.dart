@@ -12,13 +12,13 @@ class OauthAppsResponse extends Response {
   /// Initialize OauthAppsResponse
   OauthAppsResponse(
       {this.oauthApps,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory OauthAppsResponse.fromJson(Map<String, dynamic> json) =>
       _$OauthAppsResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class OauthAppsResponse extends Response {
   /// List of OAuth applications that used for the authorized account.
   List<Map<String, dynamic>> oauthApps;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$OauthAppsResponseToJson(this);
 }

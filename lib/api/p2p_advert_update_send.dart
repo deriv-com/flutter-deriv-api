@@ -14,12 +14,12 @@ class P2pAdvertUpdateRequest extends Request {
       {this.delete,
       this.id,
       this.isActive,
-      this.p2pAdvertUpdate,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      this.p2pAdvertUpdate = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory P2pAdvertUpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertUpdateRequestFromJson(json);
 
@@ -36,7 +36,7 @@ class P2pAdvertUpdateRequest extends Request {
   /// Must be 1
   int p2pAdvertUpdate;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertUpdateRequestToJson(this);
 }

@@ -10,10 +10,10 @@ part 'copy_stop_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStopRequest extends Request {
   /// Initialize CopyStopRequest
-  CopyStopRequest({this.copyStop, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+  CopyStopRequest({this.copyStop, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory CopyStopRequest.fromJson(Map<String, dynamic> json) =>
       _$CopyStopRequestFromJson(json);
 
@@ -21,7 +21,7 @@ class CopyStopRequest extends Request {
   /// API tokens identifying the accounts which needs not to be copied
   String copyStop;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$CopyStopRequestToJson(this);
 }

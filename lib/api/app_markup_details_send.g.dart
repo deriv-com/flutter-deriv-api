@@ -19,16 +19,16 @@ AppMarkupDetailsRequest _$AppMarkupDetailsRequestFromJson(
     offset: json['offset'] as num,
     sort: json['sort'] as String,
     sortFields: (json['sort_fields'] as List).map((e) => e as String).toList(),
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$AppMarkupDetailsRequestToJson(
         AppMarkupDetailsRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'app_id': instance.appId,
       'app_markup_details': instance.appMarkupDetails,
       'client_loginid': instance.clientLoginid,

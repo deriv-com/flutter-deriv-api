@@ -12,13 +12,13 @@ class PingResponse extends Response {
   /// Initialize PingResponse
   PingResponse(
       {this.ping,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory PingResponse.fromJson(Map<String, dynamic> json) =>
       _$PingResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class PingResponse extends Response {
   /// Will return 'pong'
   String ping;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$PingResponseToJson(this);
 }

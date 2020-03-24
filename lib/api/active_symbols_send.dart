@@ -14,11 +14,11 @@ class ActiveSymbolsRequest extends Request {
       {this.activeSymbols,
       this.landingCompany,
       this.productType,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ActiveSymbolsRequest.fromJson(Map<String, dynamic> json) =>
       _$ActiveSymbolsRequestFromJson(json);
 
@@ -32,7 +32,7 @@ class ActiveSymbolsRequest extends Request {
   /// [Optional] If you specify this field, only symbols that can be traded through that product type will be returned.
   String productType;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ActiveSymbolsRequestToJson(this);
 }

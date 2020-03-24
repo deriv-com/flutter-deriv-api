@@ -19,12 +19,12 @@ class P2pAdvertListRequest extends Request {
       this.limit,
       this.localCurrency,
       this.offset,
-      this.p2pAdvertList,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      this.p2pAdvertList = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory P2pAdvertListRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertListRequestFromJson(json);
 
@@ -56,7 +56,7 @@ class P2pAdvertListRequest extends Request {
   /// Must be 1
   int p2pAdvertList;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertListRequestToJson(this);
 }

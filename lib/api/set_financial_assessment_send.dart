@@ -27,13 +27,13 @@ class SetFinancialAssessmentRequest extends Request {
       this.occupation,
       this.otherInstrumentsTradingExperience,
       this.otherInstrumentsTradingFrequency,
-      this.setFinancialAssessment,
+      this.setFinancialAssessment = 1,
       this.sourceOfWealth,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory SetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       _$SetFinancialAssessmentRequestFromJson(json);
 
@@ -92,7 +92,7 @@ class SetFinancialAssessmentRequest extends Request {
   /// [Optional] Source of wealth.
   String sourceOfWealth;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$SetFinancialAssessmentRequestToJson(this);
 }
