@@ -12,16 +12,16 @@ Mt5WithdrawalRequest _$Mt5WithdrawalRequestFromJson(Map<String, dynamic> json) {
     fromMt5: json['from_mt5'] as String,
     mt5Withdrawal: json['mt5_withdrawal'] as int,
     toBinary: json['to_binary'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$Mt5WithdrawalRequestToJson(
         Mt5WithdrawalRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'amount': instance.amount,
       'from_mt5': instance.fromMt5,
       'mt5_withdrawal': instance.mt5Withdrawal,

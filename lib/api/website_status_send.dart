@@ -12,12 +12,12 @@ class WebsiteStatusRequest extends Request {
   /// Initialize WebsiteStatusRequest
   WebsiteStatusRequest(
       {this.subscribe,
-      this.websiteStatus,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      this.websiteStatus = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory WebsiteStatusRequest.fromJson(Map<String, dynamic> json) =>
       _$WebsiteStatusRequestFromJson(json);
 
@@ -28,7 +28,7 @@ class WebsiteStatusRequest extends Request {
   /// Must be `1`
   int websiteStatus;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$WebsiteStatusRequestToJson(this);
 }

@@ -16,13 +16,13 @@ class ProfitTableRequest extends Request {
       this.description,
       this.limit,
       this.offset,
-      this.profitTable,
+      this.profitTable = 1,
       this.sort,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>
       _$ProfitTableRequestFromJson(json);
 
@@ -48,7 +48,7 @@ class ProfitTableRequest extends Request {
   /// [Optional] Sort direction.
   String sort;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ProfitTableRequestToJson(this);
 }

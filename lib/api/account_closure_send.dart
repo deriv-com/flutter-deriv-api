@@ -11,13 +11,13 @@ part 'account_closure_send.g.dart';
 class AccountClosureRequest extends Request {
   /// Initialize AccountClosureRequest
   AccountClosureRequest(
-      {this.accountClosure,
+      {this.accountClosure = 1,
       this.reason,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory AccountClosureRequest.fromJson(Map<String, dynamic> json) =>
       _$AccountClosureRequestFromJson(json);
 
@@ -28,7 +28,7 @@ class AccountClosureRequest extends Request {
   /// Reason for closing off accounts.
   String reason;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AccountClosureRequestToJson(this);
 }

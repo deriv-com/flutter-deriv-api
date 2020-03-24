@@ -12,15 +12,15 @@ class Mt5PasswordResetRequest extends Request {
   /// Initialize Mt5PasswordResetRequest
   Mt5PasswordResetRequest(
       {this.login,
-      this.mt5PasswordReset,
+      this.mt5PasswordReset = 1,
       this.newPassword,
       this.passwordType,
       this.verificationCode,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory Mt5PasswordResetRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordResetRequestFromJson(json);
 
@@ -40,7 +40,7 @@ class Mt5PasswordResetRequest extends Request {
   /// Email verification code (received from a `verify_email` call, which must be done first)
   String verificationCode;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5PasswordResetRequestToJson(this);
 }

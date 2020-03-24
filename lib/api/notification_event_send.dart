@@ -13,12 +13,12 @@ class NotificationEventRequest extends Request {
   NotificationEventRequest(
       {this.category,
       this.event,
-      this.notificationEvent,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      this.notificationEvent = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory NotificationEventRequest.fromJson(Map<String, dynamic> json) =>
       _$NotificationEventRequestFromJson(json);
 
@@ -32,7 +32,7 @@ class NotificationEventRequest extends Request {
   /// Must be `1`
   int notificationEvent;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$NotificationEventRequestToJson(this);
 }

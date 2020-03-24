@@ -18,16 +18,16 @@ class P2pAdvertCreateRequest extends Request {
       this.localCurrency,
       this.maxOrderAmount,
       this.minOrderAmount,
-      this.p2pAdvertCreate,
+      this.p2pAdvertCreate = 1,
       this.paymentInfo,
       this.paymentMethod,
       this.rate,
       this.type,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory P2pAdvertCreateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertCreateRequestFromJson(json);
 
@@ -68,7 +68,7 @@ class P2pAdvertCreateRequest extends Request {
   /// Whether this is a buy or a sell.
   String type;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertCreateRequestToJson(this);
 }

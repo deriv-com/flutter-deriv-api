@@ -11,10 +11,10 @@ part 'app_delete_send.g.dart';
 class AppDeleteRequest extends Request {
   /// Initialize AppDeleteRequest
   AppDeleteRequest(
-      {this.appDelete, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.appDelete = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory AppDeleteRequest.fromJson(Map<String, dynamic> json) =>
       _$AppDeleteRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class AppDeleteRequest extends Request {
   /// Application app_id
   int appDelete;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AppDeleteRequestToJson(this);
 }

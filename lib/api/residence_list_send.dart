@@ -11,10 +11,10 @@ part 'residence_list_send.g.dart';
 class ResidenceListRequest extends Request {
   /// Initialize ResidenceListRequest
   ResidenceListRequest(
-      {this.residenceList, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.residenceList = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ResidenceListRequest.fromJson(Map<String, dynamic> json) =>
       _$ResidenceListRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class ResidenceListRequest extends Request {
   /// Must be `1`
   int residenceList;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ResidenceListRequestToJson(this);
 }

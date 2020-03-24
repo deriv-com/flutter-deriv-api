@@ -15,11 +15,11 @@ class ContractsForRequest extends Request {
       this.currency,
       this.landingCompany,
       this.productType,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ContractsForRequest.fromJson(Map<String, dynamic> json) =>
       _$ContractsForRequestFromJson(json);
 
@@ -36,7 +36,7 @@ class ContractsForRequest extends Request {
   /// [Optional] If you specify this field, only contracts tradable through that contract type will be returned.
   String productType;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ContractsForRequestToJson(this);
 }

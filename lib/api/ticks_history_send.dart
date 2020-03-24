@@ -19,11 +19,11 @@ class TicksHistoryRequest extends Request {
       this.style,
       this.subscribe,
       this.ticksHistory,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$TicksHistoryRequestFromJson(json);
 
@@ -52,7 +52,7 @@ class TicksHistoryRequest extends Request {
   /// Short symbol name (obtained from the `active_symbols` call).
   String ticksHistory;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TicksHistoryRequestToJson(this);
 }

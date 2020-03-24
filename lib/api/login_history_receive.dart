@@ -12,13 +12,13 @@ class LoginHistoryResponse extends Response {
   /// Initialize LoginHistoryResponse
   LoginHistoryResponse(
       {this.loginHistory,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory LoginHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$LoginHistoryResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class LoginHistoryResponse extends Response {
   /// Array of records of client login/logout activities
   List<Map<String, dynamic>> loginHistory;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$LoginHistoryResponseToJson(this);
 }

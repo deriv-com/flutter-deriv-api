@@ -12,13 +12,13 @@ class Mt5PasswordChangeResponse extends Response {
   /// Initialize Mt5PasswordChangeResponse
   Mt5PasswordChangeResponse(
       {this.mt5PasswordChange,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory Mt5PasswordChangeResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordChangeResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class Mt5PasswordChangeResponse extends Response {
   /// `1` on success
   int mt5PasswordChange;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5PasswordChangeResponseToJson(this);
 }

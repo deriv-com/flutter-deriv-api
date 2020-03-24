@@ -11,10 +11,10 @@ part 'sell_send.g.dart';
 class SellRequest extends Request {
   /// Initialize SellRequest
   SellRequest(
-      {this.price, this.sell, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.price, this.sell = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory SellRequest.fromJson(Map<String, dynamic> json) =>
       _$SellRequestFromJson(json);
 
@@ -25,7 +25,7 @@ class SellRequest extends Request {
   /// Pass contract_id received from the Portfolio call
   int sell;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$SellRequestToJson(this);
 }

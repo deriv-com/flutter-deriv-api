@@ -12,13 +12,13 @@ class SetFinancialAssessmentResponse extends Response {
   /// Initialize SetFinancialAssessmentResponse
   SetFinancialAssessmentResponse(
       {this.setFinancialAssessment,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory SetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>
       _$SetFinancialAssessmentResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class SetFinancialAssessmentResponse extends Response {
   /// The financial assessment score assigned to the submitted financial assessment
   Map<String, dynamic> setFinancialAssessment;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$SetFinancialAssessmentResponseToJson(this);
 }

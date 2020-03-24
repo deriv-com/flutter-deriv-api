@@ -12,14 +12,14 @@ class Mt5PasswordCheckRequest extends Request {
   /// Initialize Mt5PasswordCheckRequest
   Mt5PasswordCheckRequest(
       {this.login,
-      this.mt5PasswordCheck,
+      this.mt5PasswordCheck = 1,
       this.password,
       this.passwordType,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory Mt5PasswordCheckRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordCheckRequestFromJson(json);
 
@@ -36,7 +36,7 @@ class Mt5PasswordCheckRequest extends Request {
   /// [Optional] Type of the password to check.
   String passwordType;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5PasswordCheckRequestToJson(this);
 }

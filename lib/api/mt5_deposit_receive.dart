@@ -13,13 +13,13 @@ class Mt5DepositResponse extends Response {
   Mt5DepositResponse(
       {this.binaryTransactionId,
       this.mt5Deposit,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory Mt5DepositResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5DepositResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class Mt5DepositResponse extends Response {
   /// 1 on success
   int mt5Deposit;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5DepositResponseToJson(this);
 }

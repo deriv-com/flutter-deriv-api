@@ -12,7 +12,7 @@ class AppMarkupDetailsRequest extends Request {
   /// Initialize AppMarkupDetailsRequest
   AppMarkupDetailsRequest(
       {this.appId,
-      this.appMarkupDetails,
+      this.appMarkupDetails = 1,
       this.clientLoginid,
       this.dateFrom,
       this.dateTo,
@@ -21,11 +21,11 @@ class AppMarkupDetailsRequest extends Request {
       this.offset,
       this.sort,
       this.sortFields,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>
       _$AppMarkupDetailsRequestFromJson(json);
 
@@ -60,7 +60,7 @@ class AppMarkupDetailsRequest extends Request {
   /// [Optional] One or more of the specified fields to sort on. Default sort field is by `transaction_time`.
   List<String> sortFields;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AppMarkupDetailsRequestToJson(this);
 }

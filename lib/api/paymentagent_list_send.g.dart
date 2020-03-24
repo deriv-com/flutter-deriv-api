@@ -11,16 +11,16 @@ PaymentagentListRequest _$PaymentagentListRequestFromJson(
   return PaymentagentListRequest(
     currency: json['currency'] as String,
     paymentagentList: json['paymentagent_list'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$PaymentagentListRequestToJson(
         PaymentagentListRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'currency': instance.currency,
       'paymentagent_list': instance.paymentagentList,
     };

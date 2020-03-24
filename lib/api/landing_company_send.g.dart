@@ -10,15 +10,15 @@ LandingCompanyRequest _$LandingCompanyRequestFromJson(
     Map<String, dynamic> json) {
   return LandingCompanyRequest(
     landingCompany: json['landing_company'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$LandingCompanyRequestToJson(
         LandingCompanyRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'landing_company': instance.landingCompany,
     };

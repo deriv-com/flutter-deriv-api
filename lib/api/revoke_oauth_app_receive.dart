@@ -12,13 +12,13 @@ class RevokeOauthAppResponse extends Response {
   /// Initialize RevokeOauthAppResponse
   RevokeOauthAppResponse(
       {this.revokeOauthApp,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory RevokeOauthAppResponse.fromJson(Map<String, dynamic> json) =>
       _$RevokeOauthAppResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class RevokeOauthAppResponse extends Response {
   /// `1` on success
   int revokeOauthApp;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$RevokeOauthAppResponseToJson(this);
 }

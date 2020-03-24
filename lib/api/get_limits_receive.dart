@@ -12,13 +12,13 @@ class GetLimitsResponse extends Response {
   /// Initialize GetLimitsResponse
   GetLimitsResponse(
       {this.getLimits,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory GetLimitsResponse.fromJson(Map<String, dynamic> json) =>
       _$GetLimitsResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class GetLimitsResponse extends Response {
   /// Trading limits of real account user
   Map<String, dynamic> getLimits;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$GetLimitsResponseToJson(this);
 }

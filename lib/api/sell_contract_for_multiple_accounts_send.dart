@@ -12,14 +12,14 @@ class SellContractForMultipleAccountsRequest extends Request {
   /// Initialize SellContractForMultipleAccountsRequest
   SellContractForMultipleAccountsRequest(
       {this.price,
-      this.sellContractForMultipleAccounts,
+      this.sellContractForMultipleAccounts = 1,
       this.shortcode,
       this.tokens,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory SellContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       _$SellContractForMultipleAccountsRequestFromJson(json);
@@ -37,7 +37,7 @@ class SellContractForMultipleAccountsRequest extends Request {
   /// Authorisation tokens which select the accounts to sell use for the affected accounts.
   List<String> tokens;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() =>
       _$SellContractForMultipleAccountsRequestToJson(this);

@@ -12,13 +12,13 @@ class CopytradingStatisticsResponse extends Response {
   /// Initialize CopytradingStatisticsResponse
   CopytradingStatisticsResponse(
       {this.copytradingStatistics,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory CopytradingStatisticsResponse.fromJson(Map<String, dynamic> json) =>
       _$CopytradingStatisticsResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class CopytradingStatisticsResponse extends Response {
   /// Statistics of the trader
   Map<String, dynamic> copytradingStatistics;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$CopytradingStatisticsResponseToJson(this);
 }

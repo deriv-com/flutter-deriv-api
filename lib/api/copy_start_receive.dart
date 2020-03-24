@@ -12,13 +12,13 @@ class CopyStartResponse extends Response {
   /// Initialize CopyStartResponse
   CopyStartResponse(
       {this.copyStart,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory CopyStartResponse.fromJson(Map<String, dynamic> json) =>
       _$CopyStartResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class CopyStartResponse extends Response {
   /// Copy start confirmation. Returns 1 is success.
   int copyStart;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$CopyStartResponseToJson(this);
 }

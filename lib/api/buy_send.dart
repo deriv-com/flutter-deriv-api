@@ -15,11 +15,11 @@ class BuyRequest extends Request {
       this.parameters,
       this.price,
       this.subscribe,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory BuyRequest.fromJson(Map<String, dynamic> json) =>
       _$BuyRequestFromJson(json);
 
@@ -36,7 +36,7 @@ class BuyRequest extends Request {
   /// [Optional] `1` to stream.
   int subscribe;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$BuyRequestToJson(this);
 }

@@ -12,13 +12,13 @@ class NewAccountVirtualResponse extends Response {
   /// Initialize NewAccountVirtualResponse
   NewAccountVirtualResponse(
       {this.newAccountVirtual,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory NewAccountVirtualResponse.fromJson(Map<String, dynamic> json) =>
       _$NewAccountVirtualResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class NewAccountVirtualResponse extends Response {
   /// New virtual-money account details
   Map<String, dynamic> newAccountVirtual;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$NewAccountVirtualResponseToJson(this);
 }

@@ -12,12 +12,12 @@ class ContractUpdateHistoryRequest extends Request {
   /// Initialize ContractUpdateHistoryRequest
   ContractUpdateHistoryRequest(
       {this.contractId,
-      this.contractUpdateHistory,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      this.contractUpdateHistory = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ContractUpdateHistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$ContractUpdateHistoryRequestFromJson(json);
 
@@ -28,7 +28,7 @@ class ContractUpdateHistoryRequest extends Request {
   /// Must be `1`
   int contractUpdateHistory;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ContractUpdateHistoryRequestToJson(this);
 }

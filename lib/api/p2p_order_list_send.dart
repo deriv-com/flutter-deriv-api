@@ -15,13 +15,13 @@ class P2pOrderListRequest extends Request {
       this.advertId,
       this.limit,
       this.offset,
-      this.p2pOrderList,
+      this.p2pOrderList = 1,
       this.subscribe,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory P2pOrderListRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderListRequestFromJson(json);
 
@@ -44,7 +44,7 @@ class P2pOrderListRequest extends Request {
   /// [Optional] If set to 1, will send updates whenever there is a change to any order belonging to you.
   int subscribe;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pOrderListRequestToJson(this);
 }

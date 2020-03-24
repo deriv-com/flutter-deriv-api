@@ -15,13 +15,13 @@ class PaymentagentTransferResponse extends Response {
       this.clientToLoginid,
       this.paymentagentTransfer,
       this.transactionId,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory PaymentagentTransferResponse.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentTransferResponseFromJson(json);
 
@@ -38,7 +38,7 @@ class PaymentagentTransferResponse extends Response {
   /// Reference ID of transfer performed
   int transactionId;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$PaymentagentTransferResponseToJson(this);
 }

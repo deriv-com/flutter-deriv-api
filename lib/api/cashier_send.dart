@@ -14,11 +14,11 @@ class CashierRequest extends Request {
       {this.cashier,
       this.provider,
       this.verificationCode,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory CashierRequest.fromJson(Map<String, dynamic> json) =>
       _$CashierRequestFromJson(json);
 
@@ -32,7 +32,7 @@ class CashierRequest extends Request {
   /// [Optional] Email verification code (received from a verify_email call, which must be done first)
   String verificationCode;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$CashierRequestToJson(this);
 }

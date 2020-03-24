@@ -11,10 +11,10 @@ part 'revoke_oauth_app_send.g.dart';
 class RevokeOauthAppRequest extends Request {
   /// Initialize RevokeOauthAppRequest
   RevokeOauthAppRequest(
-      {this.revokeOauthApp, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.revokeOauthApp = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory RevokeOauthAppRequest.fromJson(Map<String, dynamic> json) =>
       _$RevokeOauthAppRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class RevokeOauthAppRequest extends Request {
   /// The application ID to revoke.
   int revokeOauthApp;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$RevokeOauthAppRequestToJson(this);
 }

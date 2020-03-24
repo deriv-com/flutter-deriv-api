@@ -11,10 +11,10 @@ part 'get_self_exclusion_send.g.dart';
 class GetSelfExclusionRequest extends Request {
   /// Initialize GetSelfExclusionRequest
   GetSelfExclusionRequest(
-      {this.getSelfExclusion, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.getSelfExclusion = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory GetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       _$GetSelfExclusionRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class GetSelfExclusionRequest extends Request {
   /// Must be `1`
   int getSelfExclusion;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$GetSelfExclusionRequestToJson(this);
 }

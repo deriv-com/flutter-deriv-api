@@ -17,12 +17,12 @@ class StatementRequest extends Request {
       this.description,
       this.limit,
       this.offset,
-      this.statement,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      this.statement = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>
       _$StatementRequestFromJson(json);
 
@@ -48,7 +48,7 @@ class StatementRequest extends Request {
   /// Must be `1`
   int statement;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$StatementRequestToJson(this);
 }

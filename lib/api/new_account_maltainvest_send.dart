@@ -37,7 +37,7 @@ class NewAccountMaltainvestRequest extends Request {
       this.incomeSource,
       this.lastName,
       this.netIncome,
-      this.newAccountMaltainvest,
+      this.newAccountMaltainvest = 1,
       this.occupation,
       this.otherInstrumentsTradingExperience,
       this.otherInstrumentsTradingFrequency,
@@ -50,11 +50,11 @@ class NewAccountMaltainvestRequest extends Request {
       this.sourceOfWealth,
       this.taxIdentificationNumber,
       this.taxResidence,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory NewAccountMaltainvestRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountMaltainvestRequestFromJson(json);
 
@@ -176,7 +176,7 @@ class NewAccountMaltainvestRequest extends Request {
   /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   String taxResidence;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$NewAccountMaltainvestRequestToJson(this);
 }

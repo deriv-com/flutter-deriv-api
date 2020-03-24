@@ -12,13 +12,13 @@ class Mt5GetSettingsResponse extends Response {
   /// Initialize Mt5GetSettingsResponse
   Mt5GetSettingsResponse(
       {this.mt5GetSettings,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory Mt5GetSettingsResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5GetSettingsResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class Mt5GetSettingsResponse extends Response {
   /// MT5 user account details
   Map<String, dynamic> mt5GetSettings;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5GetSettingsResponseToJson(this);
 }

@@ -12,13 +12,13 @@ class SetAccountCurrencyResponse extends Response {
   /// Initialize SetAccountCurrencyResponse
   SetAccountCurrencyResponse(
       {this.setAccountCurrency,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory SetAccountCurrencyResponse.fromJson(Map<String, dynamic> json) =>
       _$SetAccountCurrencyResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class SetAccountCurrencyResponse extends Response {
   /// `1`: success, `0`: no change
   int setAccountCurrency;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$SetAccountCurrencyResponseToJson(this);
 }

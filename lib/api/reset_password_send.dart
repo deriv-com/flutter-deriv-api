@@ -13,13 +13,13 @@ class ResetPasswordRequest extends Request {
   ResetPasswordRequest(
       {this.dateOfBirth,
       this.newPassword,
-      this.resetPassword,
+      this.resetPassword = 1,
       this.verificationCode,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ResetPasswordRequest.fromJson(Map<String, dynamic> json) =>
       _$ResetPasswordRequestFromJson(json);
 
@@ -36,7 +36,7 @@ class ResetPasswordRequest extends Request {
   /// Email verification code (received from a `verify_email` call, which must be done first)
   String verificationCode;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ResetPasswordRequestToJson(this);
 }

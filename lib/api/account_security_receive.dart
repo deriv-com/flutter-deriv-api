@@ -12,13 +12,13 @@ class AccountSecurityResponse extends Response {
   /// Initialize AccountSecurityResponse
   AccountSecurityResponse(
       {this.accountSecurity,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory AccountSecurityResponse.fromJson(Map<String, dynamic> json) =>
       _$AccountSecurityResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class AccountSecurityResponse extends Response {
   /// The information of 2-Factor authentication.
   Map<String, dynamic> accountSecurity;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AccountSecurityResponseToJson(this);
 }

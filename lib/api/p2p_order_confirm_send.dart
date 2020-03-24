@@ -12,12 +12,12 @@ class P2pOrderConfirmRequest extends Request {
   /// Initialize P2pOrderConfirmRequest
   P2pOrderConfirmRequest(
       {this.id,
-      this.p2pOrderConfirm,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      this.p2pOrderConfirm = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory P2pOrderConfirmRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderConfirmRequestFromJson(json);
 
@@ -28,7 +28,7 @@ class P2pOrderConfirmRequest extends Request {
   /// Must be 1
   int p2pOrderConfirm;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pOrderConfirmRequestToJson(this);
 }

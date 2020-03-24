@@ -11,10 +11,10 @@ part 'set_account_currency_send.g.dart';
 class SetAccountCurrencyRequest extends Request {
   /// Initialize SetAccountCurrencyRequest
   SetAccountCurrencyRequest(
-      {this.setAccountCurrency, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.setAccountCurrency, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory SetAccountCurrencyRequest.fromJson(Map<String, dynamic> json) =>
       _$SetAccountCurrencyRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class SetAccountCurrencyRequest extends Request {
   /// Currency of the account. List of supported currencies can be acquired with `payout_currencies` call.
   String setAccountCurrency;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$SetAccountCurrencyRequestToJson(this);
 }

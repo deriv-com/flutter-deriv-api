@@ -30,14 +30,14 @@ class SetSettingsRequest extends Request {
       this.salutation,
       this.secretAnswer,
       this.secretQuestion,
-      this.setSettings,
+      this.setSettings = 1,
       this.taxIdentificationNumber,
       this.taxResidence,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory SetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       _$SetSettingsRequestFromJson(json);
 
@@ -108,7 +108,7 @@ class SetSettingsRequest extends Request {
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for maltainvest landing company.
   String taxResidence;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$SetSettingsRequestToJson(this);
 }

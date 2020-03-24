@@ -12,13 +12,13 @@ class AppGetResponse extends Response {
   /// Initialize AppGetResponse
   AppGetResponse(
       {this.appGet,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory AppGetResponse.fromJson(Map<String, dynamic> json) =>
       _$AppGetResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class AppGetResponse extends Response {
   /// The information of the requested application.
   Map<String, dynamic> appGet;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AppGetResponseToJson(this);
 }

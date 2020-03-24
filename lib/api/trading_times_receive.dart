@@ -12,13 +12,13 @@ class TradingTimesResponse extends Response {
   /// Initialize TradingTimesResponse
   TradingTimesResponse(
       {this.tradingTimes,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory TradingTimesResponse.fromJson(Map<String, dynamic> json) =>
       _$TradingTimesResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class TradingTimesResponse extends Response {
   /// The trading times structure is a hierarchy as follows: Market -> SubMarket -> Underlyings
   Map<String, dynamic> tradingTimes;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TradingTimesResponseToJson(this);
 }

@@ -12,13 +12,13 @@ class PayoutCurrenciesResponse extends Response {
   /// Initialize PayoutCurrenciesResponse
   PayoutCurrenciesResponse(
       {this.payoutCurrencies,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory PayoutCurrenciesResponse.fromJson(Map<String, dynamic> json) =>
       _$PayoutCurrenciesResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class PayoutCurrenciesResponse extends Response {
   /// Available payout currencies. Note: if a user is logged in, only the currency available for the account will be returned.
   List<String> payoutCurrencies;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$PayoutCurrenciesResponseToJson(this);
 }

@@ -11,10 +11,10 @@ part 'copytrading_list_send.g.dart';
 class CopytradingListRequest extends Request {
   /// Initialize CopytradingListRequest
   CopytradingListRequest(
-      {this.copytradingList, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.copytradingList = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory CopytradingListRequest.fromJson(Map<String, dynamic> json) =>
       _$CopytradingListRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class CopytradingListRequest extends Request {
   /// Must be `1`
   int copytradingList;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$CopytradingListRequestToJson(this);
 }

@@ -14,16 +14,16 @@ class DocumentUploadRequest extends Request {
       {this.documentFormat,
       this.documentId,
       this.documentType,
-      this.documentUpload,
+      this.documentUpload = 1,
       this.expectedChecksum,
       this.expirationDate,
       this.fileSize,
       this.pageType,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>
       _$DocumentUploadRequestFromJson(json);
 
@@ -52,7 +52,7 @@ class DocumentUploadRequest extends Request {
   /// [Optional] To determine document side
   String pageType;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$DocumentUploadRequestToJson(this);
 }

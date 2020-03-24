@@ -12,13 +12,13 @@ class P2pAdvertiserUpdateResponse extends Response {
   /// Initialize P2pAdvertiserUpdateResponse
   P2pAdvertiserUpdateResponse(
       {this.p2pAdvertiserUpdate,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory P2pAdvertiserUpdateResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertiserUpdateResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class P2pAdvertiserUpdateResponse extends Response {
   /// P2P advertiser information.
   Map<String, dynamic> p2pAdvertiserUpdate;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertiserUpdateResponseToJson(this);
 }

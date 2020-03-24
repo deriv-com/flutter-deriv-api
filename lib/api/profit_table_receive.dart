@@ -12,13 +12,13 @@ class ProfitTableResponse extends Response {
   /// Initialize ProfitTableResponse
   ProfitTableResponse(
       {this.profitTable,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ProfitTableResponse.fromJson(Map<String, dynamic> json) =>
       _$ProfitTableResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class ProfitTableResponse extends Response {
   /// Account Profit Table.
   Map<String, dynamic> profitTable;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ProfitTableResponseToJson(this);
 }

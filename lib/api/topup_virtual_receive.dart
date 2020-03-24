@@ -12,13 +12,13 @@ class TopupVirtualResponse extends Response {
   /// Initialize TopupVirtualResponse
   TopupVirtualResponse(
       {this.topupVirtual,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory TopupVirtualResponse.fromJson(Map<String, dynamic> json) =>
       _$TopupVirtualResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class TopupVirtualResponse extends Response {
   /// The information regarding a successful top up for a virtual money account
   Map<String, dynamic> topupVirtual;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TopupVirtualResponseToJson(this);
 }

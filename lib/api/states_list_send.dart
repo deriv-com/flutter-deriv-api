@@ -11,10 +11,10 @@ part 'states_list_send.g.dart';
 class StatesListRequest extends Request {
   /// Initialize StatesListRequest
   StatesListRequest(
-      {this.statesList, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.statesList, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory StatesListRequest.fromJson(Map<String, dynamic> json) =>
       _$StatesListRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class StatesListRequest extends Request {
   /// Client's 2-letter country code (obtained from residence_list call)
   String statesList;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$StatesListRequestToJson(this);
 }

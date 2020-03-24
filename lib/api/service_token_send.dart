@@ -13,12 +13,12 @@ class ServiceTokenRequest extends Request {
   ServiceTokenRequest(
       {this.referrer,
       this.service,
-      this.serviceToken,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      this.serviceToken = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ServiceTokenRequest.fromJson(Map<String, dynamic> json) =>
       _$ServiceTokenRequestFromJson(json);
 
@@ -32,7 +32,7 @@ class ServiceTokenRequest extends Request {
   /// Must be `1`
   int serviceToken;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ServiceTokenRequestToJson(this);
 }

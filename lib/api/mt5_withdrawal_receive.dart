@@ -13,13 +13,13 @@ class Mt5WithdrawalResponse extends Response {
   Mt5WithdrawalResponse(
       {this.binaryTransactionId,
       this.mt5Withdrawal,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory Mt5WithdrawalResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5WithdrawalResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class Mt5WithdrawalResponse extends Response {
   /// `1` on success
   int mt5Withdrawal;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5WithdrawalResponseToJson(this);
 }

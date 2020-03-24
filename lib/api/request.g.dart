@@ -8,12 +8,12 @@ part of 'request.dart';
 
 Request _$RequestFromJson(Map<String, dynamic> json) {
   return Request(
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$RequestToJson(Request instance) => <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
     };

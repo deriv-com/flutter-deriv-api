@@ -16,16 +16,16 @@ TicksHistoryRequest _$TicksHistoryRequestFromJson(Map<String, dynamic> json) {
     style: json['style'] as String,
     subscribe: json['subscribe'] as int,
     ticksHistory: json['ticks_history'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$TicksHistoryRequestToJson(
         TicksHistoryRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'adjust_start_time': instance.adjustStartTime,
       'count': instance.count,
       'end': instance.end,

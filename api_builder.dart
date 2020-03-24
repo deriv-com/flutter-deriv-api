@@ -27,15 +27,15 @@ class APIBuilder extends Builder {
   };
 
   static const Map<String, String> responseCommonFields = <String, String>{
-    'req_id': 'integer',
     'echo_req': 'object',
-    'msg_type': 'string',
     'error': 'object',
+    'msg_type': 'string',
+    'req_id': 'integer',
   };
 
   static const Map<String, String> requestCommonFields = <String, String>{
-    'req_id': 'integer',
     'passthrough': 'object',
+    'req_id': 'integer',
   };
 
   @override
@@ -76,8 +76,18 @@ class APIBuilder extends Builder {
           .where((String k) =>
               !requestCommonFields.containsKey(k) &&
               !responseCommonFields.containsKey(k))
-          .map((String k) => 'this.${ReCase(k).camelCase}')
-          .join(', ');
+          .map((String k) {
+        final JsonSchema prop = schema.properties[k];
+        if (prop.typeList?.isNotEmpty ?? false) {
+          // Set method default value to 1
+          if (schemaType == 'send' &&
+              k == methodName &&
+              (prop.type?.toString() ?? 'string') == 'integer') {
+            return 'this.${ReCase(k).camelCase} = 1';
+          }
+        }
+        return 'this.${ReCase(k).camelCase}';
+      }).join(', ');
 
       String superTypeNameParameters;
       if (schemaType == 'send') {
@@ -174,13 +184,13 @@ class ${fullClassName} extends ${schemaType == 'send' ? 'Request' : 'Response'}{
   /// Initialize $fullClassName
   ${fullClassName}({$constructorParameters, $superTypeNameParameters}): super($superCallParameters);
   
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ${fullClassName}.fromJson(Map<String, dynamic> json) => _\$${fullClassName}FromJson(json);
   
   // Properties
   ${attributeList}
   
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _\$${fullClassName}ToJson(this);
 

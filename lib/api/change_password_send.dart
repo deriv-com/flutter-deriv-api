@@ -14,11 +14,11 @@ class ChangePasswordRequest extends Request {
       {this.changePassword,
       this.newPassword,
       this.oldPassword,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory ChangePasswordRequest.fromJson(Map<String, dynamic> json) =>
       _$ChangePasswordRequestFromJson(json);
 
@@ -32,7 +32,7 @@ class ChangePasswordRequest extends Request {
   /// Old password for validation (non-empty string, accepts any printable ASCII character)
   String oldPassword;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ChangePasswordRequestToJson(this);
 }

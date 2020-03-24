@@ -12,12 +12,12 @@ class TransactionRequest extends Request {
   /// Initialize TransactionRequest
   TransactionRequest(
       {this.subscribe,
-      this.transaction,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      this.transaction = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory TransactionRequest.fromJson(Map<String, dynamic> json) =>
       _$TransactionRequestFromJson(json);
 
@@ -28,7 +28,7 @@ class TransactionRequest extends Request {
   /// Must be `1`
   int transaction;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TransactionRequestToJson(this);
 }

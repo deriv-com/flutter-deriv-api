@@ -12,13 +12,13 @@ class AppUpdateResponse extends Response {
   /// Initialize AppUpdateResponse
   AppUpdateResponse(
       {this.appUpdate,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory AppUpdateResponse.fromJson(Map<String, dynamic> json) =>
       _$AppUpdateResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class AppUpdateResponse extends Response {
   /// Information of the updated application.
   Map<String, dynamic> appUpdate;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AppUpdateResponseToJson(this);
 }

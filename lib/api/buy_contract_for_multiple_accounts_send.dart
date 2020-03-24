@@ -15,11 +15,11 @@ class BuyContractForMultipleAccountsRequest extends Request {
       this.parameters,
       this.price,
       this.tokens,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory BuyContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       _$BuyContractForMultipleAccountsRequestFromJson(json);
@@ -37,7 +37,7 @@ class BuyContractForMultipleAccountsRequest extends Request {
   /// List of API tokens identifying the accounts for which the contract is bought. Note: If the same token appears multiple times or if multiple tokens designate the same account, the contract is bought multiple times for this account.
   List<String> tokens;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() =>
       _$BuyContractForMultipleAccountsRequestToJson(this);

@@ -25,7 +25,7 @@ class NewAccountRealRequest extends Request {
       this.dateOfBirth,
       this.firstName,
       this.lastName,
-      this.newAccountReal,
+      this.newAccountReal = 1,
       this.phone,
       this.placeOfBirth,
       this.residence,
@@ -34,11 +34,11 @@ class NewAccountRealRequest extends Request {
       this.secretQuestion,
       this.taxIdentificationNumber,
       this.taxResidence,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory NewAccountRealRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountRealRequestFromJson(json);
 
@@ -112,7 +112,7 @@ class NewAccountRealRequest extends Request {
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   String taxResidence;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$NewAccountRealRequestToJson(this);
 }

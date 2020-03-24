@@ -15,18 +15,18 @@ class NewAccountVirtualRequest extends Request {
       this.clientPassword,
       this.dateFirstContact,
       this.gclidUrl,
-      this.newAccountVirtual,
+      this.newAccountVirtual = 1,
       this.residence,
       this.signupDevice,
       this.utmCampaign,
       this.utmMedium,
       this.utmSource,
       this.verificationCode,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountVirtualRequestFromJson(json);
 
@@ -64,7 +64,7 @@ class NewAccountVirtualRequest extends Request {
   /// Email verification code (received from a `verify_email` call, which must be done first).
   String verificationCode;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$NewAccountVirtualRequestToJson(this);
 }

@@ -12,13 +12,13 @@ class NotificationEventResponse extends Response {
   /// Initialize NotificationEventResponse
   NotificationEventResponse(
       {this.notificationEvent,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory NotificationEventResponse.fromJson(Map<String, dynamic> json) =>
       _$NotificationEventResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class NotificationEventResponse extends Response {
   /// `1`: all actions finished successfully, `0`: at least one or more actions failed.
   int notificationEvent;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$NotificationEventResponseToJson(this);
 }

@@ -12,13 +12,13 @@ class AccountStatisticsResponse extends Response {
   /// Initialize AccountStatisticsResponse
   AccountStatisticsResponse(
       {this.accountStatistics,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory AccountStatisticsResponse.fromJson(Map<String, dynamic> json) =>
       _$AccountStatisticsResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class AccountStatisticsResponse extends Response {
   /// Response of account statistics
   Map<String, dynamic> accountStatistics;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AccountStatisticsResponseToJson(this);
 }

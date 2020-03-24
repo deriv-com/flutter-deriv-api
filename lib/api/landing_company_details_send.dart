@@ -11,10 +11,10 @@ part 'landing_company_details_send.g.dart';
 class LandingCompanyDetailsRequest extends Request {
   /// Initialize LandingCompanyDetailsRequest
   LandingCompanyDetailsRequest(
-      {this.landingCompanyDetails, int reqId, Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      {this.landingCompanyDetails, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory LandingCompanyDetailsRequest.fromJson(Map<String, dynamic> json) =>
       _$LandingCompanyDetailsRequestFromJson(json);
 
@@ -22,7 +22,7 @@ class LandingCompanyDetailsRequest extends Request {
   /// Landing company shortcode.
   String landingCompanyDetails;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$LandingCompanyDetailsRequestToJson(this);
 }

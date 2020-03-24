@@ -14,16 +14,16 @@ Mt5PasswordResetRequest _$Mt5PasswordResetRequestFromJson(
     newPassword: json['new_password'] as String,
     passwordType: json['password_type'] as String,
     verificationCode: json['verification_code'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$Mt5PasswordResetRequestToJson(
         Mt5PasswordResetRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'login': instance.login,
       'mt5_password_reset': instance.mt5PasswordReset,
       'new_password': instance.newPassword,

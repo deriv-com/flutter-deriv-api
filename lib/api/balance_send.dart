@@ -12,13 +12,13 @@ class BalanceRequest extends Request {
   /// Initialize BalanceRequest
   BalanceRequest(
       {this.account,
-      this.balance,
+      this.balance = 1,
       this.subscribe,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory BalanceRequest.fromJson(Map<String, dynamic> json) =>
       _$BalanceRequestFromJson(json);
 
@@ -32,7 +32,7 @@ class BalanceRequest extends Request {
   /// [Optional] If set to 1, will send updates whenever the balance changes.
   int subscribe;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$BalanceRequestToJson(this);
 }

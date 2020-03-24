@@ -12,13 +12,13 @@ class P2pOrderCancelResponse extends Response {
   /// Initialize P2pOrderCancelResponse
   P2pOrderCancelResponse(
       {this.p2pOrderCancel,
-      int reqId,
       Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
       String msgType,
-      Map<String, dynamic> error})
-      : super(reqId: reqId, echoReq: echoReq, msgType: msgType, error: error);
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory P2pOrderCancelResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCancelResponseFromJson(json);
 
@@ -26,7 +26,7 @@ class P2pOrderCancelResponse extends Response {
   /// Cancellation details
   Map<String, dynamic> p2pOrderCancel;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pOrderCancelResponseToJson(this);
 }

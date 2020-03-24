@@ -12,7 +12,7 @@ class AppUpdateRequest extends Request {
   /// Initialize AppUpdateRequest
   AppUpdateRequest(
       {this.appMarkupPercentage,
-      this.appUpdate,
+      this.appUpdate = 1,
       this.appstore,
       this.github,
       this.googleplay,
@@ -21,11 +21,11 @@ class AppUpdateRequest extends Request {
       this.redirectUri,
       this.scopes,
       this.verificationUri,
-      int reqId,
-      Map<String, dynamic> passthrough})
-      : super(reqId: reqId, passthrough: passthrough);
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
 
-  /// Factory constructor to initialize from JSON
+  /// Creates instance from JSON
   factory AppUpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$AppUpdateRequestFromJson(json);
 
@@ -60,7 +60,7 @@ class AppUpdateRequest extends Request {
   /// [Optional] Used when 'verify_email' called. If available, a URL containing the verification token will send to the client's email, otherwise only the token will be sent.
   String verificationUri;
 
-  /// Converts this instance to JSON
+  /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AppUpdateRequestToJson(this);
 }
