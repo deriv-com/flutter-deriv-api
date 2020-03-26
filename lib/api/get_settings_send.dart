@@ -7,11 +7,11 @@ import 'request.dart';
 part 'get_settings_send.g.dart';
 
 /// JSON conversion for 'get_settings_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class GetSettingsRequest extends Request {
   /// Initialize GetSettingsRequest
   GetSettingsRequest(
-      {this.getSettings, int reqId, Map<String, dynamic> passthrough})
+      {this.getSettings = 1, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
   /// Factory constructor to initialize from JSON

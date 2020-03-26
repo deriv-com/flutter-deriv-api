@@ -7,12 +7,12 @@ import 'request.dart';
 part 'exchange_rates_send.g.dart';
 
 /// JSON conversion for 'exchange_rates_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ExchangeRatesRequest extends Request {
   /// Initialize ExchangeRatesRequest
   ExchangeRatesRequest(
       {this.baseCurrency,
-      this.exchangeRates,
+      this.exchangeRates = 1,
       int reqId,
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);

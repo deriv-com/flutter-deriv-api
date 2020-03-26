@@ -7,11 +7,11 @@ import 'request.dart';
 part 'account_closure_send.g.dart';
 
 /// JSON conversion for 'account_closure_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AccountClosureRequest extends Request {
   /// Initialize AccountClosureRequest
   AccountClosureRequest(
-      {this.accountClosure,
+      {this.accountClosure = 1,
       this.reason,
       int reqId,
       Map<String, dynamic> passthrough})

@@ -7,10 +7,10 @@ import 'request.dart';
 part 'ping_send.g.dart';
 
 /// JSON conversion for 'ping_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class PingRequest extends Request {
   /// Initialize PingRequest
-  PingRequest({this.ping, int reqId, Map<String, dynamic> passthrough})
+  PingRequest({this.ping = 1, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
   /// Factory constructor to initialize from JSON

@@ -7,12 +7,12 @@ import 'request.dart';
 part 'p2p_order_info_send.g.dart';
 
 /// JSON conversion for 'p2p_order_info_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pOrderInfoRequest extends Request {
   /// Initialize P2pOrderInfoRequest
   P2pOrderInfoRequest(
       {this.id,
-      this.p2pOrderInfo,
+      this.p2pOrderInfo = 1,
       this.subscribe,
       int reqId,
       Map<String, dynamic> passthrough})

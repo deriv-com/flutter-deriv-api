@@ -7,7 +7,7 @@ import 'response.dart';
 part 'p2p_order_list_receive.g.dart';
 
 /// JSON conversion for 'p2p_order_list_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pOrderListResponse extends Response {
   /// Initialize P2pOrderListResponse
   P2pOrderListResponse(

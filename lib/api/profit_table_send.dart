@@ -7,7 +7,7 @@ import 'request.dart';
 part 'profit_table_send.g.dart';
 
 /// JSON conversion for 'profit_table_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ProfitTableRequest extends Request {
   /// Initialize ProfitTableRequest
   ProfitTableRequest(
@@ -16,7 +16,7 @@ class ProfitTableRequest extends Request {
       this.description,
       this.limit,
       this.offset,
-      this.profitTable,
+      this.profitTable = 1,
       this.sort,
       int reqId,
       Map<String, dynamic> passthrough})

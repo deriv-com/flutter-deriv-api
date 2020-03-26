@@ -7,7 +7,7 @@ import 'request.dart';
 part 'authorize_send.g.dart';
 
 /// JSON conversion for 'authorize_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AuthorizeRequest extends Request {
   /// Initialize AuthorizeRequest
   AuthorizeRequest(

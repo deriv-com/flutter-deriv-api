@@ -7,11 +7,11 @@ import 'request.dart';
 part 'oauth_apps_send.g.dart';
 
 /// JSON conversion for 'oauth_apps_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class OauthAppsRequest extends Request {
   /// Initialize OauthAppsRequest
   OauthAppsRequest(
-      {this.oauthApps, int reqId, Map<String, dynamic> passthrough})
+      {this.oauthApps = 1, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
   /// Factory constructor to initialize from JSON

@@ -7,7 +7,7 @@ import 'request.dart';
 part 'mt5_new_account_send.g.dart';
 
 /// JSON conversion for 'mt5_new_account_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5NewAccountRequest extends Request {
   /// Initialize Mt5NewAccountRequest
   Mt5NewAccountRequest(
@@ -22,7 +22,7 @@ class Mt5NewAccountRequest extends Request {
       this.leverage,
       this.mainPassword,
       this.mt5AccountType,
-      this.mt5NewAccount,
+      this.mt5NewAccount = 1,
       this.name,
       this.phone,
       this.phonePassword,

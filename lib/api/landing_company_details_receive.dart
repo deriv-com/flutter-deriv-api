@@ -7,7 +7,7 @@ import 'response.dart';
 part 'landing_company_details_receive.g.dart';
 
 /// JSON conversion for 'landing_company_details_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class LandingCompanyDetailsResponse extends Response {
   /// Initialize LandingCompanyDetailsResponse
   LandingCompanyDetailsResponse(

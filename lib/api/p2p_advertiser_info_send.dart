@@ -7,12 +7,12 @@ import 'request.dart';
 part 'p2p_advertiser_info_send.g.dart';
 
 /// JSON conversion for 'p2p_advertiser_info_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pAdvertiserInfoRequest extends Request {
   /// Initialize P2pAdvertiserInfoRequest
   P2pAdvertiserInfoRequest(
       {this.id,
-      this.p2pAdvertiserInfo,
+      this.p2pAdvertiserInfo = 1,
       int reqId,
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);

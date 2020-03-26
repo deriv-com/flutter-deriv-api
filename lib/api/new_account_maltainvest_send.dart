@@ -7,7 +7,7 @@ import 'request.dart';
 part 'new_account_maltainvest_send.g.dart';
 
 /// JSON conversion for 'new_account_maltainvest_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class NewAccountMaltainvestRequest extends Request {
   /// Initialize NewAccountMaltainvestRequest
   NewAccountMaltainvestRequest(
@@ -37,7 +37,7 @@ class NewAccountMaltainvestRequest extends Request {
       this.incomeSource,
       this.lastName,
       this.netIncome,
-      this.newAccountMaltainvest,
+      this.newAccountMaltainvest = 1,
       this.occupation,
       this.otherInstrumentsTradingExperience,
       this.otherInstrumentsTradingFrequency,

@@ -7,11 +7,11 @@ import 'request.dart';
 part 'app_delete_send.g.dart';
 
 /// JSON conversion for 'app_delete_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AppDeleteRequest extends Request {
   /// Initialize AppDeleteRequest
   AppDeleteRequest(
-      {this.appDelete, int reqId, Map<String, dynamic> passthrough})
+      {this.appDelete = 1, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
   /// Factory constructor to initialize from JSON

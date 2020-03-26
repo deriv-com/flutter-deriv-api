@@ -7,12 +7,12 @@ import 'request.dart';
 part 'mt5_get_settings_send.g.dart';
 
 /// JSON conversion for 'mt5_get_settings_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5GetSettingsRequest extends Request {
   /// Initialize Mt5GetSettingsRequest
   Mt5GetSettingsRequest(
       {this.login,
-      this.mt5GetSettings,
+      this.mt5GetSettings = 1,
       int reqId,
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);

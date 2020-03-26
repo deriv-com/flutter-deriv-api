@@ -9,8 +9,8 @@ part of 'states_list_receive.dart';
 StatesListResponse _$StatesListResponseFromJson(Map<String, dynamic> json) {
   return StatesListResponse(
     statesList: (json['states_list'] as List)
-        .map((e) => e as Map<String, dynamic>)
-        .toList(),
+        ?.map((e) => e as Map<String, dynamic>)
+        ?.toList(),
     reqId: json['req_id'] as int,
     echoReq: json['echo_req'] as Map<String, dynamic>,
     msgType: json['msg_type'] as String,

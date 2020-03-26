@@ -8,7 +8,7 @@ part of 'forget_all_receive.dart';
 
 ForgetAllResponse _$ForgetAllResponseFromJson(Map<String, dynamic> json) {
   return ForgetAllResponse(
-    forgetAll: (json['forget_all'] as List).map((e) => e as String).toList(),
+    forgetAll: (json['forget_all'] as List)?.map((e) => e as String)?.toList(),
     reqId: json['req_id'] as int,
     echoReq: json['echo_req'] as Map<String, dynamic>,
     msgType: json['msg_type'] as String,

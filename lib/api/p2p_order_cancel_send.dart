@@ -7,12 +7,12 @@ import 'request.dart';
 part 'p2p_order_cancel_send.g.dart';
 
 /// JSON conversion for 'p2p_order_cancel_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pOrderCancelRequest extends Request {
   /// Initialize P2pOrderCancelRequest
   P2pOrderCancelRequest(
       {this.id,
-      this.p2pOrderCancel,
+      this.p2pOrderCancel = 1,
       int reqId,
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);

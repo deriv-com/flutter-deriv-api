@@ -7,7 +7,7 @@ import 'response.dart';
 part 'get_account_status_receive.g.dart';
 
 /// JSON conversion for 'get_account_status_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class GetAccountStatusResponse extends Response {
   /// Initialize GetAccountStatusResponse
   GetAccountStatusResponse(

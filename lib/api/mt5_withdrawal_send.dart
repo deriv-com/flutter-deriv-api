@@ -7,13 +7,13 @@ import 'request.dart';
 part 'mt5_withdrawal_send.g.dart';
 
 /// JSON conversion for 'mt5_withdrawal_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5WithdrawalRequest extends Request {
   /// Initialize Mt5WithdrawalRequest
   Mt5WithdrawalRequest(
       {this.amount,
       this.fromMt5,
-      this.mt5Withdrawal,
+      this.mt5Withdrawal = 1,
       this.toBinary,
       int reqId,
       Map<String, dynamic> passthrough})

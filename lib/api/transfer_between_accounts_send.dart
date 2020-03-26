@@ -7,7 +7,7 @@ import 'request.dart';
 part 'transfer_between_accounts_send.g.dart';
 
 /// JSON conversion for 'transfer_between_accounts_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TransferBetweenAccountsRequest extends Request {
   /// Initialize TransferBetweenAccountsRequest
   TransferBetweenAccountsRequest(
@@ -16,7 +16,7 @@ class TransferBetweenAccountsRequest extends Request {
       this.accounts,
       this.amount,
       this.currency,
-      this.transferBetweenAccounts,
+      this.transferBetweenAccounts = 1,
       int reqId,
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);

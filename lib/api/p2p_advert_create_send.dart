@@ -7,7 +7,7 @@ import 'request.dart';
 part 'p2p_advert_create_send.g.dart';
 
 /// JSON conversion for 'p2p_advert_create_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pAdvertCreateRequest extends Request {
   /// Initialize P2pAdvertCreateRequest
   P2pAdvertCreateRequest(
@@ -18,7 +18,7 @@ class P2pAdvertCreateRequest extends Request {
       this.localCurrency,
       this.maxOrderAmount,
       this.minOrderAmount,
-      this.p2pAdvertCreate,
+      this.p2pAdvertCreate = 1,
       this.paymentInfo,
       this.paymentMethod,
       this.rate,

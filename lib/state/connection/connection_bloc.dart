@@ -50,7 +50,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       if (state is Connected) {
         final Connected currentState = state;
         final TimeResponse timeResponse =
-            await currentState.api.call('time', TimeRequest());
+            await currentState.api.call(TimeRequest());
 
         if (timeResponse.error == null) {
           print('Fetching server time failed: ${timeResponse.error}');

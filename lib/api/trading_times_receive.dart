@@ -7,7 +7,7 @@ import 'response.dart';
 part 'trading_times_receive.g.dart';
 
 /// JSON conversion for 'trading_times_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TradingTimesResponse extends Response {
   /// Initialize TradingTimesResponse
   TradingTimesResponse(

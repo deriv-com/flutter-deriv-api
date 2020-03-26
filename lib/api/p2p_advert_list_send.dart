@@ -7,7 +7,7 @@ import 'request.dart';
 part 'p2p_advert_list_send.g.dart';
 
 /// JSON conversion for 'p2p_advert_list_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pAdvertListRequest extends Request {
   /// Initialize P2pAdvertListRequest
   P2pAdvertListRequest(
@@ -19,7 +19,7 @@ class P2pAdvertListRequest extends Request {
       this.limit,
       this.localCurrency,
       this.offset,
-      this.p2pAdvertList,
+      this.p2pAdvertList = 1,
       int reqId,
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);

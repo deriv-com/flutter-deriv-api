@@ -7,7 +7,7 @@ import 'request.dart';
 part 'set_self_exclusion_send.g.dart';
 
 /// JSON conversion for 'set_self_exclusion_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class SetSelfExclusionRequest extends Request {
   /// Initialize SetSelfExclusionRequest
   SetSelfExclusionRequest(
@@ -23,7 +23,7 @@ class SetSelfExclusionRequest extends Request {
       this.maxOpenBets,
       this.maxTurnover,
       this.sessionDurationLimit,
-      this.setSelfExclusion,
+      this.setSelfExclusion = 1,
       this.timeoutUntil,
       int reqId,
       Map<String, dynamic> passthrough})

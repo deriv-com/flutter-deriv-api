@@ -7,12 +7,12 @@ import 'request.dart';
 part 'mt5_password_change_send.g.dart';
 
 /// JSON conversion for 'mt5_password_change_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5PasswordChangeRequest extends Request {
   /// Initialize Mt5PasswordChangeRequest
   Mt5PasswordChangeRequest(
       {this.login,
-      this.mt5PasswordChange,
+      this.mt5PasswordChange = 1,
       this.newPassword,
       this.oldPassword,
       this.passwordType,

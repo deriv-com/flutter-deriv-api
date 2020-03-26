@@ -7,7 +7,7 @@ import 'request.dart';
 part 'paymentagent_withdraw_send.g.dart';
 
 /// JSON conversion for 'paymentagent_withdraw_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class PaymentagentWithdrawRequest extends Request {
   /// Initialize PaymentagentWithdrawRequest
   PaymentagentWithdrawRequest(
@@ -16,7 +16,7 @@ class PaymentagentWithdrawRequest extends Request {
       this.description,
       this.dryRun,
       this.paymentagentLoginid,
-      this.paymentagentWithdraw,
+      this.paymentagentWithdraw = 1,
       this.verificationCode,
       int reqId,
       Map<String, dynamic> passthrough})

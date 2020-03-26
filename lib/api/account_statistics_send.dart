@@ -7,11 +7,11 @@ import 'request.dart';
 part 'account_statistics_send.g.dart';
 
 /// JSON conversion for 'account_statistics_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AccountStatisticsRequest extends Request {
   /// Initialize AccountStatisticsRequest
   AccountStatisticsRequest(
-      {this.accountStatistics, int reqId, Map<String, dynamic> passthrough})
+      {this.accountStatistics = 1, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
   /// Factory constructor to initialize from JSON

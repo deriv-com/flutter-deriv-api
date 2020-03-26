@@ -79,8 +79,18 @@ class APIBuilder extends Builder {
           .where((String k) =>
               !requestCommonFields.containsKey(k) &&
               !responseCommonFields.containsKey(k))
-          .map((String k) => 'this.${ReCase(k).camelCase}')
-          .join(', ');
+          .map((String k) {
+        final JsonSchema prop = schema.properties[k];
+        if (prop.typeList?.isNotEmpty ?? false) {
+          // Set method default value to 1
+          if (schemaType == 'send' &&
+              k == methodName &&
+              (prop.type?.toString() ?? 'string') == 'integer') {
+            return 'this.${ReCase(k).camelCase} = 1';
+          }
+        }
+        return 'this.${ReCase(k).camelCase}';
+      }).join(', ');
 
       String superTypeNameParameters;
       if (schemaType == 'send') {
@@ -186,7 +196,7 @@ import '${schemaType == 'send' ? 'request' : 'response'}.dart';
 part '${fileName}.g.dart';
 
 /// JSON conversion for '$fileName'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ${fullClassName} extends ${schemaType == 'send' ? 'Request' : 'Response'}{
   /// Initialize $fullClassName
   ${fullClassName}({$constructorParameters, $superTypeNameParameters}): super($superCallParameters);
