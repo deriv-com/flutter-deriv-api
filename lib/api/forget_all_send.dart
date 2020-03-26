@@ -7,7 +7,7 @@ import 'request.dart';
 part 'forget_all_send.g.dart';
 
 /// JSON conversion for 'forget_all_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ForgetAllRequest extends Request {
   /// Initialize ForgetAllRequest
   ForgetAllRequest(

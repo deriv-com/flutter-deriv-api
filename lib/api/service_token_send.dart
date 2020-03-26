@@ -7,13 +7,13 @@ import 'request.dart';
 part 'service_token_send.g.dart';
 
 /// JSON conversion for 'service_token_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ServiceTokenRequest extends Request {
   /// Initialize ServiceTokenRequest
   ServiceTokenRequest(
       {this.referrer,
       this.service,
-      this.serviceToken,
+      this.serviceToken = 1,
       int reqId,
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);

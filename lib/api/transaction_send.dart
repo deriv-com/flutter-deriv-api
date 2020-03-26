@@ -7,12 +7,12 @@ import 'request.dart';
 part 'transaction_send.g.dart';
 
 /// JSON conversion for 'transaction_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TransactionRequest extends Request {
   /// Initialize TransactionRequest
   TransactionRequest(
       {this.subscribe,
-      this.transaction,
+      this.transaction = 1,
       int reqId,
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);

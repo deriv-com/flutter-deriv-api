@@ -7,7 +7,7 @@ import 'request.dart';
 part 'new_account_real_send.g.dart';
 
 /// JSON conversion for 'new_account_real_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class NewAccountRealRequest extends Request {
   /// Initialize NewAccountRealRequest
   NewAccountRealRequest(
@@ -25,7 +25,7 @@ class NewAccountRealRequest extends Request {
       this.dateOfBirth,
       this.firstName,
       this.lastName,
-      this.newAccountReal,
+      this.newAccountReal = 1,
       this.phone,
       this.placeOfBirth,
       this.residence,

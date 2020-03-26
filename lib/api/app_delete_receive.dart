@@ -7,7 +7,7 @@ import 'response.dart';
 part 'app_delete_receive.g.dart';
 
 /// JSON conversion for 'app_delete_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AppDeleteResponse extends Response {
   /// Initialize AppDeleteResponse
   AppDeleteResponse(

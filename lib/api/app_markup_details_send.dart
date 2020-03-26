@@ -7,12 +7,12 @@ import 'request.dart';
 part 'app_markup_details_send.g.dart';
 
 /// JSON conversion for 'app_markup_details_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AppMarkupDetailsRequest extends Request {
   /// Initialize AppMarkupDetailsRequest
   AppMarkupDetailsRequest(
       {this.appId,
-      this.appMarkupDetails,
+      this.appMarkupDetails = 1,
       this.clientLoginid,
       this.dateFrom,
       this.dateTo,

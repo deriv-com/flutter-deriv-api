@@ -23,8 +23,8 @@ import '../get_financial_assessment_receive.dart';
 import '../new_account_maltainvest_receive.dart';
 import '../reality_check_receive.dart';
 import '../account_security_receive.dart';
-import '../balance_receive.dart';
 import '../set_settings_receive.dart';
+import '../balance_receive.dart';
 import '../buy_receive.dart';
 import '../topup_virtual_receive.dart';
 import '../ticks_receive.dart';
@@ -44,8 +44,8 @@ import '../tnc_approval_receive.dart';
 import '../set_financial_assessment_receive.dart';
 import '../forget_all_receive.dart';
 import '../request_report_receive.dart';
-import '../forget_receive.dart';
 import '../proposal_array_receive.dart';
+import '../forget_receive.dart';
 import '../time_receive.dart';
 import '../login_history_receive.dart';
 import '../trading_durations_receive.dart';
@@ -146,10 +146,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return RealityCheckResponse.fromJson(responseMap);
     case 'account_security':
       return AccountSecurityResponse.fromJson(responseMap);
-    case 'balance':
-      return BalanceResponse.fromJson(responseMap);
     case 'set_settings':
       return SetSettingsResponse.fromJson(responseMap);
+    case 'balance':
+      return BalanceResponse.fromJson(responseMap);
     case 'buy':
       return BuyResponse.fromJson(responseMap);
     case 'topup_virtual':
@@ -188,10 +188,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return ForgetAllResponse.fromJson(responseMap);
     case 'request_report':
       return RequestReportResponse.fromJson(responseMap);
-    case 'forget':
-      return ForgetResponse.fromJson(responseMap);
     case 'proposal_array':
       return ProposalArrayResponse.fromJson(responseMap);
+    case 'forget':
+      return ForgetResponse.fromJson(responseMap);
     case 'time':
       return TimeResponse.fromJson(responseMap);
     case 'login_history':

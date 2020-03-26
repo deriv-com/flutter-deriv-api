@@ -7,7 +7,7 @@ import 'request.dart';
 part 'states_list_send.g.dart';
 
 /// JSON conversion for 'states_list_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class StatesListRequest extends Request {
   /// Initialize StatesListRequest
   StatesListRequest(

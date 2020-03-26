@@ -7,10 +7,10 @@ import 'request.dart';
 part 'time_send.g.dart';
 
 /// JSON conversion for 'time_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TimeRequest extends Request {
   /// Initialize TimeRequest
-  TimeRequest({this.time, int reqId, Map<String, dynamic> passthrough})
+  TimeRequest({this.time = 1, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
   /// Factory constructor to initialize from JSON

@@ -7,7 +7,7 @@ import 'response.dart';
 part 'authorize_receive.g.dart';
 
 /// JSON conversion for 'authorize_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AuthorizeResponse extends Response {
   /// Initialize AuthorizeResponse
   AuthorizeResponse(

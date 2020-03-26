@@ -7,10 +7,10 @@ import 'request.dart';
 part 'app_get_send.g.dart';
 
 /// JSON conversion for 'app_get_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AppGetRequest extends Request {
   /// Initialize AppGetRequest
-  AppGetRequest({this.appGet, int reqId, Map<String, dynamic> passthrough})
+  AppGetRequest({this.appGet = 1, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
   /// Factory constructor to initialize from JSON

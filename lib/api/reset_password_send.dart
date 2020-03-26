@@ -7,13 +7,13 @@ import 'request.dart';
 part 'reset_password_send.g.dart';
 
 /// JSON conversion for 'reset_password_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ResetPasswordRequest extends Request {
   /// Initialize ResetPasswordRequest
   ResetPasswordRequest(
       {this.dateOfBirth,
       this.newPassword,
-      this.resetPassword,
+      this.resetPassword = 1,
       this.verificationCode,
       int reqId,
       Map<String, dynamic> passthrough})

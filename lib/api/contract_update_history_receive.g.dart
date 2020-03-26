@@ -10,8 +10,8 @@ ContractUpdateHistoryResponse _$ContractUpdateHistoryResponseFromJson(
     Map<String, dynamic> json) {
   return ContractUpdateHistoryResponse(
     contractUpdateHistory: (json['contract_update_history'] as List)
-        .map((e) => e as String)
-        .toList(),
+        ?.map((e) => e as String)
+        ?.toList(),
     reqId: json['req_id'] as int,
     echoReq: json['echo_req'] as Map<String, dynamic>,
     msgType: json['msg_type'] as String,

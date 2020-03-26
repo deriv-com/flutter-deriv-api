@@ -7,13 +7,13 @@ import 'request.dart';
 part 'mt5_deposit_send.g.dart';
 
 /// JSON conversion for 'mt5_deposit_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5DepositRequest extends Request {
   /// Initialize Mt5DepositRequest
   Mt5DepositRequest(
       {this.amount,
       this.fromBinary,
-      this.mt5Deposit,
+      this.mt5Deposit = 1,
       this.toMt5,
       int reqId,
       Map<String, dynamic> passthrough})

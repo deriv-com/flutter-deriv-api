@@ -7,12 +7,12 @@ import 'request.dart';
 part 'contract_update_send.g.dart';
 
 /// JSON conversion for 'contract_update_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ContractUpdateRequest extends Request {
   /// Initialize ContractUpdateRequest
   ContractUpdateRequest(
       {this.contractId,
-      this.contractUpdate,
+      this.contractUpdate = 1,
       this.limitOrder,
       int reqId,
       Map<String, dynamic> passthrough})

@@ -7,7 +7,7 @@ import 'response.dart';
 part 'topup_virtual_receive.g.dart';
 
 /// JSON conversion for 'topup_virtual_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TopupVirtualResponse extends Response {
   /// Initialize TopupVirtualResponse
   TopupVirtualResponse(

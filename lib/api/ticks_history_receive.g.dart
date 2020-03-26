@@ -9,8 +9,8 @@ part of 'ticks_history_receive.dart';
 TicksHistoryResponse _$TicksHistoryResponseFromJson(Map<String, dynamic> json) {
   return TicksHistoryResponse(
     candles: (json['candles'] as List)
-        .map((e) => e as Map<String, dynamic>)
-        .toList(),
+        ?.map((e) => e as Map<String, dynamic>)
+        ?.toList(),
     history: json['history'] as Map<String, dynamic>,
     pipSize: json['pip_size'] as num,
     subscription: json['subscription'] as Map<String, dynamic>,

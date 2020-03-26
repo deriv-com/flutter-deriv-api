@@ -7,12 +7,12 @@ import 'request.dart';
 part 'app_update_send.g.dart';
 
 /// JSON conversion for 'app_update_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AppUpdateRequest extends Request {
   /// Initialize AppUpdateRequest
   AppUpdateRequest(
       {this.appMarkupPercentage,
-      this.appUpdate,
+      this.appUpdate = 1,
       this.appstore,
       this.github,
       this.googleplay,

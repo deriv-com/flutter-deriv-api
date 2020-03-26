@@ -7,11 +7,11 @@ import 'request.dart';
 part 'mt5_login_list_send.g.dart';
 
 /// JSON conversion for 'mt5_login_list_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5LoginListRequest extends Request {
   /// Initialize Mt5LoginListRequest
   Mt5LoginListRequest(
-      {this.mt5LoginList, int reqId, Map<String, dynamic> passthrough})
+      {this.mt5LoginList = 1, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
   /// Factory constructor to initialize from JSON

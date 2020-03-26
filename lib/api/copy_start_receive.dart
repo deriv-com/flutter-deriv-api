@@ -7,7 +7,7 @@ import 'response.dart';
 part 'copy_start_receive.g.dart';
 
 /// JSON conversion for 'copy_start_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class CopyStartResponse extends Response {
   /// Initialize CopyStartResponse
   CopyStartResponse(

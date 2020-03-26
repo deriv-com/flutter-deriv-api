@@ -7,7 +7,7 @@ import 'request.dart';
 part 'tnc_approval_send.g.dart';
 
 /// JSON conversion for 'tnc_approval_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TncApprovalRequest extends Request {
   /// Initialize TncApprovalRequest
   TncApprovalRequest(

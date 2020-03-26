@@ -7,10 +7,11 @@ import 'request.dart';
 part 'app_list_send.g.dart';
 
 /// JSON conversion for 'app_list_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AppListRequest extends Request {
   /// Initialize AppListRequest
-  AppListRequest({this.appList, int reqId, Map<String, dynamic> passthrough})
+  AppListRequest(
+      {this.appList = 1, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
   /// Factory constructor to initialize from JSON

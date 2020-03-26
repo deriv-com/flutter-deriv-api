@@ -7,11 +7,11 @@ import 'request.dart';
 part 'get_self_exclusion_send.g.dart';
 
 /// JSON conversion for 'get_self_exclusion_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class GetSelfExclusionRequest extends Request {
   /// Initialize GetSelfExclusionRequest
   GetSelfExclusionRequest(
-      {this.getSelfExclusion, int reqId, Map<String, dynamic> passthrough})
+      {this.getSelfExclusion = 1, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
   /// Factory constructor to initialize from JSON

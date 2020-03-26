@@ -7,11 +7,11 @@ import 'request.dart';
 part 'portfolio_send.g.dart';
 
 /// JSON conversion for 'portfolio_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class PortfolioRequest extends Request {
   /// Initialize PortfolioRequest
   PortfolioRequest(
-      {this.portfolio, int reqId, Map<String, dynamic> passthrough})
+      {this.portfolio = 1, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
   /// Factory constructor to initialize from JSON

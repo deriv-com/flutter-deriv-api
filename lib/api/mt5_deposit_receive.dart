@@ -7,7 +7,7 @@ import 'response.dart';
 part 'mt5_deposit_receive.g.dart';
 
 /// JSON conversion for 'mt5_deposit_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5DepositResponse extends Response {
   /// Initialize Mt5DepositResponse
   Mt5DepositResponse(

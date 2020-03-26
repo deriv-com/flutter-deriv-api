@@ -7,7 +7,7 @@ import 'request.dart';
 part 'cashier_send.g.dart';
 
 /// JSON conversion for 'cashier_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class CashierRequest extends Request {
   /// Initialize CashierRequest
   CashierRequest(

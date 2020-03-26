@@ -7,11 +7,11 @@ import 'request.dart';
 part 'residence_list_send.g.dart';
 
 /// JSON conversion for 'residence_list_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ResidenceListRequest extends Request {
   /// Initialize ResidenceListRequest
   ResidenceListRequest(
-      {this.residenceList, int reqId, Map<String, dynamic> passthrough})
+      {this.residenceList = 1, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
   /// Factory constructor to initialize from JSON

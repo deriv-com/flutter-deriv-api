@@ -7,7 +7,7 @@ import 'request.dart';
 part 'statement_send.g.dart';
 
 /// JSON conversion for 'statement_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class StatementRequest extends Request {
   /// Initialize StatementRequest
   StatementRequest(
@@ -17,7 +17,7 @@ class StatementRequest extends Request {
       this.description,
       this.limit,
       this.offset,
-      this.statement,
+      this.statement = 1,
       int reqId,
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);

@@ -7,14 +7,14 @@ import 'request.dart';
 part 'request_report_send.g.dart';
 
 /// JSON conversion for 'request_report_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class RequestReportRequest extends Request {
   /// Initialize RequestReportRequest
   RequestReportRequest(
       {this.dateFrom,
       this.dateTo,
       this.reportType,
-      this.requestReport,
+      this.requestReport = 1,
       int reqId,
       Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);

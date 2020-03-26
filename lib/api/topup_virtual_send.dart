@@ -7,11 +7,11 @@ import 'request.dart';
 part 'topup_virtual_send.g.dart';
 
 /// JSON conversion for 'topup_virtual_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TopupVirtualRequest extends Request {
   /// Initialize TopupVirtualRequest
   TopupVirtualRequest(
-      {this.topupVirtual, int reqId, Map<String, dynamic> passthrough})
+      {this.topupVirtual = 1, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
   /// Factory constructor to initialize from JSON

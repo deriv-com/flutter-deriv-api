@@ -7,11 +7,11 @@ import 'request.dart';
 part 'api_token_send.g.dart';
 
 /// JSON conversion for 'api_token_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ApiTokenRequest extends Request {
   /// Initialize ApiTokenRequest
   ApiTokenRequest(
-      {this.apiToken,
+      {this.apiToken = 1,
       this.deleteToken,
       this.newToken,
       this.newTokenScopes,

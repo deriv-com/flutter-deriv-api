@@ -7,11 +7,11 @@ import 'request.dart';
 part 'get_account_status_send.g.dart';
 
 /// JSON conversion for 'get_account_status_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class GetAccountStatusRequest extends Request {
   /// Initialize GetAccountStatusRequest
   GetAccountStatusRequest(
-      {this.getAccountStatus, int reqId, Map<String, dynamic> passthrough})
+      {this.getAccountStatus = 1, int reqId, Map<String, dynamic> passthrough})
       : super(reqId: reqId, passthrough: passthrough);
 
   /// Factory constructor to initialize from JSON

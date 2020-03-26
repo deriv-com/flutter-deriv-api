@@ -7,11 +7,11 @@ import 'request.dart';
 part 'asset_index_send.g.dart';
 
 /// JSON conversion for 'asset_index_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AssetIndexRequest extends Request {
   /// Initialize AssetIndexRequest
   AssetIndexRequest(
-      {this.assetIndex,
+      {this.assetIndex = 1,
       this.landingCompany,
       int reqId,
       Map<String, dynamic> passthrough})
