@@ -84,6 +84,7 @@ class Order extends OrderModel {
         advertiserDetails: Advertiser.fromMap(order['advertiser_details']),
         amount: order['amount'].toDouble(),
         amountDisplay: '',
+        // TODO(mobile-app-team): remove comments after resolving `json_schema` package issue 
         // amountDisplay = getFormattedValue(value: order['amount_display']) +
         //     ' ' +
         //     order['account_currency'],
@@ -94,11 +95,13 @@ class Order extends OrderModel {
         localCurrency: order['local_currency'],
         price: order['price'].toDouble(),
         priceDisplay: '',
+        // TODO(mobile-app-team): remove comments after resolving `json_schema` package issue 
         // priceDisplay = getFormattedValue(value: order['price_display']) +
         //     ' ' +
         //     order['local_currency'],
         rate: order['rate'].toDouble(),
         rateDisplay: '',
+        // TODO(mobile-app-team): remove comments after resolving `json_schema` package issue 
         // rateDisplay = getFormattedValue(value: order['rate_display']) +
         //     ' ' +
         //     order['local_currency'],
@@ -164,7 +167,7 @@ class Order extends OrderModel {
 
   /// It is true if the order is not expired.
   bool get isActive =>
-      // TODO we have to use server time later instead of the local machine time
+      // TODO(mobile-app-team): we have to use server time later instead of the local machine time.
       (expiryTime * 1000) > DateTime.now().toUtc().millisecondsSinceEpoch &&
       status != OrderStatusType.completed &&
       status != OrderStatusType.cancelled;
@@ -172,7 +175,7 @@ class Order extends OrderModel {
   /// Get buy or sell display amount
   String get title => '${isUserBuying ? 'Buy' : 'Sell'} $amountDisplay';
 
-  // TODO: return client nickname when everyone has to register
+  // TODO(mobile-app-team): return client nickname when everyone has to register
   /// Get counterparty name
   String get counterpartyName => isIncoming ? '–' : advertiserDetails.name;
 
