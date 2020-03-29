@@ -1,23 +1,18 @@
+import 'package:flutter_deriv_api/models/base.dart';
+import 'package:flutter_deriv_api/connection/connection_websocket.dart';
+
 /// A class for keeping advertiser information
-class Advertiser {
+class AdvertiserModel extends BaseModel {
   /// Class constructor
-  Advertiser({
+  AdvertiserModel({
+    BinaryAPI api,
     this.id,
     this.name,
     this.clientLoginId,
     this.isApproved,
     this.isListed,
     this.createdTime,
-  });
-
-  /// Extract class information from a map object
-  Advertiser.fromMap(Map<String, dynamic> advertiser)
-      : id = advertiser['id'],
-        name = advertiser['name'],
-        clientLoginId = advertiser['client_loginid'],
-        isListed = advertiser['is_listed'] == 1,
-        isApproved = advertiser['is_approved'] == 1,
-        createdTime = advertiser['created_time'];
+  }) : super(api: api);
 
   /// The advertiser's identification number
   final String id;
@@ -36,22 +31,4 @@ class Advertiser {
 
   /// The epoch time that the client became an advertiser
   final int createdTime;
-
-  /// Update desired class fields
-  Advertiser copyWith({bool isListed, String name}) => Advertiser(
-        id: id,
-        name: name ?? this.name,
-        isApproved: isApproved,
-        isListed: isListed ?? this.isListed,
-        createdTime: createdTime,
-      );
-
-  /// Convert object to a map
-  Map<String, dynamic> toMap() => <String, dynamic>{
-        'name': name,
-        'is_listed': isListed ? 1 : 0,
-      };
-
-  @override
-  String toString() => 'Agent { id: $id (${clientLoginId}) }';
 }

@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_deriv_api/models/api_error.dart';
 
-import 'package:flutter_deriv_api/models/account.dart';
-import 'package:flutter_deriv_api/models/advertiser.dart';
+import 'package:flutter_deriv_api/models/api_error.dart';
 import 'package:flutter_deriv_api/api/authorize_receive.dart';
 import 'package:flutter_deriv_api/services/secure_storage.dart';
+import 'package:flutter_deriv_api/abstraction_classes/account.dart';
+import 'package:flutter_deriv_api/abstraction_classes/advertiser.dart';
 import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
 
 part 'account_event.dart';
@@ -50,17 +50,16 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
         final String token = accounts
             .lastWhere((Account account) => account.acct == defaultAccount)
             .token;
-        final AuthorizeResponse authResponse =
-            await connectionState.api.authorize(token);
+        final AuthorizeResponse authResponse = await Account(
+          api: connectionState.api,
+          token: token,
+        ).authorize();
 
         if (authResponse.authorize == null) {
           await SecureStorage().clearAllAccounts();
 
           throw Exception('Authorization Failed');
         }
-
-        final Map<String, dynamic> advertiserInfo =
-            await connectionState.api.p2pAgentInfo();
 
         yield AccountLoaded(
           accounts: accounts,
@@ -69,14 +68,14 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
           defaultAccount: defaultAccount,
           otherUsers: await _storage.getOtherUsers,
           accountInfo: authResponse.authorize,
-          advertiserInfo: advertiserInfo.containsKey('p2p_advertiser_info')
-              ? Advertiser.fromMap(advertiserInfo['p2p_advertiser_info'])
-              : null,
+          advertiserInfo: await Account(api: connectionState.api)
+              .advertise
+              .getInformation(),
         );
       } on Exception catch (error) {
         print('error $error');
         yield AccountError(
-          error: APIError(
+          error: ApiErrorModel(
             code: '',
             message: error.toString(),
           ),
@@ -94,8 +93,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
       }
     } else if (event is LogoutAccount) {
       if (connectionState is Connected) {
-        await connectionState.api.logout();
-        await SecureStorage().clearAllAccounts();
+        await Account(api: connectionState.api).logout();
       }
 
       yield InitialAccountState();
@@ -119,7 +117,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
                 event.accounts[0].acct.toUpperCase().contains('VRTC');
             if (isVirtualAccount) {
               yield AccountError(
-                error: APIError(
+                error: ApiErrorModel(
                   code: 'NotAvailable',
                   message:
                       'Sorry, we only support real USD accounts at the moment.',
@@ -127,21 +125,23 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
               );
             } else {
               final List<Account> crAccounts = event.accounts
-                  .where((Account account) =>
-                      account.acct.toUpperCase().contains('CR'))
+                  .where(
+                    (Account account) =>
+                        account.acct.toUpperCase().contains('CR'),
+                  )
                   .toList();
 
               if (crAccounts == null || crAccounts.isEmpty) {
                 //Is not a CR client
                 yield AccountError(
-                  error: APIError(
+                  error: ApiErrorModel(
                     code: 'NotAvailable',
                     message: 'Not available in your country.',
                   ),
                 );
               } else {
                 yield AccountError(
-                  error: APIError(
+                  error: ApiErrorModel(
                     code: 'NotAvailable',
                     message:
                         'Sorry, we only support real USD accounts at the moment.',
@@ -150,11 +150,14 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
               }
             }
           } else {
-            final AuthorizeResponse authResponse =
-                await connectionState.api.authorize(crUSDAccounts.first.token);
+            final AuthorizeResponse authResponse = await Account(
+              api: connectionState.api,
+              token: crUSDAccounts.first.token,
+            ).authorize();
+
             if (authResponse.authorize == null) {
               yield AccountError(
-                error: APIError(
+                error: ApiErrorModel(
                   code: 'FailedToLogin',
                   message: 'The token is not valid.',
                 ),

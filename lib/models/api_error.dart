@@ -1,10 +1,10 @@
 /// A class for api errors
-class APIError {
+class ApiErrorModel {
   /// Class constructor
-  APIError({this.code, this.message});
+  ApiErrorModel({this.code, this.message});
 
-  /// Extract class information from a map object
-  APIError.fromMap(Map<String, dynamic> error)
+  /// Extract class from a map object
+  ApiErrorModel.fromMap(Map<String, dynamic> error)
       : code = error['code'],
         message = error['message'];
 

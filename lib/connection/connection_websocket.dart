@@ -485,11 +485,18 @@ class BinaryAPI {
 
   /// Calls p2p_order_create to place an order on the [advertId] with
   /// the [amount] specified
-  Future<Map<String, dynamic>> p2pOrderCreate(String advertId, double amount,
-      {bool subscribe = false}) {
+  Future<Map<String, dynamic>> p2pOrderCreate({
+    String advertId,
+    double amount,
+    String paymentInfo,
+    String contactInfo,
+    bool subscribe = false,
+  }) {
     final Map<String, dynamic> req = <String, dynamic>{
       'amount': amount,
-      'advert_id': advertId
+      'advert_id': advertId,
+      'payment_info': paymentInfo,
+      'contact_info': contactInfo,
     };
 
     if (subscribe) {
@@ -607,4 +614,10 @@ class BinaryAPI {
   /// Get agent information
   Future<Map<String, dynamic>> p2pAgentInfo({Map<String, dynamic> options}) =>
       call('p2p_advertiser_info', req: options);
+
+  /// Update agent information
+  Future<Map<String, dynamic>> p2pAgentUpdate(
+    Map<String, dynamic> advertiser,
+  ) =>
+      call('p2p_advertiser_update', req: advertiser);
 }

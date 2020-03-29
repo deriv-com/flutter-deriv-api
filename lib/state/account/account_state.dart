@@ -21,7 +21,7 @@ class AccountError extends AccountState {
   });
 
   /// Api error
-  final APIError error;
+  final ApiErrorModel error;
 
   @override
   String toString() => 'AccountError';

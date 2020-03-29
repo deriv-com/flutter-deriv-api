@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
-import 'package:flutter_deriv_api/models/account.dart';
+import 'package:flutter_deriv_api/abstraction_classes/account.dart';
 
 /// A webview to show login page and retrieve account information from
 /// the redirect url.
