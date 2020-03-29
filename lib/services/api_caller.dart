@@ -17,10 +17,10 @@ mixin ApiCaller<T> {
       DerivApi().subscribe(request).transform(
         StreamTransformer<Response, T>.fromHandlers(
           handleData: (Response response, EventSink<T> sink) {
-            if (response.error != null) {
+            if (response.error == null) {
               sink.add(responseToModel(response));
             } else {
-              // TODO(Ramin): Will add our class of Errors later
+              // TODO: Will add our class of Errors later
               sink.addError(FlutterError(response.error['code']));
             }
           },
@@ -30,6 +30,9 @@ mixin ApiCaller<T> {
   /// API call with return type of [T]
   Future<T> modelCall(Request request) async {
     final Response response = await DerivApi().call(request);
+    if (response.error != null) {
+      throw FlutterError(response.error['code']);
+    }
     return responseToModel(response);
   }
 
