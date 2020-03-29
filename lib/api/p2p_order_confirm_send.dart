@@ -8,14 +8,14 @@ part 'p2p_order_confirm_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderConfirmRequest {
   P2pOrderConfirmRequest(
-      {this.orderId, this.p2pOrderConfirm, this.passthrough, this.reqId});
+      {this.id, this.p2pOrderConfirm, this.passthrough, this.reqId});
   factory P2pOrderConfirmRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderConfirmRequestFromJson(json);
   Map<String, dynamic> toJson() => _$P2pOrderConfirmRequestToJson(this);
 
   // Properties
   /// The unique identifier for this order.
-  String orderId;
+  String id;
 
   /// Must be 1
   int p2pOrderConfirm;
