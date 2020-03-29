@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter_deriv_api/api/authorize_receive.dart';
+import 'package:flutter_deriv_api/api/authorize_send.dart';
 import 'package:flutter_deriv_api/api/request.dart';
 import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/connection/connection_websocket.dart';
@@ -24,6 +26,26 @@ class DerivApi {
           // Propagate error instead of objects
         }
       });
+
+    _binaryAPI = BinaryAPI();
+  }
+
+  ///
+  Future<bool> init() async{
+    try {
+      await _binaryAPI.run();
+    } on Exception{
+      return false;
+    }
+    return true;
+  }
+
+  /// Authorizes and returns [AuthorizeResponse]
+  /// todo: Will return and [Account] instance later on.
+  Future<AuthorizeResponse> authorize(String token) async {
+    final AuthorizeResponse response =
+        await _binaryAPI.call(AuthorizeRequest(authorize: token));
+    return response;
   }
 
   static final DerivApi _instance = DerivApi._();
