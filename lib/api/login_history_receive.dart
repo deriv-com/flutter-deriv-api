@@ -7,7 +7,7 @@ import 'response.dart';
 part 'login_history_receive.g.dart';
 
 /// JSON conversion for 'login_history_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class LoginHistoryResponse extends Response {
   /// Initialize LoginHistoryResponse
   LoginHistoryResponse(

@@ -7,7 +7,7 @@ import 'response.dart';
 part 'paymentagent_transfer_receive.g.dart';
 
 /// JSON conversion for 'paymentagent_transfer_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class PaymentagentTransferResponse extends Response {
   /// Initialize PaymentagentTransferResponse
   PaymentagentTransferResponse(

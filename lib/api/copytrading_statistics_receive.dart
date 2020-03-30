@@ -7,7 +7,7 @@ import 'response.dart';
 part 'copytrading_statistics_receive.g.dart';
 
 /// JSON conversion for 'copytrading_statistics_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class CopytradingStatisticsResponse extends Response {
   /// Initialize CopytradingStatisticsResponse
   CopytradingStatisticsResponse(

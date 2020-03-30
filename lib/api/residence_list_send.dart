@@ -7,7 +7,7 @@ import 'request.dart';
 part 'residence_list_send.g.dart';
 
 /// JSON conversion for 'residence_list_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ResidenceListRequest extends Request {
   /// Initialize ResidenceListRequest
   ResidenceListRequest(

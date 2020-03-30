@@ -7,7 +7,7 @@ import 'request.dart';
 part 'mt5_login_list_send.g.dart';
 
 /// JSON conversion for 'mt5_login_list_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5LoginListRequest extends Request {
   /// Initialize Mt5LoginListRequest
   Mt5LoginListRequest(

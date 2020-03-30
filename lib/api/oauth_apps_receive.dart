@@ -7,7 +7,7 @@ import 'response.dart';
 part 'oauth_apps_receive.g.dart';
 
 /// JSON conversion for 'oauth_apps_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class OauthAppsResponse extends Response {
   /// Initialize OauthAppsResponse
   OauthAppsResponse(

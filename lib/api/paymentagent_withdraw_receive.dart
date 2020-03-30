@@ -7,7 +7,7 @@ import 'response.dart';
 part 'paymentagent_withdraw_receive.g.dart';
 
 /// JSON conversion for 'paymentagent_withdraw_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class PaymentagentWithdrawResponse extends Response {
   /// Initialize PaymentagentWithdrawResponse
   PaymentagentWithdrawResponse(

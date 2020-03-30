@@ -7,7 +7,7 @@ import 'request.dart';
 part 'set_account_currency_send.g.dart';
 
 /// JSON conversion for 'set_account_currency_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class SetAccountCurrencyRequest extends Request {
   /// Initialize SetAccountCurrencyRequest
   SetAccountCurrencyRequest(

@@ -7,7 +7,7 @@ import 'request.dart';
 part 'transfer_between_accounts_send.g.dart';
 
 /// JSON conversion for 'transfer_between_accounts_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TransferBetweenAccountsRequest extends Request {
   /// Initialize TransferBetweenAccountsRequest
   TransferBetweenAccountsRequest(

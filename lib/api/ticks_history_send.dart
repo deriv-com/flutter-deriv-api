@@ -7,7 +7,7 @@ import 'request.dart';
 part 'ticks_history_send.g.dart';
 
 /// JSON conversion for 'ticks_history_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TicksHistoryRequest extends Request {
   /// Initialize TicksHistoryRequest
   TicksHistoryRequest(

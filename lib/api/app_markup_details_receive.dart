@@ -7,7 +7,7 @@ import 'response.dart';
 part 'app_markup_details_receive.g.dart';
 
 /// JSON conversion for 'app_markup_details_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AppMarkupDetailsResponse extends Response {
   /// Initialize AppMarkupDetailsResponse
   AppMarkupDetailsResponse(

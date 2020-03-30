@@ -7,7 +7,7 @@ import 'request.dart';
 part 'p2p_order_create_send.g.dart';
 
 /// JSON conversion for 'p2p_order_create_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pOrderCreateRequest extends Request {
   /// Initialize P2pOrderCreateRequest
   P2pOrderCreateRequest(
