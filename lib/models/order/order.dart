@@ -33,7 +33,7 @@ class Order {
     this.contactInfo,
   });
 
-  final OrderCaller _orderCaller = OrderCaller();
+  static final OrderCaller _orderCaller = OrderCaller();
 
   ///
   final String accountCurrency;
@@ -132,32 +132,27 @@ class Order {
 
   /// It is true if the order is not expired.
   bool get isActive =>
-      // TODO: we have to use server time later instead of the local machine time
+      // TODO(api): we have to use server time later instead of the local machine time
       (expiryTime * 1000) > DateTime.now().toUtc().millisecondsSinceEpoch &&
       status != OrderStatusType.completed &&
       status != OrderStatusType.cancelled;
 
   ///
-  static Future<Order> initOrder(String orderId) async {
-    final Order order = Order(id: '');
-    return order._fetchOrder();
-  }
-
-  Future<Order> _fetchOrder() async =>
-      _orderCaller.modelCall(P2pOrderInfoRequest(id: ''));
+  static Future<Order> fetchOrder(String id) async =>
+      _orderCaller.modelCall(P2pOrderInfoRequest(id: id));
 
   /// Returns true if cancel is successful
   Future<bool> cancel() async {
-    final P2pOrderInfoResponse response =
-        await _orderCaller.callApi(P2pOrderCancelRequest(id: id));
-    return response.error != null;
+    final Order order =
+        await _orderCaller.modelCall(P2pOrderCancelRequest(id: id));
+    return order != null;
   }
 
   /// Returns true if confirm is successful
   Future<bool> confirm() async {
-    final P2pOrderInfoResponse response =
-        await _orderCaller.callApi(P2pOrderConfirmRequest(id: id));
-    return response.error != null;
+    final Order order =
+        await _orderCaller.modelCall(P2pOrderConfirmRequest(id: id));
+    return order != null;
   }
 
   ///

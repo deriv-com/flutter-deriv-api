@@ -1,6 +1,7 @@
 import '../../enums/generals.dart';
 import '../advertiser/advertiser.dart';
 
+///
 class Advert {
   final String accountCurrency;
   final Advertiser advertiserDetails;
