@@ -7,7 +7,7 @@ import 'response.dart';
 part 'logout_receive.g.dart';
 
 /// JSON conversion for 'logout_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LogoutResponse extends Response {
   /// Initialize LogoutResponse
   LogoutResponse(

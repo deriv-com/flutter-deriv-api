@@ -7,7 +7,7 @@ import 'request.dart';
 part 'notification_event_send.g.dart';
 
 /// JSON conversion for 'notification_event_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NotificationEventRequest extends Request {
   /// Initialize NotificationEventRequest
   NotificationEventRequest(

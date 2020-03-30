@@ -7,7 +7,7 @@ import 'response.dart';
 part 'reset_password_receive.g.dart';
 
 /// JSON conversion for 'reset_password_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ResetPasswordResponse extends Response {
   /// Initialize ResetPasswordResponse
   ResetPasswordResponse(

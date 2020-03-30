@@ -7,7 +7,7 @@ import 'response.dart';
 part 'contract_update_history_receive.g.dart';
 
 /// JSON conversion for 'contract_update_history_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ContractUpdateHistoryResponse extends Response {
   /// Initialize ContractUpdateHistoryResponse
   ContractUpdateHistoryResponse(

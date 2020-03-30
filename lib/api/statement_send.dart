@@ -7,7 +7,7 @@ import 'request.dart';
 part 'statement_send.g.dart';
 
 /// JSON conversion for 'statement_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class StatementRequest extends Request {
   /// Initialize StatementRequest
   StatementRequest(

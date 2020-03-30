@@ -7,7 +7,7 @@ import 'response.dart';
 part 'get_limits_receive.g.dart';
 
 /// JSON conversion for 'get_limits_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetLimitsResponse extends Response {
   /// Initialize GetLimitsResponse
   GetLimitsResponse(

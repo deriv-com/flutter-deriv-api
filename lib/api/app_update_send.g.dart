@@ -16,7 +16,7 @@ AppUpdateRequest _$AppUpdateRequestFromJson(Map<String, dynamic> json) {
     homepage: json['homepage'] as String,
     name: json['name'] as String,
     redirectUri: json['redirect_uri'] as String,
-    scopes: (json['scopes'] as List)?.map((e) => e as String)?.toList(),
+    scopes: (json['scopes'] as List).map((e) => e as String).toList(),
     verificationUri: json['verification_uri'] as String,
     passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,

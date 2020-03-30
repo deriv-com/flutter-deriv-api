@@ -7,7 +7,7 @@ import 'request.dart';
 part 'mt5_password_reset_send.g.dart';
 
 /// JSON conversion for 'mt5_password_reset_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5PasswordResetRequest extends Request {
   /// Initialize Mt5PasswordResetRequest
   Mt5PasswordResetRequest(

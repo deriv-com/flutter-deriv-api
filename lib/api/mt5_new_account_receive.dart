@@ -7,7 +7,7 @@ import 'response.dart';
 part 'mt5_new_account_receive.g.dart';
 
 /// JSON conversion for 'mt5_new_account_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5NewAccountResponse extends Response {
   /// Initialize Mt5NewAccountResponse
   Mt5NewAccountResponse(

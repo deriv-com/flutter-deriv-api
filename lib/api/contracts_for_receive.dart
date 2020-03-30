@@ -7,7 +7,7 @@ import 'response.dart';
 part 'contracts_for_receive.g.dart';
 
 /// JSON conversion for 'contracts_for_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ContractsForResponse extends Response {
   /// Initialize ContractsForResponse
   ContractsForResponse(

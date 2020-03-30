@@ -7,7 +7,7 @@ import 'request.dart';
 part 'app_update_send.g.dart';
 
 /// JSON conversion for 'app_update_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppUpdateRequest extends Request {
   /// Initialize AppUpdateRequest
   AppUpdateRequest(

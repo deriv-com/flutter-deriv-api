@@ -7,7 +7,7 @@ import 'request.dart';
 part 'get_settings_send.g.dart';
 
 /// JSON conversion for 'get_settings_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetSettingsRequest extends Request {
   /// Initialize GetSettingsRequest
   GetSettingsRequest(

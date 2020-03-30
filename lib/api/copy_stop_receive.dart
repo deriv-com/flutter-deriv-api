@@ -7,7 +7,7 @@ import 'response.dart';
 part 'copy_stop_receive.g.dart';
 
 /// JSON conversion for 'copy_stop_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStopResponse extends Response {
   /// Initialize CopyStopResponse
   CopyStopResponse(

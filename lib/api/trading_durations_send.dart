@@ -7,7 +7,7 @@ import 'request.dart';
 part 'trading_durations_send.g.dart';
 
 /// JSON conversion for 'trading_durations_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TradingDurationsRequest extends Request {
   /// Initialize TradingDurationsRequest
   TradingDurationsRequest(

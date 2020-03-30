@@ -7,7 +7,7 @@ import 'request.dart';
 part 'paymentagent_transfer_send.g.dart';
 
 /// JSON conversion for 'paymentagent_transfer_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PaymentagentTransferRequest extends Request {
   /// Initialize PaymentagentTransferRequest
   PaymentagentTransferRequest(

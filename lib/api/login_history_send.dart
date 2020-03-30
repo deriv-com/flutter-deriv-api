@@ -7,7 +7,7 @@ import 'request.dart';
 part 'login_history_send.g.dart';
 
 /// JSON conversion for 'login_history_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LoginHistoryRequest extends Request {
   /// Initialize LoginHistoryRequest
   LoginHistoryRequest(

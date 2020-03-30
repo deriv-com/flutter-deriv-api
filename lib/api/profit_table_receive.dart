@@ -7,7 +7,7 @@ import 'response.dart';
 part 'profit_table_receive.g.dart';
 
 /// JSON conversion for 'profit_table_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ProfitTableResponse extends Response {
   /// Initialize ProfitTableResponse
   ProfitTableResponse(

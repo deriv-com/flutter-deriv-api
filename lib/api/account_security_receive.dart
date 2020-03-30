@@ -7,7 +7,7 @@ import 'response.dart';
 part 'account_security_receive.g.dart';
 
 /// JSON conversion for 'account_security_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AccountSecurityResponse extends Response {
   /// Initialize AccountSecurityResponse
   AccountSecurityResponse(

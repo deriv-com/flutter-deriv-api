@@ -9,8 +9,8 @@ part of 'app_list_receive.dart';
 AppListResponse _$AppListResponseFromJson(Map<String, dynamic> json) {
   return AppListResponse(
     appList: (json['app_list'] as List)
-        ?.map((e) => e as Map<String, dynamic>)
-        ?.toList(),
+        .map((e) => e as Map<String, dynamic>)
+        .toList(),
     echoReq: json['echo_req'] as Map<String, dynamic>,
     error: json['error'] as Map<String, dynamic>,
     msgType: json['msg_type'] as String,

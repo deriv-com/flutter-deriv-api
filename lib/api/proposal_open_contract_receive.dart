@@ -7,7 +7,7 @@ import 'response.dart';
 part 'proposal_open_contract_receive.g.dart';
 
 /// JSON conversion for 'proposal_open_contract_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ProposalOpenContractResponse extends Response {
   /// Initialize ProposalOpenContractResponse
   ProposalOpenContractResponse(

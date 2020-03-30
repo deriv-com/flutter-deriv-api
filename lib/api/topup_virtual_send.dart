@@ -7,7 +7,7 @@ import 'request.dart';
 part 'topup_virtual_send.g.dart';
 
 /// JSON conversion for 'topup_virtual_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TopupVirtualRequest extends Request {
   /// Initialize TopupVirtualRequest
   TopupVirtualRequest(

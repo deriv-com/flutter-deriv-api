@@ -7,7 +7,7 @@ import 'request.dart';
 part 'document_upload_send.g.dart';
 
 /// JSON conversion for 'document_upload_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class DocumentUploadRequest extends Request {
   /// Initialize DocumentUploadRequest
   DocumentUploadRequest(

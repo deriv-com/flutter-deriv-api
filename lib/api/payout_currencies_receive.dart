@@ -7,7 +7,7 @@ import 'response.dart';
 part 'payout_currencies_receive.g.dart';
 
 /// JSON conversion for 'payout_currencies_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PayoutCurrenciesResponse extends Response {
   /// Initialize PayoutCurrenciesResponse
   PayoutCurrenciesResponse(
