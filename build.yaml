@@ -25,7 +25,7 @@ builders:
   apiHelper:
     import: './api_helper_builder.dart'
     builder_factories: ["apiHelperBuilder"]
-    build_extensions: {".dart": [".api.dart"]}
+    build_extensions: {".dart": [".helper.dart"]}
     is_optional: False
     build_to: source
     required_inputs: ["api"]
@@ -34,4 +34,4 @@ builders:
     defaults:
       generate_for:
         include:
-          - lib/api/helper/api_helper.dart
+          - lib/api/api.dart

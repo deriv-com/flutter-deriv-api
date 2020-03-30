@@ -7,7 +7,7 @@ import 'request.dart';
 part 'transaction_send.g.dart';
 
 /// JSON conversion for 'transaction_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TransactionRequest extends Request {
   /// Initialize TransactionRequest
   TransactionRequest(

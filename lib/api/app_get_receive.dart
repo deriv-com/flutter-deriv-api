@@ -7,7 +7,7 @@ import 'response.dart';
 part 'app_get_receive.g.dart';
 
 /// JSON conversion for 'app_get_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppGetResponse extends Response {
   /// Initialize AppGetResponse
   AppGetResponse(

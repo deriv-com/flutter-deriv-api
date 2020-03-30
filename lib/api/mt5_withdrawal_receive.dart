@@ -7,7 +7,7 @@ import 'response.dart';
 part 'mt5_withdrawal_receive.g.dart';
 
 /// JSON conversion for 'mt5_withdrawal_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5WithdrawalResponse extends Response {
   /// Initialize Mt5WithdrawalResponse
   Mt5WithdrawalResponse(

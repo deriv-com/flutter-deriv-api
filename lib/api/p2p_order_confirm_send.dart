@@ -7,7 +7,7 @@ import 'request.dart';
 part 'p2p_order_confirm_send.g.dart';
 
 /// JSON conversion for 'p2p_order_confirm_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderConfirmRequest extends Request {
   /// Initialize P2pOrderConfirmRequest
   P2pOrderConfirmRequest(

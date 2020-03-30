@@ -4,7 +4,10 @@ import 'package:flutter_deriv_api/api/request.dart';
 import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/services/deriv_api.dart';
 
-/// [T] the return type pf API calls
+/// Helper mixin to help model classes that deal with API calls related to Order
+/// A model class can have multiple of these [ApiCaller] objects for different
+/// [T] types. e.g. A class could have two [ApiCaller] for both
+/// [Order] and [OrderList] types
 mixin ApiCaller<T> {
 
   /// Subscribe with [T] return type

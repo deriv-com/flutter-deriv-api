@@ -196,7 +196,7 @@ import '${schemaType == 'send' ? 'request' : 'response'}.dart';
 part '${fileName}.g.dart';
 
 /// JSON conversion for '$fileName'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ${fullClassName} extends ${schemaType == 'send' ? 'Request' : 'Response'}{
   /// Initialize $fullClassName
   ${fullClassName}({$constructorParameters, $superTypeNameParameters}): super($superCallParameters);

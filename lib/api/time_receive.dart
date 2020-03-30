@@ -7,7 +7,7 @@ import 'response.dart';
 part 'time_receive.g.dart';
 
 /// JSON conversion for 'time_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TimeResponse extends Response {
   /// Initialize TimeResponse
   TimeResponse(

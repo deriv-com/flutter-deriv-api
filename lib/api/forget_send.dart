@@ -7,7 +7,7 @@ import 'request.dart';
 part 'forget_send.g.dart';
 
 /// JSON conversion for 'forget_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ForgetRequest extends Request {
   /// Initialize ForgetRequest
   ForgetRequest({this.forget, Map<String, dynamic> passthrough, int reqId})

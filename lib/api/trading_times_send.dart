@@ -7,7 +7,7 @@ import 'request.dart';
 part 'trading_times_send.g.dart';
 
 /// JSON conversion for 'trading_times_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TradingTimesRequest extends Request {
   /// Initialize TradingTimesRequest
   TradingTimesRequest(

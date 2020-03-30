@@ -7,7 +7,7 @@ import 'response.dart';
 part 'verify_email_receive.g.dart';
 
 /// JSON conversion for 'verify_email_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class VerifyEmailResponse extends Response {
   /// Initialize VerifyEmailResponse
   VerifyEmailResponse(

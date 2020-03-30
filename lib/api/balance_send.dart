@@ -7,7 +7,7 @@ import 'request.dart';
 part 'balance_send.g.dart';
 
 /// JSON conversion for 'balance_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BalanceRequest extends Request {
   /// Initialize BalanceRequest
   BalanceRequest(

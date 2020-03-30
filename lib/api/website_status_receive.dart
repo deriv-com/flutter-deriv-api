@@ -7,7 +7,7 @@ import 'response.dart';
 part 'website_status_receive.g.dart';
 
 /// JSON conversion for 'website_status_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class WebsiteStatusResponse extends Response {
   /// Initialize WebsiteStatusResponse
   WebsiteStatusResponse(

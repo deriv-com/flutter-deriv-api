@@ -7,7 +7,7 @@ import 'response.dart';
 part 'asset_index_receive.g.dart';
 
 /// JSON conversion for 'asset_index_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AssetIndexResponse extends Response {
   /// Initialize AssetIndexResponse
   AssetIndexResponse(

@@ -7,7 +7,7 @@ import 'response.dart';
 part 'portfolio_receive.g.dart';
 
 /// JSON conversion for 'portfolio_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PortfolioResponse extends Response {
   /// Initialize PortfolioResponse
   PortfolioResponse(

@@ -7,7 +7,7 @@ import 'request.dart';
 part 'get_financial_assessment_send.g.dart';
 
 /// JSON conversion for 'get_financial_assessment_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetFinancialAssessmentRequest extends Request {
   /// Initialize GetFinancialAssessmentRequest
   GetFinancialAssessmentRequest(

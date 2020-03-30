@@ -7,7 +7,7 @@ import 'response.dart';
 part 'reality_check_receive.g.dart';
 
 /// JSON conversion for 'reality_check_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class RealityCheckResponse extends Response {
   /// Initialize RealityCheckResponse
   RealityCheckResponse(

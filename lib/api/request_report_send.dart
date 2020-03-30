@@ -7,7 +7,7 @@ import 'request.dart';
 part 'request_report_send.g.dart';
 
 /// JSON conversion for 'request_report_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class RequestReportRequest extends Request {
   /// Initialize RequestReportRequest
   RequestReportRequest(

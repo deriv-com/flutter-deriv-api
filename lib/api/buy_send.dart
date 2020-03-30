@@ -7,7 +7,7 @@ import 'request.dart';
 part 'buy_send.g.dart';
 
 /// JSON conversion for 'buy_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BuyRequest extends Request {
   /// Initialize BuyRequest
   BuyRequest(

@@ -7,7 +7,7 @@ import 'request.dart';
 part 'account_statistics_send.g.dart';
 
 /// JSON conversion for 'account_statistics_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AccountStatisticsRequest extends Request {
   /// Initialize AccountStatisticsRequest
   AccountStatisticsRequest(

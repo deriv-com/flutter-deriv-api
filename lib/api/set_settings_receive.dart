@@ -7,7 +7,7 @@ import 'response.dart';
 part 'set_settings_receive.g.dart';
 
 /// JSON conversion for 'set_settings_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetSettingsResponse extends Response {
   /// Initialize SetSettingsResponse
   SetSettingsResponse(

@@ -7,7 +7,7 @@ import 'request.dart';
 part 'get_limits_send.g.dart';
 
 /// JSON conversion for 'get_limits_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetLimitsRequest extends Request {
   /// Initialize GetLimitsRequest
   GetLimitsRequest(

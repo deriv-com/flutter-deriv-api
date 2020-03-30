@@ -7,7 +7,7 @@ import 'request.dart';
 part 'copy_start_send.g.dart';
 
 /// JSON conversion for 'copy_start_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStartRequest extends Request {
   /// Initialize CopyStartRequest
   CopyStartRequest(

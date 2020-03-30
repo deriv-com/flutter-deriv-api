@@ -7,7 +7,7 @@ import 'response.dart';
 part 'buy_receive.g.dart';
 
 /// JSON conversion for 'buy_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BuyResponse extends Response {
   /// Initialize BuyResponse
   BuyResponse(

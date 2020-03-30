@@ -7,7 +7,7 @@ import 'response.dart';
 part 'account_closure_receive.g.dart';
 
 /// JSON conversion for 'account_closure_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AccountClosureResponse extends Response {
   /// Initialize AccountClosureResponse
   AccountClosureResponse(
