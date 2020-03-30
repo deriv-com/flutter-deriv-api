@@ -1,9 +1,9 @@
 import 'dart:async';
 
-/// Subscription type
-class SubscriptionType<T> {
+/// Subscription information
+class SubscriptionInformation<T> {
   /// Class constructor
-  SubscriptionType({
+  SubscriptionInformation({
     String id,
     Stream<T> stream,
     StreamSubscription<T> streamSubscription,
@@ -15,22 +15,22 @@ class SubscriptionType<T> {
   final Stream<T> _stream;
   final StreamSubscription<T> _streamSubscription;
 
-  /// Get subscription type id
+  /// Get subscription information id
   String get id => _id;
 
-  /// Get subscription type stream
+  /// Get subscription information stream
   Stream<T> get stream => _stream;
 
-  /// Get subscription tpe stream subscription
+  /// Get subscription information stream subscription
   StreamSubscription<T> get streamSubscription => _streamSubscription;
 
   /// Update desired class fields
-  SubscriptionType<T> copyWith({
+  SubscriptionInformation<T> copyWith({
     String id,
     Stream<T> stream,
     StreamSubscription<T> streamSubscription,
   }) =>
-      SubscriptionType<T>(
+      SubscriptionInformation<T>(
         id: id ?? _id,
         stream: stream ?? _stream,
         streamSubscription: streamSubscription ?? _streamSubscription,
