@@ -2,27 +2,32 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'app_markup_details_send.g.dart';
 
+/// JSON conversion for 'app_markup_details_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AppMarkupDetailsRequest {
+class AppMarkupDetailsRequest extends Request {
+  /// Initialize AppMarkupDetailsRequest
   AppMarkupDetailsRequest(
       {this.appId,
-      this.appMarkupDetails,
+      this.appMarkupDetails = 1,
       this.clientLoginid,
       this.dateFrom,
       this.dateTo,
       this.description,
       this.limit,
       this.offset,
-      this.passthrough,
-      this.reqId,
       this.sort,
-      this.sortFields});
+      this.sortFields,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>
       _$AppMarkupDetailsRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$AppMarkupDetailsRequestToJson(this);
 
   // Properties
   /// [Optional] Specific application `app_id` to report on.
@@ -49,20 +54,13 @@ class AppMarkupDetailsRequest {
   /// [Optional] Number of transactions to skip.
   num offset;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
   /// [Optional] Sort direction on `transaction_time`. Other fields sort order is ASC.
   String sort;
 
   /// [Optional] One or more of the specified fields to sort on. Default sort field is by `transaction_time`.
   List<String> sortFields;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AppMarkupDetailsRequestToJson(this);
 }

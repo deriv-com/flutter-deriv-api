@@ -2,25 +2,30 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'ticks_history_send.g.dart';
 
+/// JSON conversion for 'ticks_history_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TicksHistoryRequest {
+class TicksHistoryRequest extends Request {
+  /// Initialize TicksHistoryRequest
   TicksHistoryRequest(
       {this.adjustStartTime,
       this.count,
       this.end,
       this.granularity,
-      this.passthrough,
-      this.reqId,
       this.start,
       this.style,
       this.subscribe,
-      this.ticksHistory});
+      this.ticksHistory,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$TicksHistoryRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$TicksHistoryRequestToJson(this);
 
   // Properties
   /// [Optional] 1 - if the market is closed at the end time, or license limit is before end time, adjust interval backwards to compensate.
@@ -35,12 +40,6 @@ class TicksHistoryRequest {
   /// [Optional] Only applicable for style: `candles`. Candle time-dimension width setting. (default: `60`).
   int granularity;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
   /// [Optional] Epoch value representing the earliest boundary of the returned ticks (For styles: 'ticks', this will default to 1 day ago. For styles: 'candle', it will default to 1 day ago if count or granularity is undefined).
   int start;
 
@@ -53,8 +52,7 @@ class TicksHistoryRequest {
   /// Short symbol name (obtained from the `active_symbols` call).
   String ticksHistory;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TicksHistoryRequestToJson(this);
 }

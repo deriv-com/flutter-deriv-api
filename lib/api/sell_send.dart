@@ -2,31 +2,30 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'sell_send.g.dart';
 
+/// JSON conversion for 'sell_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class SellRequest {
-  SellRequest({this.passthrough, this.price, this.reqId, this.sell});
+class SellRequest extends Request {
+  /// Initialize SellRequest
+  SellRequest(
+      {this.price, this.sell = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory SellRequest.fromJson(Map<String, dynamic> json) =>
       _$SellRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$SellRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// Minimum price at which to sell the contract, or '0' for 'sell at market'
   num price;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Pass contract_id received from the Portfolio call
   int sell;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$SellRequestToJson(this);
 }

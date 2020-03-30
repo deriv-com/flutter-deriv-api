@@ -2,16 +2,24 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'p2p_order_cancel_send.g.dart';
 
+/// JSON conversion for 'p2p_order_cancel_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class P2pOrderCancelRequest {
+class P2pOrderCancelRequest extends Request {
+  /// Initialize P2pOrderCancelRequest
   P2pOrderCancelRequest(
-      {this.id, this.p2pOrderCancel, this.passthrough, this.reqId});
+      {this.id,
+      this.p2pOrderCancel = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory P2pOrderCancelRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCancelRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$P2pOrderCancelRequestToJson(this);
 
   // Properties
   /// The unique identifier for this order.
@@ -20,14 +28,7 @@ class P2pOrderCancelRequest {
   /// Must be 1
   int p2pOrderCancel;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$P2pOrderCancelRequestToJson(this);
 }

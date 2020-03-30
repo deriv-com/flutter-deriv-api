@@ -25,6 +25,8 @@ P2pAdvertListRequest _$P2pAdvertListRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$P2pAdvertListRequestToJson(
         P2pAdvertListRequest instance) =>
     <String, dynamic>{
+      'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'account_currency': instance.accountCurrency,
       'advertiser_id': instance.advertiserId,
       'amount': instance.amount,
@@ -34,6 +36,4 @@ Map<String, dynamic> _$P2pAdvertListRequestToJson(
       'local_currency': instance.localCurrency,
       'offset': instance.offset,
       'p2p_advert_list': instance.p2pAdvertList,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
     };

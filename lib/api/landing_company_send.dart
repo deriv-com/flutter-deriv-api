@@ -2,28 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'landing_company_send.g.dart';
 
+/// JSON conversion for 'landing_company_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class LandingCompanyRequest {
-  LandingCompanyRequest({this.landingCompany, this.passthrough, this.reqId});
+class LandingCompanyRequest extends Request {
+  /// Initialize LandingCompanyRequest
+  LandingCompanyRequest(
+      {this.landingCompany, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory LandingCompanyRequest.fromJson(Map<String, dynamic> json) =>
       _$LandingCompanyRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$LandingCompanyRequestToJson(this);
 
   // Properties
   /// Client's 2-letter country code (obtained from `residence_list` call).
   String landingCompany;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$LandingCompanyRequestToJson(this);
 }

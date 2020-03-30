@@ -2,31 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'forget_receive.g.dart';
 
+/// JSON conversion for 'forget_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ForgetResponse {
-  ForgetResponse({this.echoReq, this.forget, this.msgType, this.reqId});
+class ForgetResponse extends Response {
+  /// Initialize ForgetResponse
+  ForgetResponse(
+      {this.forget,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory ForgetResponse.fromJson(Map<String, dynamic> json) =>
       _$ForgetResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$ForgetResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
   /// If set to 1, stream exited and stopped. If set to 0, stream did not exist.
   int forget;
 
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ForgetResponseToJson(this);
 }
