@@ -19,8 +19,8 @@ ContractUpdateHistoryRequest _$ContractUpdateHistoryRequestFromJson(
 Map<String, dynamic> _$ContractUpdateHistoryRequestToJson(
         ContractUpdateHistoryRequest instance) =>
     <String, dynamic>{
-      'contract_id': instance.contractId,
-      'contract_update_history': instance.contractUpdateHistory,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'contract_id': instance.contractId,
+      'contract_update_history': instance.contractUpdateHistory,
     };

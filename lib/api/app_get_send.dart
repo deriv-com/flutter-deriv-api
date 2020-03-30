@@ -2,28 +2,26 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'app_get_send.g.dart';
 
+/// JSON conversion for 'app_get_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AppGetRequest {
-  AppGetRequest({this.appGet, this.passthrough, this.reqId});
+class AppGetRequest extends Request {
+  /// Initialize AppGetRequest
+  AppGetRequest({this.appGet = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory AppGetRequest.fromJson(Map<String, dynamic> json) =>
       _$AppGetRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$AppGetRequestToJson(this);
 
   // Properties
   /// Application app_id
   int appGet;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AppGetRequestToJson(this);
 }

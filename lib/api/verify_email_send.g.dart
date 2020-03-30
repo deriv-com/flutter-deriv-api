@@ -8,11 +8,11 @@ part of 'verify_email_send.dart';
 
 VerifyEmailRequest _$VerifyEmailRequestFromJson(Map<String, dynamic> json) {
   return VerifyEmailRequest(
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     type: json['type'] as String,
     urlParameters: json['url_parameters'] as Map<String, dynamic>,
     verifyEmail: json['verify_email'] as String,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 

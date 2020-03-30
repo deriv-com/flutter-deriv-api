@@ -21,19 +21,21 @@ ProposalArrayRequest _$ProposalArrayRequestFromJson(Map<String, dynamic> json) {
     duration: json['duration'] as int,
     durationUnit: json['duration_unit'] as String,
     multiplier: json['multiplier'] as num,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     productType: json['product_type'] as String,
     proposalArray: json['proposal_array'] as int,
-    reqId: json['req_id'] as int,
     subscribe: json['subscribe'] as int,
     symbol: json['symbol'] as String,
     tradingPeriodStart: json['trading_period_start'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$ProposalArrayRequestToJson(
         ProposalArrayRequest instance) =>
     <String, dynamic>{
+      'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'amount': instance.amount,
       'barriers': instance.barriers,
       'basis': instance.basis,
@@ -44,10 +46,8 @@ Map<String, dynamic> _$ProposalArrayRequestToJson(
       'duration': instance.duration,
       'duration_unit': instance.durationUnit,
       'multiplier': instance.multiplier,
-      'passthrough': instance.passthrough,
       'product_type': instance.productType,
       'proposal_array': instance.proposalArray,
-      'req_id': instance.reqId,
       'subscribe': instance.subscribe,
       'symbol': instance.symbol,
       'trading_period_start': instance.tradingPeriodStart,

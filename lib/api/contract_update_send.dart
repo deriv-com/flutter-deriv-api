@@ -2,20 +2,25 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'contract_update_send.g.dart';
 
+/// JSON conversion for 'contract_update_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ContractUpdateRequest {
+class ContractUpdateRequest extends Request {
+  /// Initialize ContractUpdateRequest
   ContractUpdateRequest(
       {this.contractId,
-      this.contractUpdate,
+      this.contractUpdate = 1,
       this.limitOrder,
-      this.passthrough,
-      this.reqId});
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory ContractUpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$ContractUpdateRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$ContractUpdateRequestToJson(this);
 
   // Properties
   /// Internal unique contract identifier.
@@ -27,14 +32,7 @@ class ContractUpdateRequest {
   /// Specify limit order to update.
   Map<String, dynamic> limitOrder;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ContractUpdateRequestToJson(this);
 }

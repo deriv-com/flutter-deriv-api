@@ -2,32 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'new_account_maltainvest_receive.g.dart';
 
+/// JSON conversion for 'new_account_maltainvest_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class NewAccountMaltainvestResponse {
+class NewAccountMaltainvestResponse extends Response {
+  /// Initialize NewAccountMaltainvestResponse
   NewAccountMaltainvestResponse(
-      {this.echoReq, this.msgType, this.newAccountMaltainvest, this.reqId});
+      {this.newAccountMaltainvest,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory NewAccountMaltainvestResponse.fromJson(Map<String, dynamic> json) =>
       _$NewAccountMaltainvestResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$NewAccountMaltainvestResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
   /// New `maltainvest` account details
   Map<String, dynamic> newAccountMaltainvest;
 
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$NewAccountMaltainvestResponseToJson(this);
 }

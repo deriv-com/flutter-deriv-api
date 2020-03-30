@@ -2,28 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'app_delete_send.g.dart';
 
+/// JSON conversion for 'app_delete_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AppDeleteRequest {
-  AppDeleteRequest({this.appDelete, this.passthrough, this.reqId});
+class AppDeleteRequest extends Request {
+  /// Initialize AppDeleteRequest
+  AppDeleteRequest(
+      {this.appDelete = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory AppDeleteRequest.fromJson(Map<String, dynamic> json) =>
       _$AppDeleteRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$AppDeleteRequestToJson(this);
 
   // Properties
   /// Application app_id
   int appDelete;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AppDeleteRequestToJson(this);
 }

@@ -2,32 +2,33 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'account_closure_send.g.dart';
 
+/// JSON conversion for 'account_closure_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AccountClosureRequest {
+class AccountClosureRequest extends Request {
+  /// Initialize AccountClosureRequest
   AccountClosureRequest(
-      {this.accountClosure, this.passthrough, this.reason, this.reqId});
+      {this.accountClosure = 1,
+      this.reason,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory AccountClosureRequest.fromJson(Map<String, dynamic> json) =>
       _$AccountClosureRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$AccountClosureRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int accountClosure;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// Reason for closing off accounts.
   String reason;
 
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AccountClosureRequestToJson(this);
 }
