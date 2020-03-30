@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:meta/meta.dart';
 
-import 'package:flutter_deriv_api/subscription_manager/subscription_type.dart';
 import 'package:flutter_deriv_api/subscription_manager/subscription_exception.dart';
+import 'package:flutter_deriv_api/subscription_manager/subscription_information.dart';
 
 /// Subscription manager class
 class SubscriptionManager {
@@ -14,20 +14,20 @@ class SubscriptionManager {
 
   static SubscriptionManager _instance;
 
-  static final Map<String, SubscriptionType<Object>> _subscriptions =
-      <String, SubscriptionType<Object>>{};
+  static final Map<String, SubscriptionInformation<Object>> _subscriptions =
+      <String, SubscriptionInformation<Object>>{};
 
-  /// Get subscription id for [key]
+  /// Get subscription [id] by [key] in subscribe manager
   String getId(String key) => _subscriptions[key]?.id;
 
-  /// Get stream for [key]
+  /// Get [stream] by [key] in subscribe manager
   Stream<Object> getStream(String key) => _subscriptions[key]?.stream;
 
-  /// Get stream subscription for [key]
+  /// Get [streamSubscription] by [key] in subscribe manager
   StreamSubscription<Object> getStreamSubscription(String key) =>
       _subscriptions[key]?.streamSubscription;
 
-  /// Add subscription information to manager
+  /// Add subscription information to subscribe manager
   void add<T>({
     @required String key,
     String subscriptionId,
@@ -36,18 +36,18 @@ class SubscriptionManager {
   }) {
     if (_subscriptions.containsKey(key)) {
       throw SubscriptionException(
-        message: 'mapping already present for type "$key"',
+        message: 'mapping already present for "$key"',
       );
     }
 
-    _subscriptions[key] = SubscriptionType<T>(
+    _subscriptions[key] = SubscriptionInformation<T>(
       id: subscriptionId,
       stream: stream,
       streamSubscription: streamSubscription,
     );
   }
 
-  /// Set subscription id
+  /// Set subscription [id] for subscription information
   void setId({
     @required String key,
     @required String id,
@@ -61,7 +61,7 @@ class SubscriptionManager {
     }
   }
 
-  /// Set  stream
+  /// Set [stream] for subscription information
   void setStream<T>({
     @required String key,
     @required Stream<T> stream,
@@ -75,7 +75,7 @@ class SubscriptionManager {
     }
   }
 
-  /// Set stream subscription
+  /// Set [streamSubscription] for subscription information
   void setStreamSubscription<T>({
     @required String key,
     @required StreamSubscription<T> streamSubscription,
@@ -91,10 +91,10 @@ class SubscriptionManager {
     }
   }
 
-  /// Clear subscription id
+  /// Clear subscription [id]
   void clearId(String key) => setId(key: key, id: null);
 
-  /// Dispose subscription and close stream
+  /// Dispose subscription and close stream by [key]
   Future<void> dispose(String key) async {
     clearId(key);
 
@@ -103,11 +103,12 @@ class SubscriptionManager {
     _subscriptions.remove(key);
   }
 
-  /// Dispose all subscription and close stream
+  /// Dispose all subscriptions and close streams
   Future<void> disposeAll() async => _subscriptions.forEach(
-        (String key, SubscriptionType<Object> subscriptionType) => dispose(key),
+        (String key, SubscriptionInformation<Object> subscriptionInformation) =>
+            dispose(key),
       );
 
-  /// indicates [key] has any subscription information or not
+  /// Indicates [key] has any subscription information or not
   bool hasSubscription(String key) => getId(key) != null;
 }
