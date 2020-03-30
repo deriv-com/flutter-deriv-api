@@ -6,11 +6,6 @@ import 'package:flutter_deriv_api/services/deriv_api.dart';
 
 /// [T] the return type pf API calls
 mixin ApiCaller<T> {
-  /// Calls directly to API and returns raw [Response]
-  Future<Response> callApi(Request request) async => DerivApi().call(request);
-
-  /// Subscribes directly to API and returns raw stream of [Response]
-  Stream<Response> subscribe(Request request) => DerivApi().subscribe(request);
 
   /// Subscribe with [T] return type
   Stream<T> modelSubscribe(Request request) =>

@@ -31,10 +31,20 @@ class DerivApi {
   }
 
   ///
-  Future<bool> init() async{
+  Future<bool> init({
+    String endpoint = 'www.binaryqa10.com',
+    String language = 'en',
+    String brand = 'deriv',
+    String appId = '1014',
+  }) async {
     try {
-      await _binaryAPI.run();
-    } on Exception{
+      await _binaryAPI.run(
+        endpoint: endpoint,
+        language: language,
+        brand: brand,
+        appId: appId,
+      );
+    } on Exception {
       return false;
     }
     return true;

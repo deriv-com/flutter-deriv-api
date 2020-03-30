@@ -166,24 +166,6 @@ class BinaryAPI {
   /// All requests and responses
   final APIHistory history = APIHistory();
 
-  /// Target endpoint - can be:
-  ///
-  /// - a full URL
-  /// - a hostname
-  /// - qaXX
-  String get endpoint =>
-      /*parseWSUrl(PrefService.getString('endpoint')) ?? */ 'blue.binaryws.com';
-
-  /// Which application this is - the default
-  /// is our OTC cashier in production
-  String get appID => /*PrefService.getString('appId') ?? */ '1015';
-
-  /// The language that should be used to show the context.
-  String get language => /*PrefService.getString('language') ??*/ 'en';
-
-  /// The brand name
-  String brand = 'deriv';
-
   /// Calls the WebSocket API with the given method name and parameters.
   Future<Response> _call(
     Request request, {
@@ -364,16 +346,20 @@ class BinaryAPI {
   Future<IOWebSocketChannel> run({
     SocketCallback onDone,
     SocketCallback onOpen,
+    String endpoint = 'www.binaryqa10.com',
+    String language = 'en',
+    String brand = 'deriv',
+    String appId = '1014',
   }) async {
     _connected = false;
 
     final Uri uri = Uri(
       scheme: 'wss',
-      host: 'www.binaryqa10.com',
+      host: endpoint,
       path: '/websockets/v3',
       queryParameters: <String, dynamic>{
         // The Uri.queryParameters only accept Map<String, dynamic/*String|Iterable<String>*/>
-        'app_id': '1014',
+        'app_id': appId,
         'l': language,
         'brand': brand,
       },

@@ -1,5 +1,9 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_deriv_api/api/authorize_receive.dart';
+import 'package:flutter_deriv_api/api/p2p_advertiser_info_send.dart';
+import 'package:flutter_deriv_api/models/advertiser/advertiser.dart';
+import 'package:flutter_deriv_api/models/advertiser/advertiser_caller.dart';
+import 'package:flutter_deriv_api/models/order/order.dart';
 import 'package:flutter_deriv_api/models/order/order_list/order_list.dart';
 import 'package:flutter_deriv_api/services/deriv_api.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -24,19 +28,31 @@ void main() {
   });
 
   test('Test APi caller', () async {
-    await DerivApi().init();
+    await DerivApi().init(appId: '1015');
 
     final AuthorizeResponse authorizeResponse =
-        await DerivApi().authorize('YOUR TOKEN');
+        await DerivApi().authorize('YOU TOKEN');
 
     print('Test result: authorize: ${authorizeResponse.authorize}');
 
     final OrderList orderList = await OrderList.fetch();
 
+    if (orderList.orders.isNotEmpty) {
+      print('Number of orders: ${orderList.orders.length}');
+      final Order order = await Order.fetchOrder(orderList.orders.first.id);
+      print('Order info: ${order.id}, ${order.status} ');
+    }
 
     OrderList.fetchListUpdate().listen((OrderList orders) {
       print(orders);
     });
+
+    final AdvertiserCaller advertiserCaller = AdvertiserCaller();
+    final Advertiser advertiser =
+        await advertiserCaller.modelCall(P2pAdvertiserInfoRequest(id: '1'));
+
+    print('Advertiser: ${advertiser.name}  id: ${advertiser.id}');
+
 
     await Future<void>.delayed(const Duration(seconds: 5));
   });

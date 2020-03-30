@@ -29,12 +29,12 @@ class OrderCaller with ApiCaller<Order> {
         return fromJson(cancelResponse.p2pOrderCancel);
         break;
     }
-    // TODO(Ramin): Maybe returning something else instead of null
+    // TODO(api): Maybe returning something else instead of null
     return null;
   }
 
   /// Extracts [Order] fields from Map
-  Order fromJson(Map<String, dynamic> map) => Order(
+  static Order fromJson(Map<String, dynamic> map) => Order(
       accountCurrency: map['account_currency'],
       advertDetails: Advert.fromMap(map['advert_details']),
       advertiserDetails: Advertiser.fromMap(map['advertiser_details']),
