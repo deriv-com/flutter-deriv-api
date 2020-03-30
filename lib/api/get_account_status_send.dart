@@ -2,29 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'get_account_status_send.g.dart';
 
+/// JSON conversion for 'get_account_status_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class GetAccountStatusRequest {
+class GetAccountStatusRequest extends Request {
+  /// Initialize GetAccountStatusRequest
   GetAccountStatusRequest(
-      {this.getAccountStatus, this.passthrough, this.reqId});
+      {this.getAccountStatus = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory GetAccountStatusRequest.fromJson(Map<String, dynamic> json) =>
       _$GetAccountStatusRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$GetAccountStatusRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int getAccountStatus;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$GetAccountStatusRequestToJson(this);
 }

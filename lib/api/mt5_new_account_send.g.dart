@@ -21,18 +21,20 @@ Mt5NewAccountRequest _$Mt5NewAccountRequestFromJson(Map<String, dynamic> json) {
     mt5AccountType: json['mt5_account_type'] as String,
     mt5NewAccount: json['mt5_new_account'] as int,
     name: json['name'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     phone: json['phone'] as String,
     phonePassword: json['phone_password'] as String,
-    reqId: json['req_id'] as int,
     state: json['state'] as String,
     zipCode: json['zip_code'] as String,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$Mt5NewAccountRequestToJson(
         Mt5NewAccountRequest instance) =>
     <String, dynamic>{
+      'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'account_type': instance.accountType,
       'address': instance.address,
       'city': instance.city,
@@ -46,10 +48,8 @@ Map<String, dynamic> _$Mt5NewAccountRequestToJson(
       'mt5_account_type': instance.mt5AccountType,
       'mt5_new_account': instance.mt5NewAccount,
       'name': instance.name,
-      'passthrough': instance.passthrough,
       'phone': instance.phone,
       'phone_password': instance.phonePassword,
-      'req_id': instance.reqId,
       'state': instance.state,
       'zip_code': instance.zipCode,
     };

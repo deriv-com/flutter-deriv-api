@@ -2,31 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'time_receive.g.dart';
 
+/// JSON conversion for 'time_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TimeResponse {
-  TimeResponse({this.echoReq, this.msgType, this.reqId, this.time});
+class TimeResponse extends Response {
+  /// Initialize TimeResponse
+  TimeResponse(
+      {this.time,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory TimeResponse.fromJson(Map<String, dynamic> json) =>
       _$TimeResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$TimeResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
   /// Epoch of server time.
   int time;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TimeResponseToJson(this);
 }

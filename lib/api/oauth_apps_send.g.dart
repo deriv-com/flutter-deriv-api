@@ -16,7 +16,7 @@ OauthAppsRequest _$OauthAppsRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$OauthAppsRequestToJson(OauthAppsRequest instance) =>
     <String, dynamic>{
-      'oauth_apps': instance.oauthApps,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'oauth_apps': instance.oauthApps,
     };

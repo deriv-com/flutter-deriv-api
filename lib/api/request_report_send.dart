@@ -2,21 +2,26 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'request_report_send.g.dart';
 
+/// JSON conversion for 'request_report_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class RequestReportRequest {
+class RequestReportRequest extends Request {
+  /// Initialize RequestReportRequest
   RequestReportRequest(
       {this.dateFrom,
       this.dateTo,
-      this.passthrough,
       this.reportType,
-      this.reqId,
-      this.requestReport});
+      this.requestReport = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory RequestReportRequest.fromJson(Map<String, dynamic> json) =>
       _$RequestReportRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$RequestReportRequestToJson(this);
 
   // Properties
   /// Start date of the report
@@ -25,20 +30,13 @@ class RequestReportRequest {
   /// End date of the report
   int dateTo;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// Type of report to be sent to client's registered e-mail address
   String reportType;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Must be `1`
   int requestReport;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$RequestReportRequestToJson(this);
 }

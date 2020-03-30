@@ -2,32 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'mt5_login_list_receive.g.dart';
 
+/// JSON conversion for 'mt5_login_list_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Mt5LoginListResponse {
+class Mt5LoginListResponse extends Response {
+  /// Initialize Mt5LoginListResponse
   Mt5LoginListResponse(
-      {this.echoReq, this.msgType, this.mt5LoginList, this.reqId});
+      {this.mt5LoginList,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory Mt5LoginListResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5LoginListResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$Mt5LoginListResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
   /// Array containing MT5 account objects.
   List<Map<String, dynamic>> mt5LoginList;
 
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$Mt5LoginListResponseToJson(this);
 }

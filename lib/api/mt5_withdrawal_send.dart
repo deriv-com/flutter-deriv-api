@@ -2,21 +2,26 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'mt5_withdrawal_send.g.dart';
 
+/// JSON conversion for 'mt5_withdrawal_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Mt5WithdrawalRequest {
+class Mt5WithdrawalRequest extends Request {
+  /// Initialize Mt5WithdrawalRequest
   Mt5WithdrawalRequest(
       {this.amount,
       this.fromMt5,
-      this.mt5Withdrawal,
-      this.passthrough,
-      this.reqId,
-      this.toBinary});
+      this.mt5Withdrawal = 1,
+      this.toBinary,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5WithdrawalRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$Mt5WithdrawalRequestToJson(this);
 
   // Properties
   /// Amount to withdraw (in the currency of the MT5 account); min = $1 or an equivalent amount, max = $20000 or an equivalent amount.
@@ -28,17 +33,10 @@ class Mt5WithdrawalRequest {
   /// Must be `1`
   int mt5Withdrawal;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
   /// Binary account loginid to transfer money to
   String toBinary;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$Mt5WithdrawalRequestToJson(this);
 }

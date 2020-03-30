@@ -2,39 +2,35 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'website_status_receive.g.dart';
 
+/// JSON conversion for 'website_status_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class WebsiteStatusResponse {
+class WebsiteStatusResponse extends Response {
+  /// Initialize WebsiteStatusResponse
   WebsiteStatusResponse(
-      {this.echoReq,
-      this.msgType,
-      this.reqId,
-      this.subscription,
-      this.websiteStatus});
+      {this.subscription,
+      this.websiteStatus,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory WebsiteStatusResponse.fromJson(Map<String, dynamic> json) =>
       _$WebsiteStatusResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$WebsiteStatusResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
   /// For subscription requests only
   Map<String, dynamic> subscription;
 
   /// Server status and other information regarding general settings
   Map<String, dynamic> websiteStatus;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$WebsiteStatusResponseToJson(this);
 }

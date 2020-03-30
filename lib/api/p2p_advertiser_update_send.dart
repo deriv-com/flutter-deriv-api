@@ -2,23 +2,28 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'p2p_advertiser_update_send.g.dart';
 
+/// JSON conversion for 'p2p_advertiser_update_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class P2pAdvertiserUpdateRequest {
+class P2pAdvertiserUpdateRequest extends Request {
+  /// Initialize P2pAdvertiserUpdateRequest
   P2pAdvertiserUpdateRequest(
       {this.contactInfo,
       this.defaultAdvertDescription,
       this.isListed,
       this.name,
-      this.p2pAdvertiserUpdate,
-      this.passthrough,
+      this.p2pAdvertiserUpdate = 1,
       this.paymentInfo,
-      this.reqId});
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory P2pAdvertiserUpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertiserUpdateRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$P2pAdvertiserUpdateRequestToJson(this);
 
   // Properties
   /// [Optional] Advertiser's contact information, to be used as a default for new sell adverts.
@@ -36,17 +41,10 @@ class P2pAdvertiserUpdateRequest {
   /// Must be 1
   int p2pAdvertiserUpdate;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] Advertiser's payment information, to be used as a default for new sell adverts.
   String paymentInfo;
 
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$P2pAdvertiserUpdateRequestToJson(this);
 }

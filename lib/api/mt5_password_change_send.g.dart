@@ -13,8 +13,8 @@ Mt5PasswordChangeRequest _$Mt5PasswordChangeRequestFromJson(
     mt5PasswordChange: json['mt5_password_change'] as int,
     newPassword: json['new_password'] as String,
     oldPassword: json['old_password'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     passwordType: json['password_type'] as String,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
   );
 }
@@ -22,11 +22,11 @@ Mt5PasswordChangeRequest _$Mt5PasswordChangeRequestFromJson(
 Map<String, dynamic> _$Mt5PasswordChangeRequestToJson(
         Mt5PasswordChangeRequest instance) =>
     <String, dynamic>{
+      'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'login': instance.login,
       'mt5_password_change': instance.mt5PasswordChange,
       'new_password': instance.newPassword,
       'old_password': instance.oldPassword,
-      'passthrough': instance.passthrough,
       'password_type': instance.passwordType,
-      'req_id': instance.reqId,
     };

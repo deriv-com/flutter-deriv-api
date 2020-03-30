@@ -25,6 +25,8 @@ DocumentUploadRequest _$DocumentUploadRequestFromJson(
 Map<String, dynamic> _$DocumentUploadRequestToJson(
         DocumentUploadRequest instance) =>
     <String, dynamic>{
+      'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'document_format': instance.documentFormat,
       'document_id': instance.documentId,
       'document_type': instance.documentType,
@@ -33,6 +35,4 @@ Map<String, dynamic> _$DocumentUploadRequestToJson(
       'expiration_date': instance.expirationDate,
       'file_size': instance.fileSize,
       'page_type': instance.pageType,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
     };

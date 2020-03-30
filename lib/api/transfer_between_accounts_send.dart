@@ -2,23 +2,28 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'transfer_between_accounts_send.g.dart';
 
+/// JSON conversion for 'transfer_between_accounts_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TransferBetweenAccountsRequest {
+class TransferBetweenAccountsRequest extends Request {
+  /// Initialize TransferBetweenAccountsRequest
   TransferBetweenAccountsRequest(
       {this.accountFrom,
       this.accountTo,
       this.accounts,
       this.amount,
       this.currency,
-      this.passthrough,
-      this.reqId,
-      this.transferBetweenAccounts});
+      this.transferBetweenAccounts = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>
       _$TransferBetweenAccountsRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$TransferBetweenAccountsRequestToJson(this);
 
   // Properties
   /// [Optional] The loginid of the account to transfer funds from.
@@ -36,17 +41,10 @@ class TransferBetweenAccountsRequest {
   /// [Optional] Currency code.
   String currency;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
   /// If `account_from` or `account_to` is not provided, it just returns the available accounts.
   int transferBetweenAccounts;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TransferBetweenAccountsRequestToJson(this);
 }
