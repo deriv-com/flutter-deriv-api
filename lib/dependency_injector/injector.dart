@@ -1,12 +1,14 @@
 import 'package:flutter_deriv_api/dependency_injector/type_factory.dart';
 import 'package:flutter_deriv_api/dependency_injector/injector_exception.dart';
 
+const String _defaultKey = 'default';
+
 /// Injector class
 class Injector {
   Injector._internal({this.name});
 
   /// Get the instance of the named injector
-  static Injector getInjector({String name = 'default'}) =>
+  static Injector getInjector({String name = _defaultKey}) =>
       _injectors[name] = _injectors[name] ?? Injector._internal(name: name);
 
   static final Map<String, Injector> _injectors = <String, Injector>{};
@@ -77,7 +79,7 @@ class Injector {
   /// Gets all the mapped instances of the given type and additional parameters
   Iterable<T> getAll<T>({Map<String, dynamic> additionalParameters}) {
     final List<T> instances = <T>[];
-    final String keyForType = _generateKey(T).replaceFirst('default', '');
+    final String keyForType = _generateKey(T).replaceFirst(_defaultKey, '');
 
     _factories.forEach((String key, TypeFactory<Object> typeFactory) {
       if (key.contains(keyForType)) {
@@ -88,12 +90,12 @@ class Injector {
     return instances;
   }
 
-  /// Dispose injector
+  /// Disposes of the injector instance and removes it from the named collection of injectors
   void dispose() {
     _factories.clear();
     _injectors.remove(name);
   }
 
-  String _generateKey<T>(T type, {String key = 'default'}) =>
-      '${type.toString()}::${key}';
+  String _generateKey<T>(T type, {String key = _defaultKey}) =>
+      '${type.toString()}::$key';
 }
