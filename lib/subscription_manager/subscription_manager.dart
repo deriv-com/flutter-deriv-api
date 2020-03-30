@@ -103,6 +103,11 @@ class SubscriptionManager {
     _subscriptions.remove(key);
   }
 
+  /// Dispose all subscription and close stream
+  Future<void> disposeAll() async => _subscriptions.forEach(
+        (String key, SubscriptionType<Object> subscriptionType) => dispose(key),
+      );
+
   /// indicates [key] has any subscription information or not
   bool hasSubscription(String key) => getId(key) != null;
 }
