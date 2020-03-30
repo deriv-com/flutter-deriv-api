@@ -7,7 +7,7 @@ import 'response.dart';
 part 'ticks_receive.g.dart';
 
 /// JSON conversion for 'ticks_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TicksResponse extends Response {
   /// Initialize TicksResponse
   TicksResponse(

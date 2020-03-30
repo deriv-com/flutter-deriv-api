@@ -7,7 +7,7 @@ import 'request.dart';
 part 'verify_email_send.g.dart';
 
 /// JSON conversion for 'verify_email_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class VerifyEmailRequest extends Request {
   /// Initialize VerifyEmailRequest
   VerifyEmailRequest(

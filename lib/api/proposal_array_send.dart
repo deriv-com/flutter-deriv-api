@@ -7,7 +7,7 @@ import 'request.dart';
 part 'proposal_array_send.g.dart';
 
 /// JSON conversion for 'proposal_array_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ProposalArrayRequest extends Request {
   /// Initialize ProposalArrayRequest
   ProposalArrayRequest(

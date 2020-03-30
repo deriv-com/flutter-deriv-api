@@ -7,7 +7,7 @@ import 'response.dart';
 part 'mt5_password_change_receive.g.dart';
 
 /// JSON conversion for 'mt5_password_change_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5PasswordChangeResponse extends Response {
   /// Initialize Mt5PasswordChangeResponse
   Mt5PasswordChangeResponse(

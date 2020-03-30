@@ -7,7 +7,7 @@ import 'response.dart';
 part 'forget_all_receive.g.dart';
 
 /// JSON conversion for 'forget_all_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ForgetAllResponse extends Response {
   /// Initialize ForgetAllResponse
   ForgetAllResponse(

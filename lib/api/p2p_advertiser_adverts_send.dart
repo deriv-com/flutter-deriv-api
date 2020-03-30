@@ -7,7 +7,7 @@ import 'request.dart';
 part 'p2p_advertiser_adverts_send.g.dart';
 
 /// JSON conversion for 'p2p_advertiser_adverts_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pAdvertiserAdvertsRequest extends Request {
   /// Initialize P2pAdvertiserAdvertsRequest
   P2pAdvertiserAdvertsRequest(

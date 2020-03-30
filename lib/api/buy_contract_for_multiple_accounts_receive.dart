@@ -7,7 +7,7 @@ import 'response.dart';
 part 'buy_contract_for_multiple_accounts_receive.g.dart';
 
 /// JSON conversion for 'buy_contract_for_multiple_accounts_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class BuyContractForMultipleAccountsResponse extends Response {
   /// Initialize BuyContractForMultipleAccountsResponse
   BuyContractForMultipleAccountsResponse(

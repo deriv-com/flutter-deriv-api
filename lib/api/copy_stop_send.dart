@@ -7,7 +7,7 @@ import 'request.dart';
 part 'copy_stop_send.g.dart';
 
 /// JSON conversion for 'copy_stop_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class CopyStopRequest extends Request {
   /// Initialize CopyStopRequest
   CopyStopRequest({this.copyStop, Map<String, dynamic> passthrough, int reqId})

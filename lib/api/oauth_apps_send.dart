@@ -7,7 +7,7 @@ import 'request.dart';
 part 'oauth_apps_send.g.dart';
 
 /// JSON conversion for 'oauth_apps_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class OauthAppsRequest extends Request {
   /// Initialize OauthAppsRequest
   OauthAppsRequest(

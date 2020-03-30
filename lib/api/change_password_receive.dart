@@ -7,7 +7,7 @@ import 'response.dart';
 part 'change_password_receive.g.dart';
 
 /// JSON conversion for 'change_password_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ChangePasswordResponse extends Response {
   /// Initialize ChangePasswordResponse
   ChangePasswordResponse(

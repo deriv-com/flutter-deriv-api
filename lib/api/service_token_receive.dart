@@ -7,7 +7,7 @@ import 'response.dart';
 part 'service_token_receive.g.dart';
 
 /// JSON conversion for 'service_token_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ServiceTokenResponse extends Response {
   /// Initialize ServiceTokenResponse
   ServiceTokenResponse(

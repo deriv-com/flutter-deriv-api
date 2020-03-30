@@ -7,7 +7,7 @@ import 'request.dart';
 part 'new_account_virtual_send.g.dart';
 
 /// JSON conversion for 'new_account_virtual_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class NewAccountVirtualRequest extends Request {
   /// Initialize NewAccountVirtualRequest
   NewAccountVirtualRequest(
