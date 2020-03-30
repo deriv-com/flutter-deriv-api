@@ -2,32 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'trading_durations_receive.g.dart';
 
+/// JSON conversion for 'trading_durations_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TradingDurationsResponse {
+class TradingDurationsResponse extends Response {
+  /// Initialize TradingDurationsResponse
   TradingDurationsResponse(
-      {this.echoReq, this.msgType, this.reqId, this.tradingDurations});
+      {this.tradingDurations,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory TradingDurationsResponse.fromJson(Map<String, dynamic> json) =>
       _$TradingDurationsResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$TradingDurationsResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
   /// List of underlyings by their display name and symbol followed by their available contract types and trading duration boundaries.
   List<Map<String, dynamic>> tradingDurations;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TradingDurationsResponseToJson(this);
 }

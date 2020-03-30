@@ -2,39 +2,35 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'proposal_receive.g.dart';
 
+/// JSON conversion for 'proposal_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ProposalResponse {
+class ProposalResponse extends Response {
+  /// Initialize ProposalResponse
   ProposalResponse(
-      {this.echoReq,
-      this.msgType,
-      this.proposal,
-      this.reqId,
-      this.subscription});
+      {this.proposal,
+      this.subscription,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory ProposalResponse.fromJson(Map<String, dynamic> json) =>
       _$ProposalResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$ProposalResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
   /// Latest price and other details for a given contract
   Map<String, dynamic> proposal;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
 
   /// For subscription requests only
   Map<String, dynamic> subscription;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ProposalResponseToJson(this);
 }

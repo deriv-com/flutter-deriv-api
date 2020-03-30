@@ -2,32 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'app_markup_details_receive.g.dart';
 
+/// JSON conversion for 'app_markup_details_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AppMarkupDetailsResponse {
+class AppMarkupDetailsResponse extends Response {
+  /// Initialize AppMarkupDetailsResponse
   AppMarkupDetailsResponse(
-      {this.appMarkupDetails, this.echoReq, this.msgType, this.reqId});
+      {this.appMarkupDetails,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory AppMarkupDetailsResponse.fromJson(Map<String, dynamic> json) =>
       _$AppMarkupDetailsResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$AppMarkupDetailsResponseToJson(this);
 
   // Properties
   /// App Markup transaction details
   Map<String, dynamic> appMarkupDetails;
 
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AppMarkupDetailsResponseToJson(this);
 }

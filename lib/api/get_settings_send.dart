@@ -2,28 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'get_settings_send.g.dart';
 
+/// JSON conversion for 'get_settings_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class GetSettingsRequest {
-  GetSettingsRequest({this.getSettings, this.passthrough, this.reqId});
+class GetSettingsRequest extends Request {
+  /// Initialize GetSettingsRequest
+  GetSettingsRequest(
+      {this.getSettings = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       _$GetSettingsRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$GetSettingsRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int getSettings;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$GetSettingsRequestToJson(this);
 }

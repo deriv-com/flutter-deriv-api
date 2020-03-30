@@ -16,7 +16,7 @@ AppGetRequest _$AppGetRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$AppGetRequestToJson(AppGetRequest instance) =>
     <String, dynamic>{
-      'app_get': instance.appGet,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'app_get': instance.appGet,
     };
