@@ -18,8 +18,8 @@ ExchangeRatesRequest _$ExchangeRatesRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$ExchangeRatesRequestToJson(
         ExchangeRatesRequest instance) =>
     <String, dynamic>{
-      'base_currency': instance.baseCurrency,
-      'exchange_rates': instance.exchangeRates,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'base_currency': instance.baseCurrency,
+      'exchange_rates': instance.exchangeRates,
     };

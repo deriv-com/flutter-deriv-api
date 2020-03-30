@@ -2,21 +2,26 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'buy_send.g.dart';
 
+/// JSON conversion for 'buy_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class BuyRequest {
+class BuyRequest extends Request {
+  /// Initialize BuyRequest
   BuyRequest(
       {this.buy,
       this.parameters,
-      this.passthrough,
       this.price,
-      this.reqId,
-      this.subscribe});
+      this.subscribe,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory BuyRequest.fromJson(Map<String, dynamic> json) =>
       _$BuyRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$BuyRequestToJson(this);
 
   // Properties
   /// Either the ID received from a Price Proposal (proposal) call, or '1' if contract buy parameters are passed in the parameters field.
@@ -25,20 +30,13 @@ class BuyRequest {
   /// [Optional] Used to pass the parameters for contract buy.
   Map<String, dynamic> parameters;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// Maximum price at which to purchase the contract.
   num price;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] `1` to stream.
   int subscribe;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$BuyRequestToJson(this);
 }

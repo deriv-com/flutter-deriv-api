@@ -2,21 +2,26 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'contracts_for_send.g.dart';
 
+/// JSON conversion for 'contracts_for_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ContractsForRequest {
+class ContractsForRequest extends Request {
+  /// Initialize ContractsForRequest
   ContractsForRequest(
       {this.contractsFor,
       this.currency,
       this.landingCompany,
-      this.passthrough,
       this.productType,
-      this.reqId});
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory ContractsForRequest.fromJson(Map<String, dynamic> json) =>
       _$ContractsForRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$ContractsForRequestToJson(this);
 
   // Properties
   /// The short symbol name (obtained from active_symbols call).
@@ -28,17 +33,10 @@ class ContractsForRequest {
   /// [Optional] Indicates which landing_company to get a list of contracts for. If you are logged in, your landing company will override this field.
   String landingCompany;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] If you specify this field, only contracts tradable through that contract type will be returned.
   String productType;
 
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ContractsForRequestToJson(this);
 }

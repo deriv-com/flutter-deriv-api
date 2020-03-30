@@ -18,7 +18,7 @@ GetSelfExclusionRequest _$GetSelfExclusionRequestFromJson(
 Map<String, dynamic> _$GetSelfExclusionRequestToJson(
         GetSelfExclusionRequest instance) =>
     <String, dynamic>{
-      'get_self_exclusion': instance.getSelfExclusion,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'get_self_exclusion': instance.getSelfExclusion,
     };

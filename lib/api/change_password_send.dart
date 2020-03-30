@@ -2,20 +2,25 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'change_password_send.g.dart';
 
+/// JSON conversion for 'change_password_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ChangePasswordRequest {
+class ChangePasswordRequest extends Request {
+  /// Initialize ChangePasswordRequest
   ChangePasswordRequest(
       {this.changePassword,
       this.newPassword,
       this.oldPassword,
-      this.passthrough,
-      this.reqId});
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory ChangePasswordRequest.fromJson(Map<String, dynamic> json) =>
       _$ChangePasswordRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$ChangePasswordRequestToJson(this);
 
   // Properties
   /// Must be `1`
@@ -27,14 +32,7 @@ class ChangePasswordRequest {
   /// Old password for validation (non-empty string, accepts any printable ASCII character)
   String oldPassword;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ChangePasswordRequestToJson(this);
 }

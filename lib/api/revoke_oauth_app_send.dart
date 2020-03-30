@@ -2,28 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'revoke_oauth_app_send.g.dart';
 
+/// JSON conversion for 'revoke_oauth_app_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class RevokeOauthAppRequest {
-  RevokeOauthAppRequest({this.passthrough, this.reqId, this.revokeOauthApp});
+class RevokeOauthAppRequest extends Request {
+  /// Initialize RevokeOauthAppRequest
+  RevokeOauthAppRequest(
+      {this.revokeOauthApp = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory RevokeOauthAppRequest.fromJson(Map<String, dynamic> json) =>
       _$RevokeOauthAppRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$RevokeOauthAppRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
   /// The application ID to revoke.
   int revokeOauthApp;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$RevokeOauthAppRequestToJson(this);
 }

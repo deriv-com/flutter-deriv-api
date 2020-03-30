@@ -2,35 +2,33 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'copytrading_statistics_send.g.dart';
 
+/// JSON conversion for 'copytrading_statistics_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class CopytradingStatisticsRequest {
+class CopytradingStatisticsRequest extends Request {
+  /// Initialize CopytradingStatisticsRequest
   CopytradingStatisticsRequest(
-      {this.copytradingStatistics,
-      this.passthrough,
-      this.reqId,
-      this.traderId});
+      {this.copytradingStatistics = 1,
+      this.traderId,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory CopytradingStatisticsRequest.fromJson(Map<String, dynamic> json) =>
       _$CopytradingStatisticsRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$CopytradingStatisticsRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int copytradingStatistics;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
   /// The ID of the target trader.
   String traderId;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$CopytradingStatisticsRequestToJson(this);
 }

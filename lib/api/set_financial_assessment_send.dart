@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'set_financial_assessment_send.g.dart';
 
+/// JSON conversion for 'set_financial_assessment_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class SetFinancialAssessmentRequest {
+class SetFinancialAssessmentRequest extends Request {
+  /// Initialize SetFinancialAssessmentRequest
   SetFinancialAssessmentRequest(
       {this.accountTurnover,
       this.binaryOptionsTradingExperience,
@@ -24,13 +27,15 @@ class SetFinancialAssessmentRequest {
       this.occupation,
       this.otherInstrumentsTradingExperience,
       this.otherInstrumentsTradingFrequency,
-      this.passthrough,
-      this.reqId,
-      this.setFinancialAssessment,
-      this.sourceOfWealth});
+      this.setFinancialAssessment = 1,
+      this.sourceOfWealth,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory SetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       _$SetFinancialAssessmentRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$SetFinancialAssessmentRequestToJson(this);
 
   // Properties
   /// [Optional] The anticipated account turnover.
@@ -81,20 +86,13 @@ class SetFinancialAssessmentRequest {
   /// [Optional] Trading frequency in other financial instruments.
   String otherInstrumentsTradingFrequency;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
   /// Must be `1`
   int setFinancialAssessment;
 
   /// [Optional] Source of wealth.
   String sourceOfWealth;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$SetFinancialAssessmentRequestToJson(this);
 }

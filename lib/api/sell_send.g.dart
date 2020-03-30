@@ -8,17 +8,17 @@ part of 'sell_send.dart';
 
 SellRequest _$SellRequestFromJson(Map<String, dynamic> json) {
   return SellRequest(
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     price: json['price'] as num,
-    reqId: json['req_id'] as int,
     sell: json['sell'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$SellRequestToJson(SellRequest instance) =>
     <String, dynamic>{
       'passthrough': instance.passthrough,
-      'price': instance.price,
       'req_id': instance.reqId,
+      'price': instance.price,
       'sell': instance.sell,
     };

@@ -2,22 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'mt5_password_change_send.g.dart';
 
+/// JSON conversion for 'mt5_password_change_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Mt5PasswordChangeRequest {
+class Mt5PasswordChangeRequest extends Request {
+  /// Initialize Mt5PasswordChangeRequest
   Mt5PasswordChangeRequest(
       {this.login,
-      this.mt5PasswordChange,
+      this.mt5PasswordChange = 1,
       this.newPassword,
       this.oldPassword,
-      this.passthrough,
       this.passwordType,
-      this.reqId});
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory Mt5PasswordChangeRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordChangeRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$Mt5PasswordChangeRequestToJson(this);
 
   // Properties
   /// MT5 user login
@@ -32,17 +37,10 @@ class Mt5PasswordChangeRequest {
   /// Old password for validation (non-empty string, accepts any printable ASCII character)
   String oldPassword;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] Type of the password to change.
   String passwordType;
 
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$Mt5PasswordChangeRequestToJson(this);
 }

@@ -2,32 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'contract_update_history_receive.g.dart';
 
+/// JSON conversion for 'contract_update_history_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ContractUpdateHistoryResponse {
+class ContractUpdateHistoryResponse extends Response {
+  /// Initialize ContractUpdateHistoryResponse
   ContractUpdateHistoryResponse(
-      {this.contractUpdateHistory, this.echoReq, this.msgType, this.reqId});
+      {this.contractUpdateHistory,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory ContractUpdateHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$ContractUpdateHistoryResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$ContractUpdateHistoryResponseToJson(this);
 
   // Properties
   /// Contains the historical and the most recent update status of the contract
   List<String> contractUpdateHistory;
 
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ContractUpdateHistoryResponseToJson(this);
 }

@@ -2,33 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'sell_contract_for_multiple_accounts_send.g.dart';
 
+/// JSON conversion for 'sell_contract_for_multiple_accounts_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class SellContractForMultipleAccountsRequest {
+class SellContractForMultipleAccountsRequest extends Request {
+  /// Initialize SellContractForMultipleAccountsRequest
   SellContractForMultipleAccountsRequest(
-      {this.passthrough,
-      this.price,
-      this.reqId,
-      this.sellContractForMultipleAccounts,
+      {this.price,
+      this.sellContractForMultipleAccounts = 1,
       this.shortcode,
-      this.tokens});
+      this.tokens,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory SellContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       _$SellContractForMultipleAccountsRequestFromJson(json);
-  Map<String, dynamic> toJson() =>
-      _$SellContractForMultipleAccountsRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
   num price;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// Must be `1`
   int sellContractForMultipleAccounts;
@@ -39,8 +37,8 @@ class SellContractForMultipleAccountsRequest {
   /// Authorisation tokens which select the accounts to sell use for the affected accounts.
   List<String> tokens;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() =>
+      _$SellContractForMultipleAccountsRequestToJson(this);
 }

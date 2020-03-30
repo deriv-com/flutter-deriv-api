@@ -8,10 +8,10 @@ part of 'transaction_send.dart';
 
 TransactionRequest _$TransactionRequestFromJson(Map<String, dynamic> json) {
   return TransactionRequest(
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     subscribe: json['subscribe'] as int,
     transaction: json['transaction'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 

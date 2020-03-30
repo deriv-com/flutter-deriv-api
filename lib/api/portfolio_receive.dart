@@ -2,31 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'portfolio_receive.g.dart';
 
+/// JSON conversion for 'portfolio_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class PortfolioResponse {
-  PortfolioResponse({this.echoReq, this.msgType, this.portfolio, this.reqId});
+class PortfolioResponse extends Response {
+  /// Initialize PortfolioResponse
+  PortfolioResponse(
+      {this.portfolio,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory PortfolioResponse.fromJson(Map<String, dynamic> json) =>
       _$PortfolioResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$PortfolioResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
   /// Current account's open positions.
   Map<String, dynamic> portfolio;
 
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$PortfolioResponseToJson(this);
 }

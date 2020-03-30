@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'set_settings_send.g.dart';
 
+/// JSON conversion for 'set_settings_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class SetSettingsRequest {
+class SetSettingsRequest extends Request {
+  /// Initialize SetSettingsRequest
   SetSettingsRequest(
       {this.accountOpeningReason,
       this.addressCity,
@@ -20,21 +23,23 @@ class SetSettingsRequest {
       this.emailConsent,
       this.firstName,
       this.lastName,
-      this.passthrough,
       this.phone,
       this.placeOfBirth,
-      this.reqId,
       this.requestProfessionalStatus,
       this.residence,
       this.salutation,
       this.secretAnswer,
       this.secretQuestion,
-      this.setSettings,
+      this.setSettings = 1,
       this.taxIdentificationNumber,
-      this.taxResidence});
+      this.taxResidence,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory SetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       _$SetSettingsRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$SetSettingsRequestToJson(this);
 
   // Properties
   /// [Optional] Purpose and reason for requesting the account opening. Only applicable for real money account. Required for clients that have not set it yet. Can only be set once.
@@ -73,17 +78,11 @@ class SetSettingsRequest {
   /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
   String lastName;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] Note: not applicable for virtual account. Required field for real money account and within 8-35 digits, allowing '+' in front, numbers, hyphens or space.
   String phone;
 
   /// [Optional] Place of birth, 2-letter country code.
   String placeOfBirth;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] Required when client wants to be treated as professional. Applicable for financial accounts only.
   int requestProfessionalStatus;
@@ -109,8 +108,7 @@ class SetSettingsRequest {
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for maltainvest landing company.
   String taxResidence;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$SetSettingsRequestToJson(this);
 }

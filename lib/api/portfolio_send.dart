@@ -2,28 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'portfolio_send.g.dart';
 
+/// JSON conversion for 'portfolio_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class PortfolioRequest {
-  PortfolioRequest({this.passthrough, this.portfolio, this.reqId});
+class PortfolioRequest extends Request {
+  /// Initialize PortfolioRequest
+  PortfolioRequest(
+      {this.portfolio = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>
       _$PortfolioRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$PortfolioRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// Must be `1`
   int portfolio;
 
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$PortfolioRequestToJson(this);
 }
