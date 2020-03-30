@@ -2,35 +2,35 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'ticks_receive.g.dart';
 
+/// JSON conversion for 'ticks_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TicksResponse {
+class TicksResponse extends Response {
+  /// Initialize TicksResponse
   TicksResponse(
-      {this.echoReq, this.msgType, this.reqId, this.subscription, this.tick});
+      {this.subscription,
+      this.tick,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory TicksResponse.fromJson(Map<String, dynamic> json) =>
       _$TicksResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$TicksResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Type of the response.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
   /// For subscription requests only
   Map<String, dynamic> subscription;
 
   /// Tick by tick list of streamed data
   Map<String, dynamic> tick;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TicksResponseToJson(this);
 }

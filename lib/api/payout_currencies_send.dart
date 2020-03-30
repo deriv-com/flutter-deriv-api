@@ -2,29 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'payout_currencies_send.g.dart';
 
+/// JSON conversion for 'payout_currencies_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class PayoutCurrenciesRequest {
+class PayoutCurrenciesRequest extends Request {
+  /// Initialize PayoutCurrenciesRequest
   PayoutCurrenciesRequest(
-      {this.passthrough, this.payoutCurrencies, this.reqId});
+      {this.payoutCurrencies = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory PayoutCurrenciesRequest.fromJson(Map<String, dynamic> json) =>
       _$PayoutCurrenciesRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$PayoutCurrenciesRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// Must be `1`
   int payoutCurrencies;
 
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$PayoutCurrenciesRequestToJson(this);
 }

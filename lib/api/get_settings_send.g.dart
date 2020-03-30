@@ -16,7 +16,7 @@ GetSettingsRequest _$GetSettingsRequestFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$GetSettingsRequestToJson(GetSettingsRequest instance) =>
     <String, dynamic>{
-      'get_settings': instance.getSettings,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'get_settings': instance.getSettings,
     };

@@ -9,8 +9,8 @@ part of 'payout_currencies_send.dart';
 PayoutCurrenciesRequest _$PayoutCurrenciesRequestFromJson(
     Map<String, dynamic> json) {
   return PayoutCurrenciesRequest(
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     payoutCurrencies: json['payout_currencies'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
   );
 }
@@ -19,6 +19,6 @@ Map<String, dynamic> _$PayoutCurrenciesRequestToJson(
         PayoutCurrenciesRequest instance) =>
     <String, dynamic>{
       'passthrough': instance.passthrough,
-      'payout_currencies': instance.payoutCurrencies,
       'req_id': instance.reqId,
+      'payout_currencies': instance.payoutCurrencies,
     };

@@ -18,8 +18,8 @@ LoginHistoryRequest _$LoginHistoryRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$LoginHistoryRequestToJson(
         LoginHistoryRequest instance) =>
     <String, dynamic>{
-      'limit': instance.limit,
-      'login_history': instance.loginHistory,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'limit': instance.limit,
+      'login_history': instance.loginHistory,
     };

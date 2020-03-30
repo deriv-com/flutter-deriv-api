@@ -2,25 +2,30 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'document_upload_send.g.dart';
 
+/// JSON conversion for 'document_upload_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class DocumentUploadRequest {
+class DocumentUploadRequest extends Request {
+  /// Initialize DocumentUploadRequest
   DocumentUploadRequest(
       {this.documentFormat,
       this.documentId,
       this.documentType,
-      this.documentUpload,
+      this.documentUpload = 1,
       this.expectedChecksum,
       this.expirationDate,
       this.fileSize,
       this.pageType,
-      this.passthrough,
-      this.reqId});
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>
       _$DocumentUploadRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$DocumentUploadRequestToJson(this);
 
   // Properties
   /// Document file format
@@ -47,14 +52,7 @@ class DocumentUploadRequest {
   /// [Optional] To determine document side
   String pageType;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$DocumentUploadRequestToJson(this);
 }

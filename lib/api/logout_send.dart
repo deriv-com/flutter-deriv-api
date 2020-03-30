@@ -2,28 +2,26 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'logout_send.g.dart';
 
+/// JSON conversion for 'logout_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class LogoutRequest {
-  LogoutRequest({this.logout, this.passthrough, this.reqId});
+class LogoutRequest extends Request {
+  /// Initialize LogoutRequest
+  LogoutRequest({this.logout = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory LogoutRequest.fromJson(Map<String, dynamic> json) =>
       _$LogoutRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$LogoutRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int logout;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$LogoutRequestToJson(this);
 }

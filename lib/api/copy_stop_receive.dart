@@ -2,31 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'copy_stop_receive.g.dart';
 
+/// JSON conversion for 'copy_stop_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class CopyStopResponse {
-  CopyStopResponse({this.copyStop, this.echoReq, this.msgType, this.reqId});
+class CopyStopResponse extends Response {
+  /// Initialize CopyStopResponse
+  CopyStopResponse(
+      {this.copyStop,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory CopyStopResponse.fromJson(Map<String, dynamic> json) =>
       _$CopyStopResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$CopyStopResponseToJson(this);
 
   // Properties
   /// Copy stopping confirmation. Returns 1 is success.
   int copyStop;
 
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$CopyStopResponseToJson(this);
 }

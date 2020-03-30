@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'proposal_send.g.dart';
 
+/// JSON conversion for 'proposal_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ProposalRequest {
+class ProposalRequest extends Request {
+  /// Initialize ProposalRequest
   ProposalRequest(
       {this.amount,
       this.barrier,
@@ -20,17 +23,19 @@ class ProposalRequest {
       this.durationUnit,
       this.limitOrder,
       this.multiplier,
-      this.passthrough,
       this.productType,
-      this.proposal,
-      this.reqId,
+      this.proposal = 1,
       this.selectedTick,
       this.subscribe,
       this.symbol,
-      this.tradingPeriodStart});
+      this.tradingPeriodStart,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory ProposalRequest.fromJson(Map<String, dynamic> json) =>
       _$ProposalRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$ProposalRequestToJson(this);
 
   // Properties
   /// [Optional] Proposed contract payout or stake, or multiplier (for lookbacks).
@@ -69,17 +74,11 @@ class ProposalRequest {
   /// [Optional] The multiplier for non-binary options. E.g. lookbacks.
   num multiplier;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] The product type.
   String productType;
 
   /// Must be `1`
   int proposal;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] The tick that is predicted to have the highest/lowest value - for `TICKHIGH` and `TICKLOW` contracts.
   int selectedTick;
@@ -93,8 +92,7 @@ class ProposalRequest {
   /// [Optional] Required only for multi-barrier trading. Defines the epoch value of the trading period start time.
   int tradingPeriodStart;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ProposalRequestToJson(this);
 }

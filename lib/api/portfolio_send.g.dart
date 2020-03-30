@@ -8,8 +8,8 @@ part of 'portfolio_send.dart';
 
 PortfolioRequest _$PortfolioRequestFromJson(Map<String, dynamic> json) {
   return PortfolioRequest(
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     portfolio: json['portfolio'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
   );
 }
@@ -17,6 +17,6 @@ PortfolioRequest _$PortfolioRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$PortfolioRequestToJson(PortfolioRequest instance) =>
     <String, dynamic>{
       'passthrough': instance.passthrough,
-      'portfolio': instance.portfolio,
       'req_id': instance.reqId,
+      'portfolio': instance.portfolio,
     };

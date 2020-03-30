@@ -2,22 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'copy_start_send.g.dart';
 
+/// JSON conversion for 'copy_start_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class CopyStartRequest {
+class CopyStartRequest extends Request {
+  /// Initialize CopyStartRequest
   CopyStartRequest(
       {this.assets,
       this.copyStart,
       this.maxTradeStake,
       this.minTradeStake,
-      this.passthrough,
-      this.reqId,
-      this.tradeTypes});
+      this.tradeTypes,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory CopyStartRequest.fromJson(Map<String, dynamic> json) =>
       _$CopyStartRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$CopyStartRequestToJson(this);
 
   // Properties
   /// [Optional] Used to set assets to be copied. E.x ["frxUSDJPY", "R_50"]
@@ -32,17 +37,10 @@ class CopyStartRequest {
   /// [Optional] Used to set minimal trade stake to be copied.
   num minTradeStake;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
   /// [Optional] Used to set trade types to be copied. E.x ["CALL", "PUT"]
   String tradeTypes;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$CopyStartRequestToJson(this);
 }

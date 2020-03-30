@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'new_account_maltainvest_send.g.dart';
 
+/// JSON conversion for 'new_account_maltainvest_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class NewAccountMaltainvestRequest {
+class NewAccountMaltainvestRequest extends Request {
+  /// Initialize NewAccountMaltainvestRequest
   NewAccountMaltainvestRequest(
       {this.acceptRisk,
       this.accountOpeningReason,
@@ -34,24 +37,26 @@ class NewAccountMaltainvestRequest {
       this.incomeSource,
       this.lastName,
       this.netIncome,
-      this.newAccountMaltainvest,
+      this.newAccountMaltainvest = 1,
       this.occupation,
       this.otherInstrumentsTradingExperience,
       this.otherInstrumentsTradingFrequency,
-      this.passthrough,
       this.phone,
       this.placeOfBirth,
-      this.reqId,
       this.residence,
       this.salutation,
       this.secretAnswer,
       this.secretQuestion,
       this.sourceOfWealth,
       this.taxIdentificationNumber,
-      this.taxResidence});
+      this.taxResidence,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory NewAccountMaltainvestRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountMaltainvestRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$NewAccountMaltainvestRequestToJson(this);
 
   // Properties
   /// Show whether client has accepted risk disclaimer.
@@ -144,17 +149,11 @@ class NewAccountMaltainvestRequest {
   /// [Optional] Trading frequency in other financial instruments.
   String otherInstrumentsTradingFrequency;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] Within 8-35 digits, allowing '+' in front, numbers, hyphens or space.
   String phone;
 
   /// [Optional] Place of birth, 2-letter country code.
   String placeOfBirth;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// 2-letter country code, possible value receive from `residence_list` call.
   String residence;
@@ -177,8 +176,7 @@ class NewAccountMaltainvestRequest {
   /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   String taxResidence;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$NewAccountMaltainvestRequestToJson(this);
 }

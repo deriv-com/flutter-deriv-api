@@ -2,35 +2,33 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'trading_durations_send.g.dart';
 
+/// JSON conversion for 'trading_durations_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TradingDurationsRequest {
+class TradingDurationsRequest extends Request {
+  /// Initialize TradingDurationsRequest
   TradingDurationsRequest(
       {this.landingCompany,
-      this.passthrough,
-      this.reqId,
-      this.tradingDurations});
+      this.tradingDurations = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>
       _$TradingDurationsRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$TradingDurationsRequestToJson(this);
 
   // Properties
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
   String landingCompany;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
   /// Must be `1`
   int tradingDurations;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TradingDurationsRequestToJson(this);
 }

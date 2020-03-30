@@ -2,32 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'p2p_advert_list_receive.g.dart';
 
+/// JSON conversion for 'p2p_advert_list_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class P2pAdvertListResponse {
+class P2pAdvertListResponse extends Response {
+  /// Initialize P2pAdvertListResponse
   P2pAdvertListResponse(
-      {this.echoReq, this.msgType, this.p2pAdvertList, this.reqId});
+      {this.p2pAdvertList,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory P2pAdvertListResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertListResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$P2pAdvertListResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
   /// P2P adverts list.
   Map<String, dynamic> p2pAdvertList;
 
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$P2pAdvertListResponseToJson(this);
 }

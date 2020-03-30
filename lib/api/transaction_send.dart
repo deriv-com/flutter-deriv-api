@@ -2,32 +2,33 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'transaction_send.g.dart';
 
+/// JSON conversion for 'transaction_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TransactionRequest {
+class TransactionRequest extends Request {
+  /// Initialize TransactionRequest
   TransactionRequest(
-      {this.passthrough, this.reqId, this.subscribe, this.transaction});
+      {this.subscribe,
+      this.transaction = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory TransactionRequest.fromJson(Map<String, dynamic> json) =>
       _$TransactionRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$TransactionRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
   /// If set to 1, will send updates whenever there is an update to transactions. If not to 1 then it will not return any records.
   int subscribe;
 
   /// Must be `1`
   int transaction;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TransactionRequestToJson(this);
 }
