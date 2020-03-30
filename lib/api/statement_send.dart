@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'statement_send.g.dart';
 
+/// JSON conversion for 'statement_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class StatementRequest {
+class StatementRequest extends Request {
+  /// Initialize StatementRequest
   StatementRequest(
       {this.actionType,
       this.dateFrom,
@@ -14,12 +17,14 @@ class StatementRequest {
       this.description,
       this.limit,
       this.offset,
-      this.passthrough,
-      this.reqId,
-      this.statement});
+      this.statement = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>
       _$StatementRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$StatementRequestToJson(this);
 
   // Properties
   /// [Optional] To filter the statement according to the type of transaction.
@@ -40,17 +45,10 @@ class StatementRequest {
   /// [Optional] Number of transactions to skip.
   num offset;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
   /// Must be `1`
   int statement;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$StatementRequestToJson(this);
 }

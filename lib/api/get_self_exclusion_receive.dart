@@ -2,32 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'get_self_exclusion_receive.g.dart';
 
+/// JSON conversion for 'get_self_exclusion_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class GetSelfExclusionResponse {
+class GetSelfExclusionResponse extends Response {
+  /// Initialize GetSelfExclusionResponse
   GetSelfExclusionResponse(
-      {this.echoReq, this.getSelfExclusion, this.msgType, this.reqId});
+      {this.getSelfExclusion,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory GetSelfExclusionResponse.fromJson(Map<String, dynamic> json) =>
       _$GetSelfExclusionResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$GetSelfExclusionResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
   /// List of values set for self exclusion.
   Map<String, dynamic> getSelfExclusion;
 
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$GetSelfExclusionResponseToJson(this);
 }

@@ -18,7 +18,7 @@ CopytradingListRequest _$CopytradingListRequestFromJson(
 Map<String, dynamic> _$CopytradingListRequestToJson(
         CopytradingListRequest instance) =>
     <String, dynamic>{
-      'copytrading_list': instance.copytradingList,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'copytrading_list': instance.copytradingList,
     };

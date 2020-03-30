@@ -2,28 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'trading_times_send.g.dart';
 
+/// JSON conversion for 'trading_times_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TradingTimesRequest {
-  TradingTimesRequest({this.passthrough, this.reqId, this.tradingTimes});
+class TradingTimesRequest extends Request {
+  /// Initialize TradingTimesRequest
+  TradingTimesRequest(
+      {this.tradingTimes, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory TradingTimesRequest.fromJson(Map<String, dynamic> json) =>
       _$TradingTimesRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$TradingTimesRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
   /// Date to receive market opening times for. (`yyyy-mm-dd` format. `today` can also be specified).
   String tradingTimes;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TradingTimesRequestToJson(this);
 }

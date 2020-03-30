@@ -11,18 +11,18 @@ AccountSecurityRequest _$AccountSecurityRequestFromJson(
   return AccountSecurityRequest(
     accountSecurity: json['account_security'] as int,
     otp: json['otp'] as String,
+    totpAction: json['totp_action'] as String,
     passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
-    totpAction: json['totp_action'] as String,
   );
 }
 
 Map<String, dynamic> _$AccountSecurityRequestToJson(
         AccountSecurityRequest instance) =>
     <String, dynamic>{
-      'account_security': instance.accountSecurity,
-      'otp': instance.otp,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'account_security': instance.accountSecurity,
+      'otp': instance.otp,
       'totp_action': instance.totpAction,
     };

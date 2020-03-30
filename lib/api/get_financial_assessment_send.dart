@@ -2,29 +2,29 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'get_financial_assessment_send.g.dart';
 
+/// JSON conversion for 'get_financial_assessment_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class GetFinancialAssessmentRequest {
+class GetFinancialAssessmentRequest extends Request {
+  /// Initialize GetFinancialAssessmentRequest
   GetFinancialAssessmentRequest(
-      {this.getFinancialAssessment, this.passthrough, this.reqId});
+      {this.getFinancialAssessment = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory GetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       _$GetFinancialAssessmentRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$GetFinancialAssessmentRequestToJson(this);
 
   // Properties
   /// Must be `1`
   int getFinancialAssessment;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$GetFinancialAssessmentRequestToJson(this);
 }

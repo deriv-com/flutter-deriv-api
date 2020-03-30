@@ -2,31 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'app_get_receive.g.dart';
 
+/// JSON conversion for 'app_get_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AppGetResponse {
-  AppGetResponse({this.appGet, this.echoReq, this.msgType, this.reqId});
+class AppGetResponse extends Response {
+  /// Initialize AppGetResponse
+  AppGetResponse(
+      {this.appGet,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory AppGetResponse.fromJson(Map<String, dynamic> json) =>
       _$AppGetResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$AppGetResponseToJson(this);
 
   // Properties
   /// The information of the requested application.
   Map<String, dynamic> appGet;
 
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AppGetResponseToJson(this);
 }

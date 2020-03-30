@@ -2,32 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'mt5_password_reset_receive.g.dart';
 
+/// JSON conversion for 'mt5_password_reset_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Mt5PasswordResetResponse {
+class Mt5PasswordResetResponse extends Response {
+  /// Initialize Mt5PasswordResetResponse
   Mt5PasswordResetResponse(
-      {this.echoReq, this.msgType, this.mt5PasswordReset, this.reqId});
+      {this.mt5PasswordReset,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory Mt5PasswordResetResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordResetResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$Mt5PasswordResetResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
   /// `1` on success
   int mt5PasswordReset;
 
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$Mt5PasswordResetResponseToJson(this);
 }

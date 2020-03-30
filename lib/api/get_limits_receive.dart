@@ -2,31 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'get_limits_receive.g.dart';
 
+/// JSON conversion for 'get_limits_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class GetLimitsResponse {
-  GetLimitsResponse({this.echoReq, this.getLimits, this.msgType, this.reqId});
+class GetLimitsResponse extends Response {
+  /// Initialize GetLimitsResponse
+  GetLimitsResponse(
+      {this.getLimits,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory GetLimitsResponse.fromJson(Map<String, dynamic> json) =>
       _$GetLimitsResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$GetLimitsResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
   /// Trading limits of real account user
   Map<String, dynamic> getLimits;
 
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$GetLimitsResponseToJson(this);
 }

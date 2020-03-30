@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'new_account_real_send.g.dart';
 
+/// JSON conversion for 'new_account_real_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class NewAccountRealRequest {
+class NewAccountRealRequest extends Request {
+  /// Initialize NewAccountRealRequest
   NewAccountRealRequest(
       {this.accountOpeningReason,
       this.accountTurnover,
@@ -22,20 +25,22 @@ class NewAccountRealRequest {
       this.dateOfBirth,
       this.firstName,
       this.lastName,
-      this.newAccountReal,
-      this.passthrough,
+      this.newAccountReal = 1,
       this.phone,
       this.placeOfBirth,
-      this.reqId,
       this.residence,
       this.salutation,
       this.secretAnswer,
       this.secretQuestion,
       this.taxIdentificationNumber,
-      this.taxResidence});
+      this.taxResidence,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory NewAccountRealRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountRealRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$NewAccountRealRequestToJson(this);
 
   // Properties
   /// [Optional] Purpose and reason for requesting the account opening.
@@ -83,17 +88,11 @@ class NewAccountRealRequest {
   /// Must be `1`
   int newAccountReal;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] Starting with '+' followed by 8-35 digits, allowing hyphens or space.
   String phone;
 
   /// [Optional] Place of birth, 2-letter country code.
   String placeOfBirth;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// 2-letter country code, possible value receive from `residence_list` call.
   String residence;
@@ -113,8 +112,7 @@ class NewAccountRealRequest {
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   String taxResidence;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$NewAccountRealRequestToJson(this);
 }

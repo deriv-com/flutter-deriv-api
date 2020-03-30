@@ -18,7 +18,7 @@ GetAccountStatusRequest _$GetAccountStatusRequestFromJson(
 Map<String, dynamic> _$GetAccountStatusRequestToJson(
         GetAccountStatusRequest instance) =>
     <String, dynamic>{
-      'get_account_status': instance.getAccountStatus,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'get_account_status': instance.getAccountStatus,
     };

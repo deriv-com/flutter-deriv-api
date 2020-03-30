@@ -2,24 +2,29 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'profit_table_send.g.dart';
 
+/// JSON conversion for 'profit_table_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ProfitTableRequest {
+class ProfitTableRequest extends Request {
+  /// Initialize ProfitTableRequest
   ProfitTableRequest(
       {this.dateFrom,
       this.dateTo,
       this.description,
       this.limit,
       this.offset,
-      this.passthrough,
-      this.profitTable,
-      this.reqId,
-      this.sort});
+      this.profitTable = 1,
+      this.sort,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>
       _$ProfitTableRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$ProfitTableRequestToJson(this);
 
   // Properties
   /// [Optional] Start date (epoch or YYYY-MM-DD)
@@ -37,20 +42,13 @@ class ProfitTableRequest {
   /// [Optional] Number of transactions to skip.
   num offset;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// Must be `1`
   int profitTable;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] Sort direction.
   String sort;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ProfitTableRequestToJson(this);
 }

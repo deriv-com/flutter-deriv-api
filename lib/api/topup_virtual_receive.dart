@@ -2,32 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'topup_virtual_receive.g.dart';
 
+/// JSON conversion for 'topup_virtual_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class TopupVirtualResponse {
+class TopupVirtualResponse extends Response {
+  /// Initialize TopupVirtualResponse
   TopupVirtualResponse(
-      {this.echoReq, this.msgType, this.reqId, this.topupVirtual});
+      {this.topupVirtual,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory TopupVirtualResponse.fromJson(Map<String, dynamic> json) =>
       _$TopupVirtualResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$TopupVirtualResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
   /// The information regarding a successful top up for a virtual money account
   Map<String, dynamic> topupVirtual;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$TopupVirtualResponseToJson(this);
 }
