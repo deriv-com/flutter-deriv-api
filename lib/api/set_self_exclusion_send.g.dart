@@ -20,17 +20,19 @@ SetSelfExclusionRequest _$SetSelfExclusionRequestFromJson(
     maxLosses: json['max_losses'] as String,
     maxOpenBets: json['max_open_bets'] as String,
     maxTurnover: json['max_turnover'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
     sessionDurationLimit: json['session_duration_limit'] as String,
     setSelfExclusion: json['set_self_exclusion'] as int,
     timeoutUntil: json['timeout_until'] as String,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$SetSelfExclusionRequestToJson(
         SetSelfExclusionRequest instance) =>
     <String, dynamic>{
+      'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'exclude_until': instance.excludeUntil,
       'max30day_losses': instance.max30dayLosses,
       'max30day_turnover': instance.max30dayTurnover,
@@ -42,8 +44,6 @@ Map<String, dynamic> _$SetSelfExclusionRequestToJson(
       'max_losses': instance.maxLosses,
       'max_open_bets': instance.maxOpenBets,
       'max_turnover': instance.maxTurnover,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
       'session_duration_limit': instance.sessionDurationLimit,
       'set_self_exclusion': instance.setSelfExclusion,
       'timeout_until': instance.timeoutUntil,

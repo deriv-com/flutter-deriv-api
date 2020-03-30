@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'proposal_array_send.g.dart';
 
+/// JSON conversion for 'proposal_array_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ProposalArrayRequest {
+class ProposalArrayRequest extends Request {
+  /// Initialize ProposalArrayRequest
   ProposalArrayRequest(
       {this.amount,
       this.barriers,
@@ -18,16 +21,18 @@ class ProposalArrayRequest {
       this.duration,
       this.durationUnit,
       this.multiplier,
-      this.passthrough,
       this.productType,
-      this.proposalArray,
-      this.reqId,
+      this.proposalArray = 1,
       this.subscribe,
       this.symbol,
-      this.tradingPeriodStart});
+      this.tradingPeriodStart,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory ProposalArrayRequest.fromJson(Map<String, dynamic> json) =>
       _$ProposalArrayRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$ProposalArrayRequestToJson(this);
 
   // Properties
   /// Proposed contract `payout` or `stake` value.
@@ -60,17 +65,11 @@ class ProposalArrayRequest {
   /// The multiplier for non-binary options. E.g. lookbacks.
   num multiplier;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] If you specify this field, only contracts tradable through that contract type will be returned.
   String productType;
 
   /// Must be `1`
   int proposalArray;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] 1 - to initiate a realtime stream of prices. Note that tick trades (without a user-defined barrier), digit trades and less than 24 hours at-the-money contracts for the following underlying symbols are not streamed: `R_10`, `R_25`, `R_50`, `R_75`, `R_100`, `RDBULL`, `RDBEAR` (this is because their price is constant).
   int subscribe;
@@ -81,8 +80,7 @@ class ProposalArrayRequest {
   /// Required only for multi-barrier trading. Defines the epoch value of the trading period start time.
   int tradingPeriodStart;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ProposalArrayRequestToJson(this);
 }

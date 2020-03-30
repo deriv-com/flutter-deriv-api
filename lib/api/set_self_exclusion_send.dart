@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'set_self_exclusion_send.g.dart';
 
+/// JSON conversion for 'set_self_exclusion_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class SetSelfExclusionRequest {
+class SetSelfExclusionRequest extends Request {
+  /// Initialize SetSelfExclusionRequest
   SetSelfExclusionRequest(
       {this.excludeUntil,
       this.max30dayLosses,
@@ -19,14 +22,16 @@ class SetSelfExclusionRequest {
       this.maxLosses,
       this.maxOpenBets,
       this.maxTurnover,
-      this.passthrough,
-      this.reqId,
       this.sessionDurationLimit,
-      this.setSelfExclusion,
-      this.timeoutUntil});
+      this.setSelfExclusion = 1,
+      this.timeoutUntil,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       _$SetSelfExclusionRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$SetSelfExclusionRequestToJson(this);
 
   // Properties
   /// [Optional] Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
@@ -62,12 +67,6 @@ class SetSelfExclusionRequest {
   /// [Optional] Daily turnover limit.
   String maxTurnover;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
   /// [Optional] Session duration limit, in minutes.
   String sessionDurationLimit;
 
@@ -77,8 +76,7 @@ class SetSelfExclusionRequest {
   /// [Optional] Exclude me from the website (for up to 6 weeks). Requires time in epoch format. Note: unlike `exclude_until`, this self-exclusion will be lifted automatically at the expiry of the timeout period.
   String timeoutUntil;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$SetSelfExclusionRequestToJson(this);
 }

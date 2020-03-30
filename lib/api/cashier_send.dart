@@ -2,39 +2,37 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'cashier_send.g.dart';
 
+/// JSON conversion for 'cashier_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class CashierRequest {
+class CashierRequest extends Request {
+  /// Initialize CashierRequest
   CashierRequest(
       {this.cashier,
-      this.passthrough,
       this.provider,
-      this.reqId,
-      this.verificationCode});
+      this.verificationCode,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory CashierRequest.fromJson(Map<String, dynamic> json) =>
       _$CashierRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$CashierRequestToJson(this);
 
   // Properties
   /// The cashier type to request the URL for.
   String cashier;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] Note: only 'doughflow' is supported currently.
   String provider;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] Email verification code (received from a verify_email call, which must be done first)
   String verificationCode;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$CashierRequestToJson(this);
 }

@@ -2,31 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'asset_index_receive.g.dart';
 
+/// JSON conversion for 'asset_index_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class AssetIndexResponse {
-  AssetIndexResponse({this.assetIndex, this.echoReq, this.msgType, this.reqId});
+class AssetIndexResponse extends Response {
+  /// Initialize AssetIndexResponse
+  AssetIndexResponse(
+      {this.assetIndex,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory AssetIndexResponse.fromJson(Map<String, dynamic> json) =>
       _$AssetIndexResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$AssetIndexResponseToJson(this);
 
   // Properties
   /// List of underlyings by their display name and symbol followed by their available contract types and duration boundaries.
   List<String> assetIndex;
 
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$AssetIndexResponseToJson(this);
 }

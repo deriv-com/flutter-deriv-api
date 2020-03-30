@@ -17,7 +17,7 @@ Mt5LoginListRequest _$Mt5LoginListRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$Mt5LoginListRequestToJson(
         Mt5LoginListRequest instance) =>
     <String, dynamic>{
-      'mt5_login_list': instance.mt5LoginList,
       'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'mt5_login_list': instance.mt5LoginList,
     };
