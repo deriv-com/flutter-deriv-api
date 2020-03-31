@@ -1,3 +1,6 @@
+import 'package:flutter_deriv_api/api/p2p_advertiser_info_send.dart';
+import 'package:flutter_deriv_api/models/advertiser/advertiser_caller.dart';
+
 /// Advertiser information class
 class Advertiser {
   /// Initializes
@@ -35,6 +38,12 @@ class Advertiser {
 
   /// The advertiser's displayed name.
   final String name;
+
+  static final AdvertiserCaller _advertiserCaller = AdvertiserCaller();
+
+  /// Fetches advertiser information
+  Future<Advertiser> fetch(String id) =>
+      _advertiserCaller.modelCall(P2pAdvertiserInfoRequest(id: id));
 
   /// Clone with different params
   Advertiser copyWith({bool isListed, String name}) => Advertiser(

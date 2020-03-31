@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/models/advertiser/advertiser.dart';
 import 'package:flutter_deriv_api/services/api_caller.dart';
 
-///
+/// ApiCaller for [Advertiser] to get model from API calls
 class AdvertiserCaller with ApiCaller<Advertiser> {
   @override
   Advertiser responseToModel(Response response) {

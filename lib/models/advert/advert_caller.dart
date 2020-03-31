@@ -5,7 +5,7 @@ import '../../api/response.dart';
 import '../../services/api_caller.dart';
 import '../advert/advert.dart';
 
-/// ApiCaller to get [Advert] model
+/// ApiCaller to get [Advert] model from API calls
 class AdvertCaller with ApiCaller<Advert> {
   @override
   Advert responseToModel(Response response) {

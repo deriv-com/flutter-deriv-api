@@ -339,7 +339,7 @@ class BinaryAPI {
 
     final Completer<bool> connectionCompleter = Completer<bool>();
 
-    // initialize ws server
+    // initialize connection to WebSocket server
     chan = IOWebSocketChannel.connect(uri.toString());
 
     wsListener = chan // .cast<String>().transform(utf8.decode)

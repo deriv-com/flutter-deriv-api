@@ -17,7 +17,6 @@ class Order {
     this.amount,
     this.amountDisplay,
     this.createdTime,
-    this.description,
     this.expiryTime,
     this.id,
     this.isIncoming,
@@ -49,7 +48,6 @@ class Order {
       rate: map['rate'].toDouble(),
       rateDisplay: '${map['rate_display']} ${map['local_currency']}',
       status: _getOrderStatusType(map['status']),
-      description: map['description'],
       paymentInfo: map['payment_info'],
       contactInfo: map['contact_info'],
       type: map['type'] == 'sell' && map['is_incoming'] == 0 ||
@@ -58,7 +56,7 @@ class Order {
           : OrderType.buy);
 
 
-  ///
+  /// The currency of order.
   final String accountCurrency;
 
   /// Details of the advert for this order.
@@ -75,9 +73,6 @@ class Order {
 
   /// The epoch time of the order creation.
   final int createdTime;
-
-  ///
-  final String description;
 
   /// The epoch time in which the order will be expired.
   final int expiryTime;
