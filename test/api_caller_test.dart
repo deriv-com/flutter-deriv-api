@@ -8,7 +8,6 @@ import 'package:flutter_deriv_api/models/order/order_list/order_list.dart';
 import 'package:flutter_deriv_api/services/deriv_api.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_deriv_api/flutter_deriv_api.dart';
-import 'package:preferences/preference_service.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('flutter_deriv_api');

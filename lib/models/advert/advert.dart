@@ -1,3 +1,6 @@
+import 'package:flutter_deriv_api/api/p2p_advert_info_send.dart';
+import 'package:flutter_deriv_api/models/advert/advert_caller.dart';
+
 import '../../enums/generals.dart';
 import '../advertiser/advertiser.dart';
 
@@ -159,6 +162,12 @@ class Advert {
 
   /// It will be false if the remaining amount of the advert is less than the minAmount.
   bool get isPurchasable => remainingAmount >= minOrderAmountLimit;
+
+  static final AdvertCaller _advertCaller = AdvertCaller();
+
+  /// Fetches advert information
+  Future<Advert> fetch(String id) =>
+      _advertCaller.modelCall(P2pAdvertInfoRequest(id: id));
 
   /// Clone with different params
   Advert copyWith({

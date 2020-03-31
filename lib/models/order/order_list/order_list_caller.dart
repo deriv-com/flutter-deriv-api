@@ -4,7 +4,7 @@ import 'package:flutter_deriv_api/models/order/order.dart';
 import 'package:flutter_deriv_api/models/order/order_list/order_list.dart';
 import 'package:flutter_deriv_api/services/api_caller.dart';
 
-/// Helper class to fetch list of orders from API
+/// [OrderList] ApiCaller to get model from API calls
 class OrderListCaller with ApiCaller<OrderList> {
   @override
   OrderList responseToModel(Response response) {

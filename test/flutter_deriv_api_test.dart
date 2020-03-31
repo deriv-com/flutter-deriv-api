@@ -14,15 +14,11 @@ import 'package:flutter_deriv_api/api/p2p_order_list_send.dart';
 import 'package:flutter_deriv_api/api/ping_receive.dart';
 import 'package:flutter_deriv_api/api/ping_send.dart';
 import 'package:flutter_deriv_api/api/response.dart';
-import 'package:flutter_deriv_api/api/ticks_history_receive.dart';
-import 'package:flutter_deriv_api/api/ticks_history_send.dart';
-import 'package:flutter_deriv_api/api/ticks_receive.dart';
 import 'package:flutter_deriv_api/api/website_status_receive.dart';
 import 'package:flutter_deriv_api/api/website_status_send.dart';
 import 'package:flutter_deriv_api/connection/connection_websocket.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_deriv_api/flutter_deriv_api.dart';
-import 'package:preferences/preferences.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('flutter_deriv_api');
@@ -59,17 +55,22 @@ void main() {
     print(
         'Test result: orderList length: ${orderListResponse.p2pOrderList['list'].length}');
 
+    if (orderListResponse?.p2pOrderList?.isNotEmpty ?? false) {
+      final List<dynamic> orders = orderListResponse.p2pOrderList['list'];
+      if (orders?.isNotEmpty ?? false) {
+        final P2pOrderInfoResponse orderInfoResponse = await api.call(
+          P2pOrderInfoRequest(
+              id: orderListResponse.p2pOrderList['list'][0]['id']),
+        );
+        print('Test result: Order info: ${orderInfoResponse.p2pOrderInfo}');
+      }
+    }
+
     final P2pAdvertListResponse advertListResponse =
         await api.call(P2pAdvertListRequest());
 
     print(
         'Test result: advertList length: ${advertListResponse.p2pAdvertList['list'].length}');
-
-    final P2pOrderInfoResponse orderInfoResponse = await api.call(
-      P2pOrderInfoRequest(id: orderListResponse.p2pOrderList['list'][0]['id']),
-    );
-
-    print('Test result: Order info: ${orderInfoResponse.p2pOrderInfo}');
 
     final WebsiteStatusResponse websiteStatusResponse =
         await api.call(WebsiteStatusRequest());
