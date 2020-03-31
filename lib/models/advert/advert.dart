@@ -36,10 +36,10 @@ class Advert {
     this.contactDetails,
   });
 
-  ///
-  Advert.fromMap(Map<String, dynamic> advert)
+  /// Initializes from JSON
+  Advert.fromJson(Map<String, dynamic> advert)
       : accountCurrency = advert['account_currency'],
-        advertiserDetails = Advertiser.fromMap(
+        advertiserDetails = Advertiser.fromJson(
             advert['advertiser_details'] ?? <String, dynamic>{}),
         amount = advert['amount']?.toDouble(),
         amountDisplay = advert['amount_display'],
@@ -160,7 +160,7 @@ class Advert {
   /// It will be false if the remaining amount of the advert is less than the minAmount.
   bool get isPurchasable => remainingAmount >= minOrderAmountLimit;
 
-  ///
+  /// Clone with different params
   Advert copyWith({
     String accountCurrency,
     Advertiser advertiserDetails,

@@ -31,15 +31,19 @@ void main() {
     await DerivApi().init(appId: '1015');
 
     final AuthorizeResponse authorizeResponse =
-        await DerivApi().authorize('YOU TOKEN');
+        await DerivApi().authorize('YOUR TOKEN');
 
     print('Test result: authorize: ${authorizeResponse.authorize}');
+
+    if (authorizeResponse.authorize == null) {
+      return;
+    }
 
     final OrderList orderList = await OrderList.fetch();
 
     if (orderList.orders.isNotEmpty) {
       print('Number of orders: ${orderList.orders.length}');
-      final Order order = await Order.fetchOrder(orderList.orders.first.id);
+      final Order order = await Order.fetch(orderList.orders.first.id);
       print('Order info: ${order.id}, ${order.status} ');
     }
 
@@ -52,7 +56,6 @@ void main() {
         await advertiserCaller.modelCall(P2pAdvertiserInfoRequest(id: '1'));
 
     print('Advertiser: ${advertiser.name}  id: ${advertiser.id}');
-
 
     await Future<void>.delayed(const Duration(seconds: 5));
   });

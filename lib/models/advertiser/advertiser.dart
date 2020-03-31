@@ -1,11 +1,6 @@
+/// Advertiser information class
 class Advertiser {
-  final String clientLoginId;
-  final int createdTime;
-  final String id;
-  final bool isApproved;
-  final bool isListed;
-  final String name;
-
+  /// Initializes
   Advertiser(
       {this.id,
       this.clientLoginId,
@@ -14,14 +9,34 @@ class Advertiser {
       this.isListed,
       this.isApproved});
 
-  Advertiser.fromMap(Map<String, dynamic> advertiser)
+  /// Initializes from JSON
+  Advertiser.fromJson(Map<String, dynamic> advertiser)
       : id = advertiser['id'],
         clientLoginId = advertiser['client_loginid'],
         createdTime = advertiser['created_time'],
         name = advertiser['name'],
-        isListed = advertiser['is_listed'] == 1 ? true : false,
-        isApproved = advertiser['is_approved'] == 1 ? true : false;
+        isListed = advertiser['is_listed'] == 1,
+        isApproved = advertiser['is_approved'] == 1;
 
+  /// LoginId of client this advertiser info belong to
+  final String clientLoginId;
+
+  /// The epoch time that the client became an advertiser.
+  final int createdTime;
+
+  /// The advertiser's identification number.
+  final String id;
+
+  /// The approval status of the advertiser.
+  final bool isApproved;
+
+  /// Indicates if the advertiser's active adverts are listed. When `0`, adverts won't be listed regardless of they are active or not.
+  final bool isListed;
+
+  /// The advertiser's displayed name.
+  final String name;
+
+  /// Clone with different params
   Advertiser copyWith({bool isListed, String name}) => Advertiser(
         id: id,
         createdTime: createdTime,
@@ -29,11 +44,6 @@ class Advertiser {
         isApproved: isApproved,
         name: name ?? this.name,
       );
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-        'name': name,
-        'is_listed': isListed ? 1 : 0,
-      };
 
   @override
   String toString() => 'Agent { id: $id (${clientLoginId}) }';

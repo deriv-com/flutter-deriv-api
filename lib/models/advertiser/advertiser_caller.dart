@@ -11,19 +11,10 @@ class AdvertiserCaller with ApiCaller<Advertiser> {
       switch (response.msgType) {
         case 'p2p_advertiser_info':
           final P2pAdvertiserInfoResponse advertiserInfoResponse = response;
-          return fromJson(advertiserInfoResponse.p2pAdvertiserInfo);
+          return Advertiser.fromJson(advertiserInfoResponse.p2pAdvertiserInfo);
           break;
       }
     }
     return null;
   }
-
-  ///
-  Advertiser fromJson(Map<String, dynamic> map) => Advertiser(
-      id: map['id'],
-      clientLoginId: map['client_loginid'],
-      createdTime: map['created_time'],
-      name: map['name'],
-      isListed: map['is_listed'] == 1,
-      isApproved: map['is_approved'] == 1);
 }

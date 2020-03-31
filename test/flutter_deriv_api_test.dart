@@ -44,10 +44,14 @@ void main() {
   test('Base classes usage in deriv connection', () async {
     final BinaryAPI api = BinaryAPI();
     await api.run();
-    final AuthorizeResponse response =
+    final AuthorizeResponse authorizeResponse =
         await api.call(AuthorizeRequest(authorize: 'YOU TOKEN'));
 
-    print('Test result: authorize: ${response.authorize}');
+    print('Test result: authorize: ${authorizeResponse.authorize}');
+
+    if (authorizeResponse.authorize == null) {
+      return;
+    }
 
     final P2pOrderListResponse orderListResponse =
         await api.call(P2pOrderListRequest(offset: 0, limit: 10));
