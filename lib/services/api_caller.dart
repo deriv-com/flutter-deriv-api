@@ -18,7 +18,7 @@ mixin ApiCaller<T> {
             if (response.error == null) {
               sink.add(responseToModel(response));
             } else {
-              // TODO: Will add our class of Errors later
+              // TODO(ramin): Will add our class of Errors later
               sink.addError(FlutterError(response.error['code']));
             }
           },

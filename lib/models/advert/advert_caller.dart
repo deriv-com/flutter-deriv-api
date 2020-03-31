@@ -13,15 +13,15 @@ class AdvertCaller with ApiCaller<Advert> {
       switch (response.msgType) {
         case 'p2p_advert_info':
           final P2pAdvertInfoResponse infoResponse = response;
-          return Advert.fromMap(infoResponse.p2pAdvertInfo);
+          return Advert.fromJson(infoResponse.p2pAdvertInfo);
           break;
         case 'p2p_advert_create':
           final P2pAdvertCreateResponse createResponse = response;
-          return Advert.fromMap(createResponse.p2pAdvertCreate);
+          return Advert.fromJson(createResponse.p2pAdvertCreate);
           break;
         case 'p2p_advert_update':
           final P2pAdvertUpdateResponse updateResponse = response;
-          return Advert.fromMap(updateResponse.p2pAdvertUpdate);
+          return Advert.fromJson(updateResponse.p2pAdvertUpdate);
           break;
       }
     }
