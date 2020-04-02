@@ -2,43 +2,39 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'paymentagent_withdraw_receive.g.dart';
 
+/// JSON conversion for 'paymentagent_withdraw_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class PaymentagentWithdrawResponse {
+class PaymentagentWithdrawResponse extends Response {
+  /// Initialize PaymentagentWithdrawResponse
   PaymentagentWithdrawResponse(
-      {this.echoReq,
-      this.msgType,
-      this.paymentagentName,
+      {this.paymentagentName,
       this.paymentagentWithdraw,
-      this.reqId,
-      this.transactionId});
+      this.transactionId,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory PaymentagentWithdrawResponse.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentWithdrawResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$PaymentagentWithdrawResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
   /// Payment agent name.
   String paymentagentName;
 
   /// If set to `1`, withdrawal success. If set to `2`, dry-run success.
   int paymentagentWithdraw;
 
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
   /// Reference ID of withdrawal performed.
   int transactionId;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$PaymentagentWithdrawResponseToJson(this);
 }

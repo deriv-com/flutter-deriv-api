@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'p2p_advert_create_send.g.dart';
 
+/// JSON conversion for 'p2p_advert_create_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class P2pAdvertCreateRequest {
+class P2pAdvertCreateRequest extends Request {
+  /// Initialize P2pAdvertCreateRequest
   P2pAdvertCreateRequest(
       {this.amount,
       this.contactInfo,
@@ -15,16 +18,18 @@ class P2pAdvertCreateRequest {
       this.localCurrency,
       this.maxOrderAmount,
       this.minOrderAmount,
-      this.p2pAdvertCreate,
-      this.passthrough,
+      this.p2pAdvertCreate = 1,
       this.paymentInfo,
       this.paymentMethod,
       this.rate,
-      this.reqId,
-      this.type});
+      this.type,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory P2pAdvertCreateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertCreateRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$P2pAdvertCreateRequestToJson(this);
 
   // Properties
   /// The total amount of the advert, in advertiser's account currency.
@@ -51,9 +56,6 @@ class P2pAdvertCreateRequest {
   /// Must be 1
   int p2pAdvertCreate;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] Only applicable for sell adverts. Payment instructions for the buyer to transfer funds, for example: bank name and account number, or E-Wallet id.
   String paymentInfo;
 
@@ -63,14 +65,10 @@ class P2pAdvertCreateRequest {
   /// Conversion rate from advertiser's account currency to `local_currency`.
   num rate;
 
-  /// [Optional] Used to map request to response.
-  int reqId;
-
   /// Whether this is a buy or a sell.
   String type;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$P2pAdvertCreateRequestToJson(this);
 }

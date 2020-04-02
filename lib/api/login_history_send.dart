@@ -2,16 +2,24 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'login_history_send.g.dart';
 
+/// JSON conversion for 'login_history_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class LoginHistoryRequest {
+class LoginHistoryRequest extends Request {
+  /// Initialize LoginHistoryRequest
   LoginHistoryRequest(
-      {this.limit, this.loginHistory, this.passthrough, this.reqId});
+      {this.limit,
+      this.loginHistory = 1,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$LoginHistoryRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$LoginHistoryRequestToJson(this);
 
   // Properties
   /// [Optional] Apply limit to count of login history records.
@@ -20,14 +28,7 @@ class LoginHistoryRequest {
   /// Must be `1`
   int loginHistory;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$LoginHistoryRequestToJson(this);
 }

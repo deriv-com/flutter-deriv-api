@@ -2,28 +2,27 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'residence_list_send.g.dart';
 
+/// JSON conversion for 'residence_list_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class ResidenceListRequest {
-  ResidenceListRequest({this.passthrough, this.reqId, this.residenceList});
+class ResidenceListRequest extends Request {
+  /// Initialize ResidenceListRequest
+  ResidenceListRequest(
+      {this.residenceList = 1, Map<String, dynamic> passthrough, int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory ResidenceListRequest.fromJson(Map<String, dynamic> json) =>
       _$ResidenceListRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$ResidenceListRequestToJson(this);
 
   // Properties
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
   /// Must be `1`
   int residenceList;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$ResidenceListRequestToJson(this);
 }

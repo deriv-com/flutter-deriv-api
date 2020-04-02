@@ -2,21 +2,26 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'mt5_deposit_send.g.dart';
 
+/// JSON conversion for 'mt5_deposit_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Mt5DepositRequest {
+class Mt5DepositRequest extends Request {
+  /// Initialize Mt5DepositRequest
   Mt5DepositRequest(
       {this.amount,
       this.fromBinary,
-      this.mt5Deposit,
-      this.passthrough,
-      this.reqId,
-      this.toMt5});
+      this.mt5Deposit = 1,
+      this.toMt5,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5DepositRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$Mt5DepositRequestToJson(this);
 
   // Properties
   /// Amount to deposit (in the currency of from_binary); min = $1 or an equivalent amount, max = $20000 or an equivalent amount
@@ -28,17 +33,10 @@ class Mt5DepositRequest {
   /// Must be `1`
   int mt5Deposit;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
-
   /// MT5 account login to deposit money to
   String toMt5;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$Mt5DepositRequestToJson(this);
 }

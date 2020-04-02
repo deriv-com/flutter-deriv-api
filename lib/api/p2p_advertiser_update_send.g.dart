@@ -14,8 +14,8 @@ P2pAdvertiserUpdateRequest _$P2pAdvertiserUpdateRequestFromJson(
     isListed: json['is_listed'] as int,
     name: json['name'] as String,
     p2pAdvertiserUpdate: json['p2p_advertiser_update'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     paymentInfo: json['payment_info'] as String,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
   );
 }
@@ -23,12 +23,12 @@ P2pAdvertiserUpdateRequest _$P2pAdvertiserUpdateRequestFromJson(
 Map<String, dynamic> _$P2pAdvertiserUpdateRequestToJson(
         P2pAdvertiserUpdateRequest instance) =>
     <String, dynamic>{
+      'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'contact_info': instance.contactInfo,
       'default_advert_description': instance.defaultAdvertDescription,
       'is_listed': instance.isListed,
       'name': instance.name,
       'p2p_advertiser_update': instance.p2pAdvertiserUpdate,
-      'passthrough': instance.passthrough,
       'payment_info': instance.paymentInfo,
-      'req_id': instance.reqId,
     };

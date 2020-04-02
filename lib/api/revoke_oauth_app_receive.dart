@@ -2,32 +2,31 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'response.dart';
 
 part 'revoke_oauth_app_receive.g.dart';
 
+/// JSON conversion for 'revoke_oauth_app_receive'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class RevokeOauthAppResponse {
+class RevokeOauthAppResponse extends Response {
+  /// Initialize RevokeOauthAppResponse
   RevokeOauthAppResponse(
-      {this.echoReq, this.msgType, this.reqId, this.revokeOauthApp});
+      {this.revokeOauthApp,
+      Map<String, dynamic> echoReq,
+      Map<String, dynamic> error,
+      String msgType,
+      int reqId})
+      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+
+  /// Creates instance from JSON
   factory RevokeOauthAppResponse.fromJson(Map<String, dynamic> json) =>
       _$RevokeOauthAppResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$RevokeOauthAppResponseToJson(this);
 
   // Properties
-  /// Echo of the request made.
-  Map<String, dynamic> echoReq;
-
-  /// Action name of the request made.
-  String msgType;
-
-  /// Optional field sent in request to map to response, present only when request contains `req_id`.
-  int reqId;
-
   /// `1` on success
   int revokeOauthApp;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$RevokeOauthAppResponseToJson(this);
 }

@@ -2,11 +2,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'mt5_new_account_send.g.dart';
 
+/// JSON conversion for 'mt5_new_account_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Mt5NewAccountRequest {
+class Mt5NewAccountRequest extends Request {
+  /// Initialize Mt5NewAccountRequest
   Mt5NewAccountRequest(
       {this.accountType,
       this.address,
@@ -19,17 +22,19 @@ class Mt5NewAccountRequest {
       this.leverage,
       this.mainPassword,
       this.mt5AccountType,
-      this.mt5NewAccount,
+      this.mt5NewAccount = 1,
       this.name,
-      this.passthrough,
       this.phone,
       this.phonePassword,
-      this.reqId,
       this.state,
-      this.zipCode});
+      this.zipCode,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5NewAccountRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$Mt5NewAccountRequestToJson(this);
 
   // Properties
   /// Account type
@@ -71,17 +76,11 @@ class Mt5NewAccountRequest {
   /// Client's name. The maximum length here is 101 characters.
   String name;
 
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
   /// [Optional] User's phone number.
   String phone;
 
   /// [Optional] The user's phone password.
   String phonePassword;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// [Optional] User's state (region) of residence.
   String state;
@@ -89,8 +88,7 @@ class Mt5NewAccountRequest {
   /// [Optional] User's zip code.
   String zipCode;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$Mt5NewAccountRequestToJson(this);
 }

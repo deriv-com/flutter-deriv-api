@@ -2,28 +2,33 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+import 'request.dart';
 
 part 'new_account_virtual_send.g.dart';
 
+/// JSON conversion for 'new_account_virtual_send'
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class NewAccountVirtualRequest {
+class NewAccountVirtualRequest extends Request {
+  /// Initialize NewAccountVirtualRequest
   NewAccountVirtualRequest(
       {this.affiliateToken,
       this.clientPassword,
       this.dateFirstContact,
       this.gclidUrl,
-      this.newAccountVirtual,
-      this.passthrough,
-      this.reqId,
+      this.newAccountVirtual = 1,
       this.residence,
       this.signupDevice,
       this.utmCampaign,
       this.utmMedium,
       this.utmSource,
-      this.verificationCode});
+      this.verificationCode,
+      Map<String, dynamic> passthrough,
+      int reqId})
+      : super(passthrough: passthrough, reqId: reqId);
+
+  /// Creates instance from JSON
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountVirtualRequestFromJson(json);
-  Map<String, dynamic> toJson() => _$NewAccountVirtualRequestToJson(this);
 
   // Properties
   /// [Optional] Affiliate token, within 32 characters.
@@ -40,12 +45,6 @@ class NewAccountVirtualRequest {
 
   /// Must be `1`
   int newAccountVirtual;
-
-  /// [Optional] Used to pass data through the websocket, which may be retrieved via the `echo_req` output field.
-  Map<String, dynamic> passthrough;
-
-  /// [Optional] Used to map request to response.
-  int reqId;
 
   /// 2-letter country code (obtained from `residence_list` call).
   String residence;
@@ -65,8 +64,7 @@ class NewAccountVirtualRequest {
   /// Email verification code (received from a `verify_email` call, which must be done first).
   String verificationCode;
 
-  // @override
-  // String toString() => name;
-  static bool _fromInteger(int v) => (v != 0);
-  static int _fromBoolean(bool v) => v ? 1 : 0;
+  /// Converts to JSON
+  @override
+  Map<String, dynamic> toJson() => _$NewAccountVirtualRequestToJson(this);
 }

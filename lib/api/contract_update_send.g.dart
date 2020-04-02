@@ -20,9 +20,9 @@ ContractUpdateRequest _$ContractUpdateRequestFromJson(
 Map<String, dynamic> _$ContractUpdateRequestToJson(
         ContractUpdateRequest instance) =>
     <String, dynamic>{
+      'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'contract_id': instance.contractId,
       'contract_update': instance.contractUpdate,
       'limit_order': instance.limitOrder,
-      'passthrough': instance.passthrough,
-      'req_id': instance.reqId,
     };
