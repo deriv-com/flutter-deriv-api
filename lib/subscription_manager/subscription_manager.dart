@@ -4,6 +4,8 @@ import 'package:meta/meta.dart';
 import 'package:flutter_deriv_api/subscription_manager/subscription_exception.dart';
 import 'package:flutter_deriv_api/subscription_manager/subscription_information.dart';
 
+const String _defaultKey = 'default';
+
 /// Subscription manager class
 class SubscriptionManager {
   SubscriptionManager._();
@@ -18,29 +20,33 @@ class SubscriptionManager {
       <String, SubscriptionInformation<Object>>{};
 
   /// Get subscription [id] by [key] in subscribe manager
-  String getId(String key) => _subscriptions[key]?.id;
+  String getId<T>({String key = _defaultKey}) =>
+      _subscriptions[_generateKey(type: T, key: key)]?.id;
 
   /// Get [stream] by [key] in subscribe manager
-  Stream<Object> getStream(String key) => _subscriptions[key]?.stream;
+  Stream<T> getStream<T>({String key = _defaultKey}) =>
+      _subscriptions[_generateKey(type: T, key: key)]?.stream;
 
   /// Get [streamSubscription] by [key] in subscribe manager
-  StreamSubscription<Object> getStreamSubscription(String key) =>
-      _subscriptions[key]?.streamSubscription;
+  StreamSubscription<T> getStreamSubscription<T>({String key = _defaultKey}) =>
+      _subscriptions[_generateKey(type: T, key: key)]?.streamSubscription;
 
   /// Add subscription information to subscribe manager
   void add<T>({
-    @required String key,
     String subscriptionId,
     Stream<T> stream,
     StreamSubscription<T> streamSubscription,
+    String key = _defaultKey,
   }) {
-    if (_subscriptions.containsKey(key)) {
+    final String objectKey = _generateKey(type: T, key: key);
+
+    if (_subscriptions.containsKey(objectKey)) {
       throw SubscriptionException(
-        message: 'mapping already present for "$key"',
+        message: 'mapping already present for "$objectKey"',
       );
     }
 
-    _subscriptions[key] = SubscriptionInformation<T>(
+    _subscriptions[objectKey] = SubscriptionInformation<T>(
       id: subscriptionId,
       stream: stream,
       streamSubscription: streamSubscription,
@@ -48,67 +54,88 @@ class SubscriptionManager {
   }
 
   /// Set subscription [id] for subscription information
-  void setId({
-    @required String key,
+  void setId<T>({
     @required String id,
+    String key = _defaultKey,
   }) {
-    if (_subscriptions.containsKey(key)) {
-      _subscriptions[key] = _subscriptions[key].copyWith(id: id);
+    final String objectKey = _generateKey(type: T, key: key);
+
+    if (_subscriptions.containsKey(objectKey)) {
+      _subscriptions[objectKey] = _subscriptions[objectKey].copyWith(id: id);
     } else {
       throw SubscriptionException(
-        message: 'cannot find subscription information for "$key"',
+        message: 'cannot find subscription information for "$objectKey"',
       );
     }
   }
 
   /// Set [stream] for subscription information
   void setStream<T>({
-    @required String key,
     @required Stream<T> stream,
+    String key = _defaultKey,
   }) {
-    if (_subscriptions.containsKey(key)) {
-      _subscriptions[key] = _subscriptions[key].copyWith(stream: stream);
+    final String objectKey = _generateKey(type: T, key: key);
+
+    if (_subscriptions.containsKey(objectKey)) {
+      _subscriptions[objectKey] =
+          _subscriptions[objectKey].copyWith(stream: stream);
     } else {
       throw SubscriptionException(
-        message: 'cannot find subscription information for "$key"',
+        message: 'cannot find subscription information for "$objectKey"',
       );
     }
   }
 
   /// Set [streamSubscription] for subscription information
   void setStreamSubscription<T>({
-    @required String key,
     @required StreamSubscription<T> streamSubscription,
+    String key = _defaultKey,
   }) {
-    if (_subscriptions.containsKey(key)) {
-      _subscriptions[key] = _subscriptions[key].copyWith(
+    final String objectKey = _generateKey(type: T, key: key);
+
+    if (_subscriptions.containsKey(objectKey)) {
+      _subscriptions[objectKey] = _subscriptions[objectKey].copyWith(
         streamSubscription: streamSubscription,
       );
     } else {
       throw SubscriptionException(
-        message: 'cannot find subscription information for "$key"',
+        message: 'cannot find subscription information for "$objectKey"',
       );
     }
   }
 
-  /// Clear subscription [id]
-  void clearId(String key) => setId(key: key, id: null);
-
   /// Dispose subscription and close stream by [key]
-  Future<void> dispose(String key) async {
-    clearId(key);
+  Future<void> dispose<T>({String key = _defaultKey}) async {
+    final String objectKey = _generateKey(type: T, key: key);
 
-    await _subscriptions[key]?.streamSubscription?.cancel();
+    _clearId<T>(key: key);
 
-    _subscriptions.remove(key);
+    await _subscriptions[objectKey]?.streamSubscription?.cancel();
+
+    _subscriptions.remove(objectKey);
   }
 
   /// Dispose all subscriptions and close streams
-  Future<void> disposeAll() async => _subscriptions.forEach(
-        (String key, SubscriptionInformation<Object> subscriptionInformation) =>
-            dispose(key),
-      );
+  Future<void> disposeAll<T>() async {
+    final String keyForType =
+        _generateKey(type: T).replaceFirst(_defaultKey, '');
+
+    _subscriptions.forEach((
+      String key,
+      SubscriptionInformation<Object> subscriptionInformation,
+    ) {
+      if (key.contains(keyForType)) {
+        dispose<T>(key: key.split('::').last);
+      }
+    });
+  }
 
   /// Indicates [key] has any subscription information or not
-  bool hasSubscription(String key) => getId(key) != null;
+  bool hasSubscription<T>({String key = _defaultKey}) =>
+      getId<T>(key: key) != null;
+
+  void _clearId<T>({String key = _defaultKey}) => setId<T>(id: null, key: key);
+
+  String _generateKey<T>({@required T type, String key = _defaultKey}) =>
+      '${type.toString()}::$key';
 }
