@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/api/p2p_order_create_receive.dart';
+
 import '../../api/p2p_order_cancel_receive.dart';
 import '../../api/p2p_order_confirm_receive.dart';
 import '../../api/p2p_order_info_receive.dart';
@@ -24,6 +26,10 @@ class OrderCaller with ApiCaller<Order> {
       case 'p2p_order_cancel':
         final P2pOrderCancelResponse cancelResponse = response;
         return Order.fromJson(cancelResponse.p2pOrderCancel);
+        break;
+      case 'p2p_order_create':
+        final P2pOrderCreateResponse createResponse = response;
+        return Order.fromJson(createResponse.p2pOrderCreate);
         break;
     }
     // TODO(api): Maybe returning something else instead of null

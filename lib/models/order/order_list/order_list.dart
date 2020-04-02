@@ -13,10 +13,14 @@ class OrderList {
   final List<Order> orders;
 
   /// Fetch orders
-  static Future<OrderList> fetch() async =>
-      _orderListCaller.modelCall(P2pOrderListRequest());
+  static Future<OrderList> fetch(
+          {String advertId, int offset, int limit}) async =>
+      _orderListCaller.modelCall(P2pOrderListRequest(
+          advertId: advertId, offset: offset, limit: limit));
 
   /// To Subscribe to order list
-  static Stream<OrderList> fetchListUpdate() =>
-      _orderListCaller.modelSubscribe(P2pOrderListRequest());
+  static Stream<OrderList> fetchListUpdate(
+          {String advertId, int offset, int limit}) =>
+      _orderListCaller.modelSubscribe(P2pOrderListRequest(
+          advertId: advertId, offset: offset, limit: limit));
 }

@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_deriv_api/api/request.dart';
-import 'package:flutter_deriv_api/api/response.dart';
-import 'package:flutter_deriv_api/services/deriv_api.dart';
+
+import '../api/request.dart';
+import '../api/response.dart';
+import 'deriv_api.dart';
 
 /// Helper mixin to help model classes that deal with API calls related to Order
 /// A model class can have multiple of these [ApiCaller] objects for different

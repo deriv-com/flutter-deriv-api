@@ -166,7 +166,7 @@ class Advert {
   static final AdvertCaller _advertCaller = AdvertCaller();
 
   /// Fetches advert information
-  Future<Advert> fetch(String id) =>
+  static Future<Advert> fetch(String id) =>
       _advertCaller.modelCall(P2pAdvertInfoRequest(id: id));
 
   /// Clone with different params
@@ -240,5 +240,6 @@ class Advert {
   }
 
   @override
-  String toString() => 'Advert { id: $id name: ${advertiserDetails.name} }';
+  String toString() =>
+      'Advert{accountCurrency: $accountCurrency, amount: $amount, remainingAmount: $remainingAmount, id: $id, isActive: $isActive, localCurrency: $localCurrency, minOrderAmount: $minOrderAmount, price: $price, rate: $rate, type: $type}';
 }

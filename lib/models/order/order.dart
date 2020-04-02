@@ -51,10 +51,9 @@ class Order {
       paymentInfo: map['payment_info'],
       contactInfo: map['contact_info'],
       type: map['type'] == 'sell' && map['is_incoming'] == 0 ||
-          map['type'] == 'buy' && map['is_incoming'] == 1
+              map['type'] == 'buy' && map['is_incoming'] == 1
           ? OrderType.sell
           : OrderType.buy);
-
 
   /// The currency of order.
   final String accountCurrency;
@@ -183,6 +182,15 @@ class Order {
   Stream<Order> orderCreateUpdate(String advertId) =>
       _orderCaller.modelSubscribe(P2pOrderCreateRequest(advertId: advertId));
 
+  ///
+  static Future<Order> create(String advertId, double amount,
+          {String contactInfo}) =>
+      _orderCaller.modelCall(P2pOrderCreateRequest(
+        advertId: advertId,
+        amount: amount,
+        contactInfo: contactInfo,
+      ));
+
   static OrderStatusType _getOrderStatusType(String status) {
     switch (status) {
       case 'pending':
@@ -202,4 +210,7 @@ class Order {
     }
   }
 
+  @override
+  String toString() =>
+      'Order{accountCurrency: $accountCurrency, amount: $amount, id: $id, localCurrency: $localCurrency, type: $type, status: $status}';
 }

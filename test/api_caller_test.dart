@@ -43,12 +43,9 @@ void main() {
     if (orderList.orders.isNotEmpty) {
       print('Number of orders: ${orderList.orders.length}');
       final Order order = await Order.fetch(orderList.orders.first.id);
-      print('Order info: ${order.id}, ${order.status} ');
+      print('Order info: $order');
     }
 
-    OrderList.fetchListUpdate().listen((OrderList orders) {
-      print(orders);
-    });
 
     final AdvertiserCaller advertiserCaller = AdvertiserCaller();
     final Advertiser advertiser =
