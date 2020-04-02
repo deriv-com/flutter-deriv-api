@@ -7,5 +7,5 @@ class SubscriptionException implements Exception {
   String message;
 
   @override
-  String toString() => 'Injector Exception: $message';
+  String toString() => 'Subscription Manager Exception: $message';
 }
