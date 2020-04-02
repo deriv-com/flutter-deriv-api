@@ -206,7 +206,7 @@ class BinaryAPI {
     final Response response =
         await _call(ForgetRequest(forget: pendingRequest.subscriptionId));
 
-    if (response.error != null) {
+    if (response.error == null) {
       // Remove the the request from pending requests
       pendingRequests.remove(reqId);
       await pendingRequest.streamController.closeStream();
@@ -225,7 +225,7 @@ class BinaryAPI {
     final ForgetAllResponse response =
         await _call(ForgetAllRequest(forgetAll: method));
 
-    if (response.error != null) {
+    if (response.error == null) {
       for (int id in reqIds) {
         await pendingRequests[id].streamController.closeStream();
         pendingRequests.remove(id);
