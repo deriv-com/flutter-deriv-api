@@ -10,16 +10,21 @@ part 'paymentagent_transfer_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PaymentagentTransferResponse extends Response {
   /// Initialize PaymentagentTransferResponse
-  PaymentagentTransferResponse(
-      {this.clientToFullName,
-      this.clientToLoginid,
-      this.paymentagentTransfer,
-      this.transactionId,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  PaymentagentTransferResponse({
+    this.clientToFullName,
+    this.clientToLoginid,
+    this.paymentagentTransfer,
+    this.transactionId,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory PaymentagentTransferResponse.fromJson(Map<String, dynamic> json) =>

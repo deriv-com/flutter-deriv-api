@@ -10,9 +10,15 @@ part 'mt5_login_list_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5LoginListRequest extends Request {
   /// Initialize Mt5LoginListRequest
-  Mt5LoginListRequest(
-      {this.mt5LoginList = 1, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  Mt5LoginListRequest({
+    this.mt5LoginList = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'mt5_login_list',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory Mt5LoginListRequest.fromJson(Map<String, dynamic> json) =>

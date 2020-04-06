@@ -10,9 +10,16 @@ part 'ticks_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TicksRequest extends Request {
   /// Initialize TicksRequest
-  TicksRequest(
-      {this.subscribe, this.ticks, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  TicksRequest({
+    this.subscribe,
+    this.ticks,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'ticks',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory TicksRequest.fromJson(Map<String, dynamic> json) =>

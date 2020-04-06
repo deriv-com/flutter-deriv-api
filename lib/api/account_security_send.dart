@@ -10,13 +10,17 @@ part 'account_security_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AccountSecurityRequest extends Request {
   /// Initialize AccountSecurityRequest
-  AccountSecurityRequest(
-      {this.accountSecurity = 1,
-      this.otp,
-      this.totpAction,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  AccountSecurityRequest({
+    this.accountSecurity = 1,
+    this.otp,
+    this.totpAction,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'account_security',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory AccountSecurityRequest.fromJson(Map<String, dynamic> json) =>

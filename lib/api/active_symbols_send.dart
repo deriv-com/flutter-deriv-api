@@ -10,13 +10,17 @@ part 'active_symbols_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ActiveSymbolsRequest extends Request {
   /// Initialize ActiveSymbolsRequest
-  ActiveSymbolsRequest(
-      {this.activeSymbols,
-      this.landingCompany,
-      this.productType,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  ActiveSymbolsRequest({
+    this.activeSymbols,
+    this.landingCompany,
+    this.productType,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'active_symbols',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ActiveSymbolsRequest.fromJson(Map<String, dynamic> json) =>

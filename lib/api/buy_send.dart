@@ -10,14 +10,18 @@ part 'buy_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BuyRequest extends Request {
   /// Initialize BuyRequest
-  BuyRequest(
-      {this.buy,
-      this.parameters,
-      this.price,
-      this.subscribe,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  BuyRequest({
+    this.buy,
+    this.parameters,
+    this.price,
+    this.subscribe,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'buy',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory BuyRequest.fromJson(Map<String, dynamic> json) =>

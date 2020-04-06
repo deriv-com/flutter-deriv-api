@@ -10,9 +10,15 @@ part 'payout_currencies_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PayoutCurrenciesRequest extends Request {
   /// Initialize PayoutCurrenciesRequest
-  PayoutCurrenciesRequest(
-      {this.payoutCurrencies = 1, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  PayoutCurrenciesRequest({
+    this.payoutCurrencies = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'payout_currencies',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory PayoutCurrenciesRequest.fromJson(Map<String, dynamic> json) =>

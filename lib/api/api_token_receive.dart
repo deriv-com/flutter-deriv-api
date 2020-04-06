@@ -10,13 +10,18 @@ part 'api_token_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ApiTokenResponse extends Response {
   /// Initialize ApiTokenResponse
-  ApiTokenResponse(
-      {this.apiToken,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  ApiTokenResponse({
+    this.apiToken,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ApiTokenResponse.fromJson(Map<String, dynamic> json) =>

@@ -10,13 +10,18 @@ part 'mt5_password_change_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5PasswordChangeResponse extends Response {
   /// Initialize Mt5PasswordChangeResponse
-  Mt5PasswordChangeResponse(
-      {this.mt5PasswordChange,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  Mt5PasswordChangeResponse({
+    this.mt5PasswordChange,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory Mt5PasswordChangeResponse.fromJson(Map<String, dynamic> json) =>

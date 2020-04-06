@@ -10,21 +10,25 @@ part 'new_account_virtual_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountVirtualRequest extends Request {
   /// Initialize NewAccountVirtualRequest
-  NewAccountVirtualRequest(
-      {this.affiliateToken,
-      this.clientPassword,
-      this.dateFirstContact,
-      this.gclidUrl,
-      this.newAccountVirtual = 1,
-      this.residence,
-      this.signupDevice,
-      this.utmCampaign,
-      this.utmMedium,
-      this.utmSource,
-      this.verificationCode,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  NewAccountVirtualRequest({
+    this.affiliateToken,
+    this.clientPassword,
+    this.dateFirstContact,
+    this.gclidUrl,
+    this.newAccountVirtual = 1,
+    this.residence,
+    this.signupDevice,
+    this.utmCampaign,
+    this.utmMedium,
+    this.utmSource,
+    this.verificationCode,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'new_account_virtual',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>

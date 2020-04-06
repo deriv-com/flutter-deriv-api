@@ -10,9 +10,15 @@ part 'account_statistics_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AccountStatisticsRequest extends Request {
   /// Initialize AccountStatisticsRequest
-  AccountStatisticsRequest(
-      {this.accountStatistics = 1, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  AccountStatisticsRequest({
+    this.accountStatistics = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'account_statistics',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory AccountStatisticsRequest.fromJson(Map<String, dynamic> json) =>

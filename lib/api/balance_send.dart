@@ -10,13 +10,17 @@ part 'balance_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BalanceRequest extends Request {
   /// Initialize BalanceRequest
-  BalanceRequest(
-      {this.account,
-      this.balance = 1,
-      this.subscribe,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  BalanceRequest({
+    this.account,
+    this.balance = 1,
+    this.subscribe,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'balance',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory BalanceRequest.fromJson(Map<String, dynamic> json) =>

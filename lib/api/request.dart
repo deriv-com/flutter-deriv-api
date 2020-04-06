@@ -7,7 +7,7 @@ part 'request.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Request {
   /// Initializes
-  Request({this.passthrough, this.reqId});
+  Request({this.passthrough, this.reqId, this.msgType});
 
   /// Creates instance from JSON
   factory Request.fromJson(Map<String, dynamic> json) =>
@@ -19,6 +19,10 @@ class Request {
 
   /// [Optional] Used to map request to response.
   int reqId;
+
+  /// Action name of this request
+  @JsonKey(ignore: true)
+  String msgType;
 
   /// Converts to JSON
   Map<String, dynamic> toJson() => _$RequestToJson(this);

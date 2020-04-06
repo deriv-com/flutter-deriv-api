@@ -10,14 +10,19 @@ part 'website_status_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class WebsiteStatusResponse extends Response {
   /// Initialize WebsiteStatusResponse
-  WebsiteStatusResponse(
-      {this.subscription,
-      this.websiteStatus,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  WebsiteStatusResponse({
+    this.subscription,
+    this.websiteStatus,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory WebsiteStatusResponse.fromJson(Map<String, dynamic> json) =>

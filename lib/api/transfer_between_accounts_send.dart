@@ -10,16 +10,20 @@ part 'transfer_between_accounts_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TransferBetweenAccountsRequest extends Request {
   /// Initialize TransferBetweenAccountsRequest
-  TransferBetweenAccountsRequest(
-      {this.accountFrom,
-      this.accountTo,
-      this.accounts,
-      this.amount,
-      this.currency,
-      this.transferBetweenAccounts = 1,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  TransferBetweenAccountsRequest({
+    this.accountFrom,
+    this.accountTo,
+    this.accounts,
+    this.amount,
+    this.currency,
+    this.transferBetweenAccounts = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'transfer_between_accounts',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>

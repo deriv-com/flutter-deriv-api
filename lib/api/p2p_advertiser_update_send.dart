@@ -10,16 +10,20 @@ part 'p2p_advertiser_update_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pAdvertiserUpdateRequest extends Request {
   /// Initialize P2pAdvertiserUpdateRequest
-  P2pAdvertiserUpdateRequest(
-      {this.contactInfo,
-      this.defaultAdvertDescription,
-      this.isListed,
-      this.name,
-      this.p2pAdvertiserUpdate = 1,
-      this.paymentInfo,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  P2pAdvertiserUpdateRequest({
+    this.contactInfo,
+    this.defaultAdvertDescription,
+    this.isListed,
+    this.name,
+    this.p2pAdvertiserUpdate = 1,
+    this.paymentInfo,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'p2p_advertiser_update',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory P2pAdvertiserUpdateRequest.fromJson(Map<String, dynamic> json) =>

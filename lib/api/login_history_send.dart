@@ -10,12 +10,16 @@ part 'login_history_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LoginHistoryRequest extends Request {
   /// Initialize LoginHistoryRequest
-  LoginHistoryRequest(
-      {this.limit,
-      this.loginHistory = 1,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  LoginHistoryRequest({
+    this.limit,
+    this.loginHistory = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'login_history',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>

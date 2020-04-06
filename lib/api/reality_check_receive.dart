@@ -10,13 +10,18 @@ part 'reality_check_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class RealityCheckResponse extends Response {
   /// Initialize RealityCheckResponse
-  RealityCheckResponse(
-      {this.realityCheck,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  RealityCheckResponse({
+    this.realityCheck,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory RealityCheckResponse.fromJson(Map<String, dynamic> json) =>

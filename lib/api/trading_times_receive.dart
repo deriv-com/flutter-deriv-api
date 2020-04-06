@@ -10,13 +10,18 @@ part 'trading_times_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TradingTimesResponse extends Response {
   /// Initialize TradingTimesResponse
-  TradingTimesResponse(
-      {this.tradingTimes,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  TradingTimesResponse({
+    this.tradingTimes,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory TradingTimesResponse.fromJson(Map<String, dynamic> json) =>

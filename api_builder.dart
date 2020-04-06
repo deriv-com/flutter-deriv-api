@@ -107,9 +107,12 @@ class APIBuilder extends Builder {
 
       String superCallParameters;
       if (schemaType == 'send') {
-        superCallParameters = requestCommonFields.keys
+        superCallParameters ='msgType: \'${methodName}\',';
+
+        superCallParameters += requestCommonFields.keys
             .map((String k) => '${ReCase(k).camelCase}: ${ReCase(k).camelCase}')
             .join(', ');
+
       } else {
         superCallParameters = responseCommonFields.keys
             .map((String k) => '${ReCase(k).camelCase}: ${ReCase(k).camelCase}')
@@ -199,7 +202,7 @@ part '${fileName}.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ${fullClassName} extends ${schemaType == 'send' ? 'Request' : 'Response'}{
   /// Initialize $fullClassName
-  ${fullClassName}({$constructorParameters, $superTypeNameParameters}): super($superCallParameters);
+  ${fullClassName}({$constructorParameters, $superTypeNameParameters,}): super($superCallParameters,);
   
   /// Creates instance from JSON
   factory ${fullClassName}.fromJson(Map<String, dynamic> json) => _\$${fullClassName}FromJson(json);

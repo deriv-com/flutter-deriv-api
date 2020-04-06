@@ -10,13 +10,18 @@ part 'forget_all_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ForgetAllResponse extends Response {
   /// Initialize ForgetAllResponse
-  ForgetAllResponse(
-      {this.forgetAll,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  ForgetAllResponse({
+    this.forgetAll,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ForgetAllResponse.fromJson(Map<String, dynamic> json) =>

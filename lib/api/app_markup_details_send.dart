@@ -10,20 +10,24 @@ part 'app_markup_details_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppMarkupDetailsRequest extends Request {
   /// Initialize AppMarkupDetailsRequest
-  AppMarkupDetailsRequest(
-      {this.appId,
-      this.appMarkupDetails = 1,
-      this.clientLoginid,
-      this.dateFrom,
-      this.dateTo,
-      this.description,
-      this.limit,
-      this.offset,
-      this.sort,
-      this.sortFields,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  AppMarkupDetailsRequest({
+    this.appId,
+    this.appMarkupDetails = 1,
+    this.clientLoginid,
+    this.dateFrom,
+    this.dateTo,
+    this.description,
+    this.limit,
+    this.offset,
+    this.sort,
+    this.sortFields,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'app_markup_details',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>

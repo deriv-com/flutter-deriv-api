@@ -10,13 +10,18 @@ part 'new_account_maltainvest_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountMaltainvestResponse extends Response {
   /// Initialize NewAccountMaltainvestResponse
-  NewAccountMaltainvestResponse(
-      {this.newAccountMaltainvest,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  NewAccountMaltainvestResponse({
+    this.newAccountMaltainvest,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory NewAccountMaltainvestResponse.fromJson(Map<String, dynamic> json) =>

@@ -10,13 +10,17 @@ part 'p2p_order_info_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderInfoRequest extends Request {
   /// Initialize P2pOrderInfoRequest
-  P2pOrderInfoRequest(
-      {this.id,
-      this.p2pOrderInfo = 1,
-      this.subscribe,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  P2pOrderInfoRequest({
+    this.id,
+    this.p2pOrderInfo = 1,
+    this.subscribe,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'p2p_order_info',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory P2pOrderInfoRequest.fromJson(Map<String, dynamic> json) =>

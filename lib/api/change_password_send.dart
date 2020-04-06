@@ -10,13 +10,17 @@ part 'change_password_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ChangePasswordRequest extends Request {
   /// Initialize ChangePasswordRequest
-  ChangePasswordRequest(
-      {this.changePassword,
-      this.newPassword,
-      this.oldPassword,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  ChangePasswordRequest({
+    this.changePassword,
+    this.newPassword,
+    this.oldPassword,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'change_password',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ChangePasswordRequest.fromJson(Map<String, dynamic> json) =>

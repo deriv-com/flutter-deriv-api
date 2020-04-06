@@ -10,14 +10,18 @@ part 'request_report_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class RequestReportRequest extends Request {
   /// Initialize RequestReportRequest
-  RequestReportRequest(
-      {this.dateFrom,
-      this.dateTo,
-      this.reportType,
-      this.requestReport = 1,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  RequestReportRequest({
+    this.dateFrom,
+    this.dateTo,
+    this.reportType,
+    this.requestReport = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'request_report',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory RequestReportRequest.fromJson(Map<String, dynamic> json) =>

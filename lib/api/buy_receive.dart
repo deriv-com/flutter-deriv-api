@@ -10,14 +10,19 @@ part 'buy_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BuyResponse extends Response {
   /// Initialize BuyResponse
-  BuyResponse(
-      {this.buy,
-      this.subscription,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  BuyResponse({
+    this.buy,
+    this.subscription,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory BuyResponse.fromJson(Map<String, dynamic> json) =>

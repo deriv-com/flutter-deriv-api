@@ -10,18 +10,22 @@ part 'document_upload_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class DocumentUploadRequest extends Request {
   /// Initialize DocumentUploadRequest
-  DocumentUploadRequest(
-      {this.documentFormat,
-      this.documentId,
-      this.documentType,
-      this.documentUpload = 1,
-      this.expectedChecksum,
-      this.expirationDate,
-      this.fileSize,
-      this.pageType,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  DocumentUploadRequest({
+    this.documentFormat,
+    this.documentId,
+    this.documentType,
+    this.documentUpload = 1,
+    this.expectedChecksum,
+    this.expirationDate,
+    this.fileSize,
+    this.pageType,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'document_upload',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>

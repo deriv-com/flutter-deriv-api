@@ -10,13 +10,18 @@ part 'mt5_get_settings_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5GetSettingsResponse extends Response {
   /// Initialize Mt5GetSettingsResponse
-  Mt5GetSettingsResponse(
-      {this.mt5GetSettings,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  Mt5GetSettingsResponse({
+    this.mt5GetSettings,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory Mt5GetSettingsResponse.fromJson(Map<String, dynamic> json) =>

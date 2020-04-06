@@ -10,9 +10,15 @@ part 'landing_company_details_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LandingCompanyDetailsRequest extends Request {
   /// Initialize LandingCompanyDetailsRequest
-  LandingCompanyDetailsRequest(
-      {this.landingCompanyDetails, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  LandingCompanyDetailsRequest({
+    this.landingCompanyDetails,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'landing_company_details',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory LandingCompanyDetailsRequest.fromJson(Map<String, dynamic> json) =>

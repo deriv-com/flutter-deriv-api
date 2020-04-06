@@ -10,13 +10,18 @@ part 'statement_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class StatementResponse extends Response {
   /// Initialize StatementResponse
-  StatementResponse(
-      {this.statement,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  StatementResponse({
+    this.statement,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory StatementResponse.fromJson(Map<String, dynamic> json) =>

@@ -10,17 +10,21 @@ part 'profit_table_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ProfitTableRequest extends Request {
   /// Initialize ProfitTableRequest
-  ProfitTableRequest(
-      {this.dateFrom,
-      this.dateTo,
-      this.description,
-      this.limit,
-      this.offset,
-      this.profitTable = 1,
-      this.sort,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  ProfitTableRequest({
+    this.dateFrom,
+    this.dateTo,
+    this.description,
+    this.limit,
+    this.offset,
+    this.profitTable = 1,
+    this.sort,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'profit_table',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>

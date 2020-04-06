@@ -10,15 +10,19 @@ part 'copy_start_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStartRequest extends Request {
   /// Initialize CopyStartRequest
-  CopyStartRequest(
-      {this.assets,
-      this.copyStart,
-      this.maxTradeStake,
-      this.minTradeStake,
-      this.tradeTypes,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  CopyStartRequest({
+    this.assets,
+    this.copyStart,
+    this.maxTradeStake,
+    this.minTradeStake,
+    this.tradeTypes,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'copy_start',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory CopyStartRequest.fromJson(Map<String, dynamic> json) =>

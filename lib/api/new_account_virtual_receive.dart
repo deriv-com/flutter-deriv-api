@@ -10,13 +10,18 @@ part 'new_account_virtual_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountVirtualResponse extends Response {
   /// Initialize NewAccountVirtualResponse
-  NewAccountVirtualResponse(
-      {this.newAccountVirtual,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  NewAccountVirtualResponse({
+    this.newAccountVirtual,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory NewAccountVirtualResponse.fromJson(Map<String, dynamic> json) =>

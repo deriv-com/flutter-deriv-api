@@ -10,13 +10,18 @@ part 'copy_start_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStartResponse extends Response {
   /// Initialize CopyStartResponse
-  CopyStartResponse(
-      {this.copyStart,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  CopyStartResponse({
+    this.copyStart,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory CopyStartResponse.fromJson(Map<String, dynamic> json) =>

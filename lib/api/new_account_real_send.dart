@@ -10,33 +10,37 @@ part 'new_account_real_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountRealRequest extends Request {
   /// Initialize NewAccountRealRequest
-  NewAccountRealRequest(
-      {this.accountOpeningReason,
-      this.accountTurnover,
-      this.addressCity,
-      this.addressLine1,
-      this.addressLine2,
-      this.addressPostcode,
-      this.addressState,
-      this.affiliateToken,
-      this.citizen,
-      this.clientType,
-      this.currency,
-      this.dateOfBirth,
-      this.firstName,
-      this.lastName,
-      this.newAccountReal = 1,
-      this.phone,
-      this.placeOfBirth,
-      this.residence,
-      this.salutation,
-      this.secretAnswer,
-      this.secretQuestion,
-      this.taxIdentificationNumber,
-      this.taxResidence,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  NewAccountRealRequest({
+    this.accountOpeningReason,
+    this.accountTurnover,
+    this.addressCity,
+    this.addressLine1,
+    this.addressLine2,
+    this.addressPostcode,
+    this.addressState,
+    this.affiliateToken,
+    this.citizen,
+    this.clientType,
+    this.currency,
+    this.dateOfBirth,
+    this.firstName,
+    this.lastName,
+    this.newAccountReal = 1,
+    this.phone,
+    this.placeOfBirth,
+    this.residence,
+    this.salutation,
+    this.secretAnswer,
+    this.secretQuestion,
+    this.taxIdentificationNumber,
+    this.taxResidence,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'new_account_real',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory NewAccountRealRequest.fromJson(Map<String, dynamic> json) =>

@@ -10,13 +10,18 @@ part 'set_account_currency_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetAccountCurrencyResponse extends Response {
   /// Initialize SetAccountCurrencyResponse
-  SetAccountCurrencyResponse(
-      {this.setAccountCurrency,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  SetAccountCurrencyResponse({
+    this.setAccountCurrency,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory SetAccountCurrencyResponse.fromJson(Map<String, dynamic> json) =>

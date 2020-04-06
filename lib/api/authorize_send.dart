@@ -10,12 +10,16 @@ part 'authorize_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AuthorizeRequest extends Request {
   /// Initialize AuthorizeRequest
-  AuthorizeRequest(
-      {this.addToLoginHistory,
-      this.authorize,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  AuthorizeRequest({
+    this.addToLoginHistory,
+    this.authorize,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'authorize',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory AuthorizeRequest.fromJson(Map<String, dynamic> json) =>

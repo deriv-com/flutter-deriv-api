@@ -10,8 +10,15 @@ part 'ping_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PingRequest extends Request {
   /// Initialize PingRequest
-  PingRequest({this.ping = 1, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  PingRequest({
+    this.ping = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'ping',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory PingRequest.fromJson(Map<String, dynamic> json) =>

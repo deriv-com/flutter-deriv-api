@@ -10,13 +10,18 @@ part 'get_account_status_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetAccountStatusResponse extends Response {
   /// Initialize GetAccountStatusResponse
-  GetAccountStatusResponse(
-      {this.getAccountStatus,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  GetAccountStatusResponse({
+    this.getAccountStatus,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory GetAccountStatusResponse.fromJson(Map<String, dynamic> json) =>

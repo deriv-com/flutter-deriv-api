@@ -10,32 +10,36 @@ part 'set_settings_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetSettingsRequest extends Request {
   /// Initialize SetSettingsRequest
-  SetSettingsRequest(
-      {this.accountOpeningReason,
-      this.addressCity,
-      this.addressLine1,
-      this.addressLine2,
-      this.addressPostcode,
-      this.addressState,
-      this.allowCopiers,
-      this.citizen,
-      this.dateOfBirth,
-      this.emailConsent,
-      this.firstName,
-      this.lastName,
-      this.phone,
-      this.placeOfBirth,
-      this.requestProfessionalStatus,
-      this.residence,
-      this.salutation,
-      this.secretAnswer,
-      this.secretQuestion,
-      this.setSettings = 1,
-      this.taxIdentificationNumber,
-      this.taxResidence,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  SetSettingsRequest({
+    this.accountOpeningReason,
+    this.addressCity,
+    this.addressLine1,
+    this.addressLine2,
+    this.addressPostcode,
+    this.addressState,
+    this.allowCopiers,
+    this.citizen,
+    this.dateOfBirth,
+    this.emailConsent,
+    this.firstName,
+    this.lastName,
+    this.phone,
+    this.placeOfBirth,
+    this.requestProfessionalStatus,
+    this.residence,
+    this.salutation,
+    this.secretAnswer,
+    this.secretQuestion,
+    this.setSettings = 1,
+    this.taxIdentificationNumber,
+    this.taxResidence,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'set_settings',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory SetSettingsRequest.fromJson(Map<String, dynamic> json) =>

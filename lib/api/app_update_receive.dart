@@ -10,13 +10,18 @@ part 'app_update_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppUpdateResponse extends Response {
   /// Initialize AppUpdateResponse
-  AppUpdateResponse(
-      {this.appUpdate,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  AppUpdateResponse({
+    this.appUpdate,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory AppUpdateResponse.fromJson(Map<String, dynamic> json) =>

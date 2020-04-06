@@ -10,9 +10,15 @@ part 'oauth_apps_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class OauthAppsRequest extends Request {
   /// Initialize OauthAppsRequest
-  OauthAppsRequest(
-      {this.oauthApps = 1, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  OauthAppsRequest({
+    this.oauthApps = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'oauth_apps',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory OauthAppsRequest.fromJson(Map<String, dynamic> json) =>

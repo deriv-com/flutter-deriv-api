@@ -10,14 +10,18 @@ part 'mt5_deposit_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5DepositRequest extends Request {
   /// Initialize Mt5DepositRequest
-  Mt5DepositRequest(
-      {this.amount,
-      this.fromBinary,
-      this.mt5Deposit = 1,
-      this.toMt5,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  Mt5DepositRequest({
+    this.amount,
+    this.fromBinary,
+    this.mt5Deposit = 1,
+    this.toMt5,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'mt5_deposit',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>

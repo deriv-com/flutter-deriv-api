@@ -10,8 +10,15 @@ part 'copy_stop_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStopRequest extends Request {
   /// Initialize CopyStopRequest
-  CopyStopRequest({this.copyStop, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  CopyStopRequest({
+    this.copyStop,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'copy_stop',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory CopyStopRequest.fromJson(Map<String, dynamic> json) =>

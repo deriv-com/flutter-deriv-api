@@ -10,14 +10,19 @@ part 'mt5_deposit_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5DepositResponse extends Response {
   /// Initialize Mt5DepositResponse
-  Mt5DepositResponse(
-      {this.binaryTransactionId,
-      this.mt5Deposit,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  Mt5DepositResponse({
+    this.binaryTransactionId,
+    this.mt5Deposit,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory Mt5DepositResponse.fromJson(Map<String, dynamic> json) =>

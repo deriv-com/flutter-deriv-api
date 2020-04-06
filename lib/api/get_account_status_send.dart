@@ -10,9 +10,15 @@ part 'get_account_status_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetAccountStatusRequest extends Request {
   /// Initialize GetAccountStatusRequest
-  GetAccountStatusRequest(
-      {this.getAccountStatus = 1, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  GetAccountStatusRequest({
+    this.getAccountStatus = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'get_account_status',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory GetAccountStatusRequest.fromJson(Map<String, dynamic> json) =>

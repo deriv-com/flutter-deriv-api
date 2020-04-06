@@ -10,13 +10,17 @@ part 'verify_email_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class VerifyEmailRequest extends Request {
   /// Initialize VerifyEmailRequest
-  VerifyEmailRequest(
-      {this.type,
-      this.urlParameters,
-      this.verifyEmail,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  VerifyEmailRequest({
+    this.type,
+    this.urlParameters,
+    this.verifyEmail,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'verify_email',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory VerifyEmailRequest.fromJson(Map<String, dynamic> json) =>

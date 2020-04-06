@@ -10,13 +10,17 @@ part 'proposal_open_contract_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ProposalOpenContractRequest extends Request {
   /// Initialize ProposalOpenContractRequest
-  ProposalOpenContractRequest(
-      {this.contractId,
-      this.proposalOpenContract = 1,
-      this.subscribe,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  ProposalOpenContractRequest({
+    this.contractId,
+    this.proposalOpenContract = 1,
+    this.subscribe,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'proposal_open_contract',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>

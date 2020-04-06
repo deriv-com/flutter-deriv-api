@@ -10,12 +10,16 @@ part 'website_status_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class WebsiteStatusRequest extends Request {
   /// Initialize WebsiteStatusRequest
-  WebsiteStatusRequest(
-      {this.subscribe,
-      this.websiteStatus = 1,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  WebsiteStatusRequest({
+    this.subscribe,
+    this.websiteStatus = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'website_status',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory WebsiteStatusRequest.fromJson(Map<String, dynamic> json) =>

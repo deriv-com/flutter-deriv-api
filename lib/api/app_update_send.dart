@@ -10,20 +10,24 @@ part 'app_update_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppUpdateRequest extends Request {
   /// Initialize AppUpdateRequest
-  AppUpdateRequest(
-      {this.appMarkupPercentage,
-      this.appUpdate = 1,
-      this.appstore,
-      this.github,
-      this.googleplay,
-      this.homepage,
-      this.name,
-      this.redirectUri,
-      this.scopes,
-      this.verificationUri,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  AppUpdateRequest({
+    this.appMarkupPercentage,
+    this.appUpdate = 1,
+    this.appstore,
+    this.github,
+    this.googleplay,
+    this.homepage,
+    this.name,
+    this.redirectUri,
+    this.scopes,
+    this.verificationUri,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'app_update',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory AppUpdateRequest.fromJson(Map<String, dynamic> json) =>

@@ -10,9 +10,16 @@ part 'sell_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellRequest extends Request {
   /// Initialize SellRequest
-  SellRequest(
-      {this.price, this.sell = 1, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  SellRequest({
+    this.price,
+    this.sell = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'sell',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory SellRequest.fromJson(Map<String, dynamic> json) =>

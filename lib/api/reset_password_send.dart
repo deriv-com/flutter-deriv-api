@@ -10,14 +10,18 @@ part 'reset_password_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ResetPasswordRequest extends Request {
   /// Initialize ResetPasswordRequest
-  ResetPasswordRequest(
-      {this.dateOfBirth,
-      this.newPassword,
-      this.resetPassword = 1,
-      this.verificationCode,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  ResetPasswordRequest({
+    this.dateOfBirth,
+    this.newPassword,
+    this.resetPassword = 1,
+    this.verificationCode,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'reset_password',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ResetPasswordRequest.fromJson(Map<String, dynamic> json) =>

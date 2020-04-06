@@ -10,27 +10,31 @@ part 'mt5_new_account_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5NewAccountRequest extends Request {
   /// Initialize Mt5NewAccountRequest
-  Mt5NewAccountRequest(
-      {this.accountType,
-      this.address,
-      this.city,
-      this.company,
-      this.country,
-      this.dryRun,
-      this.email,
-      this.investPassword,
-      this.leverage,
-      this.mainPassword,
-      this.mt5AccountType,
-      this.mt5NewAccount = 1,
-      this.name,
-      this.phone,
-      this.phonePassword,
-      this.state,
-      this.zipCode,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  Mt5NewAccountRequest({
+    this.accountType,
+    this.address,
+    this.city,
+    this.company,
+    this.country,
+    this.dryRun,
+    this.email,
+    this.investPassword,
+    this.leverage,
+    this.mainPassword,
+    this.mt5AccountType,
+    this.mt5NewAccount = 1,
+    this.name,
+    this.phone,
+    this.phonePassword,
+    this.state,
+    this.zipCode,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'mt5_new_account',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>

@@ -10,9 +10,15 @@ part 'trading_times_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TradingTimesRequest extends Request {
   /// Initialize TradingTimesRequest
-  TradingTimesRequest(
-      {this.tradingTimes, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  TradingTimesRequest({
+    this.tradingTimes,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'trading_times',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory TradingTimesRequest.fromJson(Map<String, dynamic> json) =>

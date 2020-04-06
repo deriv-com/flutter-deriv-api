@@ -10,14 +10,19 @@ part 'ticks_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TicksResponse extends Response {
   /// Initialize TicksResponse
-  TicksResponse(
-      {this.subscription,
-      this.tick,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  TicksResponse({
+    this.subscription,
+    this.tick,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory TicksResponse.fromJson(Map<String, dynamic> json) =>

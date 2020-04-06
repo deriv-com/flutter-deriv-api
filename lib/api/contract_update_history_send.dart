@@ -10,12 +10,16 @@ part 'contract_update_history_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ContractUpdateHistoryRequest extends Request {
   /// Initialize ContractUpdateHistoryRequest
-  ContractUpdateHistoryRequest(
-      {this.contractId,
-      this.contractUpdateHistory = 1,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  ContractUpdateHistoryRequest({
+    this.contractId,
+    this.contractUpdateHistory = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'contract_update_history',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ContractUpdateHistoryRequest.fromJson(Map<String, dynamic> json) =>

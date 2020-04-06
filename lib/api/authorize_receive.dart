@@ -10,13 +10,18 @@ part 'authorize_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AuthorizeResponse extends Response {
   /// Initialize AuthorizeResponse
-  AuthorizeResponse(
-      {this.authorize,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  AuthorizeResponse({
+    this.authorize,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory AuthorizeResponse.fromJson(Map<String, dynamic> json) =>

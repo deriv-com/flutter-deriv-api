@@ -10,12 +10,16 @@ part 'copytrading_statistics_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopytradingStatisticsRequest extends Request {
   /// Initialize CopytradingStatisticsRequest
-  CopytradingStatisticsRequest(
-      {this.copytradingStatistics = 1,
-      this.traderId,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  CopytradingStatisticsRequest({
+    this.copytradingStatistics = 1,
+    this.traderId,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'copytrading_statistics',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory CopytradingStatisticsRequest.fromJson(Map<String, dynamic> json) =>

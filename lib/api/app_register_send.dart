@@ -10,20 +10,24 @@ part 'app_register_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppRegisterRequest extends Request {
   /// Initialize AppRegisterRequest
-  AppRegisterRequest(
-      {this.appMarkupPercentage,
-      this.appRegister = 1,
-      this.appstore,
-      this.github,
-      this.googleplay,
-      this.homepage,
-      this.name,
-      this.redirectUri,
-      this.scopes,
-      this.verificationUri,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  AppRegisterRequest({
+    this.appMarkupPercentage,
+    this.appRegister = 1,
+    this.appstore,
+    this.github,
+    this.googleplay,
+    this.homepage,
+    this.name,
+    this.redirectUri,
+    this.scopes,
+    this.verificationUri,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'app_register',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory AppRegisterRequest.fromJson(Map<String, dynamic> json) =>

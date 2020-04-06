@@ -10,11 +10,15 @@ part 'get_financial_assessment_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetFinancialAssessmentRequest extends Request {
   /// Initialize GetFinancialAssessmentRequest
-  GetFinancialAssessmentRequest(
-      {this.getFinancialAssessment = 1,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  GetFinancialAssessmentRequest({
+    this.getFinancialAssessment = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'get_financial_assessment',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory GetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>

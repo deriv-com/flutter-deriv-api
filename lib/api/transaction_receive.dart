@@ -10,14 +10,19 @@ part 'transaction_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TransactionResponse extends Response {
   /// Initialize TransactionResponse
-  TransactionResponse(
-      {this.subscription,
-      this.transaction,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  TransactionResponse({
+    this.subscription,
+    this.transaction,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory TransactionResponse.fromJson(Map<String, dynamic> json) =>

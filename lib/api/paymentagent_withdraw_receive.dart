@@ -10,15 +10,20 @@ part 'paymentagent_withdraw_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PaymentagentWithdrawResponse extends Response {
   /// Initialize PaymentagentWithdrawResponse
-  PaymentagentWithdrawResponse(
-      {this.paymentagentName,
-      this.paymentagentWithdraw,
-      this.transactionId,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  PaymentagentWithdrawResponse({
+    this.paymentagentName,
+    this.paymentagentWithdraw,
+    this.transactionId,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory PaymentagentWithdrawResponse.fromJson(Map<String, dynamic> json) =>

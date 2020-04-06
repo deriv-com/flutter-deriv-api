@@ -10,12 +10,16 @@ part 'p2p_order_confirm_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderConfirmRequest extends Request {
   /// Initialize P2pOrderConfirmRequest
-  P2pOrderConfirmRequest(
-      {this.id,
-      this.p2pOrderConfirm = 1,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  P2pOrderConfirmRequest({
+    this.id,
+    this.p2pOrderConfirm = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'p2p_order_confirm',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory P2pOrderConfirmRequest.fromJson(Map<String, dynamic> json) =>

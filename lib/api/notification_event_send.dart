@@ -10,13 +10,17 @@ part 'notification_event_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NotificationEventRequest extends Request {
   /// Initialize NotificationEventRequest
-  NotificationEventRequest(
-      {this.category,
-      this.event,
-      this.notificationEvent = 1,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  NotificationEventRequest({
+    this.category,
+    this.event,
+    this.notificationEvent = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'notification_event',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory NotificationEventRequest.fromJson(Map<String, dynamic> json) =>

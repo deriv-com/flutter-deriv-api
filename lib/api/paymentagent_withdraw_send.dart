@@ -10,17 +10,21 @@ part 'paymentagent_withdraw_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PaymentagentWithdrawRequest extends Request {
   /// Initialize PaymentagentWithdrawRequest
-  PaymentagentWithdrawRequest(
-      {this.amount,
-      this.currency,
-      this.description,
-      this.dryRun,
-      this.paymentagentLoginid,
-      this.paymentagentWithdraw = 1,
-      this.verificationCode,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  PaymentagentWithdrawRequest({
+    this.amount,
+    this.currency,
+    this.description,
+    this.dryRun,
+    this.paymentagentLoginid,
+    this.paymentagentWithdraw = 1,
+    this.verificationCode,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'paymentagent_withdraw',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory PaymentagentWithdrawRequest.fromJson(Map<String, dynamic> json) =>

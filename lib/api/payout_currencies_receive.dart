@@ -10,13 +10,18 @@ part 'payout_currencies_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PayoutCurrenciesResponse extends Response {
   /// Initialize PayoutCurrenciesResponse
-  PayoutCurrenciesResponse(
-      {this.payoutCurrencies,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  PayoutCurrenciesResponse({
+    this.payoutCurrencies,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory PayoutCurrenciesResponse.fromJson(Map<String, dynamic> json) =>

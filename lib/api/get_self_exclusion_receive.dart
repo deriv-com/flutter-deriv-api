@@ -10,13 +10,18 @@ part 'get_self_exclusion_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetSelfExclusionResponse extends Response {
   /// Initialize GetSelfExclusionResponse
-  GetSelfExclusionResponse(
-      {this.getSelfExclusion,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  GetSelfExclusionResponse({
+    this.getSelfExclusion,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory GetSelfExclusionResponse.fromJson(Map<String, dynamic> json) =>

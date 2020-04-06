@@ -10,15 +10,19 @@ part 'mt5_password_reset_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5PasswordResetRequest extends Request {
   /// Initialize Mt5PasswordResetRequest
-  Mt5PasswordResetRequest(
-      {this.login,
-      this.mt5PasswordReset = 1,
-      this.newPassword,
-      this.passwordType,
-      this.verificationCode,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  Mt5PasswordResetRequest({
+    this.login,
+    this.mt5PasswordReset = 1,
+    this.newPassword,
+    this.passwordType,
+    this.verificationCode,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'mt5_password_reset',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory Mt5PasswordResetRequest.fromJson(Map<String, dynamic> json) =>

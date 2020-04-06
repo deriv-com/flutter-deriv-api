@@ -10,13 +10,18 @@ part 'get_settings_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetSettingsResponse extends Response {
   /// Initialize GetSettingsResponse
-  GetSettingsResponse(
-      {this.getSettings,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  GetSettingsResponse({
+    this.getSettings,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory GetSettingsResponse.fromJson(Map<String, dynamic> json) =>

@@ -10,13 +10,18 @@ part 'app_delete_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppDeleteResponse extends Response {
   /// Initialize AppDeleteResponse
-  AppDeleteResponse(
-      {this.appDelete,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  AppDeleteResponse({
+    this.appDelete,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory AppDeleteResponse.fromJson(Map<String, dynamic> json) =>

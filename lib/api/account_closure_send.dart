@@ -10,12 +10,16 @@ part 'account_closure_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AccountClosureRequest extends Request {
   /// Initialize AccountClosureRequest
-  AccountClosureRequest(
-      {this.accountClosure = 1,
-      this.reason,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  AccountClosureRequest({
+    this.accountClosure = 1,
+    this.reason,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'account_closure',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory AccountClosureRequest.fromJson(Map<String, dynamic> json) =>

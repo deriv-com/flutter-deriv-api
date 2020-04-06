@@ -10,24 +10,28 @@ part 'set_self_exclusion_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetSelfExclusionRequest extends Request {
   /// Initialize SetSelfExclusionRequest
-  SetSelfExclusionRequest(
-      {this.excludeUntil,
-      this.max30dayLosses,
-      this.max30dayTurnover,
-      this.max7dayLosses,
-      this.max7dayTurnover,
-      this.maxBalance,
-      this.maxDeposit,
-      this.maxDepositEndDate,
-      this.maxLosses,
-      this.maxOpenBets,
-      this.maxTurnover,
-      this.sessionDurationLimit,
-      this.setSelfExclusion = 1,
-      this.timeoutUntil,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  SetSelfExclusionRequest({
+    this.excludeUntil,
+    this.max30dayLosses,
+    this.max30dayTurnover,
+    this.max7dayLosses,
+    this.max7dayTurnover,
+    this.maxBalance,
+    this.maxDeposit,
+    this.maxDepositEndDate,
+    this.maxLosses,
+    this.maxOpenBets,
+    this.maxTurnover,
+    this.sessionDurationLimit,
+    this.setSelfExclusion = 1,
+    this.timeoutUntil,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'set_self_exclusion',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>

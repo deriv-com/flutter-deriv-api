@@ -10,9 +10,15 @@ part 'copytrading_list_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopytradingListRequest extends Request {
   /// Initialize CopytradingListRequest
-  CopytradingListRequest(
-      {this.copytradingList = 1, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  CopytradingListRequest({
+    this.copytradingList = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'copytrading_list',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory CopytradingListRequest.fromJson(Map<String, dynamic> json) =>

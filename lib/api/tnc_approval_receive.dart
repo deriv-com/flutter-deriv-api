@@ -10,13 +10,18 @@ part 'tnc_approval_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TncApprovalResponse extends Response {
   /// Initialize TncApprovalResponse
-  TncApprovalResponse(
-      {this.tncApproval,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  TncApprovalResponse({
+    this.tncApproval,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory TncApprovalResponse.fromJson(Map<String, dynamic> json) =>

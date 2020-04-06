@@ -10,9 +10,15 @@ part 'set_account_currency_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetAccountCurrencyRequest extends Request {
   /// Initialize SetAccountCurrencyRequest
-  SetAccountCurrencyRequest(
-      {this.setAccountCurrency, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  SetAccountCurrencyRequest({
+    this.setAccountCurrency,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'set_account_currency',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory SetAccountCurrencyRequest.fromJson(Map<String, dynamic> json) =>

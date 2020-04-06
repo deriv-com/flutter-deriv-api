@@ -10,28 +10,32 @@ part 'set_financial_assessment_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetFinancialAssessmentRequest extends Request {
   /// Initialize SetFinancialAssessmentRequest
-  SetFinancialAssessmentRequest(
-      {this.accountTurnover,
-      this.binaryOptionsTradingExperience,
-      this.binaryOptionsTradingFrequency,
-      this.cfdTradingExperience,
-      this.cfdTradingFrequency,
-      this.educationLevel,
-      this.employmentIndustry,
-      this.employmentStatus,
-      this.estimatedWorth,
-      this.forexTradingExperience,
-      this.forexTradingFrequency,
-      this.incomeSource,
-      this.netIncome,
-      this.occupation,
-      this.otherInstrumentsTradingExperience,
-      this.otherInstrumentsTradingFrequency,
-      this.setFinancialAssessment = 1,
-      this.sourceOfWealth,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  SetFinancialAssessmentRequest({
+    this.accountTurnover,
+    this.binaryOptionsTradingExperience,
+    this.binaryOptionsTradingFrequency,
+    this.cfdTradingExperience,
+    this.cfdTradingFrequency,
+    this.educationLevel,
+    this.employmentIndustry,
+    this.employmentStatus,
+    this.estimatedWorth,
+    this.forexTradingExperience,
+    this.forexTradingFrequency,
+    this.incomeSource,
+    this.netIncome,
+    this.occupation,
+    this.otherInstrumentsTradingExperience,
+    this.otherInstrumentsTradingFrequency,
+    this.setFinancialAssessment = 1,
+    this.sourceOfWealth,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'set_financial_assessment',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory SetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>

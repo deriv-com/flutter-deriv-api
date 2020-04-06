@@ -10,13 +10,18 @@ part 'profit_table_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ProfitTableResponse extends Response {
   /// Initialize ProfitTableResponse
-  ProfitTableResponse(
-      {this.profitTable,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  ProfitTableResponse({
+    this.profitTable,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ProfitTableResponse.fromJson(Map<String, dynamic> json) =>

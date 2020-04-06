@@ -10,13 +10,18 @@ part 'mt5_password_check_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5PasswordCheckResponse extends Response {
   /// Initialize Mt5PasswordCheckResponse
-  Mt5PasswordCheckResponse(
-      {this.mt5PasswordCheck,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  Mt5PasswordCheckResponse({
+    this.mt5PasswordCheck,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory Mt5PasswordCheckResponse.fromJson(Map<String, dynamic> json) =>

@@ -10,16 +10,20 @@ part 'paymentagent_transfer_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PaymentagentTransferRequest extends Request {
   /// Initialize PaymentagentTransferRequest
-  PaymentagentTransferRequest(
-      {this.amount,
-      this.currency,
-      this.description,
-      this.dryRun,
-      this.paymentagentTransfer = 1,
-      this.transferTo,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  PaymentagentTransferRequest({
+    this.amount,
+    this.currency,
+    this.description,
+    this.dryRun,
+    this.paymentagentTransfer = 1,
+    this.transferTo,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'paymentagent_transfer',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory PaymentagentTransferRequest.fromJson(Map<String, dynamic> json) =>

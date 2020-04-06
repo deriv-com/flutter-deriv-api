@@ -10,16 +10,20 @@ part 'p2p_order_list_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderListRequest extends Request {
   /// Initialize P2pOrderListRequest
-  P2pOrderListRequest(
-      {this.active,
-      this.advertId,
-      this.limit,
-      this.offset,
-      this.p2pOrderList = 1,
-      this.subscribe,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  P2pOrderListRequest({
+    this.active,
+    this.advertId,
+    this.limit,
+    this.offset,
+    this.p2pOrderList = 1,
+    this.subscribe,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'p2p_order_list',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory P2pOrderListRequest.fromJson(Map<String, dynamic> json) =>

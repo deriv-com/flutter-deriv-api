@@ -100,8 +100,8 @@ import 'new_account_virtual_receive.dart';
 import 'exchange_rates_receive.dart';
 import 'mt5_deposit_receive.dart';
 import 'mt5_password_check_receive.dart';
-import 'account_statistics_receive.dart';
 import 'proposal_open_contract_receive.dart';
+import 'account_statistics_receive.dart';
 import 'get_self_exclusion_receive.dart';
 
 /// A function that create a sub-type of [Response] based on
@@ -300,10 +300,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return Mt5DepositResponse.fromJson(responseMap);
     case 'mt5_password_check':
       return Mt5PasswordCheckResponse.fromJson(responseMap);
-    case 'account_statistics':
-      return AccountStatisticsResponse.fromJson(responseMap);
     case 'proposal_open_contract':
       return ProposalOpenContractResponse.fromJson(responseMap);
+    case 'account_statistics':
+      return AccountStatisticsResponse.fromJson(responseMap);
     case 'get_self_exclusion':
       return GetSelfExclusionResponse.fromJson(responseMap);
 

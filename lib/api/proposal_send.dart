@@ -10,28 +10,32 @@ part 'proposal_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ProposalRequest extends Request {
   /// Initialize ProposalRequest
-  ProposalRequest(
-      {this.amount,
-      this.barrier,
-      this.barrier2,
-      this.basis,
-      this.contractType,
-      this.currency,
-      this.dateExpiry,
-      this.dateStart,
-      this.duration,
-      this.durationUnit,
-      this.limitOrder,
-      this.multiplier,
-      this.productType,
-      this.proposal = 1,
-      this.selectedTick,
-      this.subscribe,
-      this.symbol,
-      this.tradingPeriodStart,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  ProposalRequest({
+    this.amount,
+    this.barrier,
+    this.barrier2,
+    this.basis,
+    this.contractType,
+    this.currency,
+    this.dateExpiry,
+    this.dateStart,
+    this.duration,
+    this.durationUnit,
+    this.limitOrder,
+    this.multiplier,
+    this.productType,
+    this.proposal = 1,
+    this.selectedTick,
+    this.subscribe,
+    this.symbol,
+    this.tradingPeriodStart,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'proposal',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ProposalRequest.fromJson(Map<String, dynamic> json) =>

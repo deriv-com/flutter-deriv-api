@@ -10,13 +10,18 @@ part 'topup_virtual_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TopupVirtualResponse extends Response {
   /// Initialize TopupVirtualResponse
-  TopupVirtualResponse(
-      {this.topupVirtual,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  TopupVirtualResponse({
+    this.topupVirtual,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory TopupVirtualResponse.fromJson(Map<String, dynamic> json) =>

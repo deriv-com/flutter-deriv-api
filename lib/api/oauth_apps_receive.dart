@@ -10,13 +10,18 @@ part 'oauth_apps_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class OauthAppsResponse extends Response {
   /// Initialize OauthAppsResponse
-  OauthAppsResponse(
-      {this.oauthApps,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  OauthAppsResponse({
+    this.oauthApps,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory OauthAppsResponse.fromJson(Map<String, dynamic> json) =>

@@ -10,13 +10,18 @@ part 'active_symbols_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ActiveSymbolsResponse extends Response {
   /// Initialize ActiveSymbolsResponse
-  ActiveSymbolsResponse(
-      {this.activeSymbols,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  ActiveSymbolsResponse({
+    this.activeSymbols,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ActiveSymbolsResponse.fromJson(Map<String, dynamic> json) =>

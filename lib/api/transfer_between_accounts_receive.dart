@@ -10,17 +10,22 @@ part 'transfer_between_accounts_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TransferBetweenAccountsResponse extends Response {
   /// Initialize TransferBetweenAccountsResponse
-  TransferBetweenAccountsResponse(
-      {this.accounts,
-      this.clientToFullName,
-      this.clientToLoginid,
-      this.transactionId,
-      this.transferBetweenAccounts,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  TransferBetweenAccountsResponse({
+    this.accounts,
+    this.clientToFullName,
+    this.clientToLoginid,
+    this.transactionId,
+    this.transferBetweenAccounts,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory TransferBetweenAccountsResponse.fromJson(Map<String, dynamic> json) =>

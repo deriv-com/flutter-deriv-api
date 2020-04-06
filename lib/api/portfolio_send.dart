@@ -10,9 +10,15 @@ part 'portfolio_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PortfolioRequest extends Request {
   /// Initialize PortfolioRequest
-  PortfolioRequest(
-      {this.portfolio = 1, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  PortfolioRequest({
+    this.portfolio = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'portfolio',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>

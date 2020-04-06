@@ -10,14 +10,18 @@ part 'sell_contract_for_multiple_accounts_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellContractForMultipleAccountsRequest extends Request {
   /// Initialize SellContractForMultipleAccountsRequest
-  SellContractForMultipleAccountsRequest(
-      {this.price,
-      this.sellContractForMultipleAccounts = 1,
-      this.shortcode,
-      this.tokens,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  SellContractForMultipleAccountsRequest({
+    this.price,
+    this.sellContractForMultipleAccounts = 1,
+    this.shortcode,
+    this.tokens,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'sell_contract_for_multiple_accounts',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory SellContractForMultipleAccountsRequest.fromJson(

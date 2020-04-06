@@ -10,13 +10,17 @@ part 'cashier_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CashierRequest extends Request {
   /// Initialize CashierRequest
-  CashierRequest(
-      {this.cashier,
-      this.provider,
-      this.verificationCode,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  CashierRequest({
+    this.cashier,
+    this.provider,
+    this.verificationCode,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'cashier',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory CashierRequest.fromJson(Map<String, dynamic> json) =>

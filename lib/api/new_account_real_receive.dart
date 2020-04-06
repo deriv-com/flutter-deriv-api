@@ -10,13 +10,18 @@ part 'new_account_real_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountRealResponse extends Response {
   /// Initialize NewAccountRealResponse
-  NewAccountRealResponse(
-      {this.newAccountReal,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  NewAccountRealResponse({
+    this.newAccountReal,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory NewAccountRealResponse.fromJson(Map<String, dynamic> json) =>

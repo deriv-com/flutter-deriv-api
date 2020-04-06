@@ -10,13 +10,18 @@ part 'account_security_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AccountSecurityResponse extends Response {
   /// Initialize AccountSecurityResponse
-  AccountSecurityResponse(
-      {this.accountSecurity,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  AccountSecurityResponse({
+    this.accountSecurity,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory AccountSecurityResponse.fromJson(Map<String, dynamic> json) =>

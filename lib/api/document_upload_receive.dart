@@ -10,13 +10,18 @@ part 'document_upload_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class DocumentUploadResponse extends Response {
   /// Initialize DocumentUploadResponse
-  DocumentUploadResponse(
-      {this.documentUpload,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  DocumentUploadResponse({
+    this.documentUpload,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory DocumentUploadResponse.fromJson(Map<String, dynamic> json) =>

@@ -10,13 +10,18 @@ part 'app_markup_details_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppMarkupDetailsResponse extends Response {
   /// Initialize AppMarkupDetailsResponse
-  AppMarkupDetailsResponse(
-      {this.appMarkupDetails,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  AppMarkupDetailsResponse({
+    this.appMarkupDetails,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory AppMarkupDetailsResponse.fromJson(Map<String, dynamic> json) =>

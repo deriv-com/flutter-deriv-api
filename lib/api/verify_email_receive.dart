@@ -10,13 +10,18 @@ part 'verify_email_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class VerifyEmailResponse extends Response {
   /// Initialize VerifyEmailResponse
-  VerifyEmailResponse(
-      {this.verifyEmail,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  VerifyEmailResponse({
+    this.verifyEmail,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory VerifyEmailResponse.fromJson(Map<String, dynamic> json) =>

@@ -10,17 +10,21 @@ part 'statement_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class StatementRequest extends Request {
   /// Initialize StatementRequest
-  StatementRequest(
-      {this.actionType,
-      this.dateFrom,
-      this.dateTo,
-      this.description,
-      this.limit,
-      this.offset,
-      this.statement = 1,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  StatementRequest({
+    this.actionType,
+    this.dateFrom,
+    this.dateTo,
+    this.description,
+    this.limit,
+    this.offset,
+    this.statement = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'statement',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>

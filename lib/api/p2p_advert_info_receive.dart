@@ -10,13 +10,18 @@ part 'p2p_advert_info_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pAdvertInfoResponse extends Response {
   /// Initialize P2pAdvertInfoResponse
-  P2pAdvertInfoResponse(
-      {this.p2pAdvertInfo,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  P2pAdvertInfoResponse({
+    this.p2pAdvertInfo,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory P2pAdvertInfoResponse.fromJson(Map<String, dynamic> json) =>

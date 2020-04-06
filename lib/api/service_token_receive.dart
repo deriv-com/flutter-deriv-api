@@ -10,13 +10,18 @@ part 'service_token_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ServiceTokenResponse extends Response {
   /// Initialize ServiceTokenResponse
-  ServiceTokenResponse(
-      {this.serviceToken,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  ServiceTokenResponse({
+    this.serviceToken,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ServiceTokenResponse.fromJson(Map<String, dynamic> json) =>

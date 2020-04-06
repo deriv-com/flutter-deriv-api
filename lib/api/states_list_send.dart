@@ -10,9 +10,15 @@ part 'states_list_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class StatesListRequest extends Request {
   /// Initialize StatesListRequest
-  StatesListRequest(
-      {this.statesList, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  StatesListRequest({
+    this.statesList,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'states_list',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory StatesListRequest.fromJson(Map<String, dynamic> json) =>

@@ -10,12 +10,16 @@ part 'tnc_approval_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TncApprovalRequest extends Request {
   /// Initialize TncApprovalRequest
-  TncApprovalRequest(
-      {this.tncApproval,
-      this.ukgcFundsProtection,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  TncApprovalRequest({
+    this.tncApproval,
+    this.ukgcFundsProtection,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'tnc_approval',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory TncApprovalRequest.fromJson(Map<String, dynamic> json) =>

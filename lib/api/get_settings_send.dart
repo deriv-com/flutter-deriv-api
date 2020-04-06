@@ -10,9 +10,15 @@ part 'get_settings_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetSettingsRequest extends Request {
   /// Initialize GetSettingsRequest
-  GetSettingsRequest(
-      {this.getSettings = 1, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  GetSettingsRequest({
+    this.getSettings = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'get_settings',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory GetSettingsRequest.fromJson(Map<String, dynamic> json) =>

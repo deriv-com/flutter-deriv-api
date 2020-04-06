@@ -10,12 +10,16 @@ part 'exchange_rates_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ExchangeRatesRequest extends Request {
   /// Initialize ExchangeRatesRequest
-  ExchangeRatesRequest(
-      {this.baseCurrency,
-      this.exchangeRates = 1,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  ExchangeRatesRequest({
+    this.baseCurrency,
+    this.exchangeRates = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'exchange_rates',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ExchangeRatesRequest.fromJson(Map<String, dynamic> json) =>

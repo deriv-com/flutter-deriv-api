@@ -10,18 +10,22 @@ part 'ticks_history_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TicksHistoryRequest extends Request {
   /// Initialize TicksHistoryRequest
-  TicksHistoryRequest(
-      {this.adjustStartTime,
-      this.count,
-      this.end,
-      this.granularity,
-      this.start,
-      this.style,
-      this.subscribe,
-      this.ticksHistory,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  TicksHistoryRequest({
+    this.adjustStartTime,
+    this.count,
+    this.end,
+    this.granularity,
+    this.start,
+    this.style,
+    this.subscribe,
+    this.ticksHistory,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'ticks_history',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>

@@ -10,14 +10,19 @@ part 'balance_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BalanceResponse extends Response {
   /// Initialize BalanceResponse
-  BalanceResponse(
-      {this.balance,
-      this.subscription,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  BalanceResponse({
+    this.balance,
+    this.subscription,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory BalanceResponse.fromJson(Map<String, dynamic> json) =>

@@ -10,13 +10,18 @@ part 'sell_contract_for_multiple_accounts_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellContractForMultipleAccountsResponse extends Response {
   /// Initialize SellContractForMultipleAccountsResponse
-  SellContractForMultipleAccountsResponse(
-      {this.sellContractForMultipleAccounts,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  SellContractForMultipleAccountsResponse({
+    this.sellContractForMultipleAccounts,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory SellContractForMultipleAccountsResponse.fromJson(

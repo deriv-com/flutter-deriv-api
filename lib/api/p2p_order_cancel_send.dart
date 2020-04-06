@@ -10,12 +10,16 @@ part 'p2p_order_cancel_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderCancelRequest extends Request {
   /// Initialize P2pOrderCancelRequest
-  P2pOrderCancelRequest(
-      {this.id,
-      this.p2pOrderCancel = 1,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  P2pOrderCancelRequest({
+    this.id,
+    this.p2pOrderCancel = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'p2p_order_cancel',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory P2pOrderCancelRequest.fromJson(Map<String, dynamic> json) =>

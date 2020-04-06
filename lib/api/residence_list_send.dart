@@ -10,9 +10,15 @@ part 'residence_list_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ResidenceListRequest extends Request {
   /// Initialize ResidenceListRequest
-  ResidenceListRequest(
-      {this.residenceList = 1, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  ResidenceListRequest({
+    this.residenceList = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'residence_list',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ResidenceListRequest.fromJson(Map<String, dynamic> json) =>

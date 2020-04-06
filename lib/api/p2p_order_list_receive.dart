@@ -10,14 +10,19 @@ part 'p2p_order_list_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderListResponse extends Response {
   /// Initialize P2pOrderListResponse
-  P2pOrderListResponse(
-      {this.p2pOrderList,
-      this.subscription,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  P2pOrderListResponse({
+    this.p2pOrderList,
+    this.subscription,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory P2pOrderListResponse.fromJson(Map<String, dynamic> json) =>

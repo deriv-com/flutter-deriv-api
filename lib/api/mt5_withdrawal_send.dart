@@ -10,14 +10,18 @@ part 'mt5_withdrawal_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5WithdrawalRequest extends Request {
   /// Initialize Mt5WithdrawalRequest
-  Mt5WithdrawalRequest(
-      {this.amount,
-      this.fromMt5,
-      this.mt5Withdrawal = 1,
-      this.toBinary,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  Mt5WithdrawalRequest({
+    this.amount,
+    this.fromMt5,
+    this.mt5Withdrawal = 1,
+    this.toBinary,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'mt5_withdrawal',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>

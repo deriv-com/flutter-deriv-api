@@ -10,13 +10,18 @@ part 'app_register_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppRegisterResponse extends Response {
   /// Initialize AppRegisterResponse
-  AppRegisterResponse(
-      {this.appRegister,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  AppRegisterResponse({
+    this.appRegister,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory AppRegisterResponse.fromJson(Map<String, dynamic> json) =>

@@ -10,15 +10,19 @@ part 'api_token_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ApiTokenRequest extends Request {
   /// Initialize ApiTokenRequest
-  ApiTokenRequest(
-      {this.apiToken = 1,
-      this.deleteToken,
-      this.newToken,
-      this.newTokenScopes,
-      this.validForCurrentIpOnly,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  ApiTokenRequest({
+    this.apiToken = 1,
+    this.deleteToken,
+    this.newToken,
+    this.newTokenScopes,
+    this.validForCurrentIpOnly,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'api_token',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>

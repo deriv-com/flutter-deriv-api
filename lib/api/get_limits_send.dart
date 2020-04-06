@@ -10,9 +10,15 @@ part 'get_limits_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetLimitsRequest extends Request {
   /// Initialize GetLimitsRequest
-  GetLimitsRequest(
-      {this.getLimits = 1, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  GetLimitsRequest({
+    this.getLimits = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'get_limits',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory GetLimitsRequest.fromJson(Map<String, dynamic> json) =>

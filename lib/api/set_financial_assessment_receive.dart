@@ -10,13 +10,18 @@ part 'set_financial_assessment_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetFinancialAssessmentResponse extends Response {
   /// Initialize SetFinancialAssessmentResponse
-  SetFinancialAssessmentResponse(
-      {this.setFinancialAssessment,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  SetFinancialAssessmentResponse({
+    this.setFinancialAssessment,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory SetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>

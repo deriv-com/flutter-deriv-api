@@ -10,13 +10,18 @@ part 'account_statistics_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AccountStatisticsResponse extends Response {
   /// Initialize AccountStatisticsResponse
-  AccountStatisticsResponse(
-      {this.accountStatistics,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  AccountStatisticsResponse({
+    this.accountStatistics,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory AccountStatisticsResponse.fromJson(Map<String, dynamic> json) =>

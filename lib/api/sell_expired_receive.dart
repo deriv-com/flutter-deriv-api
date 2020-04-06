@@ -10,13 +10,18 @@ part 'sell_expired_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellExpiredResponse extends Response {
   /// Initialize SellExpiredResponse
-  SellExpiredResponse(
-      {this.sellExpired,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  SellExpiredResponse({
+    this.sellExpired,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory SellExpiredResponse.fromJson(Map<String, dynamic> json) =>

@@ -10,9 +10,15 @@ part 'app_delete_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppDeleteRequest extends Request {
   /// Initialize AppDeleteRequest
-  AppDeleteRequest(
-      {this.appDelete = 1, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  AppDeleteRequest({
+    this.appDelete = 1,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'app_delete',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory AppDeleteRequest.fromJson(Map<String, dynamic> json) =>

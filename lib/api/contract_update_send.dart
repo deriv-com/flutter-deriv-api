@@ -10,13 +10,17 @@ part 'contract_update_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ContractUpdateRequest extends Request {
   /// Initialize ContractUpdateRequest
-  ContractUpdateRequest(
-      {this.contractId,
-      this.contractUpdate = 1,
-      this.limitOrder,
-      Map<String, dynamic> passthrough,
-      int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  ContractUpdateRequest({
+    this.contractId,
+    this.contractUpdate = 1,
+    this.limitOrder,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'contract_update',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ContractUpdateRequest.fromJson(Map<String, dynamic> json) =>

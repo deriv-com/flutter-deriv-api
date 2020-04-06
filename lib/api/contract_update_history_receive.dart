@@ -10,13 +10,18 @@ part 'contract_update_history_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ContractUpdateHistoryResponse extends Response {
   /// Initialize ContractUpdateHistoryResponse
-  ContractUpdateHistoryResponse(
-      {this.contractUpdateHistory,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  ContractUpdateHistoryResponse({
+    this.contractUpdateHistory,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ContractUpdateHistoryResponse.fromJson(Map<String, dynamic> json) =>

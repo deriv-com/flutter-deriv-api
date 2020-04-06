@@ -10,13 +10,18 @@ part 'landing_company_details_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LandingCompanyDetailsResponse extends Response {
   /// Initialize LandingCompanyDetailsResponse
-  LandingCompanyDetailsResponse(
-      {this.landingCompanyDetails,
-      Map<String, dynamic> echoReq,
-      Map<String, dynamic> error,
-      String msgType,
-      int reqId})
-      : super(echoReq: echoReq, error: error, msgType: msgType, reqId: reqId);
+  LandingCompanyDetailsResponse({
+    this.landingCompanyDetails,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+    String msgType,
+    int reqId,
+  }) : super(
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory LandingCompanyDetailsResponse.fromJson(Map<String, dynamic> json) =>

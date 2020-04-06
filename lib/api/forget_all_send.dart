@@ -10,9 +10,15 @@ part 'forget_all_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ForgetAllRequest extends Request {
   /// Initialize ForgetAllRequest
-  ForgetAllRequest(
-      {this.forgetAll, Map<String, dynamic> passthrough, int reqId})
-      : super(passthrough: passthrough, reqId: reqId);
+  ForgetAllRequest({
+    this.forgetAll,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'forget_all',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
 
   /// Creates instance from JSON
   factory ForgetAllRequest.fromJson(Map<String, dynamic> json) =>
