@@ -145,10 +145,6 @@ class BinaryAPI {
     final Map<String, dynamic> req = request.toJson()
       // Trims the req since the api serialization doesn't work properly.
       ..removeWhere((String key, dynamic value) => value == null);
-    // Allow caller to specify their own request ID
-    //  ..putIfAbsent('req_id', nextRequestId)
-    // Some methods pass a specific value for the method name, e.g. ticks => 'frxUSDJPY'
-    //..putIfAbsent(method, () => 1);
 
     if (subscribeCall) {
       req.putIfAbsent('subscribe', () => 1);
