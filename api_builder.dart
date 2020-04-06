@@ -107,12 +107,11 @@ class APIBuilder extends Builder {
 
       String superCallParameters;
       if (schemaType == 'send') {
-        superCallParameters ='msgType: \'${methodName}\',';
+        superCallParameters = 'msgType: \'${methodName}\',';
 
         superCallParameters += requestCommonFields.keys
             .map((String k) => '${ReCase(k).camelCase}: ${ReCase(k).camelCase}')
             .join(', ');
-
       } else {
         superCallParameters = responseCommonFields.keys
             .map((String k) => '${ReCase(k).camelCase}: ${ReCase(k).camelCase}')

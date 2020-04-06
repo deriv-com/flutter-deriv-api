@@ -164,7 +164,7 @@ class BinaryAPI {
     history.pushOutgoing(
       timestamp: DateTime.now().millisecondsSinceEpoch,
       message: req,
-      method: 'method',
+      method: request.msgType,
     );
 
     chan.sink.add(data);
@@ -318,7 +318,7 @@ class BinaryAPI {
     String endpoint = 'www.binaryqa10.com',
     String language = 'en',
     String brand = 'deriv',
-    String appId = '1014',
+    String appId = '1408',
   }) async {
     _connected = false;
 

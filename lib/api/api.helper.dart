@@ -21,8 +21,8 @@ import 'landing_company_receive.dart';
 import 'p2p_order_list_receive.dart';
 import 'get_financial_assessment_receive.dart';
 import 'new_account_maltainvest_receive.dart';
-import 'reality_check_receive.dart';
 import 'account_security_receive.dart';
+import 'reality_check_receive.dart';
 import 'balance_receive.dart';
 import 'set_settings_receive.dart';
 import 'buy_receive.dart';
@@ -69,8 +69,8 @@ import 'mt5_get_settings_receive.dart';
 import 'sell_receive.dart';
 import 'cashier_receive.dart';
 import 'app_get_receive.dart';
-import 'p2p_advert_info_receive.dart';
 import 'website_status_receive.dart';
+import 'p2p_advert_info_receive.dart';
 import 'get_settings_receive.dart';
 import 'ping_receive.dart';
 import 'document_upload_receive.dart';
@@ -79,8 +79,8 @@ import 'p2p_advertiser_adverts_receive.dart';
 import 'residence_list_receive.dart';
 import 'app_list_receive.dart';
 import 'states_list_receive.dart';
-import 'transfer_between_accounts_receive.dart';
 import 'paymentagent_list_receive.dart';
+import 'transfer_between_accounts_receive.dart';
 import 'sell_contract_for_multiple_accounts_receive.dart';
 import 'oauth_apps_receive.dart';
 import 'get_account_status_receive.dart';
@@ -100,8 +100,8 @@ import 'new_account_virtual_receive.dart';
 import 'exchange_rates_receive.dart';
 import 'mt5_deposit_receive.dart';
 import 'mt5_password_check_receive.dart';
-import 'proposal_open_contract_receive.dart';
 import 'account_statistics_receive.dart';
+import 'proposal_open_contract_receive.dart';
 import 'get_self_exclusion_receive.dart';
 
 /// A function that create a sub-type of [Response] based on
@@ -142,10 +142,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return GetFinancialAssessmentResponse.fromJson(responseMap);
     case 'new_account_maltainvest':
       return NewAccountMaltainvestResponse.fromJson(responseMap);
-    case 'reality_check':
-      return RealityCheckResponse.fromJson(responseMap);
     case 'account_security':
       return AccountSecurityResponse.fromJson(responseMap);
+    case 'reality_check':
+      return RealityCheckResponse.fromJson(responseMap);
     case 'balance':
       return BalanceResponse.fromJson(responseMap);
     case 'set_settings':
@@ -238,10 +238,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return CashierResponse.fromJson(responseMap);
     case 'app_get':
       return AppGetResponse.fromJson(responseMap);
-    case 'p2p_advert_info':
-      return P2pAdvertInfoResponse.fromJson(responseMap);
     case 'website_status':
       return WebsiteStatusResponse.fromJson(responseMap);
+    case 'p2p_advert_info':
+      return P2pAdvertInfoResponse.fromJson(responseMap);
     case 'get_settings':
       return GetSettingsResponse.fromJson(responseMap);
     case 'ping':
@@ -258,10 +258,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return AppListResponse.fromJson(responseMap);
     case 'states_list':
       return StatesListResponse.fromJson(responseMap);
-    case 'transfer_between_accounts':
-      return TransferBetweenAccountsResponse.fromJson(responseMap);
     case 'paymentagent_list':
       return PaymentagentListResponse.fromJson(responseMap);
+    case 'transfer_between_accounts':
+      return TransferBetweenAccountsResponse.fromJson(responseMap);
     case 'sell_contract_for_multiple_accounts':
       return SellContractForMultipleAccountsResponse.fromJson(responseMap);
     case 'oauth_apps':
@@ -300,10 +300,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return Mt5DepositResponse.fromJson(responseMap);
     case 'mt5_password_check':
       return Mt5PasswordCheckResponse.fromJson(responseMap);
-    case 'proposal_open_contract':
-      return ProposalOpenContractResponse.fromJson(responseMap);
     case 'account_statistics':
       return AccountStatisticsResponse.fromJson(responseMap);
+    case 'proposal_open_contract':
+      return ProposalOpenContractResponse.fromJson(responseMap);
     case 'get_self_exclusion':
       return GetSelfExclusionResponse.fromJson(responseMap);
 
