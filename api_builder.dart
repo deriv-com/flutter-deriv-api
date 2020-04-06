@@ -9,6 +9,9 @@ import 'package:dart_style/dart_style.dart';
 
 Builder apiBuilder(final BuilderOptions _) => APIBuilder();
 
+final List<GeneratedResponseJson> generatedResponses =
+    <GeneratedResponseJson>[];
+
 /// This class is responsible for parsing the morass of JSON schema
 /// definition files for our API, and assembling them into request/response
 /// objects suitable for marshalling and deserialization from our WebSockets
@@ -162,6 +165,20 @@ class APIBuilder extends Builder {
 ''';
       }).join('\n');
 
+      if (schemaType == 'receive') {
+        final Map<String, dynamic> propsMap = schemaDefinition['properties'];
+        if (propsMap.containsKey('msg_type')) {
+          final Map<String, dynamic> m = propsMap['msg_type'];
+          if (m.containsKey('enum')) {
+            generatedResponses.add(GeneratedResponseJson(
+              msgType: m['enum'][0],
+              fileName: fileName,
+              fullClassName: fullClassName,
+            ));
+          }
+        }
+      }
+
       await buildStep.writeAsString(
           // Ideally we'd move somewhere else and reconstruct, but the builder is tediously
           // over-specific about where it lets you write things - you *can* navigate to parent
@@ -203,4 +220,12 @@ class ${fullClassName} extends ${schemaType == 'send' ? 'Request' : 'Response'}{
       return;
     }
   }
+}
+
+class GeneratedResponseJson {
+  GeneratedResponseJson({this.msgType, this.fileName, this.fullClassName});
+
+  final String msgType;
+  final String fileName;
+  final String fullClassName;
 }
