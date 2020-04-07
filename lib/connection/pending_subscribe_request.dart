@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_deriv_api/connection/pending_request.dart';
-import 'package:flutter_deriv_api/connection/subscription_information.dart';
+import 'package:flutter_deriv_api/connection/subscription_stream.dart';
 
 /// Represent a pending request.
 class PendingSubscribeRequest<T> extends PendingRequest<T> {
@@ -11,16 +11,12 @@ class PendingSubscribeRequest<T> extends PendingRequest<T> {
     Completer<T> response,
   }) : super(request: request, response: response);
 
-  /// subscription information
-  SubscriptionInformation<T> _subscription;
+  /// Subscription id
+  String subscriptionId;
 
-  /// Get subscription information
-  SubscriptionInformation<T> get subscription => _subscription;
+  /// Subscription stream
+  SubscriptionStream<T> subscriptionStream;
 
   /// Get subscription state
-  bool get isSubscribed => _subscription?.subscriptionStream != null;
-
-  /// Set subscription information
-  set subscription(SubscriptionInformation<T> subscription) =>
-      _subscription = _subscription;
+  bool get isSubscribed => subscriptionStream != null;
 }
