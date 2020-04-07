@@ -3,7 +3,11 @@ import 'dart:async';
 /// Represent a pending request.
 class PendingRequest<T> {
   /// Class constructor
-  PendingRequest({this.method, this.request, this.response});
+  PendingRequest({
+    this.method,
+    this.request,
+    this.response,
+  });
 
   /// api call method (e.g. 'active_symbols')
   final String method;

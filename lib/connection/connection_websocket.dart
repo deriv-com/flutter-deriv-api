@@ -38,7 +38,7 @@ class BinaryApi {
       <int, PendingRequest<Response>>{};
 
   /// All requests and responses
-  final ApiHistory history = ApiHistory();
+  final ApiHistory _apiHistory = ApiHistory();
 
   /// Calls the web socket api with the given method name and parameters
   Future<Response> call(
@@ -69,7 +69,7 @@ class BinaryApi {
 
     final List<int> data = utf8.encode(jsonEncode(preparedRequest));
 
-    history.pushOutgoing(
+    _apiHistory.pushOutgoing(
       timestamp: DateTime.now().millisecondsSinceEpoch,
       message: preparedRequest,
       method: 'method',
@@ -216,7 +216,7 @@ class BinaryApi {
         connectionCompleter.complete(true);
       }
 
-      history.pushIncoming(
+      _apiHistory.pushIncoming(
         timestamp: DateTime.now().millisecondsSinceEpoch,
         method:
             message.containsKey('msg_type') ? message['msg_type'] : 'unknown',

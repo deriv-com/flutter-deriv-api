@@ -1,6 +1,6 @@
 import 'package:flutter_deriv_api/connection/api_history_entry.dart';
 
-/// Provides storage for messages sent/received via the WebSocket connection
+/// Provides storage for messages sent/received via the web socket connection
 class ApiHistory {
   /// Messages that were sent to the remote endpoint
   final List<ApiHistoryEntry> outgoing = <ApiHistoryEntry>[];
