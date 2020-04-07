@@ -65,7 +65,7 @@ class BinaryApi {
       );
     }
 
-    dev.log('Queuing outgoing request', error: jsonEncode(preparedRequest));
+    dev.log('queuing outgoing request...', error: jsonEncode(preparedRequest));
 
     final List<int> data = utf8.encode(jsonEncode(preparedRequest));
 
@@ -103,8 +103,8 @@ class BinaryApi {
       },
     );
 
-    dev.log('Connecting to $uri');
-    print('Connecting to $uri');
+    dev.log('connecting to $uri.');
+    print('connecting to $uri.');
 
     final Completer<bool> connectionCompleter = Completer<bool>();
 
@@ -119,9 +119,9 @@ class BinaryApi {
               (Map<String, dynamic> message) =>
                   _handleResponse(connectionCompleter, message),
               onError: (Object error) =>
-                  print('The WS connection is closed: $error'),
+                  print('the websocket connection is closed: $error.'),
               onDone: () async {
-                print('WS is Closed!');
+                print('websocket is closed.');
 
                 _connected = false;
 
@@ -131,12 +131,12 @@ class BinaryApi {
               },
             );
 
-    print('Send initial message');
+    print('send initial message.');
 
     await call(PingRequest());
     await connectionCompleter.future;
 
-    print('WS is connected!');
+    print('websocket is connected.');
 
     if (onOpen != null) {
       onOpen();
@@ -171,14 +171,13 @@ class BinaryApi {
       final AuthorizeRequest authorizeRequest = AuthorizeRequest()
         ..authorize = token;
 
-      print('Auth Request is ${authorizeRequest.toJson()}');
+      print('auth request is ${authorizeRequest.toJson()}.');
 
       authResponse = await call(authorizeRequest);
 
-      print('Auth response is $authResponse');
-    } on Exception catch (e, stackTrace) {
+      print('auth response is $authResponse.');
+    } on Exception catch (e) {
       print(e);
-      print(stackTrace);
 
       throw Exception(e);
     }
@@ -190,7 +189,7 @@ class BinaryApi {
   /// Each API call can have a reqID which can be used to identifying its
   /// response (Its response will have the same reqId)
   int _nextRequestId() {
-    dev.log('Assigning ID, last was $lastRequestId');
+    dev.log('assigning id, last was $lastRequestId.');
 
     return ++lastRequestId;
   }
@@ -203,16 +202,15 @@ class BinaryApi {
     Map<String, dynamic> response,
   ) {
     try {
-      dev.log('Have message', error: response.runtimeType);
+      dev.log('have message: ', error: response.runtimeType);
 
       // Make sure that the received message is a map and it's parsable otherwise it throws an exception
       final Map<String, dynamic> message = Map<String, dynamic>.from(response);
 
-      print('and we cast to ');
-      print(message.runtimeType);
+      print('and we cast to: ${message.runtimeType}');
 
       if (!_connected) {
-        print('WS is connected');
+        print('websocket is connected.');
 
         _connected = true;
         connectionCompleter.complete(true);
@@ -225,16 +223,16 @@ class BinaryApi {
         message: message,
       );
 
-      print('API response: $message');
-      print('Check for req_id in received message');
+      print('api response: $message.');
+      print('check for req_id in received message.');
 
       if (message.containsKey('req_id')) {
-        print('Have req_id in received message:');
+        print('have req_id in received message:');
         print(message['req_id'].runtimeType);
 
         final int requestId = message['req_id'];
 
-        print('Have request ID ${requestId.toString()}');
+        print('have request id: $requestId.');
 
         if (_pendingRequests.containsKey(requestId)) {
           _handleRequestResponse(requestId, message);
@@ -245,19 +243,19 @@ class BinaryApi {
           );
         } else {
           print(
-            'This has a request ID, but does not match anything in our pending queue',
+            'this has a request id, but does not match anything in our pending queue.',
           );
         }
       } else {
-        print('No req_id, ignoring');
+        print('no req_id, ignoring.');
       }
     } on Exception catch (e) {
-      print('Failed to process $response - $e');
+      print('failed to process $response - $e');
     }
   }
 
   void _handleRequestResponse(int requestId, Map<String, dynamic> response) {
-    print('Completing request for ${requestId.toString()}');
+    print('completing request for $requestId.');
 
     final Completer<Response> requestCompleter =
         _pendingRequests[requestId].response;
@@ -269,6 +267,6 @@ class BinaryApi {
     // Removes the pendingRequest when it's not a subscription, the subscription requests will be remove after unsubscribing.
     _pendingRequests.remove(requestId);
 
-    print('Completed request');
+    print('completed request.');
   }
 }
