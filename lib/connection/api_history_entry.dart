@@ -1,7 +1,11 @@
-/// Represents a message sent or received via the webSockets connection
+/// Represents a message sent or received via the web sockets connection
 class ApiHistoryEntry {
-  /// Initializes
-  ApiHistoryEntry({this.timeStamp, this.method, this.message});
+  /// Class constructor
+  ApiHistoryEntry({
+    this.timeStamp,
+    this.method,
+    this.message,
+  });
 
   /// time stamp when is created
   final int timeStamp;
