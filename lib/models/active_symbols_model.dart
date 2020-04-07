@@ -1,4 +1,4 @@
-///
+/// Abstract class for Active symbol information
 abstract class ActiveSymbolModel {
   ///
   ActiveSymbolModel(
@@ -25,7 +25,8 @@ abstract class ActiveSymbolModel {
   /// `1` if the symbol is tradable in a forward starting contract, `0` if not.
   final int allowForwardStarting;
 
-  /// Amount the data feed is delayed (in minutes) due to Exchange licensing requirements. Only returned on `full` active symbols call.
+  /// Amount the data feed is delayed (in minutes) due to Exchange
+  /// licensing requirements. Only returned on `full` active symbols call.
   final int delayAmount;
 
   /// Display name.
@@ -34,7 +35,8 @@ abstract class ActiveSymbolModel {
   /// `1` if market is currently open, `0` if closed.
   final int exchangeIsOpen;
 
-  /// Exchange name (for underlyings listed on a Stock Exchange). Only returned on `full` active symbols call.
+  /// Exchange name (for underlyings listed on a Stock Exchange).
+  /// Only returned on `full` active symbols call.
   final String exchangeName;
 
   /// Intraday interval minutes. Only returned on `full` active symbols call.
@@ -52,13 +54,16 @@ abstract class ActiveSymbolModel {
   /// Pip size (i.e. minimum fluctuation amount).
   final double pip;
 
-  /// For stock indices, the underlying currency for that instrument. Only returned on `full` active symbols call.
+  /// For stock indices, the underlying currency for that instrument.
+  /// Only returned on `full` active symbols call.
   final String quotedCurrencySymbol;
 
-  /// Latest spot price of the underlying. Only returned on `full` active symbols call.
+  /// Latest spot price of the underlying.
+  /// Only returned on `full` active symbols call.
   final double spot;
 
-  /// Number of seconds elapsed since the last spot price. Only returned on `full` active symbols call.
+  /// Number of seconds elapsed since the last spot price.
+  /// Only returned on `full` active symbols call.
   final String spotAge;
 
   /// Latest spot epoch time. Only returned on `full` active symbols call.

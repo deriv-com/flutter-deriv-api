@@ -1,4 +1,4 @@
-import 'available.dart';
+import 'package:flutter_deriv_api/abstraction_classes/contarcts/contarcts_for/available.dart';
 
 /// Abstract class involving fields of [ContractsFor]
 abstract class ContractsForModel {
@@ -19,7 +19,8 @@ abstract class ContractsForModel {
   /// Symbol's next market-close time as an epoch value
   int close;
 
-  /// Indicates the feed license for symbol, for example whether its realtime or delayed
+  /// Indicates the feed license for symbol,
+  /// E.g. whether its realtime or delayed
   String feedLicense;
 
   /// Count of contracts available

@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/models/contarcts/active_symbols/active_symbols_model.dart';
+import 'package:flutter_deriv_api/models/active_symbols_model.dart';
 
 /// Active Symbol
 class ActiveSymbol extends ActiveSymbolModel {
@@ -65,5 +65,7 @@ class ActiveSymbol extends ActiveSymbolModel {
       );
 
   /// Fetch the list of [ActiveSymbol]s
-  static Future<List<ActiveSymbol>> getActiveSymbols() async {}
+  static Future<List<ActiveSymbol>> getActiveSymbols() async =>
+      // TODO(Ramin): call to the actual Api class when its ready
+      <ActiveSymbol>[];
 }

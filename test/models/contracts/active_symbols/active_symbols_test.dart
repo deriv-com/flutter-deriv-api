@@ -1,7 +1,7 @@
 import 'dart:convert';
-
-import 'package:flutter_deriv_api/models/contarcts/active_symbols/active_symbols.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'package:flutter_deriv_api/abstraction_classes/contarcts/active_symbols/active_symbols.dart';
 import 'active_symbols_mock_data.dart';
 
 void main() {

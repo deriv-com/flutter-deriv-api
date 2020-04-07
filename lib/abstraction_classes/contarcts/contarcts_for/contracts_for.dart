@@ -1,7 +1,7 @@
 import 'package:flutter_deriv_api/api/contracts_for_receive.dart';
+import 'package:flutter_deriv_api/models/contracts_for_model.dart';
 
 import 'available.dart';
-import 'contracts_for_model.dart';
 
 /// available contracts. Note: if the user is authenticated,
 /// then only contracts allowed under his account will be returned.
