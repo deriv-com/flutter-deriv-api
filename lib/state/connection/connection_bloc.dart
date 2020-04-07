@@ -23,9 +23,9 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   @override
   ConnectionState get initialState => InitialConnectionState();
 
-  /// connects the [BinaryAPI] to the web socket
+  /// connects the [BinaryApi] to the web socket
   void connectWS() {
-    final BinaryAPI _api = BinaryAPI();
+    final BinaryApi _api = BinaryApi();
 
     _api.run(
       onDone: () => add(Reconnect()),
