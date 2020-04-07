@@ -8,9 +8,9 @@ import 'package:flutter_deriv_api/api/forget_send.dart';
 import 'package:flutter_deriv_api/api/forget_receive.dart';
 import 'package:flutter_deriv_api/api/forget_all_send.dart';
 import 'package:flutter_deriv_api/api/forget_all_receive.dart';
-import 'package:flutter_deriv_api/connection/pending_request.dart';
 import 'package:flutter_deriv_api/connection/subscription_stream.dart';
 import 'package:flutter_deriv_api/connection/connection_websocket.dart';
+import 'package:flutter_deriv_api/connection/pending_subscribe_request.dart';
 
 /// Subscription manager class
 class SubscriptionManager {
@@ -28,8 +28,8 @@ class SubscriptionManager {
   BinaryApi _api;
 
   /// Any subscription requests that are currently in-flight
-  final Map<int, PendingRequest<Response>> _pendingRequests =
-      <int, PendingRequest<Response>>{};
+  final Map<int, PendingSubscribeRequest<Response>> _pendingRequests =
+      <int, PendingSubscribeRequest<Response>>{};
 
   /// Add a request to pending request queue
   void add({
@@ -37,7 +37,7 @@ class SubscriptionManager {
     Map<String, dynamic> request,
     Completer<Response> response,
   }) =>
-      _pendingRequests[requestId] = PendingRequest<Response>(
+      _pendingRequests[requestId] = PendingSubscribeRequest<Response>(
         request: request,
         response: response,
       );
