@@ -62,14 +62,16 @@ class SubscriptionManager {
     int requestId,
     String subscriptionId,
   }) =>
-      _pendingRequests[requestId].subscriptionId = subscriptionId;
+      _pendingRequests[requestId] = PendingSubscribeRequest<Response>()
+          .copyWith(subscriptionId: subscriptionId);
 
   /// Set subscription stream
   void setSubscriptionStream({
     int requestId,
     SubscriptionStream<Response> subscriptionStream,
   }) =>
-      _pendingRequests[requestId].subscriptionStream = subscriptionStream;
+      _pendingRequests[requestId] = PendingSubscribeRequest<Response>()
+          .copyWith(subscriptionStream: subscriptionStream);
 
   /// Handle stream response
   void handleStreamResponse({
@@ -109,7 +111,8 @@ class SubscriptionManager {
 
     _api.call(request, subscribeCall: true);
 
-    _pendingRequests[request.reqId].subscriptionStream = subscriptionStream;
+    _pendingRequests[request.reqId] = PendingSubscribeRequest<Response>()
+        .copyWith(subscriptionStream: subscriptionStream);
 
     return subscriptionStream.stream;
   }

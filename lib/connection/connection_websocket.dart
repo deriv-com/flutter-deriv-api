@@ -18,20 +18,20 @@ import 'package:flutter_deriv_api/connection/subscription_manager.dart';
 /// Callbacks for WS connection
 typedef SocketCallback = void Function();
 
-/// contains the API call
+/// contains the api call
 class BinaryApi {
   /// Indicates current connection status - only set `true` once
-  /// we have established SSL *and* WebSocket handshake steps
+  /// we have established SSL *and* web socket handshake steps
   bool _connected = false;
 
-  /// Represents the active WebSocket connection
-  IOWebSocketChannel webSocketChannel;
+  /// Represents the active web socket connection
+  IOWebSocketChannel _webSocketChannel;
 
-  /// stream subscription to API date
-  StreamSubscription<Map<String, dynamic>> webSocketListener;
+  /// stream subscription to api date
+  StreamSubscription<Map<String, dynamic>> _webSocketListener;
 
   /// Tracks our internal counter for requests, always increments until the connection is closed
-  int lastRequestId = 0;
+  int _lastRequestId = 0;
 
   /// Any requests that are currently in-flight
   final Map<int, PendingRequest<Response>> _pendingRequests =
@@ -40,7 +40,7 @@ class BinaryApi {
   /// All requests and responses
   final ApiHistory history = ApiHistory();
 
-  /// Calls the WebSocket API with the given method name and parameters.
+  /// Calls the web socket api with the given method name and parameters
   Future<Response> call(
     Request request, {
     bool subscribeCall = false,
@@ -75,7 +75,7 @@ class BinaryApi {
       method: 'method',
     );
 
-    webSocketChannel.sink.add(data);
+    _webSocketChannel.sink.add(data);
 
     return response.future;
   }
@@ -108,20 +108,20 @@ class BinaryApi {
 
     final Completer<bool> connectionCompleter = Completer<bool>();
 
-    // initialize connection to WebSocket server
-    webSocketChannel = IOWebSocketChannel.connect(uri.toString());
+    // Initialize connection to web socket server
+    _webSocketChannel = IOWebSocketChannel.connect(uri.toString());
 
-    webSocketListener =
-        webSocketChannel // .cast<String>().transform(utf8.decode)
+    _webSocketListener =
+        _webSocketChannel // .cast<String>().transform(utf8.decode)
             .stream
             .map<Map<String, dynamic>>((Object str) => jsonDecode(str))
             .listen(
               (Map<String, dynamic> message) =>
                   _handleResponse(connectionCompleter, message),
               onError: (Object error) =>
-                  print('the websocket connection is closed: $error.'),
+                  print('the web socket connection is closed: $error.'),
               onDone: () async {
-                print('websocket is closed.');
+                print('web socket is closed.');
 
                 _connected = false;
 
@@ -136,31 +136,31 @@ class BinaryApi {
     await call(PingRequest());
     await connectionCompleter.future;
 
-    print('websocket is connected.');
+    print('web socket is connected.');
 
     if (onOpen != null) {
       onOpen();
     }
 
-    return webSocketChannel;
+    return _webSocketChannel;
   }
 
   /// Closes the stream channels related to WS
   Future<void> close() async {
     // The onDone function of the listener is set to null intentionally
-    // to prevent it from being invoked after destroying the WebSocket object.
-    webSocketListener
+    // to prevent it from being invoked after destroying the web socket object.
+    _webSocketListener
       ..onDone(null)
       ..onError(null);
 
-    await webSocketListener.cancel();
+    await _webSocketListener.cancel();
 
     if (_connected) {
-      await webSocketChannel.sink.close(status.goingAway);
+      await _webSocketChannel.sink.close(status.goingAway);
     }
 
-    webSocketListener = null;
-    webSocketChannel = null;
+    _webSocketListener = null;
+    _webSocketChannel = null;
   }
 
   /// Calls the authorize method with the giver [token]
@@ -186,12 +186,12 @@ class BinaryApi {
   }
 
   /// Generates reqId for the next request which is going to be sent to server
-  /// Each API call can have a reqID which can be used to identifying its
+  /// Each api call can have a reqID which can be used to identifying its
   /// response (Its response will have the same reqId)
   int _nextRequestId() {
-    dev.log('assigning id, last was $lastRequestId.');
+    dev.log('assigning id, last was $_lastRequestId.');
 
-    return ++lastRequestId;
+    return ++_lastRequestId;
   }
 
   /// Handles responses that come from server, by using its reqId, and completes
@@ -210,7 +210,7 @@ class BinaryApi {
       print('and we cast to: ${message.runtimeType}');
 
       if (!_connected) {
-        print('websocket is connected.');
+        print('web socket is connected.');
 
         _connected = true;
         connectionCompleter.complete(true);
