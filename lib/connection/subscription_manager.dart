@@ -16,7 +16,7 @@ import 'package:flutter_deriv_api/connection/connection_websocket.dart';
 class SubscriptionManager {
   /// Singleton instance
   factory SubscriptionManager({@required BinaryApi api}) {
-    _instance.api = api;
+    _instance._api = api;
 
     return _instance;
   }
@@ -25,8 +25,7 @@ class SubscriptionManager {
 
   static final SubscriptionManager _instance = SubscriptionManager._();
 
-  /// Binary api
-  BinaryApi api;
+  BinaryApi _api;
 
   /// Any subscription requests that are currently in-flight
   final Map<int, PendingRequest<Response>> _pendingRequests =
@@ -109,7 +108,7 @@ class SubscriptionManager {
     final SubscriptionStream<Response> subscriptionStream =
         SubscriptionStream<Response>();
 
-    api.call(request, subscribeCall: true);
+    _api.call(request, subscribeCall: true);
 
     _pendingRequests[request.reqId].subscription.subscriptionStream =
         subscriptionStream;
@@ -130,7 +129,7 @@ class SubscriptionManager {
     }
 
     // Send forget request
-    final Response response = await api.call(
+    final Response response = await _api.call(
       ForgetRequest(forget: getSubscriptionId(requestId)),
     );
 

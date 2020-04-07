@@ -16,7 +16,7 @@ class SubscriptionStream<T> {
   StreamSink<T> get sink => _streamController.sink;
 
   /// It used to broadcast a new message.
-  void add(T msg) => _streamController.add(msg);
+  void add(T message) => _streamController.add(message);
 
   /// Whenever the request is unsubscribed, this method will be invoked to broadcast cast done message to all of its listeners.
   Future<void> closeStream() async {

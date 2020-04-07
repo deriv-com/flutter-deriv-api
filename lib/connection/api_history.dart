@@ -8,7 +8,7 @@ class ApiHistory {
   /// Messages that were received from the remote endpoint
   final List<ApiHistoryEntry> incoming = <ApiHistoryEntry>[];
 
-  int _limit = 1000;
+  int _limit = 1024;
 
   /// Messages limit
   int get limit => _limit;
