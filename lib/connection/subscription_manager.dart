@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/request.dart';
 import 'package:flutter_deriv_api/api/response.dart';
@@ -12,13 +13,20 @@ import 'package:flutter_deriv_api/connection/subscription_stream.dart';
 import 'package:flutter_deriv_api/connection/connection_websocket.dart';
 
 /// Subscription manager class
-class SubscriptionManage {
+class SubscriptionManager {
   /// Singleton instance
-  factory SubscriptionManage() => _instance;
+  factory SubscriptionManager({@required BinaryApi api}) {
+    _instance.api = api;
 
-  SubscriptionManage._();
+    return _instance;
+  }
 
-  static final SubscriptionManage _instance = SubscriptionManage._();
+  SubscriptionManager._();
+
+  static final SubscriptionManager _instance = SubscriptionManager._();
+
+  /// Binary api
+  BinaryApi api;
 
   /// Any subscription requests that are currently in-flight
   final Map<int, PendingRequest<Response>> _pendingRequests =
@@ -101,7 +109,7 @@ class SubscriptionManage {
     final SubscriptionStream<Response> subscriptionStream =
         SubscriptionStream<Response>();
 
-    BinaryApi().call(request, subscribeCall: true);
+    api.call(request, subscribeCall: true);
 
     _pendingRequests[request.reqId].subscription.subscriptionStream =
         subscriptionStream;
@@ -122,7 +130,7 @@ class SubscriptionManage {
     }
 
     // Send forget request
-    final Response response = await BinaryApi().call(
+    final Response response = await api.call(
       ForgetRequest(forget: getSubscriptionId(requestId)),
     );
 
