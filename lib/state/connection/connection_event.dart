@@ -10,7 +10,7 @@ class Connect extends ConnectionEvent {
   Connect({this.api});
 
   /// A reference to BinaryAPI
-  final BinaryAPI api;
+  final BinaryApi api;
 
   @override
   String toString() => 'ConnectionEvent(Connect)';
