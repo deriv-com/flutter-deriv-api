@@ -1,4 +1,4 @@
-part of 'contracts_for.dart';
+import 'available.dart';
 
 /// Abstract class involving fields of [ContractsFor]
 abstract class ContractsForModel {

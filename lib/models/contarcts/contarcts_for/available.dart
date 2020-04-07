@@ -1,5 +1,3 @@
-part of 'contracts_for.dart';
-
 /// available contracts details
 class Available {
   /// Initializes
