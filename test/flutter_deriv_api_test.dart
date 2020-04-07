@@ -17,6 +17,7 @@ import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/api/website_status_receive.dart';
 import 'package:flutter_deriv_api/api/website_status_send.dart';
 import 'package:flutter_deriv_api/connection/connection_websocket.dart';
+import 'package:flutter_deriv_api/connection/subscription_manager.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_deriv_api/flutter_deriv_api.dart';
 
@@ -38,7 +39,7 @@ void main() {
   });
 
   test('Base classes usage in deriv connection', () async {
-    final BinaryAPI api = BinaryAPI();
+    final BinaryApi api = BinaryApi();
     await api.run();
     final AuthorizeResponse authorizeResponse =
         await api.call(AuthorizeRequest(authorize: 'YOU TOKEN'));
@@ -85,14 +86,18 @@ void main() {
     final PingResponse pingResponse = await api.call(PingRequest());
     print('Test result: PingResponse: ${pingResponse.ping}');
 
-    api.subscribe(BalanceRequest()).listen((Response response) {
+    SubscriptionManager(api: api)
+        .subscribe(BalanceRequest())
+        .listen((Response response) {
       final BalanceResponse balanceResponse = response;
-      print('BALANCE: ${balanceResponse.balance}');
+      print('balance: ${balanceResponse.balance}');
     });
 
-    api.subscribe(P2pOrderListRequest()).listen((Response response) {
+    SubscriptionManager(api: api)
+        .subscribe(P2pOrderListRequest())
+        .listen((Response response) {
       final P2pOrderListResponse orderListResponse = response;
-      print('ORDER_List: ${orderListResponse.p2pOrderList}');
+      print('p2pOrderList: ${orderListResponse.p2pOrderList}');
     });
 
     await Future<void>.delayed(const Duration(seconds: 5));

@@ -53,7 +53,7 @@ class BinaryApi {
     if (subscribeCall) {
       preparedRequest.putIfAbsent('subscribe', () => 1);
 
-      SubscriptionManage().add(
+      SubscriptionManager(api: this).add(
         requestId: requestId,
         request: preparedRequest,
         response: response,
@@ -238,8 +238,8 @@ class BinaryApi {
 
         if (_pendingRequests.containsKey(requestId)) {
           _handleRequestResponse(requestId, message);
-        } else if (SubscriptionManage().contains(requestId)) {
-          SubscriptionManage().handleStreamResponse(
+        } else if (SubscriptionManager(api: this).contains(requestId)) {
+          SubscriptionManager(api: this).handleStreamResponse(
             requestId: requestId,
             response: message,
           );
