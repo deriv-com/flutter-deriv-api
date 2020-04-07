@@ -9,14 +9,29 @@ class PendingSubscribeRequest<T> extends PendingRequest<T> {
   PendingSubscribeRequest({
     Map<String, dynamic> request,
     Completer<T> response,
-  }) : super(request: request, response: response);
+    this.subscriptionId,
+    this.subscriptionStream,
+  }) : super(
+          request: request,
+          response: response,
+        );
 
   /// Subscription id
-  String subscriptionId;
+  final String subscriptionId;
 
   /// Subscription stream
-  SubscriptionStream<T> subscriptionStream;
+  final SubscriptionStream<T> subscriptionStream;
 
   /// Get subscription state
   bool get isSubscribed => subscriptionStream != null;
+
+  /// Creates copy of instance with given parameters
+  PendingSubscribeRequest<T> copyWith({
+    String subscriptionId,
+    SubscriptionStream<T> subscriptionStream,
+  }) =>
+      PendingSubscribeRequest<T>(
+        subscriptionId: subscriptionId ?? this.subscriptionId,
+        subscriptionStream: subscriptionStream ?? this.subscriptionStream,
+      );
 }
