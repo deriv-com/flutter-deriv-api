@@ -93,14 +93,14 @@ void main() {
     print('Test result: PingResponse: ${pingResponse.ping}');
 
     SubscriptionManager(api: api)
-        .subscribe(BalanceRequest())
+        .call(BalanceRequest())
         .listen((Response response) {
       final BalanceResponse balanceResponse = response;
       print('balance: ${balanceResponse.balance}');
     });
 
     SubscriptionManager(api: api)
-        .subscribe(P2pOrderListRequest())
+        .call(P2pOrderListRequest())
         .listen((Response response) {
       final P2pOrderListResponse orderListResponse = response;
       print('p2pOrderList: ${orderListResponse.p2pOrderList}');

@@ -12,7 +12,7 @@ import 'package:flutter_deriv_api/connection/api_call_manager.dart';
 import 'package:flutter_deriv_api/connection/connection_websocket.dart';
 
 /// Call manager class
-class CallManager extends ApiCallManager {
+class CallManager extends ApiCallManager<Future<Response>> {
   /// Singleton instance
   factory CallManager({BinaryApi api}) {
     _instance._api = api;
@@ -53,7 +53,7 @@ class CallManager extends ApiCallManager {
     print('completed request.');
   }
 
-  /// Calls the api method
+  @override
   Future<Response> call(Request request) async {
     request.reqId = _getLastRequestId();
 

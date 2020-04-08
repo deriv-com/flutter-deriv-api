@@ -15,7 +15,7 @@ import 'package:flutter_deriv_api/connection/connection_websocket.dart';
 import 'package:flutter_deriv_api/connection/pending_subscribe_request.dart';
 
 /// Subscription manager class
-class SubscriptionManager extends ApiCallManager {
+class SubscriptionManager extends ApiCallManager<Stream<Response>> {
   /// Singleton instance
   factory SubscriptionManager({BinaryApi api}) {
     _instance._api = api;
@@ -92,9 +92,8 @@ class SubscriptionManager extends ApiCallManager {
     print('response added to stream.');
   }
 
-  /// Calls the API method with subscribe set to '1' and return the stream
-  /// to caller for responses
-  Stream<Response> subscribe(Request request) {
+  @override
+  Stream<Response> call(Request request) {
     // TODO(hamed): we should check request duplication before another api call
 
     final SubscriptionStream<Response> subscriptionStream =
