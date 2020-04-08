@@ -23,7 +23,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     final PendingRequest<Response> pendingRequest = pendingRequests[requestId];
 
     return pendingRequest is PendingSubscribedRequest<Response>
-        ? pendingRequest?.subscriptionId
+        ? pendingRequest.subscriptionId
         : null;
   }
 
@@ -32,7 +32,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     final PendingRequest<Response> pendingRequest = pendingRequests[requestId];
 
     return pendingRequest is PendingSubscribedRequest<Response>
-        ? pendingRequest?.subscriptionStream
+        ? pendingRequest.subscriptionStream
         : null;
   }
 
