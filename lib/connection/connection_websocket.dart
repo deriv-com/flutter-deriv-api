@@ -15,7 +15,7 @@ import 'package:flutter_deriv_api/connection/subscription_manager.dart';
 typedef SocketCallback = void Function();
 
 /// contains the api call
-class BinaryApi {
+class BinaryAPI {
   /// Indicates current connection status - only set `true` once
   /// we have established SSL *and* web socket handshake steps
   bool _connected = false;
@@ -23,17 +23,30 @@ class BinaryApi {
   /// Represents the active web socket connection
   IOWebSocketChannel _webSocketChannel;
 
-  /// stream subscription to api date
+  /// Stream subscription to api date
   StreamSubscription<Map<String, dynamic>> _webSocketListener;
 
+  /// Call manager instance
+  CallManager _callManager;
+
+  /// Subscription manager instance
+  SubscriptionManager _subscriptionManager;
+
   /// All requests and responses
-  final ApiHistory _apiHistory = ApiHistory();
+  final APIHistory _apiHistory = APIHistory();
 
   /// Get web socket channel
   IOWebSocketChannel get webSocketChannel => _webSocketChannel;
 
   /// Get api history
-  ApiHistory get apiHistory => _apiHistory;
+  APIHistory get apiHistory => _apiHistory;
+
+  /// Get call manager instance
+  CallManager get callManager => _callManager ??= CallManager(this);
+
+  /// Get subscription manager instance
+  SubscriptionManager get subscriptionManager =>
+      _subscriptionManager ??= SubscriptionManager(this);
 
   /// Connects to binary web socket
   Future<IOWebSocketChannel> run({
@@ -88,7 +101,7 @@ class BinaryApi {
 
     print('send initial message.');
 
-    await CallManager(api: this).call(PingRequest());
+    await callManager.call(PingRequest());
     await connectionCompleter.future;
 
     print('web socket is connected.');
@@ -158,12 +171,18 @@ class BinaryApi {
 
         print('have request id: $requestId.');
 
-        if (CallManager().contains(requestId)) {
-          CallManager(api: this)
-              .handleResponse(requestId: requestId, response: message);
-        } else if (SubscriptionManager().contains(requestId)) {
-          SubscriptionManager(api: this)
-              .handleResponse(requestId: requestId, response: message);
+        if (callManager.contains(requestId)) {
+          if (callManager.isSubscription(requestId)) {
+            subscriptionManager.handleResponse(
+              requestId: requestId,
+              response: message,
+            );
+          } else {
+            callManager.handleResponse(
+              requestId: requestId,
+              response: message,
+            );
+          }
         } else {
           print(
             'this has a request id, but does not match anything in our pending queue.',

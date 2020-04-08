@@ -1,7 +1,7 @@
 /// Represents a message sent or received via the web sockets connection
-class ApiHistoryEntry {
+class APIHistoryEntry {
   /// Class constructor
-  ApiHistoryEntry({
+  APIHistoryEntry({
     this.timeStamp,
     this.method,
     this.message,
