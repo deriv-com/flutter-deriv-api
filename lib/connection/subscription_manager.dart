@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/request.dart';
 import 'package:flutter_deriv_api/api/response.dart';
@@ -9,48 +7,41 @@ import 'package:flutter_deriv_api/api/forget_send.dart';
 import 'package:flutter_deriv_api/api/forget_receive.dart';
 import 'package:flutter_deriv_api/api/forget_all_send.dart';
 import 'package:flutter_deriv_api/api/forget_all_receive.dart';
-import 'package:flutter_deriv_api/connection/api_call_manager.dart';
+import 'package:flutter_deriv_api/connection/pending_request.dart';
+import 'package:flutter_deriv_api/connection/base_call_manager.dart';
 import 'package:flutter_deriv_api/connection/subscription_stream.dart';
 import 'package:flutter_deriv_api/connection/connection_websocket.dart';
-import 'package:flutter_deriv_api/connection/pending_subscribe_request.dart';
+import 'package:flutter_deriv_api/connection/pending_subscribed_request.dart';
 
 /// Subscription manager class
-class SubscriptionManager extends ApiCallManager<Stream<Response>> {
-  /// Singleton instance
-  factory SubscriptionManager({BinaryApi api}) {
-    _instance._api = api;
-
-    return _instance;
-  }
-
-  SubscriptionManager._();
-
-  static final SubscriptionManager _instance = SubscriptionManager._();
-
-  BinaryApi _api;
-  int _lastRequestId = 0;
-
-  final Map<int, PendingSubscribeRequest<Response>> _pendingRequests =
-      <int, PendingSubscribeRequest<Response>>{};
-
-  /// Get request response
-  Completer<Response> getResponse(int requestId) =>
-      _pendingRequests[requestId].response;
+class SubscriptionManager extends BaseCallManager<Stream<Response>> {
+  /// Class constructor
+  SubscriptionManager(BinaryAPI api) : super(api);
 
   /// Get subscription id
-  String getSubscriptionId(int requestId) =>
-      _pendingRequests[requestId]?.subscriptionId;
+  String getSubscriptionId(int requestId) {
+    final PendingRequest<Response> pendingRequest = pendingRequests[requestId];
+
+    return pendingRequest is PendingSubscribedRequest<Response>
+        ? pendingRequest?.subscriptionId
+        : null;
+  }
 
   /// Get subscription stream
-  SubscriptionStream<Response> getSubscriptionStream(int requestId) =>
-      _pendingRequests[requestId]?.subscriptionStream;
+  SubscriptionStream<Response> getSubscriptionStream(int requestId) {
+    final PendingRequest<Response> pendingRequest = pendingRequests[requestId];
+
+    return pendingRequest is PendingSubscribedRequest<Response>
+        ? pendingRequest?.subscriptionStream
+        : null;
+  }
 
   /// Set subscription id
   void setSubscriptionId({
     int requestId,
     String subscriptionId,
   }) =>
-      _pendingRequests[requestId] = PendingSubscribeRequest<Response>()
+      pendingRequests[requestId] = PendingSubscribedRequest<Response>()
           .copyWith(subscriptionId: subscriptionId);
 
   /// Set subscription stream
@@ -58,27 +49,17 @@ class SubscriptionManager extends ApiCallManager<Stream<Response>> {
     int requestId,
     SubscriptionStream<Response> subscriptionStream,
   }) =>
-      _pendingRequests[requestId] = PendingSubscribeRequest<Response>()
+      pendingRequests[requestId] = PendingSubscribedRequest<Response>()
           .copyWith(subscriptionStream: subscriptionStream);
-
-  @override
-  bool contains(int requestId) => _pendingRequests.containsKey(requestId);
 
   @override
   void handleResponse({
     int requestId,
     Map<String, dynamic> response,
   }) {
-    print('completing request for $requestId.');
+    super.handleResponse(requestId: requestId, response: response);
 
-    final Response resultResponse = getResponseByMsgType(response);
-    final Completer<Response> requestCompleter = getResponse(requestId);
-
-    if (!requestCompleter.isCompleted) {
-      requestCompleter.complete(resultResponse);
-    }
-
-    // Adds the subscription id to the pendingRequest object for further references.
+    // Adds the subscription id to the pending request object for further references
     if (response.containsKey('subscription')) {
       setSubscriptionId(
         requestId: requestId,
@@ -87,7 +68,7 @@ class SubscriptionManager extends ApiCallManager<Stream<Response>> {
     }
 
     // Broadcasts the new message into the stream.
-    getSubscriptionStream(requestId).add(resultResponse);
+    getSubscriptionStream(requestId).add(getResponseByMsgType(response));
 
     print('response added to stream.');
   }
@@ -96,14 +77,12 @@ class SubscriptionManager extends ApiCallManager<Stream<Response>> {
   Stream<Response> call(Request request) {
     // TODO(hamed): we should check request duplication before another api call
 
+    _call(request);
+
     final SubscriptionStream<Response> subscriptionStream =
         SubscriptionStream<Response>();
 
-    request.reqId = _getLastRequestId();
-
-    _call(request);
-
-    _pendingRequests[request.reqId] = PendingSubscribeRequest<Response>()
+    pendingRequests[request.reqId] = PendingSubscribedRequest<Response>()
         .copyWith(subscriptionStream: subscriptionStream);
 
     return subscriptionStream.stream;
@@ -114,7 +93,7 @@ class SubscriptionManager extends ApiCallManager<Stream<Response>> {
     String subscriptionId, {
     bool shouldForced = false,
   }) async {
-    final int requestId = _pendingRequests.keys
+    final int requestId = pendingRequests.keys
         .singleWhere((int id) => getSubscriptionId(id) == subscriptionId);
 
     if (getSubscriptionStream(requestId).hasListener && !shouldForced) {
@@ -122,7 +101,7 @@ class SubscriptionManager extends ApiCallManager<Stream<Response>> {
     }
 
     // Send forget request
-    final Response response = await _call(
+    final Response response = await api.callManager.call(
       ForgetRequest(forget: getSubscriptionId(requestId)),
     );
 
@@ -138,14 +117,18 @@ class SubscriptionManager extends ApiCallManager<Stream<Response>> {
     String method, {
     bool shouldForced = false,
   }) async {
-    final List<int> requestIds = _pendingRequests.keys.where(
-      (int id) =>
-          _pendingRequests[id].method == method &&
-          _pendingRequests[id].isSubscribed,
+    final List<int> requestIds = pendingRequests.keys.where(
+      (int id) {
+        final PendingRequest<Response> pendingRequest = pendingRequests[id];
+
+        return pendingRequest is PendingSubscribedRequest<Response> &&
+            pendingRequest.method == method &&
+            pendingRequest.isSubscribed;
+      },
     );
 
     final ForgetAllResponse response =
-        await _call(ForgetAllRequest(forgetAll: method));
+        await api.callManager.call(ForgetAllRequest(forgetAll: method));
 
     if (response.error == null) {
       for (int id in requestIds) {
@@ -156,47 +139,22 @@ class SubscriptionManager extends ApiCallManager<Stream<Response>> {
     return response;
   }
 
-  /// Add a request to pending request queue
-  void _add({
-    @required int requestId,
-    @required Map<String, dynamic> request,
-    @required Completer<Response> response,
-  }) =>
-      _pendingRequests[requestId] = PendingSubscribeRequest<Response>(
-        request: request,
-        response: response,
-      );
-
-  /// Calls the web socket api with the given method name and parameters
   Future<Response> _call(Request request) {
-    final Completer<Response> response = Completer<Response>();
+    request.reqId = nextRequestId;
+
     final Map<String, dynamic> preparedRequest = request.toJson()
       ..removeWhere((String key, dynamic value) => value == null)
       ..putIfAbsent('subscribe', () => 1);
 
-    _add(
+    return prepareRequest(
       requestId: request.reqId,
       request: preparedRequest,
-      response: response,
     );
-
-    _api.apiHistory.pushOutgoing(
-      timestamp: DateTime.now().millisecondsSinceEpoch,
-      message: preparedRequest,
-      method: 'method',
-    );
-
-    _api.webSocketChannel.sink.add(
-      utf8.encode(jsonEncode(preparedRequest)),
-    );
-
-    return response.future;
   }
 
   Future<void> _removePendingRequest(int requestId) async {
     await getSubscriptionStream(requestId).closeStream();
-    _pendingRequests.remove(requestId);
-  }
 
-  int _getLastRequestId() => _lastRequestId++;
+    pendingRequests.remove(requestId);
+  }
 }

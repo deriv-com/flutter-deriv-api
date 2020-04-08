@@ -4,9 +4,9 @@ import 'package:flutter_deriv_api/connection/pending_request.dart';
 import 'package:flutter_deriv_api/connection/subscription_stream.dart';
 
 /// Represent a pending request.
-class PendingSubscribeRequest<T> extends PendingRequest<T> {
+class PendingSubscribedRequest<T> extends PendingRequest<T> {
   /// Class constructor
-  PendingSubscribeRequest({
+  PendingSubscribedRequest({
     Map<String, dynamic> request,
     Completer<T> response,
     this.subscriptionId,
@@ -26,11 +26,11 @@ class PendingSubscribeRequest<T> extends PendingRequest<T> {
   bool get isSubscribed => subscriptionStream != null;
 
   /// Creates copy of instance with given parameters
-  PendingSubscribeRequest<T> copyWith({
+  PendingSubscribedRequest<T> copyWith({
     String subscriptionId,
     SubscriptionStream<T> subscriptionStream,
   }) =>
-      PendingSubscribeRequest<T>(
+      PendingSubscribedRequest<T>(
         subscriptionId: subscriptionId ?? this.subscriptionId,
         subscriptionStream: subscriptionStream ?? this.subscriptionStream,
       );
