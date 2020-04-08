@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_deriv_api/api/time_receive.dart';
 import 'package:flutter_deriv_api/api/time_send.dart';
+import 'package:flutter_deriv_api/connection/call_manager.dart';
 import 'package:flutter_deriv_api/helpers.dart';
 import 'package:meta/meta.dart';
 
@@ -50,7 +51,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       if (state is Connected) {
         final Connected currentState = state;
         final TimeResponse timeResponse =
-            await currentState.api.call(TimeRequest());
+            await CallManager(api: currentState.api).call(TimeRequest());
 
         if (timeResponse.error != null) {
           print('Fetching server time failed: ${timeResponse.error}');

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/request.dart';
@@ -15,7 +16,7 @@ import 'package:flutter_deriv_api/connection/pending_subscribe_request.dart';
 /// Subscription manager class
 class SubscriptionManager {
   /// Singleton instance
-  factory SubscriptionManager({@required BinaryApi api}) {
+  factory SubscriptionManager({BinaryApi api}) {
     _instance._api = api;
 
     return _instance;
@@ -26,23 +27,12 @@ class SubscriptionManager {
   static final SubscriptionManager _instance = SubscriptionManager._();
 
   BinaryApi _api;
+  int _lastRequestId = 0;
 
-  /// Any subscription requests that are currently in-flight
   final Map<int, PendingSubscribeRequest<Response>> _pendingRequests =
       <int, PendingSubscribeRequest<Response>>{};
 
-  /// Add a request to pending request queue
-  void add({
-    int requestId,
-    Map<String, dynamic> request,
-    Completer<Response> response,
-  }) =>
-      _pendingRequests[requestId] = PendingSubscribeRequest<Response>(
-        request: request,
-        response: response,
-      );
-
-  /// Indicates that pending request exists or not
+  /// Indicates that pending request queue contain a request with [requestId] or not
   bool contains(int requestId) => _pendingRequests.containsKey(requestId);
 
   /// Get request response
@@ -74,7 +64,7 @@ class SubscriptionManager {
           .copyWith(subscriptionStream: subscriptionStream);
 
   /// Handle stream response
-  void handleStreamResponse({
+  void handleResponse({
     int requestId,
     Map<String, dynamic> response,
   }) {
@@ -109,7 +99,9 @@ class SubscriptionManager {
     final SubscriptionStream<Response> subscriptionStream =
         SubscriptionStream<Response>();
 
-    _api.call(request, subscribeCall: true);
+    request.reqId = _getLastRequestId();
+
+    _call(request);
 
     _pendingRequests[request.reqId] = PendingSubscribeRequest<Response>()
         .copyWith(subscriptionStream: subscriptionStream);
@@ -130,7 +122,7 @@ class SubscriptionManager {
     }
 
     // Send forget request
-    final Response response = await _api.call(
+    final Response response = await _call(
       ForgetRequest(forget: getSubscriptionId(requestId)),
     );
 
@@ -153,7 +145,7 @@ class SubscriptionManager {
     );
 
     final ForgetAllResponse response =
-        await BinaryApi().call(ForgetAllRequest(forgetAll: method));
+        await _call(ForgetAllRequest(forgetAll: method));
 
     if (response.error == null) {
       for (int id in requestIds) {
@@ -164,8 +156,47 @@ class SubscriptionManager {
     return response;
   }
 
+  /// Add a request to pending request queue
+  void _add({
+    @required int requestId,
+    @required Map<String, dynamic> request,
+    @required Completer<Response> response,
+  }) =>
+      _pendingRequests[requestId] = PendingSubscribeRequest<Response>(
+        request: request,
+        response: response,
+      );
+
+  /// Calls the web socket api with the given method name and parameters
+  Future<Response> _call(Request request) {
+    final Completer<Response> response = Completer<Response>();
+    final Map<String, dynamic> preparedRequest = request.toJson()
+      ..removeWhere((String key, dynamic value) => value == null)
+      ..putIfAbsent('subscribe', () => 1);
+
+    _add(
+      requestId: request.reqId,
+      request: preparedRequest,
+      response: response,
+    );
+
+    _api.apiHistory.pushOutgoing(
+      timestamp: DateTime.now().millisecondsSinceEpoch,
+      message: preparedRequest,
+      method: 'method',
+    );
+
+    _api.webSocketChannel.sink.add(
+      utf8.encode(jsonEncode(preparedRequest)),
+    );
+
+    return response.future;
+  }
+
   Future<void> _removePendingRequest(int requestId) async {
     await getSubscriptionStream(requestId).closeStream();
     _pendingRequests.remove(requestId);
   }
+
+  int _getLastRequestId() => _lastRequestId++;
 }
