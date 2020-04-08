@@ -6,13 +6,9 @@ import 'dart:developer' as dev;
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
-import 'package:flutter_deriv_api/api/request.dart';
-import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/api/ping_send.dart';
-import 'package:flutter_deriv_api/api/api.helper.dart';
-import 'package:flutter_deriv_api/api/authorize_send.dart';
 import 'package:flutter_deriv_api/connection/api_history.dart';
-import 'package:flutter_deriv_api/connection/pending_request.dart';
+import 'package:flutter_deriv_api/connection/call_manager.dart';
 import 'package:flutter_deriv_api/connection/subscription_manager.dart';
 
 /// Callbacks for WS connection
@@ -30,55 +26,14 @@ class BinaryApi {
   /// stream subscription to api date
   StreamSubscription<Map<String, dynamic>> _webSocketListener;
 
-  /// Tracks our internal counter for requests, always increments until the connection is closed
-  int _lastRequestId = 0;
-
-  /// Any requests that are currently in-flight
-  final Map<int, PendingRequest<Response>> _pendingRequests =
-      <int, PendingRequest<Response>>{};
-
   /// All requests and responses
   final ApiHistory _apiHistory = ApiHistory();
 
-  /// Calls the web socket api with the given method name and parameters
-  Future<Response> call(
-    Request request, {
-    bool subscribeCall = false,
-  }) {
-    final int requestId = request.reqId = _nextRequestId();
-    final Completer<Response> response = Completer<Response>();
-    final Map<String, dynamic> preparedRequest = request.toJson()
-      ..removeWhere((String key, dynamic value) => value == null);
+  /// Get web socket channel
+  IOWebSocketChannel get webSocketChannel => _webSocketChannel;
 
-    if (subscribeCall) {
-      preparedRequest.putIfAbsent('subscribe', () => 1);
-
-      SubscriptionManager(api: this).add(
-        requestId: requestId,
-        request: preparedRequest,
-        response: response,
-      );
-    } else {
-      _pendingRequests[requestId] = PendingRequest<Response>(
-        request: preparedRequest,
-        response: response,
-      );
-    }
-
-    dev.log('queuing outgoing request...', error: jsonEncode(preparedRequest));
-
-    final List<int> data = utf8.encode(jsonEncode(preparedRequest));
-
-    _apiHistory.pushOutgoing(
-      timestamp: DateTime.now().millisecondsSinceEpoch,
-      message: preparedRequest,
-      method: 'method',
-    );
-
-    _webSocketChannel.sink.add(data);
-
-    return response.future;
-  }
+  /// Get api history
+  ApiHistory get apiHistory => _apiHistory;
 
   /// Connects to binary web socket
   Future<IOWebSocketChannel> run({
@@ -133,7 +88,7 @@ class BinaryApi {
 
     print('send initial message.');
 
-    await call(PingRequest());
+    await CallManager(api: this).call(PingRequest());
     await connectionCompleter.future;
 
     print('web socket is connected.');
@@ -161,37 +116,6 @@ class BinaryApi {
 
     _webSocketListener = null;
     _webSocketChannel = null;
-  }
-
-  /// Calls the authorize method with the giver [token]
-  Future<Response> authorize(String token) async {
-    Response authResponse;
-
-    try {
-      final AuthorizeRequest authorizeRequest = AuthorizeRequest()
-        ..authorize = token;
-
-      print('auth request is ${authorizeRequest.toJson()}.');
-
-      authResponse = await call(authorizeRequest);
-
-      print('auth response is $authResponse.');
-    } on Exception catch (e) {
-      print(e);
-
-      throw Exception(e);
-    }
-
-    return authResponse;
-  }
-
-  /// Generates reqId for the next request which is going to be sent to server
-  /// Each api call can have a reqID which can be used to identifying its
-  /// response (Its response will have the same reqId)
-  int _nextRequestId() {
-    dev.log('assigning id, last was $_lastRequestId.');
-
-    return ++_lastRequestId;
   }
 
   /// Handles responses that come from server, by using its reqId, and completes
@@ -234,13 +158,12 @@ class BinaryApi {
 
         print('have request id: $requestId.');
 
-        if (_pendingRequests.containsKey(requestId)) {
-          _handleRequestResponse(requestId, message);
-        } else if (SubscriptionManager(api: this).contains(requestId)) {
-          SubscriptionManager(api: this).handleStreamResponse(
-            requestId: requestId,
-            response: message,
-          );
+        if (CallManager().contains(requestId)) {
+          CallManager(api: this)
+              .handleResponse(requestId: requestId, response: message);
+        } else if (SubscriptionManager().contains(requestId)) {
+          SubscriptionManager(api: this)
+              .handleResponse(requestId: requestId, response: message);
         } else {
           print(
             'this has a request id, but does not match anything in our pending queue.',
@@ -252,21 +175,5 @@ class BinaryApi {
     } on Exception catch (e) {
       print('failed to process $response - $e');
     }
-  }
-
-  void _handleRequestResponse(int requestId, Map<String, dynamic> response) {
-    print('completing request for $requestId.');
-
-    final Completer<Response> requestCompleter =
-        _pendingRequests[requestId].response;
-
-    if (!requestCompleter.isCompleted) {
-      requestCompleter.complete(getResponseByMsgType(response));
-    }
-
-    // Removes the pendingRequest when it's not a subscription, the subscription requests will be remove after unsubscribing.
-    _pendingRequests.remove(requestId);
-
-    print('completed request.');
   }
 }

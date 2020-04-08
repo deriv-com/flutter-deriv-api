@@ -1,4 +1,6 @@
 import 'package:flutter/services.dart';
+import 'package:flutter_test/flutter_test.dart';
+
 import 'package:flutter_deriv_api/api/active_symbols_receive.dart';
 import 'package:flutter_deriv_api/api/active_symbols_send.dart';
 import 'package:flutter_deriv_api/api/authorize_receive.dart';
@@ -16,9 +18,9 @@ import 'package:flutter_deriv_api/api/ping_send.dart';
 import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/api/website_status_receive.dart';
 import 'package:flutter_deriv_api/api/website_status_send.dart';
+import 'package:flutter_deriv_api/connection/call_manager.dart';
 import 'package:flutter_deriv_api/connection/connection_websocket.dart';
 import 'package:flutter_deriv_api/connection/subscription_manager.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_deriv_api/flutter_deriv_api.dart';
 
 void main() {
@@ -41,8 +43,8 @@ void main() {
   test('Base classes usage in deriv connection', () async {
     final BinaryApi api = BinaryApi();
     await api.run();
-    final AuthorizeResponse authorizeResponse =
-        await api.call(AuthorizeRequest(authorize: 'YOU TOKEN'));
+    final AuthorizeResponse authorizeResponse = await CallManager(api: api)
+        .call(AuthorizeRequest(authorize: 'YOU TOKEN'));
 
     print('Test result: authorize: ${authorizeResponse.authorize}');
 
@@ -50,8 +52,8 @@ void main() {
       return;
     }
 
-    final P2pOrderListResponse orderListResponse =
-        await api.call(P2pOrderListRequest(offset: 0, limit: 10));
+    final P2pOrderListResponse orderListResponse = await CallManager(api: api)
+        .call(P2pOrderListRequest(offset: 0, limit: 10));
 
     print(
         'Test result: orderList length: ${orderListResponse.p2pOrderList['list'].length}');
@@ -59,31 +61,35 @@ void main() {
     if (orderListResponse?.p2pOrderList?.isNotEmpty ?? false) {
       final List<dynamic> orders = orderListResponse.p2pOrderList['list'];
       if (orders?.isNotEmpty ?? false) {
-        final P2pOrderInfoResponse orderInfoResponse = await api.call(
+        final P2pOrderInfoResponse orderInfoResponse =
+            await CallManager(api: api).call(
           P2pOrderInfoRequest(
-              id: orderListResponse.p2pOrderList['list'][0]['id']),
+            id: orderListResponse.p2pOrderList['list'][0]['id'],
+          ),
         );
         print('Test result: Order info: ${orderInfoResponse.p2pOrderInfo}');
       }
     }
 
     final P2pAdvertListResponse advertListResponse =
-        await api.call(P2pAdvertListRequest());
+        await CallManager(api: api).call(P2pAdvertListRequest());
 
     print(
         'Test result: advertList length: ${advertListResponse.p2pAdvertList['list'].length}');
 
     final WebsiteStatusResponse websiteStatusResponse =
-        await api.call(WebsiteStatusRequest());
+        await CallManager(api: api).call(WebsiteStatusRequest());
     print(
         'Test result: Website status: ${websiteStatusResponse.websiteStatus}');
 
     final ActiveSymbolsResponse activeSymbolsResponse =
-        await api.call(ActiveSymbolsRequest(activeSymbols: 'brief'));
+        await CallManager(api: api)
+            .call(ActiveSymbolsRequest(activeSymbols: 'brief'));
     print(
         'Test result: ActiveSymbolsRequest: ${activeSymbolsResponse.activeSymbols}');
 
-    final PingResponse pingResponse = await api.call(PingRequest());
+    final PingResponse pingResponse =
+        await CallManager(api: api).call(PingRequest());
     print('Test result: PingResponse: ${pingResponse.ping}');
 
     SubscriptionManager(api: api)
