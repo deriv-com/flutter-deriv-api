@@ -9,12 +9,13 @@ import 'package:flutter_deriv_api/api/forget_send.dart';
 import 'package:flutter_deriv_api/api/forget_receive.dart';
 import 'package:flutter_deriv_api/api/forget_all_send.dart';
 import 'package:flutter_deriv_api/api/forget_all_receive.dart';
+import 'package:flutter_deriv_api/connection/api_call_manager.dart';
 import 'package:flutter_deriv_api/connection/subscription_stream.dart';
 import 'package:flutter_deriv_api/connection/connection_websocket.dart';
 import 'package:flutter_deriv_api/connection/pending_subscribe_request.dart';
 
 /// Subscription manager class
-class SubscriptionManager {
+class SubscriptionManager extends ApiCallManager {
   /// Singleton instance
   factory SubscriptionManager({BinaryApi api}) {
     _instance._api = api;
@@ -31,9 +32,6 @@ class SubscriptionManager {
 
   final Map<int, PendingSubscribeRequest<Response>> _pendingRequests =
       <int, PendingSubscribeRequest<Response>>{};
-
-  /// Indicates that pending request queue contain a request with [requestId] or not
-  bool contains(int requestId) => _pendingRequests.containsKey(requestId);
 
   /// Get request response
   Completer<Response> getResponse(int requestId) =>
@@ -63,7 +61,10 @@ class SubscriptionManager {
       _pendingRequests[requestId] = PendingSubscribeRequest<Response>()
           .copyWith(subscriptionStream: subscriptionStream);
 
-  /// Handle stream response
+  @override
+  bool contains(int requestId) => _pendingRequests.containsKey(requestId);
+
+  @override
   void handleResponse({
     int requestId,
     Map<String, dynamic> response,

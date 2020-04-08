@@ -1,16 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter_deriv_api/api/authorize_send.dart';
+
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/request.dart';
 import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/api/api.helper.dart';
+import 'package:flutter_deriv_api/api/authorize_send.dart';
 import 'package:flutter_deriv_api/connection/pending_request.dart';
+import 'package:flutter_deriv_api/connection/api_call_manager.dart';
 import 'package:flutter_deriv_api/connection/connection_websocket.dart';
 
 /// Call manager class
-class CallManager {
+class CallManager extends ApiCallManager {
   /// Singleton instance
   factory CallManager({BinaryApi api}) {
     _instance._api = api;
@@ -28,10 +30,10 @@ class CallManager {
   final Map<int, PendingRequest<Response>> _pendingRequests =
       <int, PendingRequest<Response>>{};
 
-  /// Indicates that pending request queue contain a request with [requestId] or not
+  @override
   bool contains(int requestId) => _pendingRequests.containsKey(requestId);
 
-  /// Handle call response
+  @override
   void handleResponse({
     int requestId,
     Map<String, dynamic> response,
