@@ -68,4 +68,47 @@ class ActiveSymbol extends ActiveSymbolModel {
   static Future<List<ActiveSymbol>> getActiveSymbols() async =>
       // TODO(Ramin): call to the actual Api class when its ready
       <ActiveSymbol>[];
+
+  /// Clone a new instance
+  ActiveSymbol copyWith({
+    int allowForwardStarting,
+    int delayAmount,
+    String displayName,
+    int exchangeIsOpen,
+    String exchangeName,
+    int intradayIntervalMinutes,
+    int isTradingSuspended,
+    String market,
+    String marketDisplayName,
+    double pip,
+    String quotedCurrencySymbol,
+    double spot,
+    String spotAge,
+    String spotTime,
+    String submarket,
+    String submarketDisplayName,
+    String symbol,
+    String symbolType,
+  }) =>
+      ActiveSymbol(
+        allowForwardStarting: allowForwardStarting ?? this.allowForwardStarting,
+        delayAmount: delayAmount ?? this.delayAmount,
+        displayName: displayName ?? this.displayName,
+        exchangeIsOpen: exchangeIsOpen ?? this.exchangeIsOpen,
+        exchangeName: exchangeName ?? this.exchangeName,
+        intradayIntervalMinutes:
+            intradayIntervalMinutes ?? this.intradayIntervalMinutes,
+        isTradingSuspended: isTradingSuspended ?? this.isTradingSuspended,
+        market: market ?? this.market,
+        marketDisplayName: marketDisplayName ?? this.marketDisplayName,
+        pip: pip ?? this.pip,
+        quotedCurrencySymbol: quotedCurrencySymbol ?? this.quotedCurrencySymbol,
+        spot: spot ?? this.spot,
+        spotAge: spotAge ?? this.spotAge,
+        spotTime: spotTime ?? this.spotTime,
+        submarket: submarket ?? this.submarket,
+        submarketDisplayName: submarketDisplayName ?? this.submarketDisplayName,
+        symbol: symbol ?? this.symbol,
+        symbolType: symbolType ?? this.symbolType,
+      );
 }

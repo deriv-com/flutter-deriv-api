@@ -43,4 +43,22 @@ class ContractsFor extends ContractsForModel {
     final ContractsForResponse contractsForResponse = ContractsForResponse();
     return ContractsFor.fromJson(contractsForResponse.contractsFor);
   }
+
+  /// Clone a new instance
+  ContractsFor copyWith({
+    List<Available> available,
+    int close,
+    String feedLicense,
+    int hitCount,
+    int open,
+    double spot,
+  }) =>
+      ContractsFor(
+        available: available ?? this.available,
+        close: close ?? this.close,
+        feedLicense: feedLicense ?? this.feedLicense,
+        hitCount: hitCount ?? this.hitCount,
+        open: open ?? this.open,
+        spot: spot ?? this.spot,
+      );
 }
