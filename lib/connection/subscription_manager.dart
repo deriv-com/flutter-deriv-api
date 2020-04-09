@@ -18,7 +18,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   /// Class constructor
   SubscriptionManager(BinaryAPI api) : super(api);
 
-  /// Get subscription id
+  /// Get [subscriptionId] by [requestId]
   String getSubscriptionId(int requestId) {
     final PendingRequest<Response> pendingRequest = pendingRequests[requestId];
 
@@ -27,7 +27,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
         : null;
   }
 
-  /// Get subscription stream
+  /// Get [subscriptionStream] by [requestId]
   SubscriptionStream<Response> getSubscriptionStream(int requestId) {
     final PendingRequest<Response> pendingRequest = pendingRequests[requestId];
 
@@ -36,7 +36,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
         : null;
   }
 
-  /// Set subscription id
+  /// Set [subscriptionId]
   void setSubscriptionId({
     int requestId,
     String subscriptionId,
@@ -44,7 +44,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
       pendingRequests[requestId] = PendingSubscribedRequest<Response>()
           .copyWith(subscriptionId: subscriptionId);
 
-  /// Set subscription stream
+  /// Set [subscriptionStream]
   void setSubscriptionStream({
     int requestId,
     SubscriptionStream<Response> subscriptionStream,
@@ -67,7 +67,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
       );
     }
 
-    // Broadcasts the new message into the stream.
+    // Broadcasts the new message into the stream
     getSubscriptionStream(requestId).add(getResponseByMsgType(response));
 
     print('response added to stream.');
@@ -104,9 +104,8 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     }
 
     // Send forget request
-    final Response response = await api.callManager.call(
-      ForgetRequest(forget: getSubscriptionId(requestId)),
-    );
+    final Response response =
+        await api.call(ForgetRequest(forget: getSubscriptionId(requestId)));
 
     if (response.error == null) {
       await _removePendingRequest(requestId);
@@ -131,7 +130,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     );
 
     final ForgetAllResponse response =
-        await api.callManager.call(ForgetAllRequest(forgetAll: method));
+        await api.call(ForgetAllRequest(forgetAll: method));
 
     if (response.error == null) {
       for (int id in requestIds) {
