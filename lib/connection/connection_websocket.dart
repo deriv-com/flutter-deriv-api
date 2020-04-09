@@ -172,17 +172,15 @@ class BinaryAPI {
         print('have request id: $requestId.');
 
         if (callManager.contains(requestId)) {
-          if (callManager.isSubscription(requestId)) {
-            subscriptionManager.handleResponse(
-              requestId: requestId,
-              response: message,
-            );
-          } else {
-            callManager.handleResponse(
-              requestId: requestId,
-              response: message,
-            );
-          }
+          callManager.handleResponse(
+            requestId: requestId,
+            response: message,
+          );
+        } else if (subscriptionManager.contains(requestId)) {
+          subscriptionManager.handleResponse(
+            requestId: requestId,
+            response: message,
+          );
         } else {
           print(
             'this has a request id, but does not match anything in our pending queue.',
