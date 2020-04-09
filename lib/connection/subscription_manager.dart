@@ -77,7 +77,10 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   Stream<Response> call(Request request) {
     // TODO(hamed): we should check request duplication before another api call
 
-    _call(request);
+    final Map<String, dynamic> preparedRequest = prepareRequest(request)
+      ..putIfAbsent('subscribe', () => 1);
+
+    addToChannel(preparedRequest);
 
     final SubscriptionStream<Response> subscriptionStream =
         SubscriptionStream<Response>();
@@ -137,19 +140,6 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     }
 
     return response;
-  }
-
-  Future<Response> _call(Request request) {
-    request.reqId = nextRequestId;
-
-    final Map<String, dynamic> preparedRequest = request.toJson()
-      ..removeWhere((String key, dynamic value) => value == null)
-      ..putIfAbsent('subscribe', () => 1);
-
-    return prepareRequest(
-      requestId: request.reqId,
-      request: preparedRequest,
-    );
   }
 
   Future<void> _removePendingRequest(int requestId) async {

@@ -14,7 +14,7 @@ import 'package:flutter_deriv_api/connection/subscription_manager.dart';
 /// Callbacks for WS connection
 typedef SocketCallback = void Function();
 
-/// contains the api call
+/// Contains the api call
 class BinaryAPI {
   /// Indicates current connection status - only set `true` once
   /// we have established SSL *and* web socket handshake steps

@@ -149,7 +149,7 @@ class NewAccountMaltainvestRequest extends Request {
   /// [Optional] Trading frequency in other financial instruments.
   String otherInstrumentsTradingFrequency;
 
-  /// [Optional] Within 8-35 digits, allowing '+' in front, numbers, hyphens or space.
+  /// [Optional] Starting with `+` followed by 8-35 digits, allowing hyphens or space.
   String phone;
 
   /// [Optional] Place of birth, 2-letter country code.

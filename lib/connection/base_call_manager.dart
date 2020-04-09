@@ -16,14 +16,12 @@ abstract class BaseCallManager<T> {
   /// Binary api instance
   final BinaryAPI api;
 
-  int _lastRequestId = 0;
-
   /// Pending requests queue
   final Map<int, PendingRequest<Response>> _pendingRequests =
       <int, PendingRequest<Response>>{};
 
-  /// Returns available request id
-  int get nextRequestId => _lastRequestId++;
+  /// Store available request id
+  int _requestId = 0;
 
   /// Get pending requests queue
   Map<int, PendingRequest<Response>> get pendingRequests => _pendingRequests;
@@ -48,15 +46,20 @@ abstract class BaseCallManager<T> {
     }
   }
 
-  /// Add request to pending requests queue, api history and channel sink
-  Future<Response> prepareRequest({
-    @required int requestId,
-    @required Map<String, dynamic> request,
-  }) {
+  /// Prepare request for adding to web socket channel
+  Map<String, dynamic> prepareRequest(Request request) {
+    request.reqId = _getRequestId();
+
+    return request.toJson()
+      ..removeWhere((String key, dynamic value) => value == null);
+  }
+
+  /// Add request to pending requests queue, api history and web socket channel
+  Future<Response> addToChannel(Map<String, dynamic> request) {
     final Completer<Response> response = Completer<Response>();
 
     _addPendingRequest(
-      requestId: requestId,
+      requestId: request['req_id'],
       request: request,
       response: response,
     );
@@ -88,4 +91,6 @@ abstract class BaseCallManager<T> {
         request: request,
         response: response,
       );
+
+  int _getRequestId() => _requestId++;
 }

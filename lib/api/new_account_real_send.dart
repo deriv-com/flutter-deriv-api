@@ -88,7 +88,7 @@ class NewAccountRealRequest extends Request {
   /// Must be `1`
   int newAccountReal;
 
-  /// [Optional] Starting with '+' followed by 8-35 digits, allowing hyphens or space.
+  /// [Optional] Starting with `+` followed by 8-35 digits, allowing hyphens or space.
   String phone;
 
   /// [Optional] Place of birth, 2-letter country code.

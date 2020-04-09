@@ -35,7 +35,7 @@ class TicksHistoryResponse extends Response {
   /// Indicates the number of decimal points that the returned amounts must be displayed with
   num pipSize;
 
-  /// For subscription requests only
+  /// For subscription requests only.
   Map<String, dynamic> subscription;
 
   /// Converts to JSON
