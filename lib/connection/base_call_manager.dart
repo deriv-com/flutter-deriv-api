@@ -7,7 +7,6 @@ import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/api/api.helper.dart';
 import 'package:flutter_deriv_api/connection/pending_request.dart';
 import 'package:flutter_deriv_api/connection/connection_websocket.dart';
-import 'package:flutter_deriv_api/connection/pending_subscribed_request.dart';
 
 /// Api call manager abstract class
 abstract class BaseCallManager<T> {
@@ -31,10 +30,6 @@ abstract class BaseCallManager<T> {
 
   /// Indicates that pending request queue contain a request with [requestId] or not
   bool contains(int requestId) => _pendingRequests.containsKey(requestId);
-
-  /// Indicates that is subscription manager or not
-  bool isSubscription(int requestId) =>
-      _pendingRequests[requestId] is PendingSubscribedRequest;
 
   /// Calls the api method
   T call(Request request);
