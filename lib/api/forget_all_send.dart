@@ -19,7 +19,7 @@ class ForgetAllRequest extends Request {
       _$ForgetAllRequestFromJson(json);
 
   // Properties
-  /// Cancel all streams by type (it can be a single string e.g. 'ticks', or an array of multiple values, e.g. ['ticks', 'candles']). Possible values are: 'ticks', 'candles', 'proposal', 'proposal_open_contract', 'balance', 'transaction', 'proposal_array', 'website_status', 'p2p_order'.
+  /// Cancel all streams by type. The value can be either a single type e.g. `"ticks"`, or an array of multiple types e.g. `["candles", "ticks"]`.
   String forgetAll;
 
   /// Converts to JSON

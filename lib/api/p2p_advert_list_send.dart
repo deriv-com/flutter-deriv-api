@@ -11,8 +11,7 @@ part 'p2p_advert_list_send.g.dart';
 class P2pAdvertListRequest extends Request {
   /// Initialize P2pAdvertListRequest
   P2pAdvertListRequest(
-      {this.accountCurrency,
-      this.advertiserId,
+      {this.advertiserId,
       this.amount,
       this.counterpartyType,
       this.country,
@@ -29,9 +28,6 @@ class P2pAdvertListRequest extends Request {
       _$P2pAdvertListRequestFromJson(json);
 
   // Properties
-  /// [Optional] Target currency, defaults to client account currency.
-  String accountCurrency;
-
   /// [Optional] Which advertiser to list adverts for.
   String advertiserId;
 

@@ -24,14 +24,8 @@ class CallManager extends BaseCallManager<Future<Response>> {
 
   @override
   Future<Response> call(Request request) async {
-    request.reqId = nextRequestId;
+    final Map<String, dynamic> preparedRequest = prepareRequest(request);
 
-    final Map<String, dynamic> preparedRequest = request.toJson()
-      ..removeWhere((String key, dynamic value) => value == null);
-
-    return prepareRequest(
-      requestId: request.reqId,
-      request: preparedRequest,
-    );
+    return addToChannel(preparedRequest);
   }
 }

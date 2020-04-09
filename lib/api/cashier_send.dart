@@ -29,7 +29,7 @@ class CashierRequest extends Request {
   /// [Optional] Note: only 'doughflow' is supported currently.
   String provider;
 
-  /// [Optional] Email verification code (received from a verify_email call, which must be done first)
+  /// [Optional] Email verification code (received from a `verify_email` call, which must be done first)
   String verificationCode;
 
   /// Converts to JSON

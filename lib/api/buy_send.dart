@@ -24,7 +24,7 @@ class BuyRequest extends Request {
       _$BuyRequestFromJson(json);
 
   // Properties
-  /// Either the ID received from a Price Proposal (proposal) call, or '1' if contract buy parameters are passed in the parameters field.
+  /// Either the ID received from a Price Proposal (`proposal` call), or `1` if contract buy parameters are passed in the `parameters` field.
   String buy;
 
   /// [Optional] Used to pass the parameters for contract buy.

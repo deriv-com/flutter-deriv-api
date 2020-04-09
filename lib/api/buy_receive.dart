@@ -27,7 +27,7 @@ class BuyResponse extends Response {
   /// Receipt confirmation for the purchase
   Map<String, dynamic> buy;
 
-  /// For subscription requests only
+  /// For subscription requests only.
   Map<String, dynamic> subscription;
 
   /// Converts to JSON

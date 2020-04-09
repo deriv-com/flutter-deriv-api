@@ -13,6 +13,7 @@ class P2pAdvertiserInfoRequest extends Request {
   P2pAdvertiserInfoRequest(
       {this.id,
       this.p2pAdvertiserInfo = 1,
+      this.subscribe,
       Map<String, dynamic> passthrough,
       int reqId})
       : super(passthrough: passthrough, reqId: reqId);
@@ -27,6 +28,9 @@ class P2pAdvertiserInfoRequest extends Request {
 
   /// Must be 1
   int p2pAdvertiserInfo;
+
+  /// [Optional] If set to 1, will send updates whenever there is an update to advertiser
+  int subscribe;
 
   /// Converts to JSON
   @override
