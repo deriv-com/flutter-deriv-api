@@ -41,8 +41,8 @@ class TicksHistoryRequest extends Request {
   int granularity;
 
   /// [Optional] Epoch value representing the earliest boundary of the returned ticks.
-  ///- For `"style": "ticks"`: this will default to 1 day ago.
-  ///- For `"style": "candles"`: it will default to 1 day ago if count or granularity is undefined.
+  /// - For `"style": "ticks"`: this will default to 1 day ago.
+  /// - For `"style": "candles"`: it will default to 1 day ago if count or granularity is undefined.
   int start;
 
   /// [Optional] The tick-output style.

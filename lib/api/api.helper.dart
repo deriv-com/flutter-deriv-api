@@ -13,8 +13,8 @@ import 'contracts_for_receive.dart';
 import 'p2p_order_cancel_receive.dart';
 import 'sell_expired_receive.dart';
 import 'p2p_advertiser_update_receive.dart';
-import 'mt5_withdrawal_receive.dart';
 import 'get_limits_receive.dart';
+import 'mt5_withdrawal_receive.dart';
 import 'contract_update_receive.dart';
 import 'landing_company_receive.dart';
 import 'p2p_order_list_receive.dart';
@@ -85,8 +85,8 @@ import 'contract_update_history_receive.dart';
 import 'set_account_currency_receive.dart';
 import 'active_symbols_receive.dart';
 import 'profit_table_receive.dart';
-import 'copytrading_statistics_receive.dart';
 import 'asset_index_receive.dart';
+import 'copytrading_statistics_receive.dart';
 import 'buy_contract_for_multiple_accounts_receive.dart';
 import 'logout_receive.dart';
 import 'set_self_exclusion_receive.dart';
@@ -95,8 +95,8 @@ import 'new_account_virtual_receive.dart';
 import 'exchange_rates_receive.dart';
 import 'mt5_deposit_receive.dart';
 import 'cancel_receive.dart';
-import 'proposal_open_contract_receive.dart';
 import 'mt5_password_check_receive.dart';
+import 'proposal_open_contract_receive.dart';
 import 'get_self_exclusion_receive.dart';
 
 /// A function that create a sub-type of [Response] based on
@@ -121,10 +121,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return SellExpiredResponse.fromJson(responseMap);
     case 'p2p_advertiser_update':
       return P2pAdvertiserUpdateResponse.fromJson(responseMap);
-    case 'mt5_withdrawal':
-      return Mt5WithdrawalResponse.fromJson(responseMap);
     case 'get_limits':
       return GetLimitsResponse.fromJson(responseMap);
+    case 'mt5_withdrawal':
+      return Mt5WithdrawalResponse.fromJson(responseMap);
     case 'contract_update':
       return ContractUpdateResponse.fromJson(responseMap);
     case 'landing_company':
@@ -265,10 +265,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return ActiveSymbolsResponse.fromJson(responseMap);
     case 'profit_table':
       return ProfitTableResponse.fromJson(responseMap);
-    case 'copytrading_statistics':
-      return CopytradingStatisticsResponse.fromJson(responseMap);
     case 'asset_index':
       return AssetIndexResponse.fromJson(responseMap);
+    case 'copytrading_statistics':
+      return CopytradingStatisticsResponse.fromJson(responseMap);
     case 'buy_contract_for_multiple_accounts':
       return BuyContractForMultipleAccountsResponse.fromJson(responseMap);
     case 'logout':
@@ -285,10 +285,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return Mt5DepositResponse.fromJson(responseMap);
     case 'cancel':
       return CancelResponse.fromJson(responseMap);
-    case 'proposal_open_contract':
-      return ProposalOpenContractResponse.fromJson(responseMap);
     case 'mt5_password_check':
       return Mt5PasswordCheckResponse.fromJson(responseMap);
+    case 'proposal_open_contract':
+      return ProposalOpenContractResponse.fromJson(responseMap);
     case 'get_self_exclusion':
       return GetSelfExclusionResponse.fromJson(responseMap);
 

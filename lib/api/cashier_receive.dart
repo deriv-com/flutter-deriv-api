@@ -24,13 +24,13 @@ class CashierResponse extends Response {
 
   // Properties
   /// Cashier URL.
-  ///**Note:** possible error codes are:
-  ///- `ASK_TNC_APPROVAL`: API call `tnc_approval`
-  ///- `ASK_AUTHENTICATE`
-  ///- `ASK_UK_FUNDS_PROTECTION`: API call `tnc_approval`
-  ///- `ASK_CURRENCY`: API call `set_account_currency`
-  ///- `ASK_EMAIL_VERIFY`: API call `verify_email`
-  ///- `ASK_FIX_DETAILS`: API call `set_settings`
+  /// **Note:** possible error codes are:
+  /// - `ASK_TNC_APPROVAL`: API call `tnc_approval`
+  /// - `ASK_AUTHENTICATE`
+  /// - `ASK_UK_FUNDS_PROTECTION`: API call `tnc_approval`
+  /// - `ASK_CURRENCY`: API call `set_account_currency`
+  /// - `ASK_EMAIL_VERIFY`: API call `verify_email`
+  /// - `ASK_FIX_DETAILS`: API call `set_settings`
   String cashier;
 
   /// Converts to JSON
