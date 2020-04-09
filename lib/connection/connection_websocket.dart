@@ -42,10 +42,10 @@ class BinaryAPI {
   APIHistory get apiHistory => _apiHistory;
 
   /// Get call manager instance
-  CallManager get callManager => _callManager ??= CallManager(this);
+  CallManager get call => _callManager ??= CallManager(this);
 
   /// Get subscription manager instance
-  SubscriptionManager get subscriptionManager =>
+  SubscriptionManager get subscription =>
       _subscriptionManager ??= SubscriptionManager(this);
 
   /// Connects to binary web socket
@@ -101,7 +101,7 @@ class BinaryAPI {
 
     print('send initial message.');
 
-    await callManager.call(PingRequest());
+    await call(PingRequest());
     await connectionCompleter.future;
 
     print('web socket is connected.');
@@ -171,13 +171,13 @@ class BinaryAPI {
 
         print('have request id: $requestId.');
 
-        if (callManager.contains(requestId)) {
-          callManager.handleResponse(
+        if (call.contains(requestId)) {
+          call.handleResponse(
             requestId: requestId,
             response: message,
           );
-        } else if (subscriptionManager.contains(requestId)) {
-          subscriptionManager.handleResponse(
+        } else if (subscription.contains(requestId)) {
+          subscription.handleResponse(
             requestId: requestId,
             response: message,
           );

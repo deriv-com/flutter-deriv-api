@@ -160,7 +160,7 @@ class APIBuilder extends Builder {
               'The property $k on ${buildStep.inputId} does not appear to have a type: defaulting to string');
           type = 'String';
         }
-        return '''/// ${prop.description.replaceAll('\n', '\n ///')}
+        return '''/// ${prop.description.replaceAll('\n', '\n/// ')}
   ${type ?? "unknown"} ${name ?? "unknown"};
 ''';
       }).join('\n');

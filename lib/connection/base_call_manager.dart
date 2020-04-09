@@ -29,10 +29,10 @@ abstract class BaseCallManager<T> {
   /// Indicates that pending request queue contain a request with [requestId] or not
   bool contains(int requestId) => _pendingRequests.containsKey(requestId);
 
-  /// Calls the api method
+  /// Calls a api method by [request]
   T call(Request request);
 
-  /// Handle call response
+  /// Handle call [response] that comes from server
   void handleResponse({
     @required int requestId,
     @required Map<String, dynamic> response,
@@ -46,7 +46,7 @@ abstract class BaseCallManager<T> {
     }
   }
 
-  /// Prepare request for adding to web socket channel
+  /// Prepare [request] for adding to web socket channel
   Map<String, dynamic> prepareRequest(Request request) {
     request.reqId = _getRequestId();
 
@@ -54,7 +54,7 @@ abstract class BaseCallManager<T> {
       ..removeWhere((String key, dynamic value) => value == null);
   }
 
-  /// Add request to pending requests queue, api history and web socket channel
+  /// Add [request] to pending requests queue, api history and web socket channel
   Future<Response> addToChannel(Map<String, dynamic> request) {
     final Completer<Response> response = Completer<Response>();
 
@@ -77,11 +77,11 @@ abstract class BaseCallManager<T> {
     return response.future;
   }
 
-  /// Get pending request response
+  /// Get pending request response by [requestId]
   Completer<Response> _getResponse(int requestId) =>
       pendingRequests[requestId].response;
 
-  /// Add pending request to pending requests queue
+  /// Add [request] to pending requests queue
   void _addPendingRequest({
     int requestId,
     Map<String, dynamic> request,

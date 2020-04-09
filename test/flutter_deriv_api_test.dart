@@ -42,7 +42,7 @@ void main() {
     final BinaryAPI api = BinaryAPI();
     await api.run();
     final AuthorizeResponse authorizeResponse =
-        await api.callManager.call(AuthorizeRequest(authorize: 'YOU TOKEN'));
+        await api.call(AuthorizeRequest(authorize: 'YOU TOKEN'));
 
     print('Test result: authorize: ${authorizeResponse.authorize}');
 
@@ -51,7 +51,7 @@ void main() {
     }
 
     final P2pOrderListResponse orderListResponse =
-        await api.callManager.call(P2pOrderListRequest(offset: 0, limit: 10));
+        await api.call(P2pOrderListRequest(offset: 0, limit: 10));
 
     print(
         'Test result: orderList length: ${orderListResponse.p2pOrderList['list'].length}');
@@ -59,8 +59,7 @@ void main() {
     if (orderListResponse?.p2pOrderList?.isNotEmpty ?? false) {
       final List<dynamic> orders = orderListResponse.p2pOrderList['list'];
       if (orders?.isNotEmpty ?? false) {
-        final P2pOrderInfoResponse orderInfoResponse =
-            await api.callManager.call(
+        final P2pOrderInfoResponse orderInfoResponse = await api.call(
           P2pOrderInfoRequest(
             id: orderListResponse.p2pOrderList['list'][0]['id'],
           ),
@@ -70,32 +69,30 @@ void main() {
     }
 
     final P2pAdvertListResponse advertListResponse =
-        await api.callManager.call(P2pAdvertListRequest());
+        await api.call(P2pAdvertListRequest());
 
     print(
         'Test result: advertList length: ${advertListResponse.p2pAdvertList['list'].length}');
 
     final WebsiteStatusResponse websiteStatusResponse =
-        await api.callManager.call(WebsiteStatusRequest());
+        await api.call(WebsiteStatusRequest());
     print(
         'Test result: Website status: ${websiteStatusResponse.websiteStatus}');
 
-    final ActiveSymbolsResponse activeSymbolsResponse = await api.callManager
-        .call(ActiveSymbolsRequest(activeSymbols: 'brief'));
+    final ActiveSymbolsResponse activeSymbolsResponse =
+        await api.call(ActiveSymbolsRequest(activeSymbols: 'brief'));
     print(
         'Test result: ActiveSymbolsRequest: ${activeSymbolsResponse.activeSymbols}');
 
-    final PingResponse pingResponse = await api.callManager.call(PingRequest());
+    final PingResponse pingResponse = await api.call(PingRequest());
     print('Test result: PingResponse: ${pingResponse.ping}');
 
-    api.subscriptionManager.call(BalanceRequest()).listen((Response response) {
+    api.subscription(BalanceRequest()).listen((Response response) {
       final BalanceResponse balanceResponse = response;
       print('balance: ${balanceResponse.balance}');
     });
 
-    api.subscriptionManager
-        .call(P2pOrderListRequest())
-        .listen((Response response) {
+    api.subscription(P2pOrderListRequest()).listen((Response response) {
       final P2pOrderListResponse orderListResponse = response;
       print('p2pOrderList: ${orderListResponse.p2pOrderList}');
     });
