@@ -18,8 +18,8 @@ import 'mt5_withdrawal_receive.dart';
 import 'contract_update_receive.dart';
 import 'landing_company_receive.dart';
 import 'p2p_order_list_receive.dart';
-import 'get_financial_assessment_receive.dart';
 import 'new_account_maltainvest_receive.dart';
+import 'get_financial_assessment_receive.dart';
 import 'reality_check_receive.dart';
 import 'p2p_advertiser_create_receive.dart';
 import 'balance_receive.dart';
@@ -94,8 +94,8 @@ import 'copytrading_list_receive.dart';
 import 'new_account_virtual_receive.dart';
 import 'exchange_rates_receive.dart';
 import 'mt5_deposit_receive.dart';
-import 'cancel_receive.dart';
 import 'mt5_password_check_receive.dart';
+import 'cancel_receive.dart';
 import 'proposal_open_contract_receive.dart';
 import 'get_self_exclusion_receive.dart';
 
@@ -131,10 +131,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return LandingCompanyResponse.fromJson(responseMap);
     case 'p2p_order_list':
       return P2pOrderListResponse.fromJson(responseMap);
-    case 'get_financial_assessment':
-      return GetFinancialAssessmentResponse.fromJson(responseMap);
     case 'new_account_maltainvest':
       return NewAccountMaltainvestResponse.fromJson(responseMap);
+    case 'get_financial_assessment':
+      return GetFinancialAssessmentResponse.fromJson(responseMap);
     case 'reality_check':
       return RealityCheckResponse.fromJson(responseMap);
     case 'p2p_advertiser_create':
@@ -283,10 +283,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return ExchangeRatesResponse.fromJson(responseMap);
     case 'mt5_deposit':
       return Mt5DepositResponse.fromJson(responseMap);
-    case 'cancel':
-      return CancelResponse.fromJson(responseMap);
     case 'mt5_password_check':
       return Mt5PasswordCheckResponse.fromJson(responseMap);
+    case 'cancel':
+      return CancelResponse.fromJson(responseMap);
     case 'proposal_open_contract':
       return ProposalOpenContractResponse.fromJson(responseMap);
     case 'get_self_exclusion':
