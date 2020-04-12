@@ -9,7 +9,7 @@ part 'api_token_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ApiTokenRequest extends Request {
   /// Initialize ApiTokenRequest
-  ApiTokenRequest({
+  const ApiTokenRequest({
     this.apiToken = 1,
     this.deleteToken,
     this.newToken,
@@ -67,4 +67,8 @@ class ApiTokenRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

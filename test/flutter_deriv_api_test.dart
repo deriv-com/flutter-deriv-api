@@ -42,7 +42,7 @@ void main() {
     final BinaryAPI api = BinaryAPI();
     await api.run();
     final AuthorizeResponse authorizeResponse =
-        await api.call(AuthorizeRequest(authorize: 'YOU TOKEN'));
+        await api.call(const AuthorizeRequest(authorize: 'YOU TOKEN'));
 
     print('Test result: authorize: ${authorizeResponse.authorize}');
 
@@ -51,7 +51,7 @@ void main() {
     }
 
     final P2pOrderListResponse orderListResponse =
-        await api.call(P2pOrderListRequest(offset: 0, limit: 10));
+        await api.call(const P2pOrderListRequest(offset: 0, limit: 10));
 
     print(
         'Test result: orderList length: ${orderListResponse.p2pOrderList['list'].length}');
@@ -69,30 +69,30 @@ void main() {
     }
 
     final P2pAdvertListResponse advertListResponse =
-        await api.call(P2pAdvertListRequest());
+        await api.call(const P2pAdvertListRequest());
 
     print(
         'Test result: advertList length: ${advertListResponse.p2pAdvertList['list'].length}');
 
     final WebsiteStatusResponse websiteStatusResponse =
-        await api.call(WebsiteStatusRequest());
+        await api.call(const WebsiteStatusRequest());
     print(
         'Test result: Website status: ${websiteStatusResponse.websiteStatus}');
 
     final ActiveSymbolsResponse activeSymbolsResponse =
-        await api.call(ActiveSymbolsRequest(activeSymbols: 'brief'));
+        await api.call(const ActiveSymbolsRequest(activeSymbols: 'brief'));
     print(
         'Test result: ActiveSymbolsRequest: ${activeSymbolsResponse.activeSymbols}');
 
-    final PingResponse pingResponse = await api.call(PingRequest());
+    final PingResponse pingResponse = await api.call(const PingRequest());
     print('Test result: PingResponse: ${pingResponse.ping}');
 
-    api.subscription(BalanceRequest()).listen((Response response) {
+    api.subscription(const BalanceRequest()).listen((Response response) {
       final BalanceResponse balanceResponse = response;
       print('balance: ${balanceResponse.balance}');
     });
 
-    api.subscription(P2pOrderListRequest()).listen((Response response) {
+    api.subscription(const P2pOrderListRequest()).listen((Response response) {
       final P2pOrderListResponse orderListResponse = response;
       print('p2pOrderList: ${orderListResponse.p2pOrderList}');
     });

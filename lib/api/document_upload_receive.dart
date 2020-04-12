@@ -9,7 +9,7 @@ part 'document_upload_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class DocumentUploadResponse extends Response {
   /// Initialize DocumentUploadResponse
-  DocumentUploadResponse({
+  const DocumentUploadResponse({
     this.documentUpload,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class DocumentUploadResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -9,7 +9,7 @@ part 'cashier_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CashierRequest extends Request {
   /// Initialize CashierRequest
-  CashierRequest({
+  const CashierRequest({
     this.cashier,
     this.provider,
     this.verificationCode,
@@ -54,4 +54,8 @@ class CashierRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

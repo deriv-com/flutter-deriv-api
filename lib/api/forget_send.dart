@@ -9,7 +9,7 @@ part 'forget_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ForgetRequest extends Request {
   /// Initialize ForgetRequest
-  ForgetRequest({
+  const ForgetRequest({
     this.forget,
     int reqId,
     Map<String, dynamic> passthrough,
@@ -42,4 +42,8 @@ class ForgetRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

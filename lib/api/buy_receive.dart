@@ -9,7 +9,7 @@ part 'buy_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BuyResponse extends Response {
   /// Initialize BuyResponse
-  BuyResponse({
+  const BuyResponse({
     this.buy,
     this.subscription,
     int reqId,
@@ -56,4 +56,8 @@ class BuyResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

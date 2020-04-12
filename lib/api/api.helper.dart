@@ -4,6 +4,7 @@
 // function that maps the `msg_type`s to equivalent Response objects
 
 import 'response.dart';
+
 import 'app_markup_details_receive.dart';
 import 'app_update_receive.dart';
 import 'mt5_password_reset_receive.dart';
@@ -22,8 +23,8 @@ import 'get_financial_assessment_receive.dart';
 import 'new_account_maltainvest_receive.dart';
 import 'reality_check_receive.dart';
 import 'p2p_advertiser_create_receive.dart';
-import 'set_settings_receive.dart';
 import 'balance_receive.dart';
+import 'set_settings_receive.dart';
 import 'buy_receive.dart';
 import 'topup_virtual_receive.dart';
 import 'ticks_receive.dart';
@@ -33,8 +34,8 @@ import 'verify_email_receive.dart';
 import 'revoke_oauth_app_receive.dart';
 import 'paymentagent_transfer_receive.dart';
 import 'new_account_real_receive.dart';
-import 'statement_receive.dart';
 import 'landing_company_details_receive.dart';
+import 'statement_receive.dart';
 import 'api_token_receive.dart';
 import 'payout_currencies_receive.dart';
 import 'copy_stop_receive.dart';
@@ -65,12 +66,12 @@ import 'app_delete_receive.dart';
 import 'mt5_get_settings_receive.dart';
 import 'sell_receive.dart';
 import 'cashier_receive.dart';
-import 'app_get_receive.dart';
 import 'p2p_advert_info_receive.dart';
+import 'app_get_receive.dart';
 import 'website_status_receive.dart';
 import 'get_settings_receive.dart';
-import 'document_upload_receive.dart';
 import 'ping_receive.dart';
+import 'document_upload_receive.dart';
 import 'app_register_receive.dart';
 import 'p2p_advertiser_adverts_receive.dart';
 import 'residence_list_receive.dart';
@@ -139,10 +140,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return RealityCheckResponse.fromJson(responseMap);
     case 'p2p_advertiser_create':
       return P2pAdvertiserCreateResponse.fromJson(responseMap);
-    case 'set_settings':
-      return SetSettingsResponse.fromJson(responseMap);
     case 'balance':
       return BalanceResponse.fromJson(responseMap);
+    case 'set_settings':
+      return SetSettingsResponse.fromJson(responseMap);
     case 'buy':
       return BuyResponse.fromJson(responseMap);
     case 'topup_virtual':
@@ -161,10 +162,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return PaymentagentTransferResponse.fromJson(responseMap);
     case 'new_account_real':
       return NewAccountRealResponse.fromJson(responseMap);
-    case 'statement':
-      return StatementResponse.fromJson(responseMap);
     case 'landing_company_details':
       return LandingCompanyDetailsResponse.fromJson(responseMap);
+    case 'statement':
+      return StatementResponse.fromJson(responseMap);
     case 'api_token':
       return ApiTokenResponse.fromJson(responseMap);
     case 'payout_currencies':
@@ -225,18 +226,18 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return SellResponse.fromJson(responseMap);
     case 'cashier':
       return CashierResponse.fromJson(responseMap);
-    case 'app_get':
-      return AppGetResponse.fromJson(responseMap);
     case 'p2p_advert_info':
       return P2pAdvertInfoResponse.fromJson(responseMap);
+    case 'app_get':
+      return AppGetResponse.fromJson(responseMap);
     case 'website_status':
       return WebsiteStatusResponse.fromJson(responseMap);
     case 'get_settings':
       return GetSettingsResponse.fromJson(responseMap);
-    case 'document_upload':
-      return DocumentUploadResponse.fromJson(responseMap);
     case 'ping':
       return PingResponse.fromJson(responseMap);
+    case 'document_upload':
+      return DocumentUploadResponse.fromJson(responseMap);
     case 'app_register':
       return AppRegisterResponse.fromJson(responseMap);
     case 'p2p_advertiser_adverts':

@@ -9,7 +9,7 @@ part 'app_update_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppUpdateRequest extends Request {
   /// Initialize AppUpdateRequest
-  AppUpdateRequest({
+  const AppUpdateRequest({
     this.appMarkupPercentage,
     this.appUpdate = 1,
     this.appstore,
@@ -96,4 +96,8 @@ class AppUpdateRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

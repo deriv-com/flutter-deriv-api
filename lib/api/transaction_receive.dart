@@ -9,7 +9,7 @@ part 'transaction_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TransactionResponse extends Response {
   /// Initialize TransactionResponse
-  TransactionResponse({
+  const TransactionResponse({
     this.subscription,
     this.transaction,
     int reqId,
@@ -56,4 +56,8 @@ class TransactionResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -9,7 +9,7 @@ part 'contract_update_history_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ContractUpdateHistoryRequest extends Request {
   /// Initialize ContractUpdateHistoryRequest
-  ContractUpdateHistoryRequest({
+  const ContractUpdateHistoryRequest({
     this.contractId,
     this.contractUpdateHistory = 1,
     int reqId,
@@ -49,4 +49,8 @@ class ContractUpdateHistoryRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

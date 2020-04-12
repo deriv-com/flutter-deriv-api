@@ -9,7 +9,7 @@ part 'authorize_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AuthorizeRequest extends Request {
   /// Initialize AuthorizeRequest
-  AuthorizeRequest({
+  const AuthorizeRequest({
     this.addToLoginHistory,
     this.authorize,
     int reqId,
@@ -48,4 +48,8 @@ class AuthorizeRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -9,7 +9,7 @@ part 'transfer_between_accounts_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TransferBetweenAccountsResponse extends Response {
   /// Initialize TransferBetweenAccountsResponse
-  TransferBetweenAccountsResponse({
+  const TransferBetweenAccountsResponse({
     this.accounts,
     this.clientToFullName,
     this.clientToLoginid,
@@ -76,4 +76,8 @@ class TransferBetweenAccountsResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

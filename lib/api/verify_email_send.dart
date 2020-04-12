@@ -9,7 +9,7 @@ part 'verify_email_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class VerifyEmailRequest extends Request {
   /// Initialize VerifyEmailRequest
-  VerifyEmailRequest({
+  const VerifyEmailRequest({
     this.type,
     this.urlParameters,
     this.verifyEmail,
@@ -54,4 +54,8 @@ class VerifyEmailRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

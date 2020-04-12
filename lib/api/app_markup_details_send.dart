@@ -9,7 +9,7 @@ part 'app_markup_details_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppMarkupDetailsRequest extends Request {
   /// Initialize AppMarkupDetailsRequest
-  AppMarkupDetailsRequest({
+  const AppMarkupDetailsRequest({
     this.appId,
     this.appMarkupDetails = 1,
     this.clientLoginid,
@@ -96,4 +96,8 @@ class AppMarkupDetailsRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

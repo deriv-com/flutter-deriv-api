@@ -9,7 +9,7 @@ part 'forget_all_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ForgetAllResponse extends Response {
   /// Initialize ForgetAllResponse
-  ForgetAllResponse({
+  const ForgetAllResponse({
     this.forgetAll,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class ForgetAllResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

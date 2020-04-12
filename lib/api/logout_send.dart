@@ -9,7 +9,7 @@ part 'logout_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LogoutRequest extends Request {
   /// Initialize LogoutRequest
-  LogoutRequest({
+  const LogoutRequest({
     this.logout = 1,
     int reqId,
     Map<String, dynamic> passthrough,
@@ -42,4 +42,8 @@ class LogoutRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

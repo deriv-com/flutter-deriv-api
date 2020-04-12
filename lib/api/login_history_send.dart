@@ -9,7 +9,7 @@ part 'login_history_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LoginHistoryRequest extends Request {
   /// Initialize LoginHistoryRequest
-  LoginHistoryRequest({
+  const LoginHistoryRequest({
     this.limit,
     this.loginHistory = 1,
     int reqId,
@@ -48,4 +48,8 @@ class LoginHistoryRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

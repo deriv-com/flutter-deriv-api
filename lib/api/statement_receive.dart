@@ -9,7 +9,7 @@ part 'statement_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class StatementResponse extends Response {
   /// Initialize StatementResponse
-  StatementResponse({
+  const StatementResponse({
     this.statement,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class StatementResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

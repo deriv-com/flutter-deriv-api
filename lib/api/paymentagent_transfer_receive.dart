@@ -9,7 +9,7 @@ part 'paymentagent_transfer_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PaymentagentTransferResponse extends Response {
   /// Initialize PaymentagentTransferResponse
-  PaymentagentTransferResponse({
+  const PaymentagentTransferResponse({
     this.clientToFullName,
     this.clientToLoginid,
     this.paymentagentTransfer,
@@ -68,4 +68,8 @@ class PaymentagentTransferResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -9,7 +9,7 @@ part 'portfolio_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PortfolioResponse extends Response {
   /// Initialize PortfolioResponse
-  PortfolioResponse({
+  const PortfolioResponse({
     this.portfolio,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class PortfolioResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

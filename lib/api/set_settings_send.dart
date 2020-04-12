@@ -9,7 +9,7 @@ part 'set_settings_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetSettingsRequest extends Request {
   /// Initialize SetSettingsRequest
-  SetSettingsRequest({
+  const SetSettingsRequest({
     this.accountOpeningReason,
     this.addressCity,
     this.addressLine1,
@@ -170,4 +170,8 @@ class SetSettingsRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

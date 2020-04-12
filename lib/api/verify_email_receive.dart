@@ -9,7 +9,7 @@ part 'verify_email_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class VerifyEmailResponse extends Response {
   /// Initialize VerifyEmailResponse
-  VerifyEmailResponse({
+  const VerifyEmailResponse({
     this.verifyEmail,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class VerifyEmailResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

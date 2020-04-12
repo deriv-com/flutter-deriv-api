@@ -9,7 +9,7 @@ part 'ticks_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TicksResponse extends Response {
   /// Initialize TicksResponse
-  TicksResponse({
+  const TicksResponse({
     this.subscription,
     this.tick,
     int reqId,
@@ -56,4 +56,8 @@ class TicksResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

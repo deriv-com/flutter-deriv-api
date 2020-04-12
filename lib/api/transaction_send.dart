@@ -9,7 +9,7 @@ part 'transaction_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TransactionRequest extends Request {
   /// Initialize TransactionRequest
-  TransactionRequest({
+  const TransactionRequest({
     this.subscribe,
     this.transaction = 1,
     int reqId,
@@ -48,4 +48,8 @@ class TransactionRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

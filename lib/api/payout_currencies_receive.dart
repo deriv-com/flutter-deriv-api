@@ -9,7 +9,7 @@ part 'payout_currencies_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PayoutCurrenciesResponse extends Response {
   /// Initialize PayoutCurrenciesResponse
-  PayoutCurrenciesResponse({
+  const PayoutCurrenciesResponse({
     this.payoutCurrencies,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class PayoutCurrenciesResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

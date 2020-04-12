@@ -9,7 +9,7 @@ part 'cashier_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CashierResponse extends Response {
   /// Initialize CashierResponse
-  CashierResponse({
+  const CashierResponse({
     this.cashier,
     int reqId,
     String msgType,
@@ -57,4 +57,8 @@ class CashierResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

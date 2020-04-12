@@ -9,7 +9,7 @@ part 'get_financial_assessment_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetFinancialAssessmentRequest extends Request {
   /// Initialize GetFinancialAssessmentRequest
-  GetFinancialAssessmentRequest({
+  const GetFinancialAssessmentRequest({
     this.getFinancialAssessment = 1,
     int reqId,
     Map<String, dynamic> passthrough,
@@ -43,4 +43,8 @@ class GetFinancialAssessmentRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

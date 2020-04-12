@@ -9,7 +9,7 @@ part 'exchange_rates_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ExchangeRatesResponse extends Response {
   /// Initialize ExchangeRatesResponse
-  ExchangeRatesResponse({
+  const ExchangeRatesResponse({
     this.exchangeRates,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class ExchangeRatesResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

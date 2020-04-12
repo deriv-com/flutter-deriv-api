@@ -9,7 +9,7 @@ part 'new_account_maltainvest_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountMaltainvestRequest extends Request {
   /// Initialize NewAccountMaltainvestRequest
-  NewAccountMaltainvestRequest({
+  const NewAccountMaltainvestRequest({
     this.acceptRisk,
     this.accountOpeningReason,
     this.accountTurnover,
@@ -278,4 +278,8 @@ class NewAccountMaltainvestRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

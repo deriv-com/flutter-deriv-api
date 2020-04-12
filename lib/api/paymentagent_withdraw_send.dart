@@ -9,7 +9,7 @@ part 'paymentagent_withdraw_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PaymentagentWithdrawRequest extends Request {
   /// Initialize PaymentagentWithdrawRequest
-  PaymentagentWithdrawRequest({
+  const PaymentagentWithdrawRequest({
     this.amount,
     this.currency,
     this.description,
@@ -78,4 +78,8 @@ class PaymentagentWithdrawRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

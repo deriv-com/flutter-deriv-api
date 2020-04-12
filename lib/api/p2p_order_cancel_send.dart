@@ -9,7 +9,7 @@ part 'p2p_order_cancel_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderCancelRequest extends Request {
   /// Initialize P2pOrderCancelRequest
-  P2pOrderCancelRequest({
+  const P2pOrderCancelRequest({
     this.id,
     this.p2pOrderCancel = 1,
     int reqId,
@@ -48,4 +48,8 @@ class P2pOrderCancelRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

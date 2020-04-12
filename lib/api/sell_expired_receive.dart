@@ -9,7 +9,7 @@ part 'sell_expired_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellExpiredResponse extends Response {
   /// Initialize SellExpiredResponse
-  SellExpiredResponse({
+  const SellExpiredResponse({
     this.sellExpired,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class SellExpiredResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

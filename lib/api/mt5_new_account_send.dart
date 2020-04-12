@@ -9,7 +9,7 @@ part 'mt5_new_account_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5NewAccountRequest extends Request {
   /// Initialize Mt5NewAccountRequest
-  Mt5NewAccountRequest({
+  const Mt5NewAccountRequest({
     this.accountType,
     this.address,
     this.city,
@@ -138,4 +138,8 @@ class Mt5NewAccountRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

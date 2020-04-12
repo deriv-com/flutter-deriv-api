@@ -9,7 +9,7 @@ part 'authorize_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AuthorizeResponse extends Response {
   /// Initialize AuthorizeResponse
-  AuthorizeResponse({
+  const AuthorizeResponse({
     this.authorize,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class AuthorizeResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

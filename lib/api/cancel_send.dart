@@ -9,7 +9,7 @@ part 'cancel_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CancelRequest extends Request {
   /// Initialize CancelRequest
-  CancelRequest({
+  const CancelRequest({
     this.cancel = 1,
     int reqId,
     Map<String, dynamic> passthrough,
@@ -42,4 +42,8 @@ class CancelRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

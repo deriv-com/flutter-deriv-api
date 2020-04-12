@@ -9,7 +9,7 @@ part 'new_account_real_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountRealRequest extends Request {
   /// Initialize NewAccountRealRequest
-  NewAccountRealRequest({
+  const NewAccountRealRequest({
     this.accountOpeningReason,
     this.accountTurnover,
     this.addressCity,
@@ -175,4 +175,8 @@ class NewAccountRealRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

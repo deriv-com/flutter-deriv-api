@@ -9,7 +9,7 @@ part 'proposal_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ProposalRequest extends Request {
   /// Initialize ProposalRequest
-  ProposalRequest({
+  const ProposalRequest({
     this.amount,
     this.barrier,
     this.barrier2,
@@ -150,4 +150,8 @@ class ProposalRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -9,7 +9,7 @@ part 'mt5_login_list_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5LoginListRequest extends Request {
   /// Initialize Mt5LoginListRequest
-  Mt5LoginListRequest({
+  const Mt5LoginListRequest({
     this.mt5LoginList = 1,
     int reqId,
     Map<String, dynamic> passthrough,
@@ -42,4 +42,8 @@ class Mt5LoginListRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

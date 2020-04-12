@@ -9,7 +9,7 @@ part 'p2p_advertiser_create_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pAdvertiserCreateRequest extends Request {
   /// Initialize P2pAdvertiserCreateRequest
-  P2pAdvertiserCreateRequest({
+  const P2pAdvertiserCreateRequest({
     this.contactInfo,
     this.defaultAdvertDescription,
     this.name,
@@ -73,4 +73,8 @@ class P2pAdvertiserCreateRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

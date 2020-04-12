@@ -9,7 +9,7 @@ part 'get_limits_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetLimitsResponse extends Response {
   /// Initialize GetLimitsResponse
-  GetLimitsResponse({
+  const GetLimitsResponse({
     this.getLimits,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class GetLimitsResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

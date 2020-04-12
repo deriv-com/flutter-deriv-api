@@ -9,7 +9,7 @@ part 'contract_update_history_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ContractUpdateHistoryResponse extends Response {
   /// Initialize ContractUpdateHistoryResponse
-  ContractUpdateHistoryResponse({
+  const ContractUpdateHistoryResponse({
     this.contractUpdateHistory,
     int reqId,
     String msgType,
@@ -51,4 +51,8 @@ class ContractUpdateHistoryResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

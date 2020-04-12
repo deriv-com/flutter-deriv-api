@@ -9,7 +9,7 @@ part 'new_account_virtual_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountVirtualResponse extends Response {
   /// Initialize NewAccountVirtualResponse
-  NewAccountVirtualResponse({
+  const NewAccountVirtualResponse({
     this.newAccountVirtual,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class NewAccountVirtualResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

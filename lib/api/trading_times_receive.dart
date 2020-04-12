@@ -9,7 +9,7 @@ part 'trading_times_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TradingTimesResponse extends Response {
   /// Initialize TradingTimesResponse
-  TradingTimesResponse({
+  const TradingTimesResponse({
     this.tradingTimes,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class TradingTimesResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

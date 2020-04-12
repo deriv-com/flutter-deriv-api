@@ -9,7 +9,7 @@ part 'mt5_withdrawal_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5WithdrawalRequest extends Request {
   /// Initialize Mt5WithdrawalRequest
-  Mt5WithdrawalRequest({
+  const Mt5WithdrawalRequest({
     this.amount,
     this.fromMt5,
     this.mt5Withdrawal = 1,
@@ -60,4 +60,8 @@ class Mt5WithdrawalRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

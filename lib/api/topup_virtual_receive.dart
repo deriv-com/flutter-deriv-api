@@ -9,7 +9,7 @@ part 'topup_virtual_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TopupVirtualResponse extends Response {
   /// Initialize TopupVirtualResponse
-  TopupVirtualResponse({
+  const TopupVirtualResponse({
     this.topupVirtual,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class TopupVirtualResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

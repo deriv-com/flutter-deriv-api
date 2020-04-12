@@ -9,7 +9,7 @@ part 'login_history_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LoginHistoryResponse extends Response {
   /// Initialize LoginHistoryResponse
-  LoginHistoryResponse({
+  const LoginHistoryResponse({
     this.loginHistory,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class LoginHistoryResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

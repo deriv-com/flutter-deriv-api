@@ -9,7 +9,7 @@ part 'mt5_get_settings_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5GetSettingsRequest extends Request {
   /// Initialize Mt5GetSettingsRequest
-  Mt5GetSettingsRequest({
+  const Mt5GetSettingsRequest({
     this.login,
     this.mt5GetSettings = 1,
     int reqId,
@@ -48,4 +48,8 @@ class Mt5GetSettingsRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

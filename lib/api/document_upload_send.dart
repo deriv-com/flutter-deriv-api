@@ -9,7 +9,7 @@ part 'document_upload_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class DocumentUploadRequest extends Request {
   /// Initialize DocumentUploadRequest
-  DocumentUploadRequest({
+  const DocumentUploadRequest({
     this.documentFormat,
     this.documentId,
     this.documentType,
@@ -84,4 +84,8 @@ class DocumentUploadRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

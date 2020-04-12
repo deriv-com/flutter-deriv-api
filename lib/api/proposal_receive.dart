@@ -9,7 +9,7 @@ part 'proposal_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ProposalResponse extends Response {
   /// Initialize ProposalResponse
-  ProposalResponse({
+  const ProposalResponse({
     this.proposal,
     this.subscription,
     int reqId,
@@ -56,4 +56,8 @@ class ProposalResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

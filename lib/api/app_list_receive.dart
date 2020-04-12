@@ -9,7 +9,7 @@ part 'app_list_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppListResponse extends Response {
   /// Initialize AppListResponse
-  AppListResponse({
+  const AppListResponse({
     this.appList,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class AppListResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

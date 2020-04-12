@@ -9,7 +9,7 @@ part 'copy_stop_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStopRequest extends Request {
   /// Initialize CopyStopRequest
-  CopyStopRequest({
+  const CopyStopRequest({
     this.copyStop,
     int reqId,
     Map<String, dynamic> passthrough,
@@ -42,4 +42,8 @@ class CopyStopRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

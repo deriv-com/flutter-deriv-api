@@ -9,7 +9,7 @@ part 'oauth_apps_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class OauthAppsResponse extends Response {
   /// Initialize OauthAppsResponse
-  OauthAppsResponse({
+  const OauthAppsResponse({
     this.oauthApps,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class OauthAppsResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

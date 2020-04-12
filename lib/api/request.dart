@@ -1,12 +1,13 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'request.g.dart';
 
 /// Super class of all requests
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Request {
+class Request extends Equatable {
   /// Initializes
-  Request({
+  const Request({
     this.reqId,
     this.passthrough,
   });
@@ -34,4 +35,7 @@ class Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  @override
+  List<Object> get props => <Object>[];
 }

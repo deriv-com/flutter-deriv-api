@@ -9,7 +9,7 @@ part 'exchange_rates_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ExchangeRatesRequest extends Request {
   /// Initialize ExchangeRatesRequest
-  ExchangeRatesRequest({
+  const ExchangeRatesRequest({
     this.baseCurrency,
     this.exchangeRates = 1,
     int reqId,
@@ -48,4 +48,8 @@ class ExchangeRatesRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

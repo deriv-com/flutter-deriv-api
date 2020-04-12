@@ -9,7 +9,7 @@ part 'p2p_order_create_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderCreateRequest extends Request {
   /// Initialize P2pOrderCreateRequest
-  P2pOrderCreateRequest({
+  const P2pOrderCreateRequest({
     this.advertId,
     this.amount,
     this.contactInfo,
@@ -72,4 +72,8 @@ class P2pOrderCreateRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

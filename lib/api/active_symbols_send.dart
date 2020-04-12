@@ -9,7 +9,7 @@ part 'active_symbols_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ActiveSymbolsRequest extends Request {
   /// Initialize ActiveSymbolsRequest
-  ActiveSymbolsRequest({
+  const ActiveSymbolsRequest({
     this.activeSymbols,
     this.landingCompany,
     this.productType,
@@ -54,4 +54,8 @@ class ActiveSymbolsRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

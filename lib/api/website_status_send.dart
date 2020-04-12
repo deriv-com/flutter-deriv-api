@@ -9,7 +9,7 @@ part 'website_status_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class WebsiteStatusRequest extends Request {
   /// Initialize WebsiteStatusRequest
-  WebsiteStatusRequest({
+  const WebsiteStatusRequest({
     this.subscribe,
     this.websiteStatus = 1,
     int reqId,
@@ -48,4 +48,8 @@ class WebsiteStatusRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

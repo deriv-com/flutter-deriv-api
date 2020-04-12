@@ -9,7 +9,7 @@ part 'tnc_approval_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TncApprovalResponse extends Response {
   /// Initialize TncApprovalResponse
-  TncApprovalResponse({
+  const TncApprovalResponse({
     this.tncApproval,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class TncApprovalResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

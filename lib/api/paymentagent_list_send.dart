@@ -9,7 +9,7 @@ part 'paymentagent_list_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PaymentagentListRequest extends Request {
   /// Initialize PaymentagentListRequest
-  PaymentagentListRequest({
+  const PaymentagentListRequest({
     this.currency,
     this.paymentagentList,
     int reqId,
@@ -48,4 +48,8 @@ class PaymentagentListRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -9,7 +9,7 @@ part 'asset_index_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AssetIndexRequest extends Request {
   /// Initialize AssetIndexRequest
-  AssetIndexRequest({
+  const AssetIndexRequest({
     this.assetIndex = 1,
     this.landingCompany,
     int reqId,
@@ -48,4 +48,8 @@ class AssetIndexRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

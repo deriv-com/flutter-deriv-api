@@ -9,7 +9,7 @@ part 'cancel_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CancelResponse extends Response {
   /// Initialize CancelResponse
-  CancelResponse({
+  const CancelResponse({
     this.cancel,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class CancelResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

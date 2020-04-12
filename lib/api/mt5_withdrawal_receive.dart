@@ -9,7 +9,7 @@ part 'mt5_withdrawal_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5WithdrawalResponse extends Response {
   /// Initialize Mt5WithdrawalResponse
-  Mt5WithdrawalResponse({
+  const Mt5WithdrawalResponse({
     this.binaryTransactionId,
     this.mt5Withdrawal,
     int reqId,
@@ -56,4 +56,8 @@ class Mt5WithdrawalResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

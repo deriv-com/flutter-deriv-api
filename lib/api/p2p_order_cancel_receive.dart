@@ -9,7 +9,7 @@ part 'p2p_order_cancel_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderCancelResponse extends Response {
   /// Initialize P2pOrderCancelResponse
-  P2pOrderCancelResponse({
+  const P2pOrderCancelResponse({
     this.p2pOrderCancel,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class P2pOrderCancelResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }
