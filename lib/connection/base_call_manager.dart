@@ -47,12 +47,9 @@ abstract class BaseCallManager<T> {
   }
 
   /// Prepare [request] for adding to web socket channel
-  Map<String, dynamic> prepareRequest(Request request) {
-    request.reqId = _getRequestId();
-
-    return request.toJson()
-      ..removeWhere((String key, dynamic value) => value == null);
-  }
+  // TODO(hamed): add request.reqId = _getRequestId();
+  Map<String, dynamic> prepareRequest(Request request) => request.toJson()
+    ..removeWhere((String key, dynamic value) => value == null);
 
   /// Add [request] to pending requests queue, api history and web socket channel
   Future<Response> addToChannel(Map<String, dynamic> request) {
