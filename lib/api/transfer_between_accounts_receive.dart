@@ -15,15 +15,15 @@ class TransferBetweenAccountsResponse extends Response {
     this.clientToLoginid,
     this.transactionId,
     this.transferBetweenAccounts,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -50,4 +50,30 @@ class TransferBetweenAccountsResponse extends Response {
   @override
   Map<String, dynamic> toJson() =>
       _$TransferBetweenAccountsResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  TransferBetweenAccountsResponse copyWith({
+    List<Map<String, dynamic>> accounts,
+    String clientToFullName,
+    String clientToLoginid,
+    int transactionId,
+    int transferBetweenAccounts,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      TransferBetweenAccountsResponse(
+        accounts: accounts ?? this.accounts,
+        clientToFullName: clientToFullName ?? this.clientToFullName,
+        clientToLoginid: clientToLoginid ?? this.clientToLoginid,
+        transactionId: transactionId ?? this.transactionId,
+        transferBetweenAccounts:
+            transferBetweenAccounts ?? this.transferBetweenAccounts,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

@@ -17,11 +17,11 @@ class StatementRequest extends Request {
     this.limit,
     this.offset,
     this.statement = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -53,4 +53,29 @@ class StatementRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$StatementRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  StatementRequest copyWith({
+    String actionType,
+    int dateFrom,
+    int dateTo,
+    int description,
+    num limit,
+    num offset,
+    int statement,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      StatementRequest(
+        actionType: actionType ?? this.actionType,
+        dateFrom: dateFrom ?? this.dateFrom,
+        dateTo: dateTo ?? this.dateTo,
+        description: description ?? this.description,
+        limit: limit ?? this.limit,
+        offset: offset ?? this.offset,
+        statement: statement ?? this.statement,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

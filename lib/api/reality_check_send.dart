@@ -11,11 +11,11 @@ class RealityCheckRequest extends Request {
   /// Initialize RealityCheckRequest
   RealityCheckRequest({
     this.realityCheck = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class RealityCheckRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$RealityCheckRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  RealityCheckRequest copyWith({
+    int realityCheck,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      RealityCheckRequest(
+        realityCheck: realityCheck ?? this.realityCheck,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

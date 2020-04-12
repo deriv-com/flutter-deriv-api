@@ -16,11 +16,11 @@ class TransferBetweenAccountsRequest extends Request {
     this.amount,
     this.currency,
     this.transferBetweenAccounts = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -49,4 +49,28 @@ class TransferBetweenAccountsRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TransferBetweenAccountsRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  TransferBetweenAccountsRequest copyWith({
+    String accountFrom,
+    String accountTo,
+    String accounts,
+    num amount,
+    String currency,
+    int transferBetweenAccounts,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      TransferBetweenAccountsRequest(
+        accountFrom: accountFrom ?? this.accountFrom,
+        accountTo: accountTo ?? this.accountTo,
+        accounts: accounts ?? this.accounts,
+        amount: amount ?? this.amount,
+        currency: currency ?? this.currency,
+        transferBetweenAccounts:
+            transferBetweenAccounts ?? this.transferBetweenAccounts,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

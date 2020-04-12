@@ -12,11 +12,11 @@ class AuthorizeRequest extends Request {
   AuthorizeRequest({
     this.addToLoginHistory,
     this.authorize,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,19 @@ class AuthorizeRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AuthorizeRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  AuthorizeRequest copyWith({
+    int addToLoginHistory,
+    String authorize,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      AuthorizeRequest(
+        addToLoginHistory: addToLoginHistory ?? this.addToLoginHistory,
+        authorize: authorize ?? this.authorize,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

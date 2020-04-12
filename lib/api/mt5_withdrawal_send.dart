@@ -14,11 +14,11 @@ class Mt5WithdrawalRequest extends Request {
     this.fromMt5,
     this.mt5Withdrawal = 1,
     this.toBinary,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -41,4 +41,23 @@ class Mt5WithdrawalRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5WithdrawalRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  Mt5WithdrawalRequest copyWith({
+    num amount,
+    String fromMt5,
+    int mt5Withdrawal,
+    String toBinary,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      Mt5WithdrawalRequest(
+        amount: amount ?? this.amount,
+        fromMt5: fromMt5 ?? this.fromMt5,
+        mt5Withdrawal: mt5Withdrawal ?? this.mt5Withdrawal,
+        toBinary: toBinary ?? this.toBinary,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

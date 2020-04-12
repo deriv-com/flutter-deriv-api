@@ -13,11 +13,11 @@ class ProposalOpenContractRequest extends Request {
     this.contractId,
     this.proposalOpenContract = 1,
     this.subscribe,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -37,4 +37,21 @@ class ProposalOpenContractRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ProposalOpenContractRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ProposalOpenContractRequest copyWith({
+    int contractId,
+    int proposalOpenContract,
+    int subscribe,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      ProposalOpenContractRequest(
+        contractId: contractId ?? this.contractId,
+        proposalOpenContract: proposalOpenContract ?? this.proposalOpenContract,
+        subscribe: subscribe ?? this.subscribe,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

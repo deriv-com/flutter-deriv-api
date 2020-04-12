@@ -11,11 +11,11 @@ class OauthAppsRequest extends Request {
   /// Initialize OauthAppsRequest
   OauthAppsRequest({
     this.oauthApps = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class OauthAppsRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$OauthAppsRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  OauthAppsRequest copyWith({
+    int oauthApps,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      OauthAppsRequest(
+        oauthApps: oauthApps ?? this.oauthApps,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

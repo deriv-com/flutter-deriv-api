@@ -12,16 +12,16 @@ ContractUpdateRequest _$ContractUpdateRequestFromJson(
     contractId: json['contract_id'] as int,
     contractUpdate: json['contract_update'] as int,
     limitOrder: json['limit_order'] as Map<String, dynamic>,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 
 Map<String, dynamic> _$ContractUpdateRequestToJson(
         ContractUpdateRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'contract_id': instance.contractId,
       'contract_update': instance.contractUpdate,
       'limit_order': instance.limitOrder,

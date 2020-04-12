@@ -12,15 +12,15 @@ class P2pOrderCreateResponse extends Response {
   P2pOrderCreateResponse({
     this.p2pOrderCreate,
     this.subscription,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -37,4 +37,23 @@ class P2pOrderCreateResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pOrderCreateResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  P2pOrderCreateResponse copyWith({
+    Map<String, dynamic> p2pOrderCreate,
+    Map<String, dynamic> subscription,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      P2pOrderCreateResponse(
+        p2pOrderCreate: p2pOrderCreate ?? this.p2pOrderCreate,
+        subscription: subscription ?? this.subscription,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

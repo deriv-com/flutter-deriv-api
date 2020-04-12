@@ -16,11 +16,11 @@ class P2pOrderListRequest extends Request {
     this.offset,
     this.p2pOrderList = 1,
     this.subscribe,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -49,4 +49,27 @@ class P2pOrderListRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pOrderListRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  P2pOrderListRequest copyWith({
+    num active,
+    String advertId,
+    int limit,
+    int offset,
+    int p2pOrderList,
+    int subscribe,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      P2pOrderListRequest(
+        active: active ?? this.active,
+        advertId: advertId ?? this.advertId,
+        limit: limit ?? this.limit,
+        offset: offset ?? this.offset,
+        p2pOrderList: p2pOrderList ?? this.p2pOrderList,
+        subscribe: subscribe ?? this.subscribe,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

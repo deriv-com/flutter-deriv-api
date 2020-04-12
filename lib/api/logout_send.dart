@@ -11,11 +11,11 @@ class LogoutRequest extends Request {
   /// Initialize LogoutRequest
   LogoutRequest({
     this.logout = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class LogoutRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$LogoutRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  LogoutRequest copyWith({
+    int logout,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      LogoutRequest(
+        logout: logout ?? this.logout,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

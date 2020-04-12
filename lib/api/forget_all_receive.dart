@@ -11,15 +11,15 @@ class ForgetAllResponse extends Response {
   /// Initialize ForgetAllResponse
   ForgetAllResponse({
     this.forgetAll,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class ForgetAllResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ForgetAllResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ForgetAllResponse copyWith({
+    List<String> forgetAll,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      ForgetAllResponse(
+        forgetAll: forgetAll ?? this.forgetAll,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

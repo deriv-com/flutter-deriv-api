@@ -9,14 +9,14 @@ part of 'get_limits_send.dart';
 GetLimitsRequest _$GetLimitsRequestFromJson(Map<String, dynamic> json) {
   return GetLimitsRequest(
     getLimits: json['get_limits'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 
 Map<String, dynamic> _$GetLimitsRequestToJson(GetLimitsRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'get_limits': instance.getLimits,
     };

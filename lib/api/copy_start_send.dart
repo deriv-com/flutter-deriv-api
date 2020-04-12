@@ -15,11 +15,11 @@ class CopyStartRequest extends Request {
     this.maxTradeStake,
     this.minTradeStake,
     this.tradeTypes,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -45,4 +45,25 @@ class CopyStartRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$CopyStartRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  CopyStartRequest copyWith({
+    String assets,
+    String copyStart,
+    num maxTradeStake,
+    num minTradeStake,
+    String tradeTypes,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      CopyStartRequest(
+        assets: assets ?? this.assets,
+        copyStart: copyStart ?? this.copyStart,
+        maxTradeStake: maxTradeStake ?? this.maxTradeStake,
+        minTradeStake: minTradeStake ?? this.minTradeStake,
+        tradeTypes: tradeTypes ?? this.tradeTypes,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

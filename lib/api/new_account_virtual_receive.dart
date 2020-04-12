@@ -11,15 +11,15 @@ class NewAccountVirtualResponse extends Response {
   /// Initialize NewAccountVirtualResponse
   NewAccountVirtualResponse({
     this.newAccountVirtual,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class NewAccountVirtualResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$NewAccountVirtualResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  NewAccountVirtualResponse copyWith({
+    Map<String, dynamic> newAccountVirtual,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      NewAccountVirtualResponse(
+        newAccountVirtual: newAccountVirtual ?? this.newAccountVirtual,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

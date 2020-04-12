@@ -11,11 +11,11 @@ class ResidenceListRequest extends Request {
   /// Initialize ResidenceListRequest
   ResidenceListRequest({
     this.residenceList = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class ResidenceListRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ResidenceListRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ResidenceListRequest copyWith({
+    int residenceList,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      ResidenceListRequest(
+        residenceList: residenceList ?? this.residenceList,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

@@ -12,11 +12,11 @@ class AssetIndexRequest extends Request {
   AssetIndexRequest({
     this.assetIndex = 1,
     this.landingCompany,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,19 @@ class AssetIndexRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AssetIndexRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  AssetIndexRequest copyWith({
+    int assetIndex,
+    String landingCompany,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      AssetIndexRequest(
+        assetIndex: assetIndex ?? this.assetIndex,
+        landingCompany: landingCompany ?? this.landingCompany,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

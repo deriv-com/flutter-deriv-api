@@ -12,11 +12,11 @@ class ContractUpdateHistoryRequest extends Request {
   ContractUpdateHistoryRequest({
     this.contractId,
     this.contractUpdateHistory = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,20 @@ class ContractUpdateHistoryRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ContractUpdateHistoryRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ContractUpdateHistoryRequest copyWith({
+    int contractId,
+    int contractUpdateHistory,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      ContractUpdateHistoryRequest(
+        contractId: contractId ?? this.contractId,
+        contractUpdateHistory:
+            contractUpdateHistory ?? this.contractUpdateHistory,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

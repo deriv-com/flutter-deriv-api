@@ -11,15 +11,15 @@ class GetLimitsResponse extends Response {
   /// Initialize GetLimitsResponse
   GetLimitsResponse({
     this.getLimits,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class GetLimitsResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$GetLimitsResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  GetLimitsResponse copyWith({
+    Map<String, dynamic> getLimits,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      GetLimitsResponse(
+        getLimits: getLimits ?? this.getLimits,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

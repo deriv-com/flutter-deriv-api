@@ -18,11 +18,11 @@ class DocumentUploadRequest extends Request {
     this.expirationDate,
     this.fileSize,
     this.pageType,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -57,4 +57,31 @@ class DocumentUploadRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$DocumentUploadRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  DocumentUploadRequest copyWith({
+    String documentFormat,
+    String documentId,
+    String documentType,
+    int documentUpload,
+    String expectedChecksum,
+    String expirationDate,
+    int fileSize,
+    String pageType,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      DocumentUploadRequest(
+        documentFormat: documentFormat ?? this.documentFormat,
+        documentId: documentId ?? this.documentId,
+        documentType: documentType ?? this.documentType,
+        documentUpload: documentUpload ?? this.documentUpload,
+        expectedChecksum: expectedChecksum ?? this.expectedChecksum,
+        expirationDate: expirationDate ?? this.expirationDate,
+        fileSize: fileSize ?? this.fileSize,
+        pageType: pageType ?? this.pageType,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

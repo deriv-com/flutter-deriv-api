@@ -12,11 +12,11 @@ class LoginHistoryRequest extends Request {
   LoginHistoryRequest({
     this.limit,
     this.loginHistory = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,19 @@ class LoginHistoryRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$LoginHistoryRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  LoginHistoryRequest copyWith({
+    int limit,
+    int loginHistory,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      LoginHistoryRequest(
+        limit: limit ?? this.limit,
+        loginHistory: loginHistory ?? this.loginHistory,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

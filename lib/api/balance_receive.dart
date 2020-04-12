@@ -12,15 +12,15 @@ class BalanceResponse extends Response {
   BalanceResponse({
     this.balance,
     this.subscription,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -37,4 +37,23 @@ class BalanceResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$BalanceResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  BalanceResponse copyWith({
+    Map<String, dynamic> balance,
+    Map<String, dynamic> subscription,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      BalanceResponse(
+        balance: balance ?? this.balance,
+        subscription: subscription ?? this.subscription,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

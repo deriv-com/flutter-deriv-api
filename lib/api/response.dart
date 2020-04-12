@@ -7,15 +7,21 @@ part 'response.g.dart';
 class Response {
   /// Initializes
   Response({
+    this.reqId,
+    this.msgType,
     this.echoReq,
     this.error,
-    this.msgType,
-    this.reqId,
   });
 
   /// Creates instance from JSON
   factory Response.fromJson(Map<String, dynamic> json) =>
       _$ResponseFromJson(json);
+
+  /// [Optional] Used to map request to response.
+  final int reqId;
+
+  /// Action name of the request made.
+  final String msgType;
 
   /// Echo of the request made.
   final Map<String, dynamic> echoReq;
@@ -23,12 +29,20 @@ class Response {
   /// Error
   final Map<String, dynamic> error;
 
-  /// Action name of the request made.
-  final String msgType;
-
-  /// [Optional] Used to map request to response.
-  final int reqId;
-
   /// Converts to JSON
   Map<String, dynamic> toJson() => _$ResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  Response copyWith({
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      Response(
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

@@ -12,11 +12,11 @@ class TicksRequest extends Request {
   TicksRequest({
     this.subscribe,
     this.ticks,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,19 @@ class TicksRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TicksRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  TicksRequest copyWith({
+    int subscribe,
+    String ticks,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      TicksRequest(
+        subscribe: subscribe ?? this.subscribe,
+        ticks: ticks ?? this.ticks,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

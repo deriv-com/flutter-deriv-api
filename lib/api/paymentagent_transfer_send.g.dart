@@ -15,16 +15,16 @@ PaymentagentTransferRequest _$PaymentagentTransferRequestFromJson(
     dryRun: json['dry_run'] as int,
     paymentagentTransfer: json['paymentagent_transfer'] as int,
     transferTo: json['transfer_to'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 
 Map<String, dynamic> _$PaymentagentTransferRequestToJson(
         PaymentagentTransferRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'amount': instance.amount,
       'currency': instance.currency,
       'description': instance.description,

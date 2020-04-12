@@ -28,16 +28,16 @@ class APIBuilder extends Builder {
     'receive': 'Response',
   };
 
-  static const Map<String, String> responseCommonFields = <String, String>{
-    'echo_req': 'object',
-    'error': 'object',
-    'msg_type': 'string',
+  static const Map<String, String> requestCommonFields = <String, String>{
     'req_id': 'integer',
+    'passthrough': 'object',
   };
 
-  static const Map<String, String> requestCommonFields = <String, String>{
-    'passthrough': 'object',
+  static const Map<String, String> responseCommonFields = <String, String>{
     'req_id': 'integer',
+    'msg_type': 'string',
+    'echo_req': 'object',
+    'error': 'object',
   };
 
   @override
@@ -48,11 +48,9 @@ class APIBuilder extends Builder {
   @override
   Future<void> build(BuildStep buildStep) async {
     try {
-      log.info('Reading ${buildStep.inputId} as JSON');
       final Map<dynamic, dynamic> schemaDefinition =
           jsonDecode(await buildStep.readAsString(buildStep.inputId));
 
-      log.info('Processing schema definition from ${buildStep.inputId}');
       final JsonSchema schema = JsonSchema.createSchema(schemaDefinition);
 
       // We keep our list of property keys in original form here so we can iterate over and map them
@@ -66,21 +64,12 @@ class APIBuilder extends Builder {
       final RegExpMatch items = matches.elementAt(0);
 
       if (items.groupCount < 3) {
-        log.info(
-          'Had fewer groups than expected from $items - this is likely not a send/receive request',
-        );
-
         return;
       }
 
-      final String libraryName = items.group(1);
       final String methodName = items.group(2);
       final String schemaType = items.group(3);
       final String className = ReCase(methodName).pascalCase;
-
-      log.info(
-        'Will write $className for $methodName as $schemaType under $libraryName',
-      );
 
       final String classFullName = className + schemaTypeMap[schemaType];
       final String fileName = '${methodName}_$schemaType';
@@ -126,7 +115,7 @@ class APIBuilder extends Builder {
             class $classFullName extends ${schemaType == 'send' ? 'Request' : 'Response'} {
               /// Initialize $classFullName
               $classFullName({
-                  ${_getConstructorParameters(properties, schema, schemaType, methodName)},
+                  ${_getConstructorParameters(methodName, schema, schemaType, properties)},
                   ${_getSuperTypeNameParameters(schemaType)},
                 }): super(${_getSuperCallParameters(schemaType)},);
               
@@ -134,148 +123,177 @@ class APIBuilder extends Builder {
               factory $classFullName.fromJson(Map<String, dynamic> json) => _\$${classFullName}FromJson(json);
               
               // Properties
-              ${_getProperties(properties, schema, buildStep)}
+              ${_getProperties(buildStep, schema, properties)}
 
               /// Converts to JSON
               @override
               Map<String, dynamic> toJson() => _\$${classFullName}ToJson(this);
+
+              /// Creates copy of instance with given parameters
+              @override
+              $classFullName copyWith(
+                ${_getCopyWithMethod(buildStep, schema, schemaType, classFullName, properties)}
+              );
             }
           ''',
         ),
       );
-    } on Exception catch (e, stack) {
-      log
-        ..severe('Failed to process ${buildStep.inputId} - $e')
-        ..severe('Stack trace $stack');
-
-      return;
+    } on Exception catch (e) {
+      log.severe('Failed to process ${buildStep.inputId} - $e');
     }
   }
 
   String _getSuperTypeNameParameters(String schemaType) {
-    String superTypeNameParameters = '';
+    final Map<String, String> commonFields =
+        schemaType == 'send' ? requestCommonFields : responseCommonFields;
 
-    if (schemaType == 'send') {
-      superTypeNameParameters = requestCommonFields.keys
-          .map((String key) =>
-              '${typeMap[requestCommonFields[key]]} ${ReCase(key).camelCase}')
-          .join(', ');
-    } else {
-      superTypeNameParameters = responseCommonFields.keys
-          .map((String key) =>
-              '${typeMap[responseCommonFields[key]]} ${ReCase(key).camelCase}')
-          .join(', ');
-    }
-
-    return superTypeNameParameters;
+    return commonFields.keys
+        .map((String key) =>
+            '${typeMap[commonFields[key]]} ${ReCase(key).camelCase}')
+        .join(', ');
   }
 
   String _getSuperCallParameters(String schemaType) {
-    String superCallParameters = '';
+    final Map<String, String> commonFields =
+        schemaType == 'send' ? requestCommonFields : responseCommonFields;
 
-    if (schemaType == 'send') {
-      superCallParameters = requestCommonFields.keys
-          .map((String key) =>
-              '${ReCase(key).camelCase}: ${ReCase(key).camelCase}')
-          .join(', ');
-    } else {
-      superCallParameters = responseCommonFields.keys
-          .map((String key) =>
-              '${ReCase(key).camelCase}: ${ReCase(key).camelCase}')
-          .join(', ');
-    }
-
-    return superCallParameters;
+    return commonFields.keys.map(
+      (String key) {
+        final String parameterName = ReCase(key).camelCase;
+        return '$parameterName: $parameterName';
+      },
+    ).join(', ');
   }
 
   String _getConstructorParameters(
-    List<String> properties,
+    String methodName,
     JsonSchema schema,
     String schemaType,
-    String methodName,
-  ) {
-    // Allow constructor parameters as well
-    final String constructorParameters = properties
-        .where((String key) =>
-            !requestCommonFields.containsKey(key) &&
-            !responseCommonFields.containsKey(key))
-        .map(
-      (String key) {
-        final JsonSchema prop = schema.properties[key];
+    List<String> properties,
+  ) =>
+      properties
+          .where((String key) => !(requestCommonFields.containsKey(key) ||
+              responseCommonFields.containsKey(key)))
+          .map(
+        (String key) {
+          final JsonSchema property = schema.properties[key];
 
-        if (prop.typeList?.isNotEmpty ?? false) {
-          // Set method default value to 1
-          if (schemaType == 'send' &&
-              key == methodName &&
-              (prop.type?.toString() ?? 'string') == 'integer') {
-            return 'this.${ReCase(key).camelCase} = 1';
+          if (property.typeList?.isNotEmpty ?? false) {
+            // Set method default value to 1
+            if (schemaType == 'send' &&
+                key == methodName &&
+                (property.type?.toString() ?? 'string') == 'integer') {
+              return 'this.${ReCase(key).camelCase} = 1';
+            }
           }
+
+          return 'this.${ReCase(key).camelCase}';
+        },
+      ).join(', ');
+
+  String _getPropertyType(
+    BuildStep buildStep,
+    JsonSchema property,
+  ) {
+    if (property.typeList?.isNotEmpty ?? false) {
+      if (property.oneOf.isNotEmpty) {
+        return 'dynamic';
+      } else {
+        final String schemaType = property.type?.toString() ?? 'string';
+
+        if (schemaType == 'array') {
+          // Some types aren't specified - forget_all for example
+          final String itemType = property.items?.type?.toString() ?? 'string';
+
+          return 'List<${typeMap[itemType]}>';
+        } else {
+          return typeMap[schemaType] ?? 'String';
         }
-
-        return 'this.${ReCase(key).camelCase}';
-      },
-    ).join(', ');
-
-    return constructorParameters;
+      }
+    } else {
+      return 'String';
+    }
   }
 
   String _getProperties(
-    List<String> properties,
-    JsonSchema schema,
     BuildStep buildStep,
+    JsonSchema schema,
+    List<String> properties,
+  ) =>
+      properties
+          .where((String key) => !(requestCommonFields.containsKey(key) ||
+              responseCommonFields.containsKey(key)))
+          .map(
+        (String key) {
+          final String name = ReCase(key).camelCase;
+          final JsonSchema property = schema.properties[key];
+          final String type = _getPropertyType(buildStep, property);
+
+          return '''/// ${property.description.replaceAll('\n', '\n/// ')}
+                    final ${type ?? "unknown"} ${name ?? "unknown"};
+                  ''';
+        },
+      ).join('\n');
+
+  String _getCopyWithMethod(
+    BuildStep buildStep,
+    JsonSchema schema,
+    String schemaType,
+    String classFullName,
+    List<String> properties,
   ) {
-    // Instead of trying anything too fancy here, we just provide a simple conversion from original
-    // JSON schema name - which is snake_cased - to something more Dart-suitable, and apply type
-    // mapping via "it's a string unless we have a better guess" heuristic.
-    final String attributes = properties
-        .where((String key) =>
-            !requestCommonFields.containsKey(key) &&
-            !responseCommonFields.containsKey(key))
-        .map(
-      (String key) {
-        final String name = ReCase(key).camelCase;
-        final JsonSchema property = schema.properties[key];
+    final StringBuffer result = StringBuffer('{')
+      ..write(
+        properties
+            .where((String key) => !(requestCommonFields.containsKey(key) ||
+                responseCommonFields.containsKey(key)))
+            .map(
+          (String key) {
+            final String name = ReCase(key).camelCase;
+            final JsonSchema property = schema.properties[key];
 
-        String type;
-        // Currently we don't handle multiple types, could
-        // treat those as `dynamic` but so far we don't have
-        // enough of them to care too much
-        if (property.typeList?.isNotEmpty ?? false) {
-          // The `.type` values are objects, not strings,
-          // which leads to some confusing results when you
-          // try to compare them as strings or use them as
-          // map lookups... so we extract them out to separate
-          // variables instead.
-          if (property.oneOf.isNotEmpty) {
-            type = 'dynamic';
-          } else {
-            final String schemaType = property.type?.toString() ?? 'string';
+            final String type = _getPropertyType(buildStep, property);
 
-            if (schemaType == 'array') {
-              // Some types aren't specified - forget_all for example
-              final String itemType =
-                  property.items?.type?.toString() ?? 'string';
+            return '$type $name';
+          },
+        ).join(', '),
+      )
+      ..write(', ${_getCommonProperties(schemaType)}, }) => $classFullName (')
+      ..write(
+        properties
+            .where((String key) => !(requestCommonFields.containsKey(key) ||
+                responseCommonFields.containsKey(key)))
+            .map(
+          (String key) {
+            final String name = ReCase(key).camelCase;
 
-              type = 'List<${typeMap[itemType]}>';
-            } else {
-              type = typeMap[schemaType] ?? 'String';
-            }
-          }
-        } else {
-          log.warning(
-            'The property $key on ${buildStep.inputId} does not appear to have a type: defaulting to string',
-          );
+            return '$name: $name ?? this.$name';
+          },
+        ).join(', '),
+      )
+      ..write(', ${_getCommonAssignments(schemaType)},');
 
-          type = 'String';
-        }
+    return result.toString();
+  }
 
-        return '''/// ${property.description.replaceAll('\n', '\n/// ')}
-                final ${type ?? "unknown"} ${name ?? "unknown"};
-              ''';
-      },
-    ).join('\n');
+  String _getCommonProperties(String schemaType) {
+    final Map<String, String> commonFields =
+        schemaType == 'send' ? requestCommonFields : responseCommonFields;
 
-    return attributes;
+    return commonFields.keys
+        .map((String key) =>
+            '${typeMap[commonFields[key]]} ${ReCase(key).camelCase}')
+        .join(', ');
+  }
+
+  String _getCommonAssignments(String schemaType) {
+    final Map<String, String> commonFields =
+        schemaType == 'send' ? requestCommonFields : responseCommonFields;
+
+    return commonFields.keys.map((String key) {
+      final String propertyName = ReCase(key).camelCase;
+      return '$propertyName: $propertyName ?? this.$propertyName';
+    }).join(', ');
   }
 }
 

@@ -12,11 +12,11 @@ class P2pChatCreateRequest extends Request {
   P2pChatCreateRequest({
     this.orderId,
     this.p2pChatCreate = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,19 @@ class P2pChatCreateRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pChatCreateRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  P2pChatCreateRequest copyWith({
+    String orderId,
+    int p2pChatCreate,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      P2pChatCreateRequest(
+        orderId: orderId ?? this.orderId,
+        p2pChatCreate: p2pChatCreate ?? this.p2pChatCreate,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

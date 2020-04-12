@@ -32,16 +32,16 @@ NewAccountRealRequest _$NewAccountRealRequestFromJson(
     secretQuestion: json['secret_question'] as String,
     taxIdentificationNumber: json['tax_identification_number'] as String,
     taxResidence: json['tax_residence'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 
 Map<String, dynamic> _$NewAccountRealRequestToJson(
         NewAccountRealRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'account_opening_reason': instance.accountOpeningReason,
       'account_turnover': instance.accountTurnover,
       'address_city': instance.addressCity,

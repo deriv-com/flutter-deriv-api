@@ -20,8 +20,8 @@ NotificationEventRequest _$NotificationEventRequestFromJson(
 Map<String, dynamic> _$NotificationEventRequestToJson(
         NotificationEventRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'category': instance.category,
       'event': instance.event,
       'notification_event': instance.notificationEvent,

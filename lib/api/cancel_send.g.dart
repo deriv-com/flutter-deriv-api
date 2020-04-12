@@ -9,14 +9,14 @@ part of 'cancel_send.dart';
 CancelRequest _$CancelRequestFromJson(Map<String, dynamic> json) {
   return CancelRequest(
     cancel: json['cancel'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 
 Map<String, dynamic> _$CancelRequestToJson(CancelRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'cancel': instance.cancel,
     };

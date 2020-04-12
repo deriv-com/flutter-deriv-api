@@ -11,15 +11,15 @@ class Mt5GetSettingsResponse extends Response {
   /// Initialize Mt5GetSettingsResponse
   Mt5GetSettingsResponse({
     this.mt5GetSettings,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class Mt5GetSettingsResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5GetSettingsResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  Mt5GetSettingsResponse copyWith({
+    Map<String, dynamic> mt5GetSettings,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      Mt5GetSettingsResponse(
+        mt5GetSettings: mt5GetSettings ?? this.mt5GetSettings,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

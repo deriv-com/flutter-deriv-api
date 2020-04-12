@@ -12,15 +12,15 @@ BuyRequest _$BuyRequestFromJson(Map<String, dynamic> json) {
     parameters: json['parameters'] as Map<String, dynamic>,
     price: json['price'] as num,
     subscribe: json['subscribe'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 
 Map<String, dynamic> _$BuyRequestToJson(BuyRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'buy': instance.buy,
       'parameters': instance.parameters,
       'price': instance.price,

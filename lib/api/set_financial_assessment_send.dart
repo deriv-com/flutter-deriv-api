@@ -28,11 +28,11 @@ class SetFinancialAssessmentRequest extends Request {
     this.otherInstrumentsTradingFrequency,
     this.setFinancialAssessment = 1,
     this.sourceOfWealth,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -97,4 +97,58 @@ class SetFinancialAssessmentRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$SetFinancialAssessmentRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  SetFinancialAssessmentRequest copyWith({
+    String accountTurnover,
+    String binaryOptionsTradingExperience,
+    String binaryOptionsTradingFrequency,
+    String cfdTradingExperience,
+    String cfdTradingFrequency,
+    String educationLevel,
+    String employmentIndustry,
+    String employmentStatus,
+    String estimatedWorth,
+    String forexTradingExperience,
+    String forexTradingFrequency,
+    String incomeSource,
+    String netIncome,
+    String occupation,
+    String otherInstrumentsTradingExperience,
+    String otherInstrumentsTradingFrequency,
+    int setFinancialAssessment,
+    String sourceOfWealth,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      SetFinancialAssessmentRequest(
+        accountTurnover: accountTurnover ?? this.accountTurnover,
+        binaryOptionsTradingExperience: binaryOptionsTradingExperience ??
+            this.binaryOptionsTradingExperience,
+        binaryOptionsTradingFrequency:
+            binaryOptionsTradingFrequency ?? this.binaryOptionsTradingFrequency,
+        cfdTradingExperience: cfdTradingExperience ?? this.cfdTradingExperience,
+        cfdTradingFrequency: cfdTradingFrequency ?? this.cfdTradingFrequency,
+        educationLevel: educationLevel ?? this.educationLevel,
+        employmentIndustry: employmentIndustry ?? this.employmentIndustry,
+        employmentStatus: employmentStatus ?? this.employmentStatus,
+        estimatedWorth: estimatedWorth ?? this.estimatedWorth,
+        forexTradingExperience:
+            forexTradingExperience ?? this.forexTradingExperience,
+        forexTradingFrequency:
+            forexTradingFrequency ?? this.forexTradingFrequency,
+        incomeSource: incomeSource ?? this.incomeSource,
+        netIncome: netIncome ?? this.netIncome,
+        occupation: occupation ?? this.occupation,
+        otherInstrumentsTradingExperience: otherInstrumentsTradingExperience ??
+            this.otherInstrumentsTradingExperience,
+        otherInstrumentsTradingFrequency: otherInstrumentsTradingFrequency ??
+            this.otherInstrumentsTradingFrequency,
+        setFinancialAssessment:
+            setFinancialAssessment ?? this.setFinancialAssessment,
+        sourceOfWealth: sourceOfWealth ?? this.sourceOfWealth,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

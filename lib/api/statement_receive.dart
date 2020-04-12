@@ -11,15 +11,15 @@ class StatementResponse extends Response {
   /// Initialize StatementResponse
   StatementResponse({
     this.statement,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class StatementResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$StatementResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  StatementResponse copyWith({
+    Map<String, dynamic> statement,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      StatementResponse(
+        statement: statement ?? this.statement,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

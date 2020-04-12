@@ -13,11 +13,11 @@ class ActiveSymbolsRequest extends Request {
     this.activeSymbols,
     this.landingCompany,
     this.productType,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -37,4 +37,21 @@ class ActiveSymbolsRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ActiveSymbolsRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ActiveSymbolsRequest copyWith({
+    String activeSymbols,
+    String landingCompany,
+    String productType,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      ActiveSymbolsRequest(
+        activeSymbols: activeSymbols ?? this.activeSymbols,
+        landingCompany: landingCompany ?? this.landingCompany,
+        productType: productType ?? this.productType,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

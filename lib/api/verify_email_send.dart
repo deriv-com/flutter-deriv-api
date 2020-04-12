@@ -13,11 +13,11 @@ class VerifyEmailRequest extends Request {
     this.type,
     this.urlParameters,
     this.verifyEmail,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -37,4 +37,21 @@ class VerifyEmailRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$VerifyEmailRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  VerifyEmailRequest copyWith({
+    String type,
+    Map<String, dynamic> urlParameters,
+    String verifyEmail,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      VerifyEmailRequest(
+        type: type ?? this.type,
+        urlParameters: urlParameters ?? this.urlParameters,
+        verifyEmail: verifyEmail ?? this.verifyEmail,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

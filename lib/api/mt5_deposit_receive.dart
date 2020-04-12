@@ -12,15 +12,15 @@ class Mt5DepositResponse extends Response {
   Mt5DepositResponse({
     this.binaryTransactionId,
     this.mt5Deposit,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -37,4 +37,23 @@ class Mt5DepositResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5DepositResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  Mt5DepositResponse copyWith({
+    int binaryTransactionId,
+    int mt5Deposit,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      Mt5DepositResponse(
+        binaryTransactionId: binaryTransactionId ?? this.binaryTransactionId,
+        mt5Deposit: mt5Deposit ?? this.mt5Deposit,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

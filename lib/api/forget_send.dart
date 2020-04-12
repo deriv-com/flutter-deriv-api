@@ -11,11 +11,11 @@ class ForgetRequest extends Request {
   /// Initialize ForgetRequest
   ForgetRequest({
     this.forget,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class ForgetRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ForgetRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ForgetRequest copyWith({
+    String forget,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      ForgetRequest(
+        forget: forget ?? this.forget,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

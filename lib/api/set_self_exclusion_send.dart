@@ -24,11 +24,11 @@ class SetSelfExclusionRequest extends Request {
     this.sessionDurationLimit,
     this.setSelfExclusion = 1,
     this.timeoutUntil,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -81,4 +81,43 @@ class SetSelfExclusionRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$SetSelfExclusionRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  SetSelfExclusionRequest copyWith({
+    String excludeUntil,
+    String max30dayLosses,
+    String max30dayTurnover,
+    String max7dayLosses,
+    String max7dayTurnover,
+    String maxBalance,
+    String maxDeposit,
+    String maxDepositEndDate,
+    String maxLosses,
+    String maxOpenBets,
+    String maxTurnover,
+    String sessionDurationLimit,
+    int setSelfExclusion,
+    String timeoutUntil,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      SetSelfExclusionRequest(
+        excludeUntil: excludeUntil ?? this.excludeUntil,
+        max30dayLosses: max30dayLosses ?? this.max30dayLosses,
+        max30dayTurnover: max30dayTurnover ?? this.max30dayTurnover,
+        max7dayLosses: max7dayLosses ?? this.max7dayLosses,
+        max7dayTurnover: max7dayTurnover ?? this.max7dayTurnover,
+        maxBalance: maxBalance ?? this.maxBalance,
+        maxDeposit: maxDeposit ?? this.maxDeposit,
+        maxDepositEndDate: maxDepositEndDate ?? this.maxDepositEndDate,
+        maxLosses: maxLosses ?? this.maxLosses,
+        maxOpenBets: maxOpenBets ?? this.maxOpenBets,
+        maxTurnover: maxTurnover ?? this.maxTurnover,
+        sessionDurationLimit: sessionDurationLimit ?? this.sessionDurationLimit,
+        setSelfExclusion: setSelfExclusion ?? this.setSelfExclusion,
+        timeoutUntil: timeoutUntil ?? this.timeoutUntil,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

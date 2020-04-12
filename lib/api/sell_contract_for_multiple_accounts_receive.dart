@@ -11,15 +11,15 @@ class SellContractForMultipleAccountsResponse extends Response {
   /// Initialize SellContractForMultipleAccountsResponse
   SellContractForMultipleAccountsResponse({
     this.sellContractForMultipleAccounts,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -35,4 +35,22 @@ class SellContractForMultipleAccountsResponse extends Response {
   @override
   Map<String, dynamic> toJson() =>
       _$SellContractForMultipleAccountsResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  SellContractForMultipleAccountsResponse copyWith({
+    Map<String, dynamic> sellContractForMultipleAccounts,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      SellContractForMultipleAccountsResponse(
+        sellContractForMultipleAccounts: sellContractForMultipleAccounts ??
+            this.sellContractForMultipleAccounts,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

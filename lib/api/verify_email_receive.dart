@@ -11,15 +11,15 @@ class VerifyEmailResponse extends Response {
   /// Initialize VerifyEmailResponse
   VerifyEmailResponse({
     this.verifyEmail,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class VerifyEmailResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$VerifyEmailResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  VerifyEmailResponse copyWith({
+    int verifyEmail,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      VerifyEmailResponse(
+        verifyEmail: verifyEmail ?? this.verifyEmail,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

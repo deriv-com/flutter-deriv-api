@@ -11,15 +11,15 @@ class ActiveSymbolsResponse extends Response {
   /// Initialize ActiveSymbolsResponse
   ActiveSymbolsResponse({
     this.activeSymbols,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class ActiveSymbolsResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ActiveSymbolsResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ActiveSymbolsResponse copyWith({
+    List<Map<String, dynamic>> activeSymbols,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      ActiveSymbolsResponse(
+        activeSymbols: activeSymbols ?? this.activeSymbols,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

@@ -11,15 +11,15 @@ class ApiTokenResponse extends Response {
   /// Initialize ApiTokenResponse
   ApiTokenResponse({
     this.apiToken,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class ApiTokenResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ApiTokenResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ApiTokenResponse copyWith({
+    Map<String, dynamic> apiToken,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      ApiTokenResponse(
+        apiToken: apiToken ?? this.apiToken,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

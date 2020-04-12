@@ -13,15 +13,15 @@ class PaymentagentWithdrawResponse extends Response {
     this.paymentagentName,
     this.paymentagentWithdraw,
     this.transactionId,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -41,4 +41,25 @@ class PaymentagentWithdrawResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$PaymentagentWithdrawResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  PaymentagentWithdrawResponse copyWith({
+    String paymentagentName,
+    int paymentagentWithdraw,
+    int transactionId,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      PaymentagentWithdrawResponse(
+        paymentagentName: paymentagentName ?? this.paymentagentName,
+        paymentagentWithdraw: paymentagentWithdraw ?? this.paymentagentWithdraw,
+        transactionId: transactionId ?? this.transactionId,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

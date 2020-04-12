@@ -11,11 +11,11 @@ class TopupVirtualRequest extends Request {
   /// Initialize TopupVirtualRequest
   TopupVirtualRequest({
     this.topupVirtual = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class TopupVirtualRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TopupVirtualRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  TopupVirtualRequest copyWith({
+    int topupVirtual,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      TopupVirtualRequest(
+        topupVirtual: topupVirtual ?? this.topupVirtual,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

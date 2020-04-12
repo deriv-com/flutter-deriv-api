@@ -11,15 +11,15 @@ class SetSelfExclusionResponse extends Response {
   /// Initialize SetSelfExclusionResponse
   SetSelfExclusionResponse({
     this.setSelfExclusion,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class SetSelfExclusionResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$SetSelfExclusionResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  SetSelfExclusionResponse copyWith({
+    int setSelfExclusion,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      SetSelfExclusionResponse(
+        setSelfExclusion: setSelfExclusion ?? this.setSelfExclusion,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

@@ -14,11 +14,11 @@ class BuyRequest extends Request {
     this.parameters,
     this.price,
     this.subscribe,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -41,4 +41,23 @@ class BuyRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$BuyRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  BuyRequest copyWith({
+    String buy,
+    Map<String, dynamic> parameters,
+    num price,
+    int subscribe,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      BuyRequest(
+        buy: buy ?? this.buy,
+        parameters: parameters ?? this.parameters,
+        price: price ?? this.price,
+        subscribe: subscribe ?? this.subscribe,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

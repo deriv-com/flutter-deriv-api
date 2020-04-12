@@ -17,11 +17,11 @@ class ProfitTableRequest extends Request {
     this.offset,
     this.profitTable = 1,
     this.sort,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -53,4 +53,29 @@ class ProfitTableRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ProfitTableRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ProfitTableRequest copyWith({
+    String dateFrom,
+    String dateTo,
+    int description,
+    num limit,
+    num offset,
+    int profitTable,
+    String sort,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      ProfitTableRequest(
+        dateFrom: dateFrom ?? this.dateFrom,
+        dateTo: dateTo ?? this.dateTo,
+        description: description ?? this.description,
+        limit: limit ?? this.limit,
+        offset: offset ?? this.offset,
+        profitTable: profitTable ?? this.profitTable,
+        sort: sort ?? this.sort,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

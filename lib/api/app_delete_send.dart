@@ -11,11 +11,11 @@ class AppDeleteRequest extends Request {
   /// Initialize AppDeleteRequest
   AppDeleteRequest({
     this.appDelete = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class AppDeleteRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AppDeleteRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  AppDeleteRequest copyWith({
+    int appDelete,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      AppDeleteRequest(
+        appDelete: appDelete ?? this.appDelete,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

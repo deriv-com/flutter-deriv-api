@@ -11,11 +11,11 @@ class TradingTimesRequest extends Request {
   /// Initialize TradingTimesRequest
   TradingTimesRequest({
     this.tradingTimes,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class TradingTimesRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TradingTimesRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  TradingTimesRequest copyWith({
+    String tradingTimes,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      TradingTimesRequest(
+        tradingTimes: tradingTimes ?? this.tradingTimes,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

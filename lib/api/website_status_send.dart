@@ -12,11 +12,11 @@ class WebsiteStatusRequest extends Request {
   WebsiteStatusRequest({
     this.subscribe,
     this.websiteStatus = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,19 @@ class WebsiteStatusRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$WebsiteStatusRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  WebsiteStatusRequest copyWith({
+    int subscribe,
+    int websiteStatus,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      WebsiteStatusRequest(
+        subscribe: subscribe ?? this.subscribe,
+        websiteStatus: websiteStatus ?? this.websiteStatus,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

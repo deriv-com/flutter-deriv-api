@@ -11,11 +11,11 @@ class PingRequest extends Request {
   /// Initialize PingRequest
   PingRequest({
     this.ping = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class PingRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$PingRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  PingRequest copyWith({
+    int ping,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      PingRequest(
+        ping: ping ?? this.ping,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

@@ -11,11 +11,11 @@ class Mt5LoginListRequest extends Request {
   /// Initialize Mt5LoginListRequest
   Mt5LoginListRequest({
     this.mt5LoginList = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class Mt5LoginListRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5LoginListRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  Mt5LoginListRequest copyWith({
+    int mt5LoginList,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      Mt5LoginListRequest(
+        mt5LoginList: mt5LoginList ?? this.mt5LoginList,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

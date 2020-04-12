@@ -11,15 +11,15 @@ class GetSettingsResponse extends Response {
   /// Initialize GetSettingsResponse
   GetSettingsResponse({
     this.getSettings,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class GetSettingsResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$GetSettingsResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  GetSettingsResponse copyWith({
+    Map<String, dynamic> getSettings,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      GetSettingsResponse(
+        getSettings: getSettings ?? this.getSettings,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

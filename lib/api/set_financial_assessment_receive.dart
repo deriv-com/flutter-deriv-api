@@ -11,15 +11,15 @@ class SetFinancialAssessmentResponse extends Response {
   /// Initialize SetFinancialAssessmentResponse
   SetFinancialAssessmentResponse({
     this.setFinancialAssessment,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,22 @@ class SetFinancialAssessmentResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$SetFinancialAssessmentResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  SetFinancialAssessmentResponse copyWith({
+    Map<String, dynamic> setFinancialAssessment,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      SetFinancialAssessmentResponse(
+        setFinancialAssessment:
+            setFinancialAssessment ?? this.setFinancialAssessment,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

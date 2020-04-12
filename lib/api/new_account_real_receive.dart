@@ -11,15 +11,15 @@ class NewAccountRealResponse extends Response {
   /// Initialize NewAccountRealResponse
   NewAccountRealResponse({
     this.newAccountReal,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class NewAccountRealResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$NewAccountRealResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  NewAccountRealResponse copyWith({
+    Map<String, dynamic> newAccountReal,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      NewAccountRealResponse(
+        newAccountReal: newAccountReal ?? this.newAccountReal,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

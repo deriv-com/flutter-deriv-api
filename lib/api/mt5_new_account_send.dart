@@ -27,11 +27,11 @@ class Mt5NewAccountRequest extends Request {
     this.phonePassword,
     this.state,
     this.zipCode,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -93,4 +93,49 @@ class Mt5NewAccountRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5NewAccountRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  Mt5NewAccountRequest copyWith({
+    String accountType,
+    String address,
+    String city,
+    String company,
+    String country,
+    int dryRun,
+    String email,
+    String investPassword,
+    num leverage,
+    String mainPassword,
+    String mt5AccountType,
+    int mt5NewAccount,
+    String name,
+    String phone,
+    String phonePassword,
+    String state,
+    String zipCode,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      Mt5NewAccountRequest(
+        accountType: accountType ?? this.accountType,
+        address: address ?? this.address,
+        city: city ?? this.city,
+        company: company ?? this.company,
+        country: country ?? this.country,
+        dryRun: dryRun ?? this.dryRun,
+        email: email ?? this.email,
+        investPassword: investPassword ?? this.investPassword,
+        leverage: leverage ?? this.leverage,
+        mainPassword: mainPassword ?? this.mainPassword,
+        mt5AccountType: mt5AccountType ?? this.mt5AccountType,
+        mt5NewAccount: mt5NewAccount ?? this.mt5NewAccount,
+        name: name ?? this.name,
+        phone: phone ?? this.phone,
+        phonePassword: phonePassword ?? this.phonePassword,
+        state: state ?? this.state,
+        zipCode: zipCode ?? this.zipCode,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

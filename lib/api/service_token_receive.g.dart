@@ -19,9 +19,9 @@ ServiceTokenResponse _$ServiceTokenResponseFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$ServiceTokenResponseToJson(
         ServiceTokenResponse instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'msg_type': instance.msgType,
       'echo_req': instance.echoReq,
       'error': instance.error,
-      'msg_type': instance.msgType,
-      'req_id': instance.reqId,
       'service_token': instance.serviceToken,
     };

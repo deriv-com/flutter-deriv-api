@@ -11,15 +11,15 @@ class LandingCompanyDetailsResponse extends Response {
   /// Initialize LandingCompanyDetailsResponse
   LandingCompanyDetailsResponse({
     this.landingCompanyDetails,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,22 @@ class LandingCompanyDetailsResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$LandingCompanyDetailsResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  LandingCompanyDetailsResponse copyWith({
+    Map<String, dynamic> landingCompanyDetails,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      LandingCompanyDetailsResponse(
+        landingCompanyDetails:
+            landingCompanyDetails ?? this.landingCompanyDetails,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

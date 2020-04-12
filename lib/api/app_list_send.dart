@@ -11,11 +11,11 @@ class AppListRequest extends Request {
   /// Initialize AppListRequest
   AppListRequest({
     this.appList = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class AppListRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AppListRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  AppListRequest copyWith({
+    int appList,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      AppListRequest(
+        appList: appList ?? this.appList,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

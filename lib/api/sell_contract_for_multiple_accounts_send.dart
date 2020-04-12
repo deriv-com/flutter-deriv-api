@@ -14,11 +14,11 @@ class SellContractForMultipleAccountsRequest extends Request {
     this.sellContractForMultipleAccounts = 1,
     this.shortcode,
     this.tokens,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -43,4 +43,24 @@ class SellContractForMultipleAccountsRequest extends Request {
   @override
   Map<String, dynamic> toJson() =>
       _$SellContractForMultipleAccountsRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  SellContractForMultipleAccountsRequest copyWith({
+    num price,
+    int sellContractForMultipleAccounts,
+    String shortcode,
+    List<String> tokens,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      SellContractForMultipleAccountsRequest(
+        price: price ?? this.price,
+        sellContractForMultipleAccounts: sellContractForMultipleAccounts ??
+            this.sellContractForMultipleAccounts,
+        shortcode: shortcode ?? this.shortcode,
+        tokens: tokens ?? this.tokens,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

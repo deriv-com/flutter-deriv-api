@@ -16,11 +16,11 @@ class PaymentagentTransferRequest extends Request {
     this.dryRun,
     this.paymentagentTransfer = 1,
     this.transferTo,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -49,4 +49,27 @@ class PaymentagentTransferRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$PaymentagentTransferRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  PaymentagentTransferRequest copyWith({
+    num amount,
+    String currency,
+    String description,
+    int dryRun,
+    int paymentagentTransfer,
+    String transferTo,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      PaymentagentTransferRequest(
+        amount: amount ?? this.amount,
+        currency: currency ?? this.currency,
+        description: description ?? this.description,
+        dryRun: dryRun ?? this.dryRun,
+        paymentagentTransfer: paymentagentTransfer ?? this.paymentagentTransfer,
+        transferTo: transferTo ?? this.transferTo,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

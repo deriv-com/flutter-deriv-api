@@ -11,15 +11,15 @@ class AppRegisterResponse extends Response {
   /// Initialize AppRegisterResponse
   AppRegisterResponse({
     this.appRegister,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class AppRegisterResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AppRegisterResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  AppRegisterResponse copyWith({
+    Map<String, dynamic> appRegister,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      AppRegisterResponse(
+        appRegister: appRegister ?? this.appRegister,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

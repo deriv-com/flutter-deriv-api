@@ -11,15 +11,15 @@ class ContractUpdateResponse extends Response {
   /// Initialize ContractUpdateResponse
   ContractUpdateResponse({
     this.contractUpdate,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class ContractUpdateResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ContractUpdateResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ContractUpdateResponse copyWith({
+    Map<String, dynamic> contractUpdate,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      ContractUpdateResponse(
+        contractUpdate: contractUpdate ?? this.contractUpdate,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

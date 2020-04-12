@@ -15,11 +15,11 @@ class ApiTokenRequest extends Request {
     this.newToken,
     this.newTokenScopes,
     this.validForCurrentIpOnly,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -45,4 +45,26 @@ class ApiTokenRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ApiTokenRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ApiTokenRequest copyWith({
+    int apiToken,
+    String deleteToken,
+    String newToken,
+    List<String> newTokenScopes,
+    int validForCurrentIpOnly,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      ApiTokenRequest(
+        apiToken: apiToken ?? this.apiToken,
+        deleteToken: deleteToken ?? this.deleteToken,
+        newToken: newToken ?? this.newToken,
+        newTokenScopes: newTokenScopes ?? this.newTokenScopes,
+        validForCurrentIpOnly:
+            validForCurrentIpOnly ?? this.validForCurrentIpOnly,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

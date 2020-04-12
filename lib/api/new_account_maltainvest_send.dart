@@ -49,11 +49,11 @@ class NewAccountMaltainvestRequest extends Request {
     this.sourceOfWealth,
     this.taxIdentificationNumber,
     this.taxResidence,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -181,4 +181,101 @@ class NewAccountMaltainvestRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$NewAccountMaltainvestRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  NewAccountMaltainvestRequest copyWith({
+    int acceptRisk,
+    String accountOpeningReason,
+    String accountTurnover,
+    String addressCity,
+    String addressLine1,
+    String addressLine2,
+    String addressPostcode,
+    String addressState,
+    String affiliateToken,
+    String binaryOptionsTradingExperience,
+    String binaryOptionsTradingFrequency,
+    String cfdTradingExperience,
+    String cfdTradingFrequency,
+    String citizen,
+    String clientType,
+    String dateOfBirth,
+    String educationLevel,
+    String employmentIndustry,
+    String employmentStatus,
+    String estimatedWorth,
+    String firstName,
+    String forexTradingExperience,
+    String forexTradingFrequency,
+    String incomeSource,
+    String lastName,
+    String netIncome,
+    int newAccountMaltainvest,
+    String occupation,
+    String otherInstrumentsTradingExperience,
+    String otherInstrumentsTradingFrequency,
+    String phone,
+    String placeOfBirth,
+    String residence,
+    String salutation,
+    String secretAnswer,
+    String secretQuestion,
+    String sourceOfWealth,
+    String taxIdentificationNumber,
+    String taxResidence,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      NewAccountMaltainvestRequest(
+        acceptRisk: acceptRisk ?? this.acceptRisk,
+        accountOpeningReason: accountOpeningReason ?? this.accountOpeningReason,
+        accountTurnover: accountTurnover ?? this.accountTurnover,
+        addressCity: addressCity ?? this.addressCity,
+        addressLine1: addressLine1 ?? this.addressLine1,
+        addressLine2: addressLine2 ?? this.addressLine2,
+        addressPostcode: addressPostcode ?? this.addressPostcode,
+        addressState: addressState ?? this.addressState,
+        affiliateToken: affiliateToken ?? this.affiliateToken,
+        binaryOptionsTradingExperience: binaryOptionsTradingExperience ??
+            this.binaryOptionsTradingExperience,
+        binaryOptionsTradingFrequency:
+            binaryOptionsTradingFrequency ?? this.binaryOptionsTradingFrequency,
+        cfdTradingExperience: cfdTradingExperience ?? this.cfdTradingExperience,
+        cfdTradingFrequency: cfdTradingFrequency ?? this.cfdTradingFrequency,
+        citizen: citizen ?? this.citizen,
+        clientType: clientType ?? this.clientType,
+        dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+        educationLevel: educationLevel ?? this.educationLevel,
+        employmentIndustry: employmentIndustry ?? this.employmentIndustry,
+        employmentStatus: employmentStatus ?? this.employmentStatus,
+        estimatedWorth: estimatedWorth ?? this.estimatedWorth,
+        firstName: firstName ?? this.firstName,
+        forexTradingExperience:
+            forexTradingExperience ?? this.forexTradingExperience,
+        forexTradingFrequency:
+            forexTradingFrequency ?? this.forexTradingFrequency,
+        incomeSource: incomeSource ?? this.incomeSource,
+        lastName: lastName ?? this.lastName,
+        netIncome: netIncome ?? this.netIncome,
+        newAccountMaltainvest:
+            newAccountMaltainvest ?? this.newAccountMaltainvest,
+        occupation: occupation ?? this.occupation,
+        otherInstrumentsTradingExperience: otherInstrumentsTradingExperience ??
+            this.otherInstrumentsTradingExperience,
+        otherInstrumentsTradingFrequency: otherInstrumentsTradingFrequency ??
+            this.otherInstrumentsTradingFrequency,
+        phone: phone ?? this.phone,
+        placeOfBirth: placeOfBirth ?? this.placeOfBirth,
+        residence: residence ?? this.residence,
+        salutation: salutation ?? this.salutation,
+        secretAnswer: secretAnswer ?? this.secretAnswer,
+        secretQuestion: secretQuestion ?? this.secretQuestion,
+        sourceOfWealth: sourceOfWealth ?? this.sourceOfWealth,
+        taxIdentificationNumber:
+            taxIdentificationNumber ?? this.taxIdentificationNumber,
+        taxResidence: taxResidence ?? this.taxResidence,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

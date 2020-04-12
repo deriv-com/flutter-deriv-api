@@ -12,15 +12,15 @@ class TransactionResponse extends Response {
   TransactionResponse({
     this.subscription,
     this.transaction,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -37,4 +37,23 @@ class TransactionResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TransactionResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  TransactionResponse copyWith({
+    Map<String, dynamic> subscription,
+    Map<String, dynamic> transaction,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      TransactionResponse(
+        subscription: subscription ?? this.subscription,
+        transaction: transaction ?? this.transaction,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }
