@@ -9,7 +9,7 @@ part 'p2p_order_confirm_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderConfirmRequest extends Request {
   /// Initialize P2pOrderConfirmRequest
-  P2pOrderConfirmRequest({
+  const P2pOrderConfirmRequest({
     this.id,
     this.p2pOrderConfirm = 1,
     int reqId,
@@ -48,4 +48,8 @@ class P2pOrderConfirmRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

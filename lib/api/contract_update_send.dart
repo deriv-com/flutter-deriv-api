@@ -9,7 +9,7 @@ part 'contract_update_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ContractUpdateRequest extends Request {
   /// Initialize ContractUpdateRequest
-  ContractUpdateRequest({
+  const ContractUpdateRequest({
     this.contractId,
     this.contractUpdate = 1,
     this.limitOrder,
@@ -54,4 +54,8 @@ class ContractUpdateRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

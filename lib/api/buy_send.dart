@@ -9,7 +9,7 @@ part 'buy_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BuyRequest extends Request {
   /// Initialize BuyRequest
-  BuyRequest({
+  const BuyRequest({
     this.buy,
     this.parameters,
     this.price,
@@ -60,4 +60,8 @@ class BuyRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -9,7 +9,7 @@ part 'statement_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class StatementRequest extends Request {
   /// Initialize StatementRequest
-  StatementRequest({
+  const StatementRequest({
     this.actionType,
     this.dateFrom,
     this.dateTo,
@@ -78,4 +78,8 @@ class StatementRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

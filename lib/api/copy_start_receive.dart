@@ -9,7 +9,7 @@ part 'copy_start_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStartResponse extends Response {
   /// Initialize CopyStartResponse
-  CopyStartResponse({
+  const CopyStartResponse({
     this.copyStart,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class CopyStartResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

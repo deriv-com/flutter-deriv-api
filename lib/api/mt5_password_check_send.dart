@@ -9,7 +9,7 @@ part 'mt5_password_check_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5PasswordCheckRequest extends Request {
   /// Initialize Mt5PasswordCheckRequest
-  Mt5PasswordCheckRequest({
+  const Mt5PasswordCheckRequest({
     this.login,
     this.mt5PasswordCheck = 1,
     this.password,
@@ -60,4 +60,8 @@ class Mt5PasswordCheckRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

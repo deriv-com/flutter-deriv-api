@@ -9,7 +9,7 @@ part 'states_list_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class StatesListRequest extends Request {
   /// Initialize StatesListRequest
-  StatesListRequest({
+  const StatesListRequest({
     this.statesList,
     int reqId,
     Map<String, dynamic> passthrough,
@@ -42,4 +42,8 @@ class StatesListRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -9,7 +9,7 @@ part 'balance_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BalanceResponse extends Response {
   /// Initialize BalanceResponse
-  BalanceResponse({
+  const BalanceResponse({
     this.balance,
     this.subscription,
     int reqId,
@@ -56,4 +56,8 @@ class BalanceResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -9,7 +9,7 @@ part 'p2p_advertiser_info_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pAdvertiserInfoResponse extends Response {
   /// Initialize P2pAdvertiserInfoResponse
-  P2pAdvertiserInfoResponse({
+  const P2pAdvertiserInfoResponse({
     this.p2pAdvertiserInfo,
     this.subscription,
     int reqId,
@@ -56,4 +56,8 @@ class P2pAdvertiserInfoResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

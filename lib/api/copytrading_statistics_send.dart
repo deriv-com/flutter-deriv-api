@@ -9,7 +9,7 @@ part 'copytrading_statistics_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopytradingStatisticsRequest extends Request {
   /// Initialize CopytradingStatisticsRequest
-  CopytradingStatisticsRequest({
+  const CopytradingStatisticsRequest({
     this.copytradingStatistics = 1,
     this.traderId,
     int reqId,
@@ -49,4 +49,8 @@ class CopytradingStatisticsRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

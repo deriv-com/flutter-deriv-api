@@ -9,7 +9,7 @@ part 'asset_index_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AssetIndexResponse extends Response {
   /// Initialize AssetIndexResponse
-  AssetIndexResponse({
+  const AssetIndexResponse({
     this.assetIndex,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class AssetIndexResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

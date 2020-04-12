@@ -9,7 +9,7 @@ part 'app_get_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppGetRequest extends Request {
   /// Initialize AppGetRequest
-  AppGetRequest({
+  const AppGetRequest({
     this.appGet = 1,
     int reqId,
     Map<String, dynamic> passthrough,
@@ -42,4 +42,8 @@ class AppGetRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

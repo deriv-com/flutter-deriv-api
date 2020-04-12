@@ -9,7 +9,7 @@ part 'landing_company_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LandingCompanyResponse extends Response {
   /// Initialize LandingCompanyResponse
-  LandingCompanyResponse({
+  const LandingCompanyResponse({
     this.landingCompany,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class LandingCompanyResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

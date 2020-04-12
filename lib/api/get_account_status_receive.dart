@@ -9,7 +9,7 @@ part 'get_account_status_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetAccountStatusResponse extends Response {
   /// Initialize GetAccountStatusResponse
-  GetAccountStatusResponse({
+  const GetAccountStatusResponse({
     this.getAccountStatus,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class GetAccountStatusResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

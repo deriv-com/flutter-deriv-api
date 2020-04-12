@@ -9,7 +9,7 @@ part 'copy_stop_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStopResponse extends Response {
   /// Initialize CopyStopResponse
-  CopyStopResponse({
+  const CopyStopResponse({
     this.copyStop,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class CopyStopResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

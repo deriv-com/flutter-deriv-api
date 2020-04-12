@@ -9,7 +9,7 @@ part 'ticks_history_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TicksHistoryRequest extends Request {
   /// Initialize TicksHistoryRequest
-  TicksHistoryRequest({
+  const TicksHistoryRequest({
     this.adjustStartTime,
     this.count,
     this.end,
@@ -86,4 +86,8 @@ class TicksHistoryRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

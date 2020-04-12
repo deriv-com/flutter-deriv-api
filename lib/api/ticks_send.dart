@@ -9,7 +9,7 @@ part 'ticks_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TicksRequest extends Request {
   /// Initialize TicksRequest
-  TicksRequest({
+  const TicksRequest({
     this.subscribe,
     this.ticks,
     int reqId,
@@ -48,4 +48,8 @@ class TicksRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

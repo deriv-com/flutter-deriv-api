@@ -9,7 +9,7 @@ part 'set_account_currency_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetAccountCurrencyRequest extends Request {
   /// Initialize SetAccountCurrencyRequest
-  SetAccountCurrencyRequest({
+  const SetAccountCurrencyRequest({
     this.setAccountCurrency,
     int reqId,
     Map<String, dynamic> passthrough,
@@ -42,4 +42,8 @@ class SetAccountCurrencyRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

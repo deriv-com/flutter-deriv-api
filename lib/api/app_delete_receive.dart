@@ -9,7 +9,7 @@ part 'app_delete_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppDeleteResponse extends Response {
   /// Initialize AppDeleteResponse
-  AppDeleteResponse({
+  const AppDeleteResponse({
     this.appDelete,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class AppDeleteResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

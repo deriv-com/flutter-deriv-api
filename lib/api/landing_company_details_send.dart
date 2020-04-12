@@ -9,7 +9,7 @@ part 'landing_company_details_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LandingCompanyDetailsRequest extends Request {
   /// Initialize LandingCompanyDetailsRequest
-  LandingCompanyDetailsRequest({
+  const LandingCompanyDetailsRequest({
     this.landingCompanyDetails,
     int reqId,
     Map<String, dynamic> passthrough,
@@ -43,4 +43,8 @@ class LandingCompanyDetailsRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

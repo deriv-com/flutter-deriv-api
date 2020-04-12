@@ -9,7 +9,7 @@ part 'get_settings_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetSettingsRequest extends Request {
   /// Initialize GetSettingsRequest
-  GetSettingsRequest({
+  const GetSettingsRequest({
     this.getSettings = 1,
     int reqId,
     Map<String, dynamic> passthrough,
@@ -42,4 +42,8 @@ class GetSettingsRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

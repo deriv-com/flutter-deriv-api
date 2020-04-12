@@ -9,7 +9,7 @@ part 'p2p_order_list_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pOrderListRequest extends Request {
   /// Initialize P2pOrderListRequest
-  P2pOrderListRequest({
+  const P2pOrderListRequest({
     this.active,
     this.advertId,
     this.limit,
@@ -72,4 +72,8 @@ class P2pOrderListRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

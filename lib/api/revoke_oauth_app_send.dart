@@ -9,7 +9,7 @@ part 'revoke_oauth_app_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class RevokeOauthAppRequest extends Request {
   /// Initialize RevokeOauthAppRequest
-  RevokeOauthAppRequest({
+  const RevokeOauthAppRequest({
     this.revokeOauthApp = 1,
     int reqId,
     Map<String, dynamic> passthrough,
@@ -42,4 +42,8 @@ class RevokeOauthAppRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

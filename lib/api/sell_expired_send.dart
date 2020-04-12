@@ -9,7 +9,7 @@ part 'sell_expired_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellExpiredRequest extends Request {
   /// Initialize SellExpiredRequest
-  SellExpiredRequest({
+  const SellExpiredRequest({
     this.sellExpired = 1,
     int reqId,
     Map<String, dynamic> passthrough,
@@ -42,4 +42,8 @@ class SellExpiredRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -9,7 +9,7 @@ part 'new_account_maltainvest_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountMaltainvestResponse extends Response {
   /// Initialize NewAccountMaltainvestResponse
-  NewAccountMaltainvestResponse({
+  const NewAccountMaltainvestResponse({
     this.newAccountMaltainvest,
     int reqId,
     String msgType,
@@ -51,4 +51,8 @@ class NewAccountMaltainvestResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

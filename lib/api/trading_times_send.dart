@@ -9,7 +9,7 @@ part 'trading_times_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TradingTimesRequest extends Request {
   /// Initialize TradingTimesRequest
-  TradingTimesRequest({
+  const TradingTimesRequest({
     this.tradingTimes,
     int reqId,
     Map<String, dynamic> passthrough,
@@ -42,4 +42,8 @@ class TradingTimesRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

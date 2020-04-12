@@ -9,7 +9,7 @@ part 'contracts_for_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ContractsForResponse extends Response {
   /// Initialize ContractsForResponse
-  ContractsForResponse({
+  const ContractsForResponse({
     this.contractsFor,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class ContractsForResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

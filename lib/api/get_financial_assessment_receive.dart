@@ -9,7 +9,7 @@ part 'get_financial_assessment_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetFinancialAssessmentResponse extends Response {
   /// Initialize GetFinancialAssessmentResponse
-  GetFinancialAssessmentResponse({
+  const GetFinancialAssessmentResponse({
     this.getFinancialAssessment,
     int reqId,
     String msgType,
@@ -51,4 +51,8 @@ class GetFinancialAssessmentResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

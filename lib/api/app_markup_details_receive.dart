@@ -9,7 +9,7 @@ part 'app_markup_details_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class AppMarkupDetailsResponse extends Response {
   /// Initialize AppMarkupDetailsResponse
-  AppMarkupDetailsResponse({
+  const AppMarkupDetailsResponse({
     this.appMarkupDetails,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class AppMarkupDetailsResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

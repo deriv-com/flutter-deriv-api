@@ -9,7 +9,7 @@ part 'p2p_advert_info_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pAdvertInfoRequest extends Request {
   /// Initialize P2pAdvertInfoRequest
-  P2pAdvertInfoRequest({
+  const P2pAdvertInfoRequest({
     this.id,
     this.p2pAdvertInfo = 1,
     int reqId,
@@ -48,4 +48,8 @@ class P2pAdvertInfoRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

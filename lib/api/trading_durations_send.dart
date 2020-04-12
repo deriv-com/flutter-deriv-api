@@ -9,7 +9,7 @@ part 'trading_durations_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TradingDurationsRequest extends Request {
   /// Initialize TradingDurationsRequest
-  TradingDurationsRequest({
+  const TradingDurationsRequest({
     this.landingCompany,
     this.tradingDurations = 1,
     int reqId,
@@ -48,4 +48,8 @@ class TradingDurationsRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

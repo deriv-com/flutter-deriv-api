@@ -9,7 +9,7 @@ part 'reality_check_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class RealityCheckRequest extends Request {
   /// Initialize RealityCheckRequest
-  RealityCheckRequest({
+  const RealityCheckRequest({
     this.realityCheck = 1,
     int reqId,
     Map<String, dynamic> passthrough,
@@ -42,4 +42,8 @@ class RealityCheckRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

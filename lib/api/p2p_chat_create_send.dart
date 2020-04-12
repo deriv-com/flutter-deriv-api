@@ -9,7 +9,7 @@ part 'p2p_chat_create_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class P2pChatCreateRequest extends Request {
   /// Initialize P2pChatCreateRequest
-  P2pChatCreateRequest({
+  const P2pChatCreateRequest({
     this.orderId,
     this.p2pChatCreate = 1,
     int reqId,
@@ -48,4 +48,8 @@ class P2pChatCreateRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

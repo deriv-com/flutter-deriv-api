@@ -9,7 +9,7 @@ part 'copy_start_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class CopyStartRequest extends Request {
   /// Initialize CopyStartRequest
-  CopyStartRequest({
+  const CopyStartRequest({
     this.assets,
     this.copyStart,
     this.maxTradeStake,
@@ -66,4 +66,8 @@ class CopyStartRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

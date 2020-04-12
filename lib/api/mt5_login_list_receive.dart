@@ -9,7 +9,7 @@ part 'mt5_login_list_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5LoginListResponse extends Response {
   /// Initialize Mt5LoginListResponse
-  Mt5LoginListResponse({
+  const Mt5LoginListResponse({
     this.mt5LoginList,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class Mt5LoginListResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

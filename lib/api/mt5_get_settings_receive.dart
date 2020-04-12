@@ -9,7 +9,7 @@ part 'mt5_get_settings_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5GetSettingsResponse extends Response {
   /// Initialize Mt5GetSettingsResponse
-  Mt5GetSettingsResponse({
+  const Mt5GetSettingsResponse({
     this.mt5GetSettings,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class Mt5GetSettingsResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

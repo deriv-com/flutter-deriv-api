@@ -114,7 +114,7 @@ class APIBuilder extends Builder {
             @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
             class $classFullName extends ${schemaType == 'send' ? 'Request' : 'Response'} {
               /// Initialize $classFullName
-              $classFullName({
+              const $classFullName({
                   ${_getConstructorParameters(methodName, schema, schemaType, properties)},
                   ${_getSuperTypeNameParameters(schemaType)},
                 }): super(${_getSuperCallParameters(schemaType)},);
@@ -134,6 +134,10 @@ class APIBuilder extends Builder {
               $classFullName copyWith(
                 ${_getCopyWithMethod(buildStep, schema, schemaType, classFullName, properties)}
               );
+
+              /// Override equatable class
+              @override
+              List<Object> get props => <Object>[${_getEquatableFields(classFullName)}];
             }
           ''',
         ),
@@ -294,6 +298,16 @@ class APIBuilder extends Builder {
       final String propertyName = ReCase(key).camelCase;
       return '$propertyName: $propertyName ?? this.$propertyName';
     }).join(', ');
+  }
+
+  String _getEquatableFields(String classFullName) {
+    switch (classFullName) {
+      case 'P2pOrderInfoRequest':
+        return 'id';
+
+      default:
+        return '';
+    }
   }
 }
 

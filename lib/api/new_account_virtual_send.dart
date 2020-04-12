@@ -9,7 +9,7 @@ part 'new_account_virtual_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class NewAccountVirtualRequest extends Request {
   /// Initialize NewAccountVirtualRequest
-  NewAccountVirtualRequest({
+  const NewAccountVirtualRequest({
     this.affiliateToken,
     this.clientPassword,
     this.dateFirstContact,
@@ -102,4 +102,8 @@ class NewAccountVirtualRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

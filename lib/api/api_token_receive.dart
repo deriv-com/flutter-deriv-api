@@ -9,7 +9,7 @@ part 'api_token_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ApiTokenResponse extends Response {
   /// Initialize ApiTokenResponse
-  ApiTokenResponse({
+  const ApiTokenResponse({
     this.apiToken,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class ApiTokenResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

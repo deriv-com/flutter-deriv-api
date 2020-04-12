@@ -9,7 +9,7 @@ part 'mt5_password_change_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5PasswordChangeResponse extends Response {
   /// Initialize Mt5PasswordChangeResponse
-  Mt5PasswordChangeResponse({
+  const Mt5PasswordChangeResponse({
     this.mt5PasswordChange,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class Mt5PasswordChangeResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

@@ -9,7 +9,7 @@ part 'ping_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PingResponse extends Response {
   /// Initialize PingResponse
-  PingResponse({
+  const PingResponse({
     this.ping,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class PingResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

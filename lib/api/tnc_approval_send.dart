@@ -9,7 +9,7 @@ part 'tnc_approval_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class TncApprovalRequest extends Request {
   /// Initialize TncApprovalRequest
-  TncApprovalRequest({
+  const TncApprovalRequest({
     this.tncApproval,
     this.ukgcFundsProtection,
     int reqId,
@@ -48,4 +48,8 @@ class TncApprovalRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

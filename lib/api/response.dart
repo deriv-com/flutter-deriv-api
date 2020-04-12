@@ -1,12 +1,13 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'response.g.dart';
 
 /// super class of all requests
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
-class Response {
+class Response extends Equatable {
   /// Initializes
-  Response({
+  const Response({
     this.reqId,
     this.msgType,
     this.echoReq,
@@ -45,4 +46,7 @@ class Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  @override
+  List<Object> get props => <Object>[];
 }

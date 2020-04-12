@@ -9,7 +9,7 @@ part 'get_settings_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class GetSettingsResponse extends Response {
   /// Initialize GetSettingsResponse
-  GetSettingsResponse({
+  const GetSettingsResponse({
     this.getSettings,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class GetSettingsResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

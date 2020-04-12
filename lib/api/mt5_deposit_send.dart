@@ -9,7 +9,7 @@ part 'mt5_deposit_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Mt5DepositRequest extends Request {
   /// Initialize Mt5DepositRequest
-  Mt5DepositRequest({
+  const Mt5DepositRequest({
     this.amount,
     this.fromBinary,
     this.mt5Deposit = 1,
@@ -60,4 +60,8 @@ class Mt5DepositRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

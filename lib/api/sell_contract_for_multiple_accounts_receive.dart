@@ -9,7 +9,7 @@ part 'sell_contract_for_multiple_accounts_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SellContractForMultipleAccountsResponse extends Response {
   /// Initialize SellContractForMultipleAccountsResponse
-  SellContractForMultipleAccountsResponse({
+  const SellContractForMultipleAccountsResponse({
     this.sellContractForMultipleAccounts,
     int reqId,
     String msgType,
@@ -53,4 +53,8 @@ class SellContractForMultipleAccountsResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

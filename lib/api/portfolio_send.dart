@@ -9,7 +9,7 @@ part 'portfolio_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class PortfolioRequest extends Request {
   /// Initialize PortfolioRequest
-  PortfolioRequest({
+  const PortfolioRequest({
     this.portfolio = 1,
     int reqId,
     Map<String, dynamic> passthrough,
@@ -42,4 +42,8 @@ class PortfolioRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

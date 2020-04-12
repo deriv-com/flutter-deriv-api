@@ -9,7 +9,7 @@ part 'set_self_exclusion_send.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetSelfExclusionRequest extends Request {
   /// Initialize SetSelfExclusionRequest
-  SetSelfExclusionRequest({
+  const SetSelfExclusionRequest({
     this.excludeUntil,
     this.max30dayLosses,
     this.max30dayTurnover,
@@ -120,4 +120,8 @@ class SetSelfExclusionRequest extends Request {
         reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

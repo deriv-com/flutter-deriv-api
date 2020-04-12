@@ -9,7 +9,7 @@ part 'set_self_exclusion_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class SetSelfExclusionResponse extends Response {
   /// Initialize SetSelfExclusionResponse
-  SetSelfExclusionResponse({
+  const SetSelfExclusionResponse({
     this.setSelfExclusion,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class SetSelfExclusionResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }

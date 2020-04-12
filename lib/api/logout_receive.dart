@@ -9,7 +9,7 @@ part 'logout_receive.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class LogoutResponse extends Response {
   /// Initialize LogoutResponse
-  LogoutResponse({
+  const LogoutResponse({
     this.logout,
     int reqId,
     String msgType,
@@ -50,4 +50,8 @@ class LogoutResponse extends Response {
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
       );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => <Object>[];
 }
