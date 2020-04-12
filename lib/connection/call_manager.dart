@@ -23,9 +23,6 @@ class CallManager extends BaseCallManager<Future<Response>> {
   }
 
   @override
-  Future<Response> call(Request request) async {
-    final Map<String, dynamic> preparedRequest = prepareRequest(request);
-
-    return addToChannel(preparedRequest);
-  }
+  Future<Response> call(Request request) async =>
+      addToChannel(request: request);
 }

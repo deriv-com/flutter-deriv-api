@@ -75,12 +75,18 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
 
   @override
   Stream<Response> call(Request request) {
-    // TODO(hamed): we should check request duplication before another api call
+    final PendingSubscribedRequest<Response> pendingRequest =
+        _requestAlreadySubscribed(request, pendingRequests);
 
-    final Map<String, dynamic> preparedRequest = prepareRequest(request)
-      ..putIfAbsent('subscribe', () => 1);
+    if (pendingRequest != null) {
+      return pendingRequest.subscriptionStream.stream;
+    }
 
-    addToChannel(preparedRequest);
+    addToChannel(
+      request: request,
+      ifAbsentKey: 'subscribe',
+      ifAbsentCallback: () => 1,
+    );
 
     final SubscriptionStream<Response> subscriptionStream =
         SubscriptionStream<Response>();
@@ -145,5 +151,23 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     await getSubscriptionStream(requestId).closeStream();
 
     pendingRequests.remove(requestId);
+  }
+
+  PendingSubscribedRequest<Response> _requestAlreadySubscribed(
+    Request request,
+    Map<int, PendingSubscribedRequest<Response>> pendingRequests,
+  ) {
+    PendingSubscribedRequest<Response> result;
+
+    pendingRequests.forEach((
+      int key,
+      PendingSubscribedRequest<Response> pendingRequest,
+    ) {
+      if (pendingRequest.request == request) {
+        result = pendingRequest;
+      }
+    });
+
+    return result;
   }
 }

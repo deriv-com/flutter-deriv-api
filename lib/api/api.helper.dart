@@ -34,8 +34,8 @@ import 'verify_email_receive.dart';
 import 'revoke_oauth_app_receive.dart';
 import 'paymentagent_transfer_receive.dart';
 import 'new_account_real_receive.dart';
-import 'landing_company_details_receive.dart';
 import 'statement_receive.dart';
+import 'landing_company_details_receive.dart';
 import 'api_token_receive.dart';
 import 'payout_currencies_receive.dart';
 import 'copy_stop_receive.dart';
@@ -66,8 +66,8 @@ import 'app_delete_receive.dart';
 import 'mt5_get_settings_receive.dart';
 import 'sell_receive.dart';
 import 'cashier_receive.dart';
-import 'p2p_advert_info_receive.dart';
 import 'app_get_receive.dart';
+import 'p2p_advert_info_receive.dart';
 import 'website_status_receive.dart';
 import 'get_settings_receive.dart';
 import 'ping_receive.dart';
@@ -90,8 +90,8 @@ import 'copytrading_statistics_receive.dart';
 import 'asset_index_receive.dart';
 import 'buy_contract_for_multiple_accounts_receive.dart';
 import 'logout_receive.dart';
-import 'set_self_exclusion_receive.dart';
 import 'copytrading_list_receive.dart';
+import 'set_self_exclusion_receive.dart';
 import 'new_account_virtual_receive.dart';
 import 'exchange_rates_receive.dart';
 import 'mt5_deposit_receive.dart';
@@ -162,10 +162,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return PaymentagentTransferResponse.fromJson(responseMap);
     case 'new_account_real':
       return NewAccountRealResponse.fromJson(responseMap);
-    case 'landing_company_details':
-      return LandingCompanyDetailsResponse.fromJson(responseMap);
     case 'statement':
       return StatementResponse.fromJson(responseMap);
+    case 'landing_company_details':
+      return LandingCompanyDetailsResponse.fromJson(responseMap);
     case 'api_token':
       return ApiTokenResponse.fromJson(responseMap);
     case 'payout_currencies':
@@ -226,10 +226,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return SellResponse.fromJson(responseMap);
     case 'cashier':
       return CashierResponse.fromJson(responseMap);
-    case 'p2p_advert_info':
-      return P2pAdvertInfoResponse.fromJson(responseMap);
     case 'app_get':
       return AppGetResponse.fromJson(responseMap);
+    case 'p2p_advert_info':
+      return P2pAdvertInfoResponse.fromJson(responseMap);
     case 'website_status':
       return WebsiteStatusResponse.fromJson(responseMap);
     case 'get_settings':
@@ -274,10 +274,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return BuyContractForMultipleAccountsResponse.fromJson(responseMap);
     case 'logout':
       return LogoutResponse.fromJson(responseMap);
-    case 'set_self_exclusion':
-      return SetSelfExclusionResponse.fromJson(responseMap);
     case 'copytrading_list':
       return CopytradingListResponse.fromJson(responseMap);
+    case 'set_self_exclusion':
+      return SetSelfExclusionResponse.fromJson(responseMap);
     case 'new_account_virtual':
       return NewAccountVirtualResponse.fromJson(responseMap);
     case 'exchange_rates':

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter_deriv_api/api/request.dart';
 import 'package:flutter_deriv_api/connection/pending_request.dart';
 import 'package:flutter_deriv_api/connection/subscription_stream.dart';
 
@@ -7,7 +8,7 @@ import 'package:flutter_deriv_api/connection/subscription_stream.dart';
 class PendingSubscribedRequest<T> extends PendingRequest<T> {
   /// Class constructor
   PendingSubscribedRequest({
-    Map<String, dynamic> request,
+    Request request,
     Completer<T> response,
     this.subscriptionId,
     this.subscriptionStream,
