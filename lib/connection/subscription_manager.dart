@@ -76,7 +76,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   @override
   Stream<Response> call(Request request) {
     final PendingSubscribedRequest<Response> pendingRequest =
-        _requestAlreadySubscribed(request, pendingRequests);
+        _getPendingRequest(request, pendingRequests);
 
     if (pendingRequest != null) {
       return pendingRequest.subscriptionStream.stream;
@@ -153,7 +153,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     pendingRequests.remove(requestId);
   }
 
-  PendingSubscribedRequest<Response> _requestAlreadySubscribed(
+  PendingSubscribedRequest<Response> _getPendingRequest(
     Request request,
     Map<int, PendingSubscribedRequest<Response>> pendingRequests,
   ) {
