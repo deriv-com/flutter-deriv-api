@@ -1,7 +1,7 @@
 import 'dart:async';
 
 /// A source of subscription messages.
-/// It provides a StreamController to broadcast new messages of a subscription request
+/// it provides a StreamController to broadcast new messages of a subscription request
 /// to it's listener.
 class SubscriptionStream<T> {
   final StreamController<T> _streamController = StreamController<T>.broadcast();

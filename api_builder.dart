@@ -137,7 +137,7 @@ class APIBuilder extends Builder {
 
               /// Override equatable class
               @override
-              List<Object> get props => <Object>[${_getEquatableFields(classFullName)}];
+              List<Object> get props => ${_getEquatableFields(classFullName, properties)};
             }
           ''',
         ),
@@ -300,13 +300,21 @@ class APIBuilder extends Builder {
     }).join(', ');
   }
 
-  String _getEquatableFields(String classFullName) {
+  String _getEquatableFields(
+    String classFullName,
+    List<String> properties,
+  ) {
     switch (classFullName) {
+      case 'TicksRequest':
+        return '<Object>[ticks]';
+      case 'ProposalOpenContractRequest':
+        return '<Object>[contractId]';
       case 'P2pOrderInfoRequest':
-        return 'id';
+      case 'P2pAdvertiserInfoRequest':
+        return '<Object>[id]';
 
       default:
-        return '';
+        return 'null';
     }
   }
 }

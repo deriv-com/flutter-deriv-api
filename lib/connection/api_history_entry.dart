@@ -7,12 +7,12 @@ class APIHistoryEntry {
     this.message,
   });
 
-  /// time stamp when is created
+  /// Time stamp when is created
   final int timeStamp;
 
   /// API call method
   final String method;
 
-  /// content of sent or received message
+  /// Content of sent or received message
   final Object message;
 }

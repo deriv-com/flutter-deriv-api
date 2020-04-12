@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter_deriv_api/api/request.dart';
+
 /// Represent a pending request.
 class PendingRequest<T> {
   /// Class constructor
@@ -13,7 +15,7 @@ class PendingRequest<T> {
   final String method;
 
   /// Map of the sent request
-  final Map<String, dynamic> request;
+  final Request request;
 
   /// this completer will complete whenever the response of the request arrives
   final Completer<T> response;

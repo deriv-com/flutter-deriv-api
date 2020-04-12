@@ -46,29 +46,33 @@ abstract class BaseCallManager<T> {
     }
   }
 
-  /// Prepare [request] for adding to web socket channel
-  Map<String, dynamic> prepareRequest(Request request) =>
-      request.copyWith(reqId: _getRequestId()).toJson()
-        ..removeWhere((String key, dynamic value) => value == null);
-
   /// Add [request] to pending requests queue, api history and web socket channel
-  Future<Response> addToChannel(Map<String, dynamic> request) {
+  Future<Response> addToChannel({
+    @required Request request,
+    String ifAbsentKey,
+    dynamic Function() ifAbsentCallback,
+  }) {
     final Completer<Response> response = Completer<Response>();
+    final Request requestWithId = request.copyWith(reqId: _getRequestId());
+    final Map<String, dynamic> prepareRequest = _prepareRequest(requestWithId);
+
+    if (ifAbsentCallback != null) {
+      prepareRequest.putIfAbsent(ifAbsentKey, ifAbsentCallback);
+    }
 
     _addPendingRequest(
-      requestId: request['req_id'],
-      request: request,
+      request: requestWithId,
       response: response,
     );
 
     api.apiHistory.pushOutgoing(
       timestamp: DateTime.now().millisecondsSinceEpoch,
-      message: request,
+      message: prepareRequest,
       method: 'method',
     );
 
     api.webSocketChannel.sink.add(
-      utf8.encode(jsonEncode(request)),
+      utf8.encode(jsonEncode(prepareRequest)),
     );
 
     return response.future;
@@ -80,14 +84,16 @@ abstract class BaseCallManager<T> {
 
   /// Add [request] to pending requests queue
   void _addPendingRequest({
-    int requestId,
-    Map<String, dynamic> request,
+    Request request,
     Completer<Response> response,
   }) =>
-      _pendingRequests[requestId] = PendingRequest<Response>(
+      _pendingRequests[request.reqId] = PendingRequest<Response>(
         request: request,
         response: response,
       );
 
   int _getRequestId() => _requestId++;
+
+  Map<String, dynamic> _prepareRequest(Request request) => request.toJson()
+    ..removeWhere((String key, dynamic value) => value == null);
 }
