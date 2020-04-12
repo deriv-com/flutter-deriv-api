@@ -11,16 +11,16 @@ ActiveSymbolsRequest _$ActiveSymbolsRequestFromJson(Map<String, dynamic> json) {
     activeSymbols: json['active_symbols'] as String,
     landingCompany: json['landing_company'] as String,
     productType: json['product_type'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 
 Map<String, dynamic> _$ActiveSymbolsRequestToJson(
         ActiveSymbolsRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'active_symbols': instance.activeSymbols,
       'landing_company': instance.landingCompany,
       'product_type': instance.productType,

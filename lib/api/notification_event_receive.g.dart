@@ -20,9 +20,9 @@ NotificationEventResponse _$NotificationEventResponseFromJson(
 Map<String, dynamic> _$NotificationEventResponseToJson(
         NotificationEventResponse instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'msg_type': instance.msgType,
       'echo_req': instance.echoReq,
       'error': instance.error,
-      'msg_type': instance.msgType,
-      'req_id': instance.reqId,
       'notification_event': instance.notificationEvent,
     };

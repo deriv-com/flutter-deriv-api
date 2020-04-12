@@ -33,11 +33,11 @@ class NewAccountRealRequest extends Request {
     this.secretQuestion,
     this.taxIdentificationNumber,
     this.taxResidence,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -117,4 +117,62 @@ class NewAccountRealRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$NewAccountRealRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  NewAccountRealRequest copyWith({
+    String accountOpeningReason,
+    String accountTurnover,
+    String addressCity,
+    String addressLine1,
+    String addressLine2,
+    String addressPostcode,
+    String addressState,
+    String affiliateToken,
+    String citizen,
+    String clientType,
+    String currency,
+    String dateOfBirth,
+    String firstName,
+    String lastName,
+    int newAccountReal,
+    String phone,
+    String placeOfBirth,
+    String residence,
+    String salutation,
+    String secretAnswer,
+    String secretQuestion,
+    String taxIdentificationNumber,
+    String taxResidence,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      NewAccountRealRequest(
+        accountOpeningReason: accountOpeningReason ?? this.accountOpeningReason,
+        accountTurnover: accountTurnover ?? this.accountTurnover,
+        addressCity: addressCity ?? this.addressCity,
+        addressLine1: addressLine1 ?? this.addressLine1,
+        addressLine2: addressLine2 ?? this.addressLine2,
+        addressPostcode: addressPostcode ?? this.addressPostcode,
+        addressState: addressState ?? this.addressState,
+        affiliateToken: affiliateToken ?? this.affiliateToken,
+        citizen: citizen ?? this.citizen,
+        clientType: clientType ?? this.clientType,
+        currency: currency ?? this.currency,
+        dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        newAccountReal: newAccountReal ?? this.newAccountReal,
+        phone: phone ?? this.phone,
+        placeOfBirth: placeOfBirth ?? this.placeOfBirth,
+        residence: residence ?? this.residence,
+        salutation: salutation ?? this.salutation,
+        secretAnswer: secretAnswer ?? this.secretAnswer,
+        secretQuestion: secretQuestion ?? this.secretQuestion,
+        taxIdentificationNumber:
+            taxIdentificationNumber ?? this.taxIdentificationNumber,
+        taxResidence: taxResidence ?? this.taxResidence,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

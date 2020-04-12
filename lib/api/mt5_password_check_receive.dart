@@ -11,15 +11,15 @@ class Mt5PasswordCheckResponse extends Response {
   /// Initialize Mt5PasswordCheckResponse
   Mt5PasswordCheckResponse({
     this.mt5PasswordCheck,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class Mt5PasswordCheckResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5PasswordCheckResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  Mt5PasswordCheckResponse copyWith({
+    int mt5PasswordCheck,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      Mt5PasswordCheckResponse(
+        mt5PasswordCheck: mt5PasswordCheck ?? this.mt5PasswordCheck,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

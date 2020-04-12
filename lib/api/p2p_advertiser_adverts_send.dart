@@ -13,11 +13,11 @@ class P2pAdvertiserAdvertsRequest extends Request {
     this.limit,
     this.offset,
     this.p2pAdvertiserAdverts = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -37,4 +37,21 @@ class P2pAdvertiserAdvertsRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertiserAdvertsRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  P2pAdvertiserAdvertsRequest copyWith({
+    int limit,
+    int offset,
+    int p2pAdvertiserAdverts,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      P2pAdvertiserAdvertsRequest(
+        limit: limit ?? this.limit,
+        offset: offset ?? this.offset,
+        p2pAdvertiserAdverts: p2pAdvertiserAdverts ?? this.p2pAdvertiserAdverts,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

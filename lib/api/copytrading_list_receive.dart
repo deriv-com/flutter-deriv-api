@@ -11,15 +11,15 @@ class CopytradingListResponse extends Response {
   /// Initialize CopytradingListResponse
   CopytradingListResponse({
     this.copytradingList,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class CopytradingListResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$CopytradingListResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  CopytradingListResponse copyWith({
+    Map<String, dynamic> copytradingList,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      CopytradingListResponse(
+        copytradingList: copytradingList ?? this.copytradingList,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

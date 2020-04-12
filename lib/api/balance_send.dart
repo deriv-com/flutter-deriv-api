@@ -13,11 +13,11 @@ class BalanceRequest extends Request {
     this.account,
     this.balance = 1,
     this.subscribe,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -37,4 +37,21 @@ class BalanceRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$BalanceRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  BalanceRequest copyWith({
+    String account,
+    int balance,
+    int subscribe,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      BalanceRequest(
+        account: account ?? this.account,
+        balance: balance ?? this.balance,
+        subscribe: subscribe ?? this.subscribe,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

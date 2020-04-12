@@ -11,11 +11,11 @@ class StatesListRequest extends Request {
   /// Initialize StatesListRequest
   StatesListRequest({
     this.statesList,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class StatesListRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$StatesListRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  StatesListRequest copyWith({
+    String statesList,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      StatesListRequest(
+        statesList: statesList ?? this.statesList,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

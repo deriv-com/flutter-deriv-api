@@ -11,11 +11,11 @@ class GetSelfExclusionRequest extends Request {
   /// Initialize GetSelfExclusionRequest
   GetSelfExclusionRequest({
     this.getSelfExclusion = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class GetSelfExclusionRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$GetSelfExclusionRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  GetSelfExclusionRequest copyWith({
+    int getSelfExclusion,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      GetSelfExclusionRequest(
+        getSelfExclusion: getSelfExclusion ?? this.getSelfExclusion,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

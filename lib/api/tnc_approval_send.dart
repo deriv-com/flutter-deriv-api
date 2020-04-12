@@ -12,11 +12,11 @@ class TncApprovalRequest extends Request {
   TncApprovalRequest({
     this.tncApproval,
     this.ukgcFundsProtection,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,19 @@ class TncApprovalRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TncApprovalRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  TncApprovalRequest copyWith({
+    num tncApproval,
+    int ukgcFundsProtection,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      TncApprovalRequest(
+        tncApproval: tncApproval ?? this.tncApproval,
+        ukgcFundsProtection: ukgcFundsProtection ?? this.ukgcFundsProtection,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

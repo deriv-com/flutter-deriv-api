@@ -14,11 +14,11 @@ class Mt5PasswordCheckRequest extends Request {
     this.mt5PasswordCheck = 1,
     this.password,
     this.passwordType,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -41,4 +41,23 @@ class Mt5PasswordCheckRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5PasswordCheckRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  Mt5PasswordCheckRequest copyWith({
+    String login,
+    int mt5PasswordCheck,
+    String password,
+    String passwordType,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      Mt5PasswordCheckRequest(
+        login: login ?? this.login,
+        mt5PasswordCheck: mt5PasswordCheck ?? this.mt5PasswordCheck,
+        password: password ?? this.password,
+        passwordType: passwordType ?? this.passwordType,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

@@ -12,11 +12,11 @@ class TransactionRequest extends Request {
   TransactionRequest({
     this.subscribe,
     this.transaction = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,19 @@ class TransactionRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TransactionRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  TransactionRequest copyWith({
+    int subscribe,
+    int transaction,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      TransactionRequest(
+        subscribe: subscribe ?? this.subscribe,
+        transaction: transaction ?? this.transaction,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

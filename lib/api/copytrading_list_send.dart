@@ -11,11 +11,11 @@ class CopytradingListRequest extends Request {
   /// Initialize CopytradingListRequest
   CopytradingListRequest({
     this.copytradingList = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class CopytradingListRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$CopytradingListRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  CopytradingListRequest copyWith({
+    int copytradingList,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      CopytradingListRequest(
+        copytradingList: copytradingList ?? this.copytradingList,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

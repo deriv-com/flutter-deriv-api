@@ -11,11 +11,11 @@ class RevokeOauthAppRequest extends Request {
   /// Initialize RevokeOauthAppRequest
   RevokeOauthAppRequest({
     this.revokeOauthApp = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class RevokeOauthAppRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$RevokeOauthAppRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  RevokeOauthAppRequest copyWith({
+    int revokeOauthApp,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      RevokeOauthAppRequest(
+        revokeOauthApp: revokeOauthApp ?? this.revokeOauthApp,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

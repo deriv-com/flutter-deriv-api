@@ -22,8 +22,8 @@ import 'get_financial_assessment_receive.dart';
 import 'new_account_maltainvest_receive.dart';
 import 'reality_check_receive.dart';
 import 'p2p_advertiser_create_receive.dart';
-import 'balance_receive.dart';
 import 'set_settings_receive.dart';
+import 'balance_receive.dart';
 import 'buy_receive.dart';
 import 'topup_virtual_receive.dart';
 import 'ticks_receive.dart';
@@ -69,8 +69,8 @@ import 'app_get_receive.dart';
 import 'p2p_advert_info_receive.dart';
 import 'website_status_receive.dart';
 import 'get_settings_receive.dart';
-import 'ping_receive.dart';
 import 'document_upload_receive.dart';
+import 'ping_receive.dart';
 import 'app_register_receive.dart';
 import 'p2p_advertiser_adverts_receive.dart';
 import 'residence_list_receive.dart';
@@ -139,10 +139,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return RealityCheckResponse.fromJson(responseMap);
     case 'p2p_advertiser_create':
       return P2pAdvertiserCreateResponse.fromJson(responseMap);
-    case 'balance':
-      return BalanceResponse.fromJson(responseMap);
     case 'set_settings':
       return SetSettingsResponse.fromJson(responseMap);
+    case 'balance':
+      return BalanceResponse.fromJson(responseMap);
     case 'buy':
       return BuyResponse.fromJson(responseMap);
     case 'topup_virtual':
@@ -233,10 +233,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return WebsiteStatusResponse.fromJson(responseMap);
     case 'get_settings':
       return GetSettingsResponse.fromJson(responseMap);
-    case 'ping':
-      return PingResponse.fromJson(responseMap);
     case 'document_upload':
       return DocumentUploadResponse.fromJson(responseMap);
+    case 'ping':
+      return PingResponse.fromJson(responseMap);
     case 'app_register':
       return AppRegisterResponse.fromJson(responseMap);
     case 'p2p_advertiser_adverts':

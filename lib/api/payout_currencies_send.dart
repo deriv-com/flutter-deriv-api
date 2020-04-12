@@ -11,11 +11,11 @@ class PayoutCurrenciesRequest extends Request {
   /// Initialize PayoutCurrenciesRequest
   PayoutCurrenciesRequest({
     this.payoutCurrencies = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class PayoutCurrenciesRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$PayoutCurrenciesRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  PayoutCurrenciesRequest copyWith({
+    int payoutCurrencies,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      PayoutCurrenciesRequest(
+        payoutCurrencies: payoutCurrencies ?? this.payoutCurrencies,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

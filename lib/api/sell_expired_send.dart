@@ -11,11 +11,11 @@ class SellExpiredRequest extends Request {
   /// Initialize SellExpiredRequest
   SellExpiredRequest({
     this.sellExpired = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class SellExpiredRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$SellExpiredRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  SellExpiredRequest copyWith({
+    int sellExpired,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      SellExpiredRequest(
+        sellExpired: sellExpired ?? this.sellExpired,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

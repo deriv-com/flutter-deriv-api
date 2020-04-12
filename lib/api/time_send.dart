@@ -11,11 +11,11 @@ class TimeRequest extends Request {
   /// Initialize TimeRequest
   TimeRequest({
     this.time = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class TimeRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TimeRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  TimeRequest copyWith({
+    int time,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      TimeRequest(
+        time: time ?? this.time,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

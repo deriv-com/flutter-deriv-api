@@ -15,16 +15,16 @@ P2pOrderCreateRequest _$P2pOrderCreateRequestFromJson(
     p2pOrderCreate: json['p2p_order_create'] as int,
     paymentInfo: json['payment_info'] as String,
     subscribe: json['subscribe'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 
 Map<String, dynamic> _$P2pOrderCreateRequestToJson(
         P2pOrderCreateRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'advert_id': instance.advertId,
       'amount': instance.amount,
       'contact_info': instance.contactInfo,

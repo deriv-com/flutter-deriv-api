@@ -20,11 +20,11 @@ class AppMarkupDetailsRequest extends Request {
     this.offset,
     this.sort,
     this.sortFields,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -65,4 +65,35 @@ class AppMarkupDetailsRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AppMarkupDetailsRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  AppMarkupDetailsRequest copyWith({
+    int appId,
+    int appMarkupDetails,
+    String clientLoginid,
+    String dateFrom,
+    String dateTo,
+    int description,
+    num limit,
+    num offset,
+    String sort,
+    List<String> sortFields,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      AppMarkupDetailsRequest(
+        appId: appId ?? this.appId,
+        appMarkupDetails: appMarkupDetails ?? this.appMarkupDetails,
+        clientLoginid: clientLoginid ?? this.clientLoginid,
+        dateFrom: dateFrom ?? this.dateFrom,
+        dateTo: dateTo ?? this.dateTo,
+        description: description ?? this.description,
+        limit: limit ?? this.limit,
+        offset: offset ?? this.offset,
+        sort: sort ?? this.sort,
+        sortFields: sortFields ?? this.sortFields,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

@@ -22,11 +22,11 @@ class P2pAdvertCreateRequest extends Request {
     this.paymentMethod,
     this.rate,
     this.type,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -73,4 +73,39 @@ class P2pAdvertCreateRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertCreateRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  P2pAdvertCreateRequest copyWith({
+    num amount,
+    String contactInfo,
+    String country,
+    String description,
+    String localCurrency,
+    num maxOrderAmount,
+    num minOrderAmount,
+    int p2pAdvertCreate,
+    String paymentInfo,
+    String paymentMethod,
+    num rate,
+    String type,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      P2pAdvertCreateRequest(
+        amount: amount ?? this.amount,
+        contactInfo: contactInfo ?? this.contactInfo,
+        country: country ?? this.country,
+        description: description ?? this.description,
+        localCurrency: localCurrency ?? this.localCurrency,
+        maxOrderAmount: maxOrderAmount ?? this.maxOrderAmount,
+        minOrderAmount: minOrderAmount ?? this.minOrderAmount,
+        p2pAdvertCreate: p2pAdvertCreate ?? this.p2pAdvertCreate,
+        paymentInfo: paymentInfo ?? this.paymentInfo,
+        paymentMethod: paymentMethod ?? this.paymentMethod,
+        rate: rate ?? this.rate,
+        type: type ?? this.type,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

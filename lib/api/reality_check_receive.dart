@@ -11,15 +11,15 @@ class RealityCheckResponse extends Response {
   /// Initialize RealityCheckResponse
   RealityCheckResponse({
     this.realityCheck,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class RealityCheckResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$RealityCheckResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  RealityCheckResponse copyWith({
+    Map<String, dynamic> realityCheck,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      RealityCheckResponse(
+        realityCheck: realityCheck ?? this.realityCheck,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

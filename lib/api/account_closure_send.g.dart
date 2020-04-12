@@ -19,8 +19,8 @@ AccountClosureRequest _$AccountClosureRequestFromJson(
 Map<String, dynamic> _$AccountClosureRequestToJson(
         AccountClosureRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'account_closure': instance.accountClosure,
       'reason': instance.reason,
     };

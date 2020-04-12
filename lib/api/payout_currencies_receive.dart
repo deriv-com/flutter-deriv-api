@@ -11,15 +11,15 @@ class PayoutCurrenciesResponse extends Response {
   /// Initialize PayoutCurrenciesResponse
   PayoutCurrenciesResponse({
     this.payoutCurrencies,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class PayoutCurrenciesResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$PayoutCurrenciesResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  PayoutCurrenciesResponse copyWith({
+    List<String> payoutCurrencies,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      PayoutCurrenciesResponse(
+        payoutCurrencies: payoutCurrencies ?? this.payoutCurrencies,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

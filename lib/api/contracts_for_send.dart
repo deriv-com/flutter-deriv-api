@@ -14,11 +14,11 @@ class ContractsForRequest extends Request {
     this.currency,
     this.landingCompany,
     this.productType,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -41,4 +41,23 @@ class ContractsForRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ContractsForRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ContractsForRequest copyWith({
+    String contractsFor,
+    String currency,
+    String landingCompany,
+    String productType,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      ContractsForRequest(
+        contractsFor: contractsFor ?? this.contractsFor,
+        currency: currency ?? this.currency,
+        landingCompany: landingCompany ?? this.landingCompany,
+        productType: productType ?? this.productType,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

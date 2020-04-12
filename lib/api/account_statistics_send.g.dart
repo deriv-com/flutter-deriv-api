@@ -18,7 +18,7 @@ AccountStatisticsRequest _$AccountStatisticsRequestFromJson(
 Map<String, dynamic> _$AccountStatisticsRequestToJson(
         AccountStatisticsRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'account_statistics': instance.accountStatistics,
     };

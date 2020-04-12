@@ -12,15 +12,15 @@ class WebsiteStatusResponse extends Response {
   WebsiteStatusResponse({
     this.subscription,
     this.websiteStatus,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -37,4 +37,23 @@ class WebsiteStatusResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$WebsiteStatusResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  WebsiteStatusResponse copyWith({
+    Map<String, dynamic> subscription,
+    Map<String, dynamic> websiteStatus,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      WebsiteStatusResponse(
+        subscription: subscription ?? this.subscription,
+        websiteStatus: websiteStatus ?? this.websiteStatus,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

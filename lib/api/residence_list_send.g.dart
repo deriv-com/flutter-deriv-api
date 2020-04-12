@@ -9,15 +9,15 @@ part of 'residence_list_send.dart';
 ResidenceListRequest _$ResidenceListRequestFromJson(Map<String, dynamic> json) {
   return ResidenceListRequest(
     residenceList: json['residence_list'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 
 Map<String, dynamic> _$ResidenceListRequestToJson(
         ResidenceListRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'residence_list': instance.residenceList,
     };

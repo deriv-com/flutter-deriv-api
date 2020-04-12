@@ -13,11 +13,11 @@ class ContractUpdateRequest extends Request {
     this.contractId,
     this.contractUpdate = 1,
     this.limitOrder,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -37,4 +37,21 @@ class ContractUpdateRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ContractUpdateRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ContractUpdateRequest copyWith({
+    int contractId,
+    int contractUpdate,
+    Map<String, dynamic> limitOrder,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      ContractUpdateRequest(
+        contractId: contractId ?? this.contractId,
+        contractUpdate: contractUpdate ?? this.contractUpdate,
+        limitOrder: limitOrder ?? this.limitOrder,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

@@ -11,15 +11,15 @@ class CopyStopResponse extends Response {
   /// Initialize CopyStopResponse
   CopyStopResponse({
     this.copyStop,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class CopyStopResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$CopyStopResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  CopyStopResponse copyWith({
+    int copyStop,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      CopyStopResponse(
+        copyStop: copyStop ?? this.copyStop,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

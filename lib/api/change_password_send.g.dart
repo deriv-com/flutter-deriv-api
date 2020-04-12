@@ -20,8 +20,8 @@ ChangePasswordRequest _$ChangePasswordRequestFromJson(
 Map<String, dynamic> _$ChangePasswordRequestToJson(
         ChangePasswordRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'change_password': instance.changePassword,
       'new_password': instance.newPassword,
       'old_password': instance.oldPassword,

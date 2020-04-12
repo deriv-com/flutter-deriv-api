@@ -12,11 +12,11 @@ class P2pOrderCancelRequest extends Request {
   P2pOrderCancelRequest({
     this.id,
     this.p2pOrderCancel = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,19 @@ class P2pOrderCancelRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pOrderCancelRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  P2pOrderCancelRequest copyWith({
+    String id,
+    int p2pOrderCancel,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      P2pOrderCancelRequest(
+        id: id ?? this.id,
+        p2pOrderCancel: p2pOrderCancel ?? this.p2pOrderCancel,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

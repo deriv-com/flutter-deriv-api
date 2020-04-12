@@ -29,11 +29,11 @@ class ProposalRequest extends Request {
     this.subscribe,
     this.symbol,
     this.tradingPeriodStart,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -101,4 +101,53 @@ class ProposalRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ProposalRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ProposalRequest copyWith({
+    num amount,
+    String barrier,
+    String barrier2,
+    String basis,
+    String cancellation,
+    String contractType,
+    String currency,
+    int dateExpiry,
+    int dateStart,
+    int duration,
+    String durationUnit,
+    Map<String, dynamic> limitOrder,
+    num multiplier,
+    String productType,
+    int proposal,
+    int selectedTick,
+    int subscribe,
+    String symbol,
+    int tradingPeriodStart,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      ProposalRequest(
+        amount: amount ?? this.amount,
+        barrier: barrier ?? this.barrier,
+        barrier2: barrier2 ?? this.barrier2,
+        basis: basis ?? this.basis,
+        cancellation: cancellation ?? this.cancellation,
+        contractType: contractType ?? this.contractType,
+        currency: currency ?? this.currency,
+        dateExpiry: dateExpiry ?? this.dateExpiry,
+        dateStart: dateStart ?? this.dateStart,
+        duration: duration ?? this.duration,
+        durationUnit: durationUnit ?? this.durationUnit,
+        limitOrder: limitOrder ?? this.limitOrder,
+        multiplier: multiplier ?? this.multiplier,
+        productType: productType ?? this.productType,
+        proposal: proposal ?? this.proposal,
+        selectedTick: selectedTick ?? this.selectedTick,
+        subscribe: subscribe ?? this.subscribe,
+        symbol: symbol ?? this.symbol,
+        tradingPeriodStart: tradingPeriodStart ?? this.tradingPeriodStart,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

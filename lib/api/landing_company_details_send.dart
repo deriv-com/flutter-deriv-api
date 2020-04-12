@@ -11,11 +11,11 @@ class LandingCompanyDetailsRequest extends Request {
   /// Initialize LandingCompanyDetailsRequest
   LandingCompanyDetailsRequest({
     this.landingCompanyDetails,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,18 @@ class LandingCompanyDetailsRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$LandingCompanyDetailsRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  LandingCompanyDetailsRequest copyWith({
+    String landingCompanyDetails,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      LandingCompanyDetailsRequest(
+        landingCompanyDetails:
+            landingCompanyDetails ?? this.landingCompanyDetails,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

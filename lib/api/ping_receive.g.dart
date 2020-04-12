@@ -9,18 +9,18 @@ part of 'ping_receive.dart';
 PingResponse _$PingResponseFromJson(Map<String, dynamic> json) {
   return PingResponse(
     ping: json['ping'] as String,
+    reqId: json['req_id'] as int,
+    msgType: json['msg_type'] as String,
     echoReq: json['echo_req'] as Map<String, dynamic>,
     error: json['error'] as Map<String, dynamic>,
-    msgType: json['msg_type'] as String,
-    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$PingResponseToJson(PingResponse instance) =>
     <String, dynamic>{
+      'req_id': instance.reqId,
+      'msg_type': instance.msgType,
       'echo_req': instance.echoReq,
       'error': instance.error,
-      'msg_type': instance.msgType,
-      'req_id': instance.reqId,
       'ping': instance.ping,
     };

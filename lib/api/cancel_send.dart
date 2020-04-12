@@ -11,11 +11,11 @@ class CancelRequest extends Request {
   /// Initialize CancelRequest
   CancelRequest({
     this.cancel = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class CancelRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$CancelRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  CancelRequest copyWith({
+    int cancel,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      CancelRequest(
+        cancel: cancel ?? this.cancel,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

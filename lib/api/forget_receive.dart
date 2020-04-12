@@ -11,15 +11,15 @@ class ForgetResponse extends Response {
   /// Initialize ForgetResponse
   ForgetResponse({
     this.forget,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class ForgetResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ForgetResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ForgetResponse copyWith({
+    int forget,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      ForgetResponse(
+        forget: forget ?? this.forget,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

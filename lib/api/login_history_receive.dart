@@ -11,15 +11,15 @@ class LoginHistoryResponse extends Response {
   /// Initialize LoginHistoryResponse
   LoginHistoryResponse({
     this.loginHistory,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class LoginHistoryResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$LoginHistoryResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  LoginHistoryResponse copyWith({
+    List<Map<String, dynamic>> loginHistory,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      LoginHistoryResponse(
+        loginHistory: loginHistory ?? this.loginHistory,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

@@ -21,11 +21,11 @@ class NewAccountVirtualRequest extends Request {
     this.utmMedium,
     this.utmSource,
     this.verificationCode,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -69,4 +69,37 @@ class NewAccountVirtualRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$NewAccountVirtualRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  NewAccountVirtualRequest copyWith({
+    String affiliateToken,
+    String clientPassword,
+    String dateFirstContact,
+    String gclidUrl,
+    int newAccountVirtual,
+    String residence,
+    String signupDevice,
+    String utmCampaign,
+    String utmMedium,
+    String utmSource,
+    String verificationCode,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      NewAccountVirtualRequest(
+        affiliateToken: affiliateToken ?? this.affiliateToken,
+        clientPassword: clientPassword ?? this.clientPassword,
+        dateFirstContact: dateFirstContact ?? this.dateFirstContact,
+        gclidUrl: gclidUrl ?? this.gclidUrl,
+        newAccountVirtual: newAccountVirtual ?? this.newAccountVirtual,
+        residence: residence ?? this.residence,
+        signupDevice: signupDevice ?? this.signupDevice,
+        utmCampaign: utmCampaign ?? this.utmCampaign,
+        utmMedium: utmMedium ?? this.utmMedium,
+        utmSource: utmSource ?? this.utmSource,
+        verificationCode: verificationCode ?? this.verificationCode,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

@@ -15,15 +15,15 @@ StatementRequest _$StatementRequestFromJson(Map<String, dynamic> json) {
     limit: json['limit'] as num,
     offset: json['offset'] as num,
     statement: json['statement'] as int,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 
 Map<String, dynamic> _$StatementRequestToJson(StatementRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'action_type': instance.actionType,
       'date_from': instance.dateFrom,
       'date_to': instance.dateTo,

@@ -11,11 +11,11 @@ class AppGetRequest extends Request {
   /// Initialize AppGetRequest
   AppGetRequest({
     this.appGet = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class AppGetRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AppGetRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  AppGetRequest copyWith({
+    int appGet,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      AppGetRequest(
+        appGet: appGet ?? this.appGet,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

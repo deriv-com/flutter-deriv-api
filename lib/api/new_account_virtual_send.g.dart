@@ -20,16 +20,16 @@ NewAccountVirtualRequest _$NewAccountVirtualRequestFromJson(
     utmMedium: json['utm_medium'] as String,
     utmSource: json['utm_source'] as String,
     verificationCode: json['verification_code'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 
 Map<String, dynamic> _$NewAccountVirtualRequestToJson(
         NewAccountVirtualRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'affiliate_token': instance.affiliateToken,
       'client_password': instance.clientPassword,
       'date_first_contact': instance.dateFirstContact,

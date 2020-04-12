@@ -11,15 +11,15 @@ class P2pChatCreateResponse extends Response {
   /// Initialize P2pChatCreateResponse
   P2pChatCreateResponse({
     this.p2pChatCreate,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class P2pChatCreateResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pChatCreateResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  P2pChatCreateResponse copyWith({
+    Map<String, dynamic> p2pChatCreate,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      P2pChatCreateResponse(
+        p2pChatCreate: p2pChatCreate ?? this.p2pChatCreate,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

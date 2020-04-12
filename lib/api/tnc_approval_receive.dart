@@ -11,15 +11,15 @@ class TncApprovalResponse extends Response {
   /// Initialize TncApprovalResponse
   TncApprovalResponse({
     this.tncApproval,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class TncApprovalResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TncApprovalResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  TncApprovalResponse copyWith({
+    int tncApproval,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      TncApprovalResponse(
+        tncApproval: tncApproval ?? this.tncApproval,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

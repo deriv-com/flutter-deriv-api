@@ -20,11 +20,11 @@ class AppUpdateRequest extends Request {
     this.redirectUri,
     this.scopes,
     this.verificationUri,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -65,4 +65,35 @@ class AppUpdateRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AppUpdateRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  AppUpdateRequest copyWith({
+    num appMarkupPercentage,
+    int appUpdate,
+    String appstore,
+    String github,
+    String googleplay,
+    String homepage,
+    String name,
+    String redirectUri,
+    List<String> scopes,
+    String verificationUri,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      AppUpdateRequest(
+        appMarkupPercentage: appMarkupPercentage ?? this.appMarkupPercentage,
+        appUpdate: appUpdate ?? this.appUpdate,
+        appstore: appstore ?? this.appstore,
+        github: github ?? this.github,
+        googleplay: googleplay ?? this.googleplay,
+        homepage: homepage ?? this.homepage,
+        name: name ?? this.name,
+        redirectUri: redirectUri ?? this.redirectUri,
+        scopes: scopes ?? this.scopes,
+        verificationUri: verificationUri ?? this.verificationUri,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

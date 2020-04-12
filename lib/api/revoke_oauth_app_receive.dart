@@ -11,15 +11,15 @@ class RevokeOauthAppResponse extends Response {
   /// Initialize RevokeOauthAppResponse
   RevokeOauthAppResponse({
     this.revokeOauthApp,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class RevokeOauthAppResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$RevokeOauthAppResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  RevokeOauthAppResponse copyWith({
+    int revokeOauthApp,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      RevokeOauthAppResponse(
+        revokeOauthApp: revokeOauthApp ?? this.revokeOauthApp,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

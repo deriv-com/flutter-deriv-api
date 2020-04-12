@@ -11,11 +11,11 @@ class GetSettingsRequest extends Request {
   /// Initialize GetSettingsRequest
   GetSettingsRequest({
     this.getSettings = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,17 @@ class GetSettingsRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$GetSettingsRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  GetSettingsRequest copyWith({
+    int getSettings,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      GetSettingsRequest(
+        getSettings: getSettings ?? this.getSettings,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

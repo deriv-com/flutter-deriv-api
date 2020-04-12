@@ -10,15 +10,15 @@ SetAccountCurrencyRequest _$SetAccountCurrencyRequestFromJson(
     Map<String, dynamic> json) {
   return SetAccountCurrencyRequest(
     setAccountCurrency: json['set_account_currency'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 
 Map<String, dynamic> _$SetAccountCurrencyRequestToJson(
         SetAccountCurrencyRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'set_account_currency': instance.setAccountCurrency,
     };

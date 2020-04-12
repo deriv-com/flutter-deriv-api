@@ -7,21 +7,31 @@ part 'request.g.dart';
 class Request {
   /// Initializes
   Request({
-    this.passthrough,
     this.reqId,
+    this.passthrough,
   });
 
   /// Creates instance from JSON
   factory Request.fromJson(Map<String, dynamic> json) =>
       _$RequestFromJson(json);
 
+  /// [Optional] Used to map request to response.
+  final int reqId;
+
   /// [Optional] Used to pass data through the websocket, which may be
   /// retrieved via the `echo_req` output field.
   final Map<String, dynamic> passthrough;
 
-  /// [Optional] Used to map request to response.
-  final int reqId;
-
   /// Converts to JSON
   Map<String, dynamic> toJson() => _$RequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  Request copyWith({
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      Request(
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

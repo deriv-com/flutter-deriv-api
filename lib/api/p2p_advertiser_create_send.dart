@@ -16,11 +16,11 @@ class P2pAdvertiserCreateRequest extends Request {
     this.p2pAdvertiserCreate = 1,
     this.paymentInfo,
     this.subscribe,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -49,4 +49,28 @@ class P2pAdvertiserCreateRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertiserCreateRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  P2pAdvertiserCreateRequest copyWith({
+    String contactInfo,
+    String defaultAdvertDescription,
+    String name,
+    int p2pAdvertiserCreate,
+    String paymentInfo,
+    int subscribe,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      P2pAdvertiserCreateRequest(
+        contactInfo: contactInfo ?? this.contactInfo,
+        defaultAdvertDescription:
+            defaultAdvertDescription ?? this.defaultAdvertDescription,
+        name: name ?? this.name,
+        p2pAdvertiserCreate: p2pAdvertiserCreate ?? this.p2pAdvertiserCreate,
+        paymentInfo: paymentInfo ?? this.paymentInfo,
+        subscribe: subscribe ?? this.subscribe,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

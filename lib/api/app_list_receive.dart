@@ -11,15 +11,15 @@ class AppListResponse extends Response {
   /// Initialize AppListResponse
   AppListResponse({
     this.appList,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class AppListResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$AppListResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  AppListResponse copyWith({
+    List<Map<String, dynamic>> appList,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      AppListResponse(
+        appList: appList ?? this.appList,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

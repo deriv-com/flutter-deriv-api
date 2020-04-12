@@ -15,11 +15,11 @@ class Mt5PasswordChangeRequest extends Request {
     this.newPassword,
     this.oldPassword,
     this.passwordType,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -45,4 +45,25 @@ class Mt5PasswordChangeRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5PasswordChangeRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  Mt5PasswordChangeRequest copyWith({
+    String login,
+    int mt5PasswordChange,
+    String newPassword,
+    String oldPassword,
+    String passwordType,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      Mt5PasswordChangeRequest(
+        login: login ?? this.login,
+        mt5PasswordChange: mt5PasswordChange ?? this.mt5PasswordChange,
+        newPassword: newPassword ?? this.newPassword,
+        oldPassword: oldPassword ?? this.oldPassword,
+        passwordType: passwordType ?? this.passwordType,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

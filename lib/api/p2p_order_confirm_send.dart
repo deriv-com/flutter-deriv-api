@@ -12,11 +12,11 @@ class P2pOrderConfirmRequest extends Request {
   P2pOrderConfirmRequest({
     this.id,
     this.p2pOrderConfirm = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,19 @@ class P2pOrderConfirmRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pOrderConfirmRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  P2pOrderConfirmRequest copyWith({
+    String id,
+    int p2pOrderConfirm,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      P2pOrderConfirmRequest(
+        id: id ?? this.id,
+        p2pOrderConfirm: p2pOrderConfirm ?? this.p2pOrderConfirm,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

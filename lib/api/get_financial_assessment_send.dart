@@ -11,11 +11,11 @@ class GetFinancialAssessmentRequest extends Request {
   /// Initialize GetFinancialAssessmentRequest
   GetFinancialAssessmentRequest({
     this.getFinancialAssessment = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -29,4 +29,18 @@ class GetFinancialAssessmentRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$GetFinancialAssessmentRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  GetFinancialAssessmentRequest copyWith({
+    int getFinancialAssessment,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      GetFinancialAssessmentRequest(
+        getFinancialAssessment:
+            getFinancialAssessment ?? this.getFinancialAssessment,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

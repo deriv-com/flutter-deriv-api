@@ -12,11 +12,11 @@ class ExchangeRatesRequest extends Request {
   ExchangeRatesRequest({
     this.baseCurrency,
     this.exchangeRates = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,19 @@ class ExchangeRatesRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ExchangeRatesRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ExchangeRatesRequest copyWith({
+    String baseCurrency,
+    int exchangeRates,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      ExchangeRatesRequest(
+        baseCurrency: baseCurrency ?? this.baseCurrency,
+        exchangeRates: exchangeRates ?? this.exchangeRates,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

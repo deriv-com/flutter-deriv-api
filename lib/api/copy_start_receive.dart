@@ -11,15 +11,15 @@ class CopyStartResponse extends Response {
   /// Initialize CopyStartResponse
   CopyStartResponse({
     this.copyStart,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class CopyStartResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$CopyStartResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  CopyStartResponse copyWith({
+    int copyStart,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      CopyStartResponse(
+        copyStart: copyStart ?? this.copyStart,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

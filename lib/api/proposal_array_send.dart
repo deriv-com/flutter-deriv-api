@@ -25,11 +25,11 @@ class ProposalArrayRequest extends Request {
     this.subscribe,
     this.symbol,
     this.tradingPeriodStart,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -85,4 +85,45 @@ class ProposalArrayRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$ProposalArrayRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  ProposalArrayRequest copyWith({
+    num amount,
+    List<Map<String, dynamic>> barriers,
+    String basis,
+    List<String> contractType,
+    String currency,
+    int dateExpiry,
+    int dateStart,
+    int duration,
+    String durationUnit,
+    num multiplier,
+    String productType,
+    int proposalArray,
+    int subscribe,
+    String symbol,
+    int tradingPeriodStart,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      ProposalArrayRequest(
+        amount: amount ?? this.amount,
+        barriers: barriers ?? this.barriers,
+        basis: basis ?? this.basis,
+        contractType: contractType ?? this.contractType,
+        currency: currency ?? this.currency,
+        dateExpiry: dateExpiry ?? this.dateExpiry,
+        dateStart: dateStart ?? this.dateStart,
+        duration: duration ?? this.duration,
+        durationUnit: durationUnit ?? this.durationUnit,
+        multiplier: multiplier ?? this.multiplier,
+        productType: productType ?? this.productType,
+        proposalArray: proposalArray ?? this.proposalArray,
+        subscribe: subscribe ?? this.subscribe,
+        symbol: symbol ?? this.symbol,
+        tradingPeriodStart: tradingPeriodStart ?? this.tradingPeriodStart,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

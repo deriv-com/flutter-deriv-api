@@ -13,11 +13,11 @@ class P2pAdvertiserInfoRequest extends Request {
     this.id,
     this.p2pAdvertiserInfo = 1,
     this.subscribe,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -37,4 +37,21 @@ class P2pAdvertiserInfoRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertiserInfoRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  P2pAdvertiserInfoRequest copyWith({
+    String id,
+    int p2pAdvertiserInfo,
+    int subscribe,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      P2pAdvertiserInfoRequest(
+        id: id ?? this.id,
+        p2pAdvertiserInfo: p2pAdvertiserInfo ?? this.p2pAdvertiserInfo,
+        subscribe: subscribe ?? this.subscribe,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

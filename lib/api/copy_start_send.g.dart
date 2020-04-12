@@ -13,15 +13,15 @@ CopyStartRequest _$CopyStartRequestFromJson(Map<String, dynamic> json) {
     maxTradeStake: json['max_trade_stake'] as num,
     minTradeStake: json['min_trade_stake'] as num,
     tradeTypes: json['trade_types'] as String,
-    passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>,
   );
 }
 
 Map<String, dynamic> _$CopyStartRequestToJson(CopyStartRequest instance) =>
     <String, dynamic>{
-      'passthrough': instance.passthrough,
       'req_id': instance.reqId,
+      'passthrough': instance.passthrough,
       'assets': instance.assets,
       'copy_start': instance.copyStart,
       'max_trade_stake': instance.maxTradeStake,

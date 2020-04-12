@@ -14,15 +14,15 @@ class TicksHistoryResponse extends Response {
     this.history,
     this.pipSize,
     this.subscription,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -45,4 +45,27 @@ class TicksHistoryResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$TicksHistoryResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  TicksHistoryResponse copyWith({
+    List<Map<String, dynamic>> candles,
+    Map<String, dynamic> history,
+    num pipSize,
+    Map<String, dynamic> subscription,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      TicksHistoryResponse(
+        candles: candles ?? this.candles,
+        history: history ?? this.history,
+        pipSize: pipSize ?? this.pipSize,
+        subscription: subscription ?? this.subscription,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

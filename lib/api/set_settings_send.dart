@@ -32,11 +32,11 @@ class SetSettingsRequest extends Request {
     this.setSettings = 1,
     this.taxIdentificationNumber,
     this.taxResidence,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -113,4 +113,61 @@ class SetSettingsRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$SetSettingsRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  SetSettingsRequest copyWith({
+    String accountOpeningReason,
+    String addressCity,
+    String addressLine1,
+    String addressLine2,
+    String addressPostcode,
+    String addressState,
+    int allowCopiers,
+    String citizen,
+    String dateOfBirth,
+    int emailConsent,
+    String firstName,
+    String lastName,
+    String phone,
+    String placeOfBirth,
+    int requestProfessionalStatus,
+    String residence,
+    String salutation,
+    String secretAnswer,
+    String secretQuestion,
+    int setSettings,
+    String taxIdentificationNumber,
+    String taxResidence,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      SetSettingsRequest(
+        accountOpeningReason: accountOpeningReason ?? this.accountOpeningReason,
+        addressCity: addressCity ?? this.addressCity,
+        addressLine1: addressLine1 ?? this.addressLine1,
+        addressLine2: addressLine2 ?? this.addressLine2,
+        addressPostcode: addressPostcode ?? this.addressPostcode,
+        addressState: addressState ?? this.addressState,
+        allowCopiers: allowCopiers ?? this.allowCopiers,
+        citizen: citizen ?? this.citizen,
+        dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+        emailConsent: emailConsent ?? this.emailConsent,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        phone: phone ?? this.phone,
+        placeOfBirth: placeOfBirth ?? this.placeOfBirth,
+        requestProfessionalStatus:
+            requestProfessionalStatus ?? this.requestProfessionalStatus,
+        residence: residence ?? this.residence,
+        salutation: salutation ?? this.salutation,
+        secretAnswer: secretAnswer ?? this.secretAnswer,
+        secretQuestion: secretQuestion ?? this.secretQuestion,
+        setSettings: setSettings ?? this.setSettings,
+        taxIdentificationNumber:
+            taxIdentificationNumber ?? this.taxIdentificationNumber,
+        taxResidence: taxResidence ?? this.taxResidence,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

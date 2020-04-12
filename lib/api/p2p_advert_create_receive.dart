@@ -11,15 +11,15 @@ class P2pAdvertCreateResponse extends Response {
   /// Initialize P2pAdvertCreateResponse
   P2pAdvertCreateResponse({
     this.p2pAdvertCreate,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class P2pAdvertCreateResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertCreateResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  P2pAdvertCreateResponse copyWith({
+    Map<String, dynamic> p2pAdvertCreate,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      P2pAdvertCreateResponse(
+        p2pAdvertCreate: p2pAdvertCreate ?? this.p2pAdvertCreate,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }

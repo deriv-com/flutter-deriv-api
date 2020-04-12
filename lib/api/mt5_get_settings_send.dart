@@ -12,11 +12,11 @@ class Mt5GetSettingsRequest extends Request {
   Mt5GetSettingsRequest({
     this.login,
     this.mt5GetSettings = 1,
-    Map<String, dynamic> passthrough,
     int reqId,
+    Map<String, dynamic> passthrough,
   }) : super(
-          passthrough: passthrough,
           reqId: reqId,
+          passthrough: passthrough,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,19 @@ class Mt5GetSettingsRequest extends Request {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5GetSettingsRequestToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  Mt5GetSettingsRequest copyWith({
+    String login,
+    int mt5GetSettings,
+    int reqId,
+    Map<String, dynamic> passthrough,
+  }) =>
+      Mt5GetSettingsRequest(
+        login: login ?? this.login,
+        mt5GetSettings: mt5GetSettings ?? this.mt5GetSettings,
+        reqId: reqId ?? this.reqId,
+        passthrough: passthrough ?? this.passthrough,
+      );
 }

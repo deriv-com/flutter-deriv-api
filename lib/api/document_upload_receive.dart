@@ -11,15 +11,15 @@ class DocumentUploadResponse extends Response {
   /// Initialize DocumentUploadResponse
   DocumentUploadResponse({
     this.documentUpload,
+    int reqId,
+    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
-    String msgType,
-    int reqId,
   }) : super(
+          reqId: reqId,
+          msgType: msgType,
           echoReq: echoReq,
           error: error,
-          msgType: msgType,
-          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -33,4 +33,21 @@ class DocumentUploadResponse extends Response {
   /// Converts to JSON
   @override
   Map<String, dynamic> toJson() => _$DocumentUploadResponseToJson(this);
+
+  /// Creates copy of instance with given parameters
+  @override
+  DocumentUploadResponse copyWith({
+    Map<String, dynamic> documentUpload,
+    int reqId,
+    String msgType,
+    Map<String, dynamic> echoReq,
+    Map<String, dynamic> error,
+  }) =>
+      DocumentUploadResponse(
+        documentUpload: documentUpload ?? this.documentUpload,
+        reqId: reqId ?? this.reqId,
+        msgType: msgType ?? this.msgType,
+        echoReq: echoReq ?? this.echoReq,
+        error: error ?? this.error,
+      );
 }
