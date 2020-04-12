@@ -101,7 +101,7 @@ class BinaryAPI {
 
     print('send initial message.');
 
-    await call(PingRequest());
+    await call(const PingRequest());
     await connectionCompleter.future;
 
     print('web socket is connected.');
