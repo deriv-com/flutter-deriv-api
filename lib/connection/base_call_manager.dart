@@ -8,6 +8,11 @@ import 'package:flutter_deriv_api/api/api.helper.dart';
 import 'package:flutter_deriv_api/connection/pending_request.dart';
 import 'package:flutter_deriv_api/connection/connection_websocket.dart';
 
+typedef RequestPredicateFunction = bool Function(
+  Request request,
+  PendingRequest<Response> pendingRequest,
+);
+
 /// Api call manager abstract class
 abstract class BaseCallManager<T> {
   /// Class constructor
@@ -33,8 +38,7 @@ abstract class BaseCallManager<T> {
   /// [predicate] function is only applicable to subscription calls
   T call({
     @required Request request,
-    bool Function(Request request, PendingRequest<Response> pendingRequest)
-        predicate,
+    RequestPredicateFunction predicate,
   });
 
   /// Handle call [response] that comes from server

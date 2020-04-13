@@ -77,8 +77,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   @override
   Stream<Response> call({
     @required Request request,
-    bool Function(Request request, PendingRequest<Response> pendingRequest)
-        predicate,
+    RequestPredicateFunction predicate,
   }) {
     final PendingSubscribedRequest<Response> pendingRequest = predicate == null
         ? null
@@ -166,8 +165,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   PendingSubscribedRequest<Response> _getPendingRequest({
     @required Request request,
     @required Map<int, PendingSubscribedRequest<Response>> pendingRequests,
-    bool Function(Request request, PendingRequest<Response> pendingRequest)
-        predicate,
+    @required RequestPredicateFunction predicate,
   }) {
     PendingSubscribedRequest<Response> result;
 
