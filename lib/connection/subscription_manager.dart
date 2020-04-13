@@ -166,18 +166,10 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     @required Request request,
     @required Map<int, PendingSubscribedRequest<Response>> pendingRequests,
     @required RequestPredicateFunction predicate,
-  }) {
-    PendingSubscribedRequest<Response> result;
-
-    pendingRequests.forEach((
-      int key,
-      PendingSubscribedRequest<Response> pendingRequest,
-    ) {
-      if (predicate(request, pendingRequest)) {
-        result = pendingRequest;
-      }
-    });
-
-    return result;
-  }
+  }) =>
+      pendingRequests.values.firstWhere(
+        (PendingSubscribedRequest<Response> pendingRequest) =>
+            predicate(request, pendingRequest),
+        orElse: () => null,
+      );
 }
