@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/request.dart';
 import 'package:flutter_deriv_api/api/response.dart';
+import 'package:flutter_deriv_api/connection/pending_request.dart';
 import 'package:flutter_deriv_api/connection/base_call_manager.dart';
 import 'package:flutter_deriv_api/connection/connection_websocket.dart';
 
@@ -12,8 +14,8 @@ class CallManager extends BaseCallManager<Future<Response>> {
 
   @override
   void handleResponse({
-    int requestId,
-    Map<String, dynamic> response,
+    @required int requestId,
+    @required Map<String, dynamic> response,
   }) {
     super.handleResponse(requestId: requestId, response: response);
 
@@ -23,6 +25,10 @@ class CallManager extends BaseCallManager<Future<Response>> {
   }
 
   @override
-  Future<Response> call(Request request) async =>
+  Future<Response> call({
+    @required Request request,
+    bool Function(Request request, PendingRequest<Response> pendingRequest)
+        predicate,
+  }) async =>
       addToChannel(request: request);
 }

@@ -30,7 +30,12 @@ abstract class BaseCallManager<T> {
   bool contains(int requestId) => _pendingRequests.containsKey(requestId);
 
   /// Calls a api method by [request]
-  T call(Request request);
+  /// [predicate] function is only applicable to subscription calls
+  T call({
+    @required Request request,
+    bool Function(Request request, PendingRequest<Response> pendingRequest)
+        predicate,
+  });
 
   /// Handle call [response] that comes from server
   void handleResponse({
@@ -86,8 +91,8 @@ abstract class BaseCallManager<T> {
 
   /// Add [request] to pending requests queue
   void _addPendingRequest({
-    Request request,
-    Completer<Response> response,
+    @required Request request,
+    @required Completer<Response> response,
   }) =>
       _pendingRequests[request.reqId] = PendingRequest<Response>(
         request: request,

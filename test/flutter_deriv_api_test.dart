@@ -41,8 +41,9 @@ void main() {
   test('Base classes usage in deriv connection', () async {
     final BinaryAPI api = BinaryAPI();
     await api.run();
-    final AuthorizeResponse authorizeResponse =
-        await api.call(const AuthorizeRequest(authorize: 'YOU TOKEN'));
+    final AuthorizeResponse authorizeResponse = await api.call(
+      request: const AuthorizeRequest(authorize: 'YOU TOKEN'),
+    );
 
     print('Test result: authorize: ${authorizeResponse.authorize}');
 
@@ -50,8 +51,9 @@ void main() {
       return;
     }
 
-    final P2pOrderListResponse orderListResponse =
-        await api.call(const P2pOrderListRequest(offset: 0, limit: 10));
+    final P2pOrderListResponse orderListResponse = await api.call(
+      request: const P2pOrderListRequest(offset: 0, limit: 10),
+    );
 
     print(
         'Test result: orderList length: ${orderListResponse.p2pOrderList['list'].length}');
@@ -60,7 +62,7 @@ void main() {
       final List<dynamic> orders = orderListResponse.p2pOrderList['list'];
       if (orders?.isNotEmpty ?? false) {
         final P2pOrderInfoResponse orderInfoResponse = await api.call(
-          P2pOrderInfoRequest(
+          request: P2pOrderInfoRequest(
             id: orderListResponse.p2pOrderList['list'][0]['id'],
           ),
         );
@@ -69,33 +71,38 @@ void main() {
     }
 
     final P2pAdvertListResponse advertListResponse =
-        await api.call(const P2pAdvertListRequest());
+        await api.call(request: const P2pAdvertListRequest());
 
     print(
         'Test result: advertList length: ${advertListResponse.p2pAdvertList['list'].length}');
 
     final WebsiteStatusResponse websiteStatusResponse =
-        await api.call(const WebsiteStatusRequest());
+        await api.call(request: const WebsiteStatusRequest());
     print(
         'Test result: Website status: ${websiteStatusResponse.websiteStatus}');
 
-    final ActiveSymbolsResponse activeSymbolsResponse =
-        await api.call(const ActiveSymbolsRequest(activeSymbols: 'brief'));
+    final ActiveSymbolsResponse activeSymbolsResponse = await api.call(
+        request: const ActiveSymbolsRequest(activeSymbols: 'brief'));
     print(
         'Test result: ActiveSymbolsRequest: ${activeSymbolsResponse.activeSymbols}');
 
-    final PingResponse pingResponse = await api.call(const PingRequest());
+    final PingResponse pingResponse =
+        await api.call(request: const PingRequest());
     print('Test result: PingResponse: ${pingResponse.ping}');
 
-    api.subscription(const BalanceRequest()).listen((Response response) {
-      final BalanceResponse balanceResponse = response;
-      print('balance: ${balanceResponse.balance}');
-    });
+    api.subscription(request: const BalanceRequest()).listen(
+      (Response response) {
+        final BalanceResponse balanceResponse = response;
+        print('balance: ${balanceResponse.balance}');
+      },
+    );
 
-    api.subscription(const P2pOrderListRequest()).listen((Response response) {
-      final P2pOrderListResponse orderListResponse = response;
-      print('p2pOrderList: ${orderListResponse.p2pOrderList}');
-    });
+    api.subscription(request: const P2pOrderListRequest()).listen(
+      (Response response) {
+        final P2pOrderListResponse orderListResponse = response;
+        print('p2pOrderList: ${orderListResponse.p2pOrderList}');
+      },
+    );
 
     await Future<void>.delayed(const Duration(seconds: 5));
   });

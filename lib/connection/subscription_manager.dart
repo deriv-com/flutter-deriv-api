@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/request.dart';
 import 'package:flutter_deriv_api/api/response.dart';
@@ -38,24 +39,24 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
 
   /// Set [subscriptionId]
   void setSubscriptionId({
-    int requestId,
-    String subscriptionId,
+    @required int requestId,
+    @required String subscriptionId,
   }) =>
       pendingRequests[requestId] = PendingSubscribedRequest<Response>()
           .copyWith(subscriptionId: subscriptionId);
 
   /// Set [subscriptionStream]
   void setSubscriptionStream({
-    int requestId,
-    SubscriptionStream<Response> subscriptionStream,
+    @required int requestId,
+    @required SubscriptionStream<Response> subscriptionStream,
   }) =>
       pendingRequests[requestId] = PendingSubscribedRequest<Response>()
           .copyWith(subscriptionStream: subscriptionStream);
 
   @override
   void handleResponse({
-    int requestId,
-    Map<String, dynamic> response,
+    @required int requestId,
+    @required Map<String, dynamic> response,
   }) {
     super.handleResponse(requestId: requestId, response: response);
 
@@ -74,9 +75,18 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   }
 
   @override
-  Stream<Response> call(Request request) {
-    final PendingSubscribedRequest<Response> pendingRequest =
-        _getPendingRequest(request, pendingRequests);
+  Stream<Response> call({
+    @required Request request,
+    bool Function(Request request, PendingRequest<Response> pendingRequest)
+        predicate,
+  }) {
+    final PendingSubscribedRequest<Response> pendingRequest = predicate == null
+        ? null
+        : _getPendingRequest(
+            request: request,
+            pendingRequests: pendingRequests,
+            predicate: predicate,
+          );
 
     if (pendingRequest != null) {
       return pendingRequest.subscriptionStream.stream;
@@ -97,8 +107,8 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   }
 
   /// Unsubscribe with a specific [subscriptionId]
-  Future<ForgetResponse> unsubscribe(
-    String subscriptionId, {
+  Future<ForgetResponse> unsubscribe({
+    @required String subscriptionId,
     bool shouldForced = false,
   }) async {
     final int requestId = pendingRequests.keys
@@ -109,8 +119,9 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     }
 
     // Send forget request
-    final Response response =
-        await api.call(ForgetRequest(forget: getSubscriptionId(requestId)));
+    final Response response = await api.call(
+      request: ForgetRequest(forget: getSubscriptionId(requestId)),
+    );
 
     if (response.error == null) {
       await _removePendingRequest(requestId);
@@ -120,8 +131,8 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   }
 
   /// Unsubscribe to multiple [method]s all at once
-  Future<dynamic> unsubscribeAll(
-    String method, {
+  Future<dynamic> unsubscribeAll({
+    @required String method,
     bool shouldForced = false,
   }) async {
     final List<int> requestIds = pendingRequests.keys.where(
@@ -135,7 +146,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     );
 
     final ForgetAllResponse response =
-        await api.call(ForgetAllRequest(forgetAll: method));
+        await api.call(request: ForgetAllRequest(forgetAll: method));
 
     if (response.error == null) {
       for (int id in requestIds) {
@@ -152,17 +163,19 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     pendingRequests.remove(requestId);
   }
 
-  PendingSubscribedRequest<Response> _getPendingRequest(
-    Request request,
-    Map<int, PendingSubscribedRequest<Response>> pendingRequests,
-  ) {
+  PendingSubscribedRequest<Response> _getPendingRequest({
+    @required Request request,
+    @required Map<int, PendingSubscribedRequest<Response>> pendingRequests,
+    bool Function(Request request, PendingRequest<Response> pendingRequest)
+        predicate,
+  }) {
     PendingSubscribedRequest<Response> result;
 
     pendingRequests.forEach((
       int key,
       PendingSubscribedRequest<Response> pendingRequest,
     ) {
-      if (pendingRequest.request == request) {
+      if (predicate(request, pendingRequest)) {
         result = pendingRequest;
       }
     });
