@@ -11,12 +11,12 @@ class PendingRequest<T> {
     this.response,
   });
 
-  /// api call method (e.g. 'active_symbols')
+  /// Api call method (e.g. 'active_symbols')
   final String method;
 
   /// Map of the sent request
   final Request request;
 
-  /// this completer will complete whenever the response of the request arrives
+  /// This completer will complete whenever the response of the request arrives
   final Completer<T> response;
 }

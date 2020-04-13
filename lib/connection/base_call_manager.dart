@@ -49,15 +49,15 @@ abstract class BaseCallManager<T> {
   /// Add [request] to pending requests queue, api history and web socket channel
   Future<Response> addToChannel({
     @required Request request,
-    String ifAbsentKey,
-    dynamic Function() ifAbsentCallback,
+    String absentKey,
+    dynamic Function() absentFunction,
   }) {
     final Completer<Response> response = Completer<Response>();
     final Request requestWithId = request.copyWith(reqId: _getRequestId());
     final Map<String, dynamic> prepareRequest = _prepareRequest(requestWithId);
 
-    if (ifAbsentCallback != null) {
-      prepareRequest.putIfAbsent(ifAbsentKey, ifAbsentCallback);
+    if (absentFunction != null) {
+      prepareRequest.putIfAbsent(absentKey, absentFunction);
     }
 
     _addPendingRequest(

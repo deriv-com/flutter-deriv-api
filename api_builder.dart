@@ -116,8 +116,8 @@ class APIBuilder extends Builder {
               /// Initialize $classFullName
               const $classFullName({
                   ${_getConstructorParameters(methodName, schema, schemaType, properties)},
-                  ${_getSuperTypeNameParameters(schemaType)},
-                }): super(${_getSuperCallParameters(schemaType)},);
+                  ${_getSuperClassParameters(schemaType)},
+                }): super(${_getSuperClassCallParameters(schemaType)},);
               
               /// Creates instance from JSON
               factory $classFullName.fromJson(Map<String, dynamic> json) => _\$${classFullName}FromJson(json);
@@ -147,28 +147,6 @@ class APIBuilder extends Builder {
     }
   }
 
-  String _getSuperTypeNameParameters(String schemaType) {
-    final Map<String, String> commonFields =
-        schemaType == 'send' ? requestCommonFields : responseCommonFields;
-
-    return commonFields.keys
-        .map((String key) =>
-            '${typeMap[commonFields[key]]} ${ReCase(key).camelCase}')
-        .join(', ');
-  }
-
-  String _getSuperCallParameters(String schemaType) {
-    final Map<String, String> commonFields =
-        schemaType == 'send' ? requestCommonFields : responseCommonFields;
-
-    return commonFields.keys.map(
-      (String key) {
-        final String parameterName = ReCase(key).camelCase;
-        return '$parameterName: $parameterName';
-      },
-    ).join(', ');
-  }
-
   String _getConstructorParameters(
     String methodName,
     JsonSchema schema,
@@ -195,30 +173,6 @@ class APIBuilder extends Builder {
         },
       ).join(', ');
 
-  String _getPropertyType(
-    BuildStep buildStep,
-    JsonSchema property,
-  ) {
-    if (property.typeList?.isNotEmpty ?? false) {
-      if (property.oneOf.isNotEmpty) {
-        return 'dynamic';
-      } else {
-        final String schemaType = property.type?.toString() ?? 'string';
-
-        if (schemaType == 'array') {
-          // Some types aren't specified - forget_all for example
-          final String itemType = property.items?.type?.toString() ?? 'string';
-
-          return 'List<${typeMap[itemType]}>';
-        } else {
-          return typeMap[schemaType] ?? 'String';
-        }
-      }
-    } else {
-      return 'String';
-    }
-  }
-
   String _getProperties(
     BuildStep buildStep,
     JsonSchema schema,
@@ -238,6 +192,27 @@ class APIBuilder extends Builder {
                   ''';
         },
       ).join('\n');
+
+  String _getPropertyType(BuildStep buildStep, JsonSchema property) {
+    if (property.typeList?.isNotEmpty ?? false) {
+      if (property.oneOf.isNotEmpty) {
+        return 'dynamic';
+      } else {
+        final String schemaType = property.type?.toString() ?? 'string';
+
+        if (schemaType == 'array') {
+          // Some types aren't specified - forget_all for example
+          final String itemType = property.items?.type?.toString() ?? 'string';
+
+          return 'List<${typeMap[itemType]}>';
+        } else {
+          return typeMap[schemaType] ?? 'String';
+        }
+      }
+    } else {
+      return 'String';
+    }
+  }
 
   String _getCopyWithMethod(
     BuildStep buildStep,
@@ -262,7 +237,8 @@ class APIBuilder extends Builder {
           },
         ).join(', '),
       )
-      ..write(', ${_getCommonProperties(schemaType)}, }) => $classFullName (')
+      ..write(
+          ', ${_getSuperClassParameters(schemaType)}, }) => $classFullName (')
       ..write(
         properties
             .where((String key) => !(requestCommonFields.containsKey(key) ||
@@ -270,40 +246,45 @@ class APIBuilder extends Builder {
             .map(
           (String key) {
             final String name = ReCase(key).camelCase;
-
             return '$name: $name ?? this.$name';
           },
         ).join(', '),
       )
-      ..write(', ${_getCommonAssignments(schemaType)},');
+      ..write(', ${_getSupperClassAssignments(schemaType)},');
 
     return result.toString();
   }
 
-  String _getCommonProperties(String schemaType) {
-    final Map<String, String> commonFields =
-        schemaType == 'send' ? requestCommonFields : responseCommonFields;
+  String _getSuperClassParameters(String schemaType) {
+    final Map<String, String> superClassFields =
+        _getSuperClassFields(schemaType);
 
-    return commonFields.keys
+    return superClassFields.keys
         .map((String key) =>
-            '${typeMap[commonFields[key]]} ${ReCase(key).camelCase}')
+            '${typeMap[superClassFields[key]]} ${ReCase(key).camelCase}')
         .join(', ');
   }
 
-  String _getCommonAssignments(String schemaType) {
-    final Map<String, String> commonFields =
-        schemaType == 'send' ? requestCommonFields : responseCommonFields;
+  String _getSuperClassCallParameters(String schemaType) =>
+      _getSuperClassFields(schemaType).keys.map(
+        (String key) {
+          final String parameterName = ReCase(key).camelCase;
+          return '$parameterName: $parameterName';
+        },
+      ).join(', ');
 
-    return commonFields.keys.map((String key) {
-      final String propertyName = ReCase(key).camelCase;
-      return '$propertyName: $propertyName ?? this.$propertyName';
-    }).join(', ');
-  }
+  String _getSupperClassAssignments(String schemaType) =>
+      _getSuperClassFields(schemaType).keys.map(
+        (String key) {
+          final String propertyName = ReCase(key).camelCase;
+          return '$propertyName: $propertyName ?? this.$propertyName';
+        },
+      ).join(', ');
 
-  String _getEquatableFields(
-    String classFullName,
-    List<String> properties,
-  ) {
+  Map<String, String> _getSuperClassFields(String schemaType) =>
+      schemaType == 'send' ? requestCommonFields : responseCommonFields;
+
+  String _getEquatableFields(String classFullName, List<String> properties) {
     switch (classFullName) {
       case 'TicksRequest':
         return '<Object>[ticks]';
