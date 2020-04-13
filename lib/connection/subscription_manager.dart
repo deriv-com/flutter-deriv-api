@@ -84,8 +84,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
 
     addToChannel(
       request: request,
-      absentKey: 'subscribe',
-      absentFunction: () => 1,
+      absentFields: <String, dynamic Function()>{'subscribe': () => 1},
     );
 
     final SubscriptionStream<Response> subscriptionStream =

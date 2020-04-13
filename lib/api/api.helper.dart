@@ -42,8 +42,8 @@ import 'copy_stop_receive.dart';
 import 'tnc_approval_receive.dart';
 import 'set_financial_assessment_receive.dart';
 import 'forget_all_receive.dart';
-import 'proposal_array_receive.dart';
 import 'forget_receive.dart';
+import 'proposal_array_receive.dart';
 import 'time_receive.dart';
 import 'login_history_receive.dart';
 import 'trading_durations_receive.dart';
@@ -90,9 +90,9 @@ import 'copytrading_statistics_receive.dart';
 import 'asset_index_receive.dart';
 import 'buy_contract_for_multiple_accounts_receive.dart';
 import 'logout_receive.dart';
+import 'copytrading_list_receive.dart';
 import 'set_self_exclusion_receive.dart';
 import 'new_account_virtual_receive.dart';
-import 'copytrading_list_receive.dart';
 import 'exchange_rates_receive.dart';
 import 'mt5_deposit_receive.dart';
 import 'cancel_receive.dart';
@@ -178,10 +178,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return SetFinancialAssessmentResponse.fromJson(responseMap);
     case 'forget_all':
       return ForgetAllResponse.fromJson(responseMap);
-    case 'proposal_array':
-      return ProposalArrayResponse.fromJson(responseMap);
     case 'forget':
       return ForgetResponse.fromJson(responseMap);
+    case 'proposal_array':
+      return ProposalArrayResponse.fromJson(responseMap);
     case 'time':
       return TimeResponse.fromJson(responseMap);
     case 'login_history':
@@ -274,12 +274,12 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return BuyContractForMultipleAccountsResponse.fromJson(responseMap);
     case 'logout':
       return LogoutResponse.fromJson(responseMap);
+    case 'copytrading_list':
+      return CopytradingListResponse.fromJson(responseMap);
     case 'set_self_exclusion':
       return SetSelfExclusionResponse.fromJson(responseMap);
     case 'new_account_virtual':
       return NewAccountVirtualResponse.fromJson(responseMap);
-    case 'copytrading_list':
-      return CopytradingListResponse.fromJson(responseMap);
     case 'exchange_rates':
       return ExchangeRatesResponse.fromJson(responseMap);
     case 'mt5_deposit':
