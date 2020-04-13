@@ -84,8 +84,8 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
 
     addToChannel(
       request: request,
-      ifAbsentKey: 'subscribe',
-      ifAbsentCallback: () => 1,
+      absentKey: 'subscribe',
+      absentFunction: () => 1,
     );
 
     final SubscriptionStream<Response> subscriptionStream =
@@ -97,7 +97,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     return subscriptionStream.stream;
   }
 
-  /// unsubscribe with a specific [subscriptionId]
+  /// Unsubscribe with a specific [subscriptionId]
   Future<ForgetResponse> unsubscribe(
     String subscriptionId, {
     bool shouldForced = false,
