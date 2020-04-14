@@ -26,7 +26,7 @@ class CallManager extends BaseCallManager<Future<Response>> {
   @override
   Future<Response> call({
     @required Request request,
-    RequestPredicateFunction predicate,
+    RequestCompareFunction comparePredicate,
   }) async =>
       addToChannel(request: request);
 }

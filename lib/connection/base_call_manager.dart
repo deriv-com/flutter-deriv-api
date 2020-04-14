@@ -10,7 +10,7 @@ import 'package:flutter_deriv_api/connection/basic_binary_api.dart';
 
 /// A predicate function to compare [request] and [pendingRequest]s
 /// [equatableResult] indicates request and pending request are equal or not (by equatable package result)
-typedef RequestPredicateFunction = bool Function({
+typedef RequestCompareFunction = bool Function({
   Request request,
   PendingRequest<Response> pendingRequest,
   bool equatableResult,
@@ -38,11 +38,11 @@ abstract class BaseCallManager<T> {
   bool contains(int requestId) => _pendingRequests.containsKey(requestId);
 
   /// Calls a api method by [request]
-  /// [predicate] function is only applicable to subscription calls
-  /// [predicate] indicates compare condition for current [request] and pending requests
+  /// [comparePredicate] function is only applicable to subscription calls
+  /// [comparePredicate] indicates compare condition for current [request] and [pendingRequest]s
   T call({
     @required Request request,
-    RequestPredicateFunction predicate,
+    RequestCompareFunction comparePredicate,
   });
 
   /// Handle call [response] that comes from server

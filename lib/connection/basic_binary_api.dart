@@ -51,14 +51,14 @@ class BasicBinaryAPI {
   CallManager get call => _callManager ??= CallManager(this);
 
   /// Subscribe to a [request]
-  /// [predicate] indicates compare condition for current [request] and pending requests
+  /// [comparePredicate] indicates compare condition for current [request] and [pendingRequest]s
   Stream<Response> subscribe({
     @required Request request,
-    RequestPredicateFunction predicate,
+    RequestCompareFunction comparePredicate,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this))(
         request: request,
-        predicate: predicate,
+        comparePredicate: comparePredicate,
       );
 
   /// Unsubscribe with a specific [subscriptionId]
