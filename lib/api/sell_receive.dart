@@ -11,15 +11,15 @@ class SellResponse extends Response {
   /// Initialize SellResponse
   const SellResponse({
     this.sell,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -38,17 +38,17 @@ class SellResponse extends Response {
   @override
   SellResponse copyWith({
     Map<String, dynamic> sell,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       SellResponse(
         sell: sell ?? this.sell,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

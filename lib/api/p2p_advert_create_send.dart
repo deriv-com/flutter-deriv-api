@@ -22,11 +22,11 @@ class P2pAdvertCreateRequest extends Request {
     this.paymentMethod,
     this.rate,
     this.type,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -89,8 +89,8 @@ class P2pAdvertCreateRequest extends Request {
     String paymentMethod,
     num rate,
     String type,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       P2pAdvertCreateRequest(
         amount: amount ?? this.amount,
@@ -105,8 +105,8 @@ class P2pAdvertCreateRequest extends Request {
         paymentMethod: paymentMethod ?? this.paymentMethod,
         rate: rate ?? this.rate,
         type: type ?? this.type,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

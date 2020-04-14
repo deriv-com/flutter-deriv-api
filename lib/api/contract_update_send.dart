@@ -13,11 +13,11 @@ class ContractUpdateRequest extends Request {
     this.contractId,
     this.contractUpdate = 1,
     this.limitOrder,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -44,15 +44,15 @@ class ContractUpdateRequest extends Request {
     int contractId,
     int contractUpdate,
     Map<String, dynamic> limitOrder,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       ContractUpdateRequest(
         contractId: contractId ?? this.contractId,
         contractUpdate: contractUpdate ?? this.contractUpdate,
         limitOrder: limitOrder ?? this.limitOrder,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

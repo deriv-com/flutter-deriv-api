@@ -12,11 +12,11 @@ class TransactionRequest extends Request {
   const TransactionRequest({
     this.subscribe,
     this.transaction = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -39,14 +39,14 @@ class TransactionRequest extends Request {
   TransactionRequest copyWith({
     int subscribe,
     int transaction,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       TransactionRequest(
         subscribe: subscribe ?? this.subscribe,
         transaction: transaction ?? this.transaction,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

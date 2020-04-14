@@ -9,14 +9,14 @@ part of 'get_settings_send.dart';
 GetSettingsRequest _$GetSettingsRequestFromJson(Map<String, dynamic> json) {
   return GetSettingsRequest(
     getSettings: json['get_settings'] as int,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$GetSettingsRequestToJson(GetSettingsRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'get_settings': instance.getSettings,
     };

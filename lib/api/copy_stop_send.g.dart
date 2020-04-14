@@ -9,14 +9,14 @@ part of 'copy_stop_send.dart';
 CopyStopRequest _$CopyStopRequestFromJson(Map<String, dynamic> json) {
   return CopyStopRequest(
     copyStop: json['copy_stop'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$CopyStopRequestToJson(CopyStopRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'copy_stop': instance.copyStop,
     };

@@ -20,11 +20,11 @@ class AppMarkupDetailsRequest extends Request {
     this.offset,
     this.sort,
     this.sortFields,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -79,8 +79,8 @@ class AppMarkupDetailsRequest extends Request {
     num offset,
     String sort,
     List<String> sortFields,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       AppMarkupDetailsRequest(
         appId: appId ?? this.appId,
@@ -93,8 +93,8 @@ class AppMarkupDetailsRequest extends Request {
         offset: offset ?? this.offset,
         sort: sort ?? this.sort,
         sortFields: sortFields ?? this.sortFields,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

@@ -11,11 +11,11 @@ class CopyStopRequest extends Request {
   /// Initialize CopyStopRequest
   const CopyStopRequest({
     this.copyStop,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class CopyStopRequest extends Request {
   @override
   CopyStopRequest copyWith({
     String copyStop,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       CopyStopRequest(
         copyStop: copyStop ?? this.copyStop,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

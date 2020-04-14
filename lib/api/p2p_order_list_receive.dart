@@ -12,15 +12,15 @@ class P2pOrderListResponse extends Response {
   const P2pOrderListResponse({
     this.p2pOrderList,
     this.subscription,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -43,18 +43,18 @@ class P2pOrderListResponse extends Response {
   P2pOrderListResponse copyWith({
     Map<String, dynamic> p2pOrderList,
     Map<String, dynamic> subscription,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       P2pOrderListResponse(
         p2pOrderList: p2pOrderList ?? this.p2pOrderList,
         subscription: subscription ?? this.subscription,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

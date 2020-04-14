@@ -30,15 +30,15 @@ SetSettingsRequest _$SetSettingsRequestFromJson(Map<String, dynamic> json) {
     setSettings: json['set_settings'] as int,
     taxIdentificationNumber: json['tax_identification_number'] as String,
     taxResidence: json['tax_residence'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$SetSettingsRequestToJson(SetSettingsRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'account_opening_reason': instance.accountOpeningReason,
       'address_city': instance.addressCity,
       'address_line1': instance.addressLine1,

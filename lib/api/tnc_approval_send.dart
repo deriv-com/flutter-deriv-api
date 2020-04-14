@@ -12,11 +12,11 @@ class TncApprovalRequest extends Request {
   const TncApprovalRequest({
     this.tncApproval,
     this.ukgcFundsProtection,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -39,14 +39,14 @@ class TncApprovalRequest extends Request {
   TncApprovalRequest copyWith({
     num tncApproval,
     int ukgcFundsProtection,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       TncApprovalRequest(
         tncApproval: tncApproval ?? this.tncApproval,
         ukgcFundsProtection: ukgcFundsProtection ?? this.ukgcFundsProtection,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

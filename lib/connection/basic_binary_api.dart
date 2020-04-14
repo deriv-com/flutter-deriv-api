@@ -3,19 +3,25 @@ library wsapi;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
+
+import 'package:meta/meta.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
+import 'package:flutter_deriv_api/api/request.dart';
+import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/api/ping_send.dart';
+import 'package:flutter_deriv_api/api/forget_receive.dart';
 import 'package:flutter_deriv_api/connection/api_history.dart';
 import 'package:flutter_deriv_api/connection/call_manager.dart';
+import 'package:flutter_deriv_api/connection/base_call_manager.dart';
 import 'package:flutter_deriv_api/connection/subscription_manager.dart';
 
 /// Callbacks for WS connection
 typedef SocketCallback = void Function();
 
 /// Contains the api call
-class BinaryAPI {
+class BasicBinaryAPI {
   /// Indicates current connection status - only set `true` once
   /// we have established SSL *and* web socket handshake steps
   bool _connected = false;
@@ -44,9 +50,36 @@ class BinaryAPI {
   /// Get call manager instance
   CallManager get call => _callManager ??= CallManager(this);
 
-  /// Get subscription manager instance
-  SubscriptionManager get subscription =>
-      _subscriptionManager ??= SubscriptionManager(this);
+  /// Subscribe to a [request]
+  /// [predicate] indicates compare condition for current [request] and pending requests
+  Stream<Response> subscribe({
+    @required Request request,
+    RequestPredicateFunction predicate,
+  }) =>
+      (_subscriptionManager ??= SubscriptionManager(this)).call(
+        request: request,
+        predicate: predicate,
+      );
+
+  /// Unsubscribe with a specific [subscriptionId]
+  Future<ForgetResponse> unsubscribe({
+    @required String subscriptionId,
+    bool shouldForced = false,
+  }) =>
+      (_subscriptionManager ??= SubscriptionManager(this)).unsubscribe(
+        subscriptionId: subscriptionId,
+        shouldForced: shouldForced,
+      );
+
+  /// Unsubscribe to multiple [method]s all at once
+  Future<ForgetResponse> unsubscribeAll({
+    @required String method,
+    bool shouldForced = false,
+  }) =>
+      (_subscriptionManager ??= SubscriptionManager(this)).unsubscribeAll(
+        method: method,
+        shouldForced: shouldForced,
+      );
 
   /// Connects to binary web socket
   Future<IOWebSocketChannel> run({
@@ -171,13 +204,13 @@ class BinaryAPI {
 
         print('have request id: $requestId.');
 
-        if (call.contains(requestId)) {
-          call.handleResponse(
+        if (_callManager.contains(requestId)) {
+          _callManager.handleResponse(
             requestId: requestId,
             response: message,
           );
-        } else if (subscription.contains(requestId)) {
-          subscription.handleResponse(
+        } else if (_subscriptionManager.contains(requestId)) {
+          _subscriptionManager.handleResponse(
             requestId: requestId,
             response: message,
           );

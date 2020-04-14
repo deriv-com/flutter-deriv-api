@@ -11,15 +11,15 @@ class Mt5LoginListResponse extends Response {
   /// Initialize Mt5LoginListResponse
   const Mt5LoginListResponse({
     this.mt5LoginList,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -38,17 +38,17 @@ class Mt5LoginListResponse extends Response {
   @override
   Mt5LoginListResponse copyWith({
     List<Map<String, dynamic>> mt5LoginList,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       Mt5LoginListResponse(
         mt5LoginList: mt5LoginList ?? this.mt5LoginList,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

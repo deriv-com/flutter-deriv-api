@@ -15,11 +15,11 @@ class ApiTokenRequest extends Request {
     this.newToken,
     this.newTokenScopes,
     this.validForCurrentIpOnly,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -54,8 +54,8 @@ class ApiTokenRequest extends Request {
     String newToken,
     List<String> newTokenScopes,
     int validForCurrentIpOnly,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       ApiTokenRequest(
         apiToken: apiToken ?? this.apiToken,
@@ -64,8 +64,8 @@ class ApiTokenRequest extends Request {
         newTokenScopes: newTokenScopes ?? this.newTokenScopes,
         validForCurrentIpOnly:
             validForCurrentIpOnly ?? this.validForCurrentIpOnly,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

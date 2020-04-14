@@ -9,15 +9,15 @@ import 'package:flutter_deriv_api/api/forget_receive.dart';
 import 'package:flutter_deriv_api/api/forget_all_send.dart';
 import 'package:flutter_deriv_api/api/forget_all_receive.dart';
 import 'package:flutter_deriv_api/connection/pending_request.dart';
+import 'package:flutter_deriv_api/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/connection/base_call_manager.dart';
 import 'package:flutter_deriv_api/connection/subscription_stream.dart';
-import 'package:flutter_deriv_api/connection/connection_websocket.dart';
 import 'package:flutter_deriv_api/connection/pending_subscribed_request.dart';
 
 /// Subscription manager class
 class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   /// Class constructor
-  SubscriptionManager(BinaryAPI api) : super(api);
+  SubscriptionManager(BasicBinaryAPI api) : super(api);
 
   /// Get [subscriptionId] by [requestId]
   String getSubscriptionId(int requestId) {
@@ -79,13 +79,12 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     @required Request request,
     RequestPredicateFunction predicate,
   }) {
-    final PendingSubscribedRequest<Response> pendingRequest = predicate == null
-        ? null
-        : _getPendingRequest(
-            request: request,
-            pendingRequests: pendingRequests,
-            predicate: predicate,
-          );
+    final PendingSubscribedRequest<Response> pendingRequest =
+        _getPendingRequest(
+      request: request,
+      pendingRequests: pendingRequests,
+      predicate: predicate,
+    );
 
     if (pendingRequest != null) {
       return pendingRequest.subscriptionStream.stream;
@@ -165,11 +164,16 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   PendingSubscribedRequest<Response> _getPendingRequest({
     @required Request request,
     @required Map<int, PendingSubscribedRequest<Response>> pendingRequests,
-    @required RequestPredicateFunction predicate,
+    RequestPredicateFunction predicate,
   }) =>
       pendingRequests.values.firstWhere(
-        (PendingSubscribedRequest<Response> pendingRequest) =>
-            predicate(request, pendingRequest),
+        (PendingSubscribedRequest<Response> pendingRequest) => predicate == null
+            ? request == pendingRequest.request
+            : predicate(
+                request: request,
+                pendingRequest: pendingRequest,
+                equatableResult: request == pendingRequest.request,
+              ),
         orElse: () => null,
       );
 }

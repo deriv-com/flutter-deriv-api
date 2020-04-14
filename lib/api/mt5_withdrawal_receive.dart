@@ -12,15 +12,15 @@ class Mt5WithdrawalResponse extends Response {
   const Mt5WithdrawalResponse({
     this.binaryTransactionId,
     this.mt5Withdrawal,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -43,18 +43,18 @@ class Mt5WithdrawalResponse extends Response {
   Mt5WithdrawalResponse copyWith({
     int binaryTransactionId,
     int mt5Withdrawal,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       Mt5WithdrawalResponse(
         binaryTransactionId: binaryTransactionId ?? this.binaryTransactionId,
         mt5Withdrawal: mt5Withdrawal ?? this.mt5Withdrawal,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

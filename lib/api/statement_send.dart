@@ -17,11 +17,11 @@ class StatementRequest extends Request {
     this.limit,
     this.offset,
     this.statement = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -64,8 +64,8 @@ class StatementRequest extends Request {
     num limit,
     num offset,
     int statement,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       StatementRequest(
         actionType: actionType ?? this.actionType,
@@ -75,8 +75,8 @@ class StatementRequest extends Request {
         limit: limit ?? this.limit,
         offset: offset ?? this.offset,
         statement: statement ?? this.statement,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

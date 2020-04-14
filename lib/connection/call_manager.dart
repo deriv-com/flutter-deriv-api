@@ -3,13 +3,13 @@ import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/request.dart';
 import 'package:flutter_deriv_api/api/response.dart';
+import 'package:flutter_deriv_api/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/connection/base_call_manager.dart';
-import 'package:flutter_deriv_api/connection/connection_websocket.dart';
 
 /// Api call manager abstract class
 class CallManager extends BaseCallManager<Future<Response>> {
   /// Class constructor
-  CallManager(BinaryAPI api) : super(api);
+  CallManager(BasicBinaryAPI api) : super(api);
 
   @override
   void handleResponse({

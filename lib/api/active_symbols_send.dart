@@ -13,11 +13,11 @@ class ActiveSymbolsRequest extends Request {
     this.activeSymbols,
     this.landingCompany,
     this.productType,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -44,15 +44,15 @@ class ActiveSymbolsRequest extends Request {
     String activeSymbols,
     String landingCompany,
     String productType,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       ActiveSymbolsRequest(
         activeSymbols: activeSymbols ?? this.activeSymbols,
         landingCompany: landingCompany ?? this.landingCompany,
         productType: productType ?? this.productType,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

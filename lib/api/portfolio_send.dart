@@ -11,11 +11,11 @@ class PortfolioRequest extends Request {
   /// Initialize PortfolioRequest
   const PortfolioRequest({
     this.portfolio = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class PortfolioRequest extends Request {
   @override
   PortfolioRequest copyWith({
     int portfolio,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       PortfolioRequest(
         portfolio: portfolio ?? this.portfolio,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

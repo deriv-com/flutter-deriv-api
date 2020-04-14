@@ -11,11 +11,11 @@ class TopupVirtualRequest extends Request {
   /// Initialize TopupVirtualRequest
   const TopupVirtualRequest({
     this.topupVirtual = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class TopupVirtualRequest extends Request {
   @override
   TopupVirtualRequest copyWith({
     int topupVirtual,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       TopupVirtualRequest(
         topupVirtual: topupVirtual ?? this.topupVirtual,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

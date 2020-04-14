@@ -11,11 +11,11 @@ class Mt5LoginListRequest extends Request {
   /// Initialize Mt5LoginListRequest
   const Mt5LoginListRequest({
     this.mt5LoginList = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class Mt5LoginListRequest extends Request {
   @override
   Mt5LoginListRequest copyWith({
     int mt5LoginList,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       Mt5LoginListRequest(
         mt5LoginList: mt5LoginList ?? this.mt5LoginList,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

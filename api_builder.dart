@@ -29,15 +29,15 @@ class APIBuilder extends Builder {
   };
 
   static const Map<String, String> requestCommonFields = <String, String>{
-    'req_id': 'integer',
     'passthrough': 'object',
+    'req_id': 'integer',
   };
 
   static const Map<String, String> responseCommonFields = <String, String>{
-    'req_id': 'integer',
-    'msg_type': 'string',
     'echo_req': 'object',
     'error': 'object',
+    'msg_type': 'string',
+    'req_id': 'integer',
   };
 
   @override
@@ -300,7 +300,7 @@ class APIBuilder extends Builder {
   }
 }
 
-class GeneratedResponseJson {
+class GeneratedResponseJson extends Comparable<GeneratedResponseJson> {
   GeneratedResponseJson({
     this.msgType,
     this.fileName,
@@ -310,4 +310,8 @@ class GeneratedResponseJson {
   final String msgType;
   final String fileName;
   final String fullClassName;
+
+  @override
+  int compareTo(GeneratedResponseJson other) =>
+      fileName.compareTo(other.fileName);
 }

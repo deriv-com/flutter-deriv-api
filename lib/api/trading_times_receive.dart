@@ -11,15 +11,15 @@ class TradingTimesResponse extends Response {
   /// Initialize TradingTimesResponse
   const TradingTimesResponse({
     this.tradingTimes,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -38,17 +38,17 @@ class TradingTimesResponse extends Response {
   @override
   TradingTimesResponse copyWith({
     Map<String, dynamic> tradingTimes,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       TradingTimesResponse(
         tradingTimes: tradingTimes ?? this.tradingTimes,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

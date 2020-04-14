@@ -11,11 +11,11 @@ class GetAccountStatusRequest extends Request {
   /// Initialize GetAccountStatusRequest
   const GetAccountStatusRequest({
     this.getAccountStatus = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class GetAccountStatusRequest extends Request {
   @override
   GetAccountStatusRequest copyWith({
     int getAccountStatus,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       GetAccountStatusRequest(
         getAccountStatus: getAccountStatus ?? this.getAccountStatus,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

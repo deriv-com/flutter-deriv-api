@@ -12,16 +12,16 @@ P2pAdvertiserAdvertsRequest _$P2pAdvertiserAdvertsRequestFromJson(
     limit: json['limit'] as int,
     offset: json['offset'] as int,
     p2pAdvertiserAdverts: json['p2p_advertiser_adverts'] as int,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$P2pAdvertiserAdvertsRequestToJson(
         P2pAdvertiserAdvertsRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'limit': instance.limit,
       'offset': instance.offset,
       'p2p_advertiser_adverts': instance.p2pAdvertiserAdverts,

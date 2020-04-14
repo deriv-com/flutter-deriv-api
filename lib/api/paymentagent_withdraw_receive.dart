@@ -13,15 +13,15 @@ class PaymentagentWithdrawResponse extends Response {
     this.paymentagentName,
     this.paymentagentWithdraw,
     this.transactionId,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -48,19 +48,19 @@ class PaymentagentWithdrawResponse extends Response {
     String paymentagentName,
     int paymentagentWithdraw,
     int transactionId,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       PaymentagentWithdrawResponse(
         paymentagentName: paymentagentName ?? this.paymentagentName,
         paymentagentWithdraw: paymentagentWithdraw ?? this.paymentagentWithdraw,
         transactionId: transactionId ?? this.transactionId,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

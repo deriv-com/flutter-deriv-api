@@ -15,11 +15,11 @@ class Mt5PasswordResetRequest extends Request {
     this.newPassword,
     this.passwordType,
     this.verificationCode,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -54,8 +54,8 @@ class Mt5PasswordResetRequest extends Request {
     String newPassword,
     String passwordType,
     String verificationCode,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       Mt5PasswordResetRequest(
         login: login ?? this.login,
@@ -63,8 +63,8 @@ class Mt5PasswordResetRequest extends Request {
         newPassword: newPassword ?? this.newPassword,
         passwordType: passwordType ?? this.passwordType,
         verificationCode: verificationCode ?? this.verificationCode,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

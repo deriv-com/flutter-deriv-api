@@ -13,11 +13,11 @@ class VerifyEmailRequest extends Request {
     this.type,
     this.urlParameters,
     this.verifyEmail,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -44,15 +44,15 @@ class VerifyEmailRequest extends Request {
     String type,
     Map<String, dynamic> urlParameters,
     String verifyEmail,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       VerifyEmailRequest(
         type: type ?? this.type,
         urlParameters: urlParameters ?? this.urlParameters,
         verifyEmail: verifyEmail ?? this.verifyEmail,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

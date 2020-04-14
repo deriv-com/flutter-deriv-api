@@ -14,11 +14,11 @@ class Mt5DepositRequest extends Request {
     this.fromBinary,
     this.mt5Deposit = 1,
     this.toMt5,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -49,16 +49,16 @@ class Mt5DepositRequest extends Request {
     String fromBinary,
     int mt5Deposit,
     String toMt5,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       Mt5DepositRequest(
         amount: amount ?? this.amount,
         fromBinary: fromBinary ?? this.fromBinary,
         mt5Deposit: mt5Deposit ?? this.mt5Deposit,
         toMt5: toMt5 ?? this.toMt5,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

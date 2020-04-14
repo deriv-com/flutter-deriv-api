@@ -12,11 +12,11 @@ class SellRequest extends Request {
   const SellRequest({
     this.price,
     this.sell = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -39,14 +39,14 @@ class SellRequest extends Request {
   SellRequest copyWith({
     num price,
     int sell,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       SellRequest(
         price: price ?? this.price,
         sell: sell ?? this.sell,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

@@ -16,16 +16,16 @@ P2pAdvertListRequest _$P2pAdvertListRequestFromJson(Map<String, dynamic> json) {
     localCurrency: json['local_currency'] as String,
     offset: json['offset'] as int,
     p2pAdvertList: json['p2p_advert_list'] as int,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$P2pAdvertListRequestToJson(
         P2pAdvertListRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'advertiser_id': instance.advertiserId,
       'amount': instance.amount,
       'counterparty_type': instance.counterpartyType,

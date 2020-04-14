@@ -11,11 +11,11 @@ class CopytradingListRequest extends Request {
   /// Initialize CopytradingListRequest
   const CopytradingListRequest({
     this.copytradingList = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class CopytradingListRequest extends Request {
   @override
   CopytradingListRequest copyWith({
     int copytradingList,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       CopytradingListRequest(
         copytradingList: copytradingList ?? this.copytradingList,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

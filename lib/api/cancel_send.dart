@@ -11,11 +11,11 @@ class CancelRequest extends Request {
   /// Initialize CancelRequest
   const CancelRequest({
     this.cancel = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class CancelRequest extends Request {
   @override
   CancelRequest copyWith({
     int cancel,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       CancelRequest(
         cancel: cancel ?? this.cancel,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

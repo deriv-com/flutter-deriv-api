@@ -37,6 +37,7 @@ class NewAccountMaltainvestRequest extends Request {
     this.lastName,
     this.netIncome,
     this.newAccountMaltainvest = 1,
+    this.nonPepDeclaration,
     this.occupation,
     this.otherInstrumentsTradingExperience,
     this.otherInstrumentsTradingFrequency,
@@ -49,11 +50,11 @@ class NewAccountMaltainvestRequest extends Request {
     this.sourceOfWealth,
     this.taxIdentificationNumber,
     this.taxResidence,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -142,6 +143,9 @@ class NewAccountMaltainvestRequest extends Request {
   /// Must be `1`
   final int newAccountMaltainvest;
 
+  /// [Optional] Indicates client's self-declaration of not being a PEP/RCA.
+  final int nonPepDeclaration;
+
   /// Occupation.
   final String occupation;
 
@@ -212,6 +216,7 @@ class NewAccountMaltainvestRequest extends Request {
     String lastName,
     String netIncome,
     int newAccountMaltainvest,
+    int nonPepDeclaration,
     String occupation,
     String otherInstrumentsTradingExperience,
     String otherInstrumentsTradingFrequency,
@@ -224,8 +229,8 @@ class NewAccountMaltainvestRequest extends Request {
     String sourceOfWealth,
     String taxIdentificationNumber,
     String taxResidence,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       NewAccountMaltainvestRequest(
         acceptRisk: acceptRisk ?? this.acceptRisk,
@@ -260,6 +265,7 @@ class NewAccountMaltainvestRequest extends Request {
         netIncome: netIncome ?? this.netIncome,
         newAccountMaltainvest:
             newAccountMaltainvest ?? this.newAccountMaltainvest,
+        nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,
         occupation: occupation ?? this.occupation,
         otherInstrumentsTradingExperience: otherInstrumentsTradingExperience ??
             this.otherInstrumentsTradingExperience,
@@ -275,8 +281,8 @@ class NewAccountMaltainvestRequest extends Request {
         taxIdentificationNumber:
             taxIdentificationNumber ?? this.taxIdentificationNumber,
         taxResidence: taxResidence ?? this.taxResidence,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

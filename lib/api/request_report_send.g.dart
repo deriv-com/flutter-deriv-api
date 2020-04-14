@@ -20,8 +20,8 @@ RequestReportRequest _$RequestReportRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$RequestReportRequestToJson(
         RequestReportRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'date_from': instance.dateFrom,
       'date_to': instance.dateTo,
       'report_type': instance.reportType,

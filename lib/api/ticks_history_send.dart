@@ -18,11 +18,11 @@ class TicksHistoryRequest extends Request {
     this.style,
     this.subscribe,
     this.ticksHistory,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -71,8 +71,8 @@ class TicksHistoryRequest extends Request {
     String style,
     int subscribe,
     String ticksHistory,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       TicksHistoryRequest(
         adjustStartTime: adjustStartTime ?? this.adjustStartTime,
@@ -83,8 +83,8 @@ class TicksHistoryRequest extends Request {
         style: style ?? this.style,
         subscribe: subscribe ?? this.subscribe,
         ticksHistory: ticksHistory ?? this.ticksHistory,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

@@ -16,11 +16,11 @@ class P2pAdvertiserUpdateRequest extends Request {
     this.name,
     this.p2pAdvertiserUpdate = 1,
     this.paymentInfo,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -59,8 +59,8 @@ class P2pAdvertiserUpdateRequest extends Request {
     String name,
     int p2pAdvertiserUpdate,
     String paymentInfo,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       P2pAdvertiserUpdateRequest(
         contactInfo: contactInfo ?? this.contactInfo,
@@ -70,8 +70,8 @@ class P2pAdvertiserUpdateRequest extends Request {
         name: name ?? this.name,
         p2pAdvertiserUpdate: p2pAdvertiserUpdate ?? this.p2pAdvertiserUpdate,
         paymentInfo: paymentInfo ?? this.paymentInfo,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

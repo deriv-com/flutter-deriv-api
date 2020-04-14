@@ -16,11 +16,11 @@ class PaymentagentTransferRequest extends Request {
     this.dryRun,
     this.paymentagentTransfer = 1,
     this.transferTo,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -59,8 +59,8 @@ class PaymentagentTransferRequest extends Request {
     int dryRun,
     int paymentagentTransfer,
     String transferTo,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       PaymentagentTransferRequest(
         amount: amount ?? this.amount,
@@ -69,8 +69,8 @@ class PaymentagentTransferRequest extends Request {
         dryRun: dryRun ?? this.dryRun,
         paymentagentTransfer: paymentagentTransfer ?? this.paymentagentTransfer,
         transferTo: transferTo ?? this.transferTo,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

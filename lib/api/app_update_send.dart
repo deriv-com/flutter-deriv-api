@@ -20,11 +20,11 @@ class AppUpdateRequest extends Request {
     this.redirectUri,
     this.scopes,
     this.verificationUri,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -79,8 +79,8 @@ class AppUpdateRequest extends Request {
     String redirectUri,
     List<String> scopes,
     String verificationUri,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       AppUpdateRequest(
         appMarkupPercentage: appMarkupPercentage ?? this.appMarkupPercentage,
@@ -93,8 +93,8 @@ class AppUpdateRequest extends Request {
         redirectUri: redirectUri ?? this.redirectUri,
         scopes: scopes ?? this.scopes,
         verificationUri: verificationUri ?? this.verificationUri,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

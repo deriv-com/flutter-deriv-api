@@ -18,11 +18,11 @@ class DocumentUploadRequest extends Request {
     this.expirationDate,
     this.fileSize,
     this.pageType,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -69,8 +69,8 @@ class DocumentUploadRequest extends Request {
     String expirationDate,
     int fileSize,
     String pageType,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       DocumentUploadRequest(
         documentFormat: documentFormat ?? this.documentFormat,
@@ -81,8 +81,8 @@ class DocumentUploadRequest extends Request {
         expirationDate: expirationDate ?? this.expirationDate,
         fileSize: fileSize ?? this.fileSize,
         pageType: pageType ?? this.pageType,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

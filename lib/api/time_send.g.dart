@@ -9,14 +9,14 @@ part of 'time_send.dart';
 TimeRequest _$TimeRequestFromJson(Map<String, dynamic> json) {
   return TimeRequest(
     time: json['time'] as int,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$TimeRequestToJson(TimeRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'time': instance.time,
     };

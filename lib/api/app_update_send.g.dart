@@ -18,15 +18,15 @@ AppUpdateRequest _$AppUpdateRequestFromJson(Map<String, dynamic> json) {
     redirectUri: json['redirect_uri'] as String,
     scopes: (json['scopes'] as List).map((e) => e as String).toList(),
     verificationUri: json['verification_uri'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$AppUpdateRequestToJson(AppUpdateRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'app_markup_percentage': instance.appMarkupPercentage,
       'app_update': instance.appUpdate,
       'appstore': instance.appstore,

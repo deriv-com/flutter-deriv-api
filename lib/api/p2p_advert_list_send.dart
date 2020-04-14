@@ -18,11 +18,11 @@ class P2pAdvertListRequest extends Request {
     this.localCurrency,
     this.offset,
     this.p2pAdvertList = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -69,8 +69,8 @@ class P2pAdvertListRequest extends Request {
     String localCurrency,
     int offset,
     int p2pAdvertList,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       P2pAdvertListRequest(
         advertiserId: advertiserId ?? this.advertiserId,
@@ -81,8 +81,8 @@ class P2pAdvertListRequest extends Request {
         localCurrency: localCurrency ?? this.localCurrency,
         offset: offset ?? this.offset,
         p2pAdvertList: p2pAdvertList ?? this.p2pAdvertList,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

@@ -11,11 +11,11 @@ class LogoutRequest extends Request {
   /// Initialize LogoutRequest
   const LogoutRequest({
     this.logout = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class LogoutRequest extends Request {
   @override
   LogoutRequest copyWith({
     int logout,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       LogoutRequest(
         logout: logout ?? this.logout,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

@@ -20,8 +20,8 @@ ResetPasswordRequest _$ResetPasswordRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$ResetPasswordRequestToJson(
         ResetPasswordRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'date_of_birth': instance.dateOfBirth,
       'new_password': instance.newPassword,
       'reset_password': instance.resetPassword,

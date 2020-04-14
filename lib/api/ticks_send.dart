@@ -12,11 +12,11 @@ class TicksRequest extends Request {
   const TicksRequest({
     this.subscribe,
     this.ticks,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -39,14 +39,14 @@ class TicksRequest extends Request {
   TicksRequest copyWith({
     int subscribe,
     String ticks,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       TicksRequest(
         subscribe: subscribe ?? this.subscribe,
         ticks: ticks ?? this.ticks,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

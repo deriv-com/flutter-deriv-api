@@ -19,8 +19,8 @@ ServiceTokenRequest _$ServiceTokenRequestFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$ServiceTokenRequestToJson(
         ServiceTokenRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'referrer': instance.referrer,
       'service': instance.service,
       'service_token': instance.serviceToken,

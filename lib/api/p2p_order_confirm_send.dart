@@ -12,11 +12,11 @@ class P2pOrderConfirmRequest extends Request {
   const P2pOrderConfirmRequest({
     this.id,
     this.p2pOrderConfirm = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -39,14 +39,14 @@ class P2pOrderConfirmRequest extends Request {
   P2pOrderConfirmRequest copyWith({
     String id,
     int p2pOrderConfirm,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       P2pOrderConfirmRequest(
         id: id ?? this.id,
         p2pOrderConfirm: p2pOrderConfirm ?? this.p2pOrderConfirm,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

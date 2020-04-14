@@ -14,11 +14,11 @@ class SellContractForMultipleAccountsRequest extends Request {
     this.sellContractForMultipleAccounts = 1,
     this.shortcode,
     this.tokens,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -51,8 +51,8 @@ class SellContractForMultipleAccountsRequest extends Request {
     int sellContractForMultipleAccounts,
     String shortcode,
     List<String> tokens,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       SellContractForMultipleAccountsRequest(
         price: price ?? this.price,
@@ -60,8 +60,8 @@ class SellContractForMultipleAccountsRequest extends Request {
             this.sellContractForMultipleAccounts,
         shortcode: shortcode ?? this.shortcode,
         tokens: tokens ?? this.tokens,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

@@ -13,11 +13,11 @@ class ProposalOpenContractRequest extends Request {
     this.contractId,
     this.proposalOpenContract = 1,
     this.subscribe,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -44,15 +44,15 @@ class ProposalOpenContractRequest extends Request {
     int contractId,
     int proposalOpenContract,
     int subscribe,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       ProposalOpenContractRequest(
         contractId: contractId ?? this.contractId,
         proposalOpenContract: proposalOpenContract ?? this.proposalOpenContract,
         subscribe: subscribe ?? this.subscribe,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

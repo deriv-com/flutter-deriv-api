@@ -15,15 +15,15 @@ ProfitTableRequest _$ProfitTableRequestFromJson(Map<String, dynamic> json) {
     offset: json['offset'] as num,
     profitTable: json['profit_table'] as int,
     sort: json['sort'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$ProfitTableRequestToJson(ProfitTableRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'date_from': instance.dateFrom,
       'date_to': instance.dateTo,
       'description': instance.description,

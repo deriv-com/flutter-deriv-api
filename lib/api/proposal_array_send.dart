@@ -25,11 +25,11 @@ class ProposalArrayRequest extends Request {
     this.subscribe,
     this.symbol,
     this.tradingPeriodStart,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -104,8 +104,8 @@ class ProposalArrayRequest extends Request {
     int subscribe,
     String symbol,
     int tradingPeriodStart,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       ProposalArrayRequest(
         amount: amount ?? this.amount,
@@ -123,8 +123,8 @@ class ProposalArrayRequest extends Request {
         subscribe: subscribe ?? this.subscribe,
         symbol: symbol ?? this.symbol,
         tradingPeriodStart: tradingPeriodStart ?? this.tradingPeriodStart,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

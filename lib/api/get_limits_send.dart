@@ -11,11 +11,11 @@ class GetLimitsRequest extends Request {
   /// Initialize GetLimitsRequest
   const GetLimitsRequest({
     this.getLimits = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class GetLimitsRequest extends Request {
   @override
   GetLimitsRequest copyWith({
     int getLimits,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       GetLimitsRequest(
         getLimits: getLimits ?? this.getLimits,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

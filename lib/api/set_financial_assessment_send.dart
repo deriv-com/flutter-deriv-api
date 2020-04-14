@@ -28,11 +28,11 @@ class SetFinancialAssessmentRequest extends Request {
     this.otherInstrumentsTradingFrequency,
     this.setFinancialAssessment = 1,
     this.sourceOfWealth,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -119,8 +119,8 @@ class SetFinancialAssessmentRequest extends Request {
     String otherInstrumentsTradingFrequency,
     int setFinancialAssessment,
     String sourceOfWealth,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       SetFinancialAssessmentRequest(
         accountTurnover: accountTurnover ?? this.accountTurnover,
@@ -148,8 +148,8 @@ class SetFinancialAssessmentRequest extends Request {
         setFinancialAssessment:
             setFinancialAssessment ?? this.setFinancialAssessment,
         sourceOfWealth: sourceOfWealth ?? this.sourceOfWealth,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

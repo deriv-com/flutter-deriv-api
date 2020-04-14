@@ -11,15 +11,15 @@ class PayoutCurrenciesResponse extends Response {
   /// Initialize PayoutCurrenciesResponse
   const PayoutCurrenciesResponse({
     this.payoutCurrencies,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -38,17 +38,17 @@ class PayoutCurrenciesResponse extends Response {
   @override
   PayoutCurrenciesResponse copyWith({
     List<String> payoutCurrencies,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       PayoutCurrenciesResponse(
         payoutCurrencies: payoutCurrencies ?? this.payoutCurrencies,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

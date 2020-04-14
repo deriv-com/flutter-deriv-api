@@ -25,6 +25,7 @@ class NewAccountRealRequest extends Request {
     this.firstName,
     this.lastName,
     this.newAccountReal = 1,
+    this.nonPepDeclaration,
     this.phone,
     this.placeOfBirth,
     this.residence,
@@ -33,11 +34,11 @@ class NewAccountRealRequest extends Request {
     this.secretQuestion,
     this.taxIdentificationNumber,
     this.taxResidence,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -90,6 +91,9 @@ class NewAccountRealRequest extends Request {
   /// Must be `1`
   final int newAccountReal;
 
+  /// [Optional] Indicates client's self-declaration of not being a PEP/RCA.
+  final int nonPepDeclaration;
+
   /// [Optional] Starting with `+` followed by 8-35 digits, allowing hyphens or space.
   final String phone;
 
@@ -136,6 +140,7 @@ class NewAccountRealRequest extends Request {
     String firstName,
     String lastName,
     int newAccountReal,
+    int nonPepDeclaration,
     String phone,
     String placeOfBirth,
     String residence,
@@ -144,8 +149,8 @@ class NewAccountRealRequest extends Request {
     String secretQuestion,
     String taxIdentificationNumber,
     String taxResidence,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       NewAccountRealRequest(
         accountOpeningReason: accountOpeningReason ?? this.accountOpeningReason,
@@ -163,6 +168,7 @@ class NewAccountRealRequest extends Request {
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         newAccountReal: newAccountReal ?? this.newAccountReal,
+        nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,
         phone: phone ?? this.phone,
         placeOfBirth: placeOfBirth ?? this.placeOfBirth,
         residence: residence ?? this.residence,
@@ -172,8 +178,8 @@ class NewAccountRealRequest extends Request {
         taxIdentificationNumber:
             taxIdentificationNumber ?? this.taxIdentificationNumber,
         taxResidence: taxResidence ?? this.taxResidence,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

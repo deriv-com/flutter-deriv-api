@@ -11,11 +11,11 @@ class RealityCheckRequest extends Request {
   /// Initialize RealityCheckRequest
   const RealityCheckRequest({
     this.realityCheck = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class RealityCheckRequest extends Request {
   @override
   RealityCheckRequest copyWith({
     int realityCheck,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       RealityCheckRequest(
         realityCheck: realityCheck ?? this.realityCheck,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

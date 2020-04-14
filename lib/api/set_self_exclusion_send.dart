@@ -24,11 +24,11 @@ class SetSelfExclusionRequest extends Request {
     this.sessionDurationLimit,
     this.setSelfExclusion = 1,
     this.timeoutUntil,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -99,8 +99,8 @@ class SetSelfExclusionRequest extends Request {
     String sessionDurationLimit,
     int setSelfExclusion,
     String timeoutUntil,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       SetSelfExclusionRequest(
         excludeUntil: excludeUntil ?? this.excludeUntil,
@@ -117,8 +117,8 @@ class SetSelfExclusionRequest extends Request {
         sessionDurationLimit: sessionDurationLimit ?? this.sessionDurationLimit,
         setSelfExclusion: setSelfExclusion ?? this.setSelfExclusion,
         timeoutUntil: timeoutUntil ?? this.timeoutUntil,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

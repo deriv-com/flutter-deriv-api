@@ -15,11 +15,11 @@ class CopyStartRequest extends Request {
     this.maxTradeStake,
     this.minTradeStake,
     this.tradeTypes,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -54,8 +54,8 @@ class CopyStartRequest extends Request {
     num maxTradeStake,
     num minTradeStake,
     String tradeTypes,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       CopyStartRequest(
         assets: assets ?? this.assets,
@@ -63,8 +63,8 @@ class CopyStartRequest extends Request {
         maxTradeStake: maxTradeStake ?? this.maxTradeStake,
         minTradeStake: minTradeStake ?? this.minTradeStake,
         tradeTypes: tradeTypes ?? this.tradeTypes,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

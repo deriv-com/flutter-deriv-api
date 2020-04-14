@@ -12,11 +12,11 @@ class P2pChatCreateRequest extends Request {
   const P2pChatCreateRequest({
     this.orderId,
     this.p2pChatCreate = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -39,14 +39,14 @@ class P2pChatCreateRequest extends Request {
   P2pChatCreateRequest copyWith({
     String orderId,
     int p2pChatCreate,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       P2pChatCreateRequest(
         orderId: orderId ?? this.orderId,
         p2pChatCreate: p2pChatCreate ?? this.p2pChatCreate,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class
