@@ -77,13 +77,13 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   @override
   Stream<Response> call({
     @required Request request,
-    RequestPredicateFunction predicate,
+    RequestCompareFunction comparePredicate,
   }) {
     final PendingSubscribedRequest<Response> pendingRequest =
         _getPendingRequest(
       request: request,
       pendingRequests: pendingRequests,
-      predicate: predicate,
+      comparePredicate: comparePredicate,
     );
 
     if (pendingRequest != null) {
@@ -161,19 +161,23 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     pendingRequests.remove(requestId);
   }
 
-  PendingSubscribedRequest<Response> _getPendingRequest({
+  PendingRequest<Response> _getPendingRequest({
     @required Request request,
-    @required Map<int, PendingSubscribedRequest<Response>> pendingRequests,
-    RequestPredicateFunction predicate,
+    @required Map<int, PendingRequest<Response>> pendingRequests,
+    RequestCompareFunction comparePredicate,
   }) =>
       pendingRequests.values.firstWhere(
-        (PendingSubscribedRequest<Response> pendingRequest) => predicate == null
-            ? request == pendingRequest.request
-            : predicate(
-                request: request,
-                pendingRequest: pendingRequest,
-                equatableResult: request == pendingRequest.request,
-              ),
+        (PendingRequest<Response> pendingRequest) {
+          final bool equatableResult = request == pendingRequest.request;
+
+          return comparePredicate == null
+              ? equatableResult
+              : comparePredicate(
+                  request: request,
+                  pendingRequest: pendingRequest,
+                  equatableResult: equatableResult,
+                );
+        },
         orElse: () => null,
       );
 }
