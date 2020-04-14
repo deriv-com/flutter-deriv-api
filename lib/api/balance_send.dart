@@ -23,7 +23,7 @@ class BalanceRequest extends Request {
       _$BalanceRequestFromJson(json);
 
   // Properties
-  /// [Optional] If set to 'all', return the balances of all accounts one by one; if set to 'current', return the balance of current account; if set as an account id, return the balance of that account.
+  /// [Optional] If set to `all`, return the balances of all accounts one by one; if set to `current`, return the balance of current account; if set as an account id, return the balance of that account.
   String account;
 
   /// Must be `1`

@@ -78,7 +78,7 @@ class SetSettingsRequest extends Request {
   /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
   String lastName;
 
-  /// [Optional] Note: not applicable for virtual account. Required field for real money account and within 8-35 digits, allowing '+' in front, numbers, hyphens or space.
+  /// [Optional] Note: not applicable for virtual account. Required field for real money account. Starting with `+` followed by 8-35 digits, allowing hyphens or space.
   String phone;
 
   /// [Optional] Place of birth, 2-letter country code.

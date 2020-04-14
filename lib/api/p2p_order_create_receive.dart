@@ -27,7 +27,7 @@ class P2pOrderCreateResponse extends Response {
   /// Information of the creates P2P order.
   Map<String, dynamic> p2pOrderCreate;
 
-  /// For subscription requests only
+  /// For subscription requests only.
   Map<String, dynamic> subscription;
 
   /// Converts to JSON

@@ -24,7 +24,7 @@ class TransactionResponse extends Response {
       _$TransactionResponseFromJson(json);
 
   // Properties
-  /// For subscription requests only
+  /// For subscription requests only.
   Map<String, dynamic> subscription;
 
   /// Realtime stream of user transaction updates.
