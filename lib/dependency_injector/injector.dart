@@ -10,6 +10,7 @@ class Injector {
   Injector._internal({this.name});
 
   /// Get the instance of the named injector
+  // ignore: prefer_constructors_over_static_methods
   static Injector getInjector({String name = _defaultKey}) =>
       _injectors[name] = _injectors[name] ?? Injector._internal(name: name);
 
