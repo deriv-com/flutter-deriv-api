@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/api/proposal_send.dart';
+import 'package:flutter_deriv_api/helpers.dart';
 import 'package:flutter_deriv_api/models/price_proposal_model.dart';
 import 'cancellation.dart';
 import 'limit_order/limit_order.dart';
@@ -9,7 +11,7 @@ class PriceProposal extends PriceProposalModel {
     double askPrice,
     Cancellation cancellation,
     double commission,
-    int dateStart,
+    DateTime dateStart,
     String displayValue,
     String id,
     LimitOrder limitOrder,
@@ -17,7 +19,7 @@ class PriceProposal extends PriceProposalModel {
     int multiplier,
     double payout,
     double spot,
-    int spotTime,
+    DateTime spotTime,
   }) : super(
           askPrice,
           cancellation,
@@ -41,7 +43,8 @@ class PriceProposal extends PriceProposalModel {
             ? Cancellation.fromJson(json['cancellation'])
             : null,
         commission: json['commission'],
-        dateStart: json['date_start'],
+        dateStart:
+            json['date_start'] != null ? getDateTime(json['date_start']) : null,
         displayValue: json['display_value'],
         id: json['id'],
         limitOrder: json['limit_order'] != null
@@ -51,20 +54,22 @@ class PriceProposal extends PriceProposalModel {
         multiplier: json['multiplier'],
         payout: json['payout'],
         spot: json['spot'],
-        spotTime: json['spot_time'],
+        spotTime:
+            json['spot_time'] != null ? getDateTime(json['spot_time']) : null,
       );
 
-  // TODO(ramin): Will call to the real API whenever its ready
   /// Gets the price proposal for contract
+  /// For parameters information refer to [ProposalRequest]
   Future<PriceProposal> getPriceForContract({
     double amount,
     String basis,
     String contractType,
     String currency,
     String symbol,
-    int dateExpiry,
+    DateTime dateExpiry,
     String durationUnit,
   }) async =>
+      // TODO(ramin): Will call to the real API whenever its ready
       PriceProposal();
 
   /// Clone a new instance
@@ -80,7 +85,7 @@ class PriceProposal extends PriceProposalModel {
     int multiplier,
     double payout,
     double spot,
-    int spotTime,
+    DateTime spotTime,
   }) =>
       PriceProposal(
         askPrice: askPrice ?? this.askPrice,

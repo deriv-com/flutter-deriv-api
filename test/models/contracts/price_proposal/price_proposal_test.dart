@@ -12,7 +12,8 @@ void main() {
 
     expect(priceProposal.askPrice, 10);
     expect(priceProposal.id, '042922fe-5664-09e4-c3bf-b3bbe98f31db');
-    expect(priceProposal.dateStart, 1586335719);
+    expect(priceProposal.dateStart.millisecondsSinceEpoch / 1000, 1586335719);
+    expect(priceProposal.spotTime.millisecondsSinceEpoch / 1000, 1586335713);
     expect(priceProposal.spot, 9392.5);
   });
 }

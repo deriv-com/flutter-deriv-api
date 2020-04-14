@@ -29,7 +29,7 @@ abstract class PriceProposalModel {
   final double commission;
 
   /// The start date of the contract.
-  final int dateStart;
+  final DateTime dateStart;
 
   /// Same as `ask_price`.
   final String displayValue;
@@ -58,5 +58,5 @@ abstract class PriceProposalModel {
   final double spot;
 
   /// The corresponding time of the spot value.
-  final int spotTime;
+  final DateTime spotTime;
 }

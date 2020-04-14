@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/helpers.dart';
+
 /// Contains information where the contract will be closed automatically
 /// at the loss specified by the user.
 class LimitOrderCloseInfo {
@@ -14,7 +16,7 @@ class LimitOrderCloseInfo {
       LimitOrderCloseInfo(
         json['display_name'],
         json['order_amount'],
-        json['order_date'],
+        json['order_date'] != null ? getDateTime(json['order_date']) : null,
         json['value'],
       );
 
@@ -25,7 +27,7 @@ class LimitOrderCloseInfo {
   final double orderAmount;
 
   /// order epoch
-  final int orderDate;
+  final DateTime orderDate;
 
   /// Pip-sized barrier value
   final String value;
@@ -34,7 +36,7 @@ class LimitOrderCloseInfo {
   LimitOrderCloseInfo copyWith({
     String displayName,
     double orderAmount,
-    int orderDate,
+    DateTime orderDate,
     String value,
   }) =>
       LimitOrderCloseInfo(
