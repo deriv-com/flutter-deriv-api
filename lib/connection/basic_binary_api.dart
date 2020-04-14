@@ -56,7 +56,7 @@ class BasicBinaryAPI {
     @required Request request,
     RequestPredicateFunction predicate,
   }) =>
-      (_subscriptionManager ??= SubscriptionManager(this)).call(
+      (_subscriptionManager ??= SubscriptionManager(this))(
         request: request,
         predicate: predicate,
       );
