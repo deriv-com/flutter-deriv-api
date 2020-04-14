@@ -1,23 +1,25 @@
+import 'package:flutter_deriv_api/api/active_symbols_send.dart';
+import 'package:flutter_deriv_api/helpers.dart';
 import 'package:flutter_deriv_api/models/active_symbols_model.dart';
 
 /// Active Symbol
 class ActiveSymbol extends ActiveSymbolModel {
   /// Initializes
   ActiveSymbol({
-    int allowForwardStarting,
+    bool allowForwardStarting,
     int delayAmount,
     String displayName,
-    int exchangeIsOpen,
+    bool exchangeIsOpen,
     String exchangeName,
     int intradayIntervalMinutes,
-    int isTradingSuspended,
+    bool isTradingSuspended,
     String market,
     String marketDisplayName,
     double pip,
     String quotedCurrencySymbol,
     double spot,
     String spotAge,
-    String spotTime,
+    DateTime spotTime,
     String submarket,
     String submarketDisplayName,
     String symbol,
@@ -44,40 +46,53 @@ class ActiveSymbol extends ActiveSymbolModel {
 
   /// from Json
   factory ActiveSymbol.fromJson(Map<String, dynamic> json) => ActiveSymbol(
-        allowForwardStarting: json['allow_forward_starting'],
+        allowForwardStarting: json['allow_forward_starting'] != null
+            ? json['allow_forward_starting'] == 1
+            : null,
         delayAmount: json['delay_amount'],
         displayName: json['display_name'],
-        exchangeIsOpen: json['exchange_is_open'],
+        exchangeIsOpen: json['exchange_is_open'] != null
+            ? json['exchange_is_open'] == 1
+            : null,
         exchangeName: json['exchange_name'],
         intradayIntervalMinutes: json[''],
-        isTradingSuspended: json['is_trading_suspended'],
+        isTradingSuspended: json['is_trading_suspended'] != null
+            ? json['is_trading_suspended'] == 1
+            : null,
         market: json['market'],
         marketDisplayName: json['market_display_name'],
         pip: json['pip'],
         quotedCurrencySymbol: json['quoted_currency_symbol'],
         spot: json['spot'],
         spotAge: json['spot_age'],
-        spotTime: json['spot_time'],
+        spotTime: json['spot_time'] != null
+            ? getDateTime(int.parse(json['spot_time']))
+            : null,
         submarket: json['submarket'],
         submarketDisplayName: json['submarket_display_name'],
         symbol: json['symbol'],
         symbolType: json['symbol_type'],
       );
 
-  /// Fetch the list of [ActiveSymbol]s
-  static Future<List<ActiveSymbol>> getActiveSymbols() async =>
+  /// Fetch the list of active symbols
+  /// For parameters information refer to [ActiveSymbolsRequest]
+  static Future<List<ActiveSymbol>> getActiveSymbols({
+    String mode = 'brief',
+    String landingCompany,
+    String productType,
+  }) async =>
       // TODO(Ramin): call to the actual Api class when its ready
       <ActiveSymbol>[];
 
   /// Clone a new instance
   ActiveSymbol copyWith({
-    int allowForwardStarting,
+    bool allowForwardStarting,
     int delayAmount,
     String displayName,
-    int exchangeIsOpen,
+    bool exchangeIsOpen,
     String exchangeName,
     int intradayIntervalMinutes,
-    int isTradingSuspended,
+    bool isTradingSuspended,
     String market,
     String marketDisplayName,
     double pip,

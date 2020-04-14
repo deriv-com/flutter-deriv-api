@@ -1,9 +1,9 @@
 import 'forward_starting_option.dart';
 
 /// available contracts details
-class Available {
+class Contract {
   /// Initializes
-  Available({
+  Contract({
     this.availableBarriers,
     this.barrier,
     this.barrierCategory,
@@ -26,7 +26,7 @@ class Available {
   });
 
   /// From Json
-  factory Available.fromJson(Map<String, dynamic> json) => Available(
+  factory Contract.fromJson(Map<String, dynamic> json) => Contract(
       availableBarriers: json['available_barriers'],
       barrier: json['barrier'],
       barrierCategory: json['barrier_category'],
@@ -108,7 +108,7 @@ class Available {
   final String underlyingSymbol;
 
   /// Clone new instance
-  Available copyWith({
+  Contract copyWith({
     List<int> availableBarriers,
     String barrier,
     String barrierCategory,
@@ -129,7 +129,7 @@ class Available {
     Map<String, dynamic> tradingPeriod,
     String underlyingSymbol,
   }) =>
-      Available(
+      Contract(
         availableBarriers: availableBarriers ?? this.availableBarriers,
         barrier: barrier ?? this.barrier,
         barrierCategory: barrierCategory ?? this.barrierCategory,

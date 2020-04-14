@@ -1,6 +1,6 @@
 /// Abstract class for Active symbol information
 abstract class ActiveSymbolModel {
-  ///
+  /// Initializes
   ActiveSymbolModel(
     this.allowForwardStarting,
     this.delayAmount,
@@ -22,8 +22,9 @@ abstract class ActiveSymbolModel {
     this.symbolType,
   );
 
-  /// `1` if the symbol is tradable in a forward starting contract, `0` if not.
-  final int allowForwardStarting;
+  /// `true` if the symbol is tradable in a forward starting contract,
+  /// `false` if not.
+  final bool allowForwardStarting;
 
   /// Amount the data feed is delayed (in minutes) due to Exchange
   /// licensing requirements. Only returned on `full` active symbols call.
@@ -32,8 +33,8 @@ abstract class ActiveSymbolModel {
   /// Display name.
   final String displayName;
 
-  /// `1` if market is currently open, `0` if closed.
-  final int exchangeIsOpen;
+  /// `true` if market is currently open, `false` if closed.
+  final bool exchangeIsOpen;
 
   /// Exchange name (for underlyings listed on a Stock Exchange).
   /// Only returned on `full` active symbols call.
@@ -42,8 +43,8 @@ abstract class ActiveSymbolModel {
   /// Intraday interval minutes. Only returned on `full` active symbols call.
   final int intradayIntervalMinutes;
 
-  /// `1` indicates that trading is currently suspended, `0` if not.
-  final int isTradingSuspended;
+  /// `true` indicates that trading is currently suspended, `false` if not.
+  final bool isTradingSuspended;
 
   /// Market category (forex, indices, etc).
   final String market;
@@ -67,7 +68,7 @@ abstract class ActiveSymbolModel {
   final String spotAge;
 
   /// Latest spot epoch time. Only returned on `full` active symbols call.
-  final String spotTime;
+  final DateTime spotTime;
 
   /// Submarket name.
   final String submarket;

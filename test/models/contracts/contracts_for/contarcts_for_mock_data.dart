@@ -1,4 +1,4 @@
-const String contractForJson = '''{
+const String contractForSymbolJson = '''{
     "available": [
       {
         "barrier_category": "euro_atm",

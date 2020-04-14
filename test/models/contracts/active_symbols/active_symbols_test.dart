@@ -12,7 +12,8 @@ void main() {
         .toList();
     expect(activeSymbols.first.pip, 0.001);
     expect(activeSymbols.first.symbolType, 'smart_fx');
-    expect(activeSymbols.first.isTradingSuspended, 0);
+    expect(activeSymbols.first.isTradingSuspended, false);
     expect(activeSymbols.first.symbol, 'WLDAUD');
+    expect(activeSymbols[1].exchangeIsOpen, null);
   });
 }
