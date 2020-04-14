@@ -27,7 +27,7 @@ class BalanceResponse extends Response {
   /// Realtime stream of user balance changes.
   Map<String, dynamic> balance;
 
-  /// For subscription requests only
+  /// For subscription requests only.
   Map<String, dynamic> subscription;
 
   /// Converts to JSON

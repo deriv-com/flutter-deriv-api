@@ -22,7 +22,7 @@ class TicksRequest extends Request {
   /// [Optional] If set to 1, will send updates whenever a new tick is received.
   int subscribe;
 
-  /// The short symbol name or array of symbols (obtained from active_symbols call).
+  /// The short symbol name or array of symbols (obtained from `active_symbols` call).
   String ticks;
 
   /// Converts to JSON

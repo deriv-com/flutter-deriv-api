@@ -23,7 +23,7 @@ class ProposalOpenContractRequest extends Request {
       _$ProposalOpenContractRequestFromJson(json);
 
   // Properties
-  /// [Optional] Contract ID received from a Portfolio request. If not set, you will receive stream of all open contracts.
+  /// [Optional] Contract ID received from a `portfolio` request. If not set, you will receive stream of all open contracts.
   int contractId;
 
   /// Must be `1`

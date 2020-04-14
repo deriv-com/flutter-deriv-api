@@ -27,7 +27,7 @@ class P2pOrderInfoResponse extends Response {
   /// The information of P2P order.
   Map<String, dynamic> p2pOrderInfo;
 
-  /// For subscription requests only
+  /// For subscription requests only.
   Map<String, dynamic> subscription;
 
   /// Converts to JSON

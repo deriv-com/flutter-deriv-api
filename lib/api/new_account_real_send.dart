@@ -26,6 +26,7 @@ class NewAccountRealRequest extends Request {
       this.firstName,
       this.lastName,
       this.newAccountReal = 1,
+      this.nonPepDeclaration,
       this.phone,
       this.placeOfBirth,
       this.residence,
@@ -88,7 +89,10 @@ class NewAccountRealRequest extends Request {
   /// Must be `1`
   int newAccountReal;
 
-  /// [Optional] Starting with '+' followed by 8-35 digits, allowing hyphens or space.
+  /// [Optional] Indicates client's self-declaration of not being a PEP/RCA.
+  int nonPepDeclaration;
+
+  /// [Optional] Starting with `+` followed by 8-35 digits, allowing hyphens or space.
   String phone;
 
   /// [Optional] Place of birth, 2-letter country code.

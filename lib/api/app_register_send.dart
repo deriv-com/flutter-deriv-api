@@ -57,7 +57,7 @@ class AppRegisterRequest extends Request {
   /// List of permission scopes to grant the application.
   List<String> scopes;
 
-  /// [Optional] Used when 'verify_email' called. If available, a URL containing the verification token will send to the client's email, otherwise only the token will be sent.
+  /// [Optional] Used when `verify_email` called. If available, a URL containing the verification token will be sent to the client's email, otherwise only the token will be sent.
   String verificationUri;
 
   /// Converts to JSON

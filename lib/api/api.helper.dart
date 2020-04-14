@@ -22,6 +22,7 @@ import 'p2p_order_list_receive.dart';
 import 'get_financial_assessment_receive.dart';
 import 'new_account_maltainvest_receive.dart';
 import 'reality_check_receive.dart';
+import 'p2p_advertiser_create_receive.dart';
 import 'account_security_receive.dart';
 import 'balance_receive.dart';
 import 'set_settings_receive.dart';
@@ -57,6 +58,7 @@ import 'ticks_history_receive.dart';
 import 'authorize_receive.dart';
 import 'mt5_login_list_receive.dart';
 import 'transaction_receive.dart';
+import 'p2p_chat_create_receive.dart';
 import 'trading_times_receive.dart';
 import 'p2p_advert_list_receive.dart';
 import 'mt5_password_change_receive.dart';
@@ -67,8 +69,8 @@ import 'portfolio_receive.dart';
 import 'app_delete_receive.dart';
 import 'mt5_get_settings_receive.dart';
 import 'sell_receive.dart';
-import 'cashier_receive.dart';
 import 'app_get_receive.dart';
+import 'cashier_receive.dart';
 import 'p2p_advert_info_receive.dart';
 import 'website_status_receive.dart';
 import 'get_settings_receive.dart';
@@ -99,6 +101,7 @@ import 'copytrading_list_receive.dart';
 import 'new_account_virtual_receive.dart';
 import 'exchange_rates_receive.dart';
 import 'mt5_deposit_receive.dart';
+import 'cancel_receive.dart';
 import 'mt5_password_check_receive.dart';
 import 'account_statistics_receive.dart';
 import 'proposal_open_contract_receive.dart';
@@ -144,6 +147,8 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return NewAccountMaltainvestResponse.fromJson(responseMap);
     case 'reality_check':
       return RealityCheckResponse.fromJson(responseMap);
+    case 'p2p_advertiser_create':
+      return P2pAdvertiserCreateResponse.fromJson(responseMap);
     case 'account_security':
       return AccountSecurityResponse.fromJson(responseMap);
     case 'balance':
@@ -214,6 +219,8 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return Mt5LoginListResponse.fromJson(responseMap);
     case 'transaction':
       return TransactionResponse.fromJson(responseMap);
+    case 'p2p_chat_create':
+      return P2pChatCreateResponse.fromJson(responseMap);
     case 'trading_times':
       return TradingTimesResponse.fromJson(responseMap);
     case 'p2p_advert_list':
@@ -234,10 +241,10 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return Mt5GetSettingsResponse.fromJson(responseMap);
     case 'sell':
       return SellResponse.fromJson(responseMap);
-    case 'cashier':
-      return CashierResponse.fromJson(responseMap);
     case 'app_get':
       return AppGetResponse.fromJson(responseMap);
+    case 'cashier':
+      return CashierResponse.fromJson(responseMap);
     case 'p2p_advert_info':
       return P2pAdvertInfoResponse.fromJson(responseMap);
     case 'website_status':
@@ -298,6 +305,8 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return ExchangeRatesResponse.fromJson(responseMap);
     case 'mt5_deposit':
       return Mt5DepositResponse.fromJson(responseMap);
+    case 'cancel':
+      return CancelResponse.fromJson(responseMap);
     case 'mt5_password_check':
       return Mt5PasswordCheckResponse.fromJson(responseMap);
     case 'account_statistics':

@@ -19,7 +19,7 @@ class StatesListRequest extends Request {
       _$StatesListRequestFromJson(json);
 
   // Properties
-  /// Client's 2-letter country code (obtained from residence_list call)
+  /// Client's 2-letter country code (obtained from `residence_list` call)
   String statesList;
 
   /// Converts to JSON

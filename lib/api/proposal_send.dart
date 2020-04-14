@@ -15,6 +15,7 @@ class ProposalRequest extends Request {
       this.barrier,
       this.barrier2,
       this.basis,
+      this.cancellation,
       this.contractType,
       this.currency,
       this.dateExpiry,
@@ -50,10 +51,13 @@ class ProposalRequest extends Request {
   /// [Optional] Indicates type of the `amount`.
   String basis;
 
+  /// Cancellation duration option (only for `MULTUP` and `MULTDOWN` contracts).
+  String cancellation;
+
   /// The proposed contract type
   String contractType;
 
-  /// This can only be the account-holder's currency (obtained from payout_currencies call).
+  /// This can only be the account-holder's currency (obtained from `payout_currencies` call).
   String currency;
 
   /// [Optional] Epoch value of the expiry time of the contract. Either date_expiry or duration is required.
@@ -65,10 +69,10 @@ class ProposalRequest extends Request {
   /// [Optional] Duration quantity. Either date_expiry or duration is required.
   int duration;
 
-  /// [Optional] Duration unit - s(seconds), m(minutes), h(hours), d(days), t(ticks).
+  /// [Optional] Duration unit - `s`: seconds, `m`: minutes, `h`: hours, `d`: days, `t`: ticks.
   String durationUnit;
 
-  /// Add an order to close the contract once the order condition is met (only for `MULTUP` and `MULTDOWN`). Supported order (`take_profit`, `stop_loss`)
+  /// Add an order to close the contract once the order condition is met (only for `MULTUP` and `MULTDOWN` contracts). Supported orders: `take_profit`, `stop_loss`.
   Map<String, dynamic> limitOrder;
 
   /// [Optional] The multiplier for non-binary options. E.g. lookbacks.

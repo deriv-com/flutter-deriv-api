@@ -38,6 +38,7 @@ class NewAccountMaltainvestRequest extends Request {
       this.lastName,
       this.netIncome,
       this.newAccountMaltainvest = 1,
+      this.nonPepDeclaration,
       this.occupation,
       this.otherInstrumentsTradingExperience,
       this.otherInstrumentsTradingFrequency,
@@ -140,6 +141,9 @@ class NewAccountMaltainvestRequest extends Request {
   /// Must be `1`
   int newAccountMaltainvest;
 
+  /// [Optional] Indicates client's self-declaration of not being a PEP/RCA.
+  int nonPepDeclaration;
+
   /// Occupation.
   String occupation;
 
@@ -149,7 +153,7 @@ class NewAccountMaltainvestRequest extends Request {
   /// [Optional] Trading frequency in other financial instruments.
   String otherInstrumentsTradingFrequency;
 
-  /// [Optional] Within 8-35 digits, allowing '+' in front, numbers, hyphens or space.
+  /// [Optional] Starting with `+` followed by 8-35 digits, allowing hyphens or space.
   String phone;
 
   /// [Optional] Place of birth, 2-letter country code.
