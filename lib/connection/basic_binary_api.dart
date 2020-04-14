@@ -204,12 +204,12 @@ class BasicBinaryAPI {
 
         print('have request id: $requestId.');
 
-        if (_callManager.contains(requestId)) {
+        if (_callManager?.contains(requestId) ?? false) {
           _callManager.handleResponse(
             requestId: requestId,
             response: message,
           );
-        } else if (_subscriptionManager.contains(requestId)) {
+        } else if (_subscriptionManager?.contains(requestId) ?? false) {
           _subscriptionManager.handleResponse(
             requestId: requestId,
             response: message,
