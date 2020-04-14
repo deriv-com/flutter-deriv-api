@@ -11,11 +11,11 @@ class OauthAppsRequest extends Request {
   /// Initialize OauthAppsRequest
   const OauthAppsRequest({
     this.oauthApps = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class OauthAppsRequest extends Request {
   @override
   OauthAppsRequest copyWith({
     int oauthApps,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       OauthAppsRequest(
         oauthApps: oauthApps ?? this.oauthApps,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

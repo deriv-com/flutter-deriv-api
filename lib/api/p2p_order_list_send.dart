@@ -16,11 +16,11 @@ class P2pOrderListRequest extends Request {
     this.offset,
     this.p2pOrderList = 1,
     this.subscribe,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -59,8 +59,8 @@ class P2pOrderListRequest extends Request {
     int offset,
     int p2pOrderList,
     int subscribe,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       P2pOrderListRequest(
         active: active ?? this.active,
@@ -69,8 +69,8 @@ class P2pOrderListRequest extends Request {
         offset: offset ?? this.offset,
         p2pOrderList: p2pOrderList ?? this.p2pOrderList,
         subscribe: subscribe ?? this.subscribe,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

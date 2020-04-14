@@ -20,9 +20,9 @@ AccountStatisticsResponse _$AccountStatisticsResponseFromJson(
 Map<String, dynamic> _$AccountStatisticsResponseToJson(
         AccountStatisticsResponse instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
-      'msg_type': instance.msgType,
       'echo_req': instance.echoReq,
       'error': instance.error,
+      'msg_type': instance.msgType,
+      'req_id': instance.reqId,
       'account_statistics': instance.accountStatistics,
     };

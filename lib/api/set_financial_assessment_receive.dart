@@ -11,15 +11,15 @@ class SetFinancialAssessmentResponse extends Response {
   /// Initialize SetFinancialAssessmentResponse
   const SetFinancialAssessmentResponse({
     this.setFinancialAssessment,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -38,18 +38,18 @@ class SetFinancialAssessmentResponse extends Response {
   @override
   SetFinancialAssessmentResponse copyWith({
     Map<String, dynamic> setFinancialAssessment,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       SetFinancialAssessmentResponse(
         setFinancialAssessment:
             setFinancialAssessment ?? this.setFinancialAssessment,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

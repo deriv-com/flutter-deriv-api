@@ -15,16 +15,16 @@ P2pAdvertiserCreateRequest _$P2pAdvertiserCreateRequestFromJson(
     p2pAdvertiserCreate: json['p2p_advertiser_create'] as int,
     paymentInfo: json['payment_info'] as String,
     subscribe: json['subscribe'] as int,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$P2pAdvertiserCreateRequestToJson(
         P2pAdvertiserCreateRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'contact_info': instance.contactInfo,
       'default_advert_description': instance.defaultAdvertDescription,
       'name': instance.name,

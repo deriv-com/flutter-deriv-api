@@ -14,11 +14,11 @@ class Mt5PasswordCheckRequest extends Request {
     this.mt5PasswordCheck = 1,
     this.password,
     this.passwordType,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -49,16 +49,16 @@ class Mt5PasswordCheckRequest extends Request {
     int mt5PasswordCheck,
     String password,
     String passwordType,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       Mt5PasswordCheckRequest(
         login: login ?? this.login,
         mt5PasswordCheck: mt5PasswordCheck ?? this.mt5PasswordCheck,
         password: password ?? this.password,
         passwordType: passwordType ?? this.passwordType,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

@@ -12,11 +12,11 @@ class LoginHistoryRequest extends Request {
   const LoginHistoryRequest({
     this.limit,
     this.loginHistory = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -39,14 +39,14 @@ class LoginHistoryRequest extends Request {
   LoginHistoryRequest copyWith({
     int limit,
     int loginHistory,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       LoginHistoryRequest(
         limit: limit ?? this.limit,
         loginHistory: loginHistory ?? this.loginHistory,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

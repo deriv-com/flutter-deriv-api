@@ -11,15 +11,15 @@ class ContractUpdateResponse extends Response {
   /// Initialize ContractUpdateResponse
   const ContractUpdateResponse({
     this.contractUpdate,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -38,17 +38,17 @@ class ContractUpdateResponse extends Response {
   @override
   ContractUpdateResponse copyWith({
     Map<String, dynamic> contractUpdate,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       ContractUpdateResponse(
         contractUpdate: contractUpdate ?? this.contractUpdate,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

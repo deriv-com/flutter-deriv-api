@@ -12,15 +12,15 @@ class TicksResponse extends Response {
   const TicksResponse({
     this.subscription,
     this.tick,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -43,18 +43,18 @@ class TicksResponse extends Response {
   TicksResponse copyWith({
     Map<String, dynamic> subscription,
     Map<String, dynamic> tick,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       TicksResponse(
         subscription: subscription ?? this.subscription,
         tick: tick ?? this.tick,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

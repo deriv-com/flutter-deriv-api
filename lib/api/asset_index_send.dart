@@ -12,11 +12,11 @@ class AssetIndexRequest extends Request {
   const AssetIndexRequest({
     this.assetIndex = 1,
     this.landingCompany,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -39,14 +39,14 @@ class AssetIndexRequest extends Request {
   AssetIndexRequest copyWith({
     int assetIndex,
     String landingCompany,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       AssetIndexRequest(
         assetIndex: assetIndex ?? this.assetIndex,
         landingCompany: landingCompany ?? this.landingCompany,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

@@ -11,11 +11,11 @@ class StatesListRequest extends Request {
   /// Initialize StatesListRequest
   const StatesListRequest({
     this.statesList,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class StatesListRequest extends Request {
   @override
   StatesListRequest copyWith({
     String statesList,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       StatesListRequest(
         statesList: statesList ?? this.statesList,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

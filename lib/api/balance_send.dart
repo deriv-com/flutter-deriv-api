@@ -13,11 +13,11 @@ class BalanceRequest extends Request {
     this.account,
     this.balance = 1,
     this.subscribe,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -44,15 +44,15 @@ class BalanceRequest extends Request {
     String account,
     int balance,
     int subscribe,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       BalanceRequest(
         account: account ?? this.account,
         balance: balance ?? this.balance,
         subscribe: subscribe ?? this.subscribe,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

@@ -12,11 +12,11 @@ class TradingDurationsRequest extends Request {
   const TradingDurationsRequest({
     this.landingCompany,
     this.tradingDurations = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -39,14 +39,14 @@ class TradingDurationsRequest extends Request {
   TradingDurationsRequest copyWith({
     String landingCompany,
     int tradingDurations,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       TradingDurationsRequest(
         landingCompany: landingCompany ?? this.landingCompany,
         tradingDurations: tradingDurations ?? this.tradingDurations,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

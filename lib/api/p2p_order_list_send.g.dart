@@ -14,16 +14,16 @@ P2pOrderListRequest _$P2pOrderListRequestFromJson(Map<String, dynamic> json) {
     offset: json['offset'] as int,
     p2pOrderList: json['p2p_order_list'] as int,
     subscribe: json['subscribe'] as int,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$P2pOrderListRequestToJson(
         P2pOrderListRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'active': instance.active,
       'advert_id': instance.advertId,
       'limit': instance.limit,

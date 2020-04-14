@@ -20,9 +20,9 @@ ChangePasswordResponse _$ChangePasswordResponseFromJson(
 Map<String, dynamic> _$ChangePasswordResponseToJson(
         ChangePasswordResponse instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
-      'msg_type': instance.msgType,
       'echo_req': instance.echoReq,
       'error': instance.error,
+      'msg_type': instance.msgType,
+      'req_id': instance.reqId,
       'change_password': instance.changePassword,
     };

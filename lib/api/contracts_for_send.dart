@@ -14,11 +14,11 @@ class ContractsForRequest extends Request {
     this.currency,
     this.landingCompany,
     this.productType,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -49,16 +49,16 @@ class ContractsForRequest extends Request {
     String currency,
     String landingCompany,
     String productType,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       ContractsForRequest(
         contractsFor: contractsFor ?? this.contractsFor,
         currency: currency ?? this.currency,
         landingCompany: landingCompany ?? this.landingCompany,
         productType: productType ?? this.productType,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

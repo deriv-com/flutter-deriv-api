@@ -16,11 +16,11 @@ class TransferBetweenAccountsRequest extends Request {
     this.amount,
     this.currency,
     this.transferBetweenAccounts = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -59,8 +59,8 @@ class TransferBetweenAccountsRequest extends Request {
     num amount,
     String currency,
     int transferBetweenAccounts,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       TransferBetweenAccountsRequest(
         accountFrom: accountFrom ?? this.accountFrom,
@@ -70,8 +70,8 @@ class TransferBetweenAccountsRequest extends Request {
         currency: currency ?? this.currency,
         transferBetweenAccounts:
             transferBetweenAccounts ?? this.transferBetweenAccounts,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

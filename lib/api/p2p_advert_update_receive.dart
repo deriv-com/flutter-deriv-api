@@ -11,15 +11,15 @@ class P2pAdvertUpdateResponse extends Response {
   /// Initialize P2pAdvertUpdateResponse
   const P2pAdvertUpdateResponse({
     this.p2pAdvertUpdate,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -38,17 +38,17 @@ class P2pAdvertUpdateResponse extends Response {
   @override
   P2pAdvertUpdateResponse copyWith({
     Map<String, dynamic> p2pAdvertUpdate,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       P2pAdvertUpdateResponse(
         p2pAdvertUpdate: p2pAdvertUpdate ?? this.p2pAdvertUpdate,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

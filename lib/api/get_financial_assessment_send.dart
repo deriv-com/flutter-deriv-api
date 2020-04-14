@@ -11,11 +11,11 @@ class GetFinancialAssessmentRequest extends Request {
   /// Initialize GetFinancialAssessmentRequest
   const GetFinancialAssessmentRequest({
     this.getFinancialAssessment = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,14 +34,14 @@ class GetFinancialAssessmentRequest extends Request {
   @override
   GetFinancialAssessmentRequest copyWith({
     int getFinancialAssessment,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       GetFinancialAssessmentRequest(
         getFinancialAssessment:
             getFinancialAssessment ?? this.getFinancialAssessment,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

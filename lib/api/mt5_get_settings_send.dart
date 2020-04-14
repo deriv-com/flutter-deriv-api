@@ -12,11 +12,11 @@ class Mt5GetSettingsRequest extends Request {
   const Mt5GetSettingsRequest({
     this.login,
     this.mt5GetSettings = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -39,14 +39,14 @@ class Mt5GetSettingsRequest extends Request {
   Mt5GetSettingsRequest copyWith({
     String login,
     int mt5GetSettings,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       Mt5GetSettingsRequest(
         login: login ?? this.login,
         mt5GetSettings: mt5GetSettings ?? this.mt5GetSettings,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

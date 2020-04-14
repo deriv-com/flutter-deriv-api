@@ -24,6 +24,7 @@ NewAccountRealRequest _$NewAccountRealRequestFromJson(
     firstName: json['first_name'] as String,
     lastName: json['last_name'] as String,
     newAccountReal: json['new_account_real'] as int,
+    nonPepDeclaration: json['non_pep_declaration'] as int,
     phone: json['phone'] as String,
     placeOfBirth: json['place_of_birth'] as String,
     residence: json['residence'] as String,
@@ -32,16 +33,16 @@ NewAccountRealRequest _$NewAccountRealRequestFromJson(
     secretQuestion: json['secret_question'] as String,
     taxIdentificationNumber: json['tax_identification_number'] as String,
     taxResidence: json['tax_residence'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$NewAccountRealRequestToJson(
         NewAccountRealRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'account_opening_reason': instance.accountOpeningReason,
       'account_turnover': instance.accountTurnover,
       'address_city': instance.addressCity,
@@ -57,6 +58,7 @@ Map<String, dynamic> _$NewAccountRealRequestToJson(
       'first_name': instance.firstName,
       'last_name': instance.lastName,
       'new_account_real': instance.newAccountReal,
+      'non_pep_declaration': instance.nonPepDeclaration,
       'phone': instance.phone,
       'place_of_birth': instance.placeOfBirth,
       'residence': instance.residence,

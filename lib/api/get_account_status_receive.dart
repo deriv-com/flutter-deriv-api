@@ -11,15 +11,15 @@ class GetAccountStatusResponse extends Response {
   /// Initialize GetAccountStatusResponse
   const GetAccountStatusResponse({
     this.getAccountStatus,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -38,17 +38,17 @@ class GetAccountStatusResponse extends Response {
   @override
   GetAccountStatusResponse copyWith({
     Map<String, dynamic> getAccountStatus,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       GetAccountStatusResponse(
         getAccountStatus: getAccountStatus ?? this.getAccountStatus,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

@@ -11,11 +11,11 @@ class PingRequest extends Request {
   /// Initialize PingRequest
   const PingRequest({
     this.ping = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class PingRequest extends Request {
   @override
   PingRequest copyWith({
     int ping,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       PingRequest(
         ping: ping ?? this.ping,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

@@ -21,11 +21,11 @@ class NewAccountVirtualRequest extends Request {
     this.utmMedium,
     this.utmSource,
     this.verificationCode,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -84,8 +84,8 @@ class NewAccountVirtualRequest extends Request {
     String utmMedium,
     String utmSource,
     String verificationCode,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       NewAccountVirtualRequest(
         affiliateToken: affiliateToken ?? this.affiliateToken,
@@ -99,8 +99,8 @@ class NewAccountVirtualRequest extends Request {
         utmMedium: utmMedium ?? this.utmMedium,
         utmSource: utmSource ?? this.utmSource,
         verificationCode: verificationCode ?? this.verificationCode,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

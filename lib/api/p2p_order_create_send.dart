@@ -16,11 +16,11 @@ class P2pOrderCreateRequest extends Request {
     this.p2pOrderCreate = 1,
     this.paymentInfo,
     this.subscribe,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -59,8 +59,8 @@ class P2pOrderCreateRequest extends Request {
     int p2pOrderCreate,
     String paymentInfo,
     int subscribe,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       P2pOrderCreateRequest(
         advertId: advertId ?? this.advertId,
@@ -69,8 +69,8 @@ class P2pOrderCreateRequest extends Request {
         p2pOrderCreate: p2pOrderCreate ?? this.p2pOrderCreate,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         subscribe: subscribe ?? this.subscribe,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

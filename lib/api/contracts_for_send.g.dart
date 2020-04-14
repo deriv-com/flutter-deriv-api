@@ -12,16 +12,16 @@ ContractsForRequest _$ContractsForRequestFromJson(Map<String, dynamic> json) {
     currency: json['currency'] as String,
     landingCompany: json['landing_company'] as String,
     productType: json['product_type'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$ContractsForRequestToJson(
         ContractsForRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'contracts_for': instance.contractsFor,
       'currency': instance.currency,
       'landing_company': instance.landingCompany,

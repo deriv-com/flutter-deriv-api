@@ -11,11 +11,11 @@ class PayoutCurrenciesRequest extends Request {
   /// Initialize PayoutCurrenciesRequest
   const PayoutCurrenciesRequest({
     this.payoutCurrencies = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class PayoutCurrenciesRequest extends Request {
   @override
   PayoutCurrenciesRequest copyWith({
     int payoutCurrencies,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       PayoutCurrenciesRequest(
         payoutCurrencies: payoutCurrencies ?? this.payoutCurrencies,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

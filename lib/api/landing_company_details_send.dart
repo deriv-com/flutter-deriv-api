@@ -11,11 +11,11 @@ class LandingCompanyDetailsRequest extends Request {
   /// Initialize LandingCompanyDetailsRequest
   const LandingCompanyDetailsRequest({
     this.landingCompanyDetails,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,14 +34,14 @@ class LandingCompanyDetailsRequest extends Request {
   @override
   LandingCompanyDetailsRequest copyWith({
     String landingCompanyDetails,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       LandingCompanyDetailsRequest(
         landingCompanyDetails:
             landingCompanyDetails ?? this.landingCompanyDetails,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

@@ -12,11 +12,11 @@ class P2pOrderCancelRequest extends Request {
   const P2pOrderCancelRequest({
     this.id,
     this.p2pOrderCancel = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -39,14 +39,14 @@ class P2pOrderCancelRequest extends Request {
   P2pOrderCancelRequest copyWith({
     String id,
     int p2pOrderCancel,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       P2pOrderCancelRequest(
         id: id ?? this.id,
         p2pOrderCancel: p2pOrderCancel ?? this.p2pOrderCancel,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

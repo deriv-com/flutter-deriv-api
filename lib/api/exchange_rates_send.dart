@@ -12,11 +12,11 @@ class ExchangeRatesRequest extends Request {
   const ExchangeRatesRequest({
     this.baseCurrency,
     this.exchangeRates = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -39,14 +39,14 @@ class ExchangeRatesRequest extends Request {
   ExchangeRatesRequest copyWith({
     String baseCurrency,
     int exchangeRates,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       ExchangeRatesRequest(
         baseCurrency: baseCurrency ?? this.baseCurrency,
         exchangeRates: exchangeRates ?? this.exchangeRates,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

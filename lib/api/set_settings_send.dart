@@ -32,11 +32,11 @@ class SetSettingsRequest extends Request {
     this.setSettings = 1,
     this.taxIdentificationNumber,
     this.taxResidence,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -139,8 +139,8 @@ class SetSettingsRequest extends Request {
     int setSettings,
     String taxIdentificationNumber,
     String taxResidence,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       SetSettingsRequest(
         accountOpeningReason: accountOpeningReason ?? this.accountOpeningReason,
@@ -167,8 +167,8 @@ class SetSettingsRequest extends Request {
         taxIdentificationNumber:
             taxIdentificationNumber ?? this.taxIdentificationNumber,
         taxResidence: taxResidence ?? this.taxResidence,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

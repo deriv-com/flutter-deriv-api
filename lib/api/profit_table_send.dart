@@ -17,11 +17,11 @@ class ProfitTableRequest extends Request {
     this.offset,
     this.profitTable = 1,
     this.sort,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -64,8 +64,8 @@ class ProfitTableRequest extends Request {
     num offset,
     int profitTable,
     String sort,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       ProfitTableRequest(
         dateFrom: dateFrom ?? this.dateFrom,
@@ -75,8 +75,8 @@ class ProfitTableRequest extends Request {
         offset: offset ?? this.offset,
         profitTable: profitTable ?? this.profitTable,
         sort: sort ?? this.sort,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

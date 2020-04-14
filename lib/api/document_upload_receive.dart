@@ -11,15 +11,15 @@ class DocumentUploadResponse extends Response {
   /// Initialize DocumentUploadResponse
   const DocumentUploadResponse({
     this.documentUpload,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -38,17 +38,17 @@ class DocumentUploadResponse extends Response {
   @override
   DocumentUploadResponse copyWith({
     Map<String, dynamic> documentUpload,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       DocumentUploadResponse(
         documentUpload: documentUpload ?? this.documentUpload,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

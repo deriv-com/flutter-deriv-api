@@ -12,11 +12,11 @@ class AuthorizeRequest extends Request {
   const AuthorizeRequest({
     this.addToLoginHistory,
     this.authorize,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -39,14 +39,14 @@ class AuthorizeRequest extends Request {
   AuthorizeRequest copyWith({
     int addToLoginHistory,
     String authorize,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       AuthorizeRequest(
         addToLoginHistory: addToLoginHistory ?? this.addToLoginHistory,
         authorize: authorize ?? this.authorize,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

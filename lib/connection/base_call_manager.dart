@@ -6,12 +6,15 @@ import 'package:flutter_deriv_api/api/request.dart';
 import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/api/api.helper.dart';
 import 'package:flutter_deriv_api/connection/pending_request.dart';
-import 'package:flutter_deriv_api/connection/connection_websocket.dart';
+import 'package:flutter_deriv_api/connection/basic_binary_api.dart';
 
-typedef RequestPredicateFunction = bool Function(
+/// A predicate function to compare [request] and [pendingRequest]s
+/// [equatableResult] indicates request and pending request are equal or not (by equatable package result)
+typedef RequestPredicateFunction = bool Function({
   Request request,
   PendingRequest<Response> pendingRequest,
-);
+  bool equatableResult,
+});
 
 /// Api call manager abstract class
 abstract class BaseCallManager<T> {
@@ -19,7 +22,7 @@ abstract class BaseCallManager<T> {
   BaseCallManager(this.api);
 
   /// Binary api instance
-  final BinaryAPI api;
+  final BasicBinaryAPI api;
 
   /// Pending requests queue
   final Map<int, PendingRequest<Response>> _pendingRequests =
@@ -36,6 +39,7 @@ abstract class BaseCallManager<T> {
 
   /// Calls a api method by [request]
   /// [predicate] function is only applicable to subscription calls
+  /// [predicate] indicates compare condition for current [request] and pending requests
   T call({
     @required Request request,
     RequestPredicateFunction predicate,

@@ -12,11 +12,11 @@ class WebsiteStatusRequest extends Request {
   const WebsiteStatusRequest({
     this.subscribe,
     this.websiteStatus = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -39,14 +39,14 @@ class WebsiteStatusRequest extends Request {
   WebsiteStatusRequest copyWith({
     int subscribe,
     int websiteStatus,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       WebsiteStatusRequest(
         subscribe: subscribe ?? this.subscribe,
         websiteStatus: websiteStatus ?? this.websiteStatus,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

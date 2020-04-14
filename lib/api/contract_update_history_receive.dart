@@ -11,15 +11,15 @@ class ContractUpdateHistoryResponse extends Response {
   /// Initialize ContractUpdateHistoryResponse
   const ContractUpdateHistoryResponse({
     this.contractUpdateHistory,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -38,18 +38,18 @@ class ContractUpdateHistoryResponse extends Response {
   @override
   ContractUpdateHistoryResponse copyWith({
     List<String> contractUpdateHistory,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       ContractUpdateHistoryResponse(
         contractUpdateHistory:
             contractUpdateHistory ?? this.contractUpdateHistory,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

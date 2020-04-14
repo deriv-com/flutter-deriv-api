@@ -10,15 +10,15 @@ AuthorizeRequest _$AuthorizeRequestFromJson(Map<String, dynamic> json) {
   return AuthorizeRequest(
     addToLoginHistory: json['add_to_login_history'] as int,
     authorize: json['authorize'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$AuthorizeRequestToJson(AuthorizeRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'add_to_login_history': instance.addToLoginHistory,
       'authorize': instance.authorize,
     };

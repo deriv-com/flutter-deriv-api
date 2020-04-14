@@ -10,15 +10,15 @@ GetSelfExclusionRequest _$GetSelfExclusionRequestFromJson(
     Map<String, dynamic> json) {
   return GetSelfExclusionRequest(
     getSelfExclusion: json['get_self_exclusion'] as int,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$GetSelfExclusionRequestToJson(
         GetSelfExclusionRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'get_self_exclusion': instance.getSelfExclusion,
     };

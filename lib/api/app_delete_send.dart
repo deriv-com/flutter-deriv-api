@@ -11,11 +11,11 @@ class AppDeleteRequest extends Request {
   /// Initialize AppDeleteRequest
   const AppDeleteRequest({
     this.appDelete = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class AppDeleteRequest extends Request {
   @override
   AppDeleteRequest copyWith({
     int appDelete,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       AppDeleteRequest(
         appDelete: appDelete ?? this.appDelete,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

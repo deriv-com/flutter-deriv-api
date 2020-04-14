@@ -27,11 +27,11 @@ class Mt5NewAccountRequest extends Request {
     this.phonePassword,
     this.state,
     this.zipCode,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -114,8 +114,8 @@ class Mt5NewAccountRequest extends Request {
     String phonePassword,
     String state,
     String zipCode,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       Mt5NewAccountRequest(
         accountType: accountType ?? this.accountType,
@@ -135,8 +135,8 @@ class Mt5NewAccountRequest extends Request {
         phonePassword: phonePassword ?? this.phonePassword,
         state: state ?? this.state,
         zipCode: zipCode ?? this.zipCode,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

@@ -14,11 +14,11 @@ class BuyRequest extends Request {
     this.parameters,
     this.price,
     this.subscribe,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -49,16 +49,16 @@ class BuyRequest extends Request {
     Map<String, dynamic> parameters,
     num price,
     int subscribe,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       BuyRequest(
         buy: buy ?? this.buy,
         parameters: parameters ?? this.parameters,
         price: price ?? this.price,
         subscribe: subscribe ?? this.subscribe,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

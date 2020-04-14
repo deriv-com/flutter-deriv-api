@@ -12,11 +12,11 @@ class P2pAdvertInfoRequest extends Request {
   const P2pAdvertInfoRequest({
     this.id,
     this.p2pAdvertInfo = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -39,14 +39,14 @@ class P2pAdvertInfoRequest extends Request {
   P2pAdvertInfoRequest copyWith({
     String id,
     int p2pAdvertInfo,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       P2pAdvertInfoRequest(
         id: id ?? this.id,
         p2pAdvertInfo: p2pAdvertInfo ?? this.p2pAdvertInfo,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

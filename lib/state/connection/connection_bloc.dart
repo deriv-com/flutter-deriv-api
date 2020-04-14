@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_deriv_api/helpers.dart';
 import 'package:flutter_deriv_api/api/time_send.dart';
 import 'package:flutter_deriv_api/api/time_receive.dart';
-import 'package:flutter_deriv_api/connection/connection_websocket.dart';
+import 'package:flutter_deriv_api/connection/basic_binary_api.dart';
 
 part 'connection_state.dart';
 part 'connection_event.dart';
@@ -22,9 +22,9 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   @override
   ConnectionState get initialState => InitialConnectionState();
 
-  /// connects the [BinaryAPI] to the web socket
+  /// connects the [BasicBinaryAPI] to the web socket
   void connectWS() {
-    final BinaryAPI _api = BinaryAPI();
+    final BasicBinaryAPI _api = BasicBinaryAPI();
 
     _api.run(
       onDone: () => add(Reconnect()),

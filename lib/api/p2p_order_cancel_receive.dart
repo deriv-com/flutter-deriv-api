@@ -11,15 +11,15 @@ class P2pOrderCancelResponse extends Response {
   /// Initialize P2pOrderCancelResponse
   const P2pOrderCancelResponse({
     this.p2pOrderCancel,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -38,17 +38,17 @@ class P2pOrderCancelResponse extends Response {
   @override
   P2pOrderCancelResponse copyWith({
     Map<String, dynamic> p2pOrderCancel,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       P2pOrderCancelResponse(
         p2pOrderCancel: p2pOrderCancel ?? this.p2pOrderCancel,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

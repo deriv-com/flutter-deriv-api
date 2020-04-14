@@ -11,11 +11,11 @@ class ForgetRequest extends Request {
   /// Initialize ForgetRequest
   const ForgetRequest({
     this.forget,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class ForgetRequest extends Request {
   @override
   ForgetRequest copyWith({
     String forget,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       ForgetRequest(
         forget: forget ?? this.forget,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

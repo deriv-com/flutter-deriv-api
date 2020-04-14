@@ -11,11 +11,11 @@ class TimeRequest extends Request {
   /// Initialize TimeRequest
   const TimeRequest({
     this.time = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class TimeRequest extends Request {
   @override
   TimeRequest copyWith({
     int time,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       TimeRequest(
         time: time ?? this.time,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

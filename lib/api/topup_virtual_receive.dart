@@ -11,15 +11,15 @@ class TopupVirtualResponse extends Response {
   /// Initialize TopupVirtualResponse
   const TopupVirtualResponse({
     this.topupVirtual,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -38,17 +38,17 @@ class TopupVirtualResponse extends Response {
   @override
   TopupVirtualResponse copyWith({
     Map<String, dynamic> topupVirtual,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       TopupVirtualResponse(
         topupVirtual: topupVirtual ?? this.topupVirtual,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

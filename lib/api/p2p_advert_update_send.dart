@@ -14,11 +14,11 @@ class P2pAdvertUpdateRequest extends Request {
     this.id,
     this.isActive,
     this.p2pAdvertUpdate = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -49,16 +49,16 @@ class P2pAdvertUpdateRequest extends Request {
     String id,
     int isActive,
     int p2pAdvertUpdate,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       P2pAdvertUpdateRequest(
         delete: delete ?? this.delete,
         id: id ?? this.id,
         isActive: isActive ?? this.isActive,
         p2pAdvertUpdate: p2pAdvertUpdate ?? this.p2pAdvertUpdate,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

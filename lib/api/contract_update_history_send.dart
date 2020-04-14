@@ -12,11 +12,11 @@ class ContractUpdateHistoryRequest extends Request {
   const ContractUpdateHistoryRequest({
     this.contractId,
     this.contractUpdateHistory = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -39,15 +39,15 @@ class ContractUpdateHistoryRequest extends Request {
   ContractUpdateHistoryRequest copyWith({
     int contractId,
     int contractUpdateHistory,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       ContractUpdateHistoryRequest(
         contractId: contractId ?? this.contractId,
         contractUpdateHistory:
             contractUpdateHistory ?? this.contractUpdateHistory,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

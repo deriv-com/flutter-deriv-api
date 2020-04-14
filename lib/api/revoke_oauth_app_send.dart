@@ -11,11 +11,11 @@ class RevokeOauthAppRequest extends Request {
   /// Initialize RevokeOauthAppRequest
   const RevokeOauthAppRequest({
     this.revokeOauthApp = 1,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class RevokeOauthAppRequest extends Request {
   @override
   RevokeOauthAppRequest copyWith({
     int revokeOauthApp,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       RevokeOauthAppRequest(
         revokeOauthApp: revokeOauthApp ?? this.revokeOauthApp,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

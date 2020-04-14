@@ -11,15 +11,15 @@ CashierRequest _$CashierRequestFromJson(Map<String, dynamic> json) {
     cashier: json['cashier'] as String,
     provider: json['provider'] as String,
     verificationCode: json['verification_code'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$CashierRequestToJson(CashierRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'cashier': instance.cashier,
       'provider': instance.provider,
       'verification_code': instance.verificationCode,

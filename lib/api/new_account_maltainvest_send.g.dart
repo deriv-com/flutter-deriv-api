@@ -38,6 +38,7 @@ NewAccountMaltainvestRequest _$NewAccountMaltainvestRequestFromJson(
     lastName: json['last_name'] as String,
     netIncome: json['net_income'] as String,
     newAccountMaltainvest: json['new_account_maltainvest'] as int,
+    nonPepDeclaration: json['non_pep_declaration'] as int,
     occupation: json['occupation'] as String,
     otherInstrumentsTradingExperience:
         json['other_instruments_trading_experience'] as String,
@@ -52,16 +53,16 @@ NewAccountMaltainvestRequest _$NewAccountMaltainvestRequestFromJson(
     sourceOfWealth: json['source_of_wealth'] as String,
     taxIdentificationNumber: json['tax_identification_number'] as String,
     taxResidence: json['tax_residence'] as String,
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$NewAccountMaltainvestRequestToJson(
         NewAccountMaltainvestRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'accept_risk': instance.acceptRisk,
       'account_opening_reason': instance.accountOpeningReason,
       'account_turnover': instance.accountTurnover,
@@ -91,6 +92,7 @@ Map<String, dynamic> _$NewAccountMaltainvestRequestToJson(
       'last_name': instance.lastName,
       'net_income': instance.netIncome,
       'new_account_maltainvest': instance.newAccountMaltainvest,
+      'non_pep_declaration': instance.nonPepDeclaration,
       'occupation': instance.occupation,
       'other_instruments_trading_experience':
           instance.otherInstrumentsTradingExperience,

@@ -11,11 +11,11 @@ class SetAccountCurrencyRequest extends Request {
   /// Initialize SetAccountCurrencyRequest
   const SetAccountCurrencyRequest({
     this.setAccountCurrency,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -34,13 +34,13 @@ class SetAccountCurrencyRequest extends Request {
   @override
   SetAccountCurrencyRequest copyWith({
     String setAccountCurrency,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       SetAccountCurrencyRequest(
         setAccountCurrency: setAccountCurrency ?? this.setAccountCurrency,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

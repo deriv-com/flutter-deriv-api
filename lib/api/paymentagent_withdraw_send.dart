@@ -17,11 +17,11 @@ class PaymentagentWithdrawRequest extends Request {
     this.paymentagentLoginid,
     this.paymentagentWithdraw = 1,
     this.verificationCode,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -64,8 +64,8 @@ class PaymentagentWithdrawRequest extends Request {
     String paymentagentLoginid,
     int paymentagentWithdraw,
     String verificationCode,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       PaymentagentWithdrawRequest(
         amount: amount ?? this.amount,
@@ -75,8 +75,8 @@ class PaymentagentWithdrawRequest extends Request {
         paymentagentLoginid: paymentagentLoginid ?? this.paymentagentLoginid,
         paymentagentWithdraw: paymentagentWithdraw ?? this.paymentagentWithdraw,
         verificationCode: verificationCode ?? this.verificationCode,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

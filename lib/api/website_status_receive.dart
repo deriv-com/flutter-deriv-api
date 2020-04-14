@@ -12,15 +12,15 @@ class WebsiteStatusResponse extends Response {
   const WebsiteStatusResponse({
     this.subscription,
     this.websiteStatus,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -43,18 +43,18 @@ class WebsiteStatusResponse extends Response {
   WebsiteStatusResponse copyWith({
     Map<String, dynamic> subscription,
     Map<String, dynamic> websiteStatus,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       WebsiteStatusResponse(
         subscription: subscription ?? this.subscription,
         websiteStatus: websiteStatus ?? this.websiteStatus,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

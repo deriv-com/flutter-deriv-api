@@ -11,15 +11,15 @@ class GetSelfExclusionResponse extends Response {
   /// Initialize GetSelfExclusionResponse
   const GetSelfExclusionResponse({
     this.getSelfExclusion,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) : super(
-          reqId: reqId,
-          msgType: msgType,
           echoReq: echoReq,
           error: error,
+          msgType: msgType,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -38,17 +38,17 @@ class GetSelfExclusionResponse extends Response {
   @override
   GetSelfExclusionResponse copyWith({
     Map<String, dynamic> getSelfExclusion,
-    int reqId,
-    String msgType,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
+    String msgType,
+    int reqId,
   }) =>
       GetSelfExclusionResponse(
         getSelfExclusion: getSelfExclusion ?? this.getSelfExclusion,
-        reqId: reqId ?? this.reqId,
-        msgType: msgType ?? this.msgType,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
+        msgType: msgType ?? this.msgType,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

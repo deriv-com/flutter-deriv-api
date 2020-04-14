@@ -13,11 +13,11 @@ class CashierRequest extends Request {
     this.cashier,
     this.provider,
     this.verificationCode,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) : super(
-          reqId: reqId,
           passthrough: passthrough,
+          reqId: reqId,
         );
 
   /// Creates instance from JSON
@@ -44,15 +44,15 @@ class CashierRequest extends Request {
     String cashier,
     String provider,
     String verificationCode,
-    int reqId,
     Map<String, dynamic> passthrough,
+    int reqId,
   }) =>
       CashierRequest(
         cashier: cashier ?? this.cashier,
         provider: provider ?? this.provider,
         verificationCode: verificationCode ?? this.verificationCode,
-        reqId: reqId ?? this.reqId,
         passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
       );
 
   /// Override equatable class

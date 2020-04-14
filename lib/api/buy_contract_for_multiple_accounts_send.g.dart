@@ -14,16 +14,16 @@ BuyContractForMultipleAccountsRequest
     parameters: json['parameters'] as Map<String, dynamic>,
     price: json['price'] as num,
     tokens: (json['tokens'] as List).map((e) => e as String).toList(),
-    reqId: json['req_id'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
+    reqId: json['req_id'] as int,
   );
 }
 
 Map<String, dynamic> _$BuyContractForMultipleAccountsRequestToJson(
         BuyContractForMultipleAccountsRequest instance) =>
     <String, dynamic>{
-      'req_id': instance.reqId,
       'passthrough': instance.passthrough,
+      'req_id': instance.reqId,
       'buy_contract_for_multiple_accounts':
           instance.buyContractForMultipleAccounts,
       'parameters': instance.parameters,
