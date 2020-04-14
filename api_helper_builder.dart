@@ -14,6 +14,14 @@ class APIHelperBuilder extends Builder {
   @override
   Future<void> build(BuildStep buildStep) async {
     try {
+      // Sort the list so the order of fromJson switch cases be the same
+      // in every build
+      final List<String> importFileNames = generatedResponses
+          .map<String>((GeneratedResponseJson gr) => gr.fileName)
+          .toList()
+            ..add('response')
+            ..sort();
+      generatedResponses.sort();
       await buildStep.writeAsString(
           buildStep.inputId.changeExtension('.helper.dart'),
           DartFormatter().format('''// AUTO-GENERATED - DO NOT MODIFY BY HAND
@@ -21,8 +29,7 @@ class APIHelperBuilder extends Builder {
           // uses collected `msg_type`s from the 1st step to create a helper
           // function that maps the `msg_type`s to equivalent Response objects
           
-          import 'response.dart';
-      ${generatedResponses.map((GeneratedResponseJson gj) => 'import \'${gj.fileName}.dart\';').join('\n')}
+      ${importFileNames.map((String fileName) => 'import \'${fileName}.dart\';').join('\n')}
       
       /// A function that create a sub-type of [Response] based on
       /// [responseMap]'s 'msg_type' 

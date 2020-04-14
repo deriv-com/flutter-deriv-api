@@ -224,10 +224,14 @@ class ${fullClassName} extends ${schemaType == 'send' ? 'Request' : 'Response'}{
   }
 }
 
-class GeneratedResponseJson {
+class GeneratedResponseJson extends Comparable<GeneratedResponseJson> {
   GeneratedResponseJson({this.msgType, this.fileName, this.fullClassName});
 
   final String msgType;
   final String fileName;
   final String fullClassName;
+
+  @override
+  int compareTo(GeneratedResponseJson other) =>
+      fileName.compareTo(other.fileName);
 }
