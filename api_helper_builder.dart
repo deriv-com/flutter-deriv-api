@@ -14,28 +14,40 @@ class APIHelperBuilder extends Builder {
   @override
   Future<void> build(BuildStep buildStep) async {
     try {
+      final List<String> importFileNames = generatedResponses
+          .map<String>((GeneratedResponseJson response) => response.fileName)
+          .toList()
+            ..add('response')
+            ..sort();
+
+      generatedResponses.sort();
+
       await buildStep.writeAsString(
-          buildStep.inputId.changeExtension('.helper.dart'),
-          DartFormatter().format('''// AUTO-GENERATED - DO NOT MODIFY BY HAND
-          // Auto generated from 1st step of the flutter_deriv_api code generation process
-          // uses collected `msg_type`s from the 1st step to create a helper
-          // function that maps the `msg_type`s to equivalent Response objects
-          
-          import 'response.dart';
-      ${generatedResponses.map((GeneratedResponseJson gj) => 'import \'${gj.fileName}.dart\';').join('\n')}
-      
-      /// A function that create a sub-type of [Response] based on
-      /// [responseMap]'s 'msg_type' 
-      Response getResponseByMsgType(Map<String, dynamic> responseMap) {
-        switch (responseMap['msg_type']) {
-        ${generatedResponses.map((GeneratedResponseJson rj) => '''case '${rj.msgType}':
-            return ${rj.fullClassName}.fromJson(responseMap);
-         ''').join('')}
-         default:
-            return Response.fromJson(responseMap);
-        }
-      }
-      '''));
+        buildStep.inputId.changeExtension('.helper.dart'),
+        DartFormatter().format(
+          '''
+            // AUTO-GENERATED - DO NOT MODIFY BY HAND
+            // Auto generated from 1st step of the flutter_deriv_api code generation process
+            // uses collected `msg_type`s from the 1st step to create a helper
+            // function that maps the `msg_type`s to equivalent Response objects
+            
+            ${importFileNames.map((String fileName) => 'import \'$fileName.dart\';').join('\n')}
+
+            /// A function that create a sub-type of [Response] based on
+            /// [responseMap]'s 'msg_type' 
+            Response getResponseByMsgType(Map<String, dynamic> responseMap) {
+              switch (responseMap['msg_type']) {
+              ${generatedResponses.map((GeneratedResponseJson response) => '''case '${response.msgType}':
+                  return ${response.fullClassName}.fromJson(responseMap);
+              ''').join('')}
+
+              default:
+                  return Response.fromJson(responseMap);
+              }
+            }
+          ''',
+        ),
+      );
     } on Exception catch (e, stack) {
       log
         ..severe('Failed to process ${buildStep.inputId} - $e')
