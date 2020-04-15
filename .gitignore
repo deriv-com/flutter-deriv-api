@@ -5,6 +5,7 @@ lib/api/*.json
 *.swp
 .DS_Store
 .atom/
+.flutter-plugins-dependencies
 
 # IntelliJ related
 *.iml
