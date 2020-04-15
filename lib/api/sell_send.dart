@@ -19,10 +19,10 @@ class SellRequest extends Request {
       _$SellRequestFromJson(json);
 
   // Properties
-  /// Minimum price at which to sell the contract, or '0' for 'sell at market'
+  /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
   num price;
 
-  /// Pass contract_id received from the Portfolio call
+  /// Pass contract_id received from the `portfolio` call.
   int sell;
 
   /// Converts to JSON

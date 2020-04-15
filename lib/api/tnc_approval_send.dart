@@ -25,7 +25,7 @@ class TncApprovalRequest extends Request {
   /// Must be `1`
   num tncApproval;
 
-  /// [Optional] For 'ASK_UK_FUNDS_PROTECTION' in cashier.
+  /// [Optional] For `ASK_UK_FUNDS_PROTECTION` in `cashier`.
   int ukgcFundsProtection;
 
   /// Converts to JSON

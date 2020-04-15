@@ -24,13 +24,13 @@ class ContractsForRequest extends Request {
       _$ContractsForRequestFromJson(json);
 
   // Properties
-  /// The short symbol name (obtained from active_symbols call).
+  /// The short symbol name (obtained from `active_symbols` call).
   String contractsFor;
 
-  /// [Optional] Currency of the contract's stake and payout (obtained from payout_currencies call).
+  /// [Optional] Currency of the contract's stake and payout (obtained from `payout_currencies` call).
   String currency;
 
-  /// [Optional] Indicates which landing_company to get a list of contracts for. If you are logged in, your landing company will override this field.
+  /// [Optional] Indicates which landing company to get a list of contracts for. If you are logged in, your account's landing company will override this field.
   String landingCompany;
 
   /// [Optional] If you specify this field, only contracts tradable through that contract type will be returned.

@@ -40,7 +40,9 @@ class TicksHistoryRequest extends Request {
   /// [Optional] Only applicable for style: `candles`. Candle time-dimension width setting. (default: `60`).
   int granularity;
 
-  /// [Optional] Epoch value representing the earliest boundary of the returned ticks (For styles: 'ticks', this will default to 1 day ago. For styles: 'candle', it will default to 1 day ago if count or granularity is undefined).
+  /// [Optional] Epoch value representing the earliest boundary of the returned ticks.
+  /// - For `"style": "ticks"`: this will default to 1 day ago.
+  /// - For `"style": "candles"`: it will default to 1 day ago if count or granularity is undefined.
   int start;
 
   /// [Optional] The tick-output style.

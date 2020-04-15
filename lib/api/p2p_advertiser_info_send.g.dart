@@ -11,6 +11,7 @@ P2pAdvertiserInfoRequest _$P2pAdvertiserInfoRequestFromJson(
   return P2pAdvertiserInfoRequest(
     id: json['id'] as String,
     p2pAdvertiserInfo: json['p2p_advertiser_info'] as int,
+    subscribe: json['subscribe'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
   );
@@ -23,4 +24,5 @@ Map<String, dynamic> _$P2pAdvertiserInfoRequestToJson(
       'req_id': instance.reqId,
       'id': instance.id,
       'p2p_advertiser_info': instance.p2pAdvertiserInfo,
+      'subscribe': instance.subscribe,
     };

@@ -32,13 +32,13 @@ class P2pOrderCreateRequest extends Request {
   /// The amount of currency to be bought or sold.
   num amount;
 
-  /// [Optional] Only available for sell orders. Details for how the buyer can contact the seller.
+  /// [Optional] Seller contact information. Only applicable for 'sell orders'.
   String contactInfo;
 
   /// Must be 1
   int p2pOrderCreate;
 
-  /// [Optional] Only available for sell orders. Instructions for how the buyer can transfer funds, for example: bank name and account number, or E-Wallet id.
+  /// [Optional] Payment instructions. Only applicable for 'sell orders'.
   String paymentInfo;
 
   /// [Optional] If set to 1, will send updates whenever there is an update to the order.

@@ -27,7 +27,7 @@ class ProposalOpenContractResponse extends Response {
   /// Latest price and other details for an open contract
   Map<String, dynamic> proposalOpenContract;
 
-  /// For subscription requests only
+  /// For subscription requests only.
   Map<String, dynamic> subscription;
 
   /// Converts to JSON

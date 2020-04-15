@@ -57,7 +57,7 @@ class AppUpdateRequest extends Request {
   /// Change scopes will revoke all user's grants and log them out.
   List<String> scopes;
 
-  /// [Optional] Used when 'verify_email' called. If available, a URL containing the verification token will send to the client's email, otherwise only the token will be sent.
+  /// [Optional] Used when `verify_email` called. If available, a URL containing the verification token will send to the client's email, otherwise only the token will be sent.
   String verificationUri;
 
   /// Converts to JSON

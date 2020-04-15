@@ -24,7 +24,7 @@ class WebsiteStatusResponse extends Response {
       _$WebsiteStatusResponseFromJson(json);
 
   // Properties
-  /// For subscription requests only
+  /// For subscription requests only.
   Map<String, dynamic> subscription;
 
   /// Server status and other information regarding general settings
