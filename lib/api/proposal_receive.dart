@@ -27,7 +27,7 @@ class ProposalResponse extends Response {
   /// Latest price and other details for a given contract
   Map<String, dynamic> proposal;
 
-  /// For subscription requests only
+  /// For subscription requests only.
   Map<String, dynamic> subscription;
 
   /// Converts to JSON

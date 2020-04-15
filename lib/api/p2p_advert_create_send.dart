@@ -35,13 +35,13 @@ class P2pAdvertCreateRequest extends Request {
   /// The total amount of the advert, in advertiser's account currency.
   num amount;
 
-  /// [Optional] Only applicable for sell adverts. Contact details of the advertiser, which buyer can use to contact you in a buy order.
+  /// [Optional] Advertiser contact information. Only applicable for 'sell adverts'.
   String contactInfo;
 
   /// [Optional] The target country code of the advert. If not provided, will use client's residence by default.
   String country;
 
-  /// [Optional] Notes and general instructions from the advertiser.
+  /// [Optional] General information about the advert.
   String description;
 
   /// [Optional] Local currency for this advert. If not provided, will use the currency of client's residence by default.
@@ -56,7 +56,7 @@ class P2pAdvertCreateRequest extends Request {
   /// Must be 1
   int p2pAdvertCreate;
 
-  /// [Optional] Only applicable for sell adverts. Payment instructions for the buyer to transfer funds, for example: bank name and account number, or E-Wallet id.
+  /// [Optional] Payment instructions. Only applicable for 'sell adverts'.
   String paymentInfo;
 
   /// The payment method.

@@ -24,7 +24,7 @@ class TicksResponse extends Response {
       _$TicksResponseFromJson(json);
 
   // Properties
-  /// For subscription requests only
+  /// For subscription requests only.
   Map<String, dynamic> subscription;
 
   /// Tick by tick list of streamed data

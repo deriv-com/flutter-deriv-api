@@ -38,6 +38,7 @@ NewAccountMaltainvestRequest _$NewAccountMaltainvestRequestFromJson(
     lastName: json['last_name'] as String,
     netIncome: json['net_income'] as String,
     newAccountMaltainvest: json['new_account_maltainvest'] as int,
+    nonPepDeclaration: json['non_pep_declaration'] as int,
     occupation: json['occupation'] as String,
     otherInstrumentsTradingExperience:
         json['other_instruments_trading_experience'] as String,
@@ -91,6 +92,7 @@ Map<String, dynamic> _$NewAccountMaltainvestRequestToJson(
       'last_name': instance.lastName,
       'net_income': instance.netIncome,
       'new_account_maltainvest': instance.newAccountMaltainvest,
+      'non_pep_declaration': instance.nonPepDeclaration,
       'occupation': instance.occupation,
       'other_instruments_trading_experience':
           instance.otherInstrumentsTradingExperience,
