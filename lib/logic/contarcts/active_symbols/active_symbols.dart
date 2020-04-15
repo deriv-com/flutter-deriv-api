@@ -29,24 +29,24 @@ class ActiveSymbol extends ActiveSymbolModel {
     String symbol,
     String symbolType,
   }) : super(
-            allowForwardStarting,
-            delayAmount,
-            displayName,
-            exchangeIsOpen,
-            exchangeName,
-            intradayIntervalMinutes,
-            isTradingSuspended,
-            market,
-            marketDisplayName,
-            pip,
-            quotedCurrencySymbol,
-            spot,
-            spotAge,
-            spotTime,
-            submarket,
-            submarketDisplayName,
-            symbol,
-            symbolType);
+            allowForwardStarting: allowForwardStarting,
+            delayAmount: delayAmount,
+            displayName: displayName,
+            exchangeIsOpen: exchangeIsOpen,
+            exchangeName: exchangeName,
+            intradayIntervalMinutes: intradayIntervalMinutes,
+            isTradingSuspended: isTradingSuspended,
+            market: market,
+            marketDisplayName: marketDisplayName,
+            pip: pip,
+            quotedCurrencySymbol: quotedCurrencySymbol,
+            spot: spot,
+            spotAge: spotAge,
+            spotTime: spotTime,
+            submarket: submarket,
+            submarketDisplayName: submarketDisplayName,
+            symbol: symbol,
+            symbolType: symbolType);
 
   /// from Json
   factory ActiveSymbol.fromJson(Map<String, dynamic> json) => ActiveSymbol(
@@ -95,9 +95,11 @@ class ActiveSymbol extends ActiveSymbolModel {
           landingCompany: landingCompany,
           productType: productType),
     );
+
     if (activeSymbolsResponse.error != null) {
       throw CallException(message: activeSymbolsResponse.error['message']);
     }
+
     return activeSymbolsResponse.activeSymbols
         .map<ActiveSymbol>(
             (dynamic symbolEntry) => ActiveSymbol.fromJson(symbolEntry))
@@ -119,7 +121,7 @@ class ActiveSymbol extends ActiveSymbolModel {
     String quotedCurrencySymbol,
     double spot,
     String spotAge,
-    String spotTime,
+    DateTime spotTime,
     String submarket,
     String submarketDisplayName,
     String symbol,

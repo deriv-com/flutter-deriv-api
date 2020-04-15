@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/models/base_model.dart';
 /// Abstract class for Active symbol information
 abstract class ActiveSymbolModel extends BaseModel {
   /// Initializes
-  ActiveSymbolModel(
+  ActiveSymbolModel({
     this.allowForwardStarting,
     this.delayAmount,
     this.displayName,
@@ -22,7 +22,7 @@ abstract class ActiveSymbolModel extends BaseModel {
     this.submarketDisplayName,
     this.symbol,
     this.symbolType,
-  );
+  });
 
   /// `true` if the symbol is tradable in a forward starting contract,
   /// `false` if not.
