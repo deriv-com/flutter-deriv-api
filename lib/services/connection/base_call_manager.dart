@@ -5,8 +5,8 @@ import 'package:meta/meta.dart';
 import 'package:flutter_deriv_api/api/request.dart';
 import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/api/api.helper.dart';
-import 'package:flutter_deriv_api/connection/pending_request.dart';
-import 'package:flutter_deriv_api/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/connection/pending_request.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 
 /// A predicate function to compare [request] and [pendingRequest]s
 /// [equatableResult] indicates request and pending request are equal or not (by equatable package result)

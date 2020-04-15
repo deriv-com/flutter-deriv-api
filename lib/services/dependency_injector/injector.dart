@@ -1,7 +1,7 @@
 import 'package:meta/meta.dart';
 
-import 'package:flutter_deriv_api/dependency_injector/type_factory.dart';
-import 'package:flutter_deriv_api/dependency_injector/injector_exception.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/type_factory.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector_exception.dart';
 
 const String _defaultKey = 'default';
 

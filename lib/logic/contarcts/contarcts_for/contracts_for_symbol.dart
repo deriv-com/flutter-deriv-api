@@ -1,3 +1,7 @@
+import 'package:flutter_deriv_api/api/api.dart';
+import 'package:flutter_deriv_api/exceptions/call_exception.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/helpers.dart';
 import 'package:flutter_deriv_api/api/contracts_for_send.dart';
 import 'package:flutter_deriv_api/models/contracts_for_model.dart';
@@ -25,7 +29,8 @@ class ContractsForSymbol extends ContractsForSymbolModel {
         );
 
   /// Factory constructor from Json
-  factory ContractsForSymbol.fromJson(Map<String, dynamic> json) => ContractsForSymbol(
+  factory ContractsForSymbol.fromJson(Map<String, dynamic> json) =>
+      ContractsForSymbol(
         contracts: json['available']
             ?.map<Contract>((dynamic entry) =>
                 entry == null ? null : Contract.fromJson(entry))
@@ -37,16 +42,33 @@ class ContractsForSymbol extends ContractsForSymbolModel {
         spot: json['spot'],
       );
 
+  /// API instance
+  static final BasicBinaryAPI api =
+      Injector.getInjector().get<BasicBinaryAPI>();
+
   /// Fetch contracts for given [symbol]
   /// For parameters information refer to [ContractsForRequest]
   static Future<ContractsForSymbol> getContractsForSymbol({
-    String symbol,
+    String symbol = 'R_10',
     String currency,
     String landingCompany,
     String productType,
-  }) async =>
-      // TODO(Ramin): call to the actual API class when its ready
-      ContractsForSymbol();
+  }) async {
+    final ContractsForResponse contractsForResponse = await api.call(
+      request: ContractsForRequest(
+        contractsFor: symbol,
+        currency: currency,
+        landingCompany: landingCompany,
+        productType: productType,
+      ),
+    );
+
+    if (contractsForResponse.error != null) {
+      throw CallException(message: contractsForResponse.error['message']);
+    }
+
+    return ContractsForSymbol.fromJson(contractsForResponse.contractsFor);
+  }
 
   /// Clone a new instance
   ContractsForSymbol copyWith({

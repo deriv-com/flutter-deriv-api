@@ -1,5 +1,7 @@
+import 'package:flutter_deriv_api/models/base_model.dart';
+
 /// Abstract class for Active symbol information
-abstract class ActiveSymbolModel {
+abstract class ActiveSymbolModel extends BaseModel {
   /// Initializes
   ActiveSymbolModel(
     this.allowForwardStarting,

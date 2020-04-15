@@ -12,10 +12,10 @@ import 'package:flutter_deriv_api/api/request.dart';
 import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/api/ping_send.dart';
 import 'package:flutter_deriv_api/api/forget_receive.dart';
-import 'package:flutter_deriv_api/connection/api_history.dart';
-import 'package:flutter_deriv_api/connection/call_manager.dart';
-import 'package:flutter_deriv_api/connection/base_call_manager.dart';
-import 'package:flutter_deriv_api/connection/subscription_manager.dart';
+import 'package:flutter_deriv_api/services/connection/api_history.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager.dart';
+import 'package:flutter_deriv_api/services/connection/base_call_manager.dart';
+import 'package:flutter_deriv_api/services/connection/subscription_manager.dart';
 
 /// Callbacks for WS connection
 typedef SocketCallback = void Function();
@@ -88,7 +88,7 @@ class BasicBinaryAPI {
     String endpoint = 'www.binaryqa10.com',
     String language = 'en',
     String brand = 'deriv',
-    String appId = '1014',
+    String appId = '1408',
   }) async {
     _connected = false;
 

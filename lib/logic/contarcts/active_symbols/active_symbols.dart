@@ -1,4 +1,8 @@
+import 'package:flutter_deriv_api/api/active_symbols_receive.dart';
 import 'package:flutter_deriv_api/api/active_symbols_send.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/exceptions/call_exception.dart';
 import 'package:flutter_deriv_api/helpers.dart';
 import 'package:flutter_deriv_api/models/active_symbols_model.dart';
 
@@ -74,15 +78,31 @@ class ActiveSymbol extends ActiveSymbolModel {
         symbolType: json['symbol_type'],
       );
 
+  /// API instance
+  static final BasicBinaryAPI api =
+      Injector.getInjector().get<BasicBinaryAPI>();
+
   /// Fetch the list of active symbols
   /// For parameters information refer to [ActiveSymbolsRequest]
   static Future<List<ActiveSymbol>> getActiveSymbols({
     String mode = 'brief',
     String landingCompany,
     String productType,
-  }) async =>
-      // TODO(Ramin): call to the actual Api class when its ready
-      <ActiveSymbol>[];
+  }) async {
+    final ActiveSymbolsResponse activeSymbolsResponse = await api.call(
+      request: ActiveSymbolsRequest(
+          activeSymbols: mode,
+          landingCompany: landingCompany,
+          productType: productType),
+    );
+    if (activeSymbolsResponse.error != null) {
+      throw CallException(message: activeSymbolsResponse.error['message']);
+    }
+    return activeSymbolsResponse.activeSymbols
+        .map<ActiveSymbol>(
+            (dynamic symbolEntry) => ActiveSymbol.fromJson(symbolEntry))
+        .toList();
+  }
 
   /// Clone a new instance
   ActiveSymbol copyWith({

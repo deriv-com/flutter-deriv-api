@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 typedef ObjectFactoryFunction<T> = T Function(Injector injector);
 

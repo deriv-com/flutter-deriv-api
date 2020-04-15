@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_deriv_api/helpers.dart';
 import 'package:flutter_deriv_api/api/time_send.dart';
 import 'package:flutter_deriv_api/api/time_receive.dart';
-import 'package:flutter_deriv_api/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 
 part 'connection_state.dart';
 part 'connection_event.dart';

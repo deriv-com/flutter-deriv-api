@@ -18,7 +18,7 @@ import 'package:flutter_deriv_api/api/ping_send.dart';
 import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/api/website_status_receive.dart';
 import 'package:flutter_deriv_api/api/website_status_send.dart';
-import 'package:flutter_deriv_api/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/flutter_deriv_api.dart';
 
 void main() {

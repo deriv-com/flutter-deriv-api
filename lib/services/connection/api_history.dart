@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/connection/api_history_entry.dart';
+import 'package:flutter_deriv_api/services/connection/api_history_entry.dart';
 
 /// Provides storage for messages sent/received via the web socket connection
 class APIHistory {
