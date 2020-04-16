@@ -12,7 +12,6 @@ class P2pAdvertCreateRequest extends Request {
   const P2pAdvertCreateRequest({
     this.amount,
     this.contactInfo,
-    this.country,
     this.description,
     this.localCurrency,
     this.maxOrderAmount,
@@ -39,9 +38,6 @@ class P2pAdvertCreateRequest extends Request {
 
   /// [Optional] Advertiser contact information. Only applicable for 'sell adverts'.
   final String contactInfo;
-
-  /// [Optional] The target country code of the advert. If not provided, will use client's residence by default.
-  final String country;
 
   /// [Optional] General information about the advert.
   final String description;
@@ -79,7 +75,6 @@ class P2pAdvertCreateRequest extends Request {
   P2pAdvertCreateRequest copyWith({
     num amount,
     String contactInfo,
-    String country,
     String description,
     String localCurrency,
     num maxOrderAmount,
@@ -95,7 +90,6 @@ class P2pAdvertCreateRequest extends Request {
       P2pAdvertCreateRequest(
         amount: amount ?? this.amount,
         contactInfo: contactInfo ?? this.contactInfo,
-        country: country ?? this.country,
         description: description ?? this.description,
         localCurrency: localCurrency ?? this.localCurrency,
         maxOrderAmount: maxOrderAmount ?? this.maxOrderAmount,
