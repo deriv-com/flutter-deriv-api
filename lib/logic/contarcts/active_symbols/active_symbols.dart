@@ -1,10 +1,10 @@
-import 'package:flutter_deriv_api/api/active_symbols_receive.dart';
+import 'package:flutter_deriv_api/helpers.dart';
 import 'package:flutter_deriv_api/api/active_symbols_send.dart';
+import 'package:flutter_deriv_api/api/active_symbols_receive.dart';
+import 'package:flutter_deriv_api/models/active_symbols_model.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/exceptions/call_exception.dart';
-import 'package:flutter_deriv_api/helpers.dart';
-import 'package:flutter_deriv_api/models/active_symbols_model.dart';
+import 'package:flutter_deriv_api/logic/contarcts/active_symbols/active_symbols_exception.dart';
 
 /// Active Symbol
 class ActiveSymbol extends ActiveSymbolModel {
@@ -79,7 +79,7 @@ class ActiveSymbol extends ActiveSymbolModel {
       );
 
   /// API instance
-  static final BasicBinaryAPI api =
+  static final BasicBinaryAPI _api =
       Injector.getInjector().get<BasicBinaryAPI>();
 
   /// Fetch the list of active symbols
@@ -89,7 +89,7 @@ class ActiveSymbol extends ActiveSymbolModel {
     String landingCompany,
     String productType,
   }) async {
-    final ActiveSymbolsResponse activeSymbolsResponse = await api.call(
+    final ActiveSymbolsResponse activeSymbolsResponse = await _api.call(
       request: ActiveSymbolsRequest(
           activeSymbols: mode,
           landingCompany: landingCompany,
@@ -97,7 +97,9 @@ class ActiveSymbol extends ActiveSymbolModel {
     );
 
     if (activeSymbolsResponse.error != null) {
-      throw CallException(message: activeSymbolsResponse.error['message']);
+      throw ActiveSymbolsException(
+        message: activeSymbolsResponse.error['message'],
+      );
     }
 
     return activeSymbolsResponse.activeSymbols
