@@ -1,12 +1,13 @@
 import 'dart:async';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_deriv_api/helpers.dart';
 import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../connection/connection_websocket.dart';
+import 'package:flutter_deriv_api/helpers.dart';
+import 'package:flutter_deriv_api/api/time_send.dart';
+import 'package:flutter_deriv_api/api/time_receive.dart';
+import 'package:flutter_deriv_api/connection/basic_binary_api.dart';
 
 part 'connection_state.dart';
-
 part 'connection_event.dart';
 
 /// Bringing ConnectionBloc to flutter-deriv-api to simplify the usage of api
@@ -21,9 +22,9 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   @override
   ConnectionState get initialState => InitialConnectionState();
 
-  /// connects the [BinaryAPI] to the web socket
+  /// connects the [BasicBinaryAPI] to the web socket
   void connectWS() {
-    final BinaryAPI _api = BinaryAPI();
+    final BasicBinaryAPI _api = BasicBinaryAPI();
 
     _api.run(
       onDone: () => add(Reconnect()),
@@ -47,15 +48,16 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
     } else if (event is FetchServerTime) {
       if (state is Connected) {
         final Connected currentState = state;
-        final Map<String, dynamic> resp = await currentState.api.time();
+        final TimeResponse timeResponse =
+            await currentState.api.call(request: const TimeRequest());
 
-        if (resp.containsKey('error')) {
-          print('Fetching server time failed: ${resp['error']}');
-          throw Exception(resp['error']['message']);
+        if (timeResponse.error != null) {
+          print('Fetching server time failed: ${timeResponse.error}');
+          throw Exception(timeResponse.error['message']);
         }
 
-        print('Server time is: ${resp['time']}');
-        yield currentState.copyWith(serverTime: resp['time']);
+        print('Server time is: ${timeResponse.time}');
+        yield currentState.copyWith(serverTime: timeResponse.time);
       } else if (state is InitialConnectionState) {
         _serverTimeInterval.cancel();
       }

@@ -16,7 +16,7 @@ class Connecting extends ConnectionState {
   Connecting(this.api);
 
   /// a reference of BinaryAPI
-  final BinaryAPI api;
+  final BasicBinaryAPI api;
 
   @override
   String toString() => 'ConnectionState(Connecting)';
@@ -30,7 +30,7 @@ class Connected extends ConnectionState {
             serverTime != null ? serverTime - getCurrentLocalEpoch() : null;
 
   /// a reference of BinaryAPI is currently connected
-  final BinaryAPI api;
+  final BasicBinaryAPI api;
 
   /// fetched server time
   final int serverTime;
@@ -39,8 +39,14 @@ class Connected extends ConnectionState {
   final int timeDifference;
 
   /// Creates copy of instance with given parameters
-  Connected copyWith({BinaryAPI api, int serverTime}) =>
-      Connected(api ?? this.api, serverTime: serverTime ?? this.serverTime);
+  Connected copyWith({
+    BasicBinaryAPI api,
+    int serverTime,
+  }) =>
+      Connected(
+        api ?? this.api,
+        serverTime: serverTime ?? this.serverTime,
+      );
 
   @override
   String toString() =>

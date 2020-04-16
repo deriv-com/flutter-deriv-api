@@ -128,7 +128,7 @@ linter:
     - type_init_formals
     - unawaited_futures # not really convinced this works
     - unnecessary_await_in_return
-    # - unnecessary_brace_in_string_interps # the compiler may not need it, but the disambiguation sometimes makes things easier to read
+    - unnecessary_brace_in_string_interps
     - unnecessary_const
     - unnecessary_getters_setters
     # - unnecessary_lambdas # broken
