@@ -143,9 +143,9 @@ class JsonSchemaParser {
       if (schemaType == _objectType) {
         result.write(
           '''
-            $title: json['$schemaTitle'] != null
-              ? $className.fromJson(json['$schemaTitle'])
-              : null,
+            $title: json['$schemaTitle'] == null
+              ? null
+              : $className.fromJson(json['$schemaTitle']),
           ''',
         );
       } else if (schemaType == _arrayType) {
