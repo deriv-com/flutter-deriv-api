@@ -15,6 +15,7 @@ class Mt5GetSettingsRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'mt5_get_settings',
           passthrough: passthrough,
           reqId: reqId,
         );

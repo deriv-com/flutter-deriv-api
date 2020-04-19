@@ -32,6 +32,7 @@ class ProposalRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'proposal',
           passthrough: passthrough,
           reqId: reqId,
         );

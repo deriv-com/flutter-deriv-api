@@ -53,6 +53,7 @@ class NewAccountMaltainvestRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'new_account_maltainvest',
           passthrough: passthrough,
           reqId: reqId,
         );

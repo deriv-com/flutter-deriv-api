@@ -14,6 +14,7 @@ class SellExpiredRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'sell_expired',
           passthrough: passthrough,
           reqId: reqId,
         );

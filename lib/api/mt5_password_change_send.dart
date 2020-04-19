@@ -18,6 +18,7 @@ class Mt5PasswordChangeRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'mt5_password_change',
           passthrough: passthrough,
           reqId: reqId,
         );

@@ -14,6 +14,7 @@ class SetAccountCurrencyRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'set_account_currency',
           passthrough: passthrough,
           reqId: reqId,
         );

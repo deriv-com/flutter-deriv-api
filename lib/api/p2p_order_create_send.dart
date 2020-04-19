@@ -19,6 +19,7 @@ class P2pOrderCreateRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'p2p_order_create',
           passthrough: passthrough,
           reqId: reqId,
         );

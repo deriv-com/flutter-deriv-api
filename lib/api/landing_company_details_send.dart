@@ -14,6 +14,7 @@ class LandingCompanyDetailsRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'landing_company_details',
           passthrough: passthrough,
           reqId: reqId,
         );

@@ -14,6 +14,7 @@ class GetAccountStatusRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'get_account_status',
           passthrough: passthrough,
           reqId: reqId,
         );

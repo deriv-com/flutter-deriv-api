@@ -16,6 +16,7 @@ class P2pOrderInfoRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'p2p_order_info',
           passthrough: passthrough,
           reqId: reqId,
         );

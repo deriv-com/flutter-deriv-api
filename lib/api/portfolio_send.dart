@@ -14,6 +14,7 @@ class PortfolioRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'portfolio',
           passthrough: passthrough,
           reqId: reqId,
         );

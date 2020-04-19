@@ -15,6 +15,7 @@ class TransactionRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'transaction',
           passthrough: passthrough,
           reqId: reqId,
         );

@@ -14,6 +14,7 @@ class ForgetRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'forget',
           passthrough: passthrough,
           reqId: reqId,
         );

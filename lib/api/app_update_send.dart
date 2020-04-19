@@ -23,6 +23,7 @@ class AppUpdateRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'app_update',
           passthrough: passthrough,
           reqId: reqId,
         );

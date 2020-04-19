@@ -23,6 +23,7 @@ class AppRegisterRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'app_register',
           passthrough: passthrough,
           reqId: reqId,
         );

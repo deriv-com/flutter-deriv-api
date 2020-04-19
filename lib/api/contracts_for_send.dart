@@ -17,6 +17,7 @@ class ContractsForRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'contracts_for',
           passthrough: passthrough,
           reqId: reqId,
         );

@@ -14,6 +14,7 @@ class ResidenceListRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'residence_list',
           passthrough: passthrough,
           reqId: reqId,
         );

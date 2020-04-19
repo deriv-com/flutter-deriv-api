@@ -17,6 +17,7 @@ class SellContractForMultipleAccountsRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'sell_contract_for_multiple_accounts',
           passthrough: passthrough,
           reqId: reqId,
         );

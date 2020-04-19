@@ -21,6 +21,7 @@ class TicksHistoryRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'ticks_history',
           passthrough: passthrough,
           reqId: reqId,
         );

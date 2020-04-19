@@ -19,6 +19,7 @@ class PaymentagentTransferRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'paymentagent_transfer',
           passthrough: passthrough,
           reqId: reqId,
         );

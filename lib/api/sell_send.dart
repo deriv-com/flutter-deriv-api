@@ -15,6 +15,7 @@ class SellRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'sell',
           passthrough: passthrough,
           reqId: reqId,
         );

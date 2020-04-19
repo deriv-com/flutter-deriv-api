@@ -16,6 +16,7 @@ class CashierRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'cashier',
           passthrough: passthrough,
           reqId: reqId,
         );
