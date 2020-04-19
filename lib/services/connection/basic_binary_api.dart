@@ -13,9 +13,9 @@ import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/api/ping_send.dart';
 import 'package:flutter_deriv_api/api/forget_receive.dart';
 import 'package:flutter_deriv_api/services/connection/api_history.dart';
-import 'package:flutter_deriv_api/services/connection/call_manager.dart';
-import 'package:flutter_deriv_api/services/connection/base_call_manager.dart';
-import 'package:flutter_deriv_api/services/connection/subscription_manager.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
 
 /// Callbacks for WS connection
 typedef SocketCallback = void Function();

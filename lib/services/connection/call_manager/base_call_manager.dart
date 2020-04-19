@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:flutter_deriv_api/api/request.dart';
 import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/api/api.helper.dart';
-import 'package:flutter_deriv_api/services/connection/pending_request.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/pending_request.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 
 /// A predicate function to compare [request] and [pendingRequest]s

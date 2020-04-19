@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:flutter_deriv_api/api/request.dart';
 import 'package:flutter_deriv_api/api/response.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
-import 'package:flutter_deriv_api/services/connection/base_call_manager.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
 /// Api call manager abstract class
 class CallManager extends BaseCallManager<Future<Response>> {

@@ -8,11 +8,11 @@ import 'package:flutter_deriv_api/api/forget_send.dart';
 import 'package:flutter_deriv_api/api/forget_receive.dart';
 import 'package:flutter_deriv_api/api/forget_all_send.dart';
 import 'package:flutter_deriv_api/api/forget_all_receive.dart';
-import 'package:flutter_deriv_api/services/connection/pending_request.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
-import 'package:flutter_deriv_api/services/connection/base_call_manager.dart';
-import 'package:flutter_deriv_api/services/connection/subscription_stream.dart';
-import 'package:flutter_deriv_api/services/connection/pending_subscribed_request.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/pending_request.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/subscription_stream.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/pending_subscribed_request.dart';
 
 /// Subscription manager class
 class SubscriptionManager extends BaseCallManager<Stream<Response>> {

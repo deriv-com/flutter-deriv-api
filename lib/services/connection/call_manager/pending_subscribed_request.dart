@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter_deriv_api/api/request.dart';
-import 'package:flutter_deriv_api/services/connection/pending_request.dart';
-import 'package:flutter_deriv_api/services/connection/subscription_stream.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/pending_request.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/subscription_stream.dart';
 
 /// Represent a pending request.
 class PendingSubscribedRequest<T> extends PendingRequest<T> {
