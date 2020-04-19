@@ -86,8 +86,8 @@ class JsonSchemaParser {
     final StringBuffer result = StringBuffer()
       ..write(
         '''
-        $className({
-      ''',
+          $className({
+        ''',
       );
 
     for (_SchemaModel model in models) {
@@ -141,23 +141,23 @@ class JsonSchemaParser {
       final String schemaType = model.schemaType;
 
       if (schemaType == _objectType) {
-        result.write('''
-          $title : json['$schemaTitle'] != null
-            ? $className.fromJson(json['$schemaTitle'])
-            : null,
-        ''');
+        result.write(
+          '''
+            $title: json['$schemaTitle'] != null
+              ? $className.fromJson(json['$schemaTitle'])
+              : null,
+          ''',
+        );
       } else if (schemaType == _arrayType) {
-        result.write('''
-          if (json['$schemaTitle'] != null) {
-            $title : List<$className>(),
-            
-            json['$schemaTitle'].forEach((Map<String, dynamic> item) =>
-              $title.add($className.fromJson(item)),
-            );
-          }
-        ''');
+        result.write(
+          '''
+            $title: json['$schemaTitle'] == null
+              ? null
+              : json['$schemaTitle'].map<$className>(($className item) => $className.fromJson(item)).toList(),
+          ''',
+        );
       } else {
-        result.write('''$title : json['$schemaTitle'],''');
+        result.write('''$title: json['$schemaTitle'],''');
       }
     }
 
@@ -184,17 +184,21 @@ class JsonSchemaParser {
       final String schemaType = model.schemaType;
 
       if (schemaType == _objectType) {
-        result.write('''
-          if ($title != null) {
-            result['$schemaTitle'] = $title.toJson();
-          }
-        ''');
+        result.write(
+          '''
+            if ($title != null) {
+              result['$schemaTitle'] = $title.toJson();
+            }
+          ''',
+        );
       } else if (schemaType == _arrayType) {
-        result.write('''
-          if ($title != null) {
-            result['$schemaTitle'] = $title.map((item) => item.toJson()).toList();
-          }
-        ''');
+        result.write(
+          '''
+            if ($title != null) {
+              result['$schemaTitle'] = $title.map((item) => item.toJson()).toList();
+            }
+          ''',
+        );
       } else {
         result.write('''result['$schemaTitle'] = $title;''');
       }
@@ -212,8 +216,8 @@ class JsonSchemaParser {
     final StringBuffer result = StringBuffer()
       ..write(
         '''
-        $className copyWith({
-      ''',
+          $className copyWith({
+        ''',
       );
 
     for (_SchemaModel model in models) {
