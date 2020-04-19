@@ -1,10 +1,7 @@
 import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
-import 'package:collection/collection.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:inflection2/inflection2.dart';
-
-import 'package:flutter_deriv_api/schema_parser/schema_model.dart';
 
 const String _objectType = 'object';
 const String _arrayType = 'array';
@@ -17,7 +14,11 @@ const List<String> _ignoredParameters = <String>[
   'error',
 ];
 
-/// A Class for Parsing Receive and Send JSON Schemas.
+/// [JsonSchemaParser] is a utility class for extracting main and nested classes from json schema contents.
+/// for using this utility first you should call `getModel()` method and pass decoded json schema to it,
+/// then pass the result as `models` parameter to `getClasses()` method.
+/// result is a string that contains main class and all related classes of that schema file include:
+/// model classes, constructor, properties,  toJson, fromJson, and copyWith methods.
 class JsonSchemaParser {
   final List<StringBuffer> _result = <StringBuffer>[];
 
@@ -25,31 +26,30 @@ class JsonSchemaParser {
     'integer': 'int',
     'string': 'String',
     'number': 'double',
+    'boolean': 'bool',
   };
 
   static String _getClassName({
     @required String name,
     @required String type,
-    @required bool hasEnum,
   }) =>
       type == _objectType
           ? ReCase(name).pascalCase
           : type == _arrayType
               ? convertToSingular(ReCase(name).pascalCase)
-              : hasEnum && type == 'integer' ? 'bool' : _typeMap[type];
+              : _typeMap[type];
 
   static String _getObjectType({
     @required String name,
     @required String type,
-    @required bool hasEnum,
   }) =>
       type == _arrayType
-          ? 'List<${_getClassName(name: name, type: type, hasEnum: hasEnum)}>'
-          : _getClassName(name: name, type: type, hasEnum: hasEnum);
+          ? 'List<${_getClassName(name: name, type: type)}>'
+          : _getClassName(name: name, type: type);
 
   static String _createClass({
     @required String className,
-    @required List<SchemaModel> models,
+    @required List<_SchemaModel> models,
   }) {
     final StringBuffer result = StringBuffer()
       ..write(
@@ -80,7 +80,7 @@ class JsonSchemaParser {
 
   static StringBuffer _createContractor({
     @required String className,
-    @required List<SchemaModel> models,
+    @required List<_SchemaModel> models,
     bool isSubclass = true,
   }) {
     final StringBuffer result = StringBuffer()
@@ -90,7 +90,7 @@ class JsonSchemaParser {
       ''',
       );
 
-    for (SchemaModel model in models) {
+    for (_SchemaModel model in models) {
       result.write(
         isSubclass ? '${model.type} ${model.title},' : 'this.${model.title},',
       );
@@ -99,7 +99,7 @@ class JsonSchemaParser {
     if (isSubclass) {
       result.write('}) : super(');
 
-      for (SchemaModel model in models) {
+      for (_SchemaModel model in models) {
         result.write('${model.title}: ${model.title},');
       }
 
@@ -111,10 +111,10 @@ class JsonSchemaParser {
     return result;
   }
 
-  static StringBuffer _createProperties({List<SchemaModel> models}) {
+  static StringBuffer _createProperties({List<_SchemaModel> models}) {
     final StringBuffer result = StringBuffer();
 
-    for (SchemaModel model in models) {
+    for (_SchemaModel model in models) {
       result.write(
         '''
           /// ${model.description}
@@ -128,13 +128,13 @@ class JsonSchemaParser {
 
   static StringBuffer _createFromJsonMethod({
     @required String className,
-    @required List<SchemaModel> models,
+    @required List<_SchemaModel> models,
   }) {
     final StringBuffer result = StringBuffer(
       'factory $className.fromJson(Map<String, dynamic> json) => $className(',
     );
 
-    for (SchemaModel model in models) {
+    for (_SchemaModel model in models) {
       final String className = model.className;
       final String title = model.title;
       final String schemaTitle = model.schemaTitle;
@@ -167,7 +167,7 @@ class JsonSchemaParser {
   }
 
   static StringBuffer _createToJsonMethod({
-    @required List<SchemaModel> models,
+    @required List<_SchemaModel> models,
   }) {
     final StringBuffer result = StringBuffer()
       ..write(
@@ -178,7 +178,7 @@ class JsonSchemaParser {
         ''',
       );
 
-    for (SchemaModel model in models) {
+    for (_SchemaModel model in models) {
       final String title = model.title;
       final String schemaTitle = model.schemaTitle;
       final String schemaType = model.schemaType;
@@ -207,7 +207,7 @@ class JsonSchemaParser {
 
   static StringBuffer _copyWith({
     @required String className,
-    @required List<SchemaModel> models,
+    @required List<_SchemaModel> models,
   }) {
     final StringBuffer result = StringBuffer()
       ..write(
@@ -216,13 +216,13 @@ class JsonSchemaParser {
       ''',
       );
 
-    for (SchemaModel model in models) {
+    for (_SchemaModel model in models) {
       result.write('${model.type} ${model.title},');
     }
 
     result.write('}) => $className(');
 
-    for (SchemaModel model in models) {
+    for (_SchemaModel model in models) {
       result.write('${model.title}: ${model.title} ?? this.${model.title},');
     }
 
@@ -231,11 +231,11 @@ class JsonSchemaParser {
     return result;
   }
 
-  /// Pass Decoded JSON Schema to This Method for Getting List of Objects.
-  static List<SchemaModel> getModel({
+  /// Pass decoded json schema to this method for getting list of objects
+  static List<_SchemaModel> getModel({
     @required Map<String, dynamic> schema,
   }) {
-    final List<SchemaModel> parentModel = <SchemaModel>[];
+    final List<_SchemaModel> parentModel = <_SchemaModel>[];
     final Map<String, dynamic> schemaProperties = schema['properties'];
 
     if (schemaProperties != null) {
@@ -243,24 +243,22 @@ class JsonSchemaParser {
         final String name = entry.key;
         final String type = entry.value['type'];
         final String description = entry.value['description'];
-        final bool hasEnum = entry.value['enum'] != null &&
-            const DeepCollectionEquality().equals(
-              entry.value['enum'],
-              <int>[0, 1],
-            );
+        final bool isBoolean = _isBoolean(entry);
 
         if (_ignoredParameters.contains(name.toLowerCase())) {
           continue;
         }
 
-        final SchemaModel childModel = SchemaModel()
-          ..className = _getClassName(name: name, type: type, hasEnum: hasEnum)
+        final _SchemaModel childModel = _SchemaModel()
+          ..className =
+              _getClassName(name: name, type: isBoolean ? 'boolean' : type)
           ..title = ReCase(name).camelCase
-          ..type = _getObjectType(name: name, type: type, hasEnum: hasEnum)
+          ..type =
+              _getObjectType(name: name, type: isBoolean ? 'boolean' : type)
           ..description = description.replaceAll('\n', '\n/// ')
           ..schemaTitle = name
           ..schemaType = type
-          ..children = <SchemaModel>[];
+          ..children = <_SchemaModel>[];
 
         if (type == _objectType) {
           childModel.children.addAll(getModel(schema: entry.value));
@@ -275,10 +273,10 @@ class JsonSchemaParser {
     return parentModel;
   }
 
-  /// Generating Main and Nested Classes from Schema Models that Comes from getModel() Method.
+  /// Generating main and nested classes from schema models that comes from `getModel()` method.
   List<StringBuffer> getClasses({
-    @required String className,
-    @required List<SchemaModel> models,
+    String className = 'MainClass',
+    @required List<_SchemaModel> models,
     bool clearResult = true,
   }) {
     if (clearResult) {
@@ -296,7 +294,7 @@ class JsonSchemaParser {
       );
     }
 
-    for (SchemaModel model in models) {
+    for (_SchemaModel model in models) {
       getClasses(
         className: model.className,
         models: model.children,
@@ -306,4 +304,35 @@ class JsonSchemaParser {
 
     return _result;
   }
+
+  static bool _isBoolean(dynamic entry) =>
+      entry.value['type'] == 'integer' &&
+      entry.value['enum'] != null &&
+      entry.value['enum'].length == 2 &&
+      entry.value['enum'][0] == 0 &&
+      entry.value['enum'][1] == 1;
+}
+
+/// Model to store schema information
+class _SchemaModel {
+  /// Class name
+  String className;
+
+  /// Field title
+  String title;
+
+  /// Object type
+  String type;
+
+  /// Field description
+  String description;
+
+  /// Schema object field title
+  String schemaTitle;
+
+  /// Schema object field type
+  String schemaType;
+
+  /// List of nested classes
+  List<_SchemaModel> children;
 }
