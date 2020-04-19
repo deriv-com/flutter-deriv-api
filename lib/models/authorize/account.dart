@@ -1,0 +1,30 @@
+/// Account model class
+abstract class AccountModel {
+  /// Class constructor
+  AccountModel({
+    this.currency,
+    this.excludedUntil,
+    this.isDisabled,
+    this.isVirtual,
+    this.landingCompanyName,
+    this.loginid,
+  });
+
+  /// Currency of specified account.
+  final String currency;
+
+  /// Epoch of date till client has excluded him/herself from the website, only present if client is self excluded.
+  final int excludedUntil;
+
+  /// Boolean value: true or false, indicating whether the account is marked as disabled or not.
+  final bool isDisabled;
+
+  /// Boolean value: true or false, indicating whether the account is a virtual-money account.
+  final bool isVirtual;
+
+  /// Landing company shortcode the account belongs to.
+  final String landingCompanyName;
+
+  /// The account ID of specified account.
+  final String loginid;
+}
