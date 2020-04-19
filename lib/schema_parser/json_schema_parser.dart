@@ -47,7 +47,7 @@ class JsonSchemaParser {
           ? 'List<${_getClassName(name: name, type: type)}>'
           : _getClassName(name: name, type: type);
 
-  static String _createClass({
+  static String _generateClass({
     @required String className,
     @required List<_SchemaModel> models,
   }) {
@@ -57,19 +57,19 @@ class JsonSchemaParser {
           /// ${ReCase(className).sentenceCase} model class
           abstract class ${className}Model {
             /// Class constructor
-            ${_createContractor(className: '${className}Model', models: models, isSubclass: false)}
-            ${_createProperties(models: models)}
+            ${_generateContractor(className: '${className}Model', models: models, isSubclass: false)}
+            ${_generateProperties(models: models)}
           }
         
           /// ${ReCase(className).sentenceCase} class
           class $className extends ${className}Model {
             /// Class constructor
-            ${_createContractor(className: className, models: models)}
-            /// Creates instance from json
-            ${_createFromJsonMethod(className: className, models: models)}
+            ${_generateContractor(className: className, models: models)}
+            /// Generate instance from json
+            ${_generateFromJson(className: className, models: models)}
             /// Converts to json
-            ${_createToJsonMethod(models: models)}
-            /// Creates copy of instance with given parameters
+            ${_generateToJson(models: models)}
+            /// Generate copy of instance with given parameters
             ${_copyWith(className: className, models: models)}
           }
         ''',
@@ -78,7 +78,7 @@ class JsonSchemaParser {
     return DartFormatter().format(result.toString());
   }
 
-  static StringBuffer _createContractor({
+  static StringBuffer _generateContractor({
     @required String className,
     @required List<_SchemaModel> models,
     bool isSubclass = true,
@@ -111,7 +111,7 @@ class JsonSchemaParser {
     return result;
   }
 
-  static StringBuffer _createProperties({List<_SchemaModel> models}) {
+  static StringBuffer _generateProperties({List<_SchemaModel> models}) {
     final StringBuffer result = StringBuffer();
 
     for (_SchemaModel model in models) {
@@ -126,7 +126,7 @@ class JsonSchemaParser {
     return result;
   }
 
-  static StringBuffer _createFromJsonMethod({
+  static StringBuffer _generateFromJson({
     @required String className,
     @required List<_SchemaModel> models,
   }) {
@@ -153,7 +153,7 @@ class JsonSchemaParser {
           '''
             $title: json['$schemaTitle'] == null
               ? null
-              : json['$schemaTitle'].map<$className>(($className item) => $className.fromJson(item)).toList(),
+              : json['$schemaTitle'].map<$className>((Map<String, dynamic> item) => $className.fromJson(item)).toList(),
           ''',
         );
       } else {
@@ -166,7 +166,7 @@ class JsonSchemaParser {
     return result;
   }
 
-  static StringBuffer _createToJsonMethod({
+  static StringBuffer _generateToJson({
     @required List<_SchemaModel> models,
   }) {
     final StringBuffer result = StringBuffer()
@@ -290,7 +290,7 @@ class JsonSchemaParser {
     if (models.isNotEmpty) {
       _result.add(
         StringBuffer(
-          _createClass(
+          _generateClass(
             className: className,
             models: models,
           ),
