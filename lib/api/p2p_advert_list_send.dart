@@ -13,7 +13,6 @@ class P2pAdvertListRequest extends Request {
     this.advertiserId,
     this.amount,
     this.counterpartyType,
-    this.country,
     this.limit,
     this.localCurrency,
     this.offset,
@@ -39,9 +38,6 @@ class P2pAdvertListRequest extends Request {
   /// [Optional] Filter the adverts by `counterparty_type`.
   final String counterpartyType;
 
-  /// [Optional] Which country to find adverts from.
-  final String country;
-
   /// [Optional] Used for paging.
   final int limit;
 
@@ -64,7 +60,6 @@ class P2pAdvertListRequest extends Request {
     String advertiserId,
     num amount,
     String counterpartyType,
-    String country,
     int limit,
     String localCurrency,
     int offset,
@@ -76,7 +71,6 @@ class P2pAdvertListRequest extends Request {
         advertiserId: advertiserId ?? this.advertiserId,
         amount: amount ?? this.amount,
         counterpartyType: counterpartyType ?? this.counterpartyType,
-        country: country ?? this.country,
         limit: limit ?? this.limit,
         localCurrency: localCurrency ?? this.localCurrency,
         offset: offset ?? this.offset,

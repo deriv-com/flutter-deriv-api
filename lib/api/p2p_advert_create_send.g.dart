@@ -11,7 +11,6 @@ P2pAdvertCreateRequest _$P2pAdvertCreateRequestFromJson(
   return P2pAdvertCreateRequest(
     amount: json['amount'] as num,
     contactInfo: json['contact_info'] as String,
-    country: json['country'] as String,
     description: json['description'] as String,
     localCurrency: json['local_currency'] as String,
     maxOrderAmount: json['max_order_amount'] as num,
@@ -33,7 +32,6 @@ Map<String, dynamic> _$P2pAdvertCreateRequestToJson(
       'req_id': instance.reqId,
       'amount': instance.amount,
       'contact_info': instance.contactInfo,
-      'country': instance.country,
       'description': instance.description,
       'local_currency': instance.localCurrency,
       'max_order_amount': instance.maxOrderAmount,
