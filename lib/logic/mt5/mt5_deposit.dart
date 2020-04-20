@@ -1,6 +1,6 @@
 import 'package:flutter_deriv_api/models/mt5/mt5_deposit.dart';
 
-/// MT5 deposit response class
+/// MT5 deposit class
 class MT5DepositResponse extends MT5DepositModel {
   /// Class constructor
   MT5DepositResponse({
