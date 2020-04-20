@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_deriv_api/api/request.dart';
+import 'package:flutter_deriv_api/basic_api/request.dart';
 
 /// Represent a pending request.
 class PendingRequest<T> {

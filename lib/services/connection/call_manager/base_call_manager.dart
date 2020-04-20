@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:meta/meta.dart';
 
-import 'package:flutter_deriv_api/api/request.dart';
-import 'package:flutter_deriv_api/api/response.dart';
-import 'package:flutter_deriv_api/api/api.helper.dart';
+import 'package:flutter_deriv_api/basic_api/request.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/pending_request.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 

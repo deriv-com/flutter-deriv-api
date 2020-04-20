@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_deriv_api/api/request.dart';
+import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/pending_request.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_stream.dart';
 
