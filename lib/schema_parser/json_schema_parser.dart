@@ -240,37 +240,40 @@ class JsonSchemaParser {
     @required Map<String, dynamic> schema,
   }) {
     final List<_SchemaModel> parentModel = <_SchemaModel>[];
-    final Map<String, dynamic> schemaProperties = schema['properties'];
 
-    if (schemaProperties != null) {
-      for (dynamic entry in schemaProperties.entries) {
-        final String name = entry.key;
-        final String type = entry.value['type'];
-        final String description = entry.value['description'];
-        final bool isBoolean = _isBoolean(entry);
+    if (schema != null && schema.containsKey('properties')) {
+      final Map<String, dynamic> schemaProperties = schema['properties'];
 
-        if (_ignoredParameters.contains(name.toLowerCase())) {
-          continue;
+      if (schemaProperties != null) {
+        for (dynamic entry in schemaProperties.entries) {
+          final String name = entry.key;
+          final String type = entry.value['type'];
+          final String description = entry.value['description'];
+          final bool isBoolean = _isBoolean(entry);
+
+          if (_ignoredParameters.contains(name.toLowerCase())) {
+            continue;
+          }
+
+          final _SchemaModel childModel = _SchemaModel()
+            ..className =
+                _getClassName(name: name, type: isBoolean ? 'boolean' : type)
+            ..title = ReCase(name).camelCase
+            ..type =
+                _getObjectType(name: name, type: isBoolean ? 'boolean' : type)
+            ..description = description.replaceAll('\n', '\n/// ')
+            ..schemaTitle = name
+            ..schemaType = type
+            ..children = <_SchemaModel>[];
+
+          if (type == _objectType) {
+            childModel.children.addAll(getModel(schema: entry.value));
+          } else if (type == _arrayType) {
+            childModel.children.addAll(getModel(schema: entry.value['items']));
+          }
+
+          parentModel.add(childModel);
         }
-
-        final _SchemaModel childModel = _SchemaModel()
-          ..className =
-              _getClassName(name: name, type: isBoolean ? 'boolean' : type)
-          ..title = ReCase(name).camelCase
-          ..type =
-              _getObjectType(name: name, type: isBoolean ? 'boolean' : type)
-          ..description = description.replaceAll('\n', '\n/// ')
-          ..schemaTitle = name
-          ..schemaType = type
-          ..children = <_SchemaModel>[];
-
-        if (type == _objectType) {
-          childModel.children.addAll(getModel(schema: entry.value));
-        } else if (type == _arrayType) {
-          childModel.children.addAll(getModel(schema: entry.value['items']));
-        }
-
-        parentModel.add(childModel);
       }
     }
 
