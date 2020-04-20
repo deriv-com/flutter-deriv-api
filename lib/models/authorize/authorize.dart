@@ -1,8 +1,9 @@
+import 'package:flutter_deriv_api/models/base_model.dart';
 import 'package:flutter_deriv_api/models/authorize/account.dart';
 import 'package:flutter_deriv_api/models/authorize/local_currency.dart';
 
 /// Authorize model class
-abstract class AuthorizeModel {
+abstract class AuthorizeModel extends BaseModel {
   /// Class constructor
   AuthorizeModel({
     this.accountList,

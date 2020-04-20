@@ -1,5 +1,7 @@
+import 'package:flutter_deriv_api/models/base_model.dart';
+
 /// Local currency model class
-class LocalCurrencyModel {
+class LocalCurrencyModel extends BaseModel {
   /// Class constructor
   LocalCurrencyModel({
     this.fractionalDigits,

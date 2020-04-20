@@ -1,5 +1,7 @@
+import 'package:flutter_deriv_api/models/base_model.dart';
+
 /// Account model class
-abstract class AccountModel {
+abstract class AccountModel extends BaseModel {
   /// Class constructor
   AccountModel({
     this.currency,

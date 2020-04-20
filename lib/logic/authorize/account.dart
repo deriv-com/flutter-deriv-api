@@ -23,8 +23,8 @@ class Account extends AccountModel {
   factory Account.fromJson(Map<String, dynamic> json) => Account(
         currency: json['currency'],
         excludedUntil: json['excluded_until'],
-        isDisabled: json['is_disabled'],
-        isVirtual: json['is_virtual'],
+        isDisabled: json['is_disabled'] == 1,
+        isVirtual: json['is_virtual'] == 1,
         landingCompanyName: json['landing_company_name'],
         loginid: json['loginid'],
       );

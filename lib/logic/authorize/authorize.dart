@@ -50,7 +50,7 @@ class Authorize extends AuthorizeModel {
         currency: json['currency'],
         email: json['email'],
         fullname: json['fullname'],
-        isVirtual: json['is_virtual'],
+        isVirtual: json['is_virtual'] == 1,
         landingCompanyFullname: json['landing_company_fullname'],
         landingCompanyName: json['landing_company_name'],
         localCurrencies: json['local_currencies'] == null
