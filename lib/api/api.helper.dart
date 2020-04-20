@@ -3,9 +3,6 @@
 // uses collected `msg_type`s from the 1st step to create a helper
 // function that maps the `msg_type`s to equivalent Response objects
 
-import 'account_closure_receive.dart';
-import 'account_security_receive.dart';
-import 'account_statistics_receive.dart';
 import 'active_symbols_receive.dart';
 import 'api_token_receive.dart';
 import 'app_delete_receive.dart';
@@ -21,7 +18,6 @@ import 'buy_contract_for_multiple_accounts_receive.dart';
 import 'buy_receive.dart';
 import 'cancel_receive.dart';
 import 'cashier_receive.dart';
-import 'change_password_receive.dart';
 import 'contract_update_history_receive.dart';
 import 'contract_update_receive.dart';
 import 'contracts_for_receive.dart';
@@ -53,7 +49,6 @@ import 'mt5_withdrawal_receive.dart';
 import 'new_account_maltainvest_receive.dart';
 import 'new_account_real_receive.dart';
 import 'new_account_virtual_receive.dart';
-import 'notification_event_receive.dart';
 import 'oauth_apps_receive.dart';
 import 'p2p_advert_create_receive.dart';
 import 'p2p_advert_info_receive.dart';
@@ -80,15 +75,12 @@ import 'proposal_array_receive.dart';
 import 'proposal_open_contract_receive.dart';
 import 'proposal_receive.dart';
 import 'reality_check_receive.dart';
-import 'request_report_receive.dart';
-import 'reset_password_receive.dart';
 import 'residence_list_receive.dart';
 import 'response.dart';
 import 'revoke_oauth_app_receive.dart';
 import 'sell_contract_for_multiple_accounts_receive.dart';
 import 'sell_expired_receive.dart';
 import 'sell_receive.dart';
-import 'service_token_receive.dart';
 import 'set_account_currency_receive.dart';
 import 'set_financial_assessment_receive.dart';
 import 'set_self_exclusion_receive.dart';
@@ -111,12 +103,6 @@ import 'website_status_receive.dart';
 /// [responseMap]'s 'msg_type'
 Response getResponseByMsgType(Map<String, dynamic> responseMap) {
   switch (responseMap['msg_type']) {
-    case 'account_closure':
-      return AccountClosureResponse.fromJson(responseMap);
-    case 'account_security':
-      return AccountSecurityResponse.fromJson(responseMap);
-    case 'account_statistics':
-      return AccountStatisticsResponse.fromJson(responseMap);
     case 'active_symbols':
       return ActiveSymbolsResponse.fromJson(responseMap);
     case 'api_token':
@@ -147,8 +133,6 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return CancelResponse.fromJson(responseMap);
     case 'cashier':
       return CashierResponse.fromJson(responseMap);
-    case 'change_password':
-      return ChangePasswordResponse.fromJson(responseMap);
     case 'contract_update_history':
       return ContractUpdateHistoryResponse.fromJson(responseMap);
     case 'contract_update':
@@ -211,8 +195,6 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return NewAccountRealResponse.fromJson(responseMap);
     case 'new_account_virtual':
       return NewAccountVirtualResponse.fromJson(responseMap);
-    case 'notification_event':
-      return NotificationEventResponse.fromJson(responseMap);
     case 'oauth_apps':
       return OauthAppsResponse.fromJson(responseMap);
     case 'p2p_advert_create':
@@ -265,10 +247,6 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return ProposalResponse.fromJson(responseMap);
     case 'reality_check':
       return RealityCheckResponse.fromJson(responseMap);
-    case 'request_report':
-      return RequestReportResponse.fromJson(responseMap);
-    case 'reset_password':
-      return ResetPasswordResponse.fromJson(responseMap);
     case 'residence_list':
       return ResidenceListResponse.fromJson(responseMap);
     case 'revoke_oauth_app':
@@ -279,8 +257,6 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return SellExpiredResponse.fromJson(responseMap);
     case 'sell':
       return SellResponse.fromJson(responseMap);
-    case 'service_token':
-      return ServiceTokenResponse.fromJson(responseMap);
     case 'set_account_currency':
       return SetAccountCurrencyResponse.fromJson(responseMap);
     case 'set_financial_assessment':
