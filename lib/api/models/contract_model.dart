@@ -1,7 +1,8 @@
+import 'package:flutter_deriv_api/api/base_model.dart';
 import 'package:flutter_deriv_api/api/models/forward_starting_option_model.dart';
 
 /// available contracts details
-class ContractModel {
+class ContractModel extends BaseModel {
   /// Initializes
   ContractModel({
     this.availableBarriers,

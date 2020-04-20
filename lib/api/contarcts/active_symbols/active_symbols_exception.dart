@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/basic_exception.dart';
+import 'package:flutter_deriv_api/api/base_exception.dart';
 
 /// Exception for active symbols request call
 class ActiveSymbolsException extends BaseException {
