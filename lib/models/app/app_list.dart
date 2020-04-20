@@ -1,7 +1,8 @@
 import 'package:flutter_deriv_api/models/app/app.dart';
+import 'package:flutter_deriv_api/models/base_model.dart';
 
 /// App list model class
-abstract class AppListModel {
+abstract class AppListModel extends BaseModel {
   /// Class constructor
   AppListModel({
     this.appList,

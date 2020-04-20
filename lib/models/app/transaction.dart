@@ -1,5 +1,7 @@
+import 'package:flutter_deriv_api/models/base_model.dart';
+
 /// Transaction model class
-class TransactionModel {
+class TransactionModel extends BaseModel {
   /// Class constructor
   TransactionModel({
     this.appId,

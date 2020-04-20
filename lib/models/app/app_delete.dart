@@ -1,5 +1,7 @@
+import 'package:flutter_deriv_api/models/base_model.dart';
+
 /// App delete response model class
-abstract class AppDeleteModel {
+abstract class AppDeleteModel extends BaseModel {
   /// Class constructor
   AppDeleteModel({
     this.appDelete,
