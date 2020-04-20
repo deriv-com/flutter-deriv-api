@@ -1,9 +1,9 @@
-import 'package:flutter_deriv_api/models/app/app_get.dart';
+import 'package:flutter_deriv_api/models/app/app.dart';
 
-/// App get class
-class AppGet extends AppGetModel {
+/// App class
+class App extends AppModel {
   /// Class constructor
-  AppGet({
+  App({
     int appId,
     double appMarkupPercentage,
     String appstore,
@@ -26,7 +26,7 @@ class AppGet extends AppGetModel {
         );
 
   /// Creates instance from json
-  factory AppGet.fromJson(Map<String, dynamic> json) => AppGet(
+  factory App.fromJson(Map<String, dynamic> json) => App(
         appId: json['app_id'],
         appMarkupPercentage: json['app_markup_percentage'],
         appstore: json['appstore'],
@@ -39,7 +39,7 @@ class AppGet extends AppGetModel {
       );
 
   /// Creates copy of instance with given parameters
-  AppGet copyWith({
+  App copyWith({
     int appId,
     double appMarkupPercentage,
     String appstore,
@@ -50,7 +50,7 @@ class AppGet extends AppGetModel {
     String redirectUri,
     String verificationUri,
   }) =>
-      AppGet(
+      App(
         appId: appId ?? this.appId,
         appMarkupPercentage: appMarkupPercentage ?? this.appMarkupPercentage,
         appstore: appstore ?? this.appstore,

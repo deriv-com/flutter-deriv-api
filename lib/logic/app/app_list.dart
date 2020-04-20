@@ -1,11 +1,11 @@
-import 'package:flutter_deriv_api/logic/app/app_get.dart';
+import 'package:flutter_deriv_api/logic/app/app.dart';
 import 'package:flutter_deriv_api/models/app/app_list.dart';
 
 /// App list model class
 class AppList extends AppListModel {
   /// Class constructor
   AppList({
-    List<AppGet> appList,
+    List<App> appList,
   }) : super(
           appList: appList,
         );
@@ -15,14 +15,13 @@ class AppList extends AppListModel {
         appList: json['app_list'] == null
             ? null
             : json['app_list']
-                .map<AppGet>(
-                    (Map<String, dynamic> item) => AppGet.fromJson(item))
+                .map<App>((Map<String, dynamic> item) => App.fromJson(item))
                 .toList(),
       );
 
   /// Creates copy of instance with given parameters
   AppList copyWith({
-    List<AppGet> appList,
+    List<App> appList,
   }) =>
       AppList(
         appList: appList ?? this.appList,

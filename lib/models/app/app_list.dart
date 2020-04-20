@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/models/app/app_get.dart';
+import 'package:flutter_deriv_api/models/app/app.dart';
 
 /// App list model class
 abstract class AppListModel {
@@ -8,5 +8,5 @@ abstract class AppListModel {
   });
 
   /// List of created applications for the authorized account.
-  final List<AppGetModel> appList;
+  final List<AppModel> appList;
 }

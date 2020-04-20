@@ -1,7 +1,7 @@
-/// App get model class
-abstract class AppGetModel {
+/// App model class
+abstract class AppModel {
   /// Class constructor
-  AppGetModel({
+  AppModel({
     this.appId,
     this.appMarkupPercentage,
     this.appstore,
