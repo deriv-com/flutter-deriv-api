@@ -1,5 +1,7 @@
+import 'package:flutter_deriv_api/models/base_model.dart';
+
 /// Token model class
-class TokenModel {
+class TokenModel extends BaseModel {
   /// Class constructor
   TokenModel({
     this.displayName,
