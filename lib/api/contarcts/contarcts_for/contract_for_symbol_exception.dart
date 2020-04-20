@@ -1,13 +1,11 @@
-/// Exception for contract for symbol request call
-class ContractsForSymbolException implements Exception {
-  /// Class constructor
-  ContractsForSymbolException({
-    this.message,
-  });
+import 'package:flutter_deriv_api/api/basic_exception.dart';
 
-  /// Exception message
-  String message;
+/// Exception for contract for symbol request call
+class ContractsForSymbolException extends BaseException {
+  /// Initializes
+  ContractsForSymbolException({String message}) : super(message: message);
 
   @override
-  String toString() => 'Contracts for symbol exception: $message';
+  String get message =>
+      '${ContractsForSymbolException().runtimeType} Exception: $message';
 }

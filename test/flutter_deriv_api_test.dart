@@ -1,25 +1,25 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/authorize_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/authorize_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/balance_receive.dart';
+import 'package:flutter_deriv_api/flutter_deriv_api.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/basic_api/generated/ping_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/balance_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/p2p_order_info_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/ping_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/authorize_send.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/basic_api/generated/balance_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_info_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_list_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_list_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/ping_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/ping_send.dart';
-import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/basic_api/generated/website_status_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/website_status_send.dart';
-import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
-import 'package:flutter_deriv_api/flutter_deriv_api.dart';
+import 'package:flutter_deriv_api/basic_api/generated/authorize_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_order_info_receive.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('flutter_deriv_api');

@@ -1,6 +1,6 @@
 analyzer:
   exclude:
-    - lib/api/**
+    - lib/basic_api/**
     - lib/generated/**
     - test/**
   strong-mode:

@@ -1,19 +1,19 @@
 import 'package:flutter_deriv_api/helpers.dart';
+import 'package:flutter_deriv_api/api/models/contract_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/api/models/contracts_for_model.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/api/models/contracts_for_symbol_model.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/basic_api/generated/contracts_for_send.dart';
 import 'package:flutter_deriv_api/api/contarcts/contarcts_for/contract_for_symbol_exception.dart';
 
-import 'contract.dart';
 
 /// available contracts. Note: if the user is authenticated,
 /// then only contracts allowed under his account will be returned.
 class ContractsForSymbol extends ContractsForSymbolModel {
   /// Initializes
   ContractsForSymbol({
-    List<Contract> contracts,
+    List<ContractModel> contracts,
     DateTime close,
     String feedLicense,
     int hitCount,
@@ -32,8 +32,8 @@ class ContractsForSymbol extends ContractsForSymbolModel {
   factory ContractsForSymbol.fromJson(Map<String, dynamic> json) =>
       ContractsForSymbol(
         contracts: json['available']
-            ?.map<Contract>((dynamic entry) =>
-                entry == null ? null : Contract.fromJson(entry))
+            ?.map<ContractModel>((dynamic entry) =>
+                entry == null ? null : ContractModel.fromJson(entry))
             ?.toList(),
         close: json['close'] != null ? getDateTime(json['close']) : null,
         feedLicense: json['feed_license'],
@@ -74,7 +74,7 @@ class ContractsForSymbol extends ContractsForSymbolModel {
 
   /// Clone a new instance
   ContractsForSymbol copyWith({
-    List<Contract> contracts,
+    List<ContractModel> contracts,
     int close,
     String feedLicense,
     int hitCount,

@@ -1,13 +1,11 @@
-/// Exception for active symbols request call
-class ActiveSymbolsException implements Exception {
-  /// Class constructor
-  ActiveSymbolsException({
-    this.message,
-  });
+import 'package:flutter_deriv_api/api/basic_exception.dart';
 
-  /// Exception message
-  String message;
+/// Exception for active symbols request call
+class ActiveSymbolsException extends BaseException {
+  /// Initializes
+  ActiveSymbolsException({String message}) : super(message: message);
 
   @override
-  String toString() => 'Active Symbols Exception: $message';
+  String get message =>
+      '${ActiveSymbolsException().runtimeType} Exception: $message';
 }

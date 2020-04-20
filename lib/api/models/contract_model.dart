@@ -1,9 +1,9 @@
-import 'forward_starting_option.dart';
+import 'package:flutter_deriv_api/api/models/forward_starting_option_model.dart';
 
 /// available contracts details
-class Contract {
+class ContractModel {
   /// Initializes
-  Contract({
+  ContractModel({
     this.availableBarriers,
     this.barrier,
     this.barrierCategory,
@@ -26,7 +26,7 @@ class Contract {
   });
 
   /// From Json
-  factory Contract.fromJson(Map<String, dynamic> json) => Contract(
+  factory ContractModel.fromJson(Map<String, dynamic> json) => ContractModel(
       availableBarriers: json['available_barriers'],
       barrier: json['barrier'],
       barrierCategory: json['barrier_category'],
@@ -38,8 +38,8 @@ class Contract {
       exchangeName: json['exchange_name'],
       expiryType: json['expiry_type'],
       forwardStartingOptions: json['forward_starting_options']
-          ?.map<ForwardStartingOption>((dynamic entry) =>
-              entry == null ? null : ForwardStartingOption.fromJson(entry))
+          ?.map<ForwardStartingOptionModel>((dynamic entry) =>
+              entry == null ? null : ForwardStartingOptionModel.fromJson(entry))
           ?.toList(),
       market: json['market'],
       maxContractDuration: json['max_contract_duration'],
@@ -81,7 +81,7 @@ class Contract {
   final String expiryType;
 
   /// Array of returned forward starting options
-  final List<ForwardStartingOption> forwardStartingOptions;
+  final List<ForwardStartingOptionModel> forwardStartingOptions;
 
   /// Type of market.
   final String market;
@@ -108,7 +108,7 @@ class Contract {
   final String underlyingSymbol;
 
   /// Clone new instance
-  Contract copyWith({
+  ContractModel copyWith({
     List<int> availableBarriers,
     String barrier,
     String barrierCategory,
@@ -119,7 +119,7 @@ class Contract {
     String contractType,
     String exchangeName,
     String expiryType,
-    List<ForwardStartingOption> forwardStartingOptions,
+    List<ForwardStartingOptionModel> forwardStartingOptions,
     String market,
     String maxContractDuration,
     String minContractDuration,
@@ -129,7 +129,7 @@ class Contract {
     Map<String, dynamic> tradingPeriod,
     String underlyingSymbol,
   }) =>
-      Contract(
+      ContractModel(
         availableBarriers: availableBarriers ?? this.availableBarriers,
         barrier: barrier ?? this.barrier,
         barrierCategory: barrierCategory ?? this.barrierCategory,
