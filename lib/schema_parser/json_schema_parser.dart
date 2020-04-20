@@ -22,6 +22,13 @@ const List<String> _ignoredParameters = <String>[
 class JsonSchemaParser {
   final List<StringBuffer> _result = <StringBuffer>[];
 
+  static final List<String> _primaryTypes = <String>[
+    'int',
+    'String',
+    'double',
+    'bool',
+  ];
+
   static final Map<String, String> _typeMap = <String, String>{
     'integer': 'int',
     'string': 'String',
@@ -32,20 +39,24 @@ class JsonSchemaParser {
   static String _getClassName({
     @required String name,
     @required String type,
+    String arrayType,
   }) =>
       type == _objectType
           ? ReCase(name).pascalCase
           : type == _arrayType
-              ? convertToSingular(ReCase(name).pascalCase)
+              ? arrayType != null && _typeMap.containsKey(arrayType)
+                  ? _typeMap[arrayType]
+                  : convertToSingular(ReCase(name).pascalCase)
               : _typeMap[type];
 
   static String _getObjectType({
     @required String name,
     @required String type,
+    String arrayType,
   }) =>
       type == _arrayType
-          ? 'List<${_getClassName(name: name, type: type)}>'
-          : _getClassName(name: name, type: type);
+          ? 'List<${_getClassName(name: name, type: type, arrayType: arrayType)}>'
+          : _getClassName(name: name, type: type, arrayType: arrayType);
 
   static String _generateClass({
     @required String className,
@@ -153,7 +164,8 @@ class JsonSchemaParser {
           '''
             $title: json['$schemaTitle'] == null
               ? null
-              : json['$schemaTitle'].map<$className>((Map<String, dynamic> item) => $className.fromJson(item)).toList(),
+              : json['$schemaTitle'].map<$className>((Map<String, dynamic> item) => 
+                  ${_primaryTypes.contains(className) ? 'item' : '$className.fromJson(item)'}).toList(),
           ''',
         );
       } else {
@@ -248,6 +260,9 @@ class JsonSchemaParser {
         for (dynamic entry in schemaProperties.entries) {
           final String name = entry.key;
           final String type = entry.value['type'];
+          final String arrayType = entry.value['type'] == 'array'
+              ? entry.value['items']['type']
+              : null;
           final String description = entry.value['description'];
           final bool isBoolean = _isBoolean(entry);
 
@@ -256,11 +271,17 @@ class JsonSchemaParser {
           }
 
           final _SchemaModel childModel = _SchemaModel()
-            ..className =
-                _getClassName(name: name, type: isBoolean ? 'boolean' : type)
+            ..className = _getClassName(
+              name: name,
+              type: isBoolean ? 'boolean' : type,
+              arrayType: arrayType,
+            )
             ..title = ReCase(name).camelCase
-            ..type =
-                _getObjectType(name: name, type: isBoolean ? 'boolean' : type)
+            ..type = _getObjectType(
+              name: name,
+              type: isBoolean ? 'boolean' : type,
+              arrayType: arrayType,
+            )
             ..description = description.replaceAll('\n', '\n/// ')
             ..schemaTitle = name
             ..schemaType = type
