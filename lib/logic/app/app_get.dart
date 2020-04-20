@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/models/app_get/app_get.dart';
+import 'package:flutter_deriv_api/models/app/app_get.dart';
 
 /// App get class
 class AppGet extends AppGetModel {
