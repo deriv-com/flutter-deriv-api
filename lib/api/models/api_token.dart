@@ -1,5 +1,5 @@
-import 'package:flutter_deriv_api/models/base_model.dart';
-import 'package:flutter_deriv_api/models/api_token/token.dart';
+import 'package:flutter_deriv_api/api/models/token.dart';
+import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// Api token model class
 abstract class APITokenModel extends BaseModel {
