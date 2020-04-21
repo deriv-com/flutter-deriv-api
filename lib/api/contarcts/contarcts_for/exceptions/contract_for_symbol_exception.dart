@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/base_exception.dart';
+import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
 
 /// Exception for contract for symbol request call
-class ContractsForSymbolException extends BaseException {
+class ContractsForSymbolException extends APIBaseException {
   /// Initializes
   ContractsForSymbolException({String message}) : super(message: message);
 

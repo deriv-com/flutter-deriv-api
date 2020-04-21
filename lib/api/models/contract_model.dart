@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/base_model.dart';
+import 'package:flutter_deriv_api/api/models/base_model.dart';
 import 'package:flutter_deriv_api/api/models/forward_starting_option_model.dart';
 
 /// available contracts details

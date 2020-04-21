@@ -4,7 +4,7 @@ import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dart';
-import 'package:flutter_deriv_api/api/contarcts/active_symbols/active_symbols_exception.dart';
+import 'package:flutter_deriv_api/api/contarcts/active_symbols/exceptions/active_symbols_exception.dart';
 
 /// Active Symbol
 class ActiveSymbol extends ActiveSymbolModel {

@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/base_model.dart';
+import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// Abstract class for Active symbol information
 abstract class ActiveSymbolModel extends BaseModel {
