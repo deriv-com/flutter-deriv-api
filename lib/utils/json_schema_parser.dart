@@ -164,7 +164,7 @@ class JsonSchemaParser {
           '''
             $title: json['$schemaTitle'] == null
               ? null
-              : json['$schemaTitle'].map<$className>((Map<String, dynamic> item) => 
+              : json['$schemaTitle'].map<$className>((dynamic item) => 
                   ${_primaryTypes.contains(className) ? 'item' : '$className.fromJson(item)'}).toList(),
           ''',
         );
