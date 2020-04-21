@@ -1,4 +1,5 @@
 import 'package:flutter_deriv_api/api/models/buy_contract_model.dart';
+import 'package:flutter_deriv_api/helpers.dart';
 
 /// Buy class
 class BuyContract extends BuyContractModel {
@@ -9,33 +10,35 @@ class BuyContract extends BuyContractModel {
     int contractId,
     String longcode,
     double payout,
-    int purchaseTime,
+    DateTime purchaseTime,
     String shortcode,
-    int startTime,
+    DateTime startTime,
     int transactionId,
   }) : super(
-    balanceAfter: balanceAfter,
-    buyPrice: buyPrice,
-    contractId: contractId,
-    longcode: longcode,
-    payout: payout,
-    purchaseTime: purchaseTime,
-    shortcode: shortcode,
-    startTime: startTime,
-    transactionId: transactionId,
-  );
+          balanceAfter: balanceAfter,
+          buyPrice: buyPrice,
+          contractId: contractId,
+          longcode: longcode,
+          payout: payout,
+          purchaseTime: purchaseTime,
+          shortcode: shortcode,
+          startTime: startTime,
+          transactionId: transactionId,
+        );
 
   /// Creates instance from json
-  factory BuyContract.fromJson(Map<String, dynamic> json) =>
-      BuyContract(
+  factory BuyContract.fromJson(Map<String, dynamic> json) => BuyContract(
         balanceAfter: json['balance_after'],
         buyPrice: json['buy_price'],
         contractId: json['contract_id'],
         longcode: json['longcode'],
         payout: json['payout'].toDouble(),
-        purchaseTime: json['purchase_time'],
+        purchaseTime: json['purchase_time'] == null
+            ? null
+            : getDateTime(json['purchase_time']),
         shortcode: json['shortcode'],
-        startTime: json['start_time'],
+        startTime:
+            json['start_time'] == null ? null : getDateTime(json['start_time']),
         transactionId: json['transaction_id'],
       );
 
@@ -48,9 +51,9 @@ class BuyContract extends BuyContractModel {
     int contractId,
     String longcode,
     double payout,
-    int purchaseTime,
+    DateTime purchaseTime,
     String shortcode,
-    int startTime,
+    DateTime startTime,
     int transactionId,
   }) =>
       BuyContract(

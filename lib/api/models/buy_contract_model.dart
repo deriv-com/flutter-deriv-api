@@ -31,13 +31,13 @@ abstract class BuyContractModel extends BaseModel {
   final double payout;
 
   /// Epoch value of the transaction purchase time
-  final int purchaseTime;
+  final DateTime purchaseTime;
 
   /// Compact description of the contract purchased
   final String shortcode;
 
   /// Epoch value showing the expected start time of the contract
-  final int startTime;
+  final DateTime startTime;
 
   /// Internal transaction identifier
   final int transactionId;
