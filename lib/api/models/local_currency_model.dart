@@ -4,14 +4,19 @@ import 'package:flutter_deriv_api/api/models/base_model.dart';
 class LocalCurrencyModel extends BaseModel {
   /// Class constructor
   LocalCurrencyModel({
+    this.currencyCode,
     this.fractionalDigits,
   });
 
   /// Generate instance from json
   factory LocalCurrencyModel.fromJson(Map<String, dynamic> json) =>
       LocalCurrencyModel(
-        fractionalDigits: json['fractional_digits'],
+        currencyCode: json['key'],
+        fractionalDigits: json['values']['fractional_digits'],
       );
+
+  /// Currency code
+  final String currencyCode;
 
   /// Number of fractional digits.
   final int fractionalDigits;

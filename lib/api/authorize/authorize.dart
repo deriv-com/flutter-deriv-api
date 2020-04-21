@@ -42,10 +42,9 @@ class Authorize extends AuthorizeModel {
         accountList: json['account_list'] == null
             ? null
             : json['account_list']
-                .map<Account>(
-                    (Map<String, dynamic> item) => Account.fromJson(item))
+                .map<Account>((dynamic item) => Account.fromJson(item))
                 .toList(),
-        balance: json['balance'],
+        balance: json['balance'].toDouble(),
         country: json['country'],
         currency: json['currency'],
         email: json['email'],
@@ -56,20 +55,27 @@ class Authorize extends AuthorizeModel {
         localCurrencies: json['local_currencies'] == null
             ? null
             : json['local_currencies']
-                .map<LocalCurrencyModel>((Map<String, dynamic> item) =>
-                    LocalCurrencyModel.fromJson(item))
+                .entries
+                .map<LocalCurrencyModel>(
+                  (dynamic entry) => LocalCurrencyModel.fromJson(
+                    <String, dynamic>{
+                      'key': entry.key,
+                      'values': entry.value,
+                    },
+                  ),
+                )
                 .toList(),
         loginid: json['loginid'],
         scopes: json['scopes'] == null
             ? null
             : json['scopes']
-                .map<String>((Map<String, dynamic> item) => item)
+                .map<String>((dynamic item) => item.toString())
                 .toList(),
         upgradeableLandingCompanies:
             json['upgradeable_landing_companies'] == null
                 ? null
                 : json['upgradeable_landing_companies']
-                    .map<String>((Map<String, dynamic> item) => item)
+                    .map<String>((dynamic item) => item.toString())
                     .toList(),
         userId: json['user_id'],
       );
