@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/models/app/app_delete.dart';
+import 'package:flutter_deriv_api/api/models/app_delete.dart';
 
 /// App delete response class
 class AppDeleteResponse extends AppDeleteModel {

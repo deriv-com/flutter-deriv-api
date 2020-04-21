@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/models/app/app.dart';
+import 'package:flutter_deriv_api/api/models/app.dart';
 
 /// App class
 class App extends AppModel {
