@@ -1,0 +1,15 @@
+import 'dart:convert';
+import 'package:flutter_test/flutter_test.dart';
+
+import 'package:flutter_deriv_api/api/forget/forget.dart';
+
+import 'forget_model_mock_data.dart';
+
+void main() {
+  test('Price proposal json parsing', () {
+    final Map<String, dynamic> mapData = jsonDecode(jsonData);
+    final Forget forget = Forget.fromJson(mapData);
+
+    expect(forget.forget, true);
+  });
+}
