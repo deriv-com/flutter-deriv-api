@@ -1,5 +1,5 @@
-import 'package:flutter_deriv_api/logic/contracts/price_proposal/limit_order/limit_order.dart';
-import 'package:flutter_deriv_api/logic/contracts/price_proposal/cancellation.dart';
+import 'package:flutter_deriv_api/api/models/cancellation_info_model.dart';
+import 'package:flutter_deriv_api/api/models/limit_order_model.dart';
 
 /// Latest price and other details for a given contract
 abstract class PriceProposalModel {
@@ -23,7 +23,7 @@ abstract class PriceProposalModel {
   final double askPrice;
 
   /// Contains information about contract cancellation option.
-  final Cancellation cancellation;
+  final CancellationInfoModel cancellation;
 
   /// Commission changed in percentage (%).
   final double commission;
@@ -39,7 +39,7 @@ abstract class PriceProposalModel {
 
   /// Contains limit order information.
   /// (Only applicable for contract with limit order).
-  final LimitOrder limitOrder;
+  final LimitOrderModel limitOrder;
 
   /// Example: Win payout if Random 100 Index is strictly higher than
   /// entry spot at 15 minutes after contract start time.

@@ -1,20 +1,23 @@
-import 'package:flutter_deriv_api/api/proposal_send.dart';
 import 'package:flutter_deriv_api/helpers.dart';
-import 'package:flutter_deriv_api/models/price_proposal_model.dart';
-import 'cancellation.dart';
-import 'limit_order/limit_order.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/api/models/limit_order_model.dart';
+import 'package:flutter_deriv_api/api/models/price_proposal_model.dart';
+import 'package:flutter_deriv_api/api/models/cancellation_info_model.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/api/contarcts/price_proposal/exceptions/price_proposal_exception.dart';
 
 /// Implementation of [PriceProposalModel]
 class PriceProposal extends PriceProposalModel {
   /// Initializes
   PriceProposal({
     double askPrice,
-    Cancellation cancellation,
+    CancellationInfoModel cancellation,
     double commission,
     DateTime dateStart,
     String displayValue,
     String id,
-    LimitOrder limitOrder,
+    LimitOrderModel limitOrder,
     String longcode,
     int multiplier,
     double payout,
@@ -40,7 +43,7 @@ class PriceProposal extends PriceProposalModel {
         askPrice:
             json['ask_price'] != null ? json['ask_price'].toDouble() : null,
         cancellation: json['cancellation'] != null
-            ? Cancellation.fromJson(json['cancellation'])
+            ? CancellationInfoModel.fromJson(json['cancellation'])
             : null,
         commission: json['commission'],
         dateStart:
@@ -48,7 +51,7 @@ class PriceProposal extends PriceProposalModel {
         displayValue: json['display_value'],
         id: json['id'],
         limitOrder: json['limit_order'] != null
-            ? LimitOrder.fromJson(json['limit_order'])
+            ? LimitOrderModel.fromJson(json['limit_order'])
             : null,
         longcode: json['longcode'],
         multiplier: json['multiplier'],
@@ -58,29 +61,50 @@ class PriceProposal extends PriceProposalModel {
             json['spot_time'] != null ? getDateTime(json['spot_time']) : null,
       );
 
+  /// API instance
+  static final BasicBinaryAPI _api =
+      Injector.getInjector().get<BasicBinaryAPI>();
+
   /// Gets the price proposal for contract
   /// For parameters information refer to [ProposalRequest]
   Future<PriceProposal> getPriceForContract({
     double amount,
+    double barrier,
     String basis,
     String contractType,
     String currency,
     String symbol,
     DateTime dateExpiry,
     String durationUnit,
-  }) async =>
-      // TODO(ramin): Will call to the real API whenever its ready
-      PriceProposal();
+  }) async {
+    final ProposalResponse proposalResponse = await _api.call(
+      request: ProposalRequest(
+        amount: amount,
+        barrier: barrier.toString(),
+        basis: basis,
+        contractType: contractType,
+        symbol: symbol,
+        dateExpiry: dateExpiry.millisecondsSinceEpoch ~/ 1000,
+        durationUnit: durationUnit,
+      ),
+    );
+
+    if (proposalResponse.error != null) {
+      throw PriceProposalException(message: proposalResponse.error['message']);
+    }
+
+    return PriceProposal.fromJson(proposalResponse.proposal);
+  }
 
   /// Clone a new instance
   PriceProposal copyWith({
     double askPrice,
-    Cancellation cancellation,
+    CancellationInfoModel cancellation,
     double commission,
     int dateStart,
     String displayValue,
     String id,
-    LimitOrder limitOrder,
+    LimitOrderModel limitOrder,
     String longcode,
     int multiplier,
     double payout,

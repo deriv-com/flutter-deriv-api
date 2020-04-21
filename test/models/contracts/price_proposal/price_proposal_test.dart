@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_deriv_api/logic/contracts/price_proposal/price_proposal.dart';
+import 'package:flutter_deriv_api/api/contarcts/price_proposal/price_proposal.dart';
 import 'price_proposal_mock_data.dart';
 
 void main() {

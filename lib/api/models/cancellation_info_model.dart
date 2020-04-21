@@ -1,12 +1,12 @@
 import 'package:flutter_deriv_api/helpers.dart';
 
 /// Contains information about contract cancellation option.
-class Cancellation {
+class CancellationInfoModel {
   /// Initializes
-  Cancellation(this.askPrice, this.dateExpiry);
+  CancellationInfoModel(this.askPrice, this.dateExpiry);
 
   /// From Json
-  factory Cancellation.fromJson(Map<String, dynamic> json) => Cancellation(
+  factory CancellationInfoModel.fromJson(Map<String, dynamic> json) => CancellationInfoModel(
         json['ask_price'],
         json['date_expiry'] != null ? getDateTime(json['date_expiry']) : null,
       );
@@ -18,11 +18,11 @@ class Cancellation {
   final DateTime dateExpiry;
 
   /// Clones a new instance
-  Cancellation copyWith({
+  CancellationInfoModel copyWith({
     double askPrice,
     DateTime dateExpiry,
   }) =>
-      Cancellation(
+      CancellationInfoModel(
         askPrice ?? this.askPrice,
         dateExpiry ?? this.dateExpiry,
       );
