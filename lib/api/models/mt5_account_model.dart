@@ -1,4 +1,5 @@
 import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
 
 /// MT5 account model class
 abstract class MT5AccountModel extends BaseModel {
@@ -13,7 +14,7 @@ abstract class MT5AccountModel extends BaseModel {
   });
 
   /// Account type.
-  final String accountType;
+  final AccountType accountType;
 
   /// Account balance.
   final double balance;
@@ -28,5 +29,5 @@ abstract class MT5AccountModel extends BaseModel {
   final String login;
 
   /// Sub account type, present only when account type is either `demo` or `financial`.
-  final String mt5AccountType;
+  final MT5AccountType mt5AccountType;
 }
