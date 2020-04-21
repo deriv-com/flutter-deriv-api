@@ -4,8 +4,8 @@ targets:
       flutter_deriv_api|api:
         enabled: true
         generate_for:
-        - lib/api/*_send.json
-        - lib/api/*_receive.json
+        - lib/basic_api/generated/*_send.json
+        - lib/basic_api/generated/*_receive.json
       flutter_deriv_api|apiHelper:
         enabled: true
 builders:
@@ -21,7 +21,7 @@ builders:
     defaults:
       generate_for:
         include:
-          - lib/api/**
+          - lib/basic_api/generated/**
   apiHelper:
     import: './api_helper_builder.dart'
     builder_factories: ["apiHelperBuilder"]
@@ -34,4 +34,4 @@ builders:
     defaults:
       generate_for:
         include:
-          - lib/api/api.dart
+          - lib/basic_api/generated/api.dart
