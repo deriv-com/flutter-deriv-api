@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// Forget all model class
 abstract class ForgetAllModel extends BaseModel {

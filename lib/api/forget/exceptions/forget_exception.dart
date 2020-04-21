@@ -1,0 +1,7 @@
+import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
+
+/// Forget exception class
+class ForgetException implements APIBaseException {
+  @override
+  String get message => '${ForgetException().runtimeType} Exception: $message';
+}

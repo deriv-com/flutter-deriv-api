@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/models/forget/forget.dart';
+import 'package:flutter_deriv_api/api/models/forget_model.dart';
 
 /// Forget class
 class Forget extends ForgetModel {
