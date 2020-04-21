@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/models/authorize/account.dart';
+import 'package:flutter_deriv_api/api/models/account_model.dart';
 
 /// Account class
 class Account extends AccountModel {

@@ -1,6 +1,6 @@
-import 'package:flutter_deriv_api/models/base_model.dart';
-import 'package:flutter_deriv_api/models/authorize/account.dart';
-import 'package:flutter_deriv_api/models/authorize/local_currency.dart';
+import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/account_model.dart';
+import 'package:flutter_deriv_api/api/models/local_currency_model.dart';
 
 /// Authorize model class
 abstract class AuthorizeModel extends BaseModel {

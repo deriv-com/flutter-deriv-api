@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/logic/exceptions/base_exception.dart';
+import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
 
 /// Authorize exception class
-class AuthorizeException implements BaseException {
+class AuthorizeException implements APIBaseException {
   @override
   String get message =>
       '${AuthorizeException().runtimeType} Exception: $message';

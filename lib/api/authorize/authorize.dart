@@ -1,6 +1,6 @@
-import 'package:flutter_deriv_api/logic/authorize/account.dart';
-import 'package:flutter_deriv_api/models/authorize/authorize.dart';
-import 'package:flutter_deriv_api/models/authorize/local_currency.dart';
+import 'package:flutter_deriv_api/api/authorize/account.dart';
+import 'package:flutter_deriv_api/api/models/authorize_model.dart';
+import 'package:flutter_deriv_api/api/models/local_currency_model.dart';
 
 /// Authorize class
 class Authorize extends AuthorizeModel {
