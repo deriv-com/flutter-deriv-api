@@ -1,10 +1,11 @@
 # Soft links to websokect's json files
-lib/api/*.json
+lib/basic_api/generated/*.json
 
 # Miscellaneous
 *.swp
 .DS_Store
 .atom/
+.flutter-plugins-dependencies
 
 # IntelliJ related
 *.iml

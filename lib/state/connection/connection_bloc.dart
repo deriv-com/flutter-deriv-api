@@ -1,14 +1,13 @@
 import 'dart:async';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_deriv_api/api/time_receive.dart';
-import 'package:flutter_deriv_api/api/time_send.dart';
-import 'package:flutter_deriv_api/helpers.dart';
 import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../connection/connection_websocket.dart';
+import 'package:flutter_deriv_api/helpers.dart';
+import 'package:flutter_deriv_api/basic_api/generated/time_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/time_receive.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 
 part 'connection_state.dart';
-
 part 'connection_event.dart';
 
 /// Bringing ConnectionBloc to flutter-deriv-api to simplify the usage of api
@@ -23,9 +22,9 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   @override
   ConnectionState get initialState => InitialConnectionState();
 
-  /// connects the [BinaryAPI] to the web socket
+  /// connects the [BasicBinaryAPI] to the web socket
   void connectWS() {
-    final BinaryAPI _api = BinaryAPI();
+    final BasicBinaryAPI _api = BasicBinaryAPI();
 
     _api.run(
       onDone: () => add(Reconnect()),
@@ -50,7 +49,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       if (state is Connected) {
         final Connected currentState = state;
         final TimeResponse timeResponse =
-            await currentState.api.call(TimeRequest());
+            await currentState.api.call(request: const TimeRequest());
 
         if (timeResponse.error != null) {
           print('Fetching server time failed: ${timeResponse.error}');
