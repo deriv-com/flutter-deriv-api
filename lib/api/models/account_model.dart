@@ -16,7 +16,7 @@ abstract class AccountModel extends BaseModel {
   final String currency;
 
   /// Epoch of date till client has excluded him/herself from the website, only present if client is self excluded.
-  final int excludedUntil;
+  final DateTime excludedUntil;
 
   /// Boolean value: true or false, indicating whether the account is marked as disabled or not.
   final bool isDisabled;

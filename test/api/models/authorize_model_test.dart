@@ -17,12 +17,16 @@ void main() {
     expect(accounts.length, 2);
 
     expect(accounts[0].currency, 'USD');
+    expect(accounts[1].excludedUntil,
+        DateTime.fromMillisecondsSinceEpoch(1587486726000));
     expect(accounts[0].isDisabled, false);
     expect(accounts[0].isVirtual, false);
     expect(accounts[0].landingCompanyName, 'svg');
     expect(accounts[0].loginid, 'CR90000028');
 
     expect(accounts[1].currency, 'USD');
+    expect(accounts[1].excludedUntil,
+        DateTime.fromMillisecondsSinceEpoch(1587486726000));
     expect(accounts[1].isDisabled, false);
     expect(accounts[1].isVirtual, true);
     expect(accounts[1].landingCompanyName, 'virtual');

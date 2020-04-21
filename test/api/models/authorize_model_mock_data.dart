@@ -4,6 +4,7 @@ const String jsonData = '''
     "account_list": [
       {
         "currency": "USD",
+        "excluded_until": 1587486726,
         "is_disabled": 0,
         "is_virtual": 0,
         "landing_company_name": "svg",
@@ -11,6 +12,7 @@ const String jsonData = '''
       },
       {
         "currency": "USD",
+        "excluded_until": 1587486726,
         "is_disabled": 0,
         "is_virtual": 1,
         "landing_company_name": "virtual",
