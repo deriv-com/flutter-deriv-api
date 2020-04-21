@@ -1,5 +1,5 @@
-import 'package:flutter_deriv_api/api/models/transaction.dart';
-import 'package:flutter_deriv_api/api/models/app_markup_details.dart';
+import 'package:flutter_deriv_api/api/models/transaction_model.dart';
+import 'package:flutter_deriv_api/api/models/app_markup_details_model.dart';
 
 /// App markup details class
 class AppMarkupDetails extends AppMarkupDetailsModel {
