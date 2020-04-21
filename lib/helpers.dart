@@ -1,4 +1,5 @@
 import 'dart:math';
+
 // TODO(Morteza): Unfortunately, the `json_schema` lib has conflicts with the latest version of Intl.
 // import 'package:intl/intl.dart';
 
@@ -73,6 +74,10 @@ DateTime getCurrentServerTime(int timeDifference) =>
     DateTime.fromMillisecondsSinceEpoch(
       (getCurrentLocalEpoch() + timeDifference) * 1000,
     );
+
+/// Create a [DateTime] from time given in seconds
+DateTime getDateTime(int timeInSeconds) =>
+    DateTime.fromMillisecondsSinceEpoch(timeInSeconds * 1000);
 
 /// Checks if a string value of number is a valid number
 class NumberValidator {
