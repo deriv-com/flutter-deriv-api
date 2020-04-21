@@ -106,7 +106,7 @@ class APIBuilder extends Builder {
             /// generated automatically from ${buildStep.inputId}
             import 'package:json_annotation/json_annotation.dart';
 
-            import '${schemaType == 'send' ? 'request' : 'response'}.dart';
+            import '../${schemaType == 'send' ? 'request' : 'response'}.dart';
 
             part '$fileName.g.dart';
 

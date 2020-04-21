@@ -17,7 +17,7 @@ class APIHelperBuilder extends Builder {
       final List<String> importFileNames = generatedResponses
           .map<String>((GeneratedResponseJson response) => response.fileName)
           .toList()
-            ..add('response')
+            ..add('../response')
             ..sort();
 
       generatedResponses.sort();
