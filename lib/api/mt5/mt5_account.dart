@@ -24,7 +24,7 @@ class MT5Account extends MT5AccountModel {
   /// Creates instance from json
   factory MT5Account.fromJson(Map<String, dynamic> json) => MT5Account(
         accountType: EnumHelper.getEnum(
-          enumValues: AccountType.values,
+          enumItems: AccountType.values,
           value: json['account_type'],
         ),
         balance: json['balance'],
@@ -32,7 +32,7 @@ class MT5Account extends MT5AccountModel {
         displayBalance: json['display_balance'],
         login: json['login'],
         mt5AccountType: EnumHelper.getEnum(
-          enumValues: MT5AccountType.values,
+          enumItems: MT5AccountType.values,
           value: json['mt5_account_type'],
         ),
       );
