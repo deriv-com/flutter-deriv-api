@@ -14,7 +14,7 @@ class ForgetAll extends ForgetAllModel {
         forgetAll: json['forget_all'] == null
             ? null
             : json['forget_all']
-                .map<String>((Map<String, dynamic> item) => item)
+                .map<String>((dynamic item) => item.toString())
                 .toList(),
       );
 
