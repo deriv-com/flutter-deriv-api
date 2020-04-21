@@ -27,7 +27,10 @@ class EnumHelper<T> {
 
     return enumValues.firstWhere(
       (T enumItem) =>
-          enumItem.toString().split('.')[1].toLowerCase().compareTo(value) == 0,
+          ReCase(enumItem.toString().split('.')[1])
+              .camelCase
+              .compareTo(value) ==
+          0,
       orElse: () => null,
     );
   }
