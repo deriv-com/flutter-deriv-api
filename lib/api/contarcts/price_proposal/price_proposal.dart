@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/models/buy_contract_model.dart';
 import 'package:flutter_deriv_api/helpers.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/api/models/limit_order_model.dart';
@@ -67,7 +68,7 @@ class PriceProposal extends PriceProposalModel {
 
   /// Gets the price proposal for contract
   /// For parameters information refer to [ProposalRequest]
-  Future<PriceProposal> getPriceForContract({
+  static Future<PriceProposal> getPriceForContract({
     double amount,
     double barrier,
     String basis,
@@ -94,6 +95,22 @@ class PriceProposal extends PriceProposalModel {
     }
 
     return PriceProposal.fromJson(proposalResponse.proposal);
+  }
+
+  /// Buy this proposal contract
+  Future<BuyContractModel> buy({double price}) async {
+    final BuyResponse buyResponse = await _api.call(
+      request: BuyRequest(
+        buy: id,
+        price: price,
+      ),
+    );
+
+    if (buyResponse.error != null) {
+      throw PriceProposalException(message: buyResponse.error['message']);
+    }
+
+    return BuyContractModel.fromJson(buyResponse.buy);
   }
 
   /// Clone a new instance
