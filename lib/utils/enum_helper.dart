@@ -5,15 +5,15 @@ class EnumHelper<T> {
   /// Parse enum to String
   static String parse<T>({
     T enumItem,
-    bool camelCase = true,
+    bool snakeCase = true,
   }) {
     if (enumItem == null) {
       return null;
     }
 
-    final String _tmp = enumItem.toString().split('.')[1];
+    final String item = enumItem.toString().split('.')[1];
 
-    return camelCase ? ReCase(_tmp).camelCase : _tmp;
+    return snakeCase ? ReCase(item).snakeCase : item;
   }
 
   /// Gets enum form a string
@@ -28,7 +28,7 @@ class EnumHelper<T> {
     return enumValues.firstWhere(
       (T enumItem) =>
           ReCase(enumItem.toString().split('.')[1])
-              .camelCase
+              .snakeCase
               .compareTo(value) ==
           0,
       orElse: () => null,
