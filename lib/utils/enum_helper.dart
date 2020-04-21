@@ -18,19 +18,21 @@ class EnumHelper<T> {
 
   /// Gets enum form a string
   static T getEnum<T>({
-    List<T> enumValues,
+    List<T> enumItems,
     String value,
+    bool snakeCase = true,
   }) {
-    if (enumValues == null || enumValues.isEmpty) {
+    if (enumItems == null || enumItems.isEmpty) {
       return null;
     }
 
-    return enumValues.firstWhere(
-      (T enumItem) =>
-          ReCase(enumItem.toString().split('.')[1])
-              .snakeCase
-              .compareTo(value) ==
-          0,
+    return enumItems.firstWhere(
+      (T enumItem) {
+        final String item = enumItem.toString().split('.')[1];
+
+        return (snakeCase ? ReCase(item).snakeCase : item).compareTo(value) ==
+            0;
+      },
       orElse: () => null,
     );
   }
