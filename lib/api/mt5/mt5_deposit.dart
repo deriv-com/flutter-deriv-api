@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/models/mt5/mt5_deposit_model.dart';
+import 'package:flutter_deriv_api/api/models/mt5_deposit_model.dart';
 
 /// MT5 deposit class
 class MT5Deposit extends MT5DepositModel {
@@ -12,8 +12,7 @@ class MT5Deposit extends MT5DepositModel {
         );
 
   /// Creates instance from json
-  factory MT5Deposit.fromJson(Map<String, dynamic> json) =>
-      MT5Deposit(
+  factory MT5Deposit.fromJson(Map<String, dynamic> json) => MT5Deposit(
         mt5Deposit: json['mt5_deposit'],
         binaryTransactionId: json['binary_transaction_id'],
       );

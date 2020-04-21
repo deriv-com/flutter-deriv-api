@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/models/mt5/mt5_password_check_model.dart';
+import 'package:flutter_deriv_api/api/models/mt5_password_check_model.dart';
 
 /// MT5 password check class
 class MT5PasswordCheck extends MT5PasswordCheckModel {

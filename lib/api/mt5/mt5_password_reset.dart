@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/models/mt5/mt5_password_reset_model.dart';
+import 'package:flutter_deriv_api/api/models/mt5_password_reset_model.dart';
 
 /// MT5 password reset class
 class MT5PasswordReset extends MT5PasswordResetModel {

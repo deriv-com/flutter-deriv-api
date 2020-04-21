@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// MT5 login model class
 abstract class MT5LoginModel extends BaseModel {
