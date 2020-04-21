@@ -1,7 +1,7 @@
 import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// Buy model class
-class BuyContractModel extends BaseModel {
+abstract class BuyContractModel extends BaseModel {
   /// Class constructor
   BuyContractModel({
     this.balanceAfter,
@@ -14,20 +14,6 @@ class BuyContractModel extends BaseModel {
     this.startTime,
     this.transactionId,
   });
-
-  /// Creates instance from json
-  factory BuyContractModel.fromJson(Map<String, dynamic> json) =>
-      BuyContractModel(
-        balanceAfter: json['balance_after'],
-        buyPrice: json['buy_price'],
-        contractId: json['contract_id'],
-        longcode: json['longcode'],
-        payout: json['payout'].toDouble(),
-        purchaseTime: json['purchase_time'],
-        shortcode: json['shortcode'],
-        startTime: json['start_time'],
-        transactionId: json['transaction_id'],
-      );
 
   /// The new account balance after completion of the purchase
   final double balanceAfter;
@@ -55,28 +41,4 @@ class BuyContractModel extends BaseModel {
 
   /// Internal transaction identifier
   final int transactionId;
-
-  /// Creates copy of instance with given parameters
-  BuyContractModel copyWith({
-    double balanceAfter,
-    double buyPrice,
-    int contractId,
-    String longcode,
-    double payout,
-    int purchaseTime,
-    String shortcode,
-    int startTime,
-    int transactionId,
-  }) =>
-      BuyContractModel(
-        balanceAfter: balanceAfter ?? this.balanceAfter,
-        buyPrice: buyPrice ?? this.buyPrice,
-        contractId: contractId ?? this.contractId,
-        longcode: longcode ?? this.longcode,
-        payout: payout ?? this.payout,
-        purchaseTime: purchaseTime ?? this.purchaseTime,
-        shortcode: shortcode ?? this.shortcode,
-        startTime: startTime ?? this.startTime,
-        transactionId: transactionId ?? this.transactionId,
-      );
 }

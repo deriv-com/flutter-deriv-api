@@ -1,11 +1,12 @@
-import 'package:flutter_deriv_api/api/models/buy_contract_model.dart';
 import 'package:flutter_deriv_api/helpers.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/api/models/limit_order_model.dart';
+import 'package:flutter_deriv_api/api/models/buy_contract_model.dart';
 import 'package:flutter_deriv_api/api/models/price_proposal_model.dart';
 import 'package:flutter_deriv_api/api/models/cancellation_info_model.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/api/contarcts/price_proposal/buy_contract.dart';
 import 'package:flutter_deriv_api/api/contarcts/price_proposal/exceptions/price_proposal_exception.dart';
 
 /// Implementation of [PriceProposalModel]
@@ -56,7 +57,7 @@ class PriceProposal extends PriceProposalModel {
             : null,
         longcode: json['longcode'],
         multiplier: json['multiplier'],
-        payout: json['payout'],
+        payout: json['payout'].toDouble(),
         spot: json['spot'],
         spotTime:
             json['spot_time'] != null ? getDateTime(json['spot_time']) : null,
@@ -69,24 +70,29 @@ class PriceProposal extends PriceProposalModel {
   /// Gets the price proposal for contract
   /// For parameters information refer to [ProposalRequest]
   static Future<PriceProposal> getPriceForContract({
-    double amount,
-    double barrier,
-    String basis,
-    String contractType,
-    String currency,
+    double amount = 100,
+    String barrier,
+    String basis = 'payout',
+    String contractType = 'CALL',
+    String currency = 'USD',
     String symbol,
     DateTime dateExpiry,
-    String durationUnit,
+    String durationUnit = 's',
+    int duration = 60,
   }) async {
     final ProposalResponse proposalResponse = await _api.call(
       request: ProposalRequest(
         amount: amount,
-        barrier: barrier.toString(),
+        barrier: barrier,
         basis: basis,
+        currency: currency,
         contractType: contractType,
         symbol: symbol,
-        dateExpiry: dateExpiry.millisecondsSinceEpoch ~/ 1000,
+        dateExpiry: dateExpiry != null
+            ? dateExpiry.millisecondsSinceEpoch ~/ 1000
+            : null,
         durationUnit: durationUnit,
+        duration: duration,
       ),
     );
 
@@ -110,7 +116,7 @@ class PriceProposal extends PriceProposalModel {
       throw PriceProposalException(message: buyResponse.error['message']);
     }
 
-    return BuyContractModel.fromJson(buyResponse.buy);
+    return BuyContract.fromJson(buyResponse.buy);
   }
 
   /// Clone a new instance
