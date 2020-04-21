@@ -6,8 +6,8 @@ import 'package:flutter_deriv_api/api/models/price_proposal_model.dart';
 import 'package:flutter_deriv_api/api/models/cancellation_info_model.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/api/contarcts/price_proposal/buy_contract.dart';
-import 'package:flutter_deriv_api/api/contarcts/price_proposal/exceptions/price_proposal_exception.dart';
+import 'package:flutter_deriv_api/api/contracts/operations/buy_contract.dart';
+import 'package:flutter_deriv_api/api/contracts/operations/exceptions/price_proposal_exception.dart';
 
 /// Implementation of [PriceProposalModel]
 class PriceProposal extends PriceProposalModel {
@@ -43,24 +43,24 @@ class PriceProposal extends PriceProposalModel {
   /// From Json
   factory PriceProposal.fromJson(Map<String, dynamic> json) => PriceProposal(
         askPrice:
-            json['ask_price'] != null ? json['ask_price'].toDouble() : null,
-        cancellation: json['cancellation'] != null
-            ? CancellationInfoModel.fromJson(json['cancellation'])
-            : null,
+            json['ask_price'] == null ? null : json['ask_price'].toDouble(),
+        cancellation: json['cancellation'] == null
+            ? null
+            : CancellationInfoModel.fromJson(json['cancellation']),
         commission: json['commission'],
         dateStart:
-            json['date_start'] != null ? getDateTime(json['date_start']) : null,
+            json['date_start'] == null ? null : getDateTime(json['date_start']),
         displayValue: json['display_value'],
         id: json['id'],
-        limitOrder: json['limit_order'] != null
-            ? LimitOrderModel.fromJson(json['limit_order'])
-            : null,
+        limitOrder: json['limit_order'] == null
+            ? null
+            : LimitOrderModel.fromJson(json['limit_order']),
         longcode: json['longcode'],
         multiplier: json['multiplier'],
         payout: json['payout'].toDouble(),
         spot: json['spot'],
         spotTime:
-            json['spot_time'] != null ? getDateTime(json['spot_time']) : null,
+            json['spot_time'] == null ? null : getDateTime(json['spot_time']),
       );
 
   /// API instance
@@ -88,9 +88,9 @@ class PriceProposal extends PriceProposalModel {
         currency: currency,
         contractType: contractType,
         symbol: symbol,
-        dateExpiry: dateExpiry != null
-            ? dateExpiry.millisecondsSinceEpoch ~/ 1000
-            : null,
+        dateExpiry: dateExpiry == null
+            ? null
+            : dateExpiry.millisecondsSinceEpoch ~/ 1000,
         durationUnit: durationUnit,
         duration: duration,
       ),

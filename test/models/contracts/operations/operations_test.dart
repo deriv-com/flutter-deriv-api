@@ -4,10 +4,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/api/contarcts/price_proposal/buy_contract.dart';
-import 'package:flutter_deriv_api/api/contarcts/price_proposal/price_proposal.dart';
+import 'package:flutter_deriv_api/api/contracts/operations/buy_contract.dart';
+import 'package:flutter_deriv_api/api/contracts/operations/price_proposal.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
-import 'package:flutter_deriv_api/api/contarcts/price_proposal/exceptions/price_proposal_exception.dart';
+import 'package:flutter_deriv_api/api/contracts/operations/exceptions/price_proposal_exception.dart';
+import 'buy_contract_mock_data.dart';
 import 'price_proposal_mock_data.dart';
 
 void main() {
@@ -18,9 +19,19 @@ void main() {
 
     expect(priceProposal.askPrice, 10);
     expect(priceProposal.id, '042922fe-5664-09e4-c3bf-b3bbe98f31db');
-    expect(priceProposal.dateStart.millisecondsSinceEpoch / 1000, 1586335719);
-    expect(priceProposal.spotTime.millisecondsSinceEpoch / 1000, 1586335713);
+    expect(priceProposal.dateStart.millisecondsSinceEpoch ~/ 1000, 1586335719);
+    expect(priceProposal.spotTime.millisecondsSinceEpoch ~/ 1000, 1586335713);
     expect(priceProposal.spot, 9392.5);
+  });
+
+  test('Buy contract JSON parsing', () {
+    final Map<String, dynamic> buyContractMap = jsonDecode(buyContractJSON);
+    final BuyContract buyContract = BuyContract.fromJson(buyContractMap['buy']);
+    expect(buyContract.contractId, 79939279308);
+    expect(buyContract.purchaseTime.millisecondsSinceEpoch ~/ 1000, 1587528886);
+    expect(
+        buyContract.shortcode, 'CALL_R_100_100_1587528886_1587528946_S10P_0');
+    expect(buyContract.buyPrice, 49.12);
   });
 
   test('Buy proposal scenario', () async {
@@ -35,8 +46,8 @@ void main() {
       brand: 'binary',
     );
 
-    final AuthorizeResponse authorizeResponse = await api.call(
-        request: const AuthorizeRequest(authorize: 'TOKEN'));
+    final AuthorizeResponse authorizeResponse =
+        await api.call(request: const AuthorizeRequest(authorize: 'TOKEN'));
 
     if (authorizeResponse.error != null) {
       return;

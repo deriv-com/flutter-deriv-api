@@ -3,21 +3,22 @@ import 'package:flutter_deriv_api/helpers.dart';
 
 /// Contains limit order information.
 /// (Only applicable for contract with limit order).
-class LimitOrderModel extends BaseModel{
+class LimitOrderModel extends BaseModel {
   /// Initializes
   LimitOrderModel(this.stopLoss, this.stopOut, this.takeProfit);
 
   /// From Json
-  factory LimitOrderModel.fromJson(Map<String, dynamic> json) => LimitOrderModel(
-        json['stop_loss'] != null
-            ? LimitOrderCloseInfoModel.fromJson(json['stop_loss'])
-            : null,
-        json['stop_out'] != null
-            ? LimitOrderCloseInfoModel.fromJson(json['stop_out'])
-            : null,
-        json['take_profit'] != null
-            ? LimitOrderCloseInfoModel.fromJson(json['take_profit'])
-            : null,
+  factory LimitOrderModel.fromJson(Map<String, dynamic> json) =>
+      LimitOrderModel(
+        json['stop_loss'] == null
+            ? null
+            : LimitOrderCloseInfoModel.fromJson(json['stop_loss']),
+        json['stop_out'] == null
+            ? null
+            : LimitOrderCloseInfoModel.fromJson(json['stop_out']),
+        json['take_profit'] == null
+            ? null
+            : LimitOrderCloseInfoModel.fromJson(json['take_profit']),
       );
 
   /// Contains information where the contract will be closed automatically
@@ -47,21 +48,21 @@ class LimitOrderModel extends BaseModel{
 
 /// Contains information where the contract will be closed automatically
 /// at the loss specified by the user.
-class LimitOrderCloseInfoModel extends BaseModel{
+class LimitOrderCloseInfoModel extends BaseModel {
   /// Initializes
   LimitOrderCloseInfoModel(
-      this.displayName,
-      this.orderAmount,
-      this.orderDate,
-      this.value,
-      );
+    this.displayName,
+    this.orderAmount,
+    this.orderDate,
+    this.value,
+  );
 
   /// From Json
   factory LimitOrderCloseInfoModel.fromJson(Map<String, dynamic> json) =>
       LimitOrderCloseInfoModel(
         json['display_name'],
         json['order_amount'],
-        json['order_date'] != null ? getDateTime(json['order_date']) : null,
+        json['order_date'] == null ? null : getDateTime(json['order_date']),
         json['value'],
       );
 
@@ -91,4 +92,3 @@ class LimitOrderCloseInfoModel extends BaseModel{
         value ?? this.value,
       );
 }
-

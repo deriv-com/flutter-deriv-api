@@ -4,8 +4,7 @@ import 'package:flutter_deriv_api/api/models/contract_model.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/api/models/contracts_for_symbol_model.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/api/contarcts/contarcts_for/exceptions/contract_for_symbol_exception.dart';
-
+import 'package:flutter_deriv_api/api/contracts/contracts_for/exceptions/contract_for_symbol_exception.dart';
 
 /// available contracts. Note: if the user is authenticated,
 /// then only contracts allowed under his account will be returned.
@@ -34,10 +33,10 @@ class ContractsForSymbol extends ContractsForSymbolModel {
             ?.map<ContractModel>((dynamic entry) =>
                 entry == null ? null : ContractModel.fromJson(entry))
             ?.toList(),
-        close: json['close'] != null ? getDateTime(json['close']) : null,
+        close: json['close'] == null ? null : getDateTime(json['close']),
         feedLicense: json['feed_license'],
         hitCount: json['hit_count'],
-        open: json['open'] != null ? getDateTime(json['open']) : null,
+        open: json['open'] == null ? null : getDateTime(json['open']),
         spot: json['spot'],
       );
 
