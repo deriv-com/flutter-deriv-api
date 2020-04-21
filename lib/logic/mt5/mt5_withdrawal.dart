@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/models/mt5/mt5_withdrawal.dart';
+import 'package:flutter_deriv_api/models/mt5/mt5_withdrawal_model.dart';
 
 /// MT5 withdrawal class
 class MT5Withdrawal extends MT5WithdrawalModel {

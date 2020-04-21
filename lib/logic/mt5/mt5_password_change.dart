@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/models/mt5/mt5_password_change.dart';
+import 'package:flutter_deriv_api/models/mt5/mt5_password_change_model.dart';
 
 /// MT5 password change class
 class MT5PasswordChange extends MT5PasswordChangeModel {

@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/models/mt5/mt5_login.dart';
+import 'package:flutter_deriv_api/models/mt5/mt5_login_model.dart';
 
 /// MT5 login class
 class MT5Login extends MT5LoginModel {
