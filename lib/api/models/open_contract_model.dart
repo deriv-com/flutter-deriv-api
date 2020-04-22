@@ -1,6 +1,8 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
-import 'package:flutter_deriv_api/api/models/limit_order_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/tick_model.dart';
+import 'package:flutter_deriv_api/api/models/limit_order_model.dart';
+import 'package:flutter_deriv_api/api/models/audit_detail_model.dart';
 
 /// Model class for proposal open contract
 class OpenContractModel extends BaseModel {
@@ -66,7 +68,7 @@ class OpenContractModel extends BaseModel {
       OpenContractModel(
         auditDetails: json['audit_details'] == null
             ? null
-            : AuditDetail.fromJson(json['audit_details']),
+            : AuditDetailModel.fromJson(json['audit_details']),
         barrier: json['barrier'],
         barrierCount: json['barrier_count']?.toDouble(),
         bidPrice: json['bid_price']?.toDouble(),
@@ -156,7 +158,7 @@ class OpenContractModel extends BaseModel {
       );
 
   /// Tick details around contract start and end time.
-  final AuditDetail auditDetails;
+  final AuditDetailModel auditDetails;
 
   /// Barrier of the contract (if any).
   final String barrier;
@@ -436,95 +438,6 @@ class OpenContractModel extends BaseModel {
           validationError: validationError ?? this.validationError);
 }
 
-/// Audit details for expired contract.
-class AuditDetail {
-  /// Initializes
-  AuditDetail({
-    this.allTicks,
-    this.contractEnd,
-    this.contractStart,
-  });
-
-  /// From JSON
-  factory AuditDetail.fromJson(
-    Map<String, dynamic> json,
-  ) =>
-      AuditDetail(
-        allTicks: json['all_ticks'] == null
-            ? null
-            : json['all_ticks']
-                .map<ContractTimeInfo>(
-                    (dynamic entry) => ContractTimeInfo.fromJson(entry))
-                .toList(),
-        contractEnd: json['contract_end'] == null
-            ? null
-            : json['contract_end']
-                .map<ContractTimeInfo>(
-                    (dynamic entry) => ContractTimeInfo.fromJson(entry))
-                .toList(),
-        contractStart: json['contract_start'] == null
-            ? null
-            : json['contract_start']
-                .map<ContractTimeInfo>(
-                    (dynamic entry) => ContractTimeInfo.fromJson(entry))
-                .toList(),
-      );
-
-  /// Ticks for tick expiry contract from start time till expiry.
-  final List<ContractTimeInfo> allTicks;
-
-  /// Ticks around contract end time.
-  final List<ContractTimeInfo> contractEnd;
-
-  ///Ticks around contract start time.
-  final List<ContractTimeInfo> contractStart;
-}
-
-/// ContractTimeInfo
-class ContractTimeInfo extends TickModel {
-  /// Initializes
-  ContractTimeInfo({
-    this.flag,
-    this.name,
-    DateTime epoch,
-    double tick,
-    String tickDisplayValue,
-  }) : super(
-          epoch: epoch,
-          tick: tick,
-          tickDisplayValue: tickDisplayValue,
-        );
-
-  /// From JSON
-  factory ContractTimeInfo.fromJson(Map<String, dynamic> json) =>
-      ContractTimeInfo(
-        epoch: json['epoch'] == null ? null : getDateTime(json['epoch']),
-        flag: json['flag'],
-        name: json['name'],
-        tick: json['tick'],
-        tickDisplayValue: json['tick_display_value'],
-      );
-
-  /// A flag used to highlight the record in front-end applications
-  final String flag;
-
-  /// A short description of the data. It could be a tick or a time associated with the contract.
-  final String name;
-
-  /// Clones a new instance
-  @override
-  ContractTimeInfo copyWith({
-    DateTime epoch,
-    double tick,
-    String tickDisplayValue,
-  }) =>
-      ContractTimeInfo(
-        epoch: epoch ?? this.epoch,
-        tick: tick ?? this.tick,
-        tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
-      );
-}
-
 /// Transaction id contract
 class TransactionIds {
   /// Initializes
@@ -556,43 +469,5 @@ class TransactionIds {
       TransactionIds(
         buyID ?? this.buyID,
         sellID ?? this.sellID,
-      );
-}
-
-/// Tick of entry to end time.
-class TickModel extends BaseModel {
-  /// Initializes
-  TickModel({
-    this.epoch,
-    this.tick,
-    this.tickDisplayValue,
-  });
-
-  /// From JSON
-  factory TickModel.fromJson(Map<String, dynamic> json) => TickModel(
-        epoch: json['epoch'] == null ? null : getDateTime(json['epoch']),
-        tick: json['tick'],
-        tickDisplayValue: json['tick_display_value'],
-      );
-
-  /// Epoch time of a tick or the contract start or end time.
-  final DateTime epoch;
-
-  /// The spot value at the given epoch.
-  final double tick;
-
-  /// The spot value with the correct precision at the given epoch.
-  final String tickDisplayValue;
-
-  /// Clones a new instance
-  TickModel copyWith({
-    DateTime epoch,
-    double tick,
-    String tickDisplayValue,
-  }) =>
-      TickModel(
-        epoch: epoch ?? this.epoch,
-        tick: tick ?? tick,
-        tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
