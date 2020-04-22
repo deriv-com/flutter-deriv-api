@@ -1,4 +1,4 @@
-const String jsonData = '''
+const String forgetAllModelMockData = '''
 {
   "echo_req": {
     "forget_all": "ticks"

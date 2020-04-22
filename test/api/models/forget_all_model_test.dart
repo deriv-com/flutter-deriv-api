@@ -7,7 +7,7 @@ import 'forget_all_model_mock_data.dart';
 
 void main() {
   test('Price proposal json parsing', () {
-    final Map<String, dynamic> mapData = jsonDecode(jsonData);
+    final Map<String, dynamic> mapData = jsonDecode(forgetAllModelMockData);
     final ForgetAll forgetAll = ForgetAll.fromJson(mapData);
 
     expect(forgetAll.forgetAll.length, 2);
