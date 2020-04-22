@@ -79,6 +79,9 @@ DateTime getCurrentServerTime(int timeDifference) =>
 DateTime getDateTime(int timeInSeconds) =>
     DateTime.fromMillisecondsSinceEpoch(timeInSeconds * 1000);
 
+/// Convert int to boolean
+bool getBool(int value) => value == null ? null : value == 1;
+
 /// Checks if a string value of number is a valid number
 class NumberValidator {
   /// checks if the given [stringValue] is a number

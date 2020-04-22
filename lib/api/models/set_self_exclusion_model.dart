@@ -1,5 +1,7 @@
+import 'package:flutter_deriv_api/api/models/base_model.dart';
+
 /// Set self exclusion model class
-class SetSelfExclusionModel {
+class SetSelfExclusionModel extends BaseModel {
   /// Class constructor
   SetSelfExclusionModel({
     this.setSelfExclusion,
