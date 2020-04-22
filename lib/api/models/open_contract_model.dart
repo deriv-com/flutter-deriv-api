@@ -1,6 +1,6 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'package:flutter_deriv_api/api/models/base_model.dart';
-import 'package:flutter_deriv_api/api/models/tick_model.dart';
+import 'package:flutter_deriv_api/api/models/open_contract_tick_model.dart';
 import 'package:flutter_deriv_api/api/models/limit_order_model.dart';
 import 'package:flutter_deriv_api/api/models/audit_detail_model.dart';
 
@@ -148,7 +148,7 @@ class OpenContractModel extends BaseModel {
         tickStream: json['tick_stream'] == null
             ? null
             : json['tick_stream']
-                .map<TickModel>((dynamic entry) => TickModel.fromJson(entry))
+                .map<OpenContractTickModel>((dynamic entry) => OpenContractTickModel.fromJson(entry))
                 .toList(),
         transactionIds: json['transaction_ids'] == null
             ? null
@@ -308,7 +308,7 @@ class OpenContractModel extends BaseModel {
   final int tickCount;
 
   /// Tick stream from entry to end time.
-  final List<TickModel> tickStream;
+  final List<OpenContractTickModel> tickStream;
 
   /// Every contract has buy and sell transaction ids, i.e. when you purchase a contract we associate it with buy transaction id, and if contract is already sold we associate that with sell transaction id.
   final TransactionIds transactionIds;
@@ -371,7 +371,7 @@ class OpenContractModel extends BaseModel {
     String shortcode,
     String status,
     int tickCount,
-    List<TickModel> tickStream,
+    List<OpenContractTickModel> tickStream,
     TransactionIds transactionIds,
     String underlying,
     String validationError,

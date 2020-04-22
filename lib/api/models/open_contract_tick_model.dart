@@ -2,16 +2,16 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// Tick of entry to end time.
-class TickModel extends BaseModel {
+class OpenContractTickModel extends BaseModel {
   /// Initializes
-  TickModel({
+  OpenContractTickModel({
     this.epoch,
     this.tick,
     this.tickDisplayValue,
   });
 
   /// From JSON
-  factory TickModel.fromJson(Map<String, dynamic> json) => TickModel(
+  factory OpenContractTickModel.fromJson(Map<String, dynamic> json) => OpenContractTickModel(
         epoch: json['epoch'] == null ? null : getDateTime(json['epoch']),
         tick: json['tick'],
         tickDisplayValue: json['tick_display_value'],
@@ -27,12 +27,12 @@ class TickModel extends BaseModel {
   final String tickDisplayValue;
 
   /// Clones a new instance
-  TickModel copyWith({
+  OpenContractTickModel copyWith({
     DateTime epoch,
     double tick,
     String tickDisplayValue,
   }) =>
-      TickModel(
+      OpenContractTickModel(
         epoch: epoch ?? this.epoch,
         tick: tick ?? tick,
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
@@ -40,9 +40,9 @@ class TickModel extends BaseModel {
 }
 
 /// ContractTimeInfo
-class ContractTickInfoModel extends TickModel {
+class OpenContractTickInfoModel extends OpenContractTickModel {
   /// Initializes
-  ContractTickInfoModel({
+  OpenContractTickInfoModel({
     this.flag,
     this.name,
     DateTime epoch,
@@ -55,8 +55,8 @@ class ContractTickInfoModel extends TickModel {
         );
 
   /// From JSON
-  factory ContractTickInfoModel.fromJson(Map<String, dynamic> json) =>
-      ContractTickInfoModel(
+  factory OpenContractTickInfoModel.fromJson(Map<String, dynamic> json) =>
+      OpenContractTickInfoModel(
         epoch: json['epoch'] == null ? null : getDateTime(json['epoch']),
         flag: json['flag'],
         name: json['name'],
@@ -72,12 +72,12 @@ class ContractTickInfoModel extends TickModel {
 
   /// Clones a new instance
   @override
-  ContractTickInfoModel copyWith({
+  OpenContractTickInfoModel copyWith({
     DateTime epoch,
     double tick,
     String tickDisplayValue,
   }) =>
-      ContractTickInfoModel(
+      OpenContractTickInfoModel(
         epoch: epoch ?? this.epoch,
         tick: tick ?? this.tick,
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
