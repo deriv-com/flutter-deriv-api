@@ -9,7 +9,7 @@ import 'authorize_model_mock_data.dart';
 
 void main() {
   test('Price proposal json parsing', () {
-    final Map<String, dynamic> mapData = jsonDecode(jsonData);
+    final Map<String, dynamic> mapData = jsonDecode(authorizeModelMockData);
     final Authorize authorize = Authorize.fromJson(mapData['authorize']);
     final List<Account> accounts = authorize.accountList;
     final List<LocalCurrencyModel> localCurrencies = authorize.localCurrencies;

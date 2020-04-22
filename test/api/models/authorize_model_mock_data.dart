@@ -1,4 +1,4 @@
-const String jsonData = '''
+const String authorizeModelMockData = '''
 {
   "authorize": {
     "account_list": [
