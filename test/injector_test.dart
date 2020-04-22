@@ -9,7 +9,7 @@ import 'package:flutter_deriv_api/api/contarcts/contarcts_for/contracts_for_symb
 // Just a test to examine the usage of Dependency Injection in the project
 void main() {
   test('Injector test', () async {
-    // Initializing Injector which BasicBinaryAPI already is defined through 
+    // Initializing Injector which BasicBinaryAPI already is defined through
     // [ModuleContainer.initialize]
     final Injector injector =
         ModuleContainer().initialize(Injector.getInjector());
@@ -23,6 +23,7 @@ void main() {
 
     final ContractsForSymbol contractsForSymbol =
         await ContractsForSymbol.getContractsForSymbol(symbol: 'R_10');
-    print('Number of contarcts for R_10: ${contractsForSymbol?.contracts?.length}');
+    print(
+        'Number of contarcts for R_10: ${contractsForSymbol?.contracts?.length}');
   });
 }

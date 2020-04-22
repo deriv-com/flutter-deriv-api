@@ -2,7 +2,7 @@ import 'package:flutter_deriv_api/api/models/base_model.dart';
 import 'package:flutter_deriv_api/api/models/contract_model.dart';
 
 /// Abstract class involving fields of [ContractsFor]
-abstract class ContractsForSymbolModel extends BaseModel{
+abstract class ContractsForSymbolModel extends BaseModel {
   /// Initializes
   ContractsForSymbolModel({
     this.contracts,

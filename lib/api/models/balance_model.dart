@@ -1,7 +1,8 @@
-import 'total.dart';
+import 'balance_total_model.dart';
+import 'base_model.dart';
 
 /// Abstract class Balance of account
-abstract class BalanceModel {
+abstract class BalanceModel extends BaseModel {
   /// Constructor
   BalanceModel({
     this.balance,
@@ -25,5 +26,5 @@ abstract class BalanceModel {
   final String loginid;
 
   /// Total amounts of balances
-  final Total total;
+  final BalanceTotalModel total;
 }

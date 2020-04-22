@@ -1,5 +1,5 @@
-import 'package:flutter_deriv_api/models/balance/balance.dart';
-import 'package:flutter_deriv_api/models/balance/total.dart';
+import 'package:flutter_deriv_api/api/models/balance_model.dart';
+import 'package:flutter_deriv_api/api/models/balance_total_model.dart';
 
 /// Balance information if account
 class Balance extends BalanceModel {
@@ -9,7 +9,7 @@ class Balance extends BalanceModel {
     String currency,
     String id,
     String loginid,
-    Total total,
+    BalanceTotalModel total,
   }) : super(
           balance: balance,
           currency: currency,
@@ -24,7 +24,7 @@ class Balance extends BalanceModel {
         currency: json['currency'],
         id: json['id'],
         loginid: json['loginid'],
-        total: json['total'] != null ? Total.fromJson(json) : null,
+        total: json['total'] != null ? BalanceTotalModel.fromJson(json) : null,
       );
 
   /// Get balance of account
@@ -44,7 +44,7 @@ class Balance extends BalanceModel {
     String currency,
     String id,
     String loginid,
-    Total total,
+    BalanceTotalModel total,
   }) =>
       Balance(
         balance: balance ?? this.balance,
