@@ -1,5 +1,5 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'base_model.dart';
+import 'limit_order_close_info_model.dart';
 
 /// Contains limit order information.
 /// (Only applicable for contract with limit order).
@@ -43,52 +43,5 @@ class LimitOrderModel extends BaseModel {
         stopLoss ?? this.stopLoss,
         stopOut ?? this.stopOut,
         takeProfit ?? this.takeProfit,
-      );
-}
-
-/// Contains information where the contract will be closed automatically
-/// at the loss specified by the user.
-class LimitOrderCloseInfoModel extends BaseModel {
-  /// Initializes
-  LimitOrderCloseInfoModel(
-    this.displayName,
-    this.orderAmount,
-    this.orderDate,
-    this.value,
-  );
-
-  /// From Json
-  factory LimitOrderCloseInfoModel.fromJson(Map<String, dynamic> json) =>
-      LimitOrderCloseInfoModel(
-        json['display_name'],
-        json['order_amount'],
-        json['order_date'] == null ? null : getDateTime(json['order_date']),
-        json['value'],
-      );
-
-  /// Localized display name
-  final String displayName;
-
-  /// amount
-  final double orderAmount;
-
-  /// order epoch
-  final DateTime orderDate;
-
-  /// Pip-sized barrier value
-  final String value;
-
-  /// Clone a new instance
-  LimitOrderCloseInfoModel copyWith({
-    String displayName,
-    double orderAmount,
-    DateTime orderDate,
-    String value,
-  }) =>
-      LimitOrderCloseInfoModel(
-        displayName ?? this.displayName,
-        orderAmount ?? this.orderAmount,
-        orderDate ?? this.orderDate,
-        value ?? this.value,
       );
 }

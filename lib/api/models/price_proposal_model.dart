@@ -1,5 +1,5 @@
-import 'package:flutter_deriv_api/api/models/cancellation_info_model.dart';
-import 'package:flutter_deriv_api/api/models/limit_order_model.dart';
+import 'cancellation_info_model.dart';
+import 'limit_order_model.dart';
 
 /// Latest price and other details for a given contract
 abstract class PriceProposalModel {

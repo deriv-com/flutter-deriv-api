@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'base_model.dart';
 
 /// Buy model class
 abstract class BuyContractModel extends BaseModel {

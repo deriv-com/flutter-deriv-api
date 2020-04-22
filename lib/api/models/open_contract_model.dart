@@ -1,8 +1,10 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
-import 'package:flutter_deriv_api/api/models/base_model.dart';
-import 'package:flutter_deriv_api/api/models/open_contract_tick_model.dart';
-import 'package:flutter_deriv_api/api/models/limit_order_model.dart';
-import 'package:flutter_deriv_api/api/models/audit_detail_model.dart';
+
+import 'audit_detail_model.dart';
+import 'base_model.dart';
+import 'limit_order_model.dart';
+import 'open_contract_tick_model.dart';
+import 'transaction_ids_model.dart';
 
 /// Model class for proposal open contract
 class OpenContractModel extends BaseModel {
@@ -148,11 +150,12 @@ class OpenContractModel extends BaseModel {
         tickStream: json['tick_stream'] == null
             ? null
             : json['tick_stream']
-                .map<OpenContractTickModel>((dynamic entry) => OpenContractTickModel.fromJson(entry))
+                .map<OpenContractTickModel>(
+                    (dynamic entry) => OpenContractTickModel.fromJson(entry))
                 .toList(),
         transactionIds: json['transaction_ids'] == null
             ? null
-            : TransactionIds.fromJson(json['transaction_ids']),
+            : TransactionIdsModel.fromJson(json['transaction_ids']),
         underlying: json['underlying'],
         validationError: json['validation_error'],
       );
@@ -311,7 +314,7 @@ class OpenContractModel extends BaseModel {
   final List<OpenContractTickModel> tickStream;
 
   /// Every contract has buy and sell transaction ids, i.e. when you purchase a contract we associate it with buy transaction id, and if contract is already sold we associate that with sell transaction id.
-  final TransactionIds transactionIds;
+  final TransactionIdsModel transactionIds;
 
   /// The underlying symbol code.
   final String underlying;
@@ -372,7 +375,7 @@ class OpenContractModel extends BaseModel {
     String status,
     int tickCount,
     List<OpenContractTickModel> tickStream,
-    TransactionIds transactionIds,
+    TransactionIdsModel transactionIds,
     String underlying,
     String validationError,
   }) =>
@@ -436,38 +439,4 @@ class OpenContractModel extends BaseModel {
           transactionIds: transactionIds ?? this.transactionIds,
           underlying: underlying ?? this.underlying,
           validationError: validationError ?? this.validationError);
-}
-
-/// Transaction id contract
-class TransactionIds {
-  /// Initializes
-  TransactionIds(
-    this.buyID,
-    this.sellID,
-  );
-
-  /// From JSON
-  factory TransactionIds.fromJson(
-    Map<String, dynamic> json,
-  ) =>
-      TransactionIds(
-        json['buy'],
-        json['sell'],
-      );
-
-  /// Buy ID
-  final int buyID;
-
-  /// Sell ID
-  final int sellID;
-
-  /// Clones a new instance
-  TransactionIds copyWith(
-    int buyID,
-    int sellID,
-  ) =>
-      TransactionIds(
-        buyID ?? this.buyID,
-        sellID ?? this.sellID,
-      );
 }

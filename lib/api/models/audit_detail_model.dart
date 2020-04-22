@@ -1,5 +1,5 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
-import 'package:flutter_deriv_api/api/models/open_contract_tick_model.dart';
+import 'base_model.dart';
+import 'open_contract_tick_info_model.dart';
 
 /// Audit details for expired contract.
 class AuditDetailModel extends BaseModel {
@@ -18,20 +18,20 @@ class AuditDetailModel extends BaseModel {
         allTicks: json['all_ticks'] == null
             ? null
             : json['all_ticks']
-                .map<OpenContractTickInfoModel>(
-                    (dynamic entry) => OpenContractTickInfoModel.fromJson(entry))
+                .map<OpenContractTickInfoModel>((dynamic entry) =>
+                    OpenContractTickInfoModel.fromJson(entry))
                 .toList(),
         contractEnd: json['contract_end'] == null
             ? null
             : json['contract_end']
-                .map<OpenContractTickInfoModel>(
-                    (dynamic entry) => OpenContractTickInfoModel.fromJson(entry))
+                .map<OpenContractTickInfoModel>((dynamic entry) =>
+                    OpenContractTickInfoModel.fromJson(entry))
                 .toList(),
         contractStart: json['contract_start'] == null
             ? null
             : json['contract_start']
-                .map<OpenContractTickInfoModel>(
-                    (dynamic entry) => OpenContractTickInfoModel.fromJson(entry))
+                .map<OpenContractTickInfoModel>((dynamic entry) =>
+                    OpenContractTickInfoModel.fromJson(entry))
                 .toList(),
       );
 
