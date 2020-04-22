@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/api/contracts/operations/buy_contract.dart';
 import 'package:flutter_deriv_api/api/contracts/operations/price_proposal.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
-import 'package:flutter_deriv_api/api/contracts/operations/exceptions/price_proposal_exception.dart';
+import 'package:flutter_deriv_api/api/contracts/operations/exceptions/contract_operations_exception.dart';
 import 'buy_contract_mock_data.dart';
 import 'price_proposal_mock_data.dart';
 
@@ -68,7 +68,7 @@ void main() {
       final BuyContract boughtContract = await priceProposal.buy(price: 100);
 
       print('But scenario completed!');
-    } on PriceProposalException catch (e) {
+    } on ContractOperationException catch (e) {
       print(e.message);
     }
   });

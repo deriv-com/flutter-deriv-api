@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/api/models/cancellation_info_model.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/api/contracts/operations/buy_contract.dart';
-import 'package:flutter_deriv_api/api/contracts/operations/exceptions/price_proposal_exception.dart';
+import 'package:flutter_deriv_api/api/contracts/operations/exceptions/contract_operations_exception.dart';
 
 /// Implementation of [PriceProposalModel]
 class PriceProposal extends PriceProposalModel {
@@ -97,7 +97,8 @@ class PriceProposal extends PriceProposalModel {
     );
 
     if (proposalResponse.error != null) {
-      throw PriceProposalException(message: proposalResponse.error['message']);
+      throw ContractOperationException(
+          message: proposalResponse.error['message']);
     }
 
     return PriceProposal.fromJson(proposalResponse.proposal);
@@ -113,7 +114,7 @@ class PriceProposal extends PriceProposalModel {
     );
 
     if (buyResponse.error != null) {
-      throw PriceProposalException(message: buyResponse.error['message']);
+      throw ContractOperationException(message: buyResponse.error['message']);
     }
 
     return BuyContract.fromJson(buyResponse.buy);
