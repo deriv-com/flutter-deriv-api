@@ -16,10 +16,10 @@ class TradeEventModel extends BaseModel {
       );
 
   /// Dates
-  String dates;
+  final String dates;
 
   /// Description
-  String description;
+  final String description;
 
   /// Creates copy of instance with given parameters
   TradeEventModel copyWith({

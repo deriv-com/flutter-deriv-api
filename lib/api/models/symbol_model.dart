@@ -36,13 +36,13 @@ class SymbolModel extends BaseModel {
   final String name;
 
   /// Events
-  List<TradeEventModel> events;
+  final List<TradeEventModel> events;
 
   /// Symbol
-  String symbol;
+  final String symbol;
 
   /// Trade Times
-  TradeTimesModel times;
+  final TradeTimesModel times;
 
   /// Creates copy of instance with given parameters
   SymbolModel copyWith({

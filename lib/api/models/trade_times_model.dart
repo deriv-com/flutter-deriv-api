@@ -25,14 +25,14 @@ class TradeTimesModel extends BaseModel {
         settlement: json['settlement'],
       );
 
-  /// Close
-  List<String> close;
+  /// Close time
+  final List<String> close;
 
-  /// Open
-  List<String> open;
+  /// Open time
+  final List<String> open;
 
-  /// Settlement
-  String settlement;
+  /// Settlement time
+  final String settlement;
 
   /// Creates copy of instance with given parameters
   TradeTimesModel copyWith({
