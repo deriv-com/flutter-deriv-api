@@ -1,4 +1,5 @@
 import 'package:flutter_deriv_api/api/models/tick_model.dart';
+import 'package:flutter_deriv_api/helpers.dart';
 
 /// Spot price updates for a given symbol
 class Tick extends TickModel {
@@ -6,7 +7,7 @@ class Tick extends TickModel {
   Tick({
     double ask,
     double bid,
-    int epoch,
+    DateTime epoch,
     String id,
     int pipSize,
     double quote,
@@ -25,7 +26,7 @@ class Tick extends TickModel {
   factory Tick.fromJson(Map<String, dynamic> json) => Tick(
         ask: json['ask'],
         bid: json['bid'],
-        epoch: json['epoch'],
+        epoch: json['epoch'] == null ? null : getDateTime(json['epoch']),
         id: json['id'],
         pipSize: json['pip_size'],
         quote: json['quote'],
@@ -36,7 +37,7 @@ class Tick extends TickModel {
   Tick copyWith({
     double ask,
     double bid,
-    int epoch,
+    DateTime epoch,
     String id,
     int pipSize,
     double quote,
@@ -52,4 +53,3 @@ class Tick extends TickModel {
         symbol: symbol ?? this.symbol,
       );
 }
-

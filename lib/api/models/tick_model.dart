@@ -20,7 +20,7 @@ abstract class TickModel extends BaseModel {
   final double bid;
 
   /// Epoch time of the tick
-  final int epoch;
+  final DateTime epoch;
 
   /// A stream ID that can be used to cancel this stream using
   /// the Forget request

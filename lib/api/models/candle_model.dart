@@ -1,14 +1,22 @@
+import 'package:flutter_deriv_api/helpers.dart';
+
 import 'base_model.dart';
 
 /// price values for the given time (only for style=`candles`)
 class CandleModel extends BaseModel {
   /// Initializes
-  CandleModel({this.close, this.epoch, this.high, this.low, this.open});
+  CandleModel({
+    this.close,
+    this.epoch,
+    this.high,
+    this.low,
+    this.open,
+  });
 
   /// From JSON
   factory CandleModel.fromJson(Map<String, dynamic> json) => CandleModel(
         close: json['close'],
-        epoch: json['epoch'],
+        epoch: json['epoch'] == null ? null : getDateTime(json['epoch']),
         high: json['high'],
         low: json['low'],
         open: json['open'],
@@ -18,7 +26,7 @@ class CandleModel extends BaseModel {
   final double close;
 
   /// It is an epoch value
-  final int epoch;
+  final DateTime epoch;
 
   /// It is the high price value for the given time
   final double high;

@@ -15,6 +15,7 @@ void main() {
     expect(tick.bid, 218.0826);
     expect(tick.id, 'b4d42748-0744-c46b-f59b-cb7dd936bafa');
     expect(tick.symbol, 'R_50');
+    expect(tick.epoch.millisecondsSinceEpoch ~/ 1000, 1587547610);
   });
 
   test('TickHistory JSON parsing', () {
@@ -22,6 +23,7 @@ void main() {
     final TickHistory tickHistory = TickHistory.fromJson(tickHistoryMap);
 
     expect(tickHistory.history.prices.first, 218.6404);
-    expect(tickHistory.history.times.first, 1587556946);
+    expect(tickHistory.history.times.first.millisecondsSinceEpoch ~/ 1000,
+        1587556946);
   });
 }

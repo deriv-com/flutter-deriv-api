@@ -17,13 +17,15 @@ class TickHistory extends TickHistoryModel {
 
   /// From JSON
   factory TickHistory.fromJson(Map<String, dynamic> json) => TickHistory(
-        candles: json['candles'] != null
-            ? json['candles']
-                .map<CandleModel>((dynamic entry) => CandleModel.fromJson(entry))
-                ?.toList()
-            : null,
-        history:
-            json['history'] != null ? HistoryModel.fromJson(json['history']) : null,
+        candles: json['candles'] == null
+            ? null
+            : json['candles']
+                .map<CandleModel>(
+                    (dynamic entry) => CandleModel.fromJson(entry))
+                .toList(),
+        history: json['history'] == null
+            ? null
+            : HistoryModel.fromJson(json['history']),
         pipSize: json['pip_size'],
       );
 
@@ -33,9 +35,9 @@ class TickHistory extends TickHistoryModel {
     String symbol, {
     int adjustStartTime,
     int count,
-    String end,
+    DateTime end,
     int granularity,
-    int start,
+    DateTime start,
     String style,
   }) async =>
       null;
