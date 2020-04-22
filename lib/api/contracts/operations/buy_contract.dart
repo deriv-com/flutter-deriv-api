@@ -1,5 +1,11 @@
 import 'package:flutter_deriv_api/api/models/buy_contract_model.dart';
-import 'package:flutter_deriv_api/helpers.dart';
+import 'package:flutter_deriv_api/api/models/open_contract_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
+import 'exceptions/contract_operations_exception.dart';
 
 /// Buy class
 class BuyContract extends BuyContractModel {
@@ -42,7 +48,26 @@ class BuyContract extends BuyContractModel {
         transactionId: json['transaction_id'],
       );
 
-  // TODO(ramin): Will call a method to get the bought contract state
+  /// API instance
+  static final BasicBinaryAPI _api =
+      Injector.getInjector().get<BasicBinaryAPI>();
+
+  /// Get the current spot of the this bought contract
+  Future<OpenContractModel> getCurrentContractState() async {
+    final ProposalOpenContractResponse openContractResponse = await _api.call(
+      request: ProposalOpenContractRequest(
+        contractId: contractId,
+      ),
+    );
+
+    if (openContractResponse.error != null) {
+      throw ContractOperationException(
+          message: openContractResponse.error['message']);
+    }
+
+    return OpenContractModel.fromJson(
+        openContractResponse.proposalOpenContract);
+  }
 
   /// Creates copy of instance with given parameters
   BuyContractModel copyWith({

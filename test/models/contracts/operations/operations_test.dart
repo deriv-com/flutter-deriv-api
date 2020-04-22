@@ -6,9 +6,11 @@ import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/api/contracts/operations/buy_contract.dart';
 import 'package:flutter_deriv_api/api/contracts/operations/price_proposal.dart';
+import 'package:flutter_deriv_api/api/models/open_contract_model.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/api/contracts/operations/exceptions/contract_operations_exception.dart';
 import 'buy_contract_mock_data.dart';
+import 'open_contract_mock_data.dart';
 import 'price_proposal_mock_data.dart';
 
 void main() {
@@ -32,6 +34,14 @@ void main() {
     expect(
         buyContract.shortcode, 'CALL_R_100_100_1587528886_1587528946_S10P_0');
     expect(buyContract.buyPrice, 49.12);
+  });
+
+  test('Proposal open contract JSON parsing', () {
+    final Map<String, dynamic> openContractMap = jsonDecode(openContractJSON);
+    final OpenContractModel openContractModel =
+        OpenContractModel.fromJson(openContractMap['proposal_open_contract']);
+
+    print('object');
   });
 
   test('Buy proposal scenario', () async {
@@ -66,6 +76,9 @@ void main() {
       );
 
       final BuyContract boughtContract = await priceProposal.buy(price: 100);
+
+      final OpenContractModel openContractModel =
+          await boughtContract.getCurrentContractState();
 
       print('But scenario completed!');
     } on ContractOperationException catch (e) {

@@ -1,5 +1,5 @@
 import 'package:flutter_deriv_api/api/models/base_model.dart';
-import 'package:flutter_deriv_api/helpers.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Contains limit order information.
 /// (Only applicable for contract with limit order).
