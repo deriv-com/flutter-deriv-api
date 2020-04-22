@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/utils/date_time_helper.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'package:flutter_deriv_api/api/models/account_model.dart';
 
 /// Account class
@@ -23,7 +23,7 @@ class Account extends AccountModel {
   /// Generate instance from json
   factory Account.fromJson(Map<String, dynamic> json) => Account(
         currency: json['currency'],
-        excludedUntil: getDateTimeFromSeconds(json['excluded_until']),
+        excludedUntil: getDateTime(json['excluded_until']),
         isDisabled: json['is_disabled'] == 1,
         isVirtual: json['is_virtual'] == 1,
         landingCompanyName: json['landing_company_name'],

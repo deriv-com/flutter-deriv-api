@@ -6,7 +6,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 /// Parses the [url] and gets the endpoint out of it
-String parseWSUrl(String url, {bool isAuthUrl = false}) {
+String parseWebSocketUrl(String url, {bool isAuthUrl = false}) {
   if (url == null) {
     return null;
   }

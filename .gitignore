@@ -5,6 +5,7 @@ lib/basic_api/generated/*.json
 *.swp
 .DS_Store
 .atom/
+.vscode/
 .flutter-plugins-dependencies
 
 # IntelliJ related
