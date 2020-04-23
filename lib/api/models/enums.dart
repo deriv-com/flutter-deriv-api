@@ -1,0 +1,1 @@
+// enums of model classes
