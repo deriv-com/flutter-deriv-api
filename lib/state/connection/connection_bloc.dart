@@ -74,7 +74,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
     } else if (event is Reconnect) {
       print('Reconnecting ws connection!');
 
-      // api.close should be always invoked before changing the state otherwise the onDone function which is passed to the run funciton will be invoked one more time.
+      // api.close should be always invoked before changing the state otherwise the onDone function which is passed to the run function will be invoked one more time.
       if (state is Connected) {
         final Connected currentState = state;
         await currentState.api.close();
