@@ -24,8 +24,8 @@ class Account extends AccountModel {
   factory Account.fromJson(Map<String, dynamic> json) => Account(
         currency: json['currency'],
         excludedUntil: getDateTime(json['excluded_until']),
-        isDisabled: json['is_disabled'] == 1,
-        isVirtual: json['is_virtual'] == 1,
+        isDisabled: getBool(json['is_disabled']),
+        isVirtual: getBool(json['is_virtual']),
         landingCompanyName: json['landing_company_name'],
         loginid: json['loginid'],
       );
@@ -34,8 +34,8 @@ class Account extends AccountModel {
   Account copyWith({
     String currency,
     int excludedUntil,
-    int isDisabled,
-    int isVirtual,
+    bool isDisabled,
+    bool isVirtual,
     String landingCompanyName,
     String loginid,
   }) =>
