@@ -1,10 +1,10 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/api/models/active_symbols_model.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dart';
-import 'package:flutter_deriv_api/api/contarcts/active_symbols/exceptions/active_symbols_exception.dart';
+
+import 'exceptions/active_symbols_exception.dart';
 
 /// Active Symbol
 class ActiveSymbol extends ActiveSymbolModel {
@@ -63,9 +63,9 @@ class ActiveSymbol extends ActiveSymbolModel {
         quotedCurrencySymbol: json['quoted_currency_symbol'],
         spot: json['spot'],
         spotAge: json['spot_age'],
-        spotTime: json['spot_time'] != null
-            ? getDateTime(int.parse(json['spot_time']))
-            : null,
+        spotTime: json['spot_time'] == null
+            ? null
+            : getDateTime(int.parse(json['spot_time'])),
         submarket: json['submarket'],
         submarketDisplayName: json['submarket_display_name'],
         symbol: json['symbol'],
