@@ -76,8 +76,9 @@ DateTime getCurrentServerTime(int timeDifference) =>
     );
 
 /// Create a [DateTime] from time given in seconds
-DateTime getDateTime(int timeInSeconds) =>
-    DateTime.fromMillisecondsSinceEpoch(timeInSeconds * 1000);
+DateTime getDateTime(int timeInSeconds) => timeInSeconds == null
+    ? null
+    : DateTime.fromMillisecondsSinceEpoch(timeInSeconds * 1000);
 
 /// Convert int to boolean
 bool getBool(int value) => value == null ? null : value == 1;
