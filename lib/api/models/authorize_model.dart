@@ -1,5 +1,5 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
 import 'package:flutter_deriv_api/api/models/account_model.dart';
+import 'package:flutter_deriv_api/api/models/base_model.dart';
 import 'package:flutter_deriv_api/api/models/local_currency_model.dart';
 
 /// Authorize model class
