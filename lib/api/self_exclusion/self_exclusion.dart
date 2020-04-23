@@ -1,5 +1,5 @@
-import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'package:flutter_deriv_api/api/models/self_exclusion_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Self exclusion class
 class SelfExclusion extends SelfExclusionModel {

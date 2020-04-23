@@ -1,5 +1,5 @@
-import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'package:flutter_deriv_api/api/models/server_time_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Time response class
 class ServerTime extends ServerTimeModel {
