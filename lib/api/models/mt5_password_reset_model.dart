@@ -7,6 +7,6 @@ abstract class MT5PasswordResetModel extends BaseModel {
     this.mt5PasswordReset,
   });
 
-  /// `1` on success
-  final int mt5PasswordReset;
+  /// `true` on success
+  final bool mt5PasswordReset;
 }

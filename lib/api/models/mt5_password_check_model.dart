@@ -7,6 +7,6 @@ abstract class MT5PasswordCheckModel extends BaseModel {
     this.mt5PasswordCheck,
   });
 
-  /// `1` on success
-  final int mt5PasswordCheck;
+  /// `true` on success
+  final bool mt5PasswordCheck;
 }

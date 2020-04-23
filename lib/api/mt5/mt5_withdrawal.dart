@@ -1,10 +1,11 @@
 import 'package:flutter_deriv_api/api/models/mt5_withdrawal_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// MT5 withdrawal class
 class MT5Withdrawal extends MT5WithdrawalModel {
   /// Class constructor
   MT5Withdrawal({
-    int mt5Withdrawal,
+    bool mt5Withdrawal,
     int binaryTransactionId,
   }) : super(
           mt5Withdrawal: mt5Withdrawal,
@@ -13,7 +14,7 @@ class MT5Withdrawal extends MT5WithdrawalModel {
 
   /// Creates instance from json
   factory MT5Withdrawal.fromJson(Map<String, dynamic> json) => MT5Withdrawal(
-        mt5Withdrawal: json['mt5_withdrawal'],
+        mt5Withdrawal: getBool(json['mt5_withdrawal']),
         binaryTransactionId: json['binary_transaction_id'],
       );
 

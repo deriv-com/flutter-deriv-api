@@ -8,8 +8,8 @@ abstract class MT5WithdrawalModel extends BaseModel {
     this.binaryTransactionId,
   });
 
-  /// `1` on success
-  final int mt5Withdrawal;
+  /// `true` on success
+  final bool mt5Withdrawal;
 
   /// Deposit reference ID of Binary account.
   final int binaryTransactionId;
