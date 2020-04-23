@@ -1,4 +1,6 @@
 import 'package:flutter_deriv_api/api/models/active_symbols_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
