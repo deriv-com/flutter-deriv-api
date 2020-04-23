@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:flutter_deriv_api/helpers.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/server_time/server_time.dart';
