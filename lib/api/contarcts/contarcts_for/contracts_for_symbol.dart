@@ -7,7 +7,6 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/basic_api/generated/contracts_for_send.dart';
 import 'package:flutter_deriv_api/api/contarcts/contarcts_for/exceptions/contract_for_symbol_exception.dart';
 
-
 /// available contracts. Note: if the user is authenticated,
 /// then only contracts allowed under his account will be returned.
 class ContractsForSymbol extends ContractsForSymbolModel {
