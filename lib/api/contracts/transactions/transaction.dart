@@ -1,5 +1,5 @@
 import 'package:flutter_deriv_api/api/models/transaction_model.dart';
-import 'package:flutter_deriv_api/helpers.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Transaction of user
 class Transaction extends TransactionModel {
