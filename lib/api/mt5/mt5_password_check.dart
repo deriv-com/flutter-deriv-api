@@ -18,7 +18,7 @@ class MT5PasswordCheck extends MT5PasswordCheckModel {
 
   /// Creates copy of instance with given parameters
   MT5PasswordCheck copyWith({
-    int mt5PasswordCheck,
+    bool mt5PasswordCheck,
   }) =>
       MT5PasswordCheck(
         mt5PasswordCheck: mt5PasswordCheck ?? this.mt5PasswordCheck,

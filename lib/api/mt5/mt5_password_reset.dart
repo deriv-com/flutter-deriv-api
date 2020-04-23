@@ -18,7 +18,7 @@ class MT5PasswordReset extends MT5PasswordResetModel {
 
   /// Creates copy of instance with given parameters
   MT5PasswordReset copyWith({
-    int mt5PasswordReset,
+    bool mt5PasswordReset,
   }) =>
       MT5PasswordReset(
         mt5PasswordReset: mt5PasswordReset ?? this.mt5PasswordReset,

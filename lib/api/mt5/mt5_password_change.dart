@@ -18,7 +18,7 @@ class MT5PasswordChange extends MT5PasswordChangeModel {
 
   /// Creates copy of instance with given parameters
   MT5PasswordChange copyWith({
-    int mt5PasswordChange,
+    bool mt5PasswordChange,
   }) =>
       MT5PasswordChange(
         mt5PasswordChange: mt5PasswordChange ?? this.mt5PasswordChange,

@@ -20,7 +20,7 @@ class MT5Withdrawal extends MT5WithdrawalModel {
 
   /// Creates copy of instance with given parameters
   MT5Withdrawal copyWith({
-    int mt5Withdrawal,
+    bool mt5Withdrawal,
     int binaryTransactionId,
   }) =>
       MT5Withdrawal(
