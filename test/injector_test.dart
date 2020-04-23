@@ -2,9 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/api/contarcts/active_symbols/active_symbols.dart';
+import 'package:flutter_deriv_api/api/contracts/active_symbols/active_symbols.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
-import 'package:flutter_deriv_api/api/contarcts/contarcts_for/contracts_for_symbol.dart';
+import 'package:flutter_deriv_api/api/contracts/contracts_for/contracts_for_symbol.dart';
 
 // Just a test to examine the usage of Dependency Injection in the project
 void main() {

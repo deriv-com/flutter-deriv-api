@@ -1,5 +1,5 @@
 import 'package:flutter_deriv_api/api/models/tick_model.dart';
-import 'package:flutter_deriv_api/helpers.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Spot price updates for a given symbol
 class Tick extends TickModel {

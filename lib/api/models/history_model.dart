@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/helpers.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'base_model.dart';
 
