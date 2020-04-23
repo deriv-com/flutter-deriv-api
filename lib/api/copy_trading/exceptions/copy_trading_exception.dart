@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/logic/exceptions/base_exception.dart';
+import '../../exceptions/api_base_exception.dart';
 
 /// Exception for CopyTrading
-class CopyTradingException extends BaseException {
+class CopyTradingException extends APIBaseException {
   @override
   String get message =>
       '${CopyTradingException().runtimeType} Exception: $message';

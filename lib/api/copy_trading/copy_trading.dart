@@ -1,8 +1,10 @@
-import 'package:flutter_deriv_api/models/copy_trading.dart';
+import 'package:flutter_deriv_api/api/models/copier_model.dart';
+import 'package:flutter_deriv_api/api/models/copy_trading_model.dart';
+import 'package:flutter_deriv_api/api/models/trader_model.dart';
 
-/// CopyTrading
+/// CopyTrading class
 class CopyTrading extends CopyTradingModel {
-  /// Constructor
+  /// Initializes
   CopyTrading({
     List<CopierModel> copiers,
     List<TraderModel> traders,
@@ -11,7 +13,7 @@ class CopyTrading extends CopyTradingModel {
           traders: traders,
         );
 
-  /// Instance from JSON
+  /// From JSON
   factory CopyTrading.fromJson(Map<String, dynamic> json) => CopyTrading(
         copiers: json['copiers'] != null
             ? json['copiers']
@@ -36,4 +38,9 @@ class CopyTrading extends CopyTradingModel {
         copiers: copiers ?? this.copiers,
         traders: traders ?? this.traders,
       );
+
+  /// list of active copiers and/or traders for Copy Trading
+  static Future<CopyTrading> getList() async => null;
+
+
 }
