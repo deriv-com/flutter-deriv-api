@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_deriv_api/api/contarcts/tick/tick.dart';
-import 'package:flutter_deriv_api/api/contarcts/tick/tick_history.dart';
+import 'package:flutter_deriv_api/api/contracts/tick/tick.dart';
+import 'package:flutter_deriv_api/api/contracts/tick/tick_history.dart';
+
 import 'tick_history_mock_data.dart';
 import 'tick_mock_data.dart';
 
