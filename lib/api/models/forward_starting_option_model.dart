@@ -1,4 +1,5 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
+
 import 'base_model.dart';
 
 /// Forward starting option

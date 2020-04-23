@@ -1,9 +1,10 @@
-import 'package:flutter_deriv_api/utils/helpers.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/api/models/contract_model.dart';
-import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/api/models/contracts_for_symbol_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
 import 'exceptions/contract_for_symbol_exception.dart';
 
 /// available contracts. Note: if the user is authenticated,
