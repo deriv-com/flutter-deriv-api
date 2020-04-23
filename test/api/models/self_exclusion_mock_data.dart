@@ -7,7 +7,7 @@ const String selfExclusiveMockData = '''
   "max_7day_turnover": 1000,
   "max_balance": 100000,
   "max_deposit": 1000,
-  "max_deposit_end_date": "2020-01-01",
+  "max_deposit_end_date": "2020-02-01",
   "max_losses": 100000,
   "max_open_bets": 1000,
   "max_turnover": 1000,

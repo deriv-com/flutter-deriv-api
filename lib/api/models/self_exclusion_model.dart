@@ -20,7 +20,7 @@ abstract class SelfExclusionModel extends BaseModel {
   });
 
   /// Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
-  final String excludeUntil;
+  final DateTime excludeUntil;
 
   /// 30-day limit on losses
   final double max30dayLosses;
@@ -41,7 +41,7 @@ abstract class SelfExclusionModel extends BaseModel {
   final double maxDeposit;
 
   /// Exclude me from making deposits when the cumulative sum of deposits exceeds specified deposit limit starting from the date the limit has been set.
-  final String maxDepositEndDate;
+  final DateTime maxDepositEndDate;
 
   /// Daily limit on losses
   final double maxLosses;

@@ -5,14 +5,14 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 class SelfExclusion extends SelfExclusionModel {
   /// Class constructor
   SelfExclusion({
-    String excludeUntil,
+    DateTime excludeUntil,
     double max30dayLosses,
     double max30dayTurnover,
     double max7dayLosses,
     double max7dayTurnover,
     double maxBalance,
     double maxDeposit,
-    String maxDepositEndDate,
+    DateTime maxDepositEndDate,
     double maxLosses,
     int maxOpenBets,
     double maxTurnover,
@@ -36,14 +36,14 @@ class SelfExclusion extends SelfExclusionModel {
 
   /// Creates instance from json
   factory SelfExclusion.fromJson(Map<String, dynamic> json) => SelfExclusion(
-        excludeUntil: json['exclude_until'],
+        excludeUntil: DateTime.parse(json['exclude_until']),
         max30dayLosses: json['max_30day_losses'].toDouble(),
         max30dayTurnover: json['max_30day_turnover'].toDouble(),
         max7dayLosses: json['max_7day_losses'].toDouble(),
         max7dayTurnover: json['max_7day_turnover'].toDouble(),
         maxBalance: json['max_balance'].toDouble(),
         maxDeposit: json['max_deposit'].toDouble(),
-        maxDepositEndDate: json['max_deposit_end_date'],
+        maxDepositEndDate: DateTime.parse(json['max_deposit_end_date']),
         maxLosses: json['max_losses'].toDouble(),
         maxOpenBets: json['max_open_bets'],
         maxTurnover: json['max_turnover'].toDouble(),
@@ -53,14 +53,14 @@ class SelfExclusion extends SelfExclusionModel {
 
   /// Creates copy of instance with given parameters
   SelfExclusion copyWith({
-    String excludeUntil,
+    DateTime excludeUntil,
     double max30dayLosses,
     double max30dayTurnover,
     double max7dayLosses,
     double max7dayTurnover,
     double maxBalance,
     double maxDeposit,
-    String maxDepositEndDate,
+    DateTime maxDepositEndDate,
     double maxLosses,
     int maxOpenBets,
     double maxTurnover,
