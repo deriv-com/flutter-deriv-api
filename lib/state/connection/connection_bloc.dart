@@ -1,14 +1,14 @@
 import 'dart:async';
-import 'package:meta/meta.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:meta/meta.dart';
 
-import 'package:flutter_deriv_api/utils/helpers.dart';
-import 'package:flutter_deriv_api/basic_api/generated/time_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/time_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/time_send.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
-part 'connection_state.dart';
 part 'connection_event.dart';
+part 'connection_state.dart';
 
 /// Bringing ConnectionBloc to flutter-deriv-api to simplify the usage of api
 class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
@@ -74,7 +74,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
     } else if (event is Reconnect) {
       print('Reconnecting ws connection!');
 
-      // api.close should be always invoked before changing the state otherwise the onDone function which is passed to the run funciton will be invoked one more time.
+      // api.close should be always invoked before changing the state otherwise the onDone function which is passed to the run function will be invoked one more time.
       if (state is Connected) {
         final Connected currentState = state;
         await currentState.api.close();
