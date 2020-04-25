@@ -1,4 +1,5 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
+
 import 'base_model.dart';
 
 /// Forward starting option
@@ -9,9 +10,9 @@ class ForwardStartingOptionModel extends BaseModel {
   /// From Json
   factory ForwardStartingOptionModel.fromJson(Map<String, dynamic> json) =>
       ForwardStartingOptionModel(
-        json['close'] == null ? null : getDateTime(int.parse(json['close'])),
-        json['date'] == null ? null : getDateTime(int.parse(json['date'])),
-        json['open'] == null ? null : getDateTime(int.parse(json['open'])),
+        json['close'] = getDateTime(int.parse(json['close'])),
+        json['date'] = getDateTime(int.parse(json['date'])),
+        json['open'] = getDateTime(int.parse(json['open'])),
       );
 
   /// The epoch value for the closing date of forward starting session.

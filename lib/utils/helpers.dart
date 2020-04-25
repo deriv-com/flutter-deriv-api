@@ -6,7 +6,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 /// Parses the [url] and gets the endpoint out of it
-String parseWSUrl(String url, {bool isAuthUrl = false}) {
+String parseWebSocketUrl(String url, {bool isAuthUrl = false}) {
   if (url == null) {
     return null;
   }
@@ -76,8 +76,12 @@ DateTime getCurrentServerTime(int timeDifference) =>
     );
 
 /// Create a [DateTime] from time given in seconds
-DateTime getDateTime(int timeInSeconds) =>
-    DateTime.fromMillisecondsSinceEpoch(timeInSeconds * 1000);
+DateTime getDateTime(int timeInSeconds) => timeInSeconds == null
+    ? null
+    : DateTime.fromMillisecondsSinceEpoch(timeInSeconds * 1000);
+
+/// Convert int to boolean
+bool getBool(int value) => value == null ? null : value == 1;
 
 /// Checks if a string value of number is a valid number
 class NumberValidator {
