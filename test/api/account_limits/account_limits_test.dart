@@ -19,5 +19,8 @@ void main() {
     expect(accountLimits.payout, 50000.0);
     expect(accountLimits.withdrawalForXDaysMonetary, 0.0);
     expect(accountLimits.withdrawalSinceInceptionMonetary, 0.0);
+    expect(accountLimits.marketSpecific.commoditiesLimits.first.payoutLimit, 5000.0);
+    expect(accountLimits.marketSpecific.commoditiesLimits.first.profileName, 'moderate_risk');
+    expect(accountLimits.marketSpecific.forexLimits.first.name, 'Minor Pairs');
   });
 }

@@ -1,4 +1,5 @@
 import 'package:flutter_deriv_api/api/models/account_limits_model.dart';
+import 'package:flutter_deriv_api/api/models/account_market_specific_model.dart';
 
 /// Trading limits of real account user
 class AccountLimits extends AccountLimitsModel {
@@ -7,7 +8,7 @@ class AccountLimits extends AccountLimitsModel {
     double accountBalance,
     double dailyTurnover,
     double lifetimeLimit,
-    Map<String, dynamic> marketSpecific,
+    AccountMarketSpecificModel marketSpecific,
     int numOfDays,
     double numOfDaysLimit,
     int openPositions,
@@ -38,7 +39,9 @@ class AccountLimits extends AccountLimitsModel {
         accountBalance: json['account_balance']?.toDouble(),
         dailyTurnover: json['daily_turnover'],
         lifetimeLimit: json['lifetime_limit']?.toDouble(),
-        marketSpecific: json['market_specific'],
+        marketSpecific: json['market_specific'] == null
+            ? null
+            : AccountMarketSpecificModel.fromJson(json['market_specific']),
         numOfDays: json['num_of_days'],
         numOfDaysLimit: json['num_of_days_limit']?.toDouble(),
         openPositions: json['open_positions'],
@@ -58,7 +61,7 @@ class AccountLimits extends AccountLimitsModel {
     double accountBalance,
     double dailyTurnover,
     double lifetimeLimit,
-    Map<String, dynamic> marketSpecific,
+    AccountMarketSpecificModel marketSpecific,
     int numOfDays,
     double numOfDaysLimit,
     int openPositions,
