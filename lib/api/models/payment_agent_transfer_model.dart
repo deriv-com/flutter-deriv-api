@@ -1,7 +1,7 @@
 import 'package:flutter_deriv_api/api/models/base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 
-/// Paymentagent transfer model class
+/// Payment agent transfer model class
 abstract class PaymentAgentTransferModel extends BaseModel {
   /// Class constructor
   PaymentAgentTransferModel({
@@ -12,7 +12,7 @@ abstract class PaymentAgentTransferModel extends BaseModel {
   });
 
   /// If set to `1`, transfer success. If set to `2`, dry-run success.
-  final PaymentAgentTransfer paymentAgentTransfer;
+  final PaymentResult paymentAgentTransfer;
 
   /// The `transfer_to` client full name
   final String clientToFullName;

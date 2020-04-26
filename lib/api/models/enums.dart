@@ -1,6 +1,6 @@
 // Payment agent
-/// Payment agent Transfer
-enum PaymentAgentTransfer {
+/// Payment result
+enum PaymentResult {
   /// Noun, this value is not a valid value
   noun,
 

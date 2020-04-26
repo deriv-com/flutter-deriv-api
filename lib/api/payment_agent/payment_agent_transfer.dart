@@ -1,11 +1,11 @@
-import 'package:flutter_deriv_api/api/models/enums.dart' as enums;
+import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/payment_agent_transfer_model.dart';
 
-/// Paymentagent transfer class
+/// Payment agent transfer class
 class PaymentAgentTransfer extends PaymentAgentTransferModel {
   /// Class constructor
   PaymentAgentTransfer({
-    enums.PaymentAgentTransfer paymentAgentTransfer,
+    PaymentResult paymentAgentTransfer,
     String clientToFullName,
     String clientToLoginid,
     int transactionId,
@@ -20,7 +20,7 @@ class PaymentAgentTransfer extends PaymentAgentTransferModel {
   factory PaymentAgentTransfer.fromJson(Map<String, dynamic> json) =>
       PaymentAgentTransfer(
         paymentAgentTransfer:
-            enums.PaymentAgentTransfer.values[json['paymentagent_transfer']],
+            PaymentResult.values[json['paymentagent_transfer']],
         clientToFullName: json['client_to_full_name'],
         clientToLoginid: json['client_to_loginid'],
         transactionId: json['transaction_id'],
@@ -28,7 +28,7 @@ class PaymentAgentTransfer extends PaymentAgentTransferModel {
 
   /// Creates copy of instance with given parameters
   PaymentAgentTransfer copyWith({
-    enums.PaymentAgentTransfer paymentAgentTransfer,
+    PaymentResult paymentAgentTransfer,
     String clientToFullName,
     String clientToLoginid,
     int transactionId,
