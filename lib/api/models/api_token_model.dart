@@ -11,10 +11,10 @@ abstract class APITokenModel extends BaseModel {
   });
 
   /// Token deleted.
-  final int deleteToken;
+  final bool deleteToken;
 
   /// Token created.
-  final int newToken;
+  final bool newToken;
 
   /// API tokens
   final List<TokenModel> tokens;

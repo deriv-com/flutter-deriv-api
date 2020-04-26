@@ -1,4 +1,6 @@
 import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/utils/enum_helper.dart';
 
 /// Token model class
 class TokenModel extends BaseModel {
@@ -14,10 +16,19 @@ class TokenModel extends BaseModel {
   /// Creates instance from json
   factory TokenModel.fromJson(Map<String, dynamic> json) => TokenModel(
         displayName: json['display_name'],
-        lastUsed: json['last_used'],
+        lastUsed: DateTime.parse(
+          json['last_used'],
+        ), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
         scopes: json['scopes'] == null
             ? null
-            : json['scopes'].map<String>((String item) => item).toList(),
+            : json['scopes']
+                .map<TokenScope>(
+                  (dynamic item) => EnumHelper.getEnum(
+                    values: TokenScope.values,
+                    name: item,
+                  ),
+                )
+                .toList(),
         token: json['token'],
         validForIp: json['valid_for_ip'],
       );
@@ -26,10 +37,10 @@ class TokenModel extends BaseModel {
   final String displayName;
 
   /// The last date which the token has been used.
-  final String lastUsed;
+  final DateTime lastUsed;
 
   /// List of permission scopes of the token.
-  final List<String> scopes;
+  final List<TokenScope> scopes;
 
   /// The token that can be used to `authorize` with.
   final String token;
