@@ -1,0 +1,49 @@
+import 'account_authentication_document_model.dart';
+import 'account_identity_model.dart';
+
+/// This represents the authentication status of the user and it
+/// includes what authentication is needed.
+class AccountAuthenticationStatusModel {
+  /// Constructor
+  AccountAuthenticationStatusModel({
+    this.document,
+    this.identity,
+    this.needsVerification,
+  });
+
+  /// Instance from JSON
+  factory AccountAuthenticationStatusModel.fromJson(Map<String, dynamic> json) => AccountAuthenticationStatusModel(
+    document: json['document'] == null
+        ? null
+        : AccountAuthenticationDocumentModel.fromJson(json['document']),
+    identity: json['identity'] == null
+        ? null
+        : AccountIdentityModel.fromJson(json['identity']),
+    needsVerification: json['needs_verification'] == null
+        ? null
+        : json['needs_verification']
+        .map<String>((dynamic entry) => entry.toString())
+        .toList(),
+  );
+
+  /// The authentication status for document.
+  final AccountAuthenticationDocumentModel document;
+
+  /// The authentication status for identity.
+  final AccountIdentityModel identity;
+
+  /// An array containing the list of required authentication.
+  final List<String> needsVerification;
+
+  /// Clones a new instance
+  AccountAuthenticationStatusModel copyWith({
+    AccountAuthenticationDocumentModel document,
+    AccountIdentityModel identity,
+    List<String> needsVerification,
+  }) =>
+      AccountAuthenticationStatusModel(
+        document: document ?? this.document,
+        identity: identity ?? this.identity,
+        needsVerification: needsVerification ?? this.needsVerification,
+      );
+}
