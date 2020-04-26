@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_deriv_api/api/contarcts/contarcts_for/contracts_for_symbol.dart';
+import 'package:flutter_deriv_api/api/contracts/contracts_for/contracts_for_symbol.dart';
 import 'contarcts_for_mock_data.dart';
 
 void main() {
