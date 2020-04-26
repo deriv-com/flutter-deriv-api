@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
 import 'authentication_services_model.dart';
 import 'base_model.dart';
 
@@ -14,7 +16,7 @@ class AccountIdentityModel extends BaseModel {
   /// Instance from JSON
   factory AccountIdentityModel.fromJson(Map<String, dynamic> json) =>
       AccountIdentityModel(
-        expiryDate: json['expiry_date'],
+        expiryDate: getDateTime(json['expiry_date']),
         furtherSubmissionsAllowed: json['further_submissions_allowed'],
         services: json['services'] == null
             ? null
@@ -24,7 +26,7 @@ class AccountIdentityModel extends BaseModel {
 
   // Properties
   /// This is the epoch of the document expiry date.
-  final int expiryDate;
+  final DateTime expiryDate;
 
   /// This represent the number times a client is allowed to submit documents
   final int furtherSubmissionsAllowed;
@@ -38,7 +40,7 @@ class AccountIdentityModel extends BaseModel {
 
   /// ToJson
   AccountIdentityModel copyWith({
-    int expiryDate,
+    DateTime expiryDate,
     int furtherSubmissionsAllowed,
     AuthenticationServicesModel services,
     String status,

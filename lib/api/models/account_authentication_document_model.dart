@@ -34,7 +34,7 @@ class AccountAuthenticationDocumentModel extends BaseModel{
 
   /// Clones a new instance
   AccountAuthenticationDocumentModel copyWith({
-    int expiryDate,
+    DateTime expiryDate,
     int furtherSubmissionsAllowed,
     String status,
   }) =>
