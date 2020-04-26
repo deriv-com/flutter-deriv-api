@@ -1,9 +1,8 @@
-import 'package:flutter_deriv_api/utils/helpers.dart';
-
 import 'account_authentication_status_model.dart';
+import 'base_model.dart';
 
 /// Model class for account status
-class AccountStatusModel {
+abstract class AccountStatusModel extends BaseModel {
   /// Initializes
   AccountStatusModel({
     this.authentication,

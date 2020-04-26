@@ -1,14 +1,21 @@
 import 'account_onfido_model.dart';
+import 'base_model.dart';
 
 /// This shows the information about the authentication services implemented
-class AuthenticationServicesModel {
+class AuthenticationServicesModel extends BaseModel {
   /// Constructor
-  AuthenticationServicesModel({this.onfido});
+  AuthenticationServicesModel({
+    this.onfido,
+  });
 
   /// Instance from JSON
-  factory AuthenticationServicesModel.fromJson(Map<String, dynamic> json) =>
+  factory AuthenticationServicesModel.fromJson(
+    Map<String, dynamic> json,
+  ) =>
       AuthenticationServicesModel(
-        onfido: json['onfido'] != null ? AccountOnfidoModel.fromJson(json) : null,
+        onfido: json['onfido'] == null
+            ? null
+            : AccountOnfidoModel.fromJson(json['onfido']),
       );
 
   // Properties

@@ -1,7 +1,9 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
+import 'base_model.dart';
+
 /// The authentication status for document.
-class AccountAuthenticationDocumentModel {
+class AccountAuthenticationDocumentModel extends BaseModel{
   /// Initializes
   AccountAuthenticationDocumentModel({
     this.expiryDate,

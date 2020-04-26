@@ -7,8 +7,9 @@ import 'account_status_mock_data.dart';
 
 void main() {
   test('Account status JSON parsing', () {
-    final AccountStatus accountStatus = AccountStatus.fromJson(
-        jsonDecode(accountStatusJSON)['get_account_status']);
+    final Map<String, dynamic> accountStatusMap = jsonDecode(accountStatusJSON);
+    final AccountStatus accountStatus =
+        AccountStatus.fromJson(accountStatusMap['get_account_status']);
 
     expect(accountStatus.status[0], 'financial_information_not_complete');
     expect(accountStatus.status[1], 'trading_experience_not_complete');

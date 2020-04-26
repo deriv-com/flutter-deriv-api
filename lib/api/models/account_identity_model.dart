@@ -1,7 +1,8 @@
 import 'authentication_services_model.dart';
+import 'base_model.dart';
 
 /// The authentication status for identity.
-class AccountIdentityModel {
+class AccountIdentityModel extends BaseModel {
   /// Initializes
   AccountIdentityModel({
     this.expiryDate,
@@ -17,7 +18,7 @@ class AccountIdentityModel {
         furtherSubmissionsAllowed: json['further_submissions_allowed'],
         services: json['services'] == null
             ? null
-            : AuthenticationServicesModel.fromJson(json),
+            : AuthenticationServicesModel.fromJson(json['services']),
         status: json['status'],
       );
 
@@ -45,7 +46,7 @@ class AccountIdentityModel {
       AccountIdentityModel(
         expiryDate: expiryDate ?? this.expiryDate,
         furtherSubmissionsAllowed:
-        furtherSubmissionsAllowed ?? this.furtherSubmissionsAllowed,
+            furtherSubmissionsAllowed ?? this.furtherSubmissionsAllowed,
         services: services ?? this.services,
         status: status ?? this.status,
       );

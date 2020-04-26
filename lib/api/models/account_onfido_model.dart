@@ -1,7 +1,9 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
+import 'base_model.dart';
+
 /// This shows the information related to Onfido supported services
-class AccountOnfidoModel {
+class AccountOnfidoModel extends BaseModel {
   /// Constructor
   AccountOnfidoModel({
     this.documents,
@@ -13,7 +15,9 @@ class AccountOnfidoModel {
       AccountOnfidoModel(
         documents: json['documents'] == null
             ? null
-            : json['documents'].map<String>((dynamic entry) => entry).toList(),
+            : json['documents']
+                .map<String>((dynamic entry) => entry.toString())
+                .toList(),
         isCountrySupported: getBool(json['is_country_supported']),
       );
 
