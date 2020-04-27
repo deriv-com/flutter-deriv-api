@@ -28,6 +28,7 @@ class AccountAuthenticationDocumentModel extends BaseModel {
   /// submit documents
   final bool furtherSubmissionsAllowed;
 
+  // todo(ramin): Use EnumHelper once its ready
   /// This represents the current status of the proof of address document
   /// submitted for authentication.
   final String status;
