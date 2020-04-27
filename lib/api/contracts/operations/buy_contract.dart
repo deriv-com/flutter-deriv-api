@@ -38,7 +38,7 @@ class BuyContract extends BuyContractModel {
         buyPrice: json['buy_price'],
         contractId: json['contract_id'],
         longcode: json['longcode'],
-        payout: json['payout'].toDouble(),
+        payout: json['payout']?.toDouble(),
         purchaseTime: json['purchase_time'] == null
             ? null
             : getDateTime(json['purchase_time']),

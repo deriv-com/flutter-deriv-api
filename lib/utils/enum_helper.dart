@@ -2,36 +2,35 @@ import 'package:recase/recase.dart';
 
 /// Enum helper class
 class EnumHelper<T> {
-  /// Parse enum to String
-  static String parse<T>({
-    T enumItem,
+  /// Converts enum to string
+  static String getString<T>({
+    T value,
     bool snakeCase = true,
   }) {
-    if (enumItem == null) {
+    if (value == null) {
       return null;
     }
 
-    final String item = enumItem.toString().split('.')[1];
+    final String item = value.toString().split('.')[1];
 
     return snakeCase ? ReCase(item).snakeCase : item;
   }
 
   /// Gets enum form a string
   static T getEnum<T>({
-    List<T> enumItems,
-    String value,
+    List<T> values,
+    String name,
     bool snakeCase = true,
   }) {
-    if (enumItems == null || enumItems.isEmpty) {
+    if (name == null || values == null || values.isEmpty) {
       return null;
     }
 
-    return enumItems.firstWhere(
+    return values.firstWhere(
       (T enumItem) {
         final String item = enumItem.toString().split('.')[1];
 
-        return (snakeCase ? ReCase(item).snakeCase : item).compareTo(value) ==
-            0;
+        return (snakeCase ? ReCase(item).snakeCase : item).compareTo(name) == 0;
       },
       orElse: () => null,
     );
