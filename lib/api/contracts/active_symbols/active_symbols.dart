@@ -52,19 +52,13 @@ class ActiveSymbol extends ActiveSymbolModel {
 
   /// from Json
   factory ActiveSymbol.fromJson(Map<String, dynamic> json) => ActiveSymbol(
-        allowForwardStarting: json['allow_forward_starting'] == null
-            ? null
-            : json['allow_forward_starting'] == 1,
+        allowForwardStarting: getBool(json['allow_forward_starting']),
         delayAmount: json['delay_amount'],
         displayName: json['display_name'],
-        exchangeIsOpen: json['exchange_is_open'] == null
-            ? null
-            : json['exchange_is_open'] == 1,
+        exchangeIsOpen: getBool(json['exchange_is_open']),
         exchangeName: json['exchange_name'],
         intradayIntervalMinutes: json[''],
-        isTradingSuspended: json['is_trading_suspended'] == null
-            ? null
-            : json['is_trading_suspended'] == 1,
+        isTradingSuspended: getBool(json['is_trading_suspended']),
         market: json['market'],
         marketDisplayName: json['market_display_name'],
         pip: json['pip'],
