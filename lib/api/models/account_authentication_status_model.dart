@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
 import 'account_authentication_document_model.dart';
 import 'account_identity_model.dart';
 import 'base_model.dart';
@@ -22,11 +24,10 @@ class AccountAuthenticationStatusModel extends BaseModel {
         identity: json['identity'] == null
             ? null
             : AccountIdentityModel.fromJson(json['identity']),
-        needsVerification: json['needs_verification'] == null
-            ? null
-            : json['needs_verification']
-                .map<String>((dynamic entry) => entry.toString())
-                .toList(),
+        needsVerification: getListFromMap(
+          json['needs_verification'],
+          (dynamic item) => item.toString(),
+        ),
       );
 
   /// The authentication status for document.
