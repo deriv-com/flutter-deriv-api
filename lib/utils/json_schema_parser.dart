@@ -1,7 +1,7 @@
-import 'package:meta/meta.dart';
-import 'package:recase/recase.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:inflection2/inflection2.dart';
+import 'package:meta/meta.dart';
+import 'package:recase/recase.dart';
 
 const String _objectType = 'object';
 const String _arrayType = 'array';
@@ -47,7 +47,7 @@ class JsonSchemaParser {
               ? arrayType != null && _typeMap.containsKey(arrayType)
                   ? _typeMap[arrayType]
                   : convertToSingular(ReCase(name).pascalCase)
-              : _typeMap[type];
+              : _typeMap[type] ?? 'UNKNOWN_TYPE';
 
   static String _getObjectType({
     @required String name,
@@ -259,7 +259,7 @@ class JsonSchemaParser {
       if (schemaProperties != null) {
         for (dynamic entry in schemaProperties.entries) {
           final String name = entry.key;
-          final String type = entry.value['type'];
+          final String type = _getType(entry);
           final String arrayType = entry.value['type'] == 'array'
               ? entry.value['items']['type']
               : null;
@@ -333,12 +333,12 @@ class JsonSchemaParser {
     return _result;
   }
 
+  static String _getType(dynamic entry) => entry.value['type']?.length == 2
+      ? entry.value['type'][1]
+      : entry.value['type'];
+
   static bool _isBoolean(dynamic entry) =>
-      entry.value['type'] == 'integer' &&
-      entry.value['enum'] != null &&
-      entry.value['enum'].length == 2 &&
-      entry.value['enum'][0] == 0 &&
-      entry.value['enum'][1] == 1;
+      entry.value['type'] == 'integer' && entry.value['enum']?.length == 2;
 }
 
 /// Model to store schema information
