@@ -34,7 +34,7 @@ enum AccountRiskClassification {
 }
 
 /// Account status
-enum AccountStatus {
+enum AccountStatusType {
   /// client is age-verified.
   ageVerification,
 
@@ -59,8 +59,14 @@ enum AccountStatus {
   /// client has not completed financial assessment.
   financialAssessmentNotComplete,
 
+  /// client has not completed financial information.
+  financialInformationNotComplete,
+
   /// this client has opted for a professional account.
   professional,
+
+  /// Trading experience not completed
+  tradingExperienceNotComplete,
 
   /// client has acknowledged UKGC funds protection notice.
   ukgcFundsProtection,

@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'authentication_services_model.dart';
@@ -22,7 +24,10 @@ class AccountIdentityModel extends BaseModel {
           json['services'],
           (dynamic map) => AuthenticationServicesModel.fromJson(map),
         ),
-        status: json['status'],
+        status: EnumHelper.getEnum(
+          values: AccountIdentityStatus.values,
+          name: json['status'],
+        ),
       );
 
   /// This is the epoch of the document expiry date.
@@ -34,17 +39,16 @@ class AccountIdentityModel extends BaseModel {
   /// This shows the information about the authentication services implemented
   final AuthenticationServicesModel services;
 
-  // TODO(ramin): Use EnumHelper once its ready
   /// This represent the current status for proof of identity document
   /// submitted for authentication.
-  final String status;
+  final AccountIdentityStatus status;
 
   /// ToJson
   AccountIdentityModel copyWith({
     DateTime expiryDate,
     int furtherSubmissionsAllowed,
     AuthenticationServicesModel services,
-    String status,
+    AccountIdentityStatus status,
   }) =>
       AccountIdentityModel(
         expiryDate: expiryDate ?? this.expiryDate,

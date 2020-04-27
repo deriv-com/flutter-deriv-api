@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/api/models/enums.dart';
+
 import 'account_authentication_status_model.dart';
 import 'base_model.dart';
 
@@ -19,11 +21,9 @@ abstract class AccountStatusModel extends BaseModel {
   /// authenticate their account.
   final bool promptClientToAuthenticate;
 
-  // TODO(ramin): Use EnumHelper once its ready
   /// Client risk classification: `low`, `standard`, `high`.
-  final String riskClassification;
+  final AccountRiskClassification riskClassification;
 
-  // TODO(ramin): Use EnumHelper once its ready
   /// Account status. Possible status:
   /// - `age_verification`: client is age-verified.
   /// - `authenticated`: client is fully authenticated.
@@ -37,5 +37,5 @@ abstract class AccountStatusModel extends BaseModel {
   /// - `ukgc_funds_protection`: client has acknowledged UKGC funds protection notice.
   /// - `unwelcome`: client cannot deposit or buy contracts, but can withdraw or sell contracts.
   /// - `withdrawal_locked`: deposits allowed but withdrawals locked.
-  final List<String> status;
+  final List<AccountStatusType> status;
 }
