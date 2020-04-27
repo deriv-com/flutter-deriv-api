@@ -5,16 +5,16 @@ class ResidenceModel extends BaseModel {
   /// Initializes
   ResidenceModel({
     this.phoneIdd,
-    this.text,
-    this.value,
+    this.countryName,
+    this.countryCode,
   });
 
   /// IDD code of country
   final String phoneIdd;
 
   /// Country full name
-  final String text;
+  final String countryName;
 
   /// 2-letter country code
-  final String value;
+  final String countryCode;
 }

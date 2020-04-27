@@ -1,16 +1,16 @@
-import 'package:flutter_deriv_api/api/models/residence_list_model.dart';
+import 'package:flutter_deriv_api/api/models/residence_model.dart';
 
 /// Country with account opening
 class Residence extends ResidenceModel {
   /// Initializes
   Residence({
     String phoneIdd,
-    String text,
-    String value,
+    String countryName,
+    String countryCode,
   }) : super(
           phoneIdd: phoneIdd,
-          text: text,
-          value: value,
+          countryName: countryName,
+          countryCode: countryCode,
         );
 
   /// Instance from JSON
@@ -19,19 +19,19 @@ class Residence extends ResidenceModel {
   ) =>
       Residence(
         phoneIdd: json['phone_idd'],
-        text: json['text'],
-        value: json['value'],
+        countryName: json['text'],
+        countryCode: json['value'],
       );
 
   /// Clones a new instance
   Residence copyWith({
     String phoneIdd,
-    String text,
-    String value,
+    String countryName,
+    String countryCode,
   }) =>
       Residence(
         phoneIdd: phoneIdd ?? this.phoneIdd,
-        text: text ?? this.text,
-        value: value ?? this.value,
+        countryName: countryName ?? this.countryName,
+        countryCode: countryCode ?? this.countryCode,
       );
 }
