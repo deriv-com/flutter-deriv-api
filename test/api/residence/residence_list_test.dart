@@ -12,8 +12,8 @@ void main() {
         .map<Residence>((dynamic entry) => Residence.fromJson(entry))
         .toList();
 
-    expect(residenceList.first.countryName, 'Afghanistan');
-    expect(residenceList.first.countryCode, 'af');
-    expect(residenceList.first.phoneIdd, '93');
+    expect(residenceList.first.countryName, 'SampleCountry');
+    expect(residenceList.first.countryCode, 'sc');
+    expect(residenceList.first.phoneIdd, '00');
   });
 }

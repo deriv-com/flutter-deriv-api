@@ -5,14 +5,9 @@ const String residenceListJSON = '''{
   "msg_type": "residence_list",
   "residence_list": [
     {
-      "phone_idd": "93",
-      "text": "Afghanistan",
-      "value": "af"
-    },
-    {
-      "phone_idd": "35818",
-      "text": "Aland Islands",
-      "value": "ax"
+      "phone_idd": "00",
+      "text": "SampleCountry",
+      "value": "sc"
     }
   ]
 }''';
