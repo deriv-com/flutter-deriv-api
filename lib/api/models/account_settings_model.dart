@@ -56,6 +56,7 @@ class AccountSettingsModel {
   /// Country of legal citizenship, 2-letter country code.
   final String citizen;
 
+  // TODO(ramin): Use EnumHelper later on
   /// Latest terms and conditions version accepted by client
   final String clientTncStatus;
 
@@ -94,8 +95,8 @@ class AccountSettingsModel {
   /// Place of birth, 2-letter country code.
   final String placeOfBirth;
 
-  /// Boolean value 1 or 0, indicating if client has requested professional status.
-  final int requestProfessionalStatus;
+  /// Boolean value true or false, indicating if client has requested professional status.
+  final bool requestProfessionalStatus;
 
   /// User Country
   final String residence;
@@ -106,9 +107,11 @@ class AccountSettingsModel {
   /// Tax identification number. Only applicable for real money account.
   final String taxIdentificationNumber;
 
-  /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account.
+  /// Residence for tax purpose. Comma separated iso country code if multiple
+  /// jurisdictions. Only applicable for real money account.
   final String taxResidence;
 
-  /// Hash generated using user details to verify whether the user is legitimate for our customer support system.
+  /// Hash generated using user details to verify whether the user is legitimate
+  /// for our customer support system.
   final String userHash;
 }
