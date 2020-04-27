@@ -7,7 +7,7 @@ const String apiTokenModelMockData = '''
         "display_name": "sample_token",
         "last_used": "2020-01-11",
         "scopes": ["read", "trading_information"],
-        "token": "AvS85kDihWayCZl",
+        "token": "thisIsASampleTOKEN123",
         "valid_for_ip": "178.32.12.45"
       }
     ]

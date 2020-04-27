@@ -36,7 +36,7 @@ void main() {
       ),
     );
 
-    expect(apiToken.tokens[0].token, 'AvS85kDihWayCZl');
+    expect(apiToken.tokens[0].token, 'thisIsASampleTOKEN123');
     expect(apiToken.tokens[0].validForIp, '178.32.12.45');
   });
 }
