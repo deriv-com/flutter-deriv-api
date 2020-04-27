@@ -46,7 +46,7 @@ abstract class MT5SettingsModel extends BaseModel {
   final String group;
 
   /// Client leverage (from 1 to 1000).
-  final double leverage;
+  final int leverage;
 
   /// Login ID of the user's MT5 account.
   final String login;
