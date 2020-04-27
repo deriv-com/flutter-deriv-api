@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/forget/forget.dart';
 import 'forget_model_mock_data.dart';
 
 void main() {
-  test('Price proposal json parsing', () {
+  test('forget json parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(forgetModelMockData);
     final Forget forget = Forget.fromJson(mapData);
 

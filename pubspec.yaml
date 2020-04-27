@@ -21,6 +21,7 @@ dependencies:
   preferences: ^5.0.2
   web_socket_channel: ^1.0.15
   equatable: ^1.1.1
+  recase: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -31,7 +32,6 @@ dev_dependencies:
   json_schema: ^2.2.1
   json_serializable: ^3.2.5
   path: ^1.5.1
-  recase: ^2.0.1
   test: ^1.6.0
 
 flutter:

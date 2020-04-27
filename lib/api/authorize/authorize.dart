@@ -44,7 +44,7 @@ class Authorize extends AuthorizeModel {
             : json['account_list']
                 .map<Account>((dynamic item) => Account.fromJson(item))
                 .toList(),
-        balance: json['balance'].toDouble(),
+        balance: json['balance']?.toDouble(),
         country: json['country'],
         currency: json['currency'],
         email: json['email'],
