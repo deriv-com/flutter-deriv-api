@@ -24,7 +24,6 @@ class AccountIdentityModel extends BaseModel {
         status: json['status'],
       );
 
-  // Properties
   /// This is the epoch of the document expiry date.
   final DateTime expiryDate;
 
