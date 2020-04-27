@@ -59,8 +59,7 @@ class PriceProposal extends PriceProposalModel {
         multiplier: json['multiplier'],
         payout: json['payout']?.toDouble(),
         spot: json['spot'],
-        spotTime:
-            json['spot_time'] == null ? null : getDateTime(json['spot_time']),
+        spotTime: getDateTime(json['spot_time']),
       );
 
   /// API instance
