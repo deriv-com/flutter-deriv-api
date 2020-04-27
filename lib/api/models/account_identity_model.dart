@@ -18,9 +18,10 @@ class AccountIdentityModel extends BaseModel {
       AccountIdentityModel(
         expiryDate: getDateTime(json['expiry_date']),
         furtherSubmissionsAllowed: json['further_submissions_allowed'],
-        services: json['services'] == null
-            ? null
-            : AuthenticationServicesModel.fromJson(json['services']),
+        services: getFromMap(
+          json['services'],
+          (dynamic map) => AuthenticationServicesModel.fromJson(map),
+        ),
         status: json['status'],
       );
 

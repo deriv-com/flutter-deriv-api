@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
 import 'account_onfido_model.dart';
 import 'base_model.dart';
 
@@ -13,9 +15,10 @@ class AuthenticationServicesModel extends BaseModel {
     Map<String, dynamic> json,
   ) =>
       AuthenticationServicesModel(
-        onfido: json['onfido'] == null
-            ? null
-            : AccountOnfidoModel.fromJson(json['onfido']),
+        onfido: getFromMap(
+          json['onfido'],
+          (dynamic map) => AccountOnfidoModel.fromJson(map),
+        ),
       );
 
   // Properties

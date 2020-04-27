@@ -22,9 +22,10 @@ class AccountStatus extends AccountStatusModel {
     Map<String, dynamic> json,
   ) =>
       AccountStatus(
-        authentication: json['authentication'] == null
-            ? null
-            : AccountAuthenticationStatusModel.fromJson(json['authentication']),
+        authentication: getFromMap(
+          json['authentication'],
+          (dynamic map) => AccountAuthenticationStatusModel.fromJson(map),
+        ),
         promptClientToAuthenticate:
             getBool(json['prompt_client_to_authenticate']),
         riskClassification: json['risk_classification'],
