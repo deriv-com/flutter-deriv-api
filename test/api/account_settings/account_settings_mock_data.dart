@@ -3,13 +3,13 @@ const String accountSettingsJSON = '''{
     "get_settings": 1
   },
   "get_settings": {
-    "country": "Afghanistan",
-    "country_code": "af",
-    "email": "ramin.vakili@firstsource.io",
+    "country": "SampleCountry",
+    "country_code": "sc",
+    "email": "first.last@example.com",
     "email_consent": 1,
     "has_secret_answer": 0,
-    "residence": "Afghanistan",
-    "user_hash": "b1258cd44e55d7d736cacc30c37ec2218defd17c44635e61a78ddac6ca07bd31"
+    "residence": "SampleCountry",
+    "user_hash": "samplehash71627162jlj"
   },
   "msg_type": "get_settings"
 }''';

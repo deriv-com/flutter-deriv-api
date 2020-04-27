@@ -11,11 +11,12 @@ void main() {
     final AccountSettings accountSettings =
         AccountSettings.fromJson(accountSettingsMap['get_settings']);
 
-    expect(accountSettings.country, 'Afghanistan');
-    expect(accountSettings.countryCode, 'af');
+    expect(accountSettings.country, 'SampleCountry');
+    expect(accountSettings.countryCode, 'sc');
     expect(accountSettings.hasSecretAnswer, false);
     expect(accountSettings.emailConsent, true);
+    expect(accountSettings.email, 'first.last@example.com');
     expect(accountSettings.userHash,
-        'b1258cd44e55d7d736cacc30c37ec2218defd17c44635e61a78ddac6ca07bd31');
+        'samplehash71627162jlj');
   });
 }
