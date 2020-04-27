@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/mt5/mt5_account.dart';
+import 'package:flutter_deriv_api/utils/enum_helper.dart';
 
 import 'mt5_account_model_mock_data.dart';
 
@@ -11,6 +13,10 @@ void main() {
     final MT5Account mt5Account =
         MT5Account.fromJson(mapData['mt5_login_list'][0]);
 
+    expect(
+      mt5Account.accountType,
+      EnumHelper.getEnum(values: AccountType.values, name: 'gaming'),
+    );
     expect(mt5Account.balance, 350.0);
     expect(mt5Account.country, 'India');
     expect(mt5Account.currency, 'USD');
@@ -19,6 +25,11 @@ void main() {
     expect(mt5Account.group, 'svg_standard');
     expect(mt5Account.leverage, 100);
     expect(mt5Account.login, 'MT346525');
+    expect(mt5Account.login, 'MT346525');
+    expect(
+      mt5Account.mt5AccountType,
+      EnumHelper.getEnum(values: MT5AccountType.values, name: 'advanced'),
+    );
     expect(mt5Account.name, 'Jon Doe');
   });
 }

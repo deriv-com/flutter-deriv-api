@@ -6,6 +6,7 @@ const String mt5AccountModelMockData = '''
   "msg_type": "mt5_login_list",
   "mt5_login_list": [
     {
+      "account_type": "gaming",
       "balance": 350.0,
       "country": "India",
       "currency": "USD",
@@ -14,6 +15,7 @@ const String mt5AccountModelMockData = '''
       "group": "svg_standard",
       "leverage": 100,
       "login": "MT346525",
+      "mt5_account_type": "advanced",
       "name": "Jon Doe"
     }
   ]
