@@ -16,8 +16,8 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
         transactions: json['transactions'] == null
             ? null
             : json['transactions']
-                .map<AppTransactionModel>((Map<String, dynamic> item) =>
-                    AppTransactionModel.fromJson(item))
+                .map<AppTransactionModel>(
+                    (dynamic item) => AppTransactionModel.fromJson(item))
                 .toList(),
       );
 
