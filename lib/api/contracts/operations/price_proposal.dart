@@ -1,13 +1,13 @@
-import 'package:flutter_deriv_api/utils/helpers.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/api/models/limit_order_model.dart';
-import 'package:flutter_deriv_api/api/models/buy_contract_model.dart';
-import 'package:flutter_deriv_api/api/models/price_proposal_model.dart';
-import 'package:flutter_deriv_api/api/models/cancellation_info_model.dart';
-import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/api/contracts/operations/buy_contract.dart';
 import 'package:flutter_deriv_api/api/contracts/operations/exceptions/contract_operations_exception.dart';
+import 'package:flutter_deriv_api/api/models/buy_contract_model.dart';
+import 'package:flutter_deriv_api/api/models/cancellation_info_model.dart';
+import 'package:flutter_deriv_api/api/models/limit_order_model.dart';
+import 'package:flutter_deriv_api/api/models/price_proposal_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Implementation of [PriceProposalModel]
 class PriceProposal extends PriceProposalModel {
@@ -43,7 +43,7 @@ class PriceProposal extends PriceProposalModel {
   /// From Json
   factory PriceProposal.fromJson(Map<String, dynamic> json) => PriceProposal(
         askPrice:
-            json['ask_price'] == null ? null : json['ask_price'].toDouble(),
+            json['ask_price'] == null ? null : json['ask_price']?.toDouble(),
         cancellation: json['cancellation'] == null
             ? null
             : CancellationInfoModel.fromJson(json['cancellation']),
@@ -57,10 +57,9 @@ class PriceProposal extends PriceProposalModel {
             : LimitOrderModel.fromJson(json['limit_order']),
         longcode: json['longcode'],
         multiplier: json['multiplier'],
-        payout: json['payout'].toDouble(),
+        payout: json['payout']?.toDouble(),
         spot: json['spot'],
-        spotTime:
-            json['spot_time'] == null ? null : getDateTime(json['spot_time']),
+        spotTime: getDateTime(json['spot_time']),
       );
 
   /// API instance
