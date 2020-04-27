@@ -7,11 +7,14 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/api/contracts/operations/buy_contract.dart';
 import 'package:flutter_deriv_api/api/contracts/operations/price_proposal.dart';
 import 'package:flutter_deriv_api/api/models/open_contract_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/api/contracts/operations/exceptions/contract_operations_exception.dart';
+import 'package:flutter_deriv_api/api/contracts/operations/sell_contract.dart';
 import 'buy_contract_mock_data.dart';
 import 'open_contract_mock_data.dart';
 import 'price_proposal_mock_data.dart';
+import 'sell_contract_mock_data.dart';
 
 void main() {
   test('Price proposal json parsing', () {
@@ -21,8 +24,8 @@ void main() {
 
     expect(priceProposal.askPrice, 10);
     expect(priceProposal.id, '042922fe-5664-09e4-c3bf-b3bbe98f31db');
-    expect(priceProposal.dateStart.millisecondsSinceEpoch ~/ 1000, 1586335719);
-    expect(priceProposal.spotTime.millisecondsSinceEpoch ~/ 1000, 1586335713);
+    expect(priceProposal.dateStart, getDateTime(1586335719));
+    expect(priceProposal.spotTime, getDateTime(1586335713));
     expect(priceProposal.spot, 9392.5);
   });
 
@@ -30,18 +33,34 @@ void main() {
     final Map<String, dynamic> buyContractMap = jsonDecode(buyContractJSON);
     final BuyContract buyContract = BuyContract.fromJson(buyContractMap['buy']);
     expect(buyContract.contractId, 79939279308);
-    expect(buyContract.purchaseTime.millisecondsSinceEpoch ~/ 1000, 1587528886);
+    expect(buyContract.purchaseTime, getDateTime(1587528886));
     expect(
-        buyContract.shortcode, 'CALL_R_100_100_1587528886_1587528946_S10P_0');
+      buyContract.shortcode,
+      'CALL_R_100_100_1587528886_1587528946_S10P_0',
+    );
     expect(buyContract.buyPrice, 49.12);
   });
 
   test('Proposal open contract JSON parsing', () {
     final Map<String, dynamic> openContractMap = jsonDecode(openContractJSON);
-    final OpenContractModel openContractModel =
-        OpenContractModel.fromJson(openContractMap['proposal_open_contract']);
+    final OpenContractModel openContractModel = OpenContractModel.fromJson(
+      openContractMap['proposal_open_contract'],
+    );
 
-    print('object');
+    expect(openContractModel.contractId, 79944933588);
+
+  });
+
+  test('Sell contract JSON parsing', () {
+    final Map<String, dynamic> sellContractMap = jsonDecode(sellContractJSON);
+    final SellContract sellContract =
+        SellContract.fromJson(sellContractMap['sell']);
+
+    expect(sellContract.balanceAfter, 9706.5);
+    expect(sellContract.contractId, 79939279308);
+    expect(sellContract.referenceId, 2165326767);
+    expect(sellContract.soldFor, 1200);
+    expect(sellContract.transactionId, 159779308968);
   });
 
   test('Buy proposal scenario', () async {
