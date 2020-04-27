@@ -14,20 +14,24 @@ class ContractReceiptModel extends BaseModel {
     this.startTime,
     this.token,
     this.transactionId,
+    this.errorCode,
+    this.messageToClient,
   });
 
   /// Creates instance from json
   factory ContractReceiptModel.fromJson(Map<String, dynamic> json) =>
       ContractReceiptModel(
-        buyPrice: json['buy_price'],
+        buyPrice: json['buy_price']?.toDouble(),
         contractId: json['contract_id'],
         longcode: json['longcode'],
-        payout: json['payout'],
+        payout: json['payout']?.toDouble(),
         purchaseTime: getDateTime(json['purchase_time']),
         shortcode: json['shortcode'],
         startTime: getDateTime(json['start_time']),
         token: json['token'],
         transactionId: json['transaction_id'],
+        errorCode: json['code'],
+        messageToClient: json['message_to_client'],
       );
 
   /// Actual effected purchase price
@@ -57,6 +61,12 @@ class ContractReceiptModel extends BaseModel {
   /// Internal transaction identifier
   final int transactionId;
 
+  /// An error code
+  final String errorCode;
+
+  /// An error message localized according to the websocket
+  final String messageToClient;
+
   /// Creates copy of instance with given parameters
   ContractReceiptModel copyWith({
     double buyPrice,
@@ -68,6 +78,8 @@ class ContractReceiptModel extends BaseModel {
     DateTime startTime,
     String token,
     int transactionId,
+    String errorCode,
+    String messageToClient,
   }) =>
       ContractReceiptModel(
         buyPrice: buyPrice ?? this.buyPrice,
@@ -79,5 +91,7 @@ class ContractReceiptModel extends BaseModel {
         startTime: startTime ?? this.startTime,
         token: token ?? this.token,
         transactionId: transactionId ?? this.transactionId,
+        errorCode: errorCode ?? this.errorCode,
+        messageToClient: messageToClient ?? this.messageToClient,
       );
 }
