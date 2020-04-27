@@ -2,8 +2,8 @@ import 'package:recase/recase.dart';
 
 /// Enum helper class
 class EnumHelper<T> {
-  /// Parse enum to String
-  static String parse<T>({
+  /// Converts enum to string
+  static String getString<T>({
     T value,
     bool snakeCase = true,
   }) {
@@ -22,7 +22,7 @@ class EnumHelper<T> {
     String name,
     bool snakeCase = true,
   }) {
-    if (values == null || values.isEmpty) {
+    if (name == null || values == null || values.isEmpty) {
       return null;
     }
 
