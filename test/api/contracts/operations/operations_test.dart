@@ -48,7 +48,16 @@ void main() {
     );
 
     expect(openContractModel.contractId, 79944933588);
-
+    expect(openContractModel.payout, 50.0);
+    expect(openContractModel.profit, 25.45);
+    expect(openContractModel.profitPercentage, 103.67);
+    expect(openContractModel.purchaseTime, getDateTime(1587533920));
+    expect(openContractModel.contractType, 'CALL');
+    expect(openContractModel.currency, 'USD');
+    expect(openContractModel.auditDetails.contractEnd.first.tick, 1419.96);
+    expect(openContractModel.auditDetails.contractEnd.first.epoch,
+        getDateTime(1587533976));
+    expect(openContractModel.underlying, 'R_100');
   });
 
   test('Sell contract JSON parsing', () {
