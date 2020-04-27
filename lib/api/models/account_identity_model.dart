@@ -34,7 +34,7 @@ class AccountIdentityModel extends BaseModel {
   /// This shows the information about the authentication services implemented
   final AuthenticationServicesModel services;
 
-  // todo(ramin): Use EnumHelper once its ready
+  // TODO(ramin): Use EnumHelper once its ready
   /// This represent the current status for proof of identity document
   /// submitted for authentication.
   final String status;

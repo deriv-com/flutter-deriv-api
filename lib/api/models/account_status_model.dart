@@ -19,11 +19,11 @@ abstract class AccountStatusModel extends BaseModel {
   /// authenticate their account.
   final bool promptClientToAuthenticate;
 
-  // todo(ramin): Use EnumHelper once its ready
+  // TODO(ramin): Use EnumHelper once its ready
   /// Client risk classification: `low`, `standard`, `high`.
   final String riskClassification;
 
-  // todo(ramin): Use EnumHelper once its ready
+  // TODO(ramin): Use EnumHelper once its ready
   /// Account status. Possible status:
   /// - `age_verification`: client is age-verified.
   /// - `authenticated`: client is fully authenticated.
