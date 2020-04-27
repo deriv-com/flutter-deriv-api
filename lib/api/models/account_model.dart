@@ -9,7 +9,7 @@ abstract class AccountModel extends BaseModel {
     this.isDisabled,
     this.isVirtual,
     this.landingCompanyName,
-    this.loginid,
+    this.loginId,
   });
 
   /// Currency of specified account.
@@ -28,5 +28,5 @@ abstract class AccountModel extends BaseModel {
   final String landingCompanyName;
 
   /// The account ID of specified account.
-  final String loginid;
+  final String loginId;
 }
