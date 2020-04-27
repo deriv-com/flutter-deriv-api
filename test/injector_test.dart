@@ -16,7 +16,11 @@ void main() {
 
     // Retrieve API instance from injector
     final BasicBinaryAPI api = injector.get<BasicBinaryAPI>();
-    await api.run();
+    await api.run(
+      endpoint: 'frontend.binaryws.com',
+      brand: 'binary',
+      appId: '1089'
+    );
 
     final List<ActiveSymbol> symbols = await ActiveSymbol.getActiveSymbols();
     print('Number of available symbols: ${symbols?.length}');
