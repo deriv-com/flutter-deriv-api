@@ -23,6 +23,7 @@ abstract class OauthAppModel extends BaseModel {
   /// Application name
   final String name;
 
+  // TODO(ramin): Change to enum later
   /// The list of permission scopes grant for each app.
   final List<String> scopes;
 }
