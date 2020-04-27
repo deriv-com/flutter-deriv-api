@@ -13,6 +13,8 @@ void main() {
 
     expect(accountSettings.country, 'Afghanistan');
     expect(accountSettings.countryCode, 'af');
+    expect(accountSettings.hasSecretAnswer, false);
+    expect(accountSettings.emailConsent, true);
     expect(accountSettings.userHash,
         'b1258cd44e55d7d736cacc30c37ec2218defd17c44635e61a78ddac6ca07bd31');
   });

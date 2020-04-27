@@ -30,7 +30,8 @@ class AccountSettingsModel {
     this.userHash,
   });
 
-  /// Purpose and reason for requesting the account opening. Only applicable for real money account.
+  /// Purpose and reason for requesting the account opening.
+  /// Only applicable for real money account.
   final String accountOpeningReason;
 
   /// City (note: not set for virtual-money accounts)
@@ -48,8 +49,9 @@ class AccountSettingsModel {
   /// State (note: not set for virtual-money accounts)
   final String addressState;
 
-  /// Boolean value 1 or 0, indicating permission to allow others to follow your trades. Note: not applicable for Virtual account. Only allow for real money account.
-  final int allowCopiers;
+  /// Boolean value true or false, indicating permission to allow others to follow your
+  /// trades. Note: not applicable for Virtual account. Only allow for real money account.
+  final bool allowCopiers;
 
   /// Country of legal citizenship, 2-letter country code.
   final String citizen;
@@ -64,22 +66,24 @@ class AccountSettingsModel {
   final String countryCode;
 
   /// Epoch of user's birthday (note: not set for virtual-money accounts)
-  final String dateOfBirth;
+  final DateTime dateOfBirth;
 
   /// User Email
   final String email;
 
-  /// Boolean value 1 or 0, indicating permission to use email address for any contact which may include marketing
-  final int emailConsent;
+  /// Boolean value true or false, indicating permission to use email address for any
+  /// contact which may include marketing
+  final bool emailConsent;
 
   /// First name (note: not set for virtual-money accounts)
   final String firstName;
 
-  /// Returns 1 if the client has a secret answer, 0 otherwise.
-  final int hasSecretAnswer;
+  /// Returns true if the client has a secret answer, 0 otherwise.
+  final bool hasSecretAnswer;
 
-  /// Boolean value 1 or 0, indicating whether is payment agent (note: not applicable for virtual money accounts)
-  final int isAuthenticatedPaymentAgent;
+  /// Boolean value true or false, indicating whether is payment agent
+  /// (note: not applicable for virtual money accounts)
+  final bool isAuthenticatedPaymentAgent;
 
   /// Last name (note: not set for virtual-money accounts)
   final String lastName;
