@@ -28,11 +28,10 @@ class AccountStatus extends AccountStatusModel {
         promptClientToAuthenticate:
             getBool(json['prompt_client_to_authenticate']),
         riskClassification: json['risk_classification'],
-        status: json['status'] == null
-            ? null
-            : json['status']
-                .map<String>((dynamic entry) => entry.toString())
-                .toList(),
+        status: getListFromMap(
+          json['status'],
+          (dynamic item) => item.toString(),
+        ),
       );
 
   /// Clones a new instance

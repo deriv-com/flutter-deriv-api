@@ -158,3 +158,14 @@ class RandomGenerator {
   }) =>
       min + Random().nextInt(max - min);
 }
+
+/// Get list of models from Map
+List<T> getListFromMap<T>(
+  List<dynamic> jsonMap,
+  T Function(dynamic itemMap) itemMapToType,
+) {
+  if (jsonMap == null) {
+    return null;
+  }
+  return jsonMap.map<T>((dynamic entry) => itemMapToType(entry)).toList();
+}
