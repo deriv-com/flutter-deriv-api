@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/api/transfer/transfer_between_accounts.dart';
 import 'transfer_between_accounts_model_mock_data.dart';
 
 void main() {
-  test('app update json parsing', () {
+  test('transfer between accounts json parsing', () {
     final Map<String, dynamic> mapData =
         jsonDecode(transferBetweenAccountsMockData);
     final TransferBetweenAccounts transferBetweenAccounts =
