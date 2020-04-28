@@ -43,7 +43,7 @@ class AccountIdentityModel extends BaseModel {
   /// submitted for authentication.
   final AccountIdentityStatus status;
 
-  /// ToJson
+  /// Clones a new instance
   AccountIdentityModel copyWith({
     DateTime expiryDate,
     int furtherSubmissionsAllowed,
