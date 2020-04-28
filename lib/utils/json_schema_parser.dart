@@ -67,20 +67,20 @@ class JsonSchemaParser {
         '''
           /// ${ReCase(className).sentenceCase} model class
           abstract class ${className}Model {
-            /// Class constructor
+            /// Initializes
             ${_generateContractor(className: '${className}Model', models: models, isSubclass: false)}
             ${_generateProperties(models: models)}
           }
         
           /// ${ReCase(className).sentenceCase} class
           class $className extends ${className}Model {
-            /// Class constructor
+            /// Initializes
             ${_generateContractor(className: className, models: models)}
-            /// Generate instance from json
+            /// Generate an instance from json
             ${_generateFromJson(className: className, models: models)}
             /// Converts to json
             ${_generateToJson(models: models)}
-            /// Generate copy of instance with given parameters
+            /// Generate a copy of instance with given parameters
             ${_copyWith(className: className, models: models)}
           }
         ''',
@@ -334,7 +334,9 @@ class JsonSchemaParser {
   }
 
   static String _getType(dynamic entry) => entry.value['type']?.length == 2
-      ? entry.value['type'][1]
+      ? entry.value['type'][0] != 'null'
+          ? entry.value['type'][0]
+          : entry.value['type'][1]
       : entry.value['type'];
 
   static bool _isBoolean(dynamic entry) =>
