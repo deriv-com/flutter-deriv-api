@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_deriv_api/api/landing_company/landing_company_detalil.dart';
+import 'package:flutter_deriv_api/api/models/landing_company_detail_model.dart';
 import 'package:flutter_deriv_api/api/models/lc_field_info_model.dart';
 import 'landing_company_detail_mock_data.dart';
 
@@ -9,8 +9,8 @@ void main() {
   test('Landing company details test', () {
     final Map<String, dynamic> landingCompanyDetailsMap =
         jsonDecode(landingCompanyDetailJSON);
-    final LandingCompanyDetail landingCompanyDetail =
-        LandingCompanyDetail.fromJson(
+    final LandingCompanyDetailModel landingCompanyDetail =
+        LandingCompanyDetailModel.fromJson(
             landingCompanyDetailsMap['landing_company_details']);
 
     expect(landingCompanyDetail.address.length, 4);

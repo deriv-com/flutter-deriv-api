@@ -4,31 +4,32 @@ import 'base_model.dart';
 class LCFieldInfoModel extends BaseModel {
   /// Initializes
   LCFieldInfoModel({
-    this.requirement,
+    this.condition,
     this.fields,
   });
 
   /// Creates instance from JSON
-  factory LCFieldInfoModel.fromJson(String action, List<dynamic> fieldsList) =>
+  factory LCFieldInfoModel.fromJson(
+          String condition, List<dynamic> fieldsList) =>
       LCFieldInfoModel(
-        requirement: action,
+        condition: condition,
         fields:
             fieldsList.map<String>((dynamic item) => item.toString()).toList(),
       );
 
-  /// Required action
-  final String requirement;
+  /// action
+  final String condition;
 
   /// Fields required for this action
   final List<String> fields;
 
   /// Creates a copy with given parameters
   LCFieldInfoModel copyWith(
-    String requirement,
+    String condition,
     List<String> fields,
   ) =>
       LCFieldInfoModel(
-        requirement: requirement ?? this.requirement,
+        condition: condition ?? this.condition,
         fields: fields ?? this.fields,
       );
 }
