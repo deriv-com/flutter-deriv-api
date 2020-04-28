@@ -38,3 +38,21 @@ enum TokenScope {
   /// Admin Access
   admin,
 }
+
+/// Statement transaction action type
+enum StatementTransactionActionType {
+  /// Buy
+  buy,
+
+  /// Sell
+  sell,
+
+  /// Deposit
+  deposit,
+
+  /// Withdrawal
+  withdrawal,
+
+  /// Escrow
+  escrow,
+}
