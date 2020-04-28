@@ -1,5 +1,17 @@
 import 'base_model.dart';
 
+/// Index of contract type code
+const int contractTypeCodeIndex = 0;
+
+/// Index of contract type name
+const int contractTypeNameIndex = 1;
+
+/// Index of max duration
+const int maxDurationIndex = 3;
+
+/// Index of min duration
+const int minDurationIndex = 2;
+
 /// Asset index contract model class
 class IndexContractModel extends BaseModel {
   /// Initializes
@@ -15,10 +27,10 @@ class IndexContractModel extends BaseModel {
     List<dynamic> jsonList,
   ) =>
       IndexContractModel(
-        contractTypeCode: jsonList[0],
-        contractTypeName: jsonList[1],
-        maxDuration: jsonList[3],
-        minDuration: jsonList[2],
+        contractTypeCode: jsonList[contractTypeCodeIndex],
+        contractTypeName: jsonList[contractTypeNameIndex],
+        maxDuration: jsonList[maxDurationIndex],
+        minDuration: jsonList[minDurationIndex],
       );
 
   /// Contract type code

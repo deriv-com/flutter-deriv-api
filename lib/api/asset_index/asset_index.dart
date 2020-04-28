@@ -1,6 +1,15 @@
 import 'package:flutter_deriv_api/api/models/asset_index_model.dart';
 import 'package:flutter_deriv_api/api/models/index_contract_model.dart';
 
+/// Index of contracts
+const int contractsIndex = 2;
+
+/// Index of symbol code
+const int symbolCodeIndex = 0;
+
+/// Index of symbol name
+const int symbolNameIndex = 1;
+
 /// Asset index class
 class AssetIndex extends AssetIndexModel {
   /// Initializes
@@ -9,24 +18,24 @@ class AssetIndex extends AssetIndexModel {
     String symbolCode,
     String symbolName,
   }) : super(
-    contracts: contracts,
-    symbolCode: symbolCode,
-    symbolName: symbolName,
-  );
+          contracts: contracts,
+          symbolCode: symbolCode,
+          symbolName: symbolName,
+        );
 
   /// Generate an instance from a JSON list
   factory AssetIndex.fromJson(
-      List<dynamic> jsonList,
-      ) =>
+    List<dynamic> jsonList,
+  ) =>
       AssetIndex(
-        contracts: jsonList[2] == 0
+        contracts: jsonList[contractsIndex] == 0
             ? null
-            : jsonList[2]
-            .map<IndexContractModel>(
-                (dynamic item) => IndexContractModel.fromJson(item))
-            .toList(),
-        symbolCode: jsonList[0],
-        symbolName: jsonList[1],
+            : jsonList[contractsIndex]
+                .map<IndexContractModel>(
+                    (dynamic item) => IndexContractModel.fromJson(item))
+                .toList(),
+        symbolCode: jsonList[symbolCodeIndex],
+        symbolName: jsonList[symbolNameIndex],
       );
 
   /// Creates a copy of this instance with given parameters
