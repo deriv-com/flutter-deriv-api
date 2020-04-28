@@ -1,14 +1,18 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
+import 'base_model.dart';
+import 'lc_changeable_filed_model.dart';
+import 'lc_currency_model.dart';
+import 'lc_requirement_model.dart';
+
 /// Model class for landing company detail
-class LandingCompanyDetailModel {
+class LandingCompanyDetailModel extends BaseModel {
   /// Initializes
   LandingCompanyDetailModel({
     this.address,
     this.changeableFields,
     this.country,
-    this.currencyConfig,
+    this.marketsCurrencies,
     this.hasRealityCheck,
     this.legalAllowedContractCategories,
     this.legalAllowedCurrencies,
@@ -22,15 +26,25 @@ class LandingCompanyDetailModel {
   /// Creates instance from JSON
   factory LandingCompanyDetailModel.fromJson(Map<String, dynamic> json) =>
       LandingCompanyDetailModel(
-        address: json['address'].toString(),
-        changeableFields: json['changeable_fields'],
+        address: json['address'] == null || (json['address'] is Map)
+            ? null
+            : json['address']
+                .map<String>((dynamic item) => item.toString())
+                .toList(),
+        changeableFields: json['changeable_fields'] == null
+            ? null
+            : json['changeable_fields']
+                .entries
+                .map<LCChangeableFiledModel>((dynamic entry) =>
+                    LCChangeableFiledModel.fromJson(entry.key, entry.value))
+                .toList(),
         country: json['country'],
-        currencyConfig: json['currency_config'] == null
+        marketsCurrencies: json['currency_config'] == null
             ? null
             : json['currency_config']
                 .entries
-                .map<MarketCurrencyConfigModel>((dynamic entry) =>
-                    MarketCurrencyConfigModel.fromJson(entry.key, entry.value))
+                .map<LCCurrencyModel>((dynamic entry) =>
+                    LCCurrencyModel.fromJson(entry.key, entry.value))
                 .toList(),
         hasRealityCheck: getBool(json['has_reality_check']),
         legalAllowedContractCategories:
@@ -51,21 +65,27 @@ class LandingCompanyDetailModel {
                 .toList(),
         legalDefaultCurrency: json['legal_default_currency'],
         name: json['name'],
-        requirements: json['requirements'],
+        requirements: json['requirements'] == null
+            ? null
+            : json['requirements']
+                .entries
+                .map<LCRequirementModel>((dynamic entry) =>
+                    LCRequirementModel.fromJson(entry.key, entry.value))
+                .toList(),
         shortcode: json['shortcode'],
       );
 
   /// Landing Company address.
-  final String address;
+  final List<String> address;
 
   /// Special conditions for changing sensitive fields
-  final Map<String, dynamic> changeableFields;
+  final List<LCChangeableFiledModel> changeableFields;
 
   /// Landing Company country.
   final String country;
 
   /// The configuration of each currency.
-  final List<MarketCurrencyConfigModel> currencyConfig;
+  final List<LCCurrencyModel> marketsCurrencies;
 
   /// Flag to indicate whether reality check is applicable for this Landing Company
   /// . `true`: applicable, `false`: not applicable. The Reality Check is a feature that
@@ -89,31 +109,31 @@ class LandingCompanyDetailModel {
   final String name;
 
   /// Legal requirements for the given Landing Company.
-  final Map<String, dynamic> requirements;
+  final List<LCRequirementModel> requirements;
 
   /// Landing Company shortcode.
   final String shortcode;
 
   /// Create a new instance with given parameters
   LandingCompanyDetailModel copyWith({
-    String address,
-    Map<String, dynamic> changeableFields,
+    List<String> address,
+    List<LCChangeableFiledModel> changeableFields,
     String country,
-    MarketCurrencyConfigModel currencyConfig,
+    LCCurrencyModel marketsCurrencies,
     bool hasRealityCheck,
     List<String> legalAllowedContractCategories,
     List<String> legalAllowedCurrencies,
     List<String> legalAllowedMarkets,
     String legalDefaultCurrency,
     String name,
-    Map<String, dynamic> requirements,
+    List<LCRequirementModel> requirements,
     String shortcode,
   }) =>
       LandingCompanyDetailModel(
         address: address ?? this.address,
         changeableFields: changeableFields ?? this.changeableFields,
         country: country ?? this.country,
-        currencyConfig: currencyConfig ?? this.currencyConfig,
+        marketsCurrencies: marketsCurrencies ?? this.marketsCurrencies,
         hasRealityCheck: hasRealityCheck ?? this.hasRealityCheck,
         legalAllowedContractCategories: legalAllowedContractCategories ??
             this.legalAllowedContractCategories,
@@ -125,70 +145,4 @@ class LandingCompanyDetailModel {
         requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
       );
-}
-
-/// Market currency config model
-class MarketCurrencyConfigModel {
-  /// Initializes
-  MarketCurrencyConfigModel({
-    this.currencies,
-    this.market,
-  });
-
-  /// Creates instance from JSON
-  factory MarketCurrencyConfigModel.fromJson(
-    String marketName,
-    Map<String, dynamic> currenciesMap,
-  ) =>
-      MarketCurrencyConfigModel(
-        market: marketName,
-        currencies: currenciesMap.entries
-            .map<Currency>(
-                (dynamic entry) => Currency.fromJson(entry.key, entry.value))
-            .toList(),
-      );
-
-  /// Name of the market.
-  final String market;
-
-  /// Currencies for this market
-  final List<Currency> currencies;
-
-  /// Creates a copy of instance with given parameters
-  MarketCurrencyConfigModel copyWith({
-    String market,
-  }) =>
-      MarketCurrencyConfigModel(
-        market: market ?? this.market,
-      );
-}
-
-/// Currency model class
-class Currency extends BaseModel {
-  /// Initializes
-  Currency({
-    this.code,
-    this.maxPayout,
-    this.minStake,
-  });
-
-  /// Creates instance from JSON
-  factory Currency.fromJson(
-    String code,
-    Map<String, dynamic> currencyMap,
-  ) =>
-      Currency(
-        code: code,
-        maxPayout: currencyMap['max_payout']?.toDouble(),
-        minStake: currencyMap['min_stake']?.toDouble(),
-      );
-
-  /// Code of the currency
-  final String code;
-
-  /// Currency's max payout
-  final double maxPayout;
-
-  /// Currency's min stake
-  final double minStake;
 }

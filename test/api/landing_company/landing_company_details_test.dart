@@ -12,6 +12,11 @@ void main() {
         LandingCompanyDetailModel.fromJson(
             landingCompanyDetailsMap['landing_company_details']);
 
-    print('object');
+    expect(landingCompanyDetailModel.address.length, 4);
+    expect(landingCompanyDetailModel.country, 'Sample country');
+    expect(landingCompanyDetailModel.legalDefaultCurrency, 'BTC');
+    expect(landingCompanyDetailModel.legalAllowedCurrencies.length, 2);
+    expect(landingCompanyDetailModel.legalAllowedContractCategories.length, 4);
+    expect(landingCompanyDetailModel.legalAllowedMarkets.length, 2);
   });
 }
