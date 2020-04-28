@@ -1,7 +1,6 @@
 import 'base_model.dart';
-import 'lc_changeable_filed_model.dart';
 import 'lc_currency_model.dart';
-import 'lc_requirement_model.dart';
+import 'lc_field_info_model.dart';
 
 /// Model class for landing company detail
 abstract class LandingCompanyDetailModel extends BaseModel {
@@ -25,7 +24,7 @@ abstract class LandingCompanyDetailModel extends BaseModel {
   final List<String> address;
 
   /// Special conditions for changing sensitive fields
-  final List<LCChangeableFiledModel> changeableFields;
+  final List<LCFieldInfoModel> changeableFields;
 
   /// Landing Company country.
   final String country;
@@ -55,7 +54,7 @@ abstract class LandingCompanyDetailModel extends BaseModel {
   final String name;
 
   /// Legal requirements for the given Landing Company.
-  final List<LCRequirementModel> requirements;
+  final List<LCFieldInfoModel> requirements;
 
   /// Landing Company shortcode.
   final String shortcode;

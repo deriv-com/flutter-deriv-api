@@ -2,8 +2,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/landing_company/landing_company_detalil.dart';
-import 'package:flutter_deriv_api/api/models/lc_changeable_filed_model.dart';
-import 'package:flutter_deriv_api/api/models/lc_requirement_model.dart';
+import 'package:flutter_deriv_api/api/models/lc_field_info_model.dart';
 import 'landing_company_detail_mock_data.dart';
 
 void main() {
@@ -21,18 +20,17 @@ void main() {
     expect(landingCompanyDetail.legalAllowedContractCategories.length, 4);
     expect(landingCompanyDetail.legalAllowedMarkets.length, 2);
 
-    final List<LCRequirementModel> requirements =
+    final List<LCFieldInfoModel> requirements =
         landingCompanyDetail.requirements;
 
     expect(requirements.length, 2);
     expect(requirements.first.fields.length, 4);
     expect(requirements.first.fields.first, 'first_name');
-    
-    final List<LCChangeableFiledModel> changeableFields =
+
+    final List<LCFieldInfoModel> changeableFields =
         landingCompanyDetail.changeableFields;
     expect(changeableFields.length, 1);
     expect(changeableFields.first.fields.length, 6);
     expect(changeableFields.first.fields.first, 'salutation');
-
   });
 }

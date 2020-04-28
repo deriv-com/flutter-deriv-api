@@ -1,6 +1,5 @@
 import 'package:flutter_deriv_api/api/models/landing_company_detail_model.dart';
-import 'package:flutter_deriv_api/api/models/lc_requirement_model.dart';
-import 'package:flutter_deriv_api/api/models/lc_changeable_filed_model.dart';
+import 'package:flutter_deriv_api/api/models/lc_field_info_model.dart';
 import 'package:flutter_deriv_api/api/models/lc_currency_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
@@ -9,7 +8,7 @@ class LandingCompanyDetail extends LandingCompanyDetailModel {
   /// Initializes
   LandingCompanyDetail({
     List<String> address,
-    List<LCChangeableFiledModel> changeableFields,
+    List<LCFieldInfoModel> changeableFields,
     String country,
     List<LCCurrencyModel> marketsCurrencies,
     bool hasRealityCheck,
@@ -18,7 +17,7 @@ class LandingCompanyDetail extends LandingCompanyDetailModel {
     List<String> legalAllowedMarkets,
     String legalDefaultCurrency,
     String name,
-    List<LCRequirementModel> requirements,
+    List<LCFieldInfoModel> requirements,
     String shortcode,
   }) : super(
           address: address,
@@ -47,8 +46,8 @@ class LandingCompanyDetail extends LandingCompanyDetailModel {
             ? null
             : json['changeable_fields']
                 .entries
-                .map<LCChangeableFiledModel>((dynamic entry) =>
-                    LCChangeableFiledModel.fromJson(entry.key, entry.value))
+                .map<LCFieldInfoModel>((dynamic entry) =>
+                    LCFieldInfoModel.fromJson(entry.key, entry.value))
                 .toList(),
         country: json['country'],
         marketsCurrencies: json['currency_config'] == null
@@ -81,8 +80,8 @@ class LandingCompanyDetail extends LandingCompanyDetailModel {
             ? null
             : json['requirements']
                 .entries
-                .map<LCRequirementModel>((dynamic entry) =>
-                    LCRequirementModel.fromJson(entry.key, entry.value))
+                .map<LCFieldInfoModel>((dynamic entry) =>
+                    LCFieldInfoModel.fromJson(entry.key, entry.value))
                 .toList(),
         shortcode: json['shortcode'],
       );
@@ -90,7 +89,7 @@ class LandingCompanyDetail extends LandingCompanyDetailModel {
   /// Create a new instance with given parameters
   LandingCompanyDetail copyWith({
     List<String> address,
-    List<LCChangeableFiledModel> changeableFields,
+    List<LCFieldInfoModel> changeableFields,
     String country,
     List<LCCurrencyModel> marketsCurrencies,
     bool hasRealityCheck,
@@ -99,7 +98,7 @@ class LandingCompanyDetail extends LandingCompanyDetailModel {
     List<String> legalAllowedMarkets,
     String legalDefaultCurrency,
     String name,
-    List<LCRequirementModel> requirements,
+    List<LCFieldInfoModel> requirements,
     String shortcode,
   }) =>
       LandingCompanyDetail(
