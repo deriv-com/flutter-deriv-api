@@ -38,3 +38,12 @@ enum TokenScope {
   /// Admin Access
   admin,
 }
+
+/// Type of the account for transfer.
+enum TransferAccountType {
+  /// Binary account
+  binary,
+
+  /// MT5 account
+  mt5,
+}
