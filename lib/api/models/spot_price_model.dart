@@ -14,7 +14,7 @@ class SpotPriceModel extends BaseModel {
   /// Generate instance from json
   factory SpotPriceModel.fromJson(Map<String, dynamic> json) => SpotPriceModel(
         displayName: json['display_name'],
-        orderAmount: json['order_amount'],
+        orderAmount: json['order_amount']?.toDouble(),
         orderDate: getDateTime(json['order_date']),
         value: json['value'],
       );
