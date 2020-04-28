@@ -20,7 +20,7 @@ class TncApprovalModel extends BaseModel {
 
   /// Creates a copy of instance with given parameters
   TncApprovalModel copyWith({
-    int tncApproved,
+    bool tncApproved,
   }) =>
       TncApprovalModel(
         tncApproved: tncApproved ?? this.tncApproved,
