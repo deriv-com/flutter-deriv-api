@@ -3,7 +3,7 @@ import 'base_model.dart';
 /// Crypto currencies information
 class WebsiteStatusCryptoConfigModel extends BaseModel {
   /// Initializes
-  WebsiteStatusCryptoConfigModel(this.code, this.minimumWithdrawal);
+  WebsiteStatusCryptoConfigModel({this.code, this.minimumWithdrawal});
 
   /// Initialized from map
   factory WebsiteStatusCryptoConfigModel.fromJson(
@@ -11,8 +11,8 @@ class WebsiteStatusCryptoConfigModel extends BaseModel {
     Map<String, dynamic> json,
   ) =>
       WebsiteStatusCryptoConfigModel(
-        code,
-        json['minimum_withdrawal']?.toDouble(),
+        code: code,
+        minimumWithdrawal: json['minimum_withdrawal']?.toDouble(),
       );
 
   /// Crypto-currency code
@@ -27,7 +27,7 @@ class WebsiteStatusCryptoConfigModel extends BaseModel {
     double minimumWithdrawal,
   }) =>
       WebsiteStatusCryptoConfigModel(
-        code ?? this.code,
-        minimumWithdrawal ?? this.minimumWithdrawal,
+        code: code ?? this.code,
+        minimumWithdrawal: minimumWithdrawal ?? this.minimumWithdrawal,
       );
 }

@@ -3,7 +3,7 @@ import 'base_model.dart';
 /// The fee that applies for transfer between accounts with different types of currencies.
 class TransferFeeModel extends BaseModel {
   /// Initializes
-  TransferFeeModel(this.code, this.value);
+  TransferFeeModel({this.code, this.value});
 
   /// From Json
   factory TransferFeeModel.fromJson(
@@ -11,8 +11,8 @@ class TransferFeeModel extends BaseModel {
     dynamic item,
   ) =>
       TransferFeeModel(
-        code,
-        item?.toDouble(),
+        code: code,
+        value: item?.toDouble(),
       );
 
   /// code
@@ -27,7 +27,7 @@ class TransferFeeModel extends BaseModel {
     double value,
   }) =>
       TransferFeeModel(
-        code ?? this.code,
-        value ?? this.value,
+        code: code ?? this.code,
+        value: value ?? this.value,
       );
 }

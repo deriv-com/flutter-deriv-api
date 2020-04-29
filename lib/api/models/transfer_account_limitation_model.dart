@@ -6,19 +6,21 @@ import 'transfer_fee_model.dart';
 /// different types of currencies.
 class TransferAccountLimitationModel extends BaseModel {
   /// Initializes
-  TransferAccountLimitationModel(this.fees, this.limits);
+  TransferAccountLimitationModel({this.fees, this.limits});
 
   /// Initializes from map
   factory TransferAccountLimitationModel.fromJson(Map<String, dynamic> json) =>
       TransferAccountLimitationModel(
-        json['fees'] == null || json['fees'].isEmpty
+        fees: json['fees'] == null || json['fees'].isEmpty
             ? null
             : json['fees']
                 .entries
                 .map<TransferFeeModel>((MapEntry<String, dynamic> entry) =>
                     TransferFeeModel.fromJson(entry.key, entry.value))
                 .toList(),
-        TransferAmountModel.fromJson(json['limits']),
+        limits: json['limits'] == null
+            ? null
+            : TransferAmountModel.fromJson(json['limits']),
       );
 
   /// The fee that applies for transfer between accounts with different types of currencies.
@@ -33,7 +35,7 @@ class TransferAccountLimitationModel extends BaseModel {
     TransferAmountModel limits,
   }) =>
       TransferAccountLimitationModel(
-        fees ?? this.fees,
-        limits ?? this.limits,
+        fees: fees ?? this.fees,
+        limits: limits ?? this.limits,
       );
 }

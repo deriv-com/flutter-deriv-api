@@ -3,15 +3,15 @@ import 'base_model.dart';
 /// Maximum subscription to proposal calls.
 class MaxProposalSubscriptionModel extends BaseModel {
   /// Initializes
-  MaxProposalSubscriptionModel(this.appliesTo, this.max);
+  MaxProposalSubscriptionModel({this.appliesTo, this.max});
 
   /// From Json
   factory MaxProposalSubscriptionModel.fromJson(
     Map<String, dynamic> json,
   ) =>
       MaxProposalSubscriptionModel(
-        json['applies_to'],
-        json['max'],
+        appliesTo: json['applies_to'],
+        max: json['max'],
       );
 
   /// Describes which calls this limit applies to.
@@ -26,7 +26,7 @@ class MaxProposalSubscriptionModel extends BaseModel {
     int max,
   }) =>
       MaxProposalSubscriptionModel(
-        appliesTo ?? this.appliesTo,
-        max ?? this.max,
+        appliesTo: appliesTo ?? this.appliesTo,
+        max: max ?? this.max,
       );
 }
