@@ -3,27 +3,28 @@ import 'base_model.dart';
 /// Trader information
 class TraderModel extends BaseModel {
   /// Constructor
-  TraderModel(
-      {this.assets,
-      this.loginid,
-      this.maxTradeStake,
-      this.minTradeStake,
-      this.token,
-      this.tradeTypes});
+  TraderModel({
+    this.assets,
+    this.loginid,
+    this.maxTradeStake,
+    this.minTradeStake,
+    this.token,
+    this.tradeTypes,
+  });
 
   /// Instance from JSON
   factory TraderModel.fromJson(Map<String, dynamic> json) => TraderModel(
         assets: json['assets'] == null
             ? null
-            : json['assets'].map<String>((dynamic entry) => entry).toList(),
+            : json['assets'].map<String>((dynamic entry) => entry.toString()).toList(),
         loginid: json['loginid'],
-        maxTradeStake: json['max_trade_stake'],
-        minTradeStake: json['min_trade_stake'],
+        maxTradeStake: json['max_trade_stake']?.toDouble(),
+        minTradeStake: json['min_trade_stake']?.toDouble(),
         token: json['token'],
         tradeTypes: json['trade_types'] == null
             ? null
             : json['trade_types']
-                .map<String>((dynamic entry) => entry)
+                .map<String>((dynamic entry) => entry.toString())
                 .toList(),
       );
 
@@ -34,10 +35,10 @@ class TraderModel extends BaseModel {
   final String loginid;
 
   /// Maximum trading stake set for the trader.
-  final String maxTradeStake;
+  final double maxTradeStake;
 
   /// Minimum trading stake set for the trader.
-  final String minTradeStake;
+  final double minTradeStake;
 
   /// The token provided for the trader.
   final String token;
@@ -55,10 +56,11 @@ class TraderModel extends BaseModel {
     List<String> tradeTypes,
   }) =>
       TraderModel(
-          assets: assets ?? this.assets,
-          loginid: loginid ?? this.loginid,
-          maxTradeStake: maxTradeStake ?? this.maxTradeStake,
-          minTradeStake: minTradeStake ?? this.minTradeStake,
-          token: token ?? this.token,
-          tradeTypes: tradeTypes ?? this.tradeTypes);
+        assets: assets ?? this.assets,
+        loginid: loginid ?? this.loginid,
+        maxTradeStake: maxTradeStake ?? this.maxTradeStake,
+        minTradeStake: minTradeStake ?? this.minTradeStake,
+        token: token ?? this.token,
+        tradeTypes: tradeTypes ?? this.tradeTypes,
+      );
 }

@@ -41,6 +41,4 @@ class CopyTrading extends CopyTradingModel {
 
   /// list of active copiers and/or traders for Copy Trading
   static Future<CopyTrading> getList() async => null;
-
-
 }
