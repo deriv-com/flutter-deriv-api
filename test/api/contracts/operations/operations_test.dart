@@ -11,6 +11,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/api/contracts/operations/exceptions/contract_operations_exception.dart';
 import 'package:flutter_deriv_api/api/contracts/operations/sell_contract.dart';
+
 import 'buy_contract_mock_data.dart';
 import 'open_contract_mock_data.dart';
 import 'price_proposal_mock_data.dart';
