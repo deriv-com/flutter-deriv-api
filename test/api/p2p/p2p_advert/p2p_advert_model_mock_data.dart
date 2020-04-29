@@ -18,6 +18,8 @@ const String p2pAdvertModelMockData = '''
     "local_currency": "ZAR",
     "max_order_amount": 50,
     "max_order_amount_display": "50.00",
+    "max_order_amount_limit": 50,
+    "max_order_amount_limit_display": "50.00",
     "min_order_amount": 20,
     "min_order_amount_display": "20.00",
     "min_order_amount_limit": 20,

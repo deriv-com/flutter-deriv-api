@@ -29,6 +29,8 @@ void main() {
     expect(p2pAdvert.localCurrency, 'ZAR');
     expect(p2pAdvert.maxOrderAmount, 50.0);
     expect(p2pAdvert.maxOrderAmountDisplay, '50.00');
+    expect(p2pAdvert.maxOrderAmountLimit, 50.0);
+    expect(p2pAdvert.maxOrderAmountLimitDisplay, '50.00');
     expect(p2pAdvert.minOrderAmount, 20.0);
     expect(p2pAdvert.minOrderAmountDisplay, '20.00');
     expect(p2pAdvert.minOrderAmountLimit, 20.0);

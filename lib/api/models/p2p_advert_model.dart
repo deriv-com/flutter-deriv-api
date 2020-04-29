@@ -20,6 +20,8 @@ abstract class P2PAdvertModel extends BaseModel {
     this.localCurrency,
     this.maxOrderAmount,
     this.maxOrderAmountDisplay,
+    this.maxOrderAmountLimit,
+    this.maxOrderAmountLimitDisplay,
     this.minOrderAmount,
     this.minOrderAmountDisplay,
     this.minOrderAmountLimit,
@@ -76,6 +78,12 @@ abstract class P2PAdvertModel extends BaseModel {
 
   /// Maximum order amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible for advertisers.
   final String maxOrderAmountDisplay;
+
+  /// Maximum order amount at this time, in `account_currency`.
+  final double maxOrderAmountLimit;
+
+  /// Maximum order amount at this time, in `account_currency`, formatted to appropriate decimal places.
+  final String maxOrderAmountLimitDisplay;
 
   /// Minimum order amount specified in advert, in `account_currency`. It is only visible for advertisers.
   final double minOrderAmount;
