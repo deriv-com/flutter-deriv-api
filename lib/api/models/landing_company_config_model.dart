@@ -3,15 +3,15 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'base_model.dart';
 
 /// Landing company config
-class LCConfig extends BaseModel {
+class LandingCompanyConfigModel extends BaseModel {
   /// Initializes
-  LCConfig({this.taxDetailsRequired});
+  LandingCompanyConfigModel({this.taxDetailsRequired});
 
   /// Creates instance from JSON
-  factory LCConfig.fromJson(
+  factory LandingCompanyConfigModel.fromJson(
     Map<String, dynamic> json,
   ) =>
-      LCConfig(
+      LandingCompanyConfigModel(
         taxDetailsRequired: getBool(json['tax_details_required']),
       );
 
@@ -19,10 +19,10 @@ class LCConfig extends BaseModel {
   final bool taxDetailsRequired;
 
   /// Clones a new instance
-  LCConfig copyWith({
+  LandingCompanyConfigModel copyWith({
     bool taxDetailsRequired,
   }) =>
-      LCConfig(
+      LandingCompanyConfigModel(
         taxDetailsRequired: taxDetailsRequired ?? this.taxDetailsRequired,
       );
 }

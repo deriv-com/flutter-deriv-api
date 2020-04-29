@@ -1,17 +1,17 @@
 import 'base_model.dart';
 
 /// Landing company action with its fields
-class LCFieldInfoModel extends BaseModel {
+class LandingCompanyFieldsInfoModel extends BaseModel {
   /// Initializes
-  LCFieldInfoModel({
+  LandingCompanyFieldsInfoModel({
     this.condition,
     this.fields,
   });
 
   /// Creates instance from JSON
-  factory LCFieldInfoModel.fromJson(
+  factory LandingCompanyFieldsInfoModel.fromJson(
           String condition, List<dynamic> fieldsList) =>
-      LCFieldInfoModel(
+      LandingCompanyFieldsInfoModel(
         condition: condition,
         fields:
             fieldsList.map<String>((dynamic item) => item.toString()).toList(),
@@ -24,11 +24,11 @@ class LCFieldInfoModel extends BaseModel {
   final List<String> fields;
 
   /// Creates a copy with given parameters
-  LCFieldInfoModel copyWith(
+  LandingCompanyFieldsInfoModel copyWith(
     String condition,
     List<String> fields,
   ) =>
-      LCFieldInfoModel(
+      LandingCompanyFieldsInfoModel(
         condition: condition ?? this.condition,
         fields: fields ?? this.fields,
       );

@@ -1,20 +1,20 @@
 import 'base_model.dart';
 
 /// Landing company currency config model class
-class LCCurrencyConfig extends BaseModel {
+class LandingCompanyCurrencyConfigModel extends BaseModel {
   /// Initializes
-  LCCurrencyConfig({
+  LandingCompanyCurrencyConfigModel({
     this.code,
     this.maxPayout,
     this.minStake,
   });
 
   /// Creates instance from JSON
-  factory LCCurrencyConfig.fromJson(
+  factory LandingCompanyCurrencyConfigModel.fromJson(
     String code,
     Map<String, dynamic> currencyMap,
   ) =>
-      LCCurrencyConfig(
+      LandingCompanyCurrencyConfigModel(
         code: code,
         maxPayout: currencyMap['max_payout']?.toDouble(),
         minStake: currencyMap['min_stake']?.toDouble(),

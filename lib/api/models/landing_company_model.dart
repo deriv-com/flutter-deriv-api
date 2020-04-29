@@ -1,6 +1,6 @@
 import 'base_model.dart';
+import 'landing_company_config_model.dart';
 import 'landing_company_detail_model.dart';
-import 'lc_config.dart';
 import 'mt_landing_company_model.dart';
 
 /// Model class for landing company
@@ -19,7 +19,7 @@ abstract class LandingCompanyModel extends BaseModel {
   });
 
   /// Landing companies configs
-  final LCConfig config;
+  final LandingCompanyConfigModel config;
 
   /// Landing Company for financial contracts (all except Synthetic Indices)
   final LandingCompanyDetailModel financialCompany;

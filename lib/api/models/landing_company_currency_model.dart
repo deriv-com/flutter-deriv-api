@@ -1,38 +1,38 @@
 import 'base_model.dart';
-import 'lc_currency_config.dart';
+import 'landing_company_currency_config_model.dart';
 
 /// Landing company currency model
-class LCCurrencyModel extends BaseModel {
+class LandingCompanyCurrencyModel extends BaseModel {
   /// Initializes
-  LCCurrencyModel({
+  LandingCompanyCurrencyModel({
     this.currencies,
     this.market,
   });
 
   /// Creates instance from JSON
-  factory LCCurrencyModel.fromJson(
+  factory LandingCompanyCurrencyModel.fromJson(
     String marketName,
     Map<String, dynamic> currenciesMap,
   ) =>
-      LCCurrencyModel(
+      LandingCompanyCurrencyModel(
         market: marketName,
         currencies: currenciesMap.entries
-            .map<LCCurrencyConfig>((dynamic entry) =>
-                LCCurrencyConfig.fromJson(entry.key, entry.value))
+            .map<LandingCompanyCurrencyConfigModel>((dynamic entry) =>
+                LandingCompanyCurrencyConfigModel.fromJson(entry.key, entry.value))
             .toList(),
       );
 
   /// Currencies for this market
-  final List<LCCurrencyConfig> currencies;
+  final List<LandingCompanyCurrencyConfigModel> currencies;
 
   /// Name of the market.
   final String market;
 
   /// Creates a copy of instance with given parameters
-  LCCurrencyModel copyWith({
+  LandingCompanyCurrencyModel copyWith({
     String market,
   }) =>
-      LCCurrencyModel(
+      LandingCompanyCurrencyModel(
         market: market ?? this.market,
       );
 }

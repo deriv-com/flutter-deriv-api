@@ -1,13 +1,13 @@
 import 'package:flutter_deriv_api/api/models/landing_company_detail_model.dart';
 import 'package:flutter_deriv_api/api/models/landing_company_model.dart';
-import 'package:flutter_deriv_api/api/models/lc_config.dart';
+import 'package:flutter_deriv_api/api/models/landing_company_config_model.dart';
 import 'package:flutter_deriv_api/api/models/mt_landing_company_model.dart';
 
 /// Landing company info
 class LandingCompany extends LandingCompanyModel {
   /// Initializes
   LandingCompany({
-    LCConfig config,
+    LandingCompanyConfigModel config,
     LandingCompanyDetailModel financialCompany,
     LandingCompanyDetailModel gamingCompany,
     String id,
@@ -31,7 +31,7 @@ class LandingCompany extends LandingCompanyModel {
   /// Creates instance from JSON
   factory LandingCompany.fromJson(Map<String, dynamic> json) => LandingCompany(
         config:
-            json['config'] == null ? null : LCConfig.fromJson(json['config']),
+            json['config'] == null ? null : LandingCompanyConfigModel.fromJson(json['config']),
         financialCompany: json['financial_company'] == null
             ? null
             : LandingCompanyDetailModel.fromJson(json['financial_company']),
@@ -52,7 +52,7 @@ class LandingCompany extends LandingCompanyModel {
 
   /// Creates a copy of this instance
   LandingCompany copyWith({
-    LCConfig config,
+    LandingCompanyConfigModel config,
     LandingCompanyDetailModel financialCompany,
     LandingCompanyDetailModel gamingCompany,
     String id,
