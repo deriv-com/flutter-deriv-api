@@ -1,5 +1,7 @@
+import 'base_model.dart';
+
 /// Account setting model class
-class AccountSettingsModel {
+abstract class AccountSettingsModel extends BaseModel {
   /// Initializes
   AccountSettingsModel({
     this.accountOpeningReason,
@@ -56,7 +58,7 @@ class AccountSettingsModel {
   /// Country of legal citizenship, 2-letter country code.
   final String citizen;
 
-  // TODO(ramin): Use EnumHelper later on
+  // TODO(ramin): Use EnumHelper later and when its status enum got merged
   /// Latest terms and conditions version accepted by client
   final String clientTncStatus;
 
