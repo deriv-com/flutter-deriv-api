@@ -38,3 +38,12 @@ enum TokenScope {
   /// Admin Access
   admin,
 }
+
+/// Type of login action.
+enum LoginAction {
+  /// Login
+  login,
+
+  /// Logout
+  logout,
+}
