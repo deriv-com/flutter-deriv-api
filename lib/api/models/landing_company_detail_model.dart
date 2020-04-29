@@ -25,7 +25,7 @@ class LandingCompanyDetailModel extends BaseModel {
   /// Creates instance from JSON
   factory LandingCompanyDetailModel.fromJson(Map<String, dynamic> json) =>
       LandingCompanyDetailModel(
-        address: json['address'] == null || (json['address'] is Map)
+        address: json['address'] == null || json['address'].isEmpty
             ? null
             : json['address']
                 .map<String>((dynamic item) => item.toString())
@@ -35,7 +35,8 @@ class LandingCompanyDetailModel extends BaseModel {
             : json['changeable_fields']
                 .entries
                 .map<LandingCompanyFieldsInfoModel>((dynamic entry) =>
-                    LandingCompanyFieldsInfoModel.fromJson(entry.key, entry.value))
+                    LandingCompanyFieldsInfoModel.fromJson(
+                        entry.key, entry.value))
                 .toList(),
         country: json['country'],
         marketsCurrencies: json['currency_config'] == null
@@ -43,7 +44,8 @@ class LandingCompanyDetailModel extends BaseModel {
             : json['currency_config']
                 .entries
                 .map<LandingCompanyCurrencyModel>((dynamic entry) =>
-                    LandingCompanyCurrencyModel.fromJson(entry.key, entry.value))
+                    LandingCompanyCurrencyModel.fromJson(
+                        entry.key, entry.value))
                 .toList(),
         hasRealityCheck: getBool(json['has_reality_check']),
         legalAllowedContractCategories:
@@ -64,15 +66,7 @@ class LandingCompanyDetailModel extends BaseModel {
                 .toList(),
         legalDefaultCurrency: json['legal_default_currency'],
         name: json['name'],
-        requirements: json['requirements'] == null
-            ? null
-            : json['requirements']
-                .entries
-                .map<LandingCompanyFieldsInfoModel>((dynamic entry) =>
-                    entry.value == null || entry.value is Map
-                        ? null
-                        : LandingCompanyFieldsInfoModel.fromJson(entry.key, entry.value))
-                .toList(),
+        requirements: json['requirements'],
         shortcode: json['shortcode'],
       );
 
@@ -110,7 +104,8 @@ class LandingCompanyDetailModel extends BaseModel {
   final String name;
 
   /// Legal requirements for the given Landing Company.
-  final List<LandingCompanyFieldsInfoModel> requirements;
+  /// Made it Map for now cause comes with different scenarios from the BE
+  final Map<String, dynamic> requirements;
 
   /// Landing Company shortcode.
   final String shortcode;
@@ -127,7 +122,7 @@ class LandingCompanyDetailModel extends BaseModel {
     List<String> legalAllowedMarkets,
     String legalDefaultCurrency,
     String name,
-    List<LandingCompanyFieldsInfoModel> requirements,
+    Map<String, dynamic> requirements,
     String shortcode,
   }) =>
       LandingCompanyDetailModel(

@@ -21,13 +21,6 @@ void main() {
     expect(landingCompanyDetail.legalAllowedContractCategories.length, 4);
     expect(landingCompanyDetail.legalAllowedMarkets.length, 2);
 
-    final List<LandingCompanyFieldsInfoModel> requirements =
-        landingCompanyDetail.requirements;
-
-    expect(requirements.length, 2);
-    expect(requirements.first.fields.length, 4);
-    expect(requirements.first.fields.first, 'first_name');
-
     final List<LandingCompanyFieldsInfoModel> changeableFields =
         landingCompanyDetail.changeableFields;
     expect(changeableFields.length, 1);
