@@ -2,10 +2,10 @@ import 'package:flutter_deriv_api/api/models/base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/p2p_advertiser_details_model.dart';
 
-/// P2P advert create model class
-abstract class P2PAdvertCreateModel extends BaseModel {
+/// P2P advert model class
+abstract class P2PAdvertModel extends BaseModel {
   /// Initializes
-  P2PAdvertCreateModel({
+  P2PAdvertModel({
     this.accountCurrency,
     this.advertiserDetails,
     this.amount,
@@ -22,6 +22,8 @@ abstract class P2PAdvertCreateModel extends BaseModel {
     this.maxOrderAmountDisplay,
     this.minOrderAmount,
     this.minOrderAmountDisplay,
+    this.minOrderAmountLimit,
+    this.minOrderAmountLimitDisplay,
     this.paymentInfo,
     this.paymentMethod,
     this.price,
@@ -80,6 +82,12 @@ abstract class P2PAdvertCreateModel extends BaseModel {
 
   /// Minimum order amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible for advertisers.
   final String minOrderAmountDisplay;
+
+  /// Minimum order amount at this time, in `account_currency`.
+  final double minOrderAmountLimit;
+
+  /// Minimum order amount at this time, in `account_currency`, formatted to appropriate decimal places.
+  final String minOrderAmountLimitDisplay;
 
   /// Payment instructions. Only applicable for 'sell adverts'.
   final String paymentInfo;

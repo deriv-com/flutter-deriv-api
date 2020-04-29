@@ -1,17 +1,6 @@
-const String p2pAdvertCreateModelMockData = '''
+const String p2pAdvertModelMockData = '''
 {
-  "echo_req": {
-    "amount": 100,
-    "description": "Please transfer to account number 1234",
-    "max_order_amount": 50,
-    "min_order_amount": 20,
-    "p2p_advert_create": 1,
-    "payment_method": "bank_transfer",
-    "rate": 4.25,
-    "type": "buy"
-  },
-  "msg_type": "p2p_advert_create",
-  "p2p_advert_create": {
+  "p2p_advert": {
     "account_currency": "USD",
     "advertiser_details": {
       "id": "3",
@@ -31,6 +20,8 @@ const String p2pAdvertCreateModelMockData = '''
     "max_order_amount_display": "50.00",
     "min_order_amount": 20,
     "min_order_amount_display": "20.00",
+    "min_order_amount_limit": 20,
+    "min_order_amount_limit_display": "20.00",
     "payment_info": "payment_info",
     "payment_method": "bank_transfer",
     "price": 4.25,

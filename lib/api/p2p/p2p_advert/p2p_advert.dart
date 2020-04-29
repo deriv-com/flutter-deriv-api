@@ -1,13 +1,13 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/models/p2p_advert_create_model.dart';
+import 'package:flutter_deriv_api/api/models/p2p_advert_model.dart';
 import 'package:flutter_deriv_api/api/models/p2p_advertiser_details_model.dart';
 import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// P2P advert create class
-class P2PAdvertCreate extends P2PAdvertCreateModel {
+/// P2P advert class
+class P2PAdvert extends P2PAdvertModel {
   /// Initializes
-  P2PAdvertCreate({
+  P2PAdvert({
     String accountCurrency,
     P2PAdvertiserDetailsModel advertiserDetails,
     double amount,
@@ -24,6 +24,8 @@ class P2PAdvertCreate extends P2PAdvertCreateModel {
     String maxOrderAmountDisplay,
     double minOrderAmount,
     String minOrderAmountDisplay,
+    double minOrderAmountLimit,
+    String minOrderAmountLimitDisplay,
     String paymentInfo,
     PaymentMethod paymentMethod,
     double price,
@@ -50,6 +52,8 @@ class P2PAdvertCreate extends P2PAdvertCreateModel {
           maxOrderAmountDisplay: maxOrderAmountDisplay,
           minOrderAmount: minOrderAmount,
           minOrderAmountDisplay: minOrderAmountDisplay,
+          minOrderAmountLimit: minOrderAmountLimit,
+          minOrderAmountLimitDisplay: minOrderAmountLimitDisplay,
           paymentInfo: paymentInfo,
           paymentMethod: paymentMethod,
           price: price,
@@ -62,8 +66,7 @@ class P2PAdvertCreate extends P2PAdvertCreateModel {
         );
 
   /// Generate an instance from json
-  factory P2PAdvertCreate.fromJson(Map<String, dynamic> json) =>
-      P2PAdvertCreate(
+  factory P2PAdvert.fromJson(Map<String, dynamic> json) => P2PAdvert(
         accountCurrency: json['account_currency'],
         advertiserDetails: json['advertiser_details'] == null
             ? null
@@ -85,6 +88,8 @@ class P2PAdvertCreate extends P2PAdvertCreateModel {
         maxOrderAmountDisplay: json['max_order_amount_display'],
         minOrderAmount: json['min_order_amount']?.toDouble(),
         minOrderAmountDisplay: json['min_order_amount_display'],
+        minOrderAmountLimit: json['min_order_amount_limit']?.toDouble(),
+        minOrderAmountLimitDisplay: json['min_order_amount_limit_display'],
         paymentInfo: json['payment_info'],
         paymentMethod: EnumHelper.getEnum(
           values: PaymentMethod.values,
@@ -103,7 +108,7 @@ class P2PAdvertCreate extends P2PAdvertCreateModel {
       );
 
   /// Generate a copy of instance with given parameters
-  P2PAdvertCreate copyWith({
+  P2PAdvert copyWith({
     String accountCurrency,
     P2PAdvertiserDetailsModel advertiserDetails,
     double amount,
@@ -120,6 +125,8 @@ class P2PAdvertCreate extends P2PAdvertCreateModel {
     String maxOrderAmountDisplay,
     double minOrderAmount,
     String minOrderAmountDisplay,
+    double minOrderAmountLimit,
+    String minOrderAmountLimitDisplay,
     String paymentInfo,
     PaymentMethod paymentMethod,
     double price,
@@ -130,7 +137,7 @@ class P2PAdvertCreate extends P2PAdvertCreateModel {
     String remainingAmountDisplay,
     TransactionType type,
   }) =>
-      P2PAdvertCreate(
+      P2PAdvert(
         accountCurrency: accountCurrency ?? this.accountCurrency,
         advertiserDetails: advertiserDetails ?? this.advertiserDetails,
         amount: amount ?? this.amount,
@@ -149,6 +156,9 @@ class P2PAdvertCreate extends P2PAdvertCreateModel {
         minOrderAmount: minOrderAmount ?? this.minOrderAmount,
         minOrderAmountDisplay:
             minOrderAmountDisplay ?? this.minOrderAmountDisplay,
+        minOrderAmountLimit: minOrderAmountLimit ?? this.minOrderAmountLimit,
+        minOrderAmountLimitDisplay:
+            minOrderAmountLimitDisplay ?? this.minOrderAmountLimitDisplay,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         price: price ?? this.price,
