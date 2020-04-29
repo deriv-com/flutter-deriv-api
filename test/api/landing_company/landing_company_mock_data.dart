@@ -28,30 +28,6 @@ const String landingCompanyJSON = '''{
           "BTC": {
             "max_payout": 5,
             "min_stake": 0.0002
-          },
-          "ETH": {
-            "max_payout": 10,
-            "min_stake": 0.002
-          },
-          "EUR": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "GBP": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "LTC": {
-            "max_payout": 50,
-            "min_stake": 0.01
-          },
-          "USD": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "UST": {
-            "max_payout": 5000,
-            "min_stake": 0.5
           }
         },
         "forex": {
@@ -62,98 +38,6 @@ const String landingCompanyJSON = '''{
           "BTC": {
             "max_payout": 5,
             "min_stake": 0.0002
-          },
-          "ETH": {
-            "max_payout": 10,
-            "min_stake": 0.002
-          },
-          "EUR": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "GBP": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "LTC": {
-            "max_payout": 50,
-            "min_stake": 0.01
-          },
-          "USD": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "UST": {
-            "max_payout": 5000,
-            "min_stake": 0.5
-          }
-        },
-        "indices": {
-          "AUD": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "BTC": {
-            "max_payout": 5,
-            "min_stake": 0.0002
-          },
-          "ETH": {
-            "max_payout": 10,
-            "min_stake": 0.002
-          },
-          "EUR": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "GBP": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "LTC": {
-            "max_payout": 50,
-            "min_stake": 0.01
-          },
-          "USD": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "UST": {
-            "max_payout": 5000,
-            "min_stake": 0.5
-          }
-        },
-        "synthetic_index": {
-          "AUD": {
-            "max_payout": 50000,
-            "min_stake": 0.35
-          },
-          "BTC": {
-            "max_payout": 5,
-            "min_stake": 0.0002
-          },
-          "ETH": {
-            "max_payout": 10,
-            "min_stake": 0.002
-          },
-          "EUR": {
-            "max_payout": 50000,
-            "min_stake": 0.35
-          },
-          "GBP": {
-            "max_payout": 50000,
-            "min_stake": 0.35
-          },
-          "LTC": {
-            "max_payout": 50,
-            "min_stake": 0.01
-          },
-          "USD": {
-            "max_payout": 50000,
-            "min_stake": 0.35
-          },
-          "UST": {
-            "max_payout": 5000,
-            "min_stake": 0.5
           }
         }
       },
@@ -174,21 +58,13 @@ const String landingCompanyJSON = '''{
       ],
       "legal_allowed_currencies": [
         "AUD",
-        "BTC",
-        "ETH",
-        "EUR",
-        "GBP",
-        "LTC",
-        "USD",
-        "UST"
+        "BTC"
       ],
       "legal_allowed_markets": [
         "commodities",
-        "forex",
-        "indices",
-        "synthetic_index"
+        "forex"
       ],
-      "legal_default_currency": "USD",
+      "legal_default_currency": "AUD",
       "name": "Binary (SVG) Ltd.",
       "requirements": {
         "after_first_deposit": {},
@@ -227,30 +103,6 @@ const String landingCompanyJSON = '''{
           "BTC": {
             "max_payout": 5,
             "min_stake": 0.0002
-          },
-          "ETH": {
-            "max_payout": 10,
-            "min_stake": 0.002
-          },
-          "EUR": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "GBP": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "LTC": {
-            "max_payout": 50,
-            "min_stake": 0.01
-          },
-          "USD": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "UST": {
-            "max_payout": 5000,
-            "min_stake": 0.5
           }
         },
         "forex": {
@@ -261,98 +113,6 @@ const String landingCompanyJSON = '''{
           "BTC": {
             "max_payout": 5,
             "min_stake": 0.0002
-          },
-          "ETH": {
-            "max_payout": 10,
-            "min_stake": 0.002
-          },
-          "EUR": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "GBP": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "LTC": {
-            "max_payout": 50,
-            "min_stake": 0.01
-          },
-          "USD": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "UST": {
-            "max_payout": 5000,
-            "min_stake": 0.5
-          }
-        },
-        "indices": {
-          "AUD": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "BTC": {
-            "max_payout": 5,
-            "min_stake": 0.0002
-          },
-          "ETH": {
-            "max_payout": 10,
-            "min_stake": 0.002
-          },
-          "EUR": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "GBP": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "LTC": {
-            "max_payout": 50,
-            "min_stake": 0.01
-          },
-          "USD": {
-            "max_payout": 50000,
-            "min_stake": 0.5
-          },
-          "UST": {
-            "max_payout": 5000,
-            "min_stake": 0.5
-          }
-        },
-        "synthetic_index": {
-          "AUD": {
-            "max_payout": 50000,
-            "min_stake": 0.35
-          },
-          "BTC": {
-            "max_payout": 5,
-            "min_stake": 0.0002
-          },
-          "ETH": {
-            "max_payout": 10,
-            "min_stake": 0.002
-          },
-          "EUR": {
-            "max_payout": 50000,
-            "min_stake": 0.35
-          },
-          "GBP": {
-            "max_payout": 50000,
-            "min_stake": 0.35
-          },
-          "LTC": {
-            "max_payout": 50,
-            "min_stake": 0.01
-          },
-          "USD": {
-            "max_payout": 50000,
-            "min_stake": 0.35
-          },
-          "UST": {
-            "max_payout": 5000,
-            "min_stake": 0.5
           }
         }
       },
@@ -363,31 +123,17 @@ const String landingCompanyJSON = '''{
         "callputequal",
         "digits",
         "endsinout",
-        "staysinout",
-        "touchnotouch",
-        "lookback",
-        "highlowticks",
-        "runs",
-        "reset",
-        "callputspread"
+        "staysinout"
       ],
       "legal_allowed_currencies": [
         "AUD",
-        "BTC",
-        "ETH",
-        "EUR",
-        "GBP",
-        "LTC",
-        "USD",
-        "UST"
+        "BTC"
       ],
       "legal_allowed_markets": [
         "commodities",
-        "forex",
-        "indices",
-        "synthetic_index"
+        "forex"
       ],
-      "legal_default_currency": "USD",
+      "legal_default_currency": "AUD",
       "name": "Binary (SVG) Ltd.",
       "requirements": {
         "after_first_deposit": {},
@@ -434,7 +180,7 @@ const String landingCompanyJSON = '''{
         "legal_allowed_markets": [
           "forex"
         ],
-        "legal_default_currency": "USD",
+        "legal_default_currency": "AUD",
         "name": "Binary (FX) Ltd",
         "requirements": {
           "after_first_deposit": {
@@ -478,30 +224,6 @@ const String landingCompanyJSON = '''{
             "BTC": {
               "max_payout": 5,
               "min_stake": 0.0002
-            },
-            "ETH": {
-              "max_payout": 10,
-              "min_stake": 0.002
-            },
-            "EUR": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "GBP": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "LTC": {
-              "max_payout": 50,
-              "min_stake": 0.01
-            },
-            "USD": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "UST": {
-              "max_payout": 5000,
-              "min_stake": 0.5
             }
           },
           "forex": {
@@ -512,98 +234,6 @@ const String landingCompanyJSON = '''{
             "BTC": {
               "max_payout": 5,
               "min_stake": 0.0002
-            },
-            "ETH": {
-              "max_payout": 10,
-              "min_stake": 0.002
-            },
-            "EUR": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "GBP": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "LTC": {
-              "max_payout": 50,
-              "min_stake": 0.01
-            },
-            "USD": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "UST": {
-              "max_payout": 5000,
-              "min_stake": 0.5
-            }
-          },
-          "indices": {
-            "AUD": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "BTC": {
-              "max_payout": 5,
-              "min_stake": 0.0002
-            },
-            "ETH": {
-              "max_payout": 10,
-              "min_stake": 0.002
-            },
-            "EUR": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "GBP": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "LTC": {
-              "max_payout": 50,
-              "min_stake": 0.01
-            },
-            "USD": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "UST": {
-              "max_payout": 5000,
-              "min_stake": 0.5
-            }
-          },
-          "synthetic_index": {
-            "AUD": {
-              "max_payout": 50000,
-              "min_stake": 0.35
-            },
-            "BTC": {
-              "max_payout": 5,
-              "min_stake": 0.0002
-            },
-            "ETH": {
-              "max_payout": 10,
-              "min_stake": 0.002
-            },
-            "EUR": {
-              "max_payout": 50000,
-              "min_stake": 0.35
-            },
-            "GBP": {
-              "max_payout": 50000,
-              "min_stake": 0.35
-            },
-            "LTC": {
-              "max_payout": 50,
-              "min_stake": 0.01
-            },
-            "USD": {
-              "max_payout": 50000,
-              "min_stake": 0.35
-            },
-            "UST": {
-              "max_payout": 5000,
-              "min_stake": 0.5
             }
           }
         },
@@ -613,32 +243,17 @@ const String landingCompanyJSON = '''{
           "callput",
           "callputequal",
           "digits",
-          "endsinout",
-          "staysinout",
-          "touchnotouch",
-          "lookback",
-          "highlowticks",
-          "runs",
-          "reset",
-          "callputspread"
+          "endsinout"
         ],
         "legal_allowed_currencies": [
           "AUD",
-          "BTC",
-          "ETH",
-          "EUR",
-          "GBP",
-          "LTC",
-          "USD",
-          "UST"
+          "BTC"
         ],
         "legal_allowed_markets": [
           "commodities",
-          "forex",
-          "indices",
-          "synthetic_index"
+          "forex"
         ],
-        "legal_default_currency": "USD",
+        "legal_default_currency": "AUD",
         "name": "Binary (SVG) Ltd.",
         "requirements": {
           "after_first_deposit": {},
@@ -679,30 +294,6 @@ const String landingCompanyJSON = '''{
             "BTC": {
               "max_payout": 5,
               "min_stake": 0.0002
-            },
-            "ETH": {
-              "max_payout": 10,
-              "min_stake": 0.002
-            },
-            "EUR": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "GBP": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "LTC": {
-              "max_payout": 50,
-              "min_stake": 0.01
-            },
-            "USD": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "UST": {
-              "max_payout": 5000,
-              "min_stake": 0.5
             }
           },
           "forex": {
@@ -713,98 +304,6 @@ const String landingCompanyJSON = '''{
             "BTC": {
               "max_payout": 5,
               "min_stake": 0.0002
-            },
-            "ETH": {
-              "max_payout": 10,
-              "min_stake": 0.002
-            },
-            "EUR": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "GBP": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "LTC": {
-              "max_payout": 50,
-              "min_stake": 0.01
-            },
-            "USD": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "UST": {
-              "max_payout": 5000,
-              "min_stake": 0.5
-            }
-          },
-          "indices": {
-            "AUD": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "BTC": {
-              "max_payout": 5,
-              "min_stake": 0.0002
-            },
-            "ETH": {
-              "max_payout": 10,
-              "min_stake": 0.002
-            },
-            "EUR": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "GBP": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "LTC": {
-              "max_payout": 50,
-              "min_stake": 0.01
-            },
-            "USD": {
-              "max_payout": 50000,
-              "min_stake": 0.5
-            },
-            "UST": {
-              "max_payout": 5000,
-              "min_stake": 0.5
-            }
-          },
-          "synthetic_index": {
-            "AUD": {
-              "max_payout": 50000,
-              "min_stake": 0.35
-            },
-            "BTC": {
-              "max_payout": 5,
-              "min_stake": 0.0002
-            },
-            "ETH": {
-              "max_payout": 10,
-              "min_stake": 0.002
-            },
-            "EUR": {
-              "max_payout": 50000,
-              "min_stake": 0.35
-            },
-            "GBP": {
-              "max_payout": 50000,
-              "min_stake": 0.35
-            },
-            "LTC": {
-              "max_payout": 50,
-              "min_stake": 0.01
-            },
-            "USD": {
-              "max_payout": 50000,
-              "min_stake": 0.35
-            },
-            "UST": {
-              "max_payout": 5000,
-              "min_stake": 0.5
             }
           }
         },
@@ -815,23 +314,11 @@ const String landingCompanyJSON = '''{
           "callputequal",
           "digits",
           "endsinout",
-          "staysinout",
-          "touchnotouch",
-          "lookback",
-          "highlowticks",
-          "runs",
-          "reset",
-          "callputspread"
+          "staysinout"
         ],
         "legal_allowed_currencies": [
           "AUD",
-          "BTC",
-          "ETH",
-          "EUR",
-          "GBP",
-          "LTC",
-          "USD",
-          "UST"
+          "BTC"
         ],
         "legal_allowed_markets": [
           "commodities",
@@ -839,7 +326,7 @@ const String landingCompanyJSON = '''{
           "indices",
           "synthetic_index"
         ],
-        "legal_default_currency": "USD",
+        "legal_default_currency": "AUD",
         "name": "Binary (SVG) Ltd.",
         "requirements": {
           "after_first_deposit": {},
