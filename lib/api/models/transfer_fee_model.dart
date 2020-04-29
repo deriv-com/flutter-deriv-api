@@ -12,7 +12,7 @@ class TransferFeeModel extends BaseModel {
   ) =>
       TransferFeeModel(
         code,
-        item.toDouble(),
+        item?.toDouble(),
       );
 
   /// code

@@ -12,7 +12,7 @@ class WebsiteStatusCryptoConfigModel extends BaseModel {
   ) =>
       WebsiteStatusCryptoConfigModel(
         code,
-        json['minimum_withdrawal'].toDouble(),
+        json['minimum_withdrawal']?.toDouble(),
       );
 
   /// Crypto-currency code

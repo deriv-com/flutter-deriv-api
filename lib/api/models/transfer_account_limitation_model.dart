@@ -2,7 +2,8 @@ import 'base_model.dart';
 import 'transfer_amount_model.dart';
 import 'transfer_fee_model.dart';
 
-/// Fees and range of allowed amount for transfer between accounts with different types of currencies.
+/// Fees and range of allowed amount for transfer between accounts with
+/// different types of currencies.
 class TransferAccountLimitationModel extends BaseModel {
   /// Initializes
   TransferAccountLimitationModel(this.fees, this.limits);
@@ -10,11 +11,13 @@ class TransferAccountLimitationModel extends BaseModel {
   /// Initializes from map
   factory TransferAccountLimitationModel.fromJson(Map<String, dynamic> json) =>
       TransferAccountLimitationModel(
-        json['fees']
-            .entries
-            .map((MapEntry<String, dynamic> entry) =>
-                TransferFeeModel.fromJson(entry.key, entry.value))
-            .toList(),
+        json['fees'] == null || json['fees'].isEmpty
+            ? null
+            : json['fees']
+                .entries
+                .map<TransferFeeModel>((MapEntry<String, dynamic> entry) =>
+                    TransferFeeModel.fromJson(entry.key, entry.value))
+                .toList(),
         TransferAmountModel.fromJson(json['limits']),
       );
 

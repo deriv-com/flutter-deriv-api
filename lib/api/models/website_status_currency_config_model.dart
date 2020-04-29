@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
 import 'base_model.dart';
 import 'enums.dart';
 import 'transfer_account_limitation_model.dart';
@@ -18,7 +20,7 @@ class WebsiteStatusCurrencyConfigModel extends BaseModel {
   /// From Json
   WebsiteStatusCurrencyConfigModel.fromJson(this.code, Map<String, dynamic> item)
       : fractionalDigits = item['fractional_digits'],
-        isSuspended = item['is_suspended'] ?? false,
+        isSuspended = getBool(item['is_suspended']),
         name = item['name'],
         stakeDefault = item['stake_default'] != null
             ? item['stake_default'].toDouble()

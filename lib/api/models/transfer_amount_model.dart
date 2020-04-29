@@ -10,8 +10,8 @@ class TransferAmountModel extends BaseModel {
     Map<String, dynamic> json,
   ) =>
       TransferAmountModel(
-        json['min'].toDouble(),
-        json['max'].toDouble(),
+        json['min']?.toDouble(),
+        json['max']?.toDouble(),
       );
 
   /// Minimum allowed amount for transfer between accounts

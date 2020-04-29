@@ -1,8 +1,9 @@
+import 'base_model.dart';
 import 'max_proposal_subscription_model.dart';
 import 'max_request_allowed_model.dart';
 
 /// Maximum number of API calls during specified period of time.
-class ApiCallLimitModel {
+class ApiCallLimitModel extends BaseModel{
   /// Initializes
   ApiCallLimitModel(
     this.maxProposalSubscription,
