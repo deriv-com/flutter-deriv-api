@@ -1,4 +1,5 @@
 import 'package:flutter_deriv_api/api/models/account_settings_model.dart';
+import 'package:flutter_deriv_api/api/models/set_account_setting_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// User information and settings.
@@ -91,6 +92,16 @@ class AccountSettings extends AccountSettingsModel {
         taxResidence: json['tax_residence'],
         userHash: json['user_hash'],
       );
+
+  // TODO(ramin): Implement API calls
+  /// Get account's setting
+  static Future<AccountSettings> getAccountSetting() async => null;
+
+  /// Change account's setting
+  static Future<SetAccountSettingModel> changeAccountSetting(
+    AccountSettings accountSettings,
+  ) async =>
+      null;
 
   /// Clones a new instance
   AccountSettings copyWith({
