@@ -38,3 +38,18 @@ enum TokenScope {
   /// Admin Access
   admin,
 }
+
+/// Type of transaction from the opposite party perspective
+enum TransactionType {
+  /// Buy
+  buy,
+
+  /// Sell
+  sell,
+}
+
+/// The payment method
+enum PaymentMethod {
+  /// Bank Transfer
+  bankTransfer,
+}
