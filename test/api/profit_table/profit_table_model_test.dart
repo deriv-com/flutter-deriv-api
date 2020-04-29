@@ -17,7 +17,7 @@ void main() {
 
     expect(profitTable.transactions.length, 1);
 
-    final ProfitTransactionModel transaction = profitTable.transactions[0];
+    final ProfitTransactionModel transaction = profitTable.transactions.first;
 
     expect(transaction.appId, 1234);
     expect(transaction.buyPrice, 250.0);
