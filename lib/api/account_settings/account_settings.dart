@@ -98,7 +98,7 @@ class AccountSettings extends AccountSettingsModel {
   static Future<AccountSettings> getAccountSetting() async => null;
 
   /// Change account's setting
-  static Future<SetAccountSettingModel> changeAccountSetting(
+  Future<SetAccountSettingModel> changeSetting(
     AccountSettings accountSettings,
   ) async =>
       null;

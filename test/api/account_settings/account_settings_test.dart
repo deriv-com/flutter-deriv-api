@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account_settings/account_settings.dart';
 import 'package:flutter_deriv_api/api/models/set_account_setting_model.dart';
+
 import 'account_settings_mock_data.dart';
 import 'set_account_setting_mock_data.dart';
 
