@@ -17,7 +17,7 @@ void main() {
         CopyTrading.fromJson(copyTradingListMap['copytrading_list']);
 
     expect(copyTrading.copiers.length, 2);
-    expect(copyTrading.copiers.first.loginid, 'C241542');
+    expect(copyTrading.copiers.first.loginId, 'C241542');
 
     final List<TraderModel> traders = copyTrading.traders;
 

@@ -13,7 +13,7 @@ class CopyTrading extends CopyTradingModel {
           traders: traders,
         );
 
-  /// From JSON
+  /// Creates instance from JSON
   factory CopyTrading.fromJson(Map<String, dynamic> json) => CopyTrading(
         copiers: json['copiers'] != null
             ? json['copiers']

@@ -4,7 +4,7 @@ import 'trader_model.dart';
 
 /// Abstract class for Copy trading calls
 abstract class CopyTradingModel extends BaseModel {
-  /// Constructor
+  /// Initializes
   CopyTradingModel({
     this.copiers,
     this.traders,

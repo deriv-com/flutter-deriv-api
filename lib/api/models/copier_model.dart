@@ -1,21 +1,26 @@
 import 'base_model.dart';
 
-/// Copier
-class CopierModel extends BaseModel{
-  /// Constructor
-  CopierModel({this.loginid});
+/// Copier mode class
+class CopierModel extends BaseModel {
+  /// Initializes
+  CopierModel({this.loginId});
 
-  /// Instance from JSON
-  factory CopierModel.fromJson(Map<String, dynamic> json) => CopierModel(
-    loginid: json['loginid'],
-  );
+  /// Creates instance from JSON
+  factory CopierModel.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      CopierModel(
+        loginId: json['loginid'],
+      );
 
-  /// The loginid of the copier's account.
-  final String loginid;
+  /// The loginId of the copier's account.
+  final String loginId;
 
-  /// ToJson
+  /// Clones a new instance
   CopierModel copyWith({
-    String loginid,
+    String loginId,
   }) =>
-      CopierModel(loginid: loginid ?? this.loginid);
+      CopierModel(
+        loginId: loginId ?? this.loginId,
+      );
 }

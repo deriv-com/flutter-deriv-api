@@ -2,22 +2,22 @@ import 'base_model.dart';
 
 /// Trader information
 class TraderModel extends BaseModel {
-  /// Constructor
+  /// Initializes
   TraderModel({
     this.assets,
-    this.loginid,
+    this.loginId,
     this.maxTradeStake,
     this.minTradeStake,
     this.token,
     this.tradeTypes,
   });
 
-  /// Instance from JSON
+  /// Creates instance from JSON
   factory TraderModel.fromJson(Map<String, dynamic> json) => TraderModel(
         assets: json['assets'] == null
             ? null
             : json['assets'].map<String>((dynamic entry) => entry.toString()).toList(),
-        loginid: json['loginid'],
+        loginId: json['loginid'],
         maxTradeStake: json['max_trade_stake']?.toDouble(),
         minTradeStake: json['min_trade_stake']?.toDouble(),
         token: json['token'],
@@ -31,8 +31,8 @@ class TraderModel extends BaseModel {
   /// The list of assets to copy the trades of.
   final List<String> assets;
 
-  /// The loginid of the trader's account.
-  final String loginid;
+  /// The loginId of the trader's account.
+  final String loginId;
 
   /// Maximum trading stake set for the trader.
   final double maxTradeStake;
@@ -46,10 +46,10 @@ class TraderModel extends BaseModel {
   /// The type of trades set.
   final List<String> tradeTypes;
 
-  /// ToJson
+  /// Clones a new instance
   TraderModel copyWith({
     List<String> assets,
-    String loginid,
+    String loginId,
     String maxTradeStake,
     String minTradeStake,
     String token,
@@ -57,7 +57,7 @@ class TraderModel extends BaseModel {
   }) =>
       TraderModel(
         assets: assets ?? this.assets,
-        loginid: loginid ?? this.loginid,
+        loginId: loginId ?? this.loginId,
         maxTradeStake: maxTradeStake ?? this.maxTradeStake,
         minTradeStake: minTradeStake ?? this.minTradeStake,
         token: token ?? this.token,
