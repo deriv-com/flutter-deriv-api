@@ -22,11 +22,11 @@ class LCCurrencyModel extends BaseModel {
             .toList(),
       );
 
-  /// Name of the market.
-  final String market;
-
   /// Currencies for this market
   final List<LCCurrencyConfig> currencies;
+
+  /// Name of the market.
+  final String market;
 
   /// Creates a copy of instance with given parameters
   LCCurrencyModel copyWith({
