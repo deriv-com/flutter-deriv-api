@@ -8,7 +8,7 @@ import 'transfer_account_limitation_model.dart';
 /// Currency information
 class WebsiteStatusCurrencyConfigModel extends BaseModel {
   /// Initializes
-  WebsiteStatusCurrencyConfigModel(
+  WebsiteStatusCurrencyConfigModel({
     this.code,
     this.fractionalDigits,
     this.isSuspended,
@@ -16,7 +16,7 @@ class WebsiteStatusCurrencyConfigModel extends BaseModel {
     this.stakeDefault,
     this.type,
     this.transferBetweenAccounts,
-  );
+  });
 
   /// From Json
   factory WebsiteStatusCurrencyConfigModel.fromJson(
@@ -24,16 +24,16 @@ class WebsiteStatusCurrencyConfigModel extends BaseModel {
     Map<String, dynamic> json,
   ) =>
       WebsiteStatusCurrencyConfigModel(
-        code,
-        json['fractional_digits'],
-        getBool(json['is_suspended']),
-        json['name'],
-        json['stake_default']?.toDouble(),
-        EnumHelper.getEnum(
+        code: code,
+        fractionalDigits: json['fractional_digits'],
+        isSuspended: getBool(json['is_suspended']),
+        name: json['name'],
+        stakeDefault: json['stake_default']?.toDouble(),
+        type: EnumHelper.getEnum(
           values: CurrencyType.values,
           name: json['type'],
         ),
-        json['transfer_between_accounts'] == null
+        transferBetweenAccounts: json['transfer_between_accounts'] == null
             ? null
             : TransferAccountLimitationModel.fromJson(
                 json['transfer_between_accounts'],
@@ -72,12 +72,13 @@ class WebsiteStatusCurrencyConfigModel extends BaseModel {
     TransferAccountLimitationModel transferBetweenAccounts,
   }) =>
       WebsiteStatusCurrencyConfigModel(
-        code ?? this.code,
-        fractionalDigits ?? this.fractionalDigits,
-        isSuspended ?? this.isSuspended,
-        name ?? this.name,
-        stakeDefault ?? this.stakeDefault,
-        type ?? this.type,
-        transferBetweenAccounts ?? this.transferBetweenAccounts,
+        code: code ?? this.code,
+        fractionalDigits: fractionalDigits ?? this.fractionalDigits,
+        isSuspended: isSuspended ?? this.isSuspended,
+        name: name ?? this.name,
+        stakeDefault: stakeDefault ?? this.stakeDefault,
+        type: type ?? this.type,
+        transferBetweenAccounts:
+            transferBetweenAccounts ?? this.transferBetweenAccounts,
       );
 }

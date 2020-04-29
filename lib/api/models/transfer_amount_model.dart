@@ -3,24 +3,24 @@ import 'base_model.dart';
 /// Range of allowed amount for transfer between accounts.
 class TransferAmountModel extends BaseModel {
   /// Initializes
-  TransferAmountModel(this.min, this.max);
+  TransferAmountModel({this.min, this.max});
 
   /// From Json
   factory TransferAmountModel.fromJson(
     Map<String, dynamic> json,
   ) =>
       TransferAmountModel(
-        json['min']?.toDouble(),
-        json['max']?.toDouble(),
+        max: json['max']?.toDouble(),
+        min: json['min']?.toDouble(),
       );
-
-  /// Minimum allowed amount for transfer between accounts
-  /// with different types of currencies.
-  final double min;
 
   /// Maximum allowed amount for transfer between accounts
   /// with different types of currencies.
   final double max;
+
+  /// Minimum allowed amount for transfer between accounts
+  /// with different types of currencies.
+  final double min;
 
   /// Clones a new instance
   TransferAmountModel copyWith({
@@ -28,7 +28,7 @@ class TransferAmountModel extends BaseModel {
     double max,
   }) =>
       TransferAmountModel(
-        min ?? this.min,
-        max ?? this.max,
+        max: max ?? this.max,
+        min: min ?? this.min,
       );
 }

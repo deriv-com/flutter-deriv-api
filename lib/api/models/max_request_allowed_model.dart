@@ -3,16 +3,16 @@ import 'base_model.dart';
 /// Maximum number of requests allowed during specified period of time.
 class MaxRequestAllowedModel extends BaseModel {
   /// Initializes
-  MaxRequestAllowedModel(this.appliesTo, this.hourly, this.minutely);
+  MaxRequestAllowedModel({this.appliesTo, this.hourly, this.minutely});
 
   /// From Json
   factory MaxRequestAllowedModel.fromJson(
     Map<String, dynamic> item,
   ) =>
       MaxRequestAllowedModel(
-        item['applies_to'],
-        item['hourly'],
-        item['minutely'],
+        appliesTo: item['applies_to'],
+        hourly: item['hourly'],
+        minutely: item['minutely'],
       );
 
   /// Describes which calls this limit applies to.
@@ -31,8 +31,8 @@ class MaxRequestAllowedModel extends BaseModel {
     int minutely,
   }) =>
       MaxRequestAllowedModel(
-        appliesTo ?? this.appliesTo,
-        hourly ?? this.hourly,
-        minutely ?? this.minutely,
+        appliesTo: appliesTo ?? this.appliesTo,
+        hourly: hourly ?? this.hourly,
+        minutely: minutely ?? this.minutely,
       );
 }

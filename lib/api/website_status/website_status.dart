@@ -10,7 +10,7 @@ class WebsiteStatus extends WebsiteStatusModel {
   /// Initializes
   WebsiteStatus({
     ApiCallLimitModel apiCallLimits,
-    List<WebsiteStatusCurrencyConfigModel> accountCurrenciesConfig,
+    List<WebsiteStatusCurrencyConfigModel> currencyConfig,
     String clientsCountry,
     List<WebsiteStatusCryptoConfigModel> cryptoConfig,
     SiteStatus siteStatus,
@@ -18,7 +18,7 @@ class WebsiteStatus extends WebsiteStatusModel {
     String termsConditionsVersion,
   }) : super(
           apiCallLimits: apiCallLimits,
-          accountCurrenciesConfig: accountCurrenciesConfig,
+          currencyConfig: currencyConfig,
           clientsCountry: clientsCountry,
           cryptoConfig: cryptoConfig,
           siteStatus: siteStatus,
@@ -31,7 +31,7 @@ class WebsiteStatus extends WebsiteStatusModel {
     Map<String, dynamic> json,
   ) =>
       WebsiteStatus(
-        accountCurrenciesConfig: json['currencies_config'] == null ||
+        currencyConfig: json['currencies_config'] == null ||
                 json['currencies_config'].isEmpty
             ? null
             : json['currencies_config']
@@ -70,7 +70,7 @@ class WebsiteStatus extends WebsiteStatusModel {
   /// Clones a new instance
   WebsiteStatus copyWith({
     ApiCallLimitModel apiCallLimits,
-    List<WebsiteStatusCurrencyConfigModel> accountCurrenciesConfig,
+    List<WebsiteStatusCurrencyConfigModel> currencyConfig,
     String clientsCountry,
     List<WebsiteStatusCryptoConfigModel> cryptoConfig,
     List<WebsiteStatusCurrencyConfigModel> localCurrenciesConfig,
@@ -80,8 +80,7 @@ class WebsiteStatus extends WebsiteStatusModel {
   }) =>
       WebsiteStatus(
         apiCallLimits: apiCallLimits ?? this.apiCallLimits,
-        accountCurrenciesConfig:
-            accountCurrenciesConfig ?? this.accountCurrenciesConfig,
+        currencyConfig: currencyConfig ?? this.currencyConfig,
         clientsCountry: clientsCountry ?? this.clientsCountry,
         cryptoConfig: cryptoConfig ?? this.cryptoConfig,
         siteStatus: siteStatus ?? this.siteStatus,

@@ -9,7 +9,7 @@ abstract class WebsiteStatusModel extends BaseModel {
   /// Initializes
   WebsiteStatusModel({
     this.apiCallLimits,
-    this.accountCurrenciesConfig,
+    this.currencyConfig,
     this.clientsCountry,
     this.cryptoConfig,
     this.siteStatus,
@@ -21,7 +21,7 @@ abstract class WebsiteStatusModel extends BaseModel {
   final ApiCallLimitModel apiCallLimits;
 
   /// Available currencies and their information
-  final List<WebsiteStatusCurrencyConfigModel> accountCurrenciesConfig;
+  final List<WebsiteStatusCurrencyConfigModel> currencyConfig;
 
   /// Country code of connected IP
   final String clientsCountry;

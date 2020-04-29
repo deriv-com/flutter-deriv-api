@@ -3,24 +3,28 @@ import 'max_proposal_subscription_model.dart';
 import 'max_request_allowed_model.dart';
 
 /// Maximum number of API calls during specified period of time.
-class ApiCallLimitModel extends BaseModel{
+class ApiCallLimitModel extends BaseModel {
   /// Initializes
-  ApiCallLimitModel(
+  ApiCallLimitModel({
     this.maxProposalSubscription,
     this.maxRequestsGeneral,
     this.maxRequestsOutcome,
     this.maxRequestsPricing,
-  );
+  });
 
   /// From Json
   factory ApiCallLimitModel.fromJson(
     Map<String, dynamic> json,
   ) =>
       ApiCallLimitModel(
-        MaxProposalSubscriptionModel.fromJson(json['max_proposal_subscription']),
-        MaxRequestAllowedModel.fromJson(json['max_requestes_general']),
-        MaxRequestAllowedModel.fromJson(json['max_requests_outcome']),
-        MaxRequestAllowedModel.fromJson(json['max_requests_pricing']),
+        maxProposalSubscription: MaxProposalSubscriptionModel.fromJson(
+            json['max_proposal_subscription']),
+        maxRequestsGeneral:
+            MaxRequestAllowedModel.fromJson(json['max_requestes_general']),
+        maxRequestsOutcome:
+            MaxRequestAllowedModel.fromJson(json['max_requests_outcome']),
+        maxRequestsPricing:
+            MaxRequestAllowedModel.fromJson(json['max_requests_pricing']),
       );
 
   /// Maximum subscription to proposal calls.
@@ -43,9 +47,10 @@ class ApiCallLimitModel extends BaseModel{
     MaxRequestAllowedModel maxRequestsPricing,
   }) =>
       ApiCallLimitModel(
-        maxProposalSubscription ?? this.maxProposalSubscription,
-        maxRequestsGeneral ?? this.maxRequestsGeneral,
-        maxRequestsOutcome ?? this.maxRequestsOutcome,
-        maxRequestsPricing ?? this.maxRequestsPricing,
+        maxProposalSubscription:
+            maxProposalSubscription ?? this.maxProposalSubscription,
+        maxRequestsGeneral: maxRequestsGeneral ?? this.maxRequestsGeneral,
+        maxRequestsOutcome: maxRequestsOutcome ?? this.maxRequestsOutcome,
+        maxRequestsPricing: maxRequestsPricing ?? this.maxRequestsPricing,
       );
 }
