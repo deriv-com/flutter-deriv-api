@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'base_model.dart';
@@ -18,20 +19,26 @@ class WebsiteStatusCurrencyConfigModel extends BaseModel {
   );
 
   /// From Json
-  WebsiteStatusCurrencyConfigModel.fromJson(this.code, Map<String, dynamic> item)
-      : fractionalDigits = item['fractional_digits'],
-        isSuspended = getBool(item['is_suspended']),
-        name = item['name'],
-        stakeDefault = item['stake_default'] != null
-            ? item['stake_default'].toDouble()
-            : null,
-        type = item['type'] != null
-            ? (item['type'] == 'fiat' ? CurrencyType.fiat : CurrencyType.crypto)
-            : null,
-        transferBetweenAccounts = item['transfer_between_accounts'] != null
-            ? TransferAccountLimitationModel.fromJson(
-                item['transfer_between_accounts'])
-            : null;
+  factory WebsiteStatusCurrencyConfigModel.fromJson(
+    String code,
+    Map<String, dynamic> json,
+  ) =>
+      WebsiteStatusCurrencyConfigModel(
+        code,
+        json['fractional_digits'],
+        getBool(json['is_suspended']),
+        json['name'],
+        json['stake_default']?.toDouble(),
+        EnumHelper.getEnum(
+          values: CurrencyType.values,
+          name: json['type'],
+        ),
+        json['transfer_between_accounts'] == null
+            ? null
+            : TransferAccountLimitationModel.fromJson(
+                json['transfer_between_accounts'],
+              ),
+      );
 
   /// Currency code
   final String code;

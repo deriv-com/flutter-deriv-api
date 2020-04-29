@@ -6,7 +6,7 @@ class WebsiteStatusCryptoConfigModel extends BaseModel {
   WebsiteStatusCryptoConfigModel(this.code, this.minimumWithdrawal);
 
   /// Initialized from map
-  factory WebsiteStatusCryptoConfigModel.fromMap(
+  factory WebsiteStatusCryptoConfigModel.fromJson(
     String code,
     Map<String, dynamic> json,
   ) =>

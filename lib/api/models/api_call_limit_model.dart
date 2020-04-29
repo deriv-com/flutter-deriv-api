@@ -17,7 +17,7 @@ class ApiCallLimitModel extends BaseModel{
     Map<String, dynamic> json,
   ) =>
       ApiCallLimitModel(
-        MaxProposalSubscriptionModel.fromMap(json['max_proposal_subscription']),
+        MaxProposalSubscriptionModel.fromJson(json['max_proposal_subscription']),
         MaxRequestAllowedModel.fromJson(json['max_requestes_general']),
         MaxRequestAllowedModel.fromJson(json['max_requests_outcome']),
         MaxRequestAllowedModel.fromJson(json['max_requests_pricing']),

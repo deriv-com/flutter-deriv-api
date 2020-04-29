@@ -6,7 +6,7 @@ class MaxProposalSubscriptionModel extends BaseModel {
   MaxProposalSubscriptionModel(this.appliesTo, this.max);
 
   /// From Json
-  factory MaxProposalSubscriptionModel.fromMap(
+  factory MaxProposalSubscriptionModel.fromJson(
     Map<String, dynamic> json,
   ) =>
       MaxProposalSubscriptionModel(

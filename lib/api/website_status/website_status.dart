@@ -3,6 +3,7 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/website_status_crypto_config_model.dart';
 import 'package:flutter_deriv_api/api/models/website_status_currency_config_model.dart';
 import 'package:flutter_deriv_api/api/models/website_status_model.dart';
+import 'package:flutter_deriv_api/utils/enum_helper.dart';
 
 /// Website status class
 class WebsiteStatus extends WebsiteStatusModel {
@@ -51,11 +52,13 @@ class WebsiteStatus extends WebsiteStatusModel {
                     .entries
                     .map<WebsiteStatusCryptoConfigModel>(
                         (MapEntry<String, dynamic> entry) =>
-                            WebsiteStatusCryptoConfigModel.fromMap(
+                            WebsiteStatusCryptoConfigModel.fromJson(
                                 entry.key, entry.value))
                     .toList(),
-        siteStatus:
-            json['clients_country'] == 'up' ? SiteStatus.up : SiteStatus.down,
+        siteStatus: EnumHelper.getEnum(
+          values: SiteStatus.values,
+          name: json['site_status'],
+        ),
         supportedLanguages: json['supported_languages'] == null
             ? null
             : json['supported_languages']
