@@ -77,6 +77,18 @@ enum AccountStatusType {
   /// deposits allowed but withdrawals locked.
   withdrawalLocked,
 }
+// Payment agent
+/// Payment result
+enum PaymentResult {
+  /// Noun, this value is not a valid value
+  noun,
+
+  /// Transfer success
+  success,
+
+  /// dry-run success
+  dryrunSuccess,
+}
 
 // MT5 enums
 /// Account type
@@ -117,4 +129,22 @@ enum TokenScope {
 
   /// Admin Access
   admin,
+}
+
+/// Currency types
+enum CurrencyType {
+  /// Fiat currencies
+  fiat,
+
+  /// Crypto Currencies
+  crypto,
+}
+
+/// Indicates site's status
+enum SiteStatus {
+  /// Site is up
+  up,
+
+  /// Site is down
+  down,
 }
