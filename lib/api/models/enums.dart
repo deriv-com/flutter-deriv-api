@@ -38,3 +38,21 @@ enum TokenScope {
   /// Admin Access
   admin,
 }
+
+/// Currency types
+enum CurrencyType {
+  /// Fiat currencies
+  fiat,
+
+  /// Crypto Currencies
+  crypto,
+}
+
+/// Indicates site's status
+enum SiteStatus {
+  /// Site is up
+  up,
+
+  /// Site is down
+  down,
+}
