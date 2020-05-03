@@ -7,12 +7,12 @@ class PaymentAgentTransfer extends PaymentAgentTransferModel {
   PaymentAgentTransfer({
     PaymentResult paymentAgentTransfer,
     String clientToFullName,
-    String clientToLoginid,
+    String clientToLoginId,
     int transactionId,
   }) : super(
           paymentAgentTransfer: paymentAgentTransfer,
           clientToFullName: clientToFullName,
-          clientToLoginid: clientToLoginid,
+          clientToLoginId: clientToLoginId,
           transactionId: transactionId,
         );
 
@@ -22,7 +22,7 @@ class PaymentAgentTransfer extends PaymentAgentTransferModel {
         paymentAgentTransfer:
             PaymentResult.values[json['paymentagent_transfer']],
         clientToFullName: json['client_to_full_name'],
-        clientToLoginid: json['client_to_loginid'],
+        clientToLoginId: json['client_to_loginid'],
         transactionId: json['transaction_id'],
       );
 
@@ -30,13 +30,13 @@ class PaymentAgentTransfer extends PaymentAgentTransferModel {
   PaymentAgentTransfer copyWith({
     PaymentResult paymentAgentTransfer,
     String clientToFullName,
-    String clientToLoginid,
+    String clientToLoginId,
     int transactionId,
   }) =>
       PaymentAgentTransfer(
         paymentAgentTransfer: paymentAgentTransfer ?? this.paymentAgentTransfer,
         clientToFullName: clientToFullName ?? this.clientToFullName,
-        clientToLoginid: clientToLoginid ?? this.clientToLoginid,
+        clientToLoginId: clientToLoginId ?? this.clientToLoginId,
         transactionId: transactionId ?? this.transactionId,
       );
 }

@@ -13,8 +13,8 @@ void main() {
     final PaymentAgentWithdraw paymentAgentWithdraw =
         PaymentAgentWithdraw.fromJson(mapData);
 
-    expect(paymentAgentWithdraw.paymentagentWithdraw, PaymentResult.values[1]);
-    expect(paymentAgentWithdraw.paymentagentName, 'John Doe');
+    expect(paymentAgentWithdraw.paymentAgentWithdraw, PaymentResult.values[1]);
+    expect(paymentAgentWithdraw.paymentAgentName, 'John Doe');
     expect(paymentAgentWithdraw.transactionId, 45735309);
   });
 }

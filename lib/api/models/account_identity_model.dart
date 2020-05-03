@@ -2,8 +2,8 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'authentication_services_model.dart';
 import 'api_base_model.dart';
+import 'authentication_services_model.dart';
 
 /// The authentication status for identity.
 class AccountIdentityModel extends APIBaseModel {

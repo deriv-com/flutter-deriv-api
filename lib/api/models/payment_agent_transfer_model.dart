@@ -7,7 +7,7 @@ abstract class PaymentAgentTransferModel extends APIBaseModel {
   PaymentAgentTransferModel({
     this.paymentAgentTransfer,
     this.clientToFullName,
-    this.clientToLoginid,
+    this.clientToLoginId,
     this.transactionId,
   });
 
@@ -17,8 +17,8 @@ abstract class PaymentAgentTransferModel extends APIBaseModel {
   /// The `transfer_to` client full name
   final String clientToFullName;
 
-  /// The `transfer_to` client loginid
-  final String clientToLoginid;
+  /// The `transfer_to` client login id
+  final String clientToLoginId;
 
   /// Reference ID of transfer performed
   final int transactionId;

@@ -2,8 +2,8 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'audit_detail_model.dart';
 import 'api_base_model.dart';
+import 'audit_detail_model.dart';
 import 'limit_order_model.dart';
 import 'open_contract_tick_model.dart';
 import 'transaction_ids_model.dart';

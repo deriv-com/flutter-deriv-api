@@ -24,10 +24,7 @@ class OAuthApp extends OauthAppModel {
   factory OAuthApp.fromJson(Map<String, dynamic> json) => OAuthApp(
         appId: json['app_id'],
         appMarkupPercentage: json['app_markup_percentage']?.toDouble(),
-        lastUsed: getItemFromMap(
-          json['last_used'],
-          itemToTypeCallback: (dynamic item) => DateTime.parse(item),
-        ),
+        lastUsed: DateTime.parse(json['last_used']),
         name: json['name'],
         scopes: getListFromMap(
           json['scopes'],

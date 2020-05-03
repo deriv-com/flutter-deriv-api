@@ -17,7 +17,7 @@ void main() {
     expect(paymentAgent.maxWithdrawal, '100');
     expect(paymentAgent.minWithdrawal, '10');
     expect(paymentAgent.name, 'BiDer');
-    expect(paymentAgent.paymentagentLoginid, 'CR90000012');
+    expect(paymentAgent.paymentAgentLoginId, 'CR90000012');
     expect(paymentAgent.summary, 'Nothing');
     expect(paymentAgent.supportedBanks, 'DiamondBank');
     expect(paymentAgent.telephone, '+27119785313');

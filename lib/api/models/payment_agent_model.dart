@@ -11,7 +11,7 @@ abstract class PaymentAgentModel extends APIBaseModel {
     this.maxWithdrawal,
     this.minWithdrawal,
     this.name,
-    this.paymentagentLoginid,
+    this.paymentAgentLoginId,
     this.summary,
     this.supportedBanks,
     this.telephone,
@@ -40,8 +40,8 @@ abstract class PaymentAgentModel extends APIBaseModel {
   /// Payment agent's name.
   final String name;
 
-  /// Payment agent's loginid.
-  final String paymentagentLoginid;
+  /// Payment agent's login id.
+  final String paymentAgentLoginId;
 
   /// A summary about payment agent.
   final String summary;

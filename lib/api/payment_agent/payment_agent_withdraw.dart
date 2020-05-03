@@ -5,33 +5,33 @@ import 'package:flutter_deriv_api/api/models/payment_agent_withdraw_model.dart';
 class PaymentAgentWithdraw extends PaymentAgentWithdrawModel {
   /// Initializes
   PaymentAgentWithdraw({
-    PaymentResult paymentagentWithdraw,
-    String paymentagentName,
+    PaymentResult paymentAgentWithdraw,
+    String paymentAgentName,
     int transactionId,
   }) : super(
-          paymentagentWithdraw: paymentagentWithdraw,
-          paymentagentName: paymentagentName,
+          paymentAgentWithdraw: paymentAgentWithdraw,
+          paymentAgentName: paymentAgentName,
           transactionId: transactionId,
         );
 
   /// Creates instance from json
   factory PaymentAgentWithdraw.fromJson(Map<String, dynamic> json) =>
       PaymentAgentWithdraw(
-        paymentagentWithdraw:
+        paymentAgentWithdraw:
             PaymentResult.values[json['paymentagent_withdraw']],
-        paymentagentName: json['paymentagent_name'],
+        paymentAgentName: json['paymentagent_name'],
         transactionId: json['transaction_id'],
       );
 
   /// Creates copy of instance with given parameters
   PaymentAgentWithdraw copyWith({
-    PaymentResult paymentagentWithdraw,
-    String paymentagentName,
+    PaymentResult paymentAgentWithdraw,
+    String paymentAgentName,
     int transactionId,
   }) =>
       PaymentAgentWithdraw(
-        paymentagentWithdraw: paymentagentWithdraw ?? this.paymentagentWithdraw,
-        paymentagentName: paymentagentName ?? this.paymentagentName,
+        paymentAgentWithdraw: paymentAgentWithdraw ?? this.paymentAgentWithdraw,
+        paymentAgentName: paymentAgentName ?? this.paymentAgentName,
         transactionId: transactionId ?? this.transactionId,
       );
 }

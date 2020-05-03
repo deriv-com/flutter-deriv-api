@@ -1,12 +1,27 @@
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Set account currency model class
-abstract class SetAccountCurrencyModel extends APIBaseModel {
+class SetAccountCurrencyModel extends APIBaseModel {
   /// Initializes
   SetAccountCurrencyModel({
-    this.setAccountCurrency,
+    this.succeeded,
   });
 
+  /// Creates instance from json
+  factory SetAccountCurrencyModel.fromJson(Map<String, dynamic> json) =>
+      SetAccountCurrencyModel(
+        succeeded: getBool(json['set_account_currency']),
+      );
+
   /// `true`: success, `false`: no change
-  final bool setAccountCurrency;
+  final bool succeeded;
+
+  /// Creates copy of instance with given parameters
+  SetAccountCurrencyModel copyWith({
+    bool succeeded,
+  }) =>
+      SetAccountCurrencyModel(
+        succeeded: succeeded ?? this.succeeded,
+      );
 }

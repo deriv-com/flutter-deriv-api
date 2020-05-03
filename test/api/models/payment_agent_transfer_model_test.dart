@@ -15,7 +15,7 @@ void main() {
 
     expect(paymentAgentTransfer.paymentAgentTransfer, PaymentResult.values[2]);
     expect(paymentAgentTransfer.clientToFullName, 'John Doe');
-    expect(paymentAgentTransfer.clientToLoginid, 'CR100001');
+    expect(paymentAgentTransfer.clientToLoginId, 'CR100001');
     expect(paymentAgentTransfer.transactionId, 45735309);
   });
 }
