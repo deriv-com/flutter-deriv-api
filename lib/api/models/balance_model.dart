@@ -1,5 +1,5 @@
-import 'balance_total_model.dart';
 import 'api_base_model.dart';
+import 'balance_total_model.dart';
 
 /// Abstract class Balance of account
 abstract class BalanceModel extends APIBaseModel {
