@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// MT5 withdrawal class
 class MT5Withdrawal extends MT5WithdrawalModel {
-  /// Class constructor
+  /// Initializes
   MT5Withdrawal({
     bool mt5Withdrawal,
     int binaryTransactionId,

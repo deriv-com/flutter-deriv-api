@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// App update model class
 abstract class AppUpdateModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   AppUpdateModel({
     this.appDetails,
   });

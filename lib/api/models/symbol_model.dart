@@ -1,10 +1,11 @@
 import 'package:flutter_deriv_api/api/models/base_model.dart';
 import 'package:flutter_deriv_api/api/models/trade_event_model.dart';
 import 'package:flutter_deriv_api/api/models/trade_times_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Symbol class
 class SymbolModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   SymbolModel({
     this.displayName,
     this.name,
@@ -17,16 +18,15 @@ class SymbolModel extends BaseModel {
   factory SymbolModel.fromJson(Map<String, dynamic> json) => SymbolModel(
         displayName: json['display_name'],
         name: json['name'],
-        events: json['events'] == null
-            ? null
-            : json['events']
-                .map<TradeEventModel>(
-                    (dynamic item) => TradeEventModel.fromJson(item))
-                .toList(),
+        events: getListFromMap(
+          json['events'],
+          itemToTypeCallback: (dynamic item) => TradeEventModel.fromJson(item),
+        ),
         symbol: json['symbol'],
-        times: json['times'] == null
-            ? null
-            : TradeTimesModel.fromJson(json['times']),
+        times: getItemFromMap(
+          json['times'],
+          itemToTypeCallback: (dynamic item) => TradeTimesModel.fromJson(item),
+        ),
       );
 
   /// Translated symbol name.

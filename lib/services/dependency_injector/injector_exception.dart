@@ -1,6 +1,6 @@
 /// Injector exception class
 class InjectorException implements Exception {
-  /// Class constructor
+  /// Initializes
   InjectorException({this.message});
 
   /// Exception message

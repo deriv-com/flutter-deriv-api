@@ -1,4 +1,3 @@
-
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'base_model.dart';
@@ -17,7 +16,7 @@ class CandleModel extends BaseModel {
   /// From JSON
   factory CandleModel.fromJson(Map<String, dynamic> json) => CandleModel(
         close: json['close'],
-        epoch: json['epoch'] == null ? null : getDateTime(json['epoch']),
+        epoch: getDateTime(json['epoch']),
         high: json['high'],
         low: json['low'],
         open: json['open'],

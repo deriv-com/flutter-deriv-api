@@ -1,6 +1,6 @@
 /// Base exception class
 class APIBaseException implements Exception {
-  /// Class constructor
+  /// Initializes
   APIBaseException({this.message});
 
   /// Exception message

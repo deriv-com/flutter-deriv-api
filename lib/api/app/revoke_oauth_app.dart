@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Revoke oauth app class
 class RevokeOauthApp extends RevokeOauthAppModel {
-  /// Class constructor
+  /// Initializes
   RevokeOauthApp({
     bool revokeOauthApp,
   }) : super(

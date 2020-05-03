@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// MT5 password check class
 class MT5PasswordCheck extends MT5PasswordCheckModel {
-  /// Class constructor
+  /// Initializes
   MT5PasswordCheck({
     bool mt5PasswordCheck,
   }) : super(

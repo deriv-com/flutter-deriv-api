@@ -18,16 +18,17 @@ class AccountAuthenticationStatusModel extends BaseModel {
   factory AccountAuthenticationStatusModel.fromJson(
           Map<String, dynamic> json) =>
       AccountAuthenticationStatusModel(
-        document: getFromMap(
+        document: getItemFromMap(
           json['document'],
-          (dynamic map) => AccountAuthenticationDocumentModel.fromJson(map),
+          itemToTypeCallback: (dynamic map) =>
+              AccountAuthenticationDocumentModel.fromJson(map),
         ),
-        identity: getFromMap(json['identity'],
-            (dynamic map) => AccountIdentityModel.fromJson(map)),
-        needsVerification: getListFromMap(
-          json['needs_verification'],
-          (dynamic item) => item.toString(),
+        identity: getItemFromMap(
+          json['identity'],
+          itemToTypeCallback: (dynamic map) =>
+              AccountIdentityModel.fromJson(map),
         ),
+        needsVerification: getListFromMap(json['needs_verification']),
       );
 
   /// The authentication status for document.

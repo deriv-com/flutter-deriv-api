@@ -16,7 +16,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/pending_subsc
 
 /// Subscription manager class
 class SubscriptionManager extends BaseCallManager<Stream<Response>> {
-  /// Class constructor
+  /// Initializes
   SubscriptionManager(BasicBinaryAPI api) : super(api);
 
   /// Get [subscriptionId] by [requestId]

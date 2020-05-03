@@ -15,9 +15,9 @@ class AuthenticationServicesModel extends BaseModel {
     Map<String, dynamic> json,
   ) =>
       AuthenticationServicesModel(
-        onfido: getFromMap(
+        onfido: getItemFromMap(
           json['onfido'],
-          (dynamic map) => AccountOnfidoModel.fromJson(map),
+          itemToTypeCallback: (dynamic map) => AccountOnfidoModel.fromJson(map),
         ),
       );
 

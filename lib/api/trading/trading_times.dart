@@ -1,9 +1,10 @@
 import 'package:flutter_deriv_api/api/models/market_model.dart';
 import 'package:flutter_deriv_api/api/models/trading_times_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Trading time class
 class TradingTimes extends TradingTimesModel {
-  /// Class constructor
+  /// Initializes
   TradingTimes({
     List<MarketModel> markets,
   }) : super(
@@ -12,11 +13,10 @@ class TradingTimes extends TradingTimesModel {
 
   /// Creates instance from json
   factory TradingTimes.fromJson(Map<String, dynamic> json) => TradingTimes(
-        markets: json['markets'] == null
-            ? null
-            : json['markets']
-                .map<MarketModel>((dynamic item) => MarketModel.fromJson(item))
-                .toList(),
+        markets: getListFromMap(
+          json['markets'],
+          itemToTypeCallback: (dynamic item) => MarketModel.fromJson(item),
+        ),
       );
 
   /// Creates copy of instance with given parameters

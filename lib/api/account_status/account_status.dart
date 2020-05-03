@@ -24,9 +24,10 @@ class AccountStatus extends AccountStatusModel {
     Map<String, dynamic> json,
   ) =>
       AccountStatus(
-        authentication: getFromMap(
+        authentication: getItemFromMap(
           json['authentication'],
-          (dynamic map) => AccountAuthenticationStatusModel.fromJson(map),
+          itemToTypeCallback: (dynamic map) =>
+              AccountAuthenticationStatusModel.fromJson(map),
         ),
         promptClientToAuthenticate:
             getBool(json['prompt_client_to_authenticate']),
@@ -36,7 +37,7 @@ class AccountStatus extends AccountStatusModel {
         ),
         status: getListFromMap(
           json['status'],
-          (dynamic item) => EnumHelper.getEnum(
+          itemToTypeCallback: (dynamic item) => EnumHelper.getEnum(
             values: AccountStatusType.values,
             name: item.toString(),
           ),

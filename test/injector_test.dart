@@ -17,10 +17,7 @@ void main() {
     // Retrieve API instance from injector
     final BasicBinaryAPI api = injector.get<BasicBinaryAPI>();
     await api.run(
-      endpoint: 'frontend.binaryws.com',
-      brand: 'binary',
-      appId: '1089'
-    );
+        endpoint: 'frontend.binaryws.com', brand: 'binary', appId: '1089');
 
     final List<ActiveSymbol> symbols = await ActiveSymbol.getActiveSymbols();
     print('Number of available symbols: ${symbols?.length}');
@@ -28,6 +25,7 @@ void main() {
     final ContractsForSymbol contractsForSymbol =
         await ContractsForSymbol.getContractsForSymbol(symbol: 'R_10');
     print(
-        'Number of contarcts for R_10: ${contractsForSymbol?.contracts?.length}');
+      'Number of contract for R_10: ${contractsForSymbol?.contracts?.length}',
+    );
   });
 }

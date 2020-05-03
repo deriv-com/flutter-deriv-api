@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/forget_model.dart';
 
 /// Forget class
 class Forget extends ForgetModel {
-  /// Class constructor
+  /// Initializes
   Forget({
     bool forget,
   }) : super(

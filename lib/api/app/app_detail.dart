@@ -2,7 +2,7 @@ import 'package:flutter_deriv_api/api/models/app_details_model.dart';
 
 /// App detail class
 class AppDetails extends AppDetailsModel {
-  /// Class constructor
+  /// Initializes
   AppDetails({
     int appId,
     double appMarkupPercentage,

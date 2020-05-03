@@ -9,25 +9,25 @@ import 'exceptions/contract_operations_exception.dart';
 
 /// Buy class
 class BuyContract extends BuyContractModel {
-  /// Class constructor
+  /// Initializes
   BuyContract({
     double balanceAfter,
     double buyPrice,
     int contractId,
-    String longcode,
+    String longCode,
     double payout,
     DateTime purchaseTime,
-    String shortcode,
+    String shortCode,
     DateTime startTime,
     int transactionId,
   }) : super(
           balanceAfter: balanceAfter,
           buyPrice: buyPrice,
           contractId: contractId,
-          longcode: longcode,
+          longCode: longCode,
           payout: payout,
           purchaseTime: purchaseTime,
-          shortcode: shortcode,
+          shortCode: shortCode,
           startTime: startTime,
           transactionId: transactionId,
         );
@@ -37,12 +37,11 @@ class BuyContract extends BuyContractModel {
         balanceAfter: json['balance_after'],
         buyPrice: json['buy_price'],
         contractId: json['contract_id'],
-        longcode: json['longcode'],
+        longCode: json['longcode'],
         payout: json['payout']?.toDouble(),
         purchaseTime: getDateTime(json['purchase_time']),
-        shortcode: json['shortcode'],
-        startTime:
-            json['start_time'] == null ? null : getDateTime(json['start_time']),
+        shortCode: json['shortcode'],
+        startTime: getDateTime(json['start_time']),
         transactionId: json['transaction_id'],
       );
 
@@ -60,11 +59,13 @@ class BuyContract extends BuyContractModel {
 
     if (openContractResponse.error != null) {
       throw ContractOperationException(
-          message: openContractResponse.error['message']);
+        message: openContractResponse.error['message'],
+      );
     }
 
     return OpenContractModel.fromJson(
-        openContractResponse.proposalOpenContract);
+      openContractResponse.proposalOpenContract,
+    );
   }
 
   /// Creates copy of instance with given parameters
@@ -72,10 +73,10 @@ class BuyContract extends BuyContractModel {
     double balanceAfter,
     double buyPrice,
     int contractId,
-    String longcode,
+    String longCode,
     double payout,
     DateTime purchaseTime,
-    String shortcode,
+    String shortCode,
     DateTime startTime,
     int transactionId,
   }) =>
@@ -83,10 +84,10 @@ class BuyContract extends BuyContractModel {
         balanceAfter: balanceAfter ?? this.balanceAfter,
         buyPrice: buyPrice ?? this.buyPrice,
         contractId: contractId ?? this.contractId,
-        longcode: longcode ?? this.longcode,
+        longCode: longCode ?? this.longCode,
         payout: payout ?? this.payout,
         purchaseTime: purchaseTime ?? this.purchaseTime,
-        shortcode: shortcode ?? this.shortcode,
+        shortCode: shortCode ?? this.shortCode,
         startTime: startTime ?? this.startTime,
         transactionId: transactionId ?? this.transactionId,
       );

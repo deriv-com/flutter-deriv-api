@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Transaction model class
 class AppTransactionModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   AppTransactionModel({
     this.appId,
     this.appMarkup,

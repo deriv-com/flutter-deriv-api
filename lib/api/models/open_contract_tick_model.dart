@@ -13,7 +13,7 @@ class OpenContractTickModel extends BaseModel {
   /// From JSON
   factory OpenContractTickModel.fromJson(Map<String, dynamic> json) =>
       OpenContractTickModel(
-        epoch: json['epoch'] == null ? null : getDateTime(json['epoch']),
+        epoch: getDateTime(json['epoch']),
         tick: json['tick'],
         tickDisplayValue: json['tick_display_value'],
       );

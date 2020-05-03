@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 
 /// MT5 account model class
 abstract class MT5AccountModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   MT5AccountModel({
     this.accountType,
     this.balance,

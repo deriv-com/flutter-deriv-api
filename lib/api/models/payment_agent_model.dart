@@ -2,7 +2,7 @@ import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// Payment agent model class
 abstract class PaymentAgentModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   PaymentAgentModel({
     this.currencies,
     this.depositCommission,

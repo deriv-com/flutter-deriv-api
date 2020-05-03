@@ -4,7 +4,7 @@ import 'package:flutter_deriv_api/utils/enum_helper.dart';
 
 /// MT5 account class
 class MT5Account extends MT5AccountModel {
-  /// Class constructor
+  /// Initializes
   MT5Account({
     AccountType accountType,
     double balance,

@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/models/asset_index_model.dart';
 import 'package:flutter_deriv_api/api/models/index_contract_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Index of contracts
 const int contractsIndex = 2;
@@ -30,10 +31,11 @@ class AssetIndex extends AssetIndexModel {
       AssetIndex(
         contracts: jsonList[contractsIndex] == 0
             ? null
-            : jsonList[contractsIndex]
-                .map<IndexContractModel>(
-                    (dynamic item) => IndexContractModel.fromJson(item))
-                .toList(),
+            : getListFromMap(
+                jsonList[contractsIndex],
+                itemToTypeCallback: (dynamic item) =>
+                    IndexContractModel.fromJson(item),
+              ),
         symbolCode: jsonList[symbolCodeIndex],
         symbolName: jsonList[symbolNameIndex],
       );

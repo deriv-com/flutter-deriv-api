@@ -19,7 +19,7 @@ class OpenContractTickInfoModel extends OpenContractTickModel {
   /// From JSON
   factory OpenContractTickInfoModel.fromJson(Map<String, dynamic> json) =>
       OpenContractTickInfoModel(
-        epoch: json['epoch'] == null ? null : getDateTime(json['epoch']),
+        epoch: getDateTime(json['epoch']),
         flag: json['flag'],
         name: json['name'],
         tick: json['tick'],

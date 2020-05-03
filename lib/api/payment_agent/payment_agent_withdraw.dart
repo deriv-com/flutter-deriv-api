@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/payment_agent_withdraw_model.dart';
 
 /// Payment agent withdraw class
 class PaymentAgentWithdraw extends PaymentAgentWithdrawModel {
-  /// Class constructor
+  /// Initializes
   PaymentAgentWithdraw({
     PaymentResult paymentagentWithdraw,
     String paymentagentName,

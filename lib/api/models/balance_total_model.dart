@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
 import 'balance_mt5_model.dart';
 import 'balance_real_model.dart';
 import 'base_model.dart';
@@ -12,8 +14,14 @@ class BalanceTotalModel extends BaseModel {
     Map<String, dynamic> json,
   ) =>
       BalanceTotalModel(
-        mt5: json['mt5'] == null ? null : BalanceMt5Model.fromJson(json),
-        real: json['real'] != null ? null : BalanceRealModel.fromJson(json),
+        mt5: getItemFromMap(
+          json['mt5'],
+          itemToTypeCallback: (dynamic item) => BalanceMt5Model.fromJson(item),
+        ),
+        real: getItemFromMap(
+          json['real'],
+          itemToTypeCallback: (dynamic item) => BalanceRealModel.fromJson(item),
+        ),
       );
 
   /// Total balance of all MT5 accounts

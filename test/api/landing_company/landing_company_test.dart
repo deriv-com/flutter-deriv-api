@@ -28,7 +28,7 @@ void main() {
     expect(financialCompany.legalDefaultCurrency, 'AUD');
     expect(financialCompany.country, 'Saint Vincent and the Grenadines');
     expect(financialCompany.legalDefaultCurrency, 'AUD');
-    expect(financialCompany.shortcode, 'svg');
+    expect(financialCompany.shortCode, 'svg');
     expect(financialCompany.legalAllowedMarkets.length, 2);
     expect(financialCompany.legalAllowedMarkets.first, 'commodities');
 
@@ -42,7 +42,7 @@ void main() {
     expect(mtFinancialAdvanced.legalAllowedContractCategories.length, 1);
     expect(mtFinancialAdvanced.legalDefaultCurrency, 'AUD');
     expect(mtFinancialAdvanced.country, 'Malaysia');
-    expect(mtFinancialAdvanced.shortcode, 'labuan');
+    expect(mtFinancialAdvanced.shortCode, 'labuan');
     expect(mtFinancialAdvanced.legalAllowedMarkets.length, 1);
     expect(mtFinancialAdvanced.legalAllowedMarkets.first, 'forex');
   });

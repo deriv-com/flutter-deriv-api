@@ -13,10 +13,7 @@ class AccountOnfidoModel extends BaseModel {
   /// Instance from JSON
   factory AccountOnfidoModel.fromJson(Map<String, dynamic> json) =>
       AccountOnfidoModel(
-        documents: getListFromMap(
-          json['documents'],
-          (dynamic item) => item.toString(),
-        ),
+        documents: getListFromMap(json['documents']),
         isCountrySupported: getBool(json['is_country_supported']),
       );
 

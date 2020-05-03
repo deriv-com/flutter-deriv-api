@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
 import 'base_model.dart';
 import 'limit_order_close_info_model.dart';
 
@@ -10,15 +12,21 @@ class LimitOrderModel extends BaseModel {
   /// From Json
   factory LimitOrderModel.fromJson(Map<String, dynamic> json) =>
       LimitOrderModel(
-        json['stop_loss'] == null
-            ? null
-            : LimitOrderCloseInfoModel.fromJson(json['stop_loss']),
-        json['stop_out'] == null
-            ? null
-            : LimitOrderCloseInfoModel.fromJson(json['stop_out']),
-        json['take_profit'] == null
-            ? null
-            : LimitOrderCloseInfoModel.fromJson(json['take_profit']),
+        getItemFromMap(
+          json['stop_loss'],
+          itemToTypeCallback: (dynamic item) =>
+              LimitOrderCloseInfoModel.fromJson(item),
+        ),
+        getItemFromMap(
+          json['stop_out'],
+          itemToTypeCallback: (dynamic item) =>
+              LimitOrderCloseInfoModel.fromJson(item),
+        ),
+        getItemFromMap(
+          json['take_profit'],
+          itemToTypeCallback: (dynamic item) =>
+              LimitOrderCloseInfoModel.fromJson(item),
+        ),
       );
 
   /// Contains information where the contract will be closed automatically

@@ -4,7 +4,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Token class
 class APIToken extends APITokenModel {
-  /// Class constructor
+  /// Initializes
   APIToken({
     bool deleteToken,
     bool newToken,
@@ -19,13 +19,10 @@ class APIToken extends APITokenModel {
   factory APIToken.fromJson(Map<String, dynamic> json) => APIToken(
         deleteToken: getBool(json['delete_token']),
         newToken: getBool(json['new_token']),
-        tokens: json['tokens'] == null
-            ? null
-            : json['tokens']
-                .map<TokenModel>(
-                  (dynamic item) => TokenModel.fromJson(item),
-                )
-                .toList(),
+        tokens: getListFromMap(
+          json['tokens'],
+          itemToTypeCallback: (dynamic item) => TokenModel.fromJson(item),
+        ),
       );
 
   /// Creates copy of instance with given parameters

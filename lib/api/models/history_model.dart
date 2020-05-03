@@ -9,17 +9,14 @@ class HistoryModel extends BaseModel {
 
   /// From JSON
   factory HistoryModel.fromJson(Map<String, dynamic> json) => HistoryModel(
-        prices: json['prices'] == null
-            ? null
-            : json['prices'].map<double>((dynamic entry) {
-                final double price = entry.toDouble();
-                return price;
-              })?.toList(),
-        times: json['times'] == null
-            ? null
-            : json['times']
-                .map<DateTime>((dynamic entry) => getDateTime(entry))
-                ?.toList(),
+        prices: getListFromMap(
+          json['prices'],
+          itemToTypeCallback: (dynamic item) => item.toDouble(),
+        ),
+        times: getListFromMap(
+          json['times'],
+          itemToTypeCallback: (dynamic item) => getDateTime(item),
+        ),
       );
 
   /// Containing list of tick values for the

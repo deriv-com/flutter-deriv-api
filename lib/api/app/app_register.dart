@@ -1,9 +1,10 @@
 import 'package:flutter_deriv_api/api/app/app_detail.dart';
 import 'package:flutter_deriv_api/api/models/app_register_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// App register class
 class AppRegister extends AppRegisterModel {
-  /// Class constructor
+  /// Initializes
   AppRegister({
     AppDetails appDetails,
   }) : super(
@@ -12,9 +13,10 @@ class AppRegister extends AppRegisterModel {
 
   /// Creates instance from json
   factory AppRegister.fromJson(Map<String, dynamic> json) => AppRegister(
-        appDetails: json['app_register'] == null
-            ? null
-            : AppDetails.fromJson(json['app_register']),
+        appDetails: getItemFromMap(
+          json['app_register'],
+          itemToTypeCallback: (dynamic item) => AppDetails.fromJson(item),
+        ),
       );
 
   /// Creates copy of instance with given parameters

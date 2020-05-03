@@ -2,12 +2,12 @@ import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// Reality check model class
 abstract class RealityCheckModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   RealityCheckModel({
     this.buyAmount,
     this.buyCount,
     this.currency,
-    this.loginid,
+    this.loginId,
     this.openContractCount,
     this.potentialProfit,
     this.sellAmount,
@@ -25,7 +25,7 @@ abstract class RealityCheckModel extends BaseModel {
   final String currency;
 
   /// Client loginid.
-  final String loginid;
+  final String loginId;
 
   /// Total count of contracts that are not yet expired.
   final int openContractCount;

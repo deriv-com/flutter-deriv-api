@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
 import 'base_model.dart';
 import 'forward_starting_option_model.dart';
 
@@ -38,10 +40,11 @@ class ContractModel extends BaseModel {
       contractType: json['contract_type'],
       exchangeName: json['exchange_name'],
       expiryType: json['expiry_type'],
-      forwardStartingOptions: json['forward_starting_options']
-          ?.map<ForwardStartingOptionModel>((dynamic entry) =>
-              entry == null ? null : ForwardStartingOptionModel.fromJson(entry))
-          ?.toList(),
+      forwardStartingOptions: getListFromMap(
+        json['forward_starting_options'],
+        itemToTypeCallback: (dynamic item) =>
+            ForwardStartingOptionModel.fromJson(item),
+      ),
       market: json['market'],
       maxContractDuration: json['max_contract_duration'],
       minContractDuration: json['min_contract_duration'],

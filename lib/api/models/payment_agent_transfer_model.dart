@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 
 /// Payment agent transfer model class
 abstract class PaymentAgentTransferModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   PaymentAgentTransferModel({
     this.paymentAgentTransfer,
     this.clientToFullName,

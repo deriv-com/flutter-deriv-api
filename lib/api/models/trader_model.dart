@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
 import 'base_model.dart';
 
 /// Trader information
@@ -14,18 +16,12 @@ class TraderModel extends BaseModel {
 
   /// Creates instance from JSON
   factory TraderModel.fromJson(Map<String, dynamic> json) => TraderModel(
-        assets: json['assets'] == null
-            ? null
-            : json['assets'].map<String>((dynamic entry) => entry.toString()).toList(),
+        assets: getListFromMap(json['assets']),
         loginId: json['loginid'],
         maxTradeStake: json['max_trade_stake']?.toDouble(),
         minTradeStake: json['min_trade_stake']?.toDouble(),
         token: json['token'],
-        tradeTypes: json['trade_types'] == null
-            ? null
-            : json['trade_types']
-                .map<String>((dynamic entry) => entry.toString())
-                .toList(),
+        tradeTypes: getListFromMap(json['trade_types']),
       );
 
   /// The list of assets to copy the trades of.

@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/mt5_settings_model.dart';
 
 /// MT5 settings class
 class MT5Settings extends MT5SettingsModel {
-  /// Class constructor
+  /// Initializes
   MT5Settings({
     String address,
     String balance,

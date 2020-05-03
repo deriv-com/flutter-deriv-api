@@ -1,10 +1,11 @@
 import 'package:flutter_deriv_api/api/models/base_model.dart';
 import 'package:flutter_deriv_api/api/models/duration_model.dart';
 import 'package:flutter_deriv_api/api/models/trade_type_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Trade duration class
 class TradeDurationModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   TradeDurationModel({
     this.durations,
     this.tradeType,
@@ -13,15 +14,14 @@ class TradeDurationModel extends BaseModel {
   /// Creates instance from json
   factory TradeDurationModel.fromJson(Map<String, dynamic> json) =>
       TradeDurationModel(
-        durations: json['durations'] == null
-            ? null
-            : json['durations']
-                .map<DurationModel>(
-                    (dynamic item) => DurationModel.fromJson(item))
-                .toList(),
-        tradeType: json['trade_type'] == null
-            ? null
-            : TradeTypeModel.fromJson(json['trade_type']),
+        durations: getListFromMap(
+          json['durations'],
+          itemToTypeCallback: (dynamic item) => DurationModel.fromJson(item),
+        ),
+        tradeType: getItemFromMap(
+          json['trade_type'],
+          itemToTypeCallback: (dynamic item) => TradeTypeModel.fromJson(item),
+        ),
       );
 
   /// List of trade durations available for the symbols.

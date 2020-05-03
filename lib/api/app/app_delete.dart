@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// App delete class
 class AppDelete extends AppDeleteModel {
-  /// Class constructor
+  /// Initializes
   AppDelete({
     bool appDelete,
   }) : super(

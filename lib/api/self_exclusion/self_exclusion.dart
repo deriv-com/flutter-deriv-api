@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Self exclusion class
 class SelfExclusion extends SelfExclusionModel {
-  /// Class constructor
+  /// Initializes
   SelfExclusion({
     DateTime excludeUntil,
     double max30dayLosses,

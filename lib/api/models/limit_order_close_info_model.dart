@@ -17,7 +17,7 @@ class LimitOrderCloseInfoModel extends BaseModel {
       LimitOrderCloseInfoModel(
         json['display_name'],
         json['order_amount'],
-        json['order_date'] == null ? null : getDateTime(json['order_date']),
+        getDateTime(json['order_date']),
         json['value'],
       );
 

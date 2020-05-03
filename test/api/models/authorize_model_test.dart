@@ -22,7 +22,7 @@ void main() {
     expect(accounts[0].isDisabled, false);
     expect(accounts[0].isVirtual, false);
     expect(accounts[0].landingCompanyName, 'svg');
-    expect(accounts[0].loginid, 'CR90000028');
+    expect(accounts[0].loginId, 'CR90000028');
 
     expect(accounts[1].currency, 'USD');
     expect(accounts[1].excludedUntil,
@@ -30,7 +30,7 @@ void main() {
     expect(accounts[1].isDisabled, false);
     expect(accounts[1].isVirtual, true);
     expect(accounts[1].landingCompanyName, 'virtual');
-    expect(accounts[1].loginid, 'VRTC90000028');
+    expect(accounts[1].loginId, 'VRTC90000028');
 
     expect(localCurrencies.length, 2);
 
@@ -43,12 +43,12 @@ void main() {
     expect(authorize.balance, 10000);
     expect(authorize.country, 'za');
     expect(authorize.currency, 'USD');
-    expect(authorize.email, 'hamed1@binary.com');
-    expect(authorize.fullname, 'Ms QA script hamedSTX');
+    expect(authorize.email, 'test@site.com');
+    expect(authorize.fullName, 'Ms QA script testSTX');
     expect(authorize.isVirtual, false);
-    expect(authorize.landingCompanyFullname, 'Binary (SVG) Ltd.');
+    expect(authorize.landingCompanyFullName, 'Binary (SVG) Ltd.');
     expect(authorize.landingCompanyName, 'svg');
-    expect(authorize.loginid, 'CR90000028');
+    expect(authorize.loginId, 'CR90000028');
     expect(authorize.scopes.length, 4);
     expect(authorize.upgradeableLandingCompanies.length, 1);
     expect(authorize.userId, 29);

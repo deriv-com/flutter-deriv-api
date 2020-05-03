@@ -1,8 +1,9 @@
 import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Trade time class
 class TradeTimesModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   TradeTimesModel({
     this.close,
     this.open,
@@ -12,16 +13,8 @@ class TradeTimesModel extends BaseModel {
   /// Creates instance from json
   factory TradeTimesModel.fromJson(Map<String, dynamic> json) =>
       TradeTimesModel(
-        open: json['close'] == null
-            ? null
-            : json['close']
-                .map<String>((dynamic item) => item.toString())
-                .toList(),
-        close: json['open'] == null
-            ? null
-            : json['open']
-                .map<String>((dynamic item) => item.toString())
-                .toList(),
+        open: getListFromMap(json['close']),
+        close: getListFromMap(json['open']),
         settlement: json['settlement'],
       );
 

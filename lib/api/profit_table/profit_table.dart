@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/models/profit_table_model.dart';
 import 'package:flutter_deriv_api/api/models/profit_transaction_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Profit table class
 class ProfitTable extends ProfitTableModel {
@@ -15,12 +16,11 @@ class ProfitTable extends ProfitTableModel {
   /// Generate an instance from json
   factory ProfitTable.fromJson(Map<String, dynamic> json) => ProfitTable(
         count: int.parse(json['count']),
-        transactions: json['transactions'] == null
-            ? null
-            : json['transactions']
-                .map<ProfitTransactionModel>(
-                    (dynamic item) => ProfitTransactionModel.fromJson(item))
-                .toList(),
+        transactions: getListFromMap(
+          json['transactions'],
+          itemToTypeCallback: (dynamic item) =>
+              ProfitTransactionModel.fromJson(item),
+        ),
       );
 
   /// Generate a copy of instance with given parameters

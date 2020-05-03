@@ -24,10 +24,10 @@ class ExchangeRates extends ExchangeRatesModel {
             : json['rates']
                 .entries
                 .map<RateModel>(
-                  (dynamic entry) => RateModel.fromJson(
+                  (dynamic item) => RateModel.fromJson(
                     <String, dynamic>{
-                      'key': entry.key,
-                      'values': entry.value,
+                      'key': item.key,
+                      'values': item.value,
                     },
                   ),
                 )

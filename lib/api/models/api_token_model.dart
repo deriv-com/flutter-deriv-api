@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/token_model.dart';
 
 /// Api token model class
 abstract class APITokenModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   APITokenModel({
     this.deleteToken,
     this.newToken,

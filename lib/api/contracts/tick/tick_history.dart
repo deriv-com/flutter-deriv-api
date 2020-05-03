@@ -1,6 +1,7 @@
 import 'package:flutter_deriv_api/api/models/candle_model.dart';
 import 'package:flutter_deriv_api/api/models/history_model.dart';
 import 'package:flutter_deriv_api/api/models/tick_history_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// historic tick data for a given symbol.
 class TickHistory extends TickHistoryModel {
@@ -17,15 +18,14 @@ class TickHistory extends TickHistoryModel {
 
   /// From JSON
   factory TickHistory.fromJson(Map<String, dynamic> json) => TickHistory(
-        candles: json['candles'] == null
-            ? null
-            : json['candles']
-                .map<CandleModel>(
-                    (dynamic entry) => CandleModel.fromJson(entry))
-                .toList(),
-        history: json['history'] == null
-            ? null
-            : HistoryModel.fromJson(json['history']),
+        candles: getListFromMap(
+          json['candles'],
+          itemToTypeCallback: (dynamic item) => CandleModel.fromJson(item),
+        ),
+        history: getItemFromMap(
+          json['history'],
+          itemToTypeCallback: (dynamic item) => HistoryModel.fromJson(item),
+        ),
         pipSize: json['pip_size'],
       );
 

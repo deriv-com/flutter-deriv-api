@@ -2,7 +2,7 @@ import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// MT5 response model class
 abstract class MT5DepositModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   MT5DepositModel({
     this.mt5Deposit,
     this.binaryTransactionId,

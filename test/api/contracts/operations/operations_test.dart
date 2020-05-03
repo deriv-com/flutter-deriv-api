@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:flutter_deriv_api/api/contracts/operations/buy_contract.dart';
+import 'package:flutter_deriv_api/api/contracts/operations/exceptions/contract_operations_exception.dart';
+import 'package:flutter_deriv_api/api/contracts/operations/price_proposal.dart';
+import 'package:flutter_deriv_api/api/contracts/operations/sell_contract.dart';
+import 'package:flutter_deriv_api/api/models/open_contract_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/api/contracts/operations/buy_contract.dart';
-import 'package:flutter_deriv_api/api/contracts/operations/price_proposal.dart';
-import 'package:flutter_deriv_api/api/models/open_contract_model.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
-import 'package:flutter_deriv_api/api/contracts/operations/exceptions/contract_operations_exception.dart';
-import 'package:flutter_deriv_api/api/contracts/operations/sell_contract.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'buy_contract_mock_data.dart';
 import 'open_contract_mock_data.dart';
@@ -36,7 +36,7 @@ void main() {
     expect(buyContract.contractId, 79939279308);
     expect(buyContract.purchaseTime, getDateTime(1587528886));
     expect(
-      buyContract.shortcode,
+      buyContract.shortCode,
       'CALL_R_100_100_1587528886_1587528946_S10P_0',
     );
     expect(buyContract.buyPrice, 49.12);

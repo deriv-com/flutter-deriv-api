@@ -2,7 +2,7 @@ import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// Duration class
 class DurationModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   DurationModel({
     this.displayName,
     this.max,

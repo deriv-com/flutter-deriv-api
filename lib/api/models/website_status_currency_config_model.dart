@@ -33,11 +33,11 @@ class WebsiteStatusCurrencyConfigModel extends BaseModel {
           values: CurrencyType.values,
           name: json['type'],
         ),
-        transferBetweenAccounts: json['transfer_between_accounts'] == null
-            ? null
-            : TransferAccountLimitationModel.fromJson(
-                json['transfer_between_accounts'],
-              ),
+        transferBetweenAccounts: getItemFromMap(
+          json['transfer_between_accounts'],
+          itemToTypeCallback: (dynamic item) =>
+              TransferAccountLimitationModel.fromJson(item),
+        ),
       );
 
   /// Currency code

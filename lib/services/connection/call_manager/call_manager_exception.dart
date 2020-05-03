@@ -1,6 +1,6 @@
 /// Subscription exception class
 class CallManagerException implements Exception {
-  /// Class constructor
+  /// Initializes
   CallManagerException({
     this.message,
   });

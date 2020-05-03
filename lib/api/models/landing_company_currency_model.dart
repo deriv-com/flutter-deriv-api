@@ -17,8 +17,12 @@ class LandingCompanyCurrencyModel extends BaseModel {
       LandingCompanyCurrencyModel(
         market: marketName,
         currencies: currenciesMap.entries
-            .map<LandingCompanyCurrencyConfigModel>((dynamic entry) =>
-                LandingCompanyCurrencyConfigModel.fromJson(entry.key, entry.value))
+            .map<LandingCompanyCurrencyConfigModel>(
+              (dynamic item) => LandingCompanyCurrencyConfigModel.fromJson(
+                item.key,
+                item.value,
+              ),
+            )
             .toList(),
       );
 

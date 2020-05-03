@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// MT5 deposit class
 class MT5Deposit extends MT5DepositModel {
-  /// Class constructor
+  /// Initializes
   MT5Deposit({
     bool mt5Deposit,
     int binaryTransactionId,

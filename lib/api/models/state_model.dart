@@ -2,7 +2,7 @@ import 'base_model.dart';
 
 /// States list model class
 abstract class StateModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   StateModel({
     this.text,
     this.value,

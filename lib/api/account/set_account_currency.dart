@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/set_account_currency_model.dart';
 
 /// Set account currency class
 class SetAccountCurrency extends SetAccountCurrencyModel {
-  /// Class constructor
+  /// Initializes
   SetAccountCurrency({
     bool setAccountCurrency,
   }) : super(

@@ -26,7 +26,7 @@ class Tick extends TickModel {
   factory Tick.fromJson(Map<String, dynamic> json) => Tick(
         ask: json['ask'],
         bid: json['bid'],
-        epoch: json['epoch'] == null ? null : getDateTime(json['epoch']),
+        epoch: getDateTime(json['epoch']),
         id: json['id'],
         pipSize: json['pip_size'],
         quote: json['quote'],

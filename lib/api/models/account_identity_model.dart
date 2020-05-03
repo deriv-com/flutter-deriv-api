@@ -20,9 +20,10 @@ class AccountIdentityModel extends BaseModel {
       AccountIdentityModel(
         expiryDate: getDateTime(json['expiry_date']),
         furtherSubmissionsAllowed: json['further_submissions_allowed'],
-        services: getFromMap(
+        services: getItemFromMap(
           json['services'],
-          (dynamic map) => AuthenticationServicesModel.fromJson(map),
+          itemToTypeCallback: (dynamic map) =>
+              AuthenticationServicesModel.fromJson(map),
         ),
         status: EnumHelper.getEnum(
           values: AccountIdentityStatus.values,

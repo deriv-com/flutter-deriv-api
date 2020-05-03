@@ -1,10 +1,11 @@
 import 'package:flutter_deriv_api/api/models/base_model.dart';
 import 'package:flutter_deriv_api/api/models/symbol_model.dart';
 import 'package:flutter_deriv_api/api/models/trade_duration_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Trading duration model class
 class TradingDurationDataModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   TradingDurationDataModel({
     this.symbols,
     this.tradeDurations,
@@ -13,17 +14,15 @@ class TradingDurationDataModel extends BaseModel {
   /// Creates instance from json
   factory TradingDurationDataModel.fromJson(Map<String, dynamic> json) =>
       TradingDurationDataModel(
-        symbols: json['symbol'] == null
-            ? null
-            : json['symbol']
-                .map<SymbolModel>((dynamic item) => SymbolModel.fromJson(item))
-                .toList(),
-        tradeDurations: json['trade_durations'] == null
-            ? null
-            : json['trade_durations']
-                .map<TradeDurationModel>(
-                    (dynamic item) => TradeDurationModel.fromJson(item))
-                .toList(),
+        symbols: getListFromMap(
+          json['symbol'],
+          itemToTypeCallback: (dynamic item) => SymbolModel.fromJson(item),
+        ),
+        tradeDurations: getListFromMap(
+          json['trade_durations'],
+          itemToTypeCallback: (dynamic item) =>
+              TradeDurationModel.fromJson(item),
+        ),
       );
 
   /// List of underlying symbols.

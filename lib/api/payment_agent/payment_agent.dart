@@ -2,7 +2,7 @@ import 'package:flutter_deriv_api/api/models/payment_agent_model.dart';
 
 /// Payment agent class
 class PaymentAgent extends PaymentAgentModel {
-  /// Class constructor
+  /// Initializes
   PaymentAgent({
     String currencies,
     String depositCommission,
@@ -33,7 +33,7 @@ class PaymentAgent extends PaymentAgentModel {
           withdrawalCommission: withdrawalCommission,
         );
 
-  /// Generate instance from json
+  /// Generate an instance from json
   factory PaymentAgent.fromJson(Map<String, dynamic> json) => PaymentAgent(
         currencies: json['currencies'],
         depositCommission: json['deposit_commission'],
@@ -50,7 +50,7 @@ class PaymentAgent extends PaymentAgentModel {
         withdrawalCommission: json['withdrawal_commission'],
       );
 
-  /// Generate copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   PaymentAgent copyWith({
     String currencies,
     String depositCommission,

@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
 import 'base_model.dart';
 import 'landing_company_detail_model.dart';
 
@@ -14,12 +16,16 @@ class MTLandingCompanyModel extends BaseModel {
     Map<String, dynamic> json,
   ) =>
       MTLandingCompanyModel(
-        advanced: json['advanced'] == null
-            ? null
-            : LandingCompanyDetailModel.fromJson(json['advanced']),
-        standard: json['standard'] == null
-            ? null
-            : LandingCompanyDetailModel.fromJson(json['standard']),
+        advanced: getItemFromMap(
+          json['advanced'],
+          itemToTypeCallback: (dynamic item) =>
+              LandingCompanyDetailModel.fromJson(item),
+        ),
+        standard: getItemFromMap(
+          json['standard'],
+          itemToTypeCallback: (dynamic item) =>
+              LandingCompanyDetailModel.fromJson(item),
+        ),
       );
 
   /// Contain details for landing company for advanced subtype.

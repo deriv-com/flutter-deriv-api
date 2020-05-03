@@ -12,7 +12,7 @@ abstract class PriceProposalModel {
     this.displayValue,
     this.id,
     this.limitOrder,
-    this.longcode,
+    this.longCode,
     this.multiplier,
     this.payout,
     this.spot,
@@ -43,9 +43,9 @@ abstract class PriceProposalModel {
 
   /// Example: Win payout if Random 100 Index is strictly higher than
   /// entry spot at 15 minutes after contract start time.
-  final String longcode;
+  final String longCode;
 
-  /// [Only for lookback trades] Multiplier applies
+  /// [Only for look back trades] Multiplier applies
   /// when calculating the final payoff for each type of lookback.
   /// e.g. (Exit spot - Lowest historical price) * multiplier = Payout
   final int multiplier;

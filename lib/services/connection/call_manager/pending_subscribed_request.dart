@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/subscription_
 
 /// Represent a pending request.
 class PendingSubscribedRequest<T> extends PendingRequest<T> {
-  /// Class constructor
+  /// Initializes
   PendingSubscribedRequest({
     Request request,
     Completer<T> response,

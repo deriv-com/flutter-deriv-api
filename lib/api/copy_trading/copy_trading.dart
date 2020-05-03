@@ -1,6 +1,7 @@
 import 'package:flutter_deriv_api/api/models/copier_model.dart';
 import 'package:flutter_deriv_api/api/models/copy_trading_model.dart';
 import 'package:flutter_deriv_api/api/models/trader_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// CopyTrading class
 class CopyTrading extends CopyTradingModel {
@@ -15,18 +16,14 @@ class CopyTrading extends CopyTradingModel {
 
   /// Creates instance from JSON
   factory CopyTrading.fromJson(Map<String, dynamic> json) => CopyTrading(
-        copiers: json['copiers'] != null
-            ? json['copiers']
-                .map<CopierModel>(
-                    (dynamic entry) => CopierModel.fromJson(entry))
-                .toList()
-            : null,
-        traders: json['traders'] != null
-            ? json['traders']
-                .map<TraderModel>(
-                    (dynamic entry) => TraderModel.fromJson(entry))
-                .toList()
-            : null,
+        copiers: getListFromMap(
+          json['copiers'],
+          itemToTypeCallback: (dynamic item) => CopierModel.fromJson(item),
+        ),
+        traders: getListFromMap(
+          json['traders'],
+          itemToTypeCallback: (dynamic item) => TraderModel.fromJson(item),
+        ),
       );
 
   /// Clones a new instance

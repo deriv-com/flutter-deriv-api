@@ -5,7 +5,7 @@ import 'package:flutter_deriv_api/api/models/trading_duration_data_model.dart';
 
 /// Trading duration model class
 abstract class TradingDurationModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   TradingDurationModel({
     this.market,
     this.submarket,

@@ -20,7 +20,7 @@ class PriceProposal extends PriceProposalModel {
     String displayValue,
     String id,
     LimitOrderModel limitOrder,
-    String longcode,
+    String longCode,
     int multiplier,
     double payout,
     double spot,
@@ -33,7 +33,7 @@ class PriceProposal extends PriceProposalModel {
           displayValue,
           id,
           limitOrder,
-          longcode,
+          longCode,
           multiplier,
           payout,
           spot,
@@ -42,20 +42,21 @@ class PriceProposal extends PriceProposalModel {
 
   /// From Json
   factory PriceProposal.fromJson(Map<String, dynamic> json) => PriceProposal(
-        askPrice:
-            json['ask_price'] == null ? null : json['ask_price']?.toDouble(),
-        cancellation: json['cancellation'] == null
-            ? null
-            : CancellationInfoModel.fromJson(json['cancellation']),
+        askPrice: json['ask_price']?.toDouble(),
+        cancellation: getItemFromMap(
+          json['cancellation'],
+          itemToTypeCallback: (dynamic item) =>
+              CancellationInfoModel.fromJson(item),
+        ),
         commission: json['commission'],
-        dateStart:
-            json['date_start'] == null ? null : getDateTime(json['date_start']),
+        dateStart: getDateTime(json['date_start']),
         displayValue: json['display_value'],
         id: json['id'],
-        limitOrder: json['limit_order'] == null
-            ? null
-            : LimitOrderModel.fromJson(json['limit_order']),
-        longcode: json['longcode'],
+        limitOrder: getItemFromMap(
+          json['limit_order'],
+          itemToTypeCallback: (dynamic item) => LimitOrderModel.fromJson(item),
+        ),
+        longCode: json['longcode'],
         multiplier: json['multiplier'],
         payout: json['payout']?.toDouble(),
         spot: json['spot'],
@@ -128,7 +129,7 @@ class PriceProposal extends PriceProposalModel {
     String displayValue,
     String id,
     LimitOrderModel limitOrder,
-    String longcode,
+    String longCode,
     int multiplier,
     double payout,
     double spot,
@@ -142,7 +143,7 @@ class PriceProposal extends PriceProposalModel {
         displayValue: displayValue ?? this.displayValue,
         id: id ?? this.id,
         limitOrder: limitOrder ?? this.limitOrder,
-        longcode: longcode ?? this.longcode,
+        longCode: longCode ?? this.longCode,
         multiplier: multiplier ?? this.multiplier,
         payout: payout ?? this.payout,
         spot: spot ?? this.spot,

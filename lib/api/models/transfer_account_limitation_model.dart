@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
 import 'base_model.dart';
 import 'transfer_amount_model.dart';
 import 'transfer_fee_model.dart';
@@ -18,9 +20,11 @@ class TransferAccountLimitationModel extends BaseModel {
                 .map<TransferFeeModel>((MapEntry<String, dynamic> entry) =>
                     TransferFeeModel.fromJson(entry.key, entry.value))
                 .toList(),
-        limits: json['limits'] == null
-            ? null
-            : TransferAmountModel.fromJson(json['limits']),
+        limits: getItemFromMap(
+          json['limits'],
+          itemToTypeCallback: (dynamic item) =>
+              TransferAmountModel.fromJson(item),
+        ),
       );
 
   /// The fee that applies for transfer between accounts with different types of currencies.

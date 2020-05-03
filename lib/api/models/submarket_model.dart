@@ -1,9 +1,10 @@
 import 'package:flutter_deriv_api/api/models/base_model.dart';
 import 'package:flutter_deriv_api/api/models/symbol_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Submarket class
 class SubmarketModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   SubmarketModel({
     this.displayName,
     this.name,
@@ -14,11 +15,10 @@ class SubmarketModel extends BaseModel {
   factory SubmarketModel.fromJson(Map<String, dynamic> json) => SubmarketModel(
         displayName: json['display_name'],
         name: json['name'],
-        symbols: json['symbols'] == null
-            ? null
-            : json['symbols']
-                .map<SymbolModel>((dynamic item) => SymbolModel.fromJson(item))
-                .toList(),
+        symbols: getListFromMap(
+          json['symbols'],
+          itemToTypeCallback: (dynamic item) => SymbolModel.fromJson(item),
+        ),
       );
 
   /// Translated submarket name.

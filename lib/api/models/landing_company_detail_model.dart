@@ -19,7 +19,7 @@ class LandingCompanyDetailModel extends BaseModel {
     this.legalDefaultCurrency,
     this.name,
     this.requirements,
-    this.shortcode,
+    this.shortCode,
   });
 
   /// Creates instance from JSON
@@ -34,40 +34,39 @@ class LandingCompanyDetailModel extends BaseModel {
             ? null
             : json['changeable_fields']
                 .entries
-                .map<LandingCompanyFieldsInfoModel>((dynamic entry) =>
-                    LandingCompanyFieldsInfoModel.fromJson(
-                        entry.key, entry.value))
+                .map<LandingCompanyFieldsInfoModel>(
+                  (dynamic item) => LandingCompanyFieldsInfoModel.fromJson(
+                    item.key,
+                    item.value,
+                  ),
+                )
                 .toList(),
         country: json['country'],
         marketsCurrencies: json['currency_config'] == null
             ? null
             : json['currency_config']
                 .entries
-                .map<LandingCompanyCurrencyModel>((dynamic entry) =>
-                    LandingCompanyCurrencyModel.fromJson(
-                        entry.key, entry.value))
+                .map<LandingCompanyCurrencyModel>(
+                  (dynamic item) => LandingCompanyCurrencyModel.fromJson(
+                    item.key,
+                    item.value,
+                  ),
+                )
                 .toList(),
         hasRealityCheck: getBool(json['has_reality_check']),
-        legalAllowedContractCategories:
-            json['legal_allowed_contract_categories'] == null
-                ? null
-                : json['legal_allowed_contract_categories']
-                    .map<String>((dynamic entry) => entry.toString())
-                    .toList(),
-        legalAllowedCurrencies: json['legal_allowed_currencies'] == null
-            ? null
-            : json['legal_allowed_currencies']
-                .map<String>((dynamic entry) => entry.toString())
-                .toList(),
-        legalAllowedMarkets: json['legal_allowed_markets'] == null
-            ? null
-            : json['legal_allowed_markets']
-                .map<String>((dynamic entry) => entry.toString())
-                .toList(),
+        legalAllowedContractCategories: getListFromMap(
+          json['legal_allowed_contract_categories'],
+        ),
+        legalAllowedCurrencies: getListFromMap(
+          json['legal_allowed_currencies'],
+        ),
+        legalAllowedMarkets: getListFromMap(
+          json['legal_allowed_markets'],
+        ),
         legalDefaultCurrency: json['legal_default_currency'],
         name: json['name'],
         requirements: json['requirements'],
-        shortcode: json['shortcode'],
+        shortCode: json['shortcode'],
       );
 
   /// Landing Company address.
@@ -107,8 +106,8 @@ class LandingCompanyDetailModel extends BaseModel {
   /// Made it Map for now cause comes with different scenarios from the BE
   final Map<String, dynamic> requirements;
 
-  /// Landing Company shortcode.
-  final String shortcode;
+  /// Landing Company short code.
+  final String shortCode;
 
   /// Create a new instance with given parameters
   LandingCompanyDetailModel copyWith({
@@ -123,7 +122,7 @@ class LandingCompanyDetailModel extends BaseModel {
     String legalDefaultCurrency,
     String name,
     Map<String, dynamic> requirements,
-    String shortcode,
+    String shortCode,
   }) =>
       LandingCompanyDetailModel(
         address: address ?? this.address,
@@ -139,6 +138,6 @@ class LandingCompanyDetailModel extends BaseModel {
         legalDefaultCurrency: legalDefaultCurrency ?? this.legalDefaultCurrency,
         name: name ?? this.name,
         requirements: requirements ?? this.requirements,
-        shortcode: shortcode ?? this.shortcode,
+        shortCode: shortCode ?? this.shortCode,
       );
 }

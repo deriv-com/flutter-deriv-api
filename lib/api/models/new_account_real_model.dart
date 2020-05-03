@@ -16,6 +16,6 @@ abstract class NewAccountRealModel extends NewAccountBaseModel {
   /// Landing company full name
   final String landingCompany;
 
-  /// Landing company shortcode
+  /// Landing company short code
   final String landingCompanyShort;
 }

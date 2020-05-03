@@ -2,7 +2,7 @@ import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// Trade type model class
 class TradeTypeModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   TradeTypeModel({
     this.displayName,
     this.name,

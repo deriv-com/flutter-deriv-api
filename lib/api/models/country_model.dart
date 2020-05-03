@@ -2,7 +2,7 @@ import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// Country model
 class CountryModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   CountryModel({this.code, this.name});
 
   /// Country code
@@ -11,7 +11,7 @@ class CountryModel extends BaseModel {
   /// Country name
   final String name;
 
-  /// Generate copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   CountryModel copyWith({
     String code,
     String name,

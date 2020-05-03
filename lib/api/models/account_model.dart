@@ -2,14 +2,14 @@ import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// Account model class
 abstract class AccountModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   AccountModel({
     this.currency,
     this.excludedUntil,
     this.isDisabled,
     this.isVirtual,
     this.landingCompanyName,
-    this.loginid,
+    this.loginId,
   });
 
   /// Currency of specified account.
@@ -24,9 +24,9 @@ abstract class AccountModel extends BaseModel {
   /// Boolean value: true or false, indicating whether the account is a virtual-money account.
   final bool isVirtual;
 
-  /// Landing company shortcode the account belongs to.
+  /// Landing company short code the account belongs to.
   final String landingCompanyName;
 
   /// The account ID of specified account.
-  final String loginid;
+  final String loginId;
 }

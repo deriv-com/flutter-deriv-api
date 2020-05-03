@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
 import 'base_model.dart';
 
 /// Landing company action with its fields
@@ -13,8 +15,7 @@ class LandingCompanyFieldsInfoModel extends BaseModel {
           String condition, List<dynamic> fieldsList) =>
       LandingCompanyFieldsInfoModel(
         condition: condition,
-        fields:
-            fieldsList.map<String>((dynamic item) => item.toString()).toList(),
+        fields: getListFromMap(fieldsList),
       );
 
   /// action

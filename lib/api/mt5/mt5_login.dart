@@ -2,7 +2,7 @@ import 'package:flutter_deriv_api/api/models/mt5_login_model.dart';
 
 /// MT5 login class
 class MT5Login extends MT5LoginModel {
-  /// Class constructor
+  /// Initializes
   MT5Login({
     double balance,
     String country,

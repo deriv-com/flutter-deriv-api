@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// App register model class
 abstract class AppRegisterModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   AppRegisterModel({
     this.appDetails,
   });

@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'audit_detail_model.dart';
@@ -9,68 +11,70 @@ import 'transaction_ids_model.dart';
 /// Model class for proposal open contract
 class OpenContractModel extends BaseModel {
   /// Initializes
-  OpenContractModel(
-      {this.auditDetails,
-      this.barrier,
-      this.barrierCount,
-      this.bidPrice,
-      this.buyPrice,
-      this.contractId,
-      this.contractType,
-      this.currency,
-      this.currentSpot,
-      this.currentSpotDisplayValue,
-      this.currentSpotTime,
-      this.dateExpiry,
-      this.dateSettlement,
-      this.dateStart,
-      this.displayName,
-      this.displayValue,
-      this.entrySpot,
-      this.entrySpotDisplayValue,
-      this.entryTick,
-      this.entryTickDisplayValue,
-      this.entryTickTime,
-      this.exitTick,
-      this.exitTickDisplayValue,
-      this.exitTickTime,
-      this.highBarrier,
-      this.id,
-      this.isExpired,
-      this.isForwardStarting,
-      this.isIntraday,
-      this.isPathDependent,
-      this.isSettleable,
-      this.isSold,
-      this.isValidToSell,
-      this.limitOrder,
-      this.longcode,
-      this.lowBarrier,
-      this.multiplier,
-      this.payout,
-      this.profit,
-      this.profitPercentage,
-      this.purchaseTime,
-      this.resetTime,
-      this.sellPrice,
-      this.sellSpot,
-      this.sellSpotDisplayValue,
-      this.sellSpotTime,
-      this.sellTime,
-      this.shortcode,
-      this.status,
-      this.tickCount,
-      this.tickStream,
-      this.transactionIds,
-      this.underlying,
-      this.validationError});
+  OpenContractModel({
+    this.auditDetails,
+    this.barrier,
+    this.barrierCount,
+    this.bidPrice,
+    this.buyPrice,
+    this.contractId,
+    this.contractType,
+    this.currency,
+    this.currentSpot,
+    this.currentSpotDisplayValue,
+    this.currentSpotTime,
+    this.dateExpiry,
+    this.dateSettlement,
+    this.dateStart,
+    this.displayName,
+    this.displayValue,
+    this.entrySpot,
+    this.entrySpotDisplayValue,
+    this.entryTick,
+    this.entryTickDisplayValue,
+    this.entryTickTime,
+    this.exitTick,
+    this.exitTickDisplayValue,
+    this.exitTickTime,
+    this.highBarrier,
+    this.id,
+    this.isExpired,
+    this.isForwardStarting,
+    this.isIntraday,
+    this.isPathDependent,
+    this.isSettleable,
+    this.isSold,
+    this.isValidToSell,
+    this.limitOrder,
+    this.longCode,
+    this.lowBarrier,
+    this.multiplier,
+    this.payout,
+    this.profit,
+    this.profitPercentage,
+    this.purchaseTime,
+    this.resetTime,
+    this.sellPrice,
+    this.sellSpot,
+    this.sellSpotDisplayValue,
+    this.sellSpotTime,
+    this.sellTime,
+    this.shortCode,
+    this.status,
+    this.tickCount,
+    this.tickStream,
+    this.transactionIds,
+    this.underlying,
+    this.validationError,
+  });
 
   /// Instance from JSON
   factory OpenContractModel.fromJson(Map<String, dynamic> json) =>
       OpenContractModel(
-        auditDetails: json['audit_details'] == null
-            ? null
-            : AuditDetailModel.fromJson(json['audit_details']),
+        auditDetails: getItemFromMap(
+          json['audit_details'],
+          itemToTypeCallback: (dynamic item) => AuditDetailModel.fromJson(item),
+        ),
         barrier: json['barrier'],
         barrierCount: json['barrier_count']?.toDouble(),
         bidPrice: json['bid_price']?.toDouble(),
@@ -80,82 +84,62 @@ class OpenContractModel extends BaseModel {
         currency: json['currency'],
         currentSpot: json['current_spot'],
         currentSpotDisplayValue: json['current_spot_display_value'],
-        currentSpotTime: json['current_spot_time'] == null
-            ? null
-            : getDateTime(json['current_spot_time']),
-        dateExpiry: json['date_expiry'] == null
-            ? null
-            : getDateTime(json['date_expiry']),
-        dateSettlement: json['date_settlement'] == null
-            ? null
-            : getDateTime(json['date_settlement']),
-        dateStart:
-            json['date_start'] == null ? null : getDateTime(json['date_start']),
+        currentSpotTime: getDateTime(json['current_spot_time']),
+        dateExpiry: getDateTime(json['date_expiry']),
+        dateSettlement: getDateTime(json['date_settlement']),
+        dateStart: getDateTime(json['date_start']),
         displayName: json['display_name'],
         displayValue: json['display_value'],
         entrySpot: json['entry_spot'],
         entrySpotDisplayValue: json['entry_spot_display_value'],
         entryTick: json['entry_tick'],
         entryTickDisplayValue: json['entry_tick_display_value'],
-        entryTickTime: json['entry_tick_time'] == null
-            ? null
-            : getDateTime(json['entry_tick_time']),
+        entryTickTime: getDateTime(json['entry_tick_time']),
         exitTick: json['exit_tick'],
         exitTickDisplayValue: json['exit_tick_display_value'],
-        exitTickTime: json['exit_tick_time'] == null
-            ? null
-            : getDateTime(json['exit_tick_time']),
+        exitTickTime: getDateTime(json['exit_tick_time']),
         highBarrier: json['high_barrier'],
         id: json['id'],
-        isExpired: json['is_expired'] == null ? null : json['is_expired'] == 1,
-        isForwardStarting: json['is_forward_starting'] == null
-            ? null
-            : json['is_forward_starting'] == 1,
-        isIntraday:
-            json['is_intraday'] == null ? null : json['is_intraday'] == 1,
-        isPathDependent: json['is_path_dependent'] == null
-            ? null
-            : json['is_path_dependent'] == 1,
-        isSettleable:
-            json['is_settleable'] == null ? null : json['is_settleable'] == 1,
-        isSold: json['is_sold'] == null ? null : json['is_sold'] == 1,
-        isValidToSell: json['is_valid_to_sell'] == null
-            ? null
-            : json['is_valid_to_sell'] == 1,
-        limitOrder: json['limit_order'] == null
-            ? null
-            : LimitOrderModel.fromJson(json['limit_order']),
-        longcode: json['longcode'],
+        isExpired: getBool(json['is_expired']),
+        isForwardStarting: getBool(json['is_forward_starting']),
+        isIntraday: getBool(json['is_intraday']),
+        isPathDependent: getBool(json['is_path_dependent']),
+        isSettleable: getBool(json['is_settleable']),
+        isSold: getBool(json['is_sold']),
+        isValidToSell: getBool(json['is_valid_to_sell']),
+        limitOrder: getItemFromMap(
+          json['limit_order'],
+          itemToTypeCallback: (dynamic item) => LimitOrderModel.fromJson(item),
+        ),
+        longCode: json['longcode'],
         lowBarrier: json['low_barrier'],
         multiplier: json['multiplier'],
         payout: json['payout']?.toDouble(),
         profit: json['profit']?.toDouble(),
         profitPercentage: json['profit_percentage'],
-        purchaseTime: json['purchase_time'] == null
-            ? null
-            : getDateTime(json['purchase_time']),
-        resetTime:
-            json['reset_time'] == null ? null : getDateTime(json['reset_time']),
+        purchaseTime: getDateTime(json['purchase_time']),
+        resetTime: getDateTime(json['reset_time']),
         sellPrice: json['sell_price'],
         sellSpot: json['sell_spot'],
         sellSpotDisplayValue: json['sell_spot_display_value'],
-        sellSpotTime: json['sell_spot_time'] == null
-            ? null
-            : getDateTime(json['sell_spot_time']),
-        sellTime:
-            json['sell_time'] == null ? null : getDateTime(json['sell_time']),
-        shortcode: json['shortcode'],
-        status: json['status'],
+        sellSpotTime: getDateTime(json['sell_spot_time']),
+        sellTime: getDateTime(json['sell_time']),
+        shortCode: json['shortcode'],
+        status: EnumHelper.getEnum(
+          values: ContractStatus.values,
+          name: json['status'],
+        ),
         tickCount: json['tick_count'],
-        tickStream: json['tick_stream'] == null
-            ? null
-            : json['tick_stream']
-                .map<OpenContractTickModel>(
-                    (dynamic entry) => OpenContractTickModel.fromJson(entry))
-                .toList(),
-        transactionIds: json['transaction_ids'] == null
-            ? null
-            : TransactionIdsModel.fromJson(json['transaction_ids']),
+        tickStream: getListFromMap(
+          json['tick_stream'],
+          itemToTypeCallback: (dynamic item) =>
+              OpenContractTickModel.fromJson(item),
+        ),
+        transactionIds: getItemFromMap(
+          json['transaction_ids'],
+          itemToTypeCallback: (dynamic item) =>
+              TransactionIdsModel.fromJson(item),
+        ),
         underlying: json['underlying'],
         validationError: json['validation_error'],
       );
@@ -263,12 +247,12 @@ class OpenContractModel extends BaseModel {
   final LimitOrderModel limitOrder;
 
   /// Text description of the contract purchased, Example: Win payout if Volatility 100 Index is strictly higher than entry spot at 10 minutes after contract start time.
-  final String longcode;
+  final String longCode;
 
   /// Low barrier of the contract (if any).
   final String lowBarrier;
 
-  /// [Only for lookback trades] Multiplier applies when calculating the final payoff for each type of lookback. e.g. (Exit spot - Lowest historical price) * multiplier = Payout
+  /// [Only for look back trades] Multiplier applies when calculating the final payoff for each type of look back. e.g. (Exit spot - Lowest historical price) * multiplier = Payout
   final double multiplier;
 
   /// Payout value of the contract.
@@ -302,10 +286,10 @@ class OpenContractModel extends BaseModel {
   final DateTime sellTime;
 
   /// Coded description of the contract purchased.
-  final String shortcode;
+  final String shortCode;
 
   /// Contract status. Will be `sold` if the contract was sold back before expiry, `won` if won and `lost` if lost at expiry. Otherwise will be `open`
-  final String status;
+  final ContractStatus status;
 
   /// Only for tick trades, number of ticks
   final int tickCount;
@@ -350,15 +334,15 @@ class OpenContractModel extends BaseModel {
     DateTime exitTickTime,
     String highBarrier,
     String id,
-    int isExpired,
-    int isForwardStarting,
-    int isIntraday,
-    int isPathDependent,
-    int isSettleable,
-    int isSold,
-    int isValidToSell,
+    bool isExpired,
+    bool isForwardStarting,
+    bool isIntraday,
+    bool isPathDependent,
+    bool isSettleable,
+    bool isSold,
+    bool isValidToSell,
     LimitOrderModel limitOrder,
-    String longcode,
+    String longCode,
     String lowBarrier,
     double multiplier,
     double payout,
@@ -371,8 +355,8 @@ class OpenContractModel extends BaseModel {
     String sellSpotDisplayValue,
     DateTime sellSpotTime,
     DateTime sellTime,
-    String shortcode,
-    String status,
+    String shortCode,
+    ContractStatus status,
     int tickCount,
     List<OpenContractTickModel> tickStream,
     TransactionIdsModel transactionIds,
@@ -380,63 +364,62 @@ class OpenContractModel extends BaseModel {
     String validationError,
   }) =>
       OpenContractModel(
-          auditDetails: auditDetails ?? this.auditDetails,
-          barrier: barrier ?? this.barrier,
-          barrierCount: barrierCount ?? this.barrierCount,
-          bidPrice: bidPrice ?? this.bidPrice,
-          buyPrice: buyPrice ?? this.buyPrice,
-          contractId: contractId ?? this.contractId,
-          contractType: contractType ?? this.contractType,
-          currency: currency ?? this.currency,
-          currentSpot: currentSpot ?? this.currentSpot,
-          currentSpotDisplayValue:
-              currentSpotDisplayValue ?? this.currentSpotDisplayValue,
-          currentSpotTime: currentSpotTime ?? this.currentSpotTime,
-          dateExpiry: dateExpiry ?? this.dateExpiry,
-          dateSettlement: dateSettlement ?? this.dateSettlement,
-          dateStart: dateStart ?? this.dateStart,
-          displayName: displayName ?? this.displayName,
-          displayValue: displayValue ?? this.displayValue,
-          entrySpot: entrySpot ?? this.entrySpot,
-          entrySpotDisplayValue:
-              entrySpotDisplayValue ?? this.entrySpotDisplayValue,
-          entryTick: entryTick ?? this.entryTick,
-          entryTickDisplayValue:
-              entryTickDisplayValue ?? this.entryTickDisplayValue,
-          entryTickTime: entryTickTime ?? this.entryTickTime,
-          exitTick: exitTick ?? this.exitTick,
-          exitTickDisplayValue:
-              exitTickDisplayValue ?? this.exitTickDisplayValue,
-          exitTickTime: exitTickTime ?? this.exitTickTime,
-          highBarrier: highBarrier ?? this.highBarrier,
-          id: id ?? this.id,
-          isExpired: isExpired ?? this.isExpired,
-          isForwardStarting: isForwardStarting ?? this.isForwardStarting,
-          isIntraday: isIntraday ?? this.isIntraday,
-          isPathDependent: isPathDependent ?? this.isPathDependent,
-          isSettleable: isSettleable ?? this.isSettleable,
-          isSold: isSold ?? this.isSold,
-          isValidToSell: isValidToSell ?? this.isValidToSell,
-          limitOrder: limitOrder ?? this.limitOrder,
-          longcode: longcode ?? this.longcode,
-          lowBarrier: lowBarrier ?? this.lowBarrier,
-          multiplier: multiplier ?? this.multiplier,
-          payout: payout ?? this.payout,
-          profit: profit ?? this.profit,
-          profitPercentage: profitPercentage ?? this.profitPercentage,
-          purchaseTime: purchaseTime ?? this.purchaseTime,
-          resetTime: resetTime ?? this.resetTime,
-          sellPrice: sellPrice ?? this.sellPrice,
-          sellSpot: sellSpot ?? this.sellSpot,
-          sellSpotDisplayValue:
-              sellSpotDisplayValue ?? this.sellSpotDisplayValue,
-          sellSpotTime: sellSpotTime ?? this.sellSpotTime,
-          sellTime: sellTime ?? this.sellTime,
-          shortcode: shortcode ?? this.shortcode,
-          status: status ?? this.status,
-          tickCount: tickCount ?? this.tickCount,
-          tickStream: tickStream ?? this.tickStream,
-          transactionIds: transactionIds ?? this.transactionIds,
-          underlying: underlying ?? this.underlying,
-          validationError: validationError ?? this.validationError);
+        auditDetails: auditDetails ?? this.auditDetails,
+        barrier: barrier ?? this.barrier,
+        barrierCount: barrierCount ?? this.barrierCount,
+        bidPrice: bidPrice ?? this.bidPrice,
+        buyPrice: buyPrice ?? this.buyPrice,
+        contractId: contractId ?? this.contractId,
+        contractType: contractType ?? this.contractType,
+        currency: currency ?? this.currency,
+        currentSpot: currentSpot ?? this.currentSpot,
+        currentSpotDisplayValue:
+            currentSpotDisplayValue ?? this.currentSpotDisplayValue,
+        currentSpotTime: currentSpotTime ?? this.currentSpotTime,
+        dateExpiry: dateExpiry ?? this.dateExpiry,
+        dateSettlement: dateSettlement ?? this.dateSettlement,
+        dateStart: dateStart ?? this.dateStart,
+        displayName: displayName ?? this.displayName,
+        displayValue: displayValue ?? this.displayValue,
+        entrySpot: entrySpot ?? this.entrySpot,
+        entrySpotDisplayValue:
+            entrySpotDisplayValue ?? this.entrySpotDisplayValue,
+        entryTick: entryTick ?? this.entryTick,
+        entryTickDisplayValue:
+            entryTickDisplayValue ?? this.entryTickDisplayValue,
+        entryTickTime: entryTickTime ?? this.entryTickTime,
+        exitTick: exitTick ?? this.exitTick,
+        exitTickDisplayValue: exitTickDisplayValue ?? this.exitTickDisplayValue,
+        exitTickTime: exitTickTime ?? this.exitTickTime,
+        highBarrier: highBarrier ?? this.highBarrier,
+        id: id ?? this.id,
+        isExpired: isExpired ?? this.isExpired,
+        isForwardStarting: isForwardStarting ?? this.isForwardStarting,
+        isIntraday: isIntraday ?? this.isIntraday,
+        isPathDependent: isPathDependent ?? this.isPathDependent,
+        isSettleable: isSettleable ?? this.isSettleable,
+        isSold: isSold ?? this.isSold,
+        isValidToSell: isValidToSell ?? this.isValidToSell,
+        limitOrder: limitOrder ?? this.limitOrder,
+        longCode: longCode ?? this.longCode,
+        lowBarrier: lowBarrier ?? this.lowBarrier,
+        multiplier: multiplier ?? this.multiplier,
+        payout: payout ?? this.payout,
+        profit: profit ?? this.profit,
+        profitPercentage: profitPercentage ?? this.profitPercentage,
+        purchaseTime: purchaseTime ?? this.purchaseTime,
+        resetTime: resetTime ?? this.resetTime,
+        sellPrice: sellPrice ?? this.sellPrice,
+        sellSpot: sellSpot ?? this.sellSpot,
+        sellSpotDisplayValue: sellSpotDisplayValue ?? this.sellSpotDisplayValue,
+        sellSpotTime: sellSpotTime ?? this.sellSpotTime,
+        sellTime: sellTime ?? this.sellTime,
+        shortCode: shortCode ?? this.shortCode,
+        status: status ?? this.status,
+        tickCount: tickCount ?? this.tickCount,
+        tickStream: tickStream ?? this.tickStream,
+        transactionIds: transactionIds ?? this.transactionIds,
+        underlying: underlying ?? this.underlying,
+        validationError: validationError ?? this.validationError,
+      );
 }

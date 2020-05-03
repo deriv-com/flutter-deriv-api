@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 
 /// Payment agent withdraw model class
 abstract class PaymentAgentWithdrawModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   PaymentAgentWithdrawModel({
     this.paymentagentWithdraw,
     this.paymentagentName,

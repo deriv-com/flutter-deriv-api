@@ -2,7 +2,7 @@ import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// MT5 settings model class
 abstract class MT5SettingsModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   MT5SettingsModel({
     this.address,
     this.balance,

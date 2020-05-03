@@ -4,6 +4,7 @@ import 'package:flutter_deriv_api/api/models/website_status_crypto_config_model.
 import 'package:flutter_deriv_api/api/models/website_status_currency_config_model.dart';
 import 'package:flutter_deriv_api/api/models/website_status_model.dart';
 import 'package:flutter_deriv_api/utils/enum_helper.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Website status class
 class WebsiteStatus extends WebsiteStatusModel {
@@ -37,13 +38,18 @@ class WebsiteStatus extends WebsiteStatusModel {
             : json['currencies_config']
                 .entries
                 .map<WebsiteStatusCurrencyConfigModel>(
-                    (MapEntry<String, dynamic> entry) =>
-                        WebsiteStatusCurrencyConfigModel.fromJson(
-                            entry.key, entry.value))
+                  (MapEntry<String, dynamic> entry) =>
+                      WebsiteStatusCurrencyConfigModel.fromJson(
+                    entry.key,
+                    entry.value,
+                  ),
+                )
                 .toList(),
-        apiCallLimits: json['api_call_limits'] == null
-            ? null
-            : ApiCallLimitModel.fromJson(json['api_call_limits']),
+        apiCallLimits: getItemFromMap(
+          json['api_call_limits'],
+          itemToTypeCallback: (dynamic item) =>
+              ApiCallLimitModel.fromJson(item),
+        ),
         clientsCountry: json['clients_country'],
         cryptoConfig:
             json['crypto_config'] == null || json['crypto_config'].isEmpty
@@ -51,19 +57,18 @@ class WebsiteStatus extends WebsiteStatusModel {
                 : json['crypto_config']
                     .entries
                     .map<WebsiteStatusCryptoConfigModel>(
-                        (MapEntry<String, dynamic> entry) =>
-                            WebsiteStatusCryptoConfigModel.fromJson(
-                                entry.key, entry.value))
+                      (MapEntry<String, dynamic> entry) =>
+                          WebsiteStatusCryptoConfigModel.fromJson(
+                        entry.key,
+                        entry.value,
+                      ),
+                    )
                     .toList(),
         siteStatus: EnumHelper.getEnum(
           values: SiteStatus.values,
           name: json['site_status'],
         ),
-        supportedLanguages: json['supported_languages'] == null
-            ? null
-            : json['supported_languages']
-                .map<String>((dynamic entry) => entry.toString())
-                .toList(),
+        supportedLanguages: getListFromMap(json['supported_languages']),
         termsConditionsVersion: json['terms_conditions_version'],
       );
 

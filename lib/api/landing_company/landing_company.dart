@@ -1,7 +1,8 @@
+import 'package:flutter_deriv_api/api/models/landing_company_config_model.dart';
 import 'package:flutter_deriv_api/api/models/landing_company_detail_model.dart';
 import 'package:flutter_deriv_api/api/models/landing_company_model.dart';
-import 'package:flutter_deriv_api/api/models/landing_company_config_model.dart';
 import 'package:flutter_deriv_api/api/models/mt_landing_company_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Landing company info
 class LandingCompany extends LandingCompanyModel {
@@ -30,22 +31,33 @@ class LandingCompany extends LandingCompanyModel {
 
   /// Creates instance from JSON
   factory LandingCompany.fromJson(Map<String, dynamic> json) => LandingCompany(
-        config:
-            json['config'] == null ? null : LandingCompanyConfigModel.fromJson(json['config']),
-        financialCompany: json['financial_company'] == null
-            ? null
-            : LandingCompanyDetailModel.fromJson(json['financial_company']),
-        gamingCompany: json['gaming_company'] == null
-            ? null
-            : LandingCompanyDetailModel.fromJson(json['gaming_company']),
+        config: getItemFromMap(
+          json['config'],
+          itemToTypeCallback: (dynamic item) =>
+              LandingCompanyConfigModel.fromJson(item),
+        ),
+        financialCompany: getItemFromMap(
+          json['financial_company'],
+          itemToTypeCallback: (dynamic item) =>
+              LandingCompanyDetailModel.fromJson(item),
+        ),
+        gamingCompany: getItemFromMap(
+          json['gaming_company'],
+          itemToTypeCallback: (dynamic item) =>
+              LandingCompanyDetailModel.fromJson(item),
+        ),
         id: json['id'],
         minimumAge: json['minimum_age'],
-        mtFinancialCompany: json['mt_financial_company'] == null
-            ? null
-            : MTLandingCompanyModel.fromJson(json['mt_financial_company']),
-        mtGamingCompany: json['mt_gaming_company'] == null
-            ? null
-            : MTLandingCompanyModel.fromJson(json['mt_gaming_company']),
+        mtFinancialCompany: getItemFromMap(
+          json['mt_financial_company'],
+          itemToTypeCallback: (dynamic item) =>
+              MTLandingCompanyModel.fromJson(item),
+        ),
+        mtGamingCompany: getItemFromMap(
+          json['mt_gaming_company'],
+          itemToTypeCallback: (dynamic item) =>
+              MTLandingCompanyModel.fromJson(item),
+        ),
         name: json['name'],
         virtualCompany: json['virtual_company'],
       );

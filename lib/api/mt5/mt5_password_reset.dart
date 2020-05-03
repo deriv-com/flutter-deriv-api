@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// MT5 password reset class
 class MT5PasswordReset extends MT5PasswordResetModel {
-  /// Class constructor
+  /// Initializes
   MT5PasswordReset({
     bool mt5PasswordReset,
   }) : super(

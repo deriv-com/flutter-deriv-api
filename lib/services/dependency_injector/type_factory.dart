@@ -9,7 +9,7 @@ typedef ObjectFactoryWithParametersFunction<T> = T Function(
 
 /// Type factory class
 class TypeFactory<T> {
-  /// Class constructor
+  /// Initializes
   TypeFactory({
     ObjectFactoryWithParametersFunction<T> factoryFunction,
     bool isSingleton,

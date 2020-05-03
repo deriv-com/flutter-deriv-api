@@ -3,12 +3,12 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Reality check class
 class RealityCheck extends RealityCheckModel {
-  /// Class constructor
+  /// Initializes
   RealityCheck({
     double buyAmount,
     int buyCount,
     String currency,
-    String loginid,
+    String loginId,
     int openContractCount,
     double potentialProfit,
     double sellAmount,
@@ -18,7 +18,7 @@ class RealityCheck extends RealityCheckModel {
           buyAmount: buyAmount,
           buyCount: buyCount,
           currency: currency,
-          loginid: loginid,
+          loginId: loginId,
           openContractCount: openContractCount,
           potentialProfit: potentialProfit,
           sellAmount: sellAmount,
@@ -26,12 +26,12 @@ class RealityCheck extends RealityCheckModel {
           startTime: startTime,
         );
 
-  /// Generate instance from json
+  /// Generate an instance from json
   factory RealityCheck.fromJson(Map<String, dynamic> json) => RealityCheck(
         buyAmount: json['buy_amount'],
         buyCount: json['buy_count'],
         currency: json['currency'],
-        loginid: json['loginid'],
+        loginId: json['loginid'],
         openContractCount: json['open_contract_count'],
         potentialProfit: json['potential_profit'],
         sellAmount: json['sell_amount'],
@@ -39,12 +39,12 @@ class RealityCheck extends RealityCheckModel {
         startTime: getDateTime(json['start_time']),
       );
 
-  /// Generate copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   RealityCheck copyWith({
     double buyAmount,
     int buyCount,
     String currency,
-    String loginid,
+    String loginId,
     int openContractCount,
     double potentialProfit,
     double sellAmount,
@@ -55,7 +55,7 @@ class RealityCheck extends RealityCheckModel {
         buyAmount: buyAmount ?? this.buyAmount,
         buyCount: buyCount ?? this.buyCount,
         currency: currency ?? this.currency,
-        loginid: loginid ?? this.loginid,
+        loginId: loginId ?? this.loginId,
         openContractCount: openContractCount ?? this.openContractCount,
         potentialProfit: potentialProfit ?? this.potentialProfit,
         sellAmount: sellAmount ?? this.sellAmount,

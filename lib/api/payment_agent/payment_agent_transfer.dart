@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/payment_agent_transfer_model.dart';
 
 /// Payment agent transfer class
 class PaymentAgentTransfer extends PaymentAgentTransferModel {
-  /// Class constructor
+  /// Initializes
   PaymentAgentTransfer({
     PaymentResult paymentAgentTransfer,
     String clientToFullName,

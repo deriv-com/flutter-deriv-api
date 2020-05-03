@@ -65,9 +65,7 @@ class ActiveSymbol extends ActiveSymbolModel {
         quotedCurrencySymbol: json['quoted_currency_symbol'],
         spot: json['spot'],
         spotAge: json['spot_age'],
-        spotTime: json['spot_time'] == null
-            ? null
-            : getDateTime(int.parse(json['spot_time'])),
+        spotTime: getDateTimeFromString(json['spot_time']),
         submarket: json['submarket'],
         submarketDisplayName: json['submarket_display_name'],
         symbol: json['symbol'],

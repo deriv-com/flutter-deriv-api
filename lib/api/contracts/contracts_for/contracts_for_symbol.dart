@@ -31,14 +31,14 @@ class ContractsForSymbol extends ContractsForSymbolModel {
   /// Factory constructor from Json
   factory ContractsForSymbol.fromJson(Map<String, dynamic> json) =>
       ContractsForSymbol(
-        contracts: json['available']
-            ?.map<ContractModel>((dynamic entry) =>
-                entry == null ? null : ContractModel.fromJson(entry))
-            ?.toList(),
-        close: json['close'] == null ? null : getDateTime(json['close']),
+        contracts: getListFromMap(
+          json['available'],
+          itemToTypeCallback: (dynamic item) => ContractModel.fromJson(item),
+        ),
+        close: getDateTime(json['close']),
         feedLicense: json['feed_license'],
         hitCount: json['hit_count'],
-        open: json['open'] == null ? null : getDateTime(json['open']),
+        open: getDateTime(json['open']),
         spot: json['spot'],
       );
 

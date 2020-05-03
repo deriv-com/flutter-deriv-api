@@ -1,22 +1,23 @@
 import 'package:flutter_deriv_api/api/authorize/account.dart';
 import 'package:flutter_deriv_api/api/models/authorize_model.dart';
 import 'package:flutter_deriv_api/api/models/local_currency_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Authorize class
 class Authorize extends AuthorizeModel {
-  /// Class constructor
+  /// Initializes
   Authorize({
     List<Account> accountList,
     double balance,
     String country,
     String currency,
     String email,
-    String fullname,
+    String fullName,
     bool isVirtual,
-    String landingCompanyFullname,
+    String landingCompanyFullName,
     String landingCompanyName,
     List<LocalCurrencyModel> localCurrencies,
-    String loginid,
+    String loginId,
     List<String> scopes,
     List<String> upgradeableLandingCompanies,
     int userId,
@@ -26,73 +27,65 @@ class Authorize extends AuthorizeModel {
           country: country,
           currency: currency,
           email: email,
-          fullname: fullname,
+          fullName: fullName,
           isVirtual: isVirtual,
-          landingCompanyFullname: landingCompanyFullname,
+          landingCompanyFullName: landingCompanyFullName,
           landingCompanyName: landingCompanyName,
           localCurrencies: localCurrencies,
-          loginid: loginid,
+          loginId: loginId,
           scopes: scopes,
           upgradeableLandingCompanies: upgradeableLandingCompanies,
           userId: userId,
         );
 
-  /// Generate instance from json
+  /// Generate an instance from json
   factory Authorize.fromJson(Map<String, dynamic> json) => Authorize(
-        accountList: json['account_list'] == null
-            ? null
-            : json['account_list']
-                .map<Account>((dynamic item) => Account.fromJson(item))
-                .toList(),
+        accountList: getListFromMap(
+          json['account_list'],
+          itemToTypeCallback: (dynamic item) => Account.fromJson(item),
+        ),
         balance: json['balance']?.toDouble(),
         country: json['country'],
         currency: json['currency'],
         email: json['email'],
-        fullname: json['fullname'],
-        isVirtual: json['is_virtual'] == 1,
-        landingCompanyFullname: json['landing_company_fullname'],
+        fullName: json['fullname'],
+        isVirtual: getBool(json['is_virtual']),
+        landingCompanyFullName: json['landing_company_fullname'],
         landingCompanyName: json['landing_company_name'],
         localCurrencies: json['local_currencies'] == null
             ? null
             : json['local_currencies']
                 .entries
                 .map<LocalCurrencyModel>(
-                  (dynamic entry) => LocalCurrencyModel.fromJson(
+                  (dynamic item) => LocalCurrencyModel.fromJson(
                     <String, dynamic>{
-                      'key': entry.key,
-                      'values': entry.value,
+                      'key': item.key,
+                      'values': item.value,
                     },
                   ),
                 )
                 .toList(),
-        loginid: json['loginid'],
-        scopes: json['scopes'] == null
-            ? null
-            : json['scopes']
-                .map<String>((dynamic item) => item.toString())
-                .toList(),
-        upgradeableLandingCompanies:
-            json['upgradeable_landing_companies'] == null
-                ? null
-                : json['upgradeable_landing_companies']
-                    .map<String>((dynamic item) => item.toString())
-                    .toList(),
+        loginId: json['loginid'],
+        scopes: getListFromMap(json['scopes']),
+        upgradeableLandingCompanies: getListFromMap(
+          json['upgradeable_landing_companies'],
+        ),
         userId: json['user_id'],
       );
 
-  /// Generate copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   Authorize copyWith({
     List<Account> accountList,
     double balance,
     String country,
     String currency,
     String email,
-    String fullname,
+    String fullName,
     bool isVirtual,
-    String landingCompanyFullname,
+    String landingCompanyFullName,
     String landingCompanyName,
     List<LocalCurrencyModel> localCurrencies,
-    String loginid,
+    String loginId,
     List<String> scopes,
     List<String> upgradeableLandingCompanies,
     int userId,
@@ -103,13 +96,13 @@ class Authorize extends AuthorizeModel {
         country: country ?? this.country,
         currency: currency ?? this.currency,
         email: email ?? this.email,
-        fullname: fullname ?? this.fullname,
+        fullName: fullName ?? this.fullName,
         isVirtual: isVirtual ?? this.isVirtual,
-        landingCompanyFullname:
-            landingCompanyFullname ?? this.landingCompanyFullname,
+        landingCompanyFullName:
+            landingCompanyFullName ?? this.landingCompanyFullName,
         landingCompanyName: landingCompanyName ?? this.landingCompanyName,
         localCurrencies: localCurrencies ?? this.localCurrencies,
-        loginid: loginid ?? this.loginid,
+        loginId: loginId ?? this.loginId,
         scopes: scopes ?? this.scopes,
         upgradeableLandingCompanies:
             upgradeableLandingCompanies ?? this.upgradeableLandingCompanies,

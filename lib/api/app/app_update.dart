@@ -1,9 +1,10 @@
 import 'package:flutter_deriv_api/api/app/app_detail.dart';
 import 'package:flutter_deriv_api/api/models/app_update_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// App update class
 class AppUpdate extends AppUpdateModel {
-  /// Class constructor
+  /// Initializes
   AppUpdate({
     AppDetails appDetails,
   }) : super(
@@ -12,9 +13,10 @@ class AppUpdate extends AppUpdateModel {
 
   /// Creates instance from json
   factory AppUpdate.fromJson(Map<String, dynamic> json) => AppUpdate(
-        appDetails: json['app_update'] == null
-            ? null
-            : AppDetails.fromJson(json['app_update']),
+        appDetails: getItemFromMap(
+          json['app_update'],
+          itemToTypeCallback: (dynamic item) => AppDetails.fromJson(item),
+        ),
       );
 
   /// Creates copy of instance with given parameters

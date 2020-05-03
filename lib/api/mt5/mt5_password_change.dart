@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// MT5 password change class
 class MT5PasswordChange extends MT5PasswordChangeModel {
-  /// Class constructor
+  /// Initializes
   MT5PasswordChange({
     bool mt5PasswordChange,
   }) : super(

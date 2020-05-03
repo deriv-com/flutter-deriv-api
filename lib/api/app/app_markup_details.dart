@@ -1,9 +1,10 @@
 import 'package:flutter_deriv_api/api/models/app_markup_details_model.dart';
 import 'package:flutter_deriv_api/api/models/app_transaction_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// App markup details class
 class AppMarkupDetails extends AppMarkupDetailsModel {
-  /// Class constructor
+  /// Initializes
   AppMarkupDetails({
     List<AppTransactionModel> transactions,
   }) : super(
@@ -13,12 +14,11 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
   /// Creates instance from json
   factory AppMarkupDetails.fromJson(Map<String, dynamic> json) =>
       AppMarkupDetails(
-        transactions: json['transactions'] == null
-            ? null
-            : json['transactions']
-                .map<AppTransactionModel>(
-                    (dynamic item) => AppTransactionModel.fromJson(item))
-                .toList(),
+        transactions: getListFromMap(
+          json['transactions'],
+          itemToTypeCallback: (dynamic item) =>
+              AppTransactionModel.fromJson(item),
+        ),
       );
 
   /// Creates copy of instance with given parameters

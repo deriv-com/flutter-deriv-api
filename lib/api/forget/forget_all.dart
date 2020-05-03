@@ -1,8 +1,9 @@
 import 'package:flutter_deriv_api/api/models/forget_all_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Forget All class
 class ForgetAll extends ForgetAllModel {
-  /// Class constructor
+  /// Initializes
   ForgetAll({
     List<String> forgetAll,
   }) : super(
@@ -11,11 +12,7 @@ class ForgetAll extends ForgetAllModel {
 
   /// Creates instance from json
   factory ForgetAll.fromJson(Map<String, dynamic> json) => ForgetAll(
-        forgetAll: json['forget_all'] == null
-            ? null
-            : json['forget_all']
-                .map<String>((dynamic item) => item.toString())
-                .toList(),
+        forgetAll: getListFromMap(json['forget_all']),
       );
 
   /// Creates copy of instance with given parameters

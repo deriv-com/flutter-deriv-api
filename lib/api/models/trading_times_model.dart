@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/market_model.dart';
 
 /// Trading time model class
 abstract class TradingTimesModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   TradingTimesModel({
     this.markets,
   });

@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/models/portfolio_contract_model.dart';
 import 'package:flutter_deriv_api/api/models/portfolio_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Account's Portfolio
 class Portfolio extends PortfolioModel {
@@ -15,12 +16,11 @@ class Portfolio extends PortfolioModel {
     Map<String, dynamic> json,
   ) =>
       Portfolio(
-        contracts: json['contracts'] == null
-            ? null
-            : json['contracts']
-                .map<PortfolioContractModel>(
-                    (dynamic entry) => PortfolioContractModel.fromJson(entry))
-                .toList(),
+        contracts: getListFromMap(
+          json['contracts'],
+          itemToTypeCallback: (dynamic item) =>
+              PortfolioContractModel.fromJson(item),
+        ),
       );
 
   /// Clones a new instance

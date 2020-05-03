@@ -6,8 +6,10 @@ class ModuleContainer {
   /// Initialize injector
   Injector initialize(Injector injector) {
     injector.map<BasicBinaryAPI>(
-        factoryFunction: (Injector injector) => BasicBinaryAPI(),
-        isSingleton: true);
+      factoryFunction: (Injector injector) => BasicBinaryAPI(),
+      isSingleton: true,
+    );
+
     return injector;
   }
 }

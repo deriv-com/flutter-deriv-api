@@ -2,10 +2,11 @@ import 'package:flutter_deriv_api/api/models/market_model.dart';
 import 'package:flutter_deriv_api/api/models/submarket_model.dart';
 import 'package:flutter_deriv_api/api/models/trading_duration_data_model.dart';
 import 'package:flutter_deriv_api/api/models/trading_duration_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Trading duration class
 class TradingDuration extends TradingDurationModel {
-  /// Class constructor
+  /// Initializes
   TradingDuration({
     MarketModel market,
     SubmarketModel submarket,
@@ -19,18 +20,19 @@ class TradingDuration extends TradingDurationModel {
   /// Creates instance from json
   factory TradingDuration.fromJson(Map<String, dynamic> json) =>
       TradingDuration(
-        market: json['market'] == null
-            ? null
-            : MarketModel.fromJson(json['market']),
-        submarket: json['submarket'] == null
-            ? null
-            : SubmarketModel.fromJson(json['submarket']),
-        tradingDurationData: json['data'] == null
-            ? null
-            : json['data']
-                .map<TradingDurationDataModel>(
-                    (dynamic item) => TradingDurationDataModel.fromJson(item))
-                .toList(),
+        market: getItemFromMap(
+          json['market'],
+          itemToTypeCallback: (dynamic item) => MarketModel.fromJson(item),
+        ),
+        submarket: getItemFromMap(
+          json['submarket'],
+          itemToTypeCallback: (dynamic item) => SubmarketModel.fromJson(item),
+        ),
+        tradingDurationData: getListFromMap(
+          json['data'],
+          itemToTypeCallback: (dynamic item) =>
+              TradingDurationDataModel.fromJson(item),
+        ),
       );
 
   /// Creates copy of instance with given parameters

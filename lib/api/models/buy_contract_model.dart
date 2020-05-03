@@ -2,15 +2,15 @@ import 'base_model.dart';
 
 /// Buy model class
 abstract class BuyContractModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   BuyContractModel({
     this.balanceAfter,
     this.buyPrice,
     this.contractId,
-    this.longcode,
+    this.longCode,
     this.payout,
     this.purchaseTime,
-    this.shortcode,
+    this.shortCode,
     this.startTime,
     this.transactionId,
   });
@@ -25,7 +25,7 @@ abstract class BuyContractModel extends BaseModel {
   final int contractId;
 
   /// The description of contract purchased
-  final String longcode;
+  final String longCode;
 
   /// Proposed payout value
   final double payout;
@@ -34,7 +34,7 @@ abstract class BuyContractModel extends BaseModel {
   final DateTime purchaseTime;
 
   /// Compact description of the contract purchased
-  final String shortcode;
+  final String shortCode;
 
   /// Epoch value showing the expected start time of the contract
   final DateTime startTime;

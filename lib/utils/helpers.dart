@@ -80,6 +80,11 @@ DateTime getDateTime(int timeInSeconds) => timeInSeconds == null
     ? null
     : DateTime.fromMillisecondsSinceEpoch(timeInSeconds * 1000);
 
+/// Create a [DateTime] from time given string in seconds
+DateTime getDateTimeFromString(String timeInSeconds) => timeInSeconds == null
+    ? null
+    : DateTime.fromMillisecondsSinceEpoch(int.parse(timeInSeconds) * 1000);
+
 /// Convert int to boolean
 bool getBool(int value) => value == null ? null : value == 1;
 
@@ -161,22 +166,30 @@ class RandomGenerator {
 
 /// Get list of models from Map
 List<T> getListFromMap<T>(
-  List<dynamic> mapList,
-  T Function(dynamic itemMap) itemMapToType,
-) {
+  List<dynamic> mapList, {
+  T Function(dynamic item) itemToTypeCallback,
+}) {
   if (mapList == null) {
     return null;
   }
-  return mapList.map<T>((dynamic entry) => itemMapToType(entry)).toList();
+
+  return mapList
+      .map<T>(
+        (dynamic item) => itemToTypeCallback == null
+            ? item.toString()
+            : itemToTypeCallback(item),
+      )
+      .toList();
 }
 
 /// Get model from Map
-T getFromMap<T>(
-  Map<String, dynamic> map,
-  T Function(dynamic itemMap) itemMapToType,
-) {
+T getItemFromMap<T>(
+  Map<String, dynamic> map, {
+  T Function(dynamic item) itemToTypeCallback,
+}) {
   if (map == null) {
     return null;
   }
-  return itemMapToType(map);
+
+  return itemToTypeCallback == null ? map.toString() : itemToTypeCallback(map);
 }

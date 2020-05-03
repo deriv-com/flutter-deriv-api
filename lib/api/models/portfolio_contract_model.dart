@@ -13,7 +13,7 @@ class PortfolioContractModel extends BaseModel {
     this.currency,
     this.dateStart,
     this.expiryTime,
-    this.longcode,
+    this.longCode,
     this.payout,
     this.purchaseTime,
     this.symbol,
@@ -32,7 +32,7 @@ class PortfolioContractModel extends BaseModel {
         currency: json['currency'],
         dateStart: getDateTime(json['date_start']),
         expiryTime: getDateTime(json['expiry_time']),
-        longcode: json['longcode'],
+        longCode: json['longcode'],
         payout: json['payout'],
         purchaseTime: getDateTime(json['purchase_time']),
         symbol: json['symbol'],
@@ -61,7 +61,7 @@ class PortfolioContractModel extends BaseModel {
   final DateTime expiryTime;
 
   /// Contract description
-  final String longcode;
+  final String longCode;
 
   /// Payout price
   final double payout;
@@ -84,7 +84,7 @@ class PortfolioContractModel extends BaseModel {
     String currency,
     DateTime dateStart,
     DateTime expiryTime,
-    String longcode,
+    String longCode,
     double payout,
     DateTime purchaseTime,
     String symbol,
@@ -98,7 +98,7 @@ class PortfolioContractModel extends BaseModel {
         currency: currency ?? this.currency,
         dateStart: dateStart ?? this.dateStart,
         expiryTime: expiryTime ?? this.expiryTime,
-        longcode: longcode ?? this.longcode,
+        longCode: longCode ?? this.longCode,
         payout: payout ?? this.payout,
         purchaseTime: purchaseTime ?? this.purchaseTime,
         symbol: symbol ?? this.symbol,

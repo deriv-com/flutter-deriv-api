@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/api/models/enums.dart';
+
 import 'base_model.dart';
 
 /// Transaction information of the user
@@ -14,7 +16,7 @@ abstract class TransactionModel extends BaseModel {
     this.displayName,
     this.highBarrier,
     this.id,
-    this.longcode,
+    this.longCode,
     this.lowBarrier,
     this.purchaseTime,
     this.stopLoss,
@@ -26,7 +28,7 @@ abstract class TransactionModel extends BaseModel {
   });
 
   /// The transaction type.
-  final String action;
+  final TransactionActionType action;
 
   /// It is the amount of transaction performed.
   final double amount;
@@ -56,7 +58,7 @@ abstract class TransactionModel extends BaseModel {
   final String id;
 
   /// Description of contract purchased
-  final String longcode;
+  final String longCode;
 
   /// The low barrier of a contract. Only applicable to double barrier contracts.
   final String lowBarrier;

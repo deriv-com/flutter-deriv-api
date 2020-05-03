@@ -9,7 +9,7 @@ class CancellationInfoModel {
   factory CancellationInfoModel.fromJson(Map<String, dynamic> json) =>
       CancellationInfoModel(
         json['ask_price'],
-        json['date_expiry'] == null ? null : getDateTime(json['date_expiry']),
+        getDateTime(json['date_expiry']),
       );
 
   /// Ask price of contract cancellation option.

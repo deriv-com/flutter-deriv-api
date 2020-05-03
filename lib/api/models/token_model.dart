@@ -1,10 +1,11 @@
 import 'package:flutter_deriv_api/api/models/base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/utils/enum_helper.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Token model class
 class TokenModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   TokenModel({
     this.displayName,
     this.lastUsed,
@@ -19,16 +20,13 @@ class TokenModel extends BaseModel {
         lastUsed: DateTime.parse(
           json['last_used'],
         ), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
-        scopes: json['scopes'] == null
-            ? null
-            : json['scopes']
-                .map<TokenScope>(
-                  (dynamic item) => EnumHelper.getEnum(
-                    values: TokenScope.values,
-                    name: item,
-                  ),
-                )
-                .toList(),
+        scopes: getListFromMap(
+          json['scopes'],
+          itemToTypeCallback: (dynamic item) => EnumHelper.getEnum(
+            values: TokenScope.values,
+            name: item,
+          ),
+        ),
         token: json['token'],
         validForIp: json['valid_for_ip'],
       );

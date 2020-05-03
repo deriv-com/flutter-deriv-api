@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Time response class
 class ServerTime extends ServerTimeModel {
-  /// Class constructor
+  /// Initializes
   ServerTime({
     DateTime time,
   }) : super(time: time);
@@ -14,10 +14,5 @@ class ServerTime extends ServerTimeModel {
       );
 
   /// Creates copy of instance with given parameters
-  ServerTime copyWith({
-    int time,
-  }) =>
-      ServerTime(
-        time: time ?? this.time,
-      );
+  ServerTime copyWith({int time}) => ServerTime(time: time ?? this.time);
 }

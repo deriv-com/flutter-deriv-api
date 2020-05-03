@@ -3,41 +3,41 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Account class
 class Account extends AccountModel {
-  /// Class constructor
+  /// Initializes
   Account({
     String currency,
     DateTime excludedUntil,
     bool isDisabled,
     bool isVirtual,
     String landingCompanyName,
-    String loginid,
+    String loginId,
   }) : super(
           currency: currency,
           excludedUntil: excludedUntil,
           isDisabled: isDisabled,
           isVirtual: isVirtual,
           landingCompanyName: landingCompanyName,
-          loginid: loginid,
+          loginId: loginId,
         );
 
-  /// Generate instance from json
+  /// Generate an instance from json
   factory Account.fromJson(Map<String, dynamic> json) => Account(
         currency: json['currency'],
         excludedUntil: getDateTime(json['excluded_until']),
         isDisabled: getBool(json['is_disabled']),
         isVirtual: getBool(json['is_virtual']),
         landingCompanyName: json['landing_company_name'],
-        loginid: json['loginid'],
+        loginId: json['loginid'],
       );
 
-  /// Generate copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   Account copyWith({
     String currency,
     int excludedUntil,
     bool isDisabled,
     bool isVirtual,
     String landingCompanyName,
-    String loginid,
+    String loginId,
   }) =>
       Account(
         currency: currency ?? this.currency,
@@ -45,6 +45,6 @@ class Account extends AccountModel {
         isDisabled: isDisabled ?? this.isDisabled,
         isVirtual: isVirtual ?? this.isVirtual,
         landingCompanyName: landingCompanyName ?? this.landingCompanyName,
-        loginid: loginid ?? this.loginid,
+        loginId: loginId ?? this.loginId,
       );
 }

@@ -2,13 +2,13 @@ import 'package:flutter_deriv_api/api/models/base_model.dart';
 
 /// Local currency model class
 class LocalCurrencyModel extends BaseModel {
-  /// Class constructor
+  /// Initializes
   LocalCurrencyModel({
     this.currencyCode,
     this.fractionalDigits,
   });
 
-  /// Generate instance from json
+  /// Generate an instance from json
   factory LocalCurrencyModel.fromJson(Map<String, dynamic> json) =>
       LocalCurrencyModel(
         currencyCode: json['key'],

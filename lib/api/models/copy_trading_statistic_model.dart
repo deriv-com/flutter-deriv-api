@@ -57,8 +57,10 @@ class CopyTradingStatisticModel extends BaseModel {
             ? null
             : json['yearly_profitable_trades']
                 .entries
-                .map<ProfitableTradeModel>((MapEntry<String, dynamic> entry) =>
-                    ProfitableTradeModel.fromJson(entry))
+                .map<ProfitableTradeModel>(
+                  (MapEntry<String, dynamic> entry) =>
+                      ProfitableTradeModel.fromJson(entry),
+                )
                 .toList(),
       );
 
