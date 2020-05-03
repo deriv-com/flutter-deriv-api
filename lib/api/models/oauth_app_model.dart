@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/api/models/enums.dart';
+
 import 'base_model.dart';
 
 /// Model class for OAuth application that used for the authorized account
@@ -23,7 +25,6 @@ abstract class OauthAppModel extends BaseModel {
   /// Application name
   final String name;
 
-  // TODO(ramin): Change to enum later
   /// The list of permission scopes grant for each app.
-  final List<String> scopes;
+  final List<TokenScope> scopes;
 }

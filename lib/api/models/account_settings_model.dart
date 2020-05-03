@@ -58,7 +58,6 @@ abstract class AccountSettingsModel extends BaseModel {
   /// Country of legal citizenship, 2-letter country code.
   final String citizen;
 
-  // TODO(ramin): Use EnumHelper later and when its status enum got merged
   /// Latest terms and conditions version accepted by client
   final String clientTncStatus;
 

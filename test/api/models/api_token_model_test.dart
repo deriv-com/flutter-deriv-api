@@ -21,20 +21,8 @@ void main() {
 
     expect(apiToken.tokens[0].scopes.length, 2);
 
-    expect(
-      apiToken.tokens[0].scopes[0],
-      EnumHelper.getEnum(
-        values: TokenScope.values,
-        name: 'read',
-      ),
-    );
-    expect(
-      apiToken.tokens[0].scopes[1],
-      EnumHelper.getEnum(
-        values: TokenScope.values,
-        name: 'trading_information',
-      ),
-    );
+    expect(apiToken.tokens[0].scopes[0], TokenScope.read);
+    expect(apiToken.tokens[0].scopes[1], TokenScope.tradingInformation);
 
     expect(apiToken.tokens[0].token, 'thisIsASampleTOKEN123');
     expect(apiToken.tokens[0].validForIp, '178.32.12.45');

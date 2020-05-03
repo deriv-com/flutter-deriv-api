@@ -1,4 +1,6 @@
+import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/oauth_app_model.dart';
+import 'package:flutter_deriv_api/utils/enum_helper.dart';
 
 /// OAuth application that used for the authorized account
 class OAuthApp extends OauthAppModel {
@@ -8,7 +10,7 @@ class OAuthApp extends OauthAppModel {
     double appMarkupPercentage,
     DateTime lastUsed,
     String name,
-    List<String> scopes,
+    List<TokenScope> scopes,
   }) : super(
           appId: appId,
           appMarkupPercentage: appMarkupPercentage,
@@ -28,7 +30,8 @@ class OAuthApp extends OauthAppModel {
         scopes: json['scopes'] == null
             ? null
             : json['scopes']
-                .map<String>((dynamic entry) => entry.toString())
+                .map<TokenScope>((dynamic entry) =>
+                    EnumHelper.getEnum(values: TokenScope.values, name: entry))
                 .toList(),
       );
 
@@ -38,7 +41,7 @@ class OAuthApp extends OauthAppModel {
     double appMarkupPercentage,
     DateTime lastUsed,
     String name,
-    List<String> scopes,
+    List<TokenScope> scopes,
   }) =>
       OAuthApp(
         appId: appId ?? this.appId,
