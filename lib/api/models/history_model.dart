@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Historic tick data
-class HistoryModel extends BaseModel {
+class HistoryModel extends APIBaseModel {
   /// Initializes
   HistoryModel({this.prices, this.times});
 

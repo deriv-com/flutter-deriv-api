@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// MT5 response model class
-abstract class MT5DepositModel extends BaseModel {
+abstract class MT5DepositModel extends APIBaseModel {
   /// Initializes
   MT5DepositModel({
     this.mt5Deposit,

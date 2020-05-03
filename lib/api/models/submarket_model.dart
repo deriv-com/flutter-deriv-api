@@ -1,9 +1,9 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/symbol_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Submarket class
-class SubmarketModel extends BaseModel {
+class SubmarketModel extends APIBaseModel {
   /// Initializes
   SubmarketModel({
     this.displayName,

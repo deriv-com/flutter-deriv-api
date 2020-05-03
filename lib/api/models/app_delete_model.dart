@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// App delete model class
-abstract class AppDeleteModel extends BaseModel {
+abstract class AppDeleteModel extends APIBaseModel {
   /// Initializes
   AppDeleteModel({
     this.appDelete,

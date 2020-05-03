@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Contains information where the contract will be closed automatically
 /// at the loss specified by the user.
-class LimitOrderCloseInfoModel extends BaseModel {
+class LimitOrderCloseInfoModel extends APIBaseModel {
   /// Initializes
   LimitOrderCloseInfoModel(
     this.displayName,

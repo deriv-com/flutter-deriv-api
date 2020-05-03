@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Crypto currencies information
-class WebsiteStatusCryptoConfigModel extends BaseModel {
+class WebsiteStatusCryptoConfigModel extends APIBaseModel {
   /// Initializes
   WebsiteStatusCryptoConfigModel({this.code, this.minimumWithdrawal});
 

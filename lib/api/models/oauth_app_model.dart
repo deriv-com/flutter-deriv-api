@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Model class for OAuth application that used for the authorized account
-abstract class OauthAppModel extends BaseModel {
+abstract class OauthAppModel extends APIBaseModel {
   /// Initializes
   OauthAppModel({
     this.appId,

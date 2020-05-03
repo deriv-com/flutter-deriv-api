@@ -1,12 +1,12 @@
 import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 import 'enums.dart';
 import 'transfer_account_limitation_model.dart';
 
 /// Currency information
-class WebsiteStatusCurrencyConfigModel extends BaseModel {
+class WebsiteStatusCurrencyConfigModel extends APIBaseModel {
   /// Initializes
   WebsiteStatusCurrencyConfigModel({
     this.code,

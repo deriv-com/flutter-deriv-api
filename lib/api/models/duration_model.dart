@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Duration class
-class DurationModel extends BaseModel {
+class DurationModel extends APIBaseModel {
   /// Initializes
   DurationModel({
     this.displayName,

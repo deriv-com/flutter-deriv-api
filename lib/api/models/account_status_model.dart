@@ -1,10 +1,10 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
 
 import 'account_authentication_status_model.dart';
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Model class for account status
-abstract class AccountStatusModel extends BaseModel {
+abstract class AccountStatusModel extends APIBaseModel {
   /// Initializes
   AccountStatusModel({
     this.authentication,

@@ -1,11 +1,11 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 import 'limit_order_close_info_model.dart';
 
 /// Contains limit order information.
 /// (Only applicable for contract with limit order).
-class LimitOrderModel extends BaseModel {
+class LimitOrderModel extends APIBaseModel {
   /// Initializes
   LimitOrderModel(this.stopLoss, this.stopOut, this.takeProfit);
 

@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Model class for Country with account opening
-class ResidenceModel extends BaseModel {
+class ResidenceModel extends APIBaseModel {
   /// Initializes
   ResidenceModel({
     this.phoneIdd,

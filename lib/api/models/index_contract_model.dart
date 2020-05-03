@@ -1,4 +1,4 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Index of contract type code
 const int contractTypeCodeIndex = 0;
@@ -13,7 +13,7 @@ const int maxDurationIndex = 3;
 const int minDurationIndex = 2;
 
 /// Asset index contract model class
-class IndexContractModel extends BaseModel {
+class IndexContractModel extends APIBaseModel {
   /// Initializes
   IndexContractModel({
     this.contractTypeCode,

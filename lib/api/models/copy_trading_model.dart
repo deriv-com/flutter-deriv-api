@@ -1,9 +1,9 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 import 'copier_model.dart';
 import 'trader_model.dart';
 
 /// Abstract class for Copy trading calls
-abstract class CopyTradingModel extends BaseModel {
+abstract class CopyTradingModel extends APIBaseModel {
   /// Initializes
   CopyTradingModel({
     this.copiers,

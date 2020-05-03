@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// New account base model class
-abstract class NewAccountBaseModel extends BaseModel {
+abstract class NewAccountBaseModel extends APIBaseModel {
   /// Initializes
   NewAccountBaseModel({
     this.clientId,

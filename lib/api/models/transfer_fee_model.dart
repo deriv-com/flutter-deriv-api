@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// The fee that applies for transfer between accounts with different types of currencies.
-class TransferFeeModel extends BaseModel {
+class TransferFeeModel extends APIBaseModel {
   /// Initializes
   TransferFeeModel({this.code, this.value});
 

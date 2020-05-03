@@ -1,8 +1,8 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 import 'index_contract_model.dart';
 
 /// Model class for asset index
-abstract class AssetIndexModel extends BaseModel {
+abstract class AssetIndexModel extends APIBaseModel {
   /// Initializes
   AssetIndexModel({
     this.contracts,

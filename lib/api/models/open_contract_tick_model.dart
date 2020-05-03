@@ -1,8 +1,8 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Tick of entry to end time.
-class OpenContractTickModel extends BaseModel {
+class OpenContractTickModel extends APIBaseModel {
   /// Initializes
   OpenContractTickModel({
     this.epoch,

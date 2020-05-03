@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Reality check model class
-abstract class RealityCheckModel extends BaseModel {
+abstract class RealityCheckModel extends APIBaseModel {
   /// Initializes
   RealityCheckModel({
     this.buyAmount,

@@ -1,10 +1,10 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/duration_model.dart';
 import 'package:flutter_deriv_api/api/models/trade_type_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Trade duration class
-class TradeDurationModel extends BaseModel {
+class TradeDurationModel extends APIBaseModel {
   /// Initializes
   TradeDurationModel({
     this.durations,

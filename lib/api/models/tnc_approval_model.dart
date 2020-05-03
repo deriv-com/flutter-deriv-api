@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Terms & Conditions Approval
-class TncApprovalModel extends BaseModel {
+class TncApprovalModel extends APIBaseModel {
   /// Initializes
   TncApprovalModel({
     this.tncApproved,

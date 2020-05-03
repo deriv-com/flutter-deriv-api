@@ -1,8 +1,8 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 
 /// Payment agent withdraw model class
-abstract class PaymentAgentWithdrawModel extends BaseModel {
+abstract class PaymentAgentWithdrawModel extends APIBaseModel {
   /// Initializes
   PaymentAgentWithdrawModel({
     this.paymentagentWithdraw,

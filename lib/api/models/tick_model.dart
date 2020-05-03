@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Spot price updates for a given symbol
-abstract class TickModel extends BaseModel {
+abstract class TickModel extends APIBaseModel {
   /// Initializes
   TickModel({
     this.ask,

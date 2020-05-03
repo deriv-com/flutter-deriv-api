@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Copier mode class
-class CopierModel extends BaseModel {
+class CopierModel extends APIBaseModel {
   /// Initializes
   CopierModel({this.loginId});
 

@@ -1,10 +1,10 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Token model class
-class TokenModel extends BaseModel {
+class TokenModel extends APIBaseModel {
   /// Initializes
   TokenModel({
     this.displayName,

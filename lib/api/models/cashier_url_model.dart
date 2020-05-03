@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Cashier URL
-class CashierURLModel extends BaseModel {
+class CashierURLModel extends APIBaseModel {
   /// Initializes
   CashierURLModel({
     this.cashierURL,

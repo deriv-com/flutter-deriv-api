@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Local currency model class
-class LocalCurrencyModel extends BaseModel {
+class LocalCurrencyModel extends APIBaseModel {
   /// Initializes
   LocalCurrencyModel({
     this.currencyCode,

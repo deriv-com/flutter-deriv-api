@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Represents the portfolio distribution by [market].
-class MarketTradesBreakdownModel extends BaseModel {
+class MarketTradesBreakdownModel extends APIBaseModel {
   /// Initializes
   MarketTradesBreakdownModel({this.market, this.breakdown});
 

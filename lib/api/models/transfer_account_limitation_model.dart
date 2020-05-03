@@ -1,12 +1,12 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 import 'transfer_amount_model.dart';
 import 'transfer_fee_model.dart';
 
 /// Fees and range of allowed amount for transfer between accounts with
 /// different types of currencies.
-class TransferAccountLimitationModel extends BaseModel {
+class TransferAccountLimitationModel extends APIBaseModel {
   /// Initializes
   TransferAccountLimitationModel({this.fees, this.limits});
 

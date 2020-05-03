@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Contract model in portfolio
-class PortfolioContractModel extends BaseModel {
+class PortfolioContractModel extends APIBaseModel {
   /// Initializes
   PortfolioContractModel({
     this.appId,
@@ -22,8 +22,8 @@ class PortfolioContractModel extends BaseModel {
 
   /// Instance from JSON
   factory PortfolioContractModel.fromJson(
-      Map<String, dynamic> json,
-      ) =>
+    Map<String, dynamic> json,
+  ) =>
       PortfolioContractModel(
         appId: json['app_id'],
         buyPrice: json['buy_price']?.toDouble(),

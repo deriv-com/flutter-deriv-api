@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Ping model class
-abstract class PingModel extends BaseModel {
+abstract class PingModel extends APIBaseModel {
   /// Initializes
   PingModel({
     this.ping,

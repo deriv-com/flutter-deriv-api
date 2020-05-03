@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Trade event class
-class TradeEventModel extends BaseModel {
+class TradeEventModel extends APIBaseModel {
   /// Initializes
   TradeEventModel({
     this.dates,

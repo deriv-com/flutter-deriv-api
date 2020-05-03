@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Change account setting confirmation
-class SetAccountSettingModel extends BaseModel {
+class SetAccountSettingModel extends APIBaseModel {
   /// Initializes
   SetAccountSettingModel({this.succeeded});
 

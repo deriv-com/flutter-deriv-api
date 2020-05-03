@@ -1,10 +1,10 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 import 'landing_company_detail_model.dart';
 
 /// MTFinancialCompanyModel model class
-class MTLandingCompanyModel extends BaseModel {
+class MTLandingCompanyModel extends APIBaseModel {
   /// Initializes
   MTLandingCompanyModel({
     this.advanced,

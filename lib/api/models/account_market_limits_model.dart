@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Contains limitation information for a market
-class AccountMarketLimitsModel extends BaseModel {
+class AccountMarketLimitsModel extends APIBaseModel {
   /// Initializes
   AccountMarketLimitsModel({
     this.name,

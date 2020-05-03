@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// The result of sell expired contract
-class SellExpiredContractModel extends BaseModel {
+class SellExpiredContractModel extends APIBaseModel {
   /// Initializes
   SellExpiredContractModel({this.count});
 
@@ -17,10 +17,7 @@ class SellExpiredContractModel extends BaseModel {
   final int count;
 
   /// Clones a new instance
-  SellExpiredContractModel copyWith({
-    int count
-  }) =>
-      SellExpiredContractModel(
+  SellExpiredContractModel copyWith({int count}) => SellExpiredContractModel(
         count: count ?? this.count,
       );
 }

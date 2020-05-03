@@ -2,10 +2,10 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'balance_mt5_model.dart';
 import 'balance_real_model.dart';
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Total Information of [BalanceModel]
-class BalanceTotalModel extends BaseModel {
+class BalanceTotalModel extends APIBaseModel {
   /// Constructor
   BalanceTotalModel({this.mt5, this.real});
 

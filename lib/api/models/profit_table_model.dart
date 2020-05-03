@@ -1,8 +1,8 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/profit_transaction_model.dart';
 
 /// Profit table model class
-abstract class ProfitTableModel extends BaseModel {
+abstract class ProfitTableModel extends APIBaseModel {
   /// Initializes
   ProfitTableModel({
     this.count,

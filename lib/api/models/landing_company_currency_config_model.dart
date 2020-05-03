@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Landing company currency config model class
-class LandingCompanyCurrencyConfigModel extends BaseModel {
+class LandingCompanyCurrencyConfigModel extends APIBaseModel {
   /// Initializes
   LandingCompanyCurrencyConfigModel({
     this.code,

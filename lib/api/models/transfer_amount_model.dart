@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Range of allowed amount for transfer between accounts.
-class TransferAmountModel extends BaseModel {
+class TransferAmountModel extends APIBaseModel {
   /// Initializes
   TransferAmountModel({this.min, this.max});
 

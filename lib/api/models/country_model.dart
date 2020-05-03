@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Country model
-class CountryModel extends BaseModel {
+class CountryModel extends APIBaseModel {
   /// Initializes
   CountryModel({this.code, this.name});
 

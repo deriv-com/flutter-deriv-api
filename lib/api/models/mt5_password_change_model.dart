@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// MT5 password change model class
-abstract class MT5PasswordChangeModel extends BaseModel {
+abstract class MT5PasswordChangeModel extends APIBaseModel {
   /// Initializes
   MT5PasswordChangeModel({
     this.mt5PasswordChange,

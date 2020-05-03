@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Forward starting option
-class ForwardStartingOptionModel extends BaseModel {
+class ForwardStartingOptionModel extends APIBaseModel {
   /// Initializes
   ForwardStartingOptionModel(this.close, this.date, this.open);
 

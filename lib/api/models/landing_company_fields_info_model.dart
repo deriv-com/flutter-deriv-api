@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Landing company action with its fields
-class LandingCompanyFieldsInfoModel extends BaseModel {
+class LandingCompanyFieldsInfoModel extends APIBaseModel {
   /// Initializes
   LandingCompanyFieldsInfoModel({
     this.condition,

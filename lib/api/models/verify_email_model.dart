@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Verified email
-class VerifyEmailModel extends BaseModel {
+class VerifyEmailModel extends APIBaseModel {
   /// Initializes
   VerifyEmailModel({
     this.verified,

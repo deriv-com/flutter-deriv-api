@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Maximum subscription to proposal calls.
-class MaxProposalSubscriptionModel extends BaseModel {
+class MaxProposalSubscriptionModel extends APIBaseModel {
   /// Initializes
   MaxProposalSubscriptionModel({this.appliesTo, this.max});
 

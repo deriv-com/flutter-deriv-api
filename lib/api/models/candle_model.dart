@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// price values for the given time (only for style=`candles`)
-class CandleModel extends BaseModel {
+class CandleModel extends APIBaseModel {
   /// Initializes
   CandleModel({
     this.close,

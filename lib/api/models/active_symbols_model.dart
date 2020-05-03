@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Abstract class for Active symbol information
-abstract class ActiveSymbolModel extends BaseModel {
+abstract class ActiveSymbolModel extends APIBaseModel {
   /// Initializes
   ActiveSymbolModel({
     this.allowForwardStarting,

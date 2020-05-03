@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// rate model class
-class RateModel extends BaseModel {
+class RateModel extends APIBaseModel {
   /// Initializes
   RateModel({
     this.code,

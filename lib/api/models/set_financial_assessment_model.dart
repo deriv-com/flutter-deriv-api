@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 ///The financial assessment score assigned to the submitted financial assessment
-class SetFinancialAssessmentModel extends BaseModel {
+class SetFinancialAssessmentModel extends APIBaseModel {
   /// Initializes
   SetFinancialAssessmentModel({
     this.cfdScore,

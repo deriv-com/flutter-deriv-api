@@ -1,10 +1,10 @@
 import 'package:flutter_deriv_api/api/models/account_market_limits_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Contains limitation information for each market.
-class AccountMarketSpecificModel extends BaseModel {
+class AccountMarketSpecificModel extends APIBaseModel {
   /// Initializes
   AccountMarketSpecificModel({
     this.commoditiesLimits,

@@ -2,11 +2,11 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'account_authentication_document_model.dart';
 import 'account_identity_model.dart';
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// This represents the authentication status of the user and it
 /// includes what authentication is needed.
-class AccountAuthenticationStatusModel extends BaseModel {
+class AccountAuthenticationStatusModel extends APIBaseModel {
   /// Constructor
   AccountAuthenticationStatusModel({
     this.document,

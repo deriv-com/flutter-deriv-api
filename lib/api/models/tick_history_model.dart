@@ -1,9 +1,9 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 import 'candle_model.dart';
 import 'history_model.dart';
 
 /// Abstract class for TickHistory
-abstract class TickHistoryModel extends BaseModel {
+abstract class TickHistoryModel extends APIBaseModel {
   /// Initializes
   TickHistoryModel(
     this.candles,

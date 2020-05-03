@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// States list model class
-abstract class StateModel extends BaseModel {
+abstract class StateModel extends APIBaseModel {
   /// Initializes
   StateModel({
     this.text,

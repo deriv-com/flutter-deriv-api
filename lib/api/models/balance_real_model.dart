@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Real account info
-class BalanceRealModel extends BaseModel {
+class BalanceRealModel extends APIBaseModel {
   /// Constructor
   BalanceRealModel({this.amount, this.currency});
 

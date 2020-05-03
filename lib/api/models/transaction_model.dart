@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Transaction information of the user
-abstract class TransactionModel extends BaseModel {
+abstract class TransactionModel extends APIBaseModel {
   /// Initializes
   TransactionModel({
     this.action,

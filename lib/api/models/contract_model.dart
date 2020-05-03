@@ -1,10 +1,10 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 import 'forward_starting_option_model.dart';
 
 /// available contracts details
-class ContractModel extends BaseModel {
+class ContractModel extends APIBaseModel {
   /// Initializes
   ContractModel({
     this.availableBarriers,

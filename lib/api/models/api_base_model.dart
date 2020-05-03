@@ -1,2 +1,2 @@
 /// Base class of all model classes
-abstract class BaseModel {}
+abstract class APIBaseModel {}

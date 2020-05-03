@@ -1,11 +1,11 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 import 'market_trades_breakdown_model.dart';
 import 'profitable_trade_model.dart';
 
 /// Copy trading statistic model class
-class CopyTradingStatisticModel extends BaseModel {
+class CopyTradingStatisticModel extends APIBaseModel {
   /// Initializes
   CopyTradingStatisticModel({
     this.activeSince,

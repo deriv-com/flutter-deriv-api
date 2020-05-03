@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// MT5 accounts info
-class BalanceMt5Model extends BaseModel {
+class BalanceMt5Model extends APIBaseModel {
   /// Constructor
   BalanceMt5Model({this.amount, this.currency});
 

@@ -3,13 +3,13 @@ import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'audit_detail_model.dart';
-import 'base_model.dart';
+import 'api_base_model.dart';
 import 'limit_order_model.dart';
 import 'open_contract_tick_model.dart';
 import 'transaction_ids_model.dart';
 
 /// Model class for proposal open contract
-class OpenContractModel extends BaseModel {
+class OpenContractModel extends APIBaseModel {
   /// Initializes
   OpenContractModel({
     this.auditDetails,

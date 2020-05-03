@@ -1,8 +1,8 @@
 import 'account_market_specific_model.dart';
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Model class Trading limits of real account user
-abstract class AccountLimitsModel extends BaseModel{
+abstract class AccountLimitsModel extends APIBaseModel {
   /// Initializes
   AccountLimitsModel({
     this.accountBalance,

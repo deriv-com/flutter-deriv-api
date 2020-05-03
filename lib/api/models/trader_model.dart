@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Trader information
-class TraderModel extends BaseModel {
+class TraderModel extends APIBaseModel {
   /// Initializes
   TraderModel({
     this.assets,

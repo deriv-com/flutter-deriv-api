@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Maximum number of requests allowed during specified period of time.
-class MaxRequestAllowedModel extends BaseModel {
+class MaxRequestAllowedModel extends APIBaseModel {
   /// Initializes
   MaxRequestAllowedModel({this.appliesTo, this.hourly, this.minutely});
 

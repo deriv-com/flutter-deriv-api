@@ -3,10 +3,10 @@ import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'authentication_services_model.dart';
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// The authentication status for identity.
-class AccountIdentityModel extends BaseModel {
+class AccountIdentityModel extends APIBaseModel {
   /// Initializes
   AccountIdentityModel({
     this.expiryDate,

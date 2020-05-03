@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Account setting model class
-abstract class AccountSettingsModel extends BaseModel {
+abstract class AccountSettingsModel extends APIBaseModel {
   /// Initializes
   AccountSettingsModel({
     this.accountOpeningReason,

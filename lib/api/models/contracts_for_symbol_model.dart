@@ -1,8 +1,8 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 import 'contract_model.dart';
 
 /// Abstract class involving fields of [ContractsFor]
-abstract class ContractsForSymbolModel extends BaseModel {
+abstract class ContractsForSymbolModel extends APIBaseModel {
   /// Initializes
   ContractsForSymbolModel({
     this.contracts,

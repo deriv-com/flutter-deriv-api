@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Buy model class
-abstract class BuyContractModel extends BaseModel {
+abstract class BuyContractModel extends APIBaseModel {
   /// Initializes
   BuyContractModel({
     this.balanceAfter,

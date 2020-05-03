@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Represents the net change in equity per [time]
-class ProfitableTradeModel extends BaseModel {
+class ProfitableTradeModel extends APIBaseModel {
   /// Initializes
   ProfitableTradeModel({this.profit, this.time});
 

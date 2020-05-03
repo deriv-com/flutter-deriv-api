@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// This shows the information related to Onfido supported services
-class AccountOnfidoModel extends BaseModel {
+class AccountOnfidoModel extends APIBaseModel {
   /// Constructor
   AccountOnfidoModel({
     this.documents,

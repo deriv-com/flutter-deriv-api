@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Server time model class
-abstract class ServerTimeModel extends BaseModel {
+abstract class ServerTimeModel extends APIBaseModel {
   /// Initializes
   ServerTimeModel({
     this.time,

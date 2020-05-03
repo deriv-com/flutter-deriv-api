@@ -1,11 +1,11 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 import 'landing_company_currency_model.dart';
 import 'landing_company_fields_info_model.dart';
 
 /// Model class for landing company detail
-class LandingCompanyDetailModel extends BaseModel {
+class LandingCompanyDetailModel extends APIBaseModel {
   /// Initializes
   LandingCompanyDetailModel({
     this.address,

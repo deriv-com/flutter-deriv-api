@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Set account currency model class
-abstract class SetAccountCurrencyModel extends BaseModel {
+abstract class SetAccountCurrencyModel extends APIBaseModel {
   /// Initializes
   SetAccountCurrencyModel({
     this.setAccountCurrency,

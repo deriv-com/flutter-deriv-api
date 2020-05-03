@@ -1,8 +1,8 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Transaction model class
-class AppTransactionModel extends BaseModel {
+class AppTransactionModel extends APIBaseModel {
   /// Initializes
   AppTransactionModel({
     this.appId,

@@ -1,10 +1,10 @@
-import 'base_model.dart';
+import 'api_base_model.dart';
 import 'landing_company_config_model.dart';
 import 'landing_company_detail_model.dart';
 import 'mt_landing_company_model.dart';
 
 /// Model class for landing company
-abstract class LandingCompanyModel extends BaseModel {
+abstract class LandingCompanyModel extends APIBaseModel {
   /// Initializes
   LandingCompanyModel({
     this.config,

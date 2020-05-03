@@ -1,8 +1,8 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Copy trading stop model class
-class CopyTradingStopModel extends BaseModel {
+class CopyTradingStopModel extends APIBaseModel {
   /// Initializes
   CopyTradingStopModel({
     this.succeeded,

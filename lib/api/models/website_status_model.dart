@@ -1,11 +1,11 @@
 import 'api_call_limit_model.dart';
-import 'base_model.dart';
+import 'api_base_model.dart';
 import 'enums.dart';
 import 'website_status_crypto_config_model.dart';
 import 'website_status_currency_config_model.dart';
 
 /// Server status and other information regarding general settings
-abstract class WebsiteStatusModel extends BaseModel {
+abstract class WebsiteStatusModel extends APIBaseModel {
   /// Initializes
   WebsiteStatusModel({
     this.apiCallLimits,

@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// Landing company config
-class LandingCompanyConfigModel extends BaseModel {
+class LandingCompanyConfigModel extends APIBaseModel {
   /// Initializes
   LandingCompanyConfigModel({this.taxDetailsRequired});
 

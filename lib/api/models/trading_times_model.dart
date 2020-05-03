@@ -1,8 +1,8 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/market_model.dart';
 
 /// Trading time model class
-abstract class TradingTimesModel extends BaseModel {
+abstract class TradingTimesModel extends APIBaseModel {
   /// Initializes
   TradingTimesModel({
     this.markets,

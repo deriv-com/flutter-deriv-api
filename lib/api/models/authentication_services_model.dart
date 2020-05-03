@@ -1,10 +1,10 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'account_onfido_model.dart';
-import 'base_model.dart';
+import 'api_base_model.dart';
 
 /// This shows the information about the authentication services implemented
-class AuthenticationServicesModel extends BaseModel {
+class AuthenticationServicesModel extends APIBaseModel {
   /// Constructor
   AuthenticationServicesModel({
     this.onfido,
