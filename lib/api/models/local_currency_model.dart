@@ -20,4 +20,14 @@ class LocalCurrencyModel extends BaseModel {
 
   /// Number of fractional digits.
   final int fractionalDigits;
+
+  /// Generate a copy of instance with given parameters
+  LocalCurrencyModel copyWith({
+    String currencyCode,
+    int fractionalDigits,
+  }) =>
+      LocalCurrencyModel(
+        currencyCode: currencyCode ?? this.currencyCode,
+        fractionalDigits: fractionalDigits ?? this.fractionalDigits,
+      );
 }
