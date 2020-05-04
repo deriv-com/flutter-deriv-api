@@ -1,6 +1,5 @@
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Statement transaction model class
@@ -24,7 +23,7 @@ class StatementTransactionModel extends APIBaseModel {
   /// Generate an instance from json
   factory StatementTransactionModel.fromJson(Map<String, dynamic> json) =>
       StatementTransactionModel(
-        actionType: EnumHelper.getEnum(
+        actionType: getEnumFromString(
           values: TransactionActionType.values,
           name: json['action_type'],
         ),

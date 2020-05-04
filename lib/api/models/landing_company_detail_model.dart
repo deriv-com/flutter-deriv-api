@@ -30,29 +30,17 @@ class LandingCompanyDetailModel extends APIBaseModel {
             : json['address']
                 .map<String>((dynamic item) => item.toString())
                 .toList(),
-        changeableFields: json['changeable_fields'] == null
-            ? null
-            : json['changeable_fields']
-                .entries
-                .map<LandingCompanyFieldsInfoModel>(
-                  (dynamic item) => LandingCompanyFieldsInfoModel.fromJson(
-                    item.key,
-                    item.value,
-                  ),
-                )
-                .toList(),
+        changeableFields: getListFromMap(
+          json['changeable_fields'].entries,
+          itemToTypeCallback: (dynamic item) =>
+              LandingCompanyFieldsInfoModel.fromJson(item.key, item.value),
+        ),
         country: json['country'],
-        marketsCurrencies: json['currency_config'] == null
-            ? null
-            : json['currency_config']
-                .entries
-                .map<LandingCompanyCurrencyModel>(
-                  (dynamic item) => LandingCompanyCurrencyModel.fromJson(
-                    item.key,
-                    item.value,
-                  ),
-                )
-                .toList(),
+        marketsCurrencies: getListFromMap(
+          json['currency_config'].entries,
+          itemToTypeCallback: (dynamic item) =>
+              LandingCompanyCurrencyModel.fromJson(item.key, item.value),
+        ),
         hasRealityCheck: getBool(json['has_reality_check']),
         legalAllowedContractCategories: getListFromMap(
           json['legal_allowed_contract_categories'],

@@ -19,19 +19,15 @@ class ExchangeRates extends ExchangeRatesModel {
   factory ExchangeRates.fromJson(Map<String, dynamic> json) => ExchangeRates(
         baseCurrency: json['base_currency'],
         date: getDateTime(json['date']),
-        rates: json['rates'] == null
-            ? null
-            : json['rates']
-                .entries
-                .map<RateModel>(
-                  (dynamic item) => RateModel.fromJson(
-                    <String, dynamic>{
-                      'key': item.key,
-                      'values': item.value,
-                    },
-                  ),
-                )
-                .toList(),
+        rates: getListFromMap(
+          json['rates'].entries,
+          itemToTypeCallback: (dynamic item) => RateModel.fromJson(
+            <String, dynamic>{
+              'key': item.key,
+              'values': item.value,
+            },
+          ),
+        ),
       );
 
   /// Generate a copy of instance with given parameters

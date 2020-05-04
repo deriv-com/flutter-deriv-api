@@ -1,6 +1,5 @@
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Token model class
@@ -22,7 +21,7 @@ class TokenModel extends APIBaseModel {
         ), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
         scopes: getListFromMap(
           json['scopes'],
-          itemToTypeCallback: (dynamic item) => EnumHelper.getEnum(
+          itemToTypeCallback: (dynamic item) => getEnumFromString(
             values: TokenScope.values,
             name: item,
           ),

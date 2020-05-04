@@ -52,19 +52,15 @@ class Authorize extends AuthorizeModel {
         isVirtual: getBool(json['is_virtual']),
         landingCompanyFullName: json['landing_company_fullname'],
         landingCompanyName: json['landing_company_name'],
-        localCurrencies: json['local_currencies'] == null
-            ? null
-            : json['local_currencies']
-                .entries
-                .map<LocalCurrencyModel>(
-                  (dynamic item) => LocalCurrencyModel.fromJson(
-                    <String, dynamic>{
-                      'key': item.key,
-                      'values': item.value,
-                    },
-                  ),
-                )
-                .toList(),
+        localCurrencies: getListFromMap(
+          json['local_currencies'].entries,
+          itemToTypeCallback: (dynamic item) => LocalCurrencyModel.fromJson(
+            <String, dynamic>{
+              'key': item.key,
+              'values': item.value,
+            },
+          ),
+        ),
         loginId: json['loginid'],
         scopes: getListFromMap(json['scopes']),
         upgradeableLandingCompanies: getListFromMap(

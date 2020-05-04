@@ -1,6 +1,6 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/mt5_account_model.dart';
-import 'package:flutter_deriv_api/utils/enum_helper.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// MT5 account class
 class MT5Account extends MT5AccountModel {
@@ -33,7 +33,7 @@ class MT5Account extends MT5AccountModel {
 
   /// Creates instance from json
   factory MT5Account.fromJson(Map<String, dynamic> json) => MT5Account(
-        accountType: EnumHelper.getEnum(
+        accountType: getEnumFromString(
           values: AccountType.values,
           name: json['account_type'],
         ),
@@ -45,7 +45,7 @@ class MT5Account extends MT5AccountModel {
         group: json['group'],
         leverage: json['leverage'],
         login: json['login'],
-        mt5AccountType: EnumHelper.getEnum(
+        mt5AccountType: getEnumFromString(
           values: MT5AccountType.values,
           name: json['mt5_account_type'],
         ),

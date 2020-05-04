@@ -32,36 +32,24 @@ class CopyTradingStatisticModel extends APIBaseModel {
         copiers: json['copiers'],
         last12monthsProfitableTrades:
             json['last_12months_profitable_trades']?.toDouble(),
-        monthlyProfitableTrades: json['monthly_profitable_trades'] == null ||
-                json['monthly_profitable_trades'].isEmpty
-            ? null
-            : json['monthly_profitable_trades']
-                .entries
-                .map<ProfitableTradeModel>((MapEntry<String, dynamic> entry) =>
-                    ProfitableTradeModel.fromJson(entry))
-                .toList(),
+        monthlyProfitableTrades: getListFromMap(
+          json['monthly_profitable_trades'].entries,
+          itemToTypeCallback: (dynamic item) =>
+              ProfitableTradeModel.fromJson(item),
+        ),
         performanceProbability: json['performance_probability']?.toDouble(),
         totalTrades: json['total_trades'],
-        tradesBreakdown:
-            json['trades_breakdown'] == null || json['trades_breakdown'].isEmpty
-                ? null
-                : json['trades_breakdown']
-                    .entries
-                    .map<MarketTradesBreakdownModel>(
-                        (MapEntry<String, dynamic> entry) =>
-                            MarketTradesBreakdownModel.fromJson(entry))
-                    .toList(),
+        tradesBreakdown: getListFromMap(
+          json['trades_breakdown'].entries,
+          itemToTypeCallback: (dynamic item) =>
+              MarketTradesBreakdownModel.fromJson(item),
+        ),
         tradesProfitable: json['trades_profitable']?.toDouble(),
-        yearlyProfitableTrades: json['yearly_profitable_trades'] == null ||
-                json['yearly_profitable_trades'].isEmpty
-            ? null
-            : json['yearly_profitable_trades']
-                .entries
-                .map<ProfitableTradeModel>(
-                  (MapEntry<String, dynamic> entry) =>
-                      ProfitableTradeModel.fromJson(entry),
-                )
-                .toList(),
+        yearlyProfitableTrades: getListFromMap(
+          json['yearly_profitable_trades'].entries,
+          itemToTypeCallback: (dynamic item) =>
+              ProfitableTradeModel.fromJson(item),
+        ),
       );
 
   /// This is the epoch the investor started trading.

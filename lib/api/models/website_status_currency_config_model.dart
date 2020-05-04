@@ -1,4 +1,3 @@
-import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'api_base_model.dart';
@@ -29,7 +28,7 @@ class WebsiteStatusCurrencyConfigModel extends APIBaseModel {
         isSuspended: getBool(json['is_suspended']),
         name: json['name'],
         stakeDefault: json['stake_default']?.toDouble(),
-        type: EnumHelper.getEnum(
+        type: getEnumFromString(
           values: CurrencyType.values,
           name: json['type'],
         ),

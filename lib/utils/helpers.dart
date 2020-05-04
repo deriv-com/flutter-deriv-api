@@ -1,9 +1,9 @@
 import 'dart:math';
+import 'package:meta/meta.dart';
+import 'package:recase/recase.dart';
 
-// TODO(Morteza): Unfortunately, the `json_schema` lib has conflicts with the latest version of Intl.
-// import 'package:intl/intl.dart';
-
-import 'package:flutter/material.dart';
+part 'date_time_helpers.dart';
+part 'number_helpers.dart';
 
 /// Parses the [url] and gets the endpoint out of it
 String parseWebSocketUrl(String url, {bool isAuthUrl = false}) {
@@ -27,149 +27,15 @@ String parseWebSocketUrl(String url, {bool isAuthUrl = false}) {
   return result;
 }
 
-/// Calculates the number of decimal digits for string [value] of a number
-int getDecimalDigits(String value) {
-  final List<String> parts = value.split('.');
-  return parts.length > 1 && parts.isNotEmpty ? parts.last.length : 2;
-}
-
-/// Creates [NumberFormat] with options specified
-// TODO(Morteza): The funciton has been commented since it need Intl lib. Unfortunately, the `json_schema` lib has conflicts with the latest version of Intl.
-// NumberFormat getValueFormatter({
-//   String locale = 'en_US',
-//   String currency,
-//   @required int decimalDigits,
-//   bool showSymbol = true,
-// }) {
-//   final NumberFormat formatter = NumberFormat.currency(
-//     decimalDigits: decimalDigits,
-//     symbol: (showSymbol && currency != null)
-//         ? NumberFormat().simpleCurrencySymbol(currency)
-//         : '',
-//   );
-//
-//   return formatter;
-// }
-
-/// Formats a string [value] of number [decimalDigits] and [currency] symbol
-// TODO(Morteza): The funciton has been commented since it need Intl lib. Unfortunately, the `json_schema` lib has conflicts with the latest version of Intl.
-// String getFormattedValue({
-//   String value,
-//   int decimalDigits,
-//   String currency,
-//   bool showSymbol = true,
-// }) =>
-//     getValueFormatter(
-//       decimalDigits: decimalDigits ?? getDecimalDigits(value),
-//       currency: currency,
-//       showSymbol: showSymbol,
-//     ).format(double.parse(value));
-
-/// Fetches the device time
-int getCurrentLocalEpoch() =>
-    (DateTime.now().millisecondsSinceEpoch / 1000).round();
-
-/// Calculates the server time
-DateTime getCurrentServerTime(int timeDifference) =>
-    DateTime.fromMillisecondsSinceEpoch(
-      (getCurrentLocalEpoch() + timeDifference) * 1000,
-    );
-
-/// Create a [DateTime] from time given in seconds
-DateTime getDateTime(int timeInSeconds) => timeInSeconds == null
-    ? null
-    : DateTime.fromMillisecondsSinceEpoch(timeInSeconds * 1000);
-
-/// Create a [DateTime] from time given string in seconds
-DateTime getDateTimeFromString(String timeInSeconds) => timeInSeconds == null
-    ? null
-    : DateTime.fromMillisecondsSinceEpoch(int.parse(timeInSeconds) * 1000);
-
 /// Convert int to boolean
 bool getBool(int value) => value == null ? null : value == 1;
 
-/// Checks if a string value of number is a valid number
-class NumberValidator {
-  /// checks if the given [stringValue] is a number
-  static bool isANumber(String stringValue) {
-    final String newString = stringValue.replaceAll(RegExp(r','), '');
-    double result;
-    try {
-      result = double.parse(newString);
-    } on Exception {
-      return false;
-    }
-    return result != null;
-  }
-
-  /// Checks if [stringValue] of a number is in the range of
-  /// [lowerLimit] & [upperLimit]
-  static bool isBetweenLimits({
-    @required String stringValue,
-    @required double upperLimit,
-    @required double lowerLimit,
-  }) =>
-      isMoreThanLimit(stringValue: stringValue, lowerLimit: lowerLimit) &&
-      isLessThanLimit(stringValue: stringValue, upperLimit: upperLimit);
-
-  /// Checks if [stringValue] of a number is less than [upperLimit]
-  static bool isLessThanLimit({
-    @required String stringValue,
-    @required double upperLimit,
-  }) {
-    final double num = double.parse(stringValue);
-    return num <= upperLimit;
-  }
-
-  /// Checks if [stringValue] of number exceeds the given value
-  static bool isMoreThanLimit({
-    @required String stringValue,
-    @required double lowerLimit,
-  }) {
-    final double num = double.parse(stringValue);
-    return num >= lowerLimit;
-  }
-
-  /// Checks if number is positive
-  static bool isAPositiveNumber(String stringValue) {
-    final double num = double.parse(stringValue);
-    return num > 0;
-  }
-
-  /// Checks if the [stringValue] of number matches
-  /// with the [validDecimalNumber]
-  static bool hasValidPrecision({
-    @required String stringValue,
-    @required int validDecimalNumber,
-  }) {
-    final List<String> splitValue = stringValue.split('.');
-    if (splitValue.length >= 2) {
-      if ((splitValue[1].length) <= validDecimalNumber) {
-        return true;
-      }
-    } else {
-      return true;
-    }
-    return false;
-  }
-}
-
-/// Generates random int numbers
-class RandomGenerator {
-  /// Random int between [min] & [max]
-  static int generateRandomInt({
-    int min = 0,
-    int max = 10,
-  }) =>
-      min + Random().nextInt(max - min);
-}
-
 /// Get list of models from Map
 List<T> getListFromMap<T>(
-  List<dynamic> mapList, {
+  Iterable<dynamic> mapList, {
   T Function(dynamic item) itemToTypeCallback,
 }) {
-  if (mapList == null) {
+  if (mapList == null || mapList.isEmpty) {
     return null;
   }
 
@@ -191,5 +57,39 @@ T getItemFromMap<T>(
     return null;
   }
 
-  return itemToTypeCallback == null ? map.toString() : itemToTypeCallback(map);
+  return itemToTypeCallback(map);
+}
+
+/// Converts enum to string
+String getStringFromEnum<T>({
+  T value,
+  bool snakeCase = true,
+}) {
+  if (value == null) {
+    return null;
+  }
+
+  final String item = value.toString().split('.')[1];
+
+  return snakeCase ? ReCase(item).snakeCase : item;
+}
+
+/// Gets enum form a string
+T getEnumFromString<T>({
+  List<T> values,
+  String name,
+  bool snakeCase = true,
+}) {
+  if (name == null || values == null || values.isEmpty) {
+    return null;
+  }
+
+  return values.firstWhere(
+    (T enumItem) {
+      final String item = enumItem.toString().split('.')[1];
+
+      return (snakeCase ? ReCase(item).snakeCase : item).compareTo(name) == 0;
+    },
+    orElse: () => null,
+  );
 }

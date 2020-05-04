@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/models/balance_model.dart';
 import 'package:flutter_deriv_api/api/models/balance_total_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Balance information if account
 class Balance extends BalanceModel {
@@ -24,7 +25,11 @@ class Balance extends BalanceModel {
         currency: json['currency'],
         id: json['id'],
         loginId: json['loginid'],
-        total: json['total'] != null ? BalanceTotalModel.fromJson(json) : null,
+        total: getItemFromMap(
+          json['total'],
+          itemToTypeCallback: (dynamic item) =>
+              BalanceTotalModel.fromJson(item),
+        ),
       );
 
   /// Get balance of account

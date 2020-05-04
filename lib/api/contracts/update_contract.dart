@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/models/spot_price_model.dart';
 import 'package:flutter_deriv_api/api/models/update_contract_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Contract update class
 class UpdateContract extends UpdateContractModel {
@@ -14,12 +15,14 @@ class UpdateContract extends UpdateContractModel {
 
   /// Generate an instance from json
   factory UpdateContract.fromJson(Map<String, dynamic> json) => UpdateContract(
-        stopLoss: json['stop_loss'] == null
-            ? null
-            : SpotPriceModel.fromJson(json['stop_loss']),
-        takeProfit: json['take_profit'] == null
-            ? null
-            : SpotPriceModel.fromJson(json['take_profit']),
+        stopLoss: getItemFromMap(
+          json['stop_loss'],
+          itemToTypeCallback: (dynamic item) => SpotPriceModel.fromJson(item),
+        ),
+        takeProfit: getItemFromMap(
+          json['take_profit'],
+          itemToTypeCallback: (dynamic item) => SpotPriceModel.fromJson(item),
+        ),
       );
 
   /// Generate a copy of instance with given parameters

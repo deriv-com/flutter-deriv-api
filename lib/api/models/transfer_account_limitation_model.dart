@@ -13,13 +13,11 @@ class TransferAccountLimitationModel extends APIBaseModel {
   /// Initializes from map
   factory TransferAccountLimitationModel.fromJson(Map<String, dynamic> json) =>
       TransferAccountLimitationModel(
-        fees: json['fees'] == null || json['fees'].isEmpty
-            ? null
-            : json['fees']
-                .entries
-                .map<TransferFeeModel>((MapEntry<String, dynamic> entry) =>
-                    TransferFeeModel.fromJson(entry.key, entry.value))
-                .toList(),
+        fees: getListFromMap(
+          json['fees'].entries,
+          itemToTypeCallback: (dynamic item) =>
+              TransferFeeModel.fromJson(item.key, item.value),
+        ),
         limits: getItemFromMap(
           json['limits'],
           itemToTypeCallback: (dynamic item) =>

@@ -1,7 +1,6 @@
 import 'package:flutter_deriv_api/api/models/account_authentication_status_model.dart';
 import 'package:flutter_deriv_api/api/models/account_status_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Account status
@@ -31,13 +30,13 @@ class AccountStatus extends AccountStatusModel {
         ),
         promptClientToAuthenticate:
             getBool(json['prompt_client_to_authenticate']),
-        riskClassification: EnumHelper.getEnum(
+        riskClassification: getEnumFromString(
           values: AccountRiskClassification.values,
           name: json['risk_classification'],
         ),
         status: getListFromMap(
           json['status'],
-          itemToTypeCallback: (dynamic item) => EnumHelper.getEnum(
+          itemToTypeCallback: (dynamic item) => getEnumFromString(
             values: AccountStatusType.values,
             name: item.toString(),
           ),

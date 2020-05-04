@@ -23,12 +23,11 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
   factory TransferBetweenAccounts.fromJson(Map<String, dynamic> json) =>
       TransferBetweenAccounts(
         transferBetweenAccounts: getBool(json['transfer_between_accounts']),
-        accounts: json['accounts'] == null
-            ? null
-            : json['accounts']
-                .map<TransferAccountModel>(
-                    (dynamic item) => TransferAccountModel.fromJson(item))
-                .toList(),
+        accounts: getListFromMap(
+          json['accounts'],
+          itemToTypeCallback: (dynamic item) =>
+              TransferAccountModel.fromJson(item),
+        ),
         clientToFullName: json['client_to_full_name'],
         clientToLoginid: json['client_to_loginid'],
         transactionId: json['transaction_id'],

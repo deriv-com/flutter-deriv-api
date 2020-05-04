@@ -1,6 +1,5 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/login_history_model.dart';
-import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Login history class
@@ -20,7 +19,7 @@ class LoginHistory extends LoginHistoryModel {
 
   /// Generate an instance from json
   factory LoginHistory.fromJson(Map<String, dynamic> json) => LoginHistory(
-        action: EnumHelper.getEnum(
+        action: getEnumFromString(
           values: LoginAction.values,
           name: json['action'],
         ),

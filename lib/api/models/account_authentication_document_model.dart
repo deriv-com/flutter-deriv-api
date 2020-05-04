@@ -1,5 +1,4 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'api_base_model.dart';
@@ -20,7 +19,7 @@ class AccountAuthenticationDocumentModel extends APIBaseModel {
       AccountAuthenticationDocumentModel(
         expiryDate: getDateTime(json['expiry_date']),
         furtherSubmissionsAllowed: getBool(json['further_submissions_allowed']),
-        status: EnumHelper.getEnum(
+        status: getEnumFromString(
           values: AccountIdentityStatus.values,
           name: json['status'],
         ),

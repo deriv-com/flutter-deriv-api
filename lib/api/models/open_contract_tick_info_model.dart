@@ -1,4 +1,5 @@
 import 'package:flutter_deriv_api/utils/helpers.dart';
+
 import 'open_contract_tick_model.dart';
 
 /// ContractTimeInfo

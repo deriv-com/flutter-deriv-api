@@ -1,5 +1,4 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'api_base_model.dart';
@@ -25,7 +24,7 @@ class AccountIdentityModel extends APIBaseModel {
           itemToTypeCallback: (dynamic map) =>
               AuthenticationServicesModel.fromJson(map),
         ),
-        status: EnumHelper.getEnum(
+        status: getEnumFromString(
           values: AccountIdentityStatus.values,
           name: json['status'],
         ),

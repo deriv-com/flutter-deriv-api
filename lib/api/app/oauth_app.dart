@@ -1,6 +1,5 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/oauth_app_model.dart';
-import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// OAuth application that used for the authorized account
@@ -29,7 +28,7 @@ class OAuthApp extends OauthAppModel {
         scopes: getListFromMap(
           json['scopes'],
           itemToTypeCallback: (dynamic item) =>
-              EnumHelper.getEnum(values: TokenScope.values, name: item),
+              getEnumFromString(values: TokenScope.values, name: item),
         ),
       );
 

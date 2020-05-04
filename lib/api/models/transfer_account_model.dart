@@ -1,6 +1,6 @@
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/utils/enum_helper.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Account model class
 class TransferAccountModel extends APIBaseModel {
@@ -16,7 +16,7 @@ class TransferAccountModel extends APIBaseModel {
   /// Generate an instance from json
   factory TransferAccountModel.fromJson(Map<String, dynamic> json) =>
       TransferAccountModel(
-        accountType: EnumHelper.getEnum(
+        accountType: getEnumFromString(
           values: TransferAccountType.values,
           name: json['account_type'],
         ),

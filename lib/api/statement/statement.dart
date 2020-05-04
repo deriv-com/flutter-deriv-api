@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/models/statement_model.dart';
 import 'package:flutter_deriv_api/api/models/statement_transaction.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Statement class
 class Statement extends StatementModel {
@@ -15,12 +16,11 @@ class Statement extends StatementModel {
   /// Generate an instance from json
   factory Statement.fromJson(Map<String, dynamic> json) => Statement(
         count: json['count'],
-        transactions: json['transactions'] == null
-            ? null
-            : json['transactions']
-                .map<StatementTransactionModel>(
-                    (dynamic item) => StatementTransactionModel.fromJson(item))
-                .toList(),
+        transactions: getListFromMap(
+          json['transactions'],
+          itemToTypeCallback: (dynamic item) =>
+              StatementTransactionModel.fromJson(item),
+        ),
       );
 
   /// Generate a copy of instance with given parameters
