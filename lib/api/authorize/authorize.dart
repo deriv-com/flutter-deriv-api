@@ -16,7 +16,7 @@ class Authorize extends AuthorizeModel {
     String landingCompanyFullname,
     String landingCompanyName,
     List<LocalCurrencyModel> localCurrencies,
-    String loginid,
+    String loginId,
     List<String> scopes,
     List<String> upgradeableLandingCompanies,
     int userId,
@@ -31,7 +31,7 @@ class Authorize extends AuthorizeModel {
           landingCompanyFullname: landingCompanyFullname,
           landingCompanyName: landingCompanyName,
           localCurrencies: localCurrencies,
-          loginid: loginid,
+          loginId: loginId,
           scopes: scopes,
           upgradeableLandingCompanies: upgradeableLandingCompanies,
           userId: userId,
@@ -65,7 +65,7 @@ class Authorize extends AuthorizeModel {
                   ),
                 )
                 .toList(),
-        loginid: json['loginid'],
+        loginId: json['loginid'],
         scopes: json['scopes'] == null
             ? null
             : json['scopes']
@@ -92,7 +92,7 @@ class Authorize extends AuthorizeModel {
     String landingCompanyFullname,
     String landingCompanyName,
     List<LocalCurrencyModel> localCurrencies,
-    String loginid,
+    String loginId,
     List<String> scopes,
     List<String> upgradeableLandingCompanies,
     int userId,
@@ -109,7 +109,7 @@ class Authorize extends AuthorizeModel {
             landingCompanyFullname ?? this.landingCompanyFullname,
         landingCompanyName: landingCompanyName ?? this.landingCompanyName,
         localCurrencies: localCurrencies ?? this.localCurrencies,
-        loginid: loginid ?? this.loginid,
+        loginId: loginId ?? this.loginId,
         scopes: scopes ?? this.scopes,
         upgradeableLandingCompanies:
             upgradeableLandingCompanies ?? this.upgradeableLandingCompanies,

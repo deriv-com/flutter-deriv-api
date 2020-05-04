@@ -1,5 +1,6 @@
+import 'package:flutter_deriv_api/api/models/spot_price_model.dart';
+
 import 'base_model.dart';
-import 'limit_order_close_info_model.dart';
 
 /// Contains limit order information.
 /// (Only applicable for contract with limit order).
@@ -12,32 +13,32 @@ class LimitOrderModel extends BaseModel {
       LimitOrderModel(
         json['stop_loss'] == null
             ? null
-            : LimitOrderCloseInfoModel.fromJson(json['stop_loss']),
+            : SpotPriceModel.fromJson(json['stop_loss']),
         json['stop_out'] == null
             ? null
-            : LimitOrderCloseInfoModel.fromJson(json['stop_out']),
+            : SpotPriceModel.fromJson(json['stop_out']),
         json['take_profit'] == null
             ? null
-            : LimitOrderCloseInfoModel.fromJson(json['take_profit']),
+            : SpotPriceModel.fromJson(json['take_profit']),
       );
 
   /// Contains information where the contract will be closed automatically
   /// at the loss specified by the user.
-  final LimitOrderCloseInfoModel stopLoss;
+  final SpotPriceModel stopLoss;
 
   /// Contains information where the contract will be closed automatically
   /// when the value of the contract is close to zero. This is set by the us.
-  final LimitOrderCloseInfoModel stopOut;
+  final SpotPriceModel stopOut;
 
   /// Contains information where the contract will be closed automatically
   /// at the profit specified by the user.
-  final LimitOrderCloseInfoModel takeProfit;
+  final SpotPriceModel takeProfit;
 
   /// Clones a new instance
   LimitOrderModel copyWith(
-    LimitOrderCloseInfoModel stopLoss,
-    LimitOrderCloseInfoModel stopOut,
-    LimitOrderCloseInfoModel takeProfit,
+    SpotPriceModel stopLoss,
+    SpotPriceModel stopOut,
+    SpotPriceModel takeProfit,
   ) =>
       LimitOrderModel(
         stopLoss ?? this.stopLoss,
