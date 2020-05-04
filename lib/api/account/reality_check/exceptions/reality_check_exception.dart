@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
+import 'package:flutter_deriv_api/api/account/exceptions/account_exception.dart';
 
 /// Reality check exception
-class RealityCheckException extends APIBaseException {
+class RealityCheckException extends AccountException {
   /// Initializes
   RealityCheckException({String message}) : super(message: message);
 }

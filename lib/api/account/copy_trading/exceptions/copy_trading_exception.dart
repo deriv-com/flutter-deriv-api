@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
+import 'package:flutter_deriv_api/api/account/exceptions/account_exception.dart';
 
 /// Exception for CopyTrading
-class CopyTradingException extends APIBaseException {
+class CopyTradingException extends AccountException {
   /// Initializes
   CopyTradingException({String message}) : super(message: message);
 }

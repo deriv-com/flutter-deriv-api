@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
+import 'package:flutter_deriv_api/api/user/exceptions/user_exception.dart';
 
 /// Financial assessment exception class
-class FinancialAssessmentException extends APIBaseException {
+class FinancialAssessmentException extends UserException {
   /// Initializes
   FinancialAssessmentException({String message}) : super(message: message);
 }

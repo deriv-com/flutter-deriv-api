@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
+import 'package:flutter_deriv_api/api/common/exceptions/common_exception.dart';
 
 /// Forget exception class
-class ForgetException extends APIBaseException {
+class ForgetException extends CommonException {
   /// Initializes
   ForgetException({String message}) : super(message: message);
 }

@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
+import 'package:flutter_deriv_api/api/account/exceptions/account_exception.dart';
 
 /// Self exclusion exception
-class SelfExclusionException extends APIBaseException {
+class SelfExclusionException extends AccountException {
   /// Initializes
   SelfExclusionException({String message}) : super(message: message);
 }

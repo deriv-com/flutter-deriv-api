@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
+import 'package:flutter_deriv_api/api/application/exceptions/application_exception.dart';
 
 /// Oauth app exception
-class OauthAppException extends APIBaseException {
+class OauthAppException extends ApplicationException {
   /// Initializes
   OauthAppException({String message}) : super(message: message);
 }

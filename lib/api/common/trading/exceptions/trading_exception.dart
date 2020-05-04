@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
+import 'package:flutter_deriv_api/api/common/exceptions/common_exception.dart';
 
 /// Trading exception
-class TradingException extends APIBaseException {
+class TradingException extends CommonException {
   /// Initializes
   TradingException({String message}) : super(message: message);
 }

@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
+import 'package:flutter_deriv_api/api/common/exceptions/common_exception.dart';
 
 /// Server time exception
-class ServerTimeException extends APIBaseException {
+class ServerTimeException extends CommonException {
   /// Initializes
   ServerTimeException({String message}) : super(message: message);
 }
