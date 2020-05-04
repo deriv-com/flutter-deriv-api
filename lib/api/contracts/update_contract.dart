@@ -25,12 +25,18 @@ class UpdateContract extends UpdateContractModel {
 
   // TODO(ramin): update contract API call
   /// update a contract
-  static Future<UpdateContract> updateContract() async => null;
+  static Future<UpdateContract> updateContract(
+    int contractId, {
+    double stopLoss,
+    double takeProfit,
+  }) async =>
+      null;
 
   // TODO(ramin): contract update history API call
   /// Get update history for contract
   static Future<List<HistorySpotPriceModel>> getContractUpdateHistory(
-          int contractId) async =>
+    int contractId,
+  ) async =>
       null;
 
   /// Generate copy of instance with given parameters
