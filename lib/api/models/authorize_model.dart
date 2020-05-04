@@ -16,7 +16,7 @@ abstract class AuthorizeModel extends BaseModel {
     this.landingCompanyFullname,
     this.landingCompanyName,
     this.localCurrencies,
-    this.loginid,
+    this.loginId,
     this.scopes,
     this.upgradeableLandingCompanies,
     this.userId,
@@ -53,7 +53,7 @@ abstract class AuthorizeModel extends BaseModel {
   final List<LocalCurrencyModel> localCurrencies;
 
   /// The account ID that the token was issued for.
-  final String loginid;
+  final String loginId;
 
   /// Scopes available to the token.
   final List<String> scopes;
