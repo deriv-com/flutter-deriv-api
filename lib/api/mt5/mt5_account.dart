@@ -1,5 +1,5 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/models/mt5_account_model.dart';
+import 'package:flutter_deriv_api/api/mt5/models/mt5_account_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// MT5 account class

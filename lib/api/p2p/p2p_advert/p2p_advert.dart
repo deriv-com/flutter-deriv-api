@@ -1,6 +1,6 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/models/p2p_advert_model.dart';
-import 'package:flutter_deriv_api/api/models/p2p_advertiser_details_model.dart';
+import 'package:flutter_deriv_api/api/p2p/models/p2p_advert_model.dart';
+import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_details_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// P2P advert class

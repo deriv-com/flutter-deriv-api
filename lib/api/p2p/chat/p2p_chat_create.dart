@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/models/p2p_chat_create_model.dart';
+import 'package:flutter_deriv_api/api/p2p/models/p2p_chat_create_model.dart';
 
 /// P2P chat create class
 class P2PChatCreate extends P2PChatCreateModel {

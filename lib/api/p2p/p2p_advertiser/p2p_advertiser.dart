@@ -1,5 +1,5 @@
-import 'package:flutter_deriv_api/api/models/p2p_advertiser_model.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
+import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// P2P advertise class
