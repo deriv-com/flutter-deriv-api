@@ -28,6 +28,7 @@ class ProposalArrayRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'proposal_array',
           passthrough: passthrough,
           reqId: reqId,
         );
