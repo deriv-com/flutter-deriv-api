@@ -14,6 +14,7 @@ class PayoutCurrenciesRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'payout_currencies',
           passthrough: passthrough,
           reqId: reqId,
         );

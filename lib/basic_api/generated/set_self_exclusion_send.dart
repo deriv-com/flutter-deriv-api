@@ -27,6 +27,7 @@ class SetSelfExclusionRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'set_self_exclusion',
           passthrough: passthrough,
           reqId: reqId,
         );

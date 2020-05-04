@@ -16,6 +16,7 @@ class BalanceRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'balance',
           passthrough: passthrough,
           reqId: reqId,
         );

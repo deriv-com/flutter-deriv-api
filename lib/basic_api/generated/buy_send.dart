@@ -17,6 +17,7 @@ class BuyRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'buy',
           passthrough: passthrough,
           reqId: reqId,
         );

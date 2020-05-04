@@ -83,7 +83,7 @@ abstract class BaseCallManager<T> {
     api.apiHistory.pushOutgoing(
       timestamp: DateTime.now().millisecondsSinceEpoch,
       message: prepareRequest,
-      method: 'method',
+      method: request.msgType,
     );
 
     api.webSocketChannel.sink.add(

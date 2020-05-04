@@ -15,6 +15,7 @@ class CopytradingStatisticsRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'copytrading_statistics',
           passthrough: passthrough,
           reqId: reqId,
         );
