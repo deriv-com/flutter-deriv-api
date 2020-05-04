@@ -1,7 +1,3 @@
-import 'package:flutter_deriv_api/api/p2p/p2p_advert/p2p_advert.dart';
-import 'package:flutter_deriv_api/api/p2p/p2p_advertiser/p2p_advertiser.dart';
-import 'package:flutter_deriv_api/utils/enum_helper.dart';
-
 import 'base_model.dart';
 import 'enums.dart';
 import 'p2p_advert_model.dart';
@@ -18,7 +14,6 @@ abstract class P2POrderModel extends BaseModel {
     this.amountDisplay,
     this.contactInfo,
     this.createdTime,
-    this.description,
     this.expiryTime,
     this.id,
     this.isIncoming,
@@ -36,9 +31,18 @@ abstract class P2POrderModel extends BaseModel {
   final String accountCurrency;
 
   /// Details of the advert for this order.
+  /// Only some field of this field that client retrieving order info is allowed
+  /// to see, will be filled:
+  /// [P2PAdvertModel.id], [P2PAdvertModel.description],
+  /// [P2PAdvertModel.paymentMethod], [P2PAdvertModel.type].
+  /// Others will be null
   final P2PAdvertModel advertDetails;
 
   /// Details of the advertiser for this order.
+  /// Only some field of this field that client retrieving order info is allowed
+  /// to see, will be filled:
+  /// [P2PAdvertiserModel.id], [P2PAdvertiserModel.name].
+  /// Others will be null
   final P2PAdvertiserModel advertiserDetails;
 
   /// The amount of the order.
@@ -52,9 +56,6 @@ abstract class P2POrderModel extends BaseModel {
 
   /// The epoch time of the order creation.
   final DateTime createdTime;
-
-  /// Order's description
-  final String description;
 
   /// The epoch time in which the order will be expired.
   final DateTime expiryTime;
@@ -89,23 +90,4 @@ abstract class P2POrderModel extends BaseModel {
 
   /// Whether this is a buy or a sell.
   final OrderType type;
-
-  static OrderStatusType _getOrderStatusType(String status) {
-    switch (status) {
-      case 'pending':
-        return OrderStatusType.pending;
-      case 'buyer-confirmed':
-        return OrderStatusType.buyerConfirmed;
-      case 'cancelled':
-        return OrderStatusType.cancelled;
-      case 'timed-out':
-        return OrderStatusType.timedOut;
-      case 'refunded': // expired after buyerConfirmed
-        return OrderStatusType.timedOutBuyerConfirmed;
-      case 'completed':
-        return OrderStatusType.completed;
-      default:
-        return null;
-    }
-  }
 }

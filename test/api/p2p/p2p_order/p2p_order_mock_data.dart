@@ -14,7 +14,7 @@ const String p2pOrderJSON = '''{
     },
     "advertiser_details": {
       "id": "4",
-      "name": "Carol"
+      "name": "Sample advertiser"
     },
     "amount": 2.91,
     "amount_display": "2.91",
@@ -25,7 +25,7 @@ const String p2pOrderJSON = '''{
     "id": "14",
     "is_incoming": 0,
     "local_currency": "ZAR",
-    "payment_info": "Bank of Dubai 1234567898765432345678",
+    "payment_info": "Bank of Nowhere 1234567898765432345678",
     "price": 16.5,
     "price_display": "16.50",
     "rate": 5.67,
