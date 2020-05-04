@@ -59,7 +59,7 @@ class WebsiteStatusCurrencyConfigModel extends APIBaseModel {
   /// Fees and range of allowed amount for transfer between accounts with different types of currencies.
   final TransferAccountLimitationModel transferBetweenAccounts;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   WebsiteStatusCurrencyConfigModel copyWith({
     String code,
     int fractionalDigits,

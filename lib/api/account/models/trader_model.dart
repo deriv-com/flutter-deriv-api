@@ -41,7 +41,7 @@ class TraderModel extends APIBaseModel {
   /// The type of trades set.
   final List<String> tradeTypes;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   TraderModel copyWith({
     List<String> assets,
     String loginId,

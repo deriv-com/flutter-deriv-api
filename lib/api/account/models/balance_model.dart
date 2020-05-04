@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Abstract class Balance of account
 abstract class BalanceModel extends APIBaseModel {
-  /// Constructor
+  /// Initializes
   BalanceModel({
     this.balance,
     this.currency,

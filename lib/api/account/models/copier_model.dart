@@ -16,7 +16,7 @@ class CopierModel extends APIBaseModel {
   /// The loginId of the copier's account.
   final String loginId;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   CopierModel copyWith({
     String loginId,
   }) =>

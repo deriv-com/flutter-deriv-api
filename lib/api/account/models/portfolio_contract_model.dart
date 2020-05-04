@@ -19,7 +19,7 @@ class PortfolioContractModel extends APIBaseModel {
     this.transactionId,
   });
 
-  /// Instance from JSON
+  /// Generate an instance from json
   factory PortfolioContractModel.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -74,7 +74,7 @@ class PortfolioContractModel extends APIBaseModel {
   /// It is the transaction ID. Every contract (buy or sell) and every payment has a unique ID.
   final int transactionId;
 
-  /// ToJson
+  /// Generate a copy of instance with given parameters
   PortfolioContractModel copyWith({
     int appId,
     double buyPrice,

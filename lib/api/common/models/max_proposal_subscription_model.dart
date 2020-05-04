@@ -20,7 +20,7 @@ class MaxProposalSubscriptionModel extends APIBaseModel {
   /// Maximum number of allowed calls.
   final int max;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   MaxProposalSubscriptionModel copyWith({
     String appliesTo,
     int max,

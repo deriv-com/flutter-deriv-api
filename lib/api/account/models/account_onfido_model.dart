@@ -3,13 +3,13 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// This shows the information related to Onfido supported services
 class AccountOnfidoModel extends APIBaseModel {
-  /// Constructor
+  /// Initializes
   AccountOnfidoModel({
     this.documents,
     this.isCountrySupported,
   });
 
-  /// Instance from JSON
+  /// Generate an instance from json
   factory AccountOnfidoModel.fromJson(Map<String, dynamic> json) =>
       AccountOnfidoModel(
         documents: getListFromMap(json['documents']),
@@ -22,7 +22,7 @@ class AccountOnfidoModel extends APIBaseModel {
   /// This shows the information if the country is supported by Onfido
   final bool isCountrySupported;
 
-  /// ToJson
+  /// Generate a copy of instance with given parameters
   AccountOnfidoModel copyWith({
     List<String> documents,
     bool isCountrySupported,

@@ -47,7 +47,7 @@ class Transaction extends TransactionModel {
           transactionTime: transactionTime,
         );
 
-  /// Instance from JSON
+  /// Generate an instance from json
   factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
         action: getEnumFromString(
           values: TransactionActionType.values,
@@ -73,7 +73,7 @@ class Transaction extends TransactionModel {
         transactionTime: getDateTime(json['transaction_time']),
       );
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   TransactionModel copyWith({
     TransactionActionType action,
     double amount,

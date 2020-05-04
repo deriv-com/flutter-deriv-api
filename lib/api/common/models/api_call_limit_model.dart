@@ -52,7 +52,7 @@ class ApiCallLimitModel extends APIBaseModel {
   /// Maximum number of pricing requests allowed during specified period of time.
   final MaxRequestAllowedModel maxRequestsPricing;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   ApiCallLimitModel copyWith({
     MaxProposalSubscriptionModel maxProposalSubscription,
     MaxRequestAllowedModel maxRequestsGeneral,

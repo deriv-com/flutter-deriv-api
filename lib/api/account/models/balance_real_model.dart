@@ -2,10 +2,10 @@ import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Real account info
 class BalanceRealModel extends APIBaseModel {
-  /// Constructor
+  /// Initializes
   BalanceRealModel({this.amount, this.currency});
 
-  /// Instance from JSON
+  /// Generate an instance from json
   factory BalanceRealModel.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -20,7 +20,7 @@ class BalanceRealModel extends APIBaseModel {
   /// Currency code.
   final String currency;
 
-  /// ToJson
+  /// Generate a copy of instance with given parameters
   BalanceRealModel copyWith({
     double amount,
     String currency,

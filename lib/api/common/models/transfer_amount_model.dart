@@ -22,7 +22,7 @@ class TransferAmountModel extends APIBaseModel {
   /// with different types of currencies.
   final double min;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   TransferAmountModel copyWith({
     double min,
     double max,

@@ -35,7 +35,7 @@ class AccountLimits extends AccountLimitsModel {
           withdrawalSinceInceptionMonetary: withdrawalSinceInceptionMonetary,
         );
 
-  /// Instance from JSON
+  /// Generate an instance from json
   factory AccountLimits.fromJson(Map<String, dynamic> json) => AccountLimits(
         accountBalance: json['account_balance']?.toDouble(),
         dailyTurnover: json['daily_turnover'],
@@ -59,7 +59,7 @@ class AccountLimits extends AccountLimitsModel {
             json['withdrawal_since_inception_monetary']?.toDouble(),
       );
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   AccountLimits copyWith({
     double accountBalance,
     double dailyTurnover,

@@ -6,14 +6,14 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 /// This represents the authentication status of the user and it
 /// includes what authentication is needed.
 class AccountAuthenticationStatusModel extends APIBaseModel {
-  /// Constructor
+  /// Initializes
   AccountAuthenticationStatusModel({
     this.document,
     this.identity,
     this.needsVerification,
   });
 
-  /// Instance from JSON
+  /// Generate an instance from json
   factory AccountAuthenticationStatusModel.fromJson(
           Map<String, dynamic> json) =>
       AccountAuthenticationStatusModel(
@@ -39,7 +39,7 @@ class AccountAuthenticationStatusModel extends APIBaseModel {
   /// An array containing the list of required authentication.
   final List<String> needsVerification;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   AccountAuthenticationStatusModel copyWith({
     AccountAuthenticationDocumentModel document,
     AccountIdentityModel identity,

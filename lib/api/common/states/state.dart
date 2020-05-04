@@ -17,7 +17,7 @@ class State extends StateModel {
         value: json['value'],
       );
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   State copyWith({
     String text,
     String value,

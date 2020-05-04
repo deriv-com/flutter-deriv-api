@@ -32,7 +32,7 @@ class OpenContractTickInfoModel extends OpenContractTickModel {
   /// A short description of the data. It could be a tick or a time associated with the contract.
   final String name;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   @override
   OpenContractTickInfoModel copyWith({
     DateTime epoch,

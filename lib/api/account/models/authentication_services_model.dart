@@ -4,12 +4,12 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// This shows the information about the authentication services implemented
 class AuthenticationServicesModel extends APIBaseModel {
-  /// Constructor
+  /// Initializes
   AuthenticationServicesModel({
     this.onfido,
   });
 
-  /// Instance from JSON
+  /// Generate an instance from json
   factory AuthenticationServicesModel.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -24,7 +24,7 @@ class AuthenticationServicesModel extends APIBaseModel {
   /// This shows the information related to Onfido supported services
   final AccountOnfidoModel onfido;
 
-  /// ToJson
+  /// Generate a copy of instance with given parameters
   AuthenticationServicesModel copyWith({
     AccountOnfidoModel onfido,
   }) =>

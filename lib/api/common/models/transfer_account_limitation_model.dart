@@ -30,7 +30,7 @@ class TransferAccountLimitationModel extends APIBaseModel {
   /// Range of allowed amount for transfer between accounts.
   final TransferAmountModel limits;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   TransferAccountLimitationModel copyWith({
     List<TransferFeeModel> fees,
     TransferAmountModel limits,

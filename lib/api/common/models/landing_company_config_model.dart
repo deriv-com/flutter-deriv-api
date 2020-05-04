@@ -17,7 +17,7 @@ class LandingCompanyConfigModel extends APIBaseModel {
   /// tax details required
   final bool taxDetailsRequired;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   LandingCompanyConfigModel copyWith({
     bool taxDetailsRequired,
   }) =>

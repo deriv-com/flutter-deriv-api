@@ -13,7 +13,7 @@ class Residence extends ResidenceModel {
           countryCode: countryCode,
         );
 
-  /// Instance from JSON
+  /// Generate an instance from json
   factory Residence.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -23,7 +23,7 @@ class Residence extends ResidenceModel {
         countryCode: json['value'],
       );
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   Residence copyWith({
     String phoneIdd,
     String countryName,

@@ -55,7 +55,7 @@ class WebsiteStatus extends WebsiteStatusModel {
         termsConditionsVersion: json['terms_conditions_version'],
       );
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   WebsiteStatus copyWith({
     ApiCallLimitModel apiCallLimits,
     List<WebsiteStatusCurrencyConfigModel> currencyConfig,

@@ -13,7 +13,7 @@ class AccountIdentityModel extends APIBaseModel {
     this.status,
   });
 
-  /// Instance from JSON
+  /// Generate an instance from json
   factory AccountIdentityModel.fromJson(Map<String, dynamic> json) =>
       AccountIdentityModel(
         expiryDate: getDateTime(json['expiry_date']),
@@ -42,7 +42,7 @@ class AccountIdentityModel extends APIBaseModel {
   /// submitted for authentication.
   final AccountIdentityStatus status;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   AccountIdentityModel copyWith({
     DateTime expiryDate,
     int furtherSubmissionsAllowed,

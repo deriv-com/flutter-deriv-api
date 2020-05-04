@@ -5,10 +5,10 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Total Information of [BalanceModel]
 class BalanceTotalModel extends APIBaseModel {
-  /// Constructor
+  /// Initializes
   BalanceTotalModel({this.mt5, this.real});
 
-  /// Instance from JSON
+  /// Generate an instance from json
   factory BalanceTotalModel.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -29,7 +29,7 @@ class BalanceTotalModel extends APIBaseModel {
   /// Total amount of balance in all real accounts (excluding MT5)
   final BalanceRealModel real;
 
-  /// ToJson
+  /// Generate a copy of instance with given parameters
   BalanceTotalModel copyWith({
     BalanceMt5Model mt5,
     BalanceRealModel real,

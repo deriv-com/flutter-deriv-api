@@ -23,7 +23,7 @@ class TransactionIdsModel extends APIBaseModel {
   /// Sell ID
   final int sellID;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   TransactionIdsModel copyWith(
     int buyID,
     int sellID,

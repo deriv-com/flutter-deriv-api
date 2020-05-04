@@ -23,7 +23,7 @@ class ForwardStartingOptionModel extends APIBaseModel {
   /// The epoch value for the opening date of forward starting session.
   final DateTime open;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   ForwardStartingOptionModel copyWith({int close, int date, int open}) =>
       ForwardStartingOptionModel(
         close ?? this.close,

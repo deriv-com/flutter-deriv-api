@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Portfolio model class
 class PortfolioModel extends APIBaseModel {
-  /// Constructor
+  /// Initializes
   PortfolioModel({
     this.contracts,
   });

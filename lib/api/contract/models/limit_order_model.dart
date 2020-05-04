@@ -37,7 +37,7 @@ class LimitOrderModel extends APIBaseModel {
   /// at the profit specified by the user.
   final SpotPriceModel takeProfit;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   LimitOrderModel copyWith(
     SpotPriceModel stopLoss,
     SpotPriceModel stopOut,

@@ -21,7 +21,7 @@ class TransferFeeModel extends APIBaseModel {
   /// value
   final double value;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   TransferFeeModel copyWith({
     String code,
     double value,

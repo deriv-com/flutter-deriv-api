@@ -11,7 +11,7 @@ class AccountAuthenticationDocumentModel extends APIBaseModel {
     this.status,
   });
 
-  /// Instance from JSON
+  /// Generate an instance from json
   factory AccountAuthenticationDocumentModel.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -35,7 +35,7 @@ class AccountAuthenticationDocumentModel extends APIBaseModel {
   /// submitted for authentication.
   final AccountIdentityStatus status;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   AccountAuthenticationDocumentModel copyWith({
     DateTime expiryDate,
     int furtherSubmissionsAllowed,

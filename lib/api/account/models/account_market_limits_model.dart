@@ -31,7 +31,7 @@ class AccountMarketLimitsModel extends APIBaseModel {
   /// The limit of turnover for the submarket
   final double turnoverLimit;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   AccountMarketLimitsModel copyWith({
     String name,
     double payoutLimit,

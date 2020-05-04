@@ -18,7 +18,7 @@ class CancellationInfoModel {
   /// Expiry time in epoch for contract cancellation option.
   final DateTime dateExpiry;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   CancellationInfoModel copyWith({
     double askPrice,
     DateTime dateExpiry,

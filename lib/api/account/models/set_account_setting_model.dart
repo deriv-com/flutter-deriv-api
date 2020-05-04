@@ -17,7 +17,7 @@ class SetAccountSettingModel extends APIBaseModel {
   /// true on success
   final bool succeeded;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   SetAccountSettingModel copyWith({
     bool succeeded,
   }) =>

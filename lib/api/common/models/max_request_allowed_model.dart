@@ -24,7 +24,7 @@ class MaxRequestAllowedModel extends APIBaseModel {
   /// The maximum of allowed calls per minute.
   final int minutely;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   MaxRequestAllowedModel copyWith({
     String appliesTo,
     int hourly,

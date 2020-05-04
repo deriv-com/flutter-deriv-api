@@ -18,7 +18,7 @@ class ProfitableTradeModel extends APIBaseModel {
   /// time year or month
   final String time;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   ProfitableTradeModel copyWith({
     double profit,
     String time,

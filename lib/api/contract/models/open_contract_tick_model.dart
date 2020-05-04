@@ -27,7 +27,7 @@ class OpenContractTickModel extends APIBaseModel {
   /// The spot value with the correct precision at the given epoch.
   final String tickDisplayValue;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   OpenContractTickModel copyWith({
     DateTime epoch,
     double tick,

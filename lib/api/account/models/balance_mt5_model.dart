@@ -2,10 +2,10 @@ import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// MT5 accounts info
 class BalanceMt5Model extends APIBaseModel {
-  /// Constructor
+  /// Initializes
   BalanceMt5Model({this.amount, this.currency});
 
-  /// Instance from JSON
+  /// Generate an instance from json
   factory BalanceMt5Model.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -20,7 +20,7 @@ class BalanceMt5Model extends APIBaseModel {
   /// Currency code.
   final String currency;
 
-  /// ToJson
+  /// Generate a copy of instance with given parameters
   BalanceMt5Model copyWith({
     double amount,
     String currency,

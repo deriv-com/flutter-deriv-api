@@ -26,7 +26,7 @@ class HistoryModel extends APIBaseModel {
   /// corresponding tick values in `prices` array.
   final List<DateTime> times;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   HistoryModel copyWith({
     List<double> prices,
     List<DateTime> times,

@@ -26,7 +26,7 @@ class CopyTrading extends CopyTradingModel {
         ),
       );
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   CopyTrading copyWith({
     List<CopierModel> copiers,
     List<TraderModel> traders,

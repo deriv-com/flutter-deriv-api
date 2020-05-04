@@ -41,7 +41,7 @@ class MTLandingCompanyModel extends APIBaseModel {
   /// you wish to take in the market.
   final LandingCompanyDetailModel standard;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   MTLandingCompanyModel copyWith(
     LandingCompanyDetailModel advanced,
     LandingCompanyDetailModel standard,
