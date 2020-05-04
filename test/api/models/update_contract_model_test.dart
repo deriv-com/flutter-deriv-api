@@ -32,7 +32,8 @@ void main() {
 
     final List<HistorySpotPriceModel> updateHistory = getListFromMap(
       contractUpdateHistoryMap['contract_update_history'],
-      (dynamic item) => HistorySpotPriceModel.fromJson(item),
+      itemToTypeCallback: (dynamic item) =>
+          HistorySpotPriceModel.fromJson(item),
     );
 
     final HistorySpotPriceModel firstUpdate = updateHistory.first;
