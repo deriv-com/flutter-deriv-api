@@ -1,8 +1,8 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/statement_transaction.dart';
 
 /// Statement model class
-abstract class StatementModel extends BaseModel {
+abstract class StatementModel extends APIBaseModel {
   /// Initializes
   StatementModel({
     this.count,

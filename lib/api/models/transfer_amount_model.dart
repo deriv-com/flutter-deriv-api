@@ -5,7 +5,7 @@ class TransferAmountModel extends APIBaseModel {
   /// Initializes
   TransferAmountModel({this.min, this.max});
 
-  /// From Json
+  /// Generate an instance from json
   factory TransferAmountModel.fromJson(
     Map<String, dynamic> json,
   ) =>

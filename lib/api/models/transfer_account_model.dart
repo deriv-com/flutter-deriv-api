@@ -1,10 +1,10 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/utils/enum_helper.dart';
 
 /// Account model class
-class TransferAccountModel extends BaseModel {
-  /// Class constructor
+class TransferAccountModel extends APIBaseModel {
+  /// Initializes
   TransferAccountModel({
     this.accountType,
     this.balance,
@@ -13,7 +13,7 @@ class TransferAccountModel extends BaseModel {
     this.mt5Group,
   });
 
-  /// Generate instance from json
+  /// Generate an instance from json
   factory TransferAccountModel.fromJson(Map<String, dynamic> json) =>
       TransferAccountModel(
         accountType: EnumHelper.getEnum(
@@ -41,7 +41,7 @@ class TransferAccountModel extends BaseModel {
   /// The group of mt5 account.
   final String mt5Group;
 
-  /// Generate copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   TransferAccountModel copyWith({
     TransferAccountType accountType,
     String balance,

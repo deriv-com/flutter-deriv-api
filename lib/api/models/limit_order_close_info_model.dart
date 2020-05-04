@@ -12,7 +12,7 @@ class LimitOrderCloseInfoModel extends APIBaseModel {
     this.value,
   );
 
-  /// From Json
+  /// Generate an instance from json
   factory LimitOrderCloseInfoModel.fromJson(Map<String, dynamic> json) =>
       LimitOrderCloseInfoModel(
         json['display_name'],
@@ -33,7 +33,7 @@ class LimitOrderCloseInfoModel extends APIBaseModel {
   /// Pip-sized barrier value
   final String value;
 
-  /// Clone a new instance
+  /// Generate a copy of instance with given parameters
   LimitOrderCloseInfoModel copyWith({
     String displayName,
     double orderAmount,

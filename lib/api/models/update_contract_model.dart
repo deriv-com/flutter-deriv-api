@@ -1,9 +1,9 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/spot_price_model.dart';
 
 /// Update contract model class
-abstract class UpdateContractModel extends BaseModel {
-  /// Class constructor
+abstract class UpdateContractModel extends APIBaseModel {
+  /// Initializes
   UpdateContractModel({
     this.stopLoss,
     this.takeProfit,

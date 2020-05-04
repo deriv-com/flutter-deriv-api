@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// P2P advertiser model class
-abstract class P2PAdvertiserModel extends BaseModel {
+abstract class P2PAdvertiserModel extends APIBaseModel {
   /// Initializes
   P2PAdvertiserModel({
     this.chatToken,

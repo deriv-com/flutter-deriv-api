@@ -1,8 +1,8 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 
 /// Login history model class
-abstract class LoginHistoryModel extends BaseModel {
+abstract class LoginHistoryModel extends APIBaseModel {
   /// Initializes
   LoginHistoryModel({
     this.action,

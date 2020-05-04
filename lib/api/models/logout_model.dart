@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Logout model class
-class LogoutModel extends BaseModel {
+class LogoutModel extends APIBaseModel {
   /// Initializes
   LogoutModel({
     this.succeeded,

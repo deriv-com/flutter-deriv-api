@@ -19,16 +19,16 @@ void main() {
 
     final StatementTransactionModel transaction = statement.transactions[0];
 
-    expect(transaction.actionType, StatementTransactionActionType.deposit);
+    expect(transaction.actionType, TransactionActionType.deposit);
     expect(transaction.amount, -83.23);
     expect(transaction.appId, 34123);
     expect(transaction.balanceAfter, 10150.13);
     expect(transaction.contractId, 4867502908);
-    expect(transaction.longcode, 'a sample long code');
+    expect(transaction.longCode, 'a sample long code');
     expect(transaction.payout, 35.5);
     expect(transaction.purchaseTime, getDateTime(1587544006));
     expect(transaction.referenceId, 1234);
-    expect(transaction.shortcode, 'a short code');
+    expect(transaction.shortCode, 'a short code');
     expect(transaction.transactionId, 23432);
     expect(transaction.transactionTime, getDateTime(1587544006));
   });

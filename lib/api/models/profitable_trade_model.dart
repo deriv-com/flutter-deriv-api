@@ -5,7 +5,7 @@ class ProfitableTradeModel extends APIBaseModel {
   /// Initializes
   ProfitableTradeModel({this.profit, this.time});
 
-  /// From JSON
+  /// Generate an instance from json
   factory ProfitableTradeModel.fromJson(MapEntry<String, dynamic> entry) =>
       ProfitableTradeModel(
         time: entry.key,

@@ -1,9 +1,9 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Stop loss model class
-class SpotPriceModel extends BaseModel {
-  /// Class constructor
+class SpotPriceModel extends APIBaseModel {
+  /// Initializes
   SpotPriceModel({
     this.displayName,
     this.orderAmount,
@@ -11,7 +11,7 @@ class SpotPriceModel extends BaseModel {
     this.value,
   });
 
-  /// Generate instance from json
+  /// Generate an instance from json
   factory SpotPriceModel.fromJson(Map<String, dynamic> json) => SpotPriceModel(
         displayName: json['display_name'],
         orderAmount: json['order_amount']?.toDouble(),
@@ -31,7 +31,7 @@ class SpotPriceModel extends BaseModel {
   /// Stop loss pip-sized barrier value
   final String value;
 
-  /// Generate copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   SpotPriceModel copyWith({
     String displayName,
     double orderAmount,

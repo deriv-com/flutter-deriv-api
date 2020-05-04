@@ -1,9 +1,9 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/p2p_advertiser_details_model.dart';
 
 /// P2P advert model class
-abstract class P2PAdvertModel extends BaseModel {
+abstract class P2PAdvertModel extends APIBaseModel {
   /// Initializes
   P2PAdvertModel({
     this.accountCurrency,

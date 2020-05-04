@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/update_contract_model.dart';
 
 /// Contract update class
 class UpdateContract extends UpdateContractModel {
-  /// Class constructor
+  /// Initializes
   UpdateContract({
     SpotPriceModel stopLoss,
     SpotPriceModel takeProfit,
@@ -12,7 +12,7 @@ class UpdateContract extends UpdateContractModel {
           takeProfit: takeProfit,
         );
 
-  /// Generate instance from json
+  /// Generate an instance from json
   factory UpdateContract.fromJson(Map<String, dynamic> json) => UpdateContract(
         stopLoss: json['stop_loss'] == null
             ? null
@@ -22,7 +22,7 @@ class UpdateContract extends UpdateContractModel {
             : SpotPriceModel.fromJson(json['take_profit']),
       );
 
-  /// Generate copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   UpdateContract copyWith({
     SpotPriceModel stopLoss,
     SpotPriceModel takeProfit,

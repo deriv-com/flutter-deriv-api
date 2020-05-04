@@ -2,7 +2,7 @@ import 'package:flutter_deriv_api/api/models/cancel_contract_model.dart';
 
 /// Cancel contract class
 class CancelContract extends CancelContractModel {
-  /// Class constructor
+  /// Initializes
   CancelContract({
     double balanceAfter,
     int contractId,

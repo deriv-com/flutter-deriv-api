@@ -7,7 +7,7 @@ class ForwardStartingOptionModel extends APIBaseModel {
   /// Initializes
   ForwardStartingOptionModel(this.close, this.date, this.open);
 
-  /// From Json
+  /// Generate an instance from json
   factory ForwardStartingOptionModel.fromJson(Map<String, dynamic> json) =>
       ForwardStartingOptionModel(
         json['close'] = getDateTime(int.parse(json['close'])),

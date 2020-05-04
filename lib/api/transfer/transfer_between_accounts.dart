@@ -4,7 +4,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Transfer between accounts class class
 class TransferBetweenAccounts extends TransferBetweenAccountsModel {
-  /// Class constructor
+  /// Initializes
   TransferBetweenAccounts({
     bool transferBetweenAccounts,
     List<TransferAccountModel> accounts,
@@ -19,7 +19,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
           transactionId: transactionId,
         );
 
-  /// Generate instance from json
+  /// Generate an instance from json
   factory TransferBetweenAccounts.fromJson(Map<String, dynamic> json) =>
       TransferBetweenAccounts(
         transferBetweenAccounts: getBool(json['transfer_between_accounts']),
@@ -34,7 +34,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
         transactionId: json['transaction_id'],
       );
 
-  /// Generate copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   TransferBetweenAccounts copyWith({
     bool transferBetweenAccounts,
     List<TransferAccountModel> accounts,

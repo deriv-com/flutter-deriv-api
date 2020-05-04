@@ -10,7 +10,7 @@ class AccountMarketLimitsModel extends APIBaseModel {
     this.turnoverLimit,
   });
 
-  /// From JSON
+  /// Generate an instance from json
   factory AccountMarketLimitsModel.fromJson(Map<String, dynamic> json) =>
       AccountMarketLimitsModel(
         name: json['name'],

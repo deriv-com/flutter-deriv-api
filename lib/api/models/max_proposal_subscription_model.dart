@@ -5,7 +5,7 @@ class MaxProposalSubscriptionModel extends APIBaseModel {
   /// Initializes
   MaxProposalSubscriptionModel({this.appliesTo, this.max});
 
-  /// From Json
+  /// Generate an instance from json
   factory MaxProposalSubscriptionModel.fromJson(
     Map<String, dynamic> json,
   ) =>

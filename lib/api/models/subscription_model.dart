@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Subscription model class
-class SubscriptionModel extends BaseModel {
+class SubscriptionModel extends APIBaseModel {
   /// Initializes
   SubscriptionModel({
     this.id,

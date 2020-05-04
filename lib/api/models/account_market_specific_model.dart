@@ -13,7 +13,7 @@ class AccountMarketSpecificModel extends APIBaseModel {
     this.syntheticIndexLimits,
   });
 
-  /// From JSON
+  /// Generate an instance from json
   factory AccountMarketSpecificModel.fromJson(Map<String, dynamic> json) =>
       AccountMarketSpecificModel(
         commoditiesLimits: getListFromMap(

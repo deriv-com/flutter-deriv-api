@@ -6,7 +6,7 @@ class TransactionIdsModel {
     this.sellID,
   );
 
-  /// From JSON
+  /// Generate an instance from json
   factory TransactionIdsModel.fromJson(
     Map<String, dynamic> json,
   ) =>

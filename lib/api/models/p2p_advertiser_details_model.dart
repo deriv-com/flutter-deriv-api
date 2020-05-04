@@ -1,14 +1,14 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// P2P advertiser details model class
-class P2PAdvertiserDetailsModel extends BaseModel {
+class P2PAdvertiserDetailsModel extends APIBaseModel {
   /// Initializes
   P2PAdvertiserDetailsModel({
     this.id,
     this.name,
   });
 
-  /// Generate instance from json
+  /// Generate an instance from json
   factory P2PAdvertiserDetailsModel.fromJson(Map<String, dynamic> json) =>
       P2PAdvertiserDetailsModel(
         id: json['id'],

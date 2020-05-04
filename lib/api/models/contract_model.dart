@@ -28,7 +28,7 @@ class ContractModel extends APIBaseModel {
     this.underlyingSymbol,
   });
 
-  /// From Json
+  /// Generate an instance from json
   factory ContractModel.fromJson(Map<String, dynamic> json) => ContractModel(
       availableBarriers: json['available_barriers'],
       barrier: json['barrier'],

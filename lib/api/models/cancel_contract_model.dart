@@ -1,8 +1,8 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Cancel contract model class
-abstract class CancelContractModel extends BaseModel {
-  /// Class constructor
+abstract class CancelContractModel extends APIBaseModel {
+  /// Initializes
   CancelContractModel({
     this.balanceAfter,
     this.contractId,

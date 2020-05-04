@@ -5,7 +5,7 @@ class SellExpiredContractModel extends APIBaseModel {
   /// Initializes
   SellExpiredContractModel({this.count});
 
-  /// From JSON
+  /// Generate an instance from json
   factory SellExpiredContractModel.fromJson(
     Map<String, dynamic> json,
   ) =>

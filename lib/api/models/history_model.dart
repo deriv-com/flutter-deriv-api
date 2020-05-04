@@ -7,7 +7,7 @@ class HistoryModel extends APIBaseModel {
   /// Initializes
   HistoryModel({this.prices, this.times});
 
-  /// From JSON
+  /// Generate an instance from json
   factory HistoryModel.fromJson(Map<String, dynamic> json) => HistoryModel(
         prices: getListFromMap(
           json['prices'],

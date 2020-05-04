@@ -18,7 +18,7 @@ class WebsiteStatusCurrencyConfigModel extends APIBaseModel {
     this.transferBetweenAccounts,
   });
 
-  /// From Json
+  /// Generate an instance from json
   factory WebsiteStatusCurrencyConfigModel.fromJson(
     String code,
     Map<String, dynamic> json,

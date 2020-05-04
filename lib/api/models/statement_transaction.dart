@@ -1,10 +1,10 @@
-import 'package:flutter_deriv_api/api/models/base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/utils/enum_helper.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Statement transaction model class
-class StatementTransactionModel extends BaseModel {
+class StatementTransactionModel extends APIBaseModel {
   /// Initializes
   StatementTransactionModel({
     this.actionType,
@@ -12,11 +12,11 @@ class StatementTransactionModel extends BaseModel {
     this.appId,
     this.balanceAfter,
     this.contractId,
-    this.longcode,
+    this.longCode,
     this.payout,
     this.purchaseTime,
     this.referenceId,
-    this.shortcode,
+    this.shortCode,
     this.transactionId,
     this.transactionTime,
   });
@@ -25,24 +25,24 @@ class StatementTransactionModel extends BaseModel {
   factory StatementTransactionModel.fromJson(Map<String, dynamic> json) =>
       StatementTransactionModel(
         actionType: EnumHelper.getEnum(
-          values: StatementTransactionActionType.values,
+          values: TransactionActionType.values,
           name: json['action_type'],
         ),
         amount: json['amount']?.toDouble(),
         appId: json['app_id'],
         balanceAfter: json['balance_after']?.toDouble(),
         contractId: json['contract_id'],
-        longcode: json['longcode'],
+        longCode: json['longcode'],
         payout: json['payout']?.toDouble(),
         purchaseTime: getDateTime(json['purchase_time']),
         referenceId: json['reference_id'],
-        shortcode: json['shortcode'],
+        shortCode: json['shortcode'],
         transactionId: json['transaction_id'],
         transactionTime: getDateTime(json['transaction_time']),
       );
 
   /// It is the type of action.
-  final StatementTransactionActionType actionType;
+  final TransactionActionType actionType;
 
   /// It is the amount of transaction.
   final double amount;
@@ -57,7 +57,7 @@ class StatementTransactionModel extends BaseModel {
   final int contractId;
 
   /// The description of contract purchased if description is set to `1`.
-  final String longcode;
+  final String longCode;
 
   /// Payout price
   final double payout;
@@ -69,7 +69,7 @@ class StatementTransactionModel extends BaseModel {
   final int referenceId;
 
   /// Compact description of the contract purchased if description is set to `1`.
-  final String shortcode;
+  final String shortCode;
 
   /// It is the transaction ID. In statement every contract (buy or sell) and every payment has a unique ID.
   final int transactionId;
@@ -79,16 +79,16 @@ class StatementTransactionModel extends BaseModel {
 
   /// Generate a copy of instance with given parameters
   StatementTransactionModel copyWith({
-    StatementTransactionActionType actionType,
+    TransactionActionType actionType,
     double amount,
     int appId,
     double balanceAfter,
     int contractId,
-    String longcode,
+    String longCode,
     double payout,
     DateTime purchaseTime,
     int referenceId,
-    String shortcode,
+    String shortCode,
     int transactionId,
     DateTime transactionTime,
   }) =>
@@ -98,11 +98,11 @@ class StatementTransactionModel extends BaseModel {
         appId: appId ?? this.appId,
         balanceAfter: balanceAfter ?? this.balanceAfter,
         contractId: contractId ?? this.contractId,
-        longcode: longcode ?? this.longcode,
+        longCode: longCode ?? this.longCode,
         payout: payout ?? this.payout,
         purchaseTime: purchaseTime ?? this.purchaseTime,
         referenceId: referenceId ?? this.referenceId,
-        shortcode: shortcode ?? this.shortcode,
+        shortCode: shortCode ?? this.shortCode,
         transactionId: transactionId ?? this.transactionId,
         transactionTime: transactionTime ?? this.transactionTime,
       );

@@ -8,7 +8,7 @@ class LimitOrderModel extends APIBaseModel {
   /// Initializes
   LimitOrderModel(this.stopLoss, this.stopOut, this.takeProfit);
 
-  /// From Json
+  /// Generate an instance from json
   factory LimitOrderModel.fromJson(Map<String, dynamic> json) =>
       LimitOrderModel(
         getItemFromMap(
