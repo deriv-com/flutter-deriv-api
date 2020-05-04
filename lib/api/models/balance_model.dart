@@ -8,7 +8,7 @@ abstract class BalanceModel extends BaseModel {
     this.balance,
     this.currency,
     this.id,
-    this.loginid,
+    this.loginId,
     this.total,
   });
 
@@ -23,7 +23,7 @@ abstract class BalanceModel extends BaseModel {
   final String id;
 
   /// Client loginid.
-  final String loginid;
+  final String loginId;
 
   /// Total amounts of balances
   final BalanceTotalModel total;
