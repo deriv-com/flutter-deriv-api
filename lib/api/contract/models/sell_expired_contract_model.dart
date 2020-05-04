@@ -16,7 +16,6 @@ class SellExpiredContractModel extends APIBaseModel {
   /// The number of contracts that has been sold.
   final int count;
 
-  /// Clones a new instance
   /// Generate a copy of instance with given parameters
   SellExpiredContractModel copyWith({int count}) => SellExpiredContractModel(
         count: count ?? this.count,
