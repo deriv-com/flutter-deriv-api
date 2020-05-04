@@ -1,7 +1,6 @@
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
+import 'package:flutter_deriv_api/api/models/spot_price_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
-
-import 'api_base_model.dart';
-import 'limit_order_close_info_model.dart';
 
 /// Contains limit order information.
 /// (Only applicable for contract with limit order).
@@ -14,38 +13,35 @@ class LimitOrderModel extends APIBaseModel {
       LimitOrderModel(
         getItemFromMap(
           json['stop_loss'],
-          itemToTypeCallback: (dynamic item) =>
-              LimitOrderCloseInfoModel.fromJson(item),
+          itemToTypeCallback: (dynamic item) => SpotPriceModel.fromJson(item),
         ),
         getItemFromMap(
           json['stop_out'],
-          itemToTypeCallback: (dynamic item) =>
-              LimitOrderCloseInfoModel.fromJson(item),
+          itemToTypeCallback: (dynamic item) => SpotPriceModel.fromJson(item),
         ),
         getItemFromMap(
           json['take_profit'],
-          itemToTypeCallback: (dynamic item) =>
-              LimitOrderCloseInfoModel.fromJson(item),
+          itemToTypeCallback: (dynamic item) => SpotPriceModel.fromJson(item),
         ),
       );
 
   /// Contains information where the contract will be closed automatically
   /// at the loss specified by the user.
-  final LimitOrderCloseInfoModel stopLoss;
+  final SpotPriceModel stopLoss;
 
   /// Contains information where the contract will be closed automatically
   /// when the value of the contract is close to zero. This is set by the us.
-  final LimitOrderCloseInfoModel stopOut;
+  final SpotPriceModel stopOut;
 
   /// Contains information where the contract will be closed automatically
   /// at the profit specified by the user.
-  final LimitOrderCloseInfoModel takeProfit;
+  final SpotPriceModel takeProfit;
 
   /// Clones a new instance
   LimitOrderModel copyWith(
-    LimitOrderCloseInfoModel stopLoss,
-    LimitOrderCloseInfoModel stopOut,
-    LimitOrderCloseInfoModel takeProfit,
+    SpotPriceModel stopLoss,
+    SpotPriceModel stopOut,
+    SpotPriceModel takeProfit,
   ) =>
       LimitOrderModel(
         stopLoss ?? this.stopLoss,

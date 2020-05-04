@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/balance/balance.dart';
+
 import 'balance_mock_data.dart';
 
 void main() {
