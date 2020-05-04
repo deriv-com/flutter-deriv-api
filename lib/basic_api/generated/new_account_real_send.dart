@@ -37,6 +37,7 @@ class NewAccountRealRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'new_account_real',
           passthrough: passthrough,
           reqId: reqId,
         );

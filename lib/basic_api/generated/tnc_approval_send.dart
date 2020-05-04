@@ -15,6 +15,7 @@ class TncApprovalRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'tnc_approval',
           passthrough: passthrough,
           reqId: reqId,
         );

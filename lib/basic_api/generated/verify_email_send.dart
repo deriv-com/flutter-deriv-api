@@ -16,6 +16,7 @@ class VerifyEmailRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'verify_email',
           passthrough: passthrough,
           reqId: reqId,
         );

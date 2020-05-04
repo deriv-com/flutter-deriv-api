@@ -19,6 +19,7 @@ class TransferBetweenAccountsRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'transfer_between_accounts',
           passthrough: passthrough,
           reqId: reqId,
         );

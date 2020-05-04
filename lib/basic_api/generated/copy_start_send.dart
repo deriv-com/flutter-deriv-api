@@ -18,6 +18,7 @@ class CopyStartRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'copy_start',
           passthrough: passthrough,
           reqId: reqId,
         );

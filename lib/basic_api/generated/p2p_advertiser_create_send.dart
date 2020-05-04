@@ -19,6 +19,7 @@ class P2pAdvertiserCreateRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'p2p_advertiser_create',
           passthrough: passthrough,
           reqId: reqId,
         );

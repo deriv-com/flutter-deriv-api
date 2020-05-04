@@ -14,6 +14,7 @@ class AppGetRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'app_get',
           passthrough: passthrough,
           reqId: reqId,
         );
