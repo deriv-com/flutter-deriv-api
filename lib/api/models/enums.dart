@@ -77,7 +77,7 @@ enum AccountStatusType {
   /// deposits allowed but withdrawals locked.
   withdrawalLocked,
 }
-// Payment agent
+
 /// Payment result
 enum PaymentResult {
   /// Noun, this value is not a valid value
@@ -90,7 +90,6 @@ enum PaymentResult {
   dryrunSuccess,
 }
 
-// MT5 enums
 /// Account type
 enum AccountType {
   /// Demo
@@ -112,7 +111,6 @@ enum MT5AccountType {
   advanced,
 }
 
-// Api token
 /// Api token scopes
 enum TokenScope {
   /// Read Access
@@ -129,6 +127,24 @@ enum TokenScope {
 
   /// Admin Access
   admin,
+}
+
+/// Statement transaction action type
+enum StatementTransactionActionType {
+  /// Buy
+  buy,
+
+  /// Sell
+  sell,
+
+  /// Deposit
+  deposit,
+
+  /// Withdrawal
+  withdrawal,
+
+  /// Escrow
+  escrow,
 }
 
 /// Currency types
@@ -182,4 +198,37 @@ enum OrderStatusType {
 
   /// Order process completed
   completed,
+}
+
+/// Type of the account for transfer.
+enum TransferAccountType {
+  /// Binary account
+  binary,
+
+  /// MT5 account
+  mt5,
+}
+
+/// Type of login action.
+enum LoginAction {
+  /// Login
+  login,
+
+  /// Logout
+  logout,
+}
+
+/// Type of transaction from the opposite party perspective
+enum TransactionType {
+  /// Buy
+  buy,
+
+  /// Sell
+  sell,
+}
+
+/// The payment method
+enum PaymentMethod {
+  /// Bank Transfer
+  bankTransfer,
 }
