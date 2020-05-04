@@ -15,6 +15,7 @@ class AssetIndexRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'asset_index',
           passthrough: passthrough,
           reqId: reqId,
         );

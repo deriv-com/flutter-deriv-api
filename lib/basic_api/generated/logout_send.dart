@@ -14,6 +14,7 @@ class LogoutRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'logout',
           passthrough: passthrough,
           reqId: reqId,
         );

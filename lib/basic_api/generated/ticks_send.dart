@@ -15,6 +15,7 @@ class TicksRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'ticks',
           passthrough: passthrough,
           reqId: reqId,
         );

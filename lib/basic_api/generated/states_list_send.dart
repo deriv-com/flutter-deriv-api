@@ -14,6 +14,7 @@ class StatesListRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'states_list',
           passthrough: passthrough,
           reqId: reqId,
         );

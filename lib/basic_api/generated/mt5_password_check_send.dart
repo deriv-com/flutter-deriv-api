@@ -17,6 +17,7 @@ class Mt5PasswordCheckRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'mt5_password_check',
           passthrough: passthrough,
           reqId: reqId,
         );
