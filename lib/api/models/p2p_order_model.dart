@@ -31,16 +31,18 @@ abstract class P2POrderModel extends BaseModel {
   final String accountCurrency;
 
   /// Details of the advert for this order.
-  /// Only some field of this field that client retrieving order info is allowed
-  /// to see, will be filled:
+  ///
+  /// Only some fields of [advertDetails] that client who retrieving order info
+  /// is allowed to see, will be filled:
   /// [P2PAdvertModel.id], [P2PAdvertModel.description],
   /// [P2PAdvertModel.paymentMethod], [P2PAdvertModel.type].
   /// Others will be null
   final P2PAdvertModel advertDetails;
 
   /// Details of the advertiser for this order.
-  /// Only some field of this field that client retrieving order info is allowed
-  /// to see, will be filled:
+  ///
+  /// Only some fields of [advertiserDetails] that client who retrieving order
+  /// info is allowed to see, will be filled:
   /// [P2PAdvertiserModel.id], [P2PAdvertiserModel.name].
   /// Others will be null
   final P2PAdvertiserModel advertiserDetails;
