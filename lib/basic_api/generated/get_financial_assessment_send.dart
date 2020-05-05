@@ -18,7 +18,7 @@ class GetFinancialAssessmentRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory GetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       _$GetFinancialAssessmentRequestFromJson(json);
 
@@ -26,11 +26,11 @@ class GetFinancialAssessmentRequest extends Request {
   /// Must be `1`
   final int getFinancialAssessment;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$GetFinancialAssessmentRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   GetFinancialAssessmentRequest copyWith({
     int getFinancialAssessment,

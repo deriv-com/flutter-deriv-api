@@ -9,7 +9,7 @@ class LandingCompanyFieldsInfoModel extends APIBaseModel {
     this.fields,
   });
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory LandingCompanyFieldsInfoModel.fromJson(
           String condition, List<dynamic> fieldsList) =>
       LandingCompanyFieldsInfoModel(

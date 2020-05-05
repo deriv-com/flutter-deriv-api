@@ -31,7 +31,7 @@ class SetSelfExclusionRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       _$SetSelfExclusionRequestFromJson(json);
 
@@ -78,11 +78,11 @@ class SetSelfExclusionRequest extends Request {
   /// [Optional] Exclude me from the website (for up to 6 weeks). Requires time in epoch format. Note: unlike `exclude_until`, this self-exclusion will be lifted automatically at the expiry of the timeout period.
   final String timeoutUntil;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$SetSelfExclusionRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   SetSelfExclusionRequest copyWith({
     String excludeUntil,

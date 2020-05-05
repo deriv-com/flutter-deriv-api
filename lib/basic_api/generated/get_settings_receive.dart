@@ -22,7 +22,7 @@ class GetSettingsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory GetSettingsResponse.fromJson(Map<String, dynamic> json) =>
       _$GetSettingsResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class GetSettingsResponse extends Response {
   /// User information and settings.
   final Map<String, dynamic> getSettings;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$GetSettingsResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   GetSettingsResponse copyWith({
     Map<String, dynamic> getSettings,

@@ -26,7 +26,7 @@ class TransferBetweenAccountsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory TransferBetweenAccountsResponse.fromJson(Map<String, dynamic> json) =>
       _$TransferBetweenAccountsResponseFromJson(json);
 
@@ -46,12 +46,12 @@ class TransferBetweenAccountsResponse extends Response {
   /// If set to 1, transfer succeeded.
   final int transferBetweenAccounts;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() =>
       _$TransferBetweenAccountsResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   TransferBetweenAccountsResponse copyWith({
     List<Map<String, dynamic>> accounts,

@@ -8,7 +8,7 @@ class MT5PasswordResetModel extends APIBaseModel {
     this.succeeded,
   });
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory MT5PasswordResetModel.fromJson(Map<String, dynamic> json) =>
       MT5PasswordResetModel(
         succeeded: getBool(json['mt5_password_reset']),
@@ -17,7 +17,7 @@ class MT5PasswordResetModel extends APIBaseModel {
   /// `true` on success
   final bool succeeded;
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   MT5PasswordResetModel copyWith({
     bool succeeded,
   }) =>

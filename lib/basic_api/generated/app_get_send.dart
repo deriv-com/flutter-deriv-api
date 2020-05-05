@@ -18,7 +18,7 @@ class AppGetRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory AppGetRequest.fromJson(Map<String, dynamic> json) =>
       _$AppGetRequestFromJson(json);
 
@@ -26,11 +26,11 @@ class AppGetRequest extends Request {
   /// Application app_id
   final int appGet;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$AppGetRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   AppGetRequest copyWith({
     int appGet,

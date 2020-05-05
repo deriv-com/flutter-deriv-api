@@ -8,7 +8,7 @@ class SetSelfExclusionModel extends APIBaseModel {
     this.setSelfExclusion,
   });
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory SetSelfExclusionModel.fromJson(Map<String, dynamic> json) =>
       SetSelfExclusionModel(
         setSelfExclusion: getBool(json['set_self_exclusion']),
@@ -17,7 +17,7 @@ class SetSelfExclusionModel extends APIBaseModel {
   /// `true` on success
   final bool setSelfExclusion;
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   SetSelfExclusionModel copyWith({
     int setSelfExclusion,
   }) =>

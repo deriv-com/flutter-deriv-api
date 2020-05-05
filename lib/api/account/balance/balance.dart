@@ -43,7 +43,7 @@ class Balance extends BalanceModel {
   static Stream<Balance> getBalanceUpdate({String forAccount = 'current'}) =>
       null;
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   Balance copyWith({
     double balance,
     String currency,

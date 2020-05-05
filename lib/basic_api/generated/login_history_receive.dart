@@ -22,7 +22,7 @@ class LoginHistoryResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory LoginHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$LoginHistoryResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class LoginHistoryResponse extends Response {
   /// Array of records of client login/logout activities
   final List<Map<String, dynamic>> loginHistory;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$LoginHistoryResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   LoginHistoryResponse copyWith({
     List<Map<String, dynamic>> loginHistory,

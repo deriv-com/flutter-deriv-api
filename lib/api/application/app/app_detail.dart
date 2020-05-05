@@ -25,7 +25,7 @@ class AppDetails extends AppDetailsModel {
           verificationUri: verificationUri,
         );
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory AppDetails.fromJson(Map<String, dynamic> json) => AppDetails(
         appId: json['app_id'],
         appMarkupPercentage: json['app_markup_percentage'],
@@ -38,7 +38,7 @@ class AppDetails extends AppDetailsModel {
         verificationUri: json['verification_uri'],
       );
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   AppDetails copyWith({
     int appId,
     double appMarkupPercentage,

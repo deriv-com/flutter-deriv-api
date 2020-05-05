@@ -19,7 +19,7 @@ class ExchangeRatesRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory ExchangeRatesRequest.fromJson(Map<String, dynamic> json) =>
       _$ExchangeRatesRequestFromJson(json);
 
@@ -30,11 +30,11 @@ class ExchangeRatesRequest extends Request {
   /// Must be `1`
   final int exchangeRates;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$ExchangeRatesRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   ExchangeRatesRequest copyWith({
     String baseCurrency,

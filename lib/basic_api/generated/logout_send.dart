@@ -18,7 +18,7 @@ class LogoutRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory LogoutRequest.fromJson(Map<String, dynamic> json) =>
       _$LogoutRequestFromJson(json);
 
@@ -26,11 +26,11 @@ class LogoutRequest extends Request {
   /// Must be `1`
   final int logout;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$LogoutRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   LogoutRequest copyWith({
     int logout,

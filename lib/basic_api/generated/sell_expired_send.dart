@@ -18,7 +18,7 @@ class SellExpiredRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory SellExpiredRequest.fromJson(Map<String, dynamic> json) =>
       _$SellExpiredRequestFromJson(json);
 
@@ -26,11 +26,11 @@ class SellExpiredRequest extends Request {
   /// Must be `1`
   final int sellExpired;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$SellExpiredRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   SellExpiredRequest copyWith({
     int sellExpired,

@@ -8,7 +8,7 @@ class TradeTypeModel extends APIBaseModel {
     this.name,
   });
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory TradeTypeModel.fromJson(Map<String, dynamic> json) => TradeTypeModel(
         displayName: json['display_name'],
         name: json['name'],
@@ -20,7 +20,7 @@ class TradeTypeModel extends APIBaseModel {
   /// Trade type name.
   final String name;
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   TradeTypeModel copyWith({
     String displayName,
     String name,

@@ -10,7 +10,7 @@ class TradeTimesModel extends APIBaseModel {
     this.settlement,
   });
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory TradeTimesModel.fromJson(Map<String, dynamic> json) =>
       TradeTimesModel(
         open: getListFromMap(json['close']),
@@ -27,7 +27,7 @@ class TradeTimesModel extends APIBaseModel {
   /// Settlement time
   final String settlement;
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   TradeTimesModel copyWith({
     List<String> close,
     List<String> open,

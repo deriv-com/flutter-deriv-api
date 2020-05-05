@@ -22,7 +22,7 @@ class CopyStartResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory CopyStartResponse.fromJson(Map<String, dynamic> json) =>
       _$CopyStartResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class CopyStartResponse extends Response {
   /// Copy start confirmation. Returns 1 is success.
   final int copyStart;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$CopyStartResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   CopyStartResponse copyWith({
     int copyStart,

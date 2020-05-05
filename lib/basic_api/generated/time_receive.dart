@@ -22,7 +22,7 @@ class TimeResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory TimeResponse.fromJson(Map<String, dynamic> json) =>
       _$TimeResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class TimeResponse extends Response {
   /// Epoch of server time.
   final int time;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$TimeResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   TimeResponse copyWith({
     int time,

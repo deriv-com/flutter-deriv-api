@@ -22,7 +22,7 @@ class ForgetAllResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory ForgetAllResponse.fromJson(Map<String, dynamic> json) =>
       _$ForgetAllResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class ForgetAllResponse extends Response {
   /// IDs of the cancelled streams
   final List<String> forgetAll;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$ForgetAllResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   ForgetAllResponse copyWith({
     List<String> forgetAll,

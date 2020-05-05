@@ -11,7 +11,7 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
           transactions: transactions,
         );
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory AppMarkupDetails.fromJson(Map<String, dynamic> json) =>
       AppMarkupDetails(
         transactions: getListFromMap(
@@ -21,7 +21,7 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
         ),
       );
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   AppMarkupDetails copyWith({
     List<AppTransactionModel> transactions,
   }) =>

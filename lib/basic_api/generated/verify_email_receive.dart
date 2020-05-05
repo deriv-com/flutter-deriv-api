@@ -22,7 +22,7 @@ class VerifyEmailResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory VerifyEmailResponse.fromJson(Map<String, dynamic> json) =>
       _$VerifyEmailResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class VerifyEmailResponse extends Response {
   /// 1 for success (secure code has been sent to the email address)
   final int verifyEmail;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$VerifyEmailResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   VerifyEmailResponse copyWith({
     int verifyEmail,

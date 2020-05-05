@@ -21,7 +21,7 @@ class BuyRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory BuyRequest.fromJson(Map<String, dynamic> json) =>
       _$BuyRequestFromJson(json);
 
@@ -38,11 +38,11 @@ class BuyRequest extends Request {
   /// [Optional] `1` to stream.
   final int subscribe;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$BuyRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   BuyRequest copyWith({
     String buy,

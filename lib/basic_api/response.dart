@@ -14,7 +14,7 @@ class Response extends Equatable {
     this.reqId,
   });
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory Response.fromJson(Map<String, dynamic> json) =>
       _$ResponseFromJson(json);
 
@@ -33,7 +33,7 @@ class Response extends Equatable {
   /// Converts to JSON
   Map<String, dynamic> toJson() => _$ResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   Response copyWith({
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,

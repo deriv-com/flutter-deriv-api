@@ -19,7 +19,7 @@ class LoginHistoryRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$LoginHistoryRequestFromJson(json);
 
@@ -30,11 +30,11 @@ class LoginHistoryRequest extends Request {
   /// Must be `1`
   final int loginHistory;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$LoginHistoryRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   LoginHistoryRequest copyWith({
     int limit,

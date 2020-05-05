@@ -23,7 +23,7 @@ class ProposalOpenContractResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory ProposalOpenContractResponse.fromJson(Map<String, dynamic> json) =>
       _$ProposalOpenContractResponseFromJson(json);
 
@@ -34,11 +34,11 @@ class ProposalOpenContractResponse extends Response {
   /// For subscription requests only.
   final Map<String, dynamic> subscription;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$ProposalOpenContractResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   ProposalOpenContractResponse copyWith({
     Map<String, dynamic> proposalOpenContract,

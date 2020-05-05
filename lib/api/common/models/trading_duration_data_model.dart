@@ -11,7 +11,7 @@ class TradingDurationDataModel extends APIBaseModel {
     this.tradeDurations,
   });
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory TradingDurationDataModel.fromJson(Map<String, dynamic> json) =>
       TradingDurationDataModel(
         symbols: getListFromMap(
@@ -31,7 +31,7 @@ class TradingDurationDataModel extends APIBaseModel {
   /// List of trade durations available for symbols and contract combinations.
   final List<TradeDurationModel> tradeDurations;
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   TradingDurationDataModel copyWith({
     List<SymbolModel> symbols,
     List<TradeDurationModel> tradeDurations,

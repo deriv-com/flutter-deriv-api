@@ -22,7 +22,7 @@ class TopupVirtualResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory TopupVirtualResponse.fromJson(Map<String, dynamic> json) =>
       _$TopupVirtualResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class TopupVirtualResponse extends Response {
   /// The information regarding a successful top up for a virtual money account
   final Map<String, dynamic> topupVirtual;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$TopupVirtualResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   TopupVirtualResponse copyWith({
     Map<String, dynamic> topupVirtual,

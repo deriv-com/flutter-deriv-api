@@ -22,7 +22,7 @@ class CopyStartRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory CopyStartRequest.fromJson(Map<String, dynamic> json) =>
       _$CopyStartRequestFromJson(json);
 
@@ -42,11 +42,11 @@ class CopyStartRequest extends Request {
   /// [Optional] Used to set trade types to be copied. E.x ["CALL", "PUT"]
   final String tradeTypes;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$CopyStartRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   CopyStartRequest copyWith({
     String assets,

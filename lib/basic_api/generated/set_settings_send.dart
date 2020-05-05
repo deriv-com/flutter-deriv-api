@@ -39,7 +39,7 @@ class SetSettingsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory SetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       _$SetSettingsRequestFromJson(json);
 
@@ -110,11 +110,11 @@ class SetSettingsRequest extends Request {
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for maltainvest landing company.
   final String taxResidence;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$SetSettingsRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   SetSettingsRequest copyWith({
     String accountOpeningReason,

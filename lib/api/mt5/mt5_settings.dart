@@ -38,7 +38,7 @@ class MT5Settings extends MT5SettingsModel {
           zipCode: zipCode,
         );
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory MT5Settings.fromJson(Map<String, dynamic> json) => MT5Settings(
         address: json['address'],
         balance: json['balance'],
@@ -57,7 +57,7 @@ class MT5Settings extends MT5SettingsModel {
         zipCode: json['zipCode'],
       );
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   MT5Settings copyWith({
     String address,
     String balance,

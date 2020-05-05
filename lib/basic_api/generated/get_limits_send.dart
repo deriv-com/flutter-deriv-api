@@ -18,7 +18,7 @@ class GetLimitsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory GetLimitsRequest.fromJson(Map<String, dynamic> json) =>
       _$GetLimitsRequestFromJson(json);
 
@@ -26,11 +26,11 @@ class GetLimitsRequest extends Request {
   /// Must be `1`
   final int getLimits;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$GetLimitsRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   GetLimitsRequest copyWith({
     int getLimits,

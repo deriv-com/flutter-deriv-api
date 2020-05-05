@@ -8,11 +8,11 @@ class ServerTime extends ServerTimeModel {
     DateTime time,
   }) : super(time: time);
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory ServerTime.fromJson(Map<String, dynamic> json) => ServerTime(
         time: getDateTime(json['time']),
       );
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   ServerTime copyWith({int time}) => ServerTime(time: time ?? this.time);
 }

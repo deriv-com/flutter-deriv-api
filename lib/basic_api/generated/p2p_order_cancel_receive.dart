@@ -22,7 +22,7 @@ class P2pOrderCancelResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory P2pOrderCancelResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCancelResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class P2pOrderCancelResponse extends Response {
   /// Cancellation details
   final Map<String, dynamic> p2pOrderCancel;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$P2pOrderCancelResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   P2pOrderCancelResponse copyWith({
     Map<String, dynamic> p2pOrderCancel,

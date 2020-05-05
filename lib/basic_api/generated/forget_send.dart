@@ -18,7 +18,7 @@ class ForgetRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory ForgetRequest.fromJson(Map<String, dynamic> json) =>
       _$ForgetRequestFromJson(json);
 
@@ -26,11 +26,11 @@ class ForgetRequest extends Request {
   /// ID of the real-time stream of messages to cancel.
   final String forget;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$ForgetRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   ForgetRequest copyWith({
     String forget,

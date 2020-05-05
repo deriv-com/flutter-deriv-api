@@ -18,7 +18,7 @@ class LandingCompanyDetailsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory LandingCompanyDetailsRequest.fromJson(Map<String, dynamic> json) =>
       _$LandingCompanyDetailsRequestFromJson(json);
 
@@ -26,11 +26,11 @@ class LandingCompanyDetailsRequest extends Request {
   /// Landing company shortcode.
   final String landingCompanyDetails;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$LandingCompanyDetailsRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   LandingCompanyDetailsRequest copyWith({
     String landingCompanyDetails,

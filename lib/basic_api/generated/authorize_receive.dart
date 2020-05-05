@@ -22,7 +22,7 @@ class AuthorizeResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory AuthorizeResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthorizeResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class AuthorizeResponse extends Response {
   /// Account information for the holder of the token.
   final Map<String, dynamic> authorize;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$AuthorizeResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   AuthorizeResponse copyWith({
     Map<String, dynamic> authorize,

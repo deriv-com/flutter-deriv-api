@@ -11,7 +11,7 @@ class SubmarketModel extends APIBaseModel {
     this.symbols,
   });
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory SubmarketModel.fromJson(Map<String, dynamic> json) => SubmarketModel(
         displayName: json['display_name'],
         name: json['name'],
@@ -30,7 +30,7 @@ class SubmarketModel extends APIBaseModel {
   /// Submarket name.
   final List<SymbolModel> symbols;
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   SubmarketModel copyWith({
     String displayName,
     String name,

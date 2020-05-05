@@ -11,7 +11,7 @@ class AppRegister extends AppRegisterModel {
           appDetails: appDetails,
         );
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory AppRegister.fromJson(Map<String, dynamic> json) => AppRegister(
         appDetails: getItemFromMap(
           json['app_register'],
@@ -19,7 +19,7 @@ class AppRegister extends AppRegisterModel {
         ),
       );
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   AppRegister copyWith({
     AppDetails appDetails,
   }) =>

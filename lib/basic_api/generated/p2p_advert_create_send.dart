@@ -28,7 +28,7 @@ class P2pAdvertCreateRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory P2pAdvertCreateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertCreateRequestFromJson(json);
 
@@ -66,11 +66,11 @@ class P2pAdvertCreateRequest extends Request {
   /// Whether this is a buy or a sell.
   final String type;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertCreateRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   P2pAdvertCreateRequest copyWith({
     num amount,

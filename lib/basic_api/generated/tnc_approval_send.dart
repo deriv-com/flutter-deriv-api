@@ -19,7 +19,7 @@ class TncApprovalRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory TncApprovalRequest.fromJson(Map<String, dynamic> json) =>
       _$TncApprovalRequestFromJson(json);
 
@@ -30,11 +30,11 @@ class TncApprovalRequest extends Request {
   /// [Optional] For `ASK_UK_FUNDS_PROTECTION` in `cashier`.
   final int ukgcFundsProtection;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$TncApprovalRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   TncApprovalRequest copyWith({
     num tncApproval,

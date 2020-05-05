@@ -8,12 +8,12 @@ class RevokeOauthApp extends RevokeOauthAppModel {
     bool succeeded,
   }) : super(succeeded: succeeded);
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory RevokeOauthApp.fromJson(Map<String, dynamic> json) => RevokeOauthApp(
         succeeded: getBool(json['revoke_oauth_app']),
       );
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   RevokeOauthApp copyWith({
     int succeeded,
   }) =>

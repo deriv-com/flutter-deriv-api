@@ -22,7 +22,7 @@ class ForgetResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory ForgetResponse.fromJson(Map<String, dynamic> json) =>
       _$ForgetResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class ForgetResponse extends Response {
   /// If set to 1, stream exited and stopped. If set to 0, stream did not exist.
   final int forget;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$ForgetResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   ForgetResponse copyWith({
     int forget,

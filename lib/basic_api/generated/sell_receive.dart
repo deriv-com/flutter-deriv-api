@@ -22,7 +22,7 @@ class SellResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory SellResponse.fromJson(Map<String, dynamic> json) =>
       _$SellResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class SellResponse extends Response {
   /// Receipt for the transaction
   final Map<String, dynamic> sell;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$SellResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   SellResponse copyWith({
     Map<String, dynamic> sell,

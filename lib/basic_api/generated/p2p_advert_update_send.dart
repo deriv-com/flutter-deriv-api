@@ -21,7 +21,7 @@ class P2pAdvertUpdateRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory P2pAdvertUpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertUpdateRequestFromJson(json);
 
@@ -38,11 +38,11 @@ class P2pAdvertUpdateRequest extends Request {
   /// Must be 1
   final int p2pAdvertUpdate;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertUpdateRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   P2pAdvertUpdateRequest copyWith({
     int delete,

@@ -110,7 +110,7 @@ class ContractModel extends APIBaseModel {
   /// Symbol code
   final String underlyingSymbol;
 
-  /// Clone new instance
+  /// Creates a copy of instance with given parameters
   ContractModel copyWith({
     List<int> availableBarriers,
     String barrier,

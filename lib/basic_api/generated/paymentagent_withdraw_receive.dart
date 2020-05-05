@@ -24,7 +24,7 @@ class PaymentagentWithdrawResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory PaymentagentWithdrawResponse.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentWithdrawResponseFromJson(json);
 
@@ -38,11 +38,11 @@ class PaymentagentWithdrawResponse extends Response {
   /// Reference ID of withdrawal performed.
   final int transactionId;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$PaymentagentWithdrawResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   PaymentagentWithdrawResponse copyWith({
     String paymentagentName,

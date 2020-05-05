@@ -22,7 +22,7 @@ class ApiTokenRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiTokenRequestFromJson(json);
 
@@ -42,11 +42,11 @@ class ApiTokenRequest extends Request {
   /// [Optional] If you set this parameter during token creation, then the token created will only work for the IP address that was used to create the token
   final int validForCurrentIpOnly;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$ApiTokenRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   ApiTokenRequest copyWith({
     int apiToken,

@@ -26,7 +26,7 @@ class PendingSubscribedRequest<T> extends PendingRequest<T> {
   /// Get subscription state
   bool get isSubscribed => subscriptionStream != null;
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   PendingSubscribedRequest<T> copyWith({
     String subscriptionId,
     SubscriptionStream<T> subscriptionStream,

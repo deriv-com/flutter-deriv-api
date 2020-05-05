@@ -34,7 +34,7 @@ class Mt5NewAccountRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5NewAccountRequestFromJson(json);
 
@@ -90,11 +90,11 @@ class Mt5NewAccountRequest extends Request {
   /// [Optional] User's zip code.
   final String zipCode;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$Mt5NewAccountRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   Mt5NewAccountRequest copyWith({
     String accountType,

@@ -22,7 +22,7 @@ class Mt5PasswordChangeRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory Mt5PasswordChangeRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordChangeRequestFromJson(json);
 
@@ -42,11 +42,11 @@ class Mt5PasswordChangeRequest extends Request {
   /// [Optional] Type of the password to change.
   final String passwordType;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$Mt5PasswordChangeRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   Mt5PasswordChangeRequest copyWith({
     String login,

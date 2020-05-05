@@ -18,7 +18,7 @@ class SetAccountCurrencyRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory SetAccountCurrencyRequest.fromJson(Map<String, dynamic> json) =>
       _$SetAccountCurrencyRequestFromJson(json);
 
@@ -26,11 +26,11 @@ class SetAccountCurrencyRequest extends Request {
   /// Currency of the account. List of supported currencies can be acquired with `payout_currencies` call.
   final String setAccountCurrency;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$SetAccountCurrencyRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   SetAccountCurrencyRequest copyWith({
     String setAccountCurrency,

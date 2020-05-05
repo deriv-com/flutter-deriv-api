@@ -20,7 +20,7 @@ class ContractUpdateRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory ContractUpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$ContractUpdateRequestFromJson(json);
 
@@ -34,11 +34,11 @@ class ContractUpdateRequest extends Request {
   /// Specify limit order to update.
   final Map<String, dynamic> limitOrder;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$ContractUpdateRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   ContractUpdateRequest copyWith({
     int contractId,

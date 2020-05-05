@@ -11,7 +11,7 @@ class AppUpdate extends AppUpdateModel {
           appDetails: appDetails,
         );
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory AppUpdate.fromJson(Map<String, dynamic> json) => AppUpdate(
         appDetails: getItemFromMap(
           json['app_update'],
@@ -19,7 +19,7 @@ class AppUpdate extends AppUpdateModel {
         ),
       );
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   AppUpdate copyWith({
     AppDetails appDetails,
   }) =>

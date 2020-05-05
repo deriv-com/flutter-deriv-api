@@ -19,7 +19,7 @@ class P2pOrderCancelRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory P2pOrderCancelRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCancelRequestFromJson(json);
 
@@ -30,11 +30,11 @@ class P2pOrderCancelRequest extends Request {
   /// Must be 1
   final int p2pOrderCancel;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$P2pOrderCancelRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   P2pOrderCancelRequest copyWith({
     String id,

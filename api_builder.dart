@@ -119,17 +119,17 @@ class APIBuilder extends Builder {
                   ${_getSuperClassParameters(schemaType)},
                 }): super(${_getSuperClassCallParameters(schemaType)},);
               
-              /// Creates instance from JSON
+              /// Creates an instance from json
               factory $classFullName.fromJson(Map<String, dynamic> json) => _\$${classFullName}FromJson(json);
               
               // Properties
               ${_getProperties(buildStep, schema, properties)}
 
-              /// Converts to JSON
+              /// Converts an instance to json
               @override
               Map<String, dynamic> toJson() => _\$${classFullName}ToJson(this);
 
-              /// Creates copy of instance with given parameters
+              /// Creates a copy of instance with given parameters
               @override
               $classFullName copyWith(
                 ${_getCopyWithMethod(buildStep, schema, schemaType, classFullName, properties)}

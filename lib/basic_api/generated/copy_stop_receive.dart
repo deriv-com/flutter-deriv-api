@@ -22,7 +22,7 @@ class CopyStopResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory CopyStopResponse.fromJson(Map<String, dynamic> json) =>
       _$CopyStopResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class CopyStopResponse extends Response {
   /// Copy stopping confirmation. Returns 1 is success.
   final int copyStop;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$CopyStopResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   CopyStopResponse copyWith({
     int copyStop,

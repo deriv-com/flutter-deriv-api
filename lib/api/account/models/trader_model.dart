@@ -13,7 +13,7 @@ class TraderModel extends APIBaseModel {
     this.tradeTypes,
   });
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory TraderModel.fromJson(Map<String, dynamic> json) => TraderModel(
         assets: getListFromMap(json['assets']),
         loginId: json['loginid'],

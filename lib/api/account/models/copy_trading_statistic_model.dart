@@ -21,7 +21,7 @@ class CopyTradingStatisticModel extends APIBaseModel {
     this.yearlyProfitableTrades,
   });
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory CopyTradingStatisticModel.fromJson(Map<String, dynamic> json) =>
       CopyTradingStatisticModel(
         activeSince: getDateTime(json['active_since']),
@@ -87,7 +87,7 @@ class CopyTradingStatisticModel extends APIBaseModel {
   /// Represents the net change in equity per year.
   final List<ProfitableTradeModel> yearlyProfitableTrades;
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   CopyTradingStatisticModel copyWith({
     DateTime activeSince,
     int avgDuration,

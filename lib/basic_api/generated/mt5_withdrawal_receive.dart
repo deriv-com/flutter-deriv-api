@@ -23,7 +23,7 @@ class Mt5WithdrawalResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory Mt5WithdrawalResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5WithdrawalResponseFromJson(json);
 
@@ -34,11 +34,11 @@ class Mt5WithdrawalResponse extends Response {
   /// `1` on success
   final int mt5Withdrawal;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$Mt5WithdrawalResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   Mt5WithdrawalResponse copyWith({
     int binaryTransactionId,

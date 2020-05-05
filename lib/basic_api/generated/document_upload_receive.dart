@@ -22,7 +22,7 @@ class DocumentUploadResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory DocumentUploadResponse.fromJson(Map<String, dynamic> json) =>
       _$DocumentUploadResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class DocumentUploadResponse extends Response {
   /// Details of the uploaded documents.
   final Map<String, dynamic> documentUpload;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$DocumentUploadResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   DocumentUploadResponse copyWith({
     Map<String, dynamic> documentUpload,

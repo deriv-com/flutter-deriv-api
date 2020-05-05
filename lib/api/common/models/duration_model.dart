@@ -10,7 +10,7 @@ class DurationModel extends APIBaseModel {
     this.name,
   });
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory DurationModel.fromJson(Map<String, dynamic> json) => DurationModel(
         displayName: json['display_name'],
         max: json['max'],
@@ -30,7 +30,7 @@ class DurationModel extends APIBaseModel {
   /// Duration type name.
   final String name;
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   DurationModel copyWith({
     String displayName,
     int max,

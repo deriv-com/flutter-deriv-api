@@ -25,7 +25,7 @@ class MT5Login extends MT5LoginModel {
           name: name,
         );
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory MT5Login.fromJson(Map<String, dynamic> json) => MT5Login(
         balance: json['balance'],
         country: json['country'],
@@ -38,7 +38,7 @@ class MT5Login extends MT5LoginModel {
         name: json['name'],
       );
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   MT5Login copyWith({
     double balance,
     String country,

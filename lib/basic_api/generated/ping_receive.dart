@@ -22,7 +22,7 @@ class PingResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from json
   factory PingResponse.fromJson(Map<String, dynamic> json) =>
       _$PingResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class PingResponse extends Response {
   /// Will return 'pong'
   final String ping;
 
-  /// Converts to JSON
+  /// Converts an instance to json
   @override
   Map<String, dynamic> toJson() => _$PingResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   PingResponse copyWith({
     String ping,

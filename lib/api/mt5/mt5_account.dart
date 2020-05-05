@@ -31,7 +31,7 @@ class MT5Account extends MT5AccountModel {
           name: name,
         );
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory MT5Account.fromJson(Map<String, dynamic> json) => MT5Account(
         accountType: getEnumFromString(
           values: AccountType.values,
@@ -52,7 +52,7 @@ class MT5Account extends MT5AccountModel {
         name: json['name'],
       );
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   MT5Account copyWith({
     AccountType accountType,
     double balance,

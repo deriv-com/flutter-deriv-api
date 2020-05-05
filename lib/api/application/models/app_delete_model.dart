@@ -8,7 +8,7 @@ class AppDeleteModel extends APIBaseModel {
     this.succeeded,
   });
 
-  /// Creates instance from json
+  /// Creates an instance from json
   factory AppDeleteModel.fromJson(Map<String, dynamic> json) => AppDeleteModel(
         succeeded: getBool(json['app_delete']),
       );
@@ -16,7 +16,7 @@ class AppDeleteModel extends APIBaseModel {
   /// `true` on success
   final bool succeeded;
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   AppDeleteModel copyWith({
     bool succeeded,
   }) =>
