@@ -165,6 +165,41 @@ enum SiteStatus {
   down,
 }
 
+/// Order type
+enum OrderType {
+  /// Order is buy type
+  buy,
+
+  /// Order is sell type
+  sell,
+}
+
+/// Status of an order
+/// Initial status is [OrderStatusType.pending]
+enum OrderStatusType {
+  /// Buyer of account has not yet transferred the equivalent amount of local
+  /// currency to advert has not yet confirmed this order
+  pending,
+
+  /// After the buyer of account currency confirmed his/her payment
+  buyerConfirmed,
+
+  /// Order is cancelled by client or advertiser
+  /// cancel action has some restrictions that is based on order's current status
+  cancelled,
+
+  /// When both buyer and seller do not confirm the order during
+  /// [Order.expiryTime] period, the order will go to [OrderStatusType.timedOut]
+  timedOut,
+
+  /// When order is in [OrderStatusType.buyerConfirmed] status and seller doesn't
+  /// release the cash before [Order.expiryTime]
+  timedOutBuyerConfirmed,
+
+  /// Order process completed
+  completed,
+}
+
 /// Type of the account for transfer.
 enum TransferAccountType {
   /// Binary account
