@@ -76,11 +76,11 @@ class JsonSchemaParser {
           class $className extends ${className}Model {
             /// Initializes
             ${_generateContractor(className: className, models: models)}
-            /// Generate an instance from json
+            /// Creates an instance from json
             ${_generateFromJson(className: className, models: models)}
-            /// Converts to json
+            /// Converts an instance to json
             ${_generateToJson(models: models)}
-            /// Generate a copy of instance with given parameters
+            /// Creates a copy of instance with given parameters
             ${_copyWith(className: className, models: models)}
           }
         ''',
