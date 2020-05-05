@@ -8,7 +8,7 @@ class LimitOrderModel extends APIBaseModel {
   /// Initializes
   LimitOrderModel(this.stopLoss, this.stopOut, this.takeProfit);
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory LimitOrderModel.fromJson(Map<String, dynamic> json) =>
       LimitOrderModel(
         getItemFromMap(
@@ -37,7 +37,7 @@ class LimitOrderModel extends APIBaseModel {
   /// at the profit specified by the user.
   final SpotPriceModel takeProfit;
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   LimitOrderModel copyWith(
     SpotPriceModel stopLoss,
     SpotPriceModel stopOut,

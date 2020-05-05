@@ -12,7 +12,7 @@ class MT5Deposit extends MT5DepositModel {
           binaryTransactionId: binaryTransactionId,
         );
 
-  /// Creates instance from json
+  /// Generates an instance from json
   factory MT5Deposit.fromJson(Map<String, dynamic> json) => MT5Deposit(
         mt5Deposit: getBool(json['mt5_deposit']),
         binaryTransactionId: json['binary_transaction_id'],

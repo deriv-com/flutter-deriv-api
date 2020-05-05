@@ -30,7 +30,7 @@ class HistorySpotPriceModel extends SpotPriceModel {
   /// The contract parameter updated.
   final String orderType;
 
-  /// Generate a copy of instance with given parameters with given parameters
+  /// Generates a copy of instance with given parameters with given parameters
   @override
   HistorySpotPriceModel copyWith({
     String displayName,

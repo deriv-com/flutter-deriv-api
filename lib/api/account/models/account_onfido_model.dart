@@ -9,7 +9,7 @@ class AccountOnfidoModel extends APIBaseModel {
     this.isCountrySupported,
   });
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory AccountOnfidoModel.fromJson(Map<String, dynamic> json) =>
       AccountOnfidoModel(
         documents: getListFromMap(json['documents']),
@@ -22,7 +22,7 @@ class AccountOnfidoModel extends APIBaseModel {
   /// This shows the information if the country is supported by Onfido
   final bool isCountrySupported;
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   AccountOnfidoModel copyWith({
     List<String> documents,
     bool isCountrySupported,

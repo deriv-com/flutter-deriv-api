@@ -9,7 +9,7 @@ class AuthenticationServicesModel extends APIBaseModel {
     this.onfido,
   });
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory AuthenticationServicesModel.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -24,7 +24,7 @@ class AuthenticationServicesModel extends APIBaseModel {
   /// This shows the information related to Onfido supported services
   final AccountOnfidoModel onfido;
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   AuthenticationServicesModel copyWith({
     AccountOnfidoModel onfido,
   }) =>

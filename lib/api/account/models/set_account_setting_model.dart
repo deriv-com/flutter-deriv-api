@@ -6,7 +6,7 @@ class SetAccountSettingModel extends APIBaseModel {
   /// Initializes
   SetAccountSettingModel({this.succeeded});
 
-  /// Creates instance from JSON
+  /// Generates an instance from json
   factory SetAccountSettingModel.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -17,7 +17,7 @@ class SetAccountSettingModel extends APIBaseModel {
   /// true on success
   final bool succeeded;
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   SetAccountSettingModel copyWith({
     bool succeeded,
   }) =>

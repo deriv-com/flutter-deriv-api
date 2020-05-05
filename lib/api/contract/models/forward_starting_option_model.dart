@@ -6,7 +6,7 @@ class ForwardStartingOptionModel extends APIBaseModel {
   /// Initializes
   ForwardStartingOptionModel(this.close, this.date, this.open);
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory ForwardStartingOptionModel.fromJson(Map<String, dynamic> json) =>
       ForwardStartingOptionModel(
         json['close'] = getDateTime(int.parse(json['close'])),
@@ -23,7 +23,7 @@ class ForwardStartingOptionModel extends APIBaseModel {
   /// The epoch value for the opening date of forward starting session.
   final DateTime open;
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   ForwardStartingOptionModel copyWith({int close, int date, int open}) =>
       ForwardStartingOptionModel(
         close ?? this.close,

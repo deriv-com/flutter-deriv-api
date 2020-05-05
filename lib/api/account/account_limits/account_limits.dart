@@ -1,5 +1,5 @@
 import 'package:flutter_deriv_api/api/account/models/account_limits_model.dart';
-import 'package:flutter_deriv_api/api/account/models/account_market_specific_model.dart';
+import 'package:flutter_deriv_api/api/account/models/account_market_limits_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Trading limits of real account user
@@ -9,7 +9,7 @@ class AccountLimits extends AccountLimitsModel {
     double accountBalance,
     double dailyTurnover,
     double lifetimeLimit,
-    AccountMarketSpecificModel marketSpecific,
+    List<AccountMarketLimitsModel> marketSpecific,
     int numOfDays,
     double numOfDaysLimit,
     int openPositions,
@@ -35,15 +35,18 @@ class AccountLimits extends AccountLimitsModel {
           withdrawalSinceInceptionMonetary: withdrawalSinceInceptionMonetary,
         );
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory AccountLimits.fromJson(Map<String, dynamic> json) => AccountLimits(
         accountBalance: json['account_balance']?.toDouble(),
         dailyTurnover: json['daily_turnover'],
         lifetimeLimit: json['lifetime_limit']?.toDouble(),
-        marketSpecific: getItemFromMap(
-          json['market_specific'],
+        marketSpecific: getListFromMap(
+          json['market_specific'].entries,
           itemToTypeCallback: (dynamic item) =>
-              AccountMarketSpecificModel.fromJson(item),
+              AccountMarketLimitsModel.fromJson(
+            item.key,
+            item.value,
+          ),
         ),
         numOfDays: json['num_of_days'],
         numOfDaysLimit: json['num_of_days_limit']?.toDouble(),
@@ -59,12 +62,12 @@ class AccountLimits extends AccountLimitsModel {
             json['withdrawal_since_inception_monetary']?.toDouble(),
       );
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   AccountLimits copyWith({
     double accountBalance,
     double dailyTurnover,
     double lifetimeLimit,
-    AccountMarketSpecificModel marketSpecific,
+    List<AccountMarketLimitsModel> marketSpecific,
     int numOfDays,
     double numOfDaysLimit,
     int openPositions,

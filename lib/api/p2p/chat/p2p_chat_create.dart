@@ -11,13 +11,13 @@ class P2PChatCreate extends P2PChatCreateModel {
           orderId: orderId,
         );
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory P2PChatCreate.fromJson(Map<String, dynamic> json) => P2PChatCreate(
         channelUrl: json['channel_url'],
         orderId: json['order_id'],
       );
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   P2PChatCreate copyWith({
     String channelUrl,
     String orderId,

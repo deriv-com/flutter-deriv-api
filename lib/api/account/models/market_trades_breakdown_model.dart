@@ -5,7 +5,7 @@ class MarketTradesBreakdownModel extends APIBaseModel {
   /// Initializes
   MarketTradesBreakdownModel({this.market, this.breakdown});
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory MarketTradesBreakdownModel.fromJson(
     MapEntry<String, dynamic> entry,
   ) =>
@@ -20,7 +20,7 @@ class MarketTradesBreakdownModel extends APIBaseModel {
   /// Market name
   final String market;
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   MarketTradesBreakdownModel copyWith({
     double breakdown,
     String market,

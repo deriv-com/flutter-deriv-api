@@ -11,7 +11,7 @@ class SpotPriceModel extends APIBaseModel {
     this.value,
   });
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory SpotPriceModel.fromJson(Map<String, dynamic> json) => SpotPriceModel(
         displayName: json['display_name'],
         orderAmount: json['order_amount']?.toDouble(),
@@ -31,7 +31,7 @@ class SpotPriceModel extends APIBaseModel {
   /// Stop loss pip-sized barrier value
   final String value;
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   SpotPriceModel copyWith({
     String displayName,
     double orderAmount,

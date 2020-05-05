@@ -11,7 +11,7 @@ class AppRegister extends AppRegisterModel {
           appDetails: appDetails,
         );
 
-  /// Creates instance from json
+  /// Generates an instance from json
   factory AppRegister.fromJson(Map<String, dynamic> json) => AppRegister(
         appDetails: getItemFromMap(
           json['app_register'],

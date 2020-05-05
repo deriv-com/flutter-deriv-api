@@ -11,7 +11,7 @@ class AppUpdate extends AppUpdateModel {
           appDetails: appDetails,
         );
 
-  /// Creates instance from json
+  /// Generates an instance from json
   factory AppUpdate.fromJson(Map<String, dynamic> json) => AppUpdate(
         appDetails: getItemFromMap(
           json['app_update'],

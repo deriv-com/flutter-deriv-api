@@ -5,7 +5,7 @@ class TransferAmountModel extends APIBaseModel {
   /// Initializes
   TransferAmountModel({this.min, this.max});
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory TransferAmountModel.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -22,7 +22,7 @@ class TransferAmountModel extends APIBaseModel {
   /// with different types of currencies.
   final double min;
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   TransferAmountModel copyWith({
     double min,
     double max,

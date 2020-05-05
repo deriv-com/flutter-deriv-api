@@ -13,7 +13,7 @@ class TransferAccountModel extends APIBaseModel {
     this.mt5Group,
   });
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory TransferAccountModel.fromJson(Map<String, dynamic> json) =>
       TransferAccountModel(
         accountType: getEnumFromString(
@@ -41,7 +41,7 @@ class TransferAccountModel extends APIBaseModel {
   /// The group of mt5 account.
   final String mt5Group;
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   TransferAccountModel copyWith({
     TransferAccountType accountType,
     String balance,

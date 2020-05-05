@@ -18,7 +18,7 @@ class AccountStatus extends AccountStatusModel {
           status: status,
         );
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory AccountStatus.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -43,7 +43,7 @@ class AccountStatus extends AccountStatusModel {
         ),
       );
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   AccountStatus copyWith({
     AccountAuthenticationStatusModel authentication,
     bool promptClientToAuthenticate,

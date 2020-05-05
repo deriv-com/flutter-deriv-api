@@ -68,7 +68,7 @@ class P2PAdvert extends P2PAdvertModel {
           type: type,
         );
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory P2PAdvert.fromJson(Map<String, dynamic> json) => P2PAdvert(
         accountCurrency: json['account_currency'],
         advertiserDetails: getItemFromMap(
@@ -114,7 +114,7 @@ class P2PAdvert extends P2PAdvertModel {
         ),
       );
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   P2PAdvert copyWith({
     String accountCurrency,
     P2PAdvertiserDetailsModel advertiserDetails,

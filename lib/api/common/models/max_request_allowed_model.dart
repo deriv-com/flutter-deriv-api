@@ -5,7 +5,7 @@ class MaxRequestAllowedModel extends APIBaseModel {
   /// Initializes
   MaxRequestAllowedModel({this.appliesTo, this.hourly, this.minutely});
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory MaxRequestAllowedModel.fromJson(
     Map<String, dynamic> item,
   ) =>
@@ -24,7 +24,7 @@ class MaxRequestAllowedModel extends APIBaseModel {
   /// The maximum of allowed calls per minute.
   final int minutely;
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   MaxRequestAllowedModel copyWith({
     String appliesTo,
     int hourly,

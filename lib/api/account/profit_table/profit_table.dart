@@ -13,7 +13,7 @@ class ProfitTable extends ProfitTableModel {
           transactions: transactions,
         );
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory ProfitTable.fromJson(Map<String, dynamic> json) => ProfitTable(
         count: int.parse(json['count']),
         transactions: getListFromMap(
@@ -23,7 +23,7 @@ class ProfitTable extends ProfitTableModel {
         ),
       );
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   ProfitTable copyWith({
     int count,
     List<ProfitTransactionModel> transactions,

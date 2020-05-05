@@ -6,7 +6,7 @@ class LandingCompanyConfigModel extends APIBaseModel {
   /// Initializes
   LandingCompanyConfigModel({this.taxDetailsRequired});
 
-  /// Creates instance from JSON
+  /// Generates an instance from json
   factory LandingCompanyConfigModel.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -17,7 +17,7 @@ class LandingCompanyConfigModel extends APIBaseModel {
   /// tax details required
   final bool taxDetailsRequired;
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   LandingCompanyConfigModel copyWith({
     bool taxDetailsRequired,
   }) =>

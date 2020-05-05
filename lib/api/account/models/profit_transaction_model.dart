@@ -17,7 +17,7 @@ class ProfitTransactionModel extends APIBaseModel {
     this.transactionId,
   });
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory ProfitTransactionModel.fromJson(Map<String, dynamic> json) =>
       ProfitTransactionModel(
         appId: json['app_id'],
@@ -62,7 +62,7 @@ class ProfitTransactionModel extends APIBaseModel {
   /// The transaction Identifier. Every contract (buy or sell) and every payment has a unique transaction identifier.
   final int transactionId;
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   ProfitTransactionModel copyWith({
     int appId,
     double buyPrice,

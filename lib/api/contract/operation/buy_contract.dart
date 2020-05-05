@@ -32,7 +32,7 @@ class BuyContract extends BuyContractModel {
           transactionId: transactionId,
         );
 
-  /// Creates instance from json
+  /// Generates an instance from json
   factory BuyContract.fromJson(Map<String, dynamic> json) => BuyContract(
         balanceAfter: json['balance_after'],
         buyPrice: json['buy_price'],

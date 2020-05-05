@@ -17,7 +17,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
           oauthToken: oauthToken,
         );
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory NewAccountVirtual.fromJson(Map<String, dynamic> json) =>
       NewAccountVirtual(
         balance: json['balance']?.toDouble(),
@@ -27,7 +27,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
         oauthToken: json['oauth_token'],
       );
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   NewAccountVirtual copyWith({
     double balance,
     String clientId,

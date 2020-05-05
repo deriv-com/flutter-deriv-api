@@ -5,7 +5,7 @@ class CancellationInfoModel {
   /// Initializes
   CancellationInfoModel(this.askPrice, this.dateExpiry);
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory CancellationInfoModel.fromJson(Map<String, dynamic> json) =>
       CancellationInfoModel(
         json['ask_price'],
@@ -18,7 +18,7 @@ class CancellationInfoModel {
   /// Expiry time in epoch for contract cancellation option.
   final DateTime dateExpiry;
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   CancellationInfoModel copyWith({
     double askPrice,
     DateTime dateExpiry,

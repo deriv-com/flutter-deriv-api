@@ -33,7 +33,7 @@ class PaymentAgent extends PaymentAgentModel {
           withdrawalCommission: withdrawalCommission,
         );
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory PaymentAgent.fromJson(Map<String, dynamic> json) => PaymentAgent(
         currencies: json['currencies'],
         depositCommission: json['deposit_commission'],
@@ -50,7 +50,7 @@ class PaymentAgent extends PaymentAgentModel {
         withdrawalCommission: json['withdrawal_commission'],
       );
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   PaymentAgent copyWith({
     String currencies,
     String depositCommission,

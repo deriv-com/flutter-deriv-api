@@ -1,47 +1,38 @@
+import 'package:flutter_deriv_api/api/account/models/market_limit_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Contains limitation information for a market
 class AccountMarketLimitsModel extends APIBaseModel {
   /// Initializes
-  AccountMarketLimitsModel({
-    this.name,
-    this.payoutLimit,
-    this.profileName,
-    this.turnoverLimit,
-  });
+  AccountMarketLimitsModel({this.marketName, this.marketLimits});
 
-  /// Generate an instance from json
-  factory AccountMarketLimitsModel.fromJson(Map<String, dynamic> json) =>
+  /// Generates an instance from json
+  factory AccountMarketLimitsModel.fromJson(
+    String marketName,
+    List<dynamic> jsonList,
+  ) =>
       AccountMarketLimitsModel(
-        name: json['name'],
-        payoutLimit: json['payout_limit']?.toDouble(),
-        profileName: json['profile_name'],
-        turnoverLimit: json['turnover_limit']?.toDouble(),
+        marketName: marketName,
+        marketLimits: getListFromMap(
+          jsonList,
+          itemToTypeCallback: (dynamic item) => MarketLimitModel.fromJson(item),
+        ),
       );
 
-  /// The submarket display name.
-  final String name;
+  /// Market name
+  final String marketName;
 
-  /// The limit of payout for the submarket
-  final double payoutLimit;
+  /// Limitations for [marketName]
+  final List<MarketLimitModel> marketLimits;
 
-  /// The limitation profile name.
-  final String profileName;
-
-  /// The limit of turnover for the submarket
-  final double turnoverLimit;
-
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   AccountMarketLimitsModel copyWith({
-    String name,
-    double payoutLimit,
-    String profileName,
-    double turnoverLimit,
+    String marketName,
+    final List<MarketLimitModel> marketLimits,
   }) =>
       AccountMarketLimitsModel(
-        name: name ?? this.name,
-        payoutLimit: payoutLimit ?? this.payoutLimit,
-        profileName: profileName ?? this.profileName,
-        turnoverLimit: turnoverLimit ?? this.turnoverLimit,
+        marketName: marketName ?? this.marketName,
+        marketLimits: marketLimits ?? this.marketLimits,
       );
 }

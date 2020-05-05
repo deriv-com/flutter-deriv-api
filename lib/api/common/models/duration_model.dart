@@ -10,7 +10,7 @@ class DurationModel extends APIBaseModel {
     this.name,
   });
 
-  /// Creates instance from json
+  /// Generates an instance from json
   factory DurationModel.fromJson(Map<String, dynamic> json) => DurationModel(
         displayName: json['display_name'],
         max: json['max'],

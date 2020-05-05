@@ -11,13 +11,13 @@ class State extends StateModel {
           value: value,
         );
 
-  /// Creates instance from json
+  /// Generates an instance from json
   factory State.fromJson(Map<String, dynamic> json) => State(
         text: json['text'],
         value: json['value'],
       );
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   State copyWith({
     String text,
     String value,

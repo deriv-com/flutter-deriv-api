@@ -7,12 +7,12 @@ class Ping extends PingModel {
     bool succeeded,
   }) : super(succeeded: succeeded);
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory Ping.fromJson(Map<String, dynamic> json) => Ping(
         succeeded: json['ping'] == 'pong',
       );
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   Ping copyWith({
     bool succeeded,
   }) =>

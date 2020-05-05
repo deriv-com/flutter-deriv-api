@@ -8,7 +8,7 @@ class P2PAdvertiserDetailsModel extends APIBaseModel {
     this.name,
   });
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory P2PAdvertiserDetailsModel.fromJson(Map<String, dynamic> json) =>
       P2PAdvertiserDetailsModel(
         id: json['id'],
@@ -21,7 +21,7 @@ class P2PAdvertiserDetailsModel extends APIBaseModel {
   /// The advertisers displayed name.
   final String name;
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   P2PAdvertiserDetailsModel copyWith({
     String id,
     double name,

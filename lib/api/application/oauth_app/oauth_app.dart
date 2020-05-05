@@ -19,7 +19,7 @@ class OauthApp extends OauthAppModel {
           scopes: scopes,
         );
 
-  /// Generate an instance from json
+  /// Generates an instance from json
   factory OauthApp.fromJson(Map<String, dynamic> json) => OauthApp(
         appId: json['app_id'],
         appMarkupPercentage: json['app_markup_percentage']?.toDouble(),
@@ -32,7 +32,7 @@ class OauthApp extends OauthAppModel {
         ),
       );
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   OauthApp copyWith({
     int appId,
     double appMarkupPercentage,

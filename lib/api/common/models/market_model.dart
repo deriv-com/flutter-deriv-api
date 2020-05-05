@@ -11,7 +11,7 @@ class MarketModel extends APIBaseModel {
     this.submarkets,
   });
 
-  /// Creates instance from json
+  /// Generates an instance from json
   factory MarketModel.fromJson(Map<String, dynamic> json) => MarketModel(
         displayName: json['display_name'],
         name: json['name'],
