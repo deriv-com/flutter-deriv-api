@@ -20,6 +20,7 @@ class StatementRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'statement',
           passthrough: passthrough,
           reqId: reqId,
         );

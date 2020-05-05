@@ -14,6 +14,7 @@ class TradingTimesRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'trading_times',
           passthrough: passthrough,
           reqId: reqId,
         );

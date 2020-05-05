@@ -15,6 +15,7 @@ class P2pChatCreateRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'p2p_chat_create',
           passthrough: passthrough,
           reqId: reqId,
         );

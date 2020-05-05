@@ -35,6 +35,7 @@ class SetSettingsRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'set_settings',
           passthrough: passthrough,
           reqId: reqId,
         );

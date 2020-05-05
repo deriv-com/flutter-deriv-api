@@ -14,6 +14,7 @@ class GetSettingsRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'get_settings',
           passthrough: passthrough,
           reqId: reqId,
         );

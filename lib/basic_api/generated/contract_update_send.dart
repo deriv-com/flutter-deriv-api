@@ -16,6 +16,7 @@ class ContractUpdateRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'contract_update',
           passthrough: passthrough,
           reqId: reqId,
         );

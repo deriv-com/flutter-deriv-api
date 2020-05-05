@@ -15,6 +15,7 @@ class ExchangeRatesRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'exchange_rates',
           passthrough: passthrough,
           reqId: reqId,
         );

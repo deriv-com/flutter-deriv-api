@@ -14,6 +14,7 @@ class TimeRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'time',
           passthrough: passthrough,
           reqId: reqId,
         );

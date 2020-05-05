@@ -16,6 +16,7 @@ class ProposalOpenContractRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'proposal_open_contract',
           passthrough: passthrough,
           reqId: reqId,
         );

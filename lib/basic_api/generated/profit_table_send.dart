@@ -20,6 +20,7 @@ class ProfitTableRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'profit_table',
           passthrough: passthrough,
           reqId: reqId,
         );

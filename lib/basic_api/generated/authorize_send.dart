@@ -15,6 +15,7 @@ class AuthorizeRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'authorize',
           passthrough: passthrough,
           reqId: reqId,
         );

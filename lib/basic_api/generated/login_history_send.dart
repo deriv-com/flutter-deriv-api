@@ -15,6 +15,7 @@ class LoginHistoryRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'login_history',
           passthrough: passthrough,
           reqId: reqId,
         );

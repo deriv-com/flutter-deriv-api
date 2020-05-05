@@ -14,6 +14,7 @@ class RevokeOauthAppRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'revoke_oauth_app',
           passthrough: passthrough,
           reqId: reqId,
         );

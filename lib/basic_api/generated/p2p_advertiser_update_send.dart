@@ -19,6 +19,7 @@ class P2pAdvertiserUpdateRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'p2p_advertiser_update',
           passthrough: passthrough,
           reqId: reqId,
         );

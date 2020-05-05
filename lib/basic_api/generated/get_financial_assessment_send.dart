@@ -14,6 +14,7 @@ class GetFinancialAssessmentRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'get_financial_assessment',
           passthrough: passthrough,
           reqId: reqId,
         );

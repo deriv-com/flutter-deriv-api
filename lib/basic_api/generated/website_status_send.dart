@@ -15,6 +15,7 @@ class WebsiteStatusRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'website_status',
           passthrough: passthrough,
           reqId: reqId,
         );

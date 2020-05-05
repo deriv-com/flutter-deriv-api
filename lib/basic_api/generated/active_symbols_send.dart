@@ -16,6 +16,7 @@ class ActiveSymbolsRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'active_symbols',
           passthrough: passthrough,
           reqId: reqId,
         );

@@ -8,6 +8,7 @@ part 'request.g.dart';
 class Request extends Equatable {
   /// Initializes
   const Request({
+    this.msgType,
     this.passthrough,
     this.reqId,
   });
@@ -15,6 +16,10 @@ class Request extends Equatable {
   /// Creates an instance from json
   factory Request.fromJson(Map<String, dynamic> json) =>
       _$RequestFromJson(json);
+
+  /// Action name of this request
+  @JsonKey(ignore: true)
+  final String msgType;
 
   /// [Optional] Used to pass data through the websocket, which may be
   /// retrieved via the `echo_req` output field.
