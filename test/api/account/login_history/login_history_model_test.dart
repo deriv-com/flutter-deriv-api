@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_deriv_api/api/account/login_history/login_history.dart';
+import 'package:flutter_deriv_api/api/account/login/login_history.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
