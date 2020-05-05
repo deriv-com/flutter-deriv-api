@@ -30,6 +30,7 @@ class Mt5NewAccountRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'mt5_new_account',
           passthrough: passthrough,
           reqId: reqId,
         );

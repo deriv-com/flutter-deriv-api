@@ -31,6 +31,7 @@ class SetFinancialAssessmentRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'set_financial_assessment',
           passthrough: passthrough,
           reqId: reqId,
         );

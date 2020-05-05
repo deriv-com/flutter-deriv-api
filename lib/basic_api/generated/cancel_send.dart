@@ -14,6 +14,7 @@ class CancelRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'cancel',
           passthrough: passthrough,
           reqId: reqId,
         );

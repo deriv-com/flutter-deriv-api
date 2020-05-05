@@ -20,6 +20,7 @@ class P2pAdvertListRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'p2p_advert_list',
           passthrough: passthrough,
           reqId: reqId,
         );

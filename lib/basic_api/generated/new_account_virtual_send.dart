@@ -24,6 +24,7 @@ class NewAccountVirtualRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'new_account_virtual',
           passthrough: passthrough,
           reqId: reqId,
         );

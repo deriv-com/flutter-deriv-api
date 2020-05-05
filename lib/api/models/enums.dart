@@ -77,7 +77,7 @@ enum AccountStatusType {
   /// deposits allowed but withdrawals locked.
   withdrawalLocked,
 }
-// Payment agent
+
 /// Payment result
 enum PaymentResult {
   /// Noun, this value is not a valid value
@@ -90,7 +90,6 @@ enum PaymentResult {
   dryrunSuccess,
 }
 
-// MT5 enums
 /// Account type
 enum AccountType {
   /// Demo
@@ -112,7 +111,6 @@ enum MT5AccountType {
   advanced,
 }
 
-// Api token
 /// Api token scopes
 enum TokenScope {
   /// Read Access
@@ -131,6 +129,24 @@ enum TokenScope {
   admin,
 }
 
+/// Statement transaction action type
+enum StatementTransactionActionType {
+  /// Buy
+  buy,
+
+  /// Sell
+  sell,
+
+  /// Deposit
+  deposit,
+
+  /// Withdrawal
+  withdrawal,
+
+  /// Escrow
+  escrow,
+}
+
 /// Currency types
 enum CurrencyType {
   /// Fiat currencies
@@ -147,4 +163,72 @@ enum SiteStatus {
 
   /// Site is down
   down,
+}
+
+/// Order type
+enum OrderType {
+  /// Order is buy type
+  buy,
+
+  /// Order is sell type
+  sell,
+}
+
+/// Status of an order
+/// Initial status is [OrderStatusType.pending]
+enum OrderStatusType {
+  /// Buyer of account has not yet transferred the equivalent amount of local
+  /// currency to advert has not yet confirmed this order
+  pending,
+
+  /// After the buyer of account currency confirmed his/her payment
+  buyerConfirmed,
+
+  /// Order is cancelled by client or advertiser
+  /// cancel action has some restrictions that is based on order's current status
+  cancelled,
+
+  /// When both buyer and seller do not confirm the order during
+  /// [Order.expiryTime] period, the order will go to [OrderStatusType.timedOut]
+  timedOut,
+
+  /// When order is in [OrderStatusType.buyerConfirmed] status and seller doesn't
+  /// release the cash before [Order.expiryTime]
+  timedOutBuyerConfirmed,
+
+  /// Order process completed
+  completed,
+}
+
+/// Type of the account for transfer.
+enum TransferAccountType {
+  /// Binary account
+  binary,
+
+  /// MT5 account
+  mt5,
+}
+
+/// Type of login action.
+enum LoginAction {
+  /// Login
+  login,
+
+  /// Logout
+  logout,
+}
+
+/// Type of transaction from the opposite party perspective
+enum TransactionType {
+  /// Buy
+  buy,
+
+  /// Sell
+  sell,
+}
+
+/// The payment method
+enum PaymentMethod {
+  /// Bank Transfer
+  bankTransfer,
 }

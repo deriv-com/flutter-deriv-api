@@ -8,13 +8,13 @@ class Balance extends BalanceModel {
     double balance,
     String currency,
     String id,
-    String loginid,
+    String loginId,
     BalanceTotalModel total,
   }) : super(
           balance: balance,
           currency: currency,
           id: id,
-          loginid: loginid,
+          loginId: loginId,
           total: total,
         );
 
@@ -23,7 +23,7 @@ class Balance extends BalanceModel {
         balance: json['balance'],
         currency: json['currency'],
         id: json['id'],
-        loginid: json['loginid'],
+        loginId: json['loginid'],
         total: json['total'] != null ? BalanceTotalModel.fromJson(json) : null,
       );
 
@@ -43,14 +43,14 @@ class Balance extends BalanceModel {
     double balance,
     String currency,
     String id,
-    String loginid,
+    String loginId,
     BalanceTotalModel total,
   }) =>
       Balance(
         balance: balance ?? this.balance,
         currency: currency ?? this.currency,
         id: id ?? this.id,
-        loginid: loginid ?? this.loginid,
+        loginId: loginId ?? this.loginId,
         total: total ?? this.total,
       );
 }

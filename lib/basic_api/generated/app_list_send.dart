@@ -14,6 +14,7 @@ class AppListRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
+          msgType: 'app_list',
           passthrough: passthrough,
           reqId: reqId,
         );
