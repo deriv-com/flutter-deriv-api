@@ -1,10 +1,10 @@
-import 'base_model.dart';
-import 'enums.dart';
-import 'p2p_advert_model.dart';
-import 'p2p_advertiser_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/api/p2p/models/p2p_advert_model.dart';
+import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_model.dart';
 
 /// Order information model class
-abstract class P2POrderModel extends BaseModel {
+abstract class P2POrderModel extends APIBaseModel {
   /// Initializes
   P2POrderModel({
     this.accountCurrency,

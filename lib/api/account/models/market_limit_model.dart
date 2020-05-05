@@ -1,7 +1,7 @@
-import 'base_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Contains limitation information for a market
-class MarketLimitModel extends BaseModel {
+class MarketLimitModel extends APIBaseModel {
   /// Initializes
   MarketLimitModel({
     this.name,
@@ -31,7 +31,7 @@ class MarketLimitModel extends BaseModel {
   /// The limit of turnover for the submarket
   final double turnoverLimit;
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   MarketLimitModel copyWith({
     String name,
     double payoutLimit,
