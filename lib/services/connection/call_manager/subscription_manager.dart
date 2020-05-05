@@ -132,7 +132,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     @required String subscriptionId,
   }) =>
       pendingRequests[requestId] =
-          PendingRequest<Response>().copyWith(subscriptionId: subscriptionId);
+          pendingRequests[requestId]?.copyWith(subscriptionId: subscriptionId);
 
   PendingRequest<Response> _getPendingRequest({
     @required Request request,
