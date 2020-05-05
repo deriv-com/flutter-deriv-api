@@ -14,7 +14,7 @@ class PaymentAgentWithdraw extends PaymentAgentWithdrawModel {
           transactionId: transactionId,
         );
 
-  /// Generates an instance from json
+  /// Creates instance from json
   factory PaymentAgentWithdraw.fromJson(Map<String, dynamic> json) =>
       PaymentAgentWithdraw(
         paymentAgentWithdraw:

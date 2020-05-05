@@ -11,7 +11,7 @@ class CountryModel extends APIBaseModel {
   /// Country name
   final String name;
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   CountryModel copyWith({
     String code,
     String name,

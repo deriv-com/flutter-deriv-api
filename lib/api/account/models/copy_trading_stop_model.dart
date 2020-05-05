@@ -8,7 +8,7 @@ class CopyTradingStopModel extends APIBaseModel {
     this.succeeded,
   });
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory CopyTradingStopModel.fromJson(Map<String, dynamic> json) =>
       CopyTradingStopModel(
         succeeded: getBool(json['copy_stop']),
@@ -17,7 +17,7 @@ class CopyTradingStopModel extends APIBaseModel {
   /// Copy start confirmation. Returns `true` is success.
   final bool succeeded;
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   CopyTradingStopModel copyWith({
     bool succeeded,
   }) =>

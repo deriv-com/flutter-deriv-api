@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/account/models/account_market_limits_model.dart';
+import 'package:flutter_deriv_api/api/account/models/account_market_specific_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Model class Trading limits of real account user
@@ -30,7 +30,7 @@ abstract class AccountLimitsModel extends APIBaseModel {
   final double lifetimeLimit;
 
   /// Contains limitation information for each market.
-  final List<AccountMarketLimitsModel> marketSpecific;
+  final AccountMarketSpecificModel marketSpecific;
 
   /// Number of days for num_of_days_limit withdrawal limit
   final int numOfDays;

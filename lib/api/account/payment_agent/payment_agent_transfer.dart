@@ -16,7 +16,7 @@ class PaymentAgentTransfer extends PaymentAgentTransferModel {
           transactionId: transactionId,
         );
 
-  /// Generates an instance from json
+  /// Creates instance from json
   factory PaymentAgentTransfer.fromJson(Map<String, dynamic> json) =>
       PaymentAgentTransfer(
         paymentAgentTransfer:

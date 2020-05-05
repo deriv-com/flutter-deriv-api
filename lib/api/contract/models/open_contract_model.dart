@@ -66,7 +66,7 @@ class OpenContractModel extends APIBaseModel {
     this.validationError,
   });
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory OpenContractModel.fromJson(Map<String, dynamic> json) =>
       OpenContractModel(
         auditDetails: getItemFromMap(
@@ -304,7 +304,7 @@ class OpenContractModel extends APIBaseModel {
   /// Error message if validation fails
   final String validationError;
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   OpenContractModel copyWith({
     String auditDetails,
     String barrier,

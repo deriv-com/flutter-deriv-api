@@ -16,7 +16,7 @@ class WebsiteStatusCurrencyConfigModel extends APIBaseModel {
     this.transferBetweenAccounts,
   });
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory WebsiteStatusCurrencyConfigModel.fromJson(
     String code,
     Map<String, dynamic> json,
@@ -59,7 +59,7 @@ class WebsiteStatusCurrencyConfigModel extends APIBaseModel {
   /// Fees and range of allowed amount for transfer between accounts with different types of currencies.
   final TransferAccountLimitationModel transferBetweenAccounts;
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   WebsiteStatusCurrencyConfigModel copyWith({
     String code,
     int fractionalDigits,

@@ -11,7 +11,7 @@ class AuditDetailModel extends APIBaseModel {
     this.contractStart,
   });
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory AuditDetailModel.fromJson(
     Map<String, dynamic> json,
   ) =>

@@ -5,7 +5,7 @@ class BalanceRealModel extends APIBaseModel {
   /// Initializes
   BalanceRealModel({this.amount, this.currency});
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory BalanceRealModel.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -20,7 +20,7 @@ class BalanceRealModel extends APIBaseModel {
   /// Currency code.
   final String currency;
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   BalanceRealModel copyWith({
     double amount,
     String currency,

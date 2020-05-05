@@ -40,7 +40,7 @@ class PriceProposal extends PriceProposalModel {
           spotTime,
         );
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory PriceProposal.fromJson(Map<String, dynamic> json) => PriceProposal(
         askPrice: json['ask_price']?.toDouble(),
         cancellation: getItemFromMap(
@@ -120,7 +120,7 @@ class PriceProposal extends PriceProposalModel {
     return BuyContract.fromJson(buyResponse.buy);
   }
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   PriceProposal copyWith({
     double askPrice,
     CancellationInfoModel cancellation,

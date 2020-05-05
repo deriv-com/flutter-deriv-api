@@ -26,7 +26,7 @@ class RealityCheck extends RealityCheckModel {
           startTime: startTime,
         );
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory RealityCheck.fromJson(Map<String, dynamic> json) => RealityCheck(
         buyAmount: json['buy_amount'],
         buyCount: json['buy_count'],
@@ -39,7 +39,7 @@ class RealityCheck extends RealityCheckModel {
         startTime: getDateTime(json['start_time']),
       );
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   RealityCheck copyWith({
     double buyAmount,
     int buyCount,

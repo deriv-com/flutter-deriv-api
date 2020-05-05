@@ -20,7 +20,7 @@ class StatementTransactionModel extends APIBaseModel {
     this.transactionTime,
   });
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory StatementTransactionModel.fromJson(Map<String, dynamic> json) =>
       StatementTransactionModel(
         actionType: getEnumFromString(
@@ -76,7 +76,7 @@ class StatementTransactionModel extends APIBaseModel {
   /// It is the time of transaction.
   final DateTime transactionTime;
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   StatementTransactionModel copyWith({
     TransactionActionType actionType,
     double amount,

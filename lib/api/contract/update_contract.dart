@@ -14,7 +14,7 @@ class UpdateContract extends UpdateContractModel {
           takeProfit: takeProfit,
         );
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory UpdateContract.fromJson(Map<String, dynamic> json) => UpdateContract(
         stopLoss: getItemFromMap(
           json['stop_loss'],

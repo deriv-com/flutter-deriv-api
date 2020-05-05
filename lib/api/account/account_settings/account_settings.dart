@@ -61,7 +61,7 @@ class AccountSettings extends AccountSettingsModel {
           userHash: userHash,
         );
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory AccountSettings.fromJson(Map<String, dynamic> json) =>
       AccountSettings(
         accountOpeningReason: json['account_opening_reason'],
@@ -103,7 +103,7 @@ class AccountSettings extends AccountSettingsModel {
   ) async =>
       null;
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   AccountSettings copyWith({
     String accountOpeningReason,
     String addressCity,

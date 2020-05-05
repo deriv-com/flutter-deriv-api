@@ -13,7 +13,7 @@ class TokenModel extends APIBaseModel {
     this.validForIp,
   });
 
-  /// Generates an instance from json
+  /// Creates instance from json
   factory TokenModel.fromJson(Map<String, dynamic> json) => TokenModel(
         displayName: json['display_name'],
         lastUsed: DateTime.parse(

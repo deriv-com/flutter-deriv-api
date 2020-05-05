@@ -8,7 +8,7 @@ class LocalCurrencyModel extends APIBaseModel {
     this.fractionalDigits,
   });
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory LocalCurrencyModel.fromJson(Map<String, dynamic> json) =>
       LocalCurrencyModel(
         currencyCode: json['key'],
@@ -21,7 +21,7 @@ class LocalCurrencyModel extends APIBaseModel {
   /// Number of fractional digits.
   final int fractionalDigits;
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   LocalCurrencyModel copyWith({
     String currencyCode,
     int fractionalDigits,

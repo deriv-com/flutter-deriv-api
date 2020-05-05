@@ -11,7 +11,7 @@ class TradingDurationDataModel extends APIBaseModel {
     this.tradeDurations,
   });
 
-  /// Generates an instance from json
+  /// Creates instance from json
   factory TradingDurationDataModel.fromJson(Map<String, dynamic> json) =>
       TradingDurationDataModel(
         symbols: getListFromMap(

@@ -20,7 +20,7 @@ class Account extends AccountModel {
           loginId: loginId,
         );
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory Account.fromJson(Map<String, dynamic> json) => Account(
         currency: json['currency'],
         excludedUntil: getDateTime(json['excluded_until']),
@@ -30,7 +30,7 @@ class Account extends AccountModel {
         loginId: json['loginid'],
       );
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   Account copyWith({
     String currency,
     int excludedUntil,

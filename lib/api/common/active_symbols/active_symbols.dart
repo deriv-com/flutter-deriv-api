@@ -50,7 +50,7 @@ class ActiveSymbol extends ActiveSymbolModel {
             symbol: symbol,
             symbolType: symbolType);
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory ActiveSymbol.fromJson(Map<String, dynamic> json) => ActiveSymbol(
         allowForwardStarting: getBool(json['allow_forward_starting']),
         delayAmount: json['delay_amount'],
@@ -102,7 +102,7 @@ class ActiveSymbol extends ActiveSymbolModel {
         .toList();
   }
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   ActiveSymbol copyWith({
     bool allowForwardStarting,
     int delayAmount,

@@ -8,7 +8,7 @@ class TradeEventModel extends APIBaseModel {
     this.description,
   });
 
-  /// Generates an instance from json
+  /// Creates instance from json
   factory TradeEventModel.fromJson(Map<String, dynamic> json) =>
       TradeEventModel(
         dates: json['dates'],

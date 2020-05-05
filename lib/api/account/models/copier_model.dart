@@ -5,7 +5,7 @@ class CopierModel extends APIBaseModel {
   /// Initializes
   CopierModel({this.loginId});
 
-  /// Generates an instance from json
+  /// Creates instance from JSON
   factory CopierModel.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -16,7 +16,7 @@ class CopierModel extends APIBaseModel {
   /// The loginId of the copier's account.
   final String loginId;
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   CopierModel copyWith({
     String loginId,
   }) =>

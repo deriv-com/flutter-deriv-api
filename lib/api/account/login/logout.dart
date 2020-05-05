@@ -8,12 +8,12 @@ class Logout extends LogoutModel {
     bool succeeded,
   }) : super(succeeded: succeeded);
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory Logout.fromJson(Map<String, dynamic> json) => Logout(
         succeeded: getBool(json['logout']),
       );
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   Logout copyWith({
     bool succeeded,
   }) =>

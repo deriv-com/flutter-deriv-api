@@ -15,7 +15,7 @@ class APIToken extends APITokenModel {
           tokens: tokens,
         );
 
-  /// Generates an instance from json
+  /// Creates instance from json
   factory APIToken.fromJson(Map<String, dynamic> json) => APIToken(
         deleteToken: getBool(json['delete_token']),
         newToken: getBool(json['new_token']),

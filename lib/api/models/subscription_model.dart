@@ -7,7 +7,7 @@ class SubscriptionModel extends APIBaseModel {
     this.id,
   });
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory SubscriptionModel.fromJson(Map<String, dynamic> json) =>
       SubscriptionModel(
         id: json == null ? null : json['id'],
@@ -16,7 +16,7 @@ class SubscriptionModel extends APIBaseModel {
   /// A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
   final String id;
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   SubscriptionModel copyWith({
     String id,
   }) =>

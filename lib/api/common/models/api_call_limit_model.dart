@@ -13,7 +13,7 @@ class ApiCallLimitModel extends APIBaseModel {
     this.maxRequestsPricing,
   });
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory ApiCallLimitModel.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -52,7 +52,7 @@ class ApiCallLimitModel extends APIBaseModel {
   /// Maximum number of pricing requests allowed during specified period of time.
   final MaxRequestAllowedModel maxRequestsPricing;
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   ApiCallLimitModel copyWith({
     MaxProposalSubscriptionModel maxProposalSubscription,
     MaxRequestAllowedModel maxRequestsGeneral,

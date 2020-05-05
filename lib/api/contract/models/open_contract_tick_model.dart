@@ -10,7 +10,7 @@ class OpenContractTickModel extends APIBaseModel {
     this.tickDisplayValue,
   });
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory OpenContractTickModel.fromJson(Map<String, dynamic> json) =>
       OpenContractTickModel(
         epoch: getDateTime(json['epoch']),
@@ -27,7 +27,7 @@ class OpenContractTickModel extends APIBaseModel {
   /// The spot value with the correct precision at the given epoch.
   final String tickDisplayValue;
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   OpenContractTickModel copyWith({
     DateTime epoch,
     double tick,

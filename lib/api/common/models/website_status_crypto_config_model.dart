@@ -21,7 +21,7 @@ class WebsiteStatusCryptoConfigModel extends APIBaseModel {
   /// Minimum withdrawal for the currency in USD.
   final double minimumWithdrawal;
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   WebsiteStatusCryptoConfigModel copyWith({
     String code,
     double minimumWithdrawal,

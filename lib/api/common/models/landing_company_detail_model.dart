@@ -21,7 +21,7 @@ class LandingCompanyDetailModel extends APIBaseModel {
     this.shortCode,
   });
 
-  /// Generates an instance from json
+  /// Creates instance from JSON
   factory LandingCompanyDetailModel.fromJson(Map<String, dynamic> json) =>
       LandingCompanyDetailModel(
         address: json['address'] == null || json['address'].isEmpty

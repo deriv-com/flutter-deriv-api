@@ -17,7 +17,7 @@ class AppTransactionModel extends APIBaseModel {
     this.transactionTime,
   });
 
-  /// Generates an instance from json
+  /// Creates instance from json
   factory AppTransactionModel.fromJson(Map<String, dynamic> json) =>
       AppTransactionModel(
         appId: json['app_id'],

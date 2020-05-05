@@ -15,7 +15,7 @@ class ExchangeRates extends ExchangeRatesModel {
           rates: rates,
         );
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory ExchangeRates.fromJson(Map<String, dynamic> json) => ExchangeRates(
         baseCurrency: json['base_currency'],
         date: getDateTime(json['date']),
@@ -30,7 +30,7 @@ class ExchangeRates extends ExchangeRatesModel {
         ),
       );
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   ExchangeRates copyWith({
     String baseCurrency,
     DateTime date,

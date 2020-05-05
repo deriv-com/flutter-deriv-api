@@ -38,7 +38,7 @@ class Authorize extends AuthorizeModel {
           userId: userId,
         );
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory Authorize.fromJson(Map<String, dynamic> json) => Authorize(
         accountList: getListFromMap(
           json['account_list'],
@@ -69,7 +69,7 @@ class Authorize extends AuthorizeModel {
         userId: json['user_id'],
       );
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   Authorize copyWith({
     List<Account> accountList,
     double balance,

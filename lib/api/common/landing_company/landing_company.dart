@@ -29,7 +29,7 @@ class LandingCompany extends LandingCompanyModel {
           virtualCompany: virtualCompany,
         );
 
-  /// Generates an instance from json
+  /// Creates instance from JSON
   factory LandingCompany.fromJson(Map<String, dynamic> json) => LandingCompany(
         config: getItemFromMap(
           json['config'],

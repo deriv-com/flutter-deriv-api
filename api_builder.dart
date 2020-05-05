@@ -117,9 +117,9 @@ class APIBuilder extends Builder {
               const $classFullName({
                   ${_getConstructorParameters(methodName, schema, schemaType, properties)},
                   ${_getSuperClassParameters(schemaType)},
-                }): super(${_getSuperClassCallParameters(schemaType, methodName)},);
+                }): super(${_getSuperClassCallParameters(schemaType)},);
               
-              /// Generates an instance from json
+              /// Creates instance from JSON
               factory $classFullName.fromJson(Map<String, dynamic> json) => _\$${classFullName}FromJson(json);
               
               // Properties
@@ -265,22 +265,13 @@ class APIBuilder extends Builder {
         .join(', ');
   }
 
-  String _getSuperClassCallParameters(String schemaType, String methodName) {
-    final StringBuffer superCallParameters = StringBuffer();
-
-    if (schemaType == 'send') {
-      superCallParameters.write('msgType: \'$methodName\',');
-    }
-
-    superCallParameters.write(_getSuperClassFields(schemaType).keys.map(
-      (String key) {
-        final String parameterName = ReCase(key).camelCase;
-        return '$parameterName: $parameterName';
-      },
-    ).join(', '));
-
-    return superCallParameters.toString();
-  }
+  String _getSuperClassCallParameters(String schemaType) =>
+      _getSuperClassFields(schemaType).keys.map(
+        (String key) {
+          final String parameterName = ReCase(key).camelCase;
+          return '$parameterName: $parameterName';
+        },
+      ).join(', ');
 
   String _getSupperClassAssignments(String schemaType) =>
       _getSuperClassFields(schemaType).keys.map(

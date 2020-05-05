@@ -22,7 +22,7 @@ class Tick extends TickModel {
           symbol: symbol,
         );
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory Tick.fromJson(Map<String, dynamic> json) => Tick(
         ask: json['ask'],
         bid: json['bid'],
@@ -33,7 +33,7 @@ class Tick extends TickModel {
         symbol: json['symbol'],
       );
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   Tick copyWith({
     double ask,
     double bid,

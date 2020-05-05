@@ -72,7 +72,7 @@ class ContractsForSymbol extends ContractsForSymbolModel {
     return ContractsForSymbol.fromJson(contractsForResponse.contractsFor);
   }
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   ContractsForSymbol copyWith({
     List<ContractModel> contracts,
     int close,

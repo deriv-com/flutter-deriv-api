@@ -17,7 +17,7 @@ class TradingDuration extends TradingDurationModel {
           tradingDurationData: tradingDurationData,
         );
 
-  /// Generates an instance from json
+  /// Creates instance from json
   factory TradingDuration.fromJson(Map<String, dynamic> json) =>
       TradingDuration(
         market: getItemFromMap(

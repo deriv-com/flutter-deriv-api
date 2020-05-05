@@ -8,7 +8,7 @@ class TransactionIdsModel extends APIBaseModel {
     this.sellID,
   );
 
-  /// Generates an instance from json
+  /// Generate an instance from json
   factory TransactionIdsModel.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -23,7 +23,7 @@ class TransactionIdsModel extends APIBaseModel {
   /// Sell ID
   final int sellID;
 
-  /// Generates a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   TransactionIdsModel copyWith(
     int buyID,
     int sellID,
