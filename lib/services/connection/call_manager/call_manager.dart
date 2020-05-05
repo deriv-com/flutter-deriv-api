@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:meta/meta.dart';
 
+import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
@@ -16,11 +17,14 @@ class CallManager extends BaseCallManager<Future<Response>> {
     @required int requestId,
     @required Map<String, dynamic> response,
   }) {
-    super.handleResponse(requestId: requestId, response: response);
+    final Completer<Response> responseCompleter =
+        pendingRequests[requestId]?.responseCompleter;
+
+    if (responseCompleter?.isCompleted == false) {
+      responseCompleter.complete(getResponseByMsgType(response));
+    }
 
     pendingRequests.remove(requestId);
-
-    print('completed request.');
   }
 
   @override

@@ -8,7 +8,7 @@ class PendingRequest<T> {
   /// Initializes
   PendingRequest({
     this.request,
-    this.response,
+    this.responseCompleter,
     this.subscriptionId,
     this.subscriptionStream,
   });
@@ -17,7 +17,7 @@ class PendingRequest<T> {
   final Request request;
 
   /// This completer will complete whenever the response of the request arrives
-  final Completer<T> response;
+  final Completer<T> responseCompleter;
 
   /// Subscription id
   final String subscriptionId;
@@ -31,13 +31,13 @@ class PendingRequest<T> {
   /// Creates a copy of instance with given parameters
   PendingRequest<T> copyWith({
     Request request,
-    Completer<T> response,
+    Completer<T> responseCompleter,
     String subscriptionId,
     SubscriptionStream<T> subscriptionStream,
   }) =>
       PendingRequest<T>(
         request: request ?? this.request,
-        response: response ?? this.response,
+        responseCompleter: responseCompleter ?? this.responseCompleter,
         subscriptionId: subscriptionId ?? this.subscriptionId,
         subscriptionStream: subscriptionStream ?? this.subscriptionStream,
       );

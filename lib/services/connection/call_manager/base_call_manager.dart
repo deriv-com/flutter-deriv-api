@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:meta/meta.dart';
 
-import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
@@ -50,20 +49,14 @@ abstract class BaseCallManager<T> {
   void handleResponse({
     @required int requestId,
     @required Map<String, dynamic> response,
-  }) {
-    final Completer<Response> requestCompleter = _getResponse(requestId);
-
-    if (response['subscription'] == null && !requestCompleter.isCompleted) {
-      requestCompleter.complete(getResponseByMsgType(response));
-    }
-  }
+  });
 
   /// Add [request] to pending requests queue, api history and web socket channel
   Future<Response> addToChannel({
     @required Request request,
     SubscriptionStream<Response> subscriptionStream,
   }) {
-    final Completer<Response> response = Completer<Response>();
+    final Completer<Response> responseCompleter = Completer<Response>();
     final Request requestWithId = request.copyWith(reqId: _getRequestId());
     final Map<String, dynamic> prepareRequest = _prepareRequest(
       request: requestWithId,
@@ -72,7 +65,7 @@ abstract class BaseCallManager<T> {
 
     _addPendingRequest(
       request: requestWithId,
-      response: response,
+      responseCompleter: responseCompleter,
       subscriptionStream: subscriptionStream,
     );
 
@@ -86,22 +79,18 @@ abstract class BaseCallManager<T> {
       utf8.encode(jsonEncode(prepareRequest)),
     );
 
-    return response.future;
+    return responseCompleter.future;
   }
-
-  /// Get pending request response by [requestId]
-  Completer<Response> _getResponse(int requestId) =>
-      pendingRequests[requestId].response;
 
   /// Add [request] to pending requests queue
   void _addPendingRequest({
     @required Request request,
-    @required Completer<Response> response,
+    @required Completer<Response> responseCompleter,
     SubscriptionStream<Response> subscriptionStream,
   }) =>
       _pendingRequests[request.reqId] = PendingRequest<Response>(
         request: request,
-        response: response,
+        responseCompleter: responseCompleter,
         subscriptionStream: subscriptionStream,
       );
 

@@ -31,8 +31,6 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     @required int requestId,
     @required Map<String, dynamic> response,
   }) {
-    super.handleResponse(requestId: requestId, response: response);
-
     // Adds the subscription id to the pending request object for further references
     if (response.containsKey('subscription')) {
       _setSubscriptionId(
