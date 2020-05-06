@@ -1,4 +1,4 @@
-import 'account_market_specific_model.dart';
+import 'account_market_limits_model.dart';
 import 'base_model.dart';
 
 /// Model class Trading limits of real account user
@@ -30,7 +30,7 @@ abstract class AccountLimitsModel extends BaseModel{
   final double lifetimeLimit;
 
   /// Contains limitation information for each market.
-  final AccountMarketSpecificModel marketSpecific;
+  final List<AccountMarketLimitsModel> marketSpecific;
 
   /// Number of days for num_of_days_limit withdrawal limit
   final int numOfDays;
