@@ -91,14 +91,17 @@ class BuyContract extends BuyContractModel {
           contractId: contractId,
         ),
       )
-          .map<OpenContractModel>((Response response) {
-        if (response.error != null) {
-          throw ContractOperationException(message: response.error['message']);
-        }
-        final ProposalOpenContractResponse openContractResponse = response;
-        return OpenContractModel.fromJson(
-            openContractResponse.proposalOpenContract);
-      });
+          .map<OpenContractModel>(
+        (Response response) {
+          if (response.error != null) {
+            throw ContractOperationException(
+                message: response.error['message']);
+          }
+          final ProposalOpenContractResponse openContractResponse = response;
+          return OpenContractModel.fromJson(
+              openContractResponse.proposalOpenContract);
+        },
+      );
 
   /// Sell this contract
   Future<SellContract> sell() async {
@@ -119,12 +122,14 @@ class BuyContract extends BuyContractModel {
     double takeProfit,
   }) async {
     final Response response = await _api.call(
-        request: ContractUpdateRequest(
-            contractId: contractId,
-            limitOrder: <String, dynamic>{
+      request: ContractUpdateRequest(
+        contractId: contractId,
+        limitOrder: <String, dynamic>{
           'stop_loss': stopLoss,
           'take_profit': takeProfit,
-        }));
+        },
+      ),
+    );
 
     if (response.error != null) {
       throw ContractOperationException(message: response.error['message']);
