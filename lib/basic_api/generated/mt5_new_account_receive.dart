@@ -22,7 +22,7 @@ class Mt5NewAccountResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory Mt5NewAccountResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5NewAccountResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class Mt5NewAccountResponse extends Response {
   /// New MT5 account details
   final Map<String, dynamic> mt5NewAccount;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5NewAccountResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   Mt5NewAccountResponse copyWith({
     Map<String, dynamic> mt5NewAccount,

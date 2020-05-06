@@ -25,7 +25,7 @@ class PaymentagentWithdrawRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory PaymentagentWithdrawRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentWithdrawRequestFromJson(json);
 
@@ -51,11 +51,11 @@ class PaymentagentWithdrawRequest extends Request {
   /// Email verification code (received from a `verify_email` call, which must be done first)
   final String verificationCode;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$PaymentagentWithdrawRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   PaymentagentWithdrawRequest copyWith({
     num amount,

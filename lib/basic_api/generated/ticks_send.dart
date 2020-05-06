@@ -20,7 +20,7 @@ class TicksRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory TicksRequest.fromJson(Map<String, dynamic> json) =>
       _$TicksRequestFromJson(json);
 
@@ -31,11 +31,11 @@ class TicksRequest extends Request {
   /// The short symbol name or array of symbols (obtained from `active_symbols` call).
   final String ticks;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TicksRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   TicksRequest copyWith({
     int subscribe,

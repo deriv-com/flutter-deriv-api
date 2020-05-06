@@ -20,7 +20,7 @@ class P2pChatCreateRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory P2pChatCreateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pChatCreateRequestFromJson(json);
 
@@ -31,11 +31,11 @@ class P2pChatCreateRequest extends Request {
   /// Must be 1
   final int p2pChatCreate;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pChatCreateRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   P2pChatCreateRequest copyWith({
     String orderId,

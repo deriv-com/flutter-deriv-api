@@ -13,7 +13,7 @@ class Request extends Equatable {
     this.reqId,
   });
 
-  /// Creates instance from JSON
+  /// Generate an instance from JSON
   factory Request.fromJson(Map<String, dynamic> json) =>
       _$RequestFromJson(json);
 
@@ -28,10 +28,10 @@ class Request extends Equatable {
   /// [Optional] Used to map request to response.
   final int reqId;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   Map<String, dynamic> toJson() => _$RequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Generate a copy of instance with given parameters
   Request copyWith({
     Map<String, dynamic> passthrough,
     int reqId,

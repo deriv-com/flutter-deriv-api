@@ -18,7 +18,7 @@ typedef RequestCompareFunction = bool Function({
 
 /// Api call manager abstract class
 abstract class BaseCallManager<T> {
-  /// Class constructor
+  /// Initializes
   BaseCallManager(this.api);
 
   /// Binary api instance

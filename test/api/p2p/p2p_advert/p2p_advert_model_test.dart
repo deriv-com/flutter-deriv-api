@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'p2p_advert_model_mock_data.dart';
 
 void main() {
-  test('p2p advert json parsing', () {
+  test('p2p advert JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(p2pAdvertModelMockData);
     final P2PAdvert p2pAdvert = P2PAdvert.fromJson(mapData['p2p_advert']);
 

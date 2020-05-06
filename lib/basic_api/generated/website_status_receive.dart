@@ -23,7 +23,7 @@ class WebsiteStatusResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory WebsiteStatusResponse.fromJson(Map<String, dynamic> json) =>
       _$WebsiteStatusResponseFromJson(json);
 
@@ -34,11 +34,11 @@ class WebsiteStatusResponse extends Response {
   /// Server status and other information regarding general settings
   final Map<String, dynamic> websiteStatus;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$WebsiteStatusResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   WebsiteStatusResponse copyWith({
     Map<String, dynamic> subscription,

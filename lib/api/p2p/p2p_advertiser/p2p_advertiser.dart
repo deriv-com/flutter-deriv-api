@@ -1,5 +1,5 @@
-import 'package:flutter_deriv_api/api/models/p2p_advertiser_model.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
+import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// P2P advertise class
@@ -29,7 +29,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
           paymentInfo: paymentInfo,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory P2PAdvertiser.fromJson(Map<String, dynamic> json) => P2PAdvertiser(
         chatToken: json['chat_token'],
         chatUserId: json['chat_user_id'],

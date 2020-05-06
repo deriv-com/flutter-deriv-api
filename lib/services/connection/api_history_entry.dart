@@ -1,6 +1,6 @@
 /// Represents a message sent or received via the web sockets connection
 class APIHistoryEntry {
-  /// Class constructor
+  /// Initializes
   APIHistoryEntry({
     this.timeStamp,
     this.method,

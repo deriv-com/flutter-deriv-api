@@ -43,6 +43,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       } on Exception catch (e, stackTrace) {
         print(e);
         print(stackTrace);
+        
         yield ConnectionError(e.toString());
       }
     } else if (event is FetchServerTime) {
@@ -57,6 +58,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
         }
 
         print('Server time is: ${timeResponse.time}');
+
         yield currentState.copyWith(serverTime: timeResponse.time);
       } else if (state is InitialConnectionState) {
         _serverTimeInterval.cancel();
@@ -70,6 +72,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       if (_serverTimeInterval != null && _serverTimeInterval.isActive) {
         _serverTimeInterval.cancel();
       }
+
       yield InitialConnectionState();
     } else if (event is Reconnect) {
       print('Reconnecting ws connection!');
@@ -85,7 +88,9 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       if (_serverTimeInterval != null && _serverTimeInterval.isActive) {
         _serverTimeInterval.cancel();
       }
+
       await Future<void>.delayed(const Duration(seconds: 10));
+
       connectWS();
     }
   }

@@ -23,7 +23,7 @@ class P2pOrderListResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory P2pOrderListResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderListResponseFromJson(json);
 
@@ -34,11 +34,11 @@ class P2pOrderListResponse extends Response {
   /// For subscription requests only.
   final Map<String, dynamic> subscription;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pOrderListResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   P2pOrderListResponse copyWith({
     Map<String, dynamic> p2pOrderList,

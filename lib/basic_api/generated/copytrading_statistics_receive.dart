@@ -22,7 +22,7 @@ class CopytradingStatisticsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory CopytradingStatisticsResponse.fromJson(Map<String, dynamic> json) =>
       _$CopytradingStatisticsResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class CopytradingStatisticsResponse extends Response {
   /// Statistics of the trader
   final Map<String, dynamic> copytradingStatistics;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$CopytradingStatisticsResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   CopytradingStatisticsResponse copyWith({
     Map<String, dynamic> copytradingStatistics,

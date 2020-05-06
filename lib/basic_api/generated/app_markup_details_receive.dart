@@ -22,7 +22,7 @@ class AppMarkupDetailsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory AppMarkupDetailsResponse.fromJson(Map<String, dynamic> json) =>
       _$AppMarkupDetailsResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class AppMarkupDetailsResponse extends Response {
   /// App Markup transaction details
   final Map<String, dynamic> appMarkupDetails;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AppMarkupDetailsResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   AppMarkupDetailsResponse copyWith({
     Map<String, dynamic> appMarkupDetails,
