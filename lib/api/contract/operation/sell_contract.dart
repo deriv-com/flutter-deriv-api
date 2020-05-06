@@ -1,4 +1,9 @@
 import 'package:flutter_deriv_api/api/contract/models/sell_contract_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+
+import 'exceptions/contract_operations_exception.dart';
 
 /// Selling a contract
 class SellContract extends SellContractModel {
@@ -25,6 +30,21 @@ class SellContract extends SellContractModel {
         soldFor: json['sold_for']?.toDouble(),
         transactionId: json['transaction_id'],
       );
+
+  /// API instance
+  static final BasicBinaryAPI _api =
+      Injector.getInjector().get<BasicBinaryAPI>();
+
+  /// Sell a contract
+  static Future<SellContract> sellContract(SellRequest request) async {
+    final SellResponse response = await _api.call(request: request);
+
+    if (response.error != null) {
+      throw ContractOperationException(message: response.error['message']);
+    }
+
+    return SellContract.fromJson(response.sell);
+  }
 
   /// Generate a copy of instance with given parameters
   SellContract copyWith({

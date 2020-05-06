@@ -1,4 +1,9 @@
 import 'package:flutter_deriv_api/api/contract/models/cancel_contract_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+
+import 'exceptions/contract_operations_exception.dart';
 
 /// Cancel contract class
 class CancelContract extends CancelContractModel {
@@ -25,6 +30,21 @@ class CancelContract extends CancelContractModel {
         soldFor: json['sold_for']?.toDouble(),
         transactionId: json['transaction_id'],
       );
+
+  /// API instance
+  static final BasicBinaryAPI _api =
+      Injector.getInjector().get<BasicBinaryAPI>();
+
+  /// Cancel a contract
+  static Future<CancelContract> cancelContract(CancelRequest request) async {
+    final CancelResponse response = await _api.call(request: request);
+
+    if (response.error != null) {
+      throw ContractOperationException(message: response.error['message']);
+    }
+
+    return CancelContract.fromJson(response.cancel);
+  }
 
   /// Creates a copy of instance with given parameters
   CancelContract copyWith({

@@ -1,7 +1,12 @@
 import 'package:flutter_deriv_api/api/contract/models/history_spot_price_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/spot_price_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/update_contract_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
+
+import 'exceptions/contract_operations_exception.dart';
 
 /// Contract update class
 class UpdateContract extends UpdateContractModel {
@@ -26,21 +31,40 @@ class UpdateContract extends UpdateContractModel {
         ),
       );
 
-  // TODO(ramin): update contract API call
+  /// API instance
+  static final BasicBinaryAPI _api =
+      Injector.getInjector().get<BasicBinaryAPI>();
+
   /// update a contract
   static Future<UpdateContract> updateContract(
-    int contractId, {
-    double stopLoss,
-    double takeProfit,
-  }) async =>
-      null;
+    ContractUpdateRequest request,
+  ) async {
+    final ContractUpdateResponse response = await _api.call(request: request);
 
-  // TODO(ramin): contract update history API call
-  /// Get update history for contract
+    if (response.error != null) {
+      throw ContractOperationException(message: response.error['message']);
+    }
+
+    return UpdateContract.fromJson(response.contractUpdate);
+  }
+
+  /// Get update history for contract as List of [HistorySpotPriceModel]
   static Future<List<HistorySpotPriceModel>> getContractUpdateHistory(
-    int contractId,
-  ) async =>
-      null;
+    ContractUpdateHistoryRequest request,
+  ) async {
+    final ContractUpdateHistoryResponse response =
+        await _api.call(request: request);
+
+    if (response.error != null) {
+      throw ContractOperationException(message: response.error['message']);
+    }
+
+    return getListFromMap(
+      response.contractUpdateHistory,
+      itemToTypeCallback: (dynamic item) =>
+          HistorySpotPriceModel.fromJson(item),
+    );
+  }
 
   /// Generate copy of instance with given parameters
   UpdateContract copyWith({
