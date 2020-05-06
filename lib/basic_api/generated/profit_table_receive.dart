@@ -22,7 +22,7 @@ class ProfitTableResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory ProfitTableResponse.fromJson(Map<String, dynamic> json) =>
       _$ProfitTableResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class ProfitTableResponse extends Response {
   /// Account Profit Table.
   final Map<String, dynamic> profitTable;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ProfitTableResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   ProfitTableResponse copyWith({
     Map<String, dynamic> profitTable,

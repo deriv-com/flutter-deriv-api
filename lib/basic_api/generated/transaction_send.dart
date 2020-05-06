@@ -20,7 +20,7 @@ class TransactionRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory TransactionRequest.fromJson(Map<String, dynamic> json) =>
       _$TransactionRequestFromJson(json);
 
@@ -31,11 +31,11 @@ class TransactionRequest extends Request {
   /// Must be `1`
   final int transaction;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TransactionRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   TransactionRequest copyWith({
     int subscribe,

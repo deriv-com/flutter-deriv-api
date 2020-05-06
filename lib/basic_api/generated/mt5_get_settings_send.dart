@@ -20,7 +20,7 @@ class Mt5GetSettingsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory Mt5GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5GetSettingsRequestFromJson(json);
 
@@ -31,11 +31,11 @@ class Mt5GetSettingsRequest extends Request {
   /// Must be `1`
   final int mt5GetSettings;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5GetSettingsRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   Mt5GetSettingsRequest copyWith({
     String login,

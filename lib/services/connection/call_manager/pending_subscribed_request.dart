@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/subscription_
 
 /// Represent a pending request.
 class PendingSubscribedRequest<T> extends PendingRequest<T> {
-  /// Class constructor
+  /// Initializes
   PendingSubscribedRequest({
     Request request,
     Completer<T> response,
@@ -26,7 +26,7 @@ class PendingSubscribedRequest<T> extends PendingRequest<T> {
   /// Get subscription state
   bool get isSubscribed => subscriptionStream != null;
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   PendingSubscribedRequest<T> copyWith({
     String subscriptionId,
     SubscriptionStream<T> subscriptionStream,

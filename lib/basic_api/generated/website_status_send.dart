@@ -20,7 +20,7 @@ class WebsiteStatusRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory WebsiteStatusRequest.fromJson(Map<String, dynamic> json) =>
       _$WebsiteStatusRequestFromJson(json);
 
@@ -31,11 +31,11 @@ class WebsiteStatusRequest extends Request {
   /// Must be `1`
   final int websiteStatus;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$WebsiteStatusRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   WebsiteStatusRequest copyWith({
     int subscribe,

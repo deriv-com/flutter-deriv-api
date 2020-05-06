@@ -25,7 +25,7 @@ class TicksHistoryResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory TicksHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$TicksHistoryResponseFromJson(json);
 
@@ -42,11 +42,11 @@ class TicksHistoryResponse extends Response {
   /// For subscription requests only.
   final Map<String, dynamic> subscription;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TicksHistoryResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   TicksHistoryResponse copyWith({
     List<Map<String, dynamic>> candles,

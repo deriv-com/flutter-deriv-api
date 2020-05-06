@@ -22,7 +22,7 @@ class CashierResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory CashierResponse.fromJson(Map<String, dynamic> json) =>
       _$CashierResponseFromJson(json);
 
@@ -37,11 +37,11 @@ class CashierResponse extends Response {
   /// - `ASK_FIX_DETAILS`: API call `set_settings`
   final String cashier;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$CashierResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   CashierResponse copyWith({
     String cashier,

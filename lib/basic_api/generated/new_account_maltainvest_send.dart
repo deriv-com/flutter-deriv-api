@@ -58,7 +58,7 @@ class NewAccountMaltainvestRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory NewAccountMaltainvestRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountMaltainvestRequestFromJson(json);
 
@@ -183,11 +183,11 @@ class NewAccountMaltainvestRequest extends Request {
   /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   final String taxResidence;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$NewAccountMaltainvestRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   NewAccountMaltainvestRequest copyWith({
     int acceptRisk,

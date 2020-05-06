@@ -1,8 +1,8 @@
-import 'package:flutter_deriv_api/api/models/mt5_login_model.dart';
+import 'package:flutter_deriv_api/api/mt5/models/mt5_login_model.dart';
 
 /// MT5 login class
 class MT5Login extends MT5LoginModel {
-  /// Class constructor
+  /// Initializes
   MT5Login({
     double balance,
     String country,
@@ -25,7 +25,7 @@ class MT5Login extends MT5LoginModel {
           name: name,
         );
 
-  /// Creates instance from json
+  /// Creates an instance from JSON
   factory MT5Login.fromJson(Map<String, dynamic> json) => MT5Login(
         balance: json['balance'],
         country: json['country'],
@@ -38,7 +38,7 @@ class MT5Login extends MT5LoginModel {
         name: json['name'],
       );
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   MT5Login copyWith({
     double balance,
     String country,

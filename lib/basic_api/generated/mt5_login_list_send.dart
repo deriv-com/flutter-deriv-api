@@ -19,7 +19,7 @@ class Mt5LoginListRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory Mt5LoginListRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5LoginListRequestFromJson(json);
 
@@ -27,11 +27,11 @@ class Mt5LoginListRequest extends Request {
   /// Must be `1`
   final int mt5LoginList;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5LoginListRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   Mt5LoginListRequest copyWith({
     int mt5LoginList,

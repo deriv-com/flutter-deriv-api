@@ -19,7 +19,7 @@ class AppDeleteRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory AppDeleteRequest.fromJson(Map<String, dynamic> json) =>
       _$AppDeleteRequestFromJson(json);
 
@@ -27,11 +27,11 @@ class AppDeleteRequest extends Request {
   /// Application app_id
   final int appDelete;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AppDeleteRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   AppDeleteRequest copyWith({
     int appDelete,

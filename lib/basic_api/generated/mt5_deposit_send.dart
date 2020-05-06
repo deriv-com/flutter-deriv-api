@@ -22,7 +22,7 @@ class Mt5DepositRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5DepositRequestFromJson(json);
 
@@ -39,11 +39,11 @@ class Mt5DepositRequest extends Request {
   /// MT5 account login to deposit money to
   final String toMt5;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5DepositRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   Mt5DepositRequest copyWith({
     num amount,

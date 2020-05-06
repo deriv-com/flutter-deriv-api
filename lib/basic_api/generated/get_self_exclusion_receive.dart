@@ -22,7 +22,7 @@ class GetSelfExclusionResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory GetSelfExclusionResponse.fromJson(Map<String, dynamic> json) =>
       _$GetSelfExclusionResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class GetSelfExclusionResponse extends Response {
   /// List of values set for self exclusion.
   final Map<String, dynamic> getSelfExclusion;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$GetSelfExclusionResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   GetSelfExclusionResponse copyWith({
     Map<String, dynamic> getSelfExclusion,

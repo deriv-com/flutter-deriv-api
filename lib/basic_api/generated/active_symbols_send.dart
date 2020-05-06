@@ -21,7 +21,7 @@ class ActiveSymbolsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory ActiveSymbolsRequest.fromJson(Map<String, dynamic> json) =>
       _$ActiveSymbolsRequestFromJson(json);
 
@@ -35,11 +35,11 @@ class ActiveSymbolsRequest extends Request {
   /// [Optional] If you specify this field, only symbols that can be traded through that product type will be returned.
   final String productType;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ActiveSymbolsRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   ActiveSymbolsRequest copyWith({
     String activeSymbols,
