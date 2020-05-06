@@ -1,7 +1,6 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/models/p2p_advert_model.dart';
-import 'package:flutter_deriv_api/api/models/p2p_advertiser_details_model.dart';
-import 'package:flutter_deriv_api/utils/enum_helper.dart';
+import 'package:flutter_deriv_api/api/p2p/models/p2p_advert_model.dart';
+import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_details_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// P2P advert class
@@ -69,16 +68,18 @@ class P2PAdvert extends P2PAdvertModel {
           type: type,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory P2PAdvert.fromJson(Map<String, dynamic> json) => P2PAdvert(
         accountCurrency: json['account_currency'],
-        advertiserDetails: json['advertiser_details'] == null
-            ? null
-            : P2PAdvertiserDetailsModel.fromJson(json['advertiser_details']),
+        advertiserDetails: getItemFromMap(
+          json['advertiser_details'],
+          itemToTypeCallback: (dynamic item) =>
+              P2PAdvertiserDetailsModel.fromJson(item),
+        ),
         amount: json['amount']?.toDouble(),
         amountDisplay: json['amount_display'],
         contactInfo: json['contact_info'],
-        counterpartyType: EnumHelper.getEnum(
+        counterpartyType: getEnumFromString(
           values: TransactionType.values,
           name: json['counterparty_type'],
         ),
@@ -97,7 +98,7 @@ class P2PAdvert extends P2PAdvertModel {
         minOrderAmountLimit: json['min_order_amount_limit']?.toDouble(),
         minOrderAmountLimitDisplay: json['min_order_amount_limit_display'],
         paymentInfo: json['payment_info'],
-        paymentMethod: EnumHelper.getEnum(
+        paymentMethod: getEnumFromString(
           values: PaymentMethod.values,
           name: json['payment_method'],
         ),
@@ -107,7 +108,7 @@ class P2PAdvert extends P2PAdvertModel {
         rateDisplay: json['rate_display'],
         remainingAmount: json['remaining_amount']?.toDouble(),
         remainingAmountDisplay: json['remaining_amount_display'],
-        type: EnumHelper.getEnum(
+        type: getEnumFromString(
           values: TransactionType.values,
           name: json['type'],
         ),

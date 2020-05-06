@@ -38,7 +38,7 @@ class Connected extends ConnectionState {
   /// difference between [serverTime] and the time of the device
   final int timeDifference;
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   Connected copyWith({
     BasicBinaryAPI api,
     int serverTime,

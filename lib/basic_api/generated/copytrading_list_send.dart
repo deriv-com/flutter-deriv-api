@@ -19,7 +19,7 @@ class CopytradingListRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory CopytradingListRequest.fromJson(Map<String, dynamic> json) =>
       _$CopytradingListRequestFromJson(json);
 
@@ -27,11 +27,11 @@ class CopytradingListRequest extends Request {
   /// Must be `1`
   final int copytradingList;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$CopytradingListRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   CopytradingListRequest copyWith({
     int copytradingList,

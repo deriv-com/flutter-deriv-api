@@ -19,7 +19,7 @@ class StatesListRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory StatesListRequest.fromJson(Map<String, dynamic> json) =>
       _$StatesListRequestFromJson(json);
 
@@ -27,11 +27,11 @@ class StatesListRequest extends Request {
   /// Client's 2-letter country code (obtained from `residence_list` call)
   final String statesList;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$StatesListRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   StatesListRequest copyWith({
     String statesList,

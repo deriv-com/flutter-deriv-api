@@ -1,10 +1,10 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/models/mt5_account_model.dart';
-import 'package:flutter_deriv_api/utils/enum_helper.dart';
+import 'package:flutter_deriv_api/api/mt5/models/mt5_account_model.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// MT5 account class
 class MT5Account extends MT5AccountModel {
-  /// Class constructor
+  /// Initializes
   MT5Account({
     AccountType accountType,
     double balance,
@@ -31,9 +31,9 @@ class MT5Account extends MT5AccountModel {
           name: name,
         );
 
-  /// Creates instance from json
+  /// Creates an instance from JSON
   factory MT5Account.fromJson(Map<String, dynamic> json) => MT5Account(
-        accountType: EnumHelper.getEnum(
+        accountType: getEnumFromString(
           values: AccountType.values,
           name: json['account_type'],
         ),
@@ -45,14 +45,14 @@ class MT5Account extends MT5AccountModel {
         group: json['group'],
         leverage: json['leverage'],
         login: json['login'],
-        mt5AccountType: EnumHelper.getEnum(
+        mt5AccountType: getEnumFromString(
           values: MT5AccountType.values,
           name: json['mt5_account_type'],
         ),
         name: json['name'],
       );
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   MT5Account copyWith({
     AccountType accountType,
     double balance,

@@ -19,7 +19,7 @@ class OauthAppsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory OauthAppsRequest.fromJson(Map<String, dynamic> json) =>
       _$OauthAppsRequestFromJson(json);
 
@@ -27,11 +27,11 @@ class OauthAppsRequest extends Request {
   /// Must be `1`
   final int oauthApps;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$OauthAppsRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   OauthAppsRequest copyWith({
     int oauthApps,

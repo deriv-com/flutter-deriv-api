@@ -22,7 +22,7 @@ class NewAccountMaltainvestResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory NewAccountMaltainvestResponse.fromJson(Map<String, dynamic> json) =>
       _$NewAccountMaltainvestResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class NewAccountMaltainvestResponse extends Response {
   /// New `maltainvest` account details
   final Map<String, dynamic> newAccountMaltainvest;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$NewAccountMaltainvestResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   NewAccountMaltainvestResponse copyWith({
     Map<String, dynamic> newAccountMaltainvest,

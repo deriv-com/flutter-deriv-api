@@ -22,7 +22,7 @@ class RevokeOauthAppResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory RevokeOauthAppResponse.fromJson(Map<String, dynamic> json) =>
       _$RevokeOauthAppResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class RevokeOauthAppResponse extends Response {
   /// `1` on success
   final int revokeOauthApp;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$RevokeOauthAppResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   RevokeOauthAppResponse copyWith({
     int revokeOauthApp,

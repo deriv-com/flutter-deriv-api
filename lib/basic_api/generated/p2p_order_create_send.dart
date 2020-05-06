@@ -24,7 +24,7 @@ class P2pOrderCreateRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory P2pOrderCreateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCreateRequestFromJson(json);
 
@@ -47,11 +47,11 @@ class P2pOrderCreateRequest extends Request {
   /// [Optional] If set to 1, will send updates whenever there is an update to the order.
   final int subscribe;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pOrderCreateRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   P2pOrderCreateRequest copyWith({
     String advertId,

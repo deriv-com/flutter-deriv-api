@@ -4,7 +4,7 @@ import 'package:flutter_deriv_api/basic_api/request.dart';
 
 /// Represent a pending request.
 class PendingRequest<T> {
-  /// Class constructor
+  /// Initializes
   PendingRequest({
     this.method,
     this.request,
