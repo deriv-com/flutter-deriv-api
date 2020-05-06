@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_deriv_api/api/contract/cancel_contract.dart';
+import 'package:flutter_deriv_api/api/contract/operation/cancel_contract.dart';
 
 import 'cancel_contract_model_mock_data.dart';
 

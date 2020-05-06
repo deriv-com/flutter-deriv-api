@@ -1,4 +1,3 @@
-import 'package:flutter_deriv_api/api/contract/models/buy_contract_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/cancellation_info_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/limit_order_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/price_proposal_model.dart';
@@ -70,46 +69,26 @@ class PriceProposal extends PriceProposalModel {
   /// Gets the price proposal for contract
   /// For parameters information refer to [ProposalRequest]
   static Future<PriceProposal> getPriceForContract({
-    double amount = 100,
-    String barrier,
-    String basis = 'payout',
-    String contractType = 'CALL',
-    String currency = 'USD',
-    String symbol,
-    DateTime dateExpiry,
-    String durationUnit = 's',
-    int duration = 60,
+    ProposalRequest proposalRequest,
   }) async {
-    final ProposalResponse proposalResponse = await _api.call(
-      request: ProposalRequest(
-        amount: amount,
-        barrier: barrier,
-        basis: basis,
-        currency: currency,
-        contractType: contractType,
-        symbol: symbol,
-        dateExpiry: dateExpiry == null
-            ? null
-            : dateExpiry.millisecondsSinceEpoch ~/ 1000,
-        durationUnit: durationUnit,
-        duration: duration,
+    final ProposalResponse response = await _api.call(request: proposalRequest);
+
+    checkForException(
+      response: response,
+      exceptionCreator: (String message) => ContractOperationException(
+        message: message,
       ),
     );
 
-    if (proposalResponse.error != null) {
-      throw ContractOperationException(
-          message: proposalResponse.error['message']);
-    }
-
-    return PriceProposal.fromJson(proposalResponse.proposal);
+    return PriceProposal.fromJson(response.proposal);
   }
 
   /// Buy this proposal contract
-  Future<BuyContractModel> buy({double price}) async {
+  Future<BuyContract> buy({double price}) async {
     final BuyResponse buyResponse = await _api.call(
       request: BuyRequest(
         buy: id,
-        price: price,
+        price: price ?? askPrice,
       ),
     );
 

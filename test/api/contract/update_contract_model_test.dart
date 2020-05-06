@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/contract/models/history_spot_price_model.dart';
-import 'package:flutter_deriv_api/api/contract/update_contract.dart';
+import 'package:flutter_deriv_api/api/contract/operation/update_contract.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'contract_update_history_mock_data.dart';

@@ -48,19 +48,11 @@ class ContractsForSymbol extends ContractsForSymbolModel {
 
   /// Fetch contracts for given [symbol]
   /// For parameters information refer to [ContractsForRequest]
-  static Future<ContractsForSymbol> getContractsForSymbol({
-    String symbol = 'R_10',
-    String currency,
-    String landingCompany,
-    String productType,
-  }) async {
+  static Future<ContractsForSymbol> getContractsForSymbol(
+    ContractsForRequest request,
+  ) async {
     final ContractsForResponse contractsForResponse = await _api.call(
-      request: ContractsForRequest(
-        contractsFor: symbol,
-        currency: currency,
-        landingCompany: landingCompany,
-        productType: productType,
-      ),
+      request: request,
     );
 
     if (contractsForResponse.error != null) {

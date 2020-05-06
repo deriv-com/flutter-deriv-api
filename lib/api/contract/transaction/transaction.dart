@@ -1,5 +1,10 @@
 import 'package:flutter_deriv_api/api/contract/models/transaction_model.dart';
+import 'package:flutter_deriv_api/api/contract/transaction/exceptions/transactions_exception.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Transaction of user
@@ -72,6 +77,21 @@ class Transaction extends TransactionModel {
         transactionId: json['transaction_id'],
         transactionTime: getDateTime(json['transaction_time']),
       );
+
+  /// API instance
+  static final BasicBinaryAPI _api =
+      Injector.getInjector().get<BasicBinaryAPI>();
+
+  /// Subscribe to account's transactions
+  static Stream<Transaction> getTransactions(TransactionRequest request) =>
+      _api.subscribe(request: request).map<Transaction>((Response response) {
+        if (response.error != null) {
+          throw TransactionsException(message: response.error['message']);
+        }
+
+        final TransactionResponse transactionResponse = response;
+        return Transaction.fromJson(transactionResponse.transaction);
+      });
 
   /// Generate a copy of instance with given parameters
   TransactionModel copyWith({

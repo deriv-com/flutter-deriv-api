@@ -97,11 +97,16 @@ void main() {
     try {
       final PriceProposal priceProposal =
           await PriceProposal.getPriceForContract(
-        symbol: 'R_100',
-        durationUnit: 'm',
-        duration: 2,
-        barrier: '+0.1',
-        amount: 100,
+        proposalRequest: const ProposalRequest(
+          symbol: 'R_100',
+          durationUnit: 'm',
+          duration: 2,
+          barrier: '+0.1',
+          amount: 100,
+          basis: 'payout',
+          contractType: 'CALL',
+          currency: 'USD',
+        ),
       );
 
       final BuyContract boughtContract = await priceProposal.buy(price: 100);
