@@ -14,8 +14,8 @@ const List<String> _ignoredParameters = <String>[
   'error',
 ];
 
-/// [JsonSchemaParser] is a utility class for extracting main and nested classes from json schema contents.
-/// for using this utility first you should call `getModel()` method and pass decoded json schema to it,
+/// [JsonSchemaParser] is a utility class for extracting main and nested classes from JSON schema contents.
+/// for using this utility first you should call `getModel()` method and pass decoded JSON schema to it,
 /// then pass the result as `models` parameter to `getClasses()` method.
 /// result is a string that contains main class and all related classes of that schema file include:
 /// model classes, constructor, properties,  toJson, fromJson, and copyWith methods.
@@ -76,9 +76,9 @@ class JsonSchemaParser {
           class $className extends ${className}Model {
             /// Initializes
             ${_generateContractor(className: className, models: models)}
-            /// Creates an instance from json
+            /// Creates an instance from JSON
             ${_generateFromJson(className: className, models: models)}
-            /// Converts an instance to json
+            /// Converts an instance to JSON
             ${_generateToJson(models: models)}
             /// Creates a copy of instance with given parameters
             ${_copyWith(className: className, models: models)}
@@ -247,7 +247,7 @@ class JsonSchemaParser {
     return result;
   }
 
-  /// Pass decoded json schema to this method for getting list of objects
+  /// Pass decoded JSON schema to this method for getting list of objects
   static List<_SchemaModel> getModel({
     @required Map<String, dynamic> schema,
   }) {
