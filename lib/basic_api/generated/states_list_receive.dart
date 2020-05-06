@@ -22,7 +22,7 @@ class StatesListResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory StatesListResponse.fromJson(Map<String, dynamic> json) =>
       _$StatesListResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class StatesListResponse extends Response {
   /// List of states.
   final List<Map<String, dynamic>> statesList;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$StatesListResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   StatesListResponse copyWith({
     List<Map<String, dynamic>> statesList,

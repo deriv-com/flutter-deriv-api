@@ -37,7 +37,7 @@ class ProposalRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory ProposalRequest.fromJson(Map<String, dynamic> json) =>
       _$ProposalRequestFromJson(json);
 
@@ -99,11 +99,11 @@ class ProposalRequest extends Request {
   /// [Optional] Required only for multi-barrier trading. Defines the epoch value of the trading period start time.
   final int tradingPeriodStart;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ProposalRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   ProposalRequest copyWith({
     num amount,

@@ -1,10 +1,8 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/models/p2p_order_model.dart';
-import 'package:flutter_deriv_api/utils/enum_helper.dart';
+import 'package:flutter_deriv_api/api/p2p/models/p2p_order_model.dart';
+import 'package:flutter_deriv_api/api/p2p/p2p_advert/p2p_advert.dart';
+import 'package:flutter_deriv_api/api/p2p/p2p_advertiser/p2p_advertiser.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
-
-import '../p2p_advert/p2p_advert.dart';
-import '../p2p_advertiser/p2p_advertiser.dart';
 
 /// P2P order class
 class P2POrder extends P2POrderModel {
@@ -49,7 +47,7 @@ class P2POrder extends P2POrderModel {
           type: type,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory P2POrder.fromJson(Map<String, dynamic> json) => P2POrder(
         accountCurrency: json['account_currency'],
         advertDetails: P2PAdvert.fromJson(json['advert_details']),
@@ -66,18 +64,18 @@ class P2POrder extends P2POrderModel {
         priceDisplay: json['price_display'],
         rate: json['rate']?.toDouble(),
         rateDisplay: json['rate_display'],
-        status: EnumHelper.getEnum(
+        status: getEnumFromString(
           values: OrderStatusType.values,
           name: json['status'],
         ),
         paymentInfo: json['payment_info'],
-        type: EnumHelper.getEnum(
+        type: getEnumFromString(
           values: OrderType.values,
           name: json['type'],
         ),
       );
 
-  /// Clones a new instance
+  /// Generate a copy of instance with given parameters
   P2POrder copyWith({
     String accountCurrency,
     P2PAdvert advertDetails,

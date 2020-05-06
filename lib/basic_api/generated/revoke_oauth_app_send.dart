@@ -19,7 +19,7 @@ class RevokeOauthAppRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory RevokeOauthAppRequest.fromJson(Map<String, dynamic> json) =>
       _$RevokeOauthAppRequestFromJson(json);
 
@@ -27,11 +27,11 @@ class RevokeOauthAppRequest extends Request {
   /// The application ID to revoke.
   final int revokeOauthApp;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$RevokeOauthAppRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   RevokeOauthAppRequest copyWith({
     int revokeOauthApp,

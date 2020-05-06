@@ -36,7 +36,7 @@ class SetFinancialAssessmentRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory SetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       _$SetFinancialAssessmentRequestFromJson(json);
 
@@ -95,11 +95,11 @@ class SetFinancialAssessmentRequest extends Request {
   /// [Optional] Source of wealth.
   final String sourceOfWealth;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$SetFinancialAssessmentRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   SetFinancialAssessmentRequest copyWith({
     String accountTurnover,

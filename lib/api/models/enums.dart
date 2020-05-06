@@ -129,8 +129,8 @@ enum TokenScope {
   admin,
 }
 
-/// Statement transaction action type
-enum StatementTransactionActionType {
+/// Transaction action type
+enum TransactionActionType {
   /// Buy
   buy,
 
@@ -231,4 +231,22 @@ enum TransactionType {
 enum PaymentMethod {
   /// Bank Transfer
   bankTransfer,
+}
+
+/// Contract status
+enum ContractStatus {
+  /// Open contract
+  open,
+
+  /// Sold contract
+  sold,
+
+  /// Won contract
+  won,
+
+  /// Lost contract
+  lost,
+
+  /// Cancelled contract
+  cancelled,
 }

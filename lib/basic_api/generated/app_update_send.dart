@@ -28,7 +28,7 @@ class AppUpdateRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory AppUpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$AppUpdateRequestFromJson(json);
 
@@ -63,11 +63,11 @@ class AppUpdateRequest extends Request {
   /// [Optional] Used when `verify_email` called. If available, a URL containing the verification token will send to the client's email, otherwise only the token will be sent.
   final String verificationUri;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AppUpdateRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   AppUpdateRequest copyWith({
     num appMarkupPercentage,

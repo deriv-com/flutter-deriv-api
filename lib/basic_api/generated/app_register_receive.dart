@@ -22,7 +22,7 @@ class AppRegisterResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory AppRegisterResponse.fromJson(Map<String, dynamic> json) =>
       _$AppRegisterResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class AppRegisterResponse extends Response {
   /// The information of the created application.
   final Map<String, dynamic> appRegister;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AppRegisterResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   AppRegisterResponse copyWith({
     Map<String, dynamic> appRegister,

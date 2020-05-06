@@ -22,7 +22,7 @@ class ContractUpdateResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory ContractUpdateResponse.fromJson(Map<String, dynamic> json) =>
       _$ContractUpdateResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class ContractUpdateResponse extends Response {
   /// Contains the update status of the request
   final Map<String, dynamic> contractUpdate;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ContractUpdateResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   ContractUpdateResponse copyWith({
     Map<String, dynamic> contractUpdate,

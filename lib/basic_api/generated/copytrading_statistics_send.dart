@@ -20,7 +20,7 @@ class CopytradingStatisticsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory CopytradingStatisticsRequest.fromJson(Map<String, dynamic> json) =>
       _$CopytradingStatisticsRequestFromJson(json);
 
@@ -31,11 +31,11 @@ class CopytradingStatisticsRequest extends Request {
   /// The ID of the target trader.
   final String traderId;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$CopytradingStatisticsRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   CopytradingStatisticsRequest copyWith({
     int copytradingStatistics,

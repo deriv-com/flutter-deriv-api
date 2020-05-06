@@ -22,7 +22,7 @@ class PayoutCurrenciesResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory PayoutCurrenciesResponse.fromJson(Map<String, dynamic> json) =>
       _$PayoutCurrenciesResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class PayoutCurrenciesResponse extends Response {
   /// Available payout currencies. Note: if a user is logged in, only the currency available for the account will be returned.
   final List<String> payoutCurrencies;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$PayoutCurrenciesResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   PayoutCurrenciesResponse copyWith({
     List<String> payoutCurrencies,

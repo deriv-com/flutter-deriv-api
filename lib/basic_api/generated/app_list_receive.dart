@@ -22,7 +22,7 @@ class AppListResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory AppListResponse.fromJson(Map<String, dynamic> json) =>
       _$AppListResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class AppListResponse extends Response {
   /// List of created applications for the authorized account.
   final List<Map<String, dynamic>> appList;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AppListResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   AppListResponse copyWith({
     List<Map<String, dynamic>> appList,

@@ -22,7 +22,7 @@ class Mt5PasswordCheckResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory Mt5PasswordCheckResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordCheckResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class Mt5PasswordCheckResponse extends Response {
   /// `1` on success
   final int mt5PasswordCheck;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5PasswordCheckResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   Mt5PasswordCheckResponse copyWith({
     int mt5PasswordCheck,

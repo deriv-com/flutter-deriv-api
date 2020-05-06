@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/base_call_man
 
 /// Api call manager abstract class
 class CallManager extends BaseCallManager<Future<Response>> {
-  /// Class constructor
+  /// Initializes
   CallManager(BasicBinaryAPI api) : super(api);
 
   @override

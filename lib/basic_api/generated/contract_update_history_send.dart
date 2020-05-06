@@ -20,7 +20,7 @@ class ContractUpdateHistoryRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory ContractUpdateHistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$ContractUpdateHistoryRequestFromJson(json);
 
@@ -31,11 +31,11 @@ class ContractUpdateHistoryRequest extends Request {
   /// Must be `1`
   final int contractUpdateHistory;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ContractUpdateHistoryRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   ContractUpdateHistoryRequest copyWith({
     int contractId,
