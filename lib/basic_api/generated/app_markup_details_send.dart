@@ -28,7 +28,7 @@ class AppMarkupDetailsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>
       _$AppMarkupDetailsRequestFromJson(json);
 
@@ -63,7 +63,7 @@ class AppMarkupDetailsRequest extends Request {
   /// [Optional] One or more of the specified fields to sort on. Default sort field is by `transaction_time`.
   final List<String> sortFields;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AppMarkupDetailsRequestToJson(this);
 

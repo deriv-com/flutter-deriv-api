@@ -22,7 +22,7 @@ class ContractsForRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory ContractsForRequest.fromJson(Map<String, dynamic> json) =>
       _$ContractsForRequestFromJson(json);
 
@@ -39,7 +39,7 @@ class ContractsForRequest extends Request {
   /// [Optional] If you specify this field, only contracts tradable through that contract type will be returned.
   final String productType;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ContractsForRequestToJson(this);
 

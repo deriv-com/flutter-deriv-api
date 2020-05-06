@@ -22,7 +22,7 @@ class Mt5LoginListResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory Mt5LoginListResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5LoginListResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class Mt5LoginListResponse extends Response {
   /// Array containing MT5 account objects.
   final List<Map<String, dynamic>> mt5LoginList;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5LoginListResponseToJson(this);
 

@@ -11,7 +11,7 @@ class AccountAuthenticationDocumentModel extends APIBaseModel {
     this.status,
   });
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory AccountAuthenticationDocumentModel.fromJson(
     Map<String, dynamic> json,
   ) =>

@@ -20,7 +20,7 @@ class TransactionRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory TransactionRequest.fromJson(Map<String, dynamic> json) =>
       _$TransactionRequestFromJson(json);
 
@@ -31,7 +31,7 @@ class TransactionRequest extends Request {
   /// Must be `1`
   final int transaction;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TransactionRequestToJson(this);
 

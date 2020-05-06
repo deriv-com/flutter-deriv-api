@@ -9,7 +9,7 @@ class LandingCompanyCurrencyModel extends APIBaseModel {
     this.market,
   });
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory LandingCompanyCurrencyModel.fromJson(
     String marketName,
     Map<String, dynamic> currenciesMap,

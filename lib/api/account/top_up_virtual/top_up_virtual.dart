@@ -11,7 +11,7 @@ class TopUpVirtual extends TopUpVirtualModel {
           currency: currency,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory TopUpVirtual.fromJson(Map<String, dynamic> json) => TopUpVirtual(
         amount: json['amount']?.toDouble(),
         currency: json['currency'],

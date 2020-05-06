@@ -22,7 +22,7 @@ class AppGetResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory AppGetResponse.fromJson(Map<String, dynamic> json) =>
       _$AppGetResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class AppGetResponse extends Response {
   /// The information of the requested application.
   final Map<String, dynamic> appGet;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AppGetResponseToJson(this);
 

@@ -5,7 +5,7 @@ class CancellationInfoModel {
   /// Initializes
   CancellationInfoModel(this.askPrice, this.dateExpiry);
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory CancellationInfoModel.fromJson(Map<String, dynamic> json) =>
       CancellationInfoModel(
         json['ask_price'],

@@ -22,7 +22,7 @@ class NewAccountVirtualResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory NewAccountVirtualResponse.fromJson(Map<String, dynamic> json) =>
       _$NewAccountVirtualResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class NewAccountVirtualResponse extends Response {
   /// New virtual-money account details
   final Map<String, dynamic> newAccountVirtual;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$NewAccountVirtualResponseToJson(this);
 

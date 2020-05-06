@@ -10,7 +10,7 @@ import 'package:flutter_deriv_api/api/common/trading/trading_times.dart';
 import 'trading_times_model_mock_data.dart';
 
 void main() {
-  test('trading times json parsing', () {
+  test('trading times JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(tradingTimesModelMockData);
     final TradingTimes tradingTimes =
         TradingTimes.fromJson(mapData['trading_times']);

@@ -38,7 +38,7 @@ class Authorize extends AuthorizeModel {
           userId: userId,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory Authorize.fromJson(Map<String, dynamic> json) => Authorize(
         accountList: getListFromMap(
           json['account_list'],

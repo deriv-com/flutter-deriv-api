@@ -8,7 +8,7 @@ class MT5PasswordCheckModel extends APIBaseModel {
     this.succeeded,
   });
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory MT5PasswordCheckModel.fromJson(Map<String, dynamic> json) =>
       MT5PasswordCheckModel(
         succeeded: getBool(json['mt5_password_check']),

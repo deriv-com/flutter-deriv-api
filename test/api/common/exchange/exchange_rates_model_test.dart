@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'exchange_rates_model_mock_data.dart';
 
 void main() {
-  test('exchange rates json parsing', () {
+  test('exchange rates JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(exchangeRatesModelMockData);
     final ExchangeRates exchangeRates =
         ExchangeRates.fromJson(mapData['exchange_rates']);

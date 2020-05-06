@@ -21,7 +21,7 @@ class ProposalOpenContractRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>
       _$ProposalOpenContractRequestFromJson(json);
 
@@ -35,7 +35,7 @@ class ProposalOpenContractRequest extends Request {
   /// [Optional] `1` to stream.
   final int subscribe;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ProposalOpenContractRequestToJson(this);
 

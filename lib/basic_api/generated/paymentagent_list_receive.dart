@@ -22,7 +22,7 @@ class PaymentagentListResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory PaymentagentListResponse.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentListResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class PaymentagentListResponse extends Response {
   /// Payment Agent List
   final Map<String, dynamic> paymentagentList;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$PaymentagentListResponseToJson(this);
 

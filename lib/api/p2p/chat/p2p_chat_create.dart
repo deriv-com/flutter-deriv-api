@@ -11,7 +11,7 @@ class P2PChatCreate extends P2PChatCreateModel {
           orderId: orderId,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory P2PChatCreate.fromJson(Map<String, dynamic> json) => P2PChatCreate(
         channelUrl: json['channel_url'],
         orderId: json['order_id'],

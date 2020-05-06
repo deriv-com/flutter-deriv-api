@@ -21,7 +21,7 @@ class VerifyEmailRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory VerifyEmailRequest.fromJson(Map<String, dynamic> json) =>
       _$VerifyEmailRequestFromJson(json);
 
@@ -35,7 +35,7 @@ class VerifyEmailRequest extends Request {
   /// Email address to be verified.
   final String verifyEmail;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$VerifyEmailRequestToJson(this);
 

@@ -17,7 +17,7 @@ class CancelContract extends CancelContractModel {
           transactionId: transactionId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory CancelContract.fromJson(Map<String, dynamic> json) => CancelContract(
         balanceAfter: json['balance_after']?.toDouble(),
         contractId: json['contract_id'],

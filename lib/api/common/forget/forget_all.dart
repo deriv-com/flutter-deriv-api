@@ -10,7 +10,7 @@ class ForgetAll extends ForgetAllModel {
           forgetAll: forgetAll,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory ForgetAll.fromJson(Map<String, dynamic> json) => ForgetAll(
         forgetAll: getListFromMap(json['forget_all']),
       );

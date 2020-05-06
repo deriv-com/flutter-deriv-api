@@ -13,7 +13,7 @@ class Residence extends ResidenceModel {
           countryCode: countryCode,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory Residence.fromJson(
     Map<String, dynamic> json,
   ) =>

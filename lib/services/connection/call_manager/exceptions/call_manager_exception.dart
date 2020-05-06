@@ -9,5 +9,5 @@ class CallManagerException implements Exception {
   String message;
 
   @override
-  String toString() => 'Call Manager Exception: $message';
+  String toString() => '$runtimeType: $message';
 }

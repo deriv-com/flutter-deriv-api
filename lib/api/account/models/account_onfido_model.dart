@@ -9,7 +9,7 @@ class AccountOnfidoModel extends APIBaseModel {
     this.isCountrySupported,
   });
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory AccountOnfidoModel.fromJson(Map<String, dynamic> json) =>
       AccountOnfidoModel(
         documents: getListFromMap(json['documents']),

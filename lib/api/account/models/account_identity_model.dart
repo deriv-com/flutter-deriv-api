@@ -13,7 +13,7 @@ class AccountIdentityModel extends APIBaseModel {
     this.status,
   });
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory AccountIdentityModel.fromJson(Map<String, dynamic> json) =>
       AccountIdentityModel(
         expiryDate: getDateTime(json['expiry_date']),

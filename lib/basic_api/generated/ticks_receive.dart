@@ -23,7 +23,7 @@ class TicksResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory TicksResponse.fromJson(Map<String, dynamic> json) =>
       _$TicksResponseFromJson(json);
 
@@ -34,7 +34,7 @@ class TicksResponse extends Response {
   /// Tick by tick list of streamed data
   final Map<String, dynamic> tick;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TicksResponseToJson(this);
 

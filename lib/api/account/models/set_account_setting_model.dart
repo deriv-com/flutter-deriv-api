@@ -6,7 +6,7 @@ class SetAccountSettingModel extends APIBaseModel {
   /// Initializes
   SetAccountSettingModel({this.succeeded});
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory SetAccountSettingModel.fromJson(
     Map<String, dynamic> json,
   ) =>

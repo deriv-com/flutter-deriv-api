@@ -19,7 +19,7 @@ class GetSettingsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       _$GetSettingsRequestFromJson(json);
 
@@ -27,7 +27,7 @@ class GetSettingsRequest extends Request {
   /// Must be `1`
   final int getSettings;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$GetSettingsRequestToJson(this);
 

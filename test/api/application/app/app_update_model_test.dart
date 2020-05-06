@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/application/app/app_update.dart';
 import 'app_update_model_mock_data.dart';
 
 void main() {
-  test('app update json parsing', () {
+  test('app update JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(appUpdateModelMockData);
     final AppUpdate appUpdate = AppUpdate.fromJson(mapData);
 

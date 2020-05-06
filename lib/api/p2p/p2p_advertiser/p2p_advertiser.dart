@@ -29,7 +29,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
           paymentInfo: paymentInfo,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory P2PAdvertiser.fromJson(Map<String, dynamic> json) => P2PAdvertiser(
         chatToken: json['chat_token'],
         chatUserId: json['chat_user_id'],

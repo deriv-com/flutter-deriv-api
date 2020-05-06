@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'forget_all_model_mock_data.dart';
 
 void main() {
-  test('forget all json parsing', () {
+  test('forget all JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(forgetAllModelMockData);
     final ForgetAll forgetAll = ForgetAll.fromJson(mapData);
 

@@ -23,7 +23,7 @@ class Mt5PasswordResetRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory Mt5PasswordResetRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordResetRequestFromJson(json);
 
@@ -43,7 +43,7 @@ class Mt5PasswordResetRequest extends Request {
   /// Email verification code (received from a `verify_email` call, which must be done first)
   final String verificationCode;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5PasswordResetRequestToJson(this);
 

@@ -21,7 +21,7 @@ class BalanceRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory BalanceRequest.fromJson(Map<String, dynamic> json) =>
       _$BalanceRequestFromJson(json);
 
@@ -35,7 +35,7 @@ class BalanceRequest extends Request {
   /// [Optional] If set to 1, will send updates whenever the balance changes.
   final int subscribe;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$BalanceRequestToJson(this);
 

@@ -16,7 +16,7 @@ class TickHistory extends TickHistoryModel {
           pipSize,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory TickHistory.fromJson(Map<String, dynamic> json) => TickHistory(
         candles: getListFromMap(
           json['candles'],

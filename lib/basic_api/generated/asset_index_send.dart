@@ -20,7 +20,7 @@ class AssetIndexRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory AssetIndexRequest.fromJson(Map<String, dynamic> json) =>
       _$AssetIndexRequestFromJson(json);
 
@@ -31,7 +31,7 @@ class AssetIndexRequest extends Request {
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
   final String landingCompany;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AssetIndexRequestToJson(this);
 

@@ -19,7 +19,7 @@ class GetSelfExclusionRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory GetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       _$GetSelfExclusionRequestFromJson(json);
 
@@ -27,7 +27,7 @@ class GetSelfExclusionRequest extends Request {
   /// Must be `1`
   final int getSelfExclusion;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$GetSelfExclusionRequestToJson(this);
 

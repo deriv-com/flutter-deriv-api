@@ -13,7 +13,7 @@ class ApiCallLimitModel extends APIBaseModel {
     this.maxRequestsPricing,
   });
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory ApiCallLimitModel.fromJson(
     Map<String, dynamic> json,
   ) =>

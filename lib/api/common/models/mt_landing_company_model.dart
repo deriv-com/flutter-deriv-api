@@ -10,7 +10,7 @@ class MTLandingCompanyModel extends APIBaseModel {
     this.standard,
   });
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory MTLandingCompanyModel.fromJson(
     Map<String, dynamic> json,
   ) =>

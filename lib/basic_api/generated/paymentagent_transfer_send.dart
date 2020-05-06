@@ -24,7 +24,7 @@ class PaymentagentTransferRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory PaymentagentTransferRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentTransferRequestFromJson(json);
 
@@ -47,7 +47,7 @@ class PaymentagentTransferRequest extends Request {
   /// The loginid of the recipient account.
   final String transferTo;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$PaymentagentTransferRequestToJson(this);
 

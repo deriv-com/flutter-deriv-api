@@ -20,7 +20,7 @@ class AuthorizeRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory AuthorizeRequest.fromJson(Map<String, dynamic> json) =>
       _$AuthorizeRequestFromJson(json);
 
@@ -31,7 +31,7 @@ class AuthorizeRequest extends Request {
   /// Authentication token. May be retrieved from https://www.binary.com/en/user/security/api_tokenws.html
   final String authorize;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AuthorizeRequestToJson(this);
 

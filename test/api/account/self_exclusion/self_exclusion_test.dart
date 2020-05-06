@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'self_exclusion_mock_data.dart';
 
 void main() {
-  test('self exclusive json parsing', () {
+  test('self exclusive JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(selfExclusiveMockData);
     final SelfExclusion selfExclusive = SelfExclusion.fromJson(mapData);
 

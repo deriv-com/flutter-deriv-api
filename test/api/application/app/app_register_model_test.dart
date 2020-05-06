@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/application/app/app_register.dart';
 import 'app_register_model_mock_data.dart';
 
 void main() {
-  test('app register json parsing', () {
+  test('app register JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(appRegisterModelMockData);
     final AppRegister appRegister = AppRegister.fromJson(mapData);
 

@@ -19,7 +19,7 @@ class TimeRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory TimeRequest.fromJson(Map<String, dynamic> json) =>
       _$TimeRequestFromJson(json);
 
@@ -27,7 +27,7 @@ class TimeRequest extends Request {
   /// Must be `1`
   final int time;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TimeRequestToJson(this);
 

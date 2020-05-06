@@ -9,7 +9,7 @@ import 'package:flutter_deriv_api/api/common/models/trading_duration_data_model.
 import 'trading_duration_model_mock_data.dart';
 
 void main() {
-  test('trading duration json parsing', () {
+  test('trading duration JSON parsing', () {
     final Map<String, dynamic> mapData =
         jsonDecode(tradingDurationModelMockData);
     final TradingDuration tradeDuration =

@@ -25,7 +25,7 @@ class StatementRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>
       _$StatementRequestFromJson(json);
 
@@ -51,7 +51,7 @@ class StatementRequest extends Request {
   /// Must be `1`
   final int statement;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$StatementRequestToJson(this);
 

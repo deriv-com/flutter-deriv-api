@@ -23,7 +23,7 @@ class TransactionResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory TransactionResponse.fromJson(Map<String, dynamic> json) =>
       _$TransactionResponseFromJson(json);
 
@@ -34,7 +34,7 @@ class TransactionResponse extends Response {
   /// Realtime stream of user transaction updates.
   final Map<String, dynamic> transaction;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TransactionResponseToJson(this);
 

@@ -11,7 +11,7 @@ class State extends StateModel {
           value: value,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory State.fromJson(Map<String, dynamic> json) => State(
         text: json['text'],
         value: json['value'],

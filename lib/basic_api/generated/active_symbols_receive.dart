@@ -22,7 +22,7 @@ class ActiveSymbolsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory ActiveSymbolsResponse.fromJson(Map<String, dynamic> json) =>
       _$ActiveSymbolsResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class ActiveSymbolsResponse extends Response {
   /// List of active symbols.
   final List<Map<String, dynamic>> activeSymbols;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ActiveSymbolsResponseToJson(this);
 

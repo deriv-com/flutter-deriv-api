@@ -19,7 +19,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
           transactionId: transactionId,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory TransferBetweenAccounts.fromJson(Map<String, dynamic> json) =>
       TransferBetweenAccounts(
         transferBetweenAccounts: getBool(json['transfer_between_accounts']),

@@ -22,7 +22,7 @@ class GetLimitsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory GetLimitsResponse.fromJson(Map<String, dynamic> json) =>
       _$GetLimitsResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class GetLimitsResponse extends Response {
   /// Trading limits of real account user
   final Map<String, dynamic> getLimits;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$GetLimitsResponseToJson(this);
 

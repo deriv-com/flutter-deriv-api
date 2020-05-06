@@ -8,7 +8,7 @@ class SetAccountCurrencyModel extends APIBaseModel {
     this.succeeded,
   });
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory SetAccountCurrencyModel.fromJson(Map<String, dynamic> json) =>
       SetAccountCurrencyModel(
         succeeded: getBool(json['set_account_currency']),

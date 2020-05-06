@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/application/new_account/new_account_virtua
 import 'new_account_virtual_model_mock_data.dart';
 
 void main() {
-  test('new account virtual json parsing', () {
+  test('new account virtual JSON parsing', () {
     final Map<String, dynamic> mapData =
         jsonDecode(newAccountVirtualModelMockData);
     final NewAccountVirtual newAccountVirtual =

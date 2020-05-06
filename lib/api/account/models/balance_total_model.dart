@@ -8,7 +8,7 @@ class BalanceTotalModel extends APIBaseModel {
   /// Initializes
   BalanceTotalModel({this.mt5, this.real});
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory BalanceTotalModel.fromJson(
     Map<String, dynamic> json,
   ) =>

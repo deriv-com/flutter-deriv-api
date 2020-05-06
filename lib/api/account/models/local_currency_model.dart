@@ -8,7 +8,7 @@ class LocalCurrencyModel extends APIBaseModel {
     this.fractionalDigits,
   });
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory LocalCurrencyModel.fromJson(Map<String, dynamic> json) =>
       LocalCurrencyModel(
         currencyCode: json['key'],

@@ -1,5 +1,5 @@
 import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
-import 'injector.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// Module Container
 class ModuleContainer {

@@ -19,7 +19,7 @@ class CancelRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory CancelRequest.fromJson(Map<String, dynamic> json) =>
       _$CancelRequestFromJson(json);
 
@@ -27,7 +27,7 @@ class CancelRequest extends Request {
   /// Value should be the `contract_id` which received from the `portfolio` call.
   final int cancel;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$CancelRequestToJson(this);
 

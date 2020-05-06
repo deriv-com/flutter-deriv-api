@@ -11,7 +11,7 @@ class SubmarketModel extends APIBaseModel {
     this.symbols,
   });
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory SubmarketModel.fromJson(Map<String, dynamic> json) => SubmarketModel(
         displayName: json['display_name'],
         name: json['name'],

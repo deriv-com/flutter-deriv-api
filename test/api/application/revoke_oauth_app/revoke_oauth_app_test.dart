@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/application/revoke_oauth_app/revoke_oauth_
 import 'revoke_oauth_app_mock_date.dart';
 
 void main() {
-  test('revoke oauth app json parsing', () {
+  test('revoke oauth app JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(revokeOauthAppMockData);
     final RevokeOauthApp revokeOauthApp = RevokeOauthApp.fromJson(mapData);
 

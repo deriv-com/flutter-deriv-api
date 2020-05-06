@@ -6,7 +6,7 @@ class LandingCompanyConfigModel extends APIBaseModel {
   /// Initializes
   LandingCompanyConfigModel({this.taxDetailsRequired});
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory LandingCompanyConfigModel.fromJson(
     Map<String, dynamic> json,
   ) =>

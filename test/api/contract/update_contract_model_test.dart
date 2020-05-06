@@ -9,7 +9,7 @@ import 'contract_update_history_mock_data.dart';
 import 'update_contract_model_mock_data.dart';
 
 void main() {
-  test('update contract json parsing', () {
+  test('update contract JSON parsing', () {
     final Map<String, dynamic> mapData =
         jsonDecode(updateContractModelMockData);
     final UpdateContract updateContract =

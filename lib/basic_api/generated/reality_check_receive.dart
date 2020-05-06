@@ -22,7 +22,7 @@ class RealityCheckResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory RealityCheckResponse.fromJson(Map<String, dynamic> json) =>
       _$RealityCheckResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class RealityCheckResponse extends Response {
   /// Reality check summary of trades.
   final Map<String, dynamic> realityCheck;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$RealityCheckResponseToJson(this);
 

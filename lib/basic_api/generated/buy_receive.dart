@@ -23,7 +23,7 @@ class BuyResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory BuyResponse.fromJson(Map<String, dynamic> json) =>
       _$BuyResponseFromJson(json);
 
@@ -34,7 +34,7 @@ class BuyResponse extends Response {
   /// For subscription requests only.
   final Map<String, dynamic> subscription;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$BuyResponseToJson(this);
 

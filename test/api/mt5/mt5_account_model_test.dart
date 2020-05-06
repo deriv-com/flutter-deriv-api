@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/api/mt5/mt5_account.dart';
 import 'mt5_account_model_mock_data.dart';
 
 void main() {
-  test('mt5 account json parsing', () {
+  test('mt5 account JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(mt5AccountModelMockData);
     final MT5Account mt5Account =
         MT5Account.fromJson(mapData['mt5_login_list'][0]);

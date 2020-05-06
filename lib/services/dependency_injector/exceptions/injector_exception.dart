@@ -7,5 +7,5 @@ class InjectorException implements Exception {
   String message;
 
   @override
-  String toString() => 'Injector Exception: $message';
+  String toString() => '$runtimeType: $message';
 }

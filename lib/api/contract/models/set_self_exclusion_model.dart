@@ -8,7 +8,7 @@ class SetSelfExclusionModel extends APIBaseModel {
     this.setSelfExclusion,
   });
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory SetSelfExclusionModel.fromJson(Map<String, dynamic> json) =>
       SetSelfExclusionModel(
         setSelfExclusion: getBool(json['set_self_exclusion']),

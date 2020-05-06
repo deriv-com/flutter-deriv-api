@@ -18,7 +18,7 @@ import 'price_proposal_mock_data.dart';
 import 'sell_contract_mock_data.dart';
 
 void main() {
-  test('Price proposal json parsing', () {
+  test('Price proposal JSON parsing', () {
     final Map<String, dynamic> proposalMap = jsonDecode(priceProposalJson);
     final PriceProposal priceProposal =
         PriceProposal.fromJson(proposalMap['proposal']);

@@ -23,7 +23,7 @@ class WebsiteStatusResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory WebsiteStatusResponse.fromJson(Map<String, dynamic> json) =>
       _$WebsiteStatusResponseFromJson(json);
 
@@ -34,7 +34,7 @@ class WebsiteStatusResponse extends Response {
   /// Server status and other information regarding general settings
   final Map<String, dynamic> websiteStatus;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$WebsiteStatusResponseToJson(this);
 

@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'active_symbols_mock_data.dart';
 
 void main() {
-  test('Active Symbols json parsing', () async {
+  test('Active Symbols JSON parsing', () async {
     final Map<String, dynamic> activeSymbolsMap = jsonDecode(activeSymbolsJson);
     final List<ActiveSymbol> activeSymbols = getListFromMap(
       activeSymbolsMap['active_symbols'],

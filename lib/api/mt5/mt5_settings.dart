@@ -38,7 +38,7 @@ class MT5Settings extends MT5SettingsModel {
           zipCode: zipCode,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory MT5Settings.fromJson(Map<String, dynamic> json) => MT5Settings(
         address: json['address'],
         balance: json['balance'],

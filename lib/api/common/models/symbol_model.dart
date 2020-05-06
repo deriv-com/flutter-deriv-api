@@ -14,7 +14,7 @@ class SymbolModel extends APIBaseModel {
     this.times,
   });
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory SymbolModel.fromJson(Map<String, dynamic> json) => SymbolModel(
         displayName: json['display_name'],
         name: json['name'],

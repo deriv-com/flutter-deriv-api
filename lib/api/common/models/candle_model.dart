@@ -12,7 +12,7 @@ class CandleModel extends APIBaseModel {
     this.open,
   });
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory CandleModel.fromJson(Map<String, dynamic> json) => CandleModel(
         close: json['close'],
         epoch: getDateTime(json['epoch']),

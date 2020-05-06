@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'payment_agent_withdraw_model_mock_data.dart';
 
 void main() {
-  test('payment agent withdraw json parsing', () {
+  test('payment agent withdraw JSON parsing', () {
     final Map<String, dynamic> mapData =
         jsonDecode(paymentAgentWithdrawModelMockData);
     final PaymentAgentWithdraw paymentAgentWithdraw =

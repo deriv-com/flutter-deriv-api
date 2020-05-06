@@ -22,7 +22,7 @@ class TradingDurationsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory TradingDurationsResponse.fromJson(Map<String, dynamic> json) =>
       _$TradingDurationsResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class TradingDurationsResponse extends Response {
   /// List of underlyings by their display name and symbol followed by their available contract types and trading duration boundaries.
   final List<Map<String, dynamic>> tradingDurations;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TradingDurationsResponseToJson(this);
 

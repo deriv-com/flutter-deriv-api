@@ -11,7 +11,7 @@ class Portfolio extends PortfolioModel {
           contracts: contracts,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory Portfolio.fromJson(
     Map<String, dynamic> json,
   ) =>

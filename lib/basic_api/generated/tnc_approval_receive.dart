@@ -22,7 +22,7 @@ class TncApprovalResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory TncApprovalResponse.fromJson(Map<String, dynamic> json) =>
       _$TncApprovalResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class TncApprovalResponse extends Response {
   /// Set terms and conditions 1: success
   final int tncApproval;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TncApprovalResponseToJson(this);
 

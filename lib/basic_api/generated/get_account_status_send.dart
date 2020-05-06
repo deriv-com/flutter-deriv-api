@@ -19,7 +19,7 @@ class GetAccountStatusRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory GetAccountStatusRequest.fromJson(Map<String, dynamic> json) =>
       _$GetAccountStatusRequestFromJson(json);
 
@@ -27,7 +27,7 @@ class GetAccountStatusRequest extends Request {
   /// Must be `1`
   final int getAccountStatus;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$GetAccountStatusRequestToJson(this);
 

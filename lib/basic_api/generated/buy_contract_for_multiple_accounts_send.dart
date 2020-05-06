@@ -22,7 +22,7 @@ class BuyContractForMultipleAccountsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory BuyContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       _$BuyContractForMultipleAccountsRequestFromJson(json);
@@ -40,7 +40,7 @@ class BuyContractForMultipleAccountsRequest extends Request {
   /// List of API tokens identifying the accounts for which the contract is bought. Note: If the same token appears multiple times or if multiple tokens designate the same account, the contract is bought multiple times for this account.
   final List<String> tokens;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() =>
       _$BuyContractForMultipleAccountsRequestToJson(this);

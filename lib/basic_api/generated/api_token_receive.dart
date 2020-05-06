@@ -22,7 +22,7 @@ class ApiTokenResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory ApiTokenResponse.fromJson(Map<String, dynamic> json) =>
       _$ApiTokenResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class ApiTokenResponse extends Response {
   /// Contains the result of API token according to the type of request.
   final Map<String, dynamic> apiToken;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ApiTokenResponseToJson(this);
 

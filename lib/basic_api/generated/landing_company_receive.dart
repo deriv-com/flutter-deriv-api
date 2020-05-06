@@ -22,7 +22,7 @@ class LandingCompanyResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory LandingCompanyResponse.fromJson(Map<String, dynamic> json) =>
       _$LandingCompanyResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class LandingCompanyResponse extends Response {
   /// Landing Company
   final Map<String, dynamic> landingCompany;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$LandingCompanyResponseToJson(this);
 

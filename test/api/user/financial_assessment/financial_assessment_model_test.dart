@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/user/financial_assessment/financial_assess
 import 'financial_assessment_model_mock_data.dart';
 
 void main() {
-  test('financial assessment json parsing', () {
+  test('financial assessment JSON parsing', () {
     final Map<String, dynamic> mapData =
         jsonDecode(financialAssessmentModelMockData);
     final FinancialAssessment financialAssessment =

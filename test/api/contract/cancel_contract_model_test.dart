@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/contract/cancel_contract.dart';
 import 'cancel_contract_model_mock_data.dart';
 
 void main() {
-  test('cancel contract json parsing', () {
+  test('cancel contract JSON parsing', () {
     final Map<String, dynamic> mapData =
         jsonDecode(cancelContractModelMockData);
     final CancelContract cancelContract =

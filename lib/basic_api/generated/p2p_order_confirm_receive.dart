@@ -22,7 +22,7 @@ class P2pOrderConfirmResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory P2pOrderConfirmResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderConfirmResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class P2pOrderConfirmResponse extends Response {
   /// Confirmation details
   final Map<String, dynamic> p2pOrderConfirm;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pOrderConfirmResponseToJson(this);
 

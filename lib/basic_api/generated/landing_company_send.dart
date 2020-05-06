@@ -19,7 +19,7 @@ class LandingCompanyRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory LandingCompanyRequest.fromJson(Map<String, dynamic> json) =>
       _$LandingCompanyRequestFromJson(json);
 
@@ -27,7 +27,7 @@ class LandingCompanyRequest extends Request {
   /// Client's 2-letter country code (obtained from `residence_list` call).
   final String landingCompany;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$LandingCompanyRequestToJson(this);
 

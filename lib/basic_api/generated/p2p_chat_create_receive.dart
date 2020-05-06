@@ -22,7 +22,7 @@ class P2pChatCreateResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory P2pChatCreateResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pChatCreateResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class P2pChatCreateResponse extends Response {
   /// Information of the P2P chat.
   final Map<String, dynamic> p2pChatCreate;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pChatCreateResponseToJson(this);
 

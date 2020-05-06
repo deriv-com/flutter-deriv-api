@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'reality_check_model_mock_data.dart';
 
 void main() {
-  test('revoke oauth app json parsing', () {
+  test('revoke oauth app JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(realityCheckModelMockData);
     final RealityCheck realityCheck =
         RealityCheck.fromJson(mapData['reality_check']);

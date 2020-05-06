@@ -22,7 +22,7 @@ class PortfolioResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory PortfolioResponse.fromJson(Map<String, dynamic> json) =>
       _$PortfolioResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class PortfolioResponse extends Response {
   /// Current account's open positions.
   final Map<String, dynamic> portfolio;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$PortfolioResponseToJson(this);
 

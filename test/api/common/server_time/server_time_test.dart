@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'server_time_mock_date.dart';
 
 void main() {
-  test('server time json parsing', () {
+  test('server time JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(serverTimeModelMockData);
     final ServerTime serverTime = ServerTime.fromJson(mapData);
 

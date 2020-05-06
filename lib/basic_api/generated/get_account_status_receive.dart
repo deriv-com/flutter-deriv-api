@@ -22,7 +22,7 @@ class GetAccountStatusResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory GetAccountStatusResponse.fromJson(Map<String, dynamic> json) =>
       _$GetAccountStatusResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class GetAccountStatusResponse extends Response {
   /// Account status details
   final Map<String, dynamic> getAccountStatus;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$GetAccountStatusResponseToJson(this);
 

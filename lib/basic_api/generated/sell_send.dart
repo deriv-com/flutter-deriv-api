@@ -20,7 +20,7 @@ class SellRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory SellRequest.fromJson(Map<String, dynamic> json) =>
       _$SellRequestFromJson(json);
 
@@ -31,7 +31,7 @@ class SellRequest extends Request {
   /// Pass contract_id received from the `portfolio` call.
   final int sell;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$SellRequestToJson(this);
 

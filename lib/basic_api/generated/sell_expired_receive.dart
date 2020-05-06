@@ -22,7 +22,7 @@ class SellExpiredResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory SellExpiredResponse.fromJson(Map<String, dynamic> json) =>
       _$SellExpiredResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class SellExpiredResponse extends Response {
   /// Sell expired contract object containing count of contracts sold
   final Map<String, dynamic> sellExpired;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$SellExpiredResponseToJson(this);
 

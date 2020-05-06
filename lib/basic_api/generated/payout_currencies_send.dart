@@ -19,7 +19,7 @@ class PayoutCurrenciesRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory PayoutCurrenciesRequest.fromJson(Map<String, dynamic> json) =>
       _$PayoutCurrenciesRequestFromJson(json);
 
@@ -27,7 +27,7 @@ class PayoutCurrenciesRequest extends Request {
   /// Must be `1`
   final int payoutCurrencies;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$PayoutCurrenciesRequestToJson(this);
 

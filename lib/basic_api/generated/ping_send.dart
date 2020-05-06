@@ -19,7 +19,7 @@ class PingRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory PingRequest.fromJson(Map<String, dynamic> json) =>
       _$PingRequestFromJson(json);
 
@@ -27,7 +27,7 @@ class PingRequest extends Request {
   /// Must be `1`
   final int ping;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$PingRequestToJson(this);
 

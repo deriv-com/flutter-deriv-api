@@ -26,7 +26,7 @@ class DocumentUploadRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>
       _$DocumentUploadRequestFromJson(json);
 
@@ -55,7 +55,7 @@ class DocumentUploadRequest extends Request {
   /// [Optional] To determine document side
   final String pageType;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$DocumentUploadRequestToJson(this);
 

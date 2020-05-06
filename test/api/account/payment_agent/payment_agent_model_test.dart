@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/account/payment_agent/payment_agent.dart';
 import 'payment_agent_model_mock_data.dart';
 
 void main() {
-  test('payment agent json parsing', () {
+  test('payment agent JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(paymentAgentModelMockData);
     final PaymentAgent paymentAgent = PaymentAgent.fromJson(mapData);
 

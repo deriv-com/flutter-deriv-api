@@ -61,7 +61,7 @@ class AccountSettings extends AccountSettingsModel {
           userHash: userHash,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory AccountSettings.fromJson(Map<String, dynamic> json) =>
       AccountSettings(
         accountOpeningReason: json['account_opening_reason'],

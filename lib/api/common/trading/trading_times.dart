@@ -11,7 +11,7 @@ class TradingTimes extends TradingTimesModel {
           markets: markets,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory TradingTimes.fromJson(Map<String, dynamic> json) => TradingTimes(
         markets: getListFromMap(
           json['markets'],

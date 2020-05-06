@@ -8,7 +8,7 @@ class RateModel extends APIBaseModel {
     this.rate,
   });
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory RateModel.fromJson(Map<String, dynamic> json) => RateModel(
         code: json['key'],
         rate: json['values']?.toDouble(),

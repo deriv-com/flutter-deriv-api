@@ -18,7 +18,7 @@ class AccountStatus extends AccountStatusModel {
           status: status,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory AccountStatus.fromJson(
     Map<String, dynamic> json,
   ) =>

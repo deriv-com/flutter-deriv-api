@@ -29,7 +29,7 @@ class NewAccountVirtualRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountVirtualRequestFromJson(json);
 
@@ -67,7 +67,7 @@ class NewAccountVirtualRequest extends Request {
   /// Email verification code (received from a `verify_email` call, which must be done first).
   final String verificationCode;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$NewAccountVirtualRequestToJson(this);
 

@@ -28,7 +28,7 @@ class AppRegisterRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory AppRegisterRequest.fromJson(Map<String, dynamic> json) =>
       _$AppRegisterRequestFromJson(json);
 
@@ -63,7 +63,7 @@ class AppRegisterRequest extends Request {
   /// [Optional] Used when `verify_email` called. If available, a URL containing the verification token will be sent to the client's email, otherwise only the token will be sent.
   final String verificationUri;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AppRegisterRequestToJson(this);
 

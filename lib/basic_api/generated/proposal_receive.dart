@@ -23,7 +23,7 @@ class ProposalResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory ProposalResponse.fromJson(Map<String, dynamic> json) =>
       _$ProposalResponseFromJson(json);
 
@@ -34,7 +34,7 @@ class ProposalResponse extends Response {
   /// For subscription requests only.
   final Map<String, dynamic> subscription;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ProposalResponseToJson(this);
 

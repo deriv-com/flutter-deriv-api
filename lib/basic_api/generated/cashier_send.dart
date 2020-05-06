@@ -21,7 +21,7 @@ class CashierRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory CashierRequest.fromJson(Map<String, dynamic> json) =>
       _$CashierRequestFromJson(json);
 
@@ -35,7 +35,7 @@ class CashierRequest extends Request {
   /// [Optional] Email verification code (received from a `verify_email` call, which must be done first)
   final String verificationCode;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$CashierRequestToJson(this);
 

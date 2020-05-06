@@ -19,7 +19,7 @@ class PortfolioRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>
       _$PortfolioRequestFromJson(json);
 
@@ -27,7 +27,7 @@ class PortfolioRequest extends Request {
   /// Must be `1`
   final int portfolio;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$PortfolioRequestToJson(this);
 

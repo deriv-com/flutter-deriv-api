@@ -42,7 +42,7 @@ class NewAccountRealRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory NewAccountRealRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountRealRequestFromJson(json);
 
@@ -119,7 +119,7 @@ class NewAccountRealRequest extends Request {
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   final String taxResidence;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$NewAccountRealRequestToJson(this);
 

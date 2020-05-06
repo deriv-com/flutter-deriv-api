@@ -33,7 +33,7 @@ class ProposalArrayRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory ProposalArrayRequest.fromJson(Map<String, dynamic> json) =>
       _$ProposalArrayRequestFromJson(json);
 
@@ -83,7 +83,7 @@ class ProposalArrayRequest extends Request {
   /// Required only for multi-barrier trading. Defines the epoch value of the trading period start time.
   final int tradingPeriodStart;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ProposalArrayRequestToJson(this);
 

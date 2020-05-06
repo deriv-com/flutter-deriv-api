@@ -21,7 +21,7 @@ class P2pAdvertiserInfoRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory P2pAdvertiserInfoRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertiserInfoRequestFromJson(json);
 
@@ -35,7 +35,7 @@ class P2pAdvertiserInfoRequest extends Request {
   /// [Optional] If set to 1, will send updates whenever there is an update to advertiser
   final int subscribe;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertiserInfoRequestToJson(this);
 

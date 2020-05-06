@@ -11,7 +11,7 @@ class SpotPriceModel extends APIBaseModel {
     this.value,
   });
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory SpotPriceModel.fromJson(Map<String, dynamic> json) => SpotPriceModel(
         displayName: json['display_name'],
         orderAmount: json['order_amount']?.toDouble(),

@@ -9,7 +9,7 @@ class LandingCompanyCurrencyConfigModel extends APIBaseModel {
     this.minStake,
   });
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory LandingCompanyCurrencyConfigModel.fromJson(
     String code,
     Map<String, dynamic> currencyMap,

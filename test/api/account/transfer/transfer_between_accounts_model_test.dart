@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'transfer_between_accounts_model_mock_data.dart';
 
 void main() {
-  test('transfer between accounts json parsing', () {
+  test('transfer between accounts JSON parsing', () {
     final Map<String, dynamic> mapData =
         jsonDecode(transferBetweenAccountsMockData);
     final TransferBetweenAccounts transferBetweenAccounts =

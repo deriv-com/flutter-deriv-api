@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/mt5/mt5_settings.dart';
 import 'mt5_settings_model_mock_data.dart';
 
 void main() {
-  test('mt5 settings json parsing', () {
+  test('mt5 settings JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(mt5SettingsModelMockData);
     final MT5Settings mt5Settings =
         MT5Settings.fromJson(mapData['mt5_get_settings']);

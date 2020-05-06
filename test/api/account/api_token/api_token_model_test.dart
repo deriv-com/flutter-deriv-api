@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'api_token_model_mock_data.dart';
 
 void main() {
-  test('api token json parsing', () {
+  test('api token JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(apiTokenModelMockData);
     final APIToken apiToken = APIToken.fromJson(mapData['api_token']);
 

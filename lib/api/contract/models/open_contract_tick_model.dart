@@ -10,7 +10,7 @@ class OpenContractTickModel extends APIBaseModel {
     this.tickDisplayValue,
   });
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory OpenContractTickModel.fromJson(Map<String, dynamic> json) =>
       OpenContractTickModel(
         epoch: getDateTime(json['epoch']),

@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/contract/contracts_for/contracts_for_symbo
 import 'contracts_for_mock_data.dart';
 
 void main() {
-  test('Contracts for json parsing', () async {
+  test('Contracts for JSON parsing', () async {
     final ContractsForSymbol contractsFor =
         ContractsForSymbol.fromJson(jsonDecode(contractForSymbolJson));
     expect(contractsFor.contracts.first.barriers, 0);

@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'payment_agent_transfer_model_mock_data.dart';
 
 void main() {
-  test('payment agent transfer json parsing', () {
+  test('payment agent transfer JSON parsing', () {
     final Map<String, dynamic> mapData =
         jsonDecode(paymentAgentTransferModelMockData);
     final PaymentAgentTransfer paymentAgentTransfer =

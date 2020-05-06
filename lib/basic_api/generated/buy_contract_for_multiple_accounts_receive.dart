@@ -22,7 +22,7 @@ class BuyContractForMultipleAccountsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory BuyContractForMultipleAccountsResponse.fromJson(
           Map<String, dynamic> json) =>
       _$BuyContractForMultipleAccountsResponseFromJson(json);
@@ -31,7 +31,7 @@ class BuyContractForMultipleAccountsResponse extends Response {
   /// Receipt confirmation for the purchase
   final Map<String, dynamic> buyContractForMultipleAccounts;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() =>
       _$BuyContractForMultipleAccountsResponseToJson(this);

@@ -9,7 +9,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'statement_model_mock_data.dart';
 
 void main() {
-  test('statement json parsing', () {
+  test('statement JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(statementModelMockData);
     final Statement statement = Statement.fromJson(mapData['statement']);
 

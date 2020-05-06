@@ -19,7 +19,7 @@ class ResidenceListRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory ResidenceListRequest.fromJson(Map<String, dynamic> json) =>
       _$ResidenceListRequestFromJson(json);
 
@@ -27,7 +27,7 @@ class ResidenceListRequest extends Request {
   /// Must be `1`
   final int residenceList;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ResidenceListRequestToJson(this);
 

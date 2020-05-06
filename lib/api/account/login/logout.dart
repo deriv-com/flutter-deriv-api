@@ -8,7 +8,7 @@ class Logout extends LogoutModel {
     bool succeeded,
   }) : super(succeeded: succeeded);
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory Logout.fromJson(Map<String, dynamic> json) => Logout(
         succeeded: getBool(json['logout']),
       );

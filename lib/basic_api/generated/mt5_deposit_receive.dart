@@ -23,7 +23,7 @@ class Mt5DepositResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory Mt5DepositResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5DepositResponseFromJson(json);
 
@@ -34,7 +34,7 @@ class Mt5DepositResponse extends Response {
   /// 1 on success
   final int mt5Deposit;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5DepositResponseToJson(this);
 

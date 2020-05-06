@@ -16,7 +16,7 @@ class OpenContractTickInfoModel extends OpenContractTickModel {
           tickDisplayValue: tickDisplayValue,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory OpenContractTickInfoModel.fromJson(Map<String, dynamic> json) =>
       OpenContractTickInfoModel(
         epoch: getDateTime(json['epoch']),

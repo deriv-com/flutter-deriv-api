@@ -22,7 +22,7 @@ class SetAccountCurrencyResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory SetAccountCurrencyResponse.fromJson(Map<String, dynamic> json) =>
       _$SetAccountCurrencyResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class SetAccountCurrencyResponse extends Response {
   /// `1`: success, `0`: no change
   final int setAccountCurrency;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$SetAccountCurrencyResponseToJson(this);
 

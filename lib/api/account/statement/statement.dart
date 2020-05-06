@@ -13,7 +13,7 @@ class Statement extends StatementModel {
           transactions: transactions,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory Statement.fromJson(Map<String, dynamic> json) => Statement(
         count: json['count'],
         transactions: getListFromMap(

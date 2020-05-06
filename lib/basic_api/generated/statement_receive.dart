@@ -22,7 +22,7 @@ class StatementResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory StatementResponse.fromJson(Map<String, dynamic> json) =>
       _$StatementResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class StatementResponse extends Response {
   /// Account statement.
   final Map<String, dynamic> statement;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$StatementResponseToJson(this);
 

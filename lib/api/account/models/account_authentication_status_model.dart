@@ -13,7 +13,7 @@ class AccountAuthenticationStatusModel extends APIBaseModel {
     this.needsVerification,
   });
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory AccountAuthenticationStatusModel.fromJson(
           Map<String, dynamic> json) =>
       AccountAuthenticationStatusModel(

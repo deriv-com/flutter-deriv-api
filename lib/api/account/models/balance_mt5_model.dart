@@ -5,7 +5,7 @@ class BalanceMt5Model extends APIBaseModel {
   /// Initializes
   BalanceMt5Model({this.amount, this.currency});
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory BalanceMt5Model.fromJson(
     Map<String, dynamic> json,
   ) =>

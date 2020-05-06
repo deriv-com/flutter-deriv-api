@@ -17,7 +17,7 @@ class LoginHistory extends LoginHistoryModel {
           time: time,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory LoginHistory.fromJson(Map<String, dynamic> json) => LoginHistory(
         action: getEnumFromString(
           values: LoginAction.values,

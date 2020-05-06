@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/account/top_up_virtual/top_up_virtual.dart
 import 'top_up_virtual_model_mock_data.dart';
 
 void main() {
-  test('top-up virtual json parsing', () {
+  test('top-up virtual JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(topUpModelMockData);
     final TopUpVirtual topUpVirtual =
         TopUpVirtual.fromJson(mapData['topup_virtual']);

@@ -24,7 +24,7 @@ class TransferBetweenAccountsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>
       _$TransferBetweenAccountsRequestFromJson(json);
 
@@ -47,7 +47,7 @@ class TransferBetweenAccountsRequest extends Request {
   /// If `account_from` or `account_to` is not provided, it just returns the available accounts.
   final int transferBetweenAccounts;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TransferBetweenAccountsRequestToJson(this);
 

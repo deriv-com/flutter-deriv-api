@@ -40,7 +40,7 @@ class PriceProposal extends PriceProposalModel {
           spotTime,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory PriceProposal.fromJson(Map<String, dynamic> json) => PriceProposal(
         askPrice: json['ask_price']?.toDouble(),
         cancellation: getItemFromMap(

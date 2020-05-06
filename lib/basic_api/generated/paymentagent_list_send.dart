@@ -20,7 +20,7 @@ class PaymentagentListRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory PaymentagentListRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentListRequestFromJson(json);
 
@@ -31,7 +31,7 @@ class PaymentagentListRequest extends Request {
   /// Client's 2-letter country code (obtained from `residence_list` call).
   final String paymentagentList;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$PaymentagentListRequestToJson(this);
 

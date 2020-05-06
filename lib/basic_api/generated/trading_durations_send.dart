@@ -20,7 +20,7 @@ class TradingDurationsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>
       _$TradingDurationsRequestFromJson(json);
 
@@ -31,7 +31,7 @@ class TradingDurationsRequest extends Request {
   /// Must be `1`
   final int tradingDurations;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TradingDurationsRequestToJson(this);
 

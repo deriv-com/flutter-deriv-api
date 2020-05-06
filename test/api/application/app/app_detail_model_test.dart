@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/application/app/app_detail.dart';
 import 'app_detail_model_mock_data.dart';
 
 void main() {
-  test('app detail json parsing', () {
+  test('app detail JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(appDetailsModelMockData);
     final AppDetails appDetail = AppDetails.fromJson(mapData['app_get']);
 

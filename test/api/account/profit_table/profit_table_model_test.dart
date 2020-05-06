@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'profit_table_model_mock_data.dart';
 
 void main() {
-  test('profit table json parsing', () {
+  test('profit table JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(profitTableModelMockData);
     final ProfitTable profitTable =
         ProfitTable.fromJson(mapData['profit_table']);

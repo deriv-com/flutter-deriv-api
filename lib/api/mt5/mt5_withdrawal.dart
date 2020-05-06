@@ -12,7 +12,7 @@ class MT5Withdrawal extends MT5WithdrawalModel {
           binaryTransactionId: binaryTransactionId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory MT5Withdrawal.fromJson(Map<String, dynamic> json) => MT5Withdrawal(
         mt5Withdrawal: getBool(json['mt5_withdrawal']),
         binaryTransactionId: json['binary_transaction_id'],

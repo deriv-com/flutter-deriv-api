@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/contract/models/set_account_currency_model
 import 'set_account_currency_model_mock_data.dart';
 
 void main() {
-  test('set account currency json parsing', () {
+  test('set account currency JSON parsing', () {
     final Map<String, dynamic> mapData =
         jsonDecode(setAccountExceptionModelMockData);
     final SetAccountCurrencyModel setAccountCurrency =

@@ -19,7 +19,7 @@ class ForgetAllRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory ForgetAllRequest.fromJson(Map<String, dynamic> json) =>
       _$ForgetAllRequestFromJson(json);
 
@@ -27,7 +27,7 @@ class ForgetAllRequest extends Request {
   /// Cancel all streams by type. The value can be either a single type e.g. `"ticks"`, or an array of multiple types e.g. `["candles", "ticks"]`.
   final String forgetAll;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ForgetAllRequestToJson(this);
 

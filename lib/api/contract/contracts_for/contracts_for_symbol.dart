@@ -28,7 +28,7 @@ class ContractsForSymbol extends ContractsForSymbolModel {
           spot: spot,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory ContractsForSymbol.fromJson(Map<String, dynamic> json) =>
       ContractsForSymbol(
         contracts: getListFromMap(

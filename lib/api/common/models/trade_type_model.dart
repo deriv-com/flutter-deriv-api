@@ -8,7 +8,7 @@ class TradeTypeModel extends APIBaseModel {
     this.name,
   });
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory TradeTypeModel.fromJson(Map<String, dynamic> json) => TradeTypeModel(
         displayName: json['display_name'],
         name: json['name'],

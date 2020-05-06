@@ -22,7 +22,7 @@ class CancelResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory CancelResponse.fromJson(Map<String, dynamic> json) =>
       _$CancelResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class CancelResponse extends Response {
   /// Receipt for the transaction
   final Map<String, dynamic> cancel;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$CancelResponseToJson(this);
 

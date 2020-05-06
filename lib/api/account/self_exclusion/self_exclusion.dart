@@ -34,7 +34,7 @@ class SelfExclusion extends SelfExclusionModel {
           timeoutUntil: timeoutUntil,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory SelfExclusion.fromJson(Map<String, dynamic> json) => SelfExclusion(
         excludeUntil: DateTime.parse(
           json['exclude_until'],

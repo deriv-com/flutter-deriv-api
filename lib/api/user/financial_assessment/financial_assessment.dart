@@ -49,7 +49,7 @@ class FinancialAssessment extends FinancialAssessmentModel {
           tradingScore: tradingScore,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory FinancialAssessment.fromJson(Map<String, dynamic> json) =>
       FinancialAssessment(
         accountTurnover: json['account_turnover'],

@@ -26,7 +26,7 @@ class TicksHistoryRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$TicksHistoryRequestFromJson(json);
 
@@ -57,7 +57,7 @@ class TicksHistoryRequest extends Request {
   /// Short symbol name (obtained from the `active_symbols` call).
   final String ticksHistory;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TicksHistoryRequestToJson(this);
 

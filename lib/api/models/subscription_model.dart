@@ -7,7 +7,7 @@ class SubscriptionModel extends APIBaseModel {
     this.id,
   });
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory SubscriptionModel.fromJson(Map<String, dynamic> json) =>
       SubscriptionModel(
         id: json == null ? null : json['id'],

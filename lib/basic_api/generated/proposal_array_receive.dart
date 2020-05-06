@@ -22,7 +22,7 @@ class ProposalArrayResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory ProposalArrayResponse.fromJson(Map<String, dynamic> json) =>
       _$ProposalArrayResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class ProposalArrayResponse extends Response {
   /// Latest price and other details for a given contract
   final Map<String, dynamic> proposalArray;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ProposalArrayResponseToJson(this);
 

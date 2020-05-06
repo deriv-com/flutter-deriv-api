@@ -8,7 +8,7 @@ class TransactionIdsModel extends APIBaseModel {
     this.sellID,
   );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory TransactionIdsModel.fromJson(
     Map<String, dynamic> json,
   ) =>

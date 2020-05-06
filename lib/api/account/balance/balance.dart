@@ -19,7 +19,7 @@ class Balance extends BalanceModel {
           total: total,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory Balance.fromJson(Map<String, dynamic> json) => Balance(
         balance: json['balance'],
         currency: json['currency'],

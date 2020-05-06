@@ -22,7 +22,7 @@ class AppDeleteResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory AppDeleteResponse.fromJson(Map<String, dynamic> json) =>
       _$AppDeleteResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class AppDeleteResponse extends Response {
   /// 1 on success
   final int appDelete;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AppDeleteResponseToJson(this);
 

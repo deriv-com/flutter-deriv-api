@@ -19,7 +19,7 @@ class PortfolioContractModel extends APIBaseModel {
     this.transactionId,
   });
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory PortfolioContractModel.fromJson(
     Map<String, dynamic> json,
   ) =>

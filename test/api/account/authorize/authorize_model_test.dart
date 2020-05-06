@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/api/account/models/local_currency_model.dart';
 import 'authorize_model_mock_data.dart';
 
 void main() {
-  test('authorize json parsing', () {
+  test('authorize JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(authorizeModelMockData);
     final Authorize authorize = Authorize.fromJson(mapData['authorize']);
     final List<Account> accounts = authorize.accountList;

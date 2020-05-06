@@ -22,7 +22,7 @@ class ContractsForResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory ContractsForResponse.fromJson(Map<String, dynamic> json) =>
       _$ContractsForResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class ContractsForResponse extends Response {
   /// List of available contracts. Note: if the user is authenticated, then only contracts allowed under his account will be returned.
   final Map<String, dynamic> contractsFor;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ContractsForResponseToJson(this);
 

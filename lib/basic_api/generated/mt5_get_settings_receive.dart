@@ -22,7 +22,7 @@ class Mt5GetSettingsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory Mt5GetSettingsResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5GetSettingsResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class Mt5GetSettingsResponse extends Response {
   /// MT5 user account details
   final Map<String, dynamic> mt5GetSettings;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5GetSettingsResponseToJson(this);
 

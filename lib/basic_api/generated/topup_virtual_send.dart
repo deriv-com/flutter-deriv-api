@@ -19,7 +19,7 @@ class TopupVirtualRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory TopupVirtualRequest.fromJson(Map<String, dynamic> json) =>
       _$TopupVirtualRequestFromJson(json);
 
@@ -27,7 +27,7 @@ class TopupVirtualRequest extends Request {
   /// Must be `1`
   final int topupVirtual;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$TopupVirtualRequestToJson(this);
 

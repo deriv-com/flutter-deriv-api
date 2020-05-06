@@ -25,7 +25,7 @@ class ProfitTableRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>
       _$ProfitTableRequestFromJson(json);
 
@@ -51,7 +51,7 @@ class ProfitTableRequest extends Request {
   /// [Optional] Sort direction.
   final String sort;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ProfitTableRequestToJson(this);
 

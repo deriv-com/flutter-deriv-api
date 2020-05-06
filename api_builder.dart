@@ -119,13 +119,13 @@ class APIBuilder extends Builder {
                   ${_getSuperClassParameters(schemaType)},
                 }): super(${_getSuperClassCallParameters(schemaType, methodName)},);
               
-              /// Creates an instance from json
+              /// Creates an instance from JSON
               factory $classFullName.fromJson(Map<String, dynamic> json) => _\$${classFullName}FromJson(json);
               
               // Properties
               ${_getProperties(buildStep, schema, properties)}
 
-              /// Converts an instance to json
+              /// Converts an instance to JSON
               @override
               Map<String, dynamic> toJson() => _\$${classFullName}ToJson(this);
 
@@ -273,7 +273,7 @@ class APIBuilder extends Builder {
     }
 
     superCallParameters.write(_getSuperClassFields(schemaType).keys.map(
-          (String key) {
+      (String key) {
         final String parameterName = ReCase(key).camelCase;
         return '$parameterName: $parameterName';
       },

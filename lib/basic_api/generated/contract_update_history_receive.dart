@@ -22,7 +22,7 @@ class ContractUpdateHistoryResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory ContractUpdateHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$ContractUpdateHistoryResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class ContractUpdateHistoryResponse extends Response {
   /// Contains the historical and the most recent update status of the contract
   final List<Map<String, dynamic>> contractUpdateHistory;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ContractUpdateHistoryResponseToJson(this);
 

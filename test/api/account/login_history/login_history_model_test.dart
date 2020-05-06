@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'login_history_model_mock_data.dart';
 
 void main() {
-  test('login history json parsing', () {
+  test('login history JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(loginHistoryModelMockData);
     final LoginHistory loginHistory =
         LoginHistory.fromJson(mapData['login_history'][1]);

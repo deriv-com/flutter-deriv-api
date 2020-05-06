@@ -66,7 +66,7 @@ class OpenContractModel extends APIBaseModel {
     this.validationError,
   });
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory OpenContractModel.fromJson(Map<String, dynamic> json) =>
       OpenContractModel(
         auditDetails: getItemFromMap(

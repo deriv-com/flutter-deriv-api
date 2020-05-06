@@ -22,7 +22,7 @@ class P2pAdvertiserUpdateResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory P2pAdvertiserUpdateResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertiserUpdateResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class P2pAdvertiserUpdateResponse extends Response {
   /// P2P advertiser information.
   final Map<String, dynamic> p2pAdvertiserUpdate;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$P2pAdvertiserUpdateResponseToJson(this);
 

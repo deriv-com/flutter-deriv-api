@@ -22,7 +22,7 @@ class Mt5PasswordCheckRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory Mt5PasswordCheckRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordCheckRequestFromJson(json);
 
@@ -39,7 +39,7 @@ class Mt5PasswordCheckRequest extends Request {
   /// [Optional] Type of the password to check.
   final String passwordType;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5PasswordCheckRequestToJson(this);
 

@@ -22,7 +22,7 @@ class LogoutResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory LogoutResponse.fromJson(Map<String, dynamic> json) =>
       _$LogoutResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class LogoutResponse extends Response {
   /// The result of logout request which is 1
   final int logout;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$LogoutResponseToJson(this);
 

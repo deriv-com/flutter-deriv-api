@@ -22,7 +22,7 @@ class SellContractForMultipleAccountsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory SellContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       _$SellContractForMultipleAccountsRequestFromJson(json);
@@ -40,7 +40,7 @@ class SellContractForMultipleAccountsRequest extends Request {
   /// Authorisation tokens which select the accounts to sell use for the affected accounts.
   final List<String> tokens;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() =>
       _$SellContractForMultipleAccountsRequestToJson(this);

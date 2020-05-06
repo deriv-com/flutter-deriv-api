@@ -47,7 +47,7 @@ class Transaction extends TransactionModel {
           transactionTime: transactionTime,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
         action: getEnumFromString(
           values: TransactionActionType.values,

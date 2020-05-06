@@ -17,7 +17,7 @@ class SellContract extends SellContractModel {
           transactionId: transactionId,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory SellContract.fromJson(Map<String, dynamic> json) => SellContract(
         balanceAfter: json['balance_after']?.toDouble(),
         contractId: json['contract_id'],

@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'app_markup_details_model_mock_data.dart';
 
 void main() {
-  test('app markup details json parsing', () {
+  test('app markup details JSON parsing', () {
     final Map<String, dynamic> mapData =
         jsonDecode(appMarkupDetailsModelMockData);
     final AppMarkupDetails appMarkupDetails =

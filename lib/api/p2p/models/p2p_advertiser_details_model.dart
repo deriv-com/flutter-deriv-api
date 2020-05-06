@@ -8,7 +8,7 @@ class P2PAdvertiserDetailsModel extends APIBaseModel {
     this.name,
   });
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory P2PAdvertiserDetailsModel.fromJson(Map<String, dynamic> json) =>
       P2PAdvertiserDetailsModel(
         id: json['id'],

@@ -15,7 +15,7 @@ class NewAccountReal extends NewAccountRealModel {
           oauthToken: oauthToken,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory NewAccountReal.fromJson(Map<String, dynamic> json) => NewAccountReal(
         clientId: json['client_id'],
         landingCompany: json['landing_company'],

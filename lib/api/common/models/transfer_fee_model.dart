@@ -5,7 +5,7 @@ class TransferFeeModel extends APIBaseModel {
   /// Initializes
   TransferFeeModel({this.code, this.value});
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory TransferFeeModel.fromJson(
     String code,
     dynamic item,

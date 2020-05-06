@@ -17,7 +17,7 @@ class ProfitTransactionModel extends APIBaseModel {
     this.transactionId,
   });
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory ProfitTransactionModel.fromJson(Map<String, dynamic> json) =>
       ProfitTransactionModel(
         appId: json['app_id'],

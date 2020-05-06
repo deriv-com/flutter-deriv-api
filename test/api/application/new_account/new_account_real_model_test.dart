@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/application/new_account/new_account_real.d
 import 'new_account_real_model_mock_data.dart';
 
 void main() {
-  test('new account real json parsing', () {
+  test('new account real JSON parsing', () {
     final Map<String, dynamic> mapData =
         jsonDecode(newAccountRealModelMockData);
     final NewAccountReal newAccountReal =

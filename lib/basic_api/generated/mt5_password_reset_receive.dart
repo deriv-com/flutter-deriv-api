@@ -22,7 +22,7 @@ class Mt5PasswordResetResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory Mt5PasswordResetResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordResetResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class Mt5PasswordResetResponse extends Response {
   /// `1` on success
   final int mt5PasswordReset;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5PasswordResetResponseToJson(this);
 

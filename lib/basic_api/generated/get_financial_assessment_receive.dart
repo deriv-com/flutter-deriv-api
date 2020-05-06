@@ -22,7 +22,7 @@ class GetFinancialAssessmentResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from json
+  /// Creates an instance from JSON
   factory GetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>
       _$GetFinancialAssessmentResponseFromJson(json);
 
@@ -30,7 +30,7 @@ class GetFinancialAssessmentResponse extends Response {
   /// Client's financial assessment details
   final Map<String, dynamic> getFinancialAssessment;
 
-  /// Converts an instance to json
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$GetFinancialAssessmentResponseToJson(this);
 
