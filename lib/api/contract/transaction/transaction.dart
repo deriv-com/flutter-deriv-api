@@ -83,8 +83,9 @@ class Transaction extends TransactionModel {
       Injector.getInjector().get<BasicBinaryAPI>();
 
   /// Subscribe to account's transactions
-  static Stream<Transaction> getTransactions(TransactionRequest request) =>
-      _api.subscribe(request: request).map<Transaction>((Response response) {
+  static Stream<Transaction> getTransactions() => _api
+          .subscribe(request: const TransactionRequest())
+          .map<Transaction>((Response response) {
         if (response.error != null) {
           throw TransactionsException(message: response.error['message']);
         }
