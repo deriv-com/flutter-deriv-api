@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_deriv_api/api/account/account_status/exceptions/account_status_exception.dart';
 import 'package:flutter_deriv_api/api/account/models/account_authentication_status_model.dart';
 import 'package:flutter_deriv_api/api/account/models/account_status_model.dart';
