@@ -12,13 +12,13 @@ void main() {
 
     final List<ActiveSymbol> symbols = await ActiveSymbol.getActiveSymbols();
 
-    print('Number of available symbols: ${symbols?.length}');
+    print('number of available symbols: ${symbols?.length}');
 
     final ContractsForSymbol contractsForSymbol =
         await ContractsForSymbol.getContractsForSymbol(symbol: 'R_10');
 
     print(
-      'Number of contract for R_10: ${contractsForSymbol?.contracts?.length}',
+      'number of contract for R_10: ${contractsForSymbol?.contracts?.length}',
     );
   });
 }

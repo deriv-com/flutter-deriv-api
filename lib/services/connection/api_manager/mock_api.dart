@@ -9,13 +9,13 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
-import 'mock_data/account/authorize/authorize_response_mock_data.dart';
-import 'mock_data/common/active_symbols/active_symbols_response_mock_data.dart';
-import 'mock_data/common/tick/tick_response_mock_data.dart';
-import 'mock_data/contract/contracts_for/contract_for_response_mock_data.dart';
-import 'mock_data/contract/operation/buy_contract_response_mock_data.dart';
-import 'mock_data/contract/operation/proposal_open_contract_response_mock_data.dart';
-import 'mock_data/contract/operation/proposal_response_mock_data.dart';
+import 'mock_data/account/authorize_response_mock_data.dart';
+import 'mock_data/common/active_symbols_response_mock_data.dart';
+import 'mock_data/common/tick_response_mock_data.dart';
+import 'mock_data/contract/buy_contract_response_mock_data.dart';
+import 'mock_data/contract/contract_for_response_mock_data.dart';
+import 'mock_data/contract/proposal_open_contract_response_mock_data.dart';
+import 'mock_data/contract/proposal_response_mock_data.dart';
 
 /// Handle mock API calls
 class MockAPI implements BaseAPI {

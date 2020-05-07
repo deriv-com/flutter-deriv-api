@@ -73,7 +73,7 @@ void main() {
     expect(sellContract.transactionId, 159779308968);
   });
 
-  test('Buy proposal scenario', () async {
+  test('buy proposal scenario', () async {
     final Injector injector =
         ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
@@ -104,7 +104,7 @@ void main() {
       final OpenContractModel openContractModel =
           await boughtContract.getCurrentContractState();
 
-      print('But scenario completed!');
+      print('buy scenario completed!');
     } on ContractOperationException catch (e) {
       print(e.message);
     }
