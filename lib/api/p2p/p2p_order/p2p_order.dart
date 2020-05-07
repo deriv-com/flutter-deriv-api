@@ -1,7 +1,15 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/api/p2p/exceptions/p2p_exception.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_order_model.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_advert/p2p_advert.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_advertiser/p2p_advertiser.dart';
+import 'package:flutter_deriv_api/api/p2p/p2p_order/exceptions/p2p_order_exception.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/basic_api/request.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/pending_request.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// P2P order class
@@ -74,6 +82,147 @@ class P2POrder extends P2POrderModel {
           name: json['type'],
         ),
       );
+
+  /// API instance
+  static final BasicBinaryAPI _api =
+      Injector.getInjector().get<BasicBinaryAPI>();
+
+  /// Gets the list of [P2POrder] with parameters specified in [P2pOrderListRequest]
+  static Future<List<P2POrder>> getOrdersList(
+    P2pOrderListRequest request,
+  ) async {
+    final P2pOrderListResponse response = await _api.call(request: request);
+
+    if (response.error != null) {
+      throw P2PException(message: response.error['message']);
+    }
+
+    return getListFromMap(
+      response.p2pOrderList['list'],
+      itemToTypeCallback: (dynamic item) => P2POrder.fromJson(item),
+    );
+  }
+
+  /// Subscribes to the list of [P2POrder] with parameters specified in [P2pOrderListRequest]
+  static Stream<List<P2POrder>> getOrdersListUpdate(
+    P2pOrderListRequest request,
+  ) =>
+      _api
+          .subscribe(
+        request: request,
+        comparePredicate: ({
+          Request request,
+          PendingRequest<Response> pendingRequest,
+          bool equatableResult,
+        }) =>
+            true,
+      )
+          .map<List<P2POrder>>(
+        (Response response) {
+          if (response.error != null) {
+            throw P2POrderException(message: response.error['message']);
+          }
+
+          final P2pOrderListResponse listResponse = response;
+          return getListFromMap(
+            listResponse.p2pOrderList['list'],
+            itemToTypeCallback: (dynamic item) => P2POrder.fromJson(item),
+          );
+        },
+      );
+
+  /// Creates order with parameters specified in [P2pOrderCreateRequest]
+  static Future<P2POrder> create(P2pOrderCreateRequest request) async {
+    final P2pOrderCreateResponse response = await _api.call(
+      request: request,
+      comparePredicate: ({
+        Request request,
+        PendingRequest<Response> pendingRequest,
+        bool equatableResult,
+      }) =>
+          false,
+    );
+
+    if (response.error != null) {
+      throw P2POrderException(message: response.error['message']);
+    }
+
+    return P2POrder.fromJson(response.p2pOrderCreate);
+  }
+
+  /// Creates order and subscribes to the result with parameters
+  /// specified in [P2pOrderCreateRequest]
+  static Stream<P2POrder> createAndGetUpdate(P2pOrderCreateRequest request) =>
+      _api.subscribe(request: request).map(
+        (Response response) {
+          if (response.error != null) {
+            throw P2PException(message: response.error['message']);
+          }
+
+          final P2pOrderCreateResponse createResponse = response;
+          return P2POrder.fromJson(createResponse.p2pOrderCreate);
+        },
+      );
+
+  /// Gets order with parameters specified in [P2pOrderInfoRequest]
+  static Future<P2POrder> getOrder(P2pOrderInfoRequest request) async {
+    final P2pOrderInfoResponse response = await _api.call(request: request);
+
+    if (response.error != null) {
+      throw P2POrderException(message: response.error['message']);
+    }
+
+    return P2POrder.fromJson(response.p2pOrderInfo);
+  }
+
+  /// Subscribes to order with parameters specified in [P2pOrderInfoRequest]
+  static Stream<P2POrder> getOrderUpdate(P2pOrderInfoRequest request) => _api
+          .subscribe(
+        request: request,
+        comparePredicate: ({
+          Request request,
+          PendingRequest<Response> pendingRequest,
+          bool equatableResult,
+        }) {
+          final P2pOrderInfoRequest infoRequest = request;
+          final P2pOrderInfoRequest pendingInfoRequest = pendingRequest.request;
+          return infoRequest.id == pendingInfoRequest.id;
+        },
+      )
+          .map<P2POrder>(
+        (Response response) {
+          if (response.error != null) {
+            throw P2POrderException(message: response.error['message']);
+          }
+
+          final P2pOrderInfoResponse infoResponse = response;
+          return P2POrder.fromJson(infoResponse.p2pOrderInfo);
+        },
+      );
+
+  /// Cancel this order
+  Future<P2POrder> cancel() async {
+    final P2pOrderCancelResponse response =
+        await _api.call(request: const P2pOrderCancelRequest());
+
+    if (response.error != null) {
+      throw P2POrderException(message: response.error['message']);
+    }
+
+    return copyWith(status: P2POrder.fromJson(response.p2pOrderCancel).status);
+  }
+
+  /// Confirm this order
+  Future<P2POrder> confirm() async {
+    final P2pOrderConfirmResponse response =
+        await _api.call(request: const P2pOrderConfirmRequest());
+
+    if (response.error != null) {
+      throw P2POrderException(message: response.error['message']);
+    }
+
+    return copyWith(status: P2POrder.fromJson(response.p2pOrderConfirm).status);
+  }
 
   /// Generate a copy of instance with given parameters
   P2POrder copyWith({
