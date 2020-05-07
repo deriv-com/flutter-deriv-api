@@ -1,6 +1,11 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_deriv_api/api/account/account_status/exceptions/account_status_exception.dart';
 import 'package:flutter_deriv_api/api/account/models/account_authentication_status_model.dart';
 import 'package:flutter_deriv_api/api/account/models/account_status_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Account status
@@ -42,6 +47,23 @@ class AccountStatus extends AccountStatusModel {
           ),
         ),
       );
+
+  /// API instance
+  static final BasicBinaryAPI _api =
+      Injector.getInjector().get<BasicBinaryAPI>();
+
+  /// Gets the account's status
+  static Future<AccountStatus> getAccountStatus() async {
+    final GetAccountStatusResponse response = await _api.call(
+      request: const GetAccountStatusRequest(),
+    );
+
+    if (response.error != null) {
+      throw AccountStatusException(message: response.error['message']);
+    }
+
+    return AccountStatus.fromJson(response.getAccountStatus);
+  }
 
   /// Generate a copy of instance with given parameters
   AccountStatus copyWith({
