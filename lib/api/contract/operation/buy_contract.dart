@@ -52,7 +52,7 @@ class BuyContract extends BuyContractModel {
   static final BasicBinaryAPI _api =
       Injector.getInjector().get<BasicBinaryAPI>();
 
-  /// Buys a contract with given [BuyRequest]
+  /// Buys a contract with parameters specified in given [BuyRequest]
   static Future<BuyContract> buy(BuyRequest request) async {
     final BuyResponse buyResponse = await _api.call(
       request: request,

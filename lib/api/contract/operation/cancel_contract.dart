@@ -35,7 +35,7 @@ class CancelContract extends CancelContractModel {
   static final BasicBinaryAPI _api =
       Injector.getInjector().get<BasicBinaryAPI>();
 
-  /// Cancel a contract
+  /// Cancel a contract with parameters specified in [CancelRequest]
   static Future<CancelContract> cancelContract(CancelRequest request) async {
     final CancelResponse response = await _api.call(request: request);
 

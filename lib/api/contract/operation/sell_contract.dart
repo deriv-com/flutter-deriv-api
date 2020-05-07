@@ -35,7 +35,7 @@ class SellContract extends SellContractModel {
   static final BasicBinaryAPI _api =
       Injector.getInjector().get<BasicBinaryAPI>();
 
-  /// Sell a contract
+  /// Sell a contract with parameters specified in [SellRequest]
   static Future<SellContract> sellContract(SellRequest request) async {
     final SellResponse response = await _api.call(request: request);
 

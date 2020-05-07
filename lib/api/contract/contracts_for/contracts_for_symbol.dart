@@ -46,8 +46,7 @@ class ContractsForSymbol extends ContractsForSymbolModel {
   static final BasicBinaryAPI _api =
       Injector.getInjector().get<BasicBinaryAPI>();
 
-  /// Fetch contracts for given [symbol]
-  /// For parameters information refer to [ContractsForRequest]
+  /// Fetch contracts for given symbol in [ContractsForRequest]
   static Future<ContractsForSymbol> getContractsForSymbol(
     ContractsForRequest request,
   ) async {
