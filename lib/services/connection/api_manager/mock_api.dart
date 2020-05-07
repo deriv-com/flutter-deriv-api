@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/tick_response_mock_data.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
@@ -17,6 +18,8 @@ import 'mock_data/proposal_response_mock_data.dart';
 
 /// Handle mock api call
 class MockAPI implements BaseAPI {
+  static const int _responseDelayMilliseconds = 500;
+
   @override
   Future<Response> call({
     @required Request request,
@@ -35,16 +38,19 @@ class MockAPI implements BaseAPI {
 
   Future<Response> _getFutureResponse(Request request) async =>
       Future<Response>.delayed(
-        const Duration(milliseconds: 500),
+        const Duration(milliseconds: _responseDelayMilliseconds),
         () => getResponseByMsgType(_getResponseByMethod(request.msgType)),
       );
 
-  Stream<Response> _getStreamResponse(Request request) async* {
-    await _getFutureResponse(request);
-  }
+  Stream<Response> _getStreamResponse(Request request) =>
+      Stream<Response>.periodic(
+        const Duration(milliseconds: _responseDelayMilliseconds),
+        (int computationCount) =>
+            getResponseByMsgType(_getResponseByMethod(request.msgType)),
+      );
 
-  Map<String, dynamic> _getResponseByMethod(String messageType) {
-    switch (messageType) {
+  Map<String, dynamic> _getResponseByMethod(String method) {
+    switch (method) {
       case 'active_symbols':
         return jsonDecode(activeSymbolsResponse);
       // case 'api_token':
@@ -134,7 +140,8 @@ class MockAPI implements BaseAPI {
       // case 'statement':
       // case 'states_list':
       // case 'history':
-      // case 'tick':
+      case 'ticks':
+        return jsonDecode(tickResponse);
       // case 'time':
       // case 'tnc_approval':
       // case 'topup_virtual':
@@ -147,7 +154,7 @@ class MockAPI implements BaseAPI {
 
       default:
         throw APIManagerException(
-          message: 'message type \'$messageType\' not found',
+          message: 'message type \'$method\' not found',
         );
     }
   }
