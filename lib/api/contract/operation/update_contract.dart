@@ -35,7 +35,7 @@ class UpdateContract extends UpdateContractModel {
   static final BasicBinaryAPI _api =
       Injector.getInjector().get<BasicBinaryAPI>();
 
-  /// update a contract
+  /// update a contract with parameters specified in [ContractUpdateRequest]
   static Future<UpdateContract> updateContract(
     ContractUpdateRequest request,
   ) async {
