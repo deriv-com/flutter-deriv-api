@@ -35,9 +35,6 @@ class BinaryAPI implements BaseAPI {
   /// Subscription manager instance
   SubscriptionManager _subscriptionManager;
 
-  /// Get web socket channel
-  IOWebSocketChannel get webSocketChannel => _webSocketChannel;
-
   @override
   Future<Response> call({
     @required Request request,
@@ -75,11 +72,6 @@ class BinaryAPI implements BaseAPI {
         method: method,
         shouldForced: shouldForced,
       );
-
-  @override
-  void addToChannel({Map<String, dynamic> request}) {
-    webSocketChannel.sink.add(utf8.encode(jsonEncode(request)));
-  }
 
   /// Connects to binary websocket
   Future<IOWebSocketChannel> run({
@@ -144,6 +136,11 @@ class BinaryAPI implements BaseAPI {
     }
 
     return _webSocketChannel;
+  }
+
+  @override
+  void addToChannel({Map<String, dynamic> request}) {
+    _webSocketChannel.sink.add(utf8.encode(jsonEncode(request)));
   }
 
   @override

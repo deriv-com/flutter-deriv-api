@@ -16,9 +16,9 @@ abstract class BaseAPI {
     RequestCompareFunction comparePredicate,
   });
 
-  /// Close API
-  Future<void> close();
-
-  /// Adds request to channel
+  /// Adds request to stream channel
   void addToChannel({Map<String, dynamic> request});
+
+  /// Closes the stream channel
+  Future<void> close();
 }
