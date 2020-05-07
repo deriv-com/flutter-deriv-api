@@ -4,9 +4,9 @@ import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
-/// Base api abstract class
+/// Base API abstract class
 abstract class BaseAPI {
-  /// Calls a api method by [request]
+  /// Calls a API method by [request]
   Future<Response> call({@required Request request});
 
   /// Subscribe to a [request]
@@ -16,6 +16,9 @@ abstract class BaseAPI {
     RequestCompareFunction comparePredicate,
   });
 
-  /// Close api
+  /// Close API
   Future<void> close();
+
+  /// Adds request to channel
+  void addToChannel({Map<String, dynamic> request});
 }

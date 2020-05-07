@@ -11,7 +11,6 @@ import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/pending_request.dart';
-import 'package:flutter_deriv_api/services/connection/call_manager/pending_subscribed_request.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_stream.dart';
 
 /// Subscription manager class
@@ -20,38 +19,12 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   SubscriptionManager(BaseAPI api) : super(api);
 
   /// Get [subscriptionId] by [requestId]
-  String getSubscriptionId(int requestId) {
-    final PendingRequest<Response> pendingRequest = pendingRequests[requestId];
-
-    return pendingRequest is PendingSubscribedRequest<Response>
-        ? pendingRequest.subscriptionId
-        : null;
-  }
+  String getSubscriptionId(int requestId) =>
+      pendingRequests[requestId]?.subscriptionId;
 
   /// Get [subscriptionStream] by [requestId]
-  SubscriptionStream<Response> getSubscriptionStream(int requestId) {
-    final PendingRequest<Response> pendingRequest = pendingRequests[requestId];
-
-    return pendingRequest is PendingSubscribedRequest<Response>
-        ? pendingRequest.subscriptionStream
-        : null;
-  }
-
-  /// Set [subscriptionId]
-  void setSubscriptionId({
-    @required int requestId,
-    @required String subscriptionId,
-  }) =>
-      pendingRequests[requestId] = PendingSubscribedRequest<Response>()
-          .copyWith(subscriptionId: subscriptionId);
-
-  /// Set [subscriptionStream]
-  void setSubscriptionStream({
-    @required int requestId,
-    @required SubscriptionStream<Response> subscriptionStream,
-  }) =>
-      pendingRequests[requestId] = PendingSubscribedRequest<Response>()
-          .copyWith(subscriptionStream: subscriptionStream);
+  SubscriptionStream<Response> getSubscriptionStream(int requestId) =>
+      pendingRequests[requestId]?.subscriptionStream;
 
   @override
   void handleResponse({
@@ -62,7 +35,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
 
     // Adds the subscription id to the pending request object for further references
     if (response.containsKey('subscription')) {
-      setSubscriptionId(
+      _setSubscriptionId(
         requestId: requestId,
         subscriptionId: response['subscription']['id'],
       );
@@ -70,8 +43,6 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
 
     // Broadcasts the new message into the stream
     getSubscriptionStream(requestId)?.add(getResponseByMsgType(response));
-
-    print('response added to stream.');
   }
 
   @override
@@ -79,8 +50,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     @required Request request,
     RequestCompareFunction comparePredicate,
   }) {
-    final PendingSubscribedRequest<Response> pendingRequest =
-        _getPendingRequest(
+    final PendingRequest<Response> pendingRequest = _getPendingRequest(
       request: request,
       pendingRequests: pendingRequests,
       comparePredicate: comparePredicate,
@@ -90,16 +60,13 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
       return pendingRequest.subscriptionStream.stream;
     }
 
-    addToChannel(
-      request: request,
-      absentFields: <String, dynamic Function()>{'subscribe': () => 1},
-    );
-
     final SubscriptionStream<Response> subscriptionStream =
         SubscriptionStream<Response>();
 
-    pendingRequests[request.reqId] = PendingSubscribedRequest<Response>()
-        .copyWith(subscriptionStream: subscriptionStream);
+    addToChannel(
+      request: request,
+      subscriptionStream: subscriptionStream,
+    );
 
     return subscriptionStream.stream;
   }
@@ -137,8 +104,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
       (int id) {
         final PendingRequest<Response> pendingRequest = pendingRequests[id];
 
-        return pendingRequest is PendingSubscribedRequest<Response> &&
-            pendingRequest.method == method &&
+        return pendingRequest.request.msgType == method &&
             pendingRequest.isSubscribed;
       },
     );
@@ -160,6 +126,13 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
 
     pendingRequests.remove(requestId);
   }
+
+  void _setSubscriptionId({
+    @required int requestId,
+    @required String subscriptionId,
+  }) =>
+      pendingRequests[requestId] =
+          pendingRequests[requestId]?.copyWith(subscriptionId: subscriptionId);
 
   PendingRequest<Response> _getPendingRequest({
     @required Request request,

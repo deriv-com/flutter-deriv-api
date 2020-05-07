@@ -9,7 +9,6 @@ import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/ping_send.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/api_history.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
@@ -18,7 +17,7 @@ import 'package:flutter_deriv_api/services/connection/call_manager/subscription_
 /// Callbacks for websocket connection
 typedef SocketCallback = void Function();
 
-/// Contains the api call
+/// Contains the binary API call
 class BinaryAPI implements BaseAPI {
   /// Indicates current connection status - only set `true` once
   /// we have established SSL *and* web socket handshake steps
@@ -27,7 +26,7 @@ class BinaryAPI implements BaseAPI {
   /// Represents the active web socket connection
   IOWebSocketChannel _webSocketChannel;
 
-  /// Stream subscription to api date
+  /// Stream subscription to API data
   StreamSubscription<Map<String, dynamic>> _webSocketListener;
 
   /// Call manager instance
@@ -36,14 +35,8 @@ class BinaryAPI implements BaseAPI {
   /// Subscription manager instance
   SubscriptionManager _subscriptionManager;
 
-  /// All requests and responses
-  final APIHistory _apiHistory = APIHistory();
-
   /// Get web socket channel
   IOWebSocketChannel get webSocketChannel => _webSocketChannel;
-
-  /// Get api history
-  APIHistory get apiHistory => _apiHistory;
 
   @override
   Future<Response> call({
@@ -83,7 +76,12 @@ class BinaryAPI implements BaseAPI {
         shouldForced: shouldForced,
       );
 
-  /// Connects to binary web socket
+  @override
+  void addToChannel({Map<String, dynamic> request}) {
+    webSocketChannel.sink.add(utf8.encode(jsonEncode(request)));
+  }
+
+  /// Connects to binary websocket
   Future<IOWebSocketChannel> run({
     SocketCallback onDone,
     SocketCallback onOpen,
@@ -187,13 +185,6 @@ class BinaryAPI implements BaseAPI {
         _connected = true;
         connectionCompleter.complete(true);
       }
-
-      _apiHistory.pushIncoming(
-        timestamp: DateTime.now().millisecondsSinceEpoch,
-        method:
-            message.containsKey('msg_type') ? message['msg_type'] : 'unknown',
-        message: message,
-      );
 
       print('api response: $message.');
       print('check for req_id in received message.');

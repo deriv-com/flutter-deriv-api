@@ -1,22 +1,23 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/tick_response_mock_data.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api_manager_exception.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
-import 'mock_data/active_symbols_response_mock_data.dart';
-import 'mock_data/authorize_response_mock_data.dart';
-import 'mock_data/buy_response_mock_data.dart';
-import 'mock_data/contract_for_response_mock_data.dart';
-import 'mock_data/proposal_response_mock_data.dart';
+import 'mock_data/account/authorize/authorize_response_mock_data.dart';
+import 'mock_data/common/active_symbols/active_symbols_response_mock_data.dart';
+import 'mock_data/common/tick/tick_response_mock_data.dart';
+import 'mock_data/contract/contracts_for/contract_for_response_mock_data.dart';
+import 'mock_data/contract/operation/buy_contract_response_mock_data.dart';
+import 'mock_data/contract/operation/proposal_open_contract_response_mock_data.dart';
+import 'mock_data/contract/operation/proposal_response_mock_data.dart';
 
-/// Handle mock api call
+/// Handle mock API calls
 class MockAPI implements BaseAPI {
   static const int _responseDelayMilliseconds = 500;
 
@@ -32,6 +33,9 @@ class MockAPI implements BaseAPI {
     RequestCompareFunction comparePredicate,
   }) =>
       _getStreamResponse(request);
+
+  @override
+  void addToChannel({Map<String, dynamic> request}) {}
 
   @override
   Future<void> close() async => true;
@@ -66,7 +70,7 @@ class MockAPI implements BaseAPI {
       // case 'balance':
       // case 'buy_contract_for_multiple_accounts':
       case 'buy':
-        return jsonDecode(buyResponse);
+        return jsonDecode(buyContractResponse);
       // case 'cancel':
       // case 'cashier':
       // case 'contract_update_history':
@@ -124,7 +128,8 @@ class MockAPI implements BaseAPI {
       // case 'portfolio':
       // case 'profit_table':
       // case 'proposal_array':
-      // case 'proposal_open_contract':
+      case 'proposal_open_contract':
+        return jsonDecode(proposalOpenContractResponse);
       case 'proposal':
         return jsonDecode(proposalResponse);
       // case 'reality_check':
@@ -154,7 +159,7 @@ class MockAPI implements BaseAPI {
 
       default:
         throw APIManagerException(
-          message: 'message type \'$method\' not found',
+          message: 'message type \'$method\' not found.',
         );
     }
   }
