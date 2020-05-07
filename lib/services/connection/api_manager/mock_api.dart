@@ -43,20 +43,23 @@ class MockAPI implements BaseAPI {
   Future<Response> _getFutureResponse(Request request) async =>
       Future<Response>.delayed(
         const Duration(milliseconds: _responseDelayMilliseconds),
-        () => getResponseByMsgType(_getResponseByMethod(request.msgType)),
+        () => getResponseByMsgType(
+          jsonDecode(_getResponse(request.msgType)),
+        ),
       );
 
   Stream<Response> _getStreamResponse(Request request) =>
       Stream<Response>.periodic(
         const Duration(milliseconds: _responseDelayMilliseconds),
-        (int computationCount) =>
-            getResponseByMsgType(_getResponseByMethod(request.msgType)),
+        (int computationCount) => getResponseByMsgType(
+          jsonDecode(_getResponse(request.msgType)),
+        ),
       );
 
-  Map<String, dynamic> _getResponseByMethod(String method) {
+  String _getResponse(String method) {
     switch (method) {
       case 'active_symbols':
-        return jsonDecode(activeSymbolsResponse);
+        return activeSymbolsResponse;
       // case 'api_token':
       // case 'app_delete':
       // case 'app_get':
@@ -66,17 +69,17 @@ class MockAPI implements BaseAPI {
       // case 'app_update':
       // case 'asset_index':
       case 'authorize':
-        return jsonDecode(authorizeResponse);
+        return authorizeResponse;
       // case 'balance':
       // case 'buy_contract_for_multiple_accounts':
       case 'buy':
-        return jsonDecode(buyContractResponse);
+        return buyContractResponse;
       // case 'cancel':
       // case 'cashier':
       // case 'contract_update_history':
       // case 'contract_update':
       case 'contracts_for':
-        return jsonDecode(contractForResponse);
+        return contractForResponse;
       // case 'copy_start':
       // case 'copy_stop':
       // case 'copytrading_list':
@@ -129,9 +132,9 @@ class MockAPI implements BaseAPI {
       // case 'profit_table':
       // case 'proposal_array':
       case 'proposal_open_contract':
-        return jsonDecode(proposalOpenContractResponse);
+        return proposalOpenContractResponse;
       case 'proposal':
-        return jsonDecode(proposalResponse);
+        return proposalResponse;
       // case 'reality_check':
       // case 'residence_list':
       // case 'revoke_oauth_app':
@@ -146,7 +149,7 @@ class MockAPI implements BaseAPI {
       // case 'states_list':
       // case 'history':
       case 'ticks':
-        return jsonDecode(tickResponse);
+        return tickResponse;
       // case 'time':
       // case 'tnc_approval':
       // case 'topup_virtual':
