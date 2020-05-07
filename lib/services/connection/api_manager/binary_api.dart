@@ -1,5 +1,3 @@
-library wsapi;
-
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
@@ -11,16 +9,17 @@ import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/ping_send.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
-import 'package:flutter_deriv_api/services/connection/api_history.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/api_history.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
 
-/// Callbacks for WS connection
+/// Callbacks for websocket connection
 typedef SocketCallback = void Function();
 
 /// Contains the api call
-class BasicBinaryAPI {
+class BinaryAPI implements BaseAPI {
   /// Indicates current connection status - only set `true` once
   /// we have established SSL *and* web socket handshake steps
   bool _connected = false;
@@ -46,11 +45,15 @@ class BasicBinaryAPI {
   /// Get api history
   APIHistory get apiHistory => _apiHistory;
 
-  /// Get call manager instance
-  CallManager get call => _callManager ??= CallManager(this);
+  @override
+  Future<Response> call({
+    @required Request request,
+  }) =>
+      (_callManager ??= CallManager(this))(
+        request: request,
+      );
 
-  /// Subscribe to a [request]
-  /// [comparePredicate] indicates compare condition for current [request] and [pendingRequest]s
+  @override
   Stream<Response> subscribe({
     @required Request request,
     RequestCompareFunction comparePredicate,
@@ -145,7 +148,7 @@ class BasicBinaryAPI {
     return _webSocketChannel;
   }
 
-  /// Closes the stream channels related to WS
+  @override
   Future<void> close() async {
     // The onDone function of the listener is set to null intentionally
     // to prevent it from being invoked after destroying the web socket object.

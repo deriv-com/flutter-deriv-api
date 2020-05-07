@@ -1,23 +1,23 @@
 import 'dart:async';
 import 'package:meta/meta.dart';
 
+import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_all_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_send.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
-import 'package:flutter_deriv_api/basic_api/generated/forget_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/forget_all_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
-import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
-import 'package:flutter_deriv_api/services/connection/call_manager/pending_request.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
-import 'package:flutter_deriv_api/services/connection/call_manager/subscription_stream.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/pending_request.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/pending_subscribed_request.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/subscription_stream.dart';
 
 /// Subscription manager class
 class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   /// Initializes
-  SubscriptionManager(BasicBinaryAPI api) : super(api);
+  SubscriptionManager(BaseAPI api) : super(api);
 
   /// Get [subscriptionId] by [requestId]
   String getSubscriptionId(int requestId) {

@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:meta/meta.dart';
 
+import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/pending_request.dart';
-import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 
 /// A predicate function to compare [request] and [pendingRequest]s
 /// [equatableResult] indicates request and pending request are equal or not (by equatable package result)
@@ -22,7 +22,7 @@ abstract class BaseCallManager<T> {
   BaseCallManager(this.api);
 
   /// Binary api instance
-  final BasicBinaryAPI api;
+  final BinaryAPI api;
 
   /// Pending requests queue
   final Map<int, PendingRequest<Response>> _pendingRequests =
