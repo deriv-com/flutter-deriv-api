@@ -4,7 +4,8 @@ import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/basic_api/generated/time_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/time_send.dart';
-import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 part 'connection_event.dart';
@@ -22,9 +23,9 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   @override
   ConnectionState get initialState => InitialConnectionState();
 
-  /// connects the [BasicBinaryAPI] to the web socket
+  /// connects the [BinaryAPI] to the web socket
   void connectWS() {
-    final BasicBinaryAPI _api = BasicBinaryAPI();
+    final BinaryAPI _api = BinaryAPI();
 
     _api.run(
       onDone: () => add(Reconnect()),
@@ -43,7 +44,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       } on Exception catch (e, stackTrace) {
         print(e);
         print(stackTrace);
-        
+
         yield ConnectionError(e.toString());
       }
     } else if (event is FetchServerTime) {

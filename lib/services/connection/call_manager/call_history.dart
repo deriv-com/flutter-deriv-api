@@ -1,12 +1,12 @@
-import 'package:flutter_deriv_api/services/connection/api_history_entry.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/call_history_entry.dart';
 
 /// Provides storage for messages sent/received via the web socket connection
-class APIHistory {
+class CallHistory {
   /// Messages that were sent to the remote endpoint
-  final List<APIHistoryEntry> outgoing = <APIHistoryEntry>[];
+  final List<CallHistoryEntry> outgoing = <CallHistoryEntry>[];
 
   /// Messages that were received from the remote endpoint
-  final List<APIHistoryEntry> incoming = <APIHistoryEntry>[];
+  final List<CallHistoryEntry> incoming = <CallHistoryEntry>[];
 
   int _limit = 1024;
 
@@ -27,7 +27,7 @@ class APIHistory {
     Object message,
   }) {
     incoming.add(
-      APIHistoryEntry(
+      CallHistoryEntry(
         timeStamp: timestamp,
         method: method,
         message: message,
@@ -44,7 +44,7 @@ class APIHistory {
     Object message,
   }) {
     outgoing.add(
-      APIHistoryEntry(
+      CallHistoryEntry(
         timeStamp: timestamp,
         method: method,
         message: message,
