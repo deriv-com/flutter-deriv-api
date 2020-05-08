@@ -9,8 +9,8 @@ class Connect extends ConnectionEvent {
   /// Initializes
   Connect({this.api});
 
-  /// A reference to BinaryAPI
-  final BasicBinaryAPI api;
+  /// A reference to base api
+  final BaseAPI api;
 
   @override
   String toString() => 'ConnectionEvent(Connect)';
