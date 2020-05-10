@@ -4,6 +4,8 @@ import 'package:flutter_deriv_api/api/application/app/app_register.dart';
 import 'package:flutter_deriv_api/api/application/app/app_update.dart';
 import 'package:flutter_deriv_api/api/application/app/exceptions/app_exception.dart';
 import 'package:flutter_deriv_api/api/application/models/app_delete_model.dart';
+import 'package:flutter_deriv_api/api/application/new_account/new_account_real.dart';
+import 'package:flutter_deriv_api/api/application/new_account/new_account_virtual.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -14,7 +16,7 @@ class Application {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Delete application
-  /// For parameters information refer to [AppDeleteResponse]
+  /// For parameters information refer to [AppDeleteRequest]
   static Future<AppDeleteModel> deleteApplication({
     AppDeleteRequest request,
   }) async {
@@ -97,7 +99,7 @@ class Application {
   }
 
   /// Update application
-  /// For parameters information refer to [AppUpdateResponse]
+  /// For parameters information refer to [AppUpdateRequest]
   static Future<AppUpdate> updateApplication({
     AppUpdateRequest request,
   }) async {
@@ -110,5 +112,38 @@ class Application {
     }
 
     return AppUpdate.fromJson(response.appUpdate);
+  }
+
+  /// Open new real account
+  /// For parameters information refer to [NewAccountRealRequest]
+  static Future<NewAccountReal> openNewRealAccount({
+    NewAccountRealRequest request,
+  }) async {
+    final NewAccountRealResponse response = await _api.call(request: request);
+
+    if (response.error != null) {
+      throw AppException(
+        message: response.error['message'],
+      );
+    }
+
+    return NewAccountReal.fromJson(response.newAccountReal);
+  }
+
+  /// Open new virtual account
+  /// For parameters information refer to [NewAccountVirtualRequest]
+  static Future<NewAccountVirtual> openNewVirtualAccount({
+    NewAccountVirtualRequest request,
+  }) async {
+    final NewAccountVirtualResponse response =
+        await _api.call(request: request);
+
+    if (response.error != null) {
+      throw AppException(
+        message: response.error['message'],
+      );
+    }
+
+    return NewAccountVirtual.fromJson(response.newAccountVirtual);
   }
 }

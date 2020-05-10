@@ -1,4 +1,5 @@
-const String newAccountRealModelMockData = '''
+/// New account real response
+const String newAccountRealResponse = '''
 {
   "echo_req": {
     "account_opening_reason": "Speculative",
