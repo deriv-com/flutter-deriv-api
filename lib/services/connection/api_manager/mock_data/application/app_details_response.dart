@@ -1,4 +1,5 @@
-const String appDetailsModelMockData = '''
+/// App details response
+const String appDetailsResponse = '''
 {
   "echo_req": {
     "app_get": 1234

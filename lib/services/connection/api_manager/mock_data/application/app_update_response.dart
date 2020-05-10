@@ -1,7 +1,8 @@
-const String appRegisterModelMockData = '''
+/// App update response
+const String appUpdateResponse = '''
 {
   "echo_req": {
-    "app_register": 1,
+    "app_update": 1234,
     "appstore": "https://itunes.apple.com/test_app",
     "github": "https://github.com/test_org/app",
     "googleplay": "https://play.google.com/store/apps/details?id=test.app",
@@ -14,7 +15,7 @@ const String appRegisterModelMockData = '''
     ],
     "verification_uri": "https://test.example.com/verify"
   },
-  "app_register": {
+  "app_update": {
     "app_id": 1234,
     "app_markup_percentage": 22.0,
     "appstore": "https://itunes.apple.com/test_app",
@@ -25,6 +26,6 @@ const String appRegisterModelMockData = '''
     "redirect_uri": "https://test.example.com/redirect",
     "verification_uri": "https://test.example.com/verify"
   },
-  "msg_type": "app_register"
+  "msg_type": "app_update"
 }
 ''';

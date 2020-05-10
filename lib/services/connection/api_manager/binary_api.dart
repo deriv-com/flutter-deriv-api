@@ -12,6 +12,7 @@ import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/call_history.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
 
 /// Callbacks for websocket connection
@@ -34,6 +35,12 @@ class BinaryAPI implements BaseAPI {
 
   /// Subscription manager instance
   SubscriptionManager _subscriptionManager;
+
+  /// Gets API call history
+  CallHistory get callHistory => _callManager?.callHistory;
+
+  /// Gets API subscription history
+  CallHistory get subscriptionHistory => _subscriptionManager?.callHistory;
 
   @override
   Future<Response> call({
