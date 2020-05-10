@@ -1,4 +1,5 @@
-const String oauthAppsJSON = '''{
+/// Oauth apps response
+const String oauthAppsResponse = '''{
   "echo_req": {
     "oauth_apps": 1
   },

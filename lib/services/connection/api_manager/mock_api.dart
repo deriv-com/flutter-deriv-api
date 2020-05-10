@@ -18,6 +18,7 @@ import 'mock_data/application/app_register_response.dart';
 import 'mock_data/application/app_update_response.dart';
 import 'mock_data/application/new_account_real_response.dart';
 import 'mock_data/application/new_account_virtual_response.dart';
+import 'mock_data/application/oauth_apps_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
 import 'mock_data/common/tick_response.dart';
 import 'mock_data/contract/buy_contract_response.dart';
@@ -124,7 +125,8 @@ class MockAPI implements BaseAPI {
         return newAccountRealResponse;
       case 'new_account_virtual':
         return newAccountVirtualResponse;
-      // case 'oauth_apps':
+      case 'oauth_apps':
+        return oauthAppsResponse;
       // case 'p2p_advert_create':
       // case 'p2p_advert_info':
       // case 'p2p_advert_list':

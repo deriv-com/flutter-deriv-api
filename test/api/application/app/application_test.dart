@@ -8,14 +8,8 @@ import 'package:flutter_deriv_api/api/application/app/application.dart';
 import 'package:flutter_deriv_api/api/application/models/app_delete_model.dart';
 import 'package:flutter_deriv_api/api/application/new_account/new_account_real.dart';
 import 'package:flutter_deriv_api/api/application/new_account/new_account_virtual.dart';
-import 'package:flutter_deriv_api/basic_api/generated/app_delete_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/app_get_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/app_list_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/app_markup_details_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/app_register_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/app_update_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/new_account_real_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/new_account_virtual_send.dart';
+import 'package:flutter_deriv_api/api/application/oauth_app/oauth_app.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
@@ -228,6 +222,23 @@ void main() {
       expect(newAccountVirtual.currency, 'USD');
       expect(newAccountVirtual.email, 'test@email.com');
       expect(newAccountVirtual.oauthToken, 'sample_token');
+    });
+
+    test('oauth apps', () async {
+      final List<OauthApp> oauthApps = await Application.oauthApplication(
+        request: const OauthAppsRequest(oauthApps: 1),
+      );
+
+      expect(oauthApps.length, 2);
+
+      expect(oauthApps.first.name, 'Binary Static localhost for dev');
+      expect(oauthApps.first.appId, 1159);
+      expect(oauthApps.first.appMarkupPercentage, 0);
+      expect(oauthApps.first.scopes.length, 4);
+      expect(
+        oauthApps.first.lastUsed,
+        DateTime.parse('2019-10-13 07:11:29.999974'),
+      );
     });
   });
 }
