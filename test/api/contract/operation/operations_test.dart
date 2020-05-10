@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_ope
 import 'package:flutter_deriv_api/api/contract/operation/price_proposal.dart';
 import 'package:flutter_deriv_api/api/contract/operation/sell_contract.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
@@ -73,17 +73,12 @@ void main() {
     expect(sellContract.transactionId, 159779308968);
   });
 
-  test('Buy proposal scenario', () async {
+  test('buy proposal scenario', () async {
     final Injector injector =
-        ModuleContainer().initialize(Injector.getInjector());
+        ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
     // Retrieve API instance from injector
-    final BasicBinaryAPI api = injector.get<BasicBinaryAPI>();
-    await api.run(
-      endpoint: 'frontend.binaryws.com',
-      appId: '1089',
-      brand: 'binary',
-    );
+    final BaseAPI api = injector.get<BaseAPI>();
 
     final AuthorizeResponse authorizeResponse =
         await api.call(request: const AuthorizeRequest(authorize: 'TOKEN'));
@@ -109,7 +104,7 @@ void main() {
       final OpenContractModel openContractModel =
           await boughtContract.getCurrentContractState();
 
-      print('But scenario completed!');
+      print('buy scenario completed!');
     } on ContractOperationException catch (e) {
       print(e.message);
     }
