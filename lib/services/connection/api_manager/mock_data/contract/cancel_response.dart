@@ -1,5 +1,5 @@
-const String cancelContractModelMockData = '''
-{
+/// Cancel response
+const String cancelResponse = '''{
   "cancel": {
     "balance_after": 1200.0,
     "contract_id": 2340843,
@@ -8,5 +8,4 @@ const String cancelContractModelMockData = '''
     "transaction_id": 453476
   },
   "msg_type": "cancel"
-}
-''';
+}''';
