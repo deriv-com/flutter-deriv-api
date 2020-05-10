@@ -87,17 +87,17 @@ void main() {
 
       expect(appMarkupDetails.transactions.length, 1);
 
-      expect(appMarkupDetails.transactions[0].appId, 1234);
-      expect(appMarkupDetails.transactions[0].appMarkup, 15.0);
-      expect(appMarkupDetails.transactions[0].appMarkupUsd, 25.0);
-      expect(appMarkupDetails.transactions[0].appMarkupValue, 12.0);
-      expect(appMarkupDetails.transactions[0].clientCurrencyCode, 'USD');
-      expect(appMarkupDetails.transactions[0].clientLoginId, 'CR12345');
-      expect(appMarkupDetails.transactions[0].devCurrencyCode, 'USD');
-      expect(appMarkupDetails.transactions[0].devLoginId, 'CR45627');
-      expect(appMarkupDetails.transactions[0].transactionId, 10867502908);
+      expect(appMarkupDetails.transactions.first.appId, 1234);
+      expect(appMarkupDetails.transactions.first.appMarkup, 15.0);
+      expect(appMarkupDetails.transactions.first.appMarkupUsd, 25.0);
+      expect(appMarkupDetails.transactions.first.appMarkupValue, 12.0);
+      expect(appMarkupDetails.transactions.first.clientCurrencyCode, 'USD');
+      expect(appMarkupDetails.transactions.first.clientLoginId, 'CR12345');
+      expect(appMarkupDetails.transactions.first.devCurrencyCode, 'USD');
+      expect(appMarkupDetails.transactions.first.devLoginId, 'CR45627');
+      expect(appMarkupDetails.transactions.first.transactionId, 10867502908);
       expect(
-        appMarkupDetails.transactions[0].transactionTime,
+        appMarkupDetails.transactions.first.transactionTime,
         getDateTime(1587544006),
       );
     });
