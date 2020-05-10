@@ -1,12 +1,11 @@
+import 'package:flutter_deriv_api/api/contract/contracts_for/exceptions/contract_for_symbol_exception.dart';
 import 'package:flutter_deriv_api/api/contract/models/contract_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/contracts_for_symbol_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/generated/contracts_for_send.dart';
-import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
-
-import 'exceptions/contract_for_symbol_exception.dart';
 
 /// available contracts. Note: if the user is authenticated,
 /// then only contracts allowed under his account will be returned.
@@ -43,8 +42,7 @@ class ContractsForSymbol extends ContractsForSymbolModel {
       );
 
   /// API instance
-  static final BasicBinaryAPI _api =
-      Injector.getInjector().get<BasicBinaryAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Fetch contracts for given symbol in [ContractsForRequest]
   static Future<ContractsForSymbol> getContractsForSymbol(

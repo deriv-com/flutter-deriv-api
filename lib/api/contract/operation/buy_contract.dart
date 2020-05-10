@@ -1,11 +1,12 @@
 import 'package:flutter_deriv_api/api/contract/models/buy_contract_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/open_contract_model.dart';
+import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_operations_exception.dart';
 import 'package:flutter_deriv_api/api/contract/operation/sell_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/update_contract.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
-import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'exceptions/contract_operations_exception.dart';
@@ -49,8 +50,7 @@ class BuyContract extends BuyContractModel {
       );
 
   /// API instance
-  static final BasicBinaryAPI _api =
-      Injector.getInjector().get<BasicBinaryAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Buys a contract with parameters specified in given [BuyRequest]
   static Future<BuyContract> buy(BuyRequest request) async {
