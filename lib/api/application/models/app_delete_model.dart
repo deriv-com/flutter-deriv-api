@@ -8,13 +8,8 @@ class AppDeleteModel extends APIBaseModel {
     this.succeeded,
   });
 
-  /// Creates an instance from JSON
-  factory AppDeleteModel.fromJson(Map<String, dynamic> json) => AppDeleteModel(
-        succeeded: getBool(json['app_delete']),
-      );
-
   /// Creates an instance from response
-  factory AppDeleteModel.fromResponse({int result}) => AppDeleteModel(
+  factory AppDeleteModel.fromResponse(int result) => AppDeleteModel(
         succeeded: getBool(result),
       );
 
