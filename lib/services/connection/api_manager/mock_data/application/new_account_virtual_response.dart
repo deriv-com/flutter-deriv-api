@@ -1,4 +1,5 @@
-const String newAccountVirtualModelMockData = '''
+/// New account virtual response
+const String newAccountVirtualResponse = '''
 {
   "echo_req": {
     "client_password": "<not shown>",

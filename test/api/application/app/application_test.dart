@@ -6,12 +6,16 @@ import 'package:flutter_deriv_api/api/application/app/app_register.dart';
 import 'package:flutter_deriv_api/api/application/app/app_update.dart';
 import 'package:flutter_deriv_api/api/application/app/application.dart';
 import 'package:flutter_deriv_api/api/application/models/app_delete_model.dart';
+import 'package:flutter_deriv_api/api/application/new_account/new_account_real.dart';
+import 'package:flutter_deriv_api/api/application/new_account/new_account_virtual.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_delete_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_get_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_list_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_markup_details_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_register_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_update_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/new_account_real_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/new_account_virtual_send.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
@@ -173,6 +177,57 @@ void main() {
         appUpdate.appDetails.verificationUri,
         'https://test.example.com/verify',
       );
+    });
+
+    test('open new real account', () async {
+      final NewAccountReal newAccountReal =
+          await Application.openNewRealAccount(
+        request: const NewAccountRealRequest(
+          accountOpeningReason: 'Speculative',
+          accountTurnover: 'Less than \$25,000',
+          addressCity: 'Melbourne',
+          addressLine1: '20 Broadway Av',
+          addressLine2: 'East Melbourne VIC',
+          addressPostcode: '3002',
+          addressState: 'Victoria',
+          dateOfBirth: '1980-01-31',
+          firstName: 'Peter',
+          lastName: 'Pan',
+          newAccountReal: 1,
+          nonPepDeclaration: 1,
+          phone: '+6123456789',
+          placeOfBirth: 'id',
+          residence: 'au',
+          salutation: 'Mr',
+          secretAnswer: 'Jones',
+          secretQuestion: 'Mothers maiden name',
+          taxIdentificationNumber: '012142545',
+          taxResidence: 'ar,sg',
+        ),
+      );
+
+      expect(newAccountReal.clientId, 'CR0000');
+      expect(newAccountReal.landingCompany, 'landing_company');
+      expect(newAccountReal.landingCompanyShort, 'landing_company_short');
+      expect(newAccountReal.oauthToken, 'sample_token');
+    });
+
+    test('open new virtual account', () async {
+      final NewAccountVirtual newAccountVirtual =
+          await Application.openNewVirtualAccount(
+        request: const NewAccountVirtualRequest(
+          newAccountVirtual: 1,
+          clientPassword: 'Abc123de',
+          residence: 'id',
+          verificationCode: 'uoJvVuQ6',
+        ),
+      );
+
+      expect(newAccountVirtual.balance, 250.0);
+      expect(newAccountVirtual.clientId, 'VRTC0000');
+      expect(newAccountVirtual.currency, 'USD');
+      expect(newAccountVirtual.email, 'test@email.com');
+      expect(newAccountVirtual.oauthToken, 'sample_token');
     });
   });
 }
