@@ -1,5 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/get_account_status_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/get_limits_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/get_settings_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/set_settings_response.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
@@ -88,11 +92,14 @@ class MockAPI implements BaseAPI {
       // case 'exchange_rates':
       // case 'forget_all':
       // case 'forget':
-      // case 'get_account_status':
+      case 'get_account_status':
+        return getAccountStatusResponse;
       // case 'get_financial_assessment':
-      // case 'get_limits':
+      case 'get_limits':
+        return getLimitsResponse;
       // case 'get_self_exclusion':
-      // case 'get_settings':
+      case 'get_settings':
+        return getSettingsResponse;
       // case 'landing_company_details':
       // case 'landing_company':
       // case 'login_history':
@@ -144,7 +151,8 @@ class MockAPI implements BaseAPI {
       // case 'set_account_currency':
       // case 'set_financial_assessment':
       // case 'set_self_exclusion':
-      // case 'set_settings':
+      case 'set_settings':
+        return setSettingsResponse;
       // case 'statement':
       // case 'states_list':
       // case 'history':
