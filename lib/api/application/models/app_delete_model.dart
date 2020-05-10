@@ -13,6 +13,11 @@ class AppDeleteModel extends APIBaseModel {
         succeeded: getBool(json['app_delete']),
       );
 
+  /// Creates an instance from response
+  factory AppDeleteModel.fromResponse({int result}) => AppDeleteModel(
+        succeeded: getBool(result),
+      );
+
   /// `true` on success
   final bool succeeded;
 

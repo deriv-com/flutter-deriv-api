@@ -10,6 +10,12 @@ import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
 import 'mock_data/account/authorize_response.dart';
+import 'mock_data/application/app_delete_response.dart';
+import 'mock_data/application/app_details_response.dart';
+import 'mock_data/application/app_list_response.dart';
+import 'mock_data/application/app_markup_details_response.dart';
+import 'mock_data/application/app_register_response.dart';
+import 'mock_data/application/app_update_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
 import 'mock_data/common/tick_response.dart';
 import 'mock_data/contract/buy_contract_response.dart';
@@ -61,12 +67,18 @@ class MockAPI implements BaseAPI {
       case 'active_symbols':
         return activeSymbolsResponse;
       // case 'api_token':
-      // case 'app_delete':
-      // case 'app_get':
-      // case 'app_list':
-      // case 'app_markup_details':
-      // case 'app_register':
-      // case 'app_update':
+      case 'app_delete':
+        return appDeleteResponse;
+      case 'app_get':
+        return appDetailsResponse;
+      case 'app_list':
+        return appListResponse;
+      case 'app_markup_details':
+        return appMarkupDetailsResponse;
+      case 'app_register':
+        return appRegisterResponse;
+      case 'app_update':
+        return appUpdateResponse;
       // case 'asset_index':
       case 'authorize':
         return authorizeResponse;

@@ -1,4 +1,5 @@
-const String appDeleteModelMockData = '''
+/// App delete response
+const String appDeleteResponse = '''
 {
   "echo_req": {
     "app_delete": 1234

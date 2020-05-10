@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/application/app/app_detail.dart';
+import 'package:flutter_deriv_api/api/application/app/app_details.dart';
 import 'package:flutter_deriv_api/api/application/models/app_register_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
@@ -14,7 +14,7 @@ class AppRegister extends AppRegisterModel {
   /// Creates an instance from JSON
   factory AppRegister.fromJson(Map<String, dynamic> json) => AppRegister(
         appDetails: getItemFromMap(
-          json['app_register'],
+          json,
           itemToTypeCallback: (dynamic item) => AppDetails.fromJson(item),
         ),
       );
