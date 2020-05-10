@@ -7,6 +7,7 @@ import 'package:flutter_deriv_api/api/application/models/app_delete_model.dart';
 import 'package:flutter_deriv_api/api/application/new_account/exceptions/new_account_exception.dart';
 import 'package:flutter_deriv_api/api/application/new_account/new_account_real.dart';
 import 'package:flutter_deriv_api/api/application/new_account/new_account_virtual.dart';
+import 'package:flutter_deriv_api/api/application/oauth_app/exceptions/oauth_app_exception.dart';
 import 'package:flutter_deriv_api/api/application/oauth_app/oauth_app.dart';
 import 'package:flutter_deriv_api/api/application/revoke_oauth_app/revoke_oauth_app.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -29,7 +30,7 @@ class Application {
       throw AppException(message: response.error['message']);
     }
 
-    return AppDeleteModel.fromResponse(result: response.appDelete);
+    return AppDeleteModel.fromResponse(response.appDelete);
   }
 
   /// Fetch application details
@@ -159,9 +160,9 @@ class Application {
     final RevokeOauthAppResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw NewAccountException(message: response.error['message']);
+      throw OauthAppException(message: response.error['message']);
     }
 
-    return RevokeOauthApp.fromResponse(result: response.revokeOauthApp);
+    return RevokeOauthApp.fromResponse(response.revokeOauthApp);
   }
 }
