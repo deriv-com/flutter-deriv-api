@@ -4,8 +4,10 @@ import 'package:flutter_deriv_api/api/application/app/app_register.dart';
 import 'package:flutter_deriv_api/api/application/app/app_update.dart';
 import 'package:flutter_deriv_api/api/application/app/exceptions/app_exception.dart';
 import 'package:flutter_deriv_api/api/application/models/app_delete_model.dart';
+import 'package:flutter_deriv_api/api/application/new_account/exceptions/new_account_exception.dart';
 import 'package:flutter_deriv_api/api/application/new_account/new_account_real.dart';
 import 'package:flutter_deriv_api/api/application/new_account/new_account_virtual.dart';
+import 'package:flutter_deriv_api/api/application/oauth_app/oauth_app.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -23,9 +25,7 @@ class Application {
     final AppDeleteResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw AppException(
-        message: response.error['message'],
-      );
+      throw AppException(message: response.error['message']);
     }
 
     return AppDeleteModel.fromResponse(result: response.appDelete);
@@ -39,9 +39,7 @@ class Application {
     final AppGetResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw AppException(
-        message: response.error['message'],
-      );
+      throw AppException(message: response.error['message']);
     }
 
     return AppDetails.fromJson(response.appGet);
@@ -55,9 +53,7 @@ class Application {
     final AppListResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw AppException(
-        message: response.error['message'],
-      );
+      throw AppException(message: response.error['message']);
     }
 
     return getListFromMap(
@@ -74,9 +70,7 @@ class Application {
     final AppMarkupDetailsResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw AppException(
-        message: response.error['message'],
-      );
+      throw AppException(message: response.error['message']);
     }
 
     return AppMarkupDetails.fromJson(response.appMarkupDetails);
@@ -90,9 +84,7 @@ class Application {
     final AppRegisterResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw AppException(
-        message: response.error['message'],
-      );
+      throw AppException(message: response.error['message']);
     }
 
     return AppRegister.fromJson(response.appRegister);
@@ -106,9 +98,7 @@ class Application {
     final AppUpdateResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw AppException(
-        message: response.error['message'],
-      );
+      throw AppException(message: response.error['message']);
     }
 
     return AppUpdate.fromJson(response.appUpdate);
@@ -122,9 +112,7 @@ class Application {
     final NewAccountRealResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw AppException(
-        message: response.error['message'],
-      );
+      throw NewAccountException(message: response.error['message']);
     }
 
     return NewAccountReal.fromJson(response.newAccountReal);
@@ -139,11 +127,26 @@ class Application {
         await _api.call(request: request);
 
     if (response.error != null) {
-      throw AppException(
-        message: response.error['message'],
-      );
+      throw NewAccountException(message: response.error['message']);
     }
 
     return NewAccountVirtual.fromJson(response.newAccountVirtual);
+  }
+
+  /// Oauth application that used for the authorized account
+  /// For parameters information refer to [OauthAppsRequest]
+  static Future<List<OauthApp>> oauthApplication({
+    OauthAppsRequest request,
+  }) async {
+    final OauthAppsResponse response = await _api.call(request: request);
+
+    if (response.error != null) {
+      throw NewAccountException(message: response.error['message']);
+    }
+
+    return getListFromMap(
+      response.oauthApps,
+      itemToTypeCallback: (dynamic item) => OauthApp.fromJson(item),
+    );
   }
 }
