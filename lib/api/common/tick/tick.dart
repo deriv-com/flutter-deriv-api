@@ -1,5 +1,13 @@
 import 'package:flutter_deriv_api/api/common/models/tick_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/basic_api/request.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/pending_request.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
+
+import 'exceptions/tick_exception.dart';
 
 /// Spot price updates for a given symbol
 class Tick extends TickModel {
@@ -32,6 +40,30 @@ class Tick extends TickModel {
         quote: json['quote'],
         symbol: json['symbol'],
       );
+
+  /// API instance
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Subscribes to tick request for given [TickRequest]
+  static Stream<Tick> fetchTickUpdate(TicksRequest tickRequest) => _api
+          .subscribe(
+        request: tickRequest,
+        comparePredicate: ({
+          Request request,
+          PendingRequest<Response> pendingRequest,
+          bool equatableResult,
+        }) {
+          final TicksRequest pending = pendingRequest.request;
+          return pending.ticks == tickRequest.ticks;
+        },
+      )
+          .map<Tick>((Response response) {
+        if (response.error != null) {
+          throw TickException(message: response.error['message']);
+        }
+        final TicksResponse ticksResponse = response;
+        return Tick.fromJson(ticksResponse.tick);
+      });
 
   /// Generate a copy of instance with given parameters
   Tick copyWith({
