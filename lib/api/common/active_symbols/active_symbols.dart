@@ -1,7 +1,5 @@
 import 'package:flutter_deriv_api/api/common/active_symbols/exceptions/active_symbols_exception.dart';
 import 'package:flutter_deriv_api/api/common/models/active_symbols_model.dart';
-import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -76,16 +74,11 @@ class ActiveSymbol extends ActiveSymbolModel {
 
   /// Fetch the list of active symbols
   /// For parameters information refer to [ActiveSymbolsRequest]
-  static Future<List<ActiveSymbol>> getActiveSymbols({
-    String mode = 'brief',
-    String landingCompany,
-    String productType,
-  }) async {
+  static Future<List<ActiveSymbol>> getActiveSymbols(
+    ActiveSymbolsRequest request,
+  ) async {
     final ActiveSymbolsResponse activeSymbolsResponse = await _api.call(
-      request: ActiveSymbolsRequest(
-          activeSymbols: mode,
-          landingCompany: landingCompany,
-          productType: productType),
+      request: request,
     );
 
     if (activeSymbolsResponse.error != null) {

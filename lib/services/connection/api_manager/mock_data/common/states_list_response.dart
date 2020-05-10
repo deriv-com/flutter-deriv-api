@@ -1,4 +1,5 @@
-const String statesListJSON = '''{
+/// statesList Response
+const String statesListResponse = '''{
   "echo_req": {
     "states_list": "id"
   },

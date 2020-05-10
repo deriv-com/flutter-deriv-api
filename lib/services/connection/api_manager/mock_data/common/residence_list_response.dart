@@ -1,4 +1,5 @@
-const String residenceListJSON = '''{
+/// residenceList Response
+const String residenceListResponse = '''{
   "echo_req": {
     "residence_list": 1
   },

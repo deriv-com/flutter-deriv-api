@@ -1,4 +1,5 @@
-const String websiteStatusJSON = '''{
+/// websiteStatus Response
+const String websiteStatusResponse = '''{
   "echo_req": {
     "website_status": 1
   },

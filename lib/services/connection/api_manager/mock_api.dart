@@ -1,5 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/residence_list_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/states_list_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/tick_history_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/website_status_response.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
@@ -136,7 +140,8 @@ class MockAPI implements BaseAPI {
       case 'proposal':
         return proposalResponse;
       // case 'reality_check':
-      // case 'residence_list':
+      case 'residence_list':
+        return residenceListResponse;
       // case 'revoke_oauth_app':
       // case 'sell_contract_for_multiple_accounts':
       // case 'sell_expired':
@@ -146,8 +151,10 @@ class MockAPI implements BaseAPI {
       // case 'set_self_exclusion':
       // case 'set_settings':
       // case 'statement':
-      // case 'states_list':
-      // case 'history':
+      case 'states_list':
+        return statesListResponse;
+      case 'history':
+        return tickHistoryResponse;
       case 'ticks':
         return tickResponse;
       // case 'time':
@@ -158,7 +165,8 @@ class MockAPI implements BaseAPI {
       // case 'transaction':
       // case 'transfer_between_accounts':
       // case 'verify_email':
-      // case 'website_status':
+      case 'website_status':
+        return websiteStatusResponse;
 
       default:
         throw APIManagerException(

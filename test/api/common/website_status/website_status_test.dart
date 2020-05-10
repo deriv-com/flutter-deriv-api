@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/common/models/transfer_account_limitation_model.dart';
@@ -6,14 +5,17 @@ import 'package:flutter_deriv_api/api/common/models/website_status_crypto_config
 import 'package:flutter_deriv_api/api/common/models/website_status_currency_config_model.dart';
 import 'package:flutter_deriv_api/api/common/website_status/website_status.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-
-import 'website_status_mock_data.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('Website status', () {
-    final Map<String, dynamic> websiteStatusMap = jsonDecode(websiteStatusJSON);
-    final WebsiteStatus websiteStatus =
-        WebsiteStatus.fromJson(websiteStatusMap['website_status']);
+  test('Website status', () async {
+    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+
+    final WebsiteStatus websiteStatus = await WebsiteStatus.fetchWebsiteStatus(
+      const WebsiteStatusRequest(),
+    );
 
     expect(websiteStatus.clientsCountry, 'us');
     expect(websiteStatus.termsConditionsVersion, 'Version 48 2019-05-10');
