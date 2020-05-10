@@ -13,6 +13,11 @@ class RevokeOauthApp extends RevokeOauthAppModel {
         succeeded: getBool(json['revoke_oauth_app']),
       );
 
+  /// Creates an instance from response
+  factory RevokeOauthApp.fromResponse({int result}) => RevokeOauthApp(
+        succeeded: getBool(result),
+      );
+
   /// Creates a copy of instance with given parameters
   RevokeOauthApp copyWith({
     int succeeded,
