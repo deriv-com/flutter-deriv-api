@@ -9,6 +9,7 @@ import 'package:flutter_deriv_api/api/application/models/app_delete_model.dart';
 import 'package:flutter_deriv_api/api/application/new_account/new_account_real.dart';
 import 'package:flutter_deriv_api/api/application/new_account/new_account_virtual.dart';
 import 'package:flutter_deriv_api/api/application/oauth_app/oauth_app.dart';
+import 'package:flutter_deriv_api/api/application/revoke_oauth_app/revoke_oauth_app.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
@@ -239,6 +240,17 @@ void main() {
         oauthApps.first.lastUsed,
         DateTime.parse('2019-10-13 07:11:29.999974'),
       );
+    });
+
+    test('revoke oauth app', () async {
+      final RevokeOauthApp revokeOauthApp =
+          await Application.revokeOauthApplication(
+        request: const RevokeOauthAppRequest(
+          revokeOauthApp: 1,
+        ),
+      );
+
+      expect(revokeOauthApp.succeeded, true);
     });
   });
 }

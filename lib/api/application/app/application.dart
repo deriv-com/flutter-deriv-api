@@ -8,6 +8,7 @@ import 'package:flutter_deriv_api/api/application/new_account/exceptions/new_acc
 import 'package:flutter_deriv_api/api/application/new_account/new_account_real.dart';
 import 'package:flutter_deriv_api/api/application/new_account/new_account_virtual.dart';
 import 'package:flutter_deriv_api/api/application/oauth_app/oauth_app.dart';
+import 'package:flutter_deriv_api/api/application/revoke_oauth_app/revoke_oauth_app.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -148,5 +149,19 @@ class Application {
       response.oauthApps,
       itemToTypeCallback: (dynamic item) => OauthApp.fromJson(item),
     );
+  }
+
+  /// Revoke oauth application
+  /// For parameters information refer to [RevokeOauthAppRequest]
+  static Future<RevokeOauthApp> revokeOauthApplication({
+    RevokeOauthAppRequest request,
+  }) async {
+    final RevokeOauthAppResponse response = await _api.call(request: request);
+
+    if (response.error != null) {
+      throw NewAccountException(message: response.error['message']);
+    }
+
+    return RevokeOauthApp.fromResponse(result: response.revokeOauthApp);
   }
 }

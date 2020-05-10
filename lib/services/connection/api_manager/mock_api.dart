@@ -19,6 +19,7 @@ import 'mock_data/application/app_update_response.dart';
 import 'mock_data/application/new_account_real_response.dart';
 import 'mock_data/application/new_account_virtual_response.dart';
 import 'mock_data/application/oauth_apps_response.dart';
+import 'mock_data/application/revoke_oauth_app_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
 import 'mock_data/common/tick_response.dart';
 import 'mock_data/contract/buy_contract_response.dart';
@@ -155,7 +156,8 @@ class MockAPI implements BaseAPI {
         return proposalResponse;
       // case 'reality_check':
       // case 'residence_list':
-      // case 'revoke_oauth_app':
+      case 'revoke_oauth_app':
+        return revokeOauthAppResponse;
       // case 'sell_contract_for_multiple_accounts':
       // case 'sell_expired':
       // case 'sell':
