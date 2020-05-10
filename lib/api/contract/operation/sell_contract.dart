@@ -1,6 +1,6 @@
 import 'package:flutter_deriv_api/api/contract/models/sell_contract_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 import 'exceptions/contract_operations_exception.dart';
@@ -32,8 +32,7 @@ class SellContract extends SellContractModel {
       );
 
   /// API instance
-  static final BasicBinaryAPI _api =
-      Injector.getInjector().get<BasicBinaryAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Sell a contract with parameters specified in [SellRequest]
   static Future<SellContract> sellContract(SellRequest request) async {

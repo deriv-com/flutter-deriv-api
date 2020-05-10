@@ -1,6 +1,6 @@
 import 'package:flutter_deriv_api/api/contract/models/cancel_contract_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 import 'exceptions/contract_operations_exception.dart';
@@ -32,8 +32,8 @@ class CancelContract extends CancelContractModel {
       );
 
   /// API instance
-  static final BasicBinaryAPI _api =
-      Injector.getInjector().get<BasicBinaryAPI>();
+  static final BinaryAPI _api =
+      Injector.getInjector().get<BinaryAPI>();
 
   /// Cancel a contract with parameters specified in [CancelRequest]
   static Future<CancelContract> cancelContract(CancelRequest request) async {
