@@ -69,9 +69,9 @@ class PriceProposal extends PriceProposalModel {
   /// Gets the price proposal for contract
   /// For parameters information refer to [ProposalRequest]
   static Future<PriceProposal> getPriceForContract({
-    ProposalRequest proposalRequest,
+    ProposalRequest request,
   }) async {
-    final ProposalResponse response = await _api.call(request: proposalRequest);
+    final ProposalResponse response = await _api.call(request: request);
 
     checkForException(
       response: response,
@@ -86,9 +86,9 @@ class PriceProposal extends PriceProposalModel {
   /// Gets the price proposal for contract
   /// For parameters information refer to [ProposalRequest]
   static Stream<PriceProposal> getPriceForContractUpdate({
-    ProposalRequest proposalRequest,
+    ProposalRequest request,
   }) =>
-      _api.subscribe(request: proposalRequest).map<PriceProposal>(
+      _api.subscribe(request: request).map<PriceProposal>(
         (Response response) {
           if (response.error != null) {
             throw ContractOperationException(

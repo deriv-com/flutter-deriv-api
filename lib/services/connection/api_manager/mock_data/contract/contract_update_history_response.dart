@@ -1,4 +1,5 @@
-const String contractUpdateHistoryJSON = '''{
+/// contractUpdateHistory Response
+const String contractUpdateHistoryResponse = '''{
   "contract_update_history": [
     {
       "display_name": "localized display name",

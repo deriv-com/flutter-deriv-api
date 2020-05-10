@@ -1,5 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/contract/cancel_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/contract/contract_update_history_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/contract/contract_update_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/contract/sel_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/contract/set_account_currency_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/contract/transaction_response.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
@@ -74,10 +80,13 @@ class MockAPI implements BaseAPI {
       // case 'buy_contract_for_multiple_accounts':
       case 'buy':
         return buyContractResponse;
-      // case 'cancel':
+      case 'cancel':
+        return cancelResponse;
       // case 'cashier':
-      // case 'contract_update_history':
-      // case 'contract_update':
+      case 'contract_update_history':
+        return contractUpdateHistoryResponse;
+      case 'contract_update':
+        return contractUpdateResponse;
       case 'contracts_for':
         return contractForResponse;
       // case 'copy_start':
@@ -140,8 +149,10 @@ class MockAPI implements BaseAPI {
       // case 'revoke_oauth_app':
       // case 'sell_contract_for_multiple_accounts':
       // case 'sell_expired':
-      // case 'sell':
-      // case 'set_account_currency':
+      case 'sell':
+        return sellResponse;
+      case 'set_account_currency':
+        return setAccountCurrencyResponse;
       // case 'set_financial_assessment':
       // case 'set_self_exclusion':
       // case 'set_settings':
@@ -155,7 +166,8 @@ class MockAPI implements BaseAPI {
       // case 'topup_virtual':
       // case 'trading_durations':
       // case 'trading_times':
-      // case 'transaction':
+      case 'transaction':
+        return transactionResponse;
       // case 'transfer_between_accounts':
       // case 'verify_email':
       // case 'website_status':
