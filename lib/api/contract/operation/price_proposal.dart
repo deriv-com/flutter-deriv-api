@@ -101,20 +101,10 @@ class PriceProposal extends PriceProposalModel {
       );
 
   /// Buy this proposal contract
-  Future<BuyContract> buy({double price}) async {
-    final BuyResponse buyResponse = await _api.call(
-      request: BuyRequest(
+  Future<BuyContract> buy({double price}) => BuyContract.buy(BuyRequest(
         buy: id,
         price: price ?? askPrice,
-      ),
-    );
-
-    if (buyResponse.error != null) {
-      throw ContractOperationException(message: buyResponse.error['message']);
-    }
-
-    return BuyContract.fromJson(buyResponse.buy);
-  }
+      ));
 
   /// Generate a copy of instance with given parameters
   PriceProposal copyWith({
