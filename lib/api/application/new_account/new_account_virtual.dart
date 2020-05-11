@@ -49,8 +49,8 @@ class NewAccountVirtual extends NewAccountVirtualModel {
         oauthToken: oauthToken ?? this.oauthToken,
       );
 
-  /// Open new virtual account
-  /// For parameters information refer to [NewAccountVirtualRequest]
+  /// Open new virtual account.
+  /// For parameters information refer to [NewAccountVirtualRequest].
   static Future<NewAccountVirtual> openNewVirtualAccount(
     NewAccountVirtualRequest request,
   ) async {

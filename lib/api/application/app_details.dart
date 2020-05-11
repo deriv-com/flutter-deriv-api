@@ -75,8 +75,8 @@ class AppDetails extends AppDetailsModel {
         verificationUri: verificationUri ?? this.verificationUri,
       );
 
-  /// Fetch the information of the OAuth application specified by [appId]
-  /// For parameters information refer to [AppGetRequest]
+  /// Fetch the information of the OAuth application specified by [appId].
+  /// For parameters information refer to [AppGetRequest].
   static Future<AppDetails> fetchApplicationDetails(
     AppGetRequest request,
   ) async {
@@ -89,8 +89,8 @@ class AppDetails extends AppDetailsModel {
     return AppDetails.fromJson(response.appGet);
   }
 
-  /// List all of the account's OAuth applications
-  /// For parameters information refer to [AppListRequest]
+  /// List all of the account's OAuth applications.
+  /// For parameters information refer to [AppListRequest].
   static Future<List<AppDetails>> fetchApplicationList(
     AppListRequest request,
   ) async {
@@ -106,7 +106,7 @@ class AppDetails extends AppDetailsModel {
     );
   }
 
-  /// Retrieve details of app markup according to criteria specified
+  /// Retrieve details of app markup according to criteria specified.
   Future<AppMarkupDetails> fetchApplicationMarkupDetails({
     String clientLoginId,
     DateTime dateFrom,
@@ -131,12 +131,12 @@ class AppDetails extends AppDetailsModel {
         ),
       );
 
-  /// The request for deleting an application
+  /// The request for deleting an application.
   Future<AppDelete> deleteApplication() => AppDelete.deleteApplication(
         AppDeleteRequest(appDelete: appId),
       );
 
-  /// Register a new Oauth application
+  /// Register a new Oauth application.
   Future<AppRegister> registerApplication({List<TokenScope> scopes}) =>
       AppRegister.registerApplication(
         AppRegisterRequest(
@@ -154,7 +154,7 @@ class AppDetails extends AppDetailsModel {
         ),
       );
 
-  /// Update application
+  /// Update application.
   Future<AppUpdate> updateApplication({List<TokenScope> scopes}) =>
       AppUpdate.updateApplication(
         AppUpdateRequest(
@@ -172,7 +172,7 @@ class AppDetails extends AppDetailsModel {
         ),
       );
 
-  /// Revoke access of particular app
+  /// Revoke access of particular app.
   Future<RevokeOauthApp> revokeOauthApplication() =>
       RevokeOauthApp.revokeOauthApplication(
         RevokeOauthAppRequest(revokeOauthApp: appId),

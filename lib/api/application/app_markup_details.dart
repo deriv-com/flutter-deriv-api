@@ -35,8 +35,8 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
         transactions: transactions ?? this.transactions,
       );
 
-  /// Retrieve details of app markup according to criteria specified
-  /// For parameters information refer to [AppMarkupDetailsRequest]
+  /// Retrieve details of app markup according to criteria specified.
+  /// For parameters information refer to [AppMarkupDetailsRequest].
   static Future<AppMarkupDetails> fetchApplicationMarkupDetails(
     AppMarkupDetailsRequest request,
   ) async {

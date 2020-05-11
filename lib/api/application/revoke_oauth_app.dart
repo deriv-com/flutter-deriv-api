@@ -27,8 +27,8 @@ class RevokeOauthApp extends RevokeOauthAppModel {
         succeeded: succeeded ?? this.succeeded,
       );
 
-  /// Revoke access of particular app
-  /// For parameters information refer to [RevokeOauthAppRequest]
+  /// Revoke access of particular app.
+  /// For parameters information refer to [RevokeOauthAppRequest].
   static Future<RevokeOauthApp> revokeOauthApplication(
     RevokeOauthAppRequest request,
   ) async {

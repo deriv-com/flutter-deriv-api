@@ -43,8 +43,8 @@ class NewAccountReal extends NewAccountRealModel {
         oauthToken: oauthToken ?? this.oauthToken,
       );
 
-  /// Open new real account
-  /// For parameters information refer to [NewAccountRealRequest]
+  /// Open new real account.
+  /// For parameters information refer to [NewAccountRealRequest].
   static Future<NewAccountReal> openNewRealAccount(
     NewAccountRealRequest request,
   ) async {
