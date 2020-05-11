@@ -21,6 +21,7 @@ class APIBuilder extends Builder {
     'number': 'num',
     'object': 'Map<String, dynamic>',
     'array': 'List<String>',
+    'undefined': 'dynamic',
   };
 
   static const Map<String, String> schemaTypeMap = <String, String>{
@@ -202,11 +203,11 @@ class APIBuilder extends Builder {
 
         if (schemaType == 'array') {
           // Some types aren't specified - forget_all for example
-          final String itemType = property.items?.type?.toString() ?? 'string';
+          final String itemType = property.items?.type?.toString() ?? 'undefined';
 
           return 'List<${typeMap[itemType]}>';
         } else {
-          return typeMap[schemaType] ?? 'String';
+          return typeMap[schemaType];
         }
       }
     } else {

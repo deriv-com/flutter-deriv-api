@@ -13,8 +13,7 @@ ProposalArrayRequest _$ProposalArrayRequestFromJson(Map<String, dynamic> json) {
         .map((e) => e as Map<String, dynamic>)
         .toList(),
     basis: json['basis'] as String,
-    contractType:
-        (json['contract_type'] as List).map((e) => e as String).toList(),
+    contractType: json['contract_type'] as List,
     currency: json['currency'] as String,
     dateExpiry: json['date_expiry'] as int,
     dateStart: json['date_start'] as int,
