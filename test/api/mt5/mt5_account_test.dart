@@ -59,5 +59,34 @@ void main() {
       expect(mt5LoginList.first.login, 'MT346525');
       expect(mt5LoginList.first.name, 'Jon Doe');
     });
+
+    test('change password test', () async {
+      final bool result = await MT5Account(login: 'MTR1000').changePassword(
+        newPassword: 'abcd1234',
+        oldPassword: 'Abc1234',
+        passwordType: PasswordType.main,
+      );
+
+      expect(result, true);
+    });
+
+    test('check password test', () async {
+      final bool result = await MT5Account(login: 'MTR1000').checkPassword(
+        password: 'abcd1234',
+        passwordType: PasswordType.main,
+      );
+
+      expect(result, true);
+    });
+
+    test('reset password test', () async {
+      final bool result = await MT5Account(login: 'MTR1000').resetPassword(
+        newPassword: 'abcd1234',
+        passwordType: PasswordType.main,
+        verificationCode: 'O8eZ2xMq',
+      );
+
+      expect(result, true);
+    });
   });
 }

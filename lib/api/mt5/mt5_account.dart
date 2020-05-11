@@ -116,4 +116,71 @@ class MT5Account extends MT5AccountModel {
       itemToTypeCallback: (dynamic item) => MT5Account.fromJson(item),
     );
   }
+
+  /// Change password of the MT5 account
+  Future<bool> changePassword({
+    String newPassword,
+    String oldPassword,
+    PasswordType passwordType,
+  }) async {
+    final Mt5PasswordChangeResponse response = await _api.call(
+      request: Mt5PasswordChangeRequest(
+        login: login,
+        mt5PasswordChange: 1,
+        newPassword: newPassword,
+        oldPassword: oldPassword,
+        passwordType: getStringFromEnum(value: passwordType),
+      ),
+    );
+
+    if (response.error != null) {
+      throw MT5Exception(message: response.error['message']);
+    }
+
+    return getBool(response.mt5PasswordChange);
+  }
+
+  /// This call validates the main password for the MT5 user
+  Future<bool> checkPassword({
+    String password,
+    PasswordType passwordType,
+  }) async {
+    final Mt5PasswordCheckResponse response = await _api.call(
+      request: Mt5PasswordCheckRequest(
+        login: login,
+        mt5PasswordCheck: 1,
+        password: password,
+        passwordType: getStringFromEnum(value: passwordType),
+      ),
+    );
+
+    if (response.error != null) {
+      throw MT5Exception(message: response.error['message']);
+    }
+
+    return getBool(response.mt5PasswordCheck);
+  }
+
+  /// Reset password of MT5 account
+  Future<bool> resetPassword({
+    String newPassword,
+    PasswordType passwordType,
+    String verificationCode,
+  }) async {
+    final Mt5PasswordResetResponse response = await _api.call(
+      request: Mt5PasswordResetRequest(
+        login: login,
+        mt5PasswordReset: 1,
+        newPassword: newPassword,
+        passwordType: getStringFromEnum(value: passwordType),
+        verificationCode: verificationCode,
+      ),
+    );
+
+    if (response.error != null) {
+      throw MT5Exception(message: response.error['message']);
+    }
+
+    return getBool(response.mt5PasswordReset);
+  }
 }
