@@ -1,14 +1,15 @@
-import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/balance/balance.dart';
-
-import 'balance_mock_data.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('Balance JSON serialization', () {
-    final Map<String, dynamic> balanceMap = jsonDecode(balanceJSON);
-    final Balance balance = Balance.fromJson(balanceMap['balance']);
+  test('Balance JSON serialization', () async {
+    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+
+    final Balance balance = await Balance.fetchBalance(const BalanceRequest());
 
     expect(balance.balance, 9650.74);
     expect(balance.currency, 'USD');

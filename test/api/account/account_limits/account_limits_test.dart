@@ -9,7 +9,8 @@ import 'package:flutter_deriv_api/services/dependency_injector/module_container.
 void main() {
   test('Account limits JSON parsing', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
-    final AccountLimits accountLimits = await AccountLimits.getAccountLimits();
+    final AccountLimits accountLimits =
+        await AccountLimits.fetchAccountLimits();
 
     expect(accountLimits.accountBalance, 300000.0);
     expect(accountLimits.lifetimeLimit, 10000.0);

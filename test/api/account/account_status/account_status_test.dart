@@ -10,7 +10,8 @@ void main() {
   test('Account status JSON parsing', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    final AccountStatus accountStatus = await AccountStatus.getAccountStatus();
+    final AccountStatus accountStatus =
+        await AccountStatus.fetchAccountStatus();
 
     expect(
       accountStatus.status.first,
