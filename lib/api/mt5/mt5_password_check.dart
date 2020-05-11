@@ -27,8 +27,8 @@ class MT5PasswordCheck extends MT5PasswordCheckModel {
         succeeded: succeeded ?? this.succeeded,
       );
 
-  /// This call validates the main password for the MT5 user
-  /// For parameters information refer to [Mt5PasswordCheckRequest]
+  /// This call validates the main password for the MT5 user.
+  /// For parameters information refer to [Mt5PasswordCheckRequest].
   static Future<MT5PasswordCheck> checkPassword(
     Mt5PasswordCheckRequest request,
   ) async {
