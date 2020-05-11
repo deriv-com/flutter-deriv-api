@@ -29,9 +29,9 @@ class MT5PasswordChange extends MT5PasswordChangeModel {
 
   /// Change password of the MT5 account
   /// For parameters information refer to [Mt5PasswordChangeRequest]
-  static Future<MT5PasswordChange> changePassword({
+  static Future<MT5PasswordChange> changePassword(
     Mt5PasswordChangeRequest request,
-  }) async {
+  ) async {
     final Mt5PasswordChangeResponse response =
         await _api.call(request: request);
 

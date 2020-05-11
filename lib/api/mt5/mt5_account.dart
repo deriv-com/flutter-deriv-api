@@ -1,6 +1,12 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/mt5/exceptions/mt5_exception.dart';
 import 'package:flutter_deriv_api/api/mt5/models/mt5_account_model.dart';
+import 'package:flutter_deriv_api/api/mt5/mt5_deposit.dart';
+import 'package:flutter_deriv_api/api/mt5/mt5_password_change.dart';
+import 'package:flutter_deriv_api/api/mt5/mt5_password_check.dart';
+import 'package:flutter_deriv_api/api/mt5/mt5_password_reset.dart';
+import 'package:flutter_deriv_api/api/mt5/mt5_settings.dart';
+import 'package:flutter_deriv_api/api/mt5/mt5_withdrawal.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -88,9 +94,9 @@ class MT5Account extends MT5AccountModel {
 
   /// This call creates new MT5 user, either demo or real money user
   /// For parameters information refer to [Mt5NewAccountRequest]
-  static Future<MT5Account> createNewAccount({
+  static Future<MT5Account> createNewAccount(
     Mt5NewAccountRequest request,
-  }) async {
+  ) async {
     final Mt5NewAccountResponse response = await _api.call(request: request);
 
     if (response.error != null) {
@@ -102,9 +108,9 @@ class MT5Account extends MT5AccountModel {
 
   /// Get list of MT5 accounts for client
   /// For parameters information refer to [Mt5LoginListRequest]
-  static Future<List<MT5Account>> fetchLoginList({
+  static Future<List<MT5Account>> fetchLoginList(
     Mt5LoginListRequest request,
-  }) async {
+  ) async {
     final Mt5LoginListResponse response = await _api.call(request: request);
 
     if (response.error != null) {
@@ -117,70 +123,76 @@ class MT5Account extends MT5AccountModel {
     );
   }
 
+  /// This call allows deposit into MT5 account from binary account
+  Future<MT5Deposit> deposit({
+    double amount,
+    String fromBinary,
+  }) =>
+      MT5Deposit.deposit(
+        Mt5DepositRequest(
+          amount: amount,
+          fromBinary: fromBinary,
+          toMt5: login,
+        ),
+      );
+
   /// Change password of the MT5 account
-  Future<bool> changePassword({
+  Future<MT5PasswordChange> changePassword({
     String newPassword,
     String oldPassword,
     PasswordType passwordType,
-  }) async {
-    final Mt5PasswordChangeResponse response = await _api.call(
-      request: Mt5PasswordChangeRequest(
-        login: login,
-        mt5PasswordChange: 1,
-        newPassword: newPassword,
-        oldPassword: oldPassword,
-        passwordType: getStringFromEnum(value: passwordType),
-      ),
-    );
-
-    if (response.error != null) {
-      throw MT5Exception(message: response.error['message']);
-    }
-
-    return getBool(response.mt5PasswordChange);
-  }
+  }) =>
+      MT5PasswordChange.changePassword(
+        Mt5PasswordChangeRequest(
+          login: login,
+          newPassword: newPassword,
+          oldPassword: oldPassword,
+          passwordType: getStringFromEnum(value: passwordType),
+        ),
+      );
 
   /// This call validates the main password for the MT5 user
-  Future<bool> checkPassword({
+  Future<MT5PasswordCheck> checkPassword({
     String password,
     PasswordType passwordType,
-  }) async {
-    final Mt5PasswordCheckResponse response = await _api.call(
-      request: Mt5PasswordCheckRequest(
-        login: login,
-        mt5PasswordCheck: 1,
-        password: password,
-        passwordType: getStringFromEnum(value: passwordType),
-      ),
-    );
-
-    if (response.error != null) {
-      throw MT5Exception(message: response.error['message']);
-    }
-
-    return getBool(response.mt5PasswordCheck);
-  }
+  }) =>
+      MT5PasswordCheck.checkPassword(
+        Mt5PasswordCheckRequest(
+          login: login,
+          password: password,
+          passwordType: getStringFromEnum(value: passwordType),
+        ),
+      );
 
   /// Reset password of MT5 account
-  Future<bool> resetPassword({
+  Future<MT5PasswordReset> resetPassword({
     String newPassword,
     PasswordType passwordType,
     String verificationCode,
-  }) async {
-    final Mt5PasswordResetResponse response = await _api.call(
-      request: Mt5PasswordResetRequest(
-        login: login,
-        mt5PasswordReset: 1,
-        newPassword: newPassword,
-        passwordType: getStringFromEnum(value: passwordType),
-        verificationCode: verificationCode,
-      ),
-    );
+  }) =>
+      MT5PasswordReset.resetPassword(
+        Mt5PasswordResetRequest(
+          login: login,
+          newPassword: newPassword,
+          passwordType: getStringFromEnum(value: passwordType),
+          verificationCode: verificationCode,
+        ),
+      );
 
-    if (response.error != null) {
-      throw MT5Exception(message: response.error['message']);
-    }
+  /// Get MT5 user account settings
+  Future<MT5Settings> fetchSettings() =>
+      MT5Settings.fetchSettings(Mt5GetSettingsRequest(login: login));
 
-    return getBool(response.mt5PasswordReset);
-  }
+  /// This call allows withdrawal from MT5 account to Binary account
+  Future<MT5Withdrawal> withdraw({
+    double amount,
+    String toBinary,
+  }) =>
+      MT5Withdrawal.withdraw(
+        Mt5WithdrawalRequest(
+          amount: amount,
+          fromMt5: login,
+          toBinary: toBinary,
+        ),
+      );
 }
