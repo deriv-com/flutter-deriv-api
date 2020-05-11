@@ -3,47 +3,71 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/common/landing_company/landing_company.dart';
 import 'package:flutter_deriv_api/api/common/models/landing_company_detail_model.dart';
-
-import 'landing_company_mock_data.dart';
+import 'package:flutter_deriv_api/api/common/models/landing_company_fields_info_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('Landing company details test', () {
-    final Map<String, dynamic> landingCompanyMap =
-        jsonDecode(landingCompanyJSON);
-    final LandingCompany landingCompany =
-        LandingCompany.fromJson(landingCompanyMap['landing_company']);
+  group('Landing company test', () {
+    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    expect(landingCompany.config.taxDetailsRequired, true);
-    expect(landingCompany.minimumAge, 18);
-    expect(landingCompany.name, 'Indonesia');
-    expect(landingCompany.id, 'id');
-    expect(landingCompany.virtualCompany, 'virtual');
+    test('Landing company test', () async {
+      final LandingCompany landingCompany =
+          await LandingCompany.fetchLandingCompanies(
+              const LandingCompanyRequest());
 
-    final LandingCompanyDetailModel financialCompany =
-        landingCompany.financialCompany;
+      expect(landingCompany.config.taxDetailsRequired, true);
+      expect(landingCompany.minimumAge, 18);
+      expect(landingCompany.name, 'Indonesia');
+      expect(landingCompany.id, 'id');
+      expect(landingCompany.virtualCompany, 'virtual');
 
-    expect(financialCompany.hasRealityCheck, false);
-    expect(financialCompany.marketsCurrencies.length, 2);
-    expect(financialCompany.legalAllowedContractCategories.length, 12);
-    expect(financialCompany.legalDefaultCurrency, 'AUD');
-    expect(financialCompany.country, 'Saint Vincent and the Grenadines');
-    expect(financialCompany.legalDefaultCurrency, 'AUD');
-    expect(financialCompany.shortCode, 'svg');
-    expect(financialCompany.legalAllowedMarkets.length, 2);
-    expect(financialCompany.legalAllowedMarkets.first, 'commodities');
+      final LandingCompanyDetailModel financialCompany =
+          landingCompany.financialCompany;
 
-    final LandingCompanyDetailModel mtFinancialAdvanced =
-        landingCompany.mtFinancialCompany.advanced;
+      expect(financialCompany.hasRealityCheck, false);
+      expect(financialCompany.marketsCurrencies.length, 2);
+      expect(financialCompany.legalAllowedContractCategories.length, 12);
+      expect(financialCompany.legalDefaultCurrency, 'AUD');
+      expect(financialCompany.country, 'Saint Vincent and the Grenadines');
+      expect(financialCompany.legalDefaultCurrency, 'AUD');
+      expect(financialCompany.shortCode, 'svg');
+      expect(financialCompany.legalAllowedMarkets.length, 2);
+      expect(financialCompany.legalAllowedMarkets.first, 'commodities');
 
-    expect(mtFinancialAdvanced.address.length, 4);
+      final LandingCompanyDetailModel mtFinancialAdvanced =
+          landingCompany.mtFinancialCompany.advanced;
 
-    expect(mtFinancialAdvanced.hasRealityCheck, false);
-    expect(mtFinancialAdvanced.marketsCurrencies.length, 1);
-    expect(mtFinancialAdvanced.legalAllowedContractCategories.length, 1);
-    expect(mtFinancialAdvanced.legalDefaultCurrency, 'AUD');
-    expect(mtFinancialAdvanced.country, 'Malaysia');
-    expect(mtFinancialAdvanced.shortCode, 'labuan');
-    expect(mtFinancialAdvanced.legalAllowedMarkets.length, 1);
-    expect(mtFinancialAdvanced.legalAllowedMarkets.first, 'forex');
+      expect(mtFinancialAdvanced.address.length, 4);
+
+      expect(mtFinancialAdvanced.hasRealityCheck, false);
+      expect(mtFinancialAdvanced.marketsCurrencies.length, 1);
+      expect(mtFinancialAdvanced.legalAllowedContractCategories.length, 1);
+      expect(mtFinancialAdvanced.legalDefaultCurrency, 'AUD');
+      expect(mtFinancialAdvanced.country, 'Malaysia');
+      expect(mtFinancialAdvanced.shortCode, 'labuan');
+      expect(mtFinancialAdvanced.legalAllowedMarkets.length, 1);
+      expect(mtFinancialAdvanced.legalAllowedMarkets.first, 'forex');
+    });
+
+    test('Landing company details test', () async {
+      final LandingCompanyDetailModel landingCompanyDetail =
+          await LandingCompany.fetchLandingCompanyDetails(
+              const LandingCompanyDetailsRequest());
+
+      expect(landingCompanyDetail.address.length, 4);
+      expect(landingCompanyDetail.country, 'Sample country');
+      expect(landingCompanyDetail.legalDefaultCurrency, 'BTC');
+      expect(landingCompanyDetail.legalAllowedCurrencies.length, 2);
+      expect(landingCompanyDetail.legalAllowedContractCategories.length, 4);
+      expect(landingCompanyDetail.legalAllowedMarkets.length, 2);
+
+      final List<LandingCompanyFieldsInfoModel> changeableFields =
+          landingCompanyDetail.changeableFields;
+      expect(changeableFields.length, 1);
+      expect(changeableFields.first.fields.length, 6);
+      expect(changeableFields.first.fields.first, 'salutation');
+    });
   });
 }
