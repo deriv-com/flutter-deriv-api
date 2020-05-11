@@ -27,8 +27,8 @@ class Forget extends ForgetModel {
         succeeded: succeeded ?? this.succeeded,
       );
 
-  /// Immediately cancel the real-time stream of messages with a specific id
-  /// For parameters information refer to [ForgetRequest]
+  /// Immediately cancel the real-time stream of messages with a specific id.
+  /// For parameters information refer to [ForgetRequest].
   static Future<Forget> forget(
     ForgetRequest request,
   ) async {

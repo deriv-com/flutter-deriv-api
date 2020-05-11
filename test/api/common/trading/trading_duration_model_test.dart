@@ -1,42 +1,46 @@
-import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/common/models/duration_model.dart';
 import 'package:flutter_deriv_api/api/common/models/symbol_model.dart';
-import 'package:flutter_deriv_api/api/common/models/trading_duration.dart';
 import 'package:flutter_deriv_api/api/common/models/trading_duration_data_model.dart';
-
-import 'trading_duration_model_mock_data.dart';
+import 'package:flutter_deriv_api/api/common/trading/trading_duration.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('trading duration JSON parsing', () {
-    final Map<String, dynamic> mapData =
-        jsonDecode(tradingDurationModelMockData);
-    final TradingDuration tradeDuration =
-        TradingDuration.fromJson(mapData['trading_durations'][0]);
+  test('trading duration', () async {
+    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    expect(tradeDuration.market.displayName, 'Forex');
-    expect(tradeDuration.market.name, 'forex');
+    final List<TradingDuration> tradeDuration =
+        await TradingDuration.fetchTradingDurations(
+      const TradingDurationsRequest(),
+    );
 
-    expect(tradeDuration.submarket.displayName, 'Major Pairs');
-    expect(tradeDuration.submarket.name, 'major_pairs');
+    expect(tradeDuration.length, 2);
 
-    expect(tradeDuration.tradingDurationData.length, 3);
+    expect(tradeDuration.first.market.displayName, 'Forex');
+    expect(tradeDuration.first.market.name, 'forex');
+
+    expect(tradeDuration.first.submarket.displayName, 'Major Pairs');
+    expect(tradeDuration.first.submarket.name, 'major_pairs');
+
+    expect(tradeDuration.first.tradingDurationData.length, 2);
 
     final TradingDurationDataModel tradingDurationData =
-        tradeDuration.tradingDurationData[1];
+        tradeDuration.first.tradingDurationData[1];
 
-    expect(tradingDurationData.symbols.length, 12);
+    expect(tradingDurationData.symbols.length, 1);
 
-    final SymbolModel symbol = tradingDurationData.symbols[5];
+    final SymbolModel symbol = tradingDurationData.symbols.first;
 
-    expect(tradingDurationData.tradeDurations.length, 9);
+    expect(tradingDurationData.tradeDurations.length, 8);
 
     final DurationModel duration =
-        tradingDurationData.tradeDurations[6].durations[0];
+        tradingDurationData.tradeDurations[6].durations.first;
 
-    expect(symbol.displayName, 'EUR/GBP');
-    expect(symbol.name, 'frxEURGBP');
+    expect(symbol.displayName, 'GBP/USD');
+    expect(symbol.name, 'frxGBPUSD');
 
     expect(duration.displayName, 'Days');
     expect(duration.max, 365);
