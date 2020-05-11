@@ -28,8 +28,8 @@ class ForgetAll extends ForgetAllModel {
         cancelledStreams: cancelledStreams ?? this.cancelledStreams,
       );
 
-  /// Immediately cancel the real-time streams of messages of given type
-  /// For parameters information refer to [ForgetAllRequest]
+  /// Immediately cancel the real-time streams of messages of given type.
+  /// For parameters information refer to [ForgetAllRequest].
   static Future<ForgetAll> forgetAll(
     ForgetAllRequest request,
   ) async {
