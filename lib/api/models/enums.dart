@@ -250,3 +250,12 @@ enum ContractStatus {
   /// Cancelled contract
   cancelled,
 }
+
+/// Type of the password to reset
+enum PasswordType {
+  /// Main
+  main,
+
+  /// Investor
+  investor,
+}
