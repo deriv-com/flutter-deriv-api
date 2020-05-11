@@ -100,8 +100,8 @@ class AccountSettings extends AccountSettingsModel {
   /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Get account's setting
-  static Future<AccountSettings> getAccountSetting() async {
+  /// Fetches account's setting
+  static Future<AccountSettings> fetchAccountSetting() async {
     final GetSettingsResponse response = await _api.call(
       request: const GetSettingsRequest(),
     );

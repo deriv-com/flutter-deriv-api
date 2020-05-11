@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/balance_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/get_account_status_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/get_limits_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/get_settings_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/portfolio_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/set_settings_response.dart';
 import 'package:meta/meta.dart';
 
@@ -74,7 +76,8 @@ class MockAPI implements BaseAPI {
       // case 'asset_index':
       case 'authorize':
         return authorizeResponse;
-      // case 'balance':
+      case 'balance':
+        return balanceResponse;
       // case 'buy_contract_for_multiple_accounts':
       case 'buy':
         return buyContractResponse;
@@ -135,7 +138,8 @@ class MockAPI implements BaseAPI {
       // case 'paymentagent_withdraw':
       // case 'payout_currencies':
       // case 'ping':
-      // case 'portfolio':
+      case 'portfolio':
+        return portfolioResponse;
       // case 'profit_table':
       // case 'proposal_array':
       case 'proposal_open_contract':

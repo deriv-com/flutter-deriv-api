@@ -1,4 +1,5 @@
-const String balanceJSON = '''{
+/// Balance Response
+const String balanceResponse = '''{
   "balance": {
     "balance": 9650.74,
     "currency": "USD",

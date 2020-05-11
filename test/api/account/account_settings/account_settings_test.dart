@@ -11,7 +11,7 @@ void main() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
     final AccountSettings accountSettings =
-    await AccountSettings.getAccountSetting();
+        await AccountSettings.fetchAccountSetting();
 
     expect(accountSettings.country, 'SampleCountry');
     expect(accountSettings.countryCode, 'sc');
@@ -20,7 +20,8 @@ void main() {
     expect(accountSettings.email, 'first.last@example.com');
     expect(accountSettings.userHash, 'samplehash71627162jlj');
 
-    final SetAccountSettingModel setSettings = await accountSettings.changeSetting(const SetSettingsRequest());
+    final SetAccountSettingModel setSettings =
+        await accountSettings.changeSetting(const SetSettingsRequest());
     expect(setSettings.succeeded, true);
   });
 }

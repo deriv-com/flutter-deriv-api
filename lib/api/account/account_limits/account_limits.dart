@@ -66,8 +66,8 @@ class AccountLimits extends AccountLimitsModel {
   /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Gets the logged in account's limits
-  static Future<AccountLimits> getAccountLimits() async {
+  /// Fetches the logged in account's limits
+  static Future<AccountLimits> fetchAccountLimits() async {
     final GetLimitsResponse response = await _api.call(
       request: const GetLimitsRequest(),
     );
