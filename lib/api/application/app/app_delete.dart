@@ -5,7 +5,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// App delete model class
+/// App delete class
 class AppDelete extends AppDeleteModel {
   /// Initializes
   AppDelete({
@@ -20,10 +20,10 @@ class AppDelete extends AppDeleteModel {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
-  AppDeleteModel copyWith({
+  AppDelete copyWith({
     bool succeeded,
   }) =>
-      AppDeleteModel(
+      AppDelete(
         succeeded: succeeded ?? this.succeeded,
       );
 
