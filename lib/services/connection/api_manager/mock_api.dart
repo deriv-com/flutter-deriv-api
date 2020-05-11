@@ -15,6 +15,7 @@ import 'mock_data/common/exchange_rates_response.dart';
 import 'mock_data/common/forget_all_response.dart';
 import 'mock_data/common/forget_response.dart';
 import 'mock_data/common/ping_response.dart';
+import 'mock_data/common/server_time_response.dart';
 import 'mock_data/common/tick_response.dart';
 import 'mock_data/contract/buy_contract_response.dart';
 import 'mock_data/contract/contract_for_response.dart';
@@ -158,7 +159,8 @@ class MockAPI implements BaseAPI {
       // case 'history':
       case 'ticks':
         return tickResponse;
-      // case 'time':
+      case 'time':
+        return serverTimeResponse;
       // case 'tnc_approval':
       // case 'topup_virtual':
       // case 'trading_durations':
