@@ -38,8 +38,8 @@ class MT5Deposit extends MT5DepositModel {
         binaryTransactionId: binaryTransactionId ?? this.binaryTransactionId,
       );
 
-  /// This call allows deposit into MT5 account from binary account
-  /// For parameters information refer to [Mt5DepositRequest]
+  /// This call allows deposit into MT5 account from binary account.
+  /// For parameters information refer to [Mt5DepositRequest].
   static Future<MT5Deposit> deposit(Mt5DepositRequest request) async {
     final Mt5DepositResponse response = await _api.call(request: request);
 

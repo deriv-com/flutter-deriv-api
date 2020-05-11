@@ -38,8 +38,8 @@ class MT5Withdrawal extends MT5WithdrawalModel {
         binaryTransactionId: binaryTransactionId ?? this.binaryTransactionId,
       );
 
-  /// This call allows withdrawal from MT5 account to Binary account
-  /// For parameters information refer to [Mt5WithdrawalRequest]
+  /// This call allows withdrawal from MT5 account to Binary account.
+  /// For parameters information refer to [Mt5WithdrawalRequest].
   static Future<MT5Withdrawal> withdraw(
     Mt5WithdrawalRequest request,
   ) async {

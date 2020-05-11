@@ -27,8 +27,8 @@ class MT5PasswordChange extends MT5PasswordChangeModel {
         succeeded: succeeded ?? this.succeeded,
       );
 
-  /// Change password of the MT5 account
-  /// For parameters information refer to [Mt5PasswordChangeRequest]
+  /// Change password of the MT5 account.
+  /// For parameters information refer to [Mt5PasswordChangeRequest].
   static Future<MT5PasswordChange> changePassword(
     Mt5PasswordChangeRequest request,
   ) async {

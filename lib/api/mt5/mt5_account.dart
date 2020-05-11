@@ -92,8 +92,8 @@ class MT5Account extends MT5AccountModel {
         name: name ?? this.name,
       );
 
-  /// This call creates new MT5 user, either demo or real money user
-  /// For parameters information refer to [Mt5NewAccountRequest]
+  /// This call creates new MT5 user, either demo or real money user.
+  /// For parameters information refer to [Mt5NewAccountRequest].
   static Future<MT5Account> createNewAccount(
     Mt5NewAccountRequest request,
   ) async {
@@ -106,8 +106,8 @@ class MT5Account extends MT5AccountModel {
     return MT5Account.fromJson(response.mt5NewAccount);
   }
 
-  /// Get list of MT5 accounts for client
-  /// For parameters information refer to [Mt5LoginListRequest]
+  /// Get list of MT5 accounts for client.
+  /// For parameters information refer to [Mt5LoginListRequest].
   static Future<List<MT5Account>> fetchLoginList(
     Mt5LoginListRequest request,
   ) async {
@@ -123,7 +123,7 @@ class MT5Account extends MT5AccountModel {
     );
   }
 
-  /// This call allows deposit into MT5 account from binary account
+  /// This call allows deposit into MT5 account from binary account.
   Future<MT5Deposit> deposit({
     double amount,
     String fromBinary,
@@ -136,7 +136,7 @@ class MT5Account extends MT5AccountModel {
         ),
       );
 
-  /// Change password of the MT5 account
+  /// Change password of the MT5 account.
   Future<MT5PasswordChange> changePassword({
     String newPassword,
     String oldPassword,
@@ -151,7 +151,7 @@ class MT5Account extends MT5AccountModel {
         ),
       );
 
-  /// This call validates the main password for the MT5 user
+  /// This call validates the main password for the MT5 user.
   Future<MT5PasswordCheck> checkPassword({
     String password,
     PasswordType passwordType,
@@ -164,7 +164,7 @@ class MT5Account extends MT5AccountModel {
         ),
       );
 
-  /// Reset password of MT5 account
+  /// Reset password of MT5 account.
   Future<MT5PasswordReset> resetPassword({
     String newPassword,
     PasswordType passwordType,
@@ -179,7 +179,7 @@ class MT5Account extends MT5AccountModel {
         ),
       );
 
-  /// Get MT5 user account settings
+  /// Get MT5 user account settings.
   Future<MT5Settings> fetchSettings() =>
       MT5Settings.fetchSettings(Mt5GetSettingsRequest(login: login));
 
