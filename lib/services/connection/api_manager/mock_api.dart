@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/landing_company_details_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/landing_company_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/residence_list_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/states_list_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/tick_history_response.dart';
@@ -97,8 +99,10 @@ class MockAPI implements BaseAPI {
       // case 'get_limits':
       // case 'get_self_exclusion':
       // case 'get_settings':
-      // case 'landing_company_details':
-      // case 'landing_company':
+      case 'landing_company_details':
+        return landingCompanyDetailsResponse;
+      case 'landing_company':
+        return landingCompanyResponse;
       // case 'login_history':
       // case 'logout':
       // case 'mt5_deposit':

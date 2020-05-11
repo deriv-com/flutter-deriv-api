@@ -1,4 +1,5 @@
-const String landingCompanyDetailJSON = '''{
+/// landingCompanyDetails Response
+const String landingCompanyDetailsResponse = '''{
   "echo_req": {
     "landing_company_details": "svg"
   },
