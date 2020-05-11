@@ -9,7 +9,7 @@ void main() {
   test('mt5 deposit test', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    final MT5Deposit mt5Account = await MT5Deposit.deposit(
+    final MT5Deposit mt5Deposit = await MT5Deposit.deposit(
       request: const Mt5DepositRequest(
         amount: 1000,
         fromBinary: 'CR100001',
@@ -18,7 +18,7 @@ void main() {
       ),
     );
 
-    expect(mt5Account.mt5Deposit, true);
-    expect(mt5Account.binaryTransactionId, 3487342);
+    expect(mt5Deposit.mt5Deposit, true);
+    expect(mt5Deposit.binaryTransactionId, 3487342);
   });
 }
