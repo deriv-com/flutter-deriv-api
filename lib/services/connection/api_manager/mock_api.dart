@@ -19,6 +19,9 @@ import 'mock_data/contract/proposal_response.dart';
 import 'mock_data/mt5/mt5_deposit_response.dart';
 import 'mock_data/mt5/mt5_login_list_response.dart';
 import 'mock_data/mt5/mt5_new_account_response.dart';
+import 'mock_data/mt5/mt5_password_change_response.dart';
+import 'mock_data/mt5/mt5_password_check_response.dart';
+import 'mock_data/mt5/mt5_password_reset_response.dart';
 import 'mock_data/mt5/mt5_settings_response.dart';
 
 /// Handle mock API calls
@@ -109,9 +112,12 @@ class MockAPI implements BaseAPI {
         return mt5LoginListResponse;
       case 'mt5_new_account':
         return mt5NewAccountResponse;
-      // case 'mt5_password_change':
-      // case 'mt5_password_check':
-      // case 'mt5_password_reset':
+      case 'mt5_password_change':
+        return mt5PasswordChangeResponse;
+      case 'mt5_password_check':
+        return mt5PasswordCheckResponse;
+      case 'mt5_password_reset':
+        return mt5PasswordResetResponse;
       // case 'mt5_withdrawal':
       // case 'new_account_maltainvest':
       // case 'new_account_real':
