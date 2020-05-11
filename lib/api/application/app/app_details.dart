@@ -1,4 +1,9 @@
+import 'package:flutter_deriv_api/api/application/app/exceptions/app_exception.dart';
 import 'package:flutter_deriv_api/api/application/models/app_details_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// App detail class
 class AppDetails extends AppDetailsModel {
@@ -38,6 +43,8 @@ class AppDetails extends AppDetailsModel {
         verificationUri: json['verification_uri'],
       );
 
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
   /// Creates a copy of instance with given parameters
   AppDetails copyWith({
     int appId,
@@ -61,4 +68,35 @@ class AppDetails extends AppDetailsModel {
         redirectUri: redirectUri ?? this.redirectUri,
         verificationUri: verificationUri ?? this.verificationUri,
       );
+
+  /// Fetch application details
+  /// For parameters information refer to [AppGetRequest]
+  static Future<AppDetails> fetchApplicationDetails({
+    AppGetRequest request,
+  }) async {
+    final AppGetResponse response = await _api.call(request: request);
+
+    if (response.error != null) {
+      throw AppException(message: response.error['message']);
+    }
+
+    return AppDetails.fromJson(response.appGet);
+  }
+
+  /// Fetch application list
+  /// For parameters information refer to [AppListRequest]
+  static Future<List<AppDetails>> fetchApplicationList({
+    AppListRequest request,
+  }) async {
+    final AppListResponse response = await _api.call(request: request);
+
+    if (response.error != null) {
+      throw AppException(message: response.error['message']);
+    }
+
+    return getListFromMap(
+      response.appList,
+      itemToTypeCallback: (dynamic item) => AppDetails.fromJson(item),
+    );
+  }
 }

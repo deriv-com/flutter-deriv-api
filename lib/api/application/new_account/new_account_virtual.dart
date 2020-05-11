@@ -1,4 +1,8 @@
 import 'package:flutter_deriv_api/api/application/models/new_account_virtual_model.dart';
+import 'package:flutter_deriv_api/api/application/new_account/exceptions/new_account_exception.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 /// New account virtual class
 class NewAccountVirtual extends NewAccountVirtualModel {
@@ -27,6 +31,8 @@ class NewAccountVirtual extends NewAccountVirtualModel {
         oauthToken: json['oauth_token'],
       );
 
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
   /// Generate a copy of instance with given parameters
   NewAccountVirtual copyWith({
     double balance,
@@ -42,4 +48,19 @@ class NewAccountVirtual extends NewAccountVirtualModel {
         email: email ?? this.email,
         oauthToken: oauthToken ?? this.oauthToken,
       );
+
+  /// Open new virtual account
+  /// For parameters information refer to [NewAccountVirtualRequest]
+  static Future<NewAccountVirtual> openNewVirtualAccount({
+    NewAccountVirtualRequest request,
+  }) async {
+    final NewAccountVirtualResponse response =
+        await _api.call(request: request);
+
+    if (response.error != null) {
+      throw NewAccountException(message: response.error['message']);
+    }
+
+    return NewAccountVirtual.fromJson(response.newAccountVirtual);
+  }
 }

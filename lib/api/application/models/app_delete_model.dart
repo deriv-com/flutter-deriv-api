@@ -8,19 +8,6 @@ class AppDeleteModel extends APIBaseModel {
     this.succeeded,
   });
 
-  /// Creates an instance from response
-  factory AppDeleteModel.fromResponse(int result) => AppDeleteModel(
-        succeeded: getBool(result),
-      );
-
   /// `true` on success
   final bool succeeded;
-
-  /// Creates a copy of instance with given parameters
-  AppDeleteModel copyWith({
-    bool succeeded,
-  }) =>
-      AppDeleteModel(
-        succeeded: succeeded ?? this.succeeded,
-      );
 }
