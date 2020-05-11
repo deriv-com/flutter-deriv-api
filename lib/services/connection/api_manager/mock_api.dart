@@ -1,11 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/contract/cancel_response.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/contract/contract_update_history_response.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/contract/contract_update_response.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/contract/sel_response.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/contract/set_account_currency_response.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/contract/transaction_response.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
@@ -19,9 +13,15 @@ import 'mock_data/account/authorize_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
 import 'mock_data/common/tick_response.dart';
 import 'mock_data/contract/buy_contract_response.dart';
+import 'mock_data/contract/cancel_response.dart';
 import 'mock_data/contract/contract_for_response.dart';
+import 'mock_data/contract/contract_update_history_response.dart';
+import 'mock_data/contract/contract_update_response.dart';
 import 'mock_data/contract/proposal_open_contract_response.dart';
 import 'mock_data/contract/proposal_response.dart';
+import 'mock_data/contract/sell_response.dart';
+import 'mock_data/contract/set_account_currency_response.dart';
+import 'mock_data/contract/transaction_response.dart';
 
 /// Handle mock API calls
 class MockAPI implements BaseAPI {
