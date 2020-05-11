@@ -14,6 +14,7 @@ import 'mock_data/common/active_symbols_response.dart';
 import 'mock_data/common/exchange_rates_response.dart';
 import 'mock_data/common/forget_all_response.dart';
 import 'mock_data/common/forget_response.dart';
+import 'mock_data/common/ping_response.dart';
 import 'mock_data/common/tick_response.dart';
 import 'mock_data/contract/buy_contract_response.dart';
 import 'mock_data/contract/contract_for_response.dart';
@@ -133,7 +134,8 @@ class MockAPI implements BaseAPI {
       // case 'paymentagent_transfer':
       // case 'paymentagent_withdraw':
       // case 'payout_currencies':
-      // case 'ping':
+      case 'ping':
+        return pingResponse;
       // case 'portfolio':
       // case 'profit_table':
       // case 'proposal_array':

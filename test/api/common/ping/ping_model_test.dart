@@ -1,14 +1,15 @@
-import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/common/ping/ping.dart';
-
-import 'ping_model_mock_data.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('ping JSON parsing', () {
-    final Map<String, dynamic> mapData = jsonDecode(pingModelMockData);
-    final Ping ping = Ping.fromJson(mapData);
+  test('ping', () async {
+    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+
+    final Ping ping = await Ping.ping(const PingRequest());
 
     expect(ping.succeeded, true);
   });
