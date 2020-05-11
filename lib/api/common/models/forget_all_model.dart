@@ -4,9 +4,9 @@ import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 abstract class ForgetAllModel extends APIBaseModel {
   /// Initializes
   ForgetAllModel({
-    this.forgetAll,
+    this.cancelledStreams,
   });
 
   /// IDs of the cancelled streams
-  final List<String> forgetAll;
+  final List<String> cancelledStreams;
 }

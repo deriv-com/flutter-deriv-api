@@ -12,6 +12,8 @@ import 'package:flutter_deriv_api/services/connection/call_manager/base_call_man
 import 'mock_data/account/authorize_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
 import 'mock_data/common/exchange_rates_response.dart';
+import 'mock_data/common/forget_all_response.dart';
+import 'mock_data/common/forget_response.dart';
 import 'mock_data/common/tick_response.dart';
 import 'mock_data/contract/buy_contract_response.dart';
 import 'mock_data/contract/contract_for_response.dart';
@@ -88,8 +90,10 @@ class MockAPI implements BaseAPI {
       // case 'document_upload':
       case 'exchange_rates':
         return exchangeRatesResponse;
-      // case 'forget_all':
-      // case 'forget':
+      case 'forget_all':
+        return forgetAllResponse;
+      case 'forget':
+        return forgetResponse;
       // case 'get_account_status':
       // case 'get_financial_assessment':
       // case 'get_limits':
