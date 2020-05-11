@@ -1,16 +1,15 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/application/app/app_register.dart';
-import 'package:flutter_deriv_api/api/application/app/application.dart';
-import 'package:flutter_deriv_api/basic_api/generated/app_register_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('app register', () async {
+  test('app register test', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    final AppRegister appRegister = await Application.registerApplication(
+    final AppRegister appRegister = await AppRegister.registerApplication(
       request: const AppRegisterRequest(
         appRegister: 1,
         appstore: 'https://itunes.apple.com/test_app',
