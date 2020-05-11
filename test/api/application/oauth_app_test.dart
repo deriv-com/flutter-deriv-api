@@ -1,16 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_deriv_api/api/application/oauth_app/oauth_app.dart';
+import 'package:flutter_deriv_api/api/application/oauth_app.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('oauth apps test', () async {
+  test('oauth apps', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
     final List<OauthApp> oauthApps = await OauthApp.oauthApplication(
-      request: const OauthAppsRequest(oauthApps: 1),
+      const OauthAppsRequest(oauthApps: 1),
     );
 
     expect(oauthApps.length, 2);

@@ -51,9 +51,9 @@ class NewAccountVirtual extends NewAccountVirtualModel {
 
   /// Open new virtual account
   /// For parameters information refer to [NewAccountVirtualRequest]
-  static Future<NewAccountVirtual> openNewVirtualAccount({
+  static Future<NewAccountVirtual> openNewVirtualAccount(
     NewAccountVirtualRequest request,
-  }) async {
+  ) async {
     final NewAccountVirtualResponse response =
         await _api.call(request: request);
 

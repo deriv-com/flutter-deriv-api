@@ -45,9 +45,9 @@ class NewAccountReal extends NewAccountRealModel {
 
   /// Open new real account
   /// For parameters information refer to [NewAccountRealRequest]
-  static Future<NewAccountReal> openNewRealAccount({
+  static Future<NewAccountReal> openNewRealAccount(
     NewAccountRealRequest request,
-  }) async {
+  ) async {
     final NewAccountRealResponse response = await _api.call(request: request);
 
     if (response.error != null) {

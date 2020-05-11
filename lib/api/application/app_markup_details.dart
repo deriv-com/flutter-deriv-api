@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/application/app/exceptions/app_exception.dart';
+import 'package:flutter_deriv_api/api/application/exceptions/application_exception.dart';
 import 'package:flutter_deriv_api/api/application/models/app_markup_details_model.dart';
 import 'package:flutter_deriv_api/api/application/models/app_transaction_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -35,15 +35,15 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
         transactions: transactions ?? this.transactions,
       );
 
-  /// Fetch application markup details
+  /// Retrieve details of app markup according to criteria specified
   /// For parameters information refer to [AppMarkupDetailsRequest]
-  static Future<AppMarkupDetails> fetchApplicationMarkupDetails({
+  static Future<AppMarkupDetails> fetchApplicationMarkupDetails(
     AppMarkupDetailsRequest request,
-  }) async {
+  ) async {
     final AppMarkupDetailsResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw AppException(message: response.error['message']);
+      throw ApplicationException(message: response.error['message']);
     }
 
     return AppMarkupDetails.fromJson(response.appMarkupDetails);

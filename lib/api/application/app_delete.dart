@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/application/app/exceptions/app_exception.dart';
+import 'package:flutter_deriv_api/api/application/exceptions/application_exception.dart';
 import 'package:flutter_deriv_api/api/application/models/app_delete_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -27,15 +27,13 @@ class AppDelete extends AppDeleteModel {
         succeeded: succeeded ?? this.succeeded,
       );
 
-  /// Delete application
+  /// The request for deleting an application
   /// For parameters information refer to [AppDeleteRequest]
-  static Future<AppDelete> deleteApplication({
-    AppDeleteRequest request,
-  }) async {
+  static Future<AppDelete> deleteApplication(AppDeleteRequest request) async {
     final AppDeleteResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw AppException(message: response.error['message']);
+      throw ApplicationException(message: response.error['message']);
     }
 
     return AppDelete.fromResponse(response.appDelete);

@@ -6,12 +6,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('new account real test', () async {
+  test('new account real', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
     final NewAccountReal newAccountReal =
         await NewAccountReal.openNewRealAccount(
-      request: const NewAccountRealRequest(
+      const NewAccountRealRequest(
         accountOpeningReason: 'Speculative',
         accountTurnover: 'Less than \$25,000',
         addressCity: 'Melbourne',
