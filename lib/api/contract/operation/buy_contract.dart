@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/contract/models/buy_contract_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/open_contract_model.dart';
+import 'package:flutter_deriv_api/api/contract/operation/cancel_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_operations_exception.dart';
 import 'package:flutter_deriv_api/api/contract/operation/sell_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/update_contract.dart';
@@ -104,40 +105,28 @@ class BuyContract extends BuyContractModel {
       );
 
   /// Sell this contract
-  Future<SellContract> sell() async {
-    final Response response =
-        await _api.call(request: SellRequest(sell: contractId));
+  ///
+  /// [price] Minimum price at which to sell the contract,
+  /// Default be 0 for 'sell at market'.
+  Future<SellContract> sell({double price = 0}) =>
+      SellContract.sellContract(SellRequest(sell: contractId, price: price));
 
-    if (response.error != null) {
-      throw ContractOperationException(message: response.error['message']);
-    }
-
-    final SellResponse sellResponse = response;
-    return SellContract.fromJson(sellResponse.sell);
-  }
+  /// Cancel this contract
+  Future<CancelContract> cancel() =>
+      CancelContract.cancelContract(CancelRequest(cancel: contractId));
 
   /// update this contract with given [stopLoss], [takeProfit]
   Future<UpdateContract> update({
     double stopLoss,
     double takeProfit,
-  }) async {
-    final Response response = await _api.call(
-      request: ContractUpdateRequest(
+  }) =>
+      UpdateContract.updateContract(ContractUpdateRequest(
         contractId: contractId,
         limitOrder: <String, dynamic>{
           'stop_loss': stopLoss,
           'take_profit': takeProfit,
         },
-      ),
-    );
-
-    if (response.error != null) {
-      throw ContractOperationException(message: response.error['message']);
-    }
-
-    final ContractUpdateResponse updateResponse = response;
-    return UpdateContract.fromJson(updateResponse.contractUpdate);
-  }
+      ));
 
   /// Creates a copy of instance with given parameters
   BuyContractModel copyWith({
