@@ -1,15 +1,20 @@
-import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/mt5/mt5_settings.dart';
-
-import 'mt5_settings_model_mock_data.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('mt5 settings JSON parsing', () {
-    final Map<String, dynamic> mapData = jsonDecode(mt5SettingsModelMockData);
-    final MT5Settings mt5Settings =
-        MT5Settings.fromJson(mapData['mt5_get_settings']);
+  test('mt5 settings test', () async {
+    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+
+    final MT5Settings mt5Settings = await MT5Settings.fetchSettings(
+      request: const Mt5GetSettingsRequest(
+        login: 'MTR1000',
+        mt5GetSettings: 1,
+      ),
+    );
 
     expect(mt5Settings.address, 'sample address');
     expect(mt5Settings.balance, '250.0');
