@@ -1,5 +1,5 @@
-import 'package:flutter_deriv_api/api/application/app/app_details.dart';
-import 'package:flutter_deriv_api/api/application/app/exceptions/app_exception.dart';
+import 'package:flutter_deriv_api/api/application/app_details.dart';
+import 'package:flutter_deriv_api/api/application/exceptions/application_exception.dart';
 import 'package:flutter_deriv_api/api/application/models/app_update_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -35,13 +35,11 @@ class AppUpdate extends AppUpdateModel {
 
   /// Update application
   /// For parameters information refer to [AppUpdateRequest]
-  static Future<AppUpdate> updateApplication({
-    AppUpdateRequest request,
-  }) async {
+  static Future<AppUpdate> updateApplication(AppUpdateRequest request) async {
     final AppUpdateResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw AppException(message: response.error['message']);
+      throw ApplicationException(message: response.error['message']);
     }
 
     return AppUpdate.fromJson(response.appUpdate);

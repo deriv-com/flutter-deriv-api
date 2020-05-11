@@ -1,5 +1,5 @@
-import 'package:flutter_deriv_api/api/application/app/app_details.dart';
-import 'package:flutter_deriv_api/api/application/app/exceptions/app_exception.dart';
+import 'package:flutter_deriv_api/api/application/app_details.dart';
+import 'package:flutter_deriv_api/api/application/exceptions/application_exception.dart';
 import 'package:flutter_deriv_api/api/application/models/app_register_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -33,15 +33,15 @@ class AppRegister extends AppRegisterModel {
         appDetails: appDetails ?? this.appDetails,
       );
 
-  /// Register application
+  /// Register a new OAuth application
   /// For parameters information refer to [AppRegisterRequest]
-  static Future<AppRegister> registerApplication({
+  static Future<AppRegister> registerApplication(
     AppRegisterRequest request,
-  }) async {
+  ) async {
     final AppRegisterResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw AppException(message: response.error['message']);
+      throw ApplicationException(message: response.error['message']);
     }
 
     return AppRegister.fromJson(response.appRegister);

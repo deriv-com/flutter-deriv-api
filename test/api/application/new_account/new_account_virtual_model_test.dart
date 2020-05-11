@@ -6,12 +6,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('new account virtual test', () async {
+  test('new account virtual', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
     final NewAccountVirtual newAccountVirtual =
         await NewAccountVirtual.openNewVirtualAccount(
-      request: const NewAccountVirtualRequest(
+      const NewAccountVirtualRequest(
         newAccountVirtual: 1,
         clientPassword: 'Abc123de',
         residence: 'id',

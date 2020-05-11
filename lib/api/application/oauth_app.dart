@@ -1,5 +1,5 @@
+import 'package:flutter_deriv_api/api/application/exceptions/application_exception.dart';
 import 'package:flutter_deriv_api/api/application/models/oauth_app_model.dart';
-import 'package:flutter_deriv_api/api/application/new_account/exceptions/new_account_exception.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -56,13 +56,13 @@ class OauthApp extends OauthAppModel {
 
   /// Oauth application that used for the authorized account
   /// For parameters information refer to [OauthAppsRequest]
-  static Future<List<OauthApp>> oauthApplication({
+  static Future<List<OauthApp>> oauthApplication(
     OauthAppsRequest request,
-  }) async {
+  ) async {
     final OauthAppsResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw NewAccountException(message: response.error['message']);
+      throw ApplicationException(message: response.error['message']);
     }
 
     return getListFromMap(
