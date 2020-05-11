@@ -2,6 +2,12 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/mt5/mt5_account.dart';
+import 'package:flutter_deriv_api/api/mt5/mt5_deposit.dart';
+import 'package:flutter_deriv_api/api/mt5/mt5_password_change.dart';
+import 'package:flutter_deriv_api/api/mt5/mt5_password_check.dart';
+import 'package:flutter_deriv_api/api/mt5/mt5_password_reset.dart';
+import 'package:flutter_deriv_api/api/mt5/mt5_settings.dart';
+import 'package:flutter_deriv_api/api/mt5/mt5_withdrawal.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
@@ -10,10 +16,9 @@ void main() {
   group('mt5 account group ->', () {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    test('create new account test', () async {
+    test('create new mt5 account', () async {
       final MT5Account mt5Account = await MT5Account.createNewAccount(
-        request: const Mt5NewAccountRequest(
-          mt5NewAccount: 1,
+        const Mt5NewAccountRequest(
           accountType: 'gaming',
           address: 'Dummy address',
           city: 'Valletta',
@@ -40,11 +45,9 @@ void main() {
       expect(mt5Account.mt5AccountType, MT5AccountType.advanced);
     });
 
-    test('mt5 login list test', () async {
+    test('mt5 login list', () async {
       final List<MT5Account> mt5LoginList = await MT5Account.fetchLoginList(
-        request: const Mt5LoginListRequest(
-          mt5LoginList: 1,
-        ),
+        const Mt5LoginListRequest(),
       );
 
       expect(mt5LoginList.length, 1);
@@ -60,33 +63,78 @@ void main() {
       expect(mt5LoginList.first.name, 'Jon Doe');
     });
 
-    test('change password test', () async {
-      final bool result = await MT5Account(login: 'MTR1000').changePassword(
+    test('mt5 deposit', () async {
+      final MT5Deposit mt5Deposit = await MT5Account(login: 'MTR1000').deposit(
+        amount: 1000,
+        fromBinary: 'CR100001',
+      );
+
+      expect(mt5Deposit.mt5Deposit, true);
+      expect(mt5Deposit.binaryTransactionId, 3487342);
+    });
+
+    test('change password', () async {
+      final MT5PasswordChange result =
+          await MT5Account(login: 'MTR1000').changePassword(
         newPassword: 'abcd1234',
         oldPassword: 'Abc1234',
         passwordType: PasswordType.main,
       );
 
-      expect(result, true);
+      expect(result.succeeded, true);
     });
 
-    test('check password test', () async {
-      final bool result = await MT5Account(login: 'MTR1000').checkPassword(
+    test('check password', () async {
+      final MT5PasswordCheck result =
+          await MT5Account(login: 'MTR1000').checkPassword(
         password: 'abcd1234',
         passwordType: PasswordType.main,
       );
 
-      expect(result, true);
+      expect(result.succeeded, true);
     });
 
-    test('reset password test', () async {
-      final bool result = await MT5Account(login: 'MTR1000').resetPassword(
+    test('reset password', () async {
+      final MT5PasswordReset result =
+          await MT5Account(login: 'MTR1000').resetPassword(
         newPassword: 'abcd1234',
         passwordType: PasswordType.main,
         verificationCode: 'O8eZ2xMq',
       );
 
-      expect(result, true);
+      expect(result.succeeded, true);
+    });
+
+    test('mt5 settings', () async {
+      final MT5Settings mt5Settings =
+          await MT5Account(login: 'MTR1000').fetchSettings();
+
+      expect(mt5Settings.address, 'sample address');
+      expect(mt5Settings.balance, '250.0');
+      expect(mt5Settings.city, 'London');
+      expect(mt5Settings.company, 'sample company');
+      expect(mt5Settings.country, 'England');
+      expect(mt5Settings.currency, 'USD');
+      expect(mt5Settings.email, 'test@email.com');
+      expect(mt5Settings.group, 'sample_group');
+      expect(mt5Settings.leverage, 20);
+      expect(mt5Settings.login, 'MT23432');
+      expect(mt5Settings.name, 'Jon Doe');
+      expect(mt5Settings.phone, '+00134522345');
+      expect(mt5Settings.phonePassword, 'dummy_password');
+      expect(mt5Settings.state, 'dummy_state');
+      expect(mt5Settings.zipCode, '3425367');
+    });
+
+    test('mt5 withdrawal', () async {
+      final MT5Withdrawal mt5Withdrawal =
+          await MT5Account(login: 'MTR1000').withdraw(
+        amount: 1000,
+        toBinary: 'CR100001',
+      );
+
+      expect(mt5Withdrawal.mt5Withdrawal, true);
+      expect(mt5Withdrawal.binaryTransactionId, 486245);
     });
   });
 }

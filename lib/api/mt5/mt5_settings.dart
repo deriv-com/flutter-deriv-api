@@ -100,9 +100,9 @@ class MT5Settings extends MT5SettingsModel {
 
   /// Get MT5 user account settings
   /// For parameters information refer to [Mt5GetSettingsRequest]
-  static Future<MT5Settings> fetchSettings({
+  static Future<MT5Settings> fetchSettings(
     Mt5GetSettingsRequest request,
-  }) async {
+  ) async {
     final Mt5GetSettingsResponse response = await _api.call(request: request);
 
     if (response.error != null) {

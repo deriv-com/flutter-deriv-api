@@ -29,9 +29,9 @@ class MT5PasswordReset extends MT5PasswordResetModel {
 
   /// Reset password of MT5 account
   /// For parameters information refer to [Mt5PasswordResetRequest]
-  static Future<MT5PasswordReset> resetPassword({
+  static Future<MT5PasswordReset> resetPassword(
     Mt5PasswordResetRequest request,
-  }) async {
+  ) async {
     final Mt5PasswordResetResponse response = await _api.call(request: request);
 
     if (response.error != null) {
