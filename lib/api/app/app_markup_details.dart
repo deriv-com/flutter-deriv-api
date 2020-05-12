@@ -1,6 +1,6 @@
-import 'package:flutter_deriv_api/api/application/exceptions/application_exception.dart';
-import 'package:flutter_deriv_api/api/application/models/app_markup_details_model.dart';
-import 'package:flutter_deriv_api/api/application/models/app_transaction_model.dart';
+import 'package:flutter_deriv_api/api/app/exceptions/app_exception.dart';
+import 'package:flutter_deriv_api/api/app/models/app_markup_details_model.dart';
+import 'package:flutter_deriv_api/api/app/models/app_transaction_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -43,7 +43,7 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
     final AppMarkupDetailsResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw ApplicationException(message: response.error['message']);
+      throw AppException(message: response.error['message']);
     }
 
     return AppMarkupDetails.fromJson(response.appMarkupDetails);

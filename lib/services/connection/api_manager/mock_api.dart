@@ -10,16 +10,16 @@ import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
 import 'mock_data/account/authorize_response.dart';
-import 'mock_data/application/app_delete_response.dart';
-import 'mock_data/application/app_details_response.dart';
-import 'mock_data/application/app_list_response.dart';
-import 'mock_data/application/app_markup_details_response.dart';
-import 'mock_data/application/app_register_response.dart';
-import 'mock_data/application/app_update_response.dart';
-import 'mock_data/application/new_account_real_response.dart';
-import 'mock_data/application/new_account_virtual_response.dart';
-import 'mock_data/application/oauth_apps_response.dart';
-import 'mock_data/application/revoke_oauth_app_response.dart';
+import 'mock_data/app/app_delete_response.dart';
+import 'mock_data/app/app_details_response.dart';
+import 'mock_data/app/app_list_response.dart';
+import 'mock_data/app/app_markup_details_response.dart';
+import 'mock_data/app/app_register_response.dart';
+import 'mock_data/app/app_update_response.dart';
+import 'mock_data/app/new_account_real_response.dart';
+import 'mock_data/app/new_account_virtual_response.dart';
+import 'mock_data/app/oauth_apps_response.dart';
+import 'mock_data/app/revoke_oauth_app_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
 import 'mock_data/common/tick_response.dart';
 import 'mock_data/contract/buy_contract_response.dart';

@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_deriv_api/api/application/app_delete.dart';
-import 'package:flutter_deriv_api/api/application/app_details.dart';
-import 'package:flutter_deriv_api/api/application/app_markup_details.dart';
-import 'package:flutter_deriv_api/api/application/app_register.dart';
-import 'package:flutter_deriv_api/api/application/app_update.dart';
-import 'package:flutter_deriv_api/api/application/revoke_oauth_app.dart';
+import 'package:flutter_deriv_api/api/app/app.dart';
+import 'package:flutter_deriv_api/api/app/app_delete.dart';
+import 'package:flutter_deriv_api/api/app/app_markup_details.dart';
+import 'package:flutter_deriv_api/api/app/app_register.dart';
+import 'package:flutter_deriv_api/api/app/app_update.dart';
+import 'package:flutter_deriv_api/api/app/revoke_oauth_app.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -17,7 +17,7 @@ void main() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
     test('fetch application details', () async {
-      final AppDetails appDetails = await AppDetails.fetchApplicationDetails(
+      final App appDetails = await App.fetchApplicationDetails(
         const AppGetRequest(appGet: 1234),
       );
 
@@ -36,7 +36,7 @@ void main() {
     });
 
     test('fetch application list', () async {
-      final List<AppDetails> appList = await AppDetails.fetchApplicationList(
+      final List<App> appList = await App.fetchApplicationList(
         const AppListRequest(),
       );
 
@@ -58,7 +58,7 @@ void main() {
 
     test('fetch markup details', () async {
       final AppMarkupDetails appMarkupDetails =
-          await AppDetails(appId: 1234).fetchApplicationMarkupDetails(
+          await App(appId: 1234).fetchApplicationMarkupDetails(
         clientLoginId: 'CR12345',
         dateFrom: DateTime.parse('2017-08-01 00:00:00'),
         dateTo: DateTime.parse('2017-08-31 23:59:59'),
@@ -87,14 +87,13 @@ void main() {
     });
 
     test('app delete', () async {
-      final AppDelete appDelete =
-          await AppDetails(appId: 1234).deleteApplication();
+      final AppDelete appDelete = await App(appId: 1234).deleteApplication();
 
       expect(appDelete.succeeded, true);
     });
 
     test('app register', () async {
-      final AppRegister appRegister = await AppDetails(
+      final AppRegister appRegister = await App(
         appId: 1234,
         appstore: 'https://itunes.apple.com/test_app',
         github: 'https://github.com/test_org/app',
@@ -129,7 +128,7 @@ void main() {
     });
 
     test('app update', () async {
-      final AppUpdate appRegister = await AppDetails(
+      final AppUpdate appRegister = await App(
         appId: 1234,
         appstore: 'https://itunes.apple.com/test_app',
         github: 'https://github.com/test_org/app',
@@ -165,7 +164,7 @@ void main() {
 
     test('revoke oauth app', () async {
       final RevokeOauthApp revokeOauthApp =
-          await AppDetails(appId: 1234).revokeOauthApplication();
+          await App(appId: 1234).revokeOauthApplication();
 
       expect(revokeOauthApp.succeeded, true);
     });

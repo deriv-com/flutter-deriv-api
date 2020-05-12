@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/application/models/new_account_base_model.dart';
+import 'package:flutter_deriv_api/api/app/models/new_account_base_model.dart';
 
 /// New account real model class
 abstract class NewAccountRealModel extends NewAccountBaseModel {

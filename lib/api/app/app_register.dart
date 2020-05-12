@@ -1,6 +1,6 @@
-import 'package:flutter_deriv_api/api/application/app_details.dart';
-import 'package:flutter_deriv_api/api/application/exceptions/application_exception.dart';
-import 'package:flutter_deriv_api/api/application/models/app_register_model.dart';
+import 'package:flutter_deriv_api/api/app/app.dart';
+import 'package:flutter_deriv_api/api/app/exceptions/app_exception.dart';
+import 'package:flutter_deriv_api/api/app/models/app_register_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -10,7 +10,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 class AppRegister extends AppRegisterModel {
   /// Initializes
   AppRegister({
-    AppDetails appDetails,
+    App appDetails,
   }) : super(
           appDetails: appDetails,
         );
@@ -19,7 +19,7 @@ class AppRegister extends AppRegisterModel {
   factory AppRegister.fromJson(Map<String, dynamic> json) => AppRegister(
         appDetails: getItemFromMap(
           json,
-          itemToTypeCallback: (dynamic item) => AppDetails.fromJson(item),
+          itemToTypeCallback: (dynamic item) => App.fromJson(item),
         ),
       );
 
@@ -27,7 +27,7 @@ class AppRegister extends AppRegisterModel {
 
   /// Creates a copy of instance with given parameters
   AppRegister copyWith({
-    AppDetails appDetails,
+    App appDetails,
   }) =>
       AppRegister(
         appDetails: appDetails ?? this.appDetails,
@@ -41,7 +41,7 @@ class AppRegister extends AppRegisterModel {
     final AppRegisterResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw ApplicationException(message: response.error['message']);
+      throw AppException(message: response.error['message']);
     }
 
     return AppRegister.fromJson(response.appRegister);
