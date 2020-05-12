@@ -1,6 +1,6 @@
-import 'package:flutter_deriv_api/api/application/app_details.dart';
-import 'package:flutter_deriv_api/api/application/exceptions/application_exception.dart';
-import 'package:flutter_deriv_api/api/application/models/app_update_model.dart';
+import 'package:flutter_deriv_api/api/app/app.dart';
+import 'package:flutter_deriv_api/api/app/exceptions/app_exception.dart';
+import 'package:flutter_deriv_api/api/app/models/app_update_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -10,7 +10,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 class AppUpdate extends AppUpdateModel {
   /// Initializes
   AppUpdate({
-    AppDetails appDetails,
+    App appDetails,
   }) : super(
           appDetails: appDetails,
         );
@@ -19,7 +19,7 @@ class AppUpdate extends AppUpdateModel {
   factory AppUpdate.fromJson(Map<String, dynamic> json) => AppUpdate(
         appDetails: getItemFromMap(
           json,
-          itemToTypeCallback: (dynamic item) => AppDetails.fromJson(item),
+          itemToTypeCallback: (dynamic item) => App.fromJson(item),
         ),
       );
 
@@ -27,7 +27,7 @@ class AppUpdate extends AppUpdateModel {
 
   /// Creates a copy of instance with given parameters
   AppUpdate copyWith({
-    AppDetails appDetails,
+    App appDetails,
   }) =>
       AppUpdate(
         appDetails: appDetails ?? this.appDetails,
@@ -39,7 +39,7 @@ class AppUpdate extends AppUpdateModel {
     final AppUpdateResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw ApplicationException(message: response.error['message']);
+      throw AppException(message: response.error['message']);
     }
 
     return AppUpdate.fromJson(response.appUpdate);

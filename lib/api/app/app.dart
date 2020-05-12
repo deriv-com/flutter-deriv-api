@@ -1,20 +1,20 @@
-import 'package:flutter_deriv_api/api/application/app_delete.dart';
-import 'package:flutter_deriv_api/api/application/app_markup_details.dart';
-import 'package:flutter_deriv_api/api/application/app_register.dart';
-import 'package:flutter_deriv_api/api/application/app_update.dart';
-import 'package:flutter_deriv_api/api/application/exceptions/application_exception.dart';
-import 'package:flutter_deriv_api/api/application/models/app_details_model.dart';
-import 'package:flutter_deriv_api/api/application/revoke_oauth_app.dart';
+import 'package:flutter_deriv_api/api/app/app_delete.dart';
+import 'package:flutter_deriv_api/api/app/app_markup_details.dart';
+import 'package:flutter_deriv_api/api/app/app_register.dart';
+import 'package:flutter_deriv_api/api/app/app_update.dart';
+import 'package:flutter_deriv_api/api/app/exceptions/app_exception.dart';
+import 'package:flutter_deriv_api/api/app/models/app_model.dart';
+import 'package:flutter_deriv_api/api/app/revoke_oauth_app.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// App detail class
-class AppDetails extends AppDetailsModel {
+/// App class
+class App extends AppModel {
   /// Initializes
-  AppDetails({
+  App({
     int appId,
     double appMarkupPercentage,
     String appstore,
@@ -37,7 +37,7 @@ class AppDetails extends AppDetailsModel {
         );
 
   /// Creates an instance from JSON
-  factory AppDetails.fromJson(Map<String, dynamic> json) => AppDetails(
+  factory App.fromJson(Map<String, dynamic> json) => App(
         appId: json['app_id'],
         appMarkupPercentage: json['app_markup_percentage'],
         appstore: json['appstore'],
@@ -52,7 +52,7 @@ class AppDetails extends AppDetailsModel {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
-  AppDetails copyWith({
+  App copyWith({
     int appId,
     double appMarkupPercentage,
     String appstore,
@@ -63,7 +63,7 @@ class AppDetails extends AppDetailsModel {
     String redirectUri,
     String verificationUri,
   }) =>
-      AppDetails(
+      App(
         appId: appId ?? this.appId,
         appMarkupPercentage: appMarkupPercentage ?? this.appMarkupPercentage,
         appstore: appstore ?? this.appstore,
@@ -77,32 +77,32 @@ class AppDetails extends AppDetailsModel {
 
   /// Fetch the information of the OAuth application specified by [appId].
   /// For parameters information refer to [AppGetRequest].
-  static Future<AppDetails> fetchApplicationDetails(
+  static Future<App> fetchApplicationDetails(
     AppGetRequest request,
   ) async {
     final AppGetResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw ApplicationException(message: response.error['message']);
+      throw AppException(message: response.error['message']);
     }
 
-    return AppDetails.fromJson(response.appGet);
+    return App.fromJson(response.appGet);
   }
 
   /// List all of the account's OAuth applications.
   /// For parameters information refer to [AppListRequest].
-  static Future<List<AppDetails>> fetchApplicationList(
+  static Future<List<App>> fetchApplicationList(
     AppListRequest request,
   ) async {
     final AppListResponse response = await _api.call(request: request);
 
     if (response.error != null) {
-      throw ApplicationException(message: response.error['message']);
+      throw AppException(message: response.error['message']);
     }
 
     return getListFromMap(
       response.appList,
-      itemToTypeCallback: (dynamic item) => AppDetails.fromJson(item),
+      itemToTypeCallback: (dynamic item) => App.fromJson(item),
     );
   }
 

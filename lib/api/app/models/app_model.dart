@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// App model class
-abstract class AppDetailsModel extends APIBaseModel {
+abstract class AppModel extends APIBaseModel {
   /// Initializes
-  AppDetailsModel({
+  AppModel({
     this.appId,
     this.appMarkupPercentage,
     this.appstore,

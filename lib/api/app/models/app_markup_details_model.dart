@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/application/models/app_transaction_model.dart';
+import 'package:flutter_deriv_api/api/app/models/app_transaction_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// App markup details model class
