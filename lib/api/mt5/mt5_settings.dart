@@ -98,7 +98,7 @@ class MT5Settings extends MT5SettingsModel {
         zipCode: zipCode ?? this.zipCode,
       );
 
-  /// Get MT5 user account settings.
+  /// Gets MT5 user account settings.
   /// For parameters information refer to [Mt5GetSettingsRequest].
   static Future<MT5Settings> fetchSettings(
     Mt5GetSettingsRequest request,
