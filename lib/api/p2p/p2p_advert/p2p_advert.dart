@@ -1,6 +1,10 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_advert_model.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_details_model.dart';
+import 'package:flutter_deriv_api/api/p2p/p2p_advert/exceptions/p2p_advert_exception.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// P2P advert class
@@ -114,6 +118,8 @@ class P2PAdvert extends P2PAdvertModel {
         ),
       );
 
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
   /// Generate a copy of instance with given parameters
   P2PAdvert copyWith({
     String accountCurrency,
@@ -181,5 +187,77 @@ class P2PAdvert extends P2PAdvertModel {
         remainingAmountDisplay:
             remainingAmountDisplay ?? this.remainingAmountDisplay,
         type: type ?? this.type,
+      );
+
+  /// Retrieve information about a P2P (peer to peer) advert.
+  /// For parameters information refer to [P2pAdvertInfoRequest].
+  static Future<P2PAdvert> fetchAdvert(
+    P2pAdvertInfoRequest request,
+  ) async {
+    final P2pAdvertInfoResponse response = await _api.call(request: request);
+
+    if (response.error != null) {
+      throw P2PAdvertException(message: response.error['message']);
+    }
+
+    return P2PAdvert.fromJson(response.p2pAdvertInfo);
+  }
+
+  /// Returns available adverts.
+  /// For parameters information refer to [P2pAdvertListRequest].
+  static Future<List<P2PAdvert>> fetchAdvertList(
+    P2pAdvertListRequest request,
+  ) async {
+    final P2pAdvertListResponse response = await _api.call(request: request);
+
+    if (response.error != null) {
+      throw P2PAdvertException(message: response.error['message']);
+    }
+
+    return getListFromMap(
+      response.p2pAdvertList['list'],
+      itemToTypeCallback: (dynamic item) => P2PAdvert.fromJson(item),
+    );
+  }
+
+  /// Creates a P2P (peer to peer) advert. Can only be used by an approved P2P advertiser.
+  /// For parameters information refer to [P2pAdvertCreateRequest].
+  static Future<P2PAdvert> createAdvert(
+    P2pAdvertCreateRequest request,
+  ) async {
+    final P2pAdvertCreateResponse response = await _api.call(request: request);
+
+    if (response.error != null) {
+      throw P2PAdvertException(message: response.error['message']);
+    }
+
+    return P2PAdvert.fromJson(response.p2pAdvertCreate);
+  }
+
+  /// Updates a P2P (peer to peer) advert. Can only be used by the advertiser.
+  /// For parameters information refer to [P2pAdvertUpdateRequest].
+  static Future<P2PAdvert> updateAdvert(
+    P2pAdvertUpdateRequest request,
+  ) async {
+    final P2pAdvertUpdateResponse response = await _api.call(request: request);
+
+    if (response.error != null) {
+      throw P2PAdvertException(message: response.error['message']);
+    }
+
+    return P2PAdvert.fromJson(response.p2pAdvertUpdate);
+  }
+
+  /// Updates a P2P (peer to peer) advert. Can only be used by the advertiser.
+  Future<P2PAdvert> updateCurrentAdvert(
+    bool delete,
+    bool isActive,
+  ) =>
+      updateAdvert(
+        P2pAdvertUpdateRequest(
+          id: id,
+          delete: getInt(delete),
+          isActive: getInt(isActive),
+        ),
       );
 }
