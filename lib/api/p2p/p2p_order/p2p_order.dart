@@ -7,7 +7,8 @@ import 'package:flutter_deriv_api/api/p2p/p2p_order/exceptions/p2p_order_excepti
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
-import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/pending_request.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
@@ -83,12 +84,10 @@ class P2POrder extends P2POrderModel {
         ),
       );
 
-  /// API instance
-  static final BasicBinaryAPI _api =
-      Injector.getInjector().get<BasicBinaryAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the list of [P2POrder] with parameters specified in [P2pOrderListRequest]
-  static Future<List<P2POrder>> getOrdersList(
+  static Future<List<P2POrder>> fetchOrdersList(
     P2pOrderListRequest request,
   ) async {
     final P2pOrderListResponse response = await _api.call(request: request);
@@ -106,16 +105,12 @@ class P2POrder extends P2POrderModel {
   /// Subscribes to the list of [P2POrder] with parameters specified in [P2pOrderListRequest]
   static Stream<List<P2POrder>> getOrdersListUpdate(
     P2pOrderListRequest request,
+    RequestCompareFunction comparePredicate,
   ) =>
       _api
           .subscribe(
         request: request,
-        comparePredicate: ({
-          Request request,
-          PendingRequest<Response> pendingRequest,
-          bool equatableResult,
-        }) =>
-            true,
+        comparePredicate: comparePredicate,
       )
           .map<List<P2POrder>>(
         (Response response) {
@@ -133,15 +128,7 @@ class P2POrder extends P2POrderModel {
 
   /// Creates order with parameters specified in [P2pOrderCreateRequest]
   static Future<P2POrder> create(P2pOrderCreateRequest request) async {
-    final P2pOrderCreateResponse response = await _api.call(
-      request: request,
-      comparePredicate: ({
-        Request request,
-        PendingRequest<Response> pendingRequest,
-        bool equatableResult,
-      }) =>
-          false,
-    );
+    final P2pOrderCreateResponse response = await _api.call(request: request);
 
     if (response.error != null) {
       throw P2POrderException(message: response.error['message']);
@@ -152,7 +139,7 @@ class P2POrder extends P2POrderModel {
 
   /// Creates order and subscribes to the result with parameters
   /// specified in [P2pOrderCreateRequest]
-  static Stream<P2POrder> createAndGetUpdate(P2pOrderCreateRequest request) =>
+  static Stream<P2POrder> createAndSubscribe(P2pOrderCreateRequest request) =>
       _api.subscribe(request: request).map(
         (Response response) {
           if (response.error != null) {
@@ -195,8 +182,9 @@ class P2POrder extends P2POrderModel {
             throw P2POrderException(message: response.error['message']);
           }
 
-          final P2pOrderInfoResponse infoResponse = response;
-          return P2POrder.fromJson(infoResponse.p2pOrderInfo);
+          return response is P2pOrderInfoResponse
+              ? P2POrder.fromJson(response.p2pOrderInfo)
+              : null;
         },
       );
 
