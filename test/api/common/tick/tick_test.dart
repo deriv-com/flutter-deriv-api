@@ -10,8 +10,8 @@ void main() {
   group('Ticks test', () {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    test('Tick stream JSON parsing', () {
-      Tick.fetchTickUpdate(const TicksRequest()).listen((Tick tick) {
+    test('Tick stream test', () {
+      Tick.subscribeTick(const TicksRequest()).listen((Tick tick) {
         expect(tick.ask, 218.1026);
         expect(tick.bid, 218.0826);
         expect(tick.id, 'b4d42748-0744-c46b-f59b-cb7dd936bafa');

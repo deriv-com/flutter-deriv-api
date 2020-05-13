@@ -66,7 +66,6 @@ class LandingCompany extends LandingCompanyModel {
         virtualCompany: json['virtual_company'],
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Fetch landing companies for given [LandingCompanyRequest]

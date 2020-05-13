@@ -41,7 +41,6 @@ class ContractsForSymbol extends ContractsForSymbolModel {
         spot: json['spot'],
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Fetch contracts for given [symbol]

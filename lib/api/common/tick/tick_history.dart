@@ -33,7 +33,6 @@ class TickHistory extends TickHistoryModel {
         pipSize: json['pip_size'],
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets TickHistory for the given [symbol]
