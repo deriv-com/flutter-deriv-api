@@ -10,7 +10,9 @@ void main() {
   test('server time', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    final ServerTime serverTime = await ServerTime.getTime(const TimeRequest());
+    final ServerTime serverTime = await ServerTime.fetchTime(
+      const TimeRequest(),
+    );
 
     expect(serverTime.time, getDateTime(1587544006));
   });
