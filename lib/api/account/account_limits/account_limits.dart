@@ -63,7 +63,6 @@ class AccountLimits extends AccountLimitsModel {
             json['withdrawal_since_inception_monetary']?.toDouble(),
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Fetches the logged in account's limits

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/account_limits/account_limits.dart';
@@ -7,7 +6,7 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('Account limits JSON parsing', () async {
+  test('Account limits test', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
     final AccountLimits accountLimits =
         await AccountLimits.fetchAccountLimits();
