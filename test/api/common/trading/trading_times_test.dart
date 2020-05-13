@@ -22,12 +22,12 @@ void main() {
     final MarketModel market = tradingTimes.markets.first;
 
     expect(market.name, 'Forex');
-    expect(market.submarkets.length, 2);
+    expect(market.submarkets.length, 1);
 
-    final SubmarketModel submarket = market.submarkets[1];
+    final SubmarketModel submarket = market.submarkets.first;
 
-    expect(submarket.name, 'Minor Pairs');
-    expect(submarket.symbols.length, 2);
+    expect(submarket.name, 'Major Pairs');
+    expect(submarket.symbols.length, 1);
 
     final List<TradeEventModel> events = submarket.symbols.first.events;
 

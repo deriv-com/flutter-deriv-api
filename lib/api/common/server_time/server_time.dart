@@ -27,9 +27,9 @@ class ServerTime extends ServerTimeModel {
         time: time ?? this.time,
       );
 
-  /// Request back-end server epoch time.
+  /// Requests back-end server epoch time.
   /// For parameters information refer to [TimeRequest].
-  static Future<ServerTime> getTime(
+  static Future<ServerTime> fetchTime(
     TimeRequest request,
   ) async {
     final TimeResponse response = await _api.call(request: request);
