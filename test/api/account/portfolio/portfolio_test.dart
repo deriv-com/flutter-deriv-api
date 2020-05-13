@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/services/dependency_injector/module_container.
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  test('Portfolio JSON parsing', () async {
+  test('Portfolio test', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
     final Portfolio portfolio = await Portfolio.fetchPortfolio(

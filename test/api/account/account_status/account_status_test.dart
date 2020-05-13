@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/account_status/account_status.dart';
@@ -7,7 +6,7 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('Account status JSON parsing', () async {
+  test('Account status test', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
     final AccountStatus accountStatus =

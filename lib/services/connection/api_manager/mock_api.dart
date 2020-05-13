@@ -1,11 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/balance_response.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/get_account_status_response.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/get_limits_response.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/get_settings_response.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/portfolio_response.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/set_settings_response.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
@@ -16,6 +10,12 @@ import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
 import 'mock_data/account/authorize_response.dart';
+import 'mock_data/account/balance_response.dart';
+import 'mock_data/account/get_account_status_response.dart';
+import 'mock_data/account/get_limits_response.dart';
+import 'mock_data/account/get_settings_response.dart';
+import 'mock_data/account/portfolio_response.dart';
+import 'mock_data/account/set_settings_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
 import 'mock_data/common/tick_response.dart';
 import 'mock_data/contract/buy_contract_response.dart';
