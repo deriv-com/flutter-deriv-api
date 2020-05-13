@@ -1,12 +1,11 @@
+import 'package:flutter_deriv_api/api/common/active_symbols/exceptions/active_symbols_exception.dart';
 import 'package:flutter_deriv_api/api/common/models/active_symbols_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
-
-import 'exceptions/active_symbols_exception.dart';
 
 /// Active Symbol
 class ActiveSymbol extends ActiveSymbolModel {
@@ -73,8 +72,7 @@ class ActiveSymbol extends ActiveSymbolModel {
       );
 
   /// API instance
-  static final BasicBinaryAPI _api =
-      Injector.getInjector().get<BasicBinaryAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Fetch the list of active symbols
   /// For parameters information refer to [ActiveSymbolsRequest]

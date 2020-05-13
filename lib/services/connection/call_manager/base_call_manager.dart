@@ -1,12 +1,12 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/call_history.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/pending_request.dart';
-import 'package:flutter_deriv_api/services/connection/basic_binary_api.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/subscription_stream.dart';
 
 /// A predicate function to compare [request] and [pendingRequest]s
 /// [equatableResult] indicates request and pending request are equal or not (by equatable package result)
@@ -21,12 +21,15 @@ abstract class BaseCallManager<T> {
   /// Initializes
   BaseCallManager(this.api);
 
-  /// Binary api instance
-  final BasicBinaryAPI api;
+  /// API instance
+  final BaseAPI api;
 
   /// Pending requests queue
   final Map<int, PendingRequest<Response>> _pendingRequests =
       <int, PendingRequest<Response>>{};
+
+  /// All requests and responses
+  final CallHistory _callHistory = CallHistory();
 
   /// Store available request id
   int _requestId = 0;
@@ -34,10 +37,13 @@ abstract class BaseCallManager<T> {
   /// Get pending requests queue
   Map<int, PendingRequest<Response>> get pendingRequests => _pendingRequests;
 
+  /// Get API calls history
+  CallHistory get callHistory => _callHistory;
+
   /// Indicates that pending request queue contain a request with [requestId] or not
   bool contains(int requestId) => _pendingRequests.containsKey(requestId);
 
-  /// Calls a api method by [request]
+  /// Calls a API method by [request]
   /// [comparePredicate] function is only applicable to subscription calls
   /// [comparePredicate] indicates compare condition for current [request] and [pendingRequest]s
   T call({
@@ -50,65 +56,68 @@ abstract class BaseCallManager<T> {
     @required int requestId,
     @required Map<String, dynamic> response,
   }) {
-    print('completing request for $requestId.');
-
-    final Completer<Response> requestCompleter = _getResponse(requestId);
-
-    if (!requestCompleter.isCompleted) {
-      requestCompleter.complete(getResponseByMsgType(response));
-    }
+    _callHistory.pushIncoming(
+      timestamp: DateTime.now().millisecondsSinceEpoch,
+      method:
+          response.containsKey('msg_type') ? response['msg_type'] : 'unknown',
+      message: response,
+    );
   }
 
-  /// Add [request] to pending requests queue, api history and web socket channel
+  /// Add [request] to pending requests queue, API history and web socket channel
   Future<Response> addToChannel({
     @required Request request,
-    Map<String, dynamic Function()> absentFields,
+    SubscriptionStream<Response> subscriptionStream,
   }) {
-    final Completer<Response> response = Completer<Response>();
+    final Completer<Response> responseCompleter = Completer<Response>();
     final Request requestWithId = request.copyWith(reqId: _getRequestId());
-    final Map<String, dynamic> prepareRequest = _prepareRequest(requestWithId);
-
-    if (absentFields != null && absentFields.isNotEmpty) {
-      absentFields.forEach(
-        (String key, dynamic Function() function) =>
-            prepareRequest.putIfAbsent(key, function),
-      );
-    }
+    final Map<String, dynamic> prepareRequest = _prepareRequest(
+      request: requestWithId,
+      isSubscription: subscriptionStream != null,
+    );
 
     _addPendingRequest(
       request: requestWithId,
-      response: response,
+      responseCompleter: responseCompleter,
+      subscriptionStream: subscriptionStream,
     );
 
-    api.apiHistory.pushOutgoing(
+    callHistory.pushOutgoing(
       timestamp: DateTime.now().millisecondsSinceEpoch,
+      method: requestWithId.msgType,
       message: prepareRequest,
-      method: request.msgType,
     );
 
-    api.webSocketChannel.sink.add(
-      utf8.encode(jsonEncode(prepareRequest)),
-    );
+    api.addToChannel(request: prepareRequest);
 
-    return response.future;
+    return responseCompleter.future;
   }
-
-  /// Get pending request response by [requestId]
-  Completer<Response> _getResponse(int requestId) =>
-      pendingRequests[requestId].response;
 
   /// Add [request] to pending requests queue
   void _addPendingRequest({
     @required Request request,
-    @required Completer<Response> response,
+    @required Completer<Response> responseCompleter,
+    SubscriptionStream<Response> subscriptionStream,
   }) =>
       _pendingRequests[request.reqId] = PendingRequest<Response>(
         request: request,
-        response: response,
+        responseCompleter: responseCompleter,
+        subscriptionStream: subscriptionStream,
       );
 
   int _getRequestId() => _requestId++;
 
-  Map<String, dynamic> _prepareRequest(Request request) => request.toJson()
-    ..removeWhere((String key, dynamic value) => value == null);
+  Map<String, dynamic> _prepareRequest({
+    Request request,
+    bool isSubscription,
+  }) {
+    final Map<String, dynamic> result = request.toJson()
+      ..removeWhere((String key, dynamic value) => value == null);
+
+    if (isSubscription) {
+      result.putIfAbsent('subscribe', () => 1);
+    }
+
+    return result;
+  }
 }

@@ -1,5 +1,3 @@
-library wsapi;
-
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
@@ -11,16 +9,16 @@ import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/ping_send.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
-import 'package:flutter_deriv_api/services/connection/api_history.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
 
-/// Callbacks for WS connection
+/// Callbacks for websocket connection
 typedef SocketCallback = void Function();
 
-/// Contains the api call
-class BasicBinaryAPI {
+/// Contains the binary API call
+class BinaryAPI implements BaseAPI {
   /// Indicates current connection status - only set `true` once
   /// we have established SSL *and* web socket handshake steps
   bool _connected = false;
@@ -28,7 +26,7 @@ class BasicBinaryAPI {
   /// Represents the active web socket connection
   IOWebSocketChannel _webSocketChannel;
 
-  /// Stream subscription to api date
+  /// Stream subscription to API data
   StreamSubscription<Map<String, dynamic>> _webSocketListener;
 
   /// Call manager instance
@@ -37,20 +35,15 @@ class BasicBinaryAPI {
   /// Subscription manager instance
   SubscriptionManager _subscriptionManager;
 
-  /// All requests and responses
-  final APIHistory _apiHistory = APIHistory();
+  @override
+  Future<Response> call({
+    @required Request request,
+  }) =>
+      (_callManager ??= CallManager(this))(
+        request: request,
+      );
 
-  /// Get web socket channel
-  IOWebSocketChannel get webSocketChannel => _webSocketChannel;
-
-  /// Get api history
-  APIHistory get apiHistory => _apiHistory;
-
-  /// Get call manager instance
-  CallManager get call => _callManager ??= CallManager(this);
-
-  /// Subscribe to a [request]
-  /// [comparePredicate] indicates compare condition for current [request] and [pendingRequest]s
+  @override
   Stream<Response> subscribe({
     @required Request request,
     RequestCompareFunction comparePredicate,
@@ -80,7 +73,7 @@ class BasicBinaryAPI {
         shouldForced: shouldForced,
       );
 
-  /// Connects to binary web socket
+  /// Connects to binary websocket
   Future<IOWebSocketChannel> run({
     SocketCallback onDone,
     SocketCallback onOpen,
@@ -145,7 +138,12 @@ class BasicBinaryAPI {
     return _webSocketChannel;
   }
 
-  /// Closes the stream channels related to WS
+  @override
+  void addToChannel({Map<String, dynamic> request}) {
+    _webSocketChannel.sink.add(utf8.encode(jsonEncode(request)));
+  }
+
+  @override
   Future<void> close() async {
     // The onDone function of the listener is set to null intentionally
     // to prevent it from being invoked after destroying the web socket object.
@@ -184,13 +182,6 @@ class BasicBinaryAPI {
         _connected = true;
         connectionCompleter.complete(true);
       }
-
-      _apiHistory.pushIncoming(
-        timestamp: DateTime.now().millisecondsSinceEpoch,
-        method:
-            message.containsKey('msg_type') ? message['msg_type'] : 'unknown',
-        message: message,
-      );
 
       print('api response: $message.');
       print('check for req_id in received message.');
