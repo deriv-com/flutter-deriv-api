@@ -67,11 +67,12 @@ class Tick extends TickModel {
         if (response.error != null) {
           throw TickException(message: response.error['message']);
         }
-        final TicksResponse ticksResponse = response;
-        return Tick.fromJson(
-          ticksResponse.tick,
-          subscriptionJson: ticksResponse.subscription,
-        );
+        return response is TicksResponse
+            ? Tick.fromJson(
+                response.tick,
+                subscriptionJson: response.subscription,
+              )
+            : null;
       });
 
   // TODO(ramin): Add implementation when unsubscribe method is available in [BaseAPI]
@@ -79,15 +80,16 @@ class Tick extends TickModel {
   Future<Forget> unsubscribe() async => null;
 
   /// Generates a copy of instance with given parameters
-  Tick copyWith(
-          {double ask,
-          double bid,
-          DateTime epoch,
-          String id,
-          int pipSize,
-          double quote,
-          String symbol,
-          SubscriptionModel subscriptionInformation}) =>
+  Tick copyWith({
+    double ask,
+    double bid,
+    DateTime epoch,
+    String id,
+    int pipSize,
+    double quote,
+    String symbol,
+    SubscriptionModel subscriptionInformation,
+  }) =>
       Tick(
         ask: ask ?? this.ask,
         bid: bid ?? this.bid,
