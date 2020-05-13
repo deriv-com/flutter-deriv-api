@@ -5,12 +5,15 @@ import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
-
 void main() {
-  test('Active Symbols JSON parsing', () async {
+  test('Active Symbols test', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    final List<ActiveSymbol> activeSymbols = await ActiveSymbol.getActiveSymbols(const ActiveSymbolsRequest());
+    final List<ActiveSymbol> activeSymbols =
+        await ActiveSymbol.getActiveSymbols(const ActiveSymbolsRequest(
+      activeSymbols: 'brief',
+      productType: 'basic',
+    ));
 
     expect(activeSymbols.first.pip, 0.001);
     expect(activeSymbols.first.symbolType, 'smart_fx');

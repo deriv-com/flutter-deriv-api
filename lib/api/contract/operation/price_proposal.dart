@@ -63,7 +63,6 @@ class PriceProposal extends PriceProposalModel {
         spotTime: getDateTime(json['spot_time']),
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the price proposal for contract

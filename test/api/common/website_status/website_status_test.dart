@@ -10,7 +10,7 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('Website status', () async {
+  test('Website status test', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
     final WebsiteStatus websiteStatus = await WebsiteStatus.fetchWebsiteStatus(

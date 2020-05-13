@@ -44,7 +44,6 @@ class BuyContract extends BuyContractModel {
         transactionId: json['transaction_id'],
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Get the current spot of the this bought contract

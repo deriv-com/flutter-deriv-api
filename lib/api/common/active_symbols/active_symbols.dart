@@ -47,7 +47,7 @@ class ActiveSymbol extends ActiveSymbolModel {
             symbol: symbol,
             symbolType: symbolType);
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory ActiveSymbol.fromJson(Map<String, dynamic> json) => ActiveSymbol(
         allowForwardStarting: getBool(json['allow_forward_starting']),
         delayAmount: json['delay_amount'],
@@ -69,7 +69,6 @@ class ActiveSymbol extends ActiveSymbolModel {
         symbolType: json['symbol_type'],
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Fetch the list of active symbols
@@ -77,23 +76,23 @@ class ActiveSymbol extends ActiveSymbolModel {
   static Future<List<ActiveSymbol>> getActiveSymbols(
     ActiveSymbolsRequest request,
   ) async {
-    final ActiveSymbolsResponse activeSymbolsResponse = await _api.call(
+    final ActiveSymbolsResponse response = await _api.call(
       request: request,
     );
 
-    if (activeSymbolsResponse.error != null) {
+    if (response.error != null) {
       throw ActiveSymbolsException(
-        message: activeSymbolsResponse.error['message'],
+        message: response.error['message'],
       );
     }
 
-    return activeSymbolsResponse.activeSymbols
+    return response.activeSymbols
         .map<ActiveSymbol>(
             (dynamic symbolEntry) => ActiveSymbol.fromJson(symbolEntry))
         .toList();
   }
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   ActiveSymbol copyWith({
     bool allowForwardStarting,
     int delayAmount,

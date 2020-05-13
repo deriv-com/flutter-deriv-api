@@ -22,10 +22,9 @@ class State extends StateModel {
         value: json['value'],
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Gets TickHistory for the given [symbol]
+  /// Gets List of states for the given [StatesListRequest]
   static Future<List<State>> fetchStatesList(StatesListRequest request) async {
     final StatesListResponse response = await _api.call(request: request);
 
@@ -39,7 +38,7 @@ class State extends StateModel {
     );
   }
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   State copyWith({
     String text,
     String value,

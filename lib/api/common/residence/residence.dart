@@ -28,10 +28,9 @@ class Residence extends ResidenceModel {
         countryCode: json['value'],
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Gets TickHistory for the given [symbol]
+  /// Gets Residence list for the given [ResidenceListRequest]
   static Future<List<Residence>> fetchResidenceList(
     ResidenceListRequest request,
   ) async {
@@ -47,7 +46,7 @@ class Residence extends ResidenceModel {
     );
   }
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   Residence copyWith({
     String phoneIdd,
     String countryName,
