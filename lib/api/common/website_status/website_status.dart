@@ -99,11 +99,12 @@ class WebsiteStatus extends WebsiteStatusModel {
           throw WebsiteStatusException(message: response.error['message']);
         }
 
-        final WebsiteStatusResponse websiteStatusResponse = response;
-        return WebsiteStatus.fromJson(
-          websiteStatusResponse.websiteStatus,
-          subscriptionJson: websiteStatusResponse.subscription,
-        );
+        return response is WebsiteStatusResponse
+            ? WebsiteStatus.fromJson(
+                response.websiteStatus,
+                subscriptionJson: response.subscription,
+              )
+            : null;
       });
 
   // TODO(ramin): Implement when unsubscribe is available in [BaseAPI]
