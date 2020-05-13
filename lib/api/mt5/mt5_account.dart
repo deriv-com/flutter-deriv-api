@@ -106,7 +106,7 @@ class MT5Account extends MT5AccountModel {
     return MT5Account.fromJson(response.mt5NewAccount);
   }
 
-  /// Get list of MT5 accounts for client.
+  /// Gets list of MT5 accounts for client.
   /// For parameters information refer to [Mt5LoginListRequest].
   static Future<List<MT5Account>> fetchLoginList(
     Mt5LoginListRequest request,
@@ -136,7 +136,7 @@ class MT5Account extends MT5AccountModel {
         ),
       );
 
-  /// Change password of the MT5 account.
+  /// Changes password of the MT5 account.
   Future<MT5PasswordChange> changePassword({
     String newPassword,
     String oldPassword,
