@@ -1,5 +1,6 @@
 import 'package:meta/meta.dart';
 
+import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
@@ -14,6 +15,18 @@ abstract class BaseAPI {
   Stream<Response> subscribe({
     @required Request request,
     RequestCompareFunction comparePredicate,
+  });
+
+  /// Unsubscribe with a specific [subscriptionId]
+  Future<ForgetResponse> unsubscribe({
+    @required String subscriptionId,
+    bool shouldForced = false,
+  });
+
+  /// Unsubscribe to multiple [method]s all at once
+  Future<ForgetResponse> unsubscribeAll({
+    @required String method,
+    bool shouldForced = false,
   });
 
   /// Adds request to stream channel

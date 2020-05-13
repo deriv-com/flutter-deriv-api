@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
@@ -16,6 +17,11 @@ import 'mock_data/contract/buy_contract_response.dart';
 import 'mock_data/contract/contract_for_response.dart';
 import 'mock_data/contract/proposal_open_contract_response.dart';
 import 'mock_data/contract/proposal_response.dart';
+import 'mock_data/p2p/p2p_advert_create_response.dart';
+import 'mock_data/p2p/p2p_advert_info_response.dart';
+import 'mock_data/p2p/p2p_advert_list_response.dart';
+import 'mock_data/p2p/p2p_advert_update_response.dart';
+import 'mock_data/p2p/p2p_chat_create_response.dart';
 
 /// Handle mock API calls
 class MockAPI implements BaseAPI {
@@ -33,6 +39,20 @@ class MockAPI implements BaseAPI {
     RequestCompareFunction comparePredicate,
   }) =>
       _getStreamResponse(request);
+
+  @override
+  Future<ForgetResponse> unsubscribe({
+    @required String subscriptionId,
+    bool shouldForced = false,
+  }) async =>
+      null;
+
+  @override
+  Future<ForgetResponse> unsubscribeAll({
+    @required String method,
+    bool shouldForced = false,
+  }) async =>
+      null;
 
   @override
   void addToChannel({Map<String, dynamic> request}) {}
@@ -109,15 +129,20 @@ class MockAPI implements BaseAPI {
       // case 'new_account_real':
       // case 'new_account_virtual':
       // case 'oauth_apps':
-      // case 'p2p_advert_create':
-      // case 'p2p_advert_info':
-      // case 'p2p_advert_list':
-      // case 'p2p_advert_update':
+      case 'p2p_advert_create':
+        return p2pAdvertCreateResponse;
+      case 'p2p_advert_info':
+        return p2pAdvertInfoResponse;
+      case 'p2p_advert_list':
+        return p2pAdvertListResponse;
+      case 'p2p_advert_update':
+        return p2pAdvertUpdateResponse;
       // case 'p2p_advertiser_adverts':
       // case 'p2p_advertiser_create':
       // case 'p2p_advertiser_info':
       // case 'p2p_advertiser_update':
-      // case 'p2p_chat_create':
+      case 'p2p_chat_create':
+        return p2pChatCreateResponse;
       // case 'p2p_order_cancel':
       // case 'p2p_order_confirm':
       // case 'p2p_order_create':

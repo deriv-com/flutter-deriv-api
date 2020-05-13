@@ -30,6 +30,9 @@ String parseWebSocketUrl(String url, {bool isAuthUrl = false}) {
 /// Convert int to boolean
 bool getBool(int value) => value == null ? null : value == 1;
 
+/// Convert boolean to int
+int getInt(bool value) => value == null ? null : value ? 1 : 0;
+
 /// Get list of models from Map
 List<T> getListFromMap<T>(
   Iterable<dynamic> mapList, {

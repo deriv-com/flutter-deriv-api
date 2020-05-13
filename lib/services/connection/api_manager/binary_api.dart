@@ -53,7 +53,7 @@ class BinaryAPI implements BaseAPI {
         comparePredicate: comparePredicate,
       );
 
-  /// Unsubscribe with a specific [subscriptionId]
+  @override
   Future<ForgetResponse> unsubscribe({
     @required String subscriptionId,
     bool shouldForced = false,
@@ -63,7 +63,7 @@ class BinaryAPI implements BaseAPI {
         shouldForced: shouldForced,
       );
 
-  /// Unsubscribe to multiple [method]s all at once
+  @override
   Future<ForgetResponse> unsubscribeAll({
     @required String method,
     bool shouldForced = false,
