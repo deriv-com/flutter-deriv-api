@@ -9,7 +9,7 @@ void main() {
   test('oauth apps', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    final List<OauthApp> oauthApps = await OauthApp.oauthApplication(
+    final List<OauthApp> oauthApps = await OauthApp.fetchOauthApplication(
       const OauthAppsRequest(oauthApps: 1),
     );
 

@@ -75,7 +75,7 @@ class App extends AppModel {
         verificationUri: verificationUri ?? this.verificationUri,
       );
 
-  /// Fetch the information of the OAuth application specified by [appId].
+  /// Fetches the information of the OAuth application specified by [appId].
   /// For parameters information refer to [AppGetRequest].
   static Future<App> fetchApplicationDetails(
     AppGetRequest request,
@@ -89,7 +89,7 @@ class App extends AppModel {
     return App.fromJson(response.appGet);
   }
 
-  /// List all of the account's OAuth applications.
+  /// Fetches all of the account's OAuth applications.
   /// For parameters information refer to [AppListRequest].
   static Future<List<App>> fetchApplicationList(
     AppListRequest request,
@@ -106,7 +106,7 @@ class App extends AppModel {
     );
   }
 
-  /// Retrieve details of app markup according to criteria specified.
+  /// Retrieves details of app markup according to criteria specified.
   Future<AppMarkupDetails> fetchApplicationMarkupDetails({
     String clientLoginId,
     DateTime dateFrom,

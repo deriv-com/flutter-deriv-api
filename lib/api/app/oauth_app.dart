@@ -54,9 +54,9 @@ class OauthApp extends OauthAppModel {
         scopes: scopes ?? this.scopes,
       );
 
-  /// Oauth application that used for the authorized account.
+  /// Fetches oauth application that used for the authorized account.
   /// For parameters information refer to [OauthAppsRequest].
-  static Future<List<OauthApp>> oauthApplication(
+  static Future<List<OauthApp>> fetchOauthApplication(
     OauthAppsRequest request,
   ) async {
     final OauthAppsResponse response = await _api.call(request: request);
