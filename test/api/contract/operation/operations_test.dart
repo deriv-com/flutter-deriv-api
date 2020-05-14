@@ -39,8 +39,6 @@ void main() {
       expect(priceProposal.spot, 9392.5);
     });
 
-    // TODO(ramin): Proposal subscription test
-
     test('Buy contract test', () async {
       final BuyContract buyContract = await BuyContract.buy(
         const BuyRequest(
@@ -69,6 +67,8 @@ void main() {
       expect(openContractModel.auditDetails.contractEnd.first.epoch,
           getDateTime(1587533976));
       expect(openContractModel.underlying, 'R_100');
+
+      // TODO(ramin): Test subscribing to bought contract state
     });
 
     test('Sell contract test', () async {
@@ -207,6 +207,27 @@ void main() {
       } on ContractOperationException catch (e) {
         print(e.message);
       }
+    });
+
+    test('Price proposal subscription test', () async {
+      PriceProposal.subscribePriceForContract(
+        const ProposalRequest(
+          symbol: 'R_100',
+          durationUnit: 'm',
+          duration: 2,
+          barrier: '+0.1',
+          amount: 100,
+          basis: 'payout',
+          contractType: 'CALL',
+          currency: 'USD',
+        ),
+      ).listen(expectAsync1((PriceProposal priceProposal) {
+        expect(priceProposal.askPrice, 10);
+        expect(priceProposal.id, '042922fe-5664-09e4-c3bf-b3bbe98f31db');
+        expect(priceProposal.dateStart, getDateTime(1586335719));
+        expect(priceProposal.spotTime, getDateTime(1586335713));
+        expect(priceProposal.spot, 9392.5);
+      }));
     });
   });
 }
