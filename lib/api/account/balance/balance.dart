@@ -89,6 +89,7 @@ class Balance extends BalanceModel {
     String id,
     String loginId,
     BalanceTotalModel total,
+    SubscriptionModel subscriptionInformation,
   }) =>
       Balance(
         balance: balance ?? this.balance,
@@ -96,5 +97,7 @@ class Balance extends BalanceModel {
         id: id ?? this.id,
         loginId: loginId ?? this.loginId,
         total: total ?? this.total,
+        subscriptionInformation:
+            subscriptionInformation ?? this.subscriptionInformation,
       );
 }
