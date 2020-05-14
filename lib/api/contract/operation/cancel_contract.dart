@@ -34,7 +34,7 @@ class CancelContract extends CancelContractModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Cancel a contract with parameters specified in [CancelRequest]
+  /// Cancels a contract with parameters specified in [CancelRequest]
   static Future<CancelContract> cancelContract(CancelRequest request) async {
     final CancelResponse response = await _api.call(request: request);
 

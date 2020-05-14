@@ -43,7 +43,7 @@ class ContractsForSymbol extends ContractsForSymbolModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Fetch contracts for given symbol in [ContractsForRequest]
+  /// Gets contracts for given symbol in [ContractsForRequest]
   static Future<ContractsForSymbol> fetchContractsForSymbol(
     ContractsForRequest request,
   ) async {
@@ -61,7 +61,7 @@ class ContractsForSymbol extends ContractsForSymbolModel {
     return ContractsForSymbol.fromJson(response.contractsFor);
   }
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   ContractsForSymbol copyWith({
     List<ContractModel> contracts,
     int close,
