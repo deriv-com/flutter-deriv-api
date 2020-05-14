@@ -1,6 +1,7 @@
 import 'package:meta/meta.dart';
 
-import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
@@ -24,8 +25,8 @@ abstract class BaseAPI {
   });
 
   /// Unsubscribe to multiple [method]s all at once
-  Future<ForgetResponse> unsubscribeAll({
-    @required String method,
+  Future<ForgetAllResponse> unsubscribeAll({
+    @required ForgetStreamType method,
     bool shouldForced = false,
   });
 

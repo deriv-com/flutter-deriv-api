@@ -189,7 +189,7 @@ class P2PAdvert extends P2PAdvertModel {
         type: type ?? this.type,
       );
 
-  /// Retrieve information about a P2P (peer to peer) advert.
+  /// Retrieves information about a P2P (peer to peer) advert.
   /// For parameters information refer to [P2pAdvertInfoRequest].
   static Future<P2PAdvert> fetchAdvert(
     P2pAdvertInfoRequest request,

@@ -5,8 +5,8 @@ import 'package:meta/meta.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
-import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/ping_send.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -64,8 +64,8 @@ class BinaryAPI implements BaseAPI {
       );
 
   @override
-  Future<ForgetResponse> unsubscribeAll({
-    @required String method,
+  Future<ForgetAllResponse> unsubscribeAll({
+    @required ForgetStreamType method,
     bool shouldForced = false,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this)).unsubscribeAll(
