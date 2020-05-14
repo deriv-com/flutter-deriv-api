@@ -33,10 +33,10 @@ void main() {
       expect(advertiser.paymentInfo, 'payment information');
     });
 
-    test('subscribe advertiser', () async {
+    test('subscribe advertiser', () {
       P2PAdvertiser.subscribeAdvertiserInformation(
         const P2pAdvertiserInfoRequest(id: '1'),
-      ).listen((P2PAdvertiser advertiser) {
+      ).take(1).listen(
         expectAsync1((P2PAdvertiser advertiser) {
           expect(
             advertiser.chatToken,
@@ -59,8 +59,8 @@ void main() {
             advertiser.subscriptionInformation.id,
             '4b0ef5f5-a3cd-7a01-01cb-871f0b504143',
           );
-        });
-      });
+        }),
+      );
     });
 
     test('create advertiser', () async {
@@ -88,7 +88,7 @@ void main() {
       expect(advertiser.paymentInfo, 'payment information');
     });
 
-    test('create and subscribe to advertiser', () async {
+    test('create and subscribe to advertiser', () {
       P2PAdvertiser.createAdvertiserAndSubscribe(
         const P2pAdvertiserCreateRequest(
           contactInfo: 'contract information',
@@ -96,7 +96,7 @@ void main() {
           name: 'John Doe',
           paymentInfo: 'payment information',
         ),
-      ).listen((P2PAdvertiser advertiser) {
+      ).take(1).listen(
         expectAsync1((P2PAdvertiser advertiser) {
           expect(
             advertiser.chatToken,
@@ -119,8 +119,8 @@ void main() {
             advertiser.subscriptionInformation.id,
             '4b0ef5f5-a3cd-7a01-01cb-871f0b504143',
           );
-        });
-      });
+        }),
+      );
     });
 
     test('update advertiser', () async {

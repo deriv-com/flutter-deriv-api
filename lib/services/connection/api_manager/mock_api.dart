@@ -30,7 +30,7 @@ import 'mock_data/p2p/p2p_chat_create_response.dart';
 
 /// Handle mock API calls
 class MockAPI implements BaseAPI {
-  static const int _responseDelayMilliseconds = 100;
+  static const int _responseDelayMilliseconds = 50;
 
   @override
   Future<Response> call({
