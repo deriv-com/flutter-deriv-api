@@ -16,7 +16,7 @@ void main() {
     print('number of available symbols: ${symbols?.length}');
 
     final ContractsForSymbol contractsForSymbol =
-        await ContractsForSymbol.getContractsForSymbol(
+        await ContractsForSymbol.fetchContractsForSymbol(
       const ContractsForRequest(contractsFor: 'R_10'),
     );
 

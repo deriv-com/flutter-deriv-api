@@ -50,43 +50,46 @@ class BuyContract extends BuyContractModel {
         transactionId: json['transaction_id'],
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Buys a contract with parameters specified in given [BuyRequest]
   static Future<BuyContract> buy(BuyRequest request) async {
-    final BuyResponse buyResponse = await _api.call(
+    final BuyResponse response = await _api.call(
       request: request,
     );
 
-    if (buyResponse.error != null) {
-      throw ContractOperationException(message: buyResponse.error['message']);
-    }
+    checkForException(
+      response: response,
+      exceptionCreator: (String message) => ContractOperationException(
+        message: message,
+      ),
+    );
 
-    return BuyContract.fromJson(buyResponse.buy);
+    return BuyContract.fromJson(response.buy);
   }
 
-  /// Get the current spot of the this bought contract
-  Future<OpenContractModel> getCurrentContractState() async {
-    final ProposalOpenContractResponse openContractResponse = await _api.call(
+  /// Gets the current spot of the this bought contract
+  Future<OpenContractModel> fetchCurrentContractState() async {
+    final ProposalOpenContractResponse response = await _api.call(
       request: ProposalOpenContractRequest(
         contractId: contractId,
       ),
     );
 
-    if (openContractResponse.error != null) {
-      throw ContractOperationException(
-        message: openContractResponse.error['message'],
-      );
-    }
+    checkForException(
+      response: response,
+      exceptionCreator: (String message) => ContractOperationException(
+        message: message,
+      ),
+    );
 
     return OpenContractModel.fromJson(
-      openContractResponse.proposalOpenContract,
+      response.proposalOpenContract,
     );
   }
 
   /// Subscribes to bought contract spot and return its spot update as [OpenContractModel]
-  Stream<OpenContractModel> getContractStateUpdate() => _api
+  Stream<OpenContractModel> subscribeContractState() => _api
           .subscribe(
         request: ProposalOpenContractRequest(
           contractId: contractId,
@@ -94,28 +97,31 @@ class BuyContract extends BuyContractModel {
       )
           .map<OpenContractModel>(
         (Response response) {
-          if (response.error != null) {
-            throw ContractOperationException(
-                message: response.error['message']);
-          }
-          final ProposalOpenContractResponse openContractResponse = response;
-          return OpenContractModel.fromJson(
-              openContractResponse.proposalOpenContract);
+          checkForException(
+            response: response,
+            exceptionCreator: (String message) => ContractOperationException(
+              message: message,
+            ),
+          );
+
+          return response is ProposalOpenContractResponse
+              ? OpenContractModel.fromJson(response.proposalOpenContract)
+              : null;
         },
       );
 
-  /// Sell this contract
+  /// Sells this contract
   ///
   /// [price] Minimum price at which to sell the contract,
   /// Default be 0 for 'sell at market'.
   Future<SellContract> sell({double price = 0}) =>
       SellContract.sellContract(SellRequest(sell: contractId, price: price));
 
-  /// Cancel this contract
+  /// Cancels this contract
   Future<CancelContract> cancel() =>
       CancelContract.cancelContract(CancelRequest(cancel: contractId));
 
-  /// update this contract with given [stopLoss], [takeProfit]
+  /// updates this contract with given [stopLoss], [takeProfit]
   Future<UpdateContract> update({
     double stopLoss,
     double takeProfit,

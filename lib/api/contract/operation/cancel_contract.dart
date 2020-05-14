@@ -2,6 +2,7 @@ import 'package:flutter_deriv_api/api/contract/models/cancel_contract_model.dart
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'exceptions/contract_operations_exception.dart';
 
@@ -31,16 +32,18 @@ class CancelContract extends CancelContractModel {
         transactionId: json['transaction_id'],
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Cancel a contract with parameters specified in [CancelRequest]
   static Future<CancelContract> cancelContract(CancelRequest request) async {
     final CancelResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw ContractOperationException(message: response.error['message']);
-    }
+    checkForException(
+      response: response,
+      exceptionCreator: (String message) => ContractOperationException(
+        message: message,
+      ),
+    );
 
     return CancelContract.fromJson(response.cancel);
   }

@@ -19,7 +19,7 @@ class UpdateContract extends UpdateContractModel {
           takeProfit: takeProfit,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory UpdateContract.fromJson(Map<String, dynamic> json) => UpdateContract(
         stopLoss: getItemFromMap(
           json['stop_loss'],
@@ -31,10 +31,9 @@ class UpdateContract extends UpdateContractModel {
         ),
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// update a contract with parameters specified in [ContractUpdateRequest]
+  /// updates a contract with parameters specified in [ContractUpdateRequest]
   static Future<UpdateContract> updateContract(
     ContractUpdateRequest request,
   ) async {
@@ -47,16 +46,19 @@ class UpdateContract extends UpdateContractModel {
     return UpdateContract.fromJson(response.contractUpdate);
   }
 
-  /// Get update history for contract as List of [HistorySpotPriceModel]
+  /// Gets update history for contract as List of [HistorySpotPriceModel]
   static Future<List<HistorySpotPriceModel>> getContractUpdateHistory(
     ContractUpdateHistoryRequest request,
   ) async {
     final ContractUpdateHistoryResponse response =
         await _api.call(request: request);
 
-    if (response.error != null) {
-      throw ContractOperationException(message: response.error['message']);
-    }
+    checkForException(
+      response: response,
+      exceptionCreator: (String message) => ContractOperationException(
+        message: response.error['message'],
+      ),
+    );
 
     return getListFromMap(
       response.contractUpdateHistory,
@@ -65,7 +67,7 @@ class UpdateContract extends UpdateContractModel {
     );
   }
 
-  /// Generate copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   UpdateContract copyWith({
     SpotPriceModel stopLoss,
     SpotPriceModel takeProfit,

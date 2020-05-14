@@ -7,12 +7,18 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('Contracts for JSON parsing', () async {
+  test('Contracts for test', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
     final ContractsForSymbol contractsFor =
-        await ContractsForSymbol.getContractsForSymbol(
-            const ContractsForRequest());
+        await ContractsForSymbol.fetchContractsForSymbol(
+      const ContractsForRequest(
+        contractsFor: 'R_50',
+        currency: 'USD',
+        landingCompany: 'svg',
+        productType: 'basic'
+      ),
+    );
 
     expect(contractsFor.contracts.first.barriers, 0);
     expect(contractsFor.contracts.first.maxContractDuration, '1d');
