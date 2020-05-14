@@ -9,7 +9,7 @@ void main() {
   test('Transactions test', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    Transaction.subscribeTransactions().listen(
+    Transaction.subscribeTransactions().take(1).listen(
       expectAsync1(
         (Transaction transaction) {
           expect(transaction.symbol, 'frxAUDJPY');

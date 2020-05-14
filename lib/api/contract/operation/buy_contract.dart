@@ -58,7 +58,7 @@ class BuyContract extends BuyContractModel {
       request: request,
     );
 
-    checkForException(
+    checkException(
       response: response,
       exceptionCreator: (String message) => ContractOperationException(
         message: message,
@@ -76,7 +76,7 @@ class BuyContract extends BuyContractModel {
       ),
     );
 
-    checkForException(
+    checkException(
       response: response,
       exceptionCreator: (String message) => ContractOperationException(
         message: message,
@@ -91,26 +91,21 @@ class BuyContract extends BuyContractModel {
   /// Subscribes to this bought contract spot and returns its spot update as [OpenContractModel]
   Stream<OpenContractModel> subscribeContractState() => _api
           .subscribe(
-        request: ProposalOpenContractRequest(
-          contractId: contractId,
-        ),
-      )
-          .map<OpenContractModel>(
-        (Response response) {
-          checkForException(
-            response: response,
-            exceptionCreator: (String message) => ContractOperationException(
-              message: message,
-            ),
-          );
+              request: ProposalOpenContractRequest(contractId: contractId))
+          .map<OpenContractModel>((Response response) {
+        checkException(
+          response: response,
+          exceptionCreator: (String message) => ContractOperationException(
+            message: message,
+          ),
+        );
 
-          return response is ProposalOpenContractResponse
-              ? OpenContractModel.fromJson(response.proposalOpenContract)
-              : null;
-        },
-      );
+        return response is ProposalOpenContractResponse
+            ? OpenContractModel.fromJson(response.proposalOpenContract)
+            : null;
+      });
 
-  /// Sells this contract
+  /// Sells this contract.
   ///
   /// [price] is the Minimum price at which to sell the contract,
   /// Default be 0 for 'sell at market'.
@@ -121,7 +116,7 @@ class BuyContract extends BuyContractModel {
   Future<CancelContract> cancel() =>
       CancelContract.cancelContract(CancelRequest(cancel: contractId));
 
-  /// updates this contract with given [stopLoss], [takeProfit]
+  /// Updates this contract with given [stopLoss], [takeProfit]
   Future<UpdateContract> update({
     double stopLoss,
     double takeProfit,

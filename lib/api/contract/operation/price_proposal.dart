@@ -82,7 +82,7 @@ class PriceProposal extends PriceProposalModel {
   ) async {
     final ProposalResponse response = await _api.call(request: request);
 
-    checkForException(
+    checkException(
       response: response,
       exceptionCreator: (String message) => ContractOperationException(
         message: message,
@@ -99,7 +99,7 @@ class PriceProposal extends PriceProposalModel {
   ) =>
       _api.subscribe(request: request).map<PriceProposal>(
         (Response response) {
-          checkForException(
+          checkException(
             response: response,
             exceptionCreator: (String message) => ContractOperationException(
               message: message,

@@ -51,7 +51,7 @@ class ContractsForSymbol extends ContractsForSymbolModel {
       request: request,
     );
 
-    checkForException(
+    checkException(
       response: response,
       exceptionCreator: (String message) => ContractsForSymbolException(
         message: message,
