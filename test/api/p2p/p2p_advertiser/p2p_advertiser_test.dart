@@ -1,15 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_advert/p2p_advert.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_advertiser/p2p_advertiser.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
-import 'package:flutter_deriv_api/api/common/forget/forget.dart';
-import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 
 void main() {
   group('p2p advertiser group ->', () {
@@ -40,24 +37,29 @@ void main() {
       P2PAdvertiser.subscribeAdvertiserInformation(
         const P2pAdvertiserInfoRequest(id: '1'),
       ).listen((P2PAdvertiser advertiser) {
-        expect(advertiser.chatToken, 'invalid_token_for_test_2ea8d690e2e98582');
-        expect(advertiser.chatUserId, 'p2p_CR_1589256468');
-        expect(advertiser.contactInfo, 'contract information');
-        expect(advertiser.createdTime, getDateTime(1589256469));
-        expect(
-          advertiser.defaultAdvertDescription,
-          'default advert description',
-        );
-        expect(advertiser.id, '12');
-        expect(advertiser.isApproved, true);
-        expect(advertiser.isListed, false);
-        expect(advertiser.name, 'John Doe');
-        expect(advertiser.paymentInfo, 'payment information');
+        expectAsync1((P2PAdvertiser advertiser) {
+          expect(
+            advertiser.chatToken,
+            'invalid_token_for_test_2ea8d690e2e98582',
+          );
+          expect(advertiser.chatUserId, 'p2p_CR_1589256468');
+          expect(advertiser.contactInfo, 'contract information');
+          expect(advertiser.createdTime, getDateTime(1589256469));
+          expect(
+            advertiser.defaultAdvertDescription,
+            'default advert description',
+          );
+          expect(advertiser.id, '12');
+          expect(advertiser.isApproved, true);
+          expect(advertiser.isListed, false);
+          expect(advertiser.name, 'John Doe');
+          expect(advertiser.paymentInfo, 'payment information');
 
-        expect(
-          advertiser.subscriptionInformation.id,
-          '4b0ef5f5-a3cd-7a01-01cb-871f0b504143',
-        );
+          expect(
+            advertiser.subscriptionInformation.id,
+            '4b0ef5f5-a3cd-7a01-01cb-871f0b504143',
+          );
+        });
       });
     });
 
@@ -95,24 +97,29 @@ void main() {
           paymentInfo: 'payment information',
         ),
       ).listen((P2PAdvertiser advertiser) {
-        expect(advertiser.chatToken, 'invalid_token_for_test_2ea8d690e2e98582');
-        expect(advertiser.chatUserId, 'p2p_CR_1589256468');
-        expect(advertiser.contactInfo, 'contract information');
-        expect(advertiser.createdTime, getDateTime(1589256469));
-        expect(
-          advertiser.defaultAdvertDescription,
-          'default advert description',
-        );
-        expect(advertiser.id, '18');
-        expect(advertiser.isApproved, true);
-        expect(advertiser.isListed, false);
-        expect(advertiser.name, 'John Doe');
-        expect(advertiser.paymentInfo, 'payment information');
+        expectAsync1((P2PAdvertiser advertiser) {
+          expect(
+            advertiser.chatToken,
+            'invalid_token_for_test_2ea8d690e2e98582',
+          );
+          expect(advertiser.chatUserId, 'p2p_CR_1589256468');
+          expect(advertiser.contactInfo, 'contract information');
+          expect(advertiser.createdTime, getDateTime(1589256469));
+          expect(
+            advertiser.defaultAdvertDescription,
+            'default advert description',
+          );
+          expect(advertiser.id, '18');
+          expect(advertiser.isApproved, true);
+          expect(advertiser.isListed, false);
+          expect(advertiser.name, 'John Doe');
+          expect(advertiser.paymentInfo, 'payment information');
 
-        expect(
-          advertiser.subscriptionInformation.id,
-          '4b0ef5f5-a3cd-7a01-01cb-871f0b504143',
-        );
+          expect(
+            advertiser.subscriptionInformation.id,
+            '4b0ef5f5-a3cd-7a01-01cb-871f0b504143',
+          );
+        });
       });
     });
 
@@ -143,11 +150,9 @@ void main() {
     });
 
     test('fetch advertiser adverts', () async {
-      final List<P2PAdvert> adverts = await P2PAdvertiser.fetchAdvertiserAdverts(
-        const P2pAdvertiserAdvertsRequest(
-          limit: 10,
-          offset: 0,
-        ),
+      final List<P2PAdvert> adverts =
+          await P2PAdvertiser.fetchAdvertiserAdverts(
+        const P2pAdvertiserAdvertsRequest(limit: 10, offset: 0),
       );
 
       expect(adverts.length, 2);
