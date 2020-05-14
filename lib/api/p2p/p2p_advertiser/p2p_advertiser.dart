@@ -1,4 +1,6 @@
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
+import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_model.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_advert/p2p_advert.dart';
@@ -41,7 +43,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
   /// Generate an instance from JSON
   factory P2PAdvertiser.fromJson(
     Map<String, dynamic> json, {
-    Map<String, dynamic> subscriptionInformation,
+    Map<String, dynamic> subscriptionJson,
   }) =>
       P2PAdvertiser(
         chatToken: json['chat_token'],
@@ -55,7 +57,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
         name: json['name'],
         paymentInfo: json['payment_info'],
         subscriptionInformation: getItemFromMap(
-          subscriptionInformation,
+          subscriptionJson,
           itemToTypeCallback: (dynamic item) =>
               SubscriptionModel.fromJson(item),
         ),
@@ -117,24 +119,23 @@ class P2PAdvertiser extends P2PAdvertiserModel {
   static Stream<P2PAdvertiser> subscribeAdvertiserInformation(
     P2pAdvertiserInfoRequest request, {
     RequestCompareFunction comparePredicate,
-  }) async* {
-    _api
-        .subscribe(request: request, comparePredicate: comparePredicate)
-        .map<P2PAdvertiser>(
-      (Response response) {
-        if (response.error != null) {
-          throw P2PAdvertiserException(message: response.error['message']);
-        }
+  }) =>
+      _api
+          .subscribe(request: request, comparePredicate: comparePredicate)
+          .map<P2PAdvertiser>(
+        (Response response) {
+          if (response.error != null) {
+            throw P2PAdvertiserException(message: response.error['message']);
+          }
 
-        return response is P2pAdvertiserInfoResponse
-            ? P2PAdvertiser.fromJson(
-                response.p2pAdvertiserInfo,
-                subscriptionInformation: response.subscription,
-              )
-            : null;
-      },
-    );
-  }
+          return response is P2pAdvertiserInfoResponse
+              ? P2PAdvertiser.fromJson(
+                  response.p2pAdvertiserInfo,
+                  subscriptionJson: response.subscription,
+                )
+              : null;
+        },
+      );
 
   /// Registers the client as a P2P (peer to peer) advertiser.
   /// For parameters information refer to [P2pAdvertiserCreateRequest].
@@ -157,26 +158,25 @@ class P2PAdvertiser extends P2PAdvertiserModel {
   static Stream<P2PAdvertiser> createAdvertiserAndSubscribe(
     P2pAdvertiserCreateRequest request, {
     RequestCompareFunction comparePredicate,
-  }) async* {
-    _api
-        .subscribe(request: request, comparePredicate: comparePredicate)
-        .map<P2PAdvertiser>(
-      (Response response) {
-        if (response.error != null) {
-          throw P2PAdvertiserException(message: response.error['message']);
-        }
+  }) =>
+      _api
+          .subscribe(request: request, comparePredicate: comparePredicate)
+          .map<P2PAdvertiser>(
+        (Response response) {
+          if (response.error != null) {
+            throw P2PAdvertiserException(message: response.error['message']);
+          }
 
-        return response is P2pAdvertiserCreateResponse
-            ? P2PAdvertiser.fromJson(
-                response.p2pAdvertiserCreate,
-                subscriptionInformation: response.subscription,
-              )
-            : null;
-      },
-    );
-  }
+          return response is P2pAdvertiserCreateResponse
+              ? P2PAdvertiser.fromJson(
+                  response.p2pAdvertiserCreate,
+                  subscriptionJson: response.subscription,
+                )
+              : null;
+        },
+      );
 
-  /// Update the information of the P2P (peer to peer) advertiser for the current account.
+  /// Updates the information of the P2P (peer to peer) advertiser for the current account.
   /// Can only be used by an approved P2P advertiser.
   /// For parameters information refer to [P2pAdvertiserUpdateRequest].
   static Future<P2PAdvertiser> updateAdvertiser(
@@ -211,7 +211,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     );
   }
 
-  /// Unsubscribe P2P (peer to peer) advertiser information.
+  /// Unsubscribes from P2P (peer to peer) advertiser information.
   Future<Forget> unsubscribeAdvertiser() async {
     if (subscriptionInformation?.id == null) {
       return null;
@@ -225,5 +225,17 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     }
 
     return Forget.fromResponse(response.forget);
+  }
+
+  /// Unsubscribes all P2P (peer to peer) advertisers.
+  static Future<ForgetAll> unsubscribeAllAdvertiser() async {
+    final ForgetAllResponse response =
+        await _api.unsubscribeAll(method: ForgetStreamType.p2pAdvertiser);
+
+    if (response.error != null) {
+      throw P2PAdvertiserException(message: response.error['message']);
+    }
+
+    return ForgetAll.fromResponse(response.forgetAll);
   }
 }

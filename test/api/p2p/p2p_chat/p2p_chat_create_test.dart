@@ -9,11 +9,11 @@ void main() {
   test('p2p create chat', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    final P2PChatCreate p2pCreateChat = await P2PChatCreate.createChat(
+    final P2PChatCreate createChat = await P2PChatCreate.createChat(
       const P2pChatCreateRequest(orderId: '1234'),
     );
 
-    expect(p2pCreateChat.channelUrl, 'channel_url');
-    expect(p2pCreateChat.orderId, '1234');
+    expect(createChat.channelUrl, 'channel_url');
+    expect(createChat.orderId, '1234');
   });
 }

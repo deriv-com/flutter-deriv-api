@@ -11,79 +11,79 @@ void main() {
   group('p2p advert group ->', () {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    test('advert information', () async {
-      final P2PAdvert p2pAdvert = await P2PAdvert.fetchAdvert(
+    test('fetch advert information', () async {
+      final P2PAdvert advert = await P2PAdvert.fetchAdvert(
         const P2pAdvertInfoRequest(id: '6'),
       );
 
-      expect(p2pAdvert.accountCurrency, 'USD');
+      expect(advert.accountCurrency, 'USD');
 
-      expect(p2pAdvert.advertiserDetails.id, '2');
-      expect(p2pAdvert.advertiserDetails.name, 'za advertiser 1010');
+      expect(advert.advertiserDetails.id, '2');
+      expect(advert.advertiserDetails.name, 'za advertiser 1010');
 
-      expect(p2pAdvert.counterpartyType, TransactionType.sell);
-      expect(p2pAdvert.country, 'za');
-      expect(p2pAdvert.createdTime, getDateTime(1589279547));
+      expect(advert.counterpartyType, TransactionType.sell);
+      expect(advert.country, 'za');
+      expect(advert.createdTime, getDateTime(1589279547));
       expect(
-        p2pAdvert.description,
+        advert.description,
         'Please transfer to account number 1234',
       );
-      expect(p2pAdvert.id, '21');
-      expect(p2pAdvert.isActive, true);
-      expect(p2pAdvert.localCurrency, 'ZAR');
-      expect(p2pAdvert.maxOrderAmountLimit, 15);
-      expect(p2pAdvert.maxOrderAmountLimitDisplay, '15.00');
-      expect(p2pAdvert.minOrderAmountLimit, 3);
-      expect(p2pAdvert.minOrderAmountLimitDisplay, '3.00');
-      expect(p2pAdvert.paymentMethod, PaymentMethod.bankTransfer);
-      expect(p2pAdvert.price, 2.3);
-      expect(p2pAdvert.priceDisplay, '2.30');
-      expect(p2pAdvert.rate, 2.3);
-      expect(p2pAdvert.rateDisplay, '2.30');
-      expect(p2pAdvert.type, TransactionType.buy);
+      expect(advert.id, '21');
+      expect(advert.isActive, true);
+      expect(advert.localCurrency, 'ZAR');
+      expect(advert.maxOrderAmountLimit, 15);
+      expect(advert.maxOrderAmountLimitDisplay, '15.00');
+      expect(advert.minOrderAmountLimit, 3);
+      expect(advert.minOrderAmountLimitDisplay, '3.00');
+      expect(advert.paymentMethod, PaymentMethod.bankTransfer);
+      expect(advert.price, 2.3);
+      expect(advert.priceDisplay, '2.30');
+      expect(advert.rate, 2.3);
+      expect(advert.rateDisplay, '2.30');
+      expect(advert.type, TransactionType.buy);
     });
 
-    test('advert list', () async {
-      final List<P2PAdvert> p2pAdvertList = await P2PAdvert.fetchAdvertList(
+    test('fetch advert list', () async {
+      final List<P2PAdvert> adverts = await P2PAdvert.fetchAdvertList(
         const P2pAdvertListRequest(
           counterpartyType: 'sell',
         ),
       );
 
-      expect(p2pAdvertList.length, 2);
+      expect(adverts.length, 2);
 
-      expect(p2pAdvertList.first.accountCurrency, 'USD');
+      expect(adverts.first.accountCurrency, 'USD');
 
-      expect(p2pAdvertList.first.advertiserDetails.id, '6');
+      expect(adverts.first.advertiserDetails.id, '6');
       expect(
-        p2pAdvertList.first.advertiserDetails.name,
+        adverts.first.advertiserDetails.name,
         'advertiser CR90000018',
       );
 
-      expect(p2pAdvertList.first.counterpartyType, TransactionType.sell);
-      expect(p2pAdvertList.first.country, 'za');
-      expect(p2pAdvertList.first.createdTime, getDateTime(1589270475));
+      expect(adverts.first.counterpartyType, TransactionType.sell);
+      expect(adverts.first.country, 'za');
+      expect(adverts.first.createdTime, getDateTime(1589270475));
       expect(
-        p2pAdvertList.first.description,
+        adverts.first.description,
         'Please contact via whats app 1234',
       );
-      expect(p2pAdvertList.first.id, '7');
-      expect(p2pAdvertList.first.isActive, true);
-      expect(p2pAdvertList.first.localCurrency, 'ZAR');
-      expect(p2pAdvertList.first.maxOrderAmountLimit, 100);
-      expect(p2pAdvertList.first.maxOrderAmountLimitDisplay, '100.00');
-      expect(p2pAdvertList.first.minOrderAmountLimit, 10);
-      expect(p2pAdvertList.first.minOrderAmountLimitDisplay, '10.00');
-      expect(p2pAdvertList.first.paymentMethod, PaymentMethod.bankTransfer);
-      expect(p2pAdvertList.first.price, 14500);
-      expect(p2pAdvertList.first.priceDisplay, '14500.00');
-      expect(p2pAdvertList.first.rate, 14500);
-      expect(p2pAdvertList.first.rateDisplay, '14500.00');
-      expect(p2pAdvertList.first.type, TransactionType.buy);
+      expect(adverts.first.id, '7');
+      expect(adverts.first.isActive, true);
+      expect(adverts.first.localCurrency, 'ZAR');
+      expect(adverts.first.maxOrderAmountLimit, 100);
+      expect(adverts.first.maxOrderAmountLimitDisplay, '100.00');
+      expect(adverts.first.minOrderAmountLimit, 10);
+      expect(adverts.first.minOrderAmountLimitDisplay, '10.00');
+      expect(adverts.first.paymentMethod, PaymentMethod.bankTransfer);
+      expect(adverts.first.price, 14500);
+      expect(adverts.first.priceDisplay, '14500.00');
+      expect(adverts.first.rate, 14500);
+      expect(adverts.first.rateDisplay, '14500.00');
+      expect(adverts.first.type, TransactionType.buy);
     });
 
     test('create advert', () async {
-      final P2PAdvert p2pAdvert = await P2PAdvert.createAdvert(
+      final P2PAdvert advert = await P2PAdvert.createAdvert(
         const P2pAdvertCreateRequest(
           description: 'Please transfer to account number 1234',
           type: 'buy',
@@ -95,72 +95,72 @@ void main() {
         ),
       );
 
-      expect(p2pAdvert.accountCurrency, 'USD');
+      expect(advert.accountCurrency, 'USD');
 
-      expect(p2pAdvert.advertiserDetails.id, '3');
-      expect(p2pAdvert.advertiserDetails.name, 'za advertiser 1010');
+      expect(advert.advertiserDetails.id, '3');
+      expect(advert.advertiserDetails.name, 'za advertiser 1010');
 
-      expect(p2pAdvert.amount, 100);
-      expect(p2pAdvert.amountDisplay, '100.00');
-      expect(p2pAdvert.contactInfo, 'Please transfer to account number 1234');
-      expect(p2pAdvert.counterpartyType, TransactionType.buy);
-      expect(p2pAdvert.country, 'za');
-      expect(p2pAdvert.createdTime, getDateTime(1589279547));
-      expect(p2pAdvert.description, 'advert information');
-      expect(p2pAdvert.id, '25');
-      expect(p2pAdvert.isActive, true);
-      expect(p2pAdvert.localCurrency, 'ZAR');
-      expect(p2pAdvert.maxOrderAmount, 50);
-      expect(p2pAdvert.maxOrderAmountDisplay, '50.00');
-      expect(p2pAdvert.minOrderAmount, 20);
-      expect(p2pAdvert.minOrderAmountDisplay, '20.00');
-      expect(p2pAdvert.paymentInfo, 'it is a sell order');
-      expect(p2pAdvert.paymentMethod, PaymentMethod.bankTransfer);
-      expect(p2pAdvert.price, 2.3);
-      expect(p2pAdvert.priceDisplay, '2.30');
-      expect(p2pAdvert.rate, 2.7);
-      expect(p2pAdvert.rateDisplay, '2.70');
-      expect(p2pAdvert.remainingAmount, 50);
-      expect(p2pAdvert.remainingAmountDisplay, '50.00');
-      expect(p2pAdvert.type, TransactionType.sell);
+      expect(advert.amount, 100);
+      expect(advert.amountDisplay, '100.00');
+      expect(advert.contactInfo, 'Please transfer to account number 1234');
+      expect(advert.counterpartyType, TransactionType.buy);
+      expect(advert.country, 'za');
+      expect(advert.createdTime, getDateTime(1589279547));
+      expect(advert.description, 'advert information');
+      expect(advert.id, '25');
+      expect(advert.isActive, true);
+      expect(advert.localCurrency, 'ZAR');
+      expect(advert.maxOrderAmount, 50);
+      expect(advert.maxOrderAmountDisplay, '50.00');
+      expect(advert.minOrderAmount, 20);
+      expect(advert.minOrderAmountDisplay, '20.00');
+      expect(advert.paymentInfo, 'it is a sell order');
+      expect(advert.paymentMethod, PaymentMethod.bankTransfer);
+      expect(advert.price, 2.3);
+      expect(advert.priceDisplay, '2.30');
+      expect(advert.rate, 2.7);
+      expect(advert.rateDisplay, '2.70');
+      expect(advert.remainingAmount, 50);
+      expect(advert.remainingAmountDisplay, '50.00');
+      expect(advert.type, TransactionType.sell);
     });
 
     test('update advert', () async {
-      final P2PAdvert p2pAdvert = await P2PAdvert.updateAdvert(
+      final P2PAdvert advert = await P2PAdvert.updateAdvert(
         const P2pAdvertUpdateRequest(
           delete: 0,
           isActive: 0,
         ),
       );
 
-      expect(p2pAdvert.accountCurrency, 'USD');
+      expect(advert.accountCurrency, 'USD');
 
-      expect(p2pAdvert.advertiserDetails.id, '3');
-      expect(p2pAdvert.advertiserDetails.name, 'za advertiser 1010');
+      expect(advert.advertiserDetails.id, '3');
+      expect(advert.advertiserDetails.name, 'za advertiser 1010');
 
-      expect(p2pAdvert.amount, 100);
-      expect(p2pAdvert.amountDisplay, '100.00');
-      expect(p2pAdvert.contactInfo, 'Please transfer to account number 1234');
-      expect(p2pAdvert.counterpartyType, TransactionType.buy);
-      expect(p2pAdvert.country, 'za');
-      expect(p2pAdvert.createdTime, getDateTime(1589279547));
-      expect(p2pAdvert.description, 'advert information');
-      expect(p2pAdvert.id, '25');
-      expect(p2pAdvert.isActive, false);
-      expect(p2pAdvert.localCurrency, 'ZAR');
-      expect(p2pAdvert.maxOrderAmount, 50);
-      expect(p2pAdvert.maxOrderAmountDisplay, '50.00');
-      expect(p2pAdvert.minOrderAmount, 20);
-      expect(p2pAdvert.minOrderAmountDisplay, '20.00');
-      expect(p2pAdvert.paymentInfo, 'it is a sell order');
-      expect(p2pAdvert.paymentMethod, PaymentMethod.bankTransfer);
-      expect(p2pAdvert.price, 2.3);
-      expect(p2pAdvert.priceDisplay, '2.30');
-      expect(p2pAdvert.rate, 2.7);
-      expect(p2pAdvert.rateDisplay, '2.70');
-      expect(p2pAdvert.remainingAmount, 50);
-      expect(p2pAdvert.remainingAmountDisplay, '50.00');
-      expect(p2pAdvert.type, TransactionType.sell);
+      expect(advert.amount, 100);
+      expect(advert.amountDisplay, '100.00');
+      expect(advert.contactInfo, 'Please transfer to account number 1234');
+      expect(advert.counterpartyType, TransactionType.buy);
+      expect(advert.country, 'za');
+      expect(advert.createdTime, getDateTime(1589279547));
+      expect(advert.description, 'advert information');
+      expect(advert.id, '25');
+      expect(advert.isActive, false);
+      expect(advert.localCurrency, 'ZAR');
+      expect(advert.maxOrderAmount, 50);
+      expect(advert.maxOrderAmountDisplay, '50.00');
+      expect(advert.minOrderAmount, 20);
+      expect(advert.minOrderAmountDisplay, '20.00');
+      expect(advert.paymentInfo, 'it is a sell order');
+      expect(advert.paymentMethod, PaymentMethod.bankTransfer);
+      expect(advert.price, 2.3);
+      expect(advert.priceDisplay, '2.30');
+      expect(advert.rate, 2.7);
+      expect(advert.rateDisplay, '2.70');
+      expect(advert.remainingAmount, 50);
+      expect(advert.remainingAmountDisplay, '50.00');
+      expect(advert.type, TransactionType.sell);
     });
   });
 }

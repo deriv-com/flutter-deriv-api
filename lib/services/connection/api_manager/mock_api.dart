@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'package:meta/meta.dart';
 
+import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -21,11 +23,15 @@ import 'mock_data/p2p/p2p_advert_create_response.dart';
 import 'mock_data/p2p/p2p_advert_info_response.dart';
 import 'mock_data/p2p/p2p_advert_list_response.dart';
 import 'mock_data/p2p/p2p_advert_update_response.dart';
+import 'mock_data/p2p/p2p_advertiser_adverts_response.dart';
+import 'mock_data/p2p/p2p_advertiser_create_response.dart';
+import 'mock_data/p2p/p2p_advertiser_info_response.dart';
+import 'mock_data/p2p/p2p_advertiser_update_response.dart';
 import 'mock_data/p2p/p2p_chat_create_response.dart';
 
 /// Handle mock API calls
 class MockAPI implements BaseAPI {
-  static const int _responseDelayMilliseconds = 500;
+  static const int _responseDelayMilliseconds = 100;
 
   @override
   Future<Response> call({
@@ -45,11 +51,11 @@ class MockAPI implements BaseAPI {
     @required String subscriptionId,
     bool shouldForced = false,
   }) async =>
-      null;
+      const ForgetResponse(forget: 1);
 
   @override
-  Future<ForgetResponse> unsubscribeAll({
-    @required String method,
+  Future<ForgetAllResponse> unsubscribeAll({
+    @required ForgetStreamType method,
     bool shouldForced = false,
   }) async =>
       null;
@@ -137,10 +143,14 @@ class MockAPI implements BaseAPI {
         return p2pAdvertListResponse;
       case 'p2p_advert_update':
         return p2pAdvertUpdateResponse;
-      // case 'p2p_advertiser_adverts':
-      // case 'p2p_advertiser_create':
-      // case 'p2p_advertiser_info':
-      // case 'p2p_advertiser_update':
+      case 'p2p_advertiser_adverts':
+        return p2pAdvertiserAdvertsResponse;
+      case 'p2p_advertiser_create':
+        return p2pAdvertiserCreateResponse;
+      case 'p2p_advertiser_info':
+        return p2pAdvertiserInfoResponse;
+      case 'p2p_advertiser_update':
+        return p2pAdvertiserUpdateResponse;
       case 'p2p_chat_create':
         return p2pChatCreateResponse;
       // case 'p2p_order_cancel':
