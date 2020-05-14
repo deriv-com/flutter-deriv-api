@@ -39,6 +39,27 @@ void main() {
       expect(priceProposal.spot, 9392.5);
     });
 
+    test('Price proposal subscription test', () async {
+      PriceProposal.subscribePriceForContract(
+        const ProposalRequest(
+          symbol: 'R_100',
+          durationUnit: 'm',
+          duration: 2,
+          barrier: '+0.1',
+          amount: 100,
+          basis: 'payout',
+          contractType: 'CALL',
+          currency: 'USD',
+        ),
+      ).take(1).listen(expectAsync1((PriceProposal priceProposal) {
+        expect(priceProposal.askPrice, 10);
+        expect(priceProposal.id, '042922fe-5664-09e4-c3bf-b3bbe98f31db');
+        expect(priceProposal.dateStart, getDateTime(1586335719));
+        expect(priceProposal.spotTime, getDateTime(1586335713));
+        expect(priceProposal.spot, 9392.5);
+      }));
+    });
+
     test('Buy contract test', () async {
       final BuyContract buyContract = await BuyContract.buy(
         const BuyRequest(
@@ -68,7 +89,22 @@ void main() {
           getDateTime(1587533976));
       expect(openContractModel.underlying, 'R_100');
 
-      // TODO(ramin): Test subscribing to bought contract state
+      buyContract
+          .subscribeContractState()
+          .take(1)
+          .listen(expectAsync1((OpenContractModel openContractModel) {
+        expect(openContractModel.contractId, 79944933588);
+        expect(openContractModel.payout, 50.0);
+        expect(openContractModel.profit, 25.45);
+        expect(openContractModel.profitPercentage, 103.67);
+        expect(openContractModel.purchaseTime, getDateTime(1587533920));
+        expect(openContractModel.contractType, 'CALL');
+        expect(openContractModel.currency, 'USD');
+        expect(openContractModel.auditDetails.contractEnd.first.tick, 1419.96);
+        expect(openContractModel.auditDetails.contractEnd.first.epoch,
+            getDateTime(1587533976));
+        expect(openContractModel.underlying, 'R_100');
+      }));
     });
 
     test('Sell contract test', () async {
@@ -207,27 +243,6 @@ void main() {
       } on ContractOperationException catch (e) {
         print(e.message);
       }
-    });
-
-    test('Price proposal subscription test', () async {
-      PriceProposal.subscribePriceForContract(
-        const ProposalRequest(
-          symbol: 'R_100',
-          durationUnit: 'm',
-          duration: 2,
-          barrier: '+0.1',
-          amount: 100,
-          basis: 'payout',
-          contractType: 'CALL',
-          currency: 'USD',
-        ),
-      ).listen(expectAsync1((PriceProposal priceProposal) {
-        expect(priceProposal.askPrice, 10);
-        expect(priceProposal.id, '042922fe-5664-09e4-c3bf-b3bbe98f31db');
-        expect(priceProposal.dateStart, getDateTime(1586335719));
-        expect(priceProposal.spotTime, getDateTime(1586335713));
-        expect(priceProposal.spot, 9392.5);
-      }));
     });
   });
 }
