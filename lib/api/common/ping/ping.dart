@@ -27,7 +27,6 @@ class Ping extends PingModel {
       );
 
   /// To send the ping request to the server. Mostly used to test the connection or to keep it alive.
-  /// For parameters information refer to [PingRequest].
   static Future<Ping> ping(
     PingRequest request,
   ) async {
