@@ -1,4 +1,4 @@
-/// landingCompanyDetails Response
+/// LandingCompanyDetails Response
 const String landingCompanyDetailsResponse = '''{
   "echo_req": {
     "landing_company_details": "svg"

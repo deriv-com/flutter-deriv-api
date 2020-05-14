@@ -90,22 +90,21 @@ class WebsiteStatus extends WebsiteStatusModel {
     RequestCompareFunction comparePredicate,
   }) =>
       _api
-          .subscribe(
-        request: request,
-        comparePredicate: comparePredicate,
-      )
-          .map<WebsiteStatus>((Response response) {
-        if (response.error != null) {
-          throw WebsiteStatusException(message: response.error['message']);
-        }
+          .subscribe(request: request, comparePredicate: comparePredicate)
+          .map<WebsiteStatus>(
+        (Response response) {
+          if (response.error != null) {
+            throw WebsiteStatusException(message: response.error['message']);
+          }
 
-        return response is WebsiteStatusResponse
-            ? WebsiteStatus.fromJson(
-                response.websiteStatus,
-                subscriptionJson: response.subscription,
-              )
-            : null;
-      });
+          return response is WebsiteStatusResponse
+              ? WebsiteStatus.fromJson(
+                  response.websiteStatus,
+                  subscriptionJson: response.subscription,
+                )
+              : null;
+        },
+      );
 
   // TODO(ramin): Implement when unsubscribe is available in [BaseAPI]
   /// Unsubscribes from Website Status stream

@@ -10,7 +10,7 @@ void main() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
     final List<State> states = await State.fetchStatesList(
-      const StatesListRequest(statesList: 'Code'),
+      const StatesListRequest(statesList: 'code'),
     );
 
     expect(states.first.text, 'Aceh');

@@ -1,4 +1,4 @@
-/// websiteStatus Response
+/// WebsiteStatus Response
 const String websiteStatusResponse = '''{
   "echo_req": {
     "website_status": 1

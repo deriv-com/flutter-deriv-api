@@ -1,4 +1,4 @@
-/// landingCompany Response
+/// LandingCompany Response
 const String landingCompanyResponse = '''{
   "echo_req": {
     "landing_company": "id"

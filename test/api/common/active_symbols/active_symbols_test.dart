@@ -10,7 +10,7 @@ void main() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
     final List<ActiveSymbol> activeSymbols =
-        await ActiveSymbol.getActiveSymbols(const ActiveSymbolsRequest(
+        await ActiveSymbol.fetchActiveSymbols(const ActiveSymbolsRequest(
       activeSymbols: 'brief',
       productType: 'basic',
     ));

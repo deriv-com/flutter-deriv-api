@@ -71,9 +71,10 @@ class ActiveSymbol extends ActiveSymbolModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Fetch the list of active symbols
+  /// Gets the list of active symbols
+  ///
   /// For parameters information refer to [ActiveSymbolsRequest]
-  static Future<List<ActiveSymbol>> getActiveSymbols(
+  static Future<List<ActiveSymbol>> fetchActiveSymbols(
     ActiveSymbolsRequest request,
   ) async {
     final ActiveSymbolsResponse response = await _api.call(
