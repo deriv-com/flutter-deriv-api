@@ -98,7 +98,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
             subscriptionInformation ?? this.subscriptionInformation,
       );
 
-  /// Retrieve information about a P2P (peer to peer) advertiser.
+  /// Retrieves information about a P2P (peer to peer) advertiser.
   /// For parameters information refer to [P2pAdvertiserInfoRequest].
   static Future<P2PAdvertiser> fetchAdvertiserInformation(
     P2pAdvertiserInfoRequest request,
@@ -114,7 +114,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     return P2PAdvertiser.fromJson(response.p2pAdvertiserInfo);
   }
 
-  /// Subscribe to information about a P2P (peer to peer) advertiser.
+  /// Subscribes to information about a P2P (peer to peer) advertiser.
   /// For parameters information refer to [P2pAdvertiserInfoRequest].
   static Stream<P2PAdvertiser> subscribeAdvertiserInformation(
     P2pAdvertiserInfoRequest request, {
