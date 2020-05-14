@@ -102,20 +102,19 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     @required ForgetStreamType method,
     bool shouldForced = false,
   }) async {
+    final String methodName = getStringFromEnum(method);
+
     final List<int> requestIds = pendingRequests.keys.where(
       (int id) {
         final PendingRequest<Response> pendingRequest = pendingRequests[id];
 
-        return pendingRequest.request.msgType ==
-                getStringFromEnum(value: method) &&
+        return pendingRequest.request.msgType == methodName &&
             pendingRequest.isSubscribed;
       },
     );
 
     final ForgetAllResponse response = await api.call(
-      request: ForgetAllRequest(
-        forgetAll: getStringFromEnum(value: method),
-      ),
+      request: ForgetAllRequest(forgetAll: methodName),
     );
 
     if (response.error == null) {

@@ -64,8 +64,8 @@ T getItemFromMap<T>(
 }
 
 /// Converts enum to string
-String getStringFromEnum<T>({
-  T value,
+String getStringFromEnum<T>(
+  T value, {
   bool snakeCase = true,
 }) {
   if (value == null) {
@@ -79,8 +79,8 @@ String getStringFromEnum<T>({
 
 /// Gets enum form a string
 T getEnumFromString<T>({
-  List<T> values,
-  String name,
+  @required List<T> values,
+  @required String name,
   bool snakeCase = true,
 }) {
   if (name == null || values == null || values.isEmpty) {
