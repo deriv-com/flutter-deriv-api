@@ -38,7 +38,7 @@ class CancelContract extends CancelContractModel {
   static Future<CancelContract> cancelContract(CancelRequest request) async {
     final CancelResponse response = await _api.call(request: request);
 
-    checkForException(
+    checkException(
       response: response,
       exceptionCreator: (String message) => ContractOperationException(
         message: message,

@@ -1,8 +1,9 @@
 import 'dart:math';
-import 'package:flutter_deriv_api/basic_api/response.dart';
-import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
 import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
+
+import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
 
 part 'date_time_helpers.dart';
 
@@ -99,7 +100,7 @@ T getEnumFromString<T>({
 
 /// Checks for existence of error in [response] and throws exception created by
 /// [exceptionCreator]
-void checkForException({
+void checkException({
   Response response,
   APIBaseException Function(String message) exceptionCreator,
 }) {

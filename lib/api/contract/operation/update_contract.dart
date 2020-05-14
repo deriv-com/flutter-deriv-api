@@ -53,7 +53,7 @@ class UpdateContract extends UpdateContractModel {
     final ContractUpdateHistoryResponse response =
         await _api.call(request: request);
 
-    checkForException(
+    checkException(
       response: response,
       exceptionCreator: (String message) => ContractOperationException(
         message: response.error['message'],

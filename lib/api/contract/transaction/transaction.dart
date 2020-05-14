@@ -94,7 +94,7 @@ class Transaction extends TransactionModel {
   static Stream<Transaction> subscribeTransactions() => _api
           .subscribe(request: const TransactionRequest())
           .map<Transaction>((Response response) {
-        checkForException(
+        checkException(
           response: response,
           exceptionCreator: (String message) => TransactionsException(
             message: message,
