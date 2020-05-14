@@ -9,7 +9,7 @@ void main() {
   test('Transactions test', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    Transaction.getTransactions().listen(
+    Transaction.subscribeTransactions().listen(
       expectAsync1(
         (Transaction transaction) {
           expect(transaction.symbol, 'frxAUDJPY');
@@ -19,6 +19,11 @@ void main() {
           expect(transaction.currency, 'USD');
           expect(transaction.id, '9c3d0143-24ac-b8d9-c68b-06856b5f78d2');
           expect(transaction.purchaseTime, getDateTime(1587626678));
+
+          expect(
+            transaction.subscriptionInformation.id,
+            '9c3d0143-24ac-b8d9-c68b-06856b5f78d2',
+          );
         },
       ),
     );

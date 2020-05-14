@@ -106,6 +106,9 @@ const String proposalOpenContractResponse = '''
       "buy": 159790493028
     },
     "underlying": "R_100"
+  },
+  "subscription": {
+    "id": "042922fe-5664-09e4-c3bf-b3bbcf8f31db"
   }
 }
 ''';
