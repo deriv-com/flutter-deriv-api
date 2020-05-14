@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
