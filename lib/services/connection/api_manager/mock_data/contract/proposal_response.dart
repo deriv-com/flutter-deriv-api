@@ -30,6 +30,9 @@ const String proposalResponse = '''
     "spot": 9392.5,
     "spot_time": 1586335713
   },
-  "req_id": 87
+  "req_id": 87,
+  "subscription": {
+    "id": "042922fe-5664-09e4-c3bf-b3bbe98f31db"
+  }
 }
 ''';

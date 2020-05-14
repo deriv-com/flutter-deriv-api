@@ -19,7 +19,7 @@ void main() {
 
     test('Price proposal test', () async {
       final PriceProposal priceProposal =
-          await PriceProposal.getPriceForContract(
+          await PriceProposal.fetchPriceForContract(
         request: const ProposalRequest(
           symbol: 'R_100',
           durationUnit: 'm',
@@ -38,6 +38,8 @@ void main() {
       expect(priceProposal.spotTime, getDateTime(1586335713));
       expect(priceProposal.spot, 9392.5);
     });
+
+    // TODO(ramin): test for proposal subscription
 
     test('Buy contract test', () async {
       final BuyContract buyContract = await BuyContract.buy(
@@ -137,7 +139,7 @@ void main() {
     test('Buy proposal scenario', () async {
       try {
         final PriceProposal priceProposal =
-            await PriceProposal.getPriceForContract(
+            await PriceProposal.fetchPriceForContract(
           request: const ProposalRequest(
             symbol: 'R_100',
             durationUnit: 'm',

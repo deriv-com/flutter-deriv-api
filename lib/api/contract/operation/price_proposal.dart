@@ -43,7 +43,11 @@ class PriceProposal extends PriceProposalModel {
         );
 
   /// Generates an instance from JSON
-  factory PriceProposal.fromJson(Map<String, dynamic> json) => PriceProposal(
+  factory PriceProposal.fromJson(
+    Map<String, dynamic> json, {
+    Map<String, dynamic> subscriptionJson,
+  }) =>
+      PriceProposal(
         askPrice: json['ask_price']?.toDouble(),
         cancellation: getItemFromMap(
           json['cancellation'],
@@ -63,8 +67,7 @@ class PriceProposal extends PriceProposalModel {
         payout: json['payout']?.toDouble(),
         spot: json['spot'],
         spotTime: getDateTime(json['spot_time']),
-        subscriptionInformation:
-            SubscriptionModel.fromJson(json['subscription']),
+        subscriptionInformation: SubscriptionModel.fromJson(subscriptionJson),
       );
 
   /// Subscription Information
@@ -74,7 +77,7 @@ class PriceProposal extends PriceProposalModel {
 
   /// Gets the price proposal for contract
   /// For parameters information refer to [ProposalRequest]
-  static Future<PriceProposal> getPriceForContract({
+  static Future<PriceProposal> fetchPriceForContract({
     ProposalRequest request,
   }) async {
     final ProposalResponse response = await _api.call(request: request);
@@ -91,9 +94,9 @@ class PriceProposal extends PriceProposalModel {
 
   /// Gets the price proposal for contract
   /// For parameters information refer to [ProposalRequest]
-  static Stream<PriceProposal> subscribePriceForContract({
+  static Stream<PriceProposal> subscribePriceForContract(
     ProposalRequest request,
-  }) =>
+  ) =>
       _api.subscribe(request: request).map<PriceProposal>(
         (Response response) {
           checkForException(
@@ -104,7 +107,10 @@ class PriceProposal extends PriceProposalModel {
           );
 
           return response is ProposalResponse
-              ? PriceProposal.fromJson(response.proposal)
+              ? PriceProposal.fromJson(
+                  response.proposal,
+                  subscriptionJson: response.subscription,
+                )
               : null;
         },
       );
