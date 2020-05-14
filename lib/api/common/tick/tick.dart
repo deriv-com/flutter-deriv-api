@@ -32,7 +32,7 @@ class Tick extends TickModel {
           symbol: symbol,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory Tick.fromJson(
     Map<String, dynamic> json, {
     Map<String, dynamic> subscriptionJson,
@@ -59,21 +59,20 @@ class Tick extends TickModel {
     RequestCompareFunction comparePredicate,
   }) =>
       _api
-          .subscribe(
-        request: tickRequest,
-        comparePredicate: comparePredicate,
-      )
-          .map<Tick>((Response response) {
-        if (response.error != null) {
-          throw TickException(message: response.error['message']);
-        }
-        return response is TicksResponse
-            ? Tick.fromJson(
-                response.tick,
-                subscriptionJson: response.subscription,
-              )
-            : null;
-      });
+          .subscribe(request: tickRequest, comparePredicate: comparePredicate)
+          .map<Tick>(
+        (Response response) {
+          if (response.error != null) {
+            throw TickException(message: response.error['message']);
+          }
+          return response is TicksResponse
+              ? Tick.fromJson(
+                  response.tick,
+                  subscriptionJson: response.subscription,
+                )
+              : null;
+        },
+      );
 
   // TODO(ramin): Add implementation when unsubscribe method is available in [BaseAPI]
   /// Unsubscribes from tick stream

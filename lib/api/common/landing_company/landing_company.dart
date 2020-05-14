@@ -68,7 +68,7 @@ class LandingCompany extends LandingCompanyModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Fetch landing companies for given [LandingCompanyRequest]
+  /// Gets landing companies for given [LandingCompanyRequest]
   static Future<LandingCompany> fetchLandingCompanies(
     LandingCompanyRequest request,
   ) async {
@@ -81,7 +81,7 @@ class LandingCompany extends LandingCompanyModel {
     return LandingCompany.fromJson(response.landingCompany);
   }
 
-  /// Fetch details of a landing company specified in [LandingCompanyDetailsRequest]
+  /// Gets details of a landing company specified in [LandingCompanyDetailsRequest]
   static Future<LandingCompanyDetailModel> fetchLandingCompanyDetails(
     LandingCompanyDetailsRequest request,
   ) async {

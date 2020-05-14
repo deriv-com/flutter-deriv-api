@@ -36,7 +36,9 @@ class TickHistory extends TickHistoryModel {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets TickHistory for the given [symbol]
-  static Future<TickHistory> fetchTickHistory(TicksHistoryRequest request) async {
+  static Future<TickHistory> fetchTickHistory(
+    TicksHistoryRequest request,
+  ) async {
     final TicksHistoryResponse response = await _api.call(request: request);
 
     if (response.error != null) {
