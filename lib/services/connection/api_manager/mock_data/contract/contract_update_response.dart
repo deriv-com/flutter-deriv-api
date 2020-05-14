@@ -1,4 +1,4 @@
-/// contractUpdate Response
+/// Contract Update Response
 const String contractUpdateResponse = '''
 {
   "contract_update": {

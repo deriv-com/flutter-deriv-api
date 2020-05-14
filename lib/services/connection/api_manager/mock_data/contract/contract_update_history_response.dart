@@ -1,4 +1,4 @@
-/// contractUpdateHistory Response
+/// Contract Update History Response
 const String contractUpdateHistoryResponse = '''{
   "contract_update_history": [
     {

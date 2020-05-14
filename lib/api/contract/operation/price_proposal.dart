@@ -3,6 +3,7 @@ import 'package:flutter_deriv_api/api/contract/models/limit_order_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/price_proposal_model.dart';
 import 'package:flutter_deriv_api/api/contract/operation/buy_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_operations_exception.dart';
+import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -25,6 +26,7 @@ class PriceProposal extends PriceProposalModel {
     double payout,
     double spot,
     DateTime spotTime,
+    this.subscriptionInformation,
   }) : super(
           askPrice,
           cancellation,
@@ -61,7 +63,12 @@ class PriceProposal extends PriceProposalModel {
         payout: json['payout']?.toDouble(),
         spot: json['spot'],
         spotTime: getDateTime(json['spot_time']),
+        subscriptionInformation:
+            SubscriptionModel.fromJson(json['subscription']),
       );
+
+  /// Subscription Information
+  final SubscriptionModel subscriptionInformation;
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -84,7 +91,7 @@ class PriceProposal extends PriceProposalModel {
 
   /// Gets the price proposal for contract
   /// For parameters information refer to [ProposalRequest]
-  static Stream<PriceProposal> getPriceForContractUpdate({
+  static Stream<PriceProposal> subscribePriceForContract({
     ProposalRequest request,
   }) =>
       _api.subscribe(request: request).map<PriceProposal>(

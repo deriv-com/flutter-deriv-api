@@ -88,7 +88,7 @@ class BuyContract extends BuyContractModel {
     );
   }
 
-  /// Subscribes to bought contract spot and return its spot update as [OpenContractModel]
+  /// Subscribes to this bought contract spot and returns its spot update as [OpenContractModel]
   Stream<OpenContractModel> subscribeContractState() => _api
           .subscribe(
         request: ProposalOpenContractRequest(
@@ -112,7 +112,7 @@ class BuyContract extends BuyContractModel {
 
   /// Sells this contract
   ///
-  /// [price] Minimum price at which to sell the contract,
+  /// [price] is the Minimum price at which to sell the contract,
   /// Default be 0 for 'sell at market'.
   Future<SellContract> sell({double price = 0}) =>
       SellContract.sellContract(SellRequest(sell: contractId, price: price));
