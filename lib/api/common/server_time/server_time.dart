@@ -28,7 +28,6 @@ class ServerTime extends ServerTimeModel {
       );
 
   /// Requests back-end server epoch time.
-  /// For parameters information refer to [TimeRequest].
   static Future<ServerTime> fetchTime(
     TimeRequest request,
   ) async {
