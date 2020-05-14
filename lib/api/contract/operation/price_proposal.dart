@@ -40,7 +40,7 @@ class PriceProposal extends PriceProposalModel {
           spotTime,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory PriceProposal.fromJson(Map<String, dynamic> json) => PriceProposal(
         askPrice: json['ask_price']?.toDouble(),
         cancellation: getItemFromMap(
@@ -63,7 +63,6 @@ class PriceProposal extends PriceProposalModel {
         spotTime: getDateTime(json['spot_time']),
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the price proposal for contract
@@ -90,23 +89,26 @@ class PriceProposal extends PriceProposalModel {
   }) =>
       _api.subscribe(request: request).map<PriceProposal>(
         (Response response) {
-          if (response.error != null) {
-            throw ContractOperationException(
-                message: response.error['message']);
-          }
+          checkForException(
+            response: response,
+            exceptionCreator: (String message) => ContractOperationException(
+              message: message,
+            ),
+          );
 
-          final ProposalResponse proposalResponse = response;
-          return PriceProposal.fromJson(proposalResponse.proposal);
+          return response is ProposalResponse
+              ? PriceProposal.fromJson(response.proposal)
+              : null;
         },
       );
 
-  /// Buy this proposal contract
+  /// Buys this proposal contract with [price] specified
   Future<BuyContract> buy({double price}) => BuyContract.buy(BuyRequest(
         buy: id,
         price: price ?? askPrice,
       ));
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   PriceProposal copyWith({
     double askPrice,
     CancellationInfoModel cancellation,

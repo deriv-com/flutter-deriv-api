@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// available contracts. Note: if the user is authenticated,
+/// Available contracts. Note: if the user is authenticated,
 /// then only contracts allowed under his account will be returned.
 class ContractsForSymbol extends ContractsForSymbolModel {
   /// Initializes
@@ -41,24 +41,24 @@ class ContractsForSymbol extends ContractsForSymbolModel {
         spot: json['spot'],
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Fetch contracts for given symbol in [ContractsForRequest]
-  static Future<ContractsForSymbol> getContractsForSymbol(
+  static Future<ContractsForSymbol> fetchContractsForSymbol(
     ContractsForRequest request,
   ) async {
-    final ContractsForResponse contractsForResponse = await _api.call(
+    final ContractsForResponse response = await _api.call(
       request: request,
     );
 
-    if (contractsForResponse.error != null) {
-      throw ContractsForSymbolException(
-        message: contractsForResponse.error['message'],
-      );
-    }
+    checkForException(
+      response: response,
+      exceptionCreator: (String message) => ContractsForSymbolException(
+        message: message,
+      ),
+    );
 
-    return ContractsForSymbol.fromJson(contractsForResponse.contractsFor);
+    return ContractsForSymbol.fromJson(response.contractsFor);
   }
 
   /// Generate a copy of instance with given parameters

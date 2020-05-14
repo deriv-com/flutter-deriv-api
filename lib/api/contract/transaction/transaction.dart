@@ -52,7 +52,7 @@ class Transaction extends TransactionModel {
           transactionTime: transactionTime,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
         action: getEnumFromString(
           values: TransactionActionType.values,
@@ -78,22 +78,25 @@ class Transaction extends TransactionModel {
         transactionTime: getDateTime(json['transaction_time']),
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Subscribe to account's transactions
+  /// Subscribes to account's transactions
   static Stream<Transaction> getTransactions() => _api
           .subscribe(request: const TransactionRequest())
           .map<Transaction>((Response response) {
-        if (response.error != null) {
-          throw TransactionsException(message: response.error['message']);
-        }
+        checkForException(
+          response: response,
+          exceptionCreator: (String message) => TransactionsException(
+            message: message,
+          ),
+        );
 
-        final TransactionResponse transactionResponse = response;
-        return Transaction.fromJson(transactionResponse.transaction);
+        return response is TransactionResponse
+            ? Transaction.fromJson(response.transaction)
+            : null;
       });
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   TransactionModel copyWith({
     TransactionActionType action,
     double amount,

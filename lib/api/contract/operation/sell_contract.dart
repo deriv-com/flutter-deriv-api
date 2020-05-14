@@ -22,7 +22,7 @@ class SellContract extends SellContractModel {
           transactionId: transactionId,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory SellContract.fromJson(Map<String, dynamic> json) => SellContract(
         balanceAfter: json['balance_after']?.toDouble(),
         contractId: json['contract_id'],
@@ -31,10 +31,9 @@ class SellContract extends SellContractModel {
         transactionId: json['transaction_id'],
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Sell a contract with parameters specified in [SellRequest]
+  /// Sells a contract with parameters specified in [SellRequest]
   static Future<SellContract> sellContract(SellRequest request) async {
     final SellResponse response = await _api.call(request: request);
 
@@ -45,7 +44,7 @@ class SellContract extends SellContractModel {
     return SellContract.fromJson(response.sell);
   }
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   SellContract copyWith({
     double balanceAfter,
     int contractId,
