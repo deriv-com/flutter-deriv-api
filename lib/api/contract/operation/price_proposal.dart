@@ -77,9 +77,9 @@ class PriceProposal extends PriceProposalModel {
 
   /// Gets the price proposal for contract
   /// For parameters information refer to [ProposalRequest]
-  static Future<PriceProposal> fetchPriceForContract({
+  static Future<PriceProposal> fetchPriceForContract(
     ProposalRequest request,
-  }) async {
+  ) async {
     final ProposalResponse response = await _api.call(request: request);
 
     checkForException(
