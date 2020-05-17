@@ -5,12 +5,13 @@ import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_ope
 import 'package:flutter_deriv_api/api/contract/operation/sell_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/update_contract.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'exceptions/contract_operations_exception.dart';
+import 'open_contract.dart';
 
 /// Result of a buy contract operation
 class BuyContract extends BuyContractModel {
@@ -69,41 +70,21 @@ class BuyContract extends BuyContractModel {
   }
 
   /// Gets the current spot of the this bought contract
-  Future<OpenContractModel> fetchCurrentContractState() async {
-    final ProposalOpenContractResponse response = await _api.call(
-      request: ProposalOpenContractRequest(
-        contractId: contractId,
-      ),
-    );
-
-    checkException(
-      response: response,
-      exceptionCreator: (String message) => ContractOperationException(
-        message: message,
-      ),
-    );
-
-    return OpenContractModel.fromJson(
-      response.proposalOpenContract,
-    );
-  }
+  Future<OpenContract> fetchCurrentContractState() =>
+      OpenContract.fetchCurrentContractState(
+        ProposalOpenContractRequest(
+          contractId: contractId,
+        ),
+      );
 
   /// Subscribes to this bought contract spot and returns its spot update as [OpenContractModel]
-  Stream<OpenContractModel> subscribeContractState() => _api
-          .subscribe(
-              request: ProposalOpenContractRequest(contractId: contractId))
-          .map<OpenContractModel>((Response response) {
-        checkException(
-          response: response,
-          exceptionCreator: (String message) => ContractOperationException(
-            message: message,
-          ),
-        );
-
-        return response is ProposalOpenContractResponse
-            ? OpenContractModel.fromJson(response.proposalOpenContract)
-            : null;
-      });
+  Stream<OpenContract> subscribeContractState({
+    RequestCompareFunction comparePredicate,
+  }) =>
+      OpenContract.subscribeContractState(
+        ProposalOpenContractRequest(contractId: contractId),
+        comparePredicate: comparePredicate,
+      );
 
   /// Sells this contract.
   ///
