@@ -1,5 +1,7 @@
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
+import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/common/models/tick_model.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
@@ -62,9 +64,12 @@ class Tick extends TickModel {
           .subscribe(request: tickRequest, comparePredicate: comparePredicate)
           .map<Tick>(
         (Response response) {
-          if (response.error != null) {
-            throw TickException(message: response.error['message']);
-          }
+          checkException(
+            response: response,
+            exceptionCreator: (String message) =>
+                TickException(message: message),
+          );
+
           return response is TicksResponse
               ? Tick.fromJson(
                   response.tick,
@@ -74,9 +79,35 @@ class Tick extends TickModel {
         },
       );
 
-  // TODO(ramin): Add implementation when unsubscribe method is available in [BaseAPI]
   /// Unsubscribes from tick stream
-  Future<Forget> unsubscribe() async => null;
+  Future<Forget> unsubscribeTick() async {
+    if (subscriptionInformation?.id == null) {
+      return null;
+    }
+
+    final ForgetResponse response =
+        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => TickException(message: message),
+    );
+
+    return Forget.fromResponse(response.forget);
+  }
+
+  /// Unsubscribes all ticks.
+  static Future<ForgetAll> unsubscribeAllTicks() async {
+    final ForgetAllResponse response =
+        await _api.unsubscribeAll(method: ForgetStreamType.ticks);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => TickException(message: message),
+    );
+
+    return ForgetAll.fromResponse(response.forgetAll);
+  }
 
   /// Generates a copy of instance with given parameters
   Tick copyWith({

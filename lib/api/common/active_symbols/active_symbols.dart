@@ -81,11 +81,11 @@ class ActiveSymbol extends ActiveSymbolModel {
       request: request,
     );
 
-    if (response.error != null) {
-      throw ActiveSymbolsException(
-        message: response.error['message'],
-      );
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          ActiveSymbolsException(message: message),
+    );
 
     return response.activeSymbols
         .map<ActiveSymbol>(
