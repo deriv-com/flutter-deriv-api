@@ -1,25 +1,25 @@
 import 'package:flutter_deriv_api/api/common/models/forget_all_model.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Forget All class
 class ForgetAll extends ForgetAllModel {
   /// Initializes
   ForgetAll({
-    List<String> forgetAll,
+    List<String> cancelledStreams,
   }) : super(
-          forgetAll: forgetAll,
+          cancelledStreams: cancelledStreams,
         );
 
-  /// Creates an instance from JSON
-  factory ForgetAll.fromJson(Map<String, dynamic> json) => ForgetAll(
-        forgetAll: getListFromMap(json['forget_all']),
+  /// Creates an instance from response
+  factory ForgetAll.fromResponse(List<dynamic> result) => ForgetAll(
+        cancelledStreams:
+            result.map((dynamic item) => item.toString()).toList(),
       );
 
   /// Creates a copy of instance with given parameters
   ForgetAll copyWith({
-    List<String> forgetAll,
+    List<String> cancelledStreams,
   }) =>
       ForgetAll(
-        forgetAll: forgetAll ?? this.forgetAll,
+        cancelledStreams: cancelledStreams ?? this.cancelledStreams,
       );
 }

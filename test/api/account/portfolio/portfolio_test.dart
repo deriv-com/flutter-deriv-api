@@ -1,15 +1,18 @@
-import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/portfolio/portfolio.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'portfolio_mock_data.dart';
-
 void main() {
-  test('Portfolio JSON parsing', () {
-    final Map<String, dynamic> portfolioMap = jsonDecode(portfolioJSON);
-    final Portfolio portfolio = Portfolio.fromJson(portfolioMap['portfolio']);
+  test('Portfolio test', () async {
+    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+
+    final Portfolio portfolio = await Portfolio.fetchPortfolio(
+      const PortfolioRequest(),
+    );
 
     expect(portfolio.contracts.first.currency, 'USD');
     expect(portfolio.contracts.first.payout, 10.88);
