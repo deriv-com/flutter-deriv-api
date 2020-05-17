@@ -148,7 +148,7 @@ class App extends AppModel {
           name: name,
           redirectUri: redirectUri,
           scopes: scopes
-              .map((TokenScope scope) => getStringFromEnum(value: scope))
+              .map((TokenScope scope) => getStringFromEnum(scope))
               .toList(),
           verificationUri: verificationUri,
         ),
@@ -166,7 +166,7 @@ class App extends AppModel {
           name: name,
           redirectUri: redirectUri,
           scopes: scopes
-              .map((TokenScope scope) => getStringFromEnum(value: scope))
+              .map((TokenScope scope) => getStringFromEnum(scope))
               .toList(),
           verificationUri: verificationUri,
         ),
