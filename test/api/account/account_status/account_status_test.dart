@@ -1,19 +1,19 @@
-import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/account_status/account_status.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-
-import 'account_status_mock_data.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('Account status JSON parsing', () {
-    final Map<String, dynamic> accountStatusMap = jsonDecode(accountStatusJSON);
+  test('Account status test', () async {
+    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+
     final AccountStatus accountStatus =
-        AccountStatus.fromJson(accountStatusMap['get_account_status']);
+        await AccountStatus.fetchAccountStatus();
 
     expect(
-      accountStatus.status[0],
+      accountStatus.status.first,
       AccountStatusType.financialInformationNotComplete,
     );
     expect(

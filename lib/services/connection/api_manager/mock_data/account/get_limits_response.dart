@@ -1,4 +1,5 @@
-const String accountLimitsJSON = '''{
+/// getLimits Response
+const String getLimitsResponse = '''{
   "echo_req": {
     "get_limits": 1
   },

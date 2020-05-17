@@ -1,4 +1,5 @@
-const String mt5DepositModelMockData = '''
+/// MT5 deposit response
+const String mt5DepositResponse = '''
 {
   "echo_req": {
     "amount": 1000,
