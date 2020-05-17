@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -12,7 +12,23 @@ import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
 import 'mock_data/account/authorize_response.dart';
+import 'mock_data/account/balance_response.dart';
+import 'mock_data/account/get_account_status_response.dart';
+import 'mock_data/account/get_limits_response.dart';
+import 'mock_data/account/get_settings_response.dart';
+import 'mock_data/account/portfolio_response.dart';
 import 'mock_data/account/set_account_currency_response.dart';
+import 'mock_data/account/set_settings_response.dart';
+import 'mock_data/app/app_delete_response.dart';
+import 'mock_data/app/app_details_response.dart';
+import 'mock_data/app/app_list_response.dart';
+import 'mock_data/app/app_markup_details_response.dart';
+import 'mock_data/app/app_register_response.dart';
+import 'mock_data/app/app_update_response.dart';
+import 'mock_data/app/new_account_real_response.dart';
+import 'mock_data/app/new_account_virtual_response.dart';
+import 'mock_data/app/oauth_apps_response.dart';
+import 'mock_data/app/revoke_oauth_app_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
 import 'mock_data/common/tick_response.dart';
 import 'mock_data/contract/buy_contract_response.dart';
@@ -24,6 +40,14 @@ import 'mock_data/contract/proposal_open_contract_response.dart';
 import 'mock_data/contract/proposal_response.dart';
 import 'mock_data/contract/sell_response.dart';
 import 'mock_data/contract/transaction_response.dart';
+import 'mock_data/mt5/mt5_deposit_response.dart';
+import 'mock_data/mt5/mt5_login_list_response.dart';
+import 'mock_data/mt5/mt5_new_account_response.dart';
+import 'mock_data/mt5/mt5_password_change_response.dart';
+import 'mock_data/mt5/mt5_password_check_response.dart';
+import 'mock_data/mt5/mt5_password_reset_response.dart';
+import 'mock_data/mt5/mt5_settings_response.dart';
+import 'mock_data/mt5/mt5_withdrawal_response.dart';
 import 'mock_data/p2p/p2p_advert_create_response.dart';
 import 'mock_data/p2p/p2p_advert_info_response.dart';
 import 'mock_data/p2p/p2p_advert_list_response.dart';
@@ -92,16 +116,23 @@ class MockAPI implements BaseAPI {
       case 'active_symbols':
         return activeSymbolsResponse;
       // case 'api_token':
-      // case 'app_delete':
-      // case 'app_get':
-      // case 'app_list':
-      // case 'app_markup_details':
-      // case 'app_register':
-      // case 'app_update':
+      case 'app_delete':
+        return appDeleteResponse;
+      case 'app_get':
+        return appDetailsResponse;
+      case 'app_list':
+        return appListResponse;
+      case 'app_markup_details':
+        return appMarkupDetailsResponse;
+      case 'app_register':
+        return appRegisterResponse;
+      case 'app_update':
+        return appUpdateResponse;
       // case 'asset_index':
       case 'authorize':
         return authorizeResponse;
-      // case 'balance':
+      case 'balance':
+        return balanceResponse;
       // case 'buy_contract_for_multiple_accounts':
       case 'buy':
         return buyContractResponse;
@@ -122,27 +153,41 @@ class MockAPI implements BaseAPI {
       // case 'exchange_rates':
       // case 'forget_all':
       // case 'forget':
-      // case 'get_account_status':
+      case 'get_account_status':
+        return getAccountStatusResponse;
       // case 'get_financial_assessment':
-      // case 'get_limits':
+      case 'get_limits':
+        return getLimitsResponse;
       // case 'get_self_exclusion':
-      // case 'get_settings':
+      case 'get_settings':
+        return getSettingsResponse;
       // case 'landing_company_details':
       // case 'landing_company':
       // case 'login_history':
       // case 'logout':
-      // case 'mt5_deposit':
-      // case 'mt5_get_settings':
-      // case 'mt5_login_list':
-      // case 'mt5_new_account':
-      // case 'mt5_password_change':
-      // case 'mt5_password_check':
-      // case 'mt5_password_reset':
-      // case 'mt5_withdrawal':
-      // case 'new_account_maltainvest':
-      // case 'new_account_real':
-      // case 'new_account_virtual':
-      // case 'oauth_apps':
+      case 'mt5_deposit':
+        return mt5DepositResponse;
+      case 'mt5_get_settings':
+        return mt5SettingsResponse;
+      case 'mt5_login_list':
+        return mt5LoginListResponse;
+      case 'mt5_new_account':
+        return mt5NewAccountResponse;
+      case 'mt5_password_change':
+        return mt5PasswordChangeResponse;
+      case 'mt5_password_check':
+        return mt5PasswordCheckResponse;
+      case 'mt5_password_reset':
+        return mt5PasswordResetResponse;
+      case 'mt5_withdrawal':
+        return mt5WithdrawalResponse;
+      case 'new_account_maltainvest':
+      case 'new_account_real':
+        return newAccountRealResponse;
+      case 'new_account_virtual':
+        return newAccountVirtualResponse;
+      case 'oauth_apps':
+        return oauthAppsResponse;
       case 'p2p_advert_create':
         return p2pAdvertCreateResponse;
       case 'p2p_advert_info':
@@ -171,7 +216,8 @@ class MockAPI implements BaseAPI {
       // case 'paymentagent_withdraw':
       // case 'payout_currencies':
       // case 'ping':
-      // case 'portfolio':
+      case 'portfolio':
+        return portfolioResponse;
       // case 'profit_table':
       // case 'proposal_array':
       case 'proposal_open_contract':
@@ -180,7 +226,8 @@ class MockAPI implements BaseAPI {
         return proposalResponse;
       // case 'reality_check':
       // case 'residence_list':
-      // case 'revoke_oauth_app':
+      case 'revoke_oauth_app':
+        return revokeOauthAppResponse;
       // case 'sell_contract_for_multiple_accounts':
       // case 'sell_expired':
       case 'sell':
@@ -189,7 +236,8 @@ class MockAPI implements BaseAPI {
         return setAccountCurrencyResponse;
       // case 'set_financial_assessment':
       // case 'set_self_exclusion':
-      // case 'set_settings':
+      case 'set_settings':
+        return setSettingsResponse;
       // case 'statement':
       // case 'states_list':
       // case 'history':
