@@ -1,4 +1,5 @@
-const String financialAssessmentModelMockData = '''
+/// get Financial assessment response
+const String getFinancialAssessmentResponse = '''
 {
   "echo_req": {
     "get_financial_assessment": 1
