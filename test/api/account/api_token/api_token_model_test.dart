@@ -1,29 +1,58 @@
-import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/api_token/api_token.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-
-import 'api_token_model_mock_data.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('api token JSON parsing', () {
-    final Map<String, dynamic> mapData = jsonDecode(apiTokenModelMockData);
-    final APIToken apiToken = APIToken.fromJson(mapData['api_token']);
+  group('api token group ->', () {
+    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    expect(apiToken.newToken, true);
+    test('create', () async {
+      final APIToken apiToken = await APIToken.create(
+        name: 'sample token',
+        scopes: <TokenScope>[
+          TokenScope.read,
+          TokenScope.tradingInformation,
+        ],
+        validForCurrentIPOnly: false,
+      );
 
-    expect(apiToken.tokens.length, 1);
+      expect(apiToken.newToken, true);
 
-    expect(apiToken.tokens[0].displayName, 'sample_token');
-    expect(apiToken.tokens[0].lastUsed, DateTime.parse('2020-01-11'));
+      expect(apiToken.tokens.length, 1);
 
-    expect(apiToken.tokens[0].scopes.length, 2);
+      expect(apiToken.tokens.first.displayName, 'sample token');
+      expect(apiToken.tokens.first.lastUsed, DateTime.parse('2020-01-11'));
 
-    expect(apiToken.tokens[0].scopes[0], TokenScope.read);
-    expect(apiToken.tokens[0].scopes[1], TokenScope.tradingInformation);
+      expect(apiToken.tokens.first.scopes.length, 2);
 
-    expect(apiToken.tokens[0].token, 'thisIsASampleTOKEN123');
-    expect(apiToken.tokens[0].validForIp, '178.32.12.45');
+      expect(apiToken.tokens.first.scopes.first, TokenScope.read);
+      expect(apiToken.tokens.first.scopes[1], TokenScope.tradingInformation);
+
+      expect(apiToken.tokens.first.token, 'thisIsASampleTOKEN123');
+      expect(apiToken.tokens.first.validForIp, '178.32.12.45');
+    });
+
+    test('delete', () async {
+      final APIToken apiToken =
+          await APIToken.delete(token: 'thisIsASampleTOKEN123');
+
+      expect(apiToken.deleteToken, true);
+
+      expect(apiToken.tokens.length, 1);
+
+      expect(apiToken.tokens.first.displayName, 'sample token');
+      expect(apiToken.tokens.first.lastUsed, DateTime.parse('2020-01-11'));
+
+      expect(apiToken.tokens.first.scopes.length, 2);
+
+      expect(apiToken.tokens.first.scopes.first, TokenScope.read);
+      expect(apiToken.tokens.first.scopes[1], TokenScope.tradingInformation);
+
+      expect(apiToken.tokens.first.token, 'thisIsASampleTOKEN123');
+      expect(apiToken.tokens.first.validForIp, '178.32.12.45');
+    });
   });
 }

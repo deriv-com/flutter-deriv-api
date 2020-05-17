@@ -11,6 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
+import 'mock_data/account/api_token_response.dart';
 import 'mock_data/account/authorize_response.dart';
 import 'mock_data/account/balance_response.dart';
 import 'mock_data/account/get_account_status_response.dart';
@@ -126,7 +127,8 @@ class MockAPI implements BaseAPI {
     switch (method) {
       case 'active_symbols':
         return activeSymbolsResponse;
-      // case 'api_token':
+      case 'api_token':
+        return apiTokenResponse;
       case 'app_delete':
         return appDeleteResponse;
       case 'app_get':
