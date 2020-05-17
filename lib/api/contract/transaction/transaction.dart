@@ -1,5 +1,11 @@
 import 'package:flutter_deriv_api/api/contract/models/transaction_model.dart';
+import 'package:flutter_deriv_api/api/contract/transaction/exceptions/transactions_exception.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/api/models/subscription_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Transaction of user
@@ -25,6 +31,7 @@ class Transaction extends TransactionModel {
     String takeProfit,
     int transactionId,
     DateTime transactionTime,
+    this.subscriptionInformation,
   }) : super(
           action: action,
           amount: amount,
@@ -47,8 +54,12 @@ class Transaction extends TransactionModel {
           transactionTime: transactionTime,
         );
 
-  /// Generate an instance from JSON
-  factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
+  /// Generates an instance from JSON
+  factory Transaction.fromJson(
+    Map<String, dynamic> json, {
+    Map<String, dynamic> subscriptionJson,
+  }) =>
+      Transaction(
         action: getEnumFromString(
           values: TransactionActionType.values,
           name: json['action'],
@@ -71,9 +82,34 @@ class Transaction extends TransactionModel {
         takeProfit: json['take_profit'],
         transactionId: json['transaction_id'],
         transactionTime: getDateTime(json['transaction_time']),
+        subscriptionInformation: SubscriptionModel.fromJson(subscriptionJson),
       );
 
-  /// Generate a copy of instance with given parameters
+  /// Subscription information
+  final SubscriptionModel subscriptionInformation;
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Subscribes to account's transactions
+  static Stream<Transaction> subscribeTransactions() => _api
+          .subscribe(request: const TransactionRequest())
+          .map<Transaction>((Response response) {
+        checkException(
+          response: response,
+          exceptionCreator: (String message) => TransactionsException(
+            message: message,
+          ),
+        );
+
+        return response is TransactionResponse
+            ? Transaction.fromJson(
+                response.transaction,
+                subscriptionJson: response.subscription,
+              )
+            : null;
+      });
+
+  /// Generates a copy of instance with given parameters
   TransactionModel copyWith({
     TransactionActionType action,
     double amount,
