@@ -147,7 +147,7 @@ class MT5Account extends MT5AccountModel {
           login: login,
           newPassword: newPassword,
           oldPassword: oldPassword,
-          passwordType: getStringFromEnum(value: passwordType),
+          passwordType: getStringFromEnum(passwordType),
         ),
       );
 
@@ -160,7 +160,7 @@ class MT5Account extends MT5AccountModel {
         Mt5PasswordCheckRequest(
           login: login,
           password: password,
-          passwordType: getStringFromEnum(value: passwordType),
+          passwordType: getStringFromEnum(passwordType),
         ),
       );
 
@@ -174,7 +174,7 @@ class MT5Account extends MT5AccountModel {
         Mt5PasswordResetRequest(
           login: login,
           newPassword: newPassword,
-          passwordType: getStringFromEnum(value: passwordType),
+          passwordType: getStringFromEnum(passwordType),
           verificationCode: verificationCode,
         ),
       );
