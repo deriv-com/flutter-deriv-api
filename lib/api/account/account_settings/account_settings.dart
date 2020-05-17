@@ -1,5 +1,9 @@
+import 'package:flutter_deriv_api/api/account/account_settings/exceptions/account_settings_exception.dart';
 import 'package:flutter_deriv_api/api/account/models/account_settings_model.dart';
 import 'package:flutter_deriv_api/api/account/models/set_account_setting_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// User information and settings.
@@ -93,15 +97,34 @@ class AccountSettings extends AccountSettingsModel {
         userHash: json['user_hash'],
       );
 
-  // TODO(ramin): Implement API calls
-  /// Get account's setting
-  static Future<AccountSettings> getAccountSetting() async => null;
+  /// API instance
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Fetches account's setting
+  static Future<AccountSettings> fetchAccountSetting() async {
+    final GetSettingsResponse response = await _api.call(
+      request: const GetSettingsRequest(),
+    );
+
+    if (response.error != null) {
+      throw AccountSettingsException(message: response.error['message']);
+    }
+
+    return AccountSettings.fromJson(response.getSettings);
+  }
 
   /// Change account's setting
   Future<SetAccountSettingModel> changeSetting(
-    AccountSettings accountSettings,
-  ) async =>
-      null;
+    SetSettingsRequest request,
+  ) async {
+    final SetSettingsResponse response = await _api.call(request: request);
+
+    if (response.error != null) {
+      throw AccountSettingsException(message: response.error['message']);
+    }
+
+    return SetAccountSettingModel(succeeded: getBool(response.setSettings));
+  }
 
   /// Generate a copy of instance with given parameters
   AccountSettings copyWith({
