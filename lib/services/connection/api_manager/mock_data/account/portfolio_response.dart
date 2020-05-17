@@ -1,4 +1,5 @@
-const String portfolioJSON = '''{
+/// Portfolio Response
+const String portfolioResponse = '''{
   "echo_req": {
     "portfolio": 1
   },

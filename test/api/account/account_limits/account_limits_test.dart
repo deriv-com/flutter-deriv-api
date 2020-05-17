@@ -1,16 +1,15 @@
-import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/account_limits/account_limits.dart';
 import 'package:flutter_deriv_api/api/account/models/market_limit_model.dart';
-
-import 'account_limits_mock_data.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('Account limits JSON parsing', () {
-    final Map<String, dynamic> accountLimitsMap = jsonDecode(accountLimitsJSON);
+  test('Account limits test', () async {
+    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
     final AccountLimits accountLimits =
-        AccountLimits.fromJson(accountLimitsMap['get_limits']);
+        await AccountLimits.fetchAccountLimits();
 
     expect(accountLimits.accountBalance, 300000.0);
     expect(accountLimits.lifetimeLimit, 10000.0);

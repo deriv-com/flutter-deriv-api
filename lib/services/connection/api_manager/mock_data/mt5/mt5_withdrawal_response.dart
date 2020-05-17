@@ -1,4 +1,5 @@
-const String mt5WithdrawalModelMockData = '''
+/// MT5 withdrawal response
+const String mt5WithdrawalResponse = '''
 {
   "echo_req": {
     "amount": 1000,

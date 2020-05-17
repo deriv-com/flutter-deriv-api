@@ -1,4 +1,5 @@
-const String accountStatusJSON = '''{
+/// getAccountStatus Response
+const String getAccountStatusResponse = '''{
   "echo_req": {
     "get_account_status": 1
   },

@@ -12,6 +12,12 @@ import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
 import 'mock_data/account/authorize_response.dart';
+import 'mock_data/account/balance_response.dart';
+import 'mock_data/account/get_account_status_response.dart';
+import 'mock_data/account/get_limits_response.dart';
+import 'mock_data/account/get_settings_response.dart';
+import 'mock_data/account/portfolio_response.dart';
+import 'mock_data/account/set_settings_response.dart';
 import 'mock_data/app/app_delete_response.dart';
 import 'mock_data/app/app_details_response.dart';
 import 'mock_data/app/app_list_response.dart';
@@ -35,6 +41,14 @@ import 'mock_data/contract/buy_contract_response.dart';
 import 'mock_data/contract/contract_for_response.dart';
 import 'mock_data/contract/proposal_open_contract_response.dart';
 import 'mock_data/contract/proposal_response.dart';
+import 'mock_data/mt5/mt5_deposit_response.dart';
+import 'mock_data/mt5/mt5_login_list_response.dart';
+import 'mock_data/mt5/mt5_new_account_response.dart';
+import 'mock_data/mt5/mt5_password_change_response.dart';
+import 'mock_data/mt5/mt5_password_check_response.dart';
+import 'mock_data/mt5/mt5_password_reset_response.dart';
+import 'mock_data/mt5/mt5_settings_response.dart';
+import 'mock_data/mt5/mt5_withdrawal_response.dart';
 import 'mock_data/p2p/p2p_advert_create_response.dart';
 import 'mock_data/p2p/p2p_advert_info_response.dart';
 import 'mock_data/p2p/p2p_advert_list_response.dart';
@@ -118,7 +132,8 @@ class MockAPI implements BaseAPI {
       // case 'asset_index':
       case 'authorize':
         return authorizeResponse;
-      // case 'balance':
+      case 'balance':
+        return balanceResponse;
       // case 'buy_contract_for_multiple_accounts':
       case 'buy':
         return buyContractResponse;
@@ -139,23 +154,34 @@ class MockAPI implements BaseAPI {
         return forgetAllResponse;
       case 'forget':
         return forgetResponse;
-      // case 'get_account_status':
+      case 'get_account_status':
+        return getAccountStatusResponse;
       // case 'get_financial_assessment':
-      // case 'get_limits':
+      case 'get_limits':
+        return getLimitsResponse;
       // case 'get_self_exclusion':
-      // case 'get_settings':
+      case 'get_settings':
+        return getSettingsResponse;
       // case 'landing_company_details':
       // case 'landing_company':
       // case 'login_history':
       // case 'logout':
-      // case 'mt5_deposit':
-      // case 'mt5_get_settings':
-      // case 'mt5_login_list':
-      // case 'mt5_new_account':
-      // case 'mt5_password_change':
-      // case 'mt5_password_check':
-      // case 'mt5_password_reset':
-      // case 'mt5_withdrawal':
+      case 'mt5_deposit':
+        return mt5DepositResponse;
+      case 'mt5_get_settings':
+        return mt5SettingsResponse;
+      case 'mt5_login_list':
+        return mt5LoginListResponse;
+      case 'mt5_new_account':
+        return mt5NewAccountResponse;
+      case 'mt5_password_change':
+        return mt5PasswordChangeResponse;
+      case 'mt5_password_check':
+        return mt5PasswordCheckResponse;
+      case 'mt5_password_reset':
+        return mt5PasswordResetResponse;
+      case 'mt5_withdrawal':
+        return mt5WithdrawalResponse;
       case 'new_account_maltainvest':
       case 'new_account_real':
         return newAccountRealResponse;
@@ -192,7 +218,8 @@ class MockAPI implements BaseAPI {
       // case 'payout_currencies':
       case 'ping':
         return pingResponse;
-      // case 'portfolio':
+      case 'portfolio':
+        return portfolioResponse;
       // case 'profit_table':
       // case 'proposal_array':
       case 'proposal_open_contract':
@@ -209,7 +236,8 @@ class MockAPI implements BaseAPI {
       // case 'set_account_currency':
       // case 'set_financial_assessment':
       // case 'set_self_exclusion':
-      // case 'set_settings':
+      case 'set_settings':
+        return setSettingsResponse;
       // case 'statement':
       // case 'states_list':
       // case 'history':
