@@ -8,9 +8,9 @@ class Forget extends ForgetModel {
     bool succeeded,
   }) : super(succeeded: succeeded);
 
-  /// Creates an instance from JSON
-  factory Forget.fromJson(Map<String, dynamic> json) => Forget(
-        succeeded: getBool(json['forget']),
+  /// Creates an instance from response
+  factory Forget.fromResponse(int result) => Forget(
+        succeeded: getBool(result),
       );
 
   /// Creates a copy of instance with given parameters
