@@ -1,4 +1,5 @@
-const String updateContractModelMockData = '''
+/// Contract Update Response
+const String contractUpdateResponse = '''
 {
   "contract_update": {
     "stop_loss": {
