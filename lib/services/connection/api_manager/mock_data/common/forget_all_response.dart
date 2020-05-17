@@ -1,4 +1,5 @@
-const String forgetAllModelMockData = '''
+/// Forget all response
+const String forgetAllResponse = '''
 {
   "echo_req": {
     "forget_all": "ticks"

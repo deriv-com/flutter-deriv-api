@@ -1,4 +1,5 @@
-const String exchangeRatesModelMockData = '''
+/// Exchange rates response
+const String exchangeRatesResponse = '''
 {
   "echo_req": {
     "base_currency": "USD",

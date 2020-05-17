@@ -30,7 +30,14 @@ import 'mock_data/app/new_account_virtual_response.dart';
 import 'mock_data/app/oauth_apps_response.dart';
 import 'mock_data/app/revoke_oauth_app_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
+import 'mock_data/common/exchange_rates_response.dart';
+import 'mock_data/common/forget_all_response.dart';
+import 'mock_data/common/forget_response.dart';
+import 'mock_data/common/ping_response.dart';
+import 'mock_data/common/server_time_response.dart';
 import 'mock_data/common/tick_response.dart';
+import 'mock_data/common/trading_durations_response.dart';
+import 'mock_data/common/trading_times_response.dart';
 import 'mock_data/contract/buy_contract_response.dart';
 import 'mock_data/contract/cancel_response.dart';
 import 'mock_data/contract/contract_for_response.dart';
@@ -150,9 +157,12 @@ class MockAPI implements BaseAPI {
       // case 'copytrading_list':
       // case 'copytrading_statistics':
       // case 'document_upload':
-      // case 'exchange_rates':
-      // case 'forget_all':
-      // case 'forget':
+      case 'exchange_rates':
+        return exchangeRatesResponse;
+      case 'forget_all':
+        return forgetAllResponse;
+      case 'forget':
+        return forgetResponse;
       case 'get_account_status':
         return getAccountStatusResponse;
       // case 'get_financial_assessment':
@@ -215,7 +225,8 @@ class MockAPI implements BaseAPI {
       // case 'paymentagent_transfer':
       // case 'paymentagent_withdraw':
       // case 'payout_currencies':
-      // case 'ping':
+      case 'ping':
+        return pingResponse;
       case 'portfolio':
         return portfolioResponse;
       // case 'profit_table':
@@ -243,11 +254,14 @@ class MockAPI implements BaseAPI {
       // case 'history':
       case 'ticks':
         return tickResponse;
-      // case 'time':
+      case 'time':
+        return serverTimeResponse;
       // case 'tnc_approval':
       // case 'topup_virtual':
-      // case 'trading_durations':
-      // case 'trading_times':
+      case 'trading_durations':
+        return tradingDurationsResponse;
+      case 'trading_times':
+        return tradingTimesResponse;
       case 'transaction':
         return transactionResponse;
       // case 'transfer_between_accounts':
