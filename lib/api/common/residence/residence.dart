@@ -36,9 +36,11 @@ class Residence extends ResidenceModel {
   ) async {
     final ResidenceListResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw ResidenceException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          ResidenceException(message: message),
+    );
 
     return getListFromMap(
       response.residenceList,

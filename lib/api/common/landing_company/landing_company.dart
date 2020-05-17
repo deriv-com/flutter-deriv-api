@@ -74,9 +74,11 @@ class LandingCompany extends LandingCompanyModel {
   ) async {
     final LandingCompanyResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw LandingCompanyException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          LandingCompanyException(message: message),
+    );
 
     return LandingCompany.fromJson(response.landingCompany);
   }
@@ -89,9 +91,11 @@ class LandingCompany extends LandingCompanyModel {
       request: request,
     );
 
-    if (response.error != null) {
-      throw LandingCompanyException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          LandingCompanyException(message: message),
+    );
 
     return LandingCompanyDetailModel.fromJson(response.landingCompanyDetails);
   }

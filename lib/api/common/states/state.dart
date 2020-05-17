@@ -28,9 +28,10 @@ class State extends StateModel {
   static Future<List<State>> fetchStatesList(StatesListRequest request) async {
     final StatesListResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw StateException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => StateException(message: message),
+    );
 
     return getListFromMap(
       response.statesList,

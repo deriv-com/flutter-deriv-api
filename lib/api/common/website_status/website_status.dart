@@ -1,4 +1,5 @@
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
+import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/common/models/api_call_limit_model.dart';
 import 'package:flutter_deriv_api/api/common/models/website_status_crypto_config_model.dart';
 import 'package:flutter_deriv_api/api/common/models/website_status_currency_config_model.dart';
@@ -106,9 +107,37 @@ class WebsiteStatus extends WebsiteStatusModel {
         },
       );
 
-  // TODO(ramin): Implement when unsubscribe is available in [BaseAPI]
-  /// Unsubscribes from Website Status stream
-  Future<Forget> unsubscribeWebsiteStatus() async => null;
+  /// Unsubscribes from website status
+  Future<Forget> unsubscribeWebsiteStatus() async {
+    if (subscriptionInformation?.id == null) {
+      return null;
+    }
+
+    final ForgetResponse response =
+        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          WebsiteStatusException(message: message),
+    );
+
+    return Forget.fromResponse(response.forget);
+  }
+
+  /// Unsubscribes all website status subscriptions.
+  static Future<ForgetAll> unsubscribeAllWebsiteStatus() async {
+    final ForgetAllResponse response =
+        await _api.unsubscribeAll(method: ForgetStreamType.ticks);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          WebsiteStatusException(message: message),
+    );
+
+    return ForgetAll.fromResponse(response.forgetAll);
+  }
 
   /// Generate a copy of instance with given parameters
   WebsiteStatus copyWith({
