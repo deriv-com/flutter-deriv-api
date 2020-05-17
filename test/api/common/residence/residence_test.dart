@@ -9,9 +9,7 @@ void main() {
   test('Residence list test', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    final List<Residence> residenceList = await Residence.fetchResidenceList(
-      const ResidenceListRequest(),
-    );
+    final List<Residence> residenceList = await Residence.fetchResidenceList();
 
     expect(residenceList.first.countryName, 'SampleCountry');
     expect(residenceList.first.countryCode, 'sc');

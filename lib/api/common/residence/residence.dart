@@ -31,10 +31,12 @@ class Residence extends ResidenceModel {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets Residence list for the given [ResidenceListRequest]
-  static Future<List<Residence>> fetchResidenceList(
+  static Future<List<Residence>> fetchResidenceList([
     ResidenceListRequest request,
-  ) async {
-    final ResidenceListResponse response = await _api.call(request: request);
+  ]) async {
+    final ResidenceListResponse response = await _api.call(
+      request: request ?? const ResidenceListRequest(),
+    );
 
     checkException(
       response: response,

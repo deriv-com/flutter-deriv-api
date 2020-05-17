@@ -5,7 +5,6 @@ import 'package:flutter_deriv_api/api/common/models/website_status_crypto_config
 import 'package:flutter_deriv_api/api/common/models/website_status_currency_config_model.dart';
 import 'package:flutter_deriv_api/api/common/website_status/website_status.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
@@ -13,9 +12,8 @@ void main() {
   test('Website status test', () async {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
-    final WebsiteStatus websiteStatus = await WebsiteStatus.fetchWebsiteStatus(
-      const WebsiteStatusRequest(),
-    );
+    final WebsiteStatus websiteStatus =
+        await WebsiteStatus.fetchWebsiteStatus();
 
     expect(websiteStatus.clientsCountry, 'us');
     expect(websiteStatus.termsConditionsVersion, 'Version 48 2019-05-10');
