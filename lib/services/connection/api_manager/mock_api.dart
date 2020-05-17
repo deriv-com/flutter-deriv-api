@@ -33,6 +33,8 @@ import 'mock_data/app/new_account_virtual_response.dart';
 import 'mock_data/app/oauth_apps_response.dart';
 import 'mock_data/app/revoke_oauth_app_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
+import 'mock_data/common/copy_start_response.dart';
+import 'mock_data/common/copy_stop_response.dart';
 import 'mock_data/common/exchange_rates_response.dart';
 import 'mock_data/common/forget_all_response.dart';
 import 'mock_data/common/forget_response.dart';
@@ -160,8 +162,10 @@ class MockAPI implements BaseAPI {
         return contractUpdateResponse;
       case 'contracts_for':
         return contractForResponse;
-      // case 'copy_start':
-      // case 'copy_stop':
+      case 'copy_start':
+        return copyStartResponse;
+      case 'copy_stop':
+        return copyStopResponse;
       // case 'copytrading_list':
       // case 'copytrading_statistics':
       // case 'document_upload':
