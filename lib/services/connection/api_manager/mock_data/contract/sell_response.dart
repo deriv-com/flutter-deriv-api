@@ -1,4 +1,5 @@
-const String sellContractJSON = '''{
+/// Sell response
+const String sellResponse = '''{
   "sell": {
     "balance_after": 9706.5,
     "contract_id": 79939279308,

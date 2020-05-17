@@ -17,6 +17,7 @@ import 'mock_data/account/get_account_status_response.dart';
 import 'mock_data/account/get_limits_response.dart';
 import 'mock_data/account/get_settings_response.dart';
 import 'mock_data/account/portfolio_response.dart';
+import 'mock_data/account/set_account_currency_response.dart';
 import 'mock_data/account/set_settings_response.dart';
 import 'mock_data/app/app_delete_response.dart';
 import 'mock_data/app/app_details_response.dart';
@@ -29,17 +30,29 @@ import 'mock_data/app/new_account_virtual_response.dart';
 import 'mock_data/app/oauth_apps_response.dart';
 import 'mock_data/app/revoke_oauth_app_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
+import 'mock_data/common/exchange_rates_response.dart';
+import 'mock_data/common/forget_all_response.dart';
+import 'mock_data/common/forget_response.dart';
 import 'mock_data/common/landing_company_details_response.dart';
 import 'mock_data/common/landing_company_response.dart';
+import 'mock_data/common/ping_response.dart';
 import 'mock_data/common/residence_list_response.dart';
+import 'mock_data/common/server_time_response.dart';
 import 'mock_data/common/states_list_response.dart';
 import 'mock_data/common/tick_history_response.dart';
 import 'mock_data/common/tick_response.dart';
+import 'mock_data/common/trading_durations_response.dart';
+import 'mock_data/common/trading_times_response.dart';
 import 'mock_data/common/website_status_response.dart';
 import 'mock_data/contract/buy_contract_response.dart';
+import 'mock_data/contract/cancel_response.dart';
 import 'mock_data/contract/contract_for_response.dart';
+import 'mock_data/contract/contract_update_history_response.dart';
+import 'mock_data/contract/contract_update_response.dart';
 import 'mock_data/contract/proposal_open_contract_response.dart';
 import 'mock_data/contract/proposal_response.dart';
+import 'mock_data/contract/sell_response.dart';
+import 'mock_data/contract/transaction_response.dart';
 import 'mock_data/mt5/mt5_deposit_response.dart';
 import 'mock_data/mt5/mt5_login_list_response.dart';
 import 'mock_data/mt5/mt5_new_account_response.dart';
@@ -136,10 +149,13 @@ class MockAPI implements BaseAPI {
       // case 'buy_contract_for_multiple_accounts':
       case 'buy':
         return buyContractResponse;
-      // case 'cancel':
+      case 'cancel':
+        return cancelResponse;
       // case 'cashier':
-      // case 'contract_update_history':
-      // case 'contract_update':
+      case 'contract_update_history':
+        return contractUpdateHistoryResponse;
+      case 'contract_update':
+        return contractUpdateResponse;
       case 'contracts_for':
         return contractForResponse;
       // case 'copy_start':
@@ -147,9 +163,12 @@ class MockAPI implements BaseAPI {
       // case 'copytrading_list':
       // case 'copytrading_statistics':
       // case 'document_upload':
-      // case 'exchange_rates':
-      // case 'forget_all':
-      // case 'forget':
+      case 'exchange_rates':
+        return exchangeRatesResponse;
+      case 'forget_all':
+        return forgetAllResponse;
+      case 'forget':
+        return forgetResponse;
       case 'get_account_status':
         return getAccountStatusResponse;
       // case 'get_financial_assessment':
@@ -217,7 +236,8 @@ class MockAPI implements BaseAPI {
       // case 'paymentagent_transfer':
       // case 'paymentagent_withdraw':
       // case 'payout_currencies':
-      // case 'ping':
+      case 'ping':
+        return pingResponse;
       case 'portfolio':
         return portfolioResponse;
       // case 'profit_table':
@@ -235,8 +255,10 @@ class MockAPI implements BaseAPI {
         return revokeOauthAppResponse;
       // case 'sell_contract_for_multiple_accounts':
       // case 'sell_expired':
-      // case 'sell':
-      // case 'set_account_currency':
+      case 'sell':
+        return sellResponse;
+      case 'set_account_currency':
+        return setAccountCurrencyResponse;
       // case 'set_financial_assessment':
       // case 'set_self_exclusion':
       case 'set_settings':
@@ -248,12 +270,16 @@ class MockAPI implements BaseAPI {
         return tickHistoryResponse;
       case 'ticks':
         return tickResponse;
-      // case 'time':
+      case 'time':
+        return serverTimeResponse;
       // case 'tnc_approval':
       // case 'topup_virtual':
-      // case 'trading_durations':
-      // case 'trading_times':
-      // case 'transaction':
+      case 'trading_durations':
+        return tradingDurationsResponse;
+      case 'trading_times':
+        return tradingTimesResponse;
+      case 'transaction':
+        return transactionResponse;
       // case 'transfer_between_accounts':
       // case 'verify_email':
       case 'website_status':
