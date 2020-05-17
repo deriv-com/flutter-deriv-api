@@ -2,6 +2,9 @@ import 'dart:math';
 import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
 
+import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
+
 part 'date_time_helpers.dart';
 
 part 'number_helpers.dart';
@@ -30,6 +33,9 @@ String parseWebSocketUrl(String url, {bool isAuthUrl = false}) {
 
 /// Convert int to boolean
 bool getBool(int value) => value == null ? null : value == 1;
+
+/// Convert boolean to int
+int getInt(bool value) => value == null ? null : value ? 1 : 0;
 
 /// Get list of models from Map
 List<T> getListFromMap<T>(
@@ -62,8 +68,8 @@ T getItemFromMap<T>(
 }
 
 /// Converts enum to string
-String getStringFromEnum<T>({
-  T value,
+String getStringFromEnum<T>(
+  T value, {
   bool snakeCase = true,
 }) {
   if (value == null) {
@@ -86,8 +92,8 @@ enum EnumCase {
 
 /// Gets enum form a string
 T getEnumFromString<T>({
-  List<T> values,
-  String name,
+  @required List<T> values,
+  @required String name,
   EnumCase enumCase = EnumCase.snakeCase,
 }) {
   if (name == null || values == null || values.isEmpty) {
@@ -114,4 +120,15 @@ T getEnumFromString<T>({
     },
     orElse: () => null,
   );
+}
+
+/// Checks for existence of error in [response] and throws exception created by
+/// [exceptionCreator]
+void checkException({
+  Response response,
+  APIBaseException Function(String message) exceptionCreator,
+}) {
+  if (response.error != null) {
+    throw exceptionCreator(response.error['message']);
+  }
 }

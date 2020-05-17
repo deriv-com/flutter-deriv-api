@@ -1,10 +1,11 @@
-import 'package:flutter_deriv_api/api/contract/models/buy_contract_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/cancellation_info_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/limit_order_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/price_proposal_model.dart';
 import 'package:flutter_deriv_api/api/contract/operation/buy_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_operations_exception.dart';
+import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
@@ -25,6 +26,7 @@ class PriceProposal extends PriceProposalModel {
     double payout,
     double spot,
     DateTime spotTime,
+    this.subscriptionInformation,
   }) : super(
           askPrice,
           cancellation,
@@ -40,8 +42,12 @@ class PriceProposal extends PriceProposalModel {
           spotTime,
         );
 
-  /// Generate an instance from JSON
-  factory PriceProposal.fromJson(Map<String, dynamic> json) => PriceProposal(
+  /// Generates an instance from JSON
+  factory PriceProposal.fromJson(
+    Map<String, dynamic> json, {
+    Map<String, dynamic> subscriptionJson,
+  }) =>
+      PriceProposal(
         askPrice: json['ask_price']?.toDouble(),
         cancellation: getItemFromMap(
           json['cancellation'],
@@ -61,65 +67,61 @@ class PriceProposal extends PriceProposalModel {
         payout: json['payout']?.toDouble(),
         spot: json['spot'],
         spotTime: getDateTime(json['spot_time']),
+        subscriptionInformation: SubscriptionModel.fromJson(subscriptionJson),
       );
 
-  /// API instance
+  /// Subscription Information
+  final SubscriptionModel subscriptionInformation;
+
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the price proposal for contract
   /// For parameters information refer to [ProposalRequest]
-  static Future<PriceProposal> getPriceForContract({
-    double amount = 100,
-    String barrier,
-    String basis = 'payout',
-    String contractType = 'CALL',
-    String currency = 'USD',
-    String symbol,
-    DateTime dateExpiry,
-    String durationUnit = 's',
-    int duration = 60,
-  }) async {
-    final ProposalResponse proposalResponse = await _api.call(
-      request: ProposalRequest(
-        amount: amount,
-        barrier: barrier,
-        basis: basis,
-        currency: currency,
-        contractType: contractType,
-        symbol: symbol,
-        dateExpiry: dateExpiry == null
-            ? null
-            : dateExpiry.millisecondsSinceEpoch ~/ 1000,
-        durationUnit: durationUnit,
-        duration: duration,
+  static Future<PriceProposal> fetchPriceForContract(
+    ProposalRequest request,
+  ) async {
+    final ProposalResponse response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => ContractOperationException(
+        message: message,
       ),
     );
 
-    if (proposalResponse.error != null) {
-      throw ContractOperationException(
-          message: proposalResponse.error['message']);
-    }
-
-    return PriceProposal.fromJson(proposalResponse.proposal);
+    return PriceProposal.fromJson(response.proposal);
   }
 
-  /// Buy this proposal contract
-  Future<BuyContractModel> buy({double price}) async {
-    final BuyResponse buyResponse = await _api.call(
-      request: BuyRequest(
+  /// Gets the price proposal for contract
+  /// For parameters information refer to [ProposalRequest]
+  static Stream<PriceProposal> subscribePriceForContract(
+    ProposalRequest request,
+  ) =>
+      _api.subscribe(request: request).map<PriceProposal>(
+        (Response response) {
+          checkException(
+            response: response,
+            exceptionCreator: (String message) => ContractOperationException(
+              message: message,
+            ),
+          );
+
+          return response is ProposalResponse
+              ? PriceProposal.fromJson(
+                  response.proposal,
+                  subscriptionJson: response.subscription,
+                )
+              : null;
+        },
+      );
+
+  /// Buys this proposal contract with [price] specified
+  Future<BuyContract> buy({double price}) => BuyContract.buy(BuyRequest(
         buy: id,
-        price: price,
-      ),
-    );
+        price: price ?? askPrice,
+      ));
 
-    if (buyResponse.error != null) {
-      throw ContractOperationException(message: buyResponse.error['message']);
-    }
-
-    return BuyContract.fromJson(buyResponse.buy);
-  }
-
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   PriceProposal copyWith({
     double askPrice,
     CancellationInfoModel cancellation,

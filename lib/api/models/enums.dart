@@ -250,3 +250,54 @@ enum ContractStatus {
   /// Cancelled contract
   cancelled,
 }
+
+/// Contract basis Indicates type of the contract amount
+enum ContractBasis {
+  /// Defining the payout that user wants from contract.
+  /// Stake will be calculated based on the defined payout
+  payout,
+
+  /// User will define how much stake he/she is going to put for this contract
+  stake,
+}
+/// Type of the password to reset
+enum PasswordType {
+  /// Main
+  main,
+
+  /// Investor
+  investor,
+}
+
+/// Valid stream types that can be used to unsubscribe from
+enum ForgetStreamType {
+  /// Balance
+  balance,
+
+  /// Candle
+  candles,
+
+  /// P2P advertiser
+  p2pAdvertiser,
+
+  /// P2P Order
+  p2pOrder,
+
+  /// Proposal
+  proposal,
+
+  /// Proposal array
+  proposalArray,
+
+  /// Proposal open contract
+  proposalOpenContract,
+
+  /// Ticks
+  ticks,
+
+  /// Transactions
+  transaction,
+
+  /// Website status
+  websiteStatus
+}

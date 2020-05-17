@@ -8,7 +8,7 @@ import 'forget_model_mock_data.dart';
 void main() {
   test('forget JSON parsing', () {
     final Map<String, dynamic> mapData = jsonDecode(forgetModelMockData);
-    final Forget forget = Forget.fromJson(mapData);
+    final Forget forget = Forget.fromResponse(mapData['forget']);
 
     expect(forget.succeeded, true);
   });

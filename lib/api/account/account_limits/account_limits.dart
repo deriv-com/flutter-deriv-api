@@ -1,5 +1,9 @@
+import 'package:flutter_deriv_api/api/account/account_limits/exceptions/account_limits_exception.dart';
 import 'package:flutter_deriv_api/api/account/models/account_limits_model.dart';
 import 'package:flutter_deriv_api/api/account/models/account_market_limits_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Trading limits of real account user
@@ -58,6 +62,21 @@ class AccountLimits extends AccountLimitsModel {
         withdrawalSinceInceptionMonetary:
             json['withdrawal_since_inception_monetary']?.toDouble(),
       );
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Fetches the logged in account's limits
+  static Future<AccountLimits> fetchAccountLimits() async {
+    final GetLimitsResponse response = await _api.call(
+      request: const GetLimitsRequest(),
+    );
+
+    if (response.error != null) {
+      throw AccountLimitsException(message: response.error['message']);
+    }
+
+    return AccountLimits.fromJson(response.getLimits);
+  }
 
   /// Generate a copy of instance with given parameters
   AccountLimits copyWith({
