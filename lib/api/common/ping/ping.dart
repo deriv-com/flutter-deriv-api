@@ -27,10 +27,12 @@ class Ping extends PingModel {
       );
 
   /// To send the ping request to the server. Mostly used to test the connection or to keep it alive.
-  static Future<Ping> ping(
+  static Future<Ping> ping([
     PingRequest request,
-  ) async {
-    final PingResponse response = await _api.call(request: request);
+  ]) async {
+    final PingResponse response = await _api.call(
+      request: request ?? const PingRequest(),
+    );
 
     if (response.error != null) {
       throw PingException(message: response.error['message']);
