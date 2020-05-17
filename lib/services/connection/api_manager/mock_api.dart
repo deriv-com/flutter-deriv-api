@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:meta/meta.dart';
 
+import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
@@ -16,16 +18,35 @@ import 'mock_data/account/get_limits_response.dart';
 import 'mock_data/account/get_settings_response.dart';
 import 'mock_data/account/portfolio_response.dart';
 import 'mock_data/account/set_settings_response.dart';
+import 'mock_data/app/app_delete_response.dart';
+import 'mock_data/app/app_details_response.dart';
+import 'mock_data/app/app_list_response.dart';
+import 'mock_data/app/app_markup_details_response.dart';
+import 'mock_data/app/app_register_response.dart';
+import 'mock_data/app/app_update_response.dart';
+import 'mock_data/app/new_account_real_response.dart';
+import 'mock_data/app/new_account_virtual_response.dart';
+import 'mock_data/app/oauth_apps_response.dart';
+import 'mock_data/app/revoke_oauth_app_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
 import 'mock_data/common/tick_response.dart';
 import 'mock_data/contract/buy_contract_response.dart';
 import 'mock_data/contract/contract_for_response.dart';
 import 'mock_data/contract/proposal_open_contract_response.dart';
 import 'mock_data/contract/proposal_response.dart';
+import 'mock_data/p2p/p2p_advert_create_response.dart';
+import 'mock_data/p2p/p2p_advert_info_response.dart';
+import 'mock_data/p2p/p2p_advert_list_response.dart';
+import 'mock_data/p2p/p2p_advert_update_response.dart';
+import 'mock_data/p2p/p2p_advertiser_adverts_response.dart';
+import 'mock_data/p2p/p2p_advertiser_create_response.dart';
+import 'mock_data/p2p/p2p_advertiser_info_response.dart';
+import 'mock_data/p2p/p2p_advertiser_update_response.dart';
+import 'mock_data/p2p/p2p_chat_create_response.dart';
 
 /// Handle mock API calls
 class MockAPI implements BaseAPI {
-  static const int _responseDelayMilliseconds = 500;
+  static const int _responseDelayMilliseconds = 50;
 
   @override
   Future<Response> call({
@@ -39,6 +60,20 @@ class MockAPI implements BaseAPI {
     RequestCompareFunction comparePredicate,
   }) =>
       _getStreamResponse(request);
+
+  @override
+  Future<ForgetResponse> unsubscribe({
+    @required String subscriptionId,
+    bool shouldForced = false,
+  }) async =>
+      const ForgetResponse(forget: 1);
+
+  @override
+  Future<ForgetAllResponse> unsubscribeAll({
+    @required ForgetStreamType method,
+    bool shouldForced = false,
+  }) async =>
+      null;
 
   @override
   void addToChannel({Map<String, dynamic> request}) {}
@@ -67,12 +102,18 @@ class MockAPI implements BaseAPI {
       case 'active_symbols':
         return activeSymbolsResponse;
       // case 'api_token':
-      // case 'app_delete':
-      // case 'app_get':
-      // case 'app_list':
-      // case 'app_markup_details':
-      // case 'app_register':
-      // case 'app_update':
+      case 'app_delete':
+        return appDeleteResponse;
+      case 'app_get':
+        return appDetailsResponse;
+      case 'app_list':
+        return appListResponse;
+      case 'app_markup_details':
+        return appMarkupDetailsResponse;
+      case 'app_register':
+        return appRegisterResponse;
+      case 'app_update':
+        return appUpdateResponse;
       // case 'asset_index':
       case 'authorize':
         return authorizeResponse;
@@ -115,19 +156,31 @@ class MockAPI implements BaseAPI {
       // case 'mt5_password_check':
       // case 'mt5_password_reset':
       // case 'mt5_withdrawal':
-      // case 'new_account_maltainvest':
-      // case 'new_account_real':
-      // case 'new_account_virtual':
-      // case 'oauth_apps':
-      // case 'p2p_advert_create':
-      // case 'p2p_advert_info':
-      // case 'p2p_advert_list':
-      // case 'p2p_advert_update':
-      // case 'p2p_advertiser_adverts':
-      // case 'p2p_advertiser_create':
-      // case 'p2p_advertiser_info':
-      // case 'p2p_advertiser_update':
-      // case 'p2p_chat_create':
+      case 'new_account_maltainvest':
+      case 'new_account_real':
+        return newAccountRealResponse;
+      case 'new_account_virtual':
+        return newAccountVirtualResponse;
+      case 'oauth_apps':
+        return oauthAppsResponse;
+      case 'p2p_advert_create':
+        return p2pAdvertCreateResponse;
+      case 'p2p_advert_info':
+        return p2pAdvertInfoResponse;
+      case 'p2p_advert_list':
+        return p2pAdvertListResponse;
+      case 'p2p_advert_update':
+        return p2pAdvertUpdateResponse;
+      case 'p2p_advertiser_adverts':
+        return p2pAdvertiserAdvertsResponse;
+      case 'p2p_advertiser_create':
+        return p2pAdvertiserCreateResponse;
+      case 'p2p_advertiser_info':
+        return p2pAdvertiserInfoResponse;
+      case 'p2p_advertiser_update':
+        return p2pAdvertiserUpdateResponse;
+      case 'p2p_chat_create':
+        return p2pChatCreateResponse;
       // case 'p2p_order_cancel':
       // case 'p2p_order_confirm':
       // case 'p2p_order_create':
@@ -148,7 +201,8 @@ class MockAPI implements BaseAPI {
         return proposalResponse;
       // case 'reality_check':
       // case 'residence_list':
-      // case 'revoke_oauth_app':
+      case 'revoke_oauth_app':
+        return revokeOauthAppResponse;
       // case 'sell_contract_for_multiple_accounts':
       // case 'sell_expired':
       // case 'sell':

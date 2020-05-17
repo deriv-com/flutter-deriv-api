@@ -30,6 +30,9 @@ String parseWebSocketUrl(String url, {bool isAuthUrl = false}) {
 /// Convert int to boolean
 bool getBool(int value) => value == null ? null : value == 1;
 
+/// Convert boolean to int
+int getInt(bool value) => value == null ? null : value ? 1 : 0;
+
 /// Get list of models from Map
 List<T> getListFromMap<T>(
   Iterable<dynamic> mapList, {
@@ -61,8 +64,8 @@ T getItemFromMap<T>(
 }
 
 /// Converts enum to string
-String getStringFromEnum<T>({
-  T value,
+String getStringFromEnum<T>(
+  T value, {
   bool snakeCase = true,
 }) {
   if (value == null) {
@@ -76,8 +79,8 @@ String getStringFromEnum<T>({
 
 /// Gets enum form a string
 T getEnumFromString<T>({
-  List<T> values,
-  String name,
+  @required List<T> values,
+  @required String name,
   bool snakeCase = true,
 }) {
   if (name == null || values == null || values.isEmpty) {
