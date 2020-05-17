@@ -3,6 +3,7 @@ import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
 
 part 'date_time_helpers.dart';
+
 part 'number_helpers.dart';
 
 /// Parses the [url] and gets the endpoint out of it
@@ -74,11 +75,20 @@ String getStringFromEnum<T>({
   return snakeCase ? ReCase(item).snakeCase : item;
 }
 
+/// ReCase of enum
+enum EnumCase {
+  /// snake_case
+  snakeCase,
+
+  /// param-case
+  paramCase,
+}
+
 /// Gets enum form a string
 T getEnumFromString<T>({
   List<T> values,
   String name,
-  bool snakeCase = true,
+  EnumCase enumCase = EnumCase.snakeCase,
 }) {
   if (name == null || values == null || values.isEmpty) {
     return null;
@@ -88,7 +98,19 @@ T getEnumFromString<T>({
     (T enumItem) {
       final String item = enumItem.toString().split('.')[1];
 
-      return (snakeCase ? ReCase(item).snakeCase : item).compareTo(name) == 0;
+      String itemReCase;
+      switch (enumCase) {
+        case EnumCase.snakeCase:
+          itemReCase = ReCase(item).snakeCase;
+          break;
+        case EnumCase.paramCase:
+          itemReCase = ReCase(item).paramCase;
+          break;
+        default:
+          itemReCase = item;
+      }
+
+      return itemReCase.compareTo(name) == 0;
     },
     orElse: () => null,
   );

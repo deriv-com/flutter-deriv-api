@@ -1,5 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/p2p/p2p_order_cancel_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/p2p/p2p_order_confirm_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/p2p/p2p_order_create_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/p2p/p2p_order_info_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/p2p/p2p_order_list_response.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
@@ -118,11 +123,16 @@ class MockAPI implements BaseAPI {
       // case 'p2p_advertiser_info':
       // case 'p2p_advertiser_update':
       // case 'p2p_chat_create':
-      // case 'p2p_order_cancel':
-      // case 'p2p_order_confirm':
-      // case 'p2p_order_create':
-      // case 'p2p_order_info':
-      // case 'p2p_order_list':
+      case 'p2p_order_cancel':
+        return p2pOrderCancelResponse;
+      case 'p2p_order_confirm':
+        return p2pOrderConfirmResponse;
+      case 'p2p_order_create':
+        return p2pOrderCreateResponse;
+      case 'p2p_order_info':
+        return p2pOrderInfoResponse;
+      case 'p2p_order_list':
+        return p2pOrderListResponse;
       // case 'paymentagent_list':
       // case 'paymentagent_transfer':
       // case 'paymentagent_withdraw':
