@@ -257,11 +257,6 @@ class MockAPI implements BaseAPI {
         return p2pAdvertiserUpdateResponse;
       case 'p2p_chat_create':
         return p2pChatCreateResponse;
-      // case 'p2p_order_cancel':
-      // case 'p2p_order_confirm':
-      // case 'p2p_order_create':
-      // case 'p2p_order_info':
-      // case 'p2p_order_list':
       // case 'paymentagent_list':
       // case 'paymentagent_transfer':
       // case 'paymentagent_withdraw':
