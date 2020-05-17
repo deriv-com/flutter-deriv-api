@@ -1,4 +1,5 @@
-const String serverTimeModelMockData = '''
+/// Server time response
+const String serverTimeResponse = '''
 {
   "echo_req": {
     "time": 1
