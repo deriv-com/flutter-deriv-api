@@ -1,4 +1,5 @@
-const String pingModelMockData = '''
+/// Ping response
+const String pingResponse = '''
 {
   "echo_req": {
     "ping": 1
