@@ -1,4 +1,5 @@
-const String mt5AccountModelMockData = '''
+/// MT5 login list response
+const String mt5LoginListResponse = '''
 {
   "echo_req": {
     "mt5_login_list": 1

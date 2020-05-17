@@ -1,4 +1,5 @@
-const String mt5SettingsModelMockData = '''
+/// MT5 settings response
+const String mt5SettingsResponse = '''
 {
   "echo_req": {
     "login": "MTR1000",
