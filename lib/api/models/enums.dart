@@ -251,6 +251,15 @@ enum ContractStatus {
   cancelled,
 }
 
+/// Type of the password to reset
+enum PasswordType {
+  /// Main
+  main,
+
+  /// Investor
+  investor,
+}
+
 /// Valid stream types that can be used to unsubscribe from
 enum ForgetStreamType {
   /// Balance
