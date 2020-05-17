@@ -73,10 +73,12 @@ class WebsiteStatus extends WebsiteStatusModel {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets Website status for the given [WebsiteStatusRequest]
-  static Future<WebsiteStatus> fetchWebsiteStatus(
+  static Future<WebsiteStatus> fetchWebsiteStatus([
     WebsiteStatusRequest request,
-  ) async {
-    final WebsiteStatusResponse response = await _api.call(request: request);
+  ]) async {
+    final WebsiteStatusResponse response = await _api.call(
+      request: request ?? const WebsiteStatusRequest(),
+    );
 
     if (response.error != null) {
       throw WebsiteStatusException(message: response.error['message']);
