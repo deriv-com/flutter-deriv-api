@@ -1,13 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/contract/models/history_spot_price_model.dart';
-import 'package:flutter_deriv_api/api/contract/models/open_contract_model.dart';
 import 'package:flutter_deriv_api/api/contract/operation/buy_contract.dart';
-import 'package:flutter_deriv_api/api/contract/operation/update_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/cancel_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_operations_exception.dart';
+import 'package:flutter_deriv_api/api/contract/operation/open_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/price_proposal.dart';
 import 'package:flutter_deriv_api/api/contract/operation/sell_contract.dart';
+import 'package:flutter_deriv_api/api/contract/operation/update_contract.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
@@ -75,35 +75,40 @@ void main() {
       );
       expect(buyContract.buyPrice, 49.12);
 
-      final OpenContractModel openContractModel =
+      final OpenContract openContract =
           await buyContract.fetchCurrentContractState();
-      expect(openContractModel.contractId, 79944933588);
-      expect(openContractModel.payout, 50.0);
-      expect(openContractModel.profit, 25.45);
-      expect(openContractModel.profitPercentage, 103.67);
-      expect(openContractModel.purchaseTime, getDateTime(1587533920));
-      expect(openContractModel.contractType, 'CALL');
-      expect(openContractModel.currency, 'USD');
-      expect(openContractModel.auditDetails.contractEnd.first.tick, 1419.96);
-      expect(openContractModel.auditDetails.contractEnd.first.epoch,
+      expect(openContract.contractId, 79944933588);
+      expect(openContract.payout, 50.0);
+      expect(openContract.profit, 25.45);
+      expect(openContract.profitPercentage, 103.67);
+      expect(openContract.purchaseTime, getDateTime(1587533920));
+      expect(openContract.contractType, 'CALL');
+      expect(openContract.currency, 'USD');
+      expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
+      expect(openContract.auditDetails.contractEnd.first.epoch,
           getDateTime(1587533976));
-      expect(openContractModel.underlying, 'R_100');
+      expect(openContract.underlying, 'R_100');
 
       buyContract
           .subscribeContractState()
           .take(1)
-          .listen(expectAsync1((OpenContractModel openContractModel) {
-        expect(openContractModel.contractId, 79944933588);
-        expect(openContractModel.payout, 50.0);
-        expect(openContractModel.profit, 25.45);
-        expect(openContractModel.profitPercentage, 103.67);
-        expect(openContractModel.purchaseTime, getDateTime(1587533920));
-        expect(openContractModel.contractType, 'CALL');
-        expect(openContractModel.currency, 'USD');
-        expect(openContractModel.auditDetails.contractEnd.first.tick, 1419.96);
-        expect(openContractModel.auditDetails.contractEnd.first.epoch,
+          .listen(expectAsync1((OpenContract openContract) {
+        expect(openContract.contractId, 79944933588);
+        expect(openContract.payout, 50.0);
+        expect(openContract.profit, 25.45);
+        expect(openContract.profitPercentage, 103.67);
+        expect(openContract.purchaseTime, getDateTime(1587533920));
+        expect(openContract.contractType, 'CALL');
+        expect(openContract.currency, 'USD');
+        expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
+        expect(openContract.auditDetails.contractEnd.first.epoch,
             getDateTime(1587533976));
-        expect(openContractModel.underlying, 'R_100');
+        expect(openContract.underlying, 'R_100');
+
+        expect(
+          openContract.subscriptionInformation.id,
+          '042922fe-5664-09e4-c3bf-b3bbcf8f31db',
+        );
       }));
     });
 
@@ -143,7 +148,7 @@ void main() {
 
     test('Contract update history test', () async {
       final List<HistorySpotPriceModel> updateHistory =
-          await UpdateContract.getContractUpdateHistory(
+          await UpdateContract.fetchContractUpdateHistory(
         const ContractUpdateHistoryRequest(
           contractId: 79939279308,
         ),
@@ -227,22 +232,47 @@ void main() {
         expect(cancelContract.soldFor, 1150.0);
         expect(cancelContract.transactionId, 453476);
 
-        final OpenContractModel openContractModel =
+        final OpenContract openContract =
             await boughtContract.fetchCurrentContractState();
-        expect(openContractModel.contractId, 79944933588);
-        expect(openContractModel.payout, 50.0);
-        expect(openContractModel.profit, 25.45);
-        expect(openContractModel.profitPercentage, 103.67);
-        expect(openContractModel.purchaseTime, getDateTime(1587533920));
-        expect(openContractModel.contractType, 'CALL');
-        expect(openContractModel.currency, 'USD');
-        expect(openContractModel.auditDetails.contractEnd.first.tick, 1419.96);
-        expect(openContractModel.auditDetails.contractEnd.first.epoch,
+        expect(openContract.contractId, 79944933588);
+        expect(openContract.payout, 50.0);
+        expect(openContract.profit, 25.45);
+        expect(openContract.profitPercentage, 103.67);
+        expect(openContract.purchaseTime, getDateTime(1587533920));
+        expect(openContract.contractType, 'CALL');
+        expect(openContract.currency, 'USD');
+        expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
+        expect(openContract.auditDetails.contractEnd.first.epoch,
             getDateTime(1587533976));
-        expect(openContractModel.underlying, 'R_100');
+        expect(openContract.underlying, 'R_100');
       } on ContractOperationException catch (e) {
         print(e.message);
       }
+    });
+
+    test('Open contract test', () {
+      OpenContract.subscribeContractState(
+        const ProposalOpenContractRequest(contractId: 79944933588),
+      ).take(1).listen(
+        expectAsync1((OpenContract openContract) {
+          expect(openContract.contractId, 79944933588);
+          expect(openContract.payout, 50.0);
+          expect(openContract.profit, 25.45);
+          expect(openContract.profitPercentage, 103.67);
+          expect(openContract.purchaseTime, getDateTime(1587533920));
+          expect(openContract.contractType, 'CALL');
+          expect(openContract.currency, 'USD');
+          expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
+          expect(openContract.auditDetails.contractEnd.first.epoch,
+              getDateTime(1587533976));
+          expect(openContract.underlying, 'R_100');
+
+          expect(
+            openContract.subscriptionInformation.id,
+            '042922fe-5664-09e4-c3bf-b3bbcf8f31db',
+          );
+        }),
+      );
     });
   });
 }

@@ -1,14 +1,18 @@
+import 'package:flutter_deriv_api/api/common/forget/forget.dart';
+import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/contract/models/cancellation_info_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/limit_order_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/price_proposal_model.dart';
 import 'package:flutter_deriv_api/api/contract/operation/buy_contract.dart';
-import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_operations_exception.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
+
+import 'exceptions/contract_operations_exception.dart';
 
 /// Implementation of [PriceProposalModel]
 class PriceProposal extends PriceProposalModel {
@@ -114,6 +118,38 @@ class PriceProposal extends PriceProposalModel {
               : null;
         },
       );
+
+  /// Unsubscribes from price proposal subscription.
+  Future<Forget> unsubscribeProposal() async {
+    if (subscriptionInformation?.id == null) {
+      return null;
+    }
+
+    final ForgetResponse response =
+    await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          ContractOperationException(message: message),
+    );
+
+    return Forget.fromResponse(response.forget);
+  }
+
+  /// Unsubscribes all proposal subscriptions.
+  static Future<ForgetAll> unsubscribeAllProposal() async {
+    final ForgetAllResponse response =
+    await _api.unsubscribeAll(method: ForgetStreamType.proposal);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          ContractOperationException(message: message),
+    );
+
+    return ForgetAll.fromResponse(response.forgetAll);
+  }
 
   /// Buys this proposal contract with [price] specified
   Future<BuyContract> buy({double price}) => BuyContract.buy(BuyRequest(
