@@ -17,6 +17,8 @@ import 'mock_data/account/balance_response.dart';
 import 'mock_data/account/get_account_status_response.dart';
 import 'mock_data/account/get_limits_response.dart';
 import 'mock_data/account/get_settings_response.dart';
+import 'mock_data/account/login_history_response.dart';
+import 'mock_data/account/logout_response.dart';
 import 'mock_data/account/portfolio_response.dart';
 import 'mock_data/account/set_account_currency_response.dart';
 import 'mock_data/account/set_settings_response.dart';
@@ -180,8 +182,10 @@ class MockAPI implements BaseAPI {
         return getSettingsResponse;
       // case 'landing_company_details':
       // case 'landing_company':
-      // case 'login_history':
-      // case 'logout':
+      case 'login_history':
+        return loginHistoryResponse;
+      case 'logout':
+        return logoutResponse;
       case 'mt5_deposit':
         return mt5DepositResponse;
       case 'mt5_get_settings':
