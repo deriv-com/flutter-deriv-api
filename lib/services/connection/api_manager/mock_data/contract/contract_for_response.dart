@@ -4,40 +4,6 @@ const String contractForResponse = '''
   "contracts_for": {
     "available": [
       {
-        "barrier_category": "asian",
-        "barriers": 0,
-        "contract_category": "asian",
-        "contract_category_display": "Asians",
-        "contract_display": "Asian Up",
-        "contract_type": "ASIANU",
-        "exchange_name": "RANDOM",
-        "expiry_type": "tick",
-        "market": "synthetic_index",
-        "max_contract_duration": "10t",
-        "min_contract_duration": "5t",
-        "sentiment": "up",
-        "start_type": "spot",
-        "submarket": "random_index",
-        "underlying_symbol": "R_50"
-      },
-      {
-        "barrier_category": "asian",
-        "barriers": 0,
-        "contract_category": "asian",
-        "contract_category_display": "Asians",
-        "contract_display": "Asian Down",
-        "contract_type": "ASIAND",
-        "exchange_name": "RANDOM",
-        "expiry_type": "tick",
-        "market": "synthetic_index",
-        "max_contract_duration": "10t",
-        "min_contract_duration": "5t",
-        "sentiment": "down",
-        "start_type": "spot",
-        "submarket": "random_index",
-        "underlying_symbol": "R_50"
-      },
-      {
         "barrier_category": "euro_atm",
         "barriers": 0,
         "contract_category": "callput",
@@ -45,21 +11,38 @@ const String contractForResponse = '''
         "contract_display": "Higher",
         "contract_type": "CALL",
         "exchange_name": "RANDOM",
-        "expiry_type": "daily",
+        "expiry_type": "intraday",
+        "forward_starting_options": [
+          {
+            "close": "1586303999",
+            "date": "1586217600",
+            "open": "1586217600"
+          },
+          {
+            "close": "1586390399",
+            "date": "1586304000",
+            "open": "1586304000"
+          },
+          {
+            "close": "1586476799",
+            "date": "1586390400",
+            "open": "1586390400"
+          }
+        ],
         "market": "synthetic_index",
-        "max_contract_duration": "365d",
-        "min_contract_duration": "1d",
+        "max_contract_duration": "1d",
+        "min_contract_duration": "2m",
         "sentiment": "up",
-        "start_type": "spot",
+        "start_type": "forward",
         "submarket": "random_index",
         "underlying_symbol": "R_50"
       }
     ],
-    "close": 1588809599,
+    "close": 1586303999,
     "feed_license": "realtime",
-    "hit_count": 55,
-    "open": 1588723200,
-    "spot": 7389.8297
+    "hit_count": 59,
+    "open": 1586217600,
+    "spot": 220.8961
   },
   "echo_req": {
     "contracts_for": "R_50",

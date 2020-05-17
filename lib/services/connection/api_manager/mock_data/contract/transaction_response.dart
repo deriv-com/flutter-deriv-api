@@ -1,4 +1,5 @@
-const String transactionsJSON = '''{
+/// Transaction response
+const String transactionResponse = '''{
   "echo_req": {
     "passthrough": {},
     "req_id": 8,
