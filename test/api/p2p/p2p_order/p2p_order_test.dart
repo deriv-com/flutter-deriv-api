@@ -164,6 +164,11 @@ void main() {
           final P2PAdvertiser advertiser = order.advertiserDetails;
           expect(advertiser.id, '6');
           expect(advertiser.name, 'advertiser CR90000018');
+
+          expect(
+            order.subscriptionInformation.id,
+            '857cfc96-1014-66ce-9c49-0a4dbd22857a',
+          );
         },
       ));
     });
@@ -199,6 +204,11 @@ void main() {
           final P2PAdvertiser advertiser = firstOrder.advertiserDetails;
           expect(advertiser.id, '6');
           expect(advertiser.name, 'advertiser CR90000018');
+
+          expect(
+            orderList.subscriptionInformation.id,
+            '857cfc96-1014-66ce-9c49-0a4dbd22857a',
+          );
         },
       ));
     });
@@ -234,6 +244,11 @@ void main() {
           final P2PAdvertiser advertiser = order.advertiserDetails;
           expect(advertiser.id, '6');
           expect(advertiser.name, 'advertiser CR90000018');
+
+          expect(
+            order.subscriptionInformation.id,
+            '857cfc96-1014-66ce-9c49-0a4dbd22857a',
+          );
         },
       ));
     });

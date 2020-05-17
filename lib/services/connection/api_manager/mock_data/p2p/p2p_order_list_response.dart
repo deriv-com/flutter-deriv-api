@@ -35,9 +35,9 @@ const String p2pOrderListResponse = '''{
         "status": "pending",
         "type": "buy"
       }
-    ],
+    ]
+  },
   "subscription": {
     "id": "857cfc96-1014-66ce-9c49-0a4dbd22857a"
-  }
   }
 }''';
