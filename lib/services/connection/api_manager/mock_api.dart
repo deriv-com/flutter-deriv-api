@@ -246,12 +246,12 @@ class MockAPI implements BaseAPI {
         return revokeOauthAppResponse;
       // case 'sell_contract_for_multiple_accounts':
       // case 'sell_expired':
-      case 'set_financial_assessment':
-        return setFinancialAssessmentResponse;
       case 'sell':
         return sellResponse;
       case 'set_account_currency':
         return setAccountCurrencyResponse;
+      case 'set_financial_assessment':
+        return setFinancialAssessmentResponse;
       // case 'set_self_exclusion':
       case 'set_settings':
         return setSettingsResponse;
@@ -260,10 +260,10 @@ class MockAPI implements BaseAPI {
       // case 'history':
       case 'ticks':
         return tickResponse;
-      case 'tnc_approval':
-        return tncApprovalResponse;
       case 'time':
         return serverTimeResponse;
+      case 'tnc_approval':
+        return tncApprovalResponse;
       // case 'topup_virtual':
       case 'trading_durations':
         return tradingDurationsResponse;
