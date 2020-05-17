@@ -10,10 +10,12 @@ void main() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
 
     final List<ActiveSymbol> activeSymbols =
-        await ActiveSymbol.fetchActiveSymbols(const ActiveSymbolsRequest(
-      activeSymbols: 'brief',
-      productType: 'basic',
-    ));
+        await ActiveSymbol.fetchActiveSymbols(
+      const ActiveSymbolsRequest(
+        activeSymbols: 'brief',
+        productType: 'basic',
+      ),
+    );
 
     expect(activeSymbols.first.pip, 0.001);
     expect(activeSymbols.first.symbolType, 'smart_fx');

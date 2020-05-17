@@ -15,7 +15,8 @@ void main() {
     test('Landing company test', () async {
       final LandingCompany landingCompany =
           await LandingCompany.fetchLandingCompanies(
-              const LandingCompanyRequest(landingCompany: 'CountryCode'));
+        const LandingCompanyRequest(landingCompany: 'CountryCode'),
+      );
 
       expect(landingCompany.config.taxDetailsRequired, true);
       expect(landingCompany.minimumAge, 18);
@@ -66,6 +67,7 @@ void main() {
 
       final List<LandingCompanyFieldsInfoModel> changeableFields =
           landingCompanyDetail.changeableFields;
+
       expect(changeableFields.length, 1);
       expect(changeableFields.first.fields.length, 6);
       expect(changeableFields.first.fields.first, 'salutation');

@@ -181,14 +181,12 @@ class MockAPI implements BaseAPI {
         return getLimitsResponse;
       // case 'get_self_exclusion':
       // case 'get_settings':
-      case 'landing_company_details':
-        return landingCompanyDetailsResponse;
-      case 'landing_company':
-        return landingCompanyResponse;
       case 'get_settings':
         return getSettingsResponse;
-      // case 'landing_company_details':
-      // case 'landing_company':
+      case 'landing_company':
+        return landingCompanyResponse;
+      case 'landing_company_details':
+        return landingCompanyDetailsResponse;
       // case 'login_history':
       // case 'logout':
       case 'mt5_deposit':
@@ -288,12 +286,10 @@ class MockAPI implements BaseAPI {
       case 'transaction':
         return transactionResponse;
       // case 'transfer_between_accounts':
-      // case 'verify_email':
-      case 'website_status':
-        return websiteStatusResponse;
       case 'verify_email':
         return verifyEmailResponse;
-      // case 'website_status':
+      case 'website_status':
+        return websiteStatusResponse;
 
       default:
         throw APIManagerException(
