@@ -250,3 +250,45 @@ enum ContractStatus {
   /// Cancelled contract
   cancelled,
 }
+
+/// Type of the password to reset
+enum PasswordType {
+  /// Main
+  main,
+
+  /// Investor
+  investor,
+}
+
+/// Valid stream types that can be used to unsubscribe from
+enum ForgetStreamType {
+  /// Balance
+  balance,
+
+  /// Candle
+  candles,
+
+  /// P2P advertiser
+  p2pAdvertiser,
+
+  /// P2P Order
+  p2pOrder,
+
+  /// Proposal
+  proposal,
+
+  /// Proposal array
+  proposalArray,
+
+  /// Proposal open contract
+  proposalOpenContract,
+
+  /// Ticks
+  ticks,
+
+  /// Transactions
+  transaction,
+
+  /// Website status
+  websiteStatus
+}
