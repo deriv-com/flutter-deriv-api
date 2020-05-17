@@ -16,6 +16,10 @@ import 'mock_data/contract/buy_contract_response.dart';
 import 'mock_data/contract/contract_for_response.dart';
 import 'mock_data/contract/proposal_open_contract_response.dart';
 import 'mock_data/contract/proposal_response.dart';
+import 'mock_data/user/get_financial_assessment_response.dart';
+import 'mock_data/user/set_financial_assessment_response.dart';
+import 'mock_data/user/tnc_approval_response.dart';
+import 'mock_data/user/verify_email_response.dart';
 
 /// Handle mock API calls
 class MockAPI implements BaseAPI {
@@ -89,7 +93,8 @@ class MockAPI implements BaseAPI {
       // case 'forget_all':
       // case 'forget':
       // case 'get_account_status':
-      // case 'get_financial_assessment':
+      case 'get_financial_assessment':
+        return getFinancialAssessmentResponse;
       // case 'get_limits':
       // case 'get_self_exclusion':
       // case 'get_settings':
@@ -142,7 +147,8 @@ class MockAPI implements BaseAPI {
       // case 'sell_expired':
       // case 'sell':
       // case 'set_account_currency':
-      // case 'set_financial_assessment':
+      case 'set_financial_assessment':
+        return setFinancialAssessmentResponse;
       // case 'set_self_exclusion':
       // case 'set_settings':
       // case 'statement':
@@ -151,13 +157,15 @@ class MockAPI implements BaseAPI {
       case 'ticks':
         return tickResponse;
       // case 'time':
-      // case 'tnc_approval':
+      case 'tnc_approval':
+        return tncApprovalResponse;
       // case 'topup_virtual':
       // case 'trading_durations':
       // case 'trading_times':
       // case 'transaction':
       // case 'transfer_between_accounts':
-      // case 'verify_email':
+      case 'verify_email':
+        return verifyEmailResponse;
       // case 'website_status':
 
       default:
