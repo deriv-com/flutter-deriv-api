@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:meta/meta.dart';
 
+import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_send.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/pending_request.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_stream.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Subscription manager class
 class SubscriptionManager extends BaseCallManager<Stream<Response>> {
@@ -97,20 +99,23 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
 
   /// Unsubscribe to multiple [method]s all at once
   Future<dynamic> unsubscribeAll({
-    @required String method,
+    @required ForgetStreamType method,
     bool shouldForced = false,
   }) async {
+    final String methodName = getStringFromEnum(method);
+
     final List<int> requestIds = pendingRequests.keys.where(
       (int id) {
         final PendingRequest<Response> pendingRequest = pendingRequests[id];
 
-        return pendingRequest.request.msgType == method &&
+        return pendingRequest.request.msgType == methodName &&
             pendingRequest.isSubscribed;
       },
     );
 
-    final ForgetAllResponse response =
-        await api.call(request: ForgetAllRequest(forgetAll: method));
+    final ForgetAllResponse response = await api.call(
+      request: ForgetAllRequest(forgetAll: methodName),
+    );
 
     if (response.error == null) {
       for (int id in requestIds) {

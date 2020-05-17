@@ -1,4 +1,5 @@
-const String p2pChatCreateModelMockData = '''
+/// P2P chat create response
+const String p2pChatCreateResponse = '''
 {
   "echo_req": {
     "order_id": "1234",
