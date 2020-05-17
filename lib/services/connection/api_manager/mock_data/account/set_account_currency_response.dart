@@ -1,4 +1,5 @@
-const String setAccountExceptionModelMockData = '''
+/// setAccountCurrency Response
+const String setAccountCurrencyResponse = '''
 {
   "set_account_currency": 1,
   "echo_req": {

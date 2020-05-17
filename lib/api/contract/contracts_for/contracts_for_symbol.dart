@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// available contracts. Note: if the user is authenticated,
+/// Available contracts. Note: if the user is authenticated,
 /// then only contracts allowed under his account will be returned.
 class ContractsForSymbol extends ContractsForSymbolModel {
   /// Initializes
@@ -41,36 +41,27 @@ class ContractsForSymbol extends ContractsForSymbolModel {
         spot: json['spot'],
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Fetch contracts for given [symbol]
-  /// For parameters information refer to [ContractsForRequest]
-  static Future<ContractsForSymbol> getContractsForSymbol({
-    String symbol = 'R_10',
-    String currency,
-    String landingCompany,
-    String productType,
-  }) async {
-    final ContractsForResponse contractsForResponse = await _api.call(
-      request: ContractsForRequest(
-        contractsFor: symbol,
-        currency: currency,
-        landingCompany: landingCompany,
-        productType: productType,
+  /// Gets contracts for given symbol in [ContractsForRequest]
+  static Future<ContractsForSymbol> fetchContractsForSymbol(
+    ContractsForRequest request,
+  ) async {
+    final ContractsForResponse response = await _api.call(
+      request: request,
+    );
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => ContractsForSymbolException(
+        message: message,
       ),
     );
 
-    if (contractsForResponse.error != null) {
-      throw ContractsForSymbolException(
-        message: contractsForResponse.error['message'],
-      );
-    }
-
-    return ContractsForSymbol.fromJson(contractsForResponse.contractsFor);
+    return ContractsForSymbol.fromJson(response.contractsFor);
   }
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   ContractsForSymbol copyWith({
     List<ContractModel> contracts,
     int close,
