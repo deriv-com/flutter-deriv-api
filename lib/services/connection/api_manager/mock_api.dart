@@ -12,6 +12,12 @@ import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
 import 'mock_data/account/authorize_response.dart';
+import 'mock_data/account/balance_response.dart';
+import 'mock_data/account/get_account_status_response.dart';
+import 'mock_data/account/get_limits_response.dart';
+import 'mock_data/account/get_settings_response.dart';
+import 'mock_data/account/portfolio_response.dart';
+import 'mock_data/account/set_settings_response.dart';
 import 'mock_data/app/app_delete_response.dart';
 import 'mock_data/app/app_details_response.dart';
 import 'mock_data/app/app_list_response.dart';
@@ -119,7 +125,8 @@ class MockAPI implements BaseAPI {
       // case 'asset_index':
       case 'authorize':
         return authorizeResponse;
-      // case 'balance':
+      case 'balance':
+        return balanceResponse;
       // case 'buy_contract_for_multiple_accounts':
       case 'buy':
         return buyContractResponse;
@@ -137,11 +144,14 @@ class MockAPI implements BaseAPI {
       // case 'exchange_rates':
       // case 'forget_all':
       // case 'forget':
-      // case 'get_account_status':
+      case 'get_account_status':
+        return getAccountStatusResponse;
       // case 'get_financial_assessment':
-      // case 'get_limits':
+      case 'get_limits':
+        return getLimitsResponse;
       // case 'get_self_exclusion':
-      // case 'get_settings':
+      case 'get_settings':
+        return getSettingsResponse;
       // case 'landing_company_details':
       // case 'landing_company':
       // case 'login_history':
@@ -197,7 +207,8 @@ class MockAPI implements BaseAPI {
       // case 'paymentagent_withdraw':
       // case 'payout_currencies':
       // case 'ping':
-      // case 'portfolio':
+      case 'portfolio':
+        return portfolioResponse;
       // case 'profit_table':
       // case 'proposal_array':
       case 'proposal_open_contract':
@@ -214,7 +225,8 @@ class MockAPI implements BaseAPI {
       // case 'set_account_currency':
       // case 'set_financial_assessment':
       // case 'set_self_exclusion':
-      // case 'set_settings':
+      case 'set_settings':
+        return setSettingsResponse;
       // case 'statement':
       // case 'states_list':
       // case 'history':

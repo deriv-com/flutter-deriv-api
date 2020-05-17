@@ -1,4 +1,5 @@
-const String accountSettingsJSON = '''{
+/// getSettings Response
+const String getSettingsResponse = '''{
   "echo_req": {
     "get_settings": 1
   },
