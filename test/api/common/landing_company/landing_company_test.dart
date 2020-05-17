@@ -15,7 +15,7 @@ void main() {
     test('Landing company test', () async {
       final LandingCompany landingCompany =
           await LandingCompany.fetchLandingCompanies(
-              const LandingCompanyRequest(landingCompany: 'code'));
+              const LandingCompanyRequest(landingCompany: 'CountryCode'));
 
       expect(landingCompany.config.taxDetailsRequired, true);
       expect(landingCompany.minimumAge, 18);
@@ -54,7 +54,8 @@ void main() {
     test('Landing company details test', () async {
       final LandingCompanyDetailModel landingCompanyDetail =
           await LandingCompany.fetchLandingCompanyDetails(
-              const LandingCompanyDetailsRequest());
+        const LandingCompanyDetailsRequest(landingCompanyDetails: 'LC Code'),
+      );
 
       expect(landingCompanyDetail.address.length, 4);
       expect(landingCompanyDetail.country, 'Sample country');
