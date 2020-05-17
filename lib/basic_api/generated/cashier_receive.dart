@@ -27,8 +27,7 @@ class CashierResponse extends Response {
       _$CashierResponseFromJson(json);
 
   // Properties
-  /// Cashier URL.
-  /// **Note:** possible error codes are:
+  /// Possible error codes are:
   /// - `ASK_TNC_APPROVAL`: API call `tnc_approval`
   /// - `ASK_AUTHENTICATE`
   /// - `ASK_UK_FUNDS_PROTECTION`: API call `tnc_approval`
