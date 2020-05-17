@@ -70,6 +70,10 @@ import 'mock_data/p2p/p2p_advertiser_create_response.dart';
 import 'mock_data/p2p/p2p_advertiser_info_response.dart';
 import 'mock_data/p2p/p2p_advertiser_update_response.dart';
 import 'mock_data/p2p/p2p_chat_create_response.dart';
+import 'mock_data/user/get_financial_assessment_response.dart';
+import 'mock_data/user/set_financial_assessment_response.dart';
+import 'mock_data/user/tnc_approval_response.dart';
+import 'mock_data/user/verify_email_response.dart';
 
 /// Handle mock API calls
 class MockAPI implements BaseAPI {
@@ -171,7 +175,8 @@ class MockAPI implements BaseAPI {
         return forgetResponse;
       case 'get_account_status':
         return getAccountStatusResponse;
-      // case 'get_financial_assessment':
+      case 'get_financial_assessment':
+        return getFinancialAssessmentResponse;
       case 'get_limits':
         return getLimitsResponse;
       // case 'get_self_exclusion':
@@ -259,7 +264,8 @@ class MockAPI implements BaseAPI {
         return sellResponse;
       case 'set_account_currency':
         return setAccountCurrencyResponse;
-      // case 'set_financial_assessment':
+      case 'set_financial_assessment':
+        return setFinancialAssessmentResponse;
       // case 'set_self_exclusion':
       case 'set_settings':
         return setSettingsResponse;
@@ -272,7 +278,8 @@ class MockAPI implements BaseAPI {
         return tickResponse;
       case 'time':
         return serverTimeResponse;
-      // case 'tnc_approval':
+      case 'tnc_approval':
+        return tncApprovalResponse;
       // case 'topup_virtual':
       case 'trading_durations':
         return tradingDurationsResponse;
@@ -284,6 +291,9 @@ class MockAPI implements BaseAPI {
       // case 'verify_email':
       case 'website_status':
         return websiteStatusResponse;
+      case 'verify_email':
+        return verifyEmailResponse;
+      // case 'website_status':
 
       default:
         throw APIManagerException(
