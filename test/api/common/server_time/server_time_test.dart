@@ -1,15 +1,15 @@
-import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/common/server_time/server_time.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'server_time_mock_date.dart';
-
 void main() {
-  test('server time JSON parsing', () {
-    final Map<String, dynamic> mapData = jsonDecode(serverTimeModelMockData);
-    final ServerTime serverTime = ServerTime.fromJson(mapData);
+  test('server time', () async {
+    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+
+    final ServerTime serverTime = await ServerTime.fetchTime();
 
     expect(serverTime.time, getDateTime(1587544006));
   });
