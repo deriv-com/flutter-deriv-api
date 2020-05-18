@@ -28,7 +28,7 @@ class AssetIndexResponse extends Response {
 
   // Properties
   /// List of underlyings by their display name and symbol followed by their available contract types and duration boundaries.
-  final List<String> assetIndex;
+  final List<dynamic> assetIndex;
 
   /// Converts an instance to JSON
   @override
@@ -37,7 +37,7 @@ class AssetIndexResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   AssetIndexResponse copyWith({
-    List<String> assetIndex,
+    List<dynamic> assetIndex,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
