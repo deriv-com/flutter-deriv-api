@@ -1,5 +1,9 @@
 import 'package:flutter_deriv_api/api/account/models/profit_table_model.dart';
 import 'package:flutter_deriv_api/api/account/models/profit_transaction_model.dart';
+import 'package:flutter_deriv_api/api/account/profit_table/exceptions/profit_table_exception.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Profit table class
@@ -23,6 +27,8 @@ class ProfitTable extends ProfitTableModel {
         ),
       );
 
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
   /// Generate a copy of instance with given parameters
   ProfitTable copyWith({
     int count,
@@ -32,4 +38,19 @@ class ProfitTable extends ProfitTableModel {
         count: count ?? this.count,
         transactions: transactions ?? this.transactions,
       );
+
+  /// Retrieves a summary of account Profit Table, according to given search criteria.
+  /// For parameters information refer to [ProfitTableRequest].
+  static Future<ProfitTable> fetch(ProfitTableRequest request) async {
+    final ProfitTableResponse response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => ProfitTableException(
+        message: message,
+      ),
+    );
+
+    return ProfitTable.fromJson(response.profitTable);
+  }
 }

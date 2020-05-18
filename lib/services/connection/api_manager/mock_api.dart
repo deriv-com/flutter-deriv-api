@@ -21,6 +21,7 @@ import 'mock_data/account/get_settings_response.dart';
 import 'mock_data/account/login_history_response.dart';
 import 'mock_data/account/logout_response.dart';
 import 'mock_data/account/portfolio_response.dart';
+import 'mock_data/account/profit_table_response.dart';
 import 'mock_data/account/set_account_currency_response.dart';
 import 'mock_data/account/set_self_exclusion_response.dart';
 import 'mock_data/account/set_settings_response.dart';
@@ -247,7 +248,8 @@ class MockAPI implements BaseAPI {
         return pingResponse;
       case 'portfolio':
         return portfolioResponse;
-      // case 'profit_table':
+      case 'profit_table':
+        return profitTableResponse;
       // case 'proposal_array':
       case 'proposal_open_contract':
         return proposalOpenContractResponse;
