@@ -71,12 +71,12 @@ class CopyTradingStatistics extends CopyTradingStatisticsModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Gets statistics for given [CopytradingStatisticsRequest]
-  static Future<CopyTradingStatistics> fetchStatistic(
+  /// Gets statistics for given [traderId] in [CopytradingStatisticsRequest.traderId]
+  static Future<CopyTradingStatistics> fetchStatistics(
     CopytradingStatisticsRequest request,
   ) async {
     final CopytradingStatisticsResponse response = await _api.call(
-      request: request ?? const CopytradingListRequest(),
+      request: request,
     );
 
     checkException(

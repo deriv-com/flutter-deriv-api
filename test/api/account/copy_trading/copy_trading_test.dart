@@ -29,7 +29,7 @@ void main() {
 
     test('copy trading statisticts', () async {
       final CopyTradingStatistics copyTradingStatistic =
-          await CopyTradingStatistics.fetchStatistic(
+          await CopyTradingStatistics.fetchStatistics(
         const CopytradingStatisticsRequest(traderId: 'CR12345'),
       );
 
