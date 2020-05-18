@@ -27,6 +27,7 @@ import 'mock_data/account/set_account_currency_response.dart';
 import 'mock_data/account/set_self_exclusion_response.dart';
 import 'mock_data/account/set_settings_response.dart';
 import 'mock_data/account/statement_response.dart';
+import 'mock_data/account/top_up_virtual_response.dart';
 import 'mock_data/app/app_delete_response.dart';
 import 'mock_data/app/app_details_response.dart';
 import 'mock_data/app/app_list_response.dart';
@@ -284,7 +285,8 @@ class MockAPI implements BaseAPI {
         return serverTimeResponse;
       case 'tnc_approval':
         return tncApprovalResponse;
-      // case 'topup_virtual':
+      case 'topup_virtual':
+        return topUpVirtualResponse;
       case 'trading_durations':
         return tradingDurationsResponse;
       case 'trading_times':
