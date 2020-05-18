@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/copy_trading_list_response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/copy_trading_statistics_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/cashier/cashier_information_response.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -151,7 +152,8 @@ class MockAPI implements BaseAPI {
         return buyContractResponse;
       case 'cancel':
         return cancelResponse;
-      // case 'cashier':
+      case 'cashier':
+        return cashierInformationResponse;
       case 'contract_update_history':
         return contractUpdateHistoryResponse;
       case 'contract_update':
