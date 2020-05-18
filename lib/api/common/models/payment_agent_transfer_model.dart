@@ -11,7 +11,7 @@ abstract class PaymentAgentTransferModel extends APIBaseModel {
     this.transactionId,
   });
 
-  /// If set to `1`, transfer success. If set to `2`, dry-run success.
+  /// If set to `withdrawalOrTransfer`, transfer success. If set to `dryrun`, dry-run success.
   final PaymentResult paymentAgentTransfer;
 
   /// The `transfer_to` client full name

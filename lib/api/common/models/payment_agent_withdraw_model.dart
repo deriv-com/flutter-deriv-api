@@ -10,12 +10,12 @@ abstract class PaymentAgentWithdrawModel extends APIBaseModel {
     this.transactionId,
   });
 
-  /// If set to `1`, withdrawal success. If set to `2`, dry-run success.
+  /// If set to `withdrawalOrTransfer`, withdrawal success. If set to `dryrun`, dry-run success.
   final PaymentResult paymentAgentWithdraw;
 
   /// Payment agent name.
   final String paymentAgentName;
 
-  /// Reference ID of withdrawal performed.
+  /// Reference id of withdrawal performed.
   final int transactionId;
 }
