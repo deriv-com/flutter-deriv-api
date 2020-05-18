@@ -13,9 +13,8 @@ class VerifyEmail extends VerifyEmailModel {
   }) : super(verified: verified);
 
   /// Generates an instance from response
-  factory VerifyEmail.fromResponse(int result) => VerifyEmail(
-        verified: getBool(result),
-      );
+  factory VerifyEmail.fromResponse(VerifyEmailResponse response) =>
+      VerifyEmail(verified: getBool(response.verifyEmail));
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -39,6 +38,6 @@ class VerifyEmail extends VerifyEmailModel {
       throw UserException(message: response.error['message']);
     }
 
-    return VerifyEmail.fromResponse(response.verifyEmail);
+    return VerifyEmail.fromResponse(response);
   }
 }

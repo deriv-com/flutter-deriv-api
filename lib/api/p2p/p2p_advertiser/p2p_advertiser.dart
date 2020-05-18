@@ -224,7 +224,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
       throw P2PAdvertiserException(message: response.error['message']);
     }
 
-    return Forget.fromResponse(response.forget);
+    return Forget.fromResponse(response);
   }
 
   /// Unsubscribes all P2P (peer to peer) advertisers.
@@ -236,6 +236,6 @@ class P2PAdvertiser extends P2PAdvertiserModel {
       throw P2PAdvertiserException(message: response.error['message']);
     }
 
-    return ForgetAll.fromResponse(response.forgetAll);
+    return ForgetAll.fromResponse(response);
   }
 }

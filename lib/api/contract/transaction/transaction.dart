@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/api/common/forget/forget.dart';
+import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/contract/models/transaction_model.dart';
 import 'package:flutter_deriv_api/api/contract/transaction/exceptions/transactions_exception.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -108,6 +110,38 @@ class Transaction extends TransactionModel {
               )
             : null;
       });
+
+  /// Unsubscribes from transaction subscription.
+  Future<Forget> unsubscribeTransaction() async {
+    if (subscriptionInformation?.id == null) {
+      return null;
+    }
+
+    final ForgetResponse response =
+        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          TransactionsException(message: message),
+    );
+
+    return Forget.fromResponse(response);
+  }
+
+  /// Unsubscribes all transaction subscriptions.
+  static Future<ForgetAll> unsubscribeAllTransaction() async {
+    final ForgetAllResponse response =
+        await _api.unsubscribeAll(method: ForgetStreamType.transaction);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          TransactionsException(message: message),
+    );
+
+    return ForgetAll.fromResponse(response);
+  }
 
   /// Generates a copy of instance with given parameters
   TransactionModel copyWith({

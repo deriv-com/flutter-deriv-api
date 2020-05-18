@@ -124,7 +124,7 @@ class WebsiteStatus extends WebsiteStatusModel {
           WebsiteStatusException(message: message),
     );
 
-    return Forget.fromResponse(response.forget);
+    return Forget.fromResponse(response);
   }
 
   /// Unsubscribes all website status subscriptions.
@@ -138,7 +138,7 @@ class WebsiteStatus extends WebsiteStatusModel {
           WebsiteStatusException(message: message),
     );
 
-    return ForgetAll.fromResponse(response.forgetAll);
+    return ForgetAll.fromResponse(response);
   }
 
   /// Generate a copy of instance with given parameters

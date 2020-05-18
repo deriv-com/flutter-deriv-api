@@ -2,6 +2,8 @@ import 'package:flutter_deriv_api/api/account/balance/exceptions/balance_excepti
 import 'package:flutter_deriv_api/api/account/models/balance_model.dart';
 import 'package:flutter_deriv_api/api/account/models/balance_total_model.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
+import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
@@ -78,9 +80,35 @@ class Balance extends BalanceModel {
             : null;
       });
 
-  // TODO(ramin): Add implementation when unsubscribe is available in [BaseAPI]
-  /// Unsubscribes from Balance stream
-  Future<Forget> unsubscribe() async => null;
+  /// Unsubscribes from balance subscription.
+  Future<Forget> unsubscribeBalance() async {
+    if (subscriptionInformation?.id == null) {
+      return null;
+    }
+
+    final ForgetResponse response =
+        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => BalanceException(message: message),
+    );
+
+    return Forget.fromResponse(response);
+  }
+
+  /// Unsubscribes all balance subscriptions.
+  static Future<ForgetAll> unsubscribeAllBalance() async {
+    final ForgetAllResponse response =
+        await _api.unsubscribeAll(method: ForgetStreamType.balance);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => BalanceException(message: message),
+    );
+
+    return ForgetAll.fromResponse(response);
+  }
 
   /// Creates a copy of instance with given parameters
   Balance copyWith({
