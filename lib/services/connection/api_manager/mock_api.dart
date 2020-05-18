@@ -176,14 +176,14 @@ class MockAPI implements BaseAPI {
         return contractUpdateResponse;
       case 'contracts_for':
         return contractForResponse;
-      case 'copytrading_list':
-        return copyTradingListResponse;
-      case 'copytrading_statistics':
-        return copyTradingStatisticsResponse;
       case 'copy_start':
         return copyStartResponse;
       case 'copy_stop':
         return copyStopResponse;
+      case 'copytrading_list':
+        return copyTradingListResponse;
+      case 'copytrading_statistics':
+        return copyTradingStatisticsResponse;
       // case 'document_upload':
       case 'exchange_rates':
         return exchangeRatesResponse;
