@@ -1,29 +1,47 @@
+import 'package:flutter_deriv_api/api/account/models/copy_trading_statistics_model.dart';
 import 'package:flutter_deriv_api/api/account/models/market_trades_breakdown_model.dart';
 import 'package:flutter_deriv_api/api/account/models/profitable_trade_model.dart';
-import 'package:flutter_deriv_api/api/models/api_base_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// Copy trading statistic model class
-class CopyTradingStatisticModel extends APIBaseModel {
+import 'exceptions/copy_trading_exception.dart';
+
+/// Copy trading statistics
+class CopyTradingStatistics extends CopyTradingStatisticsModel {
   /// Initializes
-  CopyTradingStatisticModel({
-    this.activeSince,
-    this.avgDuration,
-    this.avgLoss,
-    this.avgProfit,
-    this.copiers,
-    this.last12monthsProfitableTrades,
-    this.monthlyProfitableTrades,
-    this.performanceProbability,
-    this.totalTrades,
-    this.tradesBreakdown,
-    this.tradesProfitable,
-    this.yearlyProfitableTrades,
-  });
+  CopyTradingStatistics({
+    DateTime activeSince,
+    int avgDuration,
+    double avgLoss,
+    double avgProfit,
+    int copiers,
+    double last12monthsProfitableTrades,
+    List<ProfitableTradeModel> monthlyProfitableTrades,
+    double performanceProbability,
+    int totalTrades,
+    List<MarketTradesBreakdownModel> tradesBreakdown,
+    double tradesProfitable,
+    List<ProfitableTradeModel> yearlyProfitableTrades,
+  }) : super(
+          activeSince: activeSince,
+          avgDuration: avgDuration,
+          avgLoss: avgLoss,
+          avgProfit: avgProfit,
+          copiers: copiers,
+          last12monthsProfitableTrades: last12monthsProfitableTrades,
+          monthlyProfitableTrades: monthlyProfitableTrades,
+          performanceProbability: performanceProbability,
+          totalTrades: totalTrades,
+          tradesBreakdown: tradesBreakdown,
+          tradesProfitable: tradesProfitable,
+          yearlyProfitableTrades: yearlyProfitableTrades,
+        );
 
   /// Creates an instance from JSON
-  factory CopyTradingStatisticModel.fromJson(Map<String, dynamic> json) =>
-      CopyTradingStatisticModel(
+  factory CopyTradingStatistics.fromJson(Map<String, dynamic> json) =>
+      CopyTradingStatistics(
         activeSince: getDateTime(json['active_since']),
         avgDuration: json['avg_duration'],
         avgLoss: json['avg_loss']?.toDouble(),
@@ -51,49 +69,32 @@ class CopyTradingStatisticModel extends APIBaseModel {
         ),
       );
 
-  /// This is the epoch the investor started trading.
-  final DateTime activeSince;
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Average seconds of keeping positions open.
-  final int avgDuration;
+  /// Gets statistics for given [CopytradingStatisticsRequest]
+  static Future<CopyTradingStatistics> fetchStatistic(
+    CopytradingStatisticsRequest request,
+  ) async {
+    final CopytradingStatisticsResponse response = await _api.call(
+      request: request ?? const CopytradingListRequest(),
+    );
 
-  /// Average loss of trades in percentage.
-  final double avgLoss;
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          CopyTradingException(message: message),
+    );
 
-  /// Average profitable trades in percentage.
-  final double avgProfit;
-
-  /// Number of copiers for this trader.
-  final int copiers;
-
-  /// Represents the net change in equity for a 12-month period.
-  final double last12monthsProfitableTrades;
-
-  /// Represents the net change in equity per month.
-  final List<ProfitableTradeModel> monthlyProfitableTrades;
-
-  /// Trader performance probability.
-  final double performanceProbability;
-
-  /// Total number of trades for all time.
-  final int totalTrades;
-
-  /// Represents the portfolio distribution by markets.
-  final List<MarketTradesBreakdownModel> tradesBreakdown;
-
-  /// Number of profit trades in percentage.
-  final double tradesProfitable;
-
-  /// Represents the net change in equity per year.
-  final List<ProfitableTradeModel> yearlyProfitableTrades;
+    return CopyTradingStatistics.fromJson(response.copytradingStatistics);
+  }
 
   /// Creates a copy of instance with given parameters
-  CopyTradingStatisticModel copyWith({
+  CopyTradingStatistics copyWith({
     DateTime activeSince,
     int avgDuration,
     double avgLoss,
     double avgProfit,
-    double copiers,
+    int copiers,
     double last12monthsProfitableTrades,
     List<ProfitableTradeModel> monthlyProfitableTrades,
     double performanceProbability,
@@ -102,7 +103,7 @@ class CopyTradingStatisticModel extends APIBaseModel {
     double tradesProfitable,
     List<ProfitableTradeModel> yearlyProfitableTrades,
   }) =>
-      CopyTradingStatisticModel(
+      CopyTradingStatistics(
         activeSince: activeSince ?? this.activeSince,
         avgDuration: avgDuration ?? this.avgDuration,
         avgLoss: avgLoss ?? this.avgLoss,

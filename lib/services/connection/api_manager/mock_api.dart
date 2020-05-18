@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/copy_trading_list_response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/copy_trading_statistics_response.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -158,8 +160,10 @@ class MockAPI implements BaseAPI {
         return contractForResponse;
       // case 'copy_start':
       // case 'copy_stop':
-      // case 'copytrading_list':
-      // case 'copytrading_statistics':
+      case 'copytrading_list':
+        return copyTradingListResponse;
+      case 'copytrading_statistics':
+        return copyTradingStatisticsResponse;
       // case 'document_upload':
       case 'exchange_rates':
         return exchangeRatesResponse;
