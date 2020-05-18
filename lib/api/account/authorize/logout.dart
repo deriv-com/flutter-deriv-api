@@ -13,9 +13,8 @@ class Logout extends LogoutModel {
   }) : super(succeeded: succeeded);
 
   /// Generate an instance from response
-  factory Logout.fromResponse(int result) => Logout(
-        succeeded: getBool(result),
-      );
+  factory Logout.fromResponse(LogoutResponse response) =>
+      Logout(succeeded: getBool(response.logout));
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -43,6 +42,6 @@ class Logout extends LogoutModel {
       ),
     );
 
-    return Logout.fromResponse(response.logout);
+    return Logout.fromResponse(response);
   }
 }
