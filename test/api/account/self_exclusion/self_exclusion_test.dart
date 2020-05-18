@@ -62,7 +62,7 @@ void main() {
         maxTurnover: 1000,
         sessionDurationLimit: 3600,
         timeoutUntil: DateTime.parse('2020-01-02'),
-      ).exclusion();
+      ).exclude();
 
       expect(setSelfExclusion, true);
     });

@@ -130,7 +130,7 @@ class SelfExclusion extends SelfExclusionModel {
   }
 
   /// Sets Self-Exclusion (this call should be used in conjunction with [fetchSelfExclusion])
-  Future<bool> exclusion() async {
+  Future<bool> exclude() async {
     final SetSelfExclusionResponse response = await _api.call(
       request: SetSelfExclusionRequest(
         excludeUntil: excludeUntil
