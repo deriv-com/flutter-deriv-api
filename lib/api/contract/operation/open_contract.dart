@@ -217,7 +217,7 @@ class OpenContract extends OpenContractModel {
   /// Subscription information
   final SubscriptionModel subscriptionInformation;
 
-  /// Gets the current spot of the this bought specified in
+  /// Gets the current spot of the the bought contract specified in [ProposalOpenContractRequest]
   static Future<OpenContract> fetchCurrentContractState(
     ProposalOpenContractRequest request,
   ) async {
@@ -237,7 +237,7 @@ class OpenContract extends OpenContractModel {
     );
   }
 
-  /// Subscribes to this bought contract spot and returns its spot update as [OpenContractModel]
+  /// Subscribes to the bought contract state specified in [ProposalOpenContractRequest]
   static Stream<OpenContract> subscribeContractState(
     ProposalOpenContractRequest request, {
     RequestCompareFunction comparePredicate,
