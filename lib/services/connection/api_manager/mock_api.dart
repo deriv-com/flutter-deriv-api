@@ -67,6 +67,7 @@ import 'mock_data/p2p/p2p_chat_create_response.dart';
 import 'mock_data/user/get_financial_assessment_response.dart';
 import 'mock_data/user/set_financial_assessment_response.dart';
 import 'mock_data/user/tnc_approval_response.dart';
+import 'mock_data/user/transfer_between_accounts_response.dart';
 import 'mock_data/user/verify_email_response.dart';
 
 /// Handle mock API calls
@@ -271,7 +272,8 @@ class MockAPI implements BaseAPI {
         return tradingTimesResponse;
       case 'transaction':
         return transactionResponse;
-      // case 'transfer_between_accounts':
+      case 'transfer_between_accounts':
+        return transferBetweenAccountsResponse;
       case 'verify_email':
         return verifyEmailResponse;
       // case 'website_status':

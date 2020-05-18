@@ -1,5 +1,5 @@
-import 'package:flutter_deriv_api/api/account/models/transfer_account_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
+import 'package:flutter_deriv_api/api/user/models/transfer_account_model.dart';
 
 /// Transfer between accounts model class
 abstract class TransferBetweenAccountsModel extends APIBaseModel {
