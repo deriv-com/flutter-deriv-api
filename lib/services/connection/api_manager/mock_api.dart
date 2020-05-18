@@ -1,8 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/copy_trading_list_response.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/copy_trading_statistics_response.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/cashier/cashier_information_response.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -16,6 +13,8 @@ import 'package:flutter_deriv_api/services/connection/call_manager/base_call_man
 
 import 'mock_data/account/authorize_response.dart';
 import 'mock_data/account/balance_response.dart';
+import 'mock_data/account/copy_trading_list_response.dart';
+import 'mock_data/account/copy_trading_statistics_response.dart';
 import 'mock_data/account/get_account_status_response.dart';
 import 'mock_data/account/get_limits_response.dart';
 import 'mock_data/account/get_settings_response.dart';
@@ -32,6 +31,7 @@ import 'mock_data/app/new_account_real_response.dart';
 import 'mock_data/app/new_account_virtual_response.dart';
 import 'mock_data/app/oauth_apps_response.dart';
 import 'mock_data/app/revoke_oauth_app_response.dart';
+import 'mock_data/cashier/cashier_information_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
 import 'mock_data/common/exchange_rates_response.dart';
 import 'mock_data/common/forget_all_response.dart';
