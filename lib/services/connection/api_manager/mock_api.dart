@@ -22,6 +22,7 @@ import 'mock_data/account/login_history_response.dart';
 import 'mock_data/account/logout_response.dart';
 import 'mock_data/account/portfolio_response.dart';
 import 'mock_data/account/profit_table_response.dart';
+import 'mock_data/account/reality_check_response.dart';
 import 'mock_data/account/set_account_currency_response.dart';
 import 'mock_data/account/set_self_exclusion_response.dart';
 import 'mock_data/account/set_settings_response.dart';
@@ -255,7 +256,8 @@ class MockAPI implements BaseAPI {
         return proposalOpenContractResponse;
       case 'proposal':
         return proposalResponse;
-      // case 'reality_check':
+      case 'reality_check':
+        return realityCheckResponse;
       // case 'residence_list':
       case 'revoke_oauth_app':
         return revokeOauthAppResponse;
