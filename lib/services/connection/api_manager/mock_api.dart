@@ -26,6 +26,7 @@ import 'mock_data/account/reality_check_response.dart';
 import 'mock_data/account/set_account_currency_response.dart';
 import 'mock_data/account/set_self_exclusion_response.dart';
 import 'mock_data/account/set_settings_response.dart';
+import 'mock_data/account/statement_response.dart';
 import 'mock_data/app/app_delete_response.dart';
 import 'mock_data/app/app_details_response.dart';
 import 'mock_data/app/app_list_response.dart';
@@ -273,7 +274,8 @@ class MockAPI implements BaseAPI {
         return setSelfExclusiveResponse;
       case 'set_settings':
         return setSettingsResponse;
-      // case 'statement':
+      case 'statement':
+        return statementResponse;
       // case 'states_list':
       // case 'history':
       case 'ticks':
