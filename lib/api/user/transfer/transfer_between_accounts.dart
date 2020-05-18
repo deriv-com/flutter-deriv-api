@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// Transfer between accounts class class
+/// Transfer between accounts class
 class TransferBetweenAccounts extends TransferBetweenAccountsModel {
   /// Initializes
   TransferBetweenAccounts({
