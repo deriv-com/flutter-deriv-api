@@ -11,16 +11,25 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
+import 'mock_data/account/api_token_response.dart';
 import 'mock_data/account/authorize_response.dart';
 import 'mock_data/account/balance_response.dart';
 import 'mock_data/account/copy_trading_list_response.dart';
 import 'mock_data/account/copy_trading_statistics_response.dart';
 import 'mock_data/account/get_account_status_response.dart';
 import 'mock_data/account/get_limits_response.dart';
+import 'mock_data/account/get_self_exclusion_response.dart';
 import 'mock_data/account/get_settings_response.dart';
+import 'mock_data/account/login_history_response.dart';
+import 'mock_data/account/logout_response.dart';
 import 'mock_data/account/portfolio_response.dart';
+import 'mock_data/account/profit_table_response.dart';
+import 'mock_data/account/reality_check_response.dart';
 import 'mock_data/account/set_account_currency_response.dart';
+import 'mock_data/account/set_self_exclusion_response.dart';
 import 'mock_data/account/set_settings_response.dart';
+import 'mock_data/account/statement_response.dart';
+import 'mock_data/account/top_up_virtual_response.dart';
 import 'mock_data/app/app_delete_response.dart';
 import 'mock_data/app/app_details_response.dart';
 import 'mock_data/app/app_list_response.dart';
@@ -33,6 +42,8 @@ import 'mock_data/app/oauth_apps_response.dart';
 import 'mock_data/app/revoke_oauth_app_response.dart';
 import 'mock_data/cashier/cashier_information_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
+import 'mock_data/common/copy_start_response.dart';
+import 'mock_data/common/copy_stop_response.dart';
 import 'mock_data/common/exchange_rates_response.dart';
 import 'mock_data/common/forget_all_response.dart';
 import 'mock_data/common/forget_response.dart';
@@ -133,7 +144,8 @@ class MockAPI implements BaseAPI {
     switch (method) {
       case 'active_symbols':
         return activeSymbolsResponse;
-      // case 'api_token':
+      case 'api_token':
+        return apiTokenResponse;
       case 'app_delete':
         return appDeleteResponse;
       case 'app_get':
@@ -164,8 +176,10 @@ class MockAPI implements BaseAPI {
         return contractUpdateResponse;
       case 'contracts_for':
         return contractForResponse;
-      // case 'copy_start':
-      // case 'copy_stop':
+      case 'copy_start':
+        return copyStartResponse;
+      case 'copy_stop':
+        return copyStopResponse;
       case 'copytrading_list':
         return copyTradingListResponse;
       case 'copytrading_statistics':
@@ -183,13 +197,16 @@ class MockAPI implements BaseAPI {
         return getFinancialAssessmentResponse;
       case 'get_limits':
         return getLimitsResponse;
-      // case 'get_self_exclusion':
+      case 'get_self_exclusion':
+        return getSelfExclusiveResponse;
       case 'get_settings':
         return getSettingsResponse;
       // case 'landing_company_details':
       // case 'landing_company':
-      // case 'login_history':
-      // case 'logout':
+      case 'login_history':
+        return loginHistoryResponse;
+      case 'logout':
+        return logoutResponse;
       case 'mt5_deposit':
         return mt5DepositResponse;
       case 'mt5_get_settings':
@@ -247,13 +264,15 @@ class MockAPI implements BaseAPI {
         return pingResponse;
       case 'portfolio':
         return portfolioResponse;
-      // case 'profit_table':
+      case 'profit_table':
+        return profitTableResponse;
       // case 'proposal_array':
       case 'proposal_open_contract':
         return proposalOpenContractResponse;
       case 'proposal':
         return proposalResponse;
-      // case 'reality_check':
+      case 'reality_check':
+        return realityCheckResponse;
       // case 'residence_list':
       case 'revoke_oauth_app':
         return revokeOauthAppResponse;
@@ -265,10 +284,12 @@ class MockAPI implements BaseAPI {
         return setAccountCurrencyResponse;
       case 'set_financial_assessment':
         return setFinancialAssessmentResponse;
-      // case 'set_self_exclusion':
+      case 'set_self_exclusion':
+        return setSelfExclusiveResponse;
       case 'set_settings':
         return setSettingsResponse;
-      // case 'statement':
+      case 'statement':
+        return statementResponse;
       // case 'states_list':
       // case 'history':
       case 'ticks':
@@ -277,7 +298,8 @@ class MockAPI implements BaseAPI {
         return serverTimeResponse;
       case 'tnc_approval':
         return tncApprovalResponse;
-      // case 'topup_virtual':
+      case 'topup_virtual':
+        return topUpVirtualResponse;
       case 'trading_durations':
         return tradingDurationsResponse;
       case 'trading_times':

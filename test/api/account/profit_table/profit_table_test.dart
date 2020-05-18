@@ -1,17 +1,24 @@
-import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/models/profit_transaction_model.dart';
 import 'package:flutter_deriv_api/api/account/profit_table/profit_table.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'profit_table_model_mock_data.dart';
-
 void main() {
-  test('profit table JSON parsing', () {
-    final Map<String, dynamic> mapData = jsonDecode(profitTableModelMockData);
-    final ProfitTable profitTable =
-        ProfitTable.fromJson(mapData['profit_table']);
+  test('profit table', () async {
+    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+
+    final ProfitTable profitTable = await ProfitTable.fetch(
+      const ProfitTableRequest(
+        description: 1,
+        limit: 25,
+        offset: 25,
+        sort: 'ASC',
+      ),
+    );
 
     expect(profitTable.count, 1);
 
@@ -22,12 +29,15 @@ void main() {
     expect(transaction.appId, 1234);
     expect(transaction.buyPrice, 250.0);
     expect(transaction.contractId, 4867502908);
-    expect(transaction.longCode, 'long_code');
+    expect(
+      transaction.longCode,
+      'Win payout if Volatility 10 (1s) Index after 5 ticks is strictly higher than entry spot.',
+    );
     expect(transaction.payout, 10.0);
     expect(transaction.purchaseTime, getDateTime(1587544006));
     expect(transaction.sellPrice, 5.25);
     expect(transaction.sellTime, getDateTime(1587554006));
-    expect(transaction.shortCode, 'short_code');
+    expect(transaction.shortCode, 'CALL_1HZ10V_1.95_1589779082_5T_S0P_0');
     expect(transaction.transactionId, 10867502908);
   });
 }

@@ -134,7 +134,7 @@ class PriceProposal extends PriceProposalModel {
           ContractOperationException(message: message),
     );
 
-    return Forget.fromResponse(response.forget);
+    return Forget.fromResponse(response);
   }
 
   /// Unsubscribes all proposal subscriptions.
@@ -148,7 +148,7 @@ class PriceProposal extends PriceProposalModel {
           ContractOperationException(message: message),
     );
 
-    return ForgetAll.fromResponse(response.forgetAll);
+    return ForgetAll.fromResponse(response);
   }
 
   /// Buys this proposal contract with [price] specified

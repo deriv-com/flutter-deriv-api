@@ -1,4 +1,5 @@
-const String topUpModelMockData = '''
+/// Top up virtual response
+const String topUpVirtualResponse = '''
 {
   "echo_req": {
     "topup_virtual": 1

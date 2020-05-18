@@ -13,9 +13,8 @@ class Forget extends ForgetModel {
   }) : super(succeeded: succeeded);
 
   /// Creates an instance from response
-  factory Forget.fromResponse(int result) => Forget(
-        succeeded: getBool(result),
-      );
+  factory Forget.fromResponse(ForgetResponse response) =>
+      Forget(succeeded: getBool(response.forget));
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -38,6 +37,6 @@ class Forget extends ForgetModel {
       throw ForgetException(message: response.error['message']);
     }
 
-    return Forget.fromResponse(response.forget);
+    return Forget.fromResponse(response);
   }
 }
