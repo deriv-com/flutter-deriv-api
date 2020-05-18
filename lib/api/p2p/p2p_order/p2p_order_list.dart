@@ -75,10 +75,23 @@ class P2POrderList {
         },
       );
 
-  // TODO(Ramin): Implement unsubscribe when method is available in [BaseAPI]
-  /// Unsubscribes from order list stream
-  Future<Forget> unsubscribe() async => null;
+  /// Unsubscribes from order list subscription.
+  Future<Forget> unsubscribeOrderList() async {
+    if (subscriptionInformation?.id == null) {
+      return null;
+    }
 
-  /// Unsubscribes all P2P (peer to peer) advertisers.
-  static Future<ForgetAll> unsubscribeAllOrderList() async => null;
+    final ForgetResponse response =
+        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+
+    if (response.error != null) {
+      throw P2POrderException(message: response.error['message']);
+    }
+
+    return Forget.fromResponse(response.forget);
+  }
+
+  /// Unsubscribes from all order subscriptions.
+  static Future<ForgetAll> unsubscribeAllOrderList() =>
+      P2POrder.unsubscribeAllOrder();
 }

@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/api/common/forget/forget.dart';
+import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_order_model.dart';
@@ -171,6 +173,34 @@ class P2POrder extends P2POrderModel {
               : null;
         },
       );
+
+  /// Unsubscribes from order subscription.
+  Future<Forget> unsubscribeOrder() async {
+    if (subscriptionInformation?.id == null) {
+      return null;
+    }
+
+    final ForgetResponse response =
+        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+
+    if (response.error != null) {
+      throw P2POrderException(message: response.error['message']);
+    }
+
+    return Forget.fromResponse(response.forget);
+  }
+
+  /// Unsubscribes all order subscriptions.
+  static Future<ForgetAll> unsubscribeAllOrder() async {
+    final ForgetAllResponse response =
+        await _api.unsubscribeAll(method: ForgetStreamType.p2pOrder);
+
+    if (response.error != null) {
+      throw P2POrderException(message: response.error['message']);
+    }
+
+    return ForgetAll.fromResponse(response.forgetAll);
+  }
 
   /// Cancels this order
   Future<P2POrder> cancel() async {
