@@ -1,4 +1,5 @@
-const String assetIndexJSON = '''{
+/// Asset index response
+const String assetIndexResponse = '''{
   "asset_index": [
     [
       "frxAUDJPY",
