@@ -1,16 +1,15 @@
-import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/reality_check/reality_check.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'reality_check_model_mock_data.dart';
-
 void main() {
-  test('revoke oauth app JSON parsing', () {
-    final Map<String, dynamic> mapData = jsonDecode(realityCheckModelMockData);
-    final RealityCheck realityCheck =
-        RealityCheck.fromJson(mapData['reality_check']);
+  test('reality check', () async {
+    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+
+    final RealityCheck realityCheck = await RealityCheck.check();
 
     expect(realityCheck.buyAmount, 200.0);
     expect(realityCheck.buyCount, 7);
