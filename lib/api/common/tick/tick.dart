@@ -93,7 +93,7 @@ class Tick extends TickModel {
       exceptionCreator: (String message) => TickException(message: message),
     );
 
-    return Forget.fromResponse(response.forget);
+    return Forget.fromResponse(response);
   }
 
   /// Unsubscribes all ticks.
@@ -106,7 +106,7 @@ class Tick extends TickModel {
       exceptionCreator: (String message) => TickException(message: message),
     );
 
-    return ForgetAll.fromResponse(response.forgetAll);
+    return ForgetAll.fromResponse(response);
   }
 
   /// Generates a copy of instance with given parameters
