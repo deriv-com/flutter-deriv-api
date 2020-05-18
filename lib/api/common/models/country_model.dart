@@ -3,7 +3,16 @@ import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 /// Country model
 class CountryModel extends APIBaseModel {
   /// Initializes
-  CountryModel({this.code, this.name});
+  CountryModel({
+    this.code,
+    this.name,
+  });
+
+  /// Generate an instance from item
+  factory CountryModel.fromItem(dynamic item) => CountryModel(
+        code: item.first,
+        name: item.last,
+      );
 
   /// Country code
   final String code;

@@ -13,6 +13,8 @@ import 'package:flutter_deriv_api/services/connection/call_manager/base_call_man
 
 import 'mock_data/account/authorize_response.dart';
 import 'mock_data/account/balance_response.dart';
+import 'mock_data/account/copy_trading_list_response.dart';
+import 'mock_data/account/copy_trading_statistics_response.dart';
 import 'mock_data/account/get_account_status_response.dart';
 import 'mock_data/account/get_limits_response.dart';
 import 'mock_data/account/get_settings_response.dart';
@@ -29,10 +31,14 @@ import 'mock_data/app/new_account_real_response.dart';
 import 'mock_data/app/new_account_virtual_response.dart';
 import 'mock_data/app/oauth_apps_response.dart';
 import 'mock_data/app/revoke_oauth_app_response.dart';
+import 'mock_data/cashier/cashier_information_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
 import 'mock_data/common/exchange_rates_response.dart';
 import 'mock_data/common/forget_all_response.dart';
 import 'mock_data/common/forget_response.dart';
+import 'mock_data/common/payment_agent_list_response.dart';
+import 'mock_data/common/payment_agent_transfer_response.dart';
+import 'mock_data/common/payment_agent_withdraw_response.dart';
 import 'mock_data/common/ping_response.dart';
 import 'mock_data/common/server_time_response.dart';
 import 'mock_data/common/tick_response.dart';
@@ -72,6 +78,7 @@ import 'mock_data/p2p/p2p_order_list_response.dart';
 import 'mock_data/user/get_financial_assessment_response.dart';
 import 'mock_data/user/set_financial_assessment_response.dart';
 import 'mock_data/user/tnc_approval_response.dart';
+import 'mock_data/user/transfer_between_accounts_response.dart';
 import 'mock_data/user/verify_email_response.dart';
 
 /// Handle mock API calls
@@ -154,7 +161,8 @@ class MockAPI implements BaseAPI {
         return buyContractResponse;
       case 'cancel':
         return cancelResponse;
-      // case 'cashier':
+      case 'cashier':
+        return cashierInformationResponse;
       case 'contract_update_history':
         return contractUpdateHistoryResponse;
       case 'contract_update':
@@ -163,8 +171,10 @@ class MockAPI implements BaseAPI {
         return contractForResponse;
       // case 'copy_start':
       // case 'copy_stop':
-      // case 'copytrading_list':
-      // case 'copytrading_statistics':
+      case 'copytrading_list':
+        return copyTradingListResponse;
+      case 'copytrading_statistics':
+        return copyTradingStatisticsResponse;
       // case 'document_upload':
       case 'exchange_rates':
         return exchangeRatesResponse;
@@ -239,6 +249,12 @@ class MockAPI implements BaseAPI {
       // case 'paymentagent_list':
       // case 'paymentagent_transfer':
       // case 'paymentagent_withdraw':
+      case 'paymentagent_list':
+        return paymentAgentListResponse;
+      case 'paymentagent_transfer':
+        return paymentAgentTransferResponse;
+      case 'paymentagent_withdraw':
+        return paymentAgentWithdrawResponse;
       // case 'payout_currencies':
       case 'ping':
         return pingResponse;
@@ -281,7 +297,8 @@ class MockAPI implements BaseAPI {
         return tradingTimesResponse;
       case 'transaction':
         return transactionResponse;
-      // case 'transfer_between_accounts':
+      case 'transfer_between_accounts':
+        return transferBetweenAccountsResponse;
       case 'verify_email':
         return verifyEmailResponse;
       // case 'website_status':
