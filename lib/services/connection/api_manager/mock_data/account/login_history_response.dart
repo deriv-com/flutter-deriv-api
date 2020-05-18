@@ -1,4 +1,5 @@
-const String loginHistoryModelMockData = '''
+/// Login history response
+const String loginHistoryResponse = '''
 {
   "echo_req": {
     "limit": 2,

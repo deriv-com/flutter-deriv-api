@@ -94,7 +94,7 @@ class Balance extends BalanceModel {
       exceptionCreator: (String message) => BalanceException(message: message),
     );
 
-    return Forget.fromResponse(response.forget);
+    return Forget.fromResponse(response);
   }
 
   /// Unsubscribes all balance subscriptions.
@@ -107,7 +107,7 @@ class Balance extends BalanceModel {
       exceptionCreator: (String message) => BalanceException(message: message),
     );
 
-    return ForgetAll.fromResponse(response.forgetAll);
+    return ForgetAll.fromResponse(response);
   }
 
   /// Creates a copy of instance with given parameters

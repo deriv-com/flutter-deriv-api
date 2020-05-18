@@ -13,9 +13,8 @@ class TNCApproval extends TNCApprovalModel {
   }) : super(approved: approved);
 
   /// Generates an instance from response
-  factory TNCApproval.fromResponse(int result) => TNCApproval(
-        approved: getBool(result),
-      );
+  factory TNCApproval.fromResponse(TncApprovalResponse response) =>
+      TNCApproval(approved: getBool(response.tncApproval));
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -38,6 +37,6 @@ class TNCApproval extends TNCApprovalModel {
       throw UserException(message: response.error['message']);
     }
 
-    return TNCApproval.fromResponse(response.tncApproval);
+    return TNCApproval.fromResponse(response);
   }
 }

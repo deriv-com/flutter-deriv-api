@@ -1,5 +1,10 @@
-const String selfExclusiveMockData = '''
+/// Get self exclusive response
+const String getSelfExclusiveResponse = '''
 {
+  "echo_req": {
+    "get_self_exclusion": 1
+  },
+  "get_self_exclusion": {
   "exclude_until": "2020-01-01",
   "max_30day_losses": 100000,
   "max_30day_turnover": 1000,
@@ -13,5 +18,7 @@ const String selfExclusiveMockData = '''
   "max_turnover": 1000,
   "session_duration_limit": 3600,
   "timeout_until": 1497357184
+  },
+  "msg_type": "get_self_exclusion"
 }
 ''';

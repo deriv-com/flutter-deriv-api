@@ -277,7 +277,7 @@ class OpenContract extends OpenContractModel {
           ContractOperationException(message: message),
     );
 
-    return Forget.fromResponse(response.forget);
+    return Forget.fromResponse(response);
   }
 
   /// Unsubscribes all open contract subscriptions.
@@ -292,7 +292,7 @@ class OpenContract extends OpenContractModel {
           ContractOperationException(message: message),
     );
 
-    return ForgetAll.fromResponse(response.forgetAll);
+    return ForgetAll.fromResponse(response);
   }
 
   /// Generate a copy of instance with given parameters

@@ -1,4 +1,5 @@
-const String realityCheckModelMockData = '''
+/// Reality check response
+const String realityCheckResponse = '''
 {
   "echo_req": {
     "reality_check": 1

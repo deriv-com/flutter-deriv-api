@@ -13,9 +13,8 @@ class ServerTime extends ServerTimeModel {
   }) : super(time: time);
 
   /// Creates an instance from response
-  factory ServerTime.fromResponse(int result) => ServerTime(
-        time: getDateTime(result),
-      );
+  factory ServerTime.fromResponse(TimeResponse response) =>
+      ServerTime(time: getDateTime(response.time));
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -39,6 +38,6 @@ class ServerTime extends ServerTimeModel {
       throw ServerTimeException(message: response.error['message']);
     }
 
-    return ServerTime.fromResponse(response.time);
+    return ServerTime.fromResponse(response);
   }
 }

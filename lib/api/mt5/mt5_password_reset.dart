@@ -13,9 +13,8 @@ class MT5PasswordReset extends MT5PasswordResetModel {
   }) : super(succeeded: succeeded);
 
   /// Creates an instance from response
-  factory MT5PasswordReset.fromResponse(int result) => MT5PasswordReset(
-        succeeded: getBool(result),
-      );
+  factory MT5PasswordReset.fromResponse(Mt5PasswordResetResponse response) =>
+      MT5PasswordReset(succeeded: getBool(response.mt5PasswordReset));
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -38,6 +37,6 @@ class MT5PasswordReset extends MT5PasswordResetModel {
       throw MT5Exception(message: response.error['message']);
     }
 
-    return MT5PasswordReset.fromResponse(response.mt5PasswordReset);
+    return MT5PasswordReset.fromResponse(response);
   }
 }

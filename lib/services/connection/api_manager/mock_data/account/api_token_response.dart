@@ -1,10 +1,12 @@
-const String apiTokenModelMockData = '''
+/// API token response
+const String apiTokenResponse = '''
 {
   "api_token": {
+    "delete_token": 1,
     "new_token": 1,
     "tokens": [
       {
-        "display_name": "sample_token",
+        "display_name": "sample token",
         "last_used": "2020-01-11",
         "scopes": ["read", "trading_information"],
         "token": "thisIsASampleTOKEN123",
