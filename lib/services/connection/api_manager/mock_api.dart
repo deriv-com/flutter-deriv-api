@@ -33,6 +33,9 @@ import 'mock_data/common/active_symbols_response.dart';
 import 'mock_data/common/exchange_rates_response.dart';
 import 'mock_data/common/forget_all_response.dart';
 import 'mock_data/common/forget_response.dart';
+import 'mock_data/common/payment_agent_list_response.dart';
+import 'mock_data/common/payment_agent_transfer_response.dart';
+import 'mock_data/common/payment_agent_withdraw_response.dart';
 import 'mock_data/common/ping_response.dart';
 import 'mock_data/common/server_time_response.dart';
 import 'mock_data/common/tick_response.dart';
@@ -226,9 +229,12 @@ class MockAPI implements BaseAPI {
       // case 'p2p_order_create':
       // case 'p2p_order_info':
       // case 'p2p_order_list':
-      // case 'paymentagent_list':
-      // case 'paymentagent_transfer':
-      // case 'paymentagent_withdraw':
+      case 'paymentagent_list':
+        return paymentAgentListResponse;
+      case 'paymentagent_transfer':
+        return paymentAgentTransferResponse;
+      case 'paymentagent_withdraw':
+        return paymentAgentWithdrawResponse;
       // case 'payout_currencies':
       case 'ping':
         return pingResponse;

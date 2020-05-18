@@ -1,4 +1,5 @@
-const String paymentAgentTransferModelMockData = '''
+/// Payment agent transfer response
+const String paymentAgentTransferResponse = '''
 {
   "echo_req": {
     "amount": 1000,

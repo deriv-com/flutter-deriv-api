@@ -1,40 +1,27 @@
-import 'package:flutter_deriv_api/api/account/models/payment_agent_model.dart';
+import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
-/// Payment agent class
-class PaymentAgent extends PaymentAgentModel {
+/// Payment agent model class
+class PaymentAgentModel extends APIBaseModel {
   /// Initializes
-  PaymentAgent({
-    String currencies,
-    String depositCommission,
-    String email,
-    String furtherInformation,
-    String maxWithdrawal,
-    String minWithdrawal,
-    String name,
-    String paymentAgentLoginId,
-    String summary,
-    String supportedBanks,
-    String telephone,
-    String url,
-    String withdrawalCommission,
-  }) : super(
-          currencies: currencies,
-          depositCommission: depositCommission,
-          email: email,
-          furtherInformation: furtherInformation,
-          maxWithdrawal: maxWithdrawal,
-          minWithdrawal: minWithdrawal,
-          name: name,
-          paymentAgentLoginId: paymentAgentLoginId,
-          summary: summary,
-          supportedBanks: supportedBanks,
-          telephone: telephone,
-          url: url,
-          withdrawalCommission: withdrawalCommission,
-        );
+  PaymentAgentModel({
+    this.currencies,
+    this.depositCommission,
+    this.email,
+    this.furtherInformation,
+    this.maxWithdrawal,
+    this.minWithdrawal,
+    this.name,
+    this.paymentAgentLoginId,
+    this.summary,
+    this.supportedBanks,
+    this.telephone,
+    this.url,
+    this.withdrawalCommission,
+  });
 
   /// Generate an instance from JSON
-  factory PaymentAgent.fromJson(Map<String, dynamic> json) => PaymentAgent(
+  factory PaymentAgentModel.fromJson(Map<String, dynamic> json) =>
+      PaymentAgentModel(
         currencies: json['currencies'],
         depositCommission: json['deposit_commission'],
         email: json['email'],
@@ -50,8 +37,47 @@ class PaymentAgent extends PaymentAgentModel {
         withdrawalCommission: json['withdrawal_commission'],
       );
 
+  /// Currencies that are accepted by this payment agent.
+  final String currencies;
+
+  /// Commission amount applied on deposits made through this payment agent.
+  final String depositCommission;
+
+  /// Payment agent's email address.
+  final String email;
+
+  /// More descriptions about this payment agent.
+  final String furtherInformation;
+
+  /// Maximum withdrawal allowed for transactions through this payment agent.
+  final String maxWithdrawal;
+
+  /// Minimum withdrawal allowed for transactions through this payment agent.
+  final String minWithdrawal;
+
+  /// Payment agent's name.
+  final String name;
+
+  /// Payment agent's login id.
+  final String paymentAgentLoginId;
+
+  /// A summary about payment agent.
+  final String summary;
+
+  /// Comma separated list of supported banks.
+  final String supportedBanks;
+
+  /// Payment agent's phone number.
+  final String telephone;
+
+  /// Payment agent's website URL.
+  final String url;
+
+  /// Commission amount applied on withdrawals made through this payment agent.
+  final String withdrawalCommission;
+
   /// Generate a copy of instance with given parameters
-  PaymentAgent copyWith({
+  PaymentAgentModel copyWith({
     String currencies,
     String depositCommission,
     String email,
@@ -66,7 +92,7 @@ class PaymentAgent extends PaymentAgentModel {
     String url,
     String withdrawalCommission,
   }) =>
-      PaymentAgent(
+      PaymentAgentModel(
         currencies: currencies ?? this.currencies,
         depositCommission: depositCommission ?? this.depositCommission,
         email: email ?? this.email,
