@@ -185,27 +185,6 @@ class MockAPI implements BaseAPI {
       // case 'landing_company':
       // case 'login_history':
       // case 'logout':
-      // case 'mt5_deposit':
-      // case 'mt5_get_settings':
-      // case 'mt5_login_list':
-      // case 'mt5_new_account':
-      // case 'mt5_password_change':
-      // case 'mt5_password_check':
-      // case 'mt5_password_reset':
-      // case 'mt5_withdrawal':
-      // case 'new_account_maltainvest':
-      // case 'new_account_real':
-      // case 'new_account_virtual':
-      // case 'oauth_apps':
-      // case 'p2p_advert_create':
-      // case 'p2p_advert_info':
-      // case 'p2p_advert_list':
-      // case 'p2p_advert_update':
-      // case 'p2p_advertiser_adverts':
-      // case 'p2p_advertiser_create':
-      // case 'p2p_advertiser_info':
-      // case 'p2p_advertiser_update':
-      // case 'p2p_chat_create':
       case 'p2p_order_cancel':
         return p2pOrderCancelResponse;
       case 'p2p_order_confirm':
