@@ -16,11 +16,13 @@ import 'mock_data/account/authorize_response.dart';
 import 'mock_data/account/balance_response.dart';
 import 'mock_data/account/get_account_status_response.dart';
 import 'mock_data/account/get_limits_response.dart';
+import 'mock_data/account/get_self_exclusion_response.dart';
 import 'mock_data/account/get_settings_response.dart';
 import 'mock_data/account/login_history_response.dart';
 import 'mock_data/account/logout_response.dart';
 import 'mock_data/account/portfolio_response.dart';
 import 'mock_data/account/set_account_currency_response.dart';
+import 'mock_data/account/set_self_exclusion_response.dart';
 import 'mock_data/account/set_settings_response.dart';
 import 'mock_data/app/app_delete_response.dart';
 import 'mock_data/app/app_details_response.dart';
@@ -181,7 +183,8 @@ class MockAPI implements BaseAPI {
         return getFinancialAssessmentResponse;
       case 'get_limits':
         return getLimitsResponse;
-      // case 'get_self_exclusion':
+      case 'get_self_exclusion':
+        return getSelfExclusiveResponse;
       case 'get_settings':
         return getSettingsResponse;
       // case 'landing_company_details':
@@ -262,7 +265,8 @@ class MockAPI implements BaseAPI {
         return setAccountCurrencyResponse;
       case 'set_financial_assessment':
         return setFinancialAssessmentResponse;
-      // case 'set_self_exclusion':
+      case 'set_self_exclusion':
+        return setSelfExclusiveResponse;
       case 'set_settings':
         return setSettingsResponse;
       // case 'statement':
