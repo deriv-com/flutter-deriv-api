@@ -48,7 +48,7 @@ class ProposalArrayRequest extends Request {
   final String basis;
 
   /// One or two valid contract-types.
-  final List<String> contractType;
+  final List<dynamic> contractType;
 
   /// This can only be the account-holder's currency.
   final String currency;
@@ -93,7 +93,7 @@ class ProposalArrayRequest extends Request {
     num amount,
     List<Map<String, dynamic>> barriers,
     String basis,
-    List<String> contractType,
+    List<dynamic> contractType,
     String currency,
     int dateExpiry,
     int dateStart,
