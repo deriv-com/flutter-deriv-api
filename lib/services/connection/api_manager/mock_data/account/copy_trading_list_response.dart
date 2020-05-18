@@ -1,4 +1,5 @@
-const String copyTradingListJSON = '''{
+/// Copy trading list response
+const String copyTradingListResponse = '''{
   "echo_req": {},
   "msg_type": "copytrading_list",
   "copytrading_list": {

@@ -2,10 +2,10 @@ import 'package:flutter_deriv_api/api/account/models/copier_model.dart';
 import 'package:flutter_deriv_api/api/account/models/trader_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
-/// Abstract class for Copy trading calls
-abstract class CopyTradingModel extends APIBaseModel {
+/// Copy trading list model class
+abstract class CopyTradingListModel extends APIBaseModel {
   /// Initializes
-  CopyTradingModel({
+  CopyTradingListModel({
     this.copiers,
     this.traders,
   });
