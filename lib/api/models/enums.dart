@@ -83,11 +83,11 @@ enum PaymentResult {
   /// Noun, this value is not a valid value
   noun,
 
-  /// Transfer success
-  success,
+  /// Withdrawal success
+  withdrawalOrTransfer,
 
   /// dry-run success
-  dryrunSuccess,
+  dryrun,
 }
 
 /// Account type
@@ -260,6 +260,7 @@ enum ContractBasis {
   /// User will define how much stake he/she is going to put for this contract
   stake,
 }
+
 /// Type of the password to reset
 enum PasswordType {
   /// Main
