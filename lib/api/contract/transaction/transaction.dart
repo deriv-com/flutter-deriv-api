@@ -126,7 +126,7 @@ class Transaction extends TransactionModel {
           TransactionsException(message: message),
     );
 
-    return Forget.fromResponse(response.forget);
+    return Forget.fromResponse(response);
   }
 
   /// Unsubscribes all transaction subscriptions.
@@ -140,7 +140,7 @@ class Transaction extends TransactionModel {
           TransactionsException(message: message),
     );
 
-    return ForgetAll.fromResponse(response.forgetAll);
+    return ForgetAll.fromResponse(response);
   }
 
   /// Generates a copy of instance with given parameters
