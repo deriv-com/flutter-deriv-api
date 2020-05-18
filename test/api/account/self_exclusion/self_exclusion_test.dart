@@ -48,5 +48,23 @@ void main() {
 
       expect(setSelfExclusion, true);
     });
+
+    test('set self exclusive for current instance', () async {
+      final bool setSelfExclusion = await SelfExclusion(
+        excludeUntil: DateTime.parse('2020-01-01'),
+        max30dayLosses: 100000,
+        max30dayTurnover: 1000,
+        max7dayLosses: 100000,
+        max7dayTurnover: 1000,
+        maxDeposit: 1000,
+        maxDepositEndDate: DateTime.parse('2020-01-03'),
+        maxLosses: 100000,
+        maxTurnover: 1000,
+        sessionDurationLimit: 3600,
+        timeoutUntil: DateTime.parse('2020-01-02'),
+      ).exclusion();
+
+      expect(setSelfExclusion, true);
+    });
   });
 }

@@ -13,9 +13,8 @@ class CopyTradingStart extends CopyTradingStartModel {
   }) : super(succeeded: succeeded);
 
   /// Generate an instance from response
-  factory CopyTradingStart.fromResponse(int result) => CopyTradingStart(
-        succeeded: getBool(result),
-      );
+  factory CopyTradingStart.fromResponse(CopyStartResponse response) =>
+      CopyTradingStart(succeeded: getBool(response.copyStart));
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -39,6 +38,6 @@ class CopyTradingStart extends CopyTradingStartModel {
       ),
     );
 
-    return CopyTradingStart.fromResponse(response.copyStart);
+    return CopyTradingStart.fromResponse(response);
   }
 }

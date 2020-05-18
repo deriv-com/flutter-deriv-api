@@ -13,9 +13,10 @@ class SetAccountCurrency extends SetAccountCurrencyModel {
   }) : super(succeeded: succeeded);
 
   /// Creates an instance from response
-  factory SetAccountCurrency.fromResponse(int result) => SetAccountCurrency(
-        succeeded: getBool(result),
-      );
+  factory SetAccountCurrency.fromResponse(
+    SetAccountCurrencyResponse response,
+  ) =>
+      SetAccountCurrency(succeeded: getBool(response.setAccountCurrency));
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -43,6 +44,6 @@ class SetAccountCurrency extends SetAccountCurrencyModel {
       ),
     );
 
-    return SetAccountCurrency.fromResponse(response.setAccountCurrency);
+    return SetAccountCurrency.fromResponse(response);
   }
 }

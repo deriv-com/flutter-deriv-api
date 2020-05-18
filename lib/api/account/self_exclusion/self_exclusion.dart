@@ -128,4 +128,36 @@ class SelfExclusion extends SelfExclusionModel {
 
     return getBool(response.setSelfExclusion);
   }
+
+  /// Sets Self-Exclusion (this call should be used in conjunction with [fetchSelfExclusion])
+  Future<bool> exclusion() async {
+    final SetSelfExclusionResponse response = await _api.call(
+      request: SetSelfExclusionRequest(
+        excludeUntil: excludeUntil
+            .toString(), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+        max30dayLosses: max30dayLosses,
+        max30dayTurnover: max30dayTurnover,
+        max7dayLosses: max7dayLosses,
+        max7dayTurnover: max7dayTurnover,
+        maxBalance: maxBalance,
+        maxDeposit: maxDeposit,
+        maxDepositEndDate: maxDepositEndDate
+            .toString(), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+        maxLosses: maxLosses,
+        maxOpenBets: maxOpenBets,
+        maxTurnover: maxTurnover,
+        sessionDurationLimit: sessionDurationLimit,
+        timeoutUntil: timeoutUntil.millisecondsSinceEpoch ~/ 1000,
+      ),
+    );
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => SelfExclusionException(
+        message: message,
+      ),
+    );
+
+    return getBool(response.setSelfExclusion);
+  }
 }
