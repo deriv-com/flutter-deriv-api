@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/asset_index_response.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -139,7 +140,8 @@ class MockAPI implements BaseAPI {
         return appRegisterResponse;
       case 'app_update':
         return appUpdateResponse;
-      // case 'asset_index':
+      case 'asset_index':
+        return assetIndexResponse;
       case 'authorize':
         return authorizeResponse;
       case 'balance':
