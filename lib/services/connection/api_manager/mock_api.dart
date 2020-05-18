@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/asset_index_response.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -31,6 +30,7 @@ import 'mock_data/app/new_account_virtual_response.dart';
 import 'mock_data/app/oauth_apps_response.dart';
 import 'mock_data/app/revoke_oauth_app_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
+import 'mock_data/common/asset_index_response.dart';
 import 'mock_data/common/exchange_rates_response.dart';
 import 'mock_data/common/forget_all_response.dart';
 import 'mock_data/common/forget_response.dart';
