@@ -185,16 +185,6 @@ class MockAPI implements BaseAPI {
       // case 'landing_company':
       // case 'login_history':
       // case 'logout':
-      case 'p2p_order_cancel':
-        return p2pOrderCancelResponse;
-      case 'p2p_order_confirm':
-        return p2pOrderConfirmResponse;
-      case 'p2p_order_create':
-        return p2pOrderCreateResponse;
-      case 'p2p_order_info':
-        return p2pOrderInfoResponse;
-      case 'p2p_order_list':
-        return p2pOrderListResponse;
       case 'mt5_deposit':
         return mt5DepositResponse;
       case 'mt5_get_settings':
@@ -236,6 +226,16 @@ class MockAPI implements BaseAPI {
         return p2pAdvertiserUpdateResponse;
       case 'p2p_chat_create':
         return p2pChatCreateResponse;
+      case 'p2p_order_cancel':
+        return p2pOrderCancelResponse;
+      case 'p2p_order_confirm':
+        return p2pOrderConfirmResponse;
+      case 'p2p_order_create':
+        return p2pOrderCreateResponse;
+      case 'p2p_order_info':
+        return p2pOrderInfoResponse;
+      case 'p2p_order_list':
+        return p2pOrderListResponse;
       // case 'paymentagent_list':
       // case 'paymentagent_transfer':
       // case 'paymentagent_withdraw':
