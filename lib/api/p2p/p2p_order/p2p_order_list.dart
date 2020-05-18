@@ -92,6 +92,6 @@ class P2POrderList {
   }
 
   /// Unsubscribes from all order subscriptions.
-  static Future<ForgetAll> unsubscribeAllOrderList() =>
+  static Future<ForgetAll> unsubscribeAllOrder() =>
       P2POrder.unsubscribeAllOrder();
 }
