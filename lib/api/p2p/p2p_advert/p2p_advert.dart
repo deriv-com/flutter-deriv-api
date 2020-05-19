@@ -198,9 +198,8 @@ class P2PAdvert extends P2PAdvertModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => P2PAdvertException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          P2PAdvertException(message: message),
     );
 
     return P2PAdvert.fromJson(response.p2pAdvertInfo);
@@ -215,9 +214,8 @@ class P2PAdvert extends P2PAdvertModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => P2PAdvertException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          P2PAdvertException(message: message),
     );
 
     return getListFromMap(
@@ -235,9 +233,8 @@ class P2PAdvert extends P2PAdvertModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => P2PAdvertException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          P2PAdvertException(message: message),
     );
 
     return P2PAdvert.fromJson(response.p2pAdvertCreate);
@@ -252,9 +249,8 @@ class P2PAdvert extends P2PAdvertModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => P2PAdvertException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          P2PAdvertException(message: message),
     );
 
     return P2PAdvert.fromJson(response.p2pAdvertUpdate);

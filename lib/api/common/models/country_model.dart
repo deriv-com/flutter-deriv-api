@@ -9,7 +9,7 @@ class CountryModel extends APIBaseModel {
   });
 
   /// Generate an instance from item
-  factory CountryModel.fromItem(dynamic item) => CountryModel(
+  factory CountryModel.fromItem(List<dynamic> item) => CountryModel(
         code: item.first,
         name: item.last,
       );

@@ -40,9 +40,8 @@ class SellContract extends SellContractModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => ContractOperationException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          ContractOperationException(message: message),
     );
 
     return SellContract.fromJson(response.sell);

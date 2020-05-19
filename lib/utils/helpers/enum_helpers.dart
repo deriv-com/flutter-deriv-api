@@ -37,19 +37,17 @@ T getEnumFromString<T>({
     (T enumItem) {
       final String item = enumItem.toString().split('.')[1];
 
-      String itemReCase;
       switch (enumCase) {
         case EnumCase.snakeCase:
-          itemReCase = ReCase(item).snakeCase;
+          return ReCase(item).snakeCase.compareTo(name) == 0;
           break;
         case EnumCase.paramCase:
-          itemReCase = ReCase(item).paramCase;
+          return ReCase(item).paramCase.compareTo(name) == 0;
           break;
-        default:
-          itemReCase = item;
-      }
 
-      return itemReCase.compareTo(name) == 0;
+        default:
+          return item.compareTo(name) == 0;
+      }
     },
     orElse: () => null,
   );

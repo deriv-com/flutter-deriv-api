@@ -84,9 +84,7 @@ class App extends AppModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => AppException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => AppException(message: message),
     );
 
     return App.fromJson(response.appGet);
@@ -101,9 +99,7 @@ class App extends AppModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => AppException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => AppException(message: message),
     );
 
     return getListFromMap(

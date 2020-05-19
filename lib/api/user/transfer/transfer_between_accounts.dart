@@ -70,9 +70,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => TransferException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => TransferException(message: message),
     );
 
     return TransferBetweenAccounts.fromResponse(response);

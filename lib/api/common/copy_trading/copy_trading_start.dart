@@ -33,9 +33,8 @@ class CopyTradingStart extends CopyTradingStartModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => CopyTradingException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          CopyTradingException(message: message),
     );
 
     return CopyTradingStart.fromResponse(response);

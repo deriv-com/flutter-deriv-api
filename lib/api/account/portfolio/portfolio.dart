@@ -35,9 +35,8 @@ class Portfolio extends PortfolioModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => PortfolioException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          PortfolioException(message: message),
     );
 
     return Portfolio.fromJson(response.portfolio);

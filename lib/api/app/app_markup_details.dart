@@ -44,9 +44,7 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => AppException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => AppException(message: message),
     );
 
     return AppMarkupDetails.fromJson(response.appMarkupDetails);

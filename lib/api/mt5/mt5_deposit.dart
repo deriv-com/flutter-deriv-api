@@ -45,9 +45,7 @@ class MT5Deposit extends MT5DepositModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => MT5Exception(
-        message: message,
-      ),
+      exceptionCreator: (String message) => MT5Exception(message: message),
     );
 
     return MT5Deposit.fromResponse(

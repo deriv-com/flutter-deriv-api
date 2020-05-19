@@ -36,9 +36,7 @@ class MT5PasswordChange extends MT5PasswordChangeModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => MT5Exception(
-        message: message,
-      ),
+      exceptionCreator: (String message) => MT5Exception(message: message),
     );
 
     return MT5PasswordChange.fromResponse(response);

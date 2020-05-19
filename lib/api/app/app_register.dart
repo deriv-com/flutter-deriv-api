@@ -42,9 +42,7 @@ class AppRegister extends AppRegisterModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => AppException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => AppException(message: message),
     );
 
     return AppRegister.fromJson(response.appRegister);

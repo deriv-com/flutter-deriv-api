@@ -58,9 +58,8 @@ class SetFinancialAssessment extends SetFinancialAssessmentModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => FinancialAssessmentException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          FinancialAssessmentException(message: message),
     );
 
     return SetFinancialAssessment.fromJson(response.setFinancialAssessment);
