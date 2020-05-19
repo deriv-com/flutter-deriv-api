@@ -10,7 +10,7 @@ Builder apiBuilder(final BuilderOptions _) => APIBuilder();
 final List<GeneratedResponseJson> generatedResponses =
     <GeneratedResponseJson>[];
 
-/// This class is responsible for parsing the morass of JSON schema
+/// A Code generator class responsible for parsing the morass of JSON schema
 /// definition files for our API, and assembling them into request/response
 /// objects suitable for marshalling and deserialization from our WebSockets
 /// API.
@@ -104,7 +104,7 @@ class APIBuilder extends Builder {
         buildStep.inputId.changeExtension('.dart'),
         DartFormatter().format(
           '''
-            /// generated automatically from ${buildStep.inputId}
+            /// Generated automatically from ${buildStep.inputId}
             import 'package:json_annotation/json_annotation.dart';
 
             import '../${schemaType == 'send' ? 'request' : 'response'}.dart';
@@ -123,7 +123,6 @@ class APIBuilder extends Builder {
               /// Creates an instance from JSON
               factory $classFullName.fromJson(Map<String, dynamic> json) => _\$${classFullName}FromJson(json);
               
-              // Properties
               ${_getProperties(buildStep, schema, properties)}
 
               /// Converts an instance to JSON

@@ -45,7 +45,9 @@ class PaymentAgentWithdraw extends PaymentAgentWithdrawModel {
       );
 
   /// Initiates a withdrawal to an approved payment agent.
+  ///
   /// For parameters information refer to [PaymentagentWithdrawRequest].
+  /// Throws a [PaymentAgentException] if API response contains an error
   static Future<PaymentAgentWithdraw> withdraw(
     PaymentagentWithdrawRequest request,
   ) async {

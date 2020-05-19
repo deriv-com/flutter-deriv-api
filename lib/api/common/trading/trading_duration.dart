@@ -53,9 +53,11 @@ class TradingDuration extends TradingDurationModel {
         tradingDurationData: tradingDurationData ?? this.tradingDurationData,
       );
 
-  /// Retrieve a list of all available underlyings and the corresponding contract types and trading duration boundaries.
+  /// Retrieves a list of all available underlyings and the corresponding contract types and trading duration boundaries.
+  ///
   /// If the user is logged in, only the assets available for that user's landing company will be returned.
   /// For parameters information refer to [TradingDurationsRequest].
+  /// Throws a [TradingException] if API response contains an error
   static Future<List<TradingDuration>> fetchTradingDurations(
     TradingDurationsRequest request,
   ) async {

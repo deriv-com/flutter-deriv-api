@@ -55,7 +55,9 @@ class Tick extends TickModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Subscribes to tick request for given [TickRequest]
+  /// Subscribes to a tick for given [TickRequest]
+  ///
+  /// Throws [TickException] if API response contains an error
   static Stream<Tick> subscribeTick(
     TicksRequest tickRequest, {
     RequestCompareFunction comparePredicate,

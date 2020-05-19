@@ -30,7 +30,9 @@ class ForgetAll extends ForgetAllModel {
       );
 
   /// Immediately cancel the real-time streams of messages of given type.
+  ///
   /// For parameters information refer to [ForgetAllRequest].
+  /// Throws a [ForgetException] if API response contains an error
   static Future<ForgetAll> forgetAll(
     ForgetAllRequest request,
   ) async {

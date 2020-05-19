@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// User information and settings.
+/// User information and settings (email, date of birth, address etc).
 class AccountSettings extends AccountSettingsModel {
   /// Initializes
   AccountSettings({
@@ -65,7 +65,7 @@ class AccountSettings extends AccountSettingsModel {
           userHash: userHash,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory AccountSettings.fromJson(Map<String, dynamic> json) =>
       AccountSettings(
         accountOpeningReason: json['account_opening_reason'],
@@ -100,10 +100,14 @@ class AccountSettings extends AccountSettingsModel {
   /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Fetches account's setting
-  static Future<AccountSettings> fetchAccountSetting() async {
+  /// Gets user's settings (email, date of birth, address etc)
+  ///
+  /// Throws an [AccountSettingsException] if API response contains an error
+  static Future<AccountSettings> fetchAccountSetting([
+    GetSettingsRequest request,
+  ]) async {
     final GetSettingsResponse response = await _api.call(
-      request: const GetSettingsRequest(),
+      request: request ?? const GetSettingsRequest(),
     );
 
     if (response.error != null) {
@@ -113,7 +117,9 @@ class AccountSettings extends AccountSettingsModel {
     return AccountSettings.fromJson(response.getSettings);
   }
 
-  /// Change account's setting
+  /// Changes the account's settings with parameters specified as [SetSettingsRequest]
+  ///
+  /// Throws an [AccountSettingsException] if API response contains an error
   Future<SetAccountSettingModel> changeSetting(
     SetSettingsRequest request,
   ) async {
@@ -126,7 +132,7 @@ class AccountSettings extends AccountSettingsModel {
     return SetAccountSettingModel(succeeded: getBool(response.setSettings));
   }
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   AccountSettings copyWith({
     String accountOpeningReason,
     String addressCity,

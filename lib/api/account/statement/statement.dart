@@ -17,7 +17,7 @@ class Statement extends StatementModel {
           transactions: transactions,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory Statement.fromJson(Map<String, dynamic> json) => Statement(
         count: json['count'],
         transactions: getListFromMap(
@@ -29,7 +29,7 @@ class Statement extends StatementModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   Statement copyWith({
     int count,
     List<StatementTransactionModel> transactions,
@@ -40,7 +40,9 @@ class Statement extends StatementModel {
       );
 
   /// Retrieves a summary of account transactions, according to given search criteria.
+  ///
   /// For parameters information refer to [StatementRequest].
+  /// Throws a [StatementException] if API response contains an error
   static Future<Statement> fetch(StatementRequest request) async {
     final StatementResponse response = await _api.call(request: request);
 

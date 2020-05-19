@@ -33,7 +33,9 @@ class UpdateContract extends UpdateContractModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// updates a contract with parameters specified in [ContractUpdateRequest]
+  /// updates a contract with parameters specified in [ContractUpdateRequest].
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<UpdateContract> updateContract(
     ContractUpdateRequest request,
   ) async {
@@ -47,6 +49,8 @@ class UpdateContract extends UpdateContractModel {
   }
 
   /// Gets update history for contract as List of [HistorySpotPriceModel]
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<List<HistorySpotPriceModel>> fetchContractUpdateHistory(
     ContractUpdateHistoryRequest request,
   ) async {

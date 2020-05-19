@@ -75,8 +75,10 @@ class App extends AppModel {
         verificationUri: verificationUri ?? this.verificationUri,
       );
 
-  /// Fetches the information of the OAuth application specified by [appId].
+  /// Gets the information of the OAuth application specified by [appId] in [request]
+  ///
   /// For parameters information refer to [AppGetRequest].
+  /// Throws an [AppException] if API response contains an error
   static Future<App> fetchApplicationDetails(
     AppGetRequest request,
   ) async {
@@ -89,8 +91,10 @@ class App extends AppModel {
     return App.fromJson(response.appGet);
   }
 
-  /// Fetches all of the account's OAuth applications.
+  /// Gets all of the account's OAuth applications.
+  ///
   /// For parameters information refer to [AppListRequest].
+  /// Throws an [AppException] if API response contains an error
   static Future<List<App>> fetchApplicationList(
     AppListRequest request,
   ) async {

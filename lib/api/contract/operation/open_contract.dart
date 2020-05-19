@@ -132,7 +132,7 @@ class OpenContract extends OpenContractModel {
           validationError: validationError,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory OpenContract.fromJson(
     Map<String, dynamic> json, {
     Map<String, dynamic> subscriptionJson,
@@ -238,6 +238,8 @@ class OpenContract extends OpenContractModel {
   }
 
   /// Subscribes to the bought contract state specified in [ProposalOpenContractRequest]
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   static Stream<OpenContract> subscribeContractState(
     ProposalOpenContractRequest request, {
     RequestCompareFunction comparePredicate,

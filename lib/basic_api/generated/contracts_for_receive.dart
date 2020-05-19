@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/contracts_for_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contracts_for_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class ContractsForResponse extends Response {
   factory ContractsForResponse.fromJson(Map<String, dynamic> json) =>
       _$ContractsForResponseFromJson(json);
 
-  // Properties
   /// List of available contracts. Note: if the user is authenticated, then only contracts allowed under his account will be returned.
   final Map<String, dynamic> contractsFor;
 

@@ -71,7 +71,9 @@ class CopyTradingStatistics extends CopyTradingStatisticsModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Gets statistics for given [traderId] in [CopytradingStatisticsRequest]
+  /// Gets the copy trading statistics for given `traderId` in [request]
+  ///
+  /// Throws a [CopyTradingException] if API response contains an error
   static Future<CopyTradingStatistics> fetchStatistics(
     CopytradingStatisticsRequest request,
   ) async {

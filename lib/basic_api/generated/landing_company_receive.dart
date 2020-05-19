@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/landing_company_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/landing_company_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class LandingCompanyResponse extends Response {
   factory LandingCompanyResponse.fromJson(Map<String, dynamic> json) =>
       _$LandingCompanyResponseFromJson(json);
 
-  // Properties
   /// Landing Company
   final Map<String, dynamic> landingCompany;
 

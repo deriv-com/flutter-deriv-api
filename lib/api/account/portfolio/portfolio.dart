@@ -15,7 +15,7 @@ class Portfolio extends PortfolioModel {
           contracts: contracts,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory Portfolio.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -29,7 +29,9 @@ class Portfolio extends PortfolioModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Fetches logged in account's portfolio
+  /// Gets the portfolio fo logged-in account
+  ///
+  /// Throws a [PortfolioException] if API response contains an error
   static Future<Portfolio> fetchPortfolio (PortfolioRequest request) async {
     final PortfolioResponse response = await _api.call(request: request);
 

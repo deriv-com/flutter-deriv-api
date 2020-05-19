@@ -34,6 +34,8 @@ class CopyTradingList extends CopyTradingListModel {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the list of active copiers and/or traders for Copy Trading
+  ///
+  /// Throws a [CopyTradingException] if API response contains an error
   static Future<CopyTradingList> fetchList([
     CopytradingListRequest request,
   ]) async {

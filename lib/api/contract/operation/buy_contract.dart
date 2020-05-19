@@ -54,6 +54,7 @@ class BuyContract extends BuyContractModel {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Buys a contract with parameters specified in given [BuyRequest]
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<BuyContract> buy(BuyRequest request) async {
     final BuyResponse response = await _api.call(
       request: request,
@@ -69,7 +70,9 @@ class BuyContract extends BuyContractModel {
     return BuyContract.fromJson(response.buy);
   }
 
-  /// Gets the current spot of the this bought contract
+  /// Gets the current spot of the this bought contract as [OpenContract].
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   Future<OpenContract> fetchCurrentContractState() =>
       OpenContract.fetchCurrentContractState(
         ProposalOpenContractRequest(
@@ -77,7 +80,9 @@ class BuyContract extends BuyContractModel {
         ),
       );
 
-  /// Subscribes to this bought contract spot and returns its spot update as [OpenContractModel]
+  /// Subscribes to this bought contract spot and returns its spot update as [OpenContractModel].
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   Stream<OpenContract> subscribeContractState({
     RequestCompareFunction comparePredicate,
   }) =>
@@ -90,14 +95,21 @@ class BuyContract extends BuyContractModel {
   ///
   /// [price] is the Minimum price at which to sell the contract,
   /// Default be 0 for 'sell at market'.
+  /// Throws a [ContractOperationException] if API response contains an error
   Future<SellContract> sell({double price = 0}) =>
       SellContract.sellContract(SellRequest(sell: contractId, price: price));
 
   /// Cancels this contract
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   Future<CancelContract> cancel() =>
       CancelContract.cancelContract(CancelRequest(cancel: contractId));
 
-  /// Updates this contract with given [stopLoss], [takeProfit]
+  /// Updates this contract
+  ///
+  /// New [stopLoss] value for a contract. To cancel, pass null.
+  /// New [takeProfit] value for a contract. To cancel, pass null.
+  /// Throws a [ContractOperationException] if API response contains an error
   Future<UpdateContract> update({
     double stopLoss,
     double takeProfit,

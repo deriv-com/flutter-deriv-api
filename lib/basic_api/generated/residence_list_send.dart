@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/residence_list_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/residence_list_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -23,7 +23,6 @@ class ResidenceListRequest extends Request {
   factory ResidenceListRequest.fromJson(Map<String, dynamic> json) =>
       _$ResidenceListRequestFromJson(json);
 
-  // Properties
   /// Must be `1`
   final int residenceList;
 

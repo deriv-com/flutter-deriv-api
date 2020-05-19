@@ -111,8 +111,9 @@ class P2POrder extends P2POrderModel {
     return P2POrder.fromJson(response.p2pOrderCreate);
   }
 
-  /// Creates order and subscribes to the result with parameters
-  /// specified in [P2pOrderCreateRequest]
+  /// Creates order and subscribes to the result with parameters specified in [P2pOrderCreateRequest]
+  ///
+  /// Throws a [P2POrderException] if API response contains an error
   static Stream<P2POrder> createAndSubscribe(
     P2pOrderCreateRequest request, {
     RequestCompareFunction comparePredicate,
@@ -133,6 +134,8 @@ class P2POrder extends P2POrderModel {
       );
 
   /// Gets order with parameters specified in [P2pOrderInfoRequest]
+  ///
+  /// Throws a [P2POrderException] if API response contains an error
   static Future<P2POrder> fetchOrder(P2pOrderInfoRequest request) async {
     final P2pOrderInfoResponse response = await _api.call(request: request);
 
@@ -153,6 +156,8 @@ class P2POrder extends P2POrderModel {
       );
 
   /// Subscribes to order with parameters specified in [P2pOrderInfoRequest]
+  ///
+  /// Throws a [P2POrderException] if API response contains an error
   static Stream<P2POrder> subscribeOrder(
     P2pOrderInfoRequest request, {
     RequestCompareFunction comparePredicate,
@@ -187,7 +192,7 @@ class P2POrder extends P2POrderModel {
       throw P2POrderException(message: response.error['message']);
     }
 
-    return Forget.fromResponse(response.forget);
+    return Forget.fromResponse(response);
   }
 
   /// Unsubscribes all order subscriptions.
@@ -199,10 +204,13 @@ class P2POrder extends P2POrderModel {
       throw P2POrderException(message: response.error['message']);
     }
 
-    return ForgetAll.fromResponse(response.forgetAll);
+    return ForgetAll.fromResponse(response);
   }
 
   /// Cancels this order
+  ///
+  /// Returns an order with updated status if successful.
+  /// Throws a [P2POrderException] if API response contains an error
   Future<P2POrder> cancel() async {
     final P2pOrderCancelResponse response =
         await _api.call(request: const P2pOrderCancelRequest());
@@ -215,6 +223,9 @@ class P2POrder extends P2POrderModel {
   }
 
   /// Confirms this order
+  ///
+  /// Returns an order with updated status if successful.
+  /// Throws a [P2POrderException] if API response contains an error
   Future<P2POrder> confirm() async {
     final P2pOrderConfirmResponse response =
         await _api.call(request: const P2pOrderConfirmRequest());

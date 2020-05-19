@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/statement_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/statement_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -29,7 +29,6 @@ class StatementRequest extends Request {
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>
       _$StatementRequestFromJson(json);
 
-  // Properties
   /// [Optional] To filter the statement according to the type of transaction.
   final String actionType;
 

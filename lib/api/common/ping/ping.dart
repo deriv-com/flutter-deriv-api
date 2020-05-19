@@ -17,7 +17,7 @@ class Ping extends PingModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   Ping copyWith({
     bool succeeded,
   }) =>
@@ -25,7 +25,10 @@ class Ping extends PingModel {
         succeeded: succeeded ?? this.succeeded,
       );
 
-  /// To send the ping request to the server. Mostly used to test the connection or to keep it alive.
+  /// Sends the ping request to the server.
+  ///
+  /// Mostly used to test the connection or to keep it alive.
+  /// Throws a [PingException] if API response contains an error
   static Future<Ping> ping([
     PingRequest request,
   ]) async {

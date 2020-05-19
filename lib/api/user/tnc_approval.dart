@@ -26,8 +26,10 @@ class TNCApproval extends TNCApprovalModel {
         approved: approved ?? this.approved,
       );
 
-  /// To approve the latest version of terms and conditions.
+  /// Approve the latest version of terms and conditions.
+  ///
   /// For parameters information refer to [TncApprovalRequest].
+  /// Throws a [UserException] if API response contains an error
   static Future<TNCApproval> verify(
     TncApprovalRequest request,
   ) async {

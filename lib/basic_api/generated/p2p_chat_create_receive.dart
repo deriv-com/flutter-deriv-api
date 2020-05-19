@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_chat_create_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_chat_create_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class P2pChatCreateResponse extends Response {
   factory P2pChatCreateResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pChatCreateResponseFromJson(json);
 
-  // Properties
   /// Information of the P2P chat.
   final Map<String, dynamic> p2pChatCreate;
 

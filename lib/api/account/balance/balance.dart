@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// Balance information if account
+/// Balance information of the account
 class Balance extends BalanceModel {
   /// Initializes
   Balance({
@@ -29,7 +29,7 @@ class Balance extends BalanceModel {
           total: total,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory Balance.fromJson(
     Map<String, dynamic> json, {
     Map<String, dynamic> subscriptionJson,
@@ -52,10 +52,10 @@ class Balance extends BalanceModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Fetches balance of account
-  /// If set to 'all', return the balances of all accounts one by one;
-  /// if set to 'current', return the balance of current account; if set as an
-  /// account id, return the balance of that account.
+  /// Gets the balance of account
+  ///
+  /// For parameters info refer to [BalanceRequest]
+  /// Throws a [BalanceException] if API response contains an error
   static Future<Balance> fetchBalance(BalanceRequest request) async {
     final BalanceResponse response = await _api.call(request: request);
 

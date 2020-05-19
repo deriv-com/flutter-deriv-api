@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_start_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_start_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -27,7 +27,6 @@ class CopyStartRequest extends Request {
   factory CopyStartRequest.fromJson(Map<String, dynamic> json) =>
       _$CopyStartRequestFromJson(json);
 
-  // Properties
   /// [Optional] Used to set assets to be copied. E.x ["frxUSDJPY", "R_50"]
   final String assets;
 

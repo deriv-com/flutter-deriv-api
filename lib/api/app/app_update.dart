@@ -33,8 +33,10 @@ class AppUpdate extends AppUpdateModel {
         appDetails: appDetails ?? this.appDetails,
       );
 
-  /// Update application.
+  /// Updates the application specified in [request].
+  ///
   /// For parameters information refer to [AppUpdateRequest].
+  /// Throws an [AppException] if API response contains an error
   static Future<AppUpdate> updateApplication(AppUpdateRequest request) async {
     final AppUpdateResponse response = await _api.call(request: request);
 
