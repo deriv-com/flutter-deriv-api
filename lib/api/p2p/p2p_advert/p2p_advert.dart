@@ -270,10 +270,10 @@ class P2PAdvert extends P2PAdvertModel {
   /// [paymentInfo] is payment instructions. Only applicable for [OrderType.sell].
   /// Throws [P2POrderException] if API response contains an error
   Future<P2POrder> createOrder(
-    double amount,
+    double amount, {
     String contactInfo,
     String paymentInfo,
-  ) =>
+  }) =>
       P2POrder.create(
         P2pOrderCreateRequest(
           advertId: id,
