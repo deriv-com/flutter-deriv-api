@@ -48,14 +48,20 @@ import 'mock_data/common/copy_stop_response.dart';
 import 'mock_data/common/exchange_rates_response.dart';
 import 'mock_data/common/forget_all_response.dart';
 import 'mock_data/common/forget_response.dart';
+import 'mock_data/common/landing_company_details_response.dart';
+import 'mock_data/common/landing_company_response.dart';
 import 'mock_data/common/payment_agent_list_response.dart';
 import 'mock_data/common/payment_agent_transfer_response.dart';
 import 'mock_data/common/payment_agent_withdraw_response.dart';
 import 'mock_data/common/ping_response.dart';
+import 'mock_data/common/residence_list_response.dart';
 import 'mock_data/common/server_time_response.dart';
+import 'mock_data/common/states_list_response.dart';
+import 'mock_data/common/tick_history_response.dart';
 import 'mock_data/common/tick_response.dart';
 import 'mock_data/common/trading_durations_response.dart';
 import 'mock_data/common/trading_times_response.dart';
+import 'mock_data/common/website_status_response.dart';
 import 'mock_data/contract/buy_contract_response.dart';
 import 'mock_data/contract/cancel_response.dart';
 import 'mock_data/contract/contract_for_response.dart';
@@ -204,12 +210,18 @@ class MockAPI implements BaseAPI {
         return getFinancialAssessmentResponse;
       case 'get_limits':
         return getLimitsResponse;
-      case 'get_self_exclusion':
-        return getSelfExclusiveResponse;
+      // case 'get_self_exclusion':
+      // case 'get_settings':
       case 'get_settings':
         return getSettingsResponse;
-      // case 'landing_company_details':
-      // case 'landing_company':
+      // case 'login_history':
+      // case 'logout':
+      case 'get_self_exclusion':
+        return getSelfExclusiveResponse;
+      case 'landing_company':
+        return landingCompanyResponse;
+      case 'landing_company_details':
+        return landingCompanyDetailsResponse;
       case 'login_history':
         return loginHistoryResponse;
       case 'logout':
@@ -286,6 +298,10 @@ class MockAPI implements BaseAPI {
         return proposalOpenContractResponse;
       case 'proposal':
         return proposalResponse;
+      // case 'reality_check':
+      case 'residence_list':
+        return residenceListResponse;
+      // case 'revoke_oauth_app':
       case 'reality_check':
         return realityCheckResponse;
       // case 'residence_list':
@@ -303,6 +319,11 @@ class MockAPI implements BaseAPI {
         return setSelfExclusiveResponse;
       case 'set_settings':
         return setSettingsResponse;
+      // case 'statement':
+      case 'states_list':
+        return statesListResponse;
+      case 'history':
+        return tickHistoryResponse;
       case 'statement':
         return statementResponse;
       // case 'states_list':
@@ -325,7 +346,8 @@ class MockAPI implements BaseAPI {
         return transferBetweenAccountsResponse;
       case 'verify_email':
         return verifyEmailResponse;
-      // case 'website_status':
+      case 'website_status':
+        return websiteStatusResponse;
 
       default:
         throw APIManagerException(

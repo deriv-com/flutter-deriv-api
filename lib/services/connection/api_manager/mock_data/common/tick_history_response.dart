@@ -1,4 +1,5 @@
-const String tickHistoryJSON = '''{
+/// TickHistory response
+const String tickHistoryResponse = '''{
   "echo_req": {
     "adjust_start_time": 1,
     "count": 10,

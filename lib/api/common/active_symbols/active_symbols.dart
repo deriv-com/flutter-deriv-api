@@ -1,7 +1,5 @@
 import 'package:flutter_deriv_api/api/common/active_symbols/exceptions/active_symbols_exception.dart';
 import 'package:flutter_deriv_api/api/common/models/active_symbols_model.dart';
-import 'package:flutter_deriv_api/basic_api/generated/active_symbols_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/active_symbols_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -49,7 +47,7 @@ class ActiveSymbol extends ActiveSymbolModel {
             symbol: symbol,
             symbolType: symbolType);
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory ActiveSymbol.fromJson(Map<String, dynamic> json) => ActiveSymbol(
         allowForwardStarting: getBool(json['allow_forward_starting']),
         delayAmount: json['delay_amount'],
@@ -71,36 +69,31 @@ class ActiveSymbol extends ActiveSymbolModel {
         symbolType: json['symbol_type'],
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Fetch the list of active symbols
+  /// Gets the list of active symbols
+  ///
   /// For parameters information refer to [ActiveSymbolsRequest]
-  static Future<List<ActiveSymbol>> getActiveSymbols({
-    String mode = 'brief',
-    String landingCompany,
-    String productType,
-  }) async {
-    final ActiveSymbolsResponse activeSymbolsResponse = await _api.call(
-      request: ActiveSymbolsRequest(
-          activeSymbols: mode,
-          landingCompany: landingCompany,
-          productType: productType),
+  static Future<List<ActiveSymbol>> fetchActiveSymbols(
+    ActiveSymbolsRequest request,
+  ) async {
+    final ActiveSymbolsResponse response = await _api.call(
+      request: request,
     );
 
-    if (activeSymbolsResponse.error != null) {
-      throw ActiveSymbolsException(
-        message: activeSymbolsResponse.error['message'],
-      );
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          ActiveSymbolsException(message: message),
+    );
 
-    return activeSymbolsResponse.activeSymbols
+    return response.activeSymbols
         .map<ActiveSymbol>(
             (dynamic symbolEntry) => ActiveSymbol.fromJson(symbolEntry))
         .toList();
   }
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   ActiveSymbol copyWith({
     bool allowForwardStarting,
     int delayAmount,

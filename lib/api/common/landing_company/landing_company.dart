@@ -1,7 +1,11 @@
+import 'package:flutter_deriv_api/api/common/landing_company/exceptions/landing_company_exception.dart';
 import 'package:flutter_deriv_api/api/common/models/landing_company_config_model.dart';
 import 'package:flutter_deriv_api/api/common/models/landing_company_detail_model.dart';
 import 'package:flutter_deriv_api/api/common/models/landing_company_model.dart';
 import 'package:flutter_deriv_api/api/common/models/mt_landing_company_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Landing company info
@@ -61,6 +65,40 @@ class LandingCompany extends LandingCompanyModel {
         name: json['name'],
         virtualCompany: json['virtual_company'],
       );
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Gets landing companies for given [LandingCompanyRequest]
+  static Future<LandingCompany> fetchLandingCompanies(
+    LandingCompanyRequest request,
+  ) async {
+    final LandingCompanyResponse response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          LandingCompanyException(message: message),
+    );
+
+    return LandingCompany.fromJson(response.landingCompany);
+  }
+
+  /// Gets details of a landing company specified in [LandingCompanyDetailsRequest]
+  static Future<LandingCompanyDetailModel> fetchLandingCompanyDetails(
+    LandingCompanyDetailsRequest request,
+  ) async {
+    final LandingCompanyDetailsResponse response = await _api.call(
+      request: request,
+    );
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          LandingCompanyException(message: message),
+    );
+
+    return LandingCompanyDetailModel.fromJson(response.landingCompanyDetails);
+  }
 
   /// Creates a copy of this instance
   LandingCompany copyWith({
