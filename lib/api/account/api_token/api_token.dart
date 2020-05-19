@@ -50,7 +50,7 @@ class APIToken extends APITokenModel {
   ///
   /// [name] is the name of the token.
   /// [scopes] is a list of permission scopes to provide with the token.
-  /// [validForCurrentIPOnly] is optional an if you set this parameter during token creation,
+  /// [validForCurrentIPOnly] is optional and if you set this parameter during token creation,
   /// then the token created will only work for the IP address that was used to create the token
   /// Throws an [APITokenException] if API response contains an error.
   static Future<APIToken> create({
