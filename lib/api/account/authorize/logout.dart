@@ -26,7 +26,7 @@ class Logout extends LogoutModel {
         succeeded: succeeded ?? this.succeeded,
       );
 
-  /// Log-outs from the web-socket's session.
+  /// Logs out from the web-socket's session.
   ///
   /// For parameters information refer to [LogoutRequest].
   /// Throws an [AuthorizeException] if API response contains an error
