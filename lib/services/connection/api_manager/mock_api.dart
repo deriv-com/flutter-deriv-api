@@ -82,6 +82,11 @@ import 'mock_data/p2p/p2p_advertiser_create_response.dart';
 import 'mock_data/p2p/p2p_advertiser_info_response.dart';
 import 'mock_data/p2p/p2p_advertiser_update_response.dart';
 import 'mock_data/p2p/p2p_chat_create_response.dart';
+import 'mock_data/p2p/p2p_order_cancel_response.dart';
+import 'mock_data/p2p/p2p_order_confirm_response.dart';
+import 'mock_data/p2p/p2p_order_create_response.dart';
+import 'mock_data/p2p/p2p_order_info_response.dart';
+import 'mock_data/p2p/p2p_order_list_response.dart';
 import 'mock_data/user/get_financial_assessment_response.dart';
 import 'mock_data/user/set_financial_assessment_response.dart';
 import 'mock_data/user/tnc_approval_response.dart';
@@ -250,11 +255,19 @@ class MockAPI implements BaseAPI {
         return p2pAdvertiserUpdateResponse;
       case 'p2p_chat_create':
         return p2pChatCreateResponse;
-      // case 'p2p_order_cancel':
-      // case 'p2p_order_confirm':
-      // case 'p2p_order_create':
-      // case 'p2p_order_info':
-      // case 'p2p_order_list':
+      case 'p2p_order_cancel':
+        return p2pOrderCancelResponse;
+      case 'p2p_order_confirm':
+        return p2pOrderConfirmResponse;
+      case 'p2p_order_create':
+        return p2pOrderCreateResponse;
+      case 'p2p_order_info':
+        return p2pOrderInfoResponse;
+      case 'p2p_order_list':
+        return p2pOrderListResponse;
+      // case 'paymentagent_list':
+      // case 'paymentagent_transfer':
+      // case 'paymentagent_withdraw':
       case 'paymentagent_list':
         return paymentAgentListResponse;
       case 'paymentagent_transfer':
