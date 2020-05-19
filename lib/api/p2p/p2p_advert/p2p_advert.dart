@@ -2,6 +2,7 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_advert_model.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_details_model.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_advert/exceptions/p2p_advert_exception.dart';
+import 'package:flutter_deriv_api/api/p2p/p2p_order/p2p_order.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -260,4 +261,18 @@ class P2PAdvert extends P2PAdvertModel {
           isActive: getInt(isActive),
         ),
       );
+
+  /// Creates order on this advert
+  ///
+  /// [amount] you want
+  Future<P2POrder> createOrder(
+    double amount,
+    String contactInfo,
+    String paymentInfo,
+  ) =>
+      P2POrder.create(P2pOrderCreateRequest(
+        advertId: id,
+        amount: amount,
+        paymentInfo: paymentInfo,
+      ));
 }
