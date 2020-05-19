@@ -36,9 +36,7 @@ class Ping extends PingModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => PingException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => PingException(message: message),
     );
 
     return Ping.fromResponse(response);
