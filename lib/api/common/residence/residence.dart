@@ -1,4 +1,9 @@
 import 'package:flutter_deriv_api/api/common/models/residence_model.dart';
+import 'package:flutter_deriv_api/api/common/residence/exceptions/residence_exception.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Country with account opening
 class Residence extends ResidenceModel {
@@ -13,7 +18,7 @@ class Residence extends ResidenceModel {
           countryCode: countryCode,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory Residence.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -23,7 +28,29 @@ class Residence extends ResidenceModel {
         countryCode: json['value'],
       );
 
-  /// Generate a copy of instance with given parameters
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Gets Residence list for the given [ResidenceListRequest]
+  static Future<List<Residence>> fetchResidenceList([
+    ResidenceListRequest request,
+  ]) async {
+    final ResidenceListResponse response = await _api.call(
+      request: request ?? const ResidenceListRequest(),
+    );
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          ResidenceException(message: message),
+    );
+
+    return getListFromMap(
+      response.residenceList,
+      itemToTypeCallback: (dynamic item) => Residence.fromJson(item),
+    );
+  }
+
+  /// Generates a copy of instance with given parameters
   Residence copyWith({
     String phoneIdd,
     String countryName,

@@ -1,4 +1,5 @@
-const String landingCompanyJSON = '''{
+/// LandingCompany Response
+const String landingCompanyResponse = '''{
   "echo_req": {
     "landing_company": "id"
   },

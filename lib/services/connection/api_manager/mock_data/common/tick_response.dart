@@ -2,20 +2,19 @@
 const String tickResponse = '''
 {
   "echo_req": {
-    "subscribe": 1,
     "ticks": "R_50"
   },
   "msg_type": "tick",
   "subscription": {
-    "id": "1f4234c3-c8e7-f7fa-d7bc-e5d972fdc078"
+    "id": "b4d42748-0744-c46b-f59b-cb7dd936bafa"
   },
   "tick": {
-    "ask": 7427.3758,
-    "bid": 7426.3758,
-    "epoch": 1588829622,
-    "id": "1f4234c3-c8e7-f7fa-d7bc-e5d972fdc078",
+    "ask": 218.1026,
+    "bid": 218.0826,
+    "epoch": 1587547610,
+    "id": "b4d42748-0744-c46b-f59b-cb7dd936bafa",
     "pip_size": 4,
-    "quote": 7426.8758,
+    "quote": 218.0926,
     "symbol": "R_50"
   }
 }
