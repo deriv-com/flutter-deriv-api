@@ -62,9 +62,12 @@ class OauthApp extends OauthAppModel {
       request: request ?? const OauthAppsRequest(),
     );
 
-    if (response.error != null) {
-      throw AppException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => AppException(
+        message: message,
+      ),
+    );
 
     return getListFromMap(
       response.oauthApps,

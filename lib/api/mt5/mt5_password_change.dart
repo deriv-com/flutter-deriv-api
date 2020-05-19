@@ -34,9 +34,12 @@ class MT5PasswordChange extends MT5PasswordChangeModel {
     final Mt5PasswordChangeResponse response =
         await _api.call(request: request);
 
-    if (response.error != null) {
-      throw MT5Exception(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => MT5Exception(
+        message: message,
+      ),
+    );
 
     return MT5PasswordChange.fromResponse(response);
   }

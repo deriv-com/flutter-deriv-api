@@ -99,9 +99,12 @@ class MT5Account extends MT5AccountModel {
   ) async {
     final Mt5NewAccountResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw MT5Exception(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => MT5Exception(
+        message: message,
+      ),
+    );
 
     return MT5Account.fromJson(response.mt5NewAccount);
   }
@@ -113,9 +116,12 @@ class MT5Account extends MT5AccountModel {
   ) async {
     final Mt5LoginListResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw MT5Exception(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => MT5Exception(
+        message: message,
+      ),
+    );
 
     return getListFromMap(
       response.mt5LoginList,

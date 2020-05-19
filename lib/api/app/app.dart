@@ -82,9 +82,12 @@ class App extends AppModel {
   ) async {
     final AppGetResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw AppException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => AppException(
+        message: message,
+      ),
+    );
 
     return App.fromJson(response.appGet);
   }
@@ -96,9 +99,12 @@ class App extends AppModel {
   ) async {
     final AppListResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw AppException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => AppException(
+        message: message,
+      ),
+    );
 
     return getListFromMap(
       response.appList,

@@ -196,9 +196,12 @@ class P2PAdvert extends P2PAdvertModel {
   ) async {
     final P2pAdvertInfoResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw P2PAdvertException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2PAdvertException(
+        message: message,
+      ),
+    );
 
     return P2PAdvert.fromJson(response.p2pAdvertInfo);
   }
@@ -210,9 +213,12 @@ class P2PAdvert extends P2PAdvertModel {
   ) async {
     final P2pAdvertListResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw P2PAdvertException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2PAdvertException(
+        message: message,
+      ),
+    );
 
     return getListFromMap(
       response.p2pAdvertList['list'],
@@ -227,9 +233,12 @@ class P2PAdvert extends P2PAdvertModel {
   ) async {
     final P2pAdvertCreateResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw P2PAdvertException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2PAdvertException(
+        message: message,
+      ),
+    );
 
     return P2PAdvert.fromJson(response.p2pAdvertCreate);
   }
@@ -241,15 +250,18 @@ class P2PAdvert extends P2PAdvertModel {
   ) async {
     final P2pAdvertUpdateResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw P2PAdvertException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2PAdvertException(
+        message: message,
+      ),
+    );
 
     return P2PAdvert.fromJson(response.p2pAdvertUpdate);
   }
 
   /// Updates a P2P (peer to peer) advert. Can only be used by the advertiser.
-  Future<P2PAdvert> updateCurrentAdvert(
+  Future<P2PAdvert> update(
     bool delete,
     bool isActive,
   ) =>
