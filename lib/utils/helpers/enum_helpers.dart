@@ -5,7 +5,7 @@ enum EnumCase {
   /// Snake case (e.g. snake_case)
   snakeCase,
 
-  /// Param case (e.g. param_case)
+  /// Param case (e.g. param-case)
   paramCase,
 }
 
