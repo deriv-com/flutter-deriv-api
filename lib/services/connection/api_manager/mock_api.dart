@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/payout_currencies_response.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -210,12 +211,8 @@ class MockAPI implements BaseAPI {
         return getFinancialAssessmentResponse;
       case 'get_limits':
         return getLimitsResponse;
-      // case 'get_self_exclusion':
-      // case 'get_settings':
       case 'get_settings':
         return getSettingsResponse;
-      // case 'login_history':
-      // case 'logout':
       case 'get_self_exclusion':
         return getSelfExclusiveResponse;
       case 'landing_company':
@@ -277,16 +274,14 @@ class MockAPI implements BaseAPI {
         return p2pOrderInfoResponse;
       case 'p2p_order_list':
         return p2pOrderListResponse;
-      // case 'paymentagent_list':
-      // case 'paymentagent_transfer':
-      // case 'paymentagent_withdraw':
       case 'paymentagent_list':
         return paymentAgentListResponse;
       case 'paymentagent_transfer':
         return paymentAgentTransferResponse;
       case 'paymentagent_withdraw':
         return paymentAgentWithdrawResponse;
-      // case 'payout_currencies':
+      case 'payout_currencies':
+        return payoutCurrenciesResponse;
       case 'ping':
         return pingResponse;
       case 'portfolio':
@@ -298,13 +293,10 @@ class MockAPI implements BaseAPI {
         return proposalOpenContractResponse;
       case 'proposal':
         return proposalResponse;
-      // case 'reality_check':
       case 'residence_list':
         return residenceListResponse;
-      // case 'revoke_oauth_app':
       case 'reality_check':
         return realityCheckResponse;
-      // case 'residence_list':
       case 'revoke_oauth_app':
         return revokeOauthAppResponse;
       // case 'sell_contract_for_multiple_accounts':
@@ -319,14 +311,12 @@ class MockAPI implements BaseAPI {
         return setSelfExclusiveResponse;
       case 'set_settings':
         return setSettingsResponse;
-      // case 'statement':
       case 'states_list':
         return statesListResponse;
       case 'history':
         return tickHistoryResponse;
       case 'statement':
         return statementResponse;
-      // case 'states_list':
       // case 'history':
       case 'ticks':
         return tickResponse;
