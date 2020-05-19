@@ -6,7 +6,7 @@ import '../response.dart';
 part 'get_settings_receive.g.dart';
 
 /// JSON conversion for 'get_settings_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class GetSettingsResponse extends Response {
   /// Initialize GetSettingsResponse
   const GetSettingsResponse({

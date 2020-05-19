@@ -6,7 +6,7 @@ import '../request.dart';
 part 'app_register_send.g.dart';
 
 /// JSON conversion for 'app_register_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AppRegisterRequest extends Request {
   /// Initialize AppRegisterRequest
   const AppRegisterRequest({

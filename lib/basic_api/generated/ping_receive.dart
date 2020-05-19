@@ -6,7 +6,7 @@ import '../response.dart';
 part 'ping_receive.g.dart';
 
 /// JSON conversion for 'ping_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class PingResponse extends Response {
   /// Initialize PingResponse
   const PingResponse({

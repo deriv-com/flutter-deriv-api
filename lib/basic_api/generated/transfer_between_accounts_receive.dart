@@ -6,7 +6,7 @@ import '../response.dart';
 part 'transfer_between_accounts_receive.g.dart';
 
 /// JSON conversion for 'transfer_between_accounts_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TransferBetweenAccountsResponse extends Response {
   /// Initialize TransferBetweenAccountsResponse
   const TransferBetweenAccountsResponse({

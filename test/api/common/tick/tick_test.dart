@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/common/tick/tick.dart';
+import 'package:flutter_deriv_api/api/common/tick/tick_history.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
@@ -24,6 +25,17 @@ void main() {
       );
     });
 
-    // TODO(ramin): Add TickHistory test
+    test('Tick stream test', () async {
+      final TickHistory history = await TickHistory.fetchTickHistory(
+        const TicksHistoryRequest(),
+      );
+
+      expect(history.pipSize, 4);
+
+      expect(history.history.prices.length, 6);
+      expect(history.history.prices.first, 218.6404);
+      expect(history.history.times.length, 6);
+      expect(history.history.times.first, getDateTime(1587556946));
+    });
   });
 }

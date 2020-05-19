@@ -6,7 +6,7 @@ import '../response.dart';
 part 'sell_expired_receive.g.dart';
 
 /// JSON conversion for 'sell_expired_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class SellExpiredResponse extends Response {
   /// Initialize SellExpiredResponse
   const SellExpiredResponse({

@@ -6,7 +6,7 @@ import '../request.dart';
 part 'portfolio_send.g.dart';
 
 /// JSON conversion for 'portfolio_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class PortfolioRequest extends Request {
   /// Initialize PortfolioRequest
   const PortfolioRequest({

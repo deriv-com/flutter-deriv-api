@@ -6,7 +6,7 @@ import '../request.dart';
 part 'time_send.g.dart';
 
 /// JSON conversion for 'time_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TimeRequest extends Request {
   /// Initialize TimeRequest
   const TimeRequest({

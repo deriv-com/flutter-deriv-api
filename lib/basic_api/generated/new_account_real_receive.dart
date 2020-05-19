@@ -6,7 +6,7 @@ import '../response.dart';
 part 'new_account_real_receive.g.dart';
 
 /// JSON conversion for 'new_account_real_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class NewAccountRealResponse extends Response {
   /// Initialize NewAccountRealResponse
   const NewAccountRealResponse({

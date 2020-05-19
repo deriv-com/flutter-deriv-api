@@ -6,7 +6,7 @@ import '../response.dart';
 part 'set_self_exclusion_receive.g.dart';
 
 /// JSON conversion for 'set_self_exclusion_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class SetSelfExclusionResponse extends Response {
   /// Initialize SetSelfExclusionResponse
   const SetSelfExclusionResponse({

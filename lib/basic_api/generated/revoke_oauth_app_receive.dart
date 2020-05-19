@@ -6,7 +6,7 @@ import '../response.dart';
 part 'revoke_oauth_app_receive.g.dart';
 
 /// JSON conversion for 'revoke_oauth_app_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class RevokeOauthAppResponse extends Response {
   /// Initialize RevokeOauthAppResponse
   const RevokeOauthAppResponse({
