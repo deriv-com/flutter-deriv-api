@@ -1,4 +1,4 @@
-part of 'helpers.dart';
+part of '../helpers.dart';
 
 /// Fetches the device time
 int getCurrentLocalEpoch() =>
@@ -10,12 +10,12 @@ DateTime getCurrentServerTime(int timeDifference) =>
       (getCurrentLocalEpoch() + timeDifference) * 1000,
     );
 
-/// Create a [DateTime] from time given in seconds
+/// Creates a [DateTime] from time given in seconds
 DateTime getDateTime(int timeInSeconds) => timeInSeconds == null
     ? null
     : DateTime.fromMillisecondsSinceEpoch(timeInSeconds * 1000);
 
-/// Create a [DateTime] from time given string in seconds
+/// Creates a [DateTime] from time given string in seconds
 DateTime getDateTimeFromString(String timeInSeconds) => timeInSeconds == null
     ? null
     : DateTime.fromMillisecondsSinceEpoch(int.parse(timeInSeconds) * 1000);

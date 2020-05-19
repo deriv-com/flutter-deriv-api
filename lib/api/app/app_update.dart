@@ -38,9 +38,12 @@ class AppUpdate extends AppUpdateModel {
   static Future<AppUpdate> updateApplication(AppUpdateRequest request) async {
     final AppUpdateResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw AppException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => AppException(
+        message: message,
+      ),
+    );
 
     return AppUpdate.fromJson(response.appUpdate);
   }

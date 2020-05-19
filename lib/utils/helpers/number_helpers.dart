@@ -1,4 +1,4 @@
-part of 'helpers.dart';
+part of '../helpers.dart';
 
 /// Calculates the number of decimal digits for string [value] of a number
 int getDecimalDigits(String value) {
@@ -106,7 +106,7 @@ class NumberValidator {
   }
 }
 
-/// Random int between [min] & [max]
+/// Random int between [min] and [max]
 int generateRandomInt({
   int min = 0,
   int max = 10,

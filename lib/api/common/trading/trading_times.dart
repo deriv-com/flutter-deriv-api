@@ -40,9 +40,12 @@ class TradingTimes extends TradingTimesModel {
   ) async {
     final TradingTimesResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw TradingException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => TradingException(
+        message: message,
+      ),
+    );
 
     return TradingTimes.fromJson(response.tradingTimes);
   }

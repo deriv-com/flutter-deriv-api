@@ -61,9 +61,12 @@ class TradingDuration extends TradingDurationModel {
   ) async {
     final TradingDurationsResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw TradingException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => TradingException(
+        message: message,
+      ),
+    );
 
     return getListFromMap(
       response.tradingDurations,

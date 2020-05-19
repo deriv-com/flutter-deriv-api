@@ -30,12 +30,15 @@ class Portfolio extends PortfolioModel {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Fetches logged in account's portfolio
-  static Future<Portfolio> fetchPortfolio (PortfolioRequest request) async {
+  static Future<Portfolio> fetchPortfolio(PortfolioRequest request) async {
     final PortfolioResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw PortfolioException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => PortfolioException(
+        message: message,
+      ),
+    );
 
     return Portfolio.fromJson(response.portfolio);
   }

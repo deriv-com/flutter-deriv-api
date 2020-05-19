@@ -1,8 +1,9 @@
-import 'package:flutter_deriv_api/api/p2p/exceptions/p2p_exception.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_chat_create_model.dart';
+import 'package:flutter_deriv_api/api/p2p/p2p_chat/exceptions/p2p_chat_exception.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// P2P chat create class
 class P2PChatCreate extends P2PChatCreateModel {
@@ -40,9 +41,12 @@ class P2PChatCreate extends P2PChatCreateModel {
   ) async {
     final P2pChatCreateResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw P2PException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2PChatException(
+        message: message,
+      ),
+    );
 
     return P2PChatCreate.fromJson(response.p2pChatCreate);
   }

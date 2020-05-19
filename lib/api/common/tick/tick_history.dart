@@ -41,9 +41,12 @@ class TickHistory extends TickHistoryModel {
   ) async {
     final TicksHistoryResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw TickException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => TickException(
+        message: message,
+      ),
+    );
 
     return TickHistory.fromJson(
       <String, dynamic>{

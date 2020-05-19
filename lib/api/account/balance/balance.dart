@@ -59,9 +59,12 @@ class Balance extends BalanceModel {
   static Future<Balance> fetchBalance(BalanceRequest request) async {
     final BalanceResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw BalanceException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => BalanceException(
+        message: message,
+      ),
+    );
 
     return Balance.fromJson(response.balance);
   }
@@ -69,9 +72,13 @@ class Balance extends BalanceModel {
   /// Instead of one call [Balance.fetchBalance] gets stream of [Balance]
   static Stream<Balance> subscribeBalance(BalanceRequest request) =>
       _api.subscribe(request: request).map((Response response) {
-        if (response.error != null) {
-          throw BalanceException(message: response.error['message']);
-        }
+        checkException(
+          response: response,
+          exceptionCreator: (String message) => BalanceException(
+            message: message,
+          ),
+        );
+
         return response is BalanceResponse
             ? Balance.fromJson(
                 response.balance,

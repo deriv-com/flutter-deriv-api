@@ -34,9 +34,12 @@ class ServerTime extends ServerTimeModel {
       request: request ?? const TimeRequest(),
     );
 
-    if (response.error != null) {
-      throw ServerTimeException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => ServerTimeException(
+        message: message,
+      ),
+    );
 
     return ServerTime.fromResponse(response);
   }
