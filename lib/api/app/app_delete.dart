@@ -13,9 +13,8 @@ class AppDelete extends AppDeleteModel {
   }) : super(succeeded: succeeded);
 
   /// Creates an instance from response
-  factory AppDelete.fromResponse(int result) => AppDelete(
-        succeeded: getBool(result),
-      );
+  factory AppDelete.fromResponse(AppDeleteResponse response) =>
+      AppDelete(succeeded: getBool(response.appDelete));
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -36,6 +35,6 @@ class AppDelete extends AppDeleteModel {
       throw AppException(message: response.error['message']);
     }
 
-    return AppDelete.fromResponse(response.appDelete);
+    return AppDelete.fromResponse(response);
   }
 }

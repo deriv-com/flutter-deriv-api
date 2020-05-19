@@ -1,4 +1,8 @@
 import 'package:flutter_deriv_api/api/account/models/self_exclusion_model.dart';
+import 'package:flutter_deriv_api/api/account/self_exclusion/exceptions/self_exclusion_exception.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Self exclusion class
@@ -55,6 +59,8 @@ class SelfExclusion extends SelfExclusionModel {
         timeoutUntil: getDateTime(json['timeout_until']),
       );
 
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
   /// Creates a copy of instance with given parameters
   SelfExclusion copyWith({
     DateTime excludeUntil,
@@ -86,4 +92,72 @@ class SelfExclusion extends SelfExclusionModel {
         sessionDurationLimit: sessionDurationLimit ?? this.sessionDurationLimit,
         timeoutUntil: timeoutUntil ?? this.timeoutUntil,
       );
+
+  /// Allows users to exclude themselves from the website for certain periods of time,
+  /// or to set limits on their trading activities.
+  /// This facility is a regulatory requirement for certain Landing Companies.
+  /// For parameters information refer to [GetSelfExclusionRequest].
+  static Future<SelfExclusion> fetchSelfExclusion([
+    GetSelfExclusionRequest request,
+  ]) async {
+    final GetSelfExclusionResponse response = await _api.call(
+      request: request ?? const GetSelfExclusionRequest(),
+    );
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => SelfExclusionException(
+        message: message,
+      ),
+    );
+
+    return SelfExclusion.fromJson(response.getSelfExclusion);
+  }
+
+  /// Sets Self-Exclusion (this call should be used in conjunction with [fetchSelfExclusion])
+  /// For parameters information refer to [SetSelfExclusionRequest].
+  static Future<bool> setSelfExclusion(SetSelfExclusionRequest request) async {
+    final SetSelfExclusionResponse response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => SelfExclusionException(
+        message: message,
+      ),
+    );
+
+    return getBool(response.setSelfExclusion);
+  }
+
+  /// Sets Self-Exclusion (this call should be used in conjunction with [fetchSelfExclusion])
+  Future<bool> exclude() async {
+    final SetSelfExclusionResponse response = await _api.call(
+      request: SetSelfExclusionRequest(
+        excludeUntil: excludeUntil
+            .toString(), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+        max30dayLosses: max30dayLosses,
+        max30dayTurnover: max30dayTurnover,
+        max7dayLosses: max7dayLosses,
+        max7dayTurnover: max7dayTurnover,
+        maxBalance: maxBalance,
+        maxDeposit: maxDeposit,
+        maxDepositEndDate: maxDepositEndDate
+            .toString(), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+        maxLosses: maxLosses,
+        maxOpenBets: maxOpenBets,
+        maxTurnover: maxTurnover,
+        sessionDurationLimit: sessionDurationLimit,
+        timeoutUntil: timeoutUntil.millisecondsSinceEpoch ~/ 1000,
+      ),
+    );
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => SelfExclusionException(
+        message: message,
+      ),
+    );
+
+    return getBool(response.setSelfExclusion);
+  }
 }

@@ -2,11 +2,10 @@ import 'dart:math';
 import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
 
-import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
 
 part 'date_time_helpers.dart';
-
 part 'number_helpers.dart';
 
 /// Parses the [url] and gets the endpoint out of it
@@ -99,6 +98,20 @@ T getEnumFromString<T>({
     },
     orElse: () => null,
   );
+}
+
+/// Converts a list of enums to a string List
+List<String> getStringListFromEnums<T>(
+  List<T> values, {
+  bool snakeCase = true,
+}) {
+  if (values == null || values.isEmpty) {
+    return null;
+  }
+
+  return values
+      .map((T value) => getStringFromEnum(value, snakeCase: snakeCase))
+      .toList();
 }
 
 /// Checks for existence of error in [response] and throws exception created by

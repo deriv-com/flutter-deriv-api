@@ -1,8 +1,15 @@
+import 'package:meta/meta.dart';
+
+import 'package:flutter_deriv_api/api/account/api_token/exceptions/api_token_exception.dart';
 import 'package:flutter_deriv_api/api/account/models/api_token_model.dart';
 import 'package:flutter_deriv_api/api/account/models/token_model.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// Token class
+/// API token class
 class APIToken extends APITokenModel {
   /// Initializes
   APIToken({
@@ -25,6 +32,8 @@ class APIToken extends APITokenModel {
         ),
       );
 
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
   /// Creates a copy of instance with given parameters
   APIToken copyWith({
     bool deleteToken,
@@ -36,4 +45,46 @@ class APIToken extends APITokenModel {
         newToken: newToken ?? this.newToken,
         tokens: tokens ?? this.tokens,
       );
+
+  /// Creates an API tokens
+  static Future<APIToken> create({
+    @required String name,
+    @required List<TokenScope> scopes,
+    bool validForCurrentIPOnly,
+  }) async {
+    final ApiTokenResponse response = await _api.call(
+      request: ApiTokenRequest(
+        newToken: name,
+        newTokenScopes: getStringListFromEnums(scopes),
+        validForCurrentIpOnly: getInt(validForCurrentIPOnly),
+      ),
+    );
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => APITokenException(
+        message: message,
+      ),
+    );
+
+    return APIToken.fromJson(response.apiToken);
+  }
+
+  /// Deletes an API tokens
+  static Future<APIToken> delete({
+    @required String token,
+  }) async {
+    final ApiTokenResponse response = await _api.call(
+      request: ApiTokenRequest(deleteToken: token),
+    );
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => APITokenException(
+        message: message,
+      ),
+    );
+
+    return APIToken.fromJson(response.apiToken);
+  }
 }

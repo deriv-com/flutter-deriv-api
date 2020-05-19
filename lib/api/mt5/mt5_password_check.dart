@@ -13,9 +13,8 @@ class MT5PasswordCheck extends MT5PasswordCheckModel {
   }) : super(succeeded: succeeded);
 
   /// Creates an instance from response
-  factory MT5PasswordCheck.fromResponse(int result) => MT5PasswordCheck(
-        succeeded: getBool(result),
-      );
+  factory MT5PasswordCheck.fromResponse(Mt5PasswordCheckResponse response) =>
+      MT5PasswordCheck(succeeded: getBool(response.mt5PasswordCheck));
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -38,6 +37,6 @@ class MT5PasswordCheck extends MT5PasswordCheckModel {
       throw MT5Exception(message: response.error['message']);
     }
 
-    return MT5PasswordCheck.fromResponse(response.mt5PasswordCheck);
+    return MT5PasswordCheck.fromResponse(response);
   }
 }

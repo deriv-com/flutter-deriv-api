@@ -12,9 +12,8 @@ class Ping extends PingModel {
   }) : super(succeeded: succeeded);
 
   /// Generate an instance from response
-  factory Ping.fromResponse(String result) => Ping(
-        succeeded: result == 'pong',
-      );
+  factory Ping.fromResponse(PingResponse response) =>
+      Ping(succeeded: response.ping == 'pong');
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -38,6 +37,6 @@ class Ping extends PingModel {
       throw PingException(message: response.error['message']);
     }
 
-    return Ping.fromResponse(response.ping);
+    return Ping.fromResponse(response);
   }
 }

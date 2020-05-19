@@ -13,9 +13,8 @@ class RevokeOauthApp extends RevokeOauthAppModel {
   }) : super(succeeded: succeeded);
 
   /// Creates an instance from response
-  factory RevokeOauthApp.fromResponse(int result) => RevokeOauthApp(
-        succeeded: getBool(result),
-      );
+  factory RevokeOauthApp.fromResponse(RevokeOauthAppResponse response) =>
+      RevokeOauthApp(succeeded: getBool(response.revokeOauthApp));
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -38,6 +37,6 @@ class RevokeOauthApp extends RevokeOauthAppModel {
       throw AppException(message: response.error['message']);
     }
 
-    return RevokeOauthApp.fromResponse(response.revokeOauthApp);
+    return RevokeOauthApp.fromResponse(response);
   }
 }
