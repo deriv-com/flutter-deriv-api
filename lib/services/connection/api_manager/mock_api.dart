@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/payout_currencies_response.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -54,6 +53,7 @@ import 'mock_data/common/landing_company_response.dart';
 import 'mock_data/common/payment_agent_list_response.dart';
 import 'mock_data/common/payment_agent_transfer_response.dart';
 import 'mock_data/common/payment_agent_withdraw_response.dart';
+import 'mock_data/common/payout_currencies_response.dart';
 import 'mock_data/common/ping_response.dart';
 import 'mock_data/common/residence_list_response.dart';
 import 'mock_data/common/server_time_response.dart';
@@ -70,6 +70,7 @@ import 'mock_data/contract/contract_update_history_response.dart';
 import 'mock_data/contract/contract_update_response.dart';
 import 'mock_data/contract/proposal_open_contract_response.dart';
 import 'mock_data/contract/proposal_response.dart';
+import 'mock_data/contract/sell_expired_response.dart';
 import 'mock_data/contract/sell_response.dart';
 import 'mock_data/contract/transaction_response.dart';
 import 'mock_data/mt5/mt5_deposit_response.dart';
@@ -300,7 +301,8 @@ class MockAPI implements BaseAPI {
       case 'revoke_oauth_app':
         return revokeOauthAppResponse;
       // case 'sell_contract_for_multiple_accounts':
-      // case 'sell_expired':
+      case 'sell_expired':
+        return sellExpiredResponse;
       case 'sell':
         return sellResponse;
       case 'set_account_currency':

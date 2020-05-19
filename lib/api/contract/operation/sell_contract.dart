@@ -1,7 +1,9 @@
 import 'package:flutter_deriv_api/api/contract/models/sell_contract_model.dart';
+import 'package:flutter_deriv_api/api/contract/models/sell_expired_contract_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'exceptions/contract_operations_exception.dart';
 
@@ -42,6 +44,25 @@ class SellContract extends SellContractModel {
     }
 
     return SellContract.fromJson(response.sell);
+  }
+
+  /// tries to sell any expired contracts and returns the number of sold contracts as [SellExpiredContractModel].
+  ///
+  /// Throws [ContractOperationException] if API response contains an error
+  static Future<SellExpiredContractModel> sellExpiredContracts([
+    SellExpiredRequest request,
+  ]) async {
+    final SellExpiredResponse response = await _api.call(
+      request: request ?? const SellExpiredRequest(),
+    );
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          ContractOperationException(message: message),
+    );
+
+    return SellExpiredContractModel.fromJson(response.sellExpired);
   }
 
   /// Generates a copy of instance with given parameters
