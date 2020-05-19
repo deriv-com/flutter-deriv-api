@@ -6,7 +6,7 @@ import '../request.dart';
 part 'p2p_chat_create_send.g.dart';
 
 /// JSON conversion for 'p2p_chat_create_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pChatCreateRequest extends Request {
   /// Initialize P2pChatCreateRequest
   const P2pChatCreateRequest({

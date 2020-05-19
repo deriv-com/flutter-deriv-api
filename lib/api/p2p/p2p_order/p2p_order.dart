@@ -187,7 +187,7 @@ class P2POrder extends P2POrderModel {
       throw P2POrderException(message: response.error['message']);
     }
 
-    return Forget.fromResponse(response.forget);
+    return Forget.fromResponse(response);
   }
 
   /// Unsubscribes all order subscriptions.
@@ -199,7 +199,7 @@ class P2POrder extends P2POrderModel {
       throw P2POrderException(message: response.error['message']);
     }
 
-    return ForgetAll.fromResponse(response.forgetAll);
+    return ForgetAll.fromResponse(response);
   }
 
   /// Cancels this order

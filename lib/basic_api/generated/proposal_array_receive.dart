@@ -6,7 +6,7 @@ import '../response.dart';
 part 'proposal_array_receive.g.dart';
 
 /// JSON conversion for 'proposal_array_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ProposalArrayResponse extends Response {
   /// Initialize ProposalArrayResponse
   const ProposalArrayResponse({

@@ -6,7 +6,7 @@ import '../request.dart';
 part 'profit_table_send.g.dart';
 
 /// JSON conversion for 'profit_table_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ProfitTableRequest extends Request {
   /// Initialize ProfitTableRequest
   const ProfitTableRequest({

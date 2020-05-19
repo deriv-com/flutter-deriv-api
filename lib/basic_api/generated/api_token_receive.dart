@@ -6,7 +6,7 @@ import '../response.dart';
 part 'api_token_receive.g.dart';
 
 /// JSON conversion for 'api_token_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ApiTokenResponse extends Response {
   /// Initialize ApiTokenResponse
   const ApiTokenResponse({

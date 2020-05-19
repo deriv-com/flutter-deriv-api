@@ -6,7 +6,7 @@ import '../response.dart';
 part 'document_upload_receive.g.dart';
 
 /// JSON conversion for 'document_upload_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class DocumentUploadResponse extends Response {
   /// Initialize DocumentUploadResponse
   const DocumentUploadResponse({

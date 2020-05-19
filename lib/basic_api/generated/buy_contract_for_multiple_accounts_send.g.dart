@@ -13,7 +13,7 @@ BuyContractForMultipleAccountsRequest
         json['buy_contract_for_multiple_accounts'] as String,
     parameters: json['parameters'] as Map<String, dynamic>,
     price: json['price'] as num,
-    tokens: (json['tokens'] as List).map((e) => e as String).toList(),
+    tokens: (json['tokens'] as List)?.map((e) => e as String)?.toList(),
     passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
   );

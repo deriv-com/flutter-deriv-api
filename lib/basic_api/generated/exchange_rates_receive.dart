@@ -6,7 +6,7 @@ import '../response.dart';
 part 'exchange_rates_receive.g.dart';
 
 /// JSON conversion for 'exchange_rates_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ExchangeRatesResponse extends Response {
   /// Initialize ExchangeRatesResponse
   const ExchangeRatesResponse({

@@ -6,7 +6,7 @@ import '../response.dart';
 part 'p2p_order_cancel_receive.g.dart';
 
 /// JSON conversion for 'p2p_order_cancel_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pOrderCancelResponse extends Response {
   /// Initialize P2pOrderCancelResponse
   const P2pOrderCancelResponse({

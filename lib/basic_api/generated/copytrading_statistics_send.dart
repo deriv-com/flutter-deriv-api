@@ -6,7 +6,7 @@ import '../request.dart';
 part 'copytrading_statistics_send.g.dart';
 
 /// JSON conversion for 'copytrading_statistics_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class CopytradingStatisticsRequest extends Request {
   /// Initialize CopytradingStatisticsRequest
   const CopytradingStatisticsRequest({

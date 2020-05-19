@@ -6,7 +6,7 @@ import '../response.dart';
 part 'app_update_receive.g.dart';
 
 /// JSON conversion for 'app_update_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AppUpdateResponse extends Response {
   /// Initialize AppUpdateResponse
   const AppUpdateResponse({
