@@ -214,6 +214,8 @@ class P2PAdvertiser extends P2PAdvertiserModel {
   }
 
   /// Unsubscribes from P2P (peer to peer) advertiser information.
+  ///
+  /// Throws a [P2PAdvertiserException] if API response contains an error
   Future<Forget> unsubscribeAdvertiser() async {
     if (subscriptionInformation?.id == null) {
       return null;
@@ -230,6 +232,8 @@ class P2PAdvertiser extends P2PAdvertiserModel {
   }
 
   /// Unsubscribes all P2P (peer to peer) advertisers.
+  ///
+  /// Throws a [P2PAdvertiserException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllAdvertiser() async {
     final ForgetAllResponse response =
         await _api.unsubscribeAll(method: ForgetStreamType.p2pAdvertiser);

@@ -122,6 +122,8 @@ class PriceProposal extends PriceProposalModel {
       );
 
   /// Unsubscribes from price proposal subscription.
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   Future<Forget> unsubscribeProposal() async {
     if (subscriptionInformation?.id == null) {
       return null;
@@ -140,6 +142,8 @@ class PriceProposal extends PriceProposalModel {
   }
 
   /// Unsubscribes all proposal subscriptions.
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllProposal() async {
     final ForgetAllResponse response =
     await _api.unsubscribeAll(method: ForgetStreamType.proposal);

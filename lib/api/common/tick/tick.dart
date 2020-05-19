@@ -82,6 +82,8 @@ class Tick extends TickModel {
       );
 
   /// Unsubscribes from tick stream
+  ///
+  /// Throws a [TickException] if API response contains an error
   Future<Forget> unsubscribeTick() async {
     if (subscriptionInformation?.id == null) {
       return null;
@@ -99,6 +101,8 @@ class Tick extends TickModel {
   }
 
   /// Unsubscribes all ticks.
+  ///
+  /// Throws a [TickException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllTicks() async {
     final ForgetAllResponse response =
         await _api.unsubscribeAll(method: ForgetStreamType.ticks);

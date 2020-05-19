@@ -81,6 +81,8 @@ class Balance extends BalanceModel {
       });
 
   /// Unsubscribes from balance subscription.
+  ///
+  /// Throws a [BalanceException] if API response contains an error
   Future<Forget> unsubscribeBalance() async {
     if (subscriptionInformation?.id == null) {
       return null;
@@ -98,6 +100,8 @@ class Balance extends BalanceModel {
   }
 
   /// Unsubscribes all balance subscriptions.
+  ///
+  /// Throws a [BalanceException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllBalance() async {
     final ForgetAllResponse response =
         await _api.unsubscribeAll(method: ForgetStreamType.balance);
