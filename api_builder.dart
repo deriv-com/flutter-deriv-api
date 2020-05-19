@@ -217,9 +217,9 @@ class APIBuilder extends Builder {
 
   String _getSchemaType(JsonSchema property) => property.typeList?.length == 2
       ? property.typeList.first.toString() != 'null'
-          ? property.typeList.first.toString() ?? 'dynamic'
-          : property.typeList.last.toString() ?? 'dynamic'
-      : property.type?.toString() ?? 'dynamic';
+          ? property.typeList.first.toString() ?? 'undefined'
+          : property.typeList.last.toString() ?? 'undefined'
+      : property.type?.toString() ?? 'undefined';
 
   String _getCopyWithMethod(
     BuildStep buildStep,
