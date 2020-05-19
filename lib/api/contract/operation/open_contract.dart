@@ -265,6 +265,8 @@ class OpenContract extends OpenContractModel {
       );
 
   /// Unsubscribes from open contract subscription.
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   Future<Forget> unsubscribeOpenContract() async {
     if (subscriptionInformation?.id == null) {
       return null;
@@ -283,6 +285,8 @@ class OpenContract extends OpenContractModel {
   }
 
   /// Unsubscribes all open contract subscriptions.
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllOpenContract() async {
     final ForgetAllResponse response = await _api.unsubscribeAll(
       method: ForgetStreamType.proposalOpenContract,

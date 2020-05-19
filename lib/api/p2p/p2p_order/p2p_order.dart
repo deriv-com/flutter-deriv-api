@@ -180,6 +180,8 @@ class P2POrder extends P2POrderModel {
       );
 
   /// Unsubscribes from order subscription.
+  ///
+  /// Throws a [P2POrderException] if API response contains an error
   Future<Forget> unsubscribeOrder() async {
     if (subscriptionInformation?.id == null) {
       return null;
@@ -196,6 +198,8 @@ class P2POrder extends P2POrderModel {
   }
 
   /// Unsubscribes all order subscriptions.
+  ///
+  /// Throws a [P2POrderException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllOrder() async {
     final ForgetAllResponse response =
         await _api.unsubscribeAll(method: ForgetStreamType.p2pOrder);
