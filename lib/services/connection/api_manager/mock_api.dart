@@ -42,6 +42,7 @@ import 'mock_data/app/oauth_apps_response.dart';
 import 'mock_data/app/revoke_oauth_app_response.dart';
 import 'mock_data/cashier/cashier_information_response.dart';
 import 'mock_data/common/active_symbols_response.dart';
+import 'mock_data/common/asset_index_response.dart';
 import 'mock_data/common/copy_start_response.dart';
 import 'mock_data/common/copy_stop_response.dart';
 import 'mock_data/common/exchange_rates_response.dart';
@@ -158,7 +159,8 @@ class MockAPI implements BaseAPI {
         return appRegisterResponse;
       case 'app_update':
         return appUpdateResponse;
-      // case 'asset_index':
+      case 'asset_index':
+        return assetIndexResponse;
       case 'authorize':
         return authorizeResponse;
       case 'balance':

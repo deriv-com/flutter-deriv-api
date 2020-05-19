@@ -1,6 +1,11 @@
 import 'package:flutter_deriv_api/api/common/models/asset_index_model.dart';
 import 'package:flutter_deriv_api/api/common/models/index_contract_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
+
+import 'exceptions/asset_index_exception.dart';
 
 /// Index of contracts
 const int contractsIndex = 2;
@@ -39,6 +44,29 @@ class AssetIndex extends AssetIndexModel {
         symbolCode: jsonList[symbolCodeIndex],
         symbolName: jsonList[symbolNameIndex],
       );
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Retrieves a list of all available underlyings and the corresponding contract types and duration boundaries.
+  /// If the user is logged in, only the assets available for that user's landing company will be returned.
+  static Future<List<AssetIndex>> fetchAssetIndices([
+    AssetIndexRequest request,
+  ]) async {
+    final AssetIndexResponse response = await _api.call(
+      request: request ?? const AssetIndexRequest(),
+    );
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          AssetIndexException(message: message),
+    );
+
+    return getListFromMap(
+      response.assetIndex,
+      itemToTypeCallback: (dynamic item) => AssetIndex.fromJson(item),
+    );
+  }
 
   /// Creates a copy of this instance with given parameters
   AssetIndex copyWith({
