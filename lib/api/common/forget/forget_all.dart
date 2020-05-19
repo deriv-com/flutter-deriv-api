@@ -29,7 +29,7 @@ class ForgetAll extends ForgetAllModel {
         cancelledStreams: cancelledStreams ?? this.cancelledStreams,
       );
 
-  /// Immediately cancel the real-time streams of messages of given type.
+  /// Immediately cancels the real-time streams of messages of given type.
   ///
   /// For parameters information refer to [ForgetAllRequest].
   /// Throws a [ForgetException] if API response contains an error
