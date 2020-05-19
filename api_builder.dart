@@ -199,7 +199,7 @@ class APIBuilder extends Builder {
       if (property.oneOf.isNotEmpty) {
         return 'dynamic';
       } else {
-        final String schemaType = property.type?.toString() ?? 'string';
+        final String schemaType = _getSchemaType(property);
 
         if (schemaType == 'array') {
           // Some types aren't specified - forget_all for example
@@ -214,6 +214,12 @@ class APIBuilder extends Builder {
       return 'String';
     }
   }
+
+  String _getSchemaType(JsonSchema property) => property.typeList?.length == 2
+      ? property.typeList.first.toString() != 'null'
+          ? property.typeList.first.toString() ?? 'dynamic'
+          : property.typeList.last.toString() ?? 'dynamic'
+      : property.type?.toString() ?? 'dynamic';
 
   String _getCopyWithMethod(
     BuildStep buildStep,

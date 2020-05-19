@@ -47,7 +47,7 @@ class UpdateContract extends UpdateContractModel {
   }
 
   /// Gets update history for contract as List of [HistorySpotPriceModel]
-  static Future<List<HistorySpotPriceModel>> getContractUpdateHistory(
+  static Future<List<HistorySpotPriceModel>> fetchContractUpdateHistory(
     ContractUpdateHistoryRequest request,
   ) async {
     final ContractUpdateHistoryResponse response =

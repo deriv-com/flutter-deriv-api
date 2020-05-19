@@ -1,6 +1,10 @@
-import 'package:flutter_deriv_api/api/account/authorize/account.dart';
+import 'package:flutter_deriv_api/api/account/account.dart';
+import 'package:flutter_deriv_api/api/account/authorize/exceptions/authorize_exception.dart';
 import 'package:flutter_deriv_api/api/account/models/authorize_model.dart';
 import 'package:flutter_deriv_api/api/account/models/local_currency_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Authorize class
@@ -69,6 +73,8 @@ class Authorize extends AuthorizeModel {
         userId: json['user_id'],
       );
 
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
   /// Generate a copy of instance with given parameters
   Authorize copyWith({
     List<Account> accountList,
@@ -104,4 +110,21 @@ class Authorize extends AuthorizeModel {
             upgradeableLandingCompanies ?? this.upgradeableLandingCompanies,
         userId: userId ?? this.userId,
       );
+
+  /// Authorizes current WebSocket session to act on behalf of the owner of a given token.
+  /// For parameters information refer to [AuthorizeRequest].
+  static Future<Authorize> authorize(AuthorizeRequest request) async {
+    final AuthorizeResponse response = await _api.call(
+      request: request,
+    );
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => AuthorizeException(
+        message: message,
+      ),
+    );
+
+    return Authorize.fromJson(response.authorize);
+  }
 }
