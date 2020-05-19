@@ -108,9 +108,8 @@ class AccountSettings extends AccountSettingsModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => AccountSettingsException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          AccountSettingsException(message: message),
     );
 
     return AccountSettings.fromJson(response.getSettings);
@@ -124,9 +123,8 @@ class AccountSettings extends AccountSettingsModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => AccountSettingsException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          AccountSettingsException(message: message),
     );
 
     return SetAccountSettingModel(succeeded: getBool(response.setSettings));

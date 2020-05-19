@@ -106,9 +106,7 @@ class P2POrder extends P2POrderModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => P2POrderException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => P2POrderException(message: message),
     );
 
     return P2POrder.fromJson(response.p2pOrderCreate);
@@ -124,9 +122,8 @@ class P2POrder extends P2POrderModel {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: (String message) => P2POrderException(
-              message: message,
-            ),
+            exceptionCreator: (String message) =>
+                P2POrderException(message: message),
           );
 
           return response is P2pOrderCreateResponse
@@ -144,9 +141,7 @@ class P2POrder extends P2POrderModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => P2POrderException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => P2POrderException(message: message),
     );
 
     return P2POrder.fromJson(response.p2pOrderInfo);
@@ -172,9 +167,8 @@ class P2POrder extends P2POrderModel {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: (String message) => P2POrderException(
-              message: message,
-            ),
+            exceptionCreator: (String message) =>
+                P2POrderException(message: message),
           );
 
           return response is P2pOrderInfoResponse
@@ -197,9 +191,7 @@ class P2POrder extends P2POrderModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => P2POrderException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => P2POrderException(message: message),
     );
 
     return Forget.fromResponse(response);
@@ -212,9 +204,7 @@ class P2POrder extends P2POrderModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => P2POrderException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => P2POrderException(message: message),
     );
 
     return ForgetAll.fromResponse(response);
@@ -227,9 +217,7 @@ class P2POrder extends P2POrderModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => P2POrderException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => P2POrderException(message: message),
     );
 
     return copyWith(status: P2POrder.fromJson(response.p2pOrderCancel).status);
@@ -242,9 +230,7 @@ class P2POrder extends P2POrderModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => P2POrderException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => P2POrderException(message: message),
     );
 
     return copyWith(status: P2POrder.fromJson(response.p2pOrderConfirm).status);

@@ -227,9 +227,8 @@ class OpenContract extends OpenContractModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => ContractOperationException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          ContractOperationException(message: message),
     );
 
     return OpenContract.fromJson(
@@ -248,9 +247,8 @@ class OpenContract extends OpenContractModel {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: (String message) => ContractOperationException(
-              message: message,
-            ),
+            exceptionCreator: (String message) =>
+                ContractOperationException(message: message),
           );
 
           return response is ProposalOpenContractResponse

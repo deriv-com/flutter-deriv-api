@@ -101,9 +101,7 @@ class MT5Account extends MT5AccountModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => MT5Exception(
-        message: message,
-      ),
+      exceptionCreator: (String message) => MT5Exception(message: message),
     );
 
     return MT5Account.fromJson(response.mt5NewAccount);
@@ -118,9 +116,7 @@ class MT5Account extends MT5AccountModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => MT5Exception(
-        message: message,
-      ),
+      exceptionCreator: (String message) => MT5Exception(message: message),
     );
 
     return getListFromMap(

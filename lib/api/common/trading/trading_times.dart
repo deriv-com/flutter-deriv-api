@@ -42,9 +42,7 @@ class TradingTimes extends TradingTimesModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => TradingException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => TradingException(message: message),
     );
 
     return TradingTimes.fromJson(response.tradingTimes);

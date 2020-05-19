@@ -39,9 +39,7 @@ class ForgetAll extends ForgetAllModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => ForgetException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => ForgetException(message: message),
     );
 
     return ForgetAll.fromResponse(response);

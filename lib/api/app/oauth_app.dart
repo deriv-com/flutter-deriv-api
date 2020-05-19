@@ -64,9 +64,7 @@ class OauthApp extends OauthAppModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => AppException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => AppException(message: message),
     );
 
     return getListFromMap(

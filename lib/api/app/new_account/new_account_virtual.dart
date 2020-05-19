@@ -60,9 +60,8 @@ class NewAccountVirtual extends NewAccountVirtualModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => NewAccountException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          NewAccountException(message: message),
     );
 
     return NewAccountVirtual.fromJson(response.newAccountVirtual);

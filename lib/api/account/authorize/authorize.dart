@@ -120,9 +120,8 @@ class Authorize extends AuthorizeModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => AuthorizeException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          AuthorizeException(message: message),
     );
 
     return Authorize.fromJson(response.authorize);

@@ -82,9 +82,8 @@ class WebsiteStatus extends WebsiteStatusModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => WebsiteStatusException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          WebsiteStatusException(message: message),
     );
 
     return WebsiteStatus.fromJson(response.websiteStatus);
@@ -101,9 +100,8 @@ class WebsiteStatus extends WebsiteStatusModel {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: (String message) => WebsiteStatusException(
-              message: message,
-            ),
+            exceptionCreator: (String message) =>
+                WebsiteStatusException(message: message),
           );
 
           return response is WebsiteStatusResponse

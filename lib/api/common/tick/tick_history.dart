@@ -43,9 +43,7 @@ class TickHistory extends TickHistoryModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => TickException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => TickException(message: message),
     );
 
     return TickHistory.fromJson(
