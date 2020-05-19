@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_update_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_update_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class P2pAdvertiserUpdateResponse extends Response {
   factory P2pAdvertiserUpdateResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertiserUpdateResponseFromJson(json);
 
-  // Properties
   /// P2P advertiser information.
   final Map<String, dynamic> p2pAdvertiserUpdate;
 

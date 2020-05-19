@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/get_financial_assessment_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_financial_assessment_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class GetFinancialAssessmentResponse extends Response {
   factory GetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>
       _$GetFinancialAssessmentResponseFromJson(json);
 
-  // Properties
   /// Client's financial assessment details
   final Map<String, dynamic> getFinancialAssessment;
 

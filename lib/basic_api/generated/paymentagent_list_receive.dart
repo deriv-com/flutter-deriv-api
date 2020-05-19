@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_list_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_list_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class PaymentagentListResponse extends Response {
   factory PaymentagentListResponse.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentListResponseFromJson(json);
 
-  // Properties
   /// Payment Agent List
   final Map<String, dynamic> paymentagentList;
 

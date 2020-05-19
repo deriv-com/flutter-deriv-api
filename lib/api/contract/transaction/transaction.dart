@@ -93,6 +93,8 @@ class Transaction extends TransactionModel {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Subscribes to account's transactions
+  ///
+  /// Throws a [TransactionsException] if API response contains an error
   static Stream<Transaction> subscribeTransactions() => _api
           .subscribe(request: const TransactionRequest())
           .map<Transaction>((Response response) {

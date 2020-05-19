@@ -23,7 +23,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
           transactionId: transactionId,
         );
 
-  /// Generate an instance from response
+  /// Generates an instance from response
   factory TransferBetweenAccounts.fromResponse(
     TransferBetweenAccountsResponse response,
   ) =>
@@ -41,7 +41,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   TransferBetweenAccounts copyWith({
     bool transferBetweenAccounts,
     List<TransferAccountModel> accounts,
@@ -59,9 +59,11 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
       );
 
   /// This call allows transfers between accounts held by a given user.
+  ///
   /// Transfer funds between your fiat and crypto currency accounts (for a fee).
   /// Please note that account_from should be same as current authorized account.
   /// For parameters information refer to [TransferBetweenAccountsRequest].
+  /// Throws a [TransferException] if API response contains an error
   static Future<TransferBetweenAccounts> transfer(
     TransferBetweenAccountsRequest request,
   ) async {

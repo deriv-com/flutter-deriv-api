@@ -15,7 +15,7 @@ class P2PChatCreate extends P2PChatCreateModel {
           orderId: orderId,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory P2PChatCreate.fromJson(Map<String, dynamic> json) => P2PChatCreate(
         channelUrl: json['channel_url'],
         orderId: json['order_id'],
@@ -23,7 +23,7 @@ class P2PChatCreate extends P2PChatCreateModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   P2PChatCreate copyWith({
     String channelUrl,
     String orderId,
@@ -34,7 +34,9 @@ class P2PChatCreate extends P2PChatCreateModel {
       );
 
   /// Creates a P2P (peer to peer) chat for the specified order.
+  ///
   /// For parameters information refer to [P2pChatCreateRequest].
+  /// Throws a [P2PException] if API response contains an error
   static Future<P2PChatCreate> createChat(
     P2pChatCreateRequest request,
   ) async {

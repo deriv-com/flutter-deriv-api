@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/set_settings_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_settings_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -44,7 +44,6 @@ class SetSettingsRequest extends Request {
   factory SetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       _$SetSettingsRequestFromJson(json);
 
-  // Properties
   /// [Optional] Purpose and reason for requesting the account opening. Only applicable for real money account. Required for clients that have not set it yet. Can only be set once.
   final String accountOpeningReason;
 

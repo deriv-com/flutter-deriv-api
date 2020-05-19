@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -30,7 +30,6 @@ class TransferBetweenAccountsResponse extends Response {
   factory TransferBetweenAccountsResponse.fromJson(Map<String, dynamic> json) =>
       _$TransferBetweenAccountsResponseFromJson(json);
 
-  // Properties
   /// The available accounts to transfer, or the accounts affected by a successful transfer.
   final List<Map<String, dynamic>> accounts;
 

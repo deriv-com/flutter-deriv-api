@@ -33,7 +33,9 @@ class SellContract extends SellContractModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Sells a contract with parameters specified in [SellRequest]
+  /// Sells a contract with parameters specified in [SellRequest].
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<SellContract> sellContract(SellRequest request) async {
     final SellResponse response = await _api.call(request: request);
 

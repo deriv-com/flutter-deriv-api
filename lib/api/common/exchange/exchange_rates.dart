@@ -19,7 +19,7 @@ class ExchangeRates extends ExchangeRatesModel {
           rates: rates,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory ExchangeRates.fromJson(Map<String, dynamic> json) => ExchangeRates(
         baseCurrency: json['base_currency'],
         date: getDateTime(json['date']),
@@ -36,7 +36,7 @@ class ExchangeRates extends ExchangeRatesModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   ExchangeRates copyWith({
     String baseCurrency,
     DateTime date,
@@ -48,8 +48,10 @@ class ExchangeRates extends ExchangeRatesModel {
         rates: rates ?? this.rates,
       );
 
-  /// Retrieves the exchange rates from a base currency to all currencies supported by the system
-  /// For parameters information refer to [ExchangeRatesRequest]
+  /// Retrieves the exchange rates from a base currency to all currencies supported by the system.
+  ///
+  /// For parameters information refer to [ExchangeRatesRequest].
+  /// Throws an [ExchangeException] if API response contains an error
   static Future<ExchangeRates> fetchExchangeRates(
     ExchangeRatesRequest request,
   ) async {

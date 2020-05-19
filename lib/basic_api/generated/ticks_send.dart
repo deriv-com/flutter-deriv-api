@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -24,7 +24,6 @@ class TicksRequest extends Request {
   factory TicksRequest.fromJson(Map<String, dynamic> json) =>
       _$TicksRequestFromJson(json);
 
-  // Properties
   /// [Optional] If set to 1, will send updates whenever a new tick is received.
   final int subscribe;
 

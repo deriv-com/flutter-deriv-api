@@ -27,7 +27,9 @@ class CopyTradingStop extends CopyTradingStopModel {
       );
 
   /// Stops copy trader bets.
+  ///
   /// For parameters information refer to [CopyStopRequest].
+  /// Throws a [CopyTradingException] if API response contains an error
   static Future<CopyTradingStop> stop(CopyStopRequest request) async {
     final CopyStopResponse response = await _api.call(request: request);
 

@@ -50,8 +50,10 @@ class PaymentAgentTransfer extends PaymentAgentTransferModel {
       );
 
   /// Payment Agent Transfer.
+  ///
   /// This call is available only to accounts that are approved payment agents.
   /// For parameters information refer to [PaymentagentTransferRequest].
+  /// Throws a [PaymentAgentException] if API response contains an error
   static Future<PaymentAgentTransfer> transfer(
     PaymentagentTransferRequest request,
   ) async {

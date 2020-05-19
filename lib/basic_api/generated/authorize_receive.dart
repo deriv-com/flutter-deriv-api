@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/authorize_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/authorize_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class AuthorizeResponse extends Response {
   factory AuthorizeResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthorizeResponseFromJson(json);
 
-  // Properties
   /// Account information for the holder of the token.
   final Map<String, dynamic> authorize;
 

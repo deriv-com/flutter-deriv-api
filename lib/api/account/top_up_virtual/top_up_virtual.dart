@@ -16,7 +16,7 @@ class TopUpVirtual extends TopUpVirtualModel {
           currency: currency,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory TopUpVirtual.fromJson(Map<String, dynamic> json) => TopUpVirtual(
         amount: json['amount']?.toDouble(),
         currency: json['currency'],
@@ -24,7 +24,7 @@ class TopUpVirtual extends TopUpVirtualModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   TopUpVirtual copyWith({
     double amount,
     String currency,
@@ -34,8 +34,10 @@ class TopUpVirtual extends TopUpVirtualModel {
         currency: currency ?? this.currency,
       );
 
-  /// When a virtual-money's account balance becomes low, it can be topped up using this call.
+  /// Topes up the virtual-money's account balance becomes when it becomes low.
+  ///
   /// For parameters information refer to [TopupVirtualRequest].
+  /// Throws a [TopUpVirtualException] if API response contains an error
   static Future<TopUpVirtual> topUp([
     TopupVirtualRequest request,
   ]) async {

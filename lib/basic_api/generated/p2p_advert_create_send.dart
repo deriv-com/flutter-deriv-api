@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_create_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_create_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -33,7 +33,6 @@ class P2pAdvertCreateRequest extends Request {
   factory P2pAdvertCreateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertCreateRequestFromJson(json);
 
-  // Properties
   /// The total amount of the advert, in advertiser's account currency.
   final num amount;
 

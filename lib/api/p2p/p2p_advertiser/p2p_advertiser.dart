@@ -40,7 +40,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
           paymentInfo: paymentInfo,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory P2PAdvertiser.fromJson(
     Map<String, dynamic> json, {
     Map<String, dynamic> subscriptionJson,
@@ -68,7 +68,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   P2PAdvertiser copyWith({
     String chatToken,
     String chatUserId,
@@ -99,7 +99,9 @@ class P2PAdvertiser extends P2PAdvertiserModel {
       );
 
   /// Retrieves information about a P2P (peer to peer) advertiser.
+  ///
   /// For parameters information refer to [P2pAdvertiserInfoRequest].
+  /// Throws a [P2PAdvertiserException] if API response contains an error
   static Future<P2PAdvertiser> fetchAdvertiserInformation(
     P2pAdvertiserInfoRequest request,
   ) async {

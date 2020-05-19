@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/set_account_currency_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_account_currency_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -23,7 +23,6 @@ class SetAccountCurrencyRequest extends Request {
   factory SetAccountCurrencyRequest.fromJson(Map<String, dynamic> json) =>
       _$SetAccountCurrencyRequestFromJson(json);
 
-  // Properties
   /// Currency of the account. List of supported currencies can be acquired with `payout_currencies` call.
   final String setAccountCurrency;
 

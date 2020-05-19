@@ -26,6 +26,7 @@ class AppDelete extends AppDeleteModel {
         succeeded: succeeded ?? this.succeeded,
       );
 
+  // TODO(ramin): Maybe better doc of what exactly this method does
   /// The request for deleting an application.
   /// For parameters information refer to [AppDeleteRequest].
   static Future<AppDelete> deleteApplication(AppDeleteRequest request) async {

@@ -30,7 +30,7 @@ class RealityCheck extends RealityCheckModel {
           startTime: startTime,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory RealityCheck.fromJson(Map<String, dynamic> json) => RealityCheck(
         buyAmount: json['buy_amount'],
         buyCount: json['buy_count'],
@@ -45,7 +45,7 @@ class RealityCheck extends RealityCheckModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   RealityCheck copyWith({
     double buyAmount,
     int buyCount,
@@ -70,9 +70,11 @@ class RealityCheck extends RealityCheckModel {
       );
 
   /// Retrieves summary of client's trades and account for the reality check facility.
+  ///
   /// A `reality check` means a display of time elapsed since the session began, and associated client profit/loss.
   /// The reality check facility is a regulatory requirement for certain landing companies.
   /// For parameters information refer to [RealityCheckRequest].
+  /// Throws a [RealityCheckException] if API response contains an error
   static Future<RealityCheck> check([
     RealityCheckRequest request,
   ]) async {

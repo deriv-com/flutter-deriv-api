@@ -33,8 +33,10 @@ class AppRegister extends AppRegisterModel {
         appDetails: appDetails ?? this.appDetails,
       );
 
-  /// Register a new OAuth application.
+  /// Registers a new OAuth application.
+  ///
   /// For parameters information refer to [AppRegisterRequest].
+  /// Throws an [AppException] if API response contains an error
   static Future<AppRegister> registerApplication(
     AppRegisterRequest request,
   ) async {
