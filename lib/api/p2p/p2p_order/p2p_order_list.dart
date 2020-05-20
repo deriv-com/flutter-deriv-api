@@ -88,7 +88,7 @@ class P2POrderList {
       throw P2POrderException(message: response.error['message']);
     }
 
-    return Forget.fromResponse(response.forget);
+    return Forget.fromResponse(response);
   }
 
   /// Unsubscribes from all order subscriptions.
