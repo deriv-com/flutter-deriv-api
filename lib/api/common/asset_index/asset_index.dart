@@ -6,10 +6,6 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-const int _symbolCodeIndex = 0;
-const int _symbolNameIndex = 1;
-const int _contractsIndex = 2;
-
 /// Asset index class
 class AssetIndex extends AssetIndexModel {
   /// Initializes
@@ -38,6 +34,10 @@ class AssetIndex extends AssetIndexModel {
         symbolCode: jsonList[_symbolCodeIndex],
         symbolName: jsonList[_symbolNameIndex],
       );
+
+  static const int _symbolCodeIndex = 0;
+  static const int _symbolNameIndex = 1;
+  static const int _contractsIndex = 2;
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
