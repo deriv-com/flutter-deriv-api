@@ -319,7 +319,6 @@ class MockAPI implements BaseAPI {
         return tickHistoryResponse;
       case 'statement':
         return statementResponse;
-      // case 'history':
       case 'ticks':
         return tickResponse;
       case 'time':
