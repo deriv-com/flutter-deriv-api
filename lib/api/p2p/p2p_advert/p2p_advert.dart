@@ -263,12 +263,12 @@ class P2PAdvert extends P2PAdvertModel {
         ),
       );
 
-  /// Creates order on this advert
+  /// Creates order on this advert.
   ///
-  /// [amount] is the amount of currency to be bought or sold
+  /// [amount] is the amount of currency to be bought or sold.
   /// [contactInfo] is seller contact information. Only applicable for [OrderType.sell].
   /// [paymentInfo] is payment instructions. Only applicable for [OrderType.sell].
-  /// Throws [P2POrderException] if API response contains an error
+  /// Throws [P2POrderException] if API response contains an error.
   Future<P2POrder> createOrder(
     double amount, {
     String contactInfo,
