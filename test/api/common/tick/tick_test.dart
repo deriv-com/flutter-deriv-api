@@ -25,7 +25,7 @@ void main() {
       );
     });
 
-    test('Tick stream test', () async {
+    test('Tick history test', () async {
       final TickHistory history = await TickHistory.fetchTickHistory(
         const TicksHistoryRequest(),
       );
