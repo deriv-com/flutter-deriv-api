@@ -9,12 +9,12 @@ const String p2pOrderInfoResponse = '''{
     "account_currency": "USD",
     "advert_details": {
       "description": "Please contact via whatsapp 1234",
-      "id": "8",
+      "id": "6",
       "payment_method": "bank_transfer",
       "type": "sell"
     },
     "advertiser_details": {
-      "id": "6",
+      "id": "2",
       "name": "advertiser CR90000018"
     },
     "amount": 50,

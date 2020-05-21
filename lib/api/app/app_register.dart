@@ -40,9 +40,10 @@ class AppRegister extends AppRegisterModel {
   ) async {
     final AppRegisterResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw AppException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => AppException(message: message),
+    );
 
     return AppRegister.fromJson(response.appRegister);
   }

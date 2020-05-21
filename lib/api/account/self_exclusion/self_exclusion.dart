@@ -106,9 +106,8 @@ class SelfExclusion extends SelfExclusionModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => SelfExclusionException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          SelfExclusionException(message: message),
     );
 
     return SelfExclusion.fromJson(response.getSelfExclusion);
@@ -121,9 +120,8 @@ class SelfExclusion extends SelfExclusionModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => SelfExclusionException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          SelfExclusionException(message: message),
     );
 
     return getBool(response.setSelfExclusion);
@@ -153,9 +151,8 @@ class SelfExclusion extends SelfExclusionModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => SelfExclusionException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          SelfExclusionException(message: message),
     );
 
     return getBool(response.setSelfExclusion);

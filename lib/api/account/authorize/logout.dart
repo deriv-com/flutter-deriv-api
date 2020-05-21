@@ -37,9 +37,8 @@ class Logout extends LogoutModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => AuthorizeException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          AuthorizeException(message: message),
     );
 
     return Logout.fromResponse(response);
