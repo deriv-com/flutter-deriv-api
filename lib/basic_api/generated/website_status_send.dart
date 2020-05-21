@@ -6,7 +6,7 @@ import '../request.dart';
 part 'website_status_send.g.dart';
 
 /// JSON conversion for 'website_status_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class WebsiteStatusRequest extends Request {
   /// Initialize WebsiteStatusRequest
   const WebsiteStatusRequest({

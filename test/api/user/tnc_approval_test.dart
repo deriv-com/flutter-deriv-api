@@ -6,12 +6,13 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('tnc approval test', () async {
+  setUp(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
-    final TNCApproval tncApproval = await TNCApproval.verify(
-      const TncApprovalRequest(),
-    );
+  test('Terms and Conditions Approval Test', () async {
+    final TNCApproval tncApproval =
+        await TNCApproval.verify(const TncApprovalRequest());
 
     expect(tncApproval.approved, true);
   });

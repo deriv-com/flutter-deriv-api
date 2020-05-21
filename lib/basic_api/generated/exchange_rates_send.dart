@@ -6,7 +6,7 @@ import '../request.dart';
 part 'exchange_rates_send.g.dart';
 
 /// JSON conversion for 'exchange_rates_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ExchangeRatesRequest extends Request {
   /// Initialize ExchangeRatesRequest
   const ExchangeRatesRequest({

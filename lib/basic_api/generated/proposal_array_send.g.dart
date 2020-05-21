@@ -10,8 +10,8 @@ ProposalArrayRequest _$ProposalArrayRequestFromJson(Map<String, dynamic> json) {
   return ProposalArrayRequest(
     amount: json['amount'] as num,
     barriers: (json['barriers'] as List)
-        .map((e) => e as Map<String, dynamic>)
-        .toList(),
+        ?.map((e) => e as Map<String, dynamic>)
+        ?.toList(),
     basis: json['basis'] as String,
     contractType: json['contract_type'] as List,
     currency: json['currency'] as String,

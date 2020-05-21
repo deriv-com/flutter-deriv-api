@@ -6,7 +6,7 @@ import '../response.dart';
 part 'active_symbols_receive.g.dart';
 
 /// JSON conversion for 'active_symbols_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ActiveSymbolsResponse extends Response {
   /// Initialize ActiveSymbolsResponse
   const ActiveSymbolsResponse({

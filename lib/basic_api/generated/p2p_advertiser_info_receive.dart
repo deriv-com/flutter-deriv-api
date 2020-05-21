@@ -6,7 +6,7 @@ import '../response.dart';
 part 'p2p_advertiser_info_receive.g.dart';
 
 /// JSON conversion for 'p2p_advertiser_info_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pAdvertiserInfoResponse extends Response {
   /// Initialize P2pAdvertiserInfoResponse
   const P2pAdvertiserInfoResponse({
