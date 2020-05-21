@@ -93,12 +93,13 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
   /// connects the [BinaryAPI] to the web socket
   void connectWebsocket() {
-    _api = (_api ?? Injector.getInjector().get<BaseAPI>())
-      ..connect(
-        ConnectionInformation(
-          onDone: () => add(Reconnect()),
-          onOpen: () => add(Connect()),
-        ),
-      );
+    _api ??= Injector.getInjector().get<BaseAPI>();
+
+    _api.connect(
+      ConnectionInformation(
+        onDone: () => add(Reconnect()),
+        onOpen: () => add(Connect()),
+      ),
+    );
   }
 }
