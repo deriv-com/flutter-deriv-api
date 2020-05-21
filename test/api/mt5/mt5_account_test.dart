@@ -13,10 +13,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  group('mt5 account group ->', () {
+  setUpAll(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
-    test('create new mt5 account', () async {
+  group('MT5 Account Group ->', () {
+    test('Create New MT5 Account Test', () async {
       final MT5Account mt5Account = await MT5Account.createNewAccount(
         const Mt5NewAccountRequest(
           accountType: 'gaming',
@@ -45,7 +47,7 @@ void main() {
       expect(mt5Account.mt5AccountType, MT5AccountType.advanced);
     });
 
-    test('mt5 login list', () async {
+    test('MT5 Login List Test', () async {
       final List<MT5Account> mt5LoginList = await MT5Account.fetchLoginList(
         const Mt5LoginListRequest(),
       );
@@ -63,7 +65,7 @@ void main() {
       expect(mt5LoginList.first.name, 'Jon Doe');
     });
 
-    test('mt5 deposit', () async {
+    test('MT5 Deposit Test', () async {
       final MT5Deposit mt5Deposit = await MT5Account(login: 'MTR1000').deposit(
         amount: 1000,
         fromBinary: 'CR100001',
@@ -73,7 +75,7 @@ void main() {
       expect(mt5Deposit.binaryTransactionId, 3487342);
     });
 
-    test('change password', () async {
+    test('MT5 Change Password Test', () async {
       final MT5PasswordChange result =
           await MT5Account(login: 'MTR1000').changePassword(
         newPassword: 'abcd1234',
@@ -84,7 +86,7 @@ void main() {
       expect(result.succeeded, true);
     });
 
-    test('check password', () async {
+    test('MT5 Check Password Test', () async {
       final MT5PasswordCheck result =
           await MT5Account(login: 'MTR1000').checkPassword(
         password: 'abcd1234',
@@ -94,7 +96,7 @@ void main() {
       expect(result.succeeded, true);
     });
 
-    test('reset password', () async {
+    test('MT5 Reset Password Test', () async {
       final MT5PasswordReset result =
           await MT5Account(login: 'MTR1000').resetPassword(
         newPassword: 'abcd1234',
@@ -105,7 +107,7 @@ void main() {
       expect(result.succeeded, true);
     });
 
-    test('mt5 settings', () async {
+    test('Fetch MT5 Settings Test', () async {
       final MT5Settings mt5Settings =
           await MT5Account(login: 'MTR1000').fetchSettings();
 
@@ -126,7 +128,7 @@ void main() {
       expect(mt5Settings.zipCode, '3425367');
     });
 
-    test('mt5 withdrawal', () async {
+    test('MT5 Withdrawal Test', () async {
       final MT5Withdrawal mt5Withdrawal =
           await MT5Account(login: 'MTR1000').withdraw(
         amount: 1000,

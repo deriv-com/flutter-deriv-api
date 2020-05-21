@@ -13,10 +13,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/module_container.
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  group('application group ->', () {
+  setUpAll(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
-    test('fetch application details', () async {
+  group('Application Group ->', () {
+    test('Fetch Application Details Test', () async {
       final App appDetails = await App.fetchApplicationDetails(
         const AppGetRequest(appGet: 1234),
       );
@@ -35,7 +37,7 @@ void main() {
       expect(appDetails.verificationUri, 'https://test.example.com/verify');
     });
 
-    test('fetch application list', () async {
+    test('Fetch Application List Test', () async {
       final List<App> appList = await App.fetchApplicationList(
         const AppListRequest(),
       );
@@ -56,7 +58,7 @@ void main() {
       expect(appList.first.verificationUri, 'https://test.example.com/verify');
     });
 
-    test('fetch markup details', () async {
+    test('Fetch Markup Details Test', () async {
       final AppMarkupDetails appMarkupDetails =
           await App(appId: 1234).fetchApplicationMarkupDetails(
         clientLoginId: 'CR12345',
@@ -86,13 +88,13 @@ void main() {
       );
     });
 
-    test('app delete', () async {
+    test('Application Delete Test', () async {
       final AppDelete appDelete = await App(appId: 1234).deleteApplication();
 
       expect(appDelete.succeeded, true);
     });
 
-    test('app register', () async {
+    test('Application Register Test', () async {
       final AppRegister appRegister = await App(
         appId: 1234,
         appstore: 'https://itunes.apple.com/test_app',
@@ -127,7 +129,7 @@ void main() {
       );
     });
 
-    test('app update', () async {
+    test('Application Update Test', () async {
       final AppUpdate appRegister = await App(
         appId: 1234,
         appstore: 'https://itunes.apple.com/test_app',
@@ -162,7 +164,7 @@ void main() {
       );
     });
 
-    test('revoke oauth app', () async {
+    test('Revoke Oauth Application Test', () async {
       final RevokeOauthApp revokeOauthApp =
           await App(appId: 1234).revokeOauthApplication();
 

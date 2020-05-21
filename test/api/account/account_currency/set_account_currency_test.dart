@@ -6,14 +6,14 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('set account currency', () async {
+  setUp(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
+  test('Set Account Currency Test', () async {
     final SetAccountCurrency setAccountCurrency =
         await SetAccountCurrency.setCurrency(
-      const SetAccountCurrencyRequest(
-        setAccountCurrency: 'USD',
-      ),
+      const SetAccountCurrencyRequest(setAccountCurrency: 'USD'),
     );
 
     expect(setAccountCurrency.succeeded, true);

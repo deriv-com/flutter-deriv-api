@@ -122,7 +122,7 @@ class AccountSettings extends AccountSettingsModel {
   /// Changes the account's settings with parameters specified as [SetSettingsRequest]
   ///
   /// Throws an [AccountSettingsException] if API response contains an error
-  Future<SetAccountSettingModel> changeSetting(
+  static Future<SetAccountSettingModel> changeAccountSetting(
     SetSettingsRequest request,
   ) async {
     final SetSettingsResponse response = await _api.call(request: request);
@@ -135,6 +135,39 @@ class AccountSettings extends AccountSettingsModel {
 
     return SetAccountSettingModel(succeeded: getBool(response.setSettings));
   }
+
+  /// Change account's setting
+  Future<SetAccountSettingModel> changeSetting({
+    String secretAnswer,
+    String secretQuestion,
+  }) =>
+      changeAccountSetting(
+        SetSettingsRequest(
+          accountOpeningReason: accountOpeningReason,
+          addressCity: addressCity,
+          addressLine1: addressLine1,
+          addressLine2: addressLine2,
+          addressPostcode: addressPostcode,
+          addressState: addressState,
+          allowCopiers: getInt(allowCopiers),
+          citizen: citizen,
+          dateOfBirth: dateOfBirth
+              .toString(), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+          emailConsent: getInt(emailConsent),
+          firstName: firstName,
+          lastName: lastName,
+          phone: phone,
+          placeOfBirth: placeOfBirth
+              .toString(), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+          requestProfessionalStatus: getInt(requestProfessionalStatus),
+          residence: residence,
+          salutation: salutation,
+          secretAnswer: secretAnswer,
+          secretQuestion: secretQuestion,
+          taxIdentificationNumber: taxIdentificationNumber,
+          taxResidence: taxResidence,
+        ),
+      );
 
   /// Generates a copy of instance with given parameters
   AccountSettings copyWith({

@@ -11,10 +11,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  group('payment agent group ->', () {
+  setUpAll(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
-    test('fetch payment agent list', () async {
+  group('Payment Agent Group ->', () {
+    test('Fetch Payment Agent List Test', () async {
       final PaymentAgentList paymentAgentList = await PaymentAgentList.fetch(
         const PaymentagentListRequest(paymentagentList: 'id'),
       );
@@ -45,7 +47,7 @@ void main() {
       expect(paymentAgents.first.withdrawalCommission, '5');
     });
 
-    test('payment agent transfer', () async {
+    test('Payment Agent Transfer Test', () async {
       final PaymentAgentTransfer paymentAgentTransfer =
           await PaymentAgentTransfer.transfer(
         const PaymentagentTransferRequest(
@@ -64,7 +66,7 @@ void main() {
       expect(paymentAgentTransfer.transactionId, 45735309);
     });
 
-    test('payment agent withdraw', () async {
+    test('Payment Agent Withdraw Test', () async {
       final PaymentAgentWithdraw paymentAgentWithdraw =
           await PaymentAgentWithdraw.withdraw(
         const PaymentagentWithdrawRequest(

@@ -7,17 +7,18 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('Contracts for test', () async {
+  setUp(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
+  test('Fetch Contracts For Test', () async {
     final ContractsForSymbol contractsFor =
         await ContractsForSymbol.fetchContractsForSymbol(
       const ContractsForRequest(
-        contractsFor: 'R_50',
-        currency: 'USD',
-        landingCompany: 'svg',
-        productType: 'basic'
-      ),
+          contractsFor: 'R_50',
+          currency: 'USD',
+          landingCompany: 'svg',
+          productType: 'basic'),
     );
 
     expect(contractsFor.contracts.first.barriers, 0);

@@ -9,10 +9,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/module_container.
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  group('p2p advertiser group ->', () {
+  setUpAll(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
-    test('fetch advertiser information', () async {
+  group('P2P Advertiser Group ->', () {
+    test('Fetch Advertiser Information Test', () async {
       final P2PAdvertiser advertiser =
           await P2PAdvertiser.fetchAdvertiserInformation(
         const P2pAdvertiserInfoRequest(id: '1'),
@@ -33,7 +35,7 @@ void main() {
       expect(advertiser.paymentInfo, 'payment information');
     });
 
-    test('subscribe advertiser', () {
+    test('Subscribe to Advertiser Test', () {
       P2PAdvertiser.subscribeAdvertiserInformation(
         const P2pAdvertiserInfoRequest(id: '1'),
       ).take(1).listen(
@@ -63,7 +65,7 @@ void main() {
       );
     });
 
-    test('create advertiser', () async {
+    test('Create Advertiser Test', () async {
       final P2PAdvertiser advertiser = await P2PAdvertiser.createAdvertiser(
         const P2pAdvertiserCreateRequest(
           contactInfo: 'contract information',
@@ -88,7 +90,7 @@ void main() {
       expect(advertiser.paymentInfo, 'payment information');
     });
 
-    test('create and subscribe to advertiser', () {
+    test('Create and Subscribe to Advertiser Test', () {
       P2PAdvertiser.createAdvertiserAndSubscribe(
         const P2pAdvertiserCreateRequest(
           contactInfo: 'contract information',
@@ -123,7 +125,7 @@ void main() {
       );
     });
 
-    test('update advertiser', () async {
+    test('Update Advertiser Test', () async {
       final P2PAdvertiser advertiser = await P2PAdvertiser.updateAdvertiser(
         const P2pAdvertiserUpdateRequest(
           contactInfo: 'contract information',
@@ -149,7 +151,7 @@ void main() {
       expect(advertiser.paymentInfo, 'payment information');
     });
 
-    test('fetch advertiser adverts', () async {
+    test('Fetch Advertiser Adverts Test', () async {
       final List<P2PAdvert> adverts =
           await P2PAdvertiser.fetchAdvertiserAdverts(
         const P2pAdvertiserAdvertsRequest(limit: 10, offset: 0),

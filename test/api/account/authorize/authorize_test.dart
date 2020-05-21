@@ -12,10 +12,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/module_container.
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  group('authorize group ->', () {
+  setUpAll(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
-    test('authorize', () async {
+  group('Authorize Group ->', () {
+    test('Authorize Test', () async {
       final Authorize authorize = await Authorize.authorize(
         const AuthorizeRequest(
           authorize: 'sample_token_334da73d',
@@ -71,13 +73,13 @@ void main() {
       expect(authorize.userId, 29);
     });
 
-    test('logout', () async {
+    test('Logout Test', () async {
       final Logout logout = await Logout.logout();
 
       expect(logout.succeeded, true);
     });
 
-    test('login history', () async {
+    test('Login History Test', () async {
       final List<LoginHistory> loginHistories =
           await LoginHistory.fetchHistory();
 
