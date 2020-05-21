@@ -41,9 +41,11 @@ class UpdateContract extends UpdateContractModel {
   ) async {
     final ContractUpdateResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw ContractOperationException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          ContractOperationException(message: message),
+    );
 
     return UpdateContract.fromJson(response.contractUpdate);
   }
@@ -59,9 +61,8 @@ class UpdateContract extends UpdateContractModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => ContractOperationException(
-        message: response.error['message'],
-      ),
+      exceptionCreator: (String message) =>
+          ContractOperationException(message: message),
     );
 
     return getListFromMap(

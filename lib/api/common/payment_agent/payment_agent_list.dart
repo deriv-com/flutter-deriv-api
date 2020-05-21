@@ -54,9 +54,8 @@ class PaymentAgentList extends PaymentAgentListModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => PaymentAgentException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          PaymentAgentException(message: message),
     );
 
     return PaymentAgentList.fromResponse(response);

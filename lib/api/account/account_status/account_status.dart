@@ -55,9 +55,11 @@ class AccountStatus extends AccountStatusModel {
       request: const GetAccountStatusRequest(),
     );
 
-    if (response.error != null) {
-      throw AccountStatusException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          AccountStatusException(message: message),
+    );
 
     return AccountStatus.fromJson(response.getAccountStatus);
   }

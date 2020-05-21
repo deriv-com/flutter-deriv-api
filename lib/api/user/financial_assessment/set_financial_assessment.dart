@@ -3,6 +3,7 @@ import 'package:flutter_deriv_api/api/user/models/set_financial_assessment_model
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// The financial assessment score assigned to the submitted financial assessment
 class SetFinancialAssessment extends SetFinancialAssessmentModel {
@@ -57,9 +58,11 @@ class SetFinancialAssessment extends SetFinancialAssessmentModel {
     final SetFinancialAssessmentResponse response =
         await _api.call(request: request);
 
-    if (response.error != null) {
-      throw FinancialAssessmentException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          FinancialAssessmentException(message: message),
+    );
 
     return SetFinancialAssessment.fromJson(response.setFinancialAssessment);
   }

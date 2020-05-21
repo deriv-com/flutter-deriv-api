@@ -32,12 +32,14 @@ class Portfolio extends PortfolioModel {
   /// Gets the portfolio fo logged-in account
   ///
   /// Throws a [PortfolioException] if API response contains an error
-  static Future<Portfolio> fetchPortfolio (PortfolioRequest request) async {
+  static Future<Portfolio> fetchPortfolio(PortfolioRequest request) async {
     final PortfolioResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw PortfolioException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          PortfolioException(message: message),
+    );
 
     return Portfolio.fromJson(response.portfolio);
   }

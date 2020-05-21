@@ -3,6 +3,7 @@ import 'package:flutter_deriv_api/api/app/new_account/exceptions/new_account_exc
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// New account real class
 class NewAccountReal extends NewAccountRealModel {
@@ -52,9 +53,11 @@ class NewAccountReal extends NewAccountRealModel {
   ) async {
     final NewAccountRealResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw NewAccountException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          NewAccountException(message: message),
+    );
 
     return NewAccountReal.fromJson(response.newAccountReal);
   }

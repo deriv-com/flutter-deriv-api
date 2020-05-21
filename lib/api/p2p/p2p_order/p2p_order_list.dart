@@ -44,9 +44,10 @@ class P2POrderList {
       request: request ?? const P2pOrderListRequest(),
     );
 
-    if (response.error != null) {
-      throw P2POrderException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2POrderException(message: message),
+    );
 
     return P2POrderList.fromJson(response.p2pOrderList['list']);
   }
@@ -62,9 +63,11 @@ class P2POrderList {
               comparePredicate: comparePredicate)
           .map<P2POrderList>(
         (Response response) {
-          if (response.error != null) {
-            throw P2POrderException(message: response.error['message']);
-          }
+          checkException(
+            response: response,
+            exceptionCreator: (String message) =>
+                P2POrderException(message: message),
+          );
 
           return response is P2pOrderListResponse
               ? P2POrderList.fromJson(
@@ -86,9 +89,10 @@ class P2POrderList {
     final ForgetResponse response =
         await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
 
-    if (response.error != null) {
-      throw P2POrderException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2POrderException(message: message),
+    );
 
     return Forget.fromResponse(response);
   }

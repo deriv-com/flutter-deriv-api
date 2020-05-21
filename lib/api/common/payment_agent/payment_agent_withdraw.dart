@@ -56,9 +56,8 @@ class PaymentAgentWithdraw extends PaymentAgentWithdrawModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => PaymentAgentException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          PaymentAgentException(message: message),
     );
 
     return PaymentAgentWithdraw.fromResponse(response);

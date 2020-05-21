@@ -3,6 +3,7 @@ import 'package:flutter_deriv_api/api/mt5/models/mt5_settings_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// MT5 settings class
 class MT5Settings extends MT5SettingsModel {
@@ -107,9 +108,10 @@ class MT5Settings extends MT5SettingsModel {
   ) async {
     final Mt5GetSettingsResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw MT5Exception(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => MT5Exception(message: message),
+    );
 
     return MT5Settings.fromJson(response.mt5GetSettings);
   }

@@ -44,9 +44,10 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
   ) async {
     final AppMarkupDetailsResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw AppException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => AppException(message: message),
+    );
 
     return AppMarkupDetails.fromJson(response.appMarkupDetails);
   }

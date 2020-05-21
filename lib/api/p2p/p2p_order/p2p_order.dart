@@ -104,9 +104,10 @@ class P2POrder extends P2POrderModel {
   static Future<P2POrder> create(P2pOrderCreateRequest request) async {
     final P2pOrderCreateResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw P2POrderException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2POrderException(message: message),
+    );
 
     return P2POrder.fromJson(response.p2pOrderCreate);
   }
@@ -120,9 +121,11 @@ class P2POrder extends P2POrderModel {
   }) =>
       _api.subscribe(request: request, comparePredicate: comparePredicate).map(
         (Response response) {
-          if (response.error != null) {
-            throw P2POrderException(message: response.error['message']);
-          }
+          checkException(
+            response: response,
+            exceptionCreator: (String message) =>
+                P2POrderException(message: message),
+          );
 
           return response is P2pOrderCreateResponse
               ? P2POrder.fromJson(
@@ -139,9 +142,10 @@ class P2POrder extends P2POrderModel {
   static Future<P2POrder> fetchOrder(P2pOrderInfoRequest request) async {
     final P2pOrderInfoResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw P2POrderException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2POrderException(message: message),
+    );
 
     return P2POrder.fromJson(response.p2pOrderInfo);
   }
@@ -166,9 +170,11 @@ class P2POrder extends P2POrderModel {
           .subscribe(request: request, comparePredicate: comparePredicate)
           .map<P2POrder>(
         (Response response) {
-          if (response.error != null) {
-            throw P2POrderException(message: response.error['message']);
-          }
+          checkException(
+            response: response,
+            exceptionCreator: (String message) =>
+                P2POrderException(message: message),
+          );
 
           return response is P2pOrderInfoResponse
               ? P2POrder.fromJson(
@@ -190,9 +196,10 @@ class P2POrder extends P2POrderModel {
     final ForgetResponse response =
         await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
 
-    if (response.error != null) {
-      throw P2POrderException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2POrderException(message: message),
+    );
 
     return Forget.fromResponse(response);
   }
@@ -204,9 +211,10 @@ class P2POrder extends P2POrderModel {
     final ForgetAllResponse response =
         await _api.unsubscribeAll(method: ForgetStreamType.p2pOrder);
 
-    if (response.error != null) {
-      throw P2POrderException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2POrderException(message: message),
+    );
 
     return ForgetAll.fromResponse(response);
   }
@@ -219,9 +227,10 @@ class P2POrder extends P2POrderModel {
     final P2pOrderCancelResponse response =
         await _api.call(request: const P2pOrderCancelRequest());
 
-    if (response.error != null) {
-      throw P2POrderException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2POrderException(message: message),
+    );
 
     return copyWith(status: P2POrder.fromJson(response.p2pOrderCancel).status);
   }
@@ -234,9 +243,10 @@ class P2POrder extends P2POrderModel {
     final P2pOrderConfirmResponse response =
         await _api.call(request: const P2pOrderConfirmRequest());
 
-    if (response.error != null) {
-      throw P2POrderException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2POrderException(message: message),
+    );
 
     return copyWith(status: P2POrder.fromJson(response.p2pOrderConfirm).status);
   }
