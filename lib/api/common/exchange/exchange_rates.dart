@@ -55,9 +55,10 @@ class ExchangeRates extends ExchangeRatesModel {
   ) async {
     final ExchangeRatesResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw ExchangeException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => ExchangeException(message: message),
+    );
 
     return ExchangeRates.fromJson(response.exchangeRates);
   }

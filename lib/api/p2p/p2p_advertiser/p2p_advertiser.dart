@@ -107,9 +107,11 @@ class P2PAdvertiser extends P2PAdvertiserModel {
       request: request.copyWith(subscribe: 0),
     );
 
-    if (response.error != null) {
-      throw P2PAdvertiserException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          P2PAdvertiserException(message: message),
+    );
 
     return P2PAdvertiser.fromJson(response.p2pAdvertiserInfo);
   }
@@ -124,9 +126,11 @@ class P2PAdvertiser extends P2PAdvertiserModel {
           .subscribe(request: request, comparePredicate: comparePredicate)
           .map<P2PAdvertiser>(
         (Response response) {
-          if (response.error != null) {
-            throw P2PAdvertiserException(message: response.error['message']);
-          }
+          checkException(
+            response: response,
+            exceptionCreator: (String message) =>
+                P2PAdvertiserException(message: message),
+          );
 
           return response is P2pAdvertiserInfoResponse
               ? P2PAdvertiser.fromJson(
@@ -146,9 +150,11 @@ class P2PAdvertiser extends P2PAdvertiserModel {
       request: request.copyWith(subscribe: 0),
     );
 
-    if (response.error != null) {
-      throw P2PAdvertiserException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          P2PAdvertiserException(message: message),
+    );
 
     return P2PAdvertiser.fromJson(response.p2pAdvertiserCreate);
   }
@@ -163,9 +169,11 @@ class P2PAdvertiser extends P2PAdvertiserModel {
           .subscribe(request: request, comparePredicate: comparePredicate)
           .map<P2PAdvertiser>(
         (Response response) {
-          if (response.error != null) {
-            throw P2PAdvertiserException(message: response.error['message']);
-          }
+          checkException(
+            response: response,
+            exceptionCreator: (String message) =>
+                P2PAdvertiserException(message: message),
+          );
 
           return response is P2pAdvertiserCreateResponse
               ? P2PAdvertiser.fromJson(
@@ -185,9 +193,11 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     final P2pAdvertiserUpdateResponse response =
         await _api.call(request: request);
 
-    if (response.error != null) {
-      throw P2PAdvertiserException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          P2PAdvertiserException(message: message),
+    );
 
     return P2PAdvertiser.fromJson(response.p2pAdvertiserUpdate);
   }
@@ -201,9 +211,11 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     final P2pAdvertiserAdvertsResponse response =
         await _api.call(request: request);
 
-    if (response.error != null) {
-      throw P2PAdvertiserException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          P2PAdvertiserException(message: message),
+    );
 
     return getListFromMap(
       response.p2pAdvertiserAdverts['list'],
@@ -220,9 +232,11 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     final ForgetResponse response =
         await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
 
-    if (response.error != null) {
-      throw P2PAdvertiserException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          P2PAdvertiserException(message: message),
+    );
 
     return Forget.fromResponse(response);
   }
@@ -232,9 +246,11 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     final ForgetAllResponse response =
         await _api.unsubscribeAll(method: ForgetStreamType.p2pAdvertiser);
 
-    if (response.error != null) {
-      throw P2PAdvertiserException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          P2PAdvertiserException(message: message),
+    );
 
     return ForgetAll.fromResponse(response);
   }

@@ -33,9 +33,10 @@ class Forget extends ForgetModel {
   ) async {
     final ForgetResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw ForgetException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => ForgetException(message: message),
+    );
 
     return Forget.fromResponse(response);
   }

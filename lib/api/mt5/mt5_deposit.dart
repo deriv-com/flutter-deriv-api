@@ -43,9 +43,10 @@ class MT5Deposit extends MT5DepositModel {
   static Future<MT5Deposit> deposit(Mt5DepositRequest request) async {
     final Mt5DepositResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw MT5Exception(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => MT5Exception(message: message),
+    );
 
     return MT5Deposit.fromResponse(
       deposit: response.mt5Deposit,
