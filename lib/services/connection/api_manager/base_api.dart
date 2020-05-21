@@ -4,10 +4,19 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
 /// Base API abstract class
 abstract class BaseAPI {
+  /// Connects to API
+  /// This method is not applicable to mock API
+  Future<void> connect(ConnectionInformation connectionInformation);
+
+  /// Adds request to stream channel
+  /// This method is not applicable to mock API
+  void addToChannel(Map<String, dynamic> request);
+
   /// Calls a API method by [request]
   Future<Response> call({@required Request request});
 
@@ -30,9 +39,7 @@ abstract class BaseAPI {
     bool shouldForced = false,
   });
 
-  /// Adds request to stream channel
-  void addToChannel({Map<String, dynamic> request});
-
-  /// Closes the stream channel
-  Future<void> close();
+  /// Disconnects from API
+  /// This method is not applicable to mock API
+  Future<void> disconnect();
 }

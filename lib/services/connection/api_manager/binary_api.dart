@@ -13,10 +13,8 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/call_history.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
-
-/// Callbacks for websocket connection
-typedef SocketCallback = void Function();
 
 /// Contains the binary API call
 class BinaryAPI implements BaseAPI {
@@ -41,6 +39,69 @@ class BinaryAPI implements BaseAPI {
 
   /// Gets API subscription history
   CallHistory get subscriptionHistory => _subscriptionManager?.callHistory;
+
+  @override
+  Future<void> connect(
+    ConnectionInformation connectionInformation,
+  ) async {
+    _connected = false;
+
+    final Uri uri = Uri(
+      scheme: 'wss',
+      host: connectionInformation.endpoint,
+      path: '/websockets/v3',
+      queryParameters: <String, dynamic>{
+        // The Uri.queryParameters only accept Map<String, dynamic/*String|Iterable<String>*/>
+        'app_id': connectionInformation.appId,
+        'l': connectionInformation.language,
+        'brand': connectionInformation.brand,
+      },
+    );
+
+    dev.log('connecting to $uri.');
+    print('connecting to $uri.');
+
+    final Completer<bool> connectionCompleter = Completer<bool>();
+
+    // Initialize connection to web socket server
+    _webSocketChannel = IOWebSocketChannel.connect(uri.toString());
+
+    _webSocketListener =
+        _webSocketChannel // .cast<String>().transform(utf8.decode)
+            .stream
+            .map<Map<String, dynamic>>((Object str) => jsonDecode(str))
+            .listen(
+              (Map<String, dynamic> message) =>
+                  _handleResponse(connectionCompleter, message),
+              onError: (Object error) =>
+                  print('the web socket connection is closed: $error.'),
+              onDone: () async {
+                print('web socket is closed.');
+
+                _connected = false;
+
+                if (connectionInformation.onDone != null) {
+                  connectionInformation.onDone();
+                }
+              },
+            );
+
+    print('send initial message.');
+
+    await call(request: const PingRequest());
+    await connectionCompleter.future;
+
+    print('web socket is connected.');
+
+    if (connectionInformation.onOpen != null) {
+      connectionInformation.onOpen();
+    }
+  }
+
+  @override
+  void addToChannel(Map<String, dynamic> request) {
+    _webSocketChannel.sink.add(utf8.encode(jsonEncode(request)));
+  }
 
   @override
   Future<Response> call({
@@ -80,78 +141,8 @@ class BinaryAPI implements BaseAPI {
         shouldForced: shouldForced,
       );
 
-  /// Connects to binary websocket
-  Future<IOWebSocketChannel> run({
-    SocketCallback onDone,
-    SocketCallback onOpen,
-    String endpoint = 'www.binaryqa10.com',
-    String language = 'en',
-    String brand = 'deriv',
-    String appId = '1408',
-  }) async {
-    _connected = false;
-
-    final Uri uri = Uri(
-      scheme: 'wss',
-      host: endpoint,
-      path: '/websockets/v3',
-      queryParameters: <String, dynamic>{
-        // The Uri.queryParameters only accept Map<String, dynamic/*String|Iterable<String>*/>
-        'app_id': appId,
-        'l': language,
-        'brand': brand,
-      },
-    );
-
-    dev.log('connecting to $uri.');
-    print('connecting to $uri.');
-
-    final Completer<bool> connectionCompleter = Completer<bool>();
-
-    // Initialize connection to web socket server
-    _webSocketChannel = IOWebSocketChannel.connect(uri.toString());
-
-    _webSocketListener =
-        _webSocketChannel // .cast<String>().transform(utf8.decode)
-            .stream
-            .map<Map<String, dynamic>>((Object str) => jsonDecode(str))
-            .listen(
-              (Map<String, dynamic> message) =>
-                  _handleResponse(connectionCompleter, message),
-              onError: (Object error) =>
-                  print('the web socket connection is closed: $error.'),
-              onDone: () async {
-                print('web socket is closed.');
-
-                _connected = false;
-
-                if (onDone != null) {
-                  onDone();
-                }
-              },
-            );
-
-    print('send initial message.');
-
-    await call(request: const PingRequest());
-    await connectionCompleter.future;
-
-    print('web socket is connected.');
-
-    if (onOpen != null) {
-      onOpen();
-    }
-
-    return _webSocketChannel;
-  }
-
   @override
-  void addToChannel({Map<String, dynamic> request}) {
-    _webSocketChannel.sink.add(utf8.encode(jsonEncode(request)));
-  }
-
-  @override
-  Future<void> close() async {
+  Future<void> disconnect() async {
     // The onDone function of the listener is set to null intentionally
     // to prevent it from being invoked after destroying the web socket object.
     _webSocketListener

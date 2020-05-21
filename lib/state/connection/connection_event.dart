@@ -7,10 +7,7 @@ abstract class ConnectionEvent {}
 /// add this event when we are connected to the WS
 class Connect extends ConnectionEvent {
   /// Initializes
-  Connect({this.api});
-
-  /// A reference to base api
-  final BaseAPI api;
+  Connect();
 
   @override
   String toString() => 'ConnectionEvent(Connect)';
