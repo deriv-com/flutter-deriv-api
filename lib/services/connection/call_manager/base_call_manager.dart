@@ -88,7 +88,7 @@ abstract class BaseCallManager<T> {
       message: prepareRequest,
     );
 
-    api.addToChannel(request: prepareRequest);
+    api.addToChannel(prepareRequest);
 
     return responseCompleter.future;
   }

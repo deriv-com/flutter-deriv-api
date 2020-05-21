@@ -27,7 +27,7 @@ void main() {
       );
     });
 
-    test('Tick history test', () async {
+    test('Tick History Test', () async {
       final TickHistory history = await TickHistory.fetchTickHistory(
         const TicksHistoryRequest(),
       );

@@ -152,7 +152,7 @@ class SelfExclusion extends SelfExclusionModel {
         maxOpenBets: maxOpenBets,
         maxTurnover: maxTurnover,
         sessionDurationLimit: sessionDurationLimit,
-        timeoutUntil: timeoutUntil.millisecondsSinceEpoch ~/ 1000,
+        timeoutUntil: getSecondsSinceEpochDateTime(timeoutUntil),
       ),
     );
 

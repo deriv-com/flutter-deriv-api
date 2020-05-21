@@ -16,6 +16,14 @@ DateTime getDateTime(int timeInSeconds) => timeInSeconds == null
     : DateTime.fromMillisecondsSinceEpoch(timeInSeconds * 1000);
 
 /// Creates a [DateTime] from time given string in seconds
-DateTime getDateTimeFromString(String timeInSeconds) => timeInSeconds == null
+DateTime getDateTimeFromString(String timeInSeconds) =>
+    getDateTime(int.parse(timeInSeconds));
+
+/// Gets seconds since epoch from milliseconds since epoch
+int getSecondsSinceEpoch(int millisecondsSinceEpoch) =>
+    (millisecondsSinceEpoch / 1000).round();
+
+/// Gets seconds since epoch from date time object
+int getSecondsSinceEpochDateTime(DateTime dateTime) => dateTime == null
     ? null
-    : DateTime.fromMillisecondsSinceEpoch(int.parse(timeInSeconds) * 1000);
+    : getSecondsSinceEpoch(dateTime.millisecondsSinceEpoch);
