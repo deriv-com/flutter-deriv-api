@@ -68,9 +68,7 @@ class APIToken extends APITokenModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => APITokenException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => APITokenException(message: message),
     );
 
     return APIToken.fromJson(response.apiToken);
@@ -88,9 +86,7 @@ class APIToken extends APITokenModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => APITokenException(
-        message: message,
-      ),
+      exceptionCreator: (String message) => APITokenException(message: message),
     );
 
     return APIToken.fromJson(response.apiToken);

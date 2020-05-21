@@ -70,9 +70,10 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
     final TransferBetweenAccountsResponse response =
         await _api.call(request: request);
 
-    if (response.error != null) {
-      throw TransferException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => TransferException(message: message),
+    );
 
     return TransferBetweenAccounts.fromResponse(response);
   }

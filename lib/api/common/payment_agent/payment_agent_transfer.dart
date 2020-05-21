@@ -62,9 +62,8 @@ class PaymentAgentTransfer extends PaymentAgentTransferModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => PaymentAgentException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          PaymentAgentException(message: message),
     );
 
     return PaymentAgentTransfer.fromResponse(response);

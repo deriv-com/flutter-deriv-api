@@ -35,9 +35,10 @@ class TNCApproval extends TNCApprovalModel {
   ) async {
     final TncApprovalResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw UserException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => UserException(message: message),
+    );
 
     return TNCApproval.fromResponse(response);
   }

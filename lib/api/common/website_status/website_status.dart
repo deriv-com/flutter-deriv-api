@@ -82,9 +82,11 @@ class WebsiteStatus extends WebsiteStatusModel {
       request: request ?? const WebsiteStatusRequest(),
     );
 
-    if (response.error != null) {
-      throw WebsiteStatusException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          WebsiteStatusException(message: message),
+    );
 
     return WebsiteStatus.fromJson(response.websiteStatus);
   }
@@ -98,9 +100,11 @@ class WebsiteStatus extends WebsiteStatusModel {
           .subscribe(request: request, comparePredicate: comparePredicate)
           .map<WebsiteStatus>(
         (Response response) {
-          if (response.error != null) {
-            throw WebsiteStatusException(message: response.error['message']);
-          }
+          checkException(
+            response: response,
+            exceptionCreator: (String message) =>
+                WebsiteStatusException(message: message),
+          );
 
           return response is WebsiteStatusResponse
               ? WebsiteStatus.fromJson(

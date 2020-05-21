@@ -33,9 +33,10 @@ class AppDelete extends AppDeleteModel {
   static Future<AppDelete> deleteApplication(AppDeleteRequest request) async {
     final AppDeleteResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw AppException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => AppException(message: message),
+    );
 
     return AppDelete.fromResponse(response);
   }

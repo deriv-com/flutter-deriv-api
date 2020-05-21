@@ -75,9 +75,11 @@ class AccountLimits extends AccountLimitsModel {
       request: request ?? const GetLimitsRequest(),
     );
 
-    if (response.error != null) {
-      throw AccountLimitsException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          AccountLimitsException(message: message),
+    );
 
     return AccountLimits.fromJson(response.getLimits);
   }

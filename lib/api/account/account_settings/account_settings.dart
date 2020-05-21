@@ -110,9 +110,11 @@ class AccountSettings extends AccountSettingsModel {
       request: request ?? const GetSettingsRequest(),
     );
 
-    if (response.error != null) {
-      throw AccountSettingsException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          AccountSettingsException(message: message),
+    );
 
     return AccountSettings.fromJson(response.getSettings);
   }
@@ -125,9 +127,11 @@ class AccountSettings extends AccountSettingsModel {
   ) async {
     final SetSettingsResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw AccountSettingsException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          AccountSettingsException(message: message),
+    );
 
     return SetAccountSettingModel(succeeded: getBool(response.setSettings));
   }

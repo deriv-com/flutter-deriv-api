@@ -35,9 +35,10 @@ class MT5PasswordReset extends MT5PasswordResetModel {
   ) async {
     final Mt5PasswordResetResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw MT5Exception(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => MT5Exception(message: message),
+    );
 
     return MT5PasswordReset.fromResponse(response);
   }
