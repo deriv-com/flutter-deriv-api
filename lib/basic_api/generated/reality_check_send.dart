@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/reality_check_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/reality_check_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -23,7 +23,6 @@ class RealityCheckRequest extends Request {
   factory RealityCheckRequest.fromJson(Map<String, dynamic> json) =>
       _$RealityCheckRequestFromJson(json);
 
-  // Properties
   /// Must be `1`
   final int realityCheck;
 

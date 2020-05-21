@@ -42,7 +42,7 @@ class Authorize extends AuthorizeModel {
           userId: userId,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory Authorize.fromJson(Map<String, dynamic> json) => Authorize(
         accountList: getListFromMap(
           json['account_list'],
@@ -75,7 +75,7 @@ class Authorize extends AuthorizeModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   Authorize copyWith({
     List<Account> accountList,
     double balance,
@@ -112,7 +112,9 @@ class Authorize extends AuthorizeModel {
       );
 
   /// Authorizes current WebSocket session to act on behalf of the owner of a given token.
+  ///
   /// For parameters information refer to [AuthorizeRequest].
+  /// Throws an [AuthorizeException] if API response contains an error
   static Future<Authorize> authorize(AuthorizeRequest request) async {
     final AuthorizeResponse response = await _api.call(
       request: request,

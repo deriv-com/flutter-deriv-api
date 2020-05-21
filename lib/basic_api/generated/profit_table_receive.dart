@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/profit_table_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/profit_table_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class ProfitTableResponse extends Response {
   factory ProfitTableResponse.fromJson(Map<String, dynamic> json) =>
       _$ProfitTableResponseFromJson(json);
 
-  // Properties
   /// Account Profit Table.
   final Map<String, dynamic> profitTable;
 

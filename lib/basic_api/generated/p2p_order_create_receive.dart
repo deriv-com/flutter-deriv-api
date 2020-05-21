@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_create_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_create_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -27,7 +27,6 @@ class P2pOrderCreateResponse extends Response {
   factory P2pOrderCreateResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCreateResponseFromJson(json);
 
-  // Properties
   /// Information of the creates P2P order.
   final Map<String, dynamic> p2pOrderCreate;
 

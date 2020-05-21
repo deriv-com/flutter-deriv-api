@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/residence_list_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/residence_list_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class ResidenceListResponse extends Response {
   factory ResidenceListResponse.fromJson(Map<String, dynamic> json) =>
       _$ResidenceListResponseFromJson(json);
 
-  // Properties
   /// List of countries for account opening
   final List<Map<String, dynamic>> residenceList;
 

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/get_account_status_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_account_status_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class GetAccountStatusResponse extends Response {
   factory GetAccountStatusResponse.fromJson(Map<String, dynamic> json) =>
       _$GetAccountStatusResponseFromJson(json);
 
-  // Properties
   /// Account status details
   final Map<String, dynamic> getAccountStatus;
 

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -46,7 +46,6 @@ class NewAccountRealRequest extends Request {
   factory NewAccountRealRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountRealRequestFromJson(json);
 
-  // Properties
   /// [Optional] Purpose and reason for requesting the account opening.
   final String accountOpeningReason;
 

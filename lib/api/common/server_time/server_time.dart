@@ -26,7 +26,9 @@ class ServerTime extends ServerTimeModel {
         time: time ?? this.time,
       );
 
-  /// Requests back-end server epoch time.
+  /// Gets back-end server epoch time.
+  ///
+  /// Throws a [ServerTimeException] if API response contains an error
   static Future<ServerTime> fetchTime([
     TimeRequest request,
   ]) async {

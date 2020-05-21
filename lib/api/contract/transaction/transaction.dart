@@ -93,6 +93,8 @@ class Transaction extends TransactionModel {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Subscribes to account's transactions
+  ///
+  /// Throws a [TransactionsException] if API response contains an error
   static Stream<Transaction> subscribeTransactions() => _api
           .subscribe(request: const TransactionRequest())
           .map<Transaction>((Response response) {
@@ -111,6 +113,8 @@ class Transaction extends TransactionModel {
       });
 
   /// Unsubscribes from transaction subscription.
+  ///
+  /// Throws a [TransactionsException] if API response contains an error
   Future<Forget> unsubscribeTransaction() async {
     if (subscriptionInformation?.id == null) {
       return null;
@@ -129,6 +133,8 @@ class Transaction extends TransactionModel {
   }
 
   /// Unsubscribes all transaction subscriptions.
+  ///
+  /// Throws a [TransactionsException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllTransaction() async {
     final ForgetAllResponse response =
         await _api.unsubscribeAll(method: ForgetStreamType.transaction);

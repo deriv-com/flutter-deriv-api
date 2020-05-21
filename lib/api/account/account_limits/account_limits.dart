@@ -39,7 +39,7 @@ class AccountLimits extends AccountLimitsModel {
           withdrawalSinceInceptionMonetary: withdrawalSinceInceptionMonetary,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory AccountLimits.fromJson(Map<String, dynamic> json) => AccountLimits(
         accountBalance: json['account_balance']?.toDouble(),
         dailyTurnover: json['daily_turnover'],
@@ -65,10 +65,14 @@ class AccountLimits extends AccountLimitsModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Fetches the logged in account's limits
-  static Future<AccountLimits> fetchAccountLimits() async {
+  /// Gets the trading and withdrawal limits for logged in account
+  ///
+  /// Throws an [AccountLimitsException] if API response contains an error
+  static Future<AccountLimits> fetchAccountLimits([
+    GetLimitsRequest request,
+  ]) async {
     final GetLimitsResponse response = await _api.call(
-      request: const GetLimitsRequest(),
+      request: request ?? const GetLimitsRequest(),
     );
 
     checkException(
@@ -80,7 +84,7 @@ class AccountLimits extends AccountLimitsModel {
     return AccountLimits.fromJson(response.getLimits);
   }
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   AccountLimits copyWith({
     double accountBalance,
     double dailyTurnover,

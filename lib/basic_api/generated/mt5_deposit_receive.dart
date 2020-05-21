@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -27,7 +27,6 @@ class Mt5DepositResponse extends Response {
   factory Mt5DepositResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5DepositResponseFromJson(json);
 
-  // Properties
   /// Withdrawal reference ID of Binary account
   final int binaryTransactionId;
 

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/transaction_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transaction_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -27,7 +27,6 @@ class TransactionResponse extends Response {
   factory TransactionResponse.fromJson(Map<String, dynamic> json) =>
       _$TransactionResponseFromJson(json);
 
-  // Properties
   /// For subscription requests only.
   final Map<String, dynamic> subscription;
 

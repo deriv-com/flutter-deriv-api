@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -29,7 +29,6 @@ class PaymentagentWithdrawRequest extends Request {
   factory PaymentagentWithdrawRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentWithdrawRequestFromJson(json);
 
-  // Properties
   /// The amount to withdraw to the payment agent.
   final num amount;
 

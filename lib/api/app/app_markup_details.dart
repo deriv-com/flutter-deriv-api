@@ -36,7 +36,9 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
       );
 
   /// Retrieve details of app markup according to criteria specified.
+  ///
   /// For parameters information refer to [AppMarkupDetailsRequest].
+  /// Throws an [AppException] if API response contains an error
   static Future<AppMarkupDetails> fetchApplicationMarkupDetails(
     AppMarkupDetailsRequest request,
   ) async {

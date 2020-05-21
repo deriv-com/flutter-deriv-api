@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_cancel_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_cancel_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class P2pOrderCancelResponse extends Response {
   factory P2pOrderCancelResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCancelResponseFromJson(json);
 
-  // Properties
   /// Cancellation details
   final Map<String, dynamic> p2pOrderCancel;
 
