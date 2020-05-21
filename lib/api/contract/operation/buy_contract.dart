@@ -4,7 +4,9 @@ import 'package:flutter_deriv_api/api/contract/operation/cancel_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_operations_exception.dart';
 import 'package:flutter_deriv_api/api/contract/operation/sell_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/update_contract.dart';
+import 'package:flutter_deriv_api/api/models/either_response.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -109,6 +111,39 @@ class BuyContract extends BuyContractModel {
           'take_profit': takeProfit,
         },
       ));
+
+  /// Buys the contract based on parameters specified in [request] and subscribes to its updates
+  ///
+  /// Returns an [EitherResponse] of [BuyContract] and [OpenContract].
+  /// [BuyContract] is the result of buy operation,
+  /// and [OpenContract] is the update of bought contract as a stream
+  ///
+  /// Accessing the results:
+  ///   await eitherResponse.response;
+  ///   and
+  ///   eitherResponse.responseStream.listen();
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
+  static EitherResponse<BuyContract, OpenContract> buyContractAndSubscribe(
+    BuyRequest request,
+  ) =>
+      EitherResponse<BuyContract, OpenContract>(
+        _api.subscribe(request: request).map((Response response) {
+          checkException(
+            response: response,
+            exceptionCreator: (String message) =>
+                ContractOperationException(message: message),
+          );
+
+          if (response is BuyResponse) {
+            return BuyContract.fromJson(response.buy);
+          } else if (response is ProposalOpenContractResponse) {
+            return OpenContract.fromJson(response.proposalOpenContract);
+          } else {
+            return null;
+          }
+        }),
+      );
 
   /// Creates a copy of instance with given parameters
   BuyContractModel copyWith({

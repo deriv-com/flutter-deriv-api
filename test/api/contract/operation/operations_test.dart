@@ -8,6 +8,7 @@ import 'package:flutter_deriv_api/api/contract/operation/open_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/price_proposal.dart';
 import 'package:flutter_deriv_api/api/contract/operation/sell_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/update_contract.dart';
+import 'package:flutter_deriv_api/api/models/either_response.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
@@ -273,6 +274,28 @@ void main() {
           );
         }),
       );
+    });
+
+    test('Buy contract and subscribe', () async {
+      final EitherResponse<BuyContract, OpenContract> buyAndSubscribe =
+          BuyContract.buyContractAndSubscribe(
+        const BuyRequest(
+          buy: '042922fe-5664-09e4-c3bf-b3bbe98f31db',
+          price: 100.0,
+        ),
+      );
+
+      final BuyContract buyContract = await buyAndSubscribe.response;
+
+      expect(buyContract.contractId, 79939279308);
+      expect(buyContract.purchaseTime, getDateTime(1587528886));
+      expect(
+        buyContract.shortCode,
+        'CALL_R_100_100_1587528886_1587528946_S10P_0',
+      );
+      expect(buyContract.buyPrice, 49.12);
+
+      // TODO(ramin): MockAPI does not return more than one response in its stream, Find a way to test this scenario when we have first response as future and the rest as stream items
     });
   });
 }
