@@ -7,14 +7,12 @@ import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
-/// Base API abstract class
+/// Base class for handling API calls
 abstract class BaseAPI {
   /// Connects to API
-  /// This method is not applicable to mock API
   Future<void> connect(ConnectionInformation connectionInformation);
 
   /// Adds request to stream channel
-  /// This method is not applicable to mock API
   void addToChannel(Map<String, dynamic> request);
 
   /// Calls a API method by [request]
@@ -40,6 +38,5 @@ abstract class BaseAPI {
   });
 
   /// Disconnects from API
-  /// This method is not applicable to mock API
   Future<void> disconnect();
 }

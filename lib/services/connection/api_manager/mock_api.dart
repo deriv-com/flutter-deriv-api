@@ -100,9 +100,9 @@ import 'mock_data/user/tnc_approval_response.dart';
 import 'mock_data/user/transfer_between_accounts_response.dart';
 import 'mock_data/user/verify_email_response.dart';
 
-/// Handle mock API calls
+/// This class handles mock API calls
 class MockAPI implements BaseAPI {
-  static const int _responseDelayMilliseconds = 50;
+  static const int _responseDelayMilliseconds = 0;
 
   @override
   Future<void> connect(ConnectionInformation connectionInformation) async =>
