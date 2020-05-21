@@ -1,8 +1,9 @@
-part of 'helpers.dart';
+part of '../helpers.dart';
 
 /// Calculates the number of decimal digits for string [value] of a number
 int getDecimalDigits(String value) {
   final List<String> parts = value.split('.');
+
   return parts.length > 1 && parts.isNotEmpty ? parts.last.length : 2;
 }
 
@@ -54,8 +55,7 @@ class NumberValidator {
     return result != null;
   }
 
-  /// Checks if [stringValue] of a number is in the range of
-  /// [lowerLimit] & [upperLimit]
+  /// Checks if [stringValue] of a number is in the range of [lowerLimit] and [upperLimit]
   static bool isBetweenLimits({
     @required String stringValue,
     @required double upperLimit,
@@ -68,33 +68,27 @@ class NumberValidator {
   static bool isLessThanLimit({
     @required String stringValue,
     @required double upperLimit,
-  }) {
-    final double num = double.parse(stringValue);
-    return num <= upperLimit;
-  }
+  }) =>
+      double.parse(stringValue) <= upperLimit;
 
   /// Checks if [stringValue] of number exceeds the given value
   static bool isMoreThanLimit({
     @required String stringValue,
     @required double lowerLimit,
-  }) {
-    final double num = double.parse(stringValue);
-    return num >= lowerLimit;
-  }
+  }) =>
+      double.parse(stringValue) >= lowerLimit;
 
   /// Checks if number is positive
-  static bool isAPositiveNumber(String stringValue) {
-    final double num = double.parse(stringValue);
-    return num > 0;
-  }
+  static bool isAPositiveNumber(String stringValue) =>
+      double.parse(stringValue) > 0;
 
-  /// Checks if the [stringValue] of number matches
-  /// with the [validDecimalNumber]
+  /// Checks if the [stringValue] of number matches with the [validDecimalNumber]
   static bool hasValidPrecision({
     @required String stringValue,
     @required int validDecimalNumber,
   }) {
     final List<String> splitValue = stringValue.split('.');
+
     if (splitValue.length >= 2) {
       if ((splitValue[1].length) <= validDecimalNumber) {
         return true;
@@ -102,11 +96,12 @@ class NumberValidator {
     } else {
       return true;
     }
+
     return false;
   }
 }
 
-/// Random int between [min] & [max]
+/// Random int between [min] and [max]
 int generateRandomInt({
   int min = 0,
   int max = 10,

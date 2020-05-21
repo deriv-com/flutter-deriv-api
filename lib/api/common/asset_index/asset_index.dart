@@ -1,20 +1,10 @@
+import 'package:flutter_deriv_api/api/common/asset_index/exceptions/asset_index_exception.dart';
 import 'package:flutter_deriv_api/api/common/models/asset_index_model.dart';
 import 'package:flutter_deriv_api/api/common/models/index_contract_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
-
-import 'exceptions/asset_index_exception.dart';
-
-/// Index of contracts
-const int contractsIndex = 2;
-
-/// Index of symbol code
-const int symbolCodeIndex = 0;
-
-/// Index of symbol name
-const int symbolNameIndex = 1;
 
 /// Asset index class
 class AssetIndex extends AssetIndexModel {
@@ -34,16 +24,20 @@ class AssetIndex extends AssetIndexModel {
     List<dynamic> jsonList,
   ) =>
       AssetIndex(
-        contracts: jsonList[contractsIndex] == 0
+        contracts: jsonList[_contractsIndex] == 0
             ? null
             : getListFromMap(
-                jsonList[contractsIndex],
+                jsonList[_contractsIndex],
                 itemToTypeCallback: (dynamic item) =>
                     IndexContractModel.fromJson(item),
               ),
-        symbolCode: jsonList[symbolCodeIndex],
-        symbolName: jsonList[symbolNameIndex],
+        symbolCode: jsonList[_symbolCodeIndex],
+        symbolName: jsonList[_symbolNameIndex],
       );
+
+  static const int _symbolCodeIndex = 0;
+  static const int _symbolNameIndex = 1;
+  static const int _contractsIndex = 2;
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
