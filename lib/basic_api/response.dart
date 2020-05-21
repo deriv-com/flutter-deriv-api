@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'response.g.dart';
 
 /// super class of all requests
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Response extends Equatable {
   /// Initializes
   const Response({

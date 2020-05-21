@@ -18,7 +18,8 @@ AppMarkupDetailsRequest _$AppMarkupDetailsRequestFromJson(
     limit: json['limit'] as num,
     offset: json['offset'] as num,
     sort: json['sort'] as String,
-    sortFields: (json['sort_fields'] as List).map((e) => e as String).toList(),
+    sortFields:
+        (json['sort_fields'] as List)?.map((e) => e as String)?.toList(),
     passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
   );

@@ -6,7 +6,7 @@ import '../response.dart';
 part 'residence_list_receive.g.dart';
 
 /// JSON conversion for 'residence_list_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ResidenceListResponse extends Response {
   /// Initialize ResidenceListResponse
   const ResidenceListResponse({

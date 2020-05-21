@@ -6,7 +6,7 @@ import '../response.dart';
 part 'cancel_receive.g.dart';
 
 /// JSON conversion for 'cancel_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class CancelResponse extends Response {
   /// Initialize CancelResponse
   const CancelResponse({

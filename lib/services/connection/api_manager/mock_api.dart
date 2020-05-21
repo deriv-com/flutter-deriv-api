@@ -178,17 +178,17 @@ class MockAPI implements BaseAPI {
         return authorizeResponse;
       case 'balance':
         return balanceResponse;
-      // case 'buy_contract_for_multiple_accounts':
       case 'buy':
         return buyContractResponse;
+      // case 'buy_contract_for_multiple_accounts':
       case 'cancel':
         return cancelResponse;
       case 'cashier':
         return cashierInformationResponse;
-      case 'contract_update_history':
-        return contractUpdateHistoryResponse;
       case 'contract_update':
         return contractUpdateResponse;
+      case 'contract_update_history':
+        return contractUpdateHistoryResponse;
       case 'contracts_for':
         return contractForResponse;
       case 'copy_start':
@@ -202,20 +202,20 @@ class MockAPI implements BaseAPI {
       // case 'document_upload':
       case 'exchange_rates':
         return exchangeRatesResponse;
-      case 'forget_all':
-        return forgetAllResponse;
       case 'forget':
         return forgetResponse;
+      case 'forget_all':
+        return forgetAllResponse;
       case 'get_account_status':
         return getAccountStatusResponse;
       case 'get_financial_assessment':
         return getFinancialAssessmentResponse;
       case 'get_limits':
         return getLimitsResponse;
-      case 'get_settings':
-        return getSettingsResponse;
       case 'get_self_exclusion':
         return getSelfExclusiveResponse;
+      case 'get_settings':
+        return getSettingsResponse;
       case 'landing_company':
         return landingCompanyResponse;
       case 'landing_company_details':
@@ -290,21 +290,21 @@ class MockAPI implements BaseAPI {
       case 'profit_table':
         return profitTableResponse;
       // case 'proposal_array':
-      case 'proposal_open_contract':
-        return proposalOpenContractResponse;
       case 'proposal':
         return proposalResponse;
-      case 'residence_list':
-        return residenceListResponse;
+      case 'proposal_open_contract':
+        return proposalOpenContractResponse;
       case 'reality_check':
         return realityCheckResponse;
+      case 'residence_list':
+        return residenceListResponse;
       case 'revoke_oauth_app':
         return revokeOauthAppResponse;
       // case 'sell_contract_for_multiple_accounts':
-      case 'sell_expired':
-        return sellExpiredResponse;
       case 'sell':
         return sellResponse;
+      case 'sell_expired':
+        return sellExpiredResponse;
       case 'set_account_currency':
         return setAccountCurrencyResponse;
       case 'set_financial_assessment':
@@ -313,14 +313,14 @@ class MockAPI implements BaseAPI {
         return setSelfExclusiveResponse;
       case 'set_settings':
         return setSettingsResponse;
-      case 'states_list':
-        return statesListResponse;
-      case 'history':
-        return tickHistoryResponse;
       case 'statement':
         return statementResponse;
+      case 'states_list':
+        return statesListResponse;
       case 'ticks':
         return tickResponse;
+      case 'ticks_history':
+        return tickHistoryResponse;
       case 'time':
         return serverTimeResponse;
       case 'tnc_approval':

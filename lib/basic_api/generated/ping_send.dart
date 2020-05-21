@@ -6,7 +6,7 @@ import '../request.dart';
 part 'ping_send.g.dart';
 
 /// JSON conversion for 'ping_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class PingRequest extends Request {
   /// Initialize PingRequest
   const PingRequest({

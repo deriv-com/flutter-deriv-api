@@ -6,7 +6,7 @@ import '../request.dart';
 part 'p2p_order_list_send.g.dart';
 
 /// JSON conversion for 'p2p_order_list_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pOrderListRequest extends Request {
   /// Initialize P2pOrderListRequest
   const P2pOrderListRequest({
