@@ -33,8 +33,10 @@ class TradingTimes extends TradingTimesModel {
         markets: markets ?? this.markets,
       );
 
-  /// Receive a list of market opening times for a given date.
+  /// Receives a list of market opening times for a given date.
+  ///
   /// For parameters information refer to [TradingTimesRequest].
+  /// Throws a [TradingException] if API response contains an error
   static Future<TradingTimes> fetchTradingTimes(
     TradingTimesRequest request,
   ) async {

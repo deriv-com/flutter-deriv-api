@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_confirm_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_confirm_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -24,7 +24,6 @@ class P2pOrderConfirmRequest extends Request {
   factory P2pOrderConfirmRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderConfirmRequestFromJson(json);
 
-  // Properties
   /// The unique identifier for this order.
   final String id;
 

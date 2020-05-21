@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_list_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_list_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -28,7 +28,6 @@ class P2pOrderListRequest extends Request {
   factory P2pOrderListRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderListRequestFromJson(json);
 
-  // Properties
   /// [Optional] Should be 1 to list active, 0 to list inactive (historical).
   final num active;
 

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/set_self_exclusion_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_self_exclusion_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class SetSelfExclusionResponse extends Response {
   factory SetSelfExclusionResponse.fromJson(Map<String, dynamic> json) =>
       _$SetSelfExclusionResponseFromJson(json);
 
-  // Properties
   /// `1` on success
   final int setSelfExclusion;
 

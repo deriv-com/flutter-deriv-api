@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/get_settings_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_settings_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class GetSettingsResponse extends Response {
   factory GetSettingsResponse.fromJson(Map<String, dynamic> json) =>
       _$GetSettingsResponseFromJson(json);
 
-  // Properties
   /// User information and settings.
   final Map<String, dynamic> getSettings;
 

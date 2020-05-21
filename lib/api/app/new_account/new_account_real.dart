@@ -20,7 +20,7 @@ class NewAccountReal extends NewAccountRealModel {
           oauthToken: oauthToken,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory NewAccountReal.fromJson(Map<String, dynamic> json) => NewAccountReal(
         clientId: json['client_id'],
         landingCompany: json['landing_company'],
@@ -30,7 +30,7 @@ class NewAccountReal extends NewAccountRealModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   NewAccountReal copyWith({
     String clientId,
     String landingCompany,
@@ -44,8 +44,10 @@ class NewAccountReal extends NewAccountRealModel {
         oauthToken: oauthToken ?? this.oauthToken,
       );
 
-  /// Open new real account.
+  /// Opens a new real account.
+  ///
   /// For parameters information refer to [NewAccountRealRequest].
+  /// Throws a [NewAccountException] ifAP
   static Future<NewAccountReal> openNewRealAccount(
     NewAccountRealRequest request,
   ) async {

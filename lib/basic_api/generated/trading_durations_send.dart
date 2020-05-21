@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_durations_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_durations_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -24,7 +24,6 @@ class TradingDurationsRequest extends Request {
   factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>
       _$TradingDurationsRequestFromJson(json);
 
-  // Properties
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
   final String landingCompany;
 

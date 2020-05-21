@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class ActiveSymbolsResponse extends Response {
   factory ActiveSymbolsResponse.fromJson(Map<String, dynamic> json) =>
       _$ActiveSymbolsResponseFromJson(json);
 
-  // Properties
   /// List of active symbols.
   final List<Map<String, dynamic>> activeSymbols;
 

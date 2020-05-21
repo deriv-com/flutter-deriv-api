@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/app_list_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_list_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class AppListResponse extends Response {
   factory AppListResponse.fromJson(Map<String, dynamic> json) =>
       _$AppListResponseFromJson(json);
 
-  // Properties
   /// List of created applications for the authorized account.
   final List<Map<String, dynamic>> appList;
 

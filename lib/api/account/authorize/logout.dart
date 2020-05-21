@@ -12,13 +12,13 @@ class Logout extends LogoutModel {
     bool succeeded,
   }) : super(succeeded: succeeded);
 
-  /// Generate an instance from response
+  /// Generates an instance from [LogoutResponse]
   factory Logout.fromResponse(LogoutResponse response) =>
       Logout(succeeded: getBool(response.logout));
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   Logout copyWith({
     bool succeeded,
   }) =>
@@ -26,8 +26,10 @@ class Logout extends LogoutModel {
         succeeded: succeeded ?? this.succeeded,
       );
 
-  /// Logouts the session.
+  /// Logs out from the web-socket's session.
+  ///
   /// For parameters information refer to [LogoutRequest].
+  /// Throws an [AuthorizeException] if API response contains an error
   static Future<Logout> logout([
     LogoutRequest request,
   ]) async {

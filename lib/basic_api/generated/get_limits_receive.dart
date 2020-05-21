@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class GetLimitsResponse extends Response {
   factory GetLimitsResponse.fromJson(Map<String, dynamic> json) =>
       _$GetLimitsResponseFromJson(json);
 
-  // Properties
   /// Trading limits of real account user
   final Map<String, dynamic> getLimits;
 

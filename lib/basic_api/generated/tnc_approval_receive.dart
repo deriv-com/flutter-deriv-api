@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/tnc_approval_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/tnc_approval_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class TncApprovalResponse extends Response {
   factory TncApprovalResponse.fromJson(Map<String, dynamic> json) =>
       _$TncApprovalResponseFromJson(json);
 
-  // Properties
   /// Set terms and conditions 1: success
   final int tncApproval;
 

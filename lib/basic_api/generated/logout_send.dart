@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/logout_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/logout_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -23,7 +23,6 @@ class LogoutRequest extends Request {
   factory LogoutRequest.fromJson(Map<String, dynamic> json) =>
       _$LogoutRequestFromJson(json);
 
-  // Properties
   /// Must be `1`
   final int logout;
 

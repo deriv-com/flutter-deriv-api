@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/app_update_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_update_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -32,7 +32,6 @@ class AppUpdateRequest extends Request {
   factory AppUpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$AppUpdateRequestFromJson(json);
 
-  // Properties
   /// [Optional] Markup to be added to contract prices (as a percentage of contract payout).
   final num appMarkupPercentage;
 

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/login_history_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/login_history_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class LoginHistoryResponse extends Response {
   factory LoginHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$LoginHistoryResponseFromJson(json);
 
-  // Properties
   /// Array of records of client login/logout activities
   final List<Map<String, dynamic>> loginHistory;
 

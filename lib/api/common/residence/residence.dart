@@ -31,6 +31,8 @@ class Residence extends ResidenceModel {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets Residence list for the given [ResidenceListRequest]
+  ///
+  /// Throws a [ResidenceException] if API response contains an error
   static Future<List<Residence>> fetchResidenceList([
     ResidenceListRequest request,
   ]) async {
