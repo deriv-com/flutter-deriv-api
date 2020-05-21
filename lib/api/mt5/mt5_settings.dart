@@ -1,9 +1,13 @@
-// Mt5 get settings class
-import 'package:flutter_deriv_api/api/models/mt5_settings_model.dart';
+import 'package:flutter_deriv_api/api/mt5/exceptions/mt5_exception.dart';
+import 'package:flutter_deriv_api/api/mt5/models/mt5_settings_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// MT5 settings class
 class MT5Settings extends MT5SettingsModel {
-  /// Class constructor
+  /// Initializes
   MT5Settings({
     String address,
     String balance,
@@ -38,7 +42,7 @@ class MT5Settings extends MT5SettingsModel {
           zipCode: zipCode,
         );
 
-  /// Creates instance from json
+  /// Creates an instance from JSON
   factory MT5Settings.fromJson(Map<String, dynamic> json) => MT5Settings(
         address: json['address'],
         balance: json['balance'],
@@ -57,7 +61,9 @@ class MT5Settings extends MT5SettingsModel {
         zipCode: json['zipCode'],
       );
 
-  /// Creates copy of instance with given parameters
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Creates a copy of instance with given parameters
   MT5Settings copyWith({
     String address,
     String balance,
@@ -92,4 +98,19 @@ class MT5Settings extends MT5SettingsModel {
         state: state ?? this.state,
         zipCode: zipCode ?? this.zipCode,
       );
+
+  /// Gets MT5 user account settings.
+  /// For parameters information refer to [Mt5GetSettingsRequest].
+  static Future<MT5Settings> fetchSettings(
+    Mt5GetSettingsRequest request,
+  ) async {
+    final Mt5GetSettingsResponse response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => MT5Exception(message: message),
+    );
+
+    return MT5Settings.fromJson(response.mt5GetSettings);
+  }
 }

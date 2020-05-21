@@ -1,14 +1,20 @@
-import 'package:flutter_deriv_api/api/models/oauth_app_model.dart';
+import 'package:flutter_deriv_api/api/app/exceptions/app_exception.dart';
+import 'package:flutter_deriv_api/api/app/models/oauth_app_model.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// OAuth application that used for the authorized account
-class OAuthApp extends OauthAppModel {
+/// Oauth application that used for the authorized account
+class OauthApp extends OauthAppModel {
   /// Initializes
-  OAuthApp({
+  OauthApp({
     int appId,
     double appMarkupPercentage,
     DateTime lastUsed,
     String name,
-    List<String> scopes,
+    List<TokenScope> scopes,
   }) : super(
           appId: appId,
           appMarkupPercentage: appMarkupPercentage,
@@ -17,34 +23,53 @@ class OAuthApp extends OauthAppModel {
           scopes: scopes,
         );
 
-  /// Instance from JSON
-  factory OAuthApp.fromJson(Map<String, dynamic> json) => OAuthApp(
+  /// Generate an instance from JSON
+  factory OauthApp.fromJson(Map<String, dynamic> json) => OauthApp(
         appId: json['app_id'],
         appMarkupPercentage: json['app_markup_percentage']?.toDouble(),
-        lastUsed: json['last_used'] == null
-            ? null
-            : DateTime.parse(json['last_used']),
+        lastUsed: DateTime.parse(json['last_used']),
         name: json['name'],
-        scopes: json['scopes'] == null
-            ? null
-            : json['scopes']
-                .map<String>((dynamic entry) => entry.toString())
-                .toList(),
+        scopes: getListFromMap(
+          json['scopes'],
+          itemToTypeCallback: (dynamic item) =>
+              getEnumFromString(values: TokenScope.values, name: item),
+        ),
       );
 
-  /// Clones a new instance
-  OAuthApp copyWith({
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Generate a copy of instance with given parameters
+  OauthApp copyWith({
     int appId,
     double appMarkupPercentage,
     DateTime lastUsed,
     String name,
-    List<String> scopes,
+    List<TokenScope> scopes,
   }) =>
-      OAuthApp(
+      OauthApp(
         appId: appId ?? this.appId,
         appMarkupPercentage: appMarkupPercentage ?? this.appMarkupPercentage,
         lastUsed: lastUsed ?? this.lastUsed,
         name: name ?? this.name,
         scopes: scopes ?? this.scopes,
       );
+
+  /// Fetches oauth application that used for the authorized account.
+  static Future<List<OauthApp>> fetchOauthApps([
+    OauthAppsRequest request,
+  ]) async {
+    final OauthAppsResponse response = await _api.call(
+      request: request ?? const OauthAppsRequest(),
+    );
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => AppException(message: message),
+    );
+
+    return getListFromMap(
+      response.oauthApps,
+      itemToTypeCallback: (dynamic item) => OauthApp.fromJson(item),
+    );
+  }
 }

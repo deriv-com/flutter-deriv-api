@@ -22,7 +22,7 @@ class OauthAppsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory OauthAppsResponse.fromJson(Map<String, dynamic> json) =>
       _$OauthAppsResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class OauthAppsResponse extends Response {
   /// List of OAuth applications that used for the authorized account.
   final List<Map<String, dynamic>> oauthApps;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$OauthAppsResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   OauthAppsResponse copyWith({
     List<Map<String, dynamic>> oauthApps,

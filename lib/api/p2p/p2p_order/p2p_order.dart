@@ -1,10 +1,17 @@
+import 'package:flutter_deriv_api/api/common/forget/forget.dart';
+import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/models/p2p_order_model.dart';
-import 'package:flutter_deriv_api/utils/enum_helper.dart';
+import 'package:flutter_deriv_api/api/models/subscription_model.dart';
+import 'package:flutter_deriv_api/api/p2p/models/p2p_order_model.dart';
+import 'package:flutter_deriv_api/api/p2p/p2p_advert/p2p_advert.dart';
+import 'package:flutter_deriv_api/api/p2p/p2p_advertiser/p2p_advertiser.dart';
+import 'package:flutter_deriv_api/api/p2p/p2p_order/exceptions/p2p_order_exception.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
-
-import '../p2p_advert/p2p_advert.dart';
-import '../p2p_advertiser/p2p_advertiser.dart';
 
 /// P2P order class
 class P2POrder extends P2POrderModel {
@@ -28,6 +35,7 @@ class P2POrder extends P2POrderModel {
     String rateDisplay,
     OrderStatusType status,
     OrderType type,
+    this.subscriptionInformation,
   }) : super(
           accountCurrency: accountCurrency,
           advertDetails: advertDetails,
@@ -49,11 +57,19 @@ class P2POrder extends P2POrderModel {
           type: type,
         );
 
-  /// Creates instance from JSON
-  factory P2POrder.fromJson(Map<String, dynamic> json) => P2POrder(
+  /// Creates an instance from JSON
+  factory P2POrder.fromJson(
+    Map<String, dynamic> json, {
+    Map<String, dynamic> subscriptionJson,
+  }) =>
+      P2POrder(
         accountCurrency: json['account_currency'],
-        advertDetails: P2PAdvert.fromJson(json['advert_details']),
-        advertiserDetails: P2PAdvertiser.fromJson(json['advertiser_details']),
+        advertDetails: getItemFromMap(
+          json['advert_details'],
+          itemToTypeCallback: (dynamic item) => P2PAdvert.fromJson(item),
+        ),
+        advertiserDetails: getItemFromMap(json['advertiser_details'],
+            itemToTypeCallback: (dynamic item) => P2PAdvertiser.fromJson(item)),
         amount: json['amount']?.toDouble(),
         amountDisplay: json['amount_display'],
         contactInfo: json['contact_info'],
@@ -66,18 +82,161 @@ class P2POrder extends P2POrderModel {
         priceDisplay: json['price_display'],
         rate: json['rate']?.toDouble(),
         rateDisplay: json['rate_display'],
-        status: EnumHelper.getEnum(
+        status: getEnumFromString(
           values: OrderStatusType.values,
           name: json['status'],
+          enumCase: EnumCase.paramCase,
         ),
         paymentInfo: json['payment_info'],
-        type: EnumHelper.getEnum(
+        type: getEnumFromString(
           values: OrderType.values,
           name: json['type'],
         ),
+        subscriptionInformation: SubscriptionModel.fromJson(subscriptionJson),
       );
 
-  /// Clones a new instance
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Subscription information
+  final SubscriptionModel subscriptionInformation;
+
+  /// Creates order with parameters specified in [P2pOrderCreateRequest]
+  static Future<P2POrder> create(P2pOrderCreateRequest request) async {
+    final P2pOrderCreateResponse response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2POrderException(message: message),
+    );
+
+    return P2POrder.fromJson(response.p2pOrderCreate);
+  }
+
+  /// Creates order and subscribes to the result with parameters
+  /// specified in [P2pOrderCreateRequest]
+  static Stream<P2POrder> createAndSubscribe(
+    P2pOrderCreateRequest request, {
+    RequestCompareFunction comparePredicate,
+  }) =>
+      _api.subscribe(request: request, comparePredicate: comparePredicate).map(
+        (Response response) {
+          checkException(
+            response: response,
+            exceptionCreator: (String message) =>
+                P2POrderException(message: message),
+          );
+
+          return response is P2pOrderCreateResponse
+              ? P2POrder.fromJson(
+                  response.p2pOrderCreate,
+                  subscriptionJson: response.subscription,
+                )
+              : null;
+        },
+      );
+
+  /// Gets order with parameters specified in [P2pOrderInfoRequest]
+  static Future<P2POrder> fetchOrder(P2pOrderInfoRequest request) async {
+    final P2pOrderInfoResponse response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2POrderException(message: message),
+    );
+
+    return P2POrder.fromJson(response.p2pOrderInfo);
+  }
+
+  /// Subscribes to this order
+  Stream<P2POrder> subscribe({
+    RequestCompareFunction comparePredicate,
+  }) =>
+      subscribeOrder(
+        P2pOrderInfoRequest(id: id),
+        comparePredicate: comparePredicate,
+      );
+
+  /// Subscribes to order with parameters specified in [P2pOrderInfoRequest]
+  static Stream<P2POrder> subscribeOrder(
+    P2pOrderInfoRequest request, {
+    RequestCompareFunction comparePredicate,
+  }) =>
+      _api
+          .subscribe(request: request, comparePredicate: comparePredicate)
+          .map<P2POrder>(
+        (Response response) {
+          checkException(
+            response: response,
+            exceptionCreator: (String message) =>
+                P2POrderException(message: message),
+          );
+
+          return response is P2pOrderInfoResponse
+              ? P2POrder.fromJson(
+                  response.p2pOrderInfo,
+                  subscriptionJson: response.subscription,
+                )
+              : null;
+        },
+      );
+
+  /// Unsubscribes from order subscription.
+  Future<Forget> unsubscribeOrder() async {
+    if (subscriptionInformation?.id == null) {
+      return null;
+    }
+
+    final ForgetResponse response =
+        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2POrderException(message: message),
+    );
+
+    return Forget.fromResponse(response);
+  }
+
+  /// Unsubscribes all order subscriptions.
+  static Future<ForgetAll> unsubscribeAllOrder() async {
+    final ForgetAllResponse response =
+        await _api.unsubscribeAll(method: ForgetStreamType.p2pOrder);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2POrderException(message: message),
+    );
+
+    return ForgetAll.fromResponse(response);
+  }
+
+  /// Cancels this order
+  Future<P2POrder> cancel() async {
+    final P2pOrderCancelResponse response =
+        await _api.call(request: const P2pOrderCancelRequest());
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2POrderException(message: message),
+    );
+
+    return copyWith(status: P2POrder.fromJson(response.p2pOrderCancel).status);
+  }
+
+  /// Confirms this order
+  Future<P2POrder> confirm() async {
+    final P2pOrderConfirmResponse response =
+        await _api.call(request: const P2pOrderConfirmRequest());
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => P2POrderException(message: message),
+    );
+
+    return copyWith(status: P2POrder.fromJson(response.p2pOrderConfirm).status);
+  }
+
+  /// Generates a copy of instance with given parameters
   P2POrder copyWith({
     String accountCurrency,
     P2PAdvert advertDetails,
@@ -97,6 +256,7 @@ class P2POrder extends P2POrderModel {
     String rateDisplay,
     OrderStatusType status,
     OrderType type,
+    SubscriptionModel subscriptionInformation,
   }) =>
       P2POrder(
         accountCurrency: accountCurrency ?? this.accountCurrency,
@@ -117,5 +277,7 @@ class P2POrder extends P2POrderModel {
         rateDisplay: rateDisplay ?? this.rateDisplay,
         status: status ?? this.status,
         type: type ?? this.type,
+        subscriptionInformation:
+            subscriptionInformation ?? this.subscriptionInformation,
       );
 }

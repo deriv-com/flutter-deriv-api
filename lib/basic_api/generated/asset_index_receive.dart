@@ -22,22 +22,22 @@ class AssetIndexResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory AssetIndexResponse.fromJson(Map<String, dynamic> json) =>
       _$AssetIndexResponseFromJson(json);
 
   // Properties
   /// List of underlyings by their display name and symbol followed by their available contract types and duration boundaries.
-  final List<String> assetIndex;
+  final List<dynamic> assetIndex;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$AssetIndexResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   AssetIndexResponse copyWith({
-    List<String> assetIndex,
+    List<dynamic> assetIndex,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,

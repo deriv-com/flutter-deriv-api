@@ -19,7 +19,7 @@ class CopyStopRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory CopyStopRequest.fromJson(Map<String, dynamic> json) =>
       _$CopyStopRequestFromJson(json);
 
@@ -27,11 +27,11 @@ class CopyStopRequest extends Request {
   /// API tokens identifying the accounts which needs not to be copied
   final String copyStop;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$CopyStopRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   CopyStopRequest copyWith({
     String copyStop,

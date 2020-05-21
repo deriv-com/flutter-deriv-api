@@ -22,13 +22,12 @@ class CashierResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory CashierResponse.fromJson(Map<String, dynamic> json) =>
       _$CashierResponseFromJson(json);
 
   // Properties
-  /// Cashier URL.
-  /// **Note:** possible error codes are:
+  /// Possible error codes are:
   /// - `ASK_TNC_APPROVAL`: API call `tnc_approval`
   /// - `ASK_AUTHENTICATE`
   /// - `ASK_UK_FUNDS_PROTECTION`: API call `tnc_approval`
@@ -37,11 +36,11 @@ class CashierResponse extends Response {
   /// - `ASK_FIX_DETAILS`: API call `set_settings`
   final String cashier;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$CashierResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   CashierResponse copyWith({
     String cashier,

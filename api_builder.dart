@@ -21,6 +21,7 @@ class APIBuilder extends Builder {
     'number': 'num',
     'object': 'Map<String, dynamic>',
     'array': 'List<String>',
+    'undefined': 'dynamic',
   };
 
   static const Map<String, String> schemaTypeMap = <String, String>{
@@ -119,17 +120,17 @@ class APIBuilder extends Builder {
                   ${_getSuperClassParameters(schemaType)},
                 }): super(${_getSuperClassCallParameters(schemaType, methodName)},);
               
-              /// Creates instance from JSON
+              /// Creates an instance from JSON
               factory $classFullName.fromJson(Map<String, dynamic> json) => _\$${classFullName}FromJson(json);
               
               // Properties
               ${_getProperties(buildStep, schema, properties)}
 
-              /// Converts to JSON
+              /// Converts an instance to JSON
               @override
               Map<String, dynamic> toJson() => _\$${classFullName}ToJson(this);
 
-              /// Creates copy of instance with given parameters
+              /// Creates a copy of instance with given parameters
               @override
               $classFullName copyWith(
                 ${_getCopyWithMethod(buildStep, schema, schemaType, classFullName, properties)}
@@ -198,21 +199,27 @@ class APIBuilder extends Builder {
       if (property.oneOf.isNotEmpty) {
         return 'dynamic';
       } else {
-        final String schemaType = property.type?.toString() ?? 'string';
+        final String schemaType = _getSchemaType(property);
 
         if (schemaType == 'array') {
           // Some types aren't specified - forget_all for example
-          final String itemType = property.items?.type?.toString() ?? 'string';
+          final String itemType = property.items?.type?.toString() ?? 'undefined';
 
           return 'List<${typeMap[itemType]}>';
         } else {
-          return typeMap[schemaType] ?? 'String';
+          return typeMap[schemaType];
         }
       }
     } else {
       return 'String';
     }
   }
+
+  String _getSchemaType(JsonSchema property) => property.typeList?.length == 2
+      ? property.typeList.first.toString() != 'null'
+          ? property.typeList.first.toString() ?? 'undefined'
+          : property.typeList.last.toString() ?? 'undefined'
+      : property.type?.toString() ?? 'undefined';
 
   String _getCopyWithMethod(
     BuildStep buildStep,
@@ -273,7 +280,7 @@ class APIBuilder extends Builder {
     }
 
     superCallParameters.write(_getSuperClassFields(schemaType).keys.map(
-          (String key) {
+      (String key) {
         final String parameterName = ReCase(key).camelCase;
         return '$parameterName: $parameterName';
       },

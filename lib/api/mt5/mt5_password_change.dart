@@ -1,26 +1,44 @@
-import 'package:flutter_deriv_api/api/models/mt5_password_change_model.dart';
+import 'package:flutter_deriv_api/api/mt5/exceptions/mt5_exception.dart';
+import 'package:flutter_deriv_api/api/mt5/models/mt5_password_change_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// MT5 password change class
 class MT5PasswordChange extends MT5PasswordChangeModel {
-  /// Class constructor
+  /// Initializes
   MT5PasswordChange({
-    bool mt5PasswordChange,
-  }) : super(
-          mt5PasswordChange: mt5PasswordChange,
-        );
+    bool succeeded,
+  }) : super(succeeded: succeeded);
 
-  /// Creates instance from json
-  factory MT5PasswordChange.fromJson(Map<String, dynamic> json) =>
-      MT5PasswordChange(
-        mt5PasswordChange: getBool(json['mt5_password_change']),
-      );
+  /// Creates an instance from response
+  factory MT5PasswordChange.fromResponse(Mt5PasswordChangeResponse response) =>
+      MT5PasswordChange(succeeded: getBool(response.mt5PasswordChange));
 
-  /// Creates copy of instance with given parameters
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Creates a copy of instance with given parameters
   MT5PasswordChange copyWith({
-    bool mt5PasswordChange,
+    bool succeeded,
   }) =>
       MT5PasswordChange(
-        mt5PasswordChange: mt5PasswordChange ?? this.mt5PasswordChange,
+        succeeded: succeeded ?? this.succeeded,
       );
+
+  /// Change password of the MT5 account.
+  /// For parameters information refer to [Mt5PasswordChangeRequest].
+  static Future<MT5PasswordChange> changePassword(
+    Mt5PasswordChangeRequest request,
+  ) async {
+    final Mt5PasswordChangeResponse response =
+        await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => MT5Exception(message: message),
+    );
+
+    return MT5PasswordChange.fromResponse(response);
+  }
 }

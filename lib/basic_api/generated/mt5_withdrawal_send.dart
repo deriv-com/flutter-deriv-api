@@ -22,7 +22,7 @@ class Mt5WithdrawalRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5WithdrawalRequestFromJson(json);
 
@@ -39,11 +39,11 @@ class Mt5WithdrawalRequest extends Request {
   /// Binary account loginid to transfer money to
   final String toBinary;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$Mt5WithdrawalRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   Mt5WithdrawalRequest copyWith({
     num amount,

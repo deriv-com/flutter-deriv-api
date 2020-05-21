@@ -19,7 +19,7 @@ class RealityCheckRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory RealityCheckRequest.fromJson(Map<String, dynamic> json) =>
       _$RealityCheckRequestFromJson(json);
 
@@ -27,11 +27,11 @@ class RealityCheckRequest extends Request {
   /// Must be `1`
   final int realityCheck;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$RealityCheckRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   RealityCheckRequest copyWith({
     int realityCheck,

@@ -22,7 +22,7 @@ class ExchangeRatesResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory ExchangeRatesResponse.fromJson(Map<String, dynamic> json) =>
       _$ExchangeRatesResponseFromJson(json);
 
@@ -30,11 +30,11 @@ class ExchangeRatesResponse extends Response {
   /// Exchange rate values from base to all other currencies
   final Map<String, dynamic> exchangeRates;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ExchangeRatesResponseToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   ExchangeRatesResponse copyWith({
     Map<String, dynamic> exchangeRates,

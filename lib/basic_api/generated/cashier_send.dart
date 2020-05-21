@@ -12,6 +12,7 @@ class CashierRequest extends Request {
   const CashierRequest({
     this.cashier,
     this.provider,
+    this.type,
     this.verificationCode,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -21,29 +22,33 @@ class CashierRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory CashierRequest.fromJson(Map<String, dynamic> json) =>
       _$CashierRequestFromJson(json);
 
   // Properties
-  /// The cashier type to request the URL for.
+  /// Operation which needs to be requested from cashier
   final String cashier;
 
-  /// [Optional] Note: only 'doughflow' is supported currently.
+  /// [Optional] Cashier provider. `crypto` will be default option for crypto currency accounts.
   final String provider;
+
+  /// [Optional] Data need to be returned from cashier. `api` is supported only for `crypto` provider with `deposit` operation.
+  final String type;
 
   /// [Optional] Email verification code (received from a `verify_email` call, which must be done first)
   final String verificationCode;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$CashierRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   CashierRequest copyWith({
     String cashier,
     String provider,
+    String type,
     String verificationCode,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -51,6 +56,7 @@ class CashierRequest extends Request {
       CashierRequest(
         cashier: cashier ?? this.cashier,
         provider: provider ?? this.provider,
+        type: type ?? this.type,
         verificationCode: verificationCode ?? this.verificationCode,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

@@ -1,7 +1,12 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/models/p2p_advert_model.dart';
-import 'package:flutter_deriv_api/api/models/p2p_advertiser_details_model.dart';
-import 'package:flutter_deriv_api/utils/enum_helper.dart';
+import 'package:flutter_deriv_api/api/p2p/models/p2p_advert_model.dart';
+import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_details_model.dart';
+import 'package:flutter_deriv_api/api/p2p/p2p_advert/exceptions/p2p_advert_exception.dart';
+import 'package:flutter_deriv_api/api/p2p/p2p_order/exceptions/p2p_order_exception.dart';
+import 'package:flutter_deriv_api/api/p2p/p2p_order/p2p_order.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// P2P advert class
@@ -69,16 +74,18 @@ class P2PAdvert extends P2PAdvertModel {
           type: type,
         );
 
-  /// Generate an instance from json
+  /// Generate an instance from JSON
   factory P2PAdvert.fromJson(Map<String, dynamic> json) => P2PAdvert(
         accountCurrency: json['account_currency'],
-        advertiserDetails: json['advertiser_details'] == null
-            ? null
-            : P2PAdvertiserDetailsModel.fromJson(json['advertiser_details']),
+        advertiserDetails: getItemFromMap(
+          json['advertiser_details'],
+          itemToTypeCallback: (dynamic item) =>
+              P2PAdvertiserDetailsModel.fromJson(item),
+        ),
         amount: json['amount']?.toDouble(),
         amountDisplay: json['amount_display'],
         contactInfo: json['contact_info'],
-        counterpartyType: EnumHelper.getEnum(
+        counterpartyType: getEnumFromString(
           values: TransactionType.values,
           name: json['counterparty_type'],
         ),
@@ -97,7 +104,7 @@ class P2PAdvert extends P2PAdvertModel {
         minOrderAmountLimit: json['min_order_amount_limit']?.toDouble(),
         minOrderAmountLimitDisplay: json['min_order_amount_limit_display'],
         paymentInfo: json['payment_info'],
-        paymentMethod: EnumHelper.getEnum(
+        paymentMethod: getEnumFromString(
           values: PaymentMethod.values,
           name: json['payment_method'],
         ),
@@ -107,11 +114,13 @@ class P2PAdvert extends P2PAdvertModel {
         rateDisplay: json['rate_display'],
         remainingAmount: json['remaining_amount']?.toDouble(),
         remainingAmountDisplay: json['remaining_amount_display'],
-        type: EnumHelper.getEnum(
+        type: getEnumFromString(
           values: TransactionType.values,
           name: json['type'],
         ),
       );
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generate a copy of instance with given parameters
   P2PAdvert copyWith({
@@ -180,5 +189,105 @@ class P2PAdvert extends P2PAdvertModel {
         remainingAmountDisplay:
             remainingAmountDisplay ?? this.remainingAmountDisplay,
         type: type ?? this.type,
+      );
+
+  /// Retrieves information about a P2P (peer to peer) advert.
+  /// For parameters information refer to [P2pAdvertInfoRequest].
+  static Future<P2PAdvert> fetchAdvert(
+    P2pAdvertInfoRequest request,
+  ) async {
+    final P2pAdvertInfoResponse response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          P2PAdvertException(message: message),
+    );
+
+    return P2PAdvert.fromJson(response.p2pAdvertInfo);
+  }
+
+  /// Returns available adverts.
+  /// For parameters information refer to [P2pAdvertListRequest].
+  static Future<List<P2PAdvert>> fetchAdvertList(
+    P2pAdvertListRequest request,
+  ) async {
+    final P2pAdvertListResponse response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          P2PAdvertException(message: message),
+    );
+
+    return getListFromMap(
+      response.p2pAdvertList['list'],
+      itemToTypeCallback: (dynamic item) => P2PAdvert.fromJson(item),
+    );
+  }
+
+  /// Creates a P2P (peer to peer) advert. Can only be used by an approved P2P advertiser.
+  /// For parameters information refer to [P2pAdvertCreateRequest].
+  static Future<P2PAdvert> createAdvert(
+    P2pAdvertCreateRequest request,
+  ) async {
+    final P2pAdvertCreateResponse response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          P2PAdvertException(message: message),
+    );
+
+    return P2PAdvert.fromJson(response.p2pAdvertCreate);
+  }
+
+  /// Updates a P2P (peer to peer) advert. Can only be used by the advertiser.
+  /// For parameters information refer to [P2pAdvertUpdateRequest].
+  static Future<P2PAdvert> updateAdvert(
+    P2pAdvertUpdateRequest request,
+  ) async {
+    final P2pAdvertUpdateResponse response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          P2PAdvertException(message: message),
+    );
+
+    return P2PAdvert.fromJson(response.p2pAdvertUpdate);
+  }
+
+  /// Updates a P2P (peer to peer) advert. Can only be used by the advertiser.
+  Future<P2PAdvert> update(
+    bool delete,
+    bool isActive,
+  ) =>
+      updateAdvert(
+        P2pAdvertUpdateRequest(
+          id: id,
+          delete: getInt(delete),
+          isActive: getInt(isActive),
+        ),
+      );
+
+  /// Creates order on this advert.
+  ///
+  /// [amount] is the amount of currency to be bought or sold.
+  /// [contactInfo] is seller contact information. Only applicable for [OrderType.sell].
+  /// [paymentInfo] is payment instructions. Only applicable for [OrderType.sell].
+  /// Throws [P2POrderException] if API response contains an error.
+  Future<P2POrder> createOrder(
+    double amount, {
+    String contactInfo,
+    String paymentInfo,
+  }) =>
+      P2POrder.create(
+        P2pOrderCreateRequest(
+          advertId: id,
+          amount: amount,
+          contactInfo: contactInfo,
+          paymentInfo: paymentInfo,
+        ),
       );
 }

@@ -32,7 +32,7 @@ class SetSelfExclusionRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       _$SetSelfExclusionRequestFromJson(json);
 
@@ -41,65 +41,65 @@ class SetSelfExclusionRequest extends Request {
   final String excludeUntil;
 
   /// [Optional] 30-day limit on losses.
-  final String max30dayLosses;
+  final num max30dayLosses;
 
   /// [Optional] 30-day turnover limit.
-  final String max30dayTurnover;
+  final num max30dayTurnover;
 
   /// [Optional] 7-day limit on losses.
-  final String max7dayLosses;
+  final num max7dayLosses;
 
   /// [Optional] 7-day turnover limit.
-  final String max7dayTurnover;
+  final num max7dayTurnover;
 
   /// [Optional] Maximum account cash balance.
-  final String maxBalance;
+  final num maxBalance;
 
   /// [Optional] Deposit limit.
-  final String maxDeposit;
+  final num maxDeposit;
 
   /// [Optional] Exclude me from making deposits when the cumulative sum of deposits exceeds specified deposit limit.
   final String maxDepositEndDate;
 
   /// [Optional] Daily limit on losses.
-  final String maxLosses;
+  final num maxLosses;
 
   /// [Optional] Maximum number of open positions.
-  final String maxOpenBets;
+  final int maxOpenBets;
 
   /// [Optional] Daily turnover limit.
-  final String maxTurnover;
+  final num maxTurnover;
 
   /// [Optional] Session duration limit, in minutes.
-  final String sessionDurationLimit;
+  final int sessionDurationLimit;
 
   /// Must be `1`
   final int setSelfExclusion;
 
   /// [Optional] Exclude me from the website (for up to 6 weeks). Requires time in epoch format. Note: unlike `exclude_until`, this self-exclusion will be lifted automatically at the expiry of the timeout period.
-  final String timeoutUntil;
+  final int timeoutUntil;
 
-  /// Converts to JSON
+  /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$SetSelfExclusionRequestToJson(this);
 
-  /// Creates copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
   @override
   SetSelfExclusionRequest copyWith({
     String excludeUntil,
-    String max30dayLosses,
-    String max30dayTurnover,
-    String max7dayLosses,
-    String max7dayTurnover,
-    String maxBalance,
-    String maxDeposit,
+    num max30dayLosses,
+    num max30dayTurnover,
+    num max7dayLosses,
+    num max7dayTurnover,
+    num maxBalance,
+    num maxDeposit,
     String maxDepositEndDate,
-    String maxLosses,
-    String maxOpenBets,
-    String maxTurnover,
-    String sessionDurationLimit,
+    num maxLosses,
+    int maxOpenBets,
+    num maxTurnover,
+    int sessionDurationLimit,
     int setSelfExclusion,
-    String timeoutUntil,
+    int timeoutUntil,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
