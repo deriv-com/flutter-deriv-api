@@ -1,7 +1,7 @@
 /// Order create response
 const String p2pOrderCreateResponse = '''{
   "echo_req": {
-    "advert_id": "8",
+    "advert_id": "6",
     "amount": 50,
     "p2p_order_create": 1
   },
@@ -10,12 +10,12 @@ const String p2pOrderCreateResponse = '''{
     "account_currency": "USD",
     "advert_details": {
       "description": "Please contact via whatsapp 1234",
-      "id": "8",
+      "id": "6",
       "payment_method": "bank_transfer",
       "type": "sell"
     },
     "advertiser_details": {
-      "id": "6",
+      "id": "2",
       "name": "advertiser CR90000018"
     },
     "amount": 50,

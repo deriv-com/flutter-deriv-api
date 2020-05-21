@@ -61,9 +61,8 @@ class BuyContract extends BuyContractModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => ContractOperationException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          ContractOperationException(message: message),
     );
 
     return BuyContract.fromJson(response.buy);

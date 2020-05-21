@@ -2,6 +2,8 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_advert_model.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_details_model.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_advert/exceptions/p2p_advert_exception.dart';
+import 'package:flutter_deriv_api/api/p2p/p2p_order/exceptions/p2p_order_exception.dart';
+import 'package:flutter_deriv_api/api/p2p/p2p_order/p2p_order.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -196,9 +198,11 @@ class P2PAdvert extends P2PAdvertModel {
   ) async {
     final P2pAdvertInfoResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw P2PAdvertException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          P2PAdvertException(message: message),
+    );
 
     return P2PAdvert.fromJson(response.p2pAdvertInfo);
   }
@@ -210,9 +214,11 @@ class P2PAdvert extends P2PAdvertModel {
   ) async {
     final P2pAdvertListResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw P2PAdvertException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          P2PAdvertException(message: message),
+    );
 
     return getListFromMap(
       response.p2pAdvertList['list'],
@@ -227,9 +233,11 @@ class P2PAdvert extends P2PAdvertModel {
   ) async {
     final P2pAdvertCreateResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw P2PAdvertException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          P2PAdvertException(message: message),
+    );
 
     return P2PAdvert.fromJson(response.p2pAdvertCreate);
   }
@@ -241,15 +249,17 @@ class P2PAdvert extends P2PAdvertModel {
   ) async {
     final P2pAdvertUpdateResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw P2PAdvertException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          P2PAdvertException(message: message),
+    );
 
     return P2PAdvert.fromJson(response.p2pAdvertUpdate);
   }
 
   /// Updates a P2P (peer to peer) advert. Can only be used by the advertiser.
-  Future<P2PAdvert> updateCurrentAdvert(
+  Future<P2PAdvert> update(
     bool delete,
     bool isActive,
   ) =>
@@ -258,6 +268,26 @@ class P2PAdvert extends P2PAdvertModel {
           id: id,
           delete: getInt(delete),
           isActive: getInt(isActive),
+        ),
+      );
+
+  /// Creates order on this advert.
+  ///
+  /// [amount] is the amount of currency to be bought or sold.
+  /// [contactInfo] is seller contact information. Only applicable for [OrderType.sell].
+  /// [paymentInfo] is payment instructions. Only applicable for [OrderType.sell].
+  /// Throws [P2POrderException] if API response contains an error.
+  Future<P2POrder> createOrder(
+    double amount, {
+    String contactInfo,
+    String paymentInfo,
+  }) =>
+      P2POrder.create(
+        P2pOrderCreateRequest(
+          advertId: id,
+          amount: amount,
+          contactInfo: contactInfo,
+          paymentInfo: paymentInfo,
         ),
       );
 }

@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/contract/models/history_spot_price_model.dart';
+import 'package:flutter_deriv_api/api/contract/models/sell_expired_contract_model.dart';
 import 'package:flutter_deriv_api/api/contract/operation/buy_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/cancel_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_operations_exception.dart';
@@ -273,6 +274,13 @@ void main() {
           );
         }),
       );
+    });
+
+    test('Sell expred', () async {
+      final SellExpiredContractModel sellExpiredContract =
+          await SellContract.sellExpiredContracts();
+
+      expect(sellExpiredContract.count, 2);
     });
   });
 }

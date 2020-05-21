@@ -3,6 +3,7 @@ import 'package:flutter_deriv_api/api/common/ping/exceptions/ping_exception.dart
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Ping class
 class Ping extends PingModel {
@@ -33,9 +34,10 @@ class Ping extends PingModel {
       request: request ?? const PingRequest(),
     );
 
-    if (response.error != null) {
-      throw PingException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => PingException(message: message),
+    );
 
     return Ping.fromResponse(response);
   }
