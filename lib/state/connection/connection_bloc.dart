@@ -6,6 +6,9 @@ import 'package:flutter_deriv_api/basic_api/generated/time_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/time_send.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 part 'connection_event.dart';
@@ -15,35 +18,29 @@ part 'connection_state.dart';
 class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   /// Initializes
   ConnectionBloc() {
-    connectWS();
+    ModuleContainer().initialize(Injector.getInjector());
+
+    connectWebsocket();
   }
 
+  BaseAPI _api;
   Timer _serverTimeInterval;
 
   @override
   ConnectionState get initialState => InitialConnectionState();
 
-  /// connects the [BinaryAPI] to the web socket
-  void connectWS() {
-    final BinaryAPI _api = BinaryAPI();
-
-    _api.run(
-      onDone: () => add(Reconnect()),
-      onOpen: () => add(Connect(api: _api)),
-    );
-  }
-
   @override
   Stream<ConnectionState> mapEventToState(ConnectionEvent event) async* {
     if (event is Connect) {
       try {
-        yield Connected(event.api);
+        yield Connected();
+
         add(FetchServerTime());
+
         _serverTimeInterval = Timer.periodic(const Duration(seconds: 90),
             (Timer timer) => add(FetchServerTime()));
-      } on Exception catch (e, stackTrace) {
+      } on Exception catch (e) {
         print(e);
-        print(stackTrace);
 
         yield ConnectionError(e.toString());
       }
@@ -51,7 +48,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       if (state is Connected) {
         final Connected currentState = state;
         final TimeResponse timeResponse =
-            await currentState.api.call(request: const TimeRequest());
+            await _api.call(request: const TimeRequest());
 
         if (timeResponse.error != null) {
           print('Fetching server time failed: ${timeResponse.error}');
@@ -66,8 +63,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       }
     } else if (event is Disconnect) {
       if (state is Connected) {
-        final Connected currentState = state;
-        await currentState.api.close();
+        await _api.disconnect();
       }
 
       if (_serverTimeInterval != null && _serverTimeInterval.isActive) {
@@ -80,8 +76,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
       // api.close should be always invoked before changing the state otherwise the onDone function which is passed to the run function will be invoked one more time.
       if (state is Connected) {
-        final Connected currentState = state;
-        await currentState.api.close();
+        await _api.disconnect();
       }
 
       yield InitialConnectionState();
@@ -92,7 +87,18 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
       await Future<void>.delayed(const Duration(seconds: 10));
 
-      connectWS();
+      connectWebsocket();
     }
+  }
+
+  /// connects the [BinaryAPI] to the web socket
+  void connectWebsocket() {
+    _api = (_api ?? Injector.getInjector().get<BaseAPI>())
+      ..connect(
+        ConnectionInformation(
+          onDone: () => add(Reconnect()),
+          onOpen: () => add(Connect()),
+        ),
+      );
   }
 }

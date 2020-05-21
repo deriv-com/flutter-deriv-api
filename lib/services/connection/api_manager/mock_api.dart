@@ -8,6 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/exceptions/api_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
@@ -104,6 +105,13 @@ class MockAPI implements BaseAPI {
   static const int _responseDelayMilliseconds = 50;
 
   @override
+  Future<void> connect(ConnectionInformation connectionInformation) async =>
+      true;
+
+  @override
+  void addToChannel(Map<String, dynamic> request) {}
+
+  @override
   Future<Response> call({
     @required Request request,
   }) =>
@@ -131,10 +139,7 @@ class MockAPI implements BaseAPI {
       null;
 
   @override
-  void addToChannel({Map<String, dynamic> request}) {}
-
-  @override
-  Future<void> close() async => true;
+  Future<void> disconnect() async => true;
 
   Future<Response> _getFutureResponse(Request request) async =>
       Future<Response>.delayed(

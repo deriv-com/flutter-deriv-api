@@ -167,12 +167,17 @@ class P2PAdvertiser extends P2PAdvertiserModel {
             throw P2PAdvertiserException(message: response.error['message']);
           }
 
-          return response is P2pAdvertiserCreateResponse
+          return response is P2pAdvertiserInfoResponse
               ? P2PAdvertiser.fromJson(
-                  response.p2pAdvertiserCreate,
+                  response.p2pAdvertiserInfo,
                   subscriptionJson: response.subscription,
                 )
-              : null;
+              : response is P2pAdvertiserCreateResponse
+                  ? P2PAdvertiser.fromJson(
+                      response.p2pAdvertiserCreate,
+                      subscriptionJson: response.subscription,
+                    )
+                  : null;
         },
       );
 
