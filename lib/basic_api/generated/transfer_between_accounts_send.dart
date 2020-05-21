@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -28,7 +28,6 @@ class TransferBetweenAccountsRequest extends Request {
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>
       _$TransferBetweenAccountsRequestFromJson(json);
 
-  // Properties
   /// [Optional] The loginid of the account to transfer funds from.
   final String accountFrom;
 

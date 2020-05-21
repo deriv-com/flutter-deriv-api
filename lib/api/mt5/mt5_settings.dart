@@ -100,7 +100,9 @@ class MT5Settings extends MT5SettingsModel {
       );
 
   /// Gets MT5 user account settings.
+  ///
   /// For parameters information refer to [Mt5GetSettingsRequest].
+  /// Throws a [MT5Exception] if API response contains an error
   static Future<MT5Settings> fetchSettings(
     Mt5GetSettingsRequest request,
   ) async {

@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// historic tick data for a given symbol.
+/// Historic tick data for a given symbol.
 class TickHistory extends TickHistoryModel {
   /// Initializes
   TickHistory({
@@ -20,7 +20,7 @@ class TickHistory extends TickHistoryModel {
           pipSize,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory TickHistory.fromJson(Map<String, dynamic> json) => TickHistory(
         candles: getListFromMap(
           json['candles'],
@@ -35,7 +35,9 @@ class TickHistory extends TickHistoryModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Gets TickHistory for the given [symbol]
+  /// Gets the [TickHistory] for the given [symbol] in [request]
+  ///
+  /// Throws a [TickException] if API response contains an error
   static Future<TickHistory> fetchTickHistory(
     TicksHistoryRequest request,
   ) async {

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_adverts_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_adverts_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -25,7 +25,6 @@ class P2pAdvertiserAdvertsRequest extends Request {
   factory P2pAdvertiserAdvertsRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertiserAdvertsRequestFromJson(json);
 
-  // Properties
   /// [Optional] Used for paging.
   final int limit;
 

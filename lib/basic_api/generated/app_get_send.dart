@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/app_get_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_get_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -23,7 +23,6 @@ class AppGetRequest extends Request {
   factory AppGetRequest.fromJson(Map<String, dynamic> json) =>
       _$AppGetRequestFromJson(json);
 
-  // Properties
   /// Application app_id
   final int appGet;
 

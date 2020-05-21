@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/contracts_for_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contracts_for_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -26,7 +26,6 @@ class ContractsForRequest extends Request {
   factory ContractsForRequest.fromJson(Map<String, dynamic> json) =>
       _$ContractsForRequestFromJson(json);
 
-  // Properties
   /// The short symbol name (obtained from `active_symbols` call).
   final String contractsFor;
 

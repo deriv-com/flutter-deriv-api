@@ -5,6 +5,10 @@ import 'api_builder.dart';
 
 Builder apiHelperBuilder(final BuilderOptions _) => APIHelperBuilder();
 
+/// A Code generator class runs after [APIBuilder] for generating the `api.helper.dart`
+///
+/// The generated file includes the function `getResponseByMsgType` which instantiates
+/// the appropriate sub-class of [Response] based on its [Response.msgType]
 class APIHelperBuilder extends Builder {
   @override
   Map<String, List<String>> get buildExtensions => const <String, List<String>>{

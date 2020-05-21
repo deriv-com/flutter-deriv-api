@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_array_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_array_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -37,7 +37,6 @@ class ProposalArrayRequest extends Request {
   factory ProposalArrayRequest.fromJson(Map<String, dynamic> json) =>
       _$ProposalArrayRequestFromJson(json);
 
-  // Properties
   /// Proposed contract `payout` or `stake` value.
   final num amount;
 

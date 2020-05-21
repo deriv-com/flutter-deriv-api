@@ -9,7 +9,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// API token class
+/// A class for handling API tokens
 class APIToken extends APITokenModel {
   /// Initializes
   APIToken({
@@ -47,6 +47,12 @@ class APIToken extends APITokenModel {
       );
 
   /// Creates an API tokens
+  ///
+  /// [name] is the name of the token.
+  /// [scopes] is a list of permission scopes to provide with the token.
+  /// [validForCurrentIPOnly] is optional and if you set this parameter during token creation,
+  /// then the token created will only work for the IP address that was used to create the token
+  /// Throws an [APITokenException] if API response contains an error.
   static Future<APIToken> create({
     @required String name,
     @required List<TokenScope> scopes,
@@ -68,7 +74,9 @@ class APIToken extends APITokenModel {
     return APIToken.fromJson(response.apiToken);
   }
 
-  /// Deletes an API tokens
+  /// Deletes the [token]
+  ///
+  /// Throws an [APITokenException] if API response contains an error
   static Future<APIToken> delete({
     @required String token,
   }) async {

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/cashier_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cashier_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class CashierResponse extends Response {
   factory CashierResponse.fromJson(Map<String, dynamic> json) =>
       _$CashierResponseFromJson(json);
 
-  // Properties
   /// Possible error codes are:
   /// - `ASK_TNC_APPROVAL`: API call `tnc_approval`
   /// - `ASK_AUTHENTICATE`

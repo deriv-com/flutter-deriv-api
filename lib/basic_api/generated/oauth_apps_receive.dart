@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/oauth_apps_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/oauth_apps_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class OauthAppsResponse extends Response {
   factory OauthAppsResponse.fromJson(Map<String, dynamic> json) =>
       _$OauthAppsResponseFromJson(json);
 
-  // Properties
   /// List of OAuth applications that used for the authorized account.
   final List<Map<String, dynamic>> oauthApps;
 

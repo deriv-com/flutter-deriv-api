@@ -95,8 +95,10 @@ class SelfExclusion extends SelfExclusionModel {
 
   /// Allows users to exclude themselves from the website for certain periods of time,
   /// or to set limits on their trading activities.
+  ///
   /// This facility is a regulatory requirement for certain Landing Companies.
   /// For parameters information refer to [GetSelfExclusionRequest].
+  /// Throws a [SelfExclusionException] if API response contains an error
   static Future<SelfExclusion> fetchSelfExclusion([
     GetSelfExclusionRequest request,
   ]) async {
@@ -114,7 +116,9 @@ class SelfExclusion extends SelfExclusionModel {
   }
 
   /// Sets Self-Exclusion (this call should be used in conjunction with [fetchSelfExclusion])
+  ///
   /// For parameters information refer to [SetSelfExclusionRequest].
+  /// Throws a [SelfExclusionException] if API response contains an error
   static Future<bool> setSelfExclusion(SetSelfExclusionRequest request) async {
     final SetSelfExclusionResponse response = await _api.call(request: request);
 
@@ -127,7 +131,10 @@ class SelfExclusion extends SelfExclusionModel {
     return getBool(response.setSelfExclusion);
   }
 
-  /// Sets Self-Exclusion (this call should be used in conjunction with [fetchSelfExclusion])
+  /// Excludes user from the website based this parameters
+  ///
+  /// (this call should be used in conjunction with [fetchSelfExclusion])
+  /// Throws a [SelfExclusionException] if API response contains an error
   Future<bool> exclude() async {
     final SetSelfExclusionResponse response = await _api.call(
       request: SetSelfExclusionRequest(

@@ -72,7 +72,9 @@ class WebsiteStatus extends WebsiteStatusModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Gets Website status for the given [WebsiteStatusRequest]
+  /// Gets Website status
+  ///
+  /// Throws a [WebsiteStatusException] if API response contains an error
   static Future<WebsiteStatus> fetchWebsiteStatus([
     WebsiteStatusRequest request,
   ]) async {
@@ -114,6 +116,8 @@ class WebsiteStatus extends WebsiteStatusModel {
       );
 
   /// Unsubscribes from website status
+  ///
+  /// Throws a [WebsiteStatusException] if API response contains an error
   Future<Forget> unsubscribeWebsiteStatus() async {
     if (subscriptionInformation?.id == null) {
       return null;
@@ -132,6 +136,8 @@ class WebsiteStatus extends WebsiteStatusModel {
   }
 
   /// Unsubscribes all website status subscriptions.
+  ///
+  /// Throws a [WebsiteStatusException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllWebsiteStatus() async {
     final ForgetAllResponse response =
         await _api.unsubscribeAll(method: ForgetStreamType.ticks);

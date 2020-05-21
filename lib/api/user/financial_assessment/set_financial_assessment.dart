@@ -46,10 +46,12 @@ class SetFinancialAssessment extends SetFinancialAssessmentModel {
         tradingScore: tradingScore ?? this.tradingScore,
       );
 
-  /// This call sets the financial assessment details based on the client's answers to
+  /// Sets the financial assessment details based on the client's answers to
   /// analyze whether they possess the experience and knowledge to
   /// understand the risks involved with binary options trading.
+  ///
   /// For parameters information refer to [SetFinancialAssessmentRequest].
+  /// Throws a [FinancialAssessmentException] if API response contains an error
   static Future<SetFinancialAssessment> setAssessment(
     SetFinancialAssessmentRequest request,
   ) async {
