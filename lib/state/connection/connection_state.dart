@@ -22,8 +22,9 @@ class Connecting extends ConnectionState {
 /// connected state
 class Connected extends ConnectionState {
   /// Initializes
-  Connected({this.serverTime})
-      : timeDifference =
+  Connected({
+    this.serverTime,
+  }) : timeDifference =
             serverTime != null ? serverTime - getCurrentLocalEpoch() : null;
 
   /// fetched server time
@@ -33,7 +34,9 @@ class Connected extends ConnectionState {
   final int timeDifference;
 
   /// Creates a copy of instance with given parameters
-  Connected copyWith({int serverTime}) =>
+  Connected copyWith({
+    int serverTime,
+  }) =>
       Connected(serverTime: serverTime ?? this.serverTime);
 
   @override
