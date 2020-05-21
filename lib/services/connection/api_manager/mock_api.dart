@@ -100,7 +100,7 @@ import 'mock_data/user/tnc_approval_response.dart';
 import 'mock_data/user/transfer_between_accounts_response.dart';
 import 'mock_data/user/verify_email_response.dart';
 
-/// This class handles mock API calls
+/// This class is for handling mock API connection and calling mock APIs
 class MockAPI implements BaseAPI {
   static const int _responseDelayMilliseconds = 0;
 

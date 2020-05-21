@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
-/// Base class for handling API calls
+/// Base class for handling API connection and calling APIs
 abstract class BaseAPI {
   /// Connects to API
   Future<void> connect(ConnectionInformation connectionInformation);
