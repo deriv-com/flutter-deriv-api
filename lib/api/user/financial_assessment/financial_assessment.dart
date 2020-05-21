@@ -143,7 +143,7 @@ class FinancialAssessment extends FinancialAssessmentModel {
   /// This call gets the financial assessment details.
   /// The 'financial assessment' is a questionnaire that clients of certain Landing Companies need to complete,
   /// due to regulatory and KYC (know your client) requirements.
-  static Future<FinancialAssessment> getAssessment(
+  static Future<FinancialAssessment> fetchAssessment(
     GetFinancialAssessmentRequest request,
   ) async {
     final GetFinancialAssessmentResponse response =

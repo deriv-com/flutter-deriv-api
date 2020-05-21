@@ -9,10 +9,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/module_container.
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  group('Copy trading group', () {
+  setUpAll(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
-    test('copy trading list', () async {
+  group('Copy Trading Group ->', () {
+    test('Fetch Copy Trading List Test', () async {
       final CopyTradingList copyTradingList = await CopyTradingList.fetchList();
 
       expect(copyTradingList.copiers.length, 2);
@@ -27,7 +29,7 @@ void main() {
       expect(traders.first.tradeTypes.length, 2);
     });
 
-    test('copy trading statisticts', () async {
+    test('Fetch Copy Trading Statistics Test', () async {
       final CopyTradingStatistics copyTradingStatistic =
           await CopyTradingStatistics.fetchStatistics(
         const CopytradingStatisticsRequest(traderId: 'CR12345'),

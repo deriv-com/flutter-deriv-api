@@ -8,9 +8,11 @@ import 'package:flutter_deriv_api/services/dependency_injector/module_container.
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  test('profit table', () async {
+  setUp(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
+  test('Fetch Profit Table Test', () async {
     final ProfitTable profitTable = await ProfitTable.fetch(
       const ProfitTableRequest(
         description: 1,

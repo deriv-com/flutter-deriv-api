@@ -6,10 +6,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  group('Balance group', () {
+  setUpAll(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
-    test('Fetch balance', () async {
+  group('Balance Group ->', () {
+    test('Fetch Balance Test', () async {
       final Balance balance = await Balance.fetchBalance(
         const BalanceRequest(
           account: 'current',
@@ -22,7 +24,7 @@ void main() {
       expect(balance.loginId, 'VRTC2351953');
     });
 
-    test('Subscribe balance', () {
+    test('Subscribe Balance Test', () {
       Balance.subscribeBalance(const BalanceRequest(account: 'current'))
           .take(1)
           .listen(

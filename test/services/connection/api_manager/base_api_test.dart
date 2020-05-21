@@ -6,9 +6,11 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('base api test', () async {
+  setUp(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
+  test('Base API Test', () {
     expect(Injector.getInjector().get<BaseAPI>() is MockAPI, true);
   });
 }

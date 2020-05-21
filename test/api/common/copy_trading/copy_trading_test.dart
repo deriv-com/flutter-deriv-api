@@ -7,10 +7,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  group('copy trading group ->', () {
+  setUpAll(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
-    test('start', () async {
+  group('Copy Trading Group ->', () {
+    test('Start Copy Trading Test', () async {
       final CopyTradingStart copyTradingStart = await CopyTradingStart.start(
         const CopyStartRequest(copyStart: 'sample_token_3fe45f324ge'),
       );
@@ -18,7 +20,7 @@ void main() {
       expect(copyTradingStart.succeeded, true);
     });
 
-    test('stop', () async {
+    test('Stop Copy Trading Test', () async {
       final CopyTradingStop copyTradingStop = await CopyTradingStop.stop(
         const CopyStopRequest(copyStop: 'sample_token_3fe45f324ge'),
       );

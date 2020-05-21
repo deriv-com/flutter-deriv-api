@@ -6,9 +6,11 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('p2p create chat', () async {
+  setUp(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
+  test('Create P2P Chat Test', () async {
     final P2PChatCreate createChat = await P2PChatCreate.createChat(
       const P2pChatCreateRequest(orderId: '1234'),
     );
