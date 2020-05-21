@@ -24,18 +24,19 @@ class Connected extends ConnectionState {
   /// Initializes
   Connected({
     this.serverTime,
-  }) : timeDifference =
-            serverTime != null ? serverTime - getCurrentLocalEpoch() : null;
+  }) : timeDifference = serverTime == null
+            ? null
+            : getSecondsSinceEpochDateTime(serverTime) - getCurrentLocalEpoch();
 
   /// fetched server time
-  final int serverTime;
+  final DateTime serverTime;
 
   /// difference between [serverTime] and the time of the device
   final int timeDifference;
 
   /// Creates a copy of instance with given parameters
   Connected copyWith({
-    int serverTime,
+    DateTime serverTime,
   }) =>
       Connected(serverTime: serverTime ?? this.serverTime);
 

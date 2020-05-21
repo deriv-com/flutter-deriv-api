@@ -57,7 +57,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
         print('Server time is: ${timeResponse.time}');
 
-        yield currentState.copyWith(serverTime: timeResponse.time);
+        yield currentState.copyWith(serverTime: getDateTime(timeResponse.time));
       } else if (state is InitialConnectionState) {
         _serverTimeInterval.cancel();
       }
