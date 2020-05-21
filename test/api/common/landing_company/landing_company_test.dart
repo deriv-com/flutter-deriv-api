@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/common/landing_company/landing_company.dart';
@@ -9,10 +8,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  group('Landing company test', () {
+  setUpAll(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
-    test('Landing company test', () async {
+  group('Landing Company Group ->', () {
+    test('Fetch Landing Companies Test', () async {
       final LandingCompany landingCompany =
           await LandingCompany.fetchLandingCompanies(
         const LandingCompanyRequest(landingCompany: 'CountryCode'),
@@ -52,7 +53,7 @@ void main() {
       expect(mtFinancialAdvanced.legalAllowedMarkets.first, 'forex');
     });
 
-    test('Landing company details test', () async {
+    test('Fetch Landing Company Details Test', () async {
       final LandingCompanyDetailModel landingCompanyDetail =
           await LandingCompany.fetchLandingCompanyDetails(
         const LandingCompanyDetailsRequest(landingCompanyDetails: 'LC Code'),

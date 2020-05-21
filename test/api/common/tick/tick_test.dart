@@ -7,10 +7,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/module_container.
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  group('Ticks group', () {
+  setUpAll(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
-    test('Tick stream test', () {
+  group('Ticks Group ->', () {
+    test('Tick Stream Test', () {
       Tick.subscribeTick(const TicksRequest(ticks: 'R_50')).take(1).listen(
         expectAsync1(
           (Tick tick) {

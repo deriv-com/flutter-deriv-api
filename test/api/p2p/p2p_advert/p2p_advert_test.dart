@@ -10,10 +10,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/module_container.
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  group('P2P advert group ->', () {
+  setUpAll(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
-    test('Fetch advert information', () async {
+  group('P2P Advert Group ->', () {
+    test('Fetch Advert Information Test', () async {
       final P2PAdvert advert = await P2PAdvert.fetchAdvert(
         const P2pAdvertInfoRequest(id: '6'),
       );
@@ -45,7 +47,7 @@ void main() {
       expect(advert.type, TransactionType.buy);
     });
 
-    test('Fetch advert list', () async {
+    test('Fetch Advert List Test', () async {
       final List<P2PAdvert> adverts = await P2PAdvert.fetchAdvertList(
         const P2pAdvertListRequest(
           counterpartyType: 'sell',
@@ -84,7 +86,7 @@ void main() {
       expect(adverts.first.type, TransactionType.buy);
     });
 
-    test('Create advert', () async {
+    test('Create Advert Test', () async {
       final P2PAdvert advert = await P2PAdvert.createAdvert(
         const P2pAdvertCreateRequest(
           description: 'Please transfer to account number 1234',
@@ -127,7 +129,7 @@ void main() {
       expect(advert.type, TransactionType.sell);
     });
 
-    test('Update advert', () async {
+    test('Update Advert Test', () async {
       final P2PAdvert advert = await P2PAdvert.updateAdvert(
         const P2pAdvertUpdateRequest(
           delete: 0,
@@ -164,34 +166,35 @@ void main() {
       expect(advert.remainingAmountDisplay, '50.00');
       expect(advert.type, TransactionType.sell);
     });
-  });
 
-  test('Create order from advert', () async {
-    final P2PAdvert advert = await P2PAdvert.fetchAdvert(
-      const P2pAdvertInfoRequest(id: '6'),
-    );
+    test('Create Order From Advert Test', () async {
+      final P2PAdvert advert = await P2PAdvert.fetchAdvert(
+        const P2pAdvertInfoRequest(id: '6'),
+      );
 
-    final P2POrder order = await advert.createOrder(50);
+      final P2POrder order = await advert.createOrder(amount: 50);
 
-    expect(order.accountCurrency, 'USD');
-    expect(order.amount, 50.0);
-    expect(order.amountDisplay, '50.00');
-    expect(order.contactInfo, 'Please contact via whatsapp 1234');
-    expect(order.createdTime, getDateTime(1589688096));
-    expect(order.expiryTime, getDateTime(1589695296));
-    expect(order.id, '107');
-    expect(order.isIncoming, false);
-    expect(order.localCurrency, 'ZAR');
-    expect(order.paymentInfo, 'Transfer to account 000-1111');
-    expect(order.price, 675000.0);
-    expect(order.priceDisplay, '675000.00');
-    expect(order.rate, 13500.0);
-    expect(order.rateDisplay, '13500.00');
-    expect(order.status, OrderStatusType.pending);
-    expect(order.type, OrderType.buy);
+      expect(order.accountCurrency, 'USD');
+      expect(order.amount, 50.0);
+      expect(order.amountDisplay, '50.00');
+      expect(order.contactInfo, 'Please contact via whatsapp 1234');
+      expect(order.createdTime, getDateTime(1589688096));
+      expect(order.expiryTime, getDateTime(1589695296));
+      expect(order.id, '107');
+      expect(order.isIncoming, false);
+      expect(order.localCurrency, 'ZAR');
+      expect(order.paymentInfo, 'Transfer to account 000-1111');
+      expect(order.price, 675000.0);
+      expect(order.priceDisplay, '675000.00');
+      expect(order.rate, 13500.0);
+      expect(order.rateDisplay, '13500.00');
+      expect(order.status, OrderStatusType.pending);
+      expect(order.type, OrderType.buy);
 
-    final P2PAdvertiser advertiser = order.advertiserDetails;
-    expect(advertiser.id, '2');
-    expect(advertiser.name, 'advertiser CR90000018');
+      final P2PAdvertiser advertiser = order.advertiserDetails;
+
+      expect(advertiser.id, '2');
+      expect(advertiser.name, 'advertiser CR90000018');
+    });
   });
 }
