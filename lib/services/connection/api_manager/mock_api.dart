@@ -54,6 +54,7 @@ import 'mock_data/common/landing_company_response.dart';
 import 'mock_data/common/payment_agent_list_response.dart';
 import 'mock_data/common/payment_agent_transfer_response.dart';
 import 'mock_data/common/payment_agent_withdraw_response.dart';
+import 'mock_data/common/payout_currencies_response.dart';
 import 'mock_data/common/ping_response.dart';
 import 'mock_data/common/residence_list_response.dart';
 import 'mock_data/common/server_time_response.dart';
@@ -70,6 +71,7 @@ import 'mock_data/contract/contract_update_history_response.dart';
 import 'mock_data/contract/contract_update_response.dart';
 import 'mock_data/contract/proposal_open_contract_response.dart';
 import 'mock_data/contract/proposal_response.dart';
+import 'mock_data/contract/sell_expired_response.dart';
 import 'mock_data/contract/sell_response.dart';
 import 'mock_data/contract/transaction_response.dart';
 import 'mock_data/mt5/mt5_deposit_response.dart';
@@ -215,12 +217,8 @@ class MockAPI implements BaseAPI {
         return getFinancialAssessmentResponse;
       case 'get_limits':
         return getLimitsResponse;
-      // case 'get_self_exclusion':
-      // case 'get_settings':
       case 'get_settings':
         return getSettingsResponse;
-      // case 'login_history':
-      // case 'logout':
       case 'get_self_exclusion':
         return getSelfExclusiveResponse;
       case 'landing_company':
@@ -282,16 +280,14 @@ class MockAPI implements BaseAPI {
         return p2pOrderInfoResponse;
       case 'p2p_order_list':
         return p2pOrderListResponse;
-      // case 'paymentagent_list':
-      // case 'paymentagent_transfer':
-      // case 'paymentagent_withdraw':
       case 'paymentagent_list':
         return paymentAgentListResponse;
       case 'paymentagent_transfer':
         return paymentAgentTransferResponse;
       case 'paymentagent_withdraw':
         return paymentAgentWithdrawResponse;
-      // case 'payout_currencies':
+      case 'payout_currencies':
+        return payoutCurrenciesResponse;
       case 'ping':
         return pingResponse;
       case 'portfolio':
@@ -303,17 +299,15 @@ class MockAPI implements BaseAPI {
         return proposalOpenContractResponse;
       case 'proposal':
         return proposalResponse;
-      // case 'reality_check':
       case 'residence_list':
         return residenceListResponse;
-      // case 'revoke_oauth_app':
       case 'reality_check':
         return realityCheckResponse;
-      // case 'residence_list':
       case 'revoke_oauth_app':
         return revokeOauthAppResponse;
       // case 'sell_contract_for_multiple_accounts':
-      // case 'sell_expired':
+      case 'sell_expired':
+        return sellExpiredResponse;
       case 'sell':
         return sellResponse;
       case 'set_account_currency':
@@ -324,15 +318,12 @@ class MockAPI implements BaseAPI {
         return setSelfExclusiveResponse;
       case 'set_settings':
         return setSettingsResponse;
-      // case 'statement':
       case 'states_list':
         return statesListResponse;
       case 'history':
         return tickHistoryResponse;
       case 'statement':
         return statementResponse;
-      // case 'states_list':
-      // case 'history':
       case 'ticks':
         return tickResponse;
       case 'time':
