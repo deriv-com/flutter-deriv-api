@@ -6,9 +6,11 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('Asset index test', () async {
+  setUp(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
+  test('Fetch Asset Index Test', () async {
     final List<AssetIndex> assetIndices = await AssetIndex.fetchAssetIndices();
 
     expect(assetIndices.length, 1);

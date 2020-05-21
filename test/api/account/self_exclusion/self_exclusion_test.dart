@@ -7,10 +7,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/module_container.
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  group('self exclusive group ->', () {
+  setUpAll(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
-    test('fetch self exclusive', () async {
+  group('Self Exclusive Group ->', () {
+    test('Fetch Self Exclusive Test', () async {
       final SelfExclusion selfExclusive =
           await SelfExclusion.fetchSelfExclusion();
 
@@ -29,7 +31,7 @@ void main() {
       expect(selfExclusive.timeoutUntil, getDateTime(1497357184));
     });
 
-    test('set self exclusive', () async {
+    test('Set Self Exclusive Test', () async {
       final bool setSelfExclusion = await SelfExclusion.setSelfExclusion(
         const SetSelfExclusionRequest(
           excludeUntil: '2020-01-01',
@@ -49,7 +51,7 @@ void main() {
       expect(setSelfExclusion, true);
     });
 
-    test('set self exclusive for current instance', () async {
+    test('Exclude Self Exclusion Instance Test', () async {
       final bool setSelfExclusion = await SelfExclusion(
         excludeUntil: DateTime.parse('2020-01-01'),
         max30dayLosses: 100000,

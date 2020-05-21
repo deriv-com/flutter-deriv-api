@@ -15,10 +15,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/module_container.
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  group('Contract operations group', () {
+  setUpAll(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
-    test('Price proposal test', () async {
+  group('Contract Operations Group ->', () {
+    test('Fetch Price Proposal Test', () async {
       final PriceProposal priceProposal =
           await PriceProposal.fetchPriceForContract(
         const ProposalRequest(
@@ -40,7 +42,7 @@ void main() {
       expect(priceProposal.spot, 9392.5);
     });
 
-    test('Price proposal subscription test', () async {
+    test('Price Proposal Subscription Test', () async {
       PriceProposal.subscribePriceForContract(
         const ProposalRequest(
           symbol: 'R_100',
@@ -61,7 +63,7 @@ void main() {
       }));
     });
 
-    test('Buy contract test', () async {
+    test('Buy Contract Test', () async {
       final BuyContract buyContract = await BuyContract.buy(
         const BuyRequest(
           buy: '042922fe-5664-09e4-c3bf-b3bbe98f31db',
@@ -113,7 +115,7 @@ void main() {
       }));
     });
 
-    test('Sell contract test', () async {
+    test('Sell Contract Test', () async {
       final SellContract sellContract = await SellContract.sellContract(
         const SellRequest(
           sell: 79939279308,
@@ -128,7 +130,7 @@ void main() {
       expect(sellContract.transactionId, 159779308968);
     });
 
-    test('Update contract test', () async {
+    test('Update Contract Test', () async {
       final UpdateContract updateContract = await UpdateContract.updateContract(
         const ContractUpdateRequest(
           contractId: 79939279308,
@@ -147,7 +149,7 @@ void main() {
       expect(updateContract.takeProfit.value, '100.0');
     });
 
-    test('Contract update history test', () async {
+    test('Fetch Contract Update History Test', () async {
       final List<HistorySpotPriceModel> updateHistory =
           await UpdateContract.fetchContractUpdateHistory(
         const ContractUpdateHistoryRequest(
@@ -164,7 +166,7 @@ void main() {
       expect(firstUpdate.value, '100.0');
     });
 
-    test('Cancel contract test', () async {
+    test('Cancel Contract Test', () async {
       final CancelContract cancelContract = await CancelContract.cancelContract(
         const CancelRequest(
           cancel: 79939279308,
@@ -178,7 +180,7 @@ void main() {
       expect(cancelContract.transactionId, 453476);
     });
 
-    test('Buy proposal scenario', () async {
+    test('Buy Proposal Scenario Test', () async {
       try {
         final PriceProposal priceProposal =
             await PriceProposal.fetchPriceForContract(
@@ -251,7 +253,7 @@ void main() {
       }
     });
 
-    test('Open contract test', () {
+    test('Open Contract Subscription Test', () {
       OpenContract.subscribeContractState(
         const ProposalOpenContractRequest(contractId: 79944933588),
       ).take(1).listen(
@@ -276,7 +278,7 @@ void main() {
       );
     });
 
-    test('Sell expred', () async {
+    test('Sell Expired Contracts Test', () async {
       final SellExpiredContractModel sellExpiredContract =
           await SellContract.sellExpiredContracts();
 
