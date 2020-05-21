@@ -12,7 +12,7 @@ ApiTokenRequest _$ApiTokenRequestFromJson(Map<String, dynamic> json) {
     deleteToken: json['delete_token'] as String,
     newToken: json['new_token'] as String,
     newTokenScopes:
-        (json['new_token_scopes'] as List).map((e) => e as String).toList(),
+        (json['new_token_scopes'] as List)?.map((e) => e as String)?.toList(),
     validForCurrentIpOnly: json['valid_for_current_ip_only'] as int,
     passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,

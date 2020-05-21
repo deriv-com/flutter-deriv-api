@@ -5,9 +5,11 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  test('fetch oauth apps', () async {
+  setUp(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
+  test('Fetch Oauth Application Test', () async {
     final List<OauthApp> oauthApps = await OauthApp.fetchOauthApps();
 
     expect(oauthApps.length, 2);

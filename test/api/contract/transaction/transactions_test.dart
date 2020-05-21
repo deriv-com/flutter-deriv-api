@@ -6,9 +6,11 @@ import 'package:flutter_deriv_api/services/dependency_injector/module_container.
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  test('Transactions test', () async {
+  setUp(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
+  test('Transactions Subscription Test', () async {
     Transaction.subscribeTransactions().take(1).listen(
       expectAsync1(
         (Transaction transaction) {

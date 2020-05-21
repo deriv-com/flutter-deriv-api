@@ -7,12 +7,14 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  group('financial assessment group ->', () {
+  setUpAll(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
-    test('get assessment', () async {
+  group('Financial Assessment Group ->', () {
+    test('Fetch Assessment Test', () async {
       final FinancialAssessment financialAssessment =
-          await FinancialAssessment.getAssessment(
+          await FinancialAssessment.fetchAssessment(
         const GetFinancialAssessmentRequest(),
       );
 
@@ -51,7 +53,7 @@ void main() {
       expect(financialAssessment.tradingScore, 0);
     });
 
-    test('set assessment', () async {
+    test('Set Assessment Test', () async {
       final SetFinancialAssessment financialAssessmentModel =
           await SetFinancialAssessment.setAssessment(
         const SetFinancialAssessmentRequest(),

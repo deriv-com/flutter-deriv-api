@@ -7,9 +7,11 @@ import 'package:flutter_deriv_api/services/dependency_injector/module_container.
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  test('Portfolio test', () async {
+  setUp(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
+  test('Fetch Portfolio Test', () async {
     final Portfolio portfolio = await Portfolio.fetchPortfolio(
       const PortfolioRequest(),
     );

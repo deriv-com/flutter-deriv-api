@@ -6,7 +6,7 @@ import '../request.dart';
 part 'landing_company_send.g.dart';
 
 /// JSON conversion for 'landing_company_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class LandingCompanyRequest extends Request {
   /// Initialize LandingCompanyRequest
   const LandingCompanyRequest({

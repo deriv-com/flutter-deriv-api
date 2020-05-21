@@ -8,9 +8,11 @@ import 'package:flutter_deriv_api/services/dependency_injector/module_container.
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  test('fetch exchange rates', () async {
+  setUp(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
+  test('Fetch Exchange Rates', () async {
     final ExchangeRates exchangeRates = await ExchangeRates.fetchExchangeRates(
       const ExchangeRatesRequest(baseCurrency: 'USD'),
     );
