@@ -88,9 +88,8 @@ class PriceProposal extends PriceProposalModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => ContractOperationException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          ContractOperationException(message: message),
     );
 
     return PriceProposal.fromJson(response.proposal);
@@ -105,9 +104,8 @@ class PriceProposal extends PriceProposalModel {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: (String message) => ContractOperationException(
-              message: message,
-            ),
+            exceptionCreator: (String message) =>
+                ContractOperationException(message: message),
           );
 
           return response is ProposalResponse
@@ -126,7 +124,7 @@ class PriceProposal extends PriceProposalModel {
     }
 
     final ForgetResponse response =
-    await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
 
     checkException(
       response: response,
@@ -140,7 +138,7 @@ class PriceProposal extends PriceProposalModel {
   /// Unsubscribes all proposal subscriptions.
   static Future<ForgetAll> unsubscribeAllProposal() async {
     final ForgetAllResponse response =
-    await _api.unsubscribeAll(method: ForgetStreamType.proposal);
+        await _api.unsubscribeAll(method: ForgetStreamType.proposal);
 
     checkException(
       response: response,

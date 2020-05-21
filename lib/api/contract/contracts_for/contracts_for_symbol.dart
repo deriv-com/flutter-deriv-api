@@ -53,9 +53,8 @@ class ContractsForSymbol extends ContractsForSymbolModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => ContractsForSymbolException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          ContractsForSymbolException(message: message),
     );
 
     return ContractsForSymbol.fromJson(response.contractsFor);

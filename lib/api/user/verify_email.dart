@@ -34,9 +34,10 @@ class VerifyEmail extends VerifyEmailModel {
   ) async {
     final VerifyEmailResponse response = await _api.call(request: request);
 
-    if (response.error != null) {
-      throw UserException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => UserException(message: message),
+    );
 
     return VerifyEmail.fromResponse(response);
   }

@@ -46,9 +46,8 @@ class Statement extends StatementModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => StatementException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          StatementException(message: message),
     );
 
     return Statement.fromJson(response.statement);
