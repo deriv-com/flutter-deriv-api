@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_durations_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_durations_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class TradingDurationsResponse extends Response {
   factory TradingDurationsResponse.fromJson(Map<String, dynamic> json) =>
       _$TradingDurationsResponseFromJson(json);
 
-  // Properties
   /// List of underlyings by their display name and symbol followed by their available contract types and trading duration boundaries.
   final List<Map<String, dynamic>> tradingDurations;
 

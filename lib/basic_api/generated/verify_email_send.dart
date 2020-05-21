@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/verify_email_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/verify_email_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -25,7 +25,6 @@ class VerifyEmailRequest extends Request {
   factory VerifyEmailRequest.fromJson(Map<String, dynamic> json) =>
       _$VerifyEmailRequestFromJson(json);
 
-  // Properties
   /// Purpose of the email verification call.
   final String type;
 

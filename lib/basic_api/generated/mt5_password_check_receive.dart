@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_check_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_check_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class Mt5PasswordCheckResponse extends Response {
   factory Mt5PasswordCheckResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordCheckResponseFromJson(json);
 
-  // Properties
   /// `1` on success
   final int mt5PasswordCheck;
 

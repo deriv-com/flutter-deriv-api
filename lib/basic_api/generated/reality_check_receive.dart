@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/reality_check_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/reality_check_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class RealityCheckResponse extends Response {
   factory RealityCheckResponse.fromJson(Map<String, dynamic> json) =>
       _$RealityCheckResponseFromJson(json);
 
-  // Properties
   /// Reality check summary of trades.
   final Map<String, dynamic> realityCheck;
 

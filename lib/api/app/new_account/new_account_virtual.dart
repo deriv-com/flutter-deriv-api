@@ -22,7 +22,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
           oauthToken: oauthToken,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory NewAccountVirtual.fromJson(Map<String, dynamic> json) =>
       NewAccountVirtual(
         balance: json['balance']?.toDouble(),
@@ -34,7 +34,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   NewAccountVirtual copyWith({
     double balance,
     String clientId,
@@ -50,8 +50,10 @@ class NewAccountVirtual extends NewAccountVirtualModel {
         oauthToken: oauthToken ?? this.oauthToken,
       );
 
-  /// Open new virtual account.
+  /// Opens a new virtual account.
+  ///
   /// For parameters information refer to [NewAccountVirtualRequest].
+  /// Throws a [NewAccountException] if API response contains an error
   static Future<NewAccountVirtual> openNewVirtualAccount(
     NewAccountVirtualRequest request,
   ) async {

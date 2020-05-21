@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_statistics_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_statistics_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -24,7 +24,6 @@ class CopytradingStatisticsRequest extends Request {
   factory CopytradingStatisticsRequest.fromJson(Map<String, dynamic> json) =>
       _$CopytradingStatisticsRequestFromJson(json);
 
-  // Properties
   /// Must be `1`
   final int copytradingStatistics;
 

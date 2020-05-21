@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_all_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_all_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class ForgetAllResponse extends Response {
   factory ForgetAllResponse.fromJson(Map<String, dynamic> json) =>
       _$ForgetAllResponseFromJson(json);
 
-  // Properties
   /// IDs of the cancelled streams
   final List<dynamic> forgetAll;
 

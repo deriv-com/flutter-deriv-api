@@ -17,7 +17,7 @@ class ProfitTable extends ProfitTableModel {
           transactions: transactions,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory ProfitTable.fromJson(Map<String, dynamic> json) => ProfitTable(
         count: int.parse(json['count']),
         transactions: getListFromMap(
@@ -29,7 +29,7 @@ class ProfitTable extends ProfitTableModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   ProfitTable copyWith({
     int count,
     List<ProfitTransactionModel> transactions,
@@ -40,7 +40,9 @@ class ProfitTable extends ProfitTableModel {
       );
 
   /// Retrieves a summary of account Profit Table, according to given search criteria.
+  ///
   /// For parameters information refer to [ProfitTableRequest].
+  /// Throws a [ProfitTableException] if API response contains an error
   static Future<ProfitTable> fetch(ProfitTableRequest request) async {
     final ProfitTableResponse response = await _api.call(request: request);
 

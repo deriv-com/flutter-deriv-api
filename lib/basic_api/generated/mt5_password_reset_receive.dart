@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_reset_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_reset_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class Mt5PasswordResetResponse extends Response {
   factory Mt5PasswordResetResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordResetResponseFromJson(json);
 
-  // Properties
   /// `1` on success
   final int mt5PasswordReset;
 

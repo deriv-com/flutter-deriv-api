@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/transaction_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transaction_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -24,7 +24,6 @@ class TransactionRequest extends Request {
   factory TransactionRequest.fromJson(Map<String, dynamic> json) =>
       _$TransactionRequestFromJson(json);
 
-  // Properties
   /// If set to 1, will send updates whenever there is an update to transactions. If not to 1 then it will not return any records.
   final int subscribe;
 

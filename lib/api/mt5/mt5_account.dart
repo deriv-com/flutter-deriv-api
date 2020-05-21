@@ -92,8 +92,10 @@ class MT5Account extends MT5AccountModel {
         name: name ?? this.name,
       );
 
-  /// This call creates new MT5 user, either demo or real money user.
+  /// Creates new MT5 user, either demo or real money user.
+  ///
   /// For parameters information refer to [Mt5NewAccountRequest].
+  /// Throws a [MT5Exception] if API response contains an error
   static Future<MT5Account> createNewAccount(
     Mt5NewAccountRequest request,
   ) async {
@@ -107,8 +109,10 @@ class MT5Account extends MT5AccountModel {
     return MT5Account.fromJson(response.mt5NewAccount);
   }
 
-  /// Gets list of MT5 accounts for client.
+  /// Gets the list of MT5 accounts for client.
+  ///
   /// For parameters information refer to [Mt5LoginListRequest].
+  /// Throws a [MT5Exception] if API response contains an error
   static Future<List<MT5Account>> fetchLoginList(
     Mt5LoginListRequest request,
   ) async {
@@ -125,7 +129,9 @@ class MT5Account extends MT5AccountModel {
     );
   }
 
-  /// This call allows deposit into MT5 account from binary account.
+  /// Allows deposit into MT5 account from binary account.
+  ///
+  /// Throws a [MT5Exception] if API response contains an error
   Future<MT5Deposit> deposit({
     double amount,
     String fromBinary,
@@ -139,6 +145,8 @@ class MT5Account extends MT5AccountModel {
       );
 
   /// Changes password of the MT5 account.
+  ///
+  /// Throws a [MT5Exception] if API response contains an error
   Future<MT5PasswordChange> changePassword({
     String newPassword,
     String oldPassword,
@@ -153,7 +161,9 @@ class MT5Account extends MT5AccountModel {
         ),
       );
 
-  /// This call validates the main password for the MT5 user.
+  /// Validates the main password for the MT5 user.
+  ///
+  /// Throws a [MT5Exception] if API response contains an error
   Future<MT5PasswordCheck> checkPassword({
     String password,
     PasswordType passwordType,
@@ -166,7 +176,9 @@ class MT5Account extends MT5AccountModel {
         ),
       );
 
-  /// Reset password of MT5 account.
+  /// Resets the password of MT5 account.
+  ///
+  /// Throws a [MT5Exception] if API response contains an error
   Future<MT5PasswordReset> resetPassword({
     String newPassword,
     PasswordType passwordType,
@@ -181,11 +193,15 @@ class MT5Account extends MT5AccountModel {
         ),
       );
 
-  /// Get MT5 user account settings.
+  /// Gets the MT5 user account settings.
+  ///
+  /// Throws a [MT5Exception] if API response contains an error
   Future<MT5Settings> fetchSettings() =>
       MT5Settings.fetchSettings(Mt5GetSettingsRequest(login: login));
 
-  /// This call allows withdrawal from MT5 account to Binary account
+  /// Allows withdrawal from MT5 account to Binary account.
+  ///
+  /// Throws a [MT5Exception] if API response contains an error
   Future<MT5Withdrawal> withdraw({
     double amount,
     String toBinary,

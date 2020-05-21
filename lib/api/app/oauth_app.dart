@@ -23,7 +23,7 @@ class OauthApp extends OauthAppModel {
           scopes: scopes,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory OauthApp.fromJson(Map<String, dynamic> json) => OauthApp(
         appId: json['app_id'],
         appMarkupPercentage: json['app_markup_percentage']?.toDouble(),
@@ -38,7 +38,7 @@ class OauthApp extends OauthAppModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   OauthApp copyWith({
     int appId,
     double appMarkupPercentage,
@@ -54,7 +54,9 @@ class OauthApp extends OauthAppModel {
         scopes: scopes ?? this.scopes,
       );
 
-  /// Fetches oauth application that used for the authorized account.
+  /// Gets oauth application that used for the authorized account.
+  ///
+  /// Throws an [AppException] if API response contains an error
   static Future<List<OauthApp>> fetchOauthApps([
     OauthAppsRequest request,
   ]) async {

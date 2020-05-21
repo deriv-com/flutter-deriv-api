@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_contract_for_multiple_accounts_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_contract_for_multiple_accounts_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -27,7 +27,6 @@ class SellContractForMultipleAccountsResponse extends Response {
           Map<String, dynamic> json) =>
       _$SellContractForMultipleAccountsResponseFromJson(json);
 
-  // Properties
   /// Status information for each affected account.
   final Map<String, dynamic> sellContractForMultipleAccounts;
 

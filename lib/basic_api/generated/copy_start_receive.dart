@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_start_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_start_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class CopyStartResponse extends Response {
   factory CopyStartResponse.fromJson(Map<String, dynamic> json) =>
       _$CopyStartResponseFromJson(json);
 
-  // Properties
   /// Copy start confirmation. Returns 1 is success.
   final int copyStart;
 

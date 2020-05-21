@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class NewAccountRealResponse extends Response {
   factory NewAccountRealResponse.fromJson(Map<String, dynamic> json) =>
       _$NewAccountRealResponseFromJson(json);
 
-  // Properties
   /// New real money account details
   final Map<String, dynamic> newAccountReal;
 

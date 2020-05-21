@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// Account status
+/// Account's documents's and authentications status
 class AccountStatus extends AccountStatusModel {
   /// Initializes
   AccountStatus({
@@ -22,7 +22,7 @@ class AccountStatus extends AccountStatusModel {
           status: status,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory AccountStatus.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -47,10 +47,9 @@ class AccountStatus extends AccountStatusModel {
         ),
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// fetches the account's status
+  /// Gets the account's status
   static Future<AccountStatus> fetchAccountStatus() async {
     final GetAccountStatusResponse response = await _api.call(
       request: const GetAccountStatusRequest(),
@@ -65,7 +64,7 @@ class AccountStatus extends AccountStatusModel {
     return AccountStatus.fromJson(response.getAccountStatus);
   }
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   AccountStatus copyWith({
     AccountAuthenticationStatusModel authentication,
     bool promptClientToAuthenticate,

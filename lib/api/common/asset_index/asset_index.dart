@@ -42,7 +42,9 @@ class AssetIndex extends AssetIndexModel {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Retrieves a list of all available underlyings and the corresponding contract types and duration boundaries.
+  ///
   /// If the user is logged in, only the assets available for that user's landing company will be returned.
+  /// Throws an [AssetIndexException] if API response contains an error
   static Future<List<AssetIndex>> fetchAssetIndices([
     AssetIndexRequest request,
   ]) async {
