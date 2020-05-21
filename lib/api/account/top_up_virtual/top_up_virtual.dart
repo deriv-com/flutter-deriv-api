@@ -45,9 +45,8 @@ class TopUpVirtual extends TopUpVirtualModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => TopUpVirtualException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          TopUpVirtualException(message: message),
     );
 
     return TopUpVirtual.fromJson(response.topupVirtual);

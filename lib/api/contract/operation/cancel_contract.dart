@@ -40,9 +40,8 @@ class CancelContract extends CancelContractModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => ContractOperationException(
-        message: message,
-      ),
+      exceptionCreator: (String message) =>
+          ContractOperationException(message: message),
     );
 
     return CancelContract.fromJson(response.cancel);

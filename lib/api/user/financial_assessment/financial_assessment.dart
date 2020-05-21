@@ -3,6 +3,7 @@ import 'package:flutter_deriv_api/api/user/models/financial_assessment_model.dar
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// financial assessment class
 class FinancialAssessment extends FinancialAssessmentModel {
@@ -148,9 +149,11 @@ class FinancialAssessment extends FinancialAssessmentModel {
     final GetFinancialAssessmentResponse response =
         await _api.call(request: request);
 
-    if (response.error != null) {
-      throw FinancialAssessmentException(message: response.error['message']);
-    }
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          FinancialAssessmentException(message: message),
+    );
 
     return FinancialAssessment.fromJson(response.getFinancialAssessment);
   }
