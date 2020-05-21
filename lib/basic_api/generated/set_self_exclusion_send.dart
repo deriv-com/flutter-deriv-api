@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/set_self_exclusion_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_self_exclusion_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -36,7 +36,6 @@ class SetSelfExclusionRequest extends Request {
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       _$SetSelfExclusionRequestFromJson(json);
 
-  // Properties
   /// [Optional] Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
   final String excludeUntil;
 

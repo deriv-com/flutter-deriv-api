@@ -132,7 +132,7 @@ class OpenContract extends OpenContractModel {
           validationError: validationError,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory OpenContract.fromJson(
     Map<String, dynamic> json, {
     Map<String, dynamic> subscriptionJson,
@@ -237,6 +237,8 @@ class OpenContract extends OpenContractModel {
   }
 
   /// Subscribes to the bought contract state specified in [ProposalOpenContractRequest]
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   static Stream<OpenContract> subscribeContractState(
     ProposalOpenContractRequest request, {
     RequestCompareFunction comparePredicate,
@@ -261,6 +263,8 @@ class OpenContract extends OpenContractModel {
       );
 
   /// Unsubscribes from open contract subscription.
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   Future<Forget> unsubscribeOpenContract() async {
     if (subscriptionInformation?.id == null) {
       return null;
@@ -279,6 +283,8 @@ class OpenContract extends OpenContractModel {
   }
 
   /// Unsubscribes all open contract subscriptions.
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllOpenContract() async {
     final ForgetAllResponse response = await _api.unsubscribeAll(
       method: ForgetStreamType.proposalOpenContract,

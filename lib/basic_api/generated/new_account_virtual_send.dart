@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_virtual_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_virtual_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -33,7 +33,6 @@ class NewAccountVirtualRequest extends Request {
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountVirtualRequestFromJson(json);
 
-  // Properties
   /// [Optional] Affiliate token, within 32 characters.
   final String affiliateToken;
 

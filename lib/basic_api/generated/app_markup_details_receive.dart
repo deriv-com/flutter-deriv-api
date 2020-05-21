@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class AppMarkupDetailsResponse extends Response {
   factory AppMarkupDetailsResponse.fromJson(Map<String, dynamic> json) =>
       _$AppMarkupDetailsResponseFromJson(json);
 
-  // Properties
   /// App Markup transaction details
   final Map<String, dynamic> appMarkupDetails;
 

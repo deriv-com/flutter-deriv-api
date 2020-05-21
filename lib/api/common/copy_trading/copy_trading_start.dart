@@ -27,7 +27,9 @@ class CopyTradingStart extends CopyTradingStartModel {
       );
 
   /// Starts copy trader bets.
+  ///
   /// For parameters information refer to [CopyStartRequest].
+  /// Throws a [CopyTradingException] if API response contains an error
   static Future<CopyTradingStart> start(CopyStartRequest request) async {
     final CopyStartResponse response = await _api.call(request: request);
 

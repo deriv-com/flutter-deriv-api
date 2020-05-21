@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_confirm_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_confirm_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class P2pOrderConfirmResponse extends Response {
   factory P2pOrderConfirmResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderConfirmResponseFromJson(json);
 
-  // Properties
   /// Confirmation details
   final Map<String, dynamic> p2pOrderConfirm;
 

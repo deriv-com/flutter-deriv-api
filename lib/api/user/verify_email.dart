@@ -27,8 +27,10 @@ class VerifyEmail extends VerifyEmailModel {
       );
 
   /// Verifies an email address for various purposes.
+  ///
   /// The system will send an email to the address containing a security code for verification.
   /// For parameters information refer to [VerifyEmailRequest].
+  /// Throws a [UserException] if API response contains an error
   static Future<VerifyEmail> verify(
     VerifyEmailRequest request,
   ) async {

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/time_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/time_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class TimeResponse extends Response {
   factory TimeResponse.fromJson(Map<String, dynamic> json) =>
       _$TimeResponseFromJson(json);
 
-  // Properties
   /// Epoch of server time.
   final int time;
 

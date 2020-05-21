@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/set_account_currency_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_account_currency_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class SetAccountCurrencyResponse extends Response {
   factory SetAccountCurrencyResponse.fromJson(Map<String, dynamic> json) =>
       _$SetAccountCurrencyResponseFromJson(json);
 
-  // Properties
   /// `1`: success, `0`: no change
   final int setAccountCurrency;
 

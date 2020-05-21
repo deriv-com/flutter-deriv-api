@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -26,7 +26,6 @@ class BuyRequest extends Request {
   factory BuyRequest.fromJson(Map<String, dynamic> json) =>
       _$BuyRequestFromJson(json);
 
-  // Properties
   /// Either the ID received from a Price Proposal (`proposal` call), or `1` if contract buy parameters are passed in the `parameters` field.
   final String buy;
 

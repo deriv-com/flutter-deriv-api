@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_list_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_list_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class CopytradingListResponse extends Response {
   factory CopytradingListResponse.fromJson(Map<String, dynamic> json) =>
       _$CopytradingListResponseFromJson(json);
 
-  // Properties
   /// The trading information of copiers or traders.
   final Map<String, dynamic> copytradingList;
 

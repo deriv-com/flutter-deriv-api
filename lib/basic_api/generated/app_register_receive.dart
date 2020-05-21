@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/app_register_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_register_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class AppRegisterResponse extends Response {
   factory AppRegisterResponse.fromJson(Map<String, dynamic> json) =>
       _$AppRegisterResponseFromJson(json);
 
-  // Properties
   /// The information of the created application.
   final Map<String, dynamic> appRegister;
 

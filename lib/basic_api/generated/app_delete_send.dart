@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/app_delete_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_delete_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -23,7 +23,6 @@ class AppDeleteRequest extends Request {
   factory AppDeleteRequest.fromJson(Map<String, dynamic> json) =>
       _$AppDeleteRequestFromJson(json);
 
-  // Properties
   /// Application app_id
   final int appDelete;
 
