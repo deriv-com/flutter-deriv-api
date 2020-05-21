@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_login_list_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_login_list_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class Mt5LoginListResponse extends Response {
   factory Mt5LoginListResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5LoginListResponseFromJson(json);
 
-  // Properties
   /// Array containing MT5 account objects.
   final List<Map<String, dynamic>> mt5LoginList;
 

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class ForgetResponse extends Response {
   factory ForgetResponse.fromJson(Map<String, dynamic> json) =>
       _$ForgetResponseFromJson(json);
 
-  // Properties
   /// If set to 1, stream exited and stopped. If set to 0, stream did not exist.
   final int forget;
 

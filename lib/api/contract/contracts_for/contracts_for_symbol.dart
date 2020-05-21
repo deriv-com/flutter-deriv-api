@@ -43,7 +43,9 @@ class ContractsForSymbol extends ContractsForSymbolModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Gets contracts for given symbol in [ContractsForRequest]
+  /// Gets available contracts for given symbol in [ContractsForRequest]
+  ///
+  /// Throws a [ContractsForSymbolException] if API response contains an error
   static Future<ContractsForSymbol> fetchContractsForSymbol(
     ContractsForRequest request,
   ) async {

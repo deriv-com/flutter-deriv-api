@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/topup_virtual_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/topup_virtual_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class TopupVirtualResponse extends Response {
   factory TopupVirtualResponse.fromJson(Map<String, dynamic> json) =>
       _$TopupVirtualResponseFromJson(json);
 
-  // Properties
   /// The information regarding a successful top up for a virtual money account
   final Map<String, dynamic> topupVirtual;
 

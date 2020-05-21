@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_history_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_history_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class ContractUpdateHistoryResponse extends Response {
   factory ContractUpdateHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$ContractUpdateHistoryResponseFromJson(json);
 
-  // Properties
   /// Contains the historical and the most recent update status of the contract
   final List<Map<String, dynamic>> contractUpdateHistory;
 

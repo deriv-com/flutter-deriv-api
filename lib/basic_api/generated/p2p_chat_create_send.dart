@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_chat_create_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_chat_create_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -24,7 +24,6 @@ class P2pChatCreateRequest extends Request {
   factory P2pChatCreateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pChatCreateRequestFromJson(json);
 
-  // Properties
   /// The unique identifier for the order to create the chat for.
   final String orderId;
 

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_login_list_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_login_list_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -23,7 +23,6 @@ class Mt5LoginListRequest extends Request {
   factory Mt5LoginListRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5LoginListRequestFromJson(json);
 
-  // Properties
   /// Must be `1`
   final int mt5LoginList;
 

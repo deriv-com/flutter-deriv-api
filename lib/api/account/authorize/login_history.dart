@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// Login history class
+/// A class for client login/logout activities
 class LoginHistory extends LoginHistoryModel {
   /// Initializes
   LoginHistory({
@@ -21,7 +21,7 @@ class LoginHistory extends LoginHistoryModel {
           time: time,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory LoginHistory.fromJson(Map<String, dynamic> json) => LoginHistory(
         action: getEnumFromString(
           values: LoginAction.values,
@@ -34,7 +34,7 @@ class LoginHistory extends LoginHistoryModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   LoginHistory copyWith({
     LoginAction action,
     String environment,
@@ -49,7 +49,9 @@ class LoginHistory extends LoginHistoryModel {
       );
 
   /// Retrieves a summary of login history for user.
+  ///
   /// For parameters information refer to [LoginHistory].
+  /// Throws an [AuthorizeException] if API response contains an error
   static Future<List<LoginHistory>> fetchHistory([
     LoginHistoryRequest request,
   ]) async {

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_history_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_history_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -30,7 +30,6 @@ class TicksHistoryRequest extends Request {
   factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$TicksHistoryRequestFromJson(json);
 
-  // Properties
   /// [Optional] 1 - if the market is closed at the end time, or license limit is before end time, adjust interval backwards to compensate.
   final int adjustStartTime;
 

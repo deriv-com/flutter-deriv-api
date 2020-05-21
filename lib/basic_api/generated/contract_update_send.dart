@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -25,7 +25,6 @@ class ContractUpdateRequest extends Request {
   factory ContractUpdateRequest.fromJson(Map<String, dynamic> json) =>
       _$ContractUpdateRequestFromJson(json);
 
-  // Properties
   /// Internal unique contract identifier.
   final int contractId;
 

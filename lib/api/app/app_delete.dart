@@ -26,8 +26,10 @@ class AppDelete extends AppDeleteModel {
         succeeded: succeeded ?? this.succeeded,
       );
 
-  /// The request for deleting an application.
+  /// Deletes the application by appId specified in [AppDeleteRequest.appDelete].
+  ///
   /// For parameters information refer to [AppDeleteRequest].
+  /// Throws an [AppException] if API response contains an error
   static Future<AppDelete> deleteApplication(AppDeleteRequest request) async {
     final AppDeleteResponse response = await _api.call(request: request);
 

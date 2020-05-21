@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/balance_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/balance_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -27,7 +27,6 @@ class BalanceResponse extends Response {
   factory BalanceResponse.fromJson(Map<String, dynamic> json) =>
       _$BalanceResponseFromJson(json);
 
-  // Properties
   /// Realtime stream of user balance changes.
   final Map<String, dynamic> balance;
 

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_array_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_array_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -26,7 +26,6 @@ class ProposalArrayResponse extends Response {
   factory ProposalArrayResponse.fromJson(Map<String, dynamic> json) =>
       _$ProposalArrayResponseFromJson(json);
 
-  // Properties
   /// Latest price and other details for a given contract
   final Map<String, dynamic> proposalArray;
 

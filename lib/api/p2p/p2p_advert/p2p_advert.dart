@@ -74,7 +74,7 @@ class P2PAdvert extends P2PAdvertModel {
           type: type,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory P2PAdvert.fromJson(Map<String, dynamic> json) => P2PAdvert(
         accountCurrency: json['account_currency'],
         advertiserDetails: getItemFromMap(
@@ -122,7 +122,7 @@ class P2PAdvert extends P2PAdvertModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   P2PAdvert copyWith({
     String accountCurrency,
     P2PAdvertiserDetailsModel advertiserDetails,
@@ -192,7 +192,9 @@ class P2PAdvert extends P2PAdvertModel {
       );
 
   /// Retrieves information about a P2P (peer to peer) advert.
+  ///
   /// For parameters information refer to [P2pAdvertInfoRequest].
+  /// Throws a [P2PAdvertException] if API response contains an error
   static Future<P2PAdvert> fetchAdvert(
     P2pAdvertInfoRequest request,
   ) async {
@@ -208,7 +210,9 @@ class P2PAdvert extends P2PAdvertModel {
   }
 
   /// Returns available adverts.
+  ///
   /// For parameters information refer to [P2pAdvertListRequest].
+  /// Throws a [P2PAdvertException] if API response contains an error
   static Future<List<P2PAdvert>> fetchAdvertList(
     P2pAdvertListRequest request,
   ) async {
@@ -227,7 +231,9 @@ class P2PAdvert extends P2PAdvertModel {
   }
 
   /// Creates a P2P (peer to peer) advert. Can only be used by an approved P2P advertiser.
+  ///
   /// For parameters information refer to [P2pAdvertCreateRequest].
+  /// Throws a [P2PAdvertException] if API response contains an error
   static Future<P2PAdvert> createAdvert(
     P2pAdvertCreateRequest request,
   ) async {
@@ -243,7 +249,9 @@ class P2PAdvert extends P2PAdvertModel {
   }
 
   /// Updates a P2P (peer to peer) advert. Can only be used by the advertiser.
+  ///
   /// For parameters information refer to [P2pAdvertUpdateRequest].
+  /// Throws a [P2PAdvertException] if API response contains an error
   static Future<P2PAdvert> updateAdvert(
     P2pAdvertUpdateRequest request,
   ) async {
@@ -259,6 +267,10 @@ class P2PAdvert extends P2PAdvertModel {
   }
 
   /// Updates a P2P (peer to peer) advert. Can only be used by the advertiser.
+  ///
+  /// [delete] to permanently delete the advert
+  /// [isActive] to activate or deactivate the advert
+  /// Throws a [P2PAdvertException] if API response contains an error
   Future<P2PAdvert> update(
     bool delete,
     bool isActive,
