@@ -6,7 +6,7 @@ import '../request.dart';
 part 'revoke_oauth_app_send.g.dart';
 
 /// JSON conversion for 'revoke_oauth_app_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class RevokeOauthAppRequest extends Request {
   /// Initialize RevokeOauthAppRequest
   const RevokeOauthAppRequest({

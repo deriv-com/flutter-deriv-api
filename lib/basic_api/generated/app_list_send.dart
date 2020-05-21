@@ -6,7 +6,7 @@ import '../request.dart';
 part 'app_list_send.g.dart';
 
 /// JSON conversion for 'app_list_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AppListRequest extends Request {
   /// Initialize AppListRequest
   const AppListRequest({

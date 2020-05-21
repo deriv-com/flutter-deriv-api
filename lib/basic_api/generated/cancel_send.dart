@@ -6,7 +6,7 @@ import '../request.dart';
 part 'cancel_send.g.dart';
 
 /// JSON conversion for 'cancel_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class CancelRequest extends Request {
   /// Initialize CancelRequest
   const CancelRequest({

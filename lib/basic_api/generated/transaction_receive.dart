@@ -6,7 +6,7 @@ import '../response.dart';
 part 'transaction_receive.g.dart';
 
 /// JSON conversion for 'transaction_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TransactionResponse extends Response {
   /// Initialize TransactionResponse
   const TransactionResponse({

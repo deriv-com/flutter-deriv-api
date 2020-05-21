@@ -6,7 +6,7 @@ import '../response.dart';
 part 'mt5_login_list_receive.g.dart';
 
 /// JSON conversion for 'mt5_login_list_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5LoginListResponse extends Response {
   /// Initialize Mt5LoginListResponse
   const Mt5LoginListResponse({

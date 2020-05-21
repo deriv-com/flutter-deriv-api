@@ -112,7 +112,7 @@ class APIBuilder extends Builder {
             part '$fileName.g.dart';
 
             /// JSON conversion for '$fileName'
-            @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+            @JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
             class $classFullName extends ${schemaType == 'send' ? 'Request' : 'Response'} {
               /// Initialize $classFullName
               const $classFullName({

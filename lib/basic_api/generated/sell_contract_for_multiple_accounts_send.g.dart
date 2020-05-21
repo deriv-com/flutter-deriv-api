@@ -14,7 +14,7 @@ SellContractForMultipleAccountsRequest
     sellContractForMultipleAccounts:
         json['sell_contract_for_multiple_accounts'] as int,
     shortcode: json['shortcode'] as String,
-    tokens: (json['tokens'] as List).map((e) => e as String).toList(),
+    tokens: (json['tokens'] as List)?.map((e) => e as String)?.toList(),
     passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
   );
