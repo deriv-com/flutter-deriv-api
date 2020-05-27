@@ -68,6 +68,8 @@ class Balance extends BalanceModel {
   }
 
   /// Instead of one call [Balance.fetchBalance] gets stream of [Balance]
+  ///
+  /// Throws a [BalanceException] if API response contains an error
   static Stream<Balance> subscribeBalance(BalanceRequest request) =>
       _api.subscribe(request: request).map((Response response) {
         checkException(

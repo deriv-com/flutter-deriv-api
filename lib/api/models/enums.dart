@@ -35,46 +35,46 @@ enum AccountRiskClassification {
 
 /// Account status
 enum AccountStatusType {
-  /// client is age-verified.
+  /// Client is age-verified.
   ageVerification,
 
-  /// client is fully authenticated.
+  /// Client is fully authenticated.
   authenticated,
 
-  /// cashier is locked.
+  /// Cashier is locked.
   cashierLocked,
 
-  /// client has updated tax related information.
+  /// Client has updated tax related information.
   crsTinInformation,
 
-  /// account is disabled.
+  /// Account is disabled.
   disabled,
 
-  /// client's submitted proof-of-identity documents have expired.
+  /// Client's submitted proof-of-identity documents have expired.
   documentExpired,
 
-  /// client's submitted proof-of-identity documents are expiring within a month.
+  /// Client's submitted proof-of-identity documents are expiring within a month.
   documentExpiringSoon,
 
-  /// client has not completed financial assessment.
+  /// Client has not completed financial assessment.
   financialAssessmentNotComplete,
 
-  /// client has not completed financial information.
+  /// Client has not completed financial information.
   financialInformationNotComplete,
 
-  /// this client has opted for a professional account.
+  /// This client has opted for a professional account.
   professional,
 
   /// Trading experience not completed
   tradingExperienceNotComplete,
 
-  /// client has acknowledged UKGC funds protection notice.
+  /// Client has acknowledged UKGC funds protection notice.
   ukgcFundsProtection,
 
-  /// client cannot deposit or buy contracts, but can withdraw or sell contracts.
+  /// Client cannot deposit or buy contracts, but can withdraw or sell contracts.
   unwelcome,
 
-  /// deposits allowed but withdrawals locked.
+  /// Deposits allowed but withdrawals locked.
   withdrawalLocked,
 }
 
@@ -113,19 +113,21 @@ enum MT5AccountType {
 
 /// Api token scopes
 enum TokenScope {
-  /// Read Access
+  /// Can be used to view account activity, including settings, limits,
+  /// balance sheets, trade purchase history, and more.
   read,
 
-  /// Trade Access
+  /// Can be used to buy and sell contracts, renew expired purchases,
+  /// and top-up virtual-money accounts.
   trade,
 
-  /// Trading Information Access
+  /// Can be used to view the trading history of an account.
   tradingInformation,
 
-  /// Payments Access
+  /// Can be used to withdraw to payment agents and transfer funds between accounts.
   payments,
 
-  /// Admin Access
+  /// Can be used to open accounts, set settings, manage token usage, and more.
   admin,
 }
 
