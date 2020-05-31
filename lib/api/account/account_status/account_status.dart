@@ -12,11 +12,13 @@ class AccountStatus extends AccountStatusModel {
   /// Initializes
   AccountStatus({
     AccountAuthenticationStatusModel authentication,
+    List<AccountStatusCurrencyConfigModel> currencyConfig,
     bool promptClientToAuthenticate,
     AccountRiskClassification riskClassification,
     List<AccountStatusType> status,
   }) : super(
           authentication: authentication,
+          currencyConfig: currencyConfig,
           promptClientToAuthenticate: promptClientToAuthenticate,
           riskClassification: riskClassification,
           status: status,
@@ -31,6 +33,11 @@ class AccountStatus extends AccountStatusModel {
           json['authentication'],
           itemToTypeCallback: (dynamic map) =>
               AccountAuthenticationStatusModel.fromJson(map),
+        ),
+        currencyConfig: getListFromMap(
+          json['experimental_suspended'].entries,
+          itemToTypeCallback: (dynamic item) =>
+              AccountStatusCurrencyConfigModel.fromJson(item.key, item.value),
         ),
         promptClientToAuthenticate:
             getBool(json['prompt_client_to_authenticate']),
@@ -67,12 +74,14 @@ class AccountStatus extends AccountStatusModel {
   /// Generates a copy of instance with given parameters
   AccountStatus copyWith({
     AccountAuthenticationStatusModel authentication,
+    List<AccountStatusCurrencyConfigModel> currencyConfig,
     bool promptClientToAuthenticate,
     AccountRiskClassification riskClassification,
     List<AccountStatusType> status,
   }) =>
       AccountStatus(
         authentication: authentication ?? this.authentication,
+        currencyConfig: currencyConfig ?? this.currencyConfig,
         promptClientToAuthenticate:
             promptClientToAuthenticate ?? this.promptClientToAuthenticate,
         riskClassification: riskClassification ?? this.riskClassification,
