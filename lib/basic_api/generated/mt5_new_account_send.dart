@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_new_account_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_new_account_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'mt5_new_account_send.g.dart';
 
 /// JSON conversion for 'mt5_new_account_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5NewAccountRequest extends Request {
   /// Initialize Mt5NewAccountRequest
   const Mt5NewAccountRequest({
@@ -39,7 +39,6 @@ class Mt5NewAccountRequest extends Request {
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5NewAccountRequestFromJson(json);
 
-  // Properties
   /// Account type
   final String accountType;
 

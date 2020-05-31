@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_transfer_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_transfer_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'paymentagent_transfer_send.g.dart';
 
 /// JSON conversion for 'paymentagent_transfer_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class PaymentagentTransferRequest extends Request {
   /// Initialize PaymentagentTransferRequest
   const PaymentagentTransferRequest({
@@ -28,7 +28,6 @@ class PaymentagentTransferRequest extends Request {
   factory PaymentagentTransferRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentTransferRequestFromJson(json);
 
-  // Properties
   /// The amount to transfer.
   final num amount;
 

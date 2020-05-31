@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_create_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_create_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'p2p_order_create_send.g.dart';
 
 /// JSON conversion for 'p2p_order_create_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pOrderCreateRequest extends Request {
   /// Initialize P2pOrderCreateRequest
   const P2pOrderCreateRequest({
@@ -28,7 +28,6 @@ class P2pOrderCreateRequest extends Request {
   factory P2pOrderCreateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCreateRequestFromJson(json);
 
-  // Properties
   /// The unique identifier for the advert to create an order against.
   final String advertId;
 

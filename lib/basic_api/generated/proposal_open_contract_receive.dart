@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_open_contract_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_open_contract_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'proposal_open_contract_receive.g.dart';
 
 /// JSON conversion for 'proposal_open_contract_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ProposalOpenContractResponse extends Response {
   /// Initialize ProposalOpenContractResponse
   const ProposalOpenContractResponse({
@@ -27,7 +27,6 @@ class ProposalOpenContractResponse extends Response {
   factory ProposalOpenContractResponse.fromJson(Map<String, dynamic> json) =>
       _$ProposalOpenContractResponseFromJson(json);
 
-  // Properties
   /// Latest price and other details for an open contract
   final Map<String, dynamic> proposalOpenContract;
 

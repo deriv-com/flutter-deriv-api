@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'app_markup_details_send.g.dart';
 
 /// JSON conversion for 'app_markup_details_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AppMarkupDetailsRequest extends Request {
   /// Initialize AppMarkupDetailsRequest
   const AppMarkupDetailsRequest({
@@ -32,7 +32,6 @@ class AppMarkupDetailsRequest extends Request {
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>
       _$AppMarkupDetailsRequestFromJson(json);
 
-  // Properties
   /// [Optional] Specific application `app_id` to report on.
   final int appId;
 

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/get_account_status_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_account_status_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'get_account_status_send.g.dart';
 
 /// JSON conversion for 'get_account_status_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class GetAccountStatusRequest extends Request {
   /// Initialize GetAccountStatusRequest
   const GetAccountStatusRequest({
@@ -23,7 +23,6 @@ class GetAccountStatusRequest extends Request {
   factory GetAccountStatusRequest.fromJson(Map<String, dynamic> json) =>
       _$GetAccountStatusRequestFromJson(json);
 
-  // Properties
   /// Must be `1`
   final int getAccountStatus;
 

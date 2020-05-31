@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'mt5_deposit_send.g.dart';
 
 /// JSON conversion for 'mt5_deposit_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5DepositRequest extends Request {
   /// Initialize Mt5DepositRequest
   const Mt5DepositRequest({
@@ -26,7 +26,6 @@ class Mt5DepositRequest extends Request {
   factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5DepositRequestFromJson(json);
 
-  // Properties
   /// Amount to deposit (in the currency of from_binary); min = $1 or an equivalent amount, max = $20000 or an equivalent amount
   final num amount;
 

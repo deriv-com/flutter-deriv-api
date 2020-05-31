@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'new_account_real_send.g.dart';
 
 /// JSON conversion for 'new_account_real_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class NewAccountRealRequest extends Request {
   /// Initialize NewAccountRealRequest
   const NewAccountRealRequest({
@@ -46,7 +46,6 @@ class NewAccountRealRequest extends Request {
   factory NewAccountRealRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountRealRequestFromJson(json);
 
-  // Properties
   /// [Optional] Purpose and reason for requesting the account opening.
   final String accountOpeningReason;
 

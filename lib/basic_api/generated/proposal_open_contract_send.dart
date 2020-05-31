@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_open_contract_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_open_contract_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'proposal_open_contract_send.g.dart';
 
 /// JSON conversion for 'proposal_open_contract_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ProposalOpenContractRequest extends Request {
   /// Initialize ProposalOpenContractRequest
   const ProposalOpenContractRequest({
@@ -25,7 +25,6 @@ class ProposalOpenContractRequest extends Request {
   factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>
       _$ProposalOpenContractRequestFromJson(json);
 
-  // Properties
   /// [Optional] Contract ID received from a `portfolio` request. If not set, you will receive stream of all open contracts.
   final int contractId;
 

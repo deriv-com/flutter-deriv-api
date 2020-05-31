@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_cancel_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_cancel_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'p2p_order_cancel_send.g.dart';
 
 /// JSON conversion for 'p2p_order_cancel_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pOrderCancelRequest extends Request {
   /// Initialize P2pOrderCancelRequest
   const P2pOrderCancelRequest({
@@ -24,7 +24,6 @@ class P2pOrderCancelRequest extends Request {
   factory P2pOrderCancelRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pOrderCancelRequestFromJson(json);
 
-  // Properties
   /// The unique identifier for this order.
   final String id;
 

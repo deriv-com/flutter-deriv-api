@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'sell_send.g.dart';
 
 /// JSON conversion for 'sell_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class SellRequest extends Request {
   /// Initialize SellRequest
   const SellRequest({
@@ -24,7 +24,6 @@ class SellRequest extends Request {
   factory SellRequest.fromJson(Map<String, dynamic> json) =>
       _$SellRequestFromJson(json);
 
-  // Properties
   /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
   final num price;
 

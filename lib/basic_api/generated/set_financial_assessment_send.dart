@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/set_financial_assessment_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_financial_assessment_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'set_financial_assessment_send.g.dart';
 
 /// JSON conversion for 'set_financial_assessment_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class SetFinancialAssessmentRequest extends Request {
   /// Initialize SetFinancialAssessmentRequest
   const SetFinancialAssessmentRequest({
@@ -40,7 +40,6 @@ class SetFinancialAssessmentRequest extends Request {
   factory SetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       _$SetFinancialAssessmentRequestFromJson(json);
 
-  // Properties
   /// [Optional] The anticipated account turnover.
   final String accountTurnover;
 

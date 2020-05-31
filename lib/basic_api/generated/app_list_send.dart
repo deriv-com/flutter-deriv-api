@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/app_list_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_list_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'app_list_send.g.dart';
 
 /// JSON conversion for 'app_list_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AppListRequest extends Request {
   /// Initialize AppListRequest
   const AppListRequest({
@@ -23,7 +23,6 @@ class AppListRequest extends Request {
   factory AppListRequest.fromJson(Map<String, dynamic> json) =>
       _$AppListRequestFromJson(json);
 
-  // Properties
   /// Must be `1`
   final int appList;
 

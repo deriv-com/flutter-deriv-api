@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_transfer_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_transfer_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'paymentagent_transfer_receive.g.dart';
 
 /// JSON conversion for 'paymentagent_transfer_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class PaymentagentTransferResponse extends Response {
   /// Initialize PaymentagentTransferResponse
   const PaymentagentTransferResponse({
@@ -29,7 +29,6 @@ class PaymentagentTransferResponse extends Response {
   factory PaymentagentTransferResponse.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentTransferResponseFromJson(json);
 
-  // Properties
   /// The `transfer_to` client full name
   final String clientToFullName;
 

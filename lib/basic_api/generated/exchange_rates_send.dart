@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/exchange_rates_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/exchange_rates_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'exchange_rates_send.g.dart';
 
 /// JSON conversion for 'exchange_rates_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ExchangeRatesRequest extends Request {
   /// Initialize ExchangeRatesRequest
   const ExchangeRatesRequest({
@@ -24,7 +24,6 @@ class ExchangeRatesRequest extends Request {
   factory ExchangeRatesRequest.fromJson(Map<String, dynamic> json) =>
       _$ExchangeRatesRequestFromJson(json);
 
-  // Properties
   /// Base currency (can be obtained from `payout_currencies` call)
   final String baseCurrency;
 

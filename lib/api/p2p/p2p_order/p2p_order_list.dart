@@ -79,6 +79,8 @@ class P2POrderList {
       );
 
   /// Unsubscribes from order list subscription.
+  ///
+  /// Throws a [P2POrderException] if API response contains an error
   Future<Forget> unsubscribeOrderList() async {
     if (subscriptionInformation?.id == null) {
       return null;
@@ -96,6 +98,8 @@ class P2POrderList {
   }
 
   /// Unsubscribes from all order subscriptions.
+  ///
+  /// Throws a [P2POrderException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllOrder() =>
       P2POrder.unsubscribeAllOrder();
 }

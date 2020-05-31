@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/app_update_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_update_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'app_update_receive.g.dart';
 
 /// JSON conversion for 'app_update_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AppUpdateResponse extends Response {
   /// Initialize AppUpdateResponse
   const AppUpdateResponse({
@@ -26,7 +26,6 @@ class AppUpdateResponse extends Response {
   factory AppUpdateResponse.fromJson(Map<String, dynamic> json) =>
       _$AppUpdateResponseFromJson(json);
 
-  // Properties
   /// Information of the updated application.
   final Map<String, dynamic> appUpdate;
 

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/document_upload_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/document_upload_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'document_upload_send.g.dart';
 
 /// JSON conversion for 'document_upload_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class DocumentUploadRequest extends Request {
   /// Initialize DocumentUploadRequest
   const DocumentUploadRequest({
@@ -30,7 +30,6 @@ class DocumentUploadRequest extends Request {
   factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>
       _$DocumentUploadRequestFromJson(json);
 
-  // Properties
   /// Document file format
   final String documentFormat;
 

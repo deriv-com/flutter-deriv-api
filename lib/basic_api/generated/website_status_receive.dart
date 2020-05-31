@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/website_status_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/website_status_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'website_status_receive.g.dart';
 
 /// JSON conversion for 'website_status_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class WebsiteStatusResponse extends Response {
   /// Initialize WebsiteStatusResponse
   const WebsiteStatusResponse({
@@ -27,7 +27,6 @@ class WebsiteStatusResponse extends Response {
   factory WebsiteStatusResponse.fromJson(Map<String, dynamic> json) =>
       _$WebsiteStatusResponseFromJson(json);
 
-  // Properties
   /// For subscription requests only.
   final Map<String, dynamic> subscription;
 

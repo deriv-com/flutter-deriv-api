@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_maltainvest_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_maltainvest_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'new_account_maltainvest_receive.g.dart';
 
 /// JSON conversion for 'new_account_maltainvest_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class NewAccountMaltainvestResponse extends Response {
   /// Initialize NewAccountMaltainvestResponse
   const NewAccountMaltainvestResponse({
@@ -26,7 +26,6 @@ class NewAccountMaltainvestResponse extends Response {
   factory NewAccountMaltainvestResponse.fromJson(Map<String, dynamic> json) =>
       _$NewAccountMaltainvestResponseFromJson(json);
 
-  // Properties
   /// New `maltainvest` account details
   final Map<String, dynamic> newAccountMaltainvest;
 

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/profit_table_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/profit_table_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'profit_table_send.g.dart';
 
 /// JSON conversion for 'profit_table_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ProfitTableRequest extends Request {
   /// Initialize ProfitTableRequest
   const ProfitTableRequest({
@@ -29,7 +29,6 @@ class ProfitTableRequest extends Request {
   factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>
       _$ProfitTableRequestFromJson(json);
 
-  // Properties
   /// [Optional] Start date (epoch or YYYY-MM-DD)
   final String dateFrom;
 

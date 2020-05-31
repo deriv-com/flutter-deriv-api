@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'paymentagent_withdraw_receive.g.dart';
 
 /// JSON conversion for 'paymentagent_withdraw_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class PaymentagentWithdrawResponse extends Response {
   /// Initialize PaymentagentWithdrawResponse
   const PaymentagentWithdrawResponse({
@@ -28,7 +28,6 @@ class PaymentagentWithdrawResponse extends Response {
   factory PaymentagentWithdrawResponse.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentWithdrawResponseFromJson(json);
 
-  // Properties
   /// Payment agent name.
   final String paymentagentName;
 

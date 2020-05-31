@@ -95,8 +95,10 @@ class PriceProposal extends PriceProposalModel {
     return PriceProposal.fromJson(response.proposal);
   }
 
-  /// Gets the price proposal for contract
+  /// Gets the price proposal for contract.
+  ///
   /// For parameters information refer to [ProposalRequest]
+  /// Throws a [ContractOperationException] if API response contains an error
   static Stream<PriceProposal> subscribePriceForContract(
     ProposalRequest request,
   ) =>
@@ -118,6 +120,8 @@ class PriceProposal extends PriceProposalModel {
       );
 
   /// Unsubscribes from price proposal subscription.
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   Future<Forget> unsubscribeProposal() async {
     if (subscriptionInformation?.id == null) {
       return null;
@@ -136,6 +140,8 @@ class PriceProposal extends PriceProposalModel {
   }
 
   /// Unsubscribes all proposal subscriptions.
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllProposal() async {
     final ForgetAllResponse response =
         await _api.unsubscribeAll(method: ForgetStreamType.proposal);
@@ -149,7 +155,9 @@ class PriceProposal extends PriceProposalModel {
     return ForgetAll.fromResponse(response);
   }
 
-  /// Buys this proposal contract with [price] specified
+  /// Buys this proposal contract with [price] specified.
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
   Future<BuyContract> buy({double price}) => BuyContract.buy(BuyRequest(
         buy: id,
         price: price ?? askPrice,

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_maltainvest_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_maltainvest_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'new_account_maltainvest_send.g.dart';
 
 /// JSON conversion for 'new_account_maltainvest_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class NewAccountMaltainvestRequest extends Request {
   /// Initialize NewAccountMaltainvestRequest
   const NewAccountMaltainvestRequest({
@@ -62,7 +62,6 @@ class NewAccountMaltainvestRequest extends Request {
   factory NewAccountMaltainvestRequest.fromJson(Map<String, dynamic> json) =>
       _$NewAccountMaltainvestRequestFromJson(json);
 
-  // Properties
   /// Show whether client has accepted risk disclaimer.
   final int acceptRisk;
 

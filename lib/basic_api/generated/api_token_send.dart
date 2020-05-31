@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/api_token_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/api_token_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'api_token_send.g.dart';
 
 /// JSON conversion for 'api_token_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ApiTokenRequest extends Request {
   /// Initialize ApiTokenRequest
   const ApiTokenRequest({
@@ -27,7 +27,6 @@ class ApiTokenRequest extends Request {
   factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiTokenRequestFromJson(json);
 
-  // Properties
   /// Must be `1`
   final int apiToken;
 

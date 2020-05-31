@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/cancel_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cancel_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'cancel_send.g.dart';
 
 /// JSON conversion for 'cancel_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class CancelRequest extends Request {
   /// Initialize CancelRequest
   const CancelRequest({
@@ -23,7 +23,6 @@ class CancelRequest extends Request {
   factory CancelRequest.fromJson(Map<String, dynamic> json) =>
       _$CancelRequestFromJson(json);
 
-  // Properties
   /// Value should be the `contract_id` which received from the `portfolio` call.
   final int cancel;
 

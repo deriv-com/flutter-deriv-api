@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'forget_send.g.dart';
 
 /// JSON conversion for 'forget_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ForgetRequest extends Request {
   /// Initialize ForgetRequest
   const ForgetRequest({
@@ -23,7 +23,6 @@ class ForgetRequest extends Request {
   factory ForgetRequest.fromJson(Map<String, dynamic> json) =>
       _$ForgetRequestFromJson(json);
 
-  // Properties
   /// ID of the real-time stream of messages to cancel.
   final String forget;
 

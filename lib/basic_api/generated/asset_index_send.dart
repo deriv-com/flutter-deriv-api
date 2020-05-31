@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/asset_index_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/asset_index_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'asset_index_send.g.dart';
 
 /// JSON conversion for 'asset_index_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AssetIndexRequest extends Request {
   /// Initialize AssetIndexRequest
   const AssetIndexRequest({
@@ -24,7 +24,6 @@ class AssetIndexRequest extends Request {
   factory AssetIndexRequest.fromJson(Map<String, dynamic> json) =>
       _$AssetIndexRequestFromJson(json);
 
-  // Properties
   /// Must be `1`
   final int assetIndex;
 

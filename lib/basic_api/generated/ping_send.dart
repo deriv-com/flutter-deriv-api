@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/ping_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ping_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'ping_send.g.dart';
 
 /// JSON conversion for 'ping_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class PingRequest extends Request {
   /// Initialize PingRequest
   const PingRequest({
@@ -23,7 +23,6 @@ class PingRequest extends Request {
   factory PingRequest.fromJson(Map<String, dynamic> json) =>
       _$PingRequestFromJson(json);
 
-  // Properties
   /// Must be `1`
   final int ping;
 

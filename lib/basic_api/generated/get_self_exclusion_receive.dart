@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/get_self_exclusion_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_self_exclusion_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'get_self_exclusion_receive.g.dart';
 
 /// JSON conversion for 'get_self_exclusion_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class GetSelfExclusionResponse extends Response {
   /// Initialize GetSelfExclusionResponse
   const GetSelfExclusionResponse({
@@ -26,7 +26,6 @@ class GetSelfExclusionResponse extends Response {
   factory GetSelfExclusionResponse.fromJson(Map<String, dynamic> json) =>
       _$GetSelfExclusionResponseFromJson(json);
 
-  // Properties
   /// List of values set for self exclusion.
   final Map<String, dynamic> getSelfExclusion;
 

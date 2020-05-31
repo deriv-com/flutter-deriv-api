@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/login_history_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/login_history_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'login_history_send.g.dart';
 
 /// JSON conversion for 'login_history_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class LoginHistoryRequest extends Request {
   /// Initialize LoginHistoryRequest
   const LoginHistoryRequest({
@@ -24,7 +24,6 @@ class LoginHistoryRequest extends Request {
   factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>
       _$LoginHistoryRequestFromJson(json);
 
-  // Properties
   /// [Optional] Apply limit to count of login history records.
   final int limit;
 

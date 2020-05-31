@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'proposal_send.g.dart';
 
 /// JSON conversion for 'proposal_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ProposalRequest extends Request {
   /// Initialize ProposalRequest
   const ProposalRequest({
@@ -41,7 +41,6 @@ class ProposalRequest extends Request {
   factory ProposalRequest.fromJson(Map<String, dynamic> json) =>
       _$ProposalRequestFromJson(json);
 
-  // Properties
   /// [Optional] Proposed contract payout or stake, or multiplier (for lookbacks).
   final num amount;
 

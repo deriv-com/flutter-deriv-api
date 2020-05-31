@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_withdrawal_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_withdrawal_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'mt5_withdrawal_receive.g.dart';
 
 /// JSON conversion for 'mt5_withdrawal_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5WithdrawalResponse extends Response {
   /// Initialize Mt5WithdrawalResponse
   const Mt5WithdrawalResponse({
@@ -27,7 +27,6 @@ class Mt5WithdrawalResponse extends Response {
   factory Mt5WithdrawalResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5WithdrawalResponseFromJson(json);
 
-  // Properties
   /// Deposit reference ID of Binary account.
   final int binaryTransactionId;
 

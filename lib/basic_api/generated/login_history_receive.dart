@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/login_history_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/login_history_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'login_history_receive.g.dart';
 
 /// JSON conversion for 'login_history_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class LoginHistoryResponse extends Response {
   /// Initialize LoginHistoryResponse
   const LoginHistoryResponse({
@@ -26,7 +26,6 @@ class LoginHistoryResponse extends Response {
   factory LoginHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$LoginHistoryResponseFromJson(json);
 
-  // Properties
   /// Array of records of client login/logout activities
   final List<Map<String, dynamic>> loginHistory;
 

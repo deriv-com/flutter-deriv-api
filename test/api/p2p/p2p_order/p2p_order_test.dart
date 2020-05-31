@@ -11,10 +11,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/module_container.
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  group('P2P order group', () {
+  setUpAll(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
-    test('Order create', () async {
+  group('P2P Order Group ->', () {
+    test('Create Order Test', () async {
       final P2POrder order = await P2POrder.create(
         const P2pOrderCreateRequest(advertId: '8', amount: 50.0),
       );
@@ -47,7 +49,7 @@ void main() {
       expect(advertiser.name, 'advertiser CR90000018');
     });
 
-    test('Order list', () async {
+    test('Fetch Order List Test', () async {
       final P2POrderList orderList = await P2POrderList.fetchOrderList();
       final P2POrder firstOrder = orderList.list.first;
 
@@ -79,7 +81,7 @@ void main() {
       expect(advertiser.name, 'advertiser CR90000018');
     });
 
-    test('Order info', () async {
+    test('Fetch Order Information Test', () async {
       final P2POrder order = await P2POrder.fetchOrder(
         const P2pOrderInfoRequest(id: '108'),
       );
@@ -112,7 +114,7 @@ void main() {
       expect(advertiser.name, 'advertiser CR90000018');
     });
 
-    test('Order confirm', () async {
+    test('Order Confirm Test', () async {
       final P2POrder order = await P2POrder.fetchOrder(
         const P2pOrderInfoRequest(id: '107'),
       );
@@ -122,7 +124,7 @@ void main() {
       expect(confirmedOrder.status, OrderStatusType.buyerConfirmed);
     });
 
-    test('Order cancel', () async {
+    test('Cancel Order Test', () async {
       final P2POrder order = await P2POrder.fetchOrder(
         const P2pOrderInfoRequest(id: '107'),
       );
@@ -132,7 +134,7 @@ void main() {
       expect(cancelledOrder.status, OrderStatusType.cancelled);
     });
 
-    test('Order create subscription', () {
+    test('Create and Subscribe to Order Test', () {
       P2POrder.createAndSubscribe(const P2pOrderCreateRequest(
         advertId: '8',
         amount: 50.0,
@@ -173,7 +175,7 @@ void main() {
       ));
     });
 
-    test('Order list subscription', () {
+    test('Fetch Order List and Subscribe Test', () {
       P2POrderList.subscribeOrderList().take(1).listen(expectAsync1(
         (P2POrderList orderList) {
           final P2POrder firstOrder = orderList.list.first;
@@ -213,7 +215,7 @@ void main() {
       ));
     });
 
-    test('Order info subscription', () {
+    test('Order Info Subscription Test', () {
       P2POrder.subscribeOrder(const P2pOrderInfoRequest(id: '107'))
           .take(1)
           .listen(expectAsync1(

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/website_status_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/website_status_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'website_status_send.g.dart';
 
 /// JSON conversion for 'website_status_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class WebsiteStatusRequest extends Request {
   /// Initialize WebsiteStatusRequest
   const WebsiteStatusRequest({
@@ -24,7 +24,6 @@ class WebsiteStatusRequest extends Request {
   factory WebsiteStatusRequest.fromJson(Map<String, dynamic> json) =>
       _$WebsiteStatusRequestFromJson(json);
 
-  // Properties
   /// [Optional] `1` to stream the server/website status updates.
   final int subscribe;
 

@@ -5,7 +5,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// Set account currency class
+/// The result of setting the currency of account.
 class SetAccountCurrency extends SetAccountCurrencyModel {
   /// Initializes
   SetAccountCurrency({
@@ -28,9 +28,11 @@ class SetAccountCurrency extends SetAccountCurrencyModel {
         succeeded: succeeded ?? this.succeeded,
       );
 
-  /// Set account currency, this will be default currency for your account i.e currency for trading, deposit.
+  /// Sets the currency of the account, this will be default currency for your account i.e currency for trading, deposit.
+  ///
   /// Please note that account currency can only be set once, and then can never be changed.
   /// For parameters information refer to [SetAccountCurrencyRequest].
+  /// Throws an [AccountCurrencyException] if API response contains an error
   static Future<SetAccountCurrency> setCurrency(
     SetAccountCurrencyRequest request,
   ) async {

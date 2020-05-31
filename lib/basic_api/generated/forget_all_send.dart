@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_all_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_all_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'forget_all_send.g.dart';
 
 /// JSON conversion for 'forget_all_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ForgetAllRequest extends Request {
   /// Initialize ForgetAllRequest
   const ForgetAllRequest({
@@ -23,7 +23,6 @@ class ForgetAllRequest extends Request {
   factory ForgetAllRequest.fromJson(Map<String, dynamic> json) =>
       _$ForgetAllRequestFromJson(json);
 
-  // Properties
   /// Cancel all streams by type. The value can be either a single type e.g. `"ticks"`, or an array of multiple types e.g. `["candles", "ticks"]`.
   final String forgetAll;
 

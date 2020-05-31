@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_statistics_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_statistics_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'copytrading_statistics_receive.g.dart';
 
 /// JSON conversion for 'copytrading_statistics_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class CopytradingStatisticsResponse extends Response {
   /// Initialize CopytradingStatisticsResponse
   const CopytradingStatisticsResponse({
@@ -26,7 +26,6 @@ class CopytradingStatisticsResponse extends Response {
   factory CopytradingStatisticsResponse.fromJson(Map<String, dynamic> json) =>
       _$CopytradingStatisticsResponseFromJson(json);
 
-  // Properties
   /// Statistics of the trader
   final Map<String, dynamic> copytradingStatistics;
 

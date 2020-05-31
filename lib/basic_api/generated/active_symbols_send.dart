@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'active_symbols_send.g.dart';
 
 /// JSON conversion for 'active_symbols_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ActiveSymbolsRequest extends Request {
   /// Initialize ActiveSymbolsRequest
   const ActiveSymbolsRequest({
@@ -25,7 +25,6 @@ class ActiveSymbolsRequest extends Request {
   factory ActiveSymbolsRequest.fromJson(Map<String, dynamic> json) =>
       _$ActiveSymbolsRequestFromJson(json);
 
-  // Properties
   /// If you use `brief`, only a subset of fields will be returned.
   final String activeSymbols;
 

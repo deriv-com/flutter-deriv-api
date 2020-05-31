@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_reset_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_reset_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'mt5_password_reset_send.g.dart';
 
 /// JSON conversion for 'mt5_password_reset_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5PasswordResetRequest extends Request {
   /// Initialize Mt5PasswordResetRequest
   const Mt5PasswordResetRequest({
@@ -27,7 +27,6 @@ class Mt5PasswordResetRequest extends Request {
   factory Mt5PasswordResetRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordResetRequestFromJson(json);
 
-  // Properties
   /// MT5 user login
   final String login;
 

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/revoke_oauth_app_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/revoke_oauth_app_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'revoke_oauth_app_receive.g.dart';
 
 /// JSON conversion for 'revoke_oauth_app_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class RevokeOauthAppResponse extends Response {
   /// Initialize RevokeOauthAppResponse
   const RevokeOauthAppResponse({
@@ -26,7 +26,6 @@ class RevokeOauthAppResponse extends Response {
   factory RevokeOauthAppResponse.fromJson(Map<String, dynamic> json) =>
       _$RevokeOauthAppResponseFromJson(json);
 
-  // Properties
   /// `1` on success
   final int revokeOauthApp;
 

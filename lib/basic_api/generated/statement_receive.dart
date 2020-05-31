@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/statement_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/statement_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'statement_receive.g.dart';
 
 /// JSON conversion for 'statement_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class StatementResponse extends Response {
   /// Initialize StatementResponse
   const StatementResponse({
@@ -26,7 +26,6 @@ class StatementResponse extends Response {
   factory StatementResponse.fromJson(Map<String, dynamic> json) =>
       _$StatementResponseFromJson(json);
 
-  // Properties
   /// Account statement.
   final Map<String, dynamic> statement;
 

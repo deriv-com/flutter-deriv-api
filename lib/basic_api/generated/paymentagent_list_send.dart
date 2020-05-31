@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_list_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_list_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'paymentagent_list_send.g.dart';
 
 /// JSON conversion for 'paymentagent_list_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class PaymentagentListRequest extends Request {
   /// Initialize PaymentagentListRequest
   const PaymentagentListRequest({
@@ -24,7 +24,6 @@ class PaymentagentListRequest extends Request {
   factory PaymentagentListRequest.fromJson(Map<String, dynamic> json) =>
       _$PaymentagentListRequestFromJson(json);
 
-  // Properties
   /// [Optional] If specified, only payment agents that supports that currency will be returned (obtained from `payout_currencies` call).
   final String currency;
 

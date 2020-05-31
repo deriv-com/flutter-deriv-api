@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'get_limits_send.g.dart';
 
 /// JSON conversion for 'get_limits_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class GetLimitsRequest extends Request {
   /// Initialize GetLimitsRequest
   const GetLimitsRequest({
@@ -23,7 +23,6 @@ class GetLimitsRequest extends Request {
   factory GetLimitsRequest.fromJson(Map<String, dynamic> json) =>
       _$GetLimitsRequestFromJson(json);
 
-  // Properties
   /// Must be `1`
   final int getLimits;
 

@@ -18,7 +18,7 @@ class PaymentAgentList extends PaymentAgentListModel {
           paymentAgents: paymentAgents,
         );
 
-  /// Generate an instance from response
+  /// Generates an instance from response
   factory PaymentAgentList.fromResponse(PaymentagentListResponse response) =>
       PaymentAgentList(
         countries: response.paymentagentList['available_countries']
@@ -33,7 +33,7 @@ class PaymentAgentList extends PaymentAgentListModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   PaymentAgentList copyWith({
     List<CountryModel> countries,
     List<PaymentAgentModel> paymentAgents,
@@ -44,7 +44,9 @@ class PaymentAgentList extends PaymentAgentListModel {
       );
 
   /// Returns a list of Payment Agents for a given country for a given currency.
+  ///
   /// For parameters information refer to [PaymentagentListRequest].
+  /// Throws a [PaymentAgentException] if API response contains an error
   static Future<PaymentAgentList> fetch(
     PaymentagentListRequest request,
   ) async {

@@ -10,8 +10,8 @@ TransferBetweenAccountsResponse _$TransferBetweenAccountsResponseFromJson(
     Map<String, dynamic> json) {
   return TransferBetweenAccountsResponse(
     accounts: (json['accounts'] as List)
-        .map((e) => e as Map<String, dynamic>)
-        .toList(),
+        ?.map((e) => e as Map<String, dynamic>)
+        ?.toList(),
     clientToFullName: json['client_to_full_name'] as String,
     clientToLoginid: json['client_to_loginid'] as String,
     transactionId: json['transaction_id'] as int,

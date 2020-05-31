@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/states_list_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/states_list_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'states_list_send.g.dart';
 
 /// JSON conversion for 'states_list_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class StatesListRequest extends Request {
   /// Initialize StatesListRequest
   const StatesListRequest({
@@ -23,7 +23,6 @@ class StatesListRequest extends Request {
   factory StatesListRequest.fromJson(Map<String, dynamic> json) =>
       _$StatesListRequestFromJson(json);
 
-  // Properties
   /// Client's 2-letter country code (obtained from `residence_list` call)
   final String statesList;
 

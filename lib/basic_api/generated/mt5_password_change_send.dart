@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_change_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_change_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'mt5_password_change_send.g.dart';
 
 /// JSON conversion for 'mt5_password_change_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5PasswordChangeRequest extends Request {
   /// Initialize Mt5PasswordChangeRequest
   const Mt5PasswordChangeRequest({
@@ -27,7 +27,6 @@ class Mt5PasswordChangeRequest extends Request {
   factory Mt5PasswordChangeRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5PasswordChangeRequestFromJson(json);
 
-  // Properties
   /// MT5 user login
   final String login;
 

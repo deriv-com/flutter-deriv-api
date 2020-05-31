@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/states_list_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/states_list_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'states_list_receive.g.dart';
 
 /// JSON conversion for 'states_list_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class StatesListResponse extends Response {
   /// Initialize StatesListResponse
   const StatesListResponse({
@@ -26,7 +26,6 @@ class StatesListResponse extends Response {
   factory StatesListResponse.fromJson(Map<String, dynamic> json) =>
       _$StatesListResponseFromJson(json);
 
-  // Properties
   /// List of states.
   final List<Map<String, dynamic>> statesList;
 

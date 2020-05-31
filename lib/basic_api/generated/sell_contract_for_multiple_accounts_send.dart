@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_contract_for_multiple_accounts_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_contract_for_multiple_accounts_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'sell_contract_for_multiple_accounts_send.g.dart';
 
 /// JSON conversion for 'sell_contract_for_multiple_accounts_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class SellContractForMultipleAccountsRequest extends Request {
   /// Initialize SellContractForMultipleAccountsRequest
   const SellContractForMultipleAccountsRequest({
@@ -27,7 +27,6 @@ class SellContractForMultipleAccountsRequest extends Request {
           Map<String, dynamic> json) =>
       _$SellContractForMultipleAccountsRequestFromJson(json);
 
-  // Properties
   /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
   final num price;
 

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_get_settings_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_get_settings_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'mt5_get_settings_receive.g.dart';
 
 /// JSON conversion for 'mt5_get_settings_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5GetSettingsResponse extends Response {
   /// Initialize Mt5GetSettingsResponse
   const Mt5GetSettingsResponse({
@@ -26,7 +26,6 @@ class Mt5GetSettingsResponse extends Response {
   factory Mt5GetSettingsResponse.fromJson(Map<String, dynamic> json) =>
       _$Mt5GetSettingsResponseFromJson(json);
 
-  // Properties
   /// MT5 user account details
   final Map<String, dynamic> mt5GetSettings;
 

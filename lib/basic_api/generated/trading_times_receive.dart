@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_times_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_times_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'trading_times_receive.g.dart';
 
 /// JSON conversion for 'trading_times_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TradingTimesResponse extends Response {
   /// Initialize TradingTimesResponse
   const TradingTimesResponse({
@@ -26,7 +26,6 @@ class TradingTimesResponse extends Response {
   factory TradingTimesResponse.fromJson(Map<String, dynamic> json) =>
       _$TradingTimesResponseFromJson(json);
 
-  // Properties
   /// The trading times structure is a hierarchy as follows: Market -> SubMarket -> Underlyings
   final Map<String, dynamic> tradingTimes;
 

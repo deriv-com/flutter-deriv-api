@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/contracts_for_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contracts_for_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'contracts_for_send.g.dart';
 
 /// JSON conversion for 'contracts_for_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ContractsForRequest extends Request {
   /// Initialize ContractsForRequest
   const ContractsForRequest({
@@ -26,7 +26,6 @@ class ContractsForRequest extends Request {
   factory ContractsForRequest.fromJson(Map<String, dynamic> json) =>
       _$ContractsForRequestFromJson(json);
 
-  // Properties
   /// The short symbol name (obtained from `active_symbols` call).
   final String contractsFor;
 

@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/authorize_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/authorize_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'authorize_send.g.dart';
 
 /// JSON conversion for 'authorize_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AuthorizeRequest extends Request {
   /// Initialize AuthorizeRequest
   const AuthorizeRequest({
@@ -24,7 +24,6 @@ class AuthorizeRequest extends Request {
   factory AuthorizeRequest.fromJson(Map<String, dynamic> json) =>
       _$AuthorizeRequestFromJson(json);
 
-  // Properties
   /// [Optional] Send this when you use api tokens for authorization and want to track activity using `login_history` call.
   final int addToLoginHistory;
 

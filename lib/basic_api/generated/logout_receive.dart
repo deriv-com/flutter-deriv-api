@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/logout_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/logout_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'logout_receive.g.dart';
 
 /// JSON conversion for 'logout_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class LogoutResponse extends Response {
   /// Initialize LogoutResponse
   const LogoutResponse({
@@ -26,7 +26,6 @@ class LogoutResponse extends Response {
   factory LogoutResponse.fromJson(Map<String, dynamic> json) =>
       _$LogoutResponseFromJson(json);
 
-  // Properties
   /// The result of logout request which is 1
   final int logout;
 

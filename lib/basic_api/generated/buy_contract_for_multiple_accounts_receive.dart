@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_contract_for_multiple_accounts_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_contract_for_multiple_accounts_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'buy_contract_for_multiple_accounts_receive.g.dart';
 
 /// JSON conversion for 'buy_contract_for_multiple_accounts_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class BuyContractForMultipleAccountsResponse extends Response {
   /// Initialize BuyContractForMultipleAccountsResponse
   const BuyContractForMultipleAccountsResponse({
@@ -27,7 +27,6 @@ class BuyContractForMultipleAccountsResponse extends Response {
           Map<String, dynamic> json) =>
       _$BuyContractForMultipleAccountsResponseFromJson(json);
 
-  // Properties
   /// Receipt confirmation for the purchase
   final Map<String, dynamic> buyContractForMultipleAccounts;
 

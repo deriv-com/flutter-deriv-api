@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_contract_for_multiple_accounts_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_contract_for_multiple_accounts_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'buy_contract_for_multiple_accounts_send.g.dart';
 
 /// JSON conversion for 'buy_contract_for_multiple_accounts_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class BuyContractForMultipleAccountsRequest extends Request {
   /// Initialize BuyContractForMultipleAccountsRequest
   const BuyContractForMultipleAccountsRequest({
@@ -27,7 +27,6 @@ class BuyContractForMultipleAccountsRequest extends Request {
           Map<String, dynamic> json) =>
       _$BuyContractForMultipleAccountsRequestFromJson(json);
 
-  // Properties
   /// Either the ID received from a Price Proposal (`proposal` call), or `1` if contract buy parameters are passed in the `parameters` field.
   final String buyContractForMultipleAccounts;
 

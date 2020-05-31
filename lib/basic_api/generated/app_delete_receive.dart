@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/app_delete_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_delete_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'app_delete_receive.g.dart';
 
 /// JSON conversion for 'app_delete_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AppDeleteResponse extends Response {
   /// Initialize AppDeleteResponse
   const AppDeleteResponse({
@@ -26,7 +26,6 @@ class AppDeleteResponse extends Response {
   factory AppDeleteResponse.fromJson(Map<String, dynamic> json) =>
       _$AppDeleteResponseFromJson(json);
 
-  // Properties
   /// 1 on success
   final int appDelete;
 

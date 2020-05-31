@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'buy_receive.g.dart';
 
 /// JSON conversion for 'buy_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class BuyResponse extends Response {
   /// Initialize BuyResponse
   const BuyResponse({
@@ -27,7 +27,6 @@ class BuyResponse extends Response {
   factory BuyResponse.fromJson(Map<String, dynamic> json) =>
       _$BuyResponseFromJson(json);
 
-  // Properties
   /// Receipt confirmation for the purchase
   final Map<String, dynamic> buy;
 

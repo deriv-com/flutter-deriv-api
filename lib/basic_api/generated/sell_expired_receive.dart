@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_expired_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_expired_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'sell_expired_receive.g.dart';
 
 /// JSON conversion for 'sell_expired_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class SellExpiredResponse extends Response {
   /// Initialize SellExpiredResponse
   const SellExpiredResponse({
@@ -26,7 +26,6 @@ class SellExpiredResponse extends Response {
   factory SellExpiredResponse.fromJson(Map<String, dynamic> json) =>
       _$SellExpiredResponseFromJson(json);
 
-  // Properties
   /// Sell expired contract object containing count of contracts sold
   final Map<String, dynamic> sellExpired;
 

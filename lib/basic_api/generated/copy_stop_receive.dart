@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_stop_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_stop_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'copy_stop_receive.g.dart';
 
 /// JSON conversion for 'copy_stop_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class CopyStopResponse extends Response {
   /// Initialize CopyStopResponse
   const CopyStopResponse({
@@ -26,7 +26,6 @@ class CopyStopResponse extends Response {
   factory CopyStopResponse.fromJson(Map<String, dynamic> json) =>
       _$CopyStopResponseFromJson(json);
 
-  // Properties
   /// Copy stopping confirmation. Returns 1 is success.
   final int copyStop;
 

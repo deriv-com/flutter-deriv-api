@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/cashier_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cashier_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'cashier_send.g.dart';
 
 /// JSON conversion for 'cashier_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class CashierRequest extends Request {
   /// Initialize CashierRequest
   const CashierRequest({
@@ -26,7 +26,6 @@ class CashierRequest extends Request {
   factory CashierRequest.fromJson(Map<String, dynamic> json) =>
       _$CashierRequestFromJson(json);
 
-  // Properties
   /// Operation which needs to be requested from cashier
   final String cashier;
 

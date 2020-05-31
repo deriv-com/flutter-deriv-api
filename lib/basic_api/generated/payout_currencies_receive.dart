@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/payout_currencies_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/payout_currencies_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'payout_currencies_receive.g.dart';
 
 /// JSON conversion for 'payout_currencies_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class PayoutCurrenciesResponse extends Response {
   /// Initialize PayoutCurrenciesResponse
   const PayoutCurrenciesResponse({
@@ -26,7 +26,6 @@ class PayoutCurrenciesResponse extends Response {
   factory PayoutCurrenciesResponse.fromJson(Map<String, dynamic> json) =>
       _$PayoutCurrenciesResponseFromJson(json);
 
-  // Properties
   /// Available payout currencies. Note: if a user is logged in, only the currency available for the account will be returned.
   final List<String> payoutCurrencies;
 

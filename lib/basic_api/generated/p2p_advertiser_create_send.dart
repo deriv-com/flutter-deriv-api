@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_create_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_create_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'p2p_advertiser_create_send.g.dart';
 
 /// JSON conversion for 'p2p_advertiser_create_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pAdvertiserCreateRequest extends Request {
   /// Initialize P2pAdvertiserCreateRequest
   const P2pAdvertiserCreateRequest({
@@ -28,7 +28,6 @@ class P2pAdvertiserCreateRequest extends Request {
   factory P2pAdvertiserCreateRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertiserCreateRequestFromJson(json);
 
-  // Properties
   /// [Optional] Advertiser's contact information, to be used as a default for new sell adverts.
   final String contactInfo;
 

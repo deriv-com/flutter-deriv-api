@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/get_financial_assessment_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_financial_assessment_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'get_financial_assessment_send.g.dart';
 
 /// JSON conversion for 'get_financial_assessment_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class GetFinancialAssessmentRequest extends Request {
   /// Initialize GetFinancialAssessmentRequest
   const GetFinancialAssessmentRequest({
@@ -23,7 +23,6 @@ class GetFinancialAssessmentRequest extends Request {
   factory GetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       _$GetFinancialAssessmentRequestFromJson(json);
 
-  // Properties
   /// Must be `1`
   final int getFinancialAssessment;
 

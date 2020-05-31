@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_list_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_list_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'p2p_advert_list_receive.g.dart';
 
 /// JSON conversion for 'p2p_advert_list_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pAdvertListResponse extends Response {
   /// Initialize P2pAdvertListResponse
   const P2pAdvertListResponse({
@@ -26,7 +26,6 @@ class P2pAdvertListResponse extends Response {
   factory P2pAdvertListResponse.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertListResponseFromJson(json);
 
-  // Properties
   /// P2P adverts list.
   final Map<String, dynamic> p2pAdvertList;
 

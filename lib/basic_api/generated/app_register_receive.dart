@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/app_register_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_register_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'app_register_receive.g.dart';
 
 /// JSON conversion for 'app_register_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AppRegisterResponse extends Response {
   /// Initialize AppRegisterResponse
   const AppRegisterResponse({
@@ -26,7 +26,6 @@ class AppRegisterResponse extends Response {
   factory AppRegisterResponse.fromJson(Map<String, dynamic> json) =>
       _$AppRegisterResponseFromJson(json);
 
-  // Properties
   /// The information of the created application.
   final Map<String, dynamic> appRegister;
 

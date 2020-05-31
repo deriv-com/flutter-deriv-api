@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'sell_receive.g.dart';
 
 /// JSON conversion for 'sell_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class SellResponse extends Response {
   /// Initialize SellResponse
   const SellResponse({
@@ -26,7 +26,6 @@ class SellResponse extends Response {
   factory SellResponse.fromJson(Map<String, dynamic> json) =>
       _$SellResponseFromJson(json);
 
-  // Properties
   /// Receipt for the transaction
   final Map<String, dynamic> sell;
 

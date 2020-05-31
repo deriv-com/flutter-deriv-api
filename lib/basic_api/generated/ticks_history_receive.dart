@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_history_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_history_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'ticks_history_receive.g.dart';
 
 /// JSON conversion for 'ticks_history_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TicksHistoryResponse extends Response {
   /// Initialize TicksHistoryResponse
   const TicksHistoryResponse({
@@ -29,7 +29,6 @@ class TicksHistoryResponse extends Response {
   factory TicksHistoryResponse.fromJson(Map<String, dynamic> json) =>
       _$TicksHistoryResponseFromJson(json);
 
-  // Properties
   /// Array of OHLC (open/high/low/close) price values for the given time (only for style=`candles`)
   final List<Map<String, dynamic>> candles;
 

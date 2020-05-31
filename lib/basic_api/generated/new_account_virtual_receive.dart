@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_virtual_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_virtual_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'new_account_virtual_receive.g.dart';
 
 /// JSON conversion for 'new_account_virtual_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class NewAccountVirtualResponse extends Response {
   /// Initialize NewAccountVirtualResponse
   const NewAccountVirtualResponse({
@@ -26,7 +26,6 @@ class NewAccountVirtualResponse extends Response {
   factory NewAccountVirtualResponse.fromJson(Map<String, dynamic> json) =>
       _$NewAccountVirtualResponseFromJson(json);
 
-  // Properties
   /// New virtual-money account details
   final Map<String, dynamic> newAccountVirtual;
 

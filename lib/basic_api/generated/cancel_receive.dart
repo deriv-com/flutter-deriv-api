@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/cancel_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cancel_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'cancel_receive.g.dart';
 
 /// JSON conversion for 'cancel_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class CancelResponse extends Response {
   /// Initialize CancelResponse
   const CancelResponse({
@@ -26,7 +26,6 @@ class CancelResponse extends Response {
   factory CancelResponse.fromJson(Map<String, dynamic> json) =>
       _$CancelResponseFromJson(json);
 
-  // Properties
   /// Receipt for the transaction
   final Map<String, dynamic> cancel;
 

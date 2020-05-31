@@ -54,7 +54,7 @@ class FinancialAssessment extends FinancialAssessmentModel {
           tradingScore: tradingScore,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory FinancialAssessment.fromJson(Map<String, dynamic> json) =>
       FinancialAssessment(
         accountTurnover: json['account_turnover'],
@@ -85,7 +85,7 @@ class FinancialAssessment extends FinancialAssessmentModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   FinancialAssessment copyWith({
     String accountTurnover,
     String binaryOptionsTradingExperience,
@@ -140,10 +140,12 @@ class FinancialAssessment extends FinancialAssessmentModel {
         tradingScore: tradingScore ?? this.tradingScore,
       );
 
-  /// This call gets the financial assessment details.
+  /// Gets the financial assessment details.
+  ///
   /// The 'financial assessment' is a questionnaire that clients of certain Landing Companies need to complete,
   /// due to regulatory and KYC (know your client) requirements.
-  static Future<FinancialAssessment> getAssessment(
+  /// Throws a [FinancialAssessmentException] if API response contains an error
+  static Future<FinancialAssessment> fetchAssessment(
     GetFinancialAssessmentRequest request,
   ) async {
     final GetFinancialAssessmentResponse response =

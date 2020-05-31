@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/asset_index_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/asset_index_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'asset_index_receive.g.dart';
 
 /// JSON conversion for 'asset_index_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AssetIndexResponse extends Response {
   /// Initialize AssetIndexResponse
   const AssetIndexResponse({
@@ -26,7 +26,6 @@ class AssetIndexResponse extends Response {
   factory AssetIndexResponse.fromJson(Map<String, dynamic> json) =>
       _$AssetIndexResponseFromJson(json);
 
-  // Properties
   /// List of underlyings by their display name and symbol followed by their available contract types and duration boundaries.
   final List<dynamic> assetIndex;
 

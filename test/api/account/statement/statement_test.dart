@@ -9,9 +9,11 @@ import 'package:flutter_deriv_api/services/dependency_injector/module_container.
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  test('statement', () async {
+  setUp(() {
     ModuleContainer().initialize(Injector.getInjector(), isMock: true);
+  });
 
+  test('Statement Test', () async {
     final Statement statement = await Statement.fetch(
       const StatementRequest(
         actionType: 'deposit',

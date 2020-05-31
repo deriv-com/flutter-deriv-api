@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// User information and settings.
+/// User information and settings (email, date of birth, address etc).
 class AccountSettings extends AccountSettingsModel {
   /// Initializes
   AccountSettings({
@@ -65,7 +65,7 @@ class AccountSettings extends AccountSettingsModel {
           userHash: userHash,
         );
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory AccountSettings.fromJson(Map<String, dynamic> json) =>
       AccountSettings(
         accountOpeningReason: json['account_opening_reason'],
@@ -100,10 +100,14 @@ class AccountSettings extends AccountSettingsModel {
   /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Fetches account's setting
-  static Future<AccountSettings> fetchAccountSetting() async {
+  /// Gets user's settings (email, date of birth, address etc)
+  ///
+  /// Throws an [AccountSettingsException] if API response contains an error
+  static Future<AccountSettings> fetchAccountSetting([
+    GetSettingsRequest request,
+  ]) async {
     final GetSettingsResponse response = await _api.call(
-      request: const GetSettingsRequest(),
+      request: request ?? const GetSettingsRequest(),
     );
 
     checkException(
@@ -115,8 +119,10 @@ class AccountSettings extends AccountSettingsModel {
     return AccountSettings.fromJson(response.getSettings);
   }
 
-  /// Change account's setting
-  Future<SetAccountSettingModel> changeSetting(
+  /// Changes the account's settings with parameters specified as [SetSettingsRequest]
+  ///
+  /// Throws an [AccountSettingsException] if API response contains an error
+  static Future<SetAccountSettingModel> changeAccountSetting(
     SetSettingsRequest request,
   ) async {
     final SetSettingsResponse response = await _api.call(request: request);
@@ -130,7 +136,40 @@ class AccountSettings extends AccountSettingsModel {
     return SetAccountSettingModel(succeeded: getBool(response.setSettings));
   }
 
-  /// Generate a copy of instance with given parameters
+  /// Change account's setting
+  Future<SetAccountSettingModel> changeSetting({
+    String secretAnswer,
+    String secretQuestion,
+  }) =>
+      changeAccountSetting(
+        SetSettingsRequest(
+          accountOpeningReason: accountOpeningReason,
+          addressCity: addressCity,
+          addressLine1: addressLine1,
+          addressLine2: addressLine2,
+          addressPostcode: addressPostcode,
+          addressState: addressState,
+          allowCopiers: getInt(allowCopiers),
+          citizen: citizen,
+          dateOfBirth: dateOfBirth
+              .toString(), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+          emailConsent: getInt(emailConsent),
+          firstName: firstName,
+          lastName: lastName,
+          phone: phone,
+          placeOfBirth: placeOfBirth
+              .toString(), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+          requestProfessionalStatus: getInt(requestProfessionalStatus),
+          residence: residence,
+          salutation: salutation,
+          secretAnswer: secretAnswer,
+          secretQuestion: secretQuestion,
+          taxIdentificationNumber: taxIdentificationNumber,
+          taxResidence: taxResidence,
+        ),
+      );
+
+  /// Generates a copy of instance with given parameters
   AccountSettings copyWith({
     String accountOpeningReason,
     String addressCity,

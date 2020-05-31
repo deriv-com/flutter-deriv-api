@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_info_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_info_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'p2p_advertiser_info_send.g.dart';
 
 /// JSON conversion for 'p2p_advertiser_info_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class P2pAdvertiserInfoRequest extends Request {
   /// Initialize P2pAdvertiserInfoRequest
   const P2pAdvertiserInfoRequest({
@@ -25,7 +25,6 @@ class P2pAdvertiserInfoRequest extends Request {
   factory P2pAdvertiserInfoRequest.fromJson(Map<String, dynamic> json) =>
       _$P2pAdvertiserInfoRequestFromJson(json);
 
-  // Properties
   /// [Optional] The unique identifier for this advertiser. If not provided, returns advertiser information about the current account.
   final String id;
 

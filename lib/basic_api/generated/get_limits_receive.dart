@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'get_limits_receive.g.dart';
 
 /// JSON conversion for 'get_limits_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class GetLimitsResponse extends Response {
   /// Initialize GetLimitsResponse
   const GetLimitsResponse({
@@ -26,7 +26,6 @@ class GetLimitsResponse extends Response {
   factory GetLimitsResponse.fromJson(Map<String, dynamic> json) =>
       _$GetLimitsResponseFromJson(json);
 
-  // Properties
   /// Trading limits of real account user
   final Map<String, dynamic> getLimits;
 

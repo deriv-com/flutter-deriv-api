@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_withdrawal_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_withdrawal_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'mt5_withdrawal_send.g.dart';
 
 /// JSON conversion for 'mt5_withdrawal_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class Mt5WithdrawalRequest extends Request {
   /// Initialize Mt5WithdrawalRequest
   const Mt5WithdrawalRequest({
@@ -26,7 +26,6 @@ class Mt5WithdrawalRequest extends Request {
   factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>
       _$Mt5WithdrawalRequestFromJson(json);
 
-  // Properties
   /// Amount to withdraw (in the currency of the MT5 account); min = $1 or an equivalent amount, max = $20000 or an equivalent amount.
   final num amount;
 

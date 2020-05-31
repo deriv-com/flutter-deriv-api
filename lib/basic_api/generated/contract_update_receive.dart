@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'contract_update_receive.g.dart';
 
 /// JSON conversion for 'contract_update_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class ContractUpdateResponse extends Response {
   /// Initialize ContractUpdateResponse
   const ContractUpdateResponse({
@@ -26,7 +26,6 @@ class ContractUpdateResponse extends Response {
   factory ContractUpdateResponse.fromJson(Map<String, dynamic> json) =>
       _$ContractUpdateResponseFromJson(json);
 
-  // Properties
   /// Contains the update status of the request
   final Map<String, dynamic> contractUpdate;
 

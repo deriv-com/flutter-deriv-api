@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/verify_email_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/verify_email_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'verify_email_receive.g.dart';
 
 /// JSON conversion for 'verify_email_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class VerifyEmailResponse extends Response {
   /// Initialize VerifyEmailResponse
   const VerifyEmailResponse({
@@ -26,7 +26,6 @@ class VerifyEmailResponse extends Response {
   factory VerifyEmailResponse.fromJson(Map<String, dynamic> json) =>
       _$VerifyEmailResponseFromJson(json);
 
-  // Properties
   /// 1 for success (secure code has been sent to the email address)
   final int verifyEmail;
 

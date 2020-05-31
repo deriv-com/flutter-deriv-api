@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_receive.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
@@ -6,7 +6,7 @@ import '../response.dart';
 part 'ticks_receive.g.dart';
 
 /// JSON conversion for 'ticks_receive'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TicksResponse extends Response {
   /// Initialize TicksResponse
   const TicksResponse({
@@ -27,7 +27,6 @@ class TicksResponse extends Response {
   factory TicksResponse.fromJson(Map<String, dynamic> json) =>
       _$TicksResponseFromJson(json);
 
-  // Properties
   /// For subscription requests only.
   final Map<String, dynamic> subscription;
 

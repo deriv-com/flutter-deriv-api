@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/tnc_approval_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/tnc_approval_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'tnc_approval_send.g.dart';
 
 /// JSON conversion for 'tnc_approval_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class TncApprovalRequest extends Request {
   /// Initialize TncApprovalRequest
   const TncApprovalRequest({
@@ -24,7 +24,6 @@ class TncApprovalRequest extends Request {
   factory TncApprovalRequest.fromJson(Map<String, dynamic> json) =>
       _$TncApprovalRequestFromJson(json);
 
-  // Properties
   /// Must be `1`
   final num tncApproval;
 

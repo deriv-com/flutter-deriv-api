@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/oauth_apps_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/oauth_apps_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'oauth_apps_send.g.dart';
 
 /// JSON conversion for 'oauth_apps_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class OauthAppsRequest extends Request {
   /// Initialize OauthAppsRequest
   const OauthAppsRequest({
@@ -23,7 +23,6 @@ class OauthAppsRequest extends Request {
   factory OauthAppsRequest.fromJson(Map<String, dynamic> json) =>
       _$OauthAppsRequestFromJson(json);
 
-  // Properties
   /// Must be `1`
   final int oauthApps;
 

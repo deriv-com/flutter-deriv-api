@@ -1,4 +1,4 @@
-/// generated automatically from flutter_deriv_api|lib/basic_api/generated/app_register_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_register_send.json
 import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
@@ -6,7 +6,7 @@ import '../request.dart';
 part 'app_register_send.g.dart';
 
 /// JSON conversion for 'app_register_send'
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
 class AppRegisterRequest extends Request {
   /// Initialize AppRegisterRequest
   const AppRegisterRequest({
@@ -32,7 +32,6 @@ class AppRegisterRequest extends Request {
   factory AppRegisterRequest.fromJson(Map<String, dynamic> json) =>
       _$AppRegisterRequestFromJson(json);
 
-  // Properties
   /// [Optional] Markup to be added to contract prices (as a percentage of contract payout).
   final num appMarkupPercentage;
 
