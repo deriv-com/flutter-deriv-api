@@ -102,9 +102,11 @@ class JsonSchemaParser {
       );
 
     for (_SchemaModel model in models) {
-      result.write(
-        isSubclass ? '${model.type} ${model.title},' : 'this.${model.title},',
-      );
+      result
+        ..write('${model.isRequired ? '@required' : ''} ')
+        ..write(
+          isSubclass ? '${model.type} ${model.title},' : 'this.${model.title},',
+        );
     }
 
     if (isSubclass) {
@@ -282,6 +284,7 @@ class JsonSchemaParser {
               type: isBoolean ? 'boolean' : type,
               arrayType: arrayType,
             )
+            ..isRequired = _isRequired(entry)
             ..description = description.replaceAll('\n', '\n/// ')
             ..schemaTitle = name
             ..schemaType = type
@@ -341,6 +344,10 @@ class JsonSchemaParser {
 
   static bool _isBoolean(dynamic entry) =>
       entry.value['type'] == 'integer' && entry.value['enum']?.length == 2;
+
+  static bool _isRequired(dynamic entry) =>
+      entry.value['type']?.length != 2 &&
+      !entry.value['description'].contains('[Optional]');
 }
 
 /// Model to store schema information
@@ -353,6 +360,9 @@ class _SchemaModel {
 
   /// Object type
   String type;
+
+  /// Is required field
+  bool isRequired;
 
   /// Field description
   String description;
