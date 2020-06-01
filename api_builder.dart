@@ -106,6 +106,7 @@ class APIBuilder extends Builder {
           '''
             /// Generated automatically from ${buildStep.inputId}
             import 'package:json_annotation/json_annotation.dart';
+            ${_hasRequiredField(methodName, schema, schemaType, properties) ? 'import \'package:meta/meta.dart\';' : ''}
 
             import '../${schemaType == 'send' ? 'request' : 'response'}.dart';
 
@@ -169,7 +170,7 @@ class APIBuilder extends Builder {
             }
           }
 
-          return 'this.${ReCase(key).camelCase}';
+          return '${_isRequired(key, schemaType, property) ? '@required ' : ''} this.${ReCase(key).camelCase}';
         },
       ).join(', ');
 
@@ -202,7 +203,8 @@ class APIBuilder extends Builder {
 
         if (schemaType == 'array') {
           // Some types aren't specified - forget_all for example
-          final String itemType = property.items?.type?.toString() ?? 'undefined';
+          final String itemType =
+              property.items?.type?.toString() ?? 'undefined';
 
           return 'List<${typeMap[itemType]}>';
         } else {
@@ -298,6 +300,42 @@ class APIBuilder extends Builder {
 
   Map<String, String> _getSuperClassFields(String schemaType) =>
       schemaType == 'send' ? requestCommonFields : responseCommonFields;
+
+  bool _isRequired(
+    String key,
+    String schemaType,
+    JsonSchema property,
+  ) =>
+      schemaType == 'send' &&
+      key != 'subscribe' &&
+      property.typeList?.length == 1 &&
+      !property.description.contains('[Optional]');
+
+  bool _hasRequiredField(
+    String methodName,
+    JsonSchema schema,
+    String schemaType,
+    List<String> properties,
+  ) {
+    if (schemaType == 'send') {
+      for (String key in properties) {
+        final JsonSchema property = schema.properties[key];
+
+        if (property.typeList?.isNotEmpty ?? false) {
+          if (key == methodName &&
+              (property.type?.toString() ?? 'string') == 'integer') {
+            continue;
+          }
+        }
+
+        if (_isRequired(key, schemaType, property)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
 
   String _getEquatableFields(String classFullName, List<String> properties) {
     switch (classFullName) {

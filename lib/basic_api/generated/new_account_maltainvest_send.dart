@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_maltainvest_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,11 +11,11 @@ part 'new_account_maltainvest_send.g.dart';
 class NewAccountMaltainvestRequest extends Request {
   /// Initialize NewAccountMaltainvestRequest
   const NewAccountMaltainvestRequest({
-    this.acceptRisk,
+    @required this.acceptRisk,
     this.accountOpeningReason,
     this.accountTurnover,
-    this.addressCity,
-    this.addressLine1,
+    @required this.addressCity,
+    @required this.addressLine1,
     this.addressLine2,
     this.addressPostcode,
     this.addressState,
@@ -25,31 +26,31 @@ class NewAccountMaltainvestRequest extends Request {
     this.cfdTradingFrequency,
     this.citizen,
     this.clientType,
-    this.dateOfBirth,
-    this.educationLevel,
-    this.employmentIndustry,
+    @required this.dateOfBirth,
+    @required this.educationLevel,
+    @required this.employmentIndustry,
     this.employmentStatus,
-    this.estimatedWorth,
-    this.firstName,
+    @required this.estimatedWorth,
+    @required this.firstName,
     this.forexTradingExperience,
     this.forexTradingFrequency,
-    this.incomeSource,
-    this.lastName,
-    this.netIncome,
+    @required this.incomeSource,
+    @required this.lastName,
+    @required this.netIncome,
     this.newAccountMaltainvest = 1,
     this.nonPepDeclaration,
-    this.occupation,
+    @required this.occupation,
     this.otherInstrumentsTradingExperience,
     this.otherInstrumentsTradingFrequency,
     this.phone,
     this.placeOfBirth,
-    this.residence,
-    this.salutation,
+    @required this.residence,
+    @required this.salutation,
     this.secretAnswer,
     this.secretQuestion,
     this.sourceOfWealth,
-    this.taxIdentificationNumber,
-    this.taxResidence,
+    @required this.taxIdentificationNumber,
+    @required this.taxResidence,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_financial_assessment_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -15,15 +16,15 @@ class SetFinancialAssessmentRequest extends Request {
     this.binaryOptionsTradingFrequency,
     this.cfdTradingExperience,
     this.cfdTradingFrequency,
-    this.educationLevel,
-    this.employmentIndustry,
+    @required this.educationLevel,
+    @required this.employmentIndustry,
     this.employmentStatus,
-    this.estimatedWorth,
+    @required this.estimatedWorth,
     this.forexTradingExperience,
     this.forexTradingFrequency,
-    this.incomeSource,
-    this.netIncome,
-    this.occupation,
+    @required this.incomeSource,
+    @required this.netIncome,
+    @required this.occupation,
     this.otherInstrumentsTradingExperience,
     this.otherInstrumentsTradingFrequency,
     this.setFinancialAssessment = 1,

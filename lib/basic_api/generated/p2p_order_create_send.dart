@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_create_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,8 +11,8 @@ part 'p2p_order_create_send.g.dart';
 class P2pOrderCreateRequest extends Request {
   /// Initialize P2pOrderCreateRequest
   const P2pOrderCreateRequest({
-    this.advertId,
-    this.amount,
+    @required this.advertId,
+    @required this.amount,
     this.contactInfo,
     this.p2pOrderCreate = 1,
     this.paymentInfo,

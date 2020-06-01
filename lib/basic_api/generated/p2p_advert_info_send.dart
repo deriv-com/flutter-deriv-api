@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_info_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,7 +11,7 @@ part 'p2p_advert_info_send.g.dart';
 class P2pAdvertInfoRequest extends Request {
   /// Initialize P2pAdvertInfoRequest
   const P2pAdvertInfoRequest({
-    this.id,
+    @required this.id,
     this.p2pAdvertInfo = 1,
     Map<String, dynamic> passthrough,
     int reqId,

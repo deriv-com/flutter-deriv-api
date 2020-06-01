@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_update_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -16,9 +17,9 @@ class AppUpdateRequest extends Request {
     this.github,
     this.googleplay,
     this.homepage,
-    this.name,
-    this.redirectUri,
-    this.scopes,
+    @required this.name,
+    @required this.redirectUri,
+    @required this.scopes,
     this.verificationUri,
     Map<String, dynamic> passthrough,
     int reqId,

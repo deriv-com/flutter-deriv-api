@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_stop_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,7 +11,7 @@ part 'copy_stop_send.g.dart';
 class CopyStopRequest extends Request {
   /// Initialize CopyStopRequest
   const CopyStopRequest({
-    this.copyStop,
+    @required this.copyStop,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

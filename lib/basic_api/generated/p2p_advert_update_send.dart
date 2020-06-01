@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_update_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -11,7 +12,7 @@ class P2pAdvertUpdateRequest extends Request {
   /// Initialize P2pAdvertUpdateRequest
   const P2pAdvertUpdateRequest({
     this.delete,
-    this.id,
+    @required this.id,
     this.isActive,
     this.p2pAdvertUpdate = 1,
     Map<String, dynamic> passthrough,

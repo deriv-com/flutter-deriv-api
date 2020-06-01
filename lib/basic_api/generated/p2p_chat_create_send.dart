@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_chat_create_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,7 +11,7 @@ part 'p2p_chat_create_send.g.dart';
 class P2pChatCreateRequest extends Request {
   /// Initialize P2pChatCreateRequest
   const P2pChatCreateRequest({
-    this.orderId,
+    @required this.orderId,
     this.p2pChatCreate = 1,
     Map<String, dynamic> passthrough,
     int reqId,
