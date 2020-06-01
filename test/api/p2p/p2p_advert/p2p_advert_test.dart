@@ -168,41 +168,35 @@ void main() {
 
     test('Activate Advert Test', () async {
       final P2PAdvert advert =
-          await P2PAdvert.fetchAdvert(const P2pAdvertInfoRequest(id: '25'));
+          await P2PAdvert.fetchAdvert(const P2pAdvertInfoRequest(id: '21'));
       final P2PAdvert activatedAdvert =
           (await advert.activate()).copyWith(isActive: true);
 
       expect(activatedAdvert.accountCurrency, 'USD');
 
-      expect(activatedAdvert.advertiserDetails.id, '3');
+      expect(activatedAdvert.advertiserDetails.id, '2');
       expect(activatedAdvert.advertiserDetails.name, 'za advertiser 1010');
 
-      expect(activatedAdvert.amount, 100);
-      expect(activatedAdvert.amountDisplay, '100.00');
-      expect(
-        activatedAdvert.contactInfo,
-        'Please transfer to account number 1234',
-      );
-      expect(activatedAdvert.counterpartyType, TransactionType.buy);
+      expect(activatedAdvert.counterpartyType, TransactionType.sell);
       expect(activatedAdvert.country, 'za');
       expect(activatedAdvert.createdTime, getDateTime(1589279547));
-      expect(activatedAdvert.description, 'advert information');
-      expect(activatedAdvert.id, '25');
+      expect(
+        activatedAdvert.description,
+        'Please transfer to account number 1234',
+      );
+      expect(activatedAdvert.id, '21');
       expect(activatedAdvert.isActive, true);
       expect(activatedAdvert.localCurrency, 'ZAR');
-      expect(activatedAdvert.maxOrderAmount, 50);
-      expect(activatedAdvert.maxOrderAmountDisplay, '50.00');
-      expect(activatedAdvert.minOrderAmount, 20);
-      expect(activatedAdvert.minOrderAmountDisplay, '20.00');
-      expect(activatedAdvert.paymentInfo, 'it is a sell order');
+      expect(activatedAdvert.maxOrderAmountLimit, 15);
+      expect(activatedAdvert.maxOrderAmountLimitDisplay, '15.00');
+      expect(activatedAdvert.minOrderAmountLimit, 3);
+      expect(activatedAdvert.minOrderAmountLimitDisplay, '3.00');
       expect(activatedAdvert.paymentMethod, PaymentMethod.bankTransfer);
       expect(activatedAdvert.price, 2.3);
       expect(activatedAdvert.priceDisplay, '2.30');
-      expect(activatedAdvert.rate, 2.7);
-      expect(activatedAdvert.rateDisplay, '2.70');
-      expect(activatedAdvert.remainingAmount, 50);
-      expect(activatedAdvert.remainingAmountDisplay, '50.00');
-      expect(activatedAdvert.type, TransactionType.sell);
+      expect(activatedAdvert.rate, 2.3);
+      expect(activatedAdvert.rateDisplay, '2.30');
+      expect(activatedAdvert.type, TransactionType.buy);
     });
 
     test('Deactivate Advert Test', () async {

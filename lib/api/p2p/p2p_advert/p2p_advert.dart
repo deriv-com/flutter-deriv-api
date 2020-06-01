@@ -268,6 +268,36 @@ class P2PAdvert extends P2PAdvertModel {
     return P2PAdvert.fromJson(response.p2pAdvertUpdate);
   }
 
+  /// Updates a P2P (peer to peer) advert. Can only be used by the advertiser.
+  ///
+  /// [delete] to permanently delete the advert
+  /// [isActive] to activate or deactivate the advert
+  /// Throws a [P2PAdvertException] if API response contains an error
+  Future<P2PAdvert> update({bool delete, bool isActive}) => updateAdvert(
+        P2pAdvertUpdateRequest(
+          id: id,
+          delete: getInt(delete ?? false),
+          isActive: getInt(isActive ?? this.isActive),
+        ),
+      );
+
+  /// Deletes permanently a P2P (peer to peer) advert. Can only be used by the advertiser.
+  ///
+  /// Throws a [P2PAdvertException] if API response contains an error
+  Future<P2PAdvert> delete() => update(delete: true);
+
+  /// Activates a P2P (peer to peer) advert. Can only be used by the advertiser.
+  ///
+  /// Throws a [P2PAdvertException] if API response contains an error
+  Future<P2PAdvert> activate() async =>
+      isActive ? this : update(isActive: true);
+
+  /// Deactivates a P2P (peer to peer) advert. Can only be used by the advertiser.
+  ///
+  /// Throws a [P2PAdvertException] if API response contains an error
+  Future<P2PAdvert> deactivate() async =>
+      isActive ? update(isActive: false) : this;
+
   /// Creates order on this advert.
   ///
   /// [amount] is the amount of currency to be bought or sold.
@@ -287,35 +317,4 @@ class P2PAdvert extends P2PAdvertModel {
           paymentInfo: paymentInfo,
         ),
       );
-
-  /// Updates a P2P (peer to peer) advert. Can only be used by the advertiser.
-  ///
-  /// [delete] to permanently delete the advert
-  /// [isActive] to activate or deactivate the advert
-  /// Throws a [P2PAdvertException] if API response contains an error
-  Future<P2PAdvert> update({bool delete, bool isActive}) => updateAdvert(
-        P2pAdvertUpdateRequest(
-          id: id,
-          delete: getInt(delete ?? false),
-          isActive: getInt(isActive ?? this.isActive),
-        ),
-      );
-
-  /// Deletes permanently a P2P (peer to peer) advert. Can only be used by the advertiser.
-  ///
-  /// Throws a [P2PAdvertException] if API response contains an error
-  Future<P2PAdvert> delete() =>
-      updateAdvert(P2pAdvertUpdateRequest(id: id, delete: 1));
-
-  /// Activates a P2P (peer to peer) advert. Can only be used by the advertiser.
-  ///
-  /// Throws a [P2PAdvertException] if API response contains an error
-  Future<P2PAdvert> activate() =>
-      updateAdvert(P2pAdvertUpdateRequest(id: id, isActive: 1));
-
-  /// Deactivates a P2P (peer to peer) advert. Can only be used by the advertiser.
-  ///
-  /// Throws a [P2PAdvertException] if API response contains an error
-  Future<P2PAdvert> deactivate() =>
-      updateAdvert(P2pAdvertUpdateRequest(id: id, isActive: 0));
 }
