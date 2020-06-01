@@ -12,7 +12,7 @@ enum EnumCase {
 /// Converts enum to string
 String getStringFromEnum<T>(
   T value, {
-  bool snakeCase = true,
+  EnumCase enumCase = EnumCase.snakeCase,
 }) {
   if (value == null) {
     return null;
@@ -20,7 +20,15 @@ String getStringFromEnum<T>(
 
   final String item = value.toString().split('.')[1];
 
-  return snakeCase ? ReCase(item).snakeCase : item;
+  switch (enumCase) {
+    case EnumCase.snakeCase:
+      return ReCase(item).snakeCase;
+    case EnumCase.paramCase:
+      return ReCase(item).paramCase;
+
+    default:
+      return item;
+  }
 }
 
 /// Gets enum form a string
@@ -51,12 +59,12 @@ T getEnumFromString<T>({
 /// Converts a list of enums to a string list
 List<String> getStringListFromEnums<T>(
   List<T> values, {
-  bool snakeCase = true,
+  EnumCase enumCase = EnumCase.snakeCase,
 }) =>
     values == null || values.isEmpty
         ? null
         : values
-            .map((T value) => getStringFromEnum(value, snakeCase: snakeCase))
+            .map((T value) => getStringFromEnum(value, enumCase: enumCase))
             .toList();
 
 /// Converts a list of strings to a enum list

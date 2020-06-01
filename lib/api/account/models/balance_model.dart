@@ -12,7 +12,6 @@ abstract class BalanceModel extends APIBaseModel {
     this.total,
   });
 
-  // Properties
   /// Balance amount
   final double balance;
 

@@ -80,7 +80,9 @@ class PriceProposal extends PriceProposalModel {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the price proposal for contract
+  ///
   /// For parameters information refer to [ProposalRequest]
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<PriceProposal> fetchPriceForContract(
     ProposalRequest request,
   ) async {

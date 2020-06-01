@@ -97,7 +97,7 @@ class P2POrderList {
     return Forget.fromResponse(response);
   }
 
-  /// Unsubscribes from all order subscriptions.
+  /// Unsubscribes from all order subscriptions (Subscriptions to a single order or list).
   ///
   /// Throws a [P2POrderException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllOrder() =>
