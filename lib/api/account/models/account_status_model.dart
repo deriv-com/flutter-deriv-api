@@ -44,4 +44,3 @@ abstract class AccountStatusModel extends APIBaseModel {
   /// - `withdrawal_locked`: deposits allowed but withdrawals locked.
   final List<AccountStatusType> status;
 }
-

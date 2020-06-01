@@ -12,9 +12,9 @@ class AccountStatusCurrencyConfigModel extends APIBaseModel {
 
   /// Creates instance from JSON
   factory AccountStatusCurrencyConfigModel.fromJson(
-      String currency,
-      Map<String, dynamic> json,
-      ) =>
+    String currency,
+    Map<String, dynamic> json,
+  ) =>
       AccountStatusCurrencyConfigModel(
         currency: currency,
         isDepositSuspended: getBool(json['is_deposit_suspended']),
@@ -32,14 +32,14 @@ class AccountStatusCurrencyConfigModel extends APIBaseModel {
 
   /// Creates a copy of instance with given parameters
   AccountStatusCurrencyConfigModel copyWith(
-      String currency,
-      bool isDepositSuspended,
-      bool isWithdrawalSuspended,
-      ) =>
+    String currency,
+    bool isDepositSuspended,
+    bool isWithdrawalSuspended,
+  ) =>
       AccountStatusCurrencyConfigModel(
         currency: currency ?? this.currency,
         isDepositSuspended: isDepositSuspended ?? this.isDepositSuspended,
         isWithdrawalSuspended:
-        isWithdrawalSuspended ?? this.isWithdrawalSuspended,
+            isWithdrawalSuspended ?? this.isWithdrawalSuspended,
       );
 }

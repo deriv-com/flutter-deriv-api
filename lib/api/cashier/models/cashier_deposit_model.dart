@@ -1,22 +1,22 @@
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Cashier Deposit Information model class
-class CashierDepositInformation extends APIBaseModel {
+class CashierDepositModel extends APIBaseModel {
   /// Initializes
-  CashierDepositInformation(this.address);
+  CashierDepositModel(this.address);
 
   /// Creates an instance from JSON
-  factory CashierDepositInformation.fromJson(
+  factory CashierDepositModel.fromJson(
     Map<String, dynamic> json,
   ) =>
-      CashierDepositInformation(json['address']);
+      CashierDepositModel(json['address']);
 
   /// Address for crypto deposit.
   final String address;
 
   /// Creates a copy of instance with given parameters
-  CashierDepositInformation copyWith(
+  CashierDepositModel copyWith(
     String address,
   ) =>
-      CashierDepositInformation(address ?? this.address);
+      CashierDepositModel(address ?? this.address);
 }

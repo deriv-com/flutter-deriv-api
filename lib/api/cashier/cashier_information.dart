@@ -21,10 +21,13 @@ class CashierInformation extends CashierInformationModel {
   ) =>
       CashierInformation(
         cashierURL: response.cashier is String ? response.cashier : null,
-        cashierAPI: getItemFromMap(
-          response.cashier is Map ? response.cashier : null,
-          itemToTypeCallback: (dynamic item) => CashierAPIModel.fromJson(item),
-        ),
+        cashierAPI: response.cashier is Map
+            ? getItemFromMap(
+                response.cashier,
+                itemToTypeCallback: (dynamic item) =>
+                    CashierAPIModel.fromJson(item),
+              )
+            : null,
       );
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
