@@ -170,7 +170,7 @@ class APIBuilder extends Builder {
             }
           }
 
-          return '${_isRequired(key, schemaType, property) ? '@required ' : ''} this.${ReCase(key).camelCase}';
+          return '${_isFieldRequired(key, schemaType, property) ? '@required ' : ''} this.${ReCase(key).camelCase}';
         },
       ).join(', ');
 
@@ -301,7 +301,7 @@ class APIBuilder extends Builder {
   Map<String, String> _getSuperClassFields(String schemaType) =>
       schemaType == 'send' ? requestCommonFields : responseCommonFields;
 
-  bool _isRequired(
+  bool _isFieldRequired(
     String key,
     String schemaType,
     JsonSchema property,
@@ -328,7 +328,7 @@ class APIBuilder extends Builder {
           }
         }
 
-        if (_isRequired(key, schemaType, property)) {
+        if (_isFieldRequired(key, schemaType, property)) {
           return true;
         }
       }
