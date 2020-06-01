@@ -2,11 +2,14 @@ import 'package:flutter_deriv_api/api/account/models/account_authentication_stat
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 
+import 'account_status_currency_config_model.dart';
+
 /// Model class for account status
 abstract class AccountStatusModel extends APIBaseModel {
   /// Initializes
   AccountStatusModel({
     this.authentication,
+    this.currencyConfig,
     this.promptClientToAuthenticate,
     this.riskClassification,
     this.status,
@@ -15,6 +18,9 @@ abstract class AccountStatusModel extends APIBaseModel {
   /// This represents the authentication status of the user and it includes what
   /// authentication is needed.
   final AccountAuthenticationStatusModel authentication;
+
+  /// Provides cashier details for client currency.
+  final List<AccountStatusCurrencyConfigModel> currencyConfig;
 
   /// Indicates whether the client should be prompted to
   /// authenticate their account.
@@ -38,3 +44,4 @@ abstract class AccountStatusModel extends APIBaseModel {
   /// - `withdrawal_locked`: deposits allowed but withdrawals locked.
   final List<AccountStatusType> status;
 }
+
