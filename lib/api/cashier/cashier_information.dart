@@ -16,13 +16,13 @@ class CashierInformation extends CashierInformationModel {
   }) : super(cashierAPI: cashierAPI, cashierURL: cashierURL);
 
   /// Generates an instance from JSON
-  factory CashierInformation.fromJson(
-    Map<String, dynamic> json,
+  factory CashierInformation.fromResponse(
+    CashierResponse response,
   ) =>
       CashierInformation(
-        cashierURL: json['cashier'] is String ? json['cashier'] : null,
+        cashierURL: response.cashier is String ? response.cashier : null,
         cashierAPI: getItemFromMap(
-          json['cashier'] is Map ? json['cashier'] : null,
+          response.cashier is Map ? response.cashier : null,
           itemToTypeCallback: (dynamic item) => CashierAPIModel.fromJson(item),
         ),
       );
@@ -40,7 +40,7 @@ class CashierInformation extends CashierInformationModel {
       exceptionCreator: (String message) => CashierException(message: message),
     );
 
-    return CashierInformation(cashierURL: response.cashier);
+    return CashierInformation.fromResponse(response);
   }
 
   /// Creates a copy with given parameters
