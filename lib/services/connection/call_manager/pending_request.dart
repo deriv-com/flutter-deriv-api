@@ -14,7 +14,7 @@ class PendingRequest<T> {
     this.subscriptionStream,
   });
 
-  /// Listener count for stream response
+  /// Listeners count for stream response
   final int listenersCount;
 
   /// Map of the sent request

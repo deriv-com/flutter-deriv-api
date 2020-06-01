@@ -60,7 +60,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
 
     if (pendingRequest != null) {
       pendingRequests[pendingRequest.request.reqId] =
-          _increaseListenerCount(pendingRequest);
+          _increaseListenersCount(pendingRequest);
 
       return pendingRequest.subscriptionStream.stream;
     }
@@ -90,7 +90,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     }
 
     if (onlyCurrentListener && pendingRequests[requestId].listenersCount > 1) {
-      pendingRequests[requestId] = _decreaseListenerCount(
+      pendingRequests[requestId] = _decreaseListenersCount(
         pendingRequests[requestId],
       );
 
@@ -171,14 +171,14 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
         orElse: () => null,
       );
 
-  PendingRequest<Response> _increaseListenerCount(
+  PendingRequest<Response> _increaseListenersCount(
     PendingRequest<Response> pendingRequest,
   ) =>
       pendingRequest.copyWith(
         listenersCount: pendingRequest.listenersCount + 1,
       );
 
-  PendingRequest<Response> _decreaseListenerCount(
+  PendingRequest<Response> _decreaseListenersCount(
     PendingRequest<Response> pendingRequest,
   ) =>
       pendingRequest.copyWith(
