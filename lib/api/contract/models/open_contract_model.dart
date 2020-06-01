@@ -6,10 +6,11 @@ import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 
 /// Model class for proposal open contract
-class OpenContractModel extends APIBaseModel {
+class ContractModel extends APIBaseModel {
   /// Initializes
-  OpenContractModel({
+  ContractModel({
     this.auditDetails,
+    this.balanceAfter,
     this.barrier,
     this.barrierCount,
     this.bidPrice,
@@ -60,6 +61,7 @@ class OpenContractModel extends APIBaseModel {
     this.status,
     this.tickCount,
     this.tickStream,
+    this.transactionId,
     this.transactionIds,
     this.underlying,
     this.validationError,
@@ -67,6 +69,9 @@ class OpenContractModel extends APIBaseModel {
 
   /// Tick details around contract start and end time.
   final AuditDetailModel auditDetails;
+
+  /// The new account balance after completion of the purchase
+  final double balanceAfter;
 
   /// Barrier of the contract (if any).
   final String barrier;
@@ -217,6 +222,9 @@ class OpenContractModel extends APIBaseModel {
 
   /// Tick stream from entry to end time.
   final List<OpenContractTickModel> tickStream;
+
+  /// Internal transaction identifier
+  final int transactionId;
 
   /// Every contract has buy and sell transaction ids, i.e. when you purchase a contract we associate it with buy transaction id, and if contract is already sold we associate that with sell transaction id.
   final TransactionIdsModel transactionIds;

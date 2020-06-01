@@ -3,9 +3,9 @@ import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// available contracts details
-class ContractModel extends APIBaseModel {
+class AvailableContractModel extends APIBaseModel {
   /// Initializes
-  ContractModel({
+  AvailableContractModel({
     this.availableBarriers,
     this.barrier,
     this.barrierCategory,
@@ -28,7 +28,7 @@ class ContractModel extends APIBaseModel {
   });
 
   /// Generate an instance from JSON
-  factory ContractModel.fromJson(Map<String, dynamic> json) => ContractModel(
+  factory AvailableContractModel.fromJson(Map<String, dynamic> json) => AvailableContractModel(
       availableBarriers: json['available_barriers'],
       barrier: json['barrier'],
       barrierCategory: json['barrier_category'],
@@ -111,7 +111,7 @@ class ContractModel extends APIBaseModel {
   final String underlyingSymbol;
 
   /// Creates a copy of instance with given parameters
-  ContractModel copyWith({
+  AvailableContractModel copyWith({
     List<int> availableBarriers,
     String barrier,
     String barrierCategory,
@@ -132,7 +132,7 @@ class ContractModel extends APIBaseModel {
     Map<String, dynamic> tradingPeriod,
     String underlyingSymbol,
   }) =>
-      ContractModel(
+      AvailableContractModel(
         availableBarriers: availableBarriers ?? this.availableBarriers,
         barrier: barrier ?? this.barrier,
         barrierCategory: barrierCategory ?? this.barrierCategory,

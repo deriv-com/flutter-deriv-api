@@ -14,13 +14,17 @@ import 'package:flutter_deriv_api/services/connection/call_manager/base_call_man
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
+import 'cancel_contract.dart';
 import 'exceptions/contract_operations_exception.dart';
+import 'sell_contract.dart';
+import 'update_contract.dart';
 
 /// Open contract class
-class OpenContract extends OpenContractModel {
+class Contract extends ContractModel {
   /// Initializes
-  OpenContract({
+  Contract({
     AuditDetailModel auditDetails,
+    double balanceAfter,
     String barrier,
     double barrierCount,
     double bidPrice,
@@ -71,12 +75,14 @@ class OpenContract extends OpenContractModel {
     ContractStatus status,
     int tickCount,
     List<OpenContractTickModel> tickStream,
+    int transactionId,
     TransactionIdsModel transactionIds,
     String underlying,
     String validationError,
     this.subscriptionInformation,
   }) : super(
           auditDetails: auditDetails,
+          balanceAfter: balanceAfter,
           barrier: barrier,
           barrierCount: barrierCount,
           bidPrice: bidPrice,
@@ -127,21 +133,23 @@ class OpenContract extends OpenContractModel {
           status: status,
           tickCount: tickCount,
           tickStream: tickStream,
+          transactionId: transactionId,
           transactionIds: transactionIds,
           underlying: underlying,
           validationError: validationError,
         );
 
   /// Generates an instance from JSON
-  factory OpenContract.fromJson(
+  factory Contract.fromJson(
     Map<String, dynamic> json, {
     Map<String, dynamic> subscriptionJson,
   }) =>
-      OpenContract(
+      Contract(
         auditDetails: getItemFromMap(
           json['audit_details'],
           itemToTypeCallback: (dynamic item) => AuditDetailModel.fromJson(item),
         ),
+        balanceAfter: json['balanceAfter']?.toDouble(),
         barrier: json['barrier'],
         barrierCount: json['barrier_count']?.toDouble(),
         bidPrice: json['bid_price']?.toDouble(),
@@ -202,6 +210,7 @@ class OpenContract extends OpenContractModel {
           itemToTypeCallback: (dynamic item) =>
               OpenContractTickModel.fromJson(item),
         ),
+        transactionId: json['transaction_id'],
         transactionIds: getItemFromMap(
           json['transaction_ids'],
           itemToTypeCallback: (dynamic item) =>
@@ -217,8 +226,76 @@ class OpenContract extends OpenContractModel {
   /// Subscription information
   final SubscriptionModel subscriptionInformation;
 
+  /// Buys a contract with parameters specified in given [BuyRequest]
+  /// Throws a [ContractOperationException] if API response contains an error
+  static Future<Contract> buy(BuyRequest request) async {
+    final BuyResponse response = await _api.call(
+      request: request,
+    );
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) =>
+          ContractOperationException(message: message),
+    );
+
+    return Contract.fromJson(response.buy);
+  }
+
+  /// Gets the current spot of the this bought contract as [Contract].
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
+  Future<Contract> fetchState() =>
+      Contract.fetchContractState(
+        ProposalOpenContractRequest(
+          contractId: contractId,
+        ),
+      );
+
+  /// Subscribes to this bought contract spot and returns its spot update as [ContractModel].
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
+  Stream<Contract> subscribeState({
+    RequestCompareFunction comparePredicate,
+  }) =>
+      Contract.subscribeContractState(
+        ProposalOpenContractRequest(contractId: contractId),
+        comparePredicate: comparePredicate,
+      );
+
+  /// Sells this contract.
+  ///
+  /// [price] is the Minimum price at which to sell the contract,
+  /// Default be 0 for 'sell at market'.
+  /// Throws a [ContractOperationException] if API response contains an error
+  Future<SellContract> sell({double price = 0}) =>
+      SellContract.sellContract(SellRequest(sell: contractId, price: price));
+
+  /// Cancels this contract
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
+  Future<CancelContract> cancel() =>
+      CancelContract.cancelContract(CancelRequest(cancel: contractId));
+
+  /// Updates this contract
+  ///
+  /// New [stopLoss] value for a contract. To cancel, pass null.
+  /// New [takeProfit] value for a contract. To cancel, pass null.
+  /// Throws a [ContractOperationException] if API response contains an error
+  Future<UpdateContract> update({
+    double stopLoss,
+    double takeProfit,
+  }) =>
+      UpdateContract.updateContract(ContractUpdateRequest(
+        contractId: contractId,
+        limitOrder: <String, dynamic>{
+          'stop_loss': stopLoss,
+          'take_profit': takeProfit,
+        },
+      ));
+
   /// Gets the current spot of the the bought contract specified in [ProposalOpenContractRequest]
-  static Future<OpenContract> fetchCurrentContractState(
+  static Future<Contract> fetchContractState(
     ProposalOpenContractRequest request,
   ) async {
     final ProposalOpenContractResponse response = await _api.call(
@@ -231,7 +308,7 @@ class OpenContract extends OpenContractModel {
           ContractOperationException(message: message),
     );
 
-    return OpenContract.fromJson(
+    return Contract.fromJson(
       response.proposalOpenContract,
     );
   }
@@ -239,13 +316,13 @@ class OpenContract extends OpenContractModel {
   /// Subscribes to the bought contract state specified in [ProposalOpenContractRequest]
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  static Stream<OpenContract> subscribeContractState(
+  static Stream<Contract> subscribeContractState(
     ProposalOpenContractRequest request, {
     RequestCompareFunction comparePredicate,
   }) =>
       _api
           .subscribe(request: request, comparePredicate: comparePredicate)
-          .map<OpenContract>(
+          .map<Contract>(
         (Response response) {
           checkException(
             response: response,
@@ -254,7 +331,7 @@ class OpenContract extends OpenContractModel {
           );
 
           return response is ProposalOpenContractResponse
-              ? OpenContract.fromJson(
+              ? Contract.fromJson(
                   response.proposalOpenContract,
                   subscriptionJson: response.subscription,
                 )
@@ -300,7 +377,7 @@ class OpenContract extends OpenContractModel {
   }
 
   /// Generate a copy of instance with given parameters
-  OpenContract copyWith({
+  Contract copyWith({
     AuditDetailModel auditDetails,
     String barrier,
     double barrierCount,
@@ -356,7 +433,7 @@ class OpenContract extends OpenContractModel {
     String underlying,
     String validationError,
   }) =>
-      OpenContract(
+      Contract(
         auditDetails: auditDetails ?? this.auditDetails,
         barrier: barrier ?? this.barrier,
         barrierCount: barrierCount ?? this.barrierCount,

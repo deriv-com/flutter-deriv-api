@@ -1,11 +1,11 @@
-import 'package:flutter_deriv_api/api/contract/models/contract_model.dart';
+import 'package:flutter_deriv_api/api/contract/models/available_contract_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Abstract class involving fields of [ContractsFor]
 abstract class ContractsForSymbolModel extends APIBaseModel {
   /// Initializes
   ContractsForSymbolModel({
-    this.contracts,
+    this.availableContracts,
     this.close,
     this.feedLicense,
     this.hitCount,
@@ -15,7 +15,7 @@ abstract class ContractsForSymbolModel extends APIBaseModel {
 
   /// List of available contracts. Note: if the user is authenticated,
   /// then only contracts allowed under his account will be returned.
-  final List<ContractModel> contracts;
+  final List<AvailableContractModel> availableContracts;
 
   /// Symbol's next market-close time as an epoch value
   final DateTime close;

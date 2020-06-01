@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/contract/contracts_for/contracts_for_symbol.dart';
+import 'package:flutter_deriv_api/api/contract/models/available_contract_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -21,14 +22,17 @@ void main() {
           productType: 'basic'),
     );
 
-    expect(contractsFor.contracts.first.barriers, 0);
-    expect(contractsFor.contracts.first.maxContractDuration, '1d');
+    final AvailableContractModel firstContract =
+        contractsFor.availableContracts.first;
+
+    expect(firstContract.barriers, 0);
+    expect(firstContract.maxContractDuration, '1d');
     expect(
-      contractsFor.contracts.first.forwardStartingOptions.first.close,
+      firstContract.forwardStartingOptions.first.close,
       getDateTime(1586303999),
     );
     expect(
-      contractsFor.contracts.first.forwardStartingOptions.last.open,
+      firstContract.forwardStartingOptions.last.open,
       getDateTime(1586390400),
     );
   });

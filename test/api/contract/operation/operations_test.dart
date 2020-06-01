@@ -2,10 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/contract/models/history_spot_price_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/sell_expired_contract_model.dart';
-import 'package:flutter_deriv_api/api/contract/operation/buy_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/cancel_contract.dart';
+import 'package:flutter_deriv_api/api/contract/operation/contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_operations_exception.dart';
-import 'package:flutter_deriv_api/api/contract/operation/open_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/price_proposal.dart';
 import 'package:flutter_deriv_api/api/contract/operation/sell_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/update_contract.dart';
@@ -64,7 +63,7 @@ void main() {
     });
 
     test('Buy Contract Test', () async {
-      final BuyContract buyContract = await BuyContract.buy(
+      final Contract buyContract = await Contract.buy(
         const BuyRequest(
           buy: '042922fe-5664-09e4-c3bf-b3bbe98f31db',
           price: 100.0,
@@ -78,8 +77,8 @@ void main() {
       );
       expect(buyContract.buyPrice, 49.12);
 
-      final OpenContract openContract =
-          await buyContract.fetchCurrentContractState();
+      final Contract openContract =
+          await buyContract.fetchState();
       expect(openContract.contractId, 79944933588);
       expect(openContract.payout, 50.0);
       expect(openContract.profit, 25.45);
@@ -93,9 +92,9 @@ void main() {
       expect(openContract.underlying, 'R_100');
 
       buyContract
-          .subscribeContractState()
+          .subscribeState()
           .take(1)
-          .listen(expectAsync1((OpenContract openContract) {
+          .listen(expectAsync1((Contract openContract) {
         expect(openContract.contractId, 79944933588);
         expect(openContract.payout, 50.0);
         expect(openContract.profit, 25.45);
@@ -201,7 +200,7 @@ void main() {
         expect(priceProposal.spotTime, getDateTime(1586335713));
         expect(priceProposal.spot, 9392.5);
 
-        final BuyContract boughtContract = await priceProposal.buy(price: 100);
+        final Contract boughtContract = await priceProposal.buy(price: 100);
         expect(boughtContract.contractId, 79939279308);
         expect(boughtContract.purchaseTime, getDateTime(1587528886));
         expect(
@@ -235,8 +234,8 @@ void main() {
         expect(cancelContract.soldFor, 1150.0);
         expect(cancelContract.transactionId, 453476);
 
-        final OpenContract openContract =
-            await boughtContract.fetchCurrentContractState();
+        final Contract openContract =
+            await boughtContract.fetchState();
         expect(openContract.contractId, 79944933588);
         expect(openContract.payout, 50.0);
         expect(openContract.profit, 25.45);
@@ -254,10 +253,10 @@ void main() {
     });
 
     test('Open Contract Subscription Test', () {
-      OpenContract.subscribeContractState(
+      Contract.subscribeContractState(
         const ProposalOpenContractRequest(contractId: 79944933588),
       ).take(1).listen(
-        expectAsync1((OpenContract openContract) {
+        expectAsync1((Contract openContract) {
           expect(openContract.contractId, 79944933588);
           expect(openContract.payout, 50.0);
           expect(openContract.profit, 25.45);
