@@ -132,7 +132,12 @@ class P2POrder extends P2POrderModel {
                   response.p2pOrderCreate,
                   subscriptionJson: response.subscription,
                 )
-              : null;
+              : response is P2pOrderInfoResponse
+                  ? P2POrder.fromJson(
+                      response.p2pOrderInfo,
+                      subscriptionJson: response.subscription,
+                    )
+                  : null;
         },
       );
 
@@ -204,7 +209,7 @@ class P2POrder extends P2POrderModel {
     return Forget.fromResponse(response);
   }
 
-  /// Unsubscribes all order subscriptions.
+  /// Unsubscribes all order subscriptions (Subscriptions to a single order or list).
   ///
   /// Throws a [P2POrderException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllOrder() async {
@@ -225,7 +230,7 @@ class P2POrder extends P2POrderModel {
   /// Throws a [P2POrderException] if API response contains an error
   Future<P2POrder> cancel() async {
     final P2pOrderCancelResponse response =
-        await _api.call(request: const P2pOrderCancelRequest());
+        await _api.call(request: P2pOrderCancelRequest(id: id));
 
     checkException(
       response: response,
@@ -241,7 +246,7 @@ class P2POrder extends P2POrderModel {
   /// Throws a [P2POrderException] if API response contains an error
   Future<P2POrder> confirm() async {
     final P2pOrderConfirmResponse response =
-        await _api.call(request: const P2pOrderConfirmRequest());
+        await _api.call(request: P2pOrderConfirmRequest(id: id));
 
     checkException(
       response: response,

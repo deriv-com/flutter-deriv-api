@@ -97,7 +97,6 @@ class AccountSettings extends AccountSettingsModel {
         userHash: json['user_hash'],
       );
 
-  /// API instance
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets user's settings (email, date of birth, address etc)
@@ -119,7 +118,7 @@ class AccountSettings extends AccountSettingsModel {
     return AccountSettings.fromJson(response.getSettings);
   }
 
-  /// Changes the account's settings with parameters specified as [SetSettingsRequest]
+  /// Changes the user's settings with parameters specified as [SetSettingsRequest]
   ///
   /// Throws an [AccountSettingsException] if API response contains an error
   static Future<SetAccountSettingModel> changeAccountSetting(
@@ -136,7 +135,7 @@ class AccountSettings extends AccountSettingsModel {
     return SetAccountSettingModel(succeeded: getBool(response.setSettings));
   }
 
-  /// Change account's setting
+  /// Changes user's setting
   Future<SetAccountSettingModel> changeSetting({
     String secretAnswer,
     String secretQuestion,
