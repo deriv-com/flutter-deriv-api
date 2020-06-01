@@ -1,6 +1,6 @@
 import 'package:flutter_deriv_api/api/contract/models/audit_detail_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/limit_order_model.dart';
-import 'package:flutter_deriv_api/api/contract/models/open_contract_tick_model.dart';
+import 'package:flutter_deriv_api/api/contract/models/contract_tick_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/transaction_ids_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -221,7 +221,7 @@ class ContractModel extends APIBaseModel {
   final int tickCount;
 
   /// Tick stream from entry to end time.
-  final List<OpenContractTickModel> tickStream;
+  final List<ContractTickModel> tickStream;
 
   /// Internal transaction identifier
   final int transactionId;

@@ -2,8 +2,8 @@ import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/contract/models/audit_detail_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/limit_order_model.dart';
-import 'package:flutter_deriv_api/api/contract/models/open_contract_model.dart';
-import 'package:flutter_deriv_api/api/contract/models/open_contract_tick_model.dart';
+import 'package:flutter_deriv_api/api/contract/models/contract_model.dart';
+import 'package:flutter_deriv_api/api/contract/models/contract_tick_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/transaction_ids_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
@@ -74,7 +74,7 @@ class Contract extends ContractModel {
     String shortCode,
     ContractStatus status,
     int tickCount,
-    List<OpenContractTickModel> tickStream,
+    List<ContractTickModel> tickStream,
     int transactionId,
     TransactionIdsModel transactionIds,
     String underlying,
@@ -162,7 +162,9 @@ class Contract extends ContractModel {
         currentSpotTime: getDateTime(json['current_spot_time']),
         dateExpiry: getDateTime(json['date_expiry']),
         dateSettlement: getDateTime(json['date_settlement']),
-        dateStart: getDateTime(json['date_start']),
+        dateStart: json['start_time'] != null
+            ? getDateTime(json['start_time'])
+            : getDateTime(json['date_start']),
         displayName: json['display_name'],
         displayValue: json['display_value'],
         entrySpot: json['entry_spot'],
@@ -208,7 +210,7 @@ class Contract extends ContractModel {
         tickStream: getListFromMap(
           json['tick_stream'],
           itemToTypeCallback: (dynamic item) =>
-              OpenContractTickModel.fromJson(item),
+              ContractTickModel.fromJson(item),
         ),
         transactionId: json['transaction_id'],
         transactionIds: getItemFromMap(
@@ -227,6 +229,13 @@ class Contract extends ContractModel {
   final SubscriptionModel subscriptionInformation;
 
   /// Buys a contract with parameters specified in given [BuyRequest]
+  ///
+  /// - Following field will be retrieved by this method:
+  ///   [balanceAfter], [buyPrice], [contractId], [longCode], [payout],
+  ///   [purchaseTime], [shortCode], [dateStart], [transactionId]
+  ///
+  /// - For getting the rest of the field call [fetchState]
+  ///
   /// Throws a [ContractOperationException] if API response contains an error
   static Future<Contract> buy(BuyRequest request) async {
     final BuyResponse response = await _api.call(
@@ -245,8 +254,7 @@ class Contract extends ContractModel {
   /// Gets the current spot of the this bought contract as [Contract].
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Future<Contract> fetchState() =>
-      Contract.fetchContractState(
+  Future<Contract> fetchState() => Contract.fetchContractState(
         ProposalOpenContractRequest(
           contractId: contractId,
         ),
@@ -428,7 +436,7 @@ class Contract extends ContractModel {
     String shortCode,
     ContractStatus status,
     int tickCount,
-    List<OpenContractTickModel> tickStream,
+    List<ContractTickModel> tickStream,
     TransactionIdsModel transactionIds,
     String underlying,
     String validationError,

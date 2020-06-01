@@ -1,10 +1,10 @@
-import 'package:flutter_deriv_api/api/contract/models/open_contract_tick_model.dart';
+import 'package:flutter_deriv_api/api/contract/models/contract_tick_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// ContractTimeInfo
-class OpenContractTickInfoModel extends OpenContractTickModel {
+class ContractTickInfoModel extends ContractTickModel {
   /// Initializes
-  OpenContractTickInfoModel({
+  ContractTickInfoModel({
     this.flag,
     this.name,
     DateTime epoch,
@@ -17,8 +17,8 @@ class OpenContractTickInfoModel extends OpenContractTickModel {
         );
 
   /// Generate an instance from JSON
-  factory OpenContractTickInfoModel.fromJson(Map<String, dynamic> json) =>
-      OpenContractTickInfoModel(
+  factory ContractTickInfoModel.fromJson(Map<String, dynamic> json) =>
+      ContractTickInfoModel(
         epoch: getDateTime(json['epoch']),
         flag: json['flag'],
         name: json['name'],
@@ -34,12 +34,12 @@ class OpenContractTickInfoModel extends OpenContractTickModel {
 
   /// Generate a copy of instance with given parameters
   @override
-  OpenContractTickInfoModel copyWith({
+  ContractTickInfoModel copyWith({
     DateTime epoch,
     double tick,
     String tickDisplayValue,
   }) =>
-      OpenContractTickInfoModel(
+      ContractTickInfoModel(
         epoch: epoch ?? this.epoch,
         tick: tick ?? this.tick,
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,

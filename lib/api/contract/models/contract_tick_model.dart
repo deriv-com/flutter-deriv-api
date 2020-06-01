@@ -2,17 +2,17 @@ import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Tick of entry to end time.
-class OpenContractTickModel extends APIBaseModel {
+class ContractTickModel extends APIBaseModel {
   /// Initializes
-  OpenContractTickModel({
+  ContractTickModel({
     this.epoch,
     this.tick,
     this.tickDisplayValue,
   });
 
   /// Generate an instance from JSON
-  factory OpenContractTickModel.fromJson(Map<String, dynamic> json) =>
-      OpenContractTickModel(
+  factory ContractTickModel.fromJson(Map<String, dynamic> json) =>
+      ContractTickModel(
         epoch: getDateTime(json['epoch']),
         tick: json['tick'],
         tickDisplayValue: json['tick_display_value'],
@@ -28,12 +28,12 @@ class OpenContractTickModel extends APIBaseModel {
   final String tickDisplayValue;
 
   /// Generate a copy of instance with given parameters
-  OpenContractTickModel copyWith({
+  ContractTickModel copyWith({
     DateTime epoch,
     double tick,
     String tickDisplayValue,
   }) =>
-      OpenContractTickModel(
+      ContractTickModel(
         epoch: epoch ?? this.epoch,
         tick: tick ?? tick,
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,

@@ -8,6 +8,7 @@ import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_ope
 import 'package:flutter_deriv_api/api/contract/operation/price_proposal.dart';
 import 'package:flutter_deriv_api/api/contract/operation/sell_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/update_contract.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
@@ -39,6 +40,7 @@ void main() {
       expect(priceProposal.dateStart, getDateTime(1586335719));
       expect(priceProposal.spotTime, getDateTime(1586335713));
       expect(priceProposal.spot, 9392.5);
+      expect(priceProposal.payout, 20.33);
     });
 
     test('Price Proposal Subscription Test', () async {
@@ -59,6 +61,7 @@ void main() {
         expect(priceProposal.dateStart, getDateTime(1586335719));
         expect(priceProposal.spotTime, getDateTime(1586335713));
         expect(priceProposal.spot, 9392.5);
+        expect(priceProposal.payout, 20.33);
       }));
     });
 
@@ -71,11 +74,13 @@ void main() {
       );
       expect(buyContract.contractId, 79939279308);
       expect(buyContract.purchaseTime, getDateTime(1587528886));
+      expect(buyContract.dateStart, getDateTime(1587528886));
       expect(
         buyContract.shortCode,
         'CALL_R_100_100_1587528886_1587528946_S10P_0',
       );
       expect(buyContract.buyPrice, 49.12);
+      expect(buyContract.transactionId, 159779308968);
 
       final Contract openContract =
           await buyContract.fetchState();
@@ -84,12 +89,25 @@ void main() {
       expect(openContract.profit, 25.45);
       expect(openContract.profitPercentage, 103.67);
       expect(openContract.purchaseTime, getDateTime(1587533920));
+      expect(openContract.dateStart, getDateTime(1587533920));
       expect(openContract.contractType, 'CALL');
       expect(openContract.currency, 'USD');
       expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
       expect(openContract.auditDetails.contractEnd.first.epoch,
           getDateTime(1587533976));
       expect(openContract.underlying, 'R_100');
+      expect(openContract.barrier, '1417.75');
+      expect(openContract.barrierCount, 1.0);
+      expect(openContract.bidPrice, 50.0);
+      expect(openContract.currentSpot, 1419.53);
+      expect(openContract.displayName, 'Volatility 100 Index');
+      expect(openContract.exitTick, 1419.53);
+      expect(openContract.isExpired, true);
+      expect(openContract.isForwardStarting, false);
+      expect(openContract.isIntraday, true);
+      expect(openContract.isSold, false);
+      expect(openContract.shortCode, 'CALL_R_100_50_1587533920_1587533980_S10P_0');
+      expect(openContract.status, ContractStatus.open);
 
       buyContract
           .subscribeState()
@@ -100,12 +118,25 @@ void main() {
         expect(openContract.profit, 25.45);
         expect(openContract.profitPercentage, 103.67);
         expect(openContract.purchaseTime, getDateTime(1587533920));
+        expect(openContract.dateStart, getDateTime(1587533920));
         expect(openContract.contractType, 'CALL');
         expect(openContract.currency, 'USD');
         expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
         expect(openContract.auditDetails.contractEnd.first.epoch,
             getDateTime(1587533976));
         expect(openContract.underlying, 'R_100');
+        expect(openContract.barrier, '1417.75');
+        expect(openContract.barrierCount, 1.0);
+        expect(openContract.bidPrice, 50.0);
+        expect(openContract.currentSpot, 1419.53);
+        expect(openContract.displayName, 'Volatility 100 Index');
+        expect(openContract.exitTick, 1419.53);
+        expect(openContract.isExpired, true);
+        expect(openContract.isForwardStarting, false);
+        expect(openContract.isIntraday, true);
+        expect(openContract.isSold, false);
+        expect(openContract.shortCode, 'CALL_R_100_50_1587533920_1587533980_S10P_0');
+        expect(openContract.status, ContractStatus.open);
 
         expect(
           openContract.subscriptionInformation.id,
@@ -203,11 +234,13 @@ void main() {
         final Contract boughtContract = await priceProposal.buy(price: 100);
         expect(boughtContract.contractId, 79939279308);
         expect(boughtContract.purchaseTime, getDateTime(1587528886));
+        expect(boughtContract.dateStart, getDateTime(1587528886));
         expect(
           boughtContract.shortCode,
           'CALL_R_100_100_1587528886_1587528946_S10P_0',
         );
         expect(boughtContract.buyPrice, 49.12);
+        expect(boughtContract.transactionId, 159779308968);
 
         final UpdateContract updateContract = await boughtContract.update();
         expect(updateContract.stopLoss.displayName, 'localized display name');
@@ -247,6 +280,18 @@ void main() {
         expect(openContract.auditDetails.contractEnd.first.epoch,
             getDateTime(1587533976));
         expect(openContract.underlying, 'R_100');
+        expect(openContract.barrier, '1417.75');
+        expect(openContract.barrierCount, 1.0);
+        expect(openContract.bidPrice, 50.0);
+        expect(openContract.currentSpot, 1419.53);
+        expect(openContract.displayName, 'Volatility 100 Index');
+        expect(openContract.exitTick, 1419.53);
+        expect(openContract.isExpired, true);
+        expect(openContract.isForwardStarting, false);
+        expect(openContract.isIntraday, true);
+        expect(openContract.isSold, false);
+        expect(openContract.shortCode, 'CALL_R_100_50_1587533920_1587533980_S10P_0');
+        expect(openContract.status, ContractStatus.open);
       } on ContractOperationException catch (e) {
         print(e.message);
       }
@@ -268,6 +313,18 @@ void main() {
           expect(openContract.auditDetails.contractEnd.first.epoch,
               getDateTime(1587533976));
           expect(openContract.underlying, 'R_100');
+          expect(openContract.barrier, '1417.75');
+          expect(openContract.barrierCount, 1.0);
+          expect(openContract.bidPrice, 50.0);
+          expect(openContract.currentSpot, 1419.53);
+          expect(openContract.displayName, 'Volatility 100 Index');
+          expect(openContract.exitTick, 1419.53);
+          expect(openContract.isExpired, true);
+          expect(openContract.isForwardStarting, false);
+          expect(openContract.isIntraday, true);
+          expect(openContract.isSold, false);
+          expect(openContract.shortCode, 'CALL_R_100_50_1587533920_1587533980_S10P_0');
+          expect(openContract.status, ContractStatus.open);
 
           expect(
             openContract.subscriptionInformation.id,
