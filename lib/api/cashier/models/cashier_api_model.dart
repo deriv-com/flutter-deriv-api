@@ -11,6 +11,7 @@ class CashierAPIModel extends APIBaseModel {
     this.depositInformation,
   });
 
+  /// Creates an instance from JSON
   factory CashierAPIModel.fromJson(Map<String, dynamic> json) =>
       CashierAPIModel(
         action: json['action'],
