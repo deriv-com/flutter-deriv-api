@@ -20,17 +20,18 @@ class TickHistory extends TickHistoryModel {
           pipSize,
         );
 
-  /// Generates an instance from JSON
-  factory TickHistory.fromJson(Map<String, dynamic> json) => TickHistory(
+  /// Generates an instance from [TicksHistoryResponse] object
+  factory TickHistory.fromResponse(TicksHistoryResponse response) =>
+      TickHistory(
         candles: getListFromMap(
-          json['candles'],
+          response.candles,
           itemToTypeCallback: (dynamic item) => CandleModel.fromJson(item),
         ),
         history: getItemFromMap(
-          json['history'],
+          response.history,
           itemToTypeCallback: (dynamic item) => HistoryModel.fromJson(item),
         ),
-        pipSize: json['pip_size'],
+        pipSize: response.pipSize,
       );
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
@@ -48,13 +49,7 @@ class TickHistory extends TickHistoryModel {
       exceptionCreator: (String message) => TickException(message: message),
     );
 
-    return TickHistory.fromJson(
-      <String, dynamic>{
-        'candles': response.candles,
-        'history': response.history,
-        'pip_size': response.pipSize,
-      },
-    );
+    return TickHistory.fromResponse(response);
   }
 
   /// Generate a copy of instance with given parameters
