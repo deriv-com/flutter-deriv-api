@@ -162,9 +162,9 @@ class Contract extends ContractModel {
         currentSpotTime: getDateTime(json['current_spot_time']),
         dateExpiry: getDateTime(json['date_expiry']),
         dateSettlement: getDateTime(json['date_settlement']),
-        dateStart: json['start_time'] != null
-            ? getDateTime(json['start_time'])
-            : getDateTime(json['date_start']),
+        dateStart: json['start_time'] == null
+            ? getDateTime(json['date_start'])
+            : getDateTime(json['start_time']),
         displayName: json['display_name'],
         displayValue: json['display_value'],
         entrySpot: json['entry_spot'],
@@ -234,7 +234,7 @@ class Contract extends ContractModel {
   ///   [balanceAfter], [buyPrice], [contractId], [longCode], [payout],
   ///   [purchaseTime], [shortCode], [dateStart], [transactionId]
   ///
-  /// - For getting the rest of the field call [fetchState]
+  /// - For getting the rest of the field call [fetchState]/ [subscribeState]
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   static Future<Contract> buy(BuyRequest request) async {
