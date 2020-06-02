@@ -1,10 +1,20 @@
 import 'dart:async';
 
+import 'package:rxdart/subjects.dart';
+
 /// A source of subscription messages.
 /// it provides a StreamController to broadcast new messages of a subscription request
 /// to it's listener.
 class SubscriptionStream<T> {
-  final StreamController<T> _streamController = StreamController<T>.broadcast();
+  /// Initializes
+  SubscriptionStream({
+    this.cacheSize,
+  }) : _streamController = ReplaySubject<T>(maxSize: cacheSize);
+
+  /// Stream cache size
+  final int cacheSize;
+
+  final ReplaySubject<T> _streamController;
 
   /// Returns true if the stream has listener
   bool get hasListener => _streamController.hasListener;

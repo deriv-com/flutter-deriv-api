@@ -44,12 +44,7 @@ abstract class BaseCallManager<T> {
   bool contains(int requestId) => _pendingRequests.containsKey(requestId);
 
   /// Calls a API method by [request]
-  /// [comparePredicate] function is only applicable to subscription calls
-  /// [comparePredicate] indicates compare condition for current [request] and [pendingRequest]s
-  T call({
-    @required Request request,
-    RequestCompareFunction comparePredicate,
-  });
+  T call({@required Request request});
 
   /// Handle call [response] that comes from server
   void handleResponse({
