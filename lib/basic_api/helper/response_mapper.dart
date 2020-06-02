@@ -1,3 +1,4 @@
+import '../generated/api.dart';
 import '../manually/ohlc_receive.dart';
 import '../response.dart';
 
@@ -12,6 +13,9 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
   switch (responseMap['msg_type']) {
     case 'ohlc':
       return OHLCResponse.fromJson(responseMap);
+    case 'candles':
+    case 'history':
+      return TicksHistoryResponse.fromJson(responseMap);
     default:
       return getGeneratedResponse(responseMap);
   }

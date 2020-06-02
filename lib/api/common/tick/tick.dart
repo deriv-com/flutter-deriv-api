@@ -16,21 +16,15 @@ import 'exceptions/tick_exception.dart';
 class Tick extends TickModel {
   /// Initializes
   Tick({
-    double ask,
-    double bid,
     DateTime epoch,
     String id,
     int pipSize,
-    double quote,
     String symbol,
     this.subscriptionInformation,
   }) : super(
-          ask: ask,
-          bid: bid,
           epoch: epoch,
           id: id,
           pipSize: pipSize,
-          quote: quote,
           symbol: symbol,
         );
 
@@ -40,12 +34,9 @@ class Tick extends TickModel {
     Map<String, dynamic> subscriptionJson,
   }) =>
       Tick(
-        ask: json['ask'],
-        bid: json['bid'],
         epoch: getDateTime(json['epoch']),
         id: json['id'],
         pipSize: json['pip_size'],
-        quote: json['quote'],
         symbol: json['symbol'],
         subscriptionInformation: SubscriptionModel.fromJson(subscriptionJson),
       );
@@ -84,7 +75,7 @@ class Tick extends TickModel {
   /// Unsubscribes from tick stream
   ///
   /// Throws a [TickException] if API response contains an error
-  Future<Forget> unsubscribeTick() async {
+  Future<Forget> unsubscribe() async {
     if (subscriptionInformation?.id == null) {
       return null;
     }
@@ -117,22 +108,16 @@ class Tick extends TickModel {
 
   /// Generates a copy of instance with given parameters
   Tick copyWith({
-    double ask,
-    double bid,
     DateTime epoch,
     String id,
     int pipSize,
-    double quote,
     String symbol,
     SubscriptionModel subscriptionInformation,
   }) =>
       Tick(
-        ask: ask ?? this.ask,
-        bid: bid ?? this.bid,
         epoch: epoch ?? this.epoch,
         id: id ?? this.id,
         pipSize: pipSize ?? this.pipSize,
-        quote: quote ?? this.quote,
         symbol: symbol ?? this.symbol,
         subscriptionInformation:
             subscriptionInformation ?? this.subscriptionInformation,
