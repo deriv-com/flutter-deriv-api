@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
 /// Spot price updates for a given symbol
-abstract class TickModel extends APIBaseModel {
+abstract class TickBaseModel extends APIBaseModel {
   /// Initializes
-  TickModel({
+  TickBaseModel({
     this.epoch,
     this.id,
     this.pipSize,

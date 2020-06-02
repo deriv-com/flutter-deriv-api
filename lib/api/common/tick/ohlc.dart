@@ -7,10 +7,10 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'exceptions/tick_exception.dart';
-import 'tick.dart';
+import 'tick_base.dart';
 
 /// OHLC class
-class OHLC extends Tick {
+class OHLC extends TickBase {
   /// Initializes
   OHLC({
     this.close,

@@ -1,5 +1,5 @@
 import 'package:flutter_deriv_api/api/common/tick/exceptions/tick_exception.dart';
-import 'package:flutter_deriv_api/api/common/tick/normal_tick.dart';
+import 'package:flutter_deriv_api/api/common/tick/tick.dart';
 import 'package:flutter_deriv_api/api/common/tick/ohlc.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/manually/ohlc_receive.dart';
@@ -8,24 +8,25 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-import 'tick.dart';
+import 'tick_base.dart';
 import 'tick_history.dart';
 
 /// Consist of Stream of [Tick] and its history as [TickHistory]
 class Ticks {
   /// Initializes
-  Ticks({this.tickHistory, this.ticks});
+  Ticks({this.tickHistory, this.tickStream});
 
   /// The history of tick
   TickHistory tickHistory;
 
   /// The stream of the tick
-  final Stream<Tick> ticks;
+  final Stream<TickBase> tickStream;
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Gets tick
+  /// Gets ticks history and its stream
   ///
+  /// Throws [TickException] if API response contains an error
   static Future<Ticks> fetchTicksWithHistory(
     TicksHistoryRequest request, {
     bool subscribe = false,
@@ -39,12 +40,12 @@ class Ticks {
       if (firstResponse is TicksHistoryResponse) {
         return Ticks(
           tickHistory: TickHistory.fromResponse(firstResponse),
-          ticks: responseStream.map<Tick>(
+          tickStream: responseStream.map<TickBase>(
             (Response response) {
               _checkException(response);
 
               return response is TicksResponse
-                  ? NormalTick.fromJson(
+                  ? Tick.fromJson(
                       response.tick,
                       subscriptionJson: response.subscription,
                     )

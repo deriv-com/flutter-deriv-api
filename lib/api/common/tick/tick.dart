@@ -1,7 +1,3 @@
-import 'package:flutter_deriv_api/api/common/forget/forget.dart';
-import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
-import 'package:flutter_deriv_api/api/common/models/tick_model.dart';
-import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
@@ -11,21 +7,26 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'exceptions/tick_exception.dart';
+import 'tick_base.dart';
 
-/// Spot price updates for a given symbol
-class Tick extends TickModel {
+/// Normal tick class, represents price of the symbol in a time
+class Tick extends TickBase {
   /// Initializes
   Tick({
+    this.ask,
+    this.bid,
+    this.quote,
     DateTime epoch,
     String id,
     int pipSize,
     String symbol,
-    this.subscriptionInformation,
+    SubscriptionModel subscriptionInformation,
   }) : super(
           epoch: epoch,
           id: id,
           pipSize: pipSize,
           symbol: symbol,
+          subscriptionInformation: subscriptionInformation,
         );
 
   /// Generates an instance from JSON
@@ -34,6 +35,9 @@ class Tick extends TickModel {
     Map<String, dynamic> subscriptionJson,
   }) =>
       Tick(
+        ask: json['ask'],
+        bid: json['bid'],
+        quote: json['quote'],
         epoch: getDateTime(json['epoch']),
         id: json['id'],
         pipSize: json['pip_size'],
@@ -41,8 +45,14 @@ class Tick extends TickModel {
         subscriptionInformation: SubscriptionModel.fromJson(subscriptionJson),
       );
 
-  /// Subscription information
-  final SubscriptionModel subscriptionInformation;
+  /// Market ask at the epoch
+  final double ask;
+
+  /// Market bid at the epoch
+  final double bid;
+
+  /// Market value at the epoch
+  final double quote;
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -70,56 +80,5 @@ class Tick extends TickModel {
                 )
               : null;
         },
-      );
-
-  /// Unsubscribes from tick stream
-  ///
-  /// Throws a [TickException] if API response contains an error
-  Future<Forget> unsubscribe() async {
-    if (subscriptionInformation?.id == null) {
-      return null;
-    }
-
-    final ForgetResponse response =
-        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
-
-    checkException(
-      response: response,
-      exceptionCreator: (String message) => TickException(message: message),
-    );
-
-    return Forget.fromResponse(response);
-  }
-
-  /// Unsubscribes all ticks.
-  ///
-  /// Throws a [TickException] if API response contains an error
-  static Future<ForgetAll> unsubscribeAllTicks() async {
-    final ForgetAllResponse response =
-        await _api.unsubscribeAll(method: ForgetStreamType.ticks);
-
-    checkException(
-      response: response,
-      exceptionCreator: (String message) => TickException(message: message),
-    );
-
-    return ForgetAll.fromResponse(response);
-  }
-
-  /// Generates a copy of instance with given parameters
-  Tick copyWith({
-    DateTime epoch,
-    String id,
-    int pipSize,
-    String symbol,
-    SubscriptionModel subscriptionInformation,
-  }) =>
-      Tick(
-        epoch: epoch ?? this.epoch,
-        id: id ?? this.id,
-        pipSize: pipSize ?? this.pipSize,
-        symbol: symbol ?? this.symbol,
-        subscriptionInformation:
-            subscriptionInformation ?? this.subscriptionInformation,
       );
 }
