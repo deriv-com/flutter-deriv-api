@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'tick_base.dart';
 import 'tick_history.dart';
 
-/// Consist of Stream of [Tick] and its history as [TickHistory]
+/// Consist of Stream of [TickBase] and its history as [TickHistory]
 class Ticks {
   /// Initializes
   Ticks({this.tickHistory, this.tickStream});

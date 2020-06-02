@@ -32,7 +32,7 @@ class OHLC extends TickBase {
           subscriptionInformation: subscriptionInformation,
         );
 
-  /// Creates instance from JSON
+  /// Creates an instance from JSON
   factory OHLC.fromJson(
     Map<String, dynamic> json, {
     Map<String, dynamic> subscriptionJson,
@@ -54,19 +54,19 @@ class OHLC extends TickBase {
   /// Close
   final String close;
 
-  ///
+  /// Granularity
   final int granularity;
 
-  ///
+  /// High
   final String high;
 
-  ///
+  /// Low
   final String low;
 
-  ///
+  /// Open
   final String open;
 
-  ///
+  /// Open time
   final DateTime openTime;
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();

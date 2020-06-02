@@ -5,10 +5,10 @@ import '../response.dart';
 import 'response_mapper.helper.dart';
 
 
-/// creates a sub-type of [Response] based on [responseMap]'s 'msg_type'
+/// Creates a sub-type of [Response] object based on [responseMap]'s 'msg_type'
 ///
-/// Exceptional cases will be added here, the rest will be found in auto-generated
-/// file.
+/// Exceptional cases will be added here, the rest will be auto-generated from
+/// JSON schemas by [APIHelperBuilder]
 Response getResponseByMsgType(Map<String, dynamic> responseMap) {
   switch (responseMap['msg_type']) {
     case 'ohlc':

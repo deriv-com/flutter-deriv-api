@@ -63,21 +63,6 @@ class TickBase extends TickBaseModel {
     return Forget.fromResponse(response);
   }
 
-  /// Unsubscribes all ticks.
-  ///
-  /// Throws a [TickException] if API response contains an error
-  static Future<ForgetAll> unsubscribeAllTicks() async {
-    final ForgetAllResponse response =
-        await _api.unsubscribeAll(method: ForgetStreamType.ticks);
-
-    checkException(
-      response: response,
-      exceptionCreator: (String message) => TickException(message: message),
-    );
-
-    return ForgetAll.fromResponse(response);
-  }
-
   /// Generates a copy of instance with given parameters
   TickBase copyWith({
     DateTime epoch,
