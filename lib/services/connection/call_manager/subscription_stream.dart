@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:rxdart/subjects.dart';
 
 /// A source of subscription messages.
