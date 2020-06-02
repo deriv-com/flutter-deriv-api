@@ -2,7 +2,7 @@ import 'package:flutter_deriv_api/api/contract/models/forward_starting_option_mo
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
-/// available contracts details
+/// Available contracts details
 class AvailableContractModel extends APIBaseModel {
   /// Initializes
   AvailableContractModel({
@@ -27,7 +27,7 @@ class AvailableContractModel extends APIBaseModel {
     this.underlyingSymbol,
   });
 
-  /// Generate an instance from JSON
+  /// Generates an instance from JSON
   factory AvailableContractModel.fromJson(Map<String, dynamic> json) => AvailableContractModel(
       availableBarriers: json['available_barriers'],
       barrier: json['barrier'],
@@ -56,7 +56,7 @@ class AvailableContractModel extends APIBaseModel {
   /// Array of available barriers for a predefined trading period
   final List<int> availableBarriers;
 
-  /// barrier
+  /// Barrier
   final String barrier;
 
   /// Category of barrier.
