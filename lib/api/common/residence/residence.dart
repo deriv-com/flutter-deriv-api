@@ -12,10 +12,12 @@ class Residence extends ResidenceModel {
     String phoneIdd,
     String countryName,
     String countryCode,
+    List<String> tinFormat,
   }) : super(
           phoneIdd: phoneIdd,
           countryName: countryName,
           countryCode: countryCode,
+          tinFormat: tinFormat,
         );
 
   /// Generates an instance from JSON
@@ -26,6 +28,7 @@ class Residence extends ResidenceModel {
         phoneIdd: json['phone_idd'],
         countryName: json['text'],
         countryCode: json['value'],
+        tinFormat: getListFromMap(json['tin_format'])
       );
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
@@ -57,10 +60,12 @@ class Residence extends ResidenceModel {
     String phoneIdd,
     String countryName,
     String countryCode,
+    List<String> tinFormat,
   }) =>
       Residence(
         phoneIdd: phoneIdd ?? this.phoneIdd,
         countryName: countryName ?? this.countryName,
         countryCode: countryCode ?? this.countryCode,
+        tinFormat: tinFormat ?? this.tinFormat,
       );
 }

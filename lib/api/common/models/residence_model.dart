@@ -7,6 +7,7 @@ class ResidenceModel extends APIBaseModel {
     this.phoneIdd,
     this.countryName,
     this.countryCode,
+    this.tinFormat,
   });
 
   /// IDD code of country
@@ -17,4 +18,7 @@ class ResidenceModel extends APIBaseModel {
 
   /// 2-letter country code
   final String countryCode;
+
+  /// Country tax identifier format
+  final List<String> tinFormat;
 }

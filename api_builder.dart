@@ -194,7 +194,6 @@ class APIBuilder extends Builder {
       ).join('\n');
 
   String _getPropertyType(BuildStep buildStep, JsonSchema property) {
-    if (property.typeList?.isNotEmpty ?? false) {
       if (property.oneOf.isNotEmpty) {
         return 'dynamic';
       } else {
@@ -209,9 +208,6 @@ class APIBuilder extends Builder {
           return typeMap[schemaType];
         }
       }
-    } else {
-      return 'String';
-    }
   }
 
   String _getSchemaType(JsonSchema property) => property.typeList?.length == 2

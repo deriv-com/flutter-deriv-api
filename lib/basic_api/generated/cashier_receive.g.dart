@@ -8,7 +8,7 @@ part of 'cashier_receive.dart';
 
 CashierResponse _$CashierResponseFromJson(Map<String, dynamic> json) {
   return CashierResponse(
-    cashier: json['cashier'] as String,
+    cashier: json['cashier'],
     echoReq: json['echo_req'] as Map<String, dynamic>,
     error: json['error'] as Map<String, dynamic>,
     msgType: json['msg_type'] as String,

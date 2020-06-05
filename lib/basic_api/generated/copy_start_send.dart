@@ -28,7 +28,7 @@ class CopyStartRequest extends Request {
       _$CopyStartRequestFromJson(json);
 
   /// [Optional] Used to set assets to be copied. E.x ["frxUSDJPY", "R_50"]
-  final String assets;
+  final dynamic assets;
 
   /// API tokens identifying the accounts of trader which will be used to copy trades
   final String copyStart;
@@ -40,7 +40,7 @@ class CopyStartRequest extends Request {
   final num minTradeStake;
 
   /// [Optional] Used to set trade types to be copied. E.x ["CALL", "PUT"]
-  final String tradeTypes;
+  final dynamic tradeTypes;
 
   /// Converts an instance to JSON
   @override
@@ -49,11 +49,11 @@ class CopyStartRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   CopyStartRequest copyWith({
-    String assets,
+    dynamic assets,
     String copyStart,
     num maxTradeStake,
     num minTradeStake,
-    String tradeTypes,
+    dynamic tradeTypes,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
