@@ -7,11 +7,15 @@ import 'package:flutter_deriv_api/services/connection/call_manager/subscription_
 class PendingRequest<T> {
   /// Initializes
   PendingRequest({
+    this.listenersCount = 1,
     this.request,
     this.responseCompleter,
     this.subscriptionId,
     this.subscriptionStream,
   });
+
+  /// Listeners count for stream response
+  final int listenersCount;
 
   /// Map of the sent request
   final Request request;
@@ -30,12 +34,14 @@ class PendingRequest<T> {
 
   /// Creates a copy of instance with given parameters
   PendingRequest<T> copyWith({
+    int listenersCount,
     Request request,
     Completer<T> responseCompleter,
     String subscriptionId,
     SubscriptionStream<T> subscriptionStream,
   }) =>
       PendingRequest<T>(
+        listenersCount: listenersCount ?? this.listenersCount,
         request: request ?? this.request,
         responseCompleter: responseCompleter ?? this.responseCompleter,
         subscriptionId: subscriptionId ?? this.subscriptionId,
