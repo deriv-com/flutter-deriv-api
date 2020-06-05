@@ -28,7 +28,7 @@ class TicksRequest extends Request {
   final int subscribe;
 
   /// The short symbol name or array of symbols (obtained from `active_symbols` call).
-  final String ticks;
+  final dynamic ticks;
 
   /// Converts an instance to JSON
   @override
@@ -38,7 +38,7 @@ class TicksRequest extends Request {
   @override
   TicksRequest copyWith({
     int subscribe,
-    String ticks,
+    dynamic ticks,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

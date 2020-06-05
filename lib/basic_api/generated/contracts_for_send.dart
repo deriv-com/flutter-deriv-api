@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contracts_for_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,7 +11,7 @@ part 'contracts_for_send.g.dart';
 class ContractsForRequest extends Request {
   /// Initialize ContractsForRequest
   const ContractsForRequest({
-    this.contractsFor,
+    @required this.contractsFor,
     this.currency,
     this.landingCompany,
     this.productType,

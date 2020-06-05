@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_reset_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,11 +11,11 @@ part 'mt5_password_reset_send.g.dart';
 class Mt5PasswordResetRequest extends Request {
   /// Initialize Mt5PasswordResetRequest
   const Mt5PasswordResetRequest({
-    this.login,
+    @required this.login,
     this.mt5PasswordReset = 1,
-    this.newPassword,
+    @required this.newPassword,
     this.passwordType,
-    this.verificationCode,
+    @required this.verificationCode,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

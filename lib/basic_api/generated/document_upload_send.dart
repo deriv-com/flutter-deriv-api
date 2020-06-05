@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/document_upload_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,13 +11,13 @@ part 'document_upload_send.g.dart';
 class DocumentUploadRequest extends Request {
   /// Initialize DocumentUploadRequest
   const DocumentUploadRequest({
-    this.documentFormat,
+    @required this.documentFormat,
     this.documentId,
-    this.documentType,
+    @required this.documentType,
     this.documentUpload = 1,
-    this.expectedChecksum,
+    @required this.expectedChecksum,
     this.expirationDate,
-    this.fileSize,
+    @required this.fileSize,
     this.pageType,
     Map<String, dynamic> passthrough,
     int reqId,

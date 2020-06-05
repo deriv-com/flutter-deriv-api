@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,7 +11,7 @@ part 'active_symbols_send.g.dart';
 class ActiveSymbolsRequest extends Request {
   /// Initialize ActiveSymbolsRequest
   const ActiveSymbolsRequest({
-    this.activeSymbols,
+    @required this.activeSymbols,
     this.landingCompany,
     this.productType,
     Map<String, dynamic> passthrough,

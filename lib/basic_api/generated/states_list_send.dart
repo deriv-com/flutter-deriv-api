@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/states_list_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,7 +11,7 @@ part 'states_list_send.g.dart';
 class StatesListRequest extends Request {
   /// Initialize StatesListRequest
   const StatesListRequest({
-    this.statesList,
+    @required this.statesList,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

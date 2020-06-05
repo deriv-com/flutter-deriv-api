@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_withdrawal_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,10 +11,10 @@ part 'mt5_withdrawal_send.g.dart';
 class Mt5WithdrawalRequest extends Request {
   /// Initialize Mt5WithdrawalRequest
   const Mt5WithdrawalRequest({
-    this.amount,
-    this.fromMt5,
+    @required this.amount,
+    @required this.fromMt5,
     this.mt5Withdrawal = 1,
-    this.toBinary,
+    @required this.toBinary,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

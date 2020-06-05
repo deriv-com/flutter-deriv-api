@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_confirm_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,7 +11,7 @@ part 'p2p_order_confirm_send.g.dart';
 class P2pOrderConfirmRequest extends Request {
   /// Initialize P2pOrderConfirmRequest
   const P2pOrderConfirmRequest({
-    this.id,
+    @required this.id,
     this.p2pOrderConfirm = 1,
     Map<String, dynamic> passthrough,
     int reqId,
