@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_statistics_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -11,7 +12,7 @@ class CopytradingStatisticsRequest extends Request {
   /// Initialize CopytradingStatisticsRequest
   const CopytradingStatisticsRequest({
     this.copytradingStatistics = 1,
-    this.traderId,
+    @required this.traderId,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

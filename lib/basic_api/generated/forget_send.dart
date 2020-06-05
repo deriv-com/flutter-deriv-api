@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,7 +11,7 @@ part 'forget_send.g.dart';
 class ForgetRequest extends Request {
   /// Initialize ForgetRequest
   const ForgetRequest({
-    this.forget,
+    @required this.forget,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

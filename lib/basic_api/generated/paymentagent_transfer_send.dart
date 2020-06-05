@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_transfer_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,12 +11,12 @@ part 'paymentagent_transfer_send.g.dart';
 class PaymentagentTransferRequest extends Request {
   /// Initialize PaymentagentTransferRequest
   const PaymentagentTransferRequest({
-    this.amount,
-    this.currency,
+    @required this.amount,
+    @required this.currency,
     this.description,
     this.dryRun,
     this.paymentagentTransfer = 1,
-    this.transferTo,
+    @required this.transferTo,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

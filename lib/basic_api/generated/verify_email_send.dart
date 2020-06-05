@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/verify_email_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,9 +11,9 @@ part 'verify_email_send.g.dart';
 class VerifyEmailRequest extends Request {
   /// Initialize VerifyEmailRequest
   const VerifyEmailRequest({
-    this.type,
+    @required this.type,
     this.urlParameters,
-    this.verifyEmail,
+    @required this.verifyEmail,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

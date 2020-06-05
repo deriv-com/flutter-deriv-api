@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,10 +11,10 @@ part 'mt5_deposit_send.g.dart';
 class Mt5DepositRequest extends Request {
   /// Initialize Mt5DepositRequest
   const Mt5DepositRequest({
-    this.amount,
-    this.fromBinary,
+    @required this.amount,
+    @required this.fromBinary,
     this.mt5Deposit = 1,
-    this.toMt5,
+    @required this.toMt5,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
