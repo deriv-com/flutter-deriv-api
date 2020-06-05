@@ -21,8 +21,8 @@ void main() {
     });
 
     test('Forget All Test', () async {
-      final ForgetAll forgetAll =
-          await ForgetAll.forgetAll(const ForgetAllRequest());
+      final ForgetAll forgetAll = await ForgetAll.forgetAll(
+          const ForgetAllRequest(forgetAll: <String>['tick', 'p2p_order']));
 
       expect(forgetAll.cancelledStreams.length, 2);
 
