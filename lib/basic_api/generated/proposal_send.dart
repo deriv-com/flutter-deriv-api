@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -14,20 +15,20 @@ class ProposalRequest extends Request {
     this.barrier,
     this.barrier2,
     this.basis,
-    this.cancellation,
-    this.contractType,
-    this.currency,
+    @required this.cancellation,
+    @required this.contractType,
+    @required this.currency,
     this.dateExpiry,
     this.dateStart,
     this.duration,
     this.durationUnit,
-    this.limitOrder,
+    @required this.limitOrder,
     this.multiplier,
     this.productType,
     this.proposal = 1,
     this.selectedTick,
     this.subscribe,
-    this.symbol,
+    @required this.symbol,
     this.tradingPeriodStart,
     Map<String, dynamic> passthrough,
     int reqId,

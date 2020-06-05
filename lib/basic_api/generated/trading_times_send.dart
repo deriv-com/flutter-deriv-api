@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_times_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,7 +11,7 @@ part 'trading_times_send.g.dart';
 class TradingTimesRequest extends Request {
   /// Initialize TradingTimesRequest
   const TradingTimesRequest({
-    this.tradingTimes,
+    @required this.tradingTimes,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/authorize_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -11,7 +12,7 @@ class AuthorizeRequest extends Request {
   /// Initialize AuthorizeRequest
   const AuthorizeRequest({
     this.addToLoginHistory,
-    this.authorize,
+    @required this.authorize,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

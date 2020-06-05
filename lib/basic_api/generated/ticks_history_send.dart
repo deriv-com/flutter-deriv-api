@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_history_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -12,12 +13,12 @@ class TicksHistoryRequest extends Request {
   const TicksHistoryRequest({
     this.adjustStartTime,
     this.count,
-    this.end,
+    @required this.end,
     this.granularity,
     this.start,
     this.style,
     this.subscribe,
-    this.ticksHistory,
+    @required this.ticksHistory,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

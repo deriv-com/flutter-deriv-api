@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,7 +11,7 @@ part 'sell_send.g.dart';
 class SellRequest extends Request {
   /// Initialize SellRequest
   const SellRequest({
-    this.price,
+    @required this.price,
     this.sell = 1,
     Map<String, dynamic> passthrough,
     int reqId,

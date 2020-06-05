@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_start_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -11,7 +12,7 @@ class CopyStartRequest extends Request {
   /// Initialize CopyStartRequest
   const CopyStartRequest({
     this.assets,
-    this.copyStart,
+    @required this.copyStart,
     this.maxTradeStake,
     this.minTradeStake,
     this.tradeTypes,
