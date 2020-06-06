@@ -45,7 +45,7 @@ class OHLC extends TickBase {
         id: json['id'],
         low: json['low'],
         open: json['open'],
-        openTime: json['openTime'],
+        openTime: getDateTime(json['openTime']),
         pipeSize: json['pipeSize'],
         symbol: json['symbol'],
         subscriptionInformation: SubscriptionModel.fromJson(subscriptionJson),
@@ -70,6 +70,21 @@ class OHLC extends TickBase {
   final DateTime openTime;
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Unsubscribes all OHLC.
+  ///
+  /// Throws a [TickException] if API response contains an error
+  static Future<ForgetAll> unsubscribeAllOHLC() async {
+    final ForgetAllResponse response =
+        await _api.unsubscribeAll(method: ForgetStreamType.candles);
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => TickException(message: message),
+    );
+
+    return ForgetAll.fromResponse(response);
+  }
 
   /// Creates a copy of instance with given parameters
   @override
@@ -98,21 +113,6 @@ class OHLC extends TickBase {
         pipeSize: pipSize ?? this.pipSize,
         symbol: symbol ?? this.symbol,
         subscriptionInformation:
-            subscriptionInformation ?? this.subscriptionInformation,
+        subscriptionInformation ?? this.subscriptionInformation,
       );
-
-  /// Unsubscribes all OHLC.
-  ///
-  /// Throws a [TickException] if API response contains an error
-  static Future<ForgetAll> unsubscribeAllOHLC() async {
-    final ForgetAllResponse response =
-        await _api.unsubscribeAll(method: ForgetStreamType.candles);
-
-    checkException(
-      response: response,
-      exceptionCreator: (String message) => TickException(message: message),
-    );
-
-    return ForgetAll.fromResponse(response);
-  }
 }

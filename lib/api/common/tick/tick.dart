@@ -98,4 +98,28 @@ class Tick extends TickBase {
 
     return ForgetAll.fromResponse(response);
   }
+
+  /// Creates a copy of instance with given parameters
+  @override
+  Tick copyWith({
+    double ask,
+    double bid,
+    double quote,
+    DateTime epoch,
+    String id,
+    int pipSize,
+    String symbol,
+    SubscriptionModel subscriptionInformation,
+  }) =>
+      Tick(
+        ask: ask ?? this.ask,
+        bid: bid ?? this.bid,
+        quote: quote ?? this.quote,
+        epoch: epoch ?? this.epoch,
+        id: id ?? this.id,
+        pipSize: pipSize ?? this.pipSize,
+        symbol: symbol ?? this.symbol,
+        subscriptionInformation:
+            subscriptionInformation ?? this.subscriptionInformation,
+      );
 }
