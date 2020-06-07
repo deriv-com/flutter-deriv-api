@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_virtual_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -11,16 +12,16 @@ class NewAccountVirtualRequest extends Request {
   /// Initialize NewAccountVirtualRequest
   const NewAccountVirtualRequest({
     this.affiliateToken,
-    this.clientPassword,
+    @required this.clientPassword,
     this.dateFirstContact,
     this.gclidUrl,
     this.newAccountVirtual = 1,
-    this.residence,
+    @required this.residence,
     this.signupDevice,
     this.utmCampaign,
     this.utmMedium,
     this.utmSource,
-    this.verificationCode,
+    @required this.verificationCode,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

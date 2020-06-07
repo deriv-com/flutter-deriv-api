@@ -8,11 +8,11 @@ part of 'copy_start_send.dart';
 
 CopyStartRequest _$CopyStartRequestFromJson(Map<String, dynamic> json) {
   return CopyStartRequest(
-    assets: json['assets'] as String,
+    assets: json['assets'],
     copyStart: json['copy_start'] as String,
     maxTradeStake: json['max_trade_stake'] as num,
     minTradeStake: json['min_trade_stake'] as num,
-    tradeTypes: json['trade_types'] as String,
+    tradeTypes: json['trade_types'],
     passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
   );

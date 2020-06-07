@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_array_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,21 +11,21 @@ part 'proposal_array_send.g.dart';
 class ProposalArrayRequest extends Request {
   /// Initialize ProposalArrayRequest
   const ProposalArrayRequest({
-    this.amount,
-    this.barriers,
-    this.basis,
-    this.contractType,
-    this.currency,
-    this.dateExpiry,
+    @required this.amount,
+    @required this.barriers,
+    @required this.basis,
+    @required this.contractType,
+    @required this.currency,
+    @required this.dateExpiry,
     this.dateStart,
-    this.duration,
+    @required this.duration,
     this.durationUnit,
-    this.multiplier,
+    @required this.multiplier,
     this.productType,
     this.proposalArray = 1,
     this.subscribe,
-    this.symbol,
-    this.tradingPeriodStart,
+    @required this.symbol,
+    @required this.tradingPeriodStart,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

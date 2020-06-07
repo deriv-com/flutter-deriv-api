@@ -147,6 +147,12 @@ enum TransactionActionType {
 
   /// Escrow
   escrow,
+
+  /// Adjustment
+  adjustment,
+
+  /// Virtual Credit
+  virtualCredit,
 }
 
 /// Currency types

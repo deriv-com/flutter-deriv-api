@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/landing_company_details_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,7 +11,7 @@ part 'landing_company_details_send.g.dart';
 class LandingCompanyDetailsRequest extends Request {
   /// Initialize LandingCompanyDetailsRequest
   const LandingCompanyDetailsRequest({
-    this.landingCompanyDetails,
+    @required this.landingCompanyDetails,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
