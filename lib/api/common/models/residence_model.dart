@@ -8,6 +8,8 @@ class ResidenceModel extends APIBaseModel {
     this.countryName,
     this.countryCode,
     this.tinFormat,
+    this.disabled,
+    this.selected,
   });
 
   /// IDD code of country
@@ -21,4 +23,10 @@ class ResidenceModel extends APIBaseModel {
 
   /// Country tax identifier format
   final List<String> tinFormat;
+
+  /// Is disabled
+  final bool disabled;
+
+  /// Is selected
+  final bool selected;
 }

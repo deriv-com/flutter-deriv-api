@@ -15,6 +15,8 @@ void main() {
     expect(residenceList.first.countryName, 'SampleCountry');
     expect(residenceList.first.countryCode, 'sc');
     expect(residenceList.first.phoneIdd, '00');
+    expect(residenceList.first.disabled, true);
+    expect(residenceList.first.selected, false);
     expect(residenceList.length, 1);
   });
 }
