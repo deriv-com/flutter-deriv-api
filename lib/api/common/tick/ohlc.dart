@@ -39,13 +39,13 @@ class OHLC extends TickBase {
   }) =>
       OHLC(
         close: json['close'],
-        epoch: getDateTime(json['epoch']),
         granularity: json['granularity'],
         high: json['high'],
-        id: json['id'],
         low: json['low'],
         open: json['open'],
         openTime: getDateTime(json['openTime']),
+        epoch: getDateTime(json['epoch']),
+        id: json['id'],
         pipeSize: json['pipeSize'],
         symbol: json['symbol'],
         subscriptionInformation: SubscriptionModel.fromJson(subscriptionJson),
@@ -89,30 +89,30 @@ class OHLC extends TickBase {
   /// Creates a copy of instance with given parameters
   @override
   OHLC copyWith({
-    DateTime epoch,
-    String id,
-    int pipSize,
-    String symbol,
-    SubscriptionModel subscriptionInformation,
     String close,
     int granularity,
     String high,
     String low,
     String open,
     DateTime openTime,
+    DateTime epoch,
+    String id,
+    int pipSize,
+    String symbol,
+    SubscriptionModel subscriptionInformation,
   }) =>
       OHLC(
         close: close ?? this.close,
-        epoch: epoch ?? this.epoch,
         granularity: granularity ?? this.granularity,
         high: high ?? this.high,
-        id: id ?? this.id,
         low: low ?? this.low,
         open: open ?? this.open,
         openTime: openTime ?? this.openTime,
+        epoch: epoch ?? this.epoch,
+        id: id ?? this.id,
         pipeSize: pipSize ?? this.pipSize,
         symbol: symbol ?? this.symbol,
         subscriptionInformation:
-        subscriptionInformation ?? this.subscriptionInformation,
+            subscriptionInformation ?? this.subscriptionInformation,
       );
 }

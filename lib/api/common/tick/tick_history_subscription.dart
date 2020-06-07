@@ -12,9 +12,9 @@ import 'tick_base.dart';
 import 'tick_history.dart';
 
 /// Consist of Stream of [TickBase] and its history as [TickHistory]
-class Ticks {
+class TickHistorySubscription {
   /// Initializes
-  Ticks({this.tickHistory, this.tickStream});
+  TickHistorySubscription({this.tickHistory, this.tickStream});
 
   /// The history of tick
   TickHistory tickHistory;
@@ -27,7 +27,7 @@ class Ticks {
   /// Gets ticks history and its stream
   ///
   /// Throws [TickException] if API response contains an error
-  static Future<Ticks> fetchTicksWithHistory(
+  static Future<TickHistorySubscription> fetchTicksWithHistory(
     TicksHistoryRequest request, {
     bool subscribe = false,
   }) async {
@@ -38,7 +38,7 @@ class Ticks {
       _checkException(firstResponse);
 
       if (firstResponse is TicksHistoryResponse) {
-        return Ticks(
+        return TickHistorySubscription(
           tickHistory: TickHistory.fromResponse(firstResponse),
           tickStream: responseStream.map<TickBase>(
             (Response response) {
@@ -61,11 +61,9 @@ class Ticks {
       }
       return null;
     } else {
-      final TicksHistoryResponse response = await _api.call(request: request);
-
-      _checkException(response);
-
-      return Ticks(tickHistory: TickHistory.fromResponse(response));
+      return TickHistorySubscription(
+        tickHistory: await TickHistory.fetchTickHistory(request),
+      );
     }
   }
 

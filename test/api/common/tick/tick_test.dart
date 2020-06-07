@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/common/tick/tick.dart';
 import 'package:flutter_deriv_api/api/common/tick/tick_history.dart';
+import 'package:flutter_deriv_api/api/common/tick/tick_history_subscription.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
@@ -29,7 +30,14 @@ void main() {
 
     test('Tick History Test', () async {
       final TickHistory history = await TickHistory.fetchTickHistory(
-        const TicksHistoryRequest(),
+        const TicksHistoryRequest(
+          ticksHistory: 'R_50',
+          adjustStartTime: 1,
+          count: 10,
+          end: 'latest',
+          start: 1,
+          style: 'ticks',
+        ),
       );
 
       expect(history.pipSize, 4);
@@ -39,5 +47,31 @@ void main() {
       expect(history.history.times.length, 6);
       expect(history.history.times.first, getDateTime(1587556946));
     });
+
+    test('TickHistoryStream without stream', () async {
+      final TickHistorySubscription tickHistory =
+          await TickHistorySubscription.fetchTicksWithHistory(
+        const TicksHistoryRequest(
+          ticksHistory: 'R_50',
+          adjustStartTime: 1,
+          count: 10,
+          end: 'latest',
+          start: 1,
+          style: 'ticks',
+        ),
+        subscribe: false,
+      );
+
+      final TickHistory history = tickHistory.tickHistory;
+
+      expect(history.pipSize, 4);
+
+      expect(history.history.prices.length, 6);
+      expect(history.history.prices.first, 218.6404);
+      expect(history.history.times.length, 6);
+      expect(history.history.times.first, getDateTime(1587556946));
+    });
+
+    // TODO(ramin): Test for history subscription when MOCK API supports it
   });
 }
