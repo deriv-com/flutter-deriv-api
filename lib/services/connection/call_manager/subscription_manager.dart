@@ -70,7 +70,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     }
 
     final SubscriptionStream<Response> subscriptionStream =
-        SubscriptionStream<Response>(cacheSize: cacheSize == 0 ? 1 : cacheSize);
+        SubscriptionStream<Response>(maxSize: cacheSize == 0 ? 1 : cacheSize);
 
     addToChannel(
       request: request,

@@ -7,11 +7,11 @@ import 'package:rxdart/subjects.dart';
 class SubscriptionStream<T> {
   /// Initializes
   SubscriptionStream({
-    this.cacheSize,
-  }) : _streamController = ReplaySubject<T>(maxSize: cacheSize);
+    this.maxSize,
+  }) : _streamController = ReplaySubject<T>(maxSize: maxSize);
 
   /// Stream cache size
-  final int cacheSize;
+  final int maxSize;
 
   final ReplaySubject<T> _streamController;
 
