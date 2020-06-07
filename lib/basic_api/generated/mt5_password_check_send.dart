@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_check_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,9 +11,9 @@ part 'mt5_password_check_send.g.dart';
 class Mt5PasswordCheckRequest extends Request {
   /// Initialize Mt5PasswordCheckRequest
   const Mt5PasswordCheckRequest({
-    this.login,
+    @required this.login,
     this.mt5PasswordCheck = 1,
-    this.password,
+    @required this.password,
     this.passwordType,
     Map<String, dynamic> passthrough,
     int reqId,

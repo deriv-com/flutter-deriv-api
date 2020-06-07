@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_contract_for_multiple_accounts_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,10 +11,10 @@ part 'buy_contract_for_multiple_accounts_send.g.dart';
 class BuyContractForMultipleAccountsRequest extends Request {
   /// Initialize BuyContractForMultipleAccountsRequest
   const BuyContractForMultipleAccountsRequest({
-    this.buyContractForMultipleAccounts,
+    @required this.buyContractForMultipleAccounts,
     this.parameters,
-    this.price,
-    this.tokens,
+    @required this.price,
+    @required this.tokens,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

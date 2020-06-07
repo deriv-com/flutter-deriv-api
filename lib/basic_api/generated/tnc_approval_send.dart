@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/tnc_approval_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,7 +11,7 @@ part 'tnc_approval_send.g.dart';
 class TncApprovalRequest extends Request {
   /// Initialize TncApprovalRequest
   const TncApprovalRequest({
-    this.tncApproval,
+    @required this.tncApproval,
     this.ukgcFundsProtection,
     Map<String, dynamic> passthrough,
     int reqId,

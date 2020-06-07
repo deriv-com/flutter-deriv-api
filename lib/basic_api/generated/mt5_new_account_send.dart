@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_new_account_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,19 +11,19 @@ part 'mt5_new_account_send.g.dart';
 class Mt5NewAccountRequest extends Request {
   /// Initialize Mt5NewAccountRequest
   const Mt5NewAccountRequest({
-    this.accountType,
+    @required this.accountType,
     this.address,
     this.city,
     this.company,
     this.country,
     this.dryRun,
-    this.email,
+    @required this.email,
     this.investPassword,
-    this.leverage,
-    this.mainPassword,
+    @required this.leverage,
+    @required this.mainPassword,
     this.mt5AccountType,
     this.mt5NewAccount = 1,
-    this.name,
+    @required this.name,
     this.phone,
     this.phonePassword,
     this.state,

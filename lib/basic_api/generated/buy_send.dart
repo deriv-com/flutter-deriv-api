@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,9 +11,9 @@ part 'buy_send.g.dart';
 class BuyRequest extends Request {
   /// Initialize BuyRequest
   const BuyRequest({
-    this.buy,
+    @required this.buy,
     this.parameters,
-    this.price,
+    @required this.price,
     this.subscribe,
     Map<String, dynamic> passthrough,
     int reqId,

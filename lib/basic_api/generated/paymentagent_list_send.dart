@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_list_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -11,7 +12,7 @@ class PaymentagentListRequest extends Request {
   /// Initialize PaymentagentListRequest
   const PaymentagentListRequest({
     this.currency,
-    this.paymentagentList,
+    @required this.paymentagentList,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

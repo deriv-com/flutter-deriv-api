@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -13,8 +14,8 @@ class AppMarkupDetailsRequest extends Request {
     this.appId,
     this.appMarkupDetails = 1,
     this.clientLoginid,
-    this.dateFrom,
-    this.dateTo,
+    @required this.dateFrom,
+    @required this.dateTo,
     this.description,
     this.limit,
     this.offset,

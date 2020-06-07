@@ -42,11 +42,11 @@ class APIHelperBuilder extends Builder {
             Response getGeneratedResponse(Map<String, dynamic> responseMap) {
               switch (responseMap['msg_type']) {
               ${generatedResponses.map((GeneratedResponseJson response) => '''case '${response.msgType}':
-                  return ${response.fullClassName}.fromJson(responseMap);
+                return ${response.fullClassName}.fromJson(responseMap);
               ''').join('')}
 
               default:
-                  return Response.fromJson(responseMap);
+                return Response.fromJson(responseMap);
               }
             }
           ''',

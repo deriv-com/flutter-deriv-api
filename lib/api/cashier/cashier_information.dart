@@ -5,18 +5,30 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
+import 'models/cashier_api_model.dart';
+
 /// Cashier information
 class CashierInformation extends CashierInformationModel {
   /// Initializes
   CashierInformation({
+    CashierAPIModel cashierAPI,
     String cashierURL,
-  }) : super(cashierURL: cashierURL);
+  }) : super(cashierAPI: cashierAPI, cashierURL: cashierURL);
 
   /// Generates an instance from JSON
-  factory CashierInformation.fromJson(
-    Map<String, dynamic> json,
+  factory CashierInformation.fromResponse(
+    CashierResponse response,
   ) =>
-      CashierInformation(cashierURL: json['cashier']);
+      CashierInformation(
+        cashierURL: response.cashier is String ? response.cashier : null,
+        cashierAPI: response.cashier is Map
+            ? getItemFromMap(
+                response.cashier,
+                itemToTypeCallback: (dynamic item) =>
+                    CashierAPIModel.fromJson(item),
+              )
+            : null,
+      );
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -31,12 +43,16 @@ class CashierInformation extends CashierInformationModel {
       exceptionCreator: (String message) => CashierException(message: message),
     );
 
-    return CashierInformation(cashierURL: response.cashier);
+    return CashierInformation.fromResponse(response);
   }
 
   /// Creates a copy with given parameters
   CashierInformation copyWith({
+    CashierAPIModel cashierAPI,
     String cashierURL,
   }) =>
-      CashierInformation(cashierURL: cashierURL ?? this.cashierURL);
+      CashierInformation(
+        cashierAPI: cashierAPI ?? this.cashierAPI,
+        cashierURL: cashierURL ?? this.cashierURL,
+      );
 }

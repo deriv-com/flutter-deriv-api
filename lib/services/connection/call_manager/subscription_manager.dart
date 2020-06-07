@@ -59,6 +59,9 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     );
 
     if (pendingRequest != null) {
+      pendingRequests[pendingRequest.request.reqId] =
+          _increaseListenersCount(pendingRequest);
+
       return pendingRequest.subscriptionStream.stream;
     }
 
@@ -76,6 +79,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   /// Unsubscribe with a specific [subscriptionId]
   Future<ForgetResponse> unsubscribe({
     @required String subscriptionId,
+    bool onlyCurrentListener = true,
     bool shouldForced = false,
   }) async {
     final int requestId = pendingRequests.keys
@@ -83,6 +87,14 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
 
     if (getSubscriptionStream(requestId).hasListener && !shouldForced) {
       throw Exception('The stream has listener');
+    }
+
+    if (onlyCurrentListener && pendingRequests[requestId].listenersCount > 1) {
+      pendingRequests[requestId] = _decreaseListenersCount(
+        pendingRequests[requestId],
+      );
+
+      return const ForgetResponse(forget: 1, msgType: 'forget');
     }
 
     // Send forget request
@@ -157,5 +169,19 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
                 );
         },
         orElse: () => null,
+      );
+
+  PendingRequest<Response> _increaseListenersCount(
+    PendingRequest<Response> pendingRequest,
+  ) =>
+      pendingRequest.copyWith(
+        listenersCount: pendingRequest.listenersCount + 1,
+      );
+
+  PendingRequest<Response> _decreaseListenersCount(
+    PendingRequest<Response> pendingRequest,
+  ) =>
+      pendingRequest.copyWith(
+        listenersCount: pendingRequest.listenersCount - 1,
       );
 }

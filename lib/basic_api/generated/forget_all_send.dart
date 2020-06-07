@@ -24,7 +24,7 @@ class ForgetAllRequest extends Request {
       _$ForgetAllRequestFromJson(json);
 
   /// Cancel all streams by type. The value can be either a single type e.g. `"ticks"`, or an array of multiple types e.g. `["candles", "ticks"]`.
-  final String forgetAll;
+  final dynamic forgetAll;
 
   /// Converts an instance to JSON
   @override
@@ -33,7 +33,7 @@ class ForgetAllRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ForgetAllRequest copyWith({
-    String forgetAll,
+    dynamic forgetAll,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

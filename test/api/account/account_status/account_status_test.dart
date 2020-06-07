@@ -14,6 +14,11 @@ void main() {
     final AccountStatus accountStatus =
         await AccountStatus.fetchAccountStatus();
 
+    expect(accountStatus.currencyConfig.length, 1);
+    expect(accountStatus.currencyConfig.first.currency, 'USD');
+    expect(accountStatus.currencyConfig.first.isDepositSuspended, false);
+    expect(accountStatus.currencyConfig.first.isWithdrawalSuspended, false);
+
     expect(
       accountStatus.status.first,
       AccountStatusType.financialInformationNotComplete,
