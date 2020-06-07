@@ -3,9 +3,16 @@ import 'package:flutter_deriv_api/api/common/models/history_model.dart';
 import 'package:flutter_deriv_api/api/common/models/tick_history_model.dart';
 import 'package:flutter_deriv_api/api/common/tick/exceptions/tick_exception.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/basic_api/manually/ohlc_receive.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
+
+import 'ohlc.dart';
+import 'tick.dart';
+import 'tick_base.dart';
+import 'tick_history_subscription.dart';
 
 /// Historic tick data for a given symbol.
 class TickHistory extends TickHistoryModel {
@@ -44,13 +51,58 @@ class TickHistory extends TickHistoryModel {
   ) async {
     final TicksHistoryResponse response = await _api.call(request: request);
 
-    checkException(
-      response: response,
-      exceptionCreator: (String message) => TickException(message: message),
-    );
+    _checkException(response);
 
     return TickHistory.fromResponse(response);
   }
+
+  /// Gets ticks history and its stream
+  ///
+  /// Throws [TickException] if API response contains an error
+  static Future<TickHistorySubscription> fetchTicksAndSubscribe(
+    TicksHistoryRequest request, {
+    bool subscribe = false,
+  }) async {
+    if (subscribe) {
+      final Stream<Response> responseStream = _api.subscribe(request: request);
+      final Response firstResponse = await responseStream.first;
+
+      _checkException(firstResponse);
+
+      if (firstResponse is TicksHistoryResponse) {
+        return TickHistorySubscription(
+          tickHistory: TickHistory.fromResponse(firstResponse),
+          tickStream: responseStream.map<TickBase>(
+            (Response response) {
+              _checkException(response);
+
+              return response is TicksResponse
+                  ? Tick.fromJson(
+                      response.tick,
+                      subscriptionJson: response.subscription,
+                    )
+                  : response is OHLCResponse
+                      ? OHLC.fromJson(
+                          response.ohlc,
+                          subscriptionJson: response.subscription,
+                        )
+                      : null;
+            },
+          ),
+        );
+      }
+      return null;
+    } else {
+      return TickHistorySubscription(
+        tickHistory: await fetchTickHistory(request),
+      );
+    }
+  }
+
+  static void _checkException(Response response) => checkException(
+        response: response,
+        exceptionCreator: (String message) => TickException(message: message),
+      );
 
   /// Generate a copy of instance with given parameters
   TickHistory copyWith({
