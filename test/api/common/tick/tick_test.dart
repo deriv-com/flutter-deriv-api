@@ -14,7 +14,7 @@ void main() {
   });
 
   group('Ticks Group ->', () {
-    test('Tick Stream', () {
+    test('Tick Stream Test', () {
       Tick.subscribeTick(const TicksRequest(ticks: 'R_50')).take(1).listen(
         expectAsync1(
           (Tick tick) {
@@ -28,7 +28,7 @@ void main() {
       );
     });
 
-    test('Tick History', () async {
+    test('Tick History Test', () async {
       final TickHistory history = await TickHistory.fetchTickHistory(
         const TicksHistoryRequest(
           ticksHistory: 'R_50',
@@ -48,7 +48,7 @@ void main() {
       expect(history.history.times.first, getDateTime(1587556946));
     });
 
-    test('TickHistoryStream without stream', () async {
+    test('TickHistorySubscription Without Stream Test', () async {
       final TickHistorySubscription tickHistory =
           await TickHistory.fetchTicksAndSubscribe(
         const TicksHistoryRequest(
