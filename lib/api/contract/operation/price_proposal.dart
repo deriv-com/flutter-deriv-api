@@ -165,6 +165,19 @@ class PriceProposal extends PriceProposalModel {
         price: price ?? askPrice,
       ));
 
+  /// Buys a contract with parameters specified in given [BuyRequest] and subscribes to it.
+  ///
+  /// - First instance in stream will contain:
+  ///   [Contract.balanceAfter], [Contract.buyPrice], [Contract.contractId], [Contract.longCode], [Contract.payout],
+  ///   [Contract.purchaseTime], [Contract.shortCode], [Contract.dateStart], [Contract.transactionId]
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
+  Stream<Contract> buyAndSubscribe({double price}) =>
+      Contract.buyAndSubscribe(BuyRequest(
+        buy: id,
+        price: price ?? askPrice,
+      ));
+
   /// Generates a copy of instance with given parameters
   PriceProposal copyWith({
     double askPrice,

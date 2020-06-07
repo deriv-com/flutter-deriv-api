@@ -242,14 +242,41 @@ class Contract extends ContractModel {
       request: request,
     );
 
-    checkException(
-      response: response,
-      exceptionCreator: (String message) =>
-          ContractOperationException(message: message),
-    );
+    _checkForException(response);
 
     return Contract.fromJson(response.buy);
   }
+
+  /// Buys a contract with parameters specified in given [BuyRequest] and subscribes to it.
+  ///
+  /// - First instance in stream will contain:
+  ///   [balanceAfter], [buyPrice], [contractId], [longCode], [payout],
+  ///   [purchaseTime], [shortCode], [dateStart], [transactionId]
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
+  static Stream<Contract> buyAndSubscribe(
+    BuyRequest request, {
+    RequestCompareFunction comparePredicate,
+  }) =>
+      _api
+          .subscribe(request: request, comparePredicate: comparePredicate)
+          .map<Contract>(
+        (Response response) {
+          _checkForException(response);
+
+          return response is BuyResponse
+              ? Contract.fromJson(
+                  response.buy,
+                  subscriptionJson: response.subscription,
+                )
+              : response is ProposalOpenContractResponse
+                  ? Contract.fromJson(
+                      response.proposalOpenContract,
+                      subscriptionJson: response.subscription,
+                    )
+                  : null;
+        },
+      );
 
   /// Gets the current spot of the this bought contract as [Contract].
   ///
@@ -310,11 +337,7 @@ class Contract extends ContractModel {
       request: request,
     );
 
-    checkException(
-      response: response,
-      exceptionCreator: (String message) =>
-          ContractOperationException(message: message),
-    );
+    _checkForException(response);
 
     return Contract.fromJson(
       response.proposalOpenContract,
@@ -332,11 +355,7 @@ class Contract extends ContractModel {
           .subscribe(request: request, comparePredicate: comparePredicate)
           .map<Contract>(
         (Response response) {
-          checkException(
-            response: response,
-            exceptionCreator: (String message) =>
-                ContractOperationException(message: message),
-          );
+          _checkForException(response);
 
           return response is ProposalOpenContractResponse
               ? Contract.fromJson(
@@ -358,11 +377,7 @@ class Contract extends ContractModel {
     final ForgetResponse response =
         await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
 
-    checkException(
-      response: response,
-      exceptionCreator: (String message) =>
-          ContractOperationException(message: message),
-    );
+    _checkForException(response);
 
     return Forget.fromResponse(response);
   }
@@ -375,14 +390,16 @@ class Contract extends ContractModel {
       method: ForgetStreamType.proposalOpenContract,
     );
 
-    checkException(
-      response: response,
-      exceptionCreator: (String message) =>
-          ContractOperationException(message: message),
-    );
+    _checkForException(response);
 
     return ForgetAll.fromResponse(response);
   }
+
+  static void _checkForException(Response response) => checkException(
+        response: response,
+        exceptionCreator: (String message) =>
+            ContractOperationException(message: message),
+      );
 
   /// Generate a copy of instance with given parameters
   Contract copyWith({
