@@ -4,6 +4,7 @@ import 'package:flutter_deriv_api/api/contract/models/history_spot_price_model.d
 import 'package:flutter_deriv_api/api/contract/models/sell_expired_contract_model.dart';
 import 'package:flutter_deriv_api/api/contract/operation/cancel_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/contract.dart';
+import 'package:flutter_deriv_api/api/contract/operation/open_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_operations_exception.dart';
 import 'package:flutter_deriv_api/api/contract/operation/price_proposal.dart';
 import 'package:flutter_deriv_api/api/contract/operation/sell_contract.dart';
@@ -23,6 +24,7 @@ void main() {
     test('Fetch Price Proposal Test', () async {
       final PriceProposal priceProposal =
           await PriceProposal.fetchPriceForContract(
+        // ignore: missing_required_param
         const ProposalRequest(
           symbol: 'R_100',
           durationUnit: 'm',
@@ -45,6 +47,7 @@ void main() {
 
     test('Price Proposal Subscription Test', () async {
       PriceProposal.subscribePriceForContract(
+        // ignore: missing_required_param
         const ProposalRequest(
           symbol: 'R_100',
           durationUnit: 'm',
@@ -82,8 +85,7 @@ void main() {
       expect(buyContract.buyPrice, 49.12);
       expect(buyContract.transactionId, 159779308968);
 
-      final Contract openContract =
-          await buyContract.fetchState();
+      final OpenContract openContract = await buyContract.fetchState();
       expect(openContract.contractId, 79944933588);
       expect(openContract.payout, 50.0);
       expect(openContract.profit, 25.45);
@@ -106,13 +108,14 @@ void main() {
       expect(openContract.isForwardStarting, false);
       expect(openContract.isIntraday, true);
       expect(openContract.isSold, false);
-      expect(openContract.shortCode, 'CALL_R_100_50_1587533920_1587533980_S10P_0');
+      expect(
+          openContract.shortCode, 'CALL_R_100_50_1587533920_1587533980_S10P_0');
       expect(openContract.status, ContractStatus.open);
 
       buyContract
           .subscribeState()
           .take(1)
-          .listen(expectAsync1((Contract openContract) {
+          .listen(expectAsync1((OpenContract openContract) {
         expect(openContract.contractId, 79944933588);
         expect(openContract.payout, 50.0);
         expect(openContract.profit, 25.45);
@@ -135,7 +138,8 @@ void main() {
         expect(openContract.isForwardStarting, false);
         expect(openContract.isIntraday, true);
         expect(openContract.isSold, false);
-        expect(openContract.shortCode, 'CALL_R_100_50_1587533920_1587533980_S10P_0');
+        expect(openContract.shortCode,
+            'CALL_R_100_50_1587533920_1587533980_S10P_0');
         expect(openContract.status, ContractStatus.open);
 
         expect(
@@ -214,6 +218,7 @@ void main() {
       try {
         final PriceProposal priceProposal =
             await PriceProposal.fetchPriceForContract(
+          // ignore: missing_required_param
           const ProposalRequest(
             symbol: 'R_100',
             durationUnit: 'm',
@@ -223,6 +228,7 @@ void main() {
             basis: 'payout',
             contractType: 'CALL',
             currency: 'USD',
+            cancellation: 'MULTUP',
           ),
         );
         expect(priceProposal.askPrice, 10);
@@ -267,8 +273,7 @@ void main() {
         expect(cancelContract.soldFor, 1150.0);
         expect(cancelContract.transactionId, 453476);
 
-        final Contract openContract =
-            await boughtContract.fetchState();
+        final OpenContract openContract = await boughtContract.fetchState();
         expect(openContract.contractId, 79944933588);
         expect(openContract.payout, 50.0);
         expect(openContract.profit, 25.45);
@@ -290,7 +295,8 @@ void main() {
         expect(openContract.isForwardStarting, false);
         expect(openContract.isIntraday, true);
         expect(openContract.isSold, false);
-        expect(openContract.shortCode, 'CALL_R_100_50_1587533920_1587533980_S10P_0');
+        expect(openContract.shortCode,
+            'CALL_R_100_50_1587533920_1587533980_S10P_0');
         expect(openContract.status, ContractStatus.open);
       } on ContractOperationException catch (e) {
         print(e.message);
@@ -298,10 +304,10 @@ void main() {
     });
 
     test('Open Contract Subscription Test', () {
-      Contract.subscribeContractState(
+      OpenContract.subscribeContractState(
         const ProposalOpenContractRequest(contractId: 79944933588),
       ).take(1).listen(
-        expectAsync1((Contract openContract) {
+        expectAsync1((OpenContract openContract) {
           expect(openContract.contractId, 79944933588);
           expect(openContract.payout, 50.0);
           expect(openContract.profit, 25.45);
@@ -323,7 +329,8 @@ void main() {
           expect(openContract.isForwardStarting, false);
           expect(openContract.isIntraday, true);
           expect(openContract.isSold, false);
-          expect(openContract.shortCode, 'CALL_R_100_50_1587533920_1587533980_S10P_0');
+          expect(openContract.shortCode,
+              'CALL_R_100_50_1587533920_1587533980_S10P_0');
           expect(openContract.status, ContractStatus.open);
 
           expect(
