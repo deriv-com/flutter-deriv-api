@@ -9,7 +9,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'exceptions/tick_exception.dart';
 import 'tick_base.dart';
 
-/// OHLC class
+/// OHLC class, represents price of the symbol over time.
 class OHLC extends TickBase {
   /// Initializes
   OHLC({

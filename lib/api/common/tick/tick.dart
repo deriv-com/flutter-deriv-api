@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 import 'exceptions/tick_exception.dart';
 import 'tick_base.dart';
 
-/// Normal tick class, represents price of the symbol in a time
+/// Normal tick class, represents price of the symbol in one unit of time
 class Tick extends TickBase {
   /// Initializes
   Tick({
