@@ -13,8 +13,8 @@ class Residence extends ResidenceModel {
     String countryName,
     String countryCode,
     List<String> tinFormat,
-    bool disabled,
-    bool selected,
+    String disabled,
+    String selected,
   }) : super(
           phoneIdd: phoneIdd,
           countryName: countryName,
@@ -33,11 +33,17 @@ class Residence extends ResidenceModel {
         countryName: json['text'],
         countryCode: json['value'],
         tinFormat: getListFromMap(json['tin_format']),
-        disabled: json['disabled']?.toString()?.toLowerCase() == 'disabled',
-        selected: json['selected']?.toString()?.toLowerCase() == 'selected',
+        disabled: json['disabled'],
+        selected: json['selected'],
       );
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Is disabled or bot
+  bool get isDisabled => disabled?.toLowerCase() == 'disabled';
+
+  /// Is selected or bot
+  bool get isSelected => selected?.toLowerCase() == 'selected';
 
   /// Gets Residence list for the given [ResidenceListRequest]
   ///
@@ -67,8 +73,8 @@ class Residence extends ResidenceModel {
     String countryName,
     String countryCode,
     List<String> tinFormat,
-    bool disabled,
-    bool selected,
+    String disabled,
+    String selected,
   }) =>
       Residence(
         phoneIdd: phoneIdd ?? this.phoneIdd,

@@ -25,8 +25,8 @@ class ResidenceModel extends APIBaseModel {
   final List<String> tinFormat;
 
   /// Is disabled
-  final bool disabled;
+  final String disabled;
 
   /// Is selected
-  final bool selected;
+  final String selected;
 }
