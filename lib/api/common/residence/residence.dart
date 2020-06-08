@@ -39,10 +39,10 @@ class Residence extends ResidenceModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Is disabled or bot
+  /// 'true' if disabled
   bool get isDisabled => disabled?.toLowerCase() == 'disabled';
 
-  /// Is selected or bot
+  /// 'true' if selected
   bool get isSelected => selected?.toLowerCase() == 'selected';
 
   /// Gets Residence list for the given [ResidenceListRequest]
