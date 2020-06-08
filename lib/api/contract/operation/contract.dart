@@ -1,4 +1,3 @@
-import 'package:flutter_deriv_api/api/contract/models/contract_base_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/contract_model.dart';
 import 'package:flutter_deriv_api/api/contract/operation/open_contract.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
@@ -14,7 +13,7 @@ import 'exceptions/contract_operations_exception.dart';
 import 'sell_contract.dart';
 import 'update_contract.dart';
 
-/// Open contract class
+/// Contract class
 class Contract extends ContractModel {
   /// Initializes
   Contract({
@@ -82,16 +81,16 @@ class Contract extends ContractModel {
     return Contract.fromJson(response.buy);
   }
 
-  /// Buy contract with parameters specified in request and subscribes to it
+  /// Buys contract with parameters specified in request and subscribes to it
   ///
   /// Throws a [ContractOperationException] is API response contains an error
-  static Stream<ContractBaseModel> buyAndSubscribe(
+  static Stream<Contract> buyAndSubscribe(
     BuyRequest request, {
     RequestCompareFunction comparePredicate,
   }) =>
       _api
           .subscribe(request: request, comparePredicate: comparePredicate)
-          .map<ContractBaseModel>(
+          .map<Contract>(
         (Response response) {
           checkException(
             response: response,

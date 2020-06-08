@@ -1,7 +1,6 @@
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/contract/models/cancellation_info_model.dart';
-import 'package:flutter_deriv_api/api/contract/models/contract_base_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/limit_order_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/price_proposal_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -169,10 +168,11 @@ class PriceProposal extends PriceProposalModel {
   /// Buys this proposal contract with [price] specified and subscribes to it.
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Stream<ContractBaseModel> buyAndSubscribe({double price}) => Contract.buyAndSubscribe(BuyRequest(
-    buy: id,
-    price: price ?? askPrice,
-  ));
+  Stream<Contract> buyAndSubscribe({double price}) =>
+      Contract.buyAndSubscribe(BuyRequest(
+        buy: id,
+        price: price ?? askPrice,
+      ));
 
   /// Generates a copy of instance with given parameters
   PriceProposal copyWith({
