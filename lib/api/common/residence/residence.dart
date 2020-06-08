@@ -33,8 +33,10 @@ class Residence extends ResidenceModel {
         countryName: json['text'],
         countryCode: json['value'],
         tinFormat: getListFromMap(json['tin_format']),
-        disabled: json['disabled'] != null,
-        selected: json['selected'] != null,
+        disabled: json['disabled'] != null &&
+            (json['disabled'] == 'disabled' || json['disabled'] == 'DISABLED'),
+        selected: json['selected'] != null &&
+            (json['selected'] == 'selected' || json['selected'] == 'SELECTED'),
       );
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
