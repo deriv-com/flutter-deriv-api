@@ -5,6 +5,8 @@ import 'package:flutter_deriv_api/api/contract/models/transaction_ids_model.dart
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 
+import 'cancellation_info_model.dart';
+
 /// Model class for proposal open contract
 class ContractModel extends APIBaseModel {
   /// Initializes
@@ -15,6 +17,8 @@ class ContractModel extends APIBaseModel {
     this.barrierCount,
     this.bidPrice,
     this.buyPrice,
+    this.cancellation,
+    this.commission,
     this.contractId,
     this.contractType,
     this.currency,
@@ -42,6 +46,7 @@ class ContractModel extends APIBaseModel {
     this.isPathDependent,
     this.isSettleable,
     this.isSold,
+    this.isValidToCancel,
     this.isValidToSell,
     this.limitOrder,
     this.longCode,
@@ -84,6 +89,12 @@ class ContractModel extends APIBaseModel {
 
   /// Price at which contract was purchased
   final double buyPrice;
+
+  /// Contains information about contract cancellation option.
+  final CancellationInfoModel cancellation;
+
+  /// Commission in payout currency
+  final double commission;
 
   /// The internal contract identifier
   final int contractId;
@@ -165,6 +176,9 @@ class ContractModel extends APIBaseModel {
 
   /// Whether the contract is sold or not.
   final bool isSold;
+
+  /// Whether the contract can be cancelled.
+  final bool isValidToCancel;
 
   /// Whether the contract can be sold back to the company.
   final bool isValidToSell;

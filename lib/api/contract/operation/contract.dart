@@ -1,6 +1,7 @@
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/contract/models/audit_detail_model.dart';
+import 'package:flutter_deriv_api/api/contract/models/cancellation_info_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/limit_order_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/contract_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/contract_tick_model.dart';
@@ -30,6 +31,8 @@ class Contract extends ContractModel {
     double bidPrice,
     double buyPrice,
     int contractId,
+    CancellationInfoModel cancellation,
+    double commission,
     String contractType,
     String currency,
     double currentSpot,
@@ -56,6 +59,7 @@ class Contract extends ContractModel {
     bool isPathDependent,
     bool isSettleable,
     bool isSold,
+    bool isValidToCancel,
     bool isValidToSell,
     LimitOrderModel limitOrder,
     String longCode,
@@ -87,6 +91,8 @@ class Contract extends ContractModel {
           barrierCount: barrierCount,
           bidPrice: bidPrice,
           buyPrice: buyPrice,
+          cancellation: cancellation,
+          commission: commission,
           contractId: contractId,
           contractType: contractType,
           currency: currency,
@@ -114,6 +120,7 @@ class Contract extends ContractModel {
           isPathDependent: isPathDependent,
           isSettleable: isSettleable,
           isSold: isSold,
+          isValidToCancel: isValidToCancel,
           isValidToSell: isValidToSell,
           limitOrder: limitOrder,
           longCode: longCode,
@@ -154,6 +161,12 @@ class Contract extends ContractModel {
         barrierCount: json['barrier_count']?.toDouble(),
         bidPrice: json['bid_price']?.toDouble(),
         buyPrice: json['buy_price']?.toDouble(),
+        cancellation: getItemFromMap(
+          json['cancellation'],
+          itemToTypeCallback: (dynamic item) =>
+              CancellationInfoModel.fromJson(item),
+        ),
+        commission: json['commision'],
         contractId: json['contract_id'],
         contractType: json['contract_type'],
         currency: json['currency'],
@@ -183,6 +196,7 @@ class Contract extends ContractModel {
         isPathDependent: getBool(json['is_path_dependent']),
         isSettleable: getBool(json['is_settleable']),
         isSold: getBool(json['is_sold']),
+        isValidToCancel: getBool(json['is_valid_to_cancel']),
         isValidToSell: getBool(json['is_valid_to_sell']),
         limitOrder: getItemFromMap(
           json['limit_order'],
@@ -409,6 +423,8 @@ class Contract extends ContractModel {
     double bidPrice,
     double buyPrice,
     int contractId,
+    CancellationInfoModel cancellation,
+    double commission,
     String contractType,
     String currency,
     double currentSpot,
@@ -435,6 +451,7 @@ class Contract extends ContractModel {
     bool isPathDependent,
     bool isSettleable,
     bool isSold,
+    bool isValidToCancel,
     bool isValidToSell,
     LimitOrderModel limitOrder,
     String longCode,
@@ -464,6 +481,8 @@ class Contract extends ContractModel {
         barrierCount: barrierCount ?? this.barrierCount,
         bidPrice: bidPrice ?? this.bidPrice,
         buyPrice: buyPrice ?? this.buyPrice,
+        cancellation: cancellation ?? this.cancellation,
+        commission: commission ?? this.commission,
         contractId: contractId ?? this.contractId,
         contractType: contractType ?? this.contractType,
         currency: currency ?? this.currency,
@@ -494,6 +513,7 @@ class Contract extends ContractModel {
         isPathDependent: isPathDependent ?? this.isPathDependent,
         isSettleable: isSettleable ?? this.isSettleable,
         isSold: isSold ?? this.isSold,
+        isValidToCancel: isValidToCancel ?? this.isValidToCancel,
         isValidToSell: isValidToSell ?? this.isValidToSell,
         limitOrder: limitOrder ?? this.limitOrder,
         longCode: longCode ?? this.longCode,
