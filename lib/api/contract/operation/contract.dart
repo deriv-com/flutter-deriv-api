@@ -81,7 +81,7 @@ class Contract extends ContractModel {
     return Contract.fromJson(response.buy);
   }
 
-  /// Buys contract with parameters specified in request and subscribes to it
+  /// Buys contract with parameters specified in request and subscribes to it.
   ///
   /// Throws a [ContractOperationException] is API response contains an error
   static Stream<Contract> buyAndSubscribe(
@@ -160,7 +160,7 @@ class Contract extends ContractModel {
         },
       ));
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   Contract copyWith({
     double balanceAfter,
     double buyPrice,
