@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/contract/models/cancellation_info_model.dart';
@@ -160,7 +161,7 @@ class PriceProposal extends PriceProposalModel {
   /// Buys this proposal contract with [price] specified.
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Future<Contract> buy({double price}) => Contract.buy(BuyRequest(
+  Future<Contract> buy({@required double price}) => Contract.buy(BuyRequest(
         buy: id,
         price: price ?? askPrice,
       ));
@@ -168,7 +169,7 @@ class PriceProposal extends PriceProposalModel {
   /// Buys this proposal contract with [price] specified and subscribes to it.
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Stream<Contract> buyAndSubscribe({double price}) =>
+  Stream<Contract> buyAndSubscribe({@required double price}) =>
       Contract.buyAndSubscribe(BuyRequest(
         buy: id,
         price: price ?? askPrice,
