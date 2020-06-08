@@ -15,6 +15,7 @@ class AvailableContractModel extends APIBaseModel {
     this.contractDisplay,
     this.contractType,
     this.exchangeName,
+    this.expiredBarriers,
     this.expiryType,
     this.forwardStartingOptions,
     this.market,
@@ -28,30 +29,33 @@ class AvailableContractModel extends APIBaseModel {
   });
 
   /// Generates an instance from JSON
-  factory AvailableContractModel.fromJson(Map<String, dynamic> json) => AvailableContractModel(
-      availableBarriers: json['available_barriers'],
-      barrier: json['barrier'],
-      barrierCategory: json['barrier_category'],
-      barriers: json['barriers'],
-      contractCategory: json['contract_category'],
-      contractCategoryDisplay: json['contract_category_display'],
-      contractDisplay: json['contract_display'],
-      contractType: json['contract_type'],
-      exchangeName: json['exchange_name'],
-      expiryType: json['expiry_type'],
-      forwardStartingOptions: getListFromMap(
-        json['forward_starting_options'],
-        itemToTypeCallback: (dynamic item) =>
-            ForwardStartingOptionModel.fromJson(item),
-      ),
-      market: json['market'],
-      maxContractDuration: json['max_contract_duration'],
-      minContractDuration: json['min_contract_duration'],
-      sentiment: json['sentiment'],
-      startType: json['start_type'],
-      submarket: json['submarket'],
-      tradingPeriod: json['trading_period'],
-      underlyingSymbol: json['underlying_symbol']);
+  factory AvailableContractModel.fromJson(Map<String, dynamic> json) =>
+      AvailableContractModel(
+        availableBarriers: json['available_barriers'],
+        barrier: json['barrier'],
+        barrierCategory: json['barrier_category'],
+        barriers: json['barriers'],
+        contractCategory: json['contract_category'],
+        contractCategoryDisplay: json['contract_category_display'],
+        contractDisplay: json['contract_display'],
+        contractType: json['contract_type'],
+        exchangeName: json['exchange_name'],
+        expiredBarriers: getListFromMap(json['expired_barriers']),
+        expiryType: json['expiry_type'],
+        forwardStartingOptions: getListFromMap(
+          json['forward_starting_options'],
+          itemToTypeCallback: (dynamic item) =>
+              ForwardStartingOptionModel.fromJson(item),
+        ),
+        market: json['market'],
+        maxContractDuration: json['max_contract_duration'],
+        minContractDuration: json['min_contract_duration'],
+        sentiment: json['sentiment'],
+        startType: json['start_type'],
+        submarket: json['submarket'],
+        tradingPeriod: json['trading_period'],
+        underlyingSymbol: json['underlying_symbol'],
+      );
 
   /// Array of available barriers for a predefined trading period
   final List<int> availableBarriers;
@@ -79,6 +83,9 @@ class AvailableContractModel extends APIBaseModel {
 
   /// Name of exchange
   final String exchangeName;
+
+  /// Array of barriers already expired
+  final List<String> expiredBarriers;
 
   /// Expiry Type.
   final String expiryType;
@@ -121,6 +128,7 @@ class AvailableContractModel extends APIBaseModel {
     String contractDisplay,
     String contractType,
     String exchangeName,
+    List<String> expiredBarriers,
     String expiryType,
     List<ForwardStartingOptionModel> forwardStartingOptions,
     String market,
@@ -143,6 +151,7 @@ class AvailableContractModel extends APIBaseModel {
         contractDisplay: contractDisplay ?? this.contractDisplay,
         contractType: contractType ?? this.contractType,
         exchangeName: exchangeName ?? this.exchangeName,
+        expiredBarriers: expiredBarriers ?? this.expiredBarriers,
         expiryType: expiryType ?? this.expiryType,
         forwardStartingOptions:
             forwardStartingOptions ?? this.forwardStartingOptions,
