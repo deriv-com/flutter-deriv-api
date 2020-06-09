@@ -38,7 +38,7 @@ class ContractsForSymbol extends ContractsForSymbolModel {
         feedLicense: json['feed_license'],
         hitCount: json['hit_count'],
         open: getDateTime(json['open']),
-        spot: json['spot'],
+        spot: json['spot']?.toDouble(),
       );
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();

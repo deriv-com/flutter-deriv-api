@@ -30,7 +30,7 @@ class ContractModel extends APIBaseModel {
   /// Generate an instance from JSON
   factory ContractModel.fromJson(Map<String, dynamic> json) => ContractModel(
       availableBarriers: json['available_barriers'],
-      barrier: json['barrier'],
+      barrier: json['barrier'].toString(),
       barrierCategory: json['barrier_category'],
       barriers: json['barriers'],
       contractCategory: json['contract_category'],

@@ -15,13 +15,8 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
   @override
   void initState() {
     super.initState();
-    _activeSymbolsBloc = ActiveSymbolsBloc()..add(FetchActiveSymbols());
-  }
-
-  @override
-  void dispose() {
-    _activeSymbolsBloc.close();
-    super.dispose();
+    _activeSymbolsBloc = BlocProvider.of<ActiveSymbolsBloc>(context)
+      ..add(FetchActiveSymbols());
   }
 
   @override
@@ -54,7 +49,7 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                                 Text(
                                   '${state.selectedSymbol.marketDisplayName}',
                                   style: const TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 16,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),

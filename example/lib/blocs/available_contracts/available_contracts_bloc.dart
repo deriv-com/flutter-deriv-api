@@ -1,0 +1,53 @@
+import 'dart:async';
+
+import 'package:bloc/bloc.dart';
+import 'package:flutter_deriv_api/api/common/active_symbols/active_symbols.dart';
+import 'package:flutter_deriv_api/api/contract/contracts_for/contracts_for_symbol.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api_example/blocs/active_symbols/active_symbols_bloc.dart';
+
+part 'available_contracts_event.dart';
+
+part 'available_contracts_state.dart';
+
+class AvailableContractsBloc
+    extends Bloc<AvailableContractsEvent, AvailableContractsState> {
+  AvailableContractsBloc(this.activeSymbolsBloc) {
+    activeSymbolsBloc.listen((ActiveSymbolsState activeSymbolsState) {
+      if (activeSymbolsState is ActiveSymbolsLoaded) {
+        add(FetchAvailableContracts(
+          activeSymbol: activeSymbolsState.selectedSymbol,
+        ));
+      }
+    });
+  }
+
+  final ActiveSymbolsBloc activeSymbolsBloc;
+
+  @override
+  AvailableContractsState get initialState => AvailableContractsLoading();
+
+  @override
+  Stream<AvailableContractsState> mapEventToState(
+    AvailableContractsEvent event,
+  ) async* {
+    if (event is FetchAvailableContracts) {
+      yield AvailableContractsLoading();
+
+      final ContractsForSymbol contracts =
+          await _fetchAvailableContracts(event.activeSymbol);
+
+      yield AvailableContractsLoaded(contracts: contracts);
+    }
+  }
+
+  Future<ContractsForSymbol> _fetchAvailableContracts(
+    ActiveSymbol selectedSymbol,
+  ) async =>
+      ContractsForSymbol.fetchContractsForSymbol(ContractsForRequest(
+        contractsFor: selectedSymbol.symbol,
+      ));
+
+  @override
+  Future<void> close() async => super.close();
+}
