@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_deriv_api/flutter_deriv_api.dart';
 
+import 'sample_app.dart';
+
 void main() => runApp(MyApp());
 
 /// The main widget.
@@ -45,13 +47,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Plugin example app'),
-          ),
-          body: Center(
-            child: Text('Running on: $_platformVersion\n'),
-          ),
-        ),
+        home: SampleApp(),
       );
 }
