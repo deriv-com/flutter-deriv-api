@@ -32,7 +32,7 @@ class AvailableContractModel extends APIBaseModel {
   factory AvailableContractModel.fromJson(Map<String, dynamic> json) =>
       AvailableContractModel(
         availableBarriers: json['available_barriers'],
-        barrier: json['barrier'],
+        barrier: json['barrier'].toString(),
         barrierCategory: json['barrier_category'],
         barriers: json['barriers'],
         contractCategory: json['contract_category'],
