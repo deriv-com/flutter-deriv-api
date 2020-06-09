@@ -61,7 +61,7 @@ class TickHistory extends TickHistoryModel {
   /// Throws [TickException] if API response contains an error
   static Future<TickHistorySubscription> fetchTicksAndSubscribe(
     TicksHistoryRequest request, {
-    bool subscribe = false,
+    bool subscribe = true,
   }) async {
     if (subscribe) {
       final Stream<Response> responseStream = _api.subscribe(request: request);
