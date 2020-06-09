@@ -37,9 +37,9 @@ class Tick extends TickBase {
     Map<String, dynamic> subscriptionJson,
   }) =>
       Tick(
-        ask: json['ask'],
-        bid: json['bid'],
-        quote: json['quote'],
+        ask: json['ask']?.toDouble(),
+        bid: json['bid']?.toDouble(),
+        quote: json['quote']?.toDouble(),
         epoch: getDateTime(json['epoch']),
         id: json['id'],
         pipSize: json['pip_size'],
