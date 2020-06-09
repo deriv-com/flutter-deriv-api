@@ -11,7 +11,6 @@ class ContractsTypeWidget extends StatefulWidget {
 }
 
 class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
-
   AvailableContractsBloc _availableContractsBloc;
 
   @override
@@ -48,12 +47,18 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                               children: <Widget>[
                                 Text(
                                   '${state.contracts.contracts.length}',
-                                  style: const TextStyle(fontSize: 16),
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                   textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(
+                                  height: 12,
                                 ),
                                 const Text(
                                   'Available Contracts',
-                                  style: TextStyle(fontSize: 12),
+                                  style: TextStyle(fontSize: 14),
                                   textAlign: TextAlign.center,
                                 ),
                               ],

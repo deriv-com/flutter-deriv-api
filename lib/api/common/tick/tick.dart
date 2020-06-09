@@ -40,12 +40,12 @@ class Tick extends TickModel {
     Map<String, dynamic> subscriptionJson,
   }) =>
       Tick(
-        ask: json['ask'],
-        bid: json['bid'],
+        ask: json['ask']?.toDouble(),
+        bid: json['bid']?.toDouble(),
         epoch: getDateTime(json['epoch']),
         id: json['id'],
         pipSize: json['pip_size'],
-        quote: json['quote'],
+        quote: json['quote']?.toDouble(),
         symbol: json['symbol'],
         subscriptionInformation: SubscriptionModel.fromJson(subscriptionJson),
       );
@@ -89,8 +89,10 @@ class Tick extends TickModel {
       return null;
     }
 
-    final ForgetResponse response =
-        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+    final ForgetResponse response = await _api.unsubscribe(
+      subscriptionId: subscriptionInformation.id,
+      shouldForced: true,
+    );
 
     checkException(
       response: response,

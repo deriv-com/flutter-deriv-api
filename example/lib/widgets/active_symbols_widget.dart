@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_deriv_api_example/blocs/active_symbols/active_symbols_bloc.dart';
+import 'package:flutter_deriv_api_example/blocs/ticks/ticks_bloc.dart';
 
 import 'active_symbols_list_dialog.dart';
 
@@ -11,12 +12,16 @@ class ActiveSymbolsWidget extends StatefulWidget {
 
 class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
   ActiveSymbolsBloc _activeSymbolsBloc;
+  TicksBloc _ticksBloc;
+  double _lastTickValue = 0;
 
   @override
   void initState() {
     super.initState();
     _activeSymbolsBloc = BlocProvider.of<ActiveSymbolsBloc>(context)
       ..add(FetchActiveSymbols());
+
+    _ticksBloc = TicksBloc(_activeSymbolsBloc);
   }
 
   @override
@@ -49,14 +54,17 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                                 Text(
                                   '${state.selectedSymbol.marketDisplayName}',
                                   style: const TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 18,
                                   ),
                                   textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(
+                                  height: 12,
                                 ),
                                 Text(
                                   '${state.selectedSymbol.displayName}',
                                   style: const TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 14,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
@@ -70,89 +78,57 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                         }),
                   ),
                 ),
-//                Align(
-//                  alignment: Alignment.bottomRight,
-//                  child: Padding(
-//                    padding: const EdgeInsets.all(2.0),
-//                    child: Row(
-//                      mainAxisSize: MainAxisSize.min,
-//                      children: <Widget>[
-//                        Flexible(
-//                          child: StreamBuilder(
-//                              stream: tradeScreenViewModel
-//                                  .symbolsViewModel.tickStream,
-//                              builder: (context,
-//                                  AsyncSnapshot<TickStreamResponse> snapshot) {
-//                                if (snapshot.hasData &&
-//                                    snapshot.data.error == null) {
-//                                  Color bgColor;
-//
-//                                  if (snapshot.data.tick.ask >=
-//                                      tickStreamLastValue) {
-//                                    bgColor = Colors.lightGreen;
-//                                  } else {
-//                                    bgColor = Colors.redAccent;
-//                                  }
-//
-//                                  tickStreamLastValue = snapshot.data.tick?.ask;
-//
-//                                  return Container(
-//                                      decoration: BoxDecoration(
-//                                        borderRadius: BorderRadius.circular(4),
-//                                        color: bgColor,
-//                                      ),
-//                                      child: Padding(
-//                                        padding: const EdgeInsets.all(2.0),
-//                                        child: snapshot.data.error == null
-//                                            ? Text(
-//                                                '${snapshot.data.tick?.ask?.toStringAsFixed(5)}')
-//                                            : Text(
-//                                                '${snapshot.data.error.message}',
-//                                                style: const TextStyle(
-//                                                  fontSize: 9,
-//                                                ),
-//                                              ),
-//                                      ));
-//                                }
-//                                return const Text('...');
-//                              }),
-//                        ),
-//                        Icon(Icons.keyboard_arrow_down)
-//                      ],
-//                    ),
-//                  ),
-//                ),
-//                Align(
-//                  alignment: Alignment.topLeft,
-//                  child: Padding(
-//                    padding: const EdgeInsets.all(8.0),
-//                    child: StreamBuilder(
-//                        stream:
-//                            tradeScreenViewModel.symbolsViewModel.tickStream,
-//                        builder: (context,
-//                            AsyncSnapshot<TickStreamResponse> snapshot) {
-//                          if (snapshot.hasData && snapshot.data.error == null) {
-//                            tickStreamChartValues.add(snapshot.data.tick?.ask);
-//
-//                            if (tickStreamChartValues.length > 15) {
-//                              tickStreamChartValues.removeFirst();
-//                            }
-//
-//                            return Container(
-//                              width: 30,
-//                              height: 30,
-//                              child: Sparkline(
-//                                data: tickStreamChartValues.toList(),
-//                                pointsMode: PointsMode.last,
-//                                pointSize: 2.0,
-//                                pointColor: Colors.amber,
-//                              ),
-//                            );
-//                          }
-//                          return const Text('...');
-//                        }),
-//                  ),
-//                )
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(2),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Flexible(
+                          child: BlocBuilder(
+                              bloc: _ticksBloc,
+                              builder:
+                                  (BuildContext context, TicksState state) {
+                                if (state is TicksLoaded) {
+                                  final Color tickColor =
+                                      state.tick.ask > _lastTickValue
+                                          ? Colors.green
+                                          : state.tick.ask == _lastTickValue
+                                              ? Colors.black
+                                              : Colors.red;
+
+                                  _lastTickValue = state.tick.ask;
+
+                                  return Padding(
+                                    padding: const EdgeInsets.all(2),
+                                    child: Text(
+                                      '${state.tick?.ask?.toStringAsFixed(5)}',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: tickColor,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                return const Text(
+                                  '---',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              }),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Icon(Icons.keyboard_arrow_down)
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

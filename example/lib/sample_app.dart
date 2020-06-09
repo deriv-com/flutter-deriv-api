@@ -58,19 +58,9 @@ class _SampleAppState extends State<SampleApp> {
           ),
           body: Column(
             children: <Widget>[
-              Container(
-                height: 120,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(child: ActiveSymbolsWidget()),
-                    Expanded(child: ContractsTypeWidget()),
-                  ],
-                ),
-              ),
+              Expanded(child: ActiveSymbolsWidget()),
+              Expanded(child: ContractsTypeWidget()),
               Expanded(flex: 2, child: Container()),
-              Expanded(flex: 1, child: Container()),
             ],
           ),
         ),
