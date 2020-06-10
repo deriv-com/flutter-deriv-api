@@ -1,3 +1,4 @@
+import 'dart:developer' as dev;
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/contract/models/history_spot_price_model.dart';
@@ -23,6 +24,7 @@ void main() {
     test('Fetch Price Proposal Test', () async {
       final PriceProposal priceProposal =
           await PriceProposal.fetchPriceForContract(
+        // ignore: missing_required_param
         const ProposalRequest(
           symbol: 'R_100',
           durationUnit: 'm',
@@ -44,6 +46,7 @@ void main() {
 
     test('Price Proposal Subscription Test', () async {
       PriceProposal.subscribePriceForContract(
+        // ignore: missing_required_param
         const ProposalRequest(
           symbol: 'R_100',
           durationUnit: 'm',
@@ -184,6 +187,7 @@ void main() {
       try {
         final PriceProposal priceProposal =
             await PriceProposal.fetchPriceForContract(
+          // ignore: missing_required_param
           const ProposalRequest(
             symbol: 'R_100',
             durationUnit: 'm',
@@ -249,7 +253,7 @@ void main() {
             getDateTime(1587533976));
         expect(openContract.underlying, 'R_100');
       } on ContractOperationException catch (e) {
-        print(e.message);
+        dev.log(e.message);
       }
     });
 
