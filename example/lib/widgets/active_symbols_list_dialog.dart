@@ -9,7 +9,8 @@ class ActiveSymbolsListDialog extends StatelessWidget {
   final ActiveSymbolsBloc activeSymbolsBloc;
 
   @override
-  Widget build(BuildContext context) => BlocBuilder(
+  Widget build(BuildContext context) =>
+      BlocBuilder<ActiveSymbolsBloc, ActiveSymbolsState>(
         bloc: activeSymbolsBloc,
         builder: (BuildContext context, ActiveSymbolsState state) {
           if (state is ActiveSymbolsLoaded) {

@@ -11,6 +11,7 @@ class ActiveSymbolsWidget extends StatefulWidget {
 }
 
 class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
+  // ignore: close_sinks
   ActiveSymbolsBloc _activeSymbolsBloc;
   TicksBloc _ticksBloc;
   double _lastTickValue = 0;
@@ -88,7 +89,7 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Flexible(
-                          child: BlocBuilder(
+                          child: BlocBuilder<TicksBloc, TicksState>(
                               bloc: _ticksBloc,
                               builder:
                                   (BuildContext context, TicksState state) {
@@ -147,4 +148,10 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
           ),
         ),
       );
+
+  @override
+  void dispose() {
+    _ticksBloc.close();
+    super.dispose();
+  }
 }

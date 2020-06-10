@@ -44,7 +44,7 @@ class _SampleAppState extends State<SampleApp> {
 
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
-        providers: [
+        providers: <BlocProvider<dynamic>>[
           BlocProvider<ActiveSymbolsBloc>.value(
             value: _activeSymbolsBloc,
           ),

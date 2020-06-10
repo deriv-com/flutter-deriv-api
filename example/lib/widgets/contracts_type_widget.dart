@@ -10,6 +10,7 @@ class ContractsTypeWidget extends StatefulWidget {
 }
 
 class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
+  // ignore: close_sinks
   AvailableContractsBloc _availableContractsBloc;
 
   @override
@@ -37,7 +38,8 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                   child: Padding(
                     padding: const EdgeInsets.all(20),
                     child: Center(
-                      child: BlocBuilder(
+                      child: BlocBuilder<AvailableContractsBloc,
+                          AvailableContractsState>(
                         bloc: _availableContractsBloc,
                         builder: (BuildContext context,
                             AvailableContractsState state) {

@@ -11,7 +11,8 @@ class ContractsTypeDialog extends StatelessWidget {
   final AvailableContractsBloc availableContractsBloc;
 
   @override
-  Widget build(BuildContext context) => BlocBuilder(
+  Widget build(BuildContext context) =>
+      BlocBuilder<AvailableContractsBloc, AvailableContractsState>(
         bloc: availableContractsBloc,
         builder: (BuildContext context, AvailableContractsState state) {
           if (state is AvailableContractsLoaded) {
@@ -19,17 +20,17 @@ class ContractsTypeDialog extends StatelessWidget {
 
             return Material(
               child: ListView.builder(
-                itemCount: contractsForSymbol.contracts.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final ContractModel contract = contractsForSymbol.contracts[index];
-                  return ListTile(
-                    title: Text(
-                      '${contract.contractDisplay}, ${contract.contractType}',
-                    ),
-                    subtitle: Text('${contract.contractCategory}'),
-                  );
-                }
-              ),
+                  itemCount: contractsForSymbol.contracts.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final ContractModel contract =
+                        contractsForSymbol.contracts[index];
+                    return ListTile(
+                      title: Text(
+                        '${contract.contractDisplay}, ${contract.contractType}',
+                      ),
+                      subtitle: Text('${contract.contractCategory}'),
+                    );
+                  }),
             );
           } else {
             return const Center(child: CircularProgressIndicator());
