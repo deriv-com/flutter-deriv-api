@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_deriv_api_example/blocs/available_contracts/available_contracts_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_deriv_api/api/common/active_symbols/active_symbols.dart';
 
 import 'contracts_type_dialog.dart';
 
@@ -63,6 +62,8 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                                 ),
                               ],
                             );
+                          } else if (state is AvailableContractsError) {
+                            return Text(state.message);
                           } else {
                             return const CircularProgressIndicator();
                           }

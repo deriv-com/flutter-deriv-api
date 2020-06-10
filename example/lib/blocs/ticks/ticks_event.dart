@@ -19,3 +19,12 @@ class YieldTick extends TicksEvent {
   @override
   String toString() => 'YieldTicks $tick';
 }
+
+class YieldError extends TicksEvent {
+  YieldError(this.message);
+
+  final String message;
+
+  @override
+  String toString() => 'Tick $message';
+}

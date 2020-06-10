@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_deriv_api/api/common/active_symbols/active_symbols.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/tick/tick.dart';
-import 'package:flutter_deriv_api/api/contract/contracts_for/contracts_for_symbol.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api_example/blocs/active_symbols/active_symbols_bloc.dart';
 
@@ -23,7 +22,7 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
 
   final ActiveSymbolsBloc activeSymbolsBloc;
 
-  Tick _firstTick;
+  Tick _currentTick;
 
   @override
   TicksState get initialState => TicksLoading();
@@ -37,13 +36,16 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
 
       await _unsubscribeTick();
 
-      final Stream<Tick> ticksStream = _subscribeTick(event.selectedSymbol);
-
-      _firstTick = await ticksStream.first;
-
-      ticksStream.listen((Tick tick) => add(YieldTick(tick)));
+      _subscribeTick(event.selectedSymbol).handleError((dynamic error) {
+        add(YieldError(error.toString()));
+      }).listen((Tick tick) {
+        _currentTick = tick;
+        add(YieldTick(tick));
+      });
     } else if (event is YieldTick) {
       yield TicksLoaded(event.tick);
+    } else if (event is YieldError) {
+      yield TicksError(event.message);
     }
   }
 
@@ -52,8 +54,11 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
         TicksRequest(ticks: selectedSymbol.symbol),
       );
 
-  Future<Forget> _unsubscribeTick() => _firstTick?.unsubscribeTick();
+  Future<Forget> _unsubscribeTick() => _currentTick?.unsubscribeTick();
 
   @override
-  Future<void> close() async => super.close();
+  Future<void> close() async {
+    await _unsubscribeTick();
+    await super.close();
+  }
 }

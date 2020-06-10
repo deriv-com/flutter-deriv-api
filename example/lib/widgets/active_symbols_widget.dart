@@ -70,6 +70,8 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                                 ),
                               ],
                             );
+                          } else if (state is ActiveSymbolsError) {
+                            return Text(state.message);
                           } else {
                             return const Center(
                               child: CircularProgressIndicator(),
@@ -109,6 +111,17 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                                         fontWeight: FontWeight.bold,
                                         color: tickColor,
                                       ),
+                                    ),
+                                  );
+                                }
+
+                                if (state is TicksError) {
+                                  return Text(
+                                    state.message,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.red,
                                     ),
                                   );
                                 }

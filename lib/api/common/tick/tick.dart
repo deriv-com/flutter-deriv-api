@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/common/models/tick_model.dart';
@@ -72,14 +74,41 @@ class Tick extends TickModel {
                 TickException(message: message),
           );
 
-          return response is TicksResponse
+          final Tick res = response is TicksResponse
               ? Tick.fromJson(
                   response.tick,
                   subscriptionJson: response.subscription,
                 )
               : null;
+
+          return res;
         },
       );
+
+//  /// Subscribes to tick
+//  static Stream<Tick> subscribeTick(
+//    TicksRequest tickRequest, {
+//    RequestCompareFunction comparePredicate,
+//  }) =>
+//      _api
+//          .subscribe(request: tickRequest, comparePredicate: comparePredicate)
+//          .transform(StreamTransformer<Response, Tick>.fromHandlers(
+//              handleData: (Response response, EventSink<Tick> sink) {
+//                checkException(
+//                  response: response,
+//                  exceptionCreator: (String message) =>
+//                      TickException(message: message),
+//                );
+//                sink.add(response is TicksResponse
+//                    ? Tick.fromJson(
+//                        response.tick,
+//                        subscriptionJson: response.subscription,
+//                      )
+//                    : null);
+//              },
+//              handleError: (Object e, StackTrace st, EventSink<Tick> sink) {
+//                sink.add(TickException(message: message));
+//              }));
 
   /// Unsubscribes from tick stream
   ///

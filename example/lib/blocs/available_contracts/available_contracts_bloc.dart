@@ -34,10 +34,14 @@ class AvailableContractsBloc
     if (event is FetchAvailableContracts) {
       yield AvailableContractsLoading();
 
-      final ContractsForSymbol contracts =
-          await _fetchAvailableContracts(event.activeSymbol);
+      try {
+        final ContractsForSymbol contracts =
+            await _fetchAvailableContracts(event.activeSymbol);
 
-      yield AvailableContractsLoaded(contracts: contracts);
+        yield AvailableContractsLoaded(contracts: contracts);
+      } on Exception catch (e) {
+        yield AvailableContractsError(e.toString());
+      }
     }
   }
 
