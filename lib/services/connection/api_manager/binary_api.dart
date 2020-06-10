@@ -124,21 +124,17 @@ class BinaryAPI implements BaseAPI {
   @override
   Future<ForgetResponse> unsubscribe({
     @required String subscriptionId,
-    bool shouldForced = false,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this)).unsubscribe(
         subscriptionId: subscriptionId,
-        shouldForced: shouldForced,
       );
 
   @override
   Future<ForgetAllResponse> unsubscribeAll({
     @required ForgetStreamType method,
-    bool shouldForced = false,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this)).unsubscribeAll(
         method: method,
-        shouldForced: shouldForced,
       );
 
   @override
