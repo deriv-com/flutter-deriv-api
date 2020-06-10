@@ -74,41 +74,14 @@ class Tick extends TickModel {
                 TickException(message: message),
           );
 
-          final Tick res = response is TicksResponse
+          return response is TicksResponse
               ? Tick.fromJson(
                   response.tick,
                   subscriptionJson: response.subscription,
                 )
               : null;
-
-          return res;
         },
       );
-
-//  /// Subscribes to tick
-//  static Stream<Tick> subscribeTick(
-//    TicksRequest tickRequest, {
-//    RequestCompareFunction comparePredicate,
-//  }) =>
-//      _api
-//          .subscribe(request: tickRequest, comparePredicate: comparePredicate)
-//          .transform(StreamTransformer<Response, Tick>.fromHandlers(
-//              handleData: (Response response, EventSink<Tick> sink) {
-//                checkException(
-//                  response: response,
-//                  exceptionCreator: (String message) =>
-//                      TickException(message: message),
-//                );
-//                sink.add(response is TicksResponse
-//                    ? Tick.fromJson(
-//                        response.tick,
-//                        subscriptionJson: response.subscription,
-//                      )
-//                    : null);
-//              },
-//              handleError: (Object e, StackTrace st, EventSink<Tick> sink) {
-//                sink.add(TickException(message: message));
-//              }));
 
   /// Unsubscribes from tick stream
   ///
@@ -118,10 +91,8 @@ class Tick extends TickModel {
       return null;
     }
 
-    final ForgetResponse response = await _api.unsubscribe(
-      subscriptionId: subscriptionInformation.id,
-      shouldForced: true,
-    );
+    final ForgetResponse response =
+        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
 
     checkException(
       response: response,
