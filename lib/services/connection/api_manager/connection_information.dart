@@ -1,6 +1,3 @@
-/// Callbacks for websocket connection
-typedef ConnectionCallback = void Function();
-
 /// Connection information class
 class ConnectionInformation {
   /// Initializes
@@ -9,8 +6,6 @@ class ConnectionInformation {
     this.brand = 'deriv',
     this.endpoint = 'www.binaryqa10.com',
     this.language = 'en',
-    this.onDone,
-    this.onOpen,
   });
 
   /// Application id
@@ -24,10 +19,4 @@ class ConnectionInformation {
 
   /// API language
   final String language;
-
-  /// [onDone] callback for websocket
-  final ConnectionCallback onDone;
-
-  /// [onOpen] callback for websocket
-  final ConnectionCallback onOpen;
 }

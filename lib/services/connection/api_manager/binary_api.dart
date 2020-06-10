@@ -42,8 +42,10 @@ class BinaryAPI implements BaseAPI {
 
   @override
   Future<void> connect(
-    ConnectionInformation connectionInformation,
-  ) async {
+    ConnectionInformation connectionInformation, {
+    ConnectionCallback onDone,
+    ConnectionCallback onOpen,
+  }) async {
     _connected = false;
 
     final Uri uri = Uri(
@@ -80,8 +82,8 @@ class BinaryAPI implements BaseAPI {
 
                 _connected = false;
 
-                if (connectionInformation.onDone != null) {
-                  connectionInformation.onDone();
+                if (onDone != null) {
+                  onDone();
                 }
               },
             );
@@ -93,8 +95,8 @@ class BinaryAPI implements BaseAPI {
 
     print('web socket is connected.');
 
-    if (connectionInformation.onOpen != null) {
-      connectionInformation.onOpen();
+    if (onOpen != null) {
+      onOpen();
     }
   }
 
