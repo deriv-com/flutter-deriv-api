@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_deriv_api/api/common/active_symbols/active_symbols.dart';
 import 'package:flutter_deriv_api/api/contract/contracts_for/contracts_for_symbol.dart';
+import 'package:flutter_deriv_api/api/contract/contracts_for/exceptions/contract_for_symbol_exception.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api_example/blocs/active_symbols/active_symbols_bloc.dart';
 
@@ -39,8 +40,8 @@ class AvailableContractsBloc
             await _fetchAvailableContracts(event.activeSymbol);
 
         yield AvailableContractsLoaded(contracts: contracts);
-      } on Exception catch (e) {
-        yield AvailableContractsError(e.toString());
+      } on ContractsForSymbolException catch (e) {
+        yield AvailableContractsError(e.message);
       }
     }
   }

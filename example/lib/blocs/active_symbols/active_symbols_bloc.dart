@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_deriv_api/api/common/active_symbols/active_symbols.dart';
+import 'package:flutter_deriv_api/api/common/active_symbols/exceptions/active_symbols_exception.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 part 'active_symbols_event.dart';
@@ -25,8 +26,8 @@ class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
           activeSymbols: symbols,
           selectedSymbol: symbols.first,
         );
-      } on Exception catch (e) {
-        yield ActiveSymbolsError(e.toString());
+      } on ActiveSymbolsException catch (e) {
+        yield ActiveSymbolsError(e.message);
       }
     } else if (event is SelectActiveSymbols) {
       if (state is ActiveSymbolsLoaded) {

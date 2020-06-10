@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_deriv_api/api/common/active_symbols/active_symbols.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/common/tick/tick.dart';
+import 'package:flutter_deriv_api/api/common/tick/exceptions/tick_exception.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api_example/blocs/active_symbols/active_symbols_bloc.dart';
 
@@ -34,8 +35,12 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
 
       await _unsubscribeTick();
 
-      _subscribeTick(event.selectedSymbol).handleError((dynamic error) {
-        add(YieldError(error.toString()));
+      _subscribeTick(event.selectedSymbol).handleError((dynamic e) {
+        if (e is TickException) {
+          add(YieldError(e.message));
+        } else {
+          add(YieldError(e.toString()));
+        }
       }).listen((Tick tick) {
         add(YieldTick(tick));
       });
