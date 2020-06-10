@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/common/models/tick_model.dart';
