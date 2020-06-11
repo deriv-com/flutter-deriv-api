@@ -35,7 +35,7 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
 
       await _unsubscribeProposal();
 
-      _subscribeProposal(event.contract).handleError((dynamic e) {
+      _subscribeProposal(event).handleError((dynamic e) {
         if (e is ContractOperationException) {
           add(YieldError(e.message));
         } else {
@@ -51,16 +51,16 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
     }
   }
 
-  Stream<PriceProposal> _subscribeProposal(ContractModel contract) =>
+  Stream<PriceProposal> _subscribeProposal(SubscribeProposal event) =>
       PriceProposal.subscribePriceForContract(
         ProposalRequest(
           amount: 100,
-          durationUnit: 's',
-          duration: 60,
-          basis: 'payout',
+          durationUnit: event.durationUnit ?? 's',
+          duration: event?.duration ?? 10,
+          basis: event?.basis ?? 'payout',
           currency: 'USD',
-          contractType: contract.contractType,
-          symbol: contract.underlyingSymbol,
+          contractType: event.contract.contractType,
+          symbol: event.contract.underlyingSymbol,
         ),
       );
 

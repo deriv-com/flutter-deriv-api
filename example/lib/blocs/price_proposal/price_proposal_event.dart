@@ -3,9 +3,18 @@ part of 'price_proposal_bloc.dart';
 abstract class PriceProposalEvent {}
 
 class SubscribeProposal extends PriceProposalEvent {
-  SubscribeProposal(this.contract);
+  SubscribeProposal(
+    this.contract, {
+    this.basis = 'payout',
+    this.durationUnit = 's',
+    this.duration = 60,
+  });
 
   ContractModel contract;
+
+  final String basis;
+  final String durationUnit;
+  final int duration;
 
   @override
   String toString() => 'SubscribeProposal';

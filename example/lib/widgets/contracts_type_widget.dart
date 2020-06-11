@@ -66,7 +66,7 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                                   height: 12,
                                 ),
                                 Text(
-                                  '${state.selectedContract.contractDisplay}, ${state.selectedContract.contractType}, ${state.selectedContract.contractCategory}',
+                                  'Selected: ${state.selectedContract.contractDisplay}, ${state.selectedContract.contractType}, ${state.selectedContract.contractCategory}',
                                   style: const TextStyle(fontSize: 14),
                                   textAlign: TextAlign.center,
                                 ),
