@@ -14,6 +14,7 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
   // ignore: close_sinks
   ActiveSymbolsBloc _activeSymbolsBloc;
   TicksBloc _ticksBloc;
+
   double _lastTickValue = 0;
 
   @override
@@ -23,6 +24,13 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
     _activeSymbolsBloc = BlocProvider.of<ActiveSymbolsBloc>(context)
       ..add(FetchActiveSymbols());
     _ticksBloc = TicksBloc(_activeSymbolsBloc);
+  }
+
+  @override
+  void dispose() {
+    _ticksBloc.close();
+
+    super.dispose();
   }
 
   @override
@@ -142,11 +150,4 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
           ),
         ),
       );
-
-  @override
-  void dispose() {
-    _ticksBloc.close();
-
-    super.dispose();
-  }
 }

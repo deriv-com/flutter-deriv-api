@@ -10,8 +10,6 @@ part 'active_symbols_event.dart';
 part 'active_symbols_state.dart';
 
 class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
-  ActiveSymbolsBloc();
-
   @override
   ActiveSymbolsState get initialState => ActiveSymbolsLoading();
 
@@ -29,7 +27,7 @@ class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
     } else if (event is SelectActiveSymbol) {
       if (state is ActiveSymbolsLoaded) {
         final ActiveSymbolsLoaded loadedState = state;
-        
+
         yield ActiveSymbolsLoaded(
           activeSymbols: loadedState.activeSymbols,
           selectedSymbol: loadedState.activeSymbols[event.index],
@@ -46,7 +44,4 @@ class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
         activeSymbols: 'brief',
         productType: 'basic',
       ));
-
-  @override
-  Future<void> close() async => super.close();
 }

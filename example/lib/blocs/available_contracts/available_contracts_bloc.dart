@@ -14,7 +14,7 @@ part 'available_contracts_state.dart';
 
 class AvailableContractsBloc
     extends Bloc<AvailableContractsEvent, AvailableContractsState> {
-  AvailableContractsBloc(this.activeSymbolsBloc) {
+  AvailableContractsBloc(ActiveSymbolsBloc activeSymbolsBloc) {
     activeSymbolsBloc.listen((ActiveSymbolsState activeSymbolsState) {
       if (activeSymbolsState is ActiveSymbolsLoaded) {
         add(FetchAvailableContracts(
@@ -23,8 +23,6 @@ class AvailableContractsBloc
       }
     });
   }
-
-  final ActiveSymbolsBloc activeSymbolsBloc;
 
   @override
   AvailableContractsState get initialState => AvailableContractsLoading();
@@ -65,7 +63,4 @@ class AvailableContractsBloc
       ContractsForSymbol.fetchContractsForSymbol(ContractsForRequest(
         contractsFor: selectedSymbol.symbol,
       ));
-
-  @override
-  Future<void> close() async => super.close();
 }

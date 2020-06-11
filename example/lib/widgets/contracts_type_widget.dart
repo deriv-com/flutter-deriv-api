@@ -15,9 +15,9 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
 
   @override
   void initState() {
-    _availableContractsBloc = BlocProvider.of<AvailableContractsBloc>(context);
-
     super.initState();
+
+    _availableContractsBloc = BlocProvider.of<AvailableContractsBloc>(context);
   }
 
   @override

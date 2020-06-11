@@ -17,18 +17,17 @@ class SampleApp extends StatefulWidget {
 class _SampleAppState extends State<SampleApp> {
   ActiveSymbolsBloc _activeSymbolsBloc;
   AvailableContractsBloc _availableContractsBloc;
-
   api_connection.ConnectionBloc _connectionBloc;
 
   @override
   void initState() {
     super.initState();
+
     _connectionBloc = api_connection.ConnectionBloc(ConnectionInformation(
       appId: '1089',
       brand: 'binary',
       endpoint: 'frontend.binaryws.com',
     ));
-
     _activeSymbolsBloc = ActiveSymbolsBloc();
     _availableContractsBloc = AvailableContractsBloc(_activeSymbolsBloc);
   }
@@ -38,6 +37,7 @@ class _SampleAppState extends State<SampleApp> {
     _availableContractsBloc.close();
     _activeSymbolsBloc.close();
     _connectionBloc.close();
+
     super.dispose();
   }
 
@@ -56,7 +56,7 @@ class _SampleAppState extends State<SampleApp> {
         ],
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('API Example'),
+            title: const Text('API Sample App'),
           ),
           body: BlocBuilder<api_connection.ConnectionBloc,
               api_connection.ConnectionState>(

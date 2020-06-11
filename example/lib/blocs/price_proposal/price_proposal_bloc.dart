@@ -13,15 +13,13 @@ part 'price_proposal_event.dart';
 part 'price_proposal_state.dart';
 
 class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
-  PriceProposalBloc(this.availableContractsBloc) {
+  PriceProposalBloc(AvailableContractsBloc availableContractsBloc) {
     availableContractsBloc.listen((AvailableContractsState state) {
       if (state is AvailableContractsLoaded) {
         add(SubscribeProposal(state.selectedContract));
       }
     });
   }
-
-  AvailableContractsBloc availableContractsBloc;
 
   @override
   PriceProposalState get initialState => PriceProposalLoading();
@@ -52,13 +50,13 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
       PriceProposal.subscribePriceForContract(
         // ignore: missing_required_param
         ProposalRequest(
-          amount: event.amount,
-          durationUnit: event.durationUnit,
+          amount: event?.amount,
+          durationUnit: event?.durationUnit,
           duration: event?.duration,
           basis: event?.basis,
           currency: 'USD',
-          contractType: event.contract.contractType,
-          symbol: event.contract.underlyingSymbol,
+          contractType: event?.contract?.contractType,
+          symbol: event?.contract?.underlyingSymbol,
         ),
       );
 
@@ -68,6 +66,7 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
   @override
   Future<void> close() async {
     await _unsubscribeProposal();
+
     await super.close();
   }
 }

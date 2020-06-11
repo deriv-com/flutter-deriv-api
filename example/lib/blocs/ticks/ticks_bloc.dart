@@ -13,15 +13,13 @@ part 'ticks_event.dart';
 part 'ticks_state.dart';
 
 class TicksBloc extends Bloc<TicksEvent, TicksState> {
-  TicksBloc(this.activeSymbolsBloc) {
+  TicksBloc(ActiveSymbolsBloc activeSymbolsBloc) {
     activeSymbolsBloc.listen((ActiveSymbolsState activeSymbolsState) async {
       if (activeSymbolsState is ActiveSymbolsLoaded) {
         add(SubscribeTicks(activeSymbolsState.selectedSymbol));
       }
     });
   }
-
-  final ActiveSymbolsBloc activeSymbolsBloc;
 
   @override
   TicksState get initialState => TicksLoading();
@@ -57,6 +55,7 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
   @override
   Future<void> close() async {
     await _unsubscribeTick();
+
     await super.close();
   }
 }

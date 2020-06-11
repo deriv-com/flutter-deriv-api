@@ -17,14 +17,16 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
 
   @override
   void initState() {
+    super.initState();
+
     _availableContractsBloc = BlocProvider.of<AvailableContractsBloc>(context);
     _priceProposalBloc = PriceProposalBloc(_availableContractsBloc);
-    super.initState();
   }
 
   @override
   void dispose() {
     _priceProposalBloc.close();
+
     super.dispose();
   }
 

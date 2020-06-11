@@ -31,9 +31,9 @@ class _DropDownMenuState<T> extends State<DropDownMenu<T>> {
 
   @override
   void initState() {
-    _item = widget.initialItem;
-
     super.initState();
+
+    _item = widget.initialItem;
   }
 
   @override
