@@ -41,8 +41,8 @@ class AvailableContractsBloc
             await _fetchAvailableContracts(event.activeSymbol);
 
         yield AvailableContractsLoaded(contracts: contracts);
-      } on ContractsForSymbolException catch (e) {
-        yield AvailableContractsError(e.message);
+      } on ContractsForSymbolException catch (error) {
+        yield AvailableContractsError(error.message);
       }
     } else if (event is SelectContract) {
       if (state is AvailableContractsLoaded) {

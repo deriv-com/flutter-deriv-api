@@ -4,26 +4,22 @@ import 'package:flutter_deriv_api_example/blocs/active_symbols/active_symbols_bl
 import 'package:flutter_deriv_api/api/common/active_symbols/active_symbols.dart';
 
 class ActiveSymbolsListDialog extends StatelessWidget {
-  const ActiveSymbolsListDialog({Key key, this.activeSymbolsBloc})
-      : super(key: key);
-  final ActiveSymbolsBloc activeSymbolsBloc;
-
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<ActiveSymbolsBloc, ActiveSymbolsState>(
-        bloc: activeSymbolsBloc,
         builder: (BuildContext context, ActiveSymbolsState state) {
           if (state is ActiveSymbolsLoaded) {
             return Material(
               child: ListView.builder(
                 itemCount: state.activeSymbols.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final ActiveSymbol aS = state.activeSymbols[index];
+                  final ActiveSymbol activeSymbol = state.activeSymbols[index];
 
                   return ListTile(
-                    title: Text(aS.displayName),
+                    title: Text(activeSymbol.displayName),
                     onTap: () {
-                      activeSymbolsBloc.add(SelectActiveSymbol(index));
+                      BlocProvider.of<ActiveSymbolsBloc>(context)
+                          .add(SelectActiveSymbol(index));
                       Navigator.of(context).pop();
                     },
                   );

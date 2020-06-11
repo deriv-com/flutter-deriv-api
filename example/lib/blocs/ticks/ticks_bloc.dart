@@ -35,15 +35,11 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
 
       await _unsubscribeTick();
 
-      _subscribeTick(event.selectedSymbol).handleError((dynamic e) {
-        if (e is TickException) {
-          add(YieldError(e.message));
-        } else {
-          add(YieldError(e.toString()));
-        }
-      }).listen((Tick tick) {
-        add(YieldTick(tick));
-      });
+      _subscribeTick(event.selectedSymbol)
+          .handleError((dynamic error) => error is TickException
+              ? add(YieldError(error.message))
+              : add(YieldError(error.toString())))
+          .listen((Tick tick) => add(YieldTick(tick)));
     } else if (event is YieldTick) {
       yield TicksLoaded(event.tick);
     } else if (event is YieldError) {

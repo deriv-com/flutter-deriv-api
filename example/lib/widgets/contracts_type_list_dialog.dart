@@ -5,15 +5,9 @@ import 'package:flutter_deriv_api/api/contract/models/contract_model.dart';
 import 'package:flutter_deriv_api_example/blocs/available_contracts/available_contracts_bloc.dart';
 
 class ContractsTypeListDialog extends StatelessWidget {
-  const ContractsTypeListDialog({Key key, this.availableContractsBloc})
-      : super(key: key);
-
-  final AvailableContractsBloc availableContractsBloc;
-
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<AvailableContractsBloc, AvailableContractsState>(
-        bloc: availableContractsBloc,
         builder: (BuildContext context, AvailableContractsState state) {
           if (state is AvailableContractsLoaded) {
             final ContractsForSymbol contractsForSymbol = state.contracts;
@@ -30,7 +24,8 @@ class ContractsTypeListDialog extends StatelessWidget {
                       ),
                       subtitle: Text('${contract.contractCategory}'),
                       onTap: () {
-                        availableContractsBloc.add(SelectContract(index));
+                        BlocProvider.of<AvailableContractsBloc>(context)
+                            .add(SelectContract(index));
                         Navigator.of(context).pop();
                       },
                     );

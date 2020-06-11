@@ -26,5 +26,5 @@ class YieldError extends TicksEvent {
   final String message;
 
   @override
-  String toString() => 'Tick $message';
+  String toString() => 'YieldError $message';
 }

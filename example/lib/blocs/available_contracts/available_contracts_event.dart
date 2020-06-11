@@ -17,5 +17,5 @@ class SelectContract extends AvailableContractsEvent {
   final int index;
 
   @override
-  String toString() => 'SelectContract: $index';
+  String toString() => 'SelectContract index: $index';
 }

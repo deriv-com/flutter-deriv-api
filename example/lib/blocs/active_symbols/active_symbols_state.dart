@@ -6,7 +6,7 @@ abstract class ActiveSymbolsState {
 
 class ActiveSymbolsLoading extends ActiveSymbolsState {
   @override
-  String toString() => 'ActiveSymbolsLoading';
+  String toString() => 'ActiveSymbolsLoading...';
 }
 
 class ActiveSymbolsError extends ActiveSymbolsState {

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 /// A [DropdownButton] with items of type [T]
 class DropDownMenu<T> extends StatefulWidget {
   const DropDownMenu({
-    Key key,
     @required this.items,
     @required this.initialItem,
     this.title = '',
     this.onItemSelected,
+    Key key,
   }) : super(key: key);
 
   /// Title of a widget to show before DropDown menu
@@ -32,26 +32,20 @@ class _DropDownMenuState<T> extends State<DropDownMenu<T>> {
   @override
   void initState() {
     _item = widget.initialItem;
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) => Row(
         children: <Widget>[
-          Text(
-            '${widget.title}: ',
-            style: TextStyle(color: Colors.indigo),
-          ),
+          Text('${widget.title}: ', style: TextStyle(color: Colors.indigo)),
           const SizedBox(width: 12),
           DropdownButton<T>(
             value: _item,
             icon: Icon(Icons.keyboard_arrow_down),
             iconSize: 24,
-            elevation: 16,
-            underline: Container(
-              height: 2,
-              color: Colors.grey,
-            ),
+            underline: Container(height: 2, color: Colors.grey),
             onChanged: (T newValue) {
               widget.onItemSelected(newValue);
               setState(() {

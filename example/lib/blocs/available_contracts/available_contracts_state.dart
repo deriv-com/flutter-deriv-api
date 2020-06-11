@@ -6,7 +6,7 @@ abstract class AvailableContractsState {
 
 class AvailableContractsLoading extends AvailableContractsState {
   @override
-  String toString() => 'AvailableContractsLoading';
+  String toString() => 'AvailableContractsLoading...';
 }
 
 class AvailableContractsError extends AvailableContractsState {

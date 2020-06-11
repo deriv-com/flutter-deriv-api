@@ -6,7 +6,7 @@ abstract class TicksState {
 
 class TicksLoading extends TicksState {
   @override
-  String toString() => 'TicksLoading';
+  String toString() => 'TicksLoading...';
 }
 
 class TicksError extends TicksState {

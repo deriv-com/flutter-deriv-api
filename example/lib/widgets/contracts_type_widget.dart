@@ -16,6 +16,7 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
   @override
   void initState() {
     _availableContractsBloc = BlocProvider.of<AvailableContractsBloc>(context);
+
     super.initState();
   }
 
@@ -28,8 +29,10 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
             onTap: () {
               showDialog<String>(
                   context: context,
-                  builder: (BuildContext context) => ContractsTypeListDialog(
-                        availableContractsBloc: _availableContractsBloc,
+                  builder: (BuildContext context) =>
+                      BlocProvider<AvailableContractsBloc>.value(
+                        value: _availableContractsBloc,
+                        child: ContractsTypeListDialog(),
                       ));
             },
             child: Stack(
@@ -54,17 +57,13 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
-                                const SizedBox(
-                                  height: 12,
-                                ),
+                                const SizedBox(height: 12),
                                 const Text(
                                   'Available Contracts',
                                   style: TextStyle(fontSize: 14),
                                   textAlign: TextAlign.center,
                                 ),
-                                const SizedBox(
-                                  height: 12,
-                                ),
+                                const SizedBox(height: 12),
                                 Text(
                                   'Selected: ${state.selectedContract.contractDisplay}, ${state.selectedContract.contractType}, ${state.selectedContract.contractCategory}',
                                   style: const TextStyle(fontSize: 14),

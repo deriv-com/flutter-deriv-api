@@ -19,9 +19,9 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
   @override
   void initState() {
     super.initState();
+
     _activeSymbolsBloc = BlocProvider.of<ActiveSymbolsBloc>(context)
       ..add(FetchActiveSymbols());
-
     _ticksBloc = TicksBloc(_activeSymbolsBloc);
   }
 
@@ -34,8 +34,10 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
             onTap: () {
               showDialog<String>(
                 context: context,
-                builder: (BuildContext context) => ActiveSymbolsListDialog(
-                  activeSymbolsBloc: _activeSymbolsBloc,
+                builder: (BuildContext context) =>
+                    BlocProvider<ActiveSymbolsBloc>.value(
+                  value: _activeSymbolsBloc,
+                  child: ActiveSymbolsListDialog(),
                 ),
               );
             },
@@ -54,19 +56,13 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                               children: <Widget>[
                                 Text(
                                   '${state.selectedSymbol.marketDisplayName}',
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                  ),
+                                  style: const TextStyle(fontSize: 18),
                                   textAlign: TextAlign.center,
                                 ),
-                                const SizedBox(
-                                  height: 12,
-                                ),
+                                const SizedBox(height: 12),
                                 Text(
                                   '${state.selectedSymbol.displayName}',
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
+                                  style: const TextStyle(fontSize: 14),
                                   textAlign: TextAlign.center,
                                 ),
                               ],
@@ -135,9 +131,7 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                                 );
                               }),
                         ),
-                        const SizedBox(
-                          height: 12,
-                        ),
+                        const SizedBox(height: 12),
                         Icon(Icons.keyboard_arrow_down)
                       ],
                     ),
@@ -152,6 +146,7 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
   @override
   void dispose() {
     _ticksBloc.close();
+
     super.dispose();
   }
 }

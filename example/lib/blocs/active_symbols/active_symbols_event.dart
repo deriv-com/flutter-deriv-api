@@ -15,5 +15,5 @@ class SelectActiveSymbol extends ActiveSymbolsEvent {
   final int index;
 
   @override
-  String toString() => 'SelectActiveSymbol index $index';
+  String toString() => 'SelectActiveSymbol index: $index';
 }
