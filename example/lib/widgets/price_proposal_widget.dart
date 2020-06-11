@@ -28,9 +28,19 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
     super.dispose();
   }
 
-  String _durationUnit = 's';
-  int _duration = 10;
-  String _basis = 'payout';
+  // Duration units are hardcoded in this example.
+  // Available durations and Duration units can be retrieved via fetching available contracts
+  static const List<String> _durationUnits = <String>['t', 's', 'm', 'h', 'd'];
+  String _durationUnit = _durationUnits.first;
+
+  static const List<int> _durations = <int>[5, 10, 100, 1000];
+  int _duration = _durations.first;
+
+  static const List<String> _basisOptions = <String>['payout', 'stake'];
+  String _basis = _basisOptions.first;
+
+  static const List<double> _amounts = <double>[5, 10, 100, 1000];
+  double _amount = _amounts.first;
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -51,55 +61,67 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
                             builder: (BuildContext context,
                                 AvailableContractsState state) {
                               if (state is AvailableContractsLoaded) {
-                                return Row(
+                                return Column(
                                   children: <Widget>[
-                                    DropDownMenu<int>(
-                                      title: 'Duration',
-                                      items: const <int>[
-                                        5,
-                                        10,
-                                        100,
-                                        1000,
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: <Widget>[
+                                        DropDownMenu<int>(
+                                          title: 'Duration',
+                                          items: _durations,
+                                          initialItem: _duration,
+                                          onItemSelected: <int>(dynamic item) {
+                                            _duration = item;
+                                            _subscribeToPriceWithCurrentConfig(
+                                              state.selectedContract,
+                                            );
+                                          },
+                                        ),
+                                        DropDownMenu<String>(
+                                          title: 'Duration Unit',
+                                          items: _durationUnits,
+                                          initialItem: _durationUnit,
+                                          onItemSelected:
+                                              <String>(dynamic item) {
+                                            _durationUnit = item;
+                                            _subscribeToPriceWithCurrentConfig(
+                                              state.selectedContract,
+                                            );
+                                          },
+                                        ),
                                       ],
-                                      selectedItem: _duration,
-                                      onItemSelected: <int>(dynamic item) {
-                                        _duration = item;
-                                        _subscribeToPriceWithCurrentConfig(
-                                          state.selectedContract,
-                                        );
-                                      },
                                     ),
-                                    DropDownMenu<String>(
-                                      title: 'Duration Unit',
-                                      items: const <String>[
-                                        'd',
-                                        'm',
-                                        's',
-                                        'h',
-                                        't'
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: <Widget>[
+                                        DropDownMenu<String>(
+                                          title: 'Basis',
+                                          items: _basisOptions,
+                                          initialItem: _basis,
+                                          onItemSelected:
+                                              <String>(dynamic item) {
+                                            _basis = item;
+                                            _subscribeToPriceWithCurrentConfig(
+                                              state.selectedContract,
+                                            );
+                                          },
+                                        ),
+                                        DropDownMenu<double>(
+                                          title: 'Amount',
+                                          items: _amounts,
+                                          initialItem: _amount,
+                                          onItemSelected:
+                                              <double>(dynamic item) {
+                                            _amount = item;
+                                            _subscribeToPriceWithCurrentConfig(
+                                              state.selectedContract,
+                                            );
+                                          },
+                                        ),
                                       ],
-                                      selectedItem: _durationUnit,
-                                      onItemSelected: <String>(dynamic item) {
-                                        _durationUnit = item;
-                                        _subscribeToPriceWithCurrentConfig(
-                                          state.selectedContract,
-                                        );
-                                      },
-                                    ),
-                                    DropDownMenu<String>(
-                                      title: 'Basis',
-                                      items: const <String>[
-                                        'payout',
-                                        'stake',
-                                      ],
-                                      selectedItem: _basis,
-                                      onItemSelected: <String>(dynamic item) {
-                                        _durationUnit = item;
-                                        _subscribeToPriceWithCurrentConfig(
-                                          state.selectedContract,
-                                        );
-                                      },
-                                    ),
+                                    )
                                   ],
                                 );
                               }
@@ -107,22 +129,28 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
                             },
                           ),
                           const SizedBox(
-                            height: 12,
+                            height: 24,
                           ),
                           BlocBuilder<PriceProposalBloc, PriceProposalState>(
                             bloc: _priceProposalBloc,
                             builder: (BuildContext context,
                                 PriceProposalState state) {
                               if (state is PriceProposalLoaded) {
-                                return Column(
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   children: <Widget>[
-                                    Text(
-                                      '${state.proposal.payout} ${state.proposal.askPrice} ${state.proposal.spotTime}',
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      textAlign: TextAlign.center,
+                                    _buildEntry(
+                                      'payout',
+                                      '${state.proposal.payout}',
+                                    ),
+                                    _buildEntry(
+                                      'askPrice',
+                                      '${state.proposal.askPrice}',
+                                    ),
+                                    _buildEntry(
+                                      'spot',
+                                      '${state.proposal.spot}',
                                     ),
                                   ],
                                 );
@@ -144,6 +172,16 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
         ),
       );
 
+  Widget _buildEntry(String title, String value) => Column(
+        children: <Widget>[
+          Text(title),
+          const SizedBox(
+            height: 8,
+          ),
+          Text(value, style: const TextStyle(fontSize: 18))
+        ],
+      );
+
   void _subscribeToPriceWithCurrentConfig(ContractModel contract) {
     _priceProposalBloc.add(
       SubscribeProposal(
@@ -151,6 +189,7 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
         durationUnit: _durationUnit,
         duration: _duration,
         basis: _basis,
+        amount: _amount,
       ),
     );
   }

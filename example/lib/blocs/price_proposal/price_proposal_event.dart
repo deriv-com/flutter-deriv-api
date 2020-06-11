@@ -8,6 +8,7 @@ class SubscribeProposal extends PriceProposalEvent {
     this.basis = 'payout',
     this.durationUnit = 's',
     this.duration = 60,
+    this.amount = 100,
   });
 
   ContractModel contract;
@@ -15,6 +16,7 @@ class SubscribeProposal extends PriceProposalEvent {
   final String basis;
   final String durationUnit;
   final int duration;
+  final double amount;
 
   @override
   String toString() => 'SubscribeProposal';
