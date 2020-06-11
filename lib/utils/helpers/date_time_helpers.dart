@@ -17,7 +17,7 @@ DateTime getDateTime(int timeInSeconds) => timeInSeconds == null
 
 /// Creates a [DateTime] from time given string in seconds
 DateTime getDateTimeFromString(String timeInSeconds) =>
-    timeInSeconds == null ? null : getDateTime(int.parse(timeInSeconds));
+    getDateTime(timeInSeconds == null ? null : int.tryParse(timeInSeconds));
 
 /// Gets seconds since epoch from milliseconds since epoch
 int getSecondsSinceEpoch(int millisecondsSinceEpoch) =>

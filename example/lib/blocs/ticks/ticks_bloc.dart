@@ -1,12 +1,13 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
+
 import 'package:flutter_deriv_api/api/common/active_symbols/active_symbols.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/common/tick/tick.dart';
 import 'package:flutter_deriv_api/api/common/tick/exceptions/tick_exception.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api_example/blocs/active_symbols/active_symbols_bloc.dart';
+
+import '../active_symbols/active_symbols_bloc.dart';
 
 part 'ticks_event.dart';
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deriv_api_example/blocs/available_contracts/available_contracts_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:flutter_deriv_api_example/blocs/available_contracts/available_contracts_bloc.dart';
 
 import 'contracts_type_list_dialog.dart';
 

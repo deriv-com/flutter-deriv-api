@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_deriv_api/api/contract/contracts_for/contracts_for_symbol.dart';
 import 'package:flutter_deriv_api/api/contract/models/contract_model.dart';
 import 'package:flutter_deriv_api_example/blocs/available_contracts/available_contracts_bloc.dart';

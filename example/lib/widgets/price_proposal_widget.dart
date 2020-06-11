@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deriv_api_example/blocs/available_contracts/available_contracts_bloc.dart';
-import 'package:flutter_deriv_api/api/contract/models/contract_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:flutter_deriv_api/api/contract/models/contract_model.dart';
+import 'package:flutter_deriv_api_example/blocs/available_contracts/available_contracts_bloc.dart';
 import 'package:flutter_deriv_api_example/blocs/price_proposal/price_proposal_bloc.dart';
 import 'package:flutter_deriv_api_example/widgets/drop_down_menu.dart';
 
@@ -58,111 +59,9 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
                     child: Center(
                       child: Column(
                         children: <Widget>[
-                          BlocBuilder<AvailableContractsBloc,
-                              AvailableContractsState>(
-                            builder: (BuildContext context,
-                                AvailableContractsState state) {
-                              if (state is AvailableContractsLoaded) {
-                                return Column(
-                                  children: <Widget>[
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: <Widget>[
-                                        DropDownMenu<int>(
-                                          title: 'Duration',
-                                          items: _durations,
-                                          initialItem: _duration,
-                                          onItemSelected: <int>(dynamic item) {
-                                            _duration = item;
-                                            _subscribeToPriceWithCurrentConfig(
-                                              state.selectedContract,
-                                            );
-                                          },
-                                        ),
-                                        DropDownMenu<String>(
-                                          title: 'Duration Unit',
-                                          items: _durationUnits,
-                                          initialItem: _durationUnit,
-                                          onItemSelected:
-                                              <String>(dynamic item) {
-                                            _durationUnit = item;
-                                            _subscribeToPriceWithCurrentConfig(
-                                              state.selectedContract,
-                                            );
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: <Widget>[
-                                        DropDownMenu<String>(
-                                          title: 'Basis',
-                                          items: _basisOptions,
-                                          initialItem: _basis,
-                                          onItemSelected:
-                                              <String>(dynamic item) {
-                                            _basis = item;
-                                            _subscribeToPriceWithCurrentConfig(
-                                              state.selectedContract,
-                                            );
-                                          },
-                                        ),
-                                        DropDownMenu<double>(
-                                          title: 'Amount',
-                                          items: _amounts,
-                                          initialItem: _amount,
-                                          onItemSelected:
-                                              <double>(dynamic item) {
-                                            _amount = item;
-                                            _subscribeToPriceWithCurrentConfig(
-                                              state.selectedContract,
-                                            );
-                                          },
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                );
-                              }
-                              return Container();
-                            },
-                          ),
-                          const SizedBox(
-                            height: 24,
-                          ),
-                          BlocBuilder<PriceProposalBloc, PriceProposalState>(
-                            bloc: _priceProposalBloc,
-                            builder: (BuildContext context,
-                                PriceProposalState state) {
-                              if (state is PriceProposalLoaded) {
-                                return Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: <Widget>[
-                                    _buildEntry(
-                                      'payout',
-                                      '${state.proposal.payout}',
-                                    ),
-                                    _buildEntry(
-                                      'askPrice',
-                                      '${state.proposal.askPrice}',
-                                    ),
-                                    _buildEntry(
-                                      'spot',
-                                      '${state.proposal.spot}',
-                                    ),
-                                  ],
-                                );
-                              } else if (state is PriceProposalError) {
-                                return Text(state.message);
-                              } else {
-                                return const CircularProgressIndicator();
-                              }
-                            },
-                          ),
+                          _buildProposalConfigMenus(),
+                          const SizedBox(height: 24),
+                          _buildProposalResult(),
                         ],
                       ),
                     ),
@@ -172,6 +71,104 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
             ),
           ),
         ),
+      );
+
+  BlocBuilder<AvailableContractsBloc, AvailableContractsState>
+      _buildProposalConfigMenus() =>
+          BlocBuilder<AvailableContractsBloc, AvailableContractsState>(
+            builder: (BuildContext context, AvailableContractsState state) {
+              if (state is AvailableContractsLoaded) {
+                return Column(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        DropDownMenu<int>(
+                          title: 'Duration',
+                          items: _durations,
+                          initialItem: _duration,
+                          onItemSelected: <int>(dynamic item) {
+                            _duration = item;
+                            _subscribeToPriceWithCurrentConfig(
+                              state.selectedContract,
+                            );
+                          },
+                        ),
+                        DropDownMenu<String>(
+                          title: 'Duration Unit',
+                          items: _durationUnits,
+                          initialItem: _durationUnit,
+                          onItemSelected: <String>(dynamic item) {
+                            _durationUnit = item;
+                            _subscribeToPriceWithCurrentConfig(
+                              state.selectedContract,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        DropDownMenu<String>(
+                          title: 'Basis',
+                          items: _basisOptions,
+                          initialItem: _basis,
+                          onItemSelected: <String>(dynamic item) {
+                            _basis = item;
+                            _subscribeToPriceWithCurrentConfig(
+                              state.selectedContract,
+                            );
+                          },
+                        ),
+                        DropDownMenu<double>(
+                          title: 'Amount',
+                          items: _amounts,
+                          initialItem: _amount,
+                          onItemSelected: <double>(dynamic item) {
+                            _amount = item;
+                            _subscribeToPriceWithCurrentConfig(
+                              state.selectedContract,
+                            );
+                          },
+                        ),
+                      ],
+                    )
+                  ],
+                );
+              }
+              return Container();
+            },
+          );
+
+  BlocBuilder<PriceProposalBloc, PriceProposalState> _buildProposalResult() =>
+      BlocBuilder<PriceProposalBloc, PriceProposalState>(
+        bloc: _priceProposalBloc,
+        builder: (BuildContext context, PriceProposalState state) {
+          if (state is PriceProposalLoaded) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                _buildEntry(
+                  'payout',
+                  '${state.proposal.payout}',
+                ),
+                _buildEntry(
+                  'askPrice',
+                  '${state.proposal.askPrice}',
+                ),
+                _buildEntry(
+                  'spot',
+                  '${state.proposal.spot}',
+                ),
+              ],
+            );
+          } else if (state is PriceProposalError) {
+            return Text(state.message);
+          } else {
+            return const CircularProgressIndicator();
+          }
+        },
       );
 
   Widget _buildEntry(String title, String value) => Column(

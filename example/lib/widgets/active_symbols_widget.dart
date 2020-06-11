@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_deriv_api_example/blocs/active_symbols/active_symbols_bloc.dart';
 import 'package:flutter_deriv_api_example/blocs/ticks/ticks_bloc.dart';
 
