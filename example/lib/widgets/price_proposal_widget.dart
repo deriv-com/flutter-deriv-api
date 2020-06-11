@@ -50,25 +50,23 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
         padding: const EdgeInsets.all(8),
         child: Card(
           elevation: 4,
-          child: InkWell(
-            child: Stack(
-              children: <Widget>[
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Center(
-                      child: Column(
-                        children: <Widget>[
-                          _buildProposalConfigMenus(),
-                          const SizedBox(height: 24),
-                          _buildProposalResult(),
-                        ],
-                      ),
+          child: Stack(
+            children: <Widget>[
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Center(
+                    child: Column(
+                      children: <Widget>[
+                        _buildProposalConfigMenus(),
+                        const SizedBox(height: 24),
+                        _buildProposalResult(),
+                      ],
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       );
