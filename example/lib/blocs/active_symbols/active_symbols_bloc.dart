@@ -22,16 +22,14 @@ class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
 
       try {
         final List<ActiveSymbol> symbols = await _fetchActiveSymbols();
-        yield ActiveSymbolsLoaded(
-          activeSymbols: symbols,
-          selectedSymbol: symbols.first,
-        );
+        yield ActiveSymbolsLoaded(activeSymbols: symbols);
       } on ActiveSymbolsException catch (e) {
         yield ActiveSymbolsError(e.message);
       }
-    } else if (event is SelectActiveSymbols) {
+    } else if (event is SelectActiveSymbol) {
       if (state is ActiveSymbolsLoaded) {
         final ActiveSymbolsLoaded loadedState = state;
+        
         yield ActiveSymbolsLoaded(
           activeSymbols: loadedState.activeSymbols,
           selectedSymbol: loadedState.activeSymbols[event.index],

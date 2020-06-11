@@ -23,7 +23,7 @@ class ActiveSymbolsListDialog extends StatelessWidget {
                   return ListTile(
                     title: Text(aS.displayName),
                     onTap: () {
-                      activeSymbolsBloc.add(SelectActiveSymbols(index));
+                      activeSymbolsBloc.add(SelectActiveSymbol(index));
                       Navigator.of(context).pop();
                     },
                   );

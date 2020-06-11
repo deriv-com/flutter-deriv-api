@@ -4,6 +4,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/connection_inf
 import 'package:flutter_deriv_api/state/connection/connection_bloc.dart'
     as api_connection;
 import 'package:flutter_deriv_api_example/widgets/contracts_type_widget.dart';
+import 'package:flutter_deriv_api_example/widgets/price_proposal_widget.dart';
 import 'blocs/active_symbols/active_symbols_bloc.dart';
 import 'blocs/available_contracts/available_contracts_bloc.dart';
 import 'widgets/active_symbols_widget.dart';
@@ -60,21 +61,21 @@ class _SampleAppState extends State<SampleApp> {
           body: BlocBuilder<api_connection.ConnectionBloc,
               api_connection.ConnectionState>(
             builder: (
-                BuildContext context,
-                api_connection.ConnectionState state,
-                ) {
+              BuildContext context,
+              api_connection.ConnectionState state,
+            ) {
               if (state is api_connection.Connected) {
                 return Column(
                   children: <Widget>[
-                    Expanded(child: ActiveSymbolsWidget()),
-                    Expanded(child: ContractsTypeWidget()),
-                    Expanded(flex: 2, child: Container()),
+                    Expanded(flex: 1, child: ActiveSymbolsWidget()),
+                    Expanded(flex: 1, child: ContractsTypeWidget()),
+                    Expanded(flex: 2, child: PriceProposalWidget()),
                   ],
                 );
               } else if (state is api_connection.InitialConnectionState) {
                 return _buildCenterText('Connecting...');
               } else if (state is api_connection.ConnectionError) {
-                return _buildCenterText('Connection Error');
+                return _buildCenterText('Connection Error\n${state.error}');
               }
               return Container();
             },
@@ -83,6 +84,6 @@ class _SampleAppState extends State<SampleApp> {
       );
 
   Widget _buildCenterText(String text) => Center(
-    child: Text(text),
-  );
+        child: Text(text),
+      );
 }

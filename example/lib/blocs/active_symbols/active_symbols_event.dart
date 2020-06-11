@@ -9,11 +9,11 @@ class FetchActiveSymbols extends ActiveSymbolsEvent {
   String toString() => 'FetchActiveSymbols';
 }
 
-class SelectActiveSymbols extends ActiveSymbolsEvent {
-  SelectActiveSymbols(this.index);
+class SelectActiveSymbol extends ActiveSymbolsEvent {
+  SelectActiveSymbol(this.index);
 
   final int index;
 
   @override
-  String toString() => 'SelectActiveSymbols index $index';
+  String toString() => 'SelectActiveSymbol index $index';
 }

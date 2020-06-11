@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_deriv_api_example/blocs/available_contracts/available_contracts_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'contracts_type_dialog.dart';
+import 'contracts_type_list_dialog.dart';
 
 class ContractsTypeWidget extends StatefulWidget {
   @override
@@ -28,7 +28,7 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
             onTap: () {
               showDialog<String>(
                   context: context,
-                  builder: (BuildContext context) => ContractsTypeDialog(
+                  builder: (BuildContext context) => ContractsTypeListDialog(
                         availableContractsBloc: _availableContractsBloc,
                       ));
             },
@@ -60,6 +60,14 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                                 const Text(
                                   'Available Contracts',
                                   style: TextStyle(fontSize: 14),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(
+                                  height: 12,
+                                ),
+                                Text(
+                                  '${state.selectedContract.contractDisplay}, ${state.selectedContract.contractType}, ${state.selectedContract.contractCategory}',
+                                  style: const TextStyle(fontSize: 14),
                                   textAlign: TextAlign.center,
                                 ),
                               ],

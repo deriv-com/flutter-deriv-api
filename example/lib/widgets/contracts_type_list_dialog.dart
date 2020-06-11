@@ -4,8 +4,8 @@ import 'package:flutter_deriv_api/api/contract/contracts_for/contracts_for_symbo
 import 'package:flutter_deriv_api/api/contract/models/contract_model.dart';
 import 'package:flutter_deriv_api_example/blocs/available_contracts/available_contracts_bloc.dart';
 
-class ContractsTypeDialog extends StatelessWidget {
-  const ContractsTypeDialog({Key key, this.availableContractsBloc})
+class ContractsTypeListDialog extends StatelessWidget {
+  const ContractsTypeListDialog({Key key, this.availableContractsBloc})
       : super(key: key);
 
   final AvailableContractsBloc availableContractsBloc;
@@ -29,6 +29,10 @@ class ContractsTypeDialog extends StatelessWidget {
                         '${contract.contractDisplay}, ${contract.contractType}',
                       ),
                       subtitle: Text('${contract.contractCategory}'),
+                      onTap: () {
+                        availableContractsBloc.add(SelectContract(index));
+                        Navigator.of(context).pop();
+                      },
                     );
                   }),
             );

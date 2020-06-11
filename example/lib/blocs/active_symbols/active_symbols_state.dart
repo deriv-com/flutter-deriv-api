@@ -21,12 +21,14 @@ class ActiveSymbolsError extends ActiveSymbolsState {
 class ActiveSymbolsLoaded extends ActiveSymbolsState {
   ActiveSymbolsLoaded({
     this.activeSymbols,
-    this.selectedSymbol,
-  }) : super();
-
-  final ActiveSymbol selectedSymbol;
+    ActiveSymbol selectedSymbol,
+  }) : _selectedSymbol = selectedSymbol ?? activeSymbols?.first;
 
   final List<ActiveSymbol> activeSymbols;
+
+  final ActiveSymbol _selectedSymbol;
+
+  ActiveSymbol get selectedSymbol => _selectedSymbol;
 
   @override
   String toString() => 'ActiveSymbolsLoaded ${activeSymbols.length} symbols';

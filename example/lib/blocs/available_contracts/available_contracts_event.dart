@@ -10,3 +10,12 @@ class FetchAvailableContracts extends AvailableContractsEvent {
   @override
   String toString() => 'FetchAvailableContracts';
 }
+
+class SelectContract extends AvailableContractsEvent {
+  SelectContract(this.index);
+
+  final int index;
+
+  @override
+  String toString() => 'SelectContract: $index';
+}
