@@ -1,31 +1,31 @@
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
-/// MT5 accounts info
-class BalanceMt5Model extends APIBaseModel {
+/// Real account info
+class BalanceAccountModel extends APIBaseModel {
   /// Initializes
-  BalanceMt5Model({this.amount, this.currency});
+  BalanceAccountModel({this.amount, this.currency});
 
-  /// Generate an instance from JSON
-  factory BalanceMt5Model.fromJson(
+  /// Generates an instance from JSON
+  factory BalanceAccountModel.fromJson(
     Map<String, dynamic> json,
   ) =>
-      BalanceMt5Model(
+      BalanceAccountModel(
         amount: json['amount'],
         currency: json['currency'],
       );
 
-  /// Total balance of all MT5 accounts
+  /// Total amount of all balances of all real accounts
   final double amount;
 
   /// Currency code.
   final String currency;
 
-  /// Generate a copy of instance with given parameters
-  BalanceMt5Model copyWith({
+  /// Generates a copy of instance with given parameters
+  BalanceAccountModel copyWith({
     double amount,
     String currency,
   }) =>
-      BalanceMt5Model(
+      BalanceAccountModel(
         amount: amount ?? this.amount,
         currency: currency ?? this.currency,
       );
