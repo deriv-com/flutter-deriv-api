@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/account/models/balance_mt5_model.dart';
-import 'package:flutter_deriv_api/api/account/models/balance_real_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
+
+import 'balance_account_model.dart';
 
 /// Total Information of [BalanceModel]
 class BalanceTotalModel extends APIBaseModel {
@@ -15,24 +15,24 @@ class BalanceTotalModel extends APIBaseModel {
       BalanceTotalModel(
         mt5: getItemFromMap(
           json['mt5'],
-          itemToTypeCallback: (dynamic item) => BalanceMt5Model.fromJson(item),
+          itemToTypeCallback: (dynamic item) => BalanceAccountModel.fromJson(item),
         ),
         real: getItemFromMap(
           json['real'],
-          itemToTypeCallback: (dynamic item) => BalanceRealModel.fromJson(item),
+          itemToTypeCallback: (dynamic item) => BalanceAccountModel.fromJson(item),
         ),
       );
 
   /// Total balance of all MT5 accounts
-  final BalanceMt5Model mt5;
+  final BalanceAccountModel mt5;
 
   /// Total amount of balance in all real accounts (excluding MT5)
-  final BalanceRealModel real;
+  final BalanceAccountModel real;
 
   /// Generate a copy of instance with given parameters
   BalanceTotalModel copyWith({
-    BalanceMt5Model mt5,
-    BalanceRealModel real,
+    BalanceAccountModel mt5,
+    BalanceAccountModel real,
   }) =>
       BalanceTotalModel(
         mt5: mt5 ?? this.mt5,
