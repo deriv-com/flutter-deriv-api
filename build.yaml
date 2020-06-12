@@ -34,4 +34,4 @@ builders:
     defaults:
       generate_for:
         include:
-          - lib/basic_api/generated/api.dart
+          - lib/basic_api/helper/response_mapper.dart
