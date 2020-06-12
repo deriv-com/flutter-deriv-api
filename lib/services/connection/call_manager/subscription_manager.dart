@@ -84,14 +84,9 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   Future<ForgetResponse> unsubscribe({
     @required String subscriptionId,
     bool onlyCurrentListener = true,
-    bool shouldForced = false,
   }) async {
     final int requestId = pendingRequests.keys
         .singleWhere((int id) => getSubscriptionId(id) == subscriptionId);
-
-    if (getSubscriptionStream(requestId).hasListener && !shouldForced) {
-      throw Exception('The stream has listener');
-    }
 
     if (onlyCurrentListener && pendingRequests[requestId].listenersCount > 1) {
       pendingRequests[requestId] = _decreaseListenersCount(
@@ -114,9 +109,8 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   }
 
   /// Unsubscribe to multiple [method]s all at once
-  Future<dynamic> unsubscribeAll({
+  Future<ForgetAllResponse> unsubscribeAll({
     @required ForgetStreamType method,
-    bool shouldForced = false,
   }) async {
     final String methodName = getStringFromEnum(method);
 
@@ -127,7 +121,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
         return pendingRequest.request.msgType == methodName &&
             pendingRequest.isSubscribed;
       },
-    );
+    ).toList();
 
     final ForgetAllResponse response = await api.call(
       request: ForgetAllRequest(forgetAll: methodName),
