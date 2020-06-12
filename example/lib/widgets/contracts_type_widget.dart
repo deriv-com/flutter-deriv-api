@@ -51,7 +51,7 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                             return Column(
                               children: <Widget>[
                                 Text(
-                                  '${state.contracts.contracts.length}',
+                                  '${state.contracts.availableContracts.length}',
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,

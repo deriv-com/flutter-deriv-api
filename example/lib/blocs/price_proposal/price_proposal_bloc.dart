@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/contract/operation/price_proposal.dart';
-import 'package:flutter_deriv_api/api/contract/models/contract_model.dart';
+import 'package:flutter_deriv_api/api/contract/models/available_contract_model.dart';
 import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_operations_exception.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 

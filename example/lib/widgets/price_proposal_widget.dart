@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_deriv_api/api/contract/models/contract_model.dart';
+import 'package:flutter_deriv_api/api/contract/models/available_contract_model.dart';
 import 'package:flutter_deriv_api_example/blocs/available_contracts/available_contracts_bloc.dart';
 import 'package:flutter_deriv_api_example/blocs/price_proposal/price_proposal_bloc.dart';
 import 'package:flutter_deriv_api_example/widgets/drop_down_menu.dart';
@@ -179,7 +179,7 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
         ],
       );
 
-  void _subscribeToPriceWithCurrentConfig(ContractModel contract) {
+  void _subscribeToPriceWithCurrentConfig(AvailableContractModel contract) {
     _priceProposalBloc.add(
       SubscribeProposal(
         contract,

@@ -11,7 +11,7 @@ class SubscribeProposal extends PriceProposalEvent {
     this.amount = 100,
   });
 
-  ContractModel contract;
+  AvailableContractModel contract;
 
   final String basis;
   final String durationUnit;

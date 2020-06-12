@@ -21,16 +21,17 @@ class AvailableContractsError extends AvailableContractsState {
 class AvailableContractsLoaded extends AvailableContractsState {
   AvailableContractsLoaded({
     this.contracts,
-    ContractModel selectedContract,
-  }) : _selectedContract = selectedContract ?? contracts?.contracts?.first;
+    AvailableContractModel selectedContract,
+  }) : _selectedContract =
+            selectedContract ?? contracts?.availableContracts?.first;
 
   final ContractsForSymbol contracts;
 
-  final ContractModel _selectedContract;
+  final AvailableContractModel _selectedContract;
 
-  ContractModel get selectedContract => _selectedContract;
+  AvailableContractModel get selectedContract => _selectedContract;
 
   @override
   String toString() =>
-      'AvailableContractsLoaded ${contracts.contracts.length} contracts';
+      'AvailableContractsLoaded ${contracts.availableContracts.length} contracts';
 }

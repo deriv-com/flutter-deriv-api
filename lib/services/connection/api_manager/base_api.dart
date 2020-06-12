@@ -35,13 +35,11 @@ abstract class BaseAPI {
   /// Unsubscribe with a specific [subscriptionId]
   Future<ForgetResponse> unsubscribe({
     @required String subscriptionId,
-    bool shouldForced = false,
   });
 
   /// Unsubscribe to multiple [method]s all at once
   Future<ForgetAllResponse> unsubscribeAll({
     @required ForgetStreamType method,
-    bool shouldForced = false,
   });
 
   /// Disconnects from API

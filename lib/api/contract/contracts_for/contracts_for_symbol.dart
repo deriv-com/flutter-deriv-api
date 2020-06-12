@@ -1,5 +1,5 @@
 import 'package:flutter_deriv_api/api/contract/contracts_for/exceptions/contract_for_symbol_exception.dart';
-import 'package:flutter_deriv_api/api/contract/models/contract_model.dart';
+import 'package:flutter_deriv_api/api/contract/models/available_contract_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/contracts_for_symbol_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/generated/contracts_for_send.dart';
@@ -12,14 +12,14 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 class ContractsForSymbol extends ContractsForSymbolModel {
   /// Initializes
   ContractsForSymbol({
-    List<ContractModel> contracts,
+    List<AvailableContractModel> availableContracts,
     DateTime close,
     String feedLicense,
     int hitCount,
     DateTime open,
     double spot,
   }) : super(
-          contracts: contracts,
+          availableContracts: availableContracts,
           close: close,
           feedLicense: feedLicense,
           hitCount: hitCount,
@@ -30,9 +30,10 @@ class ContractsForSymbol extends ContractsForSymbolModel {
   /// Creates an instance from JSON
   factory ContractsForSymbol.fromJson(Map<String, dynamic> json) =>
       ContractsForSymbol(
-        contracts: getListFromMap(
+        availableContracts: getListFromMap(
           json['available'],
-          itemToTypeCallback: (dynamic item) => ContractModel.fromJson(item),
+          itemToTypeCallback: (dynamic item) =>
+              AvailableContractModel.fromJson(item),
         ),
         close: getDateTime(json['close']),
         feedLicense: json['feed_license'],
@@ -64,7 +65,7 @@ class ContractsForSymbol extends ContractsForSymbolModel {
 
   /// Generates a copy of instance with given parameters
   ContractsForSymbol copyWith({
-    List<ContractModel> contracts,
+    List<AvailableContractModel> availableContracts,
     int close,
     String feedLicense,
     int hitCount,
@@ -72,7 +73,7 @@ class ContractsForSymbol extends ContractsForSymbolModel {
     double spot,
   }) =>
       ContractsForSymbol(
-        contracts: contracts ?? this.contracts,
+        availableContracts: availableContracts ?? this.availableContracts,
         close: close ?? this.close,
         feedLicense: feedLicense ?? this.feedLicense,
         hitCount: hitCount ?? this.hitCount,

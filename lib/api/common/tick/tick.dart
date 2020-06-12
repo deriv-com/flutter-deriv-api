@@ -1,6 +1,4 @@
-import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
-import 'package:flutter_deriv_api/api/common/models/tick_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -11,27 +9,26 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'exceptions/tick_exception.dart';
+import 'tick_base.dart';
 
-/// Spot price updates for a given symbol
-class Tick extends TickModel {
+/// Normal tick class, represents price of the symbol in one unit of time
+class Tick extends TickBase {
   /// Initializes
   Tick({
-    double ask,
-    double bid,
+    this.ask,
+    this.bid,
+    this.quote,
     DateTime epoch,
     String id,
     int pipSize,
-    double quote,
     String symbol,
-    this.subscriptionInformation,
+    SubscriptionModel subscriptionInformation,
   }) : super(
-          ask: ask,
-          bid: bid,
           epoch: epoch,
           id: id,
           pipSize: pipSize,
-          quote: quote,
           symbol: symbol,
+          subscriptionInformation: subscriptionInformation,
         );
 
   /// Generates an instance from JSON
@@ -42,16 +39,22 @@ class Tick extends TickModel {
       Tick(
         ask: json['ask']?.toDouble(),
         bid: json['bid']?.toDouble(),
+        quote: json['quote']?.toDouble(),
         epoch: getDateTime(json['epoch']),
         id: json['id'],
         pipSize: json['pip_size'],
-        quote: json['quote']?.toDouble(),
         symbol: json['symbol'],
         subscriptionInformation: SubscriptionModel.fromJson(subscriptionJson),
       );
 
-  /// Subscription information
-  final SubscriptionModel subscriptionInformation;
+  /// Market ask at the epoch
+  final double ask;
+
+  /// Market bid at the epoch
+  final double bid;
+
+  /// Market value at the epoch
+  final double quote;
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -81,25 +84,6 @@ class Tick extends TickModel {
         },
       );
 
-  /// Unsubscribes from tick stream
-  ///
-  /// Throws a [TickException] if API response contains an error
-  Future<Forget> unsubscribeTick() async {
-    if (subscriptionInformation?.id == null) {
-      return null;
-    }
-
-    final ForgetResponse response =
-        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
-
-    checkException(
-      response: response,
-      exceptionCreator: (String message) => TickException(message: message),
-    );
-
-    return Forget.fromResponse(response);
-  }
-
   /// Unsubscribes all ticks.
   ///
   /// Throws a [TickException] if API response contains an error
@@ -115,24 +99,25 @@ class Tick extends TickModel {
     return ForgetAll.fromResponse(response);
   }
 
-  /// Generates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters
+  @override
   Tick copyWith({
     double ask,
     double bid,
+    double quote,
     DateTime epoch,
     String id,
     int pipSize,
-    double quote,
     String symbol,
     SubscriptionModel subscriptionInformation,
   }) =>
       Tick(
         ask: ask ?? this.ask,
         bid: bid ?? this.bid,
+        quote: quote ?? this.quote,
         epoch: epoch ?? this.epoch,
         id: id ?? this.id,
         pipSize: pipSize ?? this.pipSize,
-        quote: quote ?? this.quote,
         symbol: symbol ?? this.symbol,
         subscriptionInformation:
             subscriptionInformation ?? this.subscriptionInformation,
