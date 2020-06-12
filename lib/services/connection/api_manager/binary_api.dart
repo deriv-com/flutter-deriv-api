@@ -114,10 +114,12 @@ class BinaryAPI implements BaseAPI {
   @override
   Stream<Response> subscribe({
     @required Request request,
+    int cacheSize = 0,
     RequestCompareFunction comparePredicate,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this))(
         request: request,
+        cacheSize: cacheSize,
         comparePredicate: comparePredicate,
       );
 

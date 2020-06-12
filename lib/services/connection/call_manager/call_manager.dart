@@ -30,9 +30,6 @@ class CallManager extends BaseCallManager<Future<Response>> {
   }
 
   @override
-  Future<Response> call({
-    @required Request request,
-    RequestCompareFunction comparePredicate,
-  }) async =>
+  Future<Response> call({@required Request request}) async =>
       addToChannel(request: request);
 }

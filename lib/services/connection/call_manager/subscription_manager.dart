@@ -20,11 +20,11 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   /// Initializes
   SubscriptionManager(BaseAPI api) : super(api);
 
-  /// Get [subscriptionId] by [requestId]
+  /// Gets [subscriptionId] by [requestId]
   String getSubscriptionId(int requestId) =>
       pendingRequests[requestId]?.subscriptionId;
 
-  /// Get [subscriptionStream] by [requestId]
+  /// Gets [subscriptionStream] by [requestId]
   SubscriptionStream<Response> getSubscriptionStream(int requestId) =>
       pendingRequests[requestId]?.subscriptionStream;
 
@@ -50,8 +50,11 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   @override
   Stream<Response> call({
     @required Request request,
+    int cacheSize = 0,
     RequestCompareFunction comparePredicate,
   }) {
+    assert(cacheSize == null || cacheSize >= 0);
+
     final PendingRequest<Response> pendingRequest = _getPendingRequest(
       request: request,
       pendingRequests: pendingRequests,
@@ -62,11 +65,12 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
       pendingRequests[pendingRequest.request.reqId] =
           _increaseListenersCount(pendingRequest);
 
-      return pendingRequest.subscriptionStream.stream;
+      return pendingRequest.subscriptionStream.stream
+          .skip(cacheSize == 0 ? 1 : 0);
     }
 
     final SubscriptionStream<Response> subscriptionStream =
-        SubscriptionStream<Response>();
+        SubscriptionStream<Response>(maxSize: cacheSize == 0 ? 1 : cacheSize);
 
     addToChannel(
       request: request,
