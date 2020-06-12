@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:meta/meta.dart';
 
-import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/basic_api/helper/response_mapper.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
