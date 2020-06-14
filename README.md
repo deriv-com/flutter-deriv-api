@@ -53,7 +53,7 @@ print(ping.succeeded);
 
 ## Documentation
 
-### API reference
+### API Reference
 
 The complete API reference is [here](#).
 
