@@ -2,7 +2,7 @@
 
 Flutter Deriv API is an abstraction layer over `Binary Websocket` (_https://github.com/binary-com/websockets_).
 
-You can use this library with either using classes in the abstraction layer like `Ping, Order, Advert, etc...` or directly with API calls and subscription methods.
+You can use this library with either using classes in the abstraction layer like `Ping, Order, Advert, etc...` or directly with API calls from `Base API`.
 
 ## Creating a WebSocket Connection
 
@@ -27,7 +27,7 @@ api.connect(
 
 ## Usage
 
-#### 1. Using Abstraction Layer
+### Calling Method by Abstraction Layer
 
 ```dart
 final Ping ping = await Ping.ping();
@@ -35,7 +35,7 @@ final Ping ping = await Ping.ping();
 print(ping.succeeded);
 ```
 
-#### 2. Calling Method Directly from API
+### Calling Method Directly from API
 
 ```dart
 final PingResponse response = await _api.call(
@@ -57,7 +57,7 @@ print(ping.succeeded);
 
 The complete API reference is [here](#).
 
-### Flutter Deriv API Architecture
+### API Architecture
 
 ![Flutter Deriv API Architecture](deriv_api_architecture.png)
 
@@ -90,41 +90,33 @@ $ dartdoc
 
 ## Tools
 
-### Json Schema Parser Utility
+### Json Schema Parser
 
-`JsonSchemaParser` class is a utility for extracting main and nested classes from model schema contents. for using this utility:
+`JsonSchemaParser` class is a tool for extracting main and nested classes from model schema contents. for using this tool:
 
-- call `getModel(...)` method and pass decoded schema as `Map<String, dynamic> schema`.
-- pass the result as `models` parameter to `getClasses(...)` method.
+- Call `getModel(...)` method and pass decoded schema as `Map<String, dynamic> schema`.
+- Pass the result as `models` parameter to `getClasses(...)` method.
 
-The final result is a `string` that contains the main class and all related classes of that schema file including:
+The final result is a `string` that contains the main class and all related classes of that schema file including `Model Classes`, `Constructors`, `Properties`, `To JSON Method`, `From JSON Method`, and `Copy With Method`.
 
-> ###### Model Classes
->
-> ###### Constructors
->
-> ###### Properties
->
-> ###### To JSON Method
->
-> ###### From JSON Method
->
-> ###### Copy With Method
-
-#### Usage
+### Usage
 
 ```
 flutter pub run lib/tools/parser.dart <json_schema_path> <main_class_name>
 ```
 
-#### Example
+### Example
 
 ```
 flutter pub run lib/tools/parser.dart /Users/hamed/Documents/GitHub/flutter-deriv-api/lib/basic_api/generated/active_symbols_receive.json sample
 ```
 
-##### Note: The resulting file will be created in the same path of `json schema` file.
+##### Note: The result file will be created in the same path of `json schema` file.
 
-> ###### schema file name: `active_symbols_receive.json`
->
-> ###### result file name: `active_symbols_receive_result.dart`
+```
+Schema File Name:
+    active_symbols_receive.json
+
+Result File Name:
+    active_symbols_receive_result.dart
+```
