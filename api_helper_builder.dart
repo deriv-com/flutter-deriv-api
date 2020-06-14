@@ -21,7 +21,6 @@ class APIHelperBuilder extends Builder {
       final List<String> importFileNames = generatedResponses
           .map<String>((GeneratedResponseJson response) => response.fileName)
           .toList()
-            ..add('../response')
             ..sort();
 
       generatedResponses.sort();
@@ -35,18 +34,19 @@ class APIHelperBuilder extends Builder {
             // uses collected `msg_type`s from the 1st step to create a helper
             // function that maps the `msg_type`s to equivalent Response objects
             
-            ${importFileNames.map((String fileName) => 'import \'$fileName.dart\';').join('\n')}
+            ${importFileNames.map((String fileName) => 'import \'../generated/$fileName.dart\';').join('\n')}
+            import '../response.dart';
 
             /// A function that create a sub-type of [Response] based on
             /// [responseMap]'s 'msg_type' 
-            Response getResponseByMsgType(Map<String, dynamic> responseMap) {
+            Response getGeneratedResponse(Map<String, dynamic> responseMap) {
               switch (responseMap['msg_type']) {
               ${generatedResponses.map((GeneratedResponseJson response) => '''case '${response.msgType}':
-                  return ${response.fullClassName}.fromJson(responseMap);
+                return ${response.fullClassName}.fromJson(responseMap);
               ''').join('')}
 
               default:
-                  return Response.fromJson(responseMap);
+                return Response.fromJson(responseMap);
               }
             }
           ''',

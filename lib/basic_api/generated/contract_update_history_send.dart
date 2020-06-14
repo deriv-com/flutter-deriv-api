@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_history_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,7 +11,7 @@ part 'contract_update_history_send.g.dart';
 class ContractUpdateHistoryRequest extends Request {
   /// Initialize ContractUpdateHistoryRequest
   const ContractUpdateHistoryRequest({
-    this.contractId,
+    @required this.contractId,
     this.contractUpdateHistory = 1,
     Map<String, dynamic> passthrough,
     int reqId,

@@ -12,10 +12,16 @@ class Residence extends ResidenceModel {
     String phoneIdd,
     String countryName,
     String countryCode,
+    List<String> tinFormat,
+    String disabled,
+    String selected,
   }) : super(
           phoneIdd: phoneIdd,
           countryName: countryName,
           countryCode: countryCode,
+          tinFormat: tinFormat,
+          disabled: disabled,
+          selected: selected,
         );
 
   /// Generates an instance from JSON
@@ -26,9 +32,18 @@ class Residence extends ResidenceModel {
         phoneIdd: json['phone_idd'],
         countryName: json['text'],
         countryCode: json['value'],
+        tinFormat: getListFromMap(json['tin_format']),
+        disabled: json['disabled'],
+        selected: json['selected'],
       );
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// 'true' if disabled
+  bool get isDisabled => disabled?.toLowerCase() == 'disabled';
+
+  /// 'true' if selected
+  bool get isSelected => selected?.toLowerCase() == 'selected';
 
   /// Gets Residence list for the given [ResidenceListRequest]
   ///
@@ -57,10 +72,16 @@ class Residence extends ResidenceModel {
     String phoneIdd,
     String countryName,
     String countryCode,
+    List<String> tinFormat,
+    String disabled,
+    String selected,
   }) =>
       Residence(
         phoneIdd: phoneIdd ?? this.phoneIdd,
         countryName: countryName ?? this.countryName,
         countryCode: countryCode ?? this.countryCode,
+        tinFormat: tinFormat ?? this.tinFormat,
+        disabled: disabled ?? this.disabled,
+        selected: selected ?? this.selected,
       );
 }

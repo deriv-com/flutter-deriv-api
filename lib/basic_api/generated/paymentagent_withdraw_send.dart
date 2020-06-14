@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,13 +11,13 @@ part 'paymentagent_withdraw_send.g.dart';
 class PaymentagentWithdrawRequest extends Request {
   /// Initialize PaymentagentWithdrawRequest
   const PaymentagentWithdrawRequest({
-    this.amount,
-    this.currency,
+    @required this.amount,
+    @required this.currency,
     this.description,
     this.dryRun,
-    this.paymentagentLoginid,
+    @required this.paymentagentLoginid,
     this.paymentagentWithdraw = 1,
-    this.verificationCode,
+    @required this.verificationCode,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/exchange_rates_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,7 +11,7 @@ part 'exchange_rates_send.g.dart';
 class ExchangeRatesRequest extends Request {
   /// Initialize ExchangeRatesRequest
   const ExchangeRatesRequest({
-    this.baseCurrency,
+    @required this.baseCurrency,
     this.exchangeRates = 1,
     Map<String, dynamic> passthrough,
     int reqId,

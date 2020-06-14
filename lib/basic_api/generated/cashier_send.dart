@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cashier_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,7 +11,7 @@ part 'cashier_send.g.dart';
 class CashierRequest extends Request {
   /// Initialize CashierRequest
   const CashierRequest({
-    this.cashier,
+    @required this.cashier,
     this.provider,
     this.type,
     this.verificationCode,

@@ -2,11 +2,11 @@ import 'dart:async';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_send.dart';
+import 'package:flutter_deriv_api/basic_api/helper/response_mapper.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -20,11 +20,11 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   /// Initializes
   SubscriptionManager(BaseAPI api) : super(api);
 
-  /// Get [subscriptionId] by [requestId]
+  /// Gets [subscriptionId] by [requestId]
   String getSubscriptionId(int requestId) =>
       pendingRequests[requestId]?.subscriptionId;
 
-  /// Get [subscriptionStream] by [requestId]
+  /// Gets [subscriptionStream] by [requestId]
   SubscriptionStream<Response> getSubscriptionStream(int requestId) =>
       pendingRequests[requestId]?.subscriptionStream;
 
@@ -50,8 +50,11 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   @override
   Stream<Response> call({
     @required Request request,
+    int cacheSize = 0,
     RequestCompareFunction comparePredicate,
   }) {
+    assert(cacheSize == null || cacheSize >= 0);
+
     final PendingRequest<Response> pendingRequest = _getPendingRequest(
       request: request,
       pendingRequests: pendingRequests,
@@ -59,11 +62,15 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     );
 
     if (pendingRequest != null) {
-      return pendingRequest.subscriptionStream.stream;
+      pendingRequests[pendingRequest.request.reqId] =
+          _increaseListenersCount(pendingRequest);
+
+      return pendingRequest.subscriptionStream.stream
+          .skip(cacheSize == 0 ? 1 : 0);
     }
 
     final SubscriptionStream<Response> subscriptionStream =
-        SubscriptionStream<Response>();
+        SubscriptionStream<Response>(maxSize: cacheSize == 0 ? 1 : cacheSize);
 
     addToChannel(
       request: request,
@@ -76,13 +83,17 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   /// Unsubscribe with a specific [subscriptionId]
   Future<ForgetResponse> unsubscribe({
     @required String subscriptionId,
-    bool shouldForced = false,
+    bool onlyCurrentListener = true,
   }) async {
     final int requestId = pendingRequests.keys
         .singleWhere((int id) => getSubscriptionId(id) == subscriptionId);
 
-    if (getSubscriptionStream(requestId).hasListener && !shouldForced) {
-      throw Exception('The stream has listener');
+    if (onlyCurrentListener && pendingRequests[requestId].listenersCount > 1) {
+      pendingRequests[requestId] = _decreaseListenersCount(
+        pendingRequests[requestId],
+      );
+
+      return const ForgetResponse(forget: 1, msgType: 'forget');
     }
 
     // Send forget request
@@ -98,9 +109,8 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   }
 
   /// Unsubscribe to multiple [method]s all at once
-  Future<dynamic> unsubscribeAll({
+  Future<ForgetAllResponse> unsubscribeAll({
     @required ForgetStreamType method,
-    bool shouldForced = false,
   }) async {
     final String methodName = getStringFromEnum(method);
 
@@ -111,7 +121,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
         return pendingRequest.request.msgType == methodName &&
             pendingRequest.isSubscribed;
       },
-    );
+    ).toList();
 
     final ForgetAllResponse response = await api.call(
       request: ForgetAllRequest(forgetAll: methodName),
@@ -157,5 +167,19 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
                 );
         },
         orElse: () => null,
+      );
+
+  PendingRequest<Response> _increaseListenersCount(
+    PendingRequest<Response> pendingRequest,
+  ) =>
+      pendingRequest.copyWith(
+        listenersCount: pendingRequest.listenersCount + 1,
+      );
+
+  PendingRequest<Response> _decreaseListenersCount(
+    PendingRequest<Response> pendingRequest,
+  ) =>
+      pendingRequest.copyWith(
+        listenersCount: pendingRequest.listenersCount - 1,
       );
 }

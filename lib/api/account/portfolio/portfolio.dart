@@ -44,7 +44,7 @@ class Portfolio extends PortfolioModel {
     return Portfolio.fromJson(response.portfolio);
   }
 
-  /// Generate a copy of instance with given parameters
+  /// Generates a copy of instance with given parameters
   Portfolio copyWith({
     List<PortfolioContractModel> contracts,
   }) =>

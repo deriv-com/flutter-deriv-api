@@ -9,7 +9,7 @@ part of 'ticks_send.dart';
 TicksRequest _$TicksRequestFromJson(Map<String, dynamic> json) {
   return TicksRequest(
     subscribe: json['subscribe'] as int,
-    ticks: json['ticks'] as String,
+    ticks: json['ticks'],
     passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
   );

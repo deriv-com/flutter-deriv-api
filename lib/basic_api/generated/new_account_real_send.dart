@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -21,14 +22,14 @@ class NewAccountRealRequest extends Request {
     this.citizen,
     this.clientType,
     this.currency,
-    this.dateOfBirth,
-    this.firstName,
-    this.lastName,
+    @required this.dateOfBirth,
+    @required this.firstName,
+    @required this.lastName,
     this.newAccountReal = 1,
     this.nonPepDeclaration,
     this.phone,
     this.placeOfBirth,
-    this.residence,
+    @required this.residence,
     this.salutation,
     this.secretAnswer,
     this.secretQuestion,

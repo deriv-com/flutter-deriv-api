@@ -1,9 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/contract/models/cancellation_info_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/limit_order_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/price_proposal_model.dart';
-import 'package:flutter_deriv_api/api/contract/operation/buy_contract.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -12,6 +12,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart'
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
+import 'contract.dart';
 import 'exceptions/contract_operations_exception.dart';
 
 /// Implementation of [PriceProposalModel]
@@ -80,7 +81,9 @@ class PriceProposal extends PriceProposalModel {
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the price proposal for contract
+  ///
   /// For parameters information refer to [ProposalRequest]
+  /// Throws a [ContractOperationException] if API response contains an error
   static Future<PriceProposal> fetchPriceForContract(
     ProposalRequest request,
   ) async {
@@ -158,7 +161,16 @@ class PriceProposal extends PriceProposalModel {
   /// Buys this proposal contract with [price] specified.
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Future<BuyContract> buy({double price}) => BuyContract.buy(BuyRequest(
+  Future<Contract> buy({@required double price}) => Contract.buy(BuyRequest(
+        buy: id,
+        price: price ?? askPrice,
+      ));
+
+  /// Buys this proposal contract with [price] specified and subscribes to it.
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
+  Stream<Contract> buyAndSubscribe({@required double price}) =>
+      Contract.buyAndSubscribe(BuyRequest(
         buy: id,
         price: price ?? askPrice,
       ));

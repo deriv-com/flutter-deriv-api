@@ -1,5 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_create_send.json
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
@@ -10,17 +11,17 @@ part 'p2p_advert_create_send.g.dart';
 class P2pAdvertCreateRequest extends Request {
   /// Initialize P2pAdvertCreateRequest
   const P2pAdvertCreateRequest({
-    this.amount,
+    @required this.amount,
     this.contactInfo,
     this.description,
     this.localCurrency,
-    this.maxOrderAmount,
-    this.minOrderAmount,
+    @required this.maxOrderAmount,
+    @required this.minOrderAmount,
     this.p2pAdvertCreate = 1,
     this.paymentInfo,
-    this.paymentMethod,
-    this.rate,
-    this.type,
+    @required this.paymentMethod,
+    @required this.rate,
+    @required this.type,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
