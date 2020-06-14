@@ -2,7 +2,7 @@
 
 Flutter Deriv API is an abstraction layer over `Binary Websocket` (_https://github.com/binary-com/websockets_).
 
-You can use this library with either using classes in the abstraction layer like `Ping, Order, Advert, etc...` or directly with API calls from `Base API`.
+You can use this package with either using classes in the abstraction layer like `Ping, Order, Advert, etc...` or directly with API calls from `Base API`.
 
 ## Creating a WebSocket Connection
 
@@ -38,13 +38,11 @@ print(ping.succeeded);
 ### Calling Method Directly from API
 
 ```dart
-final PingResponse response = await _api.call(
+final PingResponse response = await api.call(
     request: const PingRequest(),
 );
 
-final Ping ping =  Ping.fromResponse(response);
-
-print(ping.succeeded);
+print(response.ping);
 ```
 
 ##### Note: For more detail refer to documents and examples.
@@ -53,13 +51,16 @@ print(ping.succeeded);
 
 ## Documentation
 
+### API Architecture
+
+<br/>
+<p align="center">
+    <img src="deriv_api_architecture.png" alt="API Architecture" width="70%"/>
+</p>
+
 ### API Reference
 
 The complete API reference is [here](#).
-
-### API Architecture
-
-![Flutter Deriv API Architecture](deriv_api_architecture.png)
 
 ---
 
@@ -108,15 +109,7 @@ flutter pub run lib/tools/parser.dart <json_schema_path> <main_class_name>
 ### Example
 
 ```
-flutter pub run lib/tools/parser.dart /Users/hamed/Documents/GitHub/flutter-deriv-api/lib/basic_api/generated/active_symbols_receive.json sample
+flutter pub run lib/tools/parser.dart active_symbols_receive.json ActiveSymbols
 ```
 
 ##### Note: The result file will be created in the same path of `json schema` file.
-
-```
-Schema File Name:
-    active_symbols_receive.json
-
-Result File Name:
-    active_symbols_receive_result.dart
-```
