@@ -103,13 +103,13 @@ The final result is a `string` that contains the main class and all related clas
 ### Usage
 
 ```
-flutter pub run lib/tools/parser.dart <json_schema_path> <main_class_name>
+$ flutter pub run lib/tools/parser.dart <json_schema_path> <main_class_name>
 ```
 
 ### Example
 
 ```
-flutter pub run lib/tools/parser.dart active_symbols_receive.json ActiveSymbols
+$ flutter pub run lib/tools/parser.dart active_symbols_receive.json ActiveSymbols
 ```
 
 ##### Note: The result file will be created in the same path of `json schema` file.
