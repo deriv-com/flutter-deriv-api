@@ -1,33 +1,35 @@
 # Flutter Deriv API
 
-Flutter Deriv API is an abstraction layer over `Binary Websocket` (_https://github.com/binary-com/websockets_).
+Flutter Deriv API is an abstraction layer over `Binary Websocket` (_https://github.com/binary-com/websockets_) for `Dart` and `Flutter` developers.
 
-You can use this package with either using classes in the abstraction layer like `Ping, Order, Advert, etc...` or directly with API calls from `Base API`.
+## Usage
 
-## Creating a WebSocket Connection
+### A. Creating a WebSocket Connection
 
 Initialize `ModuleContainer` for prepare API instance for dependency injection, you can pass `true` to `isMock` parameter for testing purposes.
 To establish a connection to WebSocket you need an instance of `ConnectionInformation` class for initializing API connection.
 
 ```dart
 ModuleContainer().initialize(Injector.getInjector(), isMock: false);
-BaseAPI api = Injector.getInjector().get<BaseAPI>();
 
-api.connect(
-    ConnectionInformation(
-        appId: ...,
-        brand: ...,
-        endpoint: ...,
-        language: ...,
-    ),
-    onDone: () async { ... },
-    onOpen: () async { ... },
-);
+Injector.getInjector().get<BaseAPI>()
+    .connect(
+        ConnectionInformation(
+            appId: ...,
+            brand: ...,
+            endpoint: ...,
+            language: ...,
+        ),
+        onDone: () async { ... },
+        onOpen: () async { ... },
+    );
 ```
 
-## Usage
+### B. Calling API Methods
 
-### Calling Method by Abstraction Layer
+You can invoke API calls with either using classes in the abstraction layer (like `Ping, Order, Advert,...`) or directly with API calls from `Base API` class.
+
+#### Calling Method by Abstraction Layer
 
 ```dart
 final Ping ping = await Ping.ping();
@@ -35,17 +37,16 @@ final Ping ping = await Ping.ping();
 print(ping.succeeded);
 ```
 
-### Calling Method Directly from API
+#### Calling Method Directly from API
 
 ```dart
-final PingResponse response = await api.call(
-    request: const PingRequest(),
-);
+final PingResponse response =
+    await Injector.getInjector().get<BaseAPI>().call(
+        request: const PingRequest(),
+    );
 
 print(response.ping);
 ```
-
-##### Note: For more detail refer to documents and examples.
 
 ---
 
@@ -112,4 +113,4 @@ $ flutter pub run lib/tools/parser.dart <json_schema_path> <main_class_name>
 $ flutter pub run lib/tools/parser.dart active_symbols_receive.json ActiveSymbols
 ```
 
-##### Note: The result file will be created in the same path of `json schema` file.
+##### Note: The result file will be created in the same path of json schema file.
