@@ -2,7 +2,7 @@
 
 Flutter Deriv API is an abstraction layer over `Binary Websocket` (_https://github.com/binary-com/websockets_) for `Dart` and `Flutter` developers.
 
-## Usage
+## Using Flutter Deriv API
 
 ### A. Creating a WebSocket Connection
 
@@ -101,13 +101,13 @@ $ dartdoc
 
 The final result is a `string` that contains the main class and all related classes of that schema file including `Model Classes`, `Constructors`, `Properties`, `To JSON Method`, `From JSON Method`, and `Copy With Method`.
 
-### Usage
+#### Usage
 
 ```
 $ flutter pub run lib/tools/parser.dart <json_schema_path> <main_class_name>
 ```
 
-### Example
+#### Example
 
 ```
 $ flutter pub run lib/tools/parser.dart active_symbols_receive.json ActiveSymbols
