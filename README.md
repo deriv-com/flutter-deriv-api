@@ -4,10 +4,10 @@ Flutter Deriv API is an abstraction layer over `Binary Websocket` (_https://gith
 
 ## Using Flutter Deriv API
 
-### A. Creating a WebSocket Connection
+### A. Creating a websocket connection
 
 Initialize `ModuleContainer` for prepare API instance for dependency injection, you can pass `true` to `isMock` parameter for testing purposes.
-To establish a connection to WebSocket you need an instance of `ConnectionInformation` class for initializing API connection.
+To establish a connection to websocket you need an instance of `ConnectionInformation` class for initializing API connection.
 
 ```dart
 ModuleContainer().initialize(Injector.getInjector(), isMock: false);
@@ -25,11 +25,11 @@ Injector.getInjector().get<BaseAPI>()
     );
 ```
 
-### B. Calling API Methods
+### B. Calling API methods
 
 You can invoke API calls with either using classes in the abstraction layer (like `Ping, Order, Advert,...`) or directly with API calls from `Base API` class.
 
-#### Calling Method by Abstraction Layer
+#### Calling method by abstraction layer
 
 ```dart
 final Ping ping = await Ping.ping();
@@ -37,7 +37,7 @@ final Ping ping = await Ping.ping();
 print(ping.succeeded);
 ```
 
-#### Calling Method Directly from API
+#### Calling method directly with `Base API`
 
 ```dart
 final PingResponse response =
@@ -67,7 +67,7 @@ The complete API reference is [here](#).
 
 ## Development
 
-### Clone Repository
+### Clone repository
 
 ```
 $ git clone https://github.com/regentmarkets/flutter-deriv-api.git
@@ -76,13 +76,39 @@ $ cd flutter-deriv-api
 $ flutter pub get
 ```
 
-### Run the Tests
+### Use this package as a library
+
+Add this to your package's `pubspec.yaml` file.
+
+```
+dependencies:
+    ...
+    flutter-deriv-api:
+        git:
+            url: https://github.com/regentmarkets/flutter-deriv-api.git
+            ref: master
+```
+
+### Use this package as a submodule
+
+```
+$ git submodule add https://github.com/regentmarkets/flutter-deriv-api.git
+```
+
+### Initialize and update submodule
+
+```
+$ git submodule init
+$ git submodule update --remote
+```
+
+### Run the tests
 
 ```
 $ flutter test
 ```
 
-### Generate Documentations
+### Generate documentations
 
 ```
 $ dartdoc
@@ -92,7 +118,7 @@ $ dartdoc
 
 ## Tools
 
-### Json Schema Parser
+### JSON Schema Parser
 
 `JsonSchemaParser` class is a tool for extracting main and nested classes from model schema contents. for using this tool:
 
@@ -113,4 +139,4 @@ $ flutter pub run lib/tools/parser.dart <json_schema_path> <main_class_name>
 $ flutter pub run lib/tools/parser.dart active_symbols_receive.json ActiveSymbols
 ```
 
-##### Note: The result file will be created in the same path of json schema file.
+##### Note: The result file will be created in the same path of JSON schema file.
