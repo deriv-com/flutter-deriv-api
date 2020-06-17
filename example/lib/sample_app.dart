@@ -11,6 +11,7 @@ import 'blocs/active_symbols/active_symbols_bloc.dart';
 import 'blocs/available_contracts/available_contracts_bloc.dart';
 import 'widgets/active_symbols_widget.dart';
 
+/// Sample App main widget
 class SampleApp extends StatefulWidget {
   @override
   _SampleAppState createState() => _SampleAppState();

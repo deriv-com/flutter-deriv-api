@@ -5,6 +5,7 @@ import 'package:flutter_deriv_api/api/contract/contracts_for/contracts_for_symbo
 import 'package:flutter_deriv_api/api/contract/models/available_contract_model.dart';
 import 'package:flutter_deriv_api_example/blocs/available_contracts/available_contracts_bloc.dart';
 
+/// ContractsTypeListDialog
 class ContractsTypeListDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>

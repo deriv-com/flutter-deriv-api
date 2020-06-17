@@ -9,6 +9,7 @@ part 'active_symbols_event.dart';
 
 part 'active_symbols_state.dart';
 
+/// ActiveSymbolsBloc
 class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
   @override
   ActiveSymbolsState get initialState => ActiveSymbolsLoading();

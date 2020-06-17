@@ -13,7 +13,9 @@ part 'price_proposal_event.dart';
 
 part 'price_proposal_state.dart';
 
+/// PriceProposalBloc
 class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
+  ///Initializes
   PriceProposalBloc(AvailableContractsBloc availableContractsBloc) {
     availableContractsBloc.listen((AvailableContractsState state) {
       if (state is AvailableContractsLoaded) {

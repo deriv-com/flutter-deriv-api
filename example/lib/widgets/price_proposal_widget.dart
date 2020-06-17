@@ -6,6 +6,7 @@ import 'package:flutter_deriv_api_example/blocs/available_contracts/available_co
 import 'package:flutter_deriv_api_example/blocs/price_proposal/price_proposal_bloc.dart';
 import 'package:flutter_deriv_api_example/widgets/drop_down_menu.dart';
 
+/// PriceProposalWidget
 class PriceProposalWidget extends StatefulWidget {
   @override
   _PriceProposalWidgetState createState() => _PriceProposalWidgetState();

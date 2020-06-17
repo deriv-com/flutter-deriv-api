@@ -43,10 +43,10 @@ class OHLC extends TickBase {
         high: json['high'],
         low: json['low'],
         open: json['open'],
-        openTime: getDateTime(json['openTime']),
+        openTime: getDateTime(json['open_time']),
         epoch: getDateTime(json['epoch']),
         id: json['id'],
-        pipeSize: json['pipeSize'],
+        pipeSize: json['pip_size'],
         symbol: json['symbol'],
         subscriptionInformation: SubscriptionModel.fromJson(subscriptionJson),
       );

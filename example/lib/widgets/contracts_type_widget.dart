@@ -5,6 +5,7 @@ import 'package:flutter_deriv_api_example/blocs/available_contracts/available_co
 
 import 'contracts_type_list_dialog.dart';
 
+/// ContractsTypeWidget
 class ContractsTypeWidget extends StatefulWidget {
   @override
   _ContractsTypeWidgetState createState() => _ContractsTypeWidgetState();

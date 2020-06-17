@@ -13,8 +13,10 @@ part 'available_contracts_event.dart';
 
 part 'available_contracts_state.dart';
 
+/// AvailableContractsBloc
 class AvailableContractsBloc
     extends Bloc<AvailableContractsEvent, AvailableContractsState> {
+  /// Initializes
   AvailableContractsBloc(ActiveSymbolsBloc activeSymbolsBloc) {
     activeSymbolsBloc.listen((ActiveSymbolsState activeSymbolsState) {
       if (activeSymbolsState is ActiveSymbolsLoaded) {

@@ -13,7 +13,9 @@ part 'ticks_event.dart';
 
 part 'ticks_state.dart';
 
+/// TicksBloc
 class TicksBloc extends Bloc<TicksEvent, TicksState> {
+  /// Initializes
   TicksBloc(ActiveSymbolsBloc activeSymbolsBloc) {
     activeSymbolsBloc.listen((ActiveSymbolsState activeSymbolsState) async {
       if (activeSymbolsState is ActiveSymbolsLoaded) {
