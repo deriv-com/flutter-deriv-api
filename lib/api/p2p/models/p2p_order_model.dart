@@ -12,6 +12,7 @@ abstract class P2POrderModel extends APIBaseModel {
     this.advertiserDetails,
     this.amount,
     this.amountDisplay,
+    this.chatChannelUrl,
     this.contactInfo,
     this.createdTime,
     this.expiryTime,
@@ -52,6 +53,9 @@ abstract class P2POrderModel extends APIBaseModel {
 
   /// The amount of the order, formatted to appropriate decimal places.
   final String amountDisplay;
+
+  /// The URL to be used to initialise the chat for this order.
+  final String chatChannelUrl;
 
   /// Seller contact information.
   final String contactInfo;

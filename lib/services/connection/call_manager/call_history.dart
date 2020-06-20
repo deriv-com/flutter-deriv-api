@@ -57,14 +57,14 @@ class CallHistory {
   /// Trim early entries from [incoming] if we exceed the current limit
   void trimIncoming() {
     if (incoming.length >= limit) {
-      incoming.removeRange(0, (limit - incoming.length) - 1);
+      incoming.removeRange(0, incoming.length - limit + 1);
     }
   }
 
   /// Trim early entries from [outgoing] if we exceed the current limit
   void trimOutgoing() {
     if (outgoing.length >= limit) {
-      outgoing.removeRange(0, (limit - outgoing.length) - 1);
+      outgoing.removeRange(0, outgoing.length - limit + 1);
     }
   }
 }
