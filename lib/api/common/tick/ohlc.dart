@@ -38,11 +38,19 @@ class OHLC extends TickBase {
     Map<String, dynamic> subscriptionJson,
   }) =>
       OHLC(
-        close: json['close'],
+        close: json['close'] is String
+            ? double.tryParse(json['close'])
+            : json['close']?.toDouble(),
         granularity: json['granularity'],
-        high: json['high'],
-        low: json['low'],
-        open: json['open'],
+        high: json['high'] is String
+            ? double.tryParse(json['high'])
+            : json['high']?.toDouble(),
+        low: json['low'] is String
+            ? double.tryParse(json['low'])
+            : json['low']?.toDouble(),
+        open: json['open'] is String
+            ? double.tryParse(json['open'])
+            : json['open']?.toDouble(),
         openTime: getDateTime(json['open_time']),
         epoch: getDateTime(json['epoch']),
         id: json['id'],
@@ -52,19 +60,19 @@ class OHLC extends TickBase {
       );
 
   /// Close
-  final String close;
+  final double close;
 
   /// Granularity
   final int granularity;
 
   /// High
-  final String high;
+  final double high;
 
   /// Low
-  final String low;
+  final double low;
 
   /// Open
-  final String open;
+  final double open;
 
   /// Open time
   final DateTime openTime;
@@ -89,11 +97,11 @@ class OHLC extends TickBase {
   /// Creates a copy of instance with given parameters
   @override
   OHLC copyWith({
-    String close,
+    double close,
     int granularity,
-    String high,
-    String low,
-    String open,
+    double high,
+    double low,
+    double open,
     DateTime openTime,
     DateTime epoch,
     String id,
