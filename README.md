@@ -1,6 +1,6 @@
 # Flutter Deriv API
 
-Flutter Deriv API is an abstraction layer over `Binary Websocket` (_https://github.com/binary-com/websockets_) for `Dart` and `Flutter` developers.
+Flutter Deriv API is an abstraction layer over `Binary WebSocket` (_https://github.com/binary-com/websockets_) for `Dart` and `Flutter` developers.
 
 ## Using Flutter Deriv API
 
@@ -27,7 +27,7 @@ Injector.getInjector().get<BaseAPI>()
 
 ### B. Calling API methods
 
-You can invoke API calls with either using classes in the abstraction layer (like `Ping, Order, Advert,...`) or directly with API calls from `Base API` class.
+You can invoke API calls with either using classes in the abstraction layer (`Ping, Order, Advert, ...`) or directly with API calls from `Base API` class.
 
 #### Calling method by abstraction layer
 
@@ -78,7 +78,7 @@ $ flutter pub get
 
 ### Use this package as a library
 
-Add this to your package's `pubspec.yaml` file.
+Add this to your package's `pubspec.yaml` file:
 
 ```
 dependencies:
@@ -93,6 +93,15 @@ dependencies:
 
 ```
 $ git submodule add https://github.com/regentmarkets/flutter-deriv-api.git
+```
+
+Add this to your package's `pubspec.yaml` file:
+
+```
+dependencies:
+    ...
+    flutter_deriv_api:
+        path: ./flutter-deriv-api/
 ```
 
 ### Initialize and update submodule
@@ -139,4 +148,8 @@ $ flutter pub run lib/tools/parser.dart <json_schema_path> <main_class_name>
 $ flutter pub run lib/tools/parser.dart active_symbols_receive.json ActiveSymbols
 ```
 
-##### Note: The result file will be created in the same path of JSON schema file.
+#### Notes
+
+1. This tool is for helping developers to convert JSON Schema easier, you may require some adjustments to the result file according to your needs.
+2. The resulting file will be generated in the same path as the JSON schema file.
+3. Some JSON schemas are not standard and this tool may not convert them properly.
