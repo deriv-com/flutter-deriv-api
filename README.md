@@ -6,8 +6,9 @@ Flutter Deriv API is an abstraction layer over `Binary WebSocket` (_https://gith
 
 ### A. Creating a websocket connection
 
-Initialize `ModuleContainer` for prepare API instance for dependency injection, you can pass `true` to `isMock` parameter for testing purposes.
-To establish a connection to websocket you need an instance of `ConnectionInformation` class for initializing API connection.
+Initialize `ModuleContainer` to prepare API instance for dependency injection, you can pass `true` to `isMock` parameter for testing purposes.
+
+Establishing a connection to WebSocket needs an instance of the `ConnectionInformation` class for initializing API connection.
 
 ```dart
 ModuleContainer().initialize(Injector.getInjector(), isMock: false);
@@ -27,7 +28,7 @@ Injector.getInjector().get<BaseAPI>()
 
 ### B. Calling API methods
 
-You can invoke API calls with either using classes in the abstraction layer (`Ping, Order, Advert, ...`) or directly with API calls from `Base API` class.
+You can invoke API calls with either using classes in the abstraction layer (`Ping, Order, Advert, ...`) or directly with API calls from the `BaseAPI` class.
 
 #### Calling method by abstraction layer
 
@@ -37,7 +38,7 @@ final Ping ping = await Ping.ping();
 print(ping.succeeded);
 ```
 
-#### Calling method directly with `Base API`
+#### Calling method directly with `BaseAPI`
 
 ```dart
 final PingResponse response =
@@ -129,14 +130,17 @@ $ dartdoc
 
 ### JSON Schema Parser
 
-`JsonSchemaParser` class is a tool for extracting main and nested classes from model schema contents. for using this tool:
+`JsonSchemaParser` class is a tool for extracting main and nested classes from model schema contents.
 
-- Call `getModel(...)` method and pass decoded schema as `Map<String, dynamic> schema`.
-- Pass the result as `models` parameter to `getClasses(...)` method.
+#### Using schema parser
 
-The final result is a `string` that contains the main class and all related classes of that schema file including `Model Classes`, `Constructors`, `Properties`, `To JSON Method`, `From JSON Method`, and `Copy With Method`.
+- Call `getModels(Map<String, dynamic> schema)` method and pass decoded schema to it.
 
-#### Usage
+- Pass the result of `getModels` method to `getClasses(String className, List<SchemaModel> models)` as `models` parameter.
+
+The final result is a `string` that contains the main class and all related classes of that schema file including `Model Classes, Constructors, Properties` and `toJson(), fromJson(), copyWith()` Methods.
+
+#### Run schema parser
 
 ```
 $ flutter pub run lib/tools/parser.dart <json_schema_path> <main_class_name>

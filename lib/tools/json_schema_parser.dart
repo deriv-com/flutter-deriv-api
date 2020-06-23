@@ -250,7 +250,7 @@ class JsonSchemaParser {
   }
 
   /// Pass decoded JSON schema to this method for getting list of objects
-  static List<_SchemaModel> getModel({
+  static List<_SchemaModel> getModels({
     @required Map<String, dynamic> schema,
   }) {
     final List<_SchemaModel> parentModel = <_SchemaModel>[];
@@ -291,9 +291,9 @@ class JsonSchemaParser {
             ..children = <_SchemaModel>[];
 
           if (type == _objectType) {
-            childModel.children.addAll(getModel(schema: entry.value));
+            childModel.children.addAll(getModels(schema: entry.value));
           } else if (type == _arrayType) {
-            childModel.children.addAll(getModel(schema: entry.value['items']));
+            childModel.children.addAll(getModels(schema: entry.value['items']));
           }
 
           parentModel.add(childModel);

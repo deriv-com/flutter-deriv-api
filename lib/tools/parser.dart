@@ -10,7 +10,7 @@ void main(List<String> arguments) {
 
   final List<StringBuffer> result = JsonSchemaParser().getClasses(
     className: arguments.last,
-    models: JsonSchemaParser.getModel(
+    models: JsonSchemaParser.getModels(
       schema: json.decode(
         File(arguments.first).readAsStringSync(),
       ),
