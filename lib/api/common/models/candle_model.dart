@@ -14,11 +14,11 @@ class CandleModel extends APIBaseModel {
 
   /// Generate an instance from JSON
   factory CandleModel.fromJson(Map<String, dynamic> json) => CandleModel(
-        close: json['close'],
+        close: json['close']?.toDouble(),
         epoch: getDateTime(json['epoch']),
-        high: json['high'],
-        low: json['low'],
-        open: json['open'],
+        high: json['high']?.toDouble(),
+        low: json['low']?.toDouble(),
+        open: json['open']?.toDouble(),
       );
 
   /// It is the close price value for the given time
