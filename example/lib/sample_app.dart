@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/state/connection/connection_bloc.dart'
     as api_connection;
 import 'package:flutter_deriv_api_example/widgets/contracts_type_widget.dart';
