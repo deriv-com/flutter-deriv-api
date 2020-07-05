@@ -10,22 +10,18 @@ import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import '../active_symbols/active_symbols_bloc.dart';
 
 part 'ticks_event.dart';
-
 part 'ticks_state.dart';
 
 /// TicksBloc
 class TicksBloc extends Bloc<TicksEvent, TicksState> {
   /// Initializes
-  TicksBloc(ActiveSymbolsBloc activeSymbolsBloc) {
+  TicksBloc(ActiveSymbolsBloc activeSymbolsBloc) : super(TicksLoading()) {
     activeSymbolsBloc.listen((ActiveSymbolsState activeSymbolsState) async {
       if (activeSymbolsState is ActiveSymbolsLoaded) {
         add(SubscribeTicks(activeSymbolsState.selectedSymbol));
       }
     });
   }
-
-  @override
-  TicksState get initialState => TicksLoading();
 
   @override
   Stream<TicksState> mapEventToState(

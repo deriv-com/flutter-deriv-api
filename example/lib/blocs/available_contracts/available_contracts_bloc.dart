@@ -10,14 +10,14 @@ import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import '../active_symbols/active_symbols_bloc.dart';
 
 part 'available_contracts_event.dart';
-
 part 'available_contracts_state.dart';
 
 /// AvailableContractsBloc
 class AvailableContractsBloc
     extends Bloc<AvailableContractsEvent, AvailableContractsState> {
   /// Initializes
-  AvailableContractsBloc(ActiveSymbolsBloc activeSymbolsBloc) {
+  AvailableContractsBloc(ActiveSymbolsBloc activeSymbolsBloc)
+      : super(AvailableContractsLoading()) {
     activeSymbolsBloc.listen((ActiveSymbolsState activeSymbolsState) {
       if (activeSymbolsState is ActiveSymbolsLoaded) {
         add(FetchAvailableContracts(
@@ -26,9 +26,6 @@ class AvailableContractsBloc
       }
     });
   }
-
-  @override
-  AvailableContractsState get initialState => AvailableContractsLoading();
 
   @override
   Stream<AvailableContractsState> mapEventToState(

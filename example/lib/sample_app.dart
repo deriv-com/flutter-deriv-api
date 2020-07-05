@@ -26,11 +26,7 @@ class _SampleAppState extends State<SampleApp> {
   void initState() {
     super.initState();
 
-    _connectionBloc = api_connection.ConnectionBloc(ConnectionInformation(
-      appId: '1089',
-      brand: 'binary',
-      endpoint: 'frontend.binaryws.com',
-    ));
+    _connectionBloc = api_connection.ConnectionBloc();
     _activeSymbolsBloc = ActiveSymbolsBloc();
     _availableContractsBloc = AvailableContractsBloc(_activeSymbolsBloc);
   }
