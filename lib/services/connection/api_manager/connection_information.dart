@@ -2,9 +2,9 @@
 class ConnectionInformation {
   /// Initializes
   ConnectionInformation({
-    this.appId = '1408',
+    this.appId = '1089',
     this.brand = 'deriv',
-    this.endpoint = 'www.binaryqa10.com',
+    this.endpoint = 'frontend.binaryws.com',
     this.language = 'en',
   });
 
