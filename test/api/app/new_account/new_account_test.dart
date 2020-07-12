@@ -26,7 +26,7 @@ void main() {
           dateOfBirth: '1980-01-31',
           firstName: 'Peter',
           lastName: 'Pan',
-          newAccountReal: 1,
+          newAccountReal: true,
           nonPepDeclaration: 1,
           phone: '+6123456789',
           placeOfBirth: 'id',
@@ -49,7 +49,7 @@ void main() {
       final NewAccountVirtual newAccountVirtual =
           await NewAccountVirtual.openNewVirtualAccount(
         const NewAccountVirtualRequest(
-          newAccountVirtual: 1,
+          newAccountVirtual: true,
           clientPassword: 'Abc123de',
           residence: 'id',
           verificationCode: 'uoJvVuQ6',

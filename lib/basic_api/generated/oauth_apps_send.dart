@@ -6,7 +6,7 @@ import '../request.dart';
 class OauthAppsRequest extends Request {
   /// Initialize OauthAppsRequest
   const OauthAppsRequest({
-    this.oauthApps = 1,
+    this.oauthApps = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -18,21 +18,20 @@ class OauthAppsRequest extends Request {
   /// Creates an instance from JSON
   factory OauthAppsRequest.fromJson(Map<String, dynamic> json) =>
       OauthAppsRequest(
-        // ignore: avoid_as
-        oauthApps: json['oauth_apps'] as int,
+        oauthApps: json['oauth_apps'] == null ? null : json['oauth_apps'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 
-  /// Must be `1`
-  final int oauthApps;
+  /// Must be `true`
+  final bool oauthApps;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'oauth_apps': oauthApps,
+        'oauth_apps': oauthApps == null ? null : oauthApps ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -40,7 +39,7 @@ class OauthAppsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   OauthAppsRequest copyWith({
-    int oauthApps,
+    bool oauthApps,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

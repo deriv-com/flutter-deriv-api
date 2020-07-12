@@ -11,7 +11,7 @@ class ProfitTableRequest extends Request {
     this.description,
     this.limit,
     this.offset,
-    this.profitTable = 1,
+    this.profitTable = true,
     this.sort,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -36,8 +36,8 @@ class ProfitTableRequest extends Request {
         offset: json['offset'] as num,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
-        profitTable: json['profit_table'] as int,
+        profitTable:
+            json['profit_table'] == null ? null : json['profit_table'] == 1,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
         // ignore: avoid_as
@@ -59,8 +59,8 @@ class ProfitTableRequest extends Request {
   /// [Optional] Number of transactions to skip.
   final num offset;
 
-  /// Must be `1`
-  final int profitTable;
+  /// Must be `true`
+  final bool profitTable;
 
   /// [Optional] Sort direction.
   final String sort;
@@ -74,7 +74,7 @@ class ProfitTableRequest extends Request {
         'limit': limit,
         'offset': offset,
         'passthrough': passthrough,
-        'profit_table': profitTable,
+        'profit_table': profitTable == null ? null : profitTable ? 1 : 0,
         'req_id': reqId,
         'sort': sort,
       };
@@ -87,7 +87,7 @@ class ProfitTableRequest extends Request {
     bool description,
     num limit,
     num offset,
-    int profitTable,
+    bool profitTable,
     String sort,
     Map<String, dynamic> passthrough,
     int reqId,

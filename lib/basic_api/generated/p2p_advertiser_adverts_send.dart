@@ -8,7 +8,7 @@ class P2pAdvertiserAdvertsRequest extends Request {
   const P2pAdvertiserAdvertsRequest({
     this.limit,
     this.offset,
-    this.p2pAdvertiserAdverts = 1,
+    this.p2pAdvertiserAdverts = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -24,8 +24,9 @@ class P2pAdvertiserAdvertsRequest extends Request {
         limit: json['limit'] as int,
         // ignore: avoid_as
         offset: json['offset'] as int,
-        // ignore: avoid_as
-        p2pAdvertiserAdverts: json['p2p_advertiser_adverts'] as int,
+        p2pAdvertiserAdverts: json['p2p_advertiser_adverts'] == null
+            ? null
+            : json['p2p_advertiser_adverts'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -38,15 +39,16 @@ class P2pAdvertiserAdvertsRequest extends Request {
   /// [Optional] Used for paging.
   final int offset;
 
-  /// Must be 1
-  final int p2pAdvertiserAdverts;
+  /// Must be `true`
+  final bool p2pAdvertiserAdverts;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'limit': limit,
         'offset': offset,
-        'p2p_advertiser_adverts': p2pAdvertiserAdverts,
+        'p2p_advertiser_adverts':
+            p2pAdvertiserAdverts == null ? null : p2pAdvertiserAdverts ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -56,7 +58,7 @@ class P2pAdvertiserAdvertsRequest extends Request {
   P2pAdvertiserAdvertsRequest copyWith({
     int limit,
     int offset,
-    int p2pAdvertiserAdverts,
+    bool p2pAdvertiserAdverts,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

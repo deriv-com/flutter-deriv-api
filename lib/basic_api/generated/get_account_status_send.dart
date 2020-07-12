@@ -6,7 +6,7 @@ import '../request.dart';
 class GetAccountStatusRequest extends Request {
   /// Initialize GetAccountStatusRequest
   const GetAccountStatusRequest({
-    this.getAccountStatus = 1,
+    this.getAccountStatus = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -18,21 +18,23 @@ class GetAccountStatusRequest extends Request {
   /// Creates an instance from JSON
   factory GetAccountStatusRequest.fromJson(Map<String, dynamic> json) =>
       GetAccountStatusRequest(
-        // ignore: avoid_as
-        getAccountStatus: json['get_account_status'] as int,
+        getAccountStatus: json['get_account_status'] == null
+            ? null
+            : json['get_account_status'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 
-  /// Must be `1`
-  final int getAccountStatus;
+  /// Must be `true`
+  final bool getAccountStatus;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'get_account_status': getAccountStatus,
+        'get_account_status':
+            getAccountStatus == null ? null : getAccountStatus ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -40,7 +42,7 @@ class GetAccountStatusRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   GetAccountStatusRequest copyWith({
-    int getAccountStatus,
+    bool getAccountStatus,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

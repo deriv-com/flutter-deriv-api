@@ -7,7 +7,7 @@ class TradingDurationsRequest extends Request {
   /// Initialize TradingDurationsRequest
   const TradingDurationsRequest({
     this.landingCompany,
-    this.tradingDurations = 1,
+    this.tradingDurations = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -25,15 +25,16 @@ class TradingDurationsRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
-        tradingDurations: json['trading_durations'] as int,
+        tradingDurations: json['trading_durations'] == null
+            ? null
+            : json['trading_durations'] == 1,
       );
 
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
   final String landingCompany;
 
-  /// Must be `1`
-  final int tradingDurations;
+  /// Must be `true`
+  final bool tradingDurations;
 
   /// Converts an instance to JSON
   @override
@@ -41,14 +42,15 @@ class TradingDurationsRequest extends Request {
         'landing_company': landingCompany,
         'passthrough': passthrough,
         'req_id': reqId,
-        'trading_durations': tradingDurations,
+        'trading_durations':
+            tradingDurations == null ? null : tradingDurations ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters
   @override
   TradingDurationsRequest copyWith({
     String landingCompany,
-    int tradingDurations,
+    bool tradingDurations,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

@@ -7,7 +7,7 @@ class P2pAdvertiserInfoRequest extends Request {
   /// Initialize P2pAdvertiserInfoRequest
   const P2pAdvertiserInfoRequest({
     this.id,
-    this.p2pAdvertiserInfo = 1,
+    this.p2pAdvertiserInfo = true,
     this.subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -22,41 +22,42 @@ class P2pAdvertiserInfoRequest extends Request {
       P2pAdvertiserInfoRequest(
         // ignore: avoid_as
         id: json['id'] as String,
-        // ignore: avoid_as
-        p2pAdvertiserInfo: json['p2p_advertiser_info'] as int,
+        p2pAdvertiserInfo: json['p2p_advertiser_info'] == null
+            ? null
+            : json['p2p_advertiser_info'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
-        subscribe: json['subscribe'] as int,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
       );
 
   /// [Optional] The unique identifier for this advertiser. If not provided, returns advertiser information about the current account.
   final String id;
 
-  /// Must be 1
-  final int p2pAdvertiserInfo;
+  /// Must be `true`
+  final bool p2pAdvertiserInfo;
 
   /// [Optional] If set to 1, will send updates whenever there is an update to advertiser
-  final int subscribe;
+  final bool subscribe;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
-        'p2p_advertiser_info': p2pAdvertiserInfo,
+        'p2p_advertiser_info':
+            p2pAdvertiserInfo == null ? null : p2pAdvertiserInfo ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
-        'subscribe': subscribe,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertiserInfoRequest copyWith({
     String id,
-    int p2pAdvertiserInfo,
-    int subscribe,
+    bool p2pAdvertiserInfo,
+    bool subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

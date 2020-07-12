@@ -6,7 +6,7 @@ import '../request.dart';
 class RealityCheckRequest extends Request {
   /// Initialize RealityCheckRequest
   const RealityCheckRequest({
-    this.realityCheck = 1,
+    this.realityCheck = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -20,27 +20,27 @@ class RealityCheckRequest extends Request {
       RealityCheckRequest(
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
-        realityCheck: json['reality_check'] as int,
+        realityCheck:
+            json['reality_check'] == null ? null : json['reality_check'] == 1,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 
-  /// Must be `1`
-  final int realityCheck;
+  /// Must be `true`
+  final bool realityCheck;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'passthrough': passthrough,
-        'reality_check': realityCheck,
+        'reality_check': realityCheck == null ? null : realityCheck ? 1 : 0,
         'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters
   @override
   RealityCheckRequest copyWith({
-    int realityCheck,
+    bool realityCheck,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

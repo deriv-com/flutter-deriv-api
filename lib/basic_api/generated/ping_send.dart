@@ -6,7 +6,7 @@ import '../request.dart';
 class PingRequest extends Request {
   /// Initialize PingRequest
   const PingRequest({
-    this.ping = 1,
+    this.ping = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -19,27 +19,26 @@ class PingRequest extends Request {
   factory PingRequest.fromJson(Map<String, dynamic> json) => PingRequest(
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
-        ping: json['ping'] as int,
+        ping: json['ping'] == null ? null : json['ping'] == 1,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 
-  /// Must be `1`
-  final int ping;
+  /// Must be `true`
+  final bool ping;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'passthrough': passthrough,
-        'ping': ping,
+        'ping': ping == null ? null : ping ? 1 : 0,
         'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters
   @override
   PingRequest copyWith({
-    int ping,
+    bool ping,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

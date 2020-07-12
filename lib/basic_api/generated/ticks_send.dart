@@ -22,14 +22,13 @@ class TicksRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
-        subscribe: json['subscribe'] as int,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         // ignore: avoid_as
         ticks: json['ticks'] as dynamic,
       );
 
   /// [Optional] If set to 1, will send updates whenever a new tick is received.
-  final int subscribe;
+  final bool subscribe;
 
   /// The short symbol name or array of symbols (obtained from `active_symbols` call).
   final dynamic ticks;
@@ -39,14 +38,14 @@ class TicksRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'passthrough': passthrough,
         'req_id': reqId,
-        'subscribe': subscribe,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
         'ticks': ticks,
       };
 
   /// Creates a copy of instance with given parameters
   @override
   TicksRequest copyWith({
-    int subscribe,
+    bool subscribe,
     dynamic ticks,
     Map<String, dynamic> passthrough,
     int reqId,

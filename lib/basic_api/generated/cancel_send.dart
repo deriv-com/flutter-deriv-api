@@ -1,12 +1,14 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cancel_send.json
 
+import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// CancelRequest class
 class CancelRequest extends Request {
   /// Initialize CancelRequest
   const CancelRequest({
-    this.cancel = 1,
+    @required this.cancel,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

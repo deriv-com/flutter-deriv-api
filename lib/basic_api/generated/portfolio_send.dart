@@ -6,7 +6,7 @@ import '../request.dart';
 class PortfolioRequest extends Request {
   /// Initialize PortfolioRequest
   const PortfolioRequest({
-    this.portfolio = 1,
+    this.portfolio = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -20,27 +20,26 @@ class PortfolioRequest extends Request {
       PortfolioRequest(
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
-        portfolio: json['portfolio'] as int,
+        portfolio: json['portfolio'] == null ? null : json['portfolio'] == 1,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 
-  /// Must be `1`
-  final int portfolio;
+  /// Must be `true`
+  final bool portfolio;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'passthrough': passthrough,
-        'portfolio': portfolio,
+        'portfolio': portfolio == null ? null : portfolio ? 1 : 0,
         'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters
   @override
   PortfolioRequest copyWith({
-    int portfolio,
+    bool portfolio,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

@@ -7,7 +7,7 @@ class LoginHistoryRequest extends Request {
   /// Initialize LoginHistoryRequest
   const LoginHistoryRequest({
     this.limit,
-    this.loginHistory = 1,
+    this.loginHistory = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -21,8 +21,8 @@ class LoginHistoryRequest extends Request {
       LoginHistoryRequest(
         // ignore: avoid_as
         limit: json['limit'] as int,
-        // ignore: avoid_as
-        loginHistory: json['login_history'] as int,
+        loginHistory:
+            json['login_history'] == null ? null : json['login_history'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -32,14 +32,14 @@ class LoginHistoryRequest extends Request {
   /// [Optional] Apply limit to count of login history records.
   final int limit;
 
-  /// Must be `1`
-  final int loginHistory;
+  /// Must be `true`
+  final bool loginHistory;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'limit': limit,
-        'login_history': loginHistory,
+        'login_history': loginHistory == null ? null : loginHistory ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -48,7 +48,7 @@ class LoginHistoryRequest extends Request {
   @override
   LoginHistoryRequest copyWith({
     int limit,
-    int loginHistory,
+    bool loginHistory,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

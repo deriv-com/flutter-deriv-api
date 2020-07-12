@@ -9,7 +9,7 @@ class Mt5PasswordResetRequest extends Request {
   /// Initialize Mt5PasswordResetRequest
   const Mt5PasswordResetRequest({
     @required this.login,
-    this.mt5PasswordReset = 1,
+    this.mt5PasswordReset = true,
     @required this.newPassword,
     this.passwordType,
     @required this.verificationCode,
@@ -26,8 +26,9 @@ class Mt5PasswordResetRequest extends Request {
       Mt5PasswordResetRequest(
         // ignore: avoid_as
         login: json['login'] as String,
-        // ignore: avoid_as
-        mt5PasswordReset: json['mt5_password_reset'] as int,
+        mt5PasswordReset: json['mt5_password_reset'] == null
+            ? null
+            : json['mt5_password_reset'] == 1,
         // ignore: avoid_as
         newPassword: json['new_password'] as String,
         // ignore: avoid_as
@@ -43,8 +44,8 @@ class Mt5PasswordResetRequest extends Request {
   /// MT5 user login
   final String login;
 
-  /// Must be `1`
-  final int mt5PasswordReset;
+  /// Must be `true`
+  final bool mt5PasswordReset;
 
   /// New password of the account. For validation (length within 8-25 chars, accepts at least 2 out of the following 3 types of characters: uppercase letters, lowercase letters, and numbers).
   final String newPassword;
@@ -59,7 +60,8 @@ class Mt5PasswordResetRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'login': login,
-        'mt5_password_reset': mt5PasswordReset,
+        'mt5_password_reset':
+            mt5PasswordReset == null ? null : mt5PasswordReset ? 1 : 0,
         'new_password': newPassword,
         'passthrough': passthrough,
         'password_type': passwordType,
@@ -71,7 +73,7 @@ class Mt5PasswordResetRequest extends Request {
   @override
   Mt5PasswordResetRequest copyWith({
     String login,
-    int mt5PasswordReset,
+    bool mt5PasswordReset,
     String newPassword,
     String passwordType,
     String verificationCode,

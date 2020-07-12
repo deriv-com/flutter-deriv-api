@@ -6,7 +6,7 @@ import '../request.dart';
 class ApiTokenRequest extends Request {
   /// Initialize ApiTokenRequest
   const ApiTokenRequest({
-    this.apiToken = 1,
+    this.apiToken = true,
     this.deleteToken,
     this.newToken,
     this.newTokenScopes,
@@ -22,8 +22,7 @@ class ApiTokenRequest extends Request {
   /// Creates an instance from JSON
   factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>
       ApiTokenRequest(
-        // ignore: avoid_as
-        apiToken: json['api_token'] as int,
+        apiToken: json['api_token'] == null ? null : json['api_token'] == 1,
         // ignore: avoid_as
         deleteToken: json['delete_token'] as String,
         // ignore: avoid_as
@@ -42,8 +41,8 @@ class ApiTokenRequest extends Request {
             : json['valid_for_current_ip_only'] == 1,
       );
 
-  /// Must be `1`
-  final int apiToken;
+  /// Must be `true`
+  final bool apiToken;
 
   /// [Optional] The token to remove.
   final String deleteToken;
@@ -60,7 +59,7 @@ class ApiTokenRequest extends Request {
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'api_token': apiToken,
+        'api_token': apiToken == null ? null : apiToken ? 1 : 0,
         'delete_token': deleteToken,
         'new_token': newToken,
         'new_token_scopes': newTokenScopes,
@@ -74,7 +73,7 @@ class ApiTokenRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ApiTokenRequest copyWith({
-    int apiToken,
+    bool apiToken,
     String deleteToken,
     String newToken,
     List<String> newTokenScopes,

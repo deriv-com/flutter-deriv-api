@@ -9,7 +9,7 @@ class AppRegisterRequest extends Request {
   /// Initialize AppRegisterRequest
   const AppRegisterRequest({
     this.appMarkupPercentage,
-    this.appRegister = 1,
+    this.appRegister = true,
     this.appstore,
     this.github,
     this.googleplay,
@@ -31,8 +31,8 @@ class AppRegisterRequest extends Request {
       AppRegisterRequest(
         // ignore: avoid_as
         appMarkupPercentage: json['app_markup_percentage'] as num,
-        // ignore: avoid_as
-        appRegister: json['app_register'] as int,
+        appRegister:
+            json['app_register'] == null ? null : json['app_register'] == 1,
         // ignore: avoid_as
         appstore: json['appstore'] as String,
         // ignore: avoid_as
@@ -61,8 +61,8 @@ class AppRegisterRequest extends Request {
   /// [Optional] Markup to be added to contract prices (as a percentage of contract payout).
   final num appMarkupPercentage;
 
-  /// Must be `1`
-  final int appRegister;
+  /// Must be `true`
+  final bool appRegister;
 
   /// [Optional] Application's App Store URL (if applicable).
   final String appstore;
@@ -92,7 +92,7 @@ class AppRegisterRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'app_markup_percentage': appMarkupPercentage,
-        'app_register': appRegister,
+        'app_register': appRegister == null ? null : appRegister ? 1 : 0,
         'appstore': appstore,
         'github': github,
         'googleplay': googleplay,
@@ -109,7 +109,7 @@ class AppRegisterRequest extends Request {
   @override
   AppRegisterRequest copyWith({
     num appMarkupPercentage,
-    int appRegister,
+    bool appRegister,
     String appstore,
     String github,
     String googleplay,

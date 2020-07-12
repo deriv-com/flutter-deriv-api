@@ -19,7 +19,7 @@ class Mt5NewAccountRequest extends Request {
     @required this.leverage,
     @required this.mainPassword,
     this.mt5AccountType,
-    this.mt5NewAccount = 1,
+    this.mt5NewAccount = true,
     @required this.name,
     this.phone,
     this.phonePassword,
@@ -57,8 +57,9 @@ class Mt5NewAccountRequest extends Request {
         mainPassword: json['mainPassword'] as String,
         // ignore: avoid_as
         mt5AccountType: json['mt5_account_type'] as String,
-        // ignore: avoid_as
-        mt5NewAccount: json['mt5_new_account'] as int,
+        mt5NewAccount: json['mt5_new_account'] == null
+            ? null
+            : json['mt5_new_account'] == 1,
         // ignore: avoid_as
         name: json['name'] as String,
         // ignore: avoid_as
@@ -108,8 +109,8 @@ class Mt5NewAccountRequest extends Request {
   /// [Optional] Financial: Variable spreads, High leverage. Financial STP: Variable spreads, Medium Leverage, more products.
   final String mt5AccountType;
 
-  /// Must be `1`
-  final int mt5NewAccount;
+  /// Must be `true`
+  final bool mt5NewAccount;
 
   /// Client's name. The maximum length here is 101 characters.
   final String name;
@@ -140,7 +141,7 @@ class Mt5NewAccountRequest extends Request {
         'leverage': leverage,
         'mainPassword': mainPassword,
         'mt5_account_type': mt5AccountType,
-        'mt5_new_account': mt5NewAccount,
+        'mt5_new_account': mt5NewAccount == null ? null : mt5NewAccount ? 1 : 0,
         'name': name,
         'passthrough': passthrough,
         'phone': phone,
@@ -164,7 +165,7 @@ class Mt5NewAccountRequest extends Request {
     num leverage,
     String mainPassword,
     String mt5AccountType,
-    int mt5NewAccount,
+    bool mt5NewAccount,
     String name,
     String phone,
     String phonePassword,

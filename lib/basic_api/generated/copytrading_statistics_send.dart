@@ -8,7 +8,7 @@ import '../request.dart';
 class CopytradingStatisticsRequest extends Request {
   /// Initialize CopytradingStatisticsRequest
   const CopytradingStatisticsRequest({
-    this.copytradingStatistics = 1,
+    this.copytradingStatistics = true,
     @required this.traderId,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -21,8 +21,9 @@ class CopytradingStatisticsRequest extends Request {
   /// Creates an instance from JSON
   factory CopytradingStatisticsRequest.fromJson(Map<String, dynamic> json) =>
       CopytradingStatisticsRequest(
-        // ignore: avoid_as
-        copytradingStatistics: json['copytrading_statistics'] as int,
+        copytradingStatistics: json['copytrading_statistics'] == null
+            ? null
+            : json['copytrading_statistics'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -31,8 +32,8 @@ class CopytradingStatisticsRequest extends Request {
         traderId: json['trader_id'] as String,
       );
 
-  /// Must be `1`
-  final int copytradingStatistics;
+  /// Must be `true`
+  final bool copytradingStatistics;
 
   /// The ID of the target trader.
   final String traderId;
@@ -40,7 +41,9 @@ class CopytradingStatisticsRequest extends Request {
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'copytrading_statistics': copytradingStatistics,
+        'copytrading_statistics': copytradingStatistics == null
+            ? null
+            : copytradingStatistics ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
         'trader_id': traderId,
@@ -49,7 +52,7 @@ class CopytradingStatisticsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   CopytradingStatisticsRequest copyWith({
-    int copytradingStatistics,
+    bool copytradingStatistics,
     String traderId,
     Map<String, dynamic> passthrough,
     int reqId,

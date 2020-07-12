@@ -9,7 +9,7 @@ class SellRequest extends Request {
   /// Initialize SellRequest
   const SellRequest({
     @required this.price,
-    this.sell = 1,
+    @required this.sell,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

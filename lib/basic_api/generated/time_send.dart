@@ -6,7 +6,7 @@ import '../request.dart';
 class TimeRequest extends Request {
   /// Initialize TimeRequest
   const TimeRequest({
-    this.time = 1,
+    this.time = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -21,25 +21,24 @@ class TimeRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
-        time: json['time'] as int,
+        time: json['time'] == null ? null : json['time'] == 1,
       );
 
-  /// Must be `1`
-  final int time;
+  /// Must be `true`
+  final bool time;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'passthrough': passthrough,
         'req_id': reqId,
-        'time': time,
+        'time': time == null ? null : time ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters
   @override
   TimeRequest copyWith({
-    int time,
+    bool time,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

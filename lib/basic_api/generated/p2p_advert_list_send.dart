@@ -12,7 +12,7 @@ class P2pAdvertListRequest extends Request {
     this.limit,
     this.localCurrency,
     this.offset,
-    this.p2pAdvertList = 1,
+    this.p2pAdvertList = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -36,8 +36,9 @@ class P2pAdvertListRequest extends Request {
         localCurrency: json['local_currency'] as String,
         // ignore: avoid_as
         offset: json['offset'] as int,
-        // ignore: avoid_as
-        p2pAdvertList: json['p2p_advert_list'] as int,
+        p2pAdvertList: json['p2p_advert_list'] == null
+            ? null
+            : json['p2p_advert_list'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -62,8 +63,8 @@ class P2pAdvertListRequest extends Request {
   /// [Optional] Used for paging.
   final int offset;
 
-  /// Must be 1
-  final int p2pAdvertList;
+  /// Must be `true`
+  final bool p2pAdvertList;
 
   /// Converts an instance to JSON
   @override
@@ -74,7 +75,7 @@ class P2pAdvertListRequest extends Request {
         'limit': limit,
         'local_currency': localCurrency,
         'offset': offset,
-        'p2p_advert_list': p2pAdvertList,
+        'p2p_advert_list': p2pAdvertList == null ? null : p2pAdvertList ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -88,7 +89,7 @@ class P2pAdvertListRequest extends Request {
     int limit,
     String localCurrency,
     int offset,
-    int p2pAdvertList,
+    bool p2pAdvertList,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

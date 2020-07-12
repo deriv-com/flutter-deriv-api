@@ -6,7 +6,7 @@ import '../request.dart';
 class SellExpiredRequest extends Request {
   /// Initialize SellExpiredRequest
   const SellExpiredRequest({
-    this.sellExpired = 1,
+    this.sellExpired = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -22,25 +22,25 @@ class SellExpiredRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
-        sellExpired: json['sell_expired'] as int,
+        sellExpired:
+            json['sell_expired'] == null ? null : json['sell_expired'] == 1,
       );
 
-  /// Must be `1`
-  final int sellExpired;
+  /// Must be `true`
+  final bool sellExpired;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'passthrough': passthrough,
         'req_id': reqId,
-        'sell_expired': sellExpired,
+        'sell_expired': sellExpired == null ? null : sellExpired ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters
   @override
   SellExpiredRequest copyWith({
-    int sellExpired,
+    bool sellExpired,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

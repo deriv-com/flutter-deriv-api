@@ -11,7 +11,7 @@ class DocumentUploadRequest extends Request {
     @required this.documentFormat,
     this.documentId,
     @required this.documentType,
-    this.documentUpload = 1,
+    this.documentUpload = true,
     @required this.expectedChecksum,
     this.expirationDate,
     @required this.fileSize,
@@ -33,8 +33,9 @@ class DocumentUploadRequest extends Request {
         documentId: json['document_id'] as String,
         // ignore: avoid_as
         documentType: json['document_type'] as String,
-        // ignore: avoid_as
-        documentUpload: json['document_upload'] as int,
+        documentUpload: json['document_upload'] == null
+            ? null
+            : json['document_upload'] == 1,
         // ignore: avoid_as
         expectedChecksum: json['expected_checksum'] as String,
         // ignore: avoid_as
@@ -58,8 +59,8 @@ class DocumentUploadRequest extends Request {
   /// Document type
   final String documentType;
 
-  /// Must be `1`
-  final int documentUpload;
+  /// Must be `true`
+  final bool documentUpload;
 
   /// The checksum of the file to be uploaded
   final String expectedChecksum;
@@ -79,7 +80,8 @@ class DocumentUploadRequest extends Request {
         'document_format': documentFormat,
         'document_id': documentId,
         'document_type': documentType,
-        'document_upload': documentUpload,
+        'document_upload':
+            documentUpload == null ? null : documentUpload ? 1 : 0,
         'expected_checksum': expectedChecksum,
         'expiration_date': expirationDate,
         'file_size': fileSize,
@@ -94,7 +96,7 @@ class DocumentUploadRequest extends Request {
     String documentFormat,
     String documentId,
     String documentType,
-    int documentUpload,
+    bool documentUpload,
     String expectedChecksum,
     String expirationDate,
     int fileSize,

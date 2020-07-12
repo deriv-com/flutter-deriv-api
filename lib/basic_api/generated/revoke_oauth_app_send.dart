@@ -1,12 +1,14 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/revoke_oauth_app_send.json
 
+import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// RevokeOauthAppRequest class
 class RevokeOauthAppRequest extends Request {
   /// Initialize RevokeOauthAppRequest
   const RevokeOauthAppRequest({
-    this.revokeOauthApp = 1,
+    @required this.revokeOauthApp,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

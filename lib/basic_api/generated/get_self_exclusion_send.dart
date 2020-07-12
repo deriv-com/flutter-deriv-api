@@ -6,7 +6,7 @@ import '../request.dart';
 class GetSelfExclusionRequest extends Request {
   /// Initialize GetSelfExclusionRequest
   const GetSelfExclusionRequest({
-    this.getSelfExclusion = 1,
+    this.getSelfExclusion = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -18,21 +18,23 @@ class GetSelfExclusionRequest extends Request {
   /// Creates an instance from JSON
   factory GetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       GetSelfExclusionRequest(
-        // ignore: avoid_as
-        getSelfExclusion: json['get_self_exclusion'] as int,
+        getSelfExclusion: json['get_self_exclusion'] == null
+            ? null
+            : json['get_self_exclusion'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 
-  /// Must be `1`
-  final int getSelfExclusion;
+  /// Must be `true`
+  final bool getSelfExclusion;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'get_self_exclusion': getSelfExclusion,
+        'get_self_exclusion':
+            getSelfExclusion == null ? null : getSelfExclusion ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -40,7 +42,7 @@ class GetSelfExclusionRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   GetSelfExclusionRequest copyWith({
-    int getSelfExclusion,
+    bool getSelfExclusion,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

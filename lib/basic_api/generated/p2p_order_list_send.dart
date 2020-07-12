@@ -10,7 +10,7 @@ class P2pOrderListRequest extends Request {
     this.advertId,
     this.limit,
     this.offset,
-    this.p2pOrderList = 1,
+    this.p2pOrderList = true,
     this.subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -31,14 +31,13 @@ class P2pOrderListRequest extends Request {
         limit: json['limit'] as int,
         // ignore: avoid_as
         offset: json['offset'] as int,
-        // ignore: avoid_as
-        p2pOrderList: json['p2p_order_list'] as int,
+        p2pOrderList:
+            json['p2p_order_list'] == null ? null : json['p2p_order_list'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
-        subscribe: json['subscribe'] as int,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
       );
 
   /// [Optional] Should be 1 to list active, 0 to list inactive (historical).
@@ -53,11 +52,11 @@ class P2pOrderListRequest extends Request {
   /// [Optional] Used for paging.
   final int offset;
 
-  /// Must be 1
-  final int p2pOrderList;
+  /// Must be `true`
+  final bool p2pOrderList;
 
   /// [Optional] If set to 1, will send updates whenever there is a change to any order belonging to you.
-  final int subscribe;
+  final bool subscribe;
 
   /// Converts an instance to JSON
   @override
@@ -66,10 +65,10 @@ class P2pOrderListRequest extends Request {
         'advert_id': advertId,
         'limit': limit,
         'offset': offset,
-        'p2p_order_list': p2pOrderList,
+        'p2p_order_list': p2pOrderList == null ? null : p2pOrderList ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
-        'subscribe': subscribe,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters
@@ -79,8 +78,8 @@ class P2pOrderListRequest extends Request {
     String advertId,
     int limit,
     int offset,
-    int p2pOrderList,
-    int subscribe,
+    bool p2pOrderList,
+    bool subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

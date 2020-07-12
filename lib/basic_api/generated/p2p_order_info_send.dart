@@ -9,7 +9,7 @@ class P2pOrderInfoRequest extends Request {
   /// Initialize P2pOrderInfoRequest
   const P2pOrderInfoRequest({
     @required this.id,
-    this.p2pOrderInfo = 1,
+    this.p2pOrderInfo = true,
     this.subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -24,41 +24,40 @@ class P2pOrderInfoRequest extends Request {
       P2pOrderInfoRequest(
         // ignore: avoid_as
         id: json['id'] as String,
-        // ignore: avoid_as
-        p2pOrderInfo: json['p2p_order_info'] as int,
+        p2pOrderInfo:
+            json['p2p_order_info'] == null ? null : json['p2p_order_info'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
-        subscribe: json['subscribe'] as int,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
       );
 
   /// The unique identifier for the order.
   final String id;
 
-  /// Must be 1
-  final int p2pOrderInfo;
+  /// Must be `true`
+  final bool p2pOrderInfo;
 
   /// [Optional] If set to 1, will send updates whenever there is an update to order
-  final int subscribe;
+  final bool subscribe;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
-        'p2p_order_info': p2pOrderInfo,
+        'p2p_order_info': p2pOrderInfo == null ? null : p2pOrderInfo ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
-        'subscribe': subscribe,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters
   @override
   P2pOrderInfoRequest copyWith({
     String id,
-    int p2pOrderInfo,
-    int subscribe,
+    bool p2pOrderInfo,
+    bool subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

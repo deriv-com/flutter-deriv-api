@@ -6,7 +6,7 @@ import '../request.dart';
 class LogoutRequest extends Request {
   /// Initialize LogoutRequest
   const LogoutRequest({
-    this.logout = 1,
+    this.logout = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -17,21 +17,20 @@ class LogoutRequest extends Request {
 
   /// Creates an instance from JSON
   factory LogoutRequest.fromJson(Map<String, dynamic> json) => LogoutRequest(
-        // ignore: avoid_as
-        logout: json['logout'] as int,
+        logout: json['logout'] == null ? null : json['logout'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 
-  /// Must be `1`
-  final int logout;
+  /// Must be `true`
+  final bool logout;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'logout': logout,
+        'logout': logout == null ? null : logout ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -39,7 +38,7 @@ class LogoutRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   LogoutRequest copyWith({
-    int logout,
+    bool logout,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

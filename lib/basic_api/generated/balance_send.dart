@@ -7,7 +7,7 @@ class BalanceRequest extends Request {
   /// Initialize BalanceRequest
   const BalanceRequest({
     this.account,
-    this.balance = 1,
+    this.balance = true,
     this.subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -21,8 +21,7 @@ class BalanceRequest extends Request {
   factory BalanceRequest.fromJson(Map<String, dynamic> json) => BalanceRequest(
         // ignore: avoid_as
         account: json['account'] as String,
-        // ignore: avoid_as
-        balance: json['balance'] as int,
+        balance: json['balance'] == null ? null : json['balance'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -33,8 +32,8 @@ class BalanceRequest extends Request {
   /// [Optional] If set to `all`, return the balances of all accounts one by one; if set to `current`, return the balance of current account; if set as an account id, return the balance of that account.
   final String account;
 
-  /// Must be `1`
-  final int balance;
+  /// Must be `true`
+  final bool balance;
 
   /// [Optional] If set to 1, will send updates whenever the balance changes.
   final bool subscribe;
@@ -43,7 +42,7 @@ class BalanceRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'account': account,
-        'balance': balance,
+        'balance': balance == null ? null : balance ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
         'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
@@ -53,7 +52,7 @@ class BalanceRequest extends Request {
   @override
   BalanceRequest copyWith({
     String account,
-    int balance,
+    bool balance,
     bool subscribe,
     Map<String, dynamic> passthrough,
     int reqId,

@@ -12,7 +12,7 @@ class StatementRequest extends Request {
     this.description,
     this.limit,
     this.offset,
-    this.statement = 1,
+    this.statement = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -40,8 +40,7 @@ class StatementRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
-        statement: json['statement'] as int,
+        statement: json['statement'] == null ? null : json['statement'] == 1,
       );
 
   /// [Optional] To filter the statement according to the type of transaction.
@@ -62,8 +61,8 @@ class StatementRequest extends Request {
   /// [Optional] Number of transactions to skip.
   final num offset;
 
-  /// Must be `1`
-  final int statement;
+  /// Must be `true`
+  final bool statement;
 
   /// Converts an instance to JSON
   @override
@@ -76,7 +75,7 @@ class StatementRequest extends Request {
         'offset': offset,
         'passthrough': passthrough,
         'req_id': reqId,
-        'statement': statement,
+        'statement': statement == null ? null : statement ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters
@@ -88,7 +87,7 @@ class StatementRequest extends Request {
     bool description,
     num limit,
     num offset,
-    int statement,
+    bool statement,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

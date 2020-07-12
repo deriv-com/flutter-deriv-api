@@ -9,7 +9,7 @@ class AppUpdateRequest extends Request {
   /// Initialize AppUpdateRequest
   const AppUpdateRequest({
     this.appMarkupPercentage,
-    this.appUpdate = 1,
+    @required this.appUpdate,
     this.appstore,
     this.github,
     this.googleplay,

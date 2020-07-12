@@ -6,7 +6,7 @@ import '../request.dart';
 class GetSettingsRequest extends Request {
   /// Initialize GetSettingsRequest
   const GetSettingsRequest({
-    this.getSettings = 1,
+    this.getSettings = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -18,21 +18,21 @@ class GetSettingsRequest extends Request {
   /// Creates an instance from JSON
   factory GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       GetSettingsRequest(
-        // ignore: avoid_as
-        getSettings: json['get_settings'] as int,
+        getSettings:
+            json['get_settings'] == null ? null : json['get_settings'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 
-  /// Must be `1`
-  final int getSettings;
+  /// Must be `true`
+  final bool getSettings;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'get_settings': getSettings,
+        'get_settings': getSettings == null ? null : getSettings ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -40,7 +40,7 @@ class GetSettingsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   GetSettingsRequest copyWith({
-    int getSettings,
+    bool getSettings,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

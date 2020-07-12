@@ -32,8 +32,7 @@ class BuyRequest extends Request {
         price: json['price'] as num,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
-        subscribe: json['subscribe'] as int,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
       );
 
   /// Either the ID received from a Price Proposal (`proposal` call), or `1` if contract buy parameters are passed in the `parameters` field.
@@ -46,7 +45,7 @@ class BuyRequest extends Request {
   final num price;
 
   /// [Optional] `1` to stream.
-  final int subscribe;
+  final bool subscribe;
 
   /// Converts an instance to JSON
   @override
@@ -56,7 +55,7 @@ class BuyRequest extends Request {
         'passthrough': passthrough,
         'price': price,
         'req_id': reqId,
-        'subscribe': subscribe,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters
@@ -65,7 +64,7 @@ class BuyRequest extends Request {
     String buy,
     Map<String, dynamic> parameters,
     num price,
-    int subscribe,
+    bool subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

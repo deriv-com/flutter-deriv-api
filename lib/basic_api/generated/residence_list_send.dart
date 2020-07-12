@@ -6,7 +6,7 @@ import '../request.dart';
 class ResidenceListRequest extends Request {
   /// Initialize ResidenceListRequest
   const ResidenceListRequest({
-    this.residenceList = 1,
+    this.residenceList = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -22,25 +22,25 @@ class ResidenceListRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
-        residenceList: json['residence_list'] as int,
+        residenceList:
+            json['residence_list'] == null ? null : json['residence_list'] == 1,
       );
 
-  /// Must be `1`
-  final int residenceList;
+  /// Must be `true`
+  final bool residenceList;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'passthrough': passthrough,
         'req_id': reqId,
-        'residence_list': residenceList,
+        'residence_list': residenceList == null ? null : residenceList ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters
   @override
   ResidenceListRequest copyWith({
-    int residenceList,
+    bool residenceList,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

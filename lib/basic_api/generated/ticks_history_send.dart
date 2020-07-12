@@ -43,8 +43,7 @@ class TicksHistoryRequest extends Request {
         start: json['start'] as int,
         // ignore: avoid_as
         style: json['style'] as String,
-        // ignore: avoid_as
-        subscribe: json['subscribe'] as int,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         // ignore: avoid_as
         ticksHistory: json['ticks_history'] as String,
       );
@@ -70,7 +69,7 @@ class TicksHistoryRequest extends Request {
   final String style;
 
   /// [Optional] 1 - to send updates whenever a new tick is received.
-  final int subscribe;
+  final bool subscribe;
 
   /// Short symbol name (obtained from the `active_symbols` call).
   final String ticksHistory;
@@ -86,7 +85,7 @@ class TicksHistoryRequest extends Request {
         'req_id': reqId,
         'start': start,
         'style': style,
-        'subscribe': subscribe,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
         'ticks_history': ticksHistory,
       };
 
@@ -99,7 +98,7 @@ class TicksHistoryRequest extends Request {
     int granularity,
     int start,
     String style,
-    int subscribe,
+    bool subscribe,
     String ticksHistory,
     Map<String, dynamic> passthrough,
     int reqId,

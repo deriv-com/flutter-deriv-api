@@ -7,7 +7,7 @@ class WebsiteStatusRequest extends Request {
   /// Initialize WebsiteStatusRequest
   const WebsiteStatusRequest({
     this.subscribe,
-    this.websiteStatus = 1,
+    this.websiteStatus = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -24,15 +24,15 @@ class WebsiteStatusRequest extends Request {
         // ignore: avoid_as
         reqId: json['req_id'] as int,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        // ignore: avoid_as
-        websiteStatus: json['website_status'] as int,
+        websiteStatus:
+            json['website_status'] == null ? null : json['website_status'] == 1,
       );
 
   /// [Optional] `1` to stream the server/website status updates.
   final bool subscribe;
 
-  /// Must be `1`
-  final int websiteStatus;
+  /// Must be `true`
+  final bool websiteStatus;
 
   /// Converts an instance to JSON
   @override
@@ -40,14 +40,14 @@ class WebsiteStatusRequest extends Request {
         'passthrough': passthrough,
         'req_id': reqId,
         'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
-        'website_status': websiteStatus,
+        'website_status': websiteStatus == null ? null : websiteStatus ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters
   @override
   WebsiteStatusRequest copyWith({
     bool subscribe,
-    int websiteStatus,
+    bool websiteStatus,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

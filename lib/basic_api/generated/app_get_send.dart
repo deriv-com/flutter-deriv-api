@@ -1,12 +1,14 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_get_send.json
 
+import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// AppGetRequest class
 class AppGetRequest extends Request {
   /// Initialize AppGetRequest
   const AppGetRequest({
-    this.appGet = 1,
+    @required this.appGet,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

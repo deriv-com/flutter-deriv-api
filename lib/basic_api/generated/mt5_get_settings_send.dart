@@ -9,7 +9,7 @@ class Mt5GetSettingsRequest extends Request {
   /// Initialize Mt5GetSettingsRequest
   const Mt5GetSettingsRequest({
     @required this.login,
-    this.mt5GetSettings = 1,
+    this.mt5GetSettings = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -23,8 +23,9 @@ class Mt5GetSettingsRequest extends Request {
       Mt5GetSettingsRequest(
         // ignore: avoid_as
         login: json['login'] as String,
-        // ignore: avoid_as
-        mt5GetSettings: json['mt5_get_settings'] as int,
+        mt5GetSettings: json['mt5_get_settings'] == null
+            ? null
+            : json['mt5_get_settings'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -34,14 +35,15 @@ class Mt5GetSettingsRequest extends Request {
   /// MT5 user login
   final String login;
 
-  /// Must be `1`
-  final int mt5GetSettings;
+  /// Must be `true`
+  final bool mt5GetSettings;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'login': login,
-        'mt5_get_settings': mt5GetSettings,
+        'mt5_get_settings':
+            mt5GetSettings == null ? null : mt5GetSettings ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -50,7 +52,7 @@ class Mt5GetSettingsRequest extends Request {
   @override
   Mt5GetSettingsRequest copyWith({
     String login,
-    int mt5GetSettings,
+    bool mt5GetSettings,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

@@ -19,7 +19,7 @@ class ProposalArrayRequest extends Request {
     this.durationUnit,
     @required this.multiplier,
     this.productType,
-    this.proposalArray = 1,
+    this.proposalArray = true,
     this.subscribe,
     @required this.symbol,
     @required this.tradingPeriodStart,
@@ -64,12 +64,11 @@ class ProposalArrayRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         productType: json['product_type'] as String,
-        // ignore: avoid_as
-        proposalArray: json['proposal_array'] as int,
+        proposalArray:
+            json['proposal_array'] == null ? null : json['proposal_array'] == 1,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
-        subscribe: json['subscribe'] as int,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         // ignore: avoid_as
         symbol: json['symbol'] as String,
         // ignore: avoid_as
@@ -109,11 +108,11 @@ class ProposalArrayRequest extends Request {
   /// [Optional] If you specify this field, only contracts tradable through that contract type will be returned.
   final String productType;
 
-  /// Must be `1`
-  final int proposalArray;
+  /// Must be `true`
+  final bool proposalArray;
 
   /// [Optional] 1 - to initiate a realtime stream of prices. Note that tick trades (without a user-defined barrier), digit trades and less than 24 hours at-the-money contracts for the following underlying symbols are not streamed: `R_10`, `R_25`, `R_50`, `R_75`, `R_100`, `RDBULL`, `RDBEAR` (this is because their price is constant).
-  final int subscribe;
+  final bool subscribe;
 
   /// Symbol code.
   final String symbol;
@@ -136,9 +135,9 @@ class ProposalArrayRequest extends Request {
         'multiplier': multiplier,
         'passthrough': passthrough,
         'product_type': productType,
-        'proposal_array': proposalArray,
+        'proposal_array': proposalArray == null ? null : proposalArray ? 1 : 0,
         'req_id': reqId,
-        'subscribe': subscribe,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
         'symbol': symbol,
         'trading_period_start': tradingPeriodStart,
       };
@@ -157,8 +156,8 @@ class ProposalArrayRequest extends Request {
     String durationUnit,
     num multiplier,
     String productType,
-    int proposalArray,
-    int subscribe,
+    bool proposalArray,
+    bool subscribe,
     String symbol,
     int tradingPeriodStart,
     Map<String, dynamic> passthrough,

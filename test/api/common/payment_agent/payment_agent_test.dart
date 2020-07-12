@@ -70,7 +70,7 @@ void main() {
       final PaymentAgentWithdraw paymentAgentWithdraw =
           await PaymentAgentWithdraw.withdraw(
         const PaymentagentWithdrawRequest(
-          paymentagentWithdraw: 1,
+          paymentagentWithdraw: true,
           amount: 1000,
           currency: 'USD',
           paymentagentLoginid: 'CR100001',

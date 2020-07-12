@@ -9,7 +9,7 @@ class Mt5PasswordCheckRequest extends Request {
   /// Initialize Mt5PasswordCheckRequest
   const Mt5PasswordCheckRequest({
     @required this.login,
-    this.mt5PasswordCheck = 1,
+    this.mt5PasswordCheck = true,
     @required this.password,
     this.passwordType,
     Map<String, dynamic> passthrough,
@@ -25,8 +25,9 @@ class Mt5PasswordCheckRequest extends Request {
       Mt5PasswordCheckRequest(
         // ignore: avoid_as
         login: json['login'] as String,
-        // ignore: avoid_as
-        mt5PasswordCheck: json['mt5_password_check'] as int,
+        mt5PasswordCheck: json['mt5_password_check'] == null
+            ? null
+            : json['mt5_password_check'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -40,8 +41,8 @@ class Mt5PasswordCheckRequest extends Request {
   /// MT5 user login
   final String login;
 
-  /// Must be `1`
-  final int mt5PasswordCheck;
+  /// Must be `true`
+  final bool mt5PasswordCheck;
 
   /// The password of the account.
   final String password;
@@ -53,7 +54,8 @@ class Mt5PasswordCheckRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'login': login,
-        'mt5_password_check': mt5PasswordCheck,
+        'mt5_password_check':
+            mt5PasswordCheck == null ? null : mt5PasswordCheck ? 1 : 0,
         'passthrough': passthrough,
         'password': password,
         'password_type': passwordType,
@@ -64,7 +66,7 @@ class Mt5PasswordCheckRequest extends Request {
   @override
   Mt5PasswordCheckRequest copyWith({
     String login,
-    int mt5PasswordCheck,
+    bool mt5PasswordCheck,
     String password,
     String passwordType,
     Map<String, dynamic> passthrough,

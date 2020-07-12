@@ -1,12 +1,14 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_delete_send.json
 
+import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// AppDeleteRequest class
 class AppDeleteRequest extends Request {
   /// Initialize AppDeleteRequest
   const AppDeleteRequest({
-    this.appDelete = 1,
+    @required this.appDelete,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

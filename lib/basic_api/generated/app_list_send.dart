@@ -6,7 +6,7 @@ import '../request.dart';
 class AppListRequest extends Request {
   /// Initialize AppListRequest
   const AppListRequest({
-    this.appList = 1,
+    this.appList = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -17,21 +17,20 @@ class AppListRequest extends Request {
 
   /// Creates an instance from JSON
   factory AppListRequest.fromJson(Map<String, dynamic> json) => AppListRequest(
-        // ignore: avoid_as
-        appList: json['app_list'] as int,
+        appList: json['app_list'] == null ? null : json['app_list'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 
-  /// Must be `1`
-  final int appList;
+  /// Must be `true`
+  final bool appList;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'app_list': appList,
+        'app_list': appList == null ? null : appList ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -39,7 +38,7 @@ class AppListRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   AppListRequest copyWith({
-    int appList,
+    bool appList,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

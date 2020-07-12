@@ -9,7 +9,7 @@ class P2pOrderCancelRequest extends Request {
   /// Initialize P2pOrderCancelRequest
   const P2pOrderCancelRequest({
     @required this.id,
-    this.p2pOrderCancel = 1,
+    this.p2pOrderCancel = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -23,8 +23,9 @@ class P2pOrderCancelRequest extends Request {
       P2pOrderCancelRequest(
         // ignore: avoid_as
         id: json['id'] as String,
-        // ignore: avoid_as
-        p2pOrderCancel: json['p2p_order_cancel'] as int,
+        p2pOrderCancel: json['p2p_order_cancel'] == null
+            ? null
+            : json['p2p_order_cancel'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -34,14 +35,15 @@ class P2pOrderCancelRequest extends Request {
   /// The unique identifier for this order.
   final String id;
 
-  /// Must be 1
-  final int p2pOrderCancel;
+  /// Must be `true`
+  final bool p2pOrderCancel;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
-        'p2p_order_cancel': p2pOrderCancel,
+        'p2p_order_cancel':
+            p2pOrderCancel == null ? null : p2pOrderCancel ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -50,7 +52,7 @@ class P2pOrderCancelRequest extends Request {
   @override
   P2pOrderCancelRequest copyWith({
     String id,
-    int p2pOrderCancel,
+    bool p2pOrderCancel,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

@@ -9,7 +9,7 @@ class AppMarkupDetailsRequest extends Request {
   /// Initialize AppMarkupDetailsRequest
   const AppMarkupDetailsRequest({
     this.appId,
-    this.appMarkupDetails = 1,
+    this.appMarkupDetails = true,
     this.clientLoginid,
     @required this.dateFrom,
     @required this.dateTo,
@@ -31,8 +31,9 @@ class AppMarkupDetailsRequest extends Request {
       AppMarkupDetailsRequest(
         // ignore: avoid_as
         appId: json['app_id'] as int,
-        // ignore: avoid_as
-        appMarkupDetails: json['app_markup_details'] as int,
+        appMarkupDetails: json['app_markup_details'] == null
+            ? null
+            : json['app_markup_details'] == 1,
         // ignore: avoid_as
         clientLoginid: json['client_loginid'] as String,
         // ignore: avoid_as
@@ -61,8 +62,8 @@ class AppMarkupDetailsRequest extends Request {
   /// [Optional] Specific application `app_id` to report on.
   final int appId;
 
-  /// Must be `1`
-  final int appMarkupDetails;
+  /// Must be `true`
+  final bool appMarkupDetails;
 
   /// [Optional] Specific client loginid to report on, like CR12345
   final String clientLoginid;
@@ -92,7 +93,8 @@ class AppMarkupDetailsRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'app_id': appId,
-        'app_markup_details': appMarkupDetails,
+        'app_markup_details':
+            appMarkupDetails == null ? null : appMarkupDetails ? 1 : 0,
         'client_loginid': clientLoginid,
         'date_from': dateFrom,
         'date_to': dateTo,
@@ -109,7 +111,7 @@ class AppMarkupDetailsRequest extends Request {
   @override
   AppMarkupDetailsRequest copyWith({
     int appId,
-    int appMarkupDetails,
+    bool appMarkupDetails,
     String clientLoginid,
     String dateFrom,
     String dateTo,

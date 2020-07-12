@@ -10,7 +10,7 @@ class P2pAdvertiserUpdateRequest extends Request {
     this.defaultAdvertDescription,
     this.isListed,
     this.name,
-    this.p2pAdvertiserUpdate = 1,
+    this.p2pAdvertiserUpdate = true,
     this.paymentInfo,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -30,8 +30,9 @@ class P2pAdvertiserUpdateRequest extends Request {
         isListed: json['is_listed'] == null ? null : json['is_listed'] == 1,
         // ignore: avoid_as
         name: json['name'] as String,
-        // ignore: avoid_as
-        p2pAdvertiserUpdate: json['p2p_advertiser_update'] as int,
+        p2pAdvertiserUpdate: json['p2p_advertiser_update'] == null
+            ? null
+            : json['p2p_advertiser_update'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -52,8 +53,8 @@ class P2pAdvertiserUpdateRequest extends Request {
   /// [Optional] The advertiser's displayed name.
   final String name;
 
-  /// Must be 1
-  final int p2pAdvertiserUpdate;
+  /// Must be `true`
+  final bool p2pAdvertiserUpdate;
 
   /// [Optional] Advertiser's payment information, to be used as a default for new sell adverts.
   final String paymentInfo;
@@ -65,7 +66,8 @@ class P2pAdvertiserUpdateRequest extends Request {
         'default_advert_description': defaultAdvertDescription,
         'is_listed': isListed == null ? null : isListed ? 1 : 0,
         'name': name,
-        'p2p_advertiser_update': p2pAdvertiserUpdate,
+        'p2p_advertiser_update':
+            p2pAdvertiserUpdate == null ? null : p2pAdvertiserUpdate ? 1 : 0,
         'passthrough': passthrough,
         'payment_info': paymentInfo,
         'req_id': reqId,
@@ -78,7 +80,7 @@ class P2pAdvertiserUpdateRequest extends Request {
     String defaultAdvertDescription,
     bool isListed,
     String name,
-    int p2pAdvertiserUpdate,
+    bool p2pAdvertiserUpdate,
     String paymentInfo,
     Map<String, dynamic> passthrough,
     int reqId,

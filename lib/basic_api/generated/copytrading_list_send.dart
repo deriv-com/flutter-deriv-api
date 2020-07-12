@@ -6,7 +6,7 @@ import '../request.dart';
 class CopytradingListRequest extends Request {
   /// Initialize CopytradingListRequest
   const CopytradingListRequest({
-    this.copytradingList = 1,
+    this.copytradingList = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -18,21 +18,23 @@ class CopytradingListRequest extends Request {
   /// Creates an instance from JSON
   factory CopytradingListRequest.fromJson(Map<String, dynamic> json) =>
       CopytradingListRequest(
-        // ignore: avoid_as
-        copytradingList: json['copytrading_list'] as int,
+        copytradingList: json['copytrading_list'] == null
+            ? null
+            : json['copytrading_list'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 
-  /// Must be `1`
-  final int copytradingList;
+  /// Must be `true`
+  final bool copytradingList;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'copytrading_list': copytradingList,
+        'copytrading_list':
+            copytradingList == null ? null : copytradingList ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -40,7 +42,7 @@ class CopytradingListRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   CopytradingListRequest copyWith({
-    int copytradingList,
+    bool copytradingList,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

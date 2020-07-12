@@ -10,7 +10,7 @@ class Mt5DepositRequest extends Request {
   const Mt5DepositRequest({
     @required this.amount,
     @required this.fromBinary,
-    this.mt5Deposit = 1,
+    this.mt5Deposit = true,
     @required this.toMt5,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -27,8 +27,8 @@ class Mt5DepositRequest extends Request {
         amount: json['amount'] as num,
         // ignore: avoid_as
         fromBinary: json['from_binary'] as String,
-        // ignore: avoid_as
-        mt5Deposit: json['mt5_deposit'] as int,
+        mt5Deposit:
+            json['mt5_deposit'] == null ? null : json['mt5_deposit'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -43,8 +43,8 @@ class Mt5DepositRequest extends Request {
   /// Binary account loginid to transfer money from
   final String fromBinary;
 
-  /// Must be `1`
-  final int mt5Deposit;
+  /// Must be `true`
+  final bool mt5Deposit;
 
   /// MT5 account login to deposit money to
   final String toMt5;
@@ -54,7 +54,7 @@ class Mt5DepositRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'amount': amount,
         'from_binary': fromBinary,
-        'mt5_deposit': mt5Deposit,
+        'mt5_deposit': mt5Deposit == null ? null : mt5Deposit ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
         'to_mt5': toMt5,
@@ -65,7 +65,7 @@ class Mt5DepositRequest extends Request {
   Mt5DepositRequest copyWith({
     num amount,
     String fromBinary,
-    int mt5Deposit,
+    bool mt5Deposit,
     String toMt5,
     Map<String, dynamic> passthrough,
     int reqId,

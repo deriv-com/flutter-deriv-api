@@ -34,7 +34,7 @@ class NewAccountMaltainvestRequest extends Request {
     @required this.incomeSource,
     @required this.lastName,
     @required this.netIncome,
-    this.newAccountMaltainvest = 1,
+    this.newAccountMaltainvest = true,
     this.nonPepDeclaration,
     @required this.occupation,
     this.otherInstrumentsTradingExperience,
@@ -113,8 +113,9 @@ class NewAccountMaltainvestRequest extends Request {
         lastName: json['last_name'] as String,
         // ignore: avoid_as
         netIncome: json['net_income'] as String,
-        // ignore: avoid_as
-        newAccountMaltainvest: json['new_account_maltainvest'] as int,
+        newAccountMaltainvest: json['new_account_maltainvest'] == null
+            ? null
+            : json['new_account_maltainvest'] == 1,
         // ignore: avoid_as
         nonPepDeclaration: json['non_pep_declaration'] as int,
         // ignore: avoid_as
@@ -227,8 +228,8 @@ class NewAccountMaltainvestRequest extends Request {
   /// Net Annual Income.
   final String netIncome;
 
-  /// Must be `1`
-  final int newAccountMaltainvest;
+  /// Must be `true`
+  final bool newAccountMaltainvest;
 
   /// [Optional] Indicates client's self-declaration of not being a PEP/RCA.
   final int nonPepDeclaration;
@@ -298,7 +299,9 @@ class NewAccountMaltainvestRequest extends Request {
         'income_source': incomeSource,
         'last_name': lastName,
         'net_income': netIncome,
-        'new_account_maltainvest': newAccountMaltainvest,
+        'new_account_maltainvest': newAccountMaltainvest == null
+            ? null
+            : newAccountMaltainvest ? 1 : 0,
         'non_pep_declaration': nonPepDeclaration,
         'occupation': occupation,
         'other_instruments_trading_experience':
@@ -346,7 +349,7 @@ class NewAccountMaltainvestRequest extends Request {
     String incomeSource,
     String lastName,
     String netIncome,
-    int newAccountMaltainvest,
+    bool newAccountMaltainvest,
     int nonPepDeclaration,
     String occupation,
     String otherInstrumentsTradingExperience,

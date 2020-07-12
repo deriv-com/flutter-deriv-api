@@ -7,7 +7,7 @@ class ProposalOpenContractRequest extends Request {
   /// Initialize ProposalOpenContractRequest
   const ProposalOpenContractRequest({
     this.contractId,
-    this.proposalOpenContract = 1,
+    this.proposalOpenContract = true,
     this.subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -24,39 +24,40 @@ class ProposalOpenContractRequest extends Request {
         contractId: json['contract_id'] as int,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
-        proposalOpenContract: json['proposal_open_contract'] as int,
+        proposalOpenContract: json['proposal_open_contract'] == null
+            ? null
+            : json['proposal_open_contract'] == 1,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
-        subscribe: json['subscribe'] as int,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
       );
 
   /// [Optional] Contract ID received from a `portfolio` request. If not set, you will receive stream of all open contracts.
   final int contractId;
 
-  /// Must be `1`
-  final int proposalOpenContract;
+  /// Must be `true`
+  final bool proposalOpenContract;
 
   /// [Optional] `1` to stream.
-  final int subscribe;
+  final bool subscribe;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'contract_id': contractId,
         'passthrough': passthrough,
-        'proposal_open_contract': proposalOpenContract,
+        'proposal_open_contract':
+            proposalOpenContract == null ? null : proposalOpenContract ? 1 : 0,
         'req_id': reqId,
-        'subscribe': subscribe,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters
   @override
   ProposalOpenContractRequest copyWith({
     int contractId,
-    int proposalOpenContract,
-    int subscribe,
+    bool proposalOpenContract,
+    bool subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

@@ -9,7 +9,7 @@ class ExchangeRatesRequest extends Request {
   /// Initialize ExchangeRatesRequest
   const ExchangeRatesRequest({
     @required this.baseCurrency,
-    this.exchangeRates = 1,
+    this.exchangeRates = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -23,8 +23,8 @@ class ExchangeRatesRequest extends Request {
       ExchangeRatesRequest(
         // ignore: avoid_as
         baseCurrency: json['base_currency'] as String,
-        // ignore: avoid_as
-        exchangeRates: json['exchange_rates'] as int,
+        exchangeRates:
+            json['exchange_rates'] == null ? null : json['exchange_rates'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -34,14 +34,14 @@ class ExchangeRatesRequest extends Request {
   /// Base currency (can be obtained from `payout_currencies` call)
   final String baseCurrency;
 
-  /// Must be `1`
-  final int exchangeRates;
+  /// Must be `true`
+  final bool exchangeRates;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'base_currency': baseCurrency,
-        'exchange_rates': exchangeRates,
+        'exchange_rates': exchangeRates == null ? null : exchangeRates ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -50,7 +50,7 @@ class ExchangeRatesRequest extends Request {
   @override
   ExchangeRatesRequest copyWith({
     String baseCurrency,
-    int exchangeRates,
+    bool exchangeRates,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

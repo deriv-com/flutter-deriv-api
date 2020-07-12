@@ -6,7 +6,7 @@ import '../request.dart';
 class AssetIndexRequest extends Request {
   /// Initialize AssetIndexRequest
   const AssetIndexRequest({
-    this.assetIndex = 1,
+    this.assetIndex = true,
     this.landingCompany,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -19,8 +19,8 @@ class AssetIndexRequest extends Request {
   /// Creates an instance from JSON
   factory AssetIndexRequest.fromJson(Map<String, dynamic> json) =>
       AssetIndexRequest(
-        // ignore: avoid_as
-        assetIndex: json['asset_index'] as int,
+        assetIndex:
+            json['asset_index'] == null ? null : json['asset_index'] == 1,
         // ignore: avoid_as
         landingCompany: json['landing_company'] as String,
         // ignore: avoid_as
@@ -29,8 +29,8 @@ class AssetIndexRequest extends Request {
         reqId: json['req_id'] as int,
       );
 
-  /// Must be `1`
-  final int assetIndex;
+  /// Must be `true`
+  final bool assetIndex;
 
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
   final String landingCompany;
@@ -38,7 +38,7 @@ class AssetIndexRequest extends Request {
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'asset_index': assetIndex,
+        'asset_index': assetIndex == null ? null : assetIndex ? 1 : 0,
         'landing_company': landingCompany,
         'passthrough': passthrough,
         'req_id': reqId,
@@ -47,7 +47,7 @@ class AssetIndexRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   AssetIndexRequest copyWith({
-    int assetIndex,
+    bool assetIndex,
     String landingCompany,
     Map<String, dynamic> passthrough,
     int reqId,

@@ -18,7 +18,7 @@ class SetSelfExclusionRequest extends Request {
     this.maxOpenBets,
     this.maxTurnover,
     this.sessionDurationLimit,
-    this.setSelfExclusion = 1,
+    this.setSelfExclusion = true,
     this.timeoutUntil,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -59,8 +59,9 @@ class SetSelfExclusionRequest extends Request {
         reqId: json['req_id'] as int,
         // ignore: avoid_as
         sessionDurationLimit: json['session_duration_limit'] as int,
-        // ignore: avoid_as
-        setSelfExclusion: json['set_self_exclusion'] as int,
+        setSelfExclusion: json['set_self_exclusion'] == null
+            ? null
+            : json['set_self_exclusion'] == 1,
         // ignore: avoid_as
         timeoutUntil: json['timeout_until'] as int,
       );
@@ -101,8 +102,8 @@ class SetSelfExclusionRequest extends Request {
   /// [Optional] Session duration limit, in minutes.
   final int sessionDurationLimit;
 
-  /// Must be `1`
-  final int setSelfExclusion;
+  /// Must be `true`
+  final bool setSelfExclusion;
 
   /// [Optional] Exclude me from the website (for up to 6 weeks). Requires time in epoch format. Note: unlike `exclude_until`, this self-exclusion will be lifted automatically at the expiry of the timeout period.
   final int timeoutUntil;
@@ -124,7 +125,8 @@ class SetSelfExclusionRequest extends Request {
         'passthrough': passthrough,
         'req_id': reqId,
         'session_duration_limit': sessionDurationLimit,
-        'set_self_exclusion': setSelfExclusion,
+        'set_self_exclusion':
+            setSelfExclusion == null ? null : setSelfExclusion ? 1 : 0,
         'timeout_until': timeoutUntil,
       };
 
@@ -143,7 +145,7 @@ class SetSelfExclusionRequest extends Request {
     int maxOpenBets,
     num maxTurnover,
     int sessionDurationLimit,
-    int setSelfExclusion,
+    bool setSelfExclusion,
     int timeoutUntil,
     Map<String, dynamic> passthrough,
     int reqId,

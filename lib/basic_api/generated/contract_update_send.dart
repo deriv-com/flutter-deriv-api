@@ -9,7 +9,7 @@ class ContractUpdateRequest extends Request {
   /// Initialize ContractUpdateRequest
   const ContractUpdateRequest({
     @required this.contractId,
-    this.contractUpdate = 1,
+    this.contractUpdate = true,
     @required this.limitOrder,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -24,8 +24,9 @@ class ContractUpdateRequest extends Request {
       ContractUpdateRequest(
         // ignore: avoid_as
         contractId: json['contract_id'] as int,
-        // ignore: avoid_as
-        contractUpdate: json['contract_update'] as int,
+        contractUpdate: json['contract_update'] == null
+            ? null
+            : json['contract_update'] == 1,
         // ignore: avoid_as
         limitOrder: json['limit_order'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -37,8 +38,8 @@ class ContractUpdateRequest extends Request {
   /// Internal unique contract identifier.
   final int contractId;
 
-  /// Must be `1`
-  final int contractUpdate;
+  /// Must be `true`
+  final bool contractUpdate;
 
   /// Specify limit order to update.
   final Map<String, dynamic> limitOrder;
@@ -47,7 +48,8 @@ class ContractUpdateRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'contract_id': contractId,
-        'contract_update': contractUpdate,
+        'contract_update':
+            contractUpdate == null ? null : contractUpdate ? 1 : 0,
         'limit_order': limitOrder,
         'passthrough': passthrough,
         'req_id': reqId,
@@ -57,7 +59,7 @@ class ContractUpdateRequest extends Request {
   @override
   ContractUpdateRequest copyWith({
     int contractId,
-    int contractUpdate,
+    bool contractUpdate,
     Map<String, dynamic> limitOrder,
     Map<String, dynamic> passthrough,
     int reqId,

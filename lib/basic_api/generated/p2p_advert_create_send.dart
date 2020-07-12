@@ -14,7 +14,7 @@ class P2pAdvertCreateRequest extends Request {
     this.localCurrency,
     @required this.maxOrderAmount,
     @required this.minOrderAmount,
-    this.p2pAdvertCreate = 1,
+    this.p2pAdvertCreate = true,
     this.paymentInfo,
     @required this.paymentMethod,
     @required this.rate,
@@ -42,8 +42,9 @@ class P2pAdvertCreateRequest extends Request {
         maxOrderAmount: json['max_order_amount'] as num,
         // ignore: avoid_as
         minOrderAmount: json['min_order_amount'] as num,
-        // ignore: avoid_as
-        p2pAdvertCreate: json['p2p_advert_create'] as int,
+        p2pAdvertCreate: json['p2p_advert_create'] == null
+            ? null
+            : json['p2p_advert_create'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -76,8 +77,8 @@ class P2pAdvertCreateRequest extends Request {
   /// Minimum allowed amount for the orders of this advert, in advertiser's `account_currency`. Should be less than `max_order_amount`.
   final num minOrderAmount;
 
-  /// Must be 1
-  final int p2pAdvertCreate;
+  /// Must be `true`
+  final bool p2pAdvertCreate;
 
   /// [Optional] Payment instructions. Only applicable for 'sell adverts'.
   final String paymentInfo;
@@ -100,7 +101,8 @@ class P2pAdvertCreateRequest extends Request {
         'local_currency': localCurrency,
         'max_order_amount': maxOrderAmount,
         'min_order_amount': minOrderAmount,
-        'p2p_advert_create': p2pAdvertCreate,
+        'p2p_advert_create':
+            p2pAdvertCreate == null ? null : p2pAdvertCreate ? 1 : 0,
         'passthrough': passthrough,
         'payment_info': paymentInfo,
         'payment_method': paymentMethod,
@@ -118,7 +120,7 @@ class P2pAdvertCreateRequest extends Request {
     String localCurrency,
     num maxOrderAmount,
     num minOrderAmount,
-    int p2pAdvertCreate,
+    bool p2pAdvertCreate,
     String paymentInfo,
     String paymentMethod,
     num rate,

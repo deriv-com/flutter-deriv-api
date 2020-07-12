@@ -12,7 +12,7 @@ class NewAccountVirtualRequest extends Request {
     @required this.clientPassword,
     this.dateFirstContact,
     this.gclidUrl,
-    this.newAccountVirtual = 1,
+    this.newAccountVirtual = true,
     @required this.residence,
     this.signupDevice,
     this.utmCampaign,
@@ -38,8 +38,9 @@ class NewAccountVirtualRequest extends Request {
         dateFirstContact: json['date_first_contact'] as String,
         // ignore: avoid_as
         gclidUrl: json['gclid_url'] as String,
-        // ignore: avoid_as
-        newAccountVirtual: json['new_account_virtual'] as int,
+        newAccountVirtual: json['new_account_virtual'] == null
+            ? null
+            : json['new_account_virtual'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -70,8 +71,8 @@ class NewAccountVirtualRequest extends Request {
   /// [Optional] Google Click Identifier to track source.
   final String gclidUrl;
 
-  /// Must be `1`
-  final int newAccountVirtual;
+  /// Must be `true`
+  final bool newAccountVirtual;
 
   /// 2-letter country code (obtained from `residence_list` call).
   final String residence;
@@ -98,7 +99,8 @@ class NewAccountVirtualRequest extends Request {
         'client_password': clientPassword,
         'date_first_contact': dateFirstContact,
         'gclid_url': gclidUrl,
-        'new_account_virtual': newAccountVirtual,
+        'new_account_virtual':
+            newAccountVirtual == null ? null : newAccountVirtual ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
         'residence': residence,
@@ -116,7 +118,7 @@ class NewAccountVirtualRequest extends Request {
     String clientPassword,
     String dateFirstContact,
     String gclidUrl,
-    int newAccountVirtual,
+    bool newAccountVirtual,
     String residence,
     String signupDevice,
     String utmCampaign,

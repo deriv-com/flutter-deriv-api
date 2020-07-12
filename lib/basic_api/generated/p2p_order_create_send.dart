@@ -11,7 +11,7 @@ class P2pOrderCreateRequest extends Request {
     @required this.advertId,
     @required this.amount,
     this.contactInfo,
-    this.p2pOrderCreate = 1,
+    this.p2pOrderCreate = true,
     this.paymentInfo,
     this.subscribe,
     Map<String, dynamic> passthrough,
@@ -31,16 +31,16 @@ class P2pOrderCreateRequest extends Request {
         amount: json['amount'] as num,
         // ignore: avoid_as
         contactInfo: json['contact_info'] as String,
-        // ignore: avoid_as
-        p2pOrderCreate: json['p2p_order_create'] as int,
+        p2pOrderCreate: json['p2p_order_create'] == null
+            ? null
+            : json['p2p_order_create'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         paymentInfo: json['payment_info'] as String,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
-        subscribe: json['subscribe'] as int,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
       );
 
   /// The unique identifier for the advert to create an order against.
@@ -52,14 +52,14 @@ class P2pOrderCreateRequest extends Request {
   /// [Optional] Seller contact information. Only applicable for 'sell orders'.
   final String contactInfo;
 
-  /// Must be 1
-  final int p2pOrderCreate;
+  /// Must be `true`
+  final bool p2pOrderCreate;
 
   /// [Optional] Payment instructions. Only applicable for 'sell orders'.
   final String paymentInfo;
 
   /// [Optional] If set to 1, will send updates whenever there is an update to the order.
-  final int subscribe;
+  final bool subscribe;
 
   /// Converts an instance to JSON
   @override
@@ -67,11 +67,12 @@ class P2pOrderCreateRequest extends Request {
         'advert_id': advertId,
         'amount': amount,
         'contact_info': contactInfo,
-        'p2p_order_create': p2pOrderCreate,
+        'p2p_order_create':
+            p2pOrderCreate == null ? null : p2pOrderCreate ? 1 : 0,
         'passthrough': passthrough,
         'payment_info': paymentInfo,
         'req_id': reqId,
-        'subscribe': subscribe,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters
@@ -80,9 +81,9 @@ class P2pOrderCreateRequest extends Request {
     String advertId,
     num amount,
     String contactInfo,
-    int p2pOrderCreate,
+    bool p2pOrderCreate,
     String paymentInfo,
-    int subscribe,
+    bool subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

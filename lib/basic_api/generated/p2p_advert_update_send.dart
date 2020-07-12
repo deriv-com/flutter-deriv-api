@@ -11,7 +11,7 @@ class P2pAdvertUpdateRequest extends Request {
     this.delete,
     @required this.id,
     this.isActive,
-    this.p2pAdvertUpdate = 1,
+    this.p2pAdvertUpdate = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -27,8 +27,9 @@ class P2pAdvertUpdateRequest extends Request {
         // ignore: avoid_as
         id: json['id'] as String,
         isActive: json['is_active'] == null ? null : json['is_active'] == 1,
-        // ignore: avoid_as
-        p2pAdvertUpdate: json['p2p_advert_update'] as int,
+        p2pAdvertUpdate: json['p2p_advert_update'] == null
+            ? null
+            : json['p2p_advert_update'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -44,8 +45,8 @@ class P2pAdvertUpdateRequest extends Request {
   /// [Optional] Activate or deactivate the advert.
   final bool isActive;
 
-  /// Must be 1
-  final int p2pAdvertUpdate;
+  /// Must be `true`
+  final bool p2pAdvertUpdate;
 
   /// Converts an instance to JSON
   @override
@@ -53,7 +54,8 @@ class P2pAdvertUpdateRequest extends Request {
         'delete': delete == null ? null : delete ? 1 : 0,
         'id': id,
         'is_active': isActive == null ? null : isActive ? 1 : 0,
-        'p2p_advert_update': p2pAdvertUpdate,
+        'p2p_advert_update':
+            p2pAdvertUpdate == null ? null : p2pAdvertUpdate ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -64,7 +66,7 @@ class P2pAdvertUpdateRequest extends Request {
     bool delete,
     String id,
     bool isActive,
-    int p2pAdvertUpdate,
+    bool p2pAdvertUpdate,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

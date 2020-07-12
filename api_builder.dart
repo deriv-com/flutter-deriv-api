@@ -163,8 +163,8 @@ class APIBuilder extends Builder {
             // Set method default value to 1
             if (schemaType == 'send' &&
                 key == methodName &&
-                (property.type?.toString() ?? 'string') == 'integer') {
-              return 'this.${ReCase(key).camelCase} = 1';
+                _getSchemaType(key, property) == 'bool') {
+              return 'this.${ReCase(key).camelCase} = true';
             }
           }
 
@@ -184,19 +184,28 @@ class APIBuilder extends Builder {
         (String key) {
           final String name = ReCase(key).camelCase;
           final JsonSchema property = schema.properties[key];
-          final String type = _getPropertyType(buildStep, property);
+          final String type = _getPropertyType(key, buildStep, property);
+          final String description = property.description
+              .replaceAll('\n', '\n/// ')
+              .replaceAll('Must be `1`', 'Must be `true`')
+              .replaceAll('Must be 1', 'Must be `true`');
 
-          return '''/// ${property.description.replaceAll('\n', '\n/// ')}
-                    final ${type ?? "unknown"} ${name ?? "unknown"};
-                  ''';
+          return '''
+            /// $description
+            final ${type ?? "unknown"} ${name ?? "unknown"};
+          ''';
         },
       ).join('\n');
 
-  String _getPropertyType(BuildStep buildStep, JsonSchema property) {
+  String _getPropertyType(
+    String key,
+    BuildStep buildStep,
+    JsonSchema property,
+  ) {
     if (property.oneOf.isNotEmpty) {
       return 'dynamic';
     } else {
-      final String schemaType = _getSchemaType(property);
+      final String schemaType = _getSchemaType(key, property);
 
       if (schemaType == 'array') {
         // Some types aren't specified - forget_all for example
@@ -209,19 +218,23 @@ class APIBuilder extends Builder {
     }
   }
 
-  String _getSchemaType(JsonSchema property) => property.typeList?.length == 2
-      ? property.typeList.first.toString() != 'null'
-          ? property.typeList.first.toString() ?? 'undefined'
-          : property.typeList.last.toString() ?? 'undefined'
-      : property.type?.toString() == null
-          ? 'undefined'
-          : _isBoolean(property) ? 'bool' : property.type?.toString();
+  String _getSchemaType(String key, JsonSchema property) =>
+      property.typeList?.length == 2
+          ? property.typeList.first.toString() != 'null'
+              ? property.typeList.first.toString() ?? 'undefined'
+              : property.typeList.last.toString() ?? 'undefined'
+          : property.type?.toString() == null
+              ? 'undefined'
+              : _isBoolean(key, property) ? 'bool' : property.type?.toString();
 
-  bool _isBoolean(JsonSchema property) =>
+  bool _isBoolean(String key, JsonSchema property) =>
+      key == 'subscribe' ||
+      property.description.contains('Must be `1`') ||
+      property.description.contains('Must be 1') ||
       property.type?.toString() == 'integer' &&
-      property?.enumValues?.length == 2 &&
-      property?.enumValues[0] == 0 &&
-      property?.enumValues[1] == 1;
+          property?.enumValues?.length == 2 &&
+          property?.enumValues[0] == 0 &&
+          property?.enumValues[1] == 1;
 
   String _getCopyWithMethod(
     BuildStep buildStep,
@@ -239,7 +252,7 @@ class APIBuilder extends Builder {
           (String key) {
             final String name = ReCase(key).camelCase;
             final JsonSchema property = schema.properties[key];
-            final String type = _getPropertyType(buildStep, property);
+            final String type = _getPropertyType(key, buildStep, property);
 
             return '$type $name';
           },
@@ -322,8 +335,7 @@ class APIBuilder extends Builder {
         final JsonSchema property = schema.properties[key];
 
         if (property.typeList?.isNotEmpty ?? false) {
-          if (key == methodName &&
-              (property.type?.toString() ?? 'string') == 'integer') {
+          if (key == methodName && _getSchemaType(key, property) == 'bool') {
             continue;
           }
         }
@@ -365,7 +377,7 @@ class APIBuilder extends Builder {
         properties.map((String key) {
           final String name = ReCase(key).camelCase;
           final JsonSchema property = schema.properties[key];
-          final String type = _getPropertyType(buildStep, property);
+          final String type = _getPropertyType(key, buildStep, property);
 
           if (type == 'bool') {
             return '''
@@ -407,7 +419,7 @@ class APIBuilder extends Builder {
         properties.map((String key) {
           final String name = ReCase(key).camelCase;
           final JsonSchema property = schema.properties[key];
-          final String type = _getPropertyType(buildStep, property);
+          final String type = _getPropertyType(key, buildStep, property);
 
           return '''
             '$key': $name${type == 'bool' ? ' == null ? null : $name ? 1 : 0' : ''},

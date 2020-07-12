@@ -12,7 +12,7 @@ class PaymentagentTransferRequest extends Request {
     @required this.currency,
     this.description,
     this.dryRun,
-    this.paymentagentTransfer = 1,
+    this.paymentagentTransfer = true,
     @required this.transferTo,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -34,8 +34,9 @@ class PaymentagentTransferRequest extends Request {
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
-        paymentagentTransfer: json['paymentagent_transfer'] as int,
+        paymentagentTransfer: json['paymentagent_transfer'] == null
+            ? null
+            : json['paymentagent_transfer'] == 1,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
         // ignore: avoid_as
@@ -54,8 +55,8 @@ class PaymentagentTransferRequest extends Request {
   /// [Optional] If set to `1`, just do validation.
   final bool dryRun;
 
-  /// Must be `1`
-  final int paymentagentTransfer;
+  /// Must be `true`
+  final bool paymentagentTransfer;
 
   /// The loginid of the recipient account.
   final String transferTo;
@@ -68,7 +69,8 @@ class PaymentagentTransferRequest extends Request {
         'description': description,
         'dry_run': dryRun == null ? null : dryRun ? 1 : 0,
         'passthrough': passthrough,
-        'paymentagent_transfer': paymentagentTransfer,
+        'paymentagent_transfer':
+            paymentagentTransfer == null ? null : paymentagentTransfer ? 1 : 0,
         'req_id': reqId,
         'transfer_to': transferTo,
       };
@@ -80,7 +82,7 @@ class PaymentagentTransferRequest extends Request {
     String currency,
     String description,
     bool dryRun,
-    int paymentagentTransfer,
+    bool paymentagentTransfer,
     String transferTo,
     Map<String, dynamic> passthrough,
     int reqId,

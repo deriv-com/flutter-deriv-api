@@ -9,7 +9,7 @@ class P2pAdvertInfoRequest extends Request {
   /// Initialize P2pAdvertInfoRequest
   const P2pAdvertInfoRequest({
     @required this.id,
-    this.p2pAdvertInfo = 1,
+    this.p2pAdvertInfo = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -23,8 +23,9 @@ class P2pAdvertInfoRequest extends Request {
       P2pAdvertInfoRequest(
         // ignore: avoid_as
         id: json['id'] as String,
-        // ignore: avoid_as
-        p2pAdvertInfo: json['p2p_advert_info'] as int,
+        p2pAdvertInfo: json['p2p_advert_info'] == null
+            ? null
+            : json['p2p_advert_info'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -34,14 +35,14 @@ class P2pAdvertInfoRequest extends Request {
   /// The unique identifier for this advert.
   final String id;
 
-  /// Must be 1
-  final int p2pAdvertInfo;
+  /// Must be `true`
+  final bool p2pAdvertInfo;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
-        'p2p_advert_info': p2pAdvertInfo,
+        'p2p_advert_info': p2pAdvertInfo == null ? null : p2pAdvertInfo ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -50,7 +51,7 @@ class P2pAdvertInfoRequest extends Request {
   @override
   P2pAdvertInfoRequest copyWith({
     String id,
-    int p2pAdvertInfo,
+    bool p2pAdvertInfo,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

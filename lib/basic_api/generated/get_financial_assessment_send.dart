@@ -6,7 +6,7 @@ import '../request.dart';
 class GetFinancialAssessmentRequest extends Request {
   /// Initialize GetFinancialAssessmentRequest
   const GetFinancialAssessmentRequest({
-    this.getFinancialAssessment = 1,
+    this.getFinancialAssessment = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -18,21 +18,24 @@ class GetFinancialAssessmentRequest extends Request {
   /// Creates an instance from JSON
   factory GetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       GetFinancialAssessmentRequest(
-        // ignore: avoid_as
-        getFinancialAssessment: json['get_financial_assessment'] as int,
+        getFinancialAssessment: json['get_financial_assessment'] == null
+            ? null
+            : json['get_financial_assessment'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 
-  /// Must be `1`
-  final int getFinancialAssessment;
+  /// Must be `true`
+  final bool getFinancialAssessment;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'get_financial_assessment': getFinancialAssessment,
+        'get_financial_assessment': getFinancialAssessment == null
+            ? null
+            : getFinancialAssessment ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -40,7 +43,7 @@ class GetFinancialAssessmentRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   GetFinancialAssessmentRequest copyWith({
-    int getFinancialAssessment,
+    bool getFinancialAssessment,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

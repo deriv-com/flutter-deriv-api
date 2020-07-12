@@ -22,7 +22,7 @@ class ProposalRequest extends Request {
     @required this.limitOrder,
     this.multiplier,
     this.productType,
-    this.proposal = 1,
+    this.proposal = true,
     this.selectedTick,
     this.subscribe,
     @required this.symbol,
@@ -68,14 +68,12 @@ class ProposalRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         productType: json['product_type'] as String,
-        // ignore: avoid_as
-        proposal: json['proposal'] as int,
+        proposal: json['proposal'] == null ? null : json['proposal'] == 1,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
         // ignore: avoid_as
         selectedTick: json['selected_tick'] as int,
-        // ignore: avoid_as
-        subscribe: json['subscribe'] as int,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         // ignore: avoid_as
         symbol: json['symbol'] as String,
         // ignore: avoid_as
@@ -124,14 +122,14 @@ class ProposalRequest extends Request {
   /// [Optional] The product type.
   final String productType;
 
-  /// Must be `1`
-  final int proposal;
+  /// Must be `true`
+  final bool proposal;
 
   /// [Optional] The tick that is predicted to have the highest/lowest value - for `TICKHIGH` and `TICKLOW` contracts.
   final int selectedTick;
 
   /// [Optional] 1 - to initiate a realtime stream of prices. Note that tick trades (without a user-defined barrier), digit trades and less than 24 hours at-the-money contracts for the following underlying symbols are not streamed: `R_10`, `R_25`, `R_50`, `R_75`, `R_100`, `RDBULL`, `RDBEAR` (this is because their price is constant).
-  final int subscribe;
+  final bool subscribe;
 
   /// The short symbol name (obtained from `active_symbols` call).
   final String symbol;
@@ -157,10 +155,10 @@ class ProposalRequest extends Request {
         'multiplier': multiplier,
         'passthrough': passthrough,
         'product_type': productType,
-        'proposal': proposal,
+        'proposal': proposal == null ? null : proposal ? 1 : 0,
         'req_id': reqId,
         'selected_tick': selectedTick,
-        'subscribe': subscribe,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
         'symbol': symbol,
         'trading_period_start': tradingPeriodStart,
       };
@@ -182,9 +180,9 @@ class ProposalRequest extends Request {
     Map<String, dynamic> limitOrder,
     num multiplier,
     String productType,
-    int proposal,
+    bool proposal,
     int selectedTick,
-    int subscribe,
+    bool subscribe,
     String symbol,
     int tradingPeriodStart,
     Map<String, dynamic> passthrough,

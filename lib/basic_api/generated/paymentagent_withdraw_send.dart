@@ -13,7 +13,7 @@ class PaymentagentWithdrawRequest extends Request {
     this.description,
     this.dryRun,
     @required this.paymentagentLoginid,
-    this.paymentagentWithdraw = 1,
+    this.paymentagentWithdraw = true,
     @required this.verificationCode,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -37,8 +37,9 @@ class PaymentagentWithdrawRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         paymentagentLoginid: json['paymentagent_loginid'] as String,
-        // ignore: avoid_as
-        paymentagentWithdraw: json['paymentagent_withdraw'] as int,
+        paymentagentWithdraw: json['paymentagent_withdraw'] == null
+            ? null
+            : json['paymentagent_withdraw'] == 1,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
         // ignore: avoid_as
@@ -60,8 +61,8 @@ class PaymentagentWithdrawRequest extends Request {
   /// The payment agent loginid received from the `paymentagent_list` call.
   final String paymentagentLoginid;
 
-  /// Must be `1`
-  final int paymentagentWithdraw;
+  /// Must be `true`
+  final bool paymentagentWithdraw;
 
   /// Email verification code (received from a `verify_email` call, which must be done first)
   final String verificationCode;
@@ -75,7 +76,8 @@ class PaymentagentWithdrawRequest extends Request {
         'dry_run': dryRun == null ? null : dryRun ? 1 : 0,
         'passthrough': passthrough,
         'paymentagent_loginid': paymentagentLoginid,
-        'paymentagent_withdraw': paymentagentWithdraw,
+        'paymentagent_withdraw':
+            paymentagentWithdraw == null ? null : paymentagentWithdraw ? 1 : 0,
         'req_id': reqId,
         'verification_code': verificationCode,
       };
@@ -88,7 +90,7 @@ class PaymentagentWithdrawRequest extends Request {
     String description,
     bool dryRun,
     String paymentagentLoginid,
-    int paymentagentWithdraw,
+    bool paymentagentWithdraw,
     String verificationCode,
     Map<String, dynamic> passthrough,
     int reqId,

@@ -1,14 +1,12 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/tnc_approval_send.json
 
-import 'package:meta/meta.dart';
-
 import '../request.dart';
 
 /// TncApprovalRequest class
 class TncApprovalRequest extends Request {
   /// Initialize TncApprovalRequest
   const TncApprovalRequest({
-    @required this.tncApproval,
+    this.tncApproval = true,
     this.ukgcFundsProtection,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -25,14 +23,14 @@ class TncApprovalRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
-        tncApproval: json['tnc_approval'] as num,
+        tncApproval:
+            json['tnc_approval'] == null ? null : json['tnc_approval'] == 1,
         // ignore: avoid_as
         ukgcFundsProtection: json['ukgc_funds_protection'] as int,
       );
 
-  /// Must be `1`
-  final num tncApproval;
+  /// Must be `true`
+  final bool tncApproval;
 
   /// [Optional] For `ASK_UK_FUNDS_PROTECTION` in `cashier`.
   final int ukgcFundsProtection;
@@ -42,14 +40,14 @@ class TncApprovalRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'passthrough': passthrough,
         'req_id': reqId,
-        'tnc_approval': tncApproval,
+        'tnc_approval': tncApproval == null ? null : tncApproval ? 1 : 0,
         'ukgc_funds_protection': ukgcFundsProtection,
       };
 
   /// Creates a copy of instance with given parameters
   @override
   TncApprovalRequest copyWith({
-    num tncApproval,
+    bool tncApproval,
     int ukgcFundsProtection,
     Map<String, dynamic> passthrough,
     int reqId,

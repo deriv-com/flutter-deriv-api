@@ -26,7 +26,7 @@ class SetSettingsRequest extends Request {
     this.salutation,
     this.secretAnswer,
     this.secretQuestion,
-    this.setSettings = 1,
+    this.setSettings = true,
     this.taxIdentificationNumber,
     this.taxResidence,
     Map<String, dynamic> passthrough,
@@ -84,8 +84,8 @@ class SetSettingsRequest extends Request {
         secretAnswer: json['secret_answer'] as String,
         // ignore: avoid_as
         secretQuestion: json['secret_question'] as String,
-        // ignore: avoid_as
-        setSettings: json['set_settings'] as int,
+        setSettings:
+            json['set_settings'] == null ? null : json['set_settings'] == 1,
         // ignore: avoid_as
         taxIdentificationNumber: json['tax_identification_number'] as String,
         // ignore: avoid_as
@@ -152,8 +152,8 @@ class SetSettingsRequest extends Request {
   /// [Optional] Accept any value in enum list. Required for new account and existing client details will be used if client opens another account.
   final String secretQuestion;
 
-  /// Must be `1`
-  final int setSettings;
+  /// Must be `true`
+  final bool setSettings;
 
   /// [Optional] Tax identification number. Only applicable for real money account. Required for maltainvest landing company.
   final String taxIdentificationNumber;
@@ -186,7 +186,7 @@ class SetSettingsRequest extends Request {
         'salutation': salutation,
         'secret_answer': secretAnswer,
         'secret_question': secretQuestion,
-        'set_settings': setSettings,
+        'set_settings': setSettings == null ? null : setSettings ? 1 : 0,
         'tax_identification_number': taxIdentificationNumber,
         'tax_residence': taxResidence,
       };
@@ -214,7 +214,7 @@ class SetSettingsRequest extends Request {
     String salutation,
     String secretAnswer,
     String secretQuestion,
-    int setSettings,
+    bool setSettings,
     String taxIdentificationNumber,
     String taxResidence,
     Map<String, dynamic> passthrough,

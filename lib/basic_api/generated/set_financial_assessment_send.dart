@@ -24,7 +24,7 @@ class SetFinancialAssessmentRequest extends Request {
     @required this.occupation,
     this.otherInstrumentsTradingExperience,
     this.otherInstrumentsTradingFrequency,
-    this.setFinancialAssessment = 1,
+    this.setFinancialAssessment = true,
     this.sourceOfWealth,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -77,8 +77,9 @@ class SetFinancialAssessmentRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
-        setFinancialAssessment: json['set_financial_assessment'] as int,
+        setFinancialAssessment: json['set_financial_assessment'] == null
+            ? null
+            : json['set_financial_assessment'] == 1,
         // ignore: avoid_as
         sourceOfWealth: json['source_of_wealth'] as String,
       );
@@ -131,8 +132,8 @@ class SetFinancialAssessmentRequest extends Request {
   /// [Optional] Trading frequency in other financial instruments.
   final String otherInstrumentsTradingFrequency;
 
-  /// Must be `1`
-  final int setFinancialAssessment;
+  /// Must be `true`
+  final bool setFinancialAssessment;
 
   /// [Optional] Source of wealth.
   final String sourceOfWealth;
@@ -159,7 +160,9 @@ class SetFinancialAssessmentRequest extends Request {
         'other_instruments_trading_frequency': otherInstrumentsTradingFrequency,
         'passthrough': passthrough,
         'req_id': reqId,
-        'set_financial_assessment': setFinancialAssessment,
+        'set_financial_assessment': setFinancialAssessment == null
+            ? null
+            : setFinancialAssessment ? 1 : 0,
         'source_of_wealth': sourceOfWealth,
       };
 
@@ -182,7 +185,7 @@ class SetFinancialAssessmentRequest extends Request {
     String occupation,
     String otherInstrumentsTradingExperience,
     String otherInstrumentsTradingFrequency,
-    int setFinancialAssessment,
+    bool setFinancialAssessment,
     String sourceOfWealth,
     Map<String, dynamic> passthrough,
     int reqId,

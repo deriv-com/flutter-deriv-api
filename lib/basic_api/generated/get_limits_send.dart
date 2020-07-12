@@ -6,7 +6,7 @@ import '../request.dart';
 class GetLimitsRequest extends Request {
   /// Initialize GetLimitsRequest
   const GetLimitsRequest({
-    this.getLimits = 1,
+    this.getLimits = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -18,21 +18,20 @@ class GetLimitsRequest extends Request {
   /// Creates an instance from JSON
   factory GetLimitsRequest.fromJson(Map<String, dynamic> json) =>
       GetLimitsRequest(
-        // ignore: avoid_as
-        getLimits: json['get_limits'] as int,
+        getLimits: json['get_limits'] == null ? null : json['get_limits'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 
-  /// Must be `1`
-  final int getLimits;
+  /// Must be `true`
+  final bool getLimits;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'get_limits': getLimits,
+        'get_limits': getLimits == null ? null : getLimits ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -40,7 +39,7 @@ class GetLimitsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   GetLimitsRequest copyWith({
-    int getLimits,
+    bool getLimits,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

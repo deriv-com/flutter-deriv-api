@@ -9,7 +9,7 @@ class P2pOrderConfirmRequest extends Request {
   /// Initialize P2pOrderConfirmRequest
   const P2pOrderConfirmRequest({
     @required this.id,
-    this.p2pOrderConfirm = 1,
+    this.p2pOrderConfirm = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -23,8 +23,9 @@ class P2pOrderConfirmRequest extends Request {
       P2pOrderConfirmRequest(
         // ignore: avoid_as
         id: json['id'] as String,
-        // ignore: avoid_as
-        p2pOrderConfirm: json['p2p_order_confirm'] as int,
+        p2pOrderConfirm: json['p2p_order_confirm'] == null
+            ? null
+            : json['p2p_order_confirm'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -34,14 +35,15 @@ class P2pOrderConfirmRequest extends Request {
   /// The unique identifier for this order.
   final String id;
 
-  /// Must be 1
-  final int p2pOrderConfirm;
+  /// Must be `true`
+  final bool p2pOrderConfirm;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
-        'p2p_order_confirm': p2pOrderConfirm,
+        'p2p_order_confirm':
+            p2pOrderConfirm == null ? null : p2pOrderConfirm ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -50,7 +52,7 @@ class P2pOrderConfirmRequest extends Request {
   @override
   P2pOrderConfirmRequest copyWith({
     String id,
-    int p2pOrderConfirm,
+    bool p2pOrderConfirm,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

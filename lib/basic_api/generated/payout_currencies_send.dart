@@ -6,7 +6,7 @@ import '../request.dart';
 class PayoutCurrenciesRequest extends Request {
   /// Initialize PayoutCurrenciesRequest
   const PayoutCurrenciesRequest({
-    this.payoutCurrencies = 1,
+    this.payoutCurrencies = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -20,27 +20,29 @@ class PayoutCurrenciesRequest extends Request {
       PayoutCurrenciesRequest(
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
-        payoutCurrencies: json['payout_currencies'] as int,
+        payoutCurrencies: json['payout_currencies'] == null
+            ? null
+            : json['payout_currencies'] == 1,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 
-  /// Must be `1`
-  final int payoutCurrencies;
+  /// Must be `true`
+  final bool payoutCurrencies;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'passthrough': passthrough,
-        'payout_currencies': payoutCurrencies,
+        'payout_currencies':
+            payoutCurrencies == null ? null : payoutCurrencies ? 1 : 0,
         'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters
   @override
   PayoutCurrenciesRequest copyWith({
-    int payoutCurrencies,
+    bool payoutCurrencies,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

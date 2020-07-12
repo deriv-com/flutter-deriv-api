@@ -22,7 +22,7 @@ class NewAccountRealRequest extends Request {
     @required this.dateOfBirth,
     @required this.firstName,
     @required this.lastName,
-    this.newAccountReal = 1,
+    this.newAccountReal = true,
     this.nonPepDeclaration,
     this.phone,
     this.placeOfBirth,
@@ -71,8 +71,9 @@ class NewAccountRealRequest extends Request {
         firstName: json['first_name'] as String,
         // ignore: avoid_as
         lastName: json['last_name'] as String,
-        // ignore: avoid_as
-        newAccountReal: json['new_account_real'] as int,
+        newAccountReal: json['new_account_real'] == null
+            ? null
+            : json['new_account_real'] == 1,
         // ignore: avoid_as
         nonPepDeclaration: json['non_pep_declaration'] as int,
         // ignore: avoid_as
@@ -139,8 +140,8 @@ class NewAccountRealRequest extends Request {
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   final String lastName;
 
-  /// Must be `1`
-  final int newAccountReal;
+  /// Must be `true`
+  final bool newAccountReal;
 
   /// [Optional] Indicates client's self-declaration of not being a PEP/RCA (Politically Exposed Person/Relatives and Close Associates).
   final int nonPepDeclaration;
@@ -186,7 +187,8 @@ class NewAccountRealRequest extends Request {
         'date_of_birth': dateOfBirth,
         'first_name': firstName,
         'last_name': lastName,
-        'new_account_real': newAccountReal,
+        'new_account_real':
+            newAccountReal == null ? null : newAccountReal ? 1 : 0,
         'non_pep_declaration': nonPepDeclaration,
         'passthrough': passthrough,
         'phone': phone,
@@ -217,7 +219,7 @@ class NewAccountRealRequest extends Request {
     String dateOfBirth,
     String firstName,
     String lastName,
-    int newAccountReal,
+    bool newAccountReal,
     int nonPepDeclaration,
     String phone,
     String placeOfBirth,

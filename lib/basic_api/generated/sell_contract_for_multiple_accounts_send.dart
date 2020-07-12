@@ -9,7 +9,7 @@ class SellContractForMultipleAccountsRequest extends Request {
   /// Initialize SellContractForMultipleAccountsRequest
   const SellContractForMultipleAccountsRequest({
     @required this.price,
-    this.sellContractForMultipleAccounts = 1,
+    this.sellContractForMultipleAccounts = true,
     @required this.shortcode,
     @required this.tokens,
     Map<String, dynamic> passthrough,
@@ -30,9 +30,10 @@ class SellContractForMultipleAccountsRequest extends Request {
         price: json['price'] as num,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         sellContractForMultipleAccounts:
-            json['sell_contract_for_multiple_accounts'] as int,
+            json['sell_contract_for_multiple_accounts'] == null
+                ? null
+                : json['sell_contract_for_multiple_accounts'] == 1,
         // ignore: avoid_as
         shortcode: json['shortcode'] as String,
         // ignore: avoid_as, always_specify_types
@@ -45,8 +46,8 @@ class SellContractForMultipleAccountsRequest extends Request {
   /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
   final num price;
 
-  /// Must be `1`
-  final int sellContractForMultipleAccounts;
+  /// Must be `true`
+  final bool sellContractForMultipleAccounts;
 
   /// An internal ID used to identify the contract which was originally bought. This is returned from the `buy` and `buy_contract_for_multiple_accounts` calls.
   final String shortcode;
@@ -60,7 +61,10 @@ class SellContractForMultipleAccountsRequest extends Request {
         'passthrough': passthrough,
         'price': price,
         'req_id': reqId,
-        'sell_contract_for_multiple_accounts': sellContractForMultipleAccounts,
+        'sell_contract_for_multiple_accounts':
+            sellContractForMultipleAccounts == null
+                ? null
+                : sellContractForMultipleAccounts ? 1 : 0,
         'shortcode': shortcode,
         'tokens': tokens,
       };
@@ -69,7 +73,7 @@ class SellContractForMultipleAccountsRequest extends Request {
   @override
   SellContractForMultipleAccountsRequest copyWith({
     num price,
-    int sellContractForMultipleAccounts,
+    bool sellContractForMultipleAccounts,
     String shortcode,
     List<String> tokens,
     Map<String, dynamic> passthrough,

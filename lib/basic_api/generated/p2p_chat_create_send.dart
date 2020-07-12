@@ -9,7 +9,7 @@ class P2pChatCreateRequest extends Request {
   /// Initialize P2pChatCreateRequest
   const P2pChatCreateRequest({
     @required this.orderId,
-    this.p2pChatCreate = 1,
+    this.p2pChatCreate = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -23,8 +23,9 @@ class P2pChatCreateRequest extends Request {
       P2pChatCreateRequest(
         // ignore: avoid_as
         orderId: json['order_id'] as String,
-        // ignore: avoid_as
-        p2pChatCreate: json['p2p_chat_create'] as int,
+        p2pChatCreate: json['p2p_chat_create'] == null
+            ? null
+            : json['p2p_chat_create'] == 1,
         // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
@@ -34,14 +35,14 @@ class P2pChatCreateRequest extends Request {
   /// The unique identifier for the order to create the chat for.
   final String orderId;
 
-  /// Must be 1
-  final int p2pChatCreate;
+  /// Must be `true`
+  final bool p2pChatCreate;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'order_id': orderId,
-        'p2p_chat_create': p2pChatCreate,
+        'p2p_chat_create': p2pChatCreate == null ? null : p2pChatCreate ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -50,7 +51,7 @@ class P2pChatCreateRequest extends Request {
   @override
   P2pChatCreateRequest copyWith({
     String orderId,
-    int p2pChatCreate,
+    bool p2pChatCreate,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

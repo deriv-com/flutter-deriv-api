@@ -1,5 +1,7 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_send.json
 
+import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// TransferBetweenAccountsRequest class
@@ -11,7 +13,7 @@ class TransferBetweenAccountsRequest extends Request {
     this.accounts,
     this.amount,
     this.currency,
-    this.transferBetweenAccounts = 1,
+    @required this.transferBetweenAccounts,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(

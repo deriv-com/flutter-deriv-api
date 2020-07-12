@@ -6,7 +6,7 @@ import '../request.dart';
 class TopupVirtualRequest extends Request {
   /// Initialize TopupVirtualRequest
   const TopupVirtualRequest({
-    this.topupVirtual = 1,
+    this.topupVirtual = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -22,25 +22,25 @@ class TopupVirtualRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>,
         // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
-        topupVirtual: json['topup_virtual'] as int,
+        topupVirtual:
+            json['topup_virtual'] == null ? null : json['topup_virtual'] == 1,
       );
 
-  /// Must be `1`
-  final int topupVirtual;
+  /// Must be `true`
+  final bool topupVirtual;
 
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'passthrough': passthrough,
         'req_id': reqId,
-        'topup_virtual': topupVirtual,
+        'topup_virtual': topupVirtual == null ? null : topupVirtual ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters
   @override
   TopupVirtualRequest copyWith({
-    int topupVirtual,
+    bool topupVirtual,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
