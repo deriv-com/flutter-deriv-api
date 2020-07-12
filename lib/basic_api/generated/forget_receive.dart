@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_receive.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../response.dart';
 
@@ -20,12 +21,9 @@ class ForgetResponse extends Response {
 
   /// Creates an instance from JSON
   factory ForgetResponse.fromJson(Map<String, dynamic> json) => ForgetResponse(
-        // ignore: avoid_as
         echoReq: json['echo_req'] as Map<String, dynamic>,
         forget: json['forget'] == null ? null : json['forget'] == 1,
-        // ignore: avoid_as
         msgType: json['msg_type'] as String,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

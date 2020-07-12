@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_statistics_receive.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../response.dart';
 
@@ -21,14 +22,10 @@ class CopytradingStatisticsResponse extends Response {
   /// Creates an instance from JSON
   factory CopytradingStatisticsResponse.fromJson(Map<String, dynamic> json) =>
       CopytradingStatisticsResponse(
-        // ignore: avoid_as
         copytradingStatistics:
             json['copytrading_statistics'] as Map<String, dynamic>,
-        // ignore: avoid_as
         echoReq: json['echo_req'] as Map<String, dynamic>,
-        // ignore: avoid_as
         msgType: json['msg_type'] as String,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

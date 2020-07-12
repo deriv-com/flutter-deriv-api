@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/topup_virtual_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -18,9 +19,7 @@ class TopupVirtualRequest extends Request {
   /// Creates an instance from JSON
   factory TopupVirtualRequest.fromJson(Map<String, dynamic> json) =>
       TopupVirtualRequest(
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
         topupVirtual:
             json['topup_virtual'] == null ? null : json['topup_virtual'] == 1,

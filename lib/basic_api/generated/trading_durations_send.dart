@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_durations_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -19,11 +20,8 @@ class TradingDurationsRequest extends Request {
   /// Creates an instance from JSON
   factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>
       TradingDurationsRequest(
-        // ignore: avoid_as
         landingCompany: json['landing_company'] as String,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
         tradingDurations: json['trading_durations'] == null
             ? null

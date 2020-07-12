@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/balance_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -19,12 +20,9 @@ class BalanceRequest extends Request {
 
   /// Creates an instance from JSON
   factory BalanceRequest.fromJson(Map<String, dynamic> json) => BalanceRequest(
-        // ignore: avoid_as
         account: json['account'] as String,
         balance: json['balance'] == null ? null : json['balance'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
       );

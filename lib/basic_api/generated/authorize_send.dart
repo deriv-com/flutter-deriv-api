@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/authorize_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -21,13 +22,9 @@ class AuthorizeRequest extends Request {
   /// Creates an instance from JSON
   factory AuthorizeRequest.fromJson(Map<String, dynamic> json) =>
       AuthorizeRequest(
-        // ignore: avoid_as
         addToLoginHistory: json['add_to_login_history'] as int,
-        // ignore: avoid_as
         authorize: json['authorize'] as String,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

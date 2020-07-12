@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/profit_table_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -24,23 +25,16 @@ class ProfitTableRequest extends Request {
   /// Creates an instance from JSON
   factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>
       ProfitTableRequest(
-        // ignore: avoid_as
         dateFrom: json['date_from'] as String,
-        // ignore: avoid_as
         dateTo: json['date_to'] as String,
         description:
             json['description'] == null ? null : json['description'] == 1,
-        // ignore: avoid_as
         limit: json['limit'] as num,
-        // ignore: avoid_as
         offset: json['offset'] as num,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         profitTable:
             json['profit_table'] == null ? null : json['profit_table'] == 1,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         sort: json['sort'] as String,
       );
 

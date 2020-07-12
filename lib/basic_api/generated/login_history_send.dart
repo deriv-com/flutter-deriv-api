@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/login_history_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -19,13 +20,10 @@ class LoginHistoryRequest extends Request {
   /// Creates an instance from JSON
   factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>
       LoginHistoryRequest(
-        // ignore: avoid_as
         limit: json['limit'] as int,
         loginHistory:
             json['login_history'] == null ? null : json['login_history'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

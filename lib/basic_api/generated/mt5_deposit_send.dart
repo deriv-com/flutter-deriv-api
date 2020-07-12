@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -23,17 +24,12 @@ class Mt5DepositRequest extends Request {
   /// Creates an instance from JSON
   factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>
       Mt5DepositRequest(
-        // ignore: avoid_as
         amount: json['amount'] as num,
-        // ignore: avoid_as
         fromBinary: json['from_binary'] as String,
         mt5Deposit:
             json['mt5_deposit'] == null ? null : json['mt5_deposit'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         toMt5: json['to_mt5'] as String,
       );
 

@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_receive.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../response.dart';
 
@@ -23,17 +24,11 @@ class PaymentagentWithdrawResponse extends Response {
   /// Creates an instance from JSON
   factory PaymentagentWithdrawResponse.fromJson(Map<String, dynamic> json) =>
       PaymentagentWithdrawResponse(
-        // ignore: avoid_as
         echoReq: json['echo_req'] as Map<String, dynamic>,
-        // ignore: avoid_as
         msgType: json['msg_type'] as String,
-        // ignore: avoid_as
         paymentagentName: json['paymentagent_name'] as String,
-        // ignore: avoid_as
         paymentagentWithdraw: json['paymentagent_withdraw'] as int,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         transactionId: json['transaction_id'] as int,
       );
 

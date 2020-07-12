@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_receive.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../response.dart';
 
@@ -21,16 +22,11 @@ class ActiveSymbolsResponse extends Response {
   /// Creates an instance from JSON
   factory ActiveSymbolsResponse.fromJson(Map<String, dynamic> json) =>
       ActiveSymbolsResponse(
-        // ignore: avoid_as, always_specify_types
         activeSymbols: (json['active_symbols'] as List)
-            // ignore: avoid_as
             ?.map((dynamic item) => item as Map<String, dynamic>)
             ?.toList(),
-        // ignore: avoid_as
         echoReq: json['echo_req'] as Map<String, dynamic>,
-        // ignore: avoid_as
         msgType: json['msg_type'] as String,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

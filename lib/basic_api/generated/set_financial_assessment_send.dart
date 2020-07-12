@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_financial_assessment_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -37,50 +38,31 @@ class SetFinancialAssessmentRequest extends Request {
   /// Creates an instance from JSON
   factory SetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       SetFinancialAssessmentRequest(
-        // ignore: avoid_as
         accountTurnover: json['account_turnover'] as String,
-        // ignore: avoid_as
         binaryOptionsTradingExperience:
             json['binary_options_trading_experience'] as String,
-        // ignore: avoid_as
         binaryOptionsTradingFrequency:
             json['binary_options_trading_frequency'] as String,
-        // ignore: avoid_as
         cfdTradingExperience: json['cfd_trading_experience'] as String,
-        // ignore: avoid_as
         cfdTradingFrequency: json['cfd_trading_frequency'] as String,
-        // ignore: avoid_as
         educationLevel: json['education_level'] as String,
-        // ignore: avoid_as
         employmentIndustry: json['employment_industry'] as String,
-        // ignore: avoid_as
         employmentStatus: json['employment_status'] as String,
-        // ignore: avoid_as
         estimatedWorth: json['estimated_worth'] as String,
-        // ignore: avoid_as
         forexTradingExperience: json['forex_trading_experience'] as String,
-        // ignore: avoid_as
         forexTradingFrequency: json['forex_trading_frequency'] as String,
-        // ignore: avoid_as
         incomeSource: json['income_source'] as String,
-        // ignore: avoid_as
         netIncome: json['net_income'] as String,
-        // ignore: avoid_as
         occupation: json['occupation'] as String,
-        // ignore: avoid_as
         otherInstrumentsTradingExperience:
             json['other_instruments_trading_experience'] as String,
-        // ignore: avoid_as
         otherInstrumentsTradingFrequency:
             json['other_instruments_trading_frequency'] as String,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
         setFinancialAssessment: json['set_financial_assessment'] == null
             ? null
             : json['set_financial_assessment'] == 1,
-        // ignore: avoid_as
         sourceOfWealth: json['source_of_wealth'] as String,
       );
 

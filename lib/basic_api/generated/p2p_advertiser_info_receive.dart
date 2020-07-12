@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_info_receive.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../response.dart';
 
@@ -22,15 +23,10 @@ class P2pAdvertiserInfoResponse extends Response {
   /// Creates an instance from JSON
   factory P2pAdvertiserInfoResponse.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserInfoResponse(
-        // ignore: avoid_as
         echoReq: json['echo_req'] as Map<String, dynamic>,
-        // ignore: avoid_as
         msgType: json['msg_type'] as String,
-        // ignore: avoid_as
         p2pAdvertiserInfo: json['p2p_advertiser_info'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         subscription: json['subscription'] as Map<String, dynamic>,
       );
 

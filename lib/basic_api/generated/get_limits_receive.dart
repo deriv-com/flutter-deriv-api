@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_receive.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../response.dart';
 
@@ -21,13 +22,9 @@ class GetLimitsResponse extends Response {
   /// Creates an instance from JSON
   factory GetLimitsResponse.fromJson(Map<String, dynamic> json) =>
       GetLimitsResponse(
-        // ignore: avoid_as
         echoReq: json['echo_req'] as Map<String, dynamic>,
-        // ignore: avoid_as
         getLimits: json['get_limits'] as Map<String, dynamic>,
-        // ignore: avoid_as
         msgType: json['msg_type'] as String,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

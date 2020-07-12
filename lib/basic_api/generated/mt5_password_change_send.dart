@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_change_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -24,20 +25,14 @@ class Mt5PasswordChangeRequest extends Request {
   /// Creates an instance from JSON
   factory Mt5PasswordChangeRequest.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordChangeRequest(
-        // ignore: avoid_as
         login: json['login'] as String,
         mt5PasswordChange: json['mt5_password_change'] == null
             ? null
             : json['mt5_password_change'] == 1,
-        // ignore: avoid_as
         newPassword: json['new_password'] as String,
-        // ignore: avoid_as
         oldPassword: json['old_password'] as String,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         passwordType: json['password_type'] as String,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

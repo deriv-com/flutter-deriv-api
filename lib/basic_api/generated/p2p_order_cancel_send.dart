@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_cancel_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -21,14 +22,11 @@ class P2pOrderCancelRequest extends Request {
   /// Creates an instance from JSON
   factory P2pOrderCancelRequest.fromJson(Map<String, dynamic> json) =>
       P2pOrderCancelRequest(
-        // ignore: avoid_as
         id: json['id'] as String,
         p2pOrderCancel: json['p2p_order_cancel'] == null
             ? null
             : json['p2p_order_cancel'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

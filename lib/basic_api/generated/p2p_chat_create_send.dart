@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_chat_create_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -21,14 +22,11 @@ class P2pChatCreateRequest extends Request {
   /// Creates an instance from JSON
   factory P2pChatCreateRequest.fromJson(Map<String, dynamic> json) =>
       P2pChatCreateRequest(
-        // ignore: avoid_as
         orderId: json['order_id'] as String,
         p2pChatCreate: json['p2p_chat_create'] == null
             ? null
             : json['p2p_chat_create'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

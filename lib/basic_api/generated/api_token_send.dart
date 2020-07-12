@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/api_token_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -23,18 +24,12 @@ class ApiTokenRequest extends Request {
   factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>
       ApiTokenRequest(
         apiToken: json['api_token'] == null ? null : json['api_token'] == 1,
-        // ignore: avoid_as
         deleteToken: json['delete_token'] as String,
-        // ignore: avoid_as
         newToken: json['new_token'] as String,
-        // ignore: avoid_as, always_specify_types
         newTokenScopes: (json['new_token_scopes'] as List)
-            // ignore: avoid_as
             ?.map((dynamic item) => item as String)
             ?.toList(),
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
         validForCurrentIpOnly: json['valid_for_current_ip_only'] == null
             ? null

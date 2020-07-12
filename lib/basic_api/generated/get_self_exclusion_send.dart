@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_self_exclusion_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -21,9 +22,7 @@ class GetSelfExclusionRequest extends Request {
         getSelfExclusion: json['get_self_exclusion'] == null
             ? null
             : json['get_self_exclusion'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

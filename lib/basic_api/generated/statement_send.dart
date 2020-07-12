@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/statement_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -24,21 +25,14 @@ class StatementRequest extends Request {
   /// Creates an instance from JSON
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>
       StatementRequest(
-        // ignore: avoid_as
         actionType: json['action_type'] as String,
-        // ignore: avoid_as
         dateFrom: json['date_from'] as int,
-        // ignore: avoid_as
         dateTo: json['date_to'] as int,
         description:
             json['description'] == null ? null : json['description'] == 1,
-        // ignore: avoid_as
         limit: json['limit'] as num,
-        // ignore: avoid_as
         offset: json['offset'] as num,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
         statement: json['statement'] == null ? null : json['statement'] == 1,
       );

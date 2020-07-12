@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -26,23 +27,16 @@ class PaymentagentWithdrawRequest extends Request {
   /// Creates an instance from JSON
   factory PaymentagentWithdrawRequest.fromJson(Map<String, dynamic> json) =>
       PaymentagentWithdrawRequest(
-        // ignore: avoid_as
         amount: json['amount'] as num,
-        // ignore: avoid_as
         currency: json['currency'] as String,
-        // ignore: avoid_as
         description: json['description'] as String,
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         paymentagentLoginid: json['paymentagent_loginid'] as String,
         paymentagentWithdraw: json['paymentagent_withdraw'] == null
             ? null
             : json['paymentagent_withdraw'] == 1,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         verificationCode: json['verification_code'] as String,
       );
 

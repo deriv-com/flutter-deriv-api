@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_get_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -19,11 +20,8 @@ class AppGetRequest extends Request {
 
   /// Creates an instance from JSON
   factory AppGetRequest.fromJson(Map<String, dynamic> json) => AppGetRequest(
-        // ignore: avoid_as
         appGet: json['app_get'] as int,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

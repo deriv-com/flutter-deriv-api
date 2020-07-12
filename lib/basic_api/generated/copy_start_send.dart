@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_start_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -24,19 +25,12 @@ class CopyStartRequest extends Request {
   /// Creates an instance from JSON
   factory CopyStartRequest.fromJson(Map<String, dynamic> json) =>
       CopyStartRequest(
-        // ignore: avoid_as
         assets: json['assets'] as dynamic,
-        // ignore: avoid_as
         copyStart: json['copy_start'] as String,
-        // ignore: avoid_as
         maxTradeStake: json['max_trade_stake'] as num,
-        // ignore: avoid_as
         minTradeStake: json['min_trade_stake'] as num,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         tradeTypes: json['trade_types'] as dynamic,
       );
 

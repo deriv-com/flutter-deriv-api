@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_history_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -27,24 +28,15 @@ class TicksHistoryRequest extends Request {
   /// Creates an instance from JSON
   factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>
       TicksHistoryRequest(
-        // ignore: avoid_as
         adjustStartTime: json['adjust_start_time'] as int,
-        // ignore: avoid_as
         count: json['count'] as int,
-        // ignore: avoid_as
         end: json['end'] as String,
-        // ignore: avoid_as
         granularity: json['granularity'] as int,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         start: json['start'] as int,
-        // ignore: avoid_as
         style: json['style'] as String,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        // ignore: avoid_as
         ticksHistory: json['ticks_history'] as String,
       );
 

@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_get_settings_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -21,14 +22,11 @@ class Mt5GetSettingsRequest extends Request {
   /// Creates an instance from JSON
   factory Mt5GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       Mt5GetSettingsRequest(
-        // ignore: avoid_as
         login: json['login'] as String,
         mt5GetSettings: json['mt5_get_settings'] == null
             ? null
             : json['mt5_get_settings'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

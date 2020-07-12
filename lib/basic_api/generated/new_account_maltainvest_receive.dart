@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_maltainvest_receive.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../response.dart';
 
@@ -21,14 +22,10 @@ class NewAccountMaltainvestResponse extends Response {
   /// Creates an instance from JSON
   factory NewAccountMaltainvestResponse.fromJson(Map<String, dynamic> json) =>
       NewAccountMaltainvestResponse(
-        // ignore: avoid_as
         echoReq: json['echo_req'] as Map<String, dynamic>,
-        // ignore: avoid_as
         msgType: json['msg_type'] as String,
-        // ignore: avoid_as
         newAccountMaltainvest:
             json['new_account_maltainvest'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

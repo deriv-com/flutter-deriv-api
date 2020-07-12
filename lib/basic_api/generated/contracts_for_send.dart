@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contracts_for_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -23,17 +24,11 @@ class ContractsForRequest extends Request {
   /// Creates an instance from JSON
   factory ContractsForRequest.fromJson(Map<String, dynamic> json) =>
       ContractsForRequest(
-        // ignore: avoid_as
         contractsFor: json['contracts_for'] as String,
-        // ignore: avoid_as
         currency: json['currency'] as String,
-        // ignore: avoid_as
         landingCompany: json['landing_company'] as String,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         productType: json['product_type'] as String,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

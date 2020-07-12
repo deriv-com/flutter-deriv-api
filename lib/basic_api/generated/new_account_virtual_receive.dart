@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_virtual_receive.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../response.dart';
 
@@ -21,13 +22,9 @@ class NewAccountVirtualResponse extends Response {
   /// Creates an instance from JSON
   factory NewAccountVirtualResponse.fromJson(Map<String, dynamic> json) =>
       NewAccountVirtualResponse(
-        // ignore: avoid_as
         echoReq: json['echo_req'] as Map<String, dynamic>,
-        // ignore: avoid_as
         msgType: json['msg_type'] as String,
-        // ignore: avoid_as
         newAccountVirtual: json['new_account_virtual'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

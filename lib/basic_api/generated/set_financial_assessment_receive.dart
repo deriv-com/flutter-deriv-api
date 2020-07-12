@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_financial_assessment_receive.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../response.dart';
 
@@ -21,13 +22,9 @@ class SetFinancialAssessmentResponse extends Response {
   /// Creates an instance from JSON
   factory SetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>
       SetFinancialAssessmentResponse(
-        // ignore: avoid_as
         echoReq: json['echo_req'] as Map<String, dynamic>,
-        // ignore: avoid_as
         msgType: json['msg_type'] as String,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         setFinancialAssessment:
             json['set_financial_assessment'] as Map<String, dynamic>,
       );

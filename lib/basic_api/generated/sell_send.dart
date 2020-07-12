@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -20,13 +21,9 @@ class SellRequest extends Request {
 
   /// Creates an instance from JSON
   factory SellRequest.fromJson(Map<String, dynamic> json) => SellRequest(
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         price: json['price'] as num,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         sell: json['sell'] as int,
       );
 

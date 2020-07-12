@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -22,15 +23,10 @@ class BuyRequest extends Request {
 
   /// Creates an instance from JSON
   factory BuyRequest.fromJson(Map<String, dynamic> json) => BuyRequest(
-        // ignore: avoid_as
         buy: json['buy'] as String,
-        // ignore: avoid_as
         parameters: json['parameters'] as Map<String, dynamic>,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         price: json['price'] as num,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
       );

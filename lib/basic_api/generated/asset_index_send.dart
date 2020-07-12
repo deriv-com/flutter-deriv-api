@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/asset_index_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -21,11 +22,8 @@ class AssetIndexRequest extends Request {
       AssetIndexRequest(
         assetIndex:
             json['asset_index'] == null ? null : json['asset_index'] == 1,
-        // ignore: avoid_as
         landingCompany: json['landing_company'] as String,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

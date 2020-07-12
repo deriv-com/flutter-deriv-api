@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_contract_for_multiple_accounts_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -24,21 +25,15 @@ class SellContractForMultipleAccountsRequest extends Request {
   factory SellContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       SellContractForMultipleAccountsRequest(
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         price: json['price'] as num,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
         sellContractForMultipleAccounts:
             json['sell_contract_for_multiple_accounts'] == null
                 ? null
                 : json['sell_contract_for_multiple_accounts'] == 1,
-        // ignore: avoid_as
         shortcode: json['shortcode'] as String,
-        // ignore: avoid_as, always_specify_types
         tokens: (json['tokens'] as List)
-            // ignore: avoid_as
             ?.map((dynamic item) => item as String)
             ?.toList(),
       );

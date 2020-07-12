@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_virtual_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -30,32 +31,20 @@ class NewAccountVirtualRequest extends Request {
   /// Creates an instance from JSON
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>
       NewAccountVirtualRequest(
-        // ignore: avoid_as
         affiliateToken: json['affiliate_token'] as String,
-        // ignore: avoid_as
         clientPassword: json['client_password'] as String,
-        // ignore: avoid_as
         dateFirstContact: json['date_first_contact'] as String,
-        // ignore: avoid_as
         gclidUrl: json['gclid_url'] as String,
         newAccountVirtual: json['new_account_virtual'] == null
             ? null
             : json['new_account_virtual'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         residence: json['residence'] as String,
-        // ignore: avoid_as
         signupDevice: json['signup_device'] as String,
-        // ignore: avoid_as
         utmCampaign: json['utm_campaign'] as String,
-        // ignore: avoid_as
         utmMedium: json['utm_medium'] as String,
-        // ignore: avoid_as
         utmSource: json['utm_source'] as String,
-        // ignore: avoid_as
         verificationCode: json['verification_code'] as String,
       );
 

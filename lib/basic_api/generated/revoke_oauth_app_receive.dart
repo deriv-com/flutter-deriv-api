@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/revoke_oauth_app_receive.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../response.dart';
 
@@ -21,13 +22,9 @@ class RevokeOauthAppResponse extends Response {
   /// Creates an instance from JSON
   factory RevokeOauthAppResponse.fromJson(Map<String, dynamic> json) =>
       RevokeOauthAppResponse(
-        // ignore: avoid_as
         echoReq: json['echo_req'] as Map<String, dynamic>,
-        // ignore: avoid_as
         msgType: json['msg_type'] as String,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         revokeOauthApp: json['revoke_oauth_app'] as int,
       );
 

@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_login_list_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -20,9 +21,7 @@ class Mt5LoginListRequest extends Request {
       Mt5LoginListRequest(
         mt5LoginList:
             json['mt5_login_list'] == null ? null : json['mt5_login_list'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

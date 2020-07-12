@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_all_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -18,11 +19,8 @@ class ForgetAllRequest extends Request {
   /// Creates an instance from JSON
   factory ForgetAllRequest.fromJson(Map<String, dynamic> json) =>
       ForgetAllRequest(
-        // ignore: avoid_as
         forgetAll: json['forget_all'] as dynamic,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

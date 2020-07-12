@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_info_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -21,14 +22,11 @@ class P2pAdvertInfoRequest extends Request {
   /// Creates an instance from JSON
   factory P2pAdvertInfoRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertInfoRequest(
-        // ignore: avoid_as
         id: json['id'] as String,
         p2pAdvertInfo: json['p2p_advert_info'] == null
             ? null
             : json['p2p_advert_info'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

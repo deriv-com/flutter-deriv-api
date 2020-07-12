@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_transfer_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -25,21 +26,15 @@ class PaymentagentTransferRequest extends Request {
   /// Creates an instance from JSON
   factory PaymentagentTransferRequest.fromJson(Map<String, dynamic> json) =>
       PaymentagentTransferRequest(
-        // ignore: avoid_as
         amount: json['amount'] as num,
-        // ignore: avoid_as
         currency: json['currency'] as String,
-        // ignore: avoid_as
         description: json['description'] as String,
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         paymentagentTransfer: json['paymentagent_transfer'] == null
             ? null
             : json['paymentagent_transfer'] == 1,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         transferTo: json['transfer_to'] as String,
       );
 

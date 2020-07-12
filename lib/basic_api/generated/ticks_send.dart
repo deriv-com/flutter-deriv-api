@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -18,12 +19,9 @@ class TicksRequest extends Request {
 
   /// Creates an instance from JSON
   factory TicksRequest.fromJson(Map<String, dynamic> json) => TicksRequest(
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        // ignore: avoid_as
         ticks: json['ticks'] as dynamic,
       );
 

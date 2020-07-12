@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/reality_check_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -18,11 +19,9 @@ class RealityCheckRequest extends Request {
   /// Creates an instance from JSON
   factory RealityCheckRequest.fromJson(Map<String, dynamic> json) =>
       RealityCheckRequest(
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         realityCheck:
             json['reality_check'] == null ? null : json['reality_check'] == 1,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

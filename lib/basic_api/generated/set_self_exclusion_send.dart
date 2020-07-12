@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_self_exclusion_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -31,38 +32,23 @@ class SetSelfExclusionRequest extends Request {
   /// Creates an instance from JSON
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       SetSelfExclusionRequest(
-        // ignore: avoid_as
         excludeUntil: json['exclude_until'] as String,
-        // ignore: avoid_as
         max30dayLosses: json['max_30day_losses'] as num,
-        // ignore: avoid_as
         max30dayTurnover: json['max_30day_turnover'] as num,
-        // ignore: avoid_as
         max7dayLosses: json['max_7day_losses'] as num,
-        // ignore: avoid_as
         max7dayTurnover: json['max_7day_turnover'] as num,
-        // ignore: avoid_as
         maxBalance: json['max_balance'] as num,
-        // ignore: avoid_as
         maxDeposit: json['max_deposit'] as num,
-        // ignore: avoid_as
         maxDepositEndDate: json['max_deposit_end_date'] as String,
-        // ignore: avoid_as
         maxLosses: json['max_losses'] as num,
-        // ignore: avoid_as
         maxOpenBets: json['max_open_bets'] as int,
-        // ignore: avoid_as
         maxTurnover: json['max_turnover'] as num,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         sessionDurationLimit: json['session_duration_limit'] as int,
         setSelfExclusion: json['set_self_exclusion'] == null
             ? null
             : json['set_self_exclusion'] == 1,
-        // ignore: avoid_as
         timeoutUntil: json['timeout_until'] as int,
       );
 

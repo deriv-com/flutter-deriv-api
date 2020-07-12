@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_expired_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -18,9 +19,7 @@ class SellExpiredRequest extends Request {
   /// Creates an instance from JSON
   factory SellExpiredRequest.fromJson(Map<String, dynamic> json) =>
       SellExpiredRequest(
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
         sellExpired:
             json['sell_expired'] == null ? null : json['sell_expired'] == 1,

@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -25,21 +26,13 @@ class TransferBetweenAccountsRequest extends Request {
   /// Creates an instance from JSON
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>
       TransferBetweenAccountsRequest(
-        // ignore: avoid_as
         accountFrom: json['account_from'] as String,
-        // ignore: avoid_as
         accountTo: json['account_to'] as String,
-        // ignore: avoid_as
         accounts: json['accounts'] as String,
-        // ignore: avoid_as
         amount: json['amount'] as num,
-        // ignore: avoid_as
         currency: json['currency'] as String,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         transferBetweenAccounts: json['transfer_between_accounts'] as int,
       );
 

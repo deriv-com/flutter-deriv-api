@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_maltainvest_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -61,92 +62,52 @@ class NewAccountMaltainvestRequest extends Request {
       NewAccountMaltainvestRequest(
         acceptRisk:
             json['accept_risk'] == null ? null : json['accept_risk'] == 1,
-        // ignore: avoid_as
         accountOpeningReason: json['account_opening_reason'] as String,
-        // ignore: avoid_as
         accountTurnover: json['account_turnover'] as String,
-        // ignore: avoid_as
         addressCity: json['address_city'] as String,
-        // ignore: avoid_as
         addressLine1: json['address_line_1'] as String,
-        // ignore: avoid_as
         addressLine2: json['address_line_2'] as String,
-        // ignore: avoid_as
         addressPostcode: json['address_postcode'] as String,
-        // ignore: avoid_as
         addressState: json['address_state'] as String,
-        // ignore: avoid_as
         affiliateToken: json['affiliate_token'] as String,
-        // ignore: avoid_as
         binaryOptionsTradingExperience:
             json['binary_options_trading_experience'] as String,
-        // ignore: avoid_as
         binaryOptionsTradingFrequency:
             json['binary_options_trading_frequency'] as String,
-        // ignore: avoid_as
         cfdTradingExperience: json['cfd_trading_experience'] as String,
-        // ignore: avoid_as
         cfdTradingFrequency: json['cfd_trading_frequency'] as String,
-        // ignore: avoid_as
         citizen: json['citizen'] as String,
-        // ignore: avoid_as
         clientType: json['client_type'] as String,
-        // ignore: avoid_as
         dateOfBirth: json['date_of_birth'] as String,
-        // ignore: avoid_as
         educationLevel: json['education_level'] as String,
-        // ignore: avoid_as
         employmentIndustry: json['employment_industry'] as String,
-        // ignore: avoid_as
         employmentStatus: json['employment_status'] as String,
-        // ignore: avoid_as
         estimatedWorth: json['estimated_worth'] as String,
-        // ignore: avoid_as
         firstName: json['first_name'] as String,
-        // ignore: avoid_as
         forexTradingExperience: json['forex_trading_experience'] as String,
-        // ignore: avoid_as
         forexTradingFrequency: json['forex_trading_frequency'] as String,
-        // ignore: avoid_as
         incomeSource: json['income_source'] as String,
-        // ignore: avoid_as
         lastName: json['last_name'] as String,
-        // ignore: avoid_as
         netIncome: json['net_income'] as String,
         newAccountMaltainvest: json['new_account_maltainvest'] == null
             ? null
             : json['new_account_maltainvest'] == 1,
-        // ignore: avoid_as
         nonPepDeclaration: json['non_pep_declaration'] as int,
-        // ignore: avoid_as
         occupation: json['occupation'] as String,
-        // ignore: avoid_as
         otherInstrumentsTradingExperience:
             json['other_instruments_trading_experience'] as String,
-        // ignore: avoid_as
         otherInstrumentsTradingFrequency:
             json['other_instruments_trading_frequency'] as String,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         phone: json['phone'] as String,
-        // ignore: avoid_as
         placeOfBirth: json['place_of_birth'] as String,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         residence: json['residence'] as String,
-        // ignore: avoid_as
         salutation: json['salutation'] as String,
-        // ignore: avoid_as
         secretAnswer: json['secret_answer'] as String,
-        // ignore: avoid_as
         secretQuestion: json['secret_question'] as String,
-        // ignore: avoid_as
         sourceOfWealth: json['source_of_wealth'] as String,
-        // ignore: avoid_as
         taxIdentificationNumber: json['tax_identification_number'] as String,
-        // ignore: avoid_as
         taxResidence: json['tax_residence'] as String,
       );
 

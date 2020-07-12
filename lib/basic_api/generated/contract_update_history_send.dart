@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_history_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -21,14 +22,11 @@ class ContractUpdateHistoryRequest extends Request {
   /// Creates an instance from JSON
   factory ContractUpdateHistoryRequest.fromJson(Map<String, dynamic> json) =>
       ContractUpdateHistoryRequest(
-        // ignore: avoid_as
         contractId: json['contract_id'] as int,
         contractUpdateHistory: json['contract_update_history'] == null
             ? null
             : json['contract_update_history'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

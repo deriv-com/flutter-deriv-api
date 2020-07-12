@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_register_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -29,32 +30,20 @@ class AppRegisterRequest extends Request {
   /// Creates an instance from JSON
   factory AppRegisterRequest.fromJson(Map<String, dynamic> json) =>
       AppRegisterRequest(
-        // ignore: avoid_as
         appMarkupPercentage: json['app_markup_percentage'] as num,
         appRegister:
             json['app_register'] == null ? null : json['app_register'] == 1,
-        // ignore: avoid_as
         appstore: json['appstore'] as String,
-        // ignore: avoid_as
         github: json['github'] as String,
-        // ignore: avoid_as
         googleplay: json['googleplay'] as String,
-        // ignore: avoid_as
         homepage: json['homepage'] as String,
-        // ignore: avoid_as
         name: json['name'] as String,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         redirectUri: json['redirect_uri'] as String,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as, always_specify_types
         scopes: (json['scopes'] as List)
-            // ignore: avoid_as
             ?.map((dynamic item) => item as String)
             ?.toList(),
-        // ignore: avoid_as
         verificationUri: json['verification_uri'] as String,
       );
 

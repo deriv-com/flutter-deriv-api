@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ping_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -17,10 +18,8 @@ class PingRequest extends Request {
 
   /// Creates an instance from JSON
   factory PingRequest.fromJson(Map<String, dynamic> json) => PingRequest(
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         ping: json['ping'] == null ? null : json['ping'] == 1,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/residence_list_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -18,9 +19,7 @@ class ResidenceListRequest extends Request {
   /// Creates an instance from JSON
   factory ResidenceListRequest.fromJson(Map<String, dynamic> json) =>
       ResidenceListRequest(
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
         residenceList:
             json['residence_list'] == null ? null : json['residence_list'] == 1,

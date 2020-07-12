@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_array_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -34,44 +35,27 @@ class ProposalArrayRequest extends Request {
   /// Creates an instance from JSON
   factory ProposalArrayRequest.fromJson(Map<String, dynamic> json) =>
       ProposalArrayRequest(
-        // ignore: avoid_as
         amount: json['amount'] as num,
-        // ignore: avoid_as, always_specify_types
         barriers: (json['barriers'] as List)
-            // ignore: avoid_as
             ?.map((dynamic item) => item as Map<String, dynamic>)
             ?.toList(),
-        // ignore: avoid_as
         basis: json['basis'] as String,
-        // ignore: avoid_as, always_specify_types
         contractType: (json['contract_type'] as List)
-            // ignore: avoid_as
             ?.map((dynamic item) => item as dynamic)
             ?.toList(),
-        // ignore: avoid_as
         currency: json['currency'] as String,
-        // ignore: avoid_as
         dateExpiry: json['date_expiry'] as int,
-        // ignore: avoid_as
         dateStart: json['date_start'] as int,
-        // ignore: avoid_as
         duration: json['duration'] as int,
-        // ignore: avoid_as
         durationUnit: json['duration_unit'] as String,
-        // ignore: avoid_as
         multiplier: json['multiplier'] as num,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         productType: json['product_type'] as String,
         proposalArray:
             json['proposal_array'] == null ? null : json['proposal_array'] == 1,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        // ignore: avoid_as
         symbol: json['symbol'] as String,
-        // ignore: avoid_as
         tradingPeriodStart: json['trading_period_start'] as int,
       );
 

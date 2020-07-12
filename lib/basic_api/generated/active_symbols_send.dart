@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -22,15 +23,10 @@ class ActiveSymbolsRequest extends Request {
   /// Creates an instance from JSON
   factory ActiveSymbolsRequest.fromJson(Map<String, dynamic> json) =>
       ActiveSymbolsRequest(
-        // ignore: avoid_as
         activeSymbols: json['active_symbols'] as String,
-        // ignore: avoid_as
         landingCompany: json['landing_company'] as String,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         productType: json['product_type'] as String,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

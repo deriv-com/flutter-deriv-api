@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -38,45 +39,26 @@ class ProposalRequest extends Request {
   /// Creates an instance from JSON
   factory ProposalRequest.fromJson(Map<String, dynamic> json) =>
       ProposalRequest(
-        // ignore: avoid_as
         amount: json['amount'] as num,
-        // ignore: avoid_as
         barrier: json['barrier'] as String,
-        // ignore: avoid_as
         barrier2: json['barrier2'] as String,
-        // ignore: avoid_as
         basis: json['basis'] as String,
-        // ignore: avoid_as
         cancellation: json['cancellation'] as String,
-        // ignore: avoid_as
         contractType: json['contract_type'] as String,
-        // ignore: avoid_as
         currency: json['currency'] as String,
-        // ignore: avoid_as
         dateExpiry: json['date_expiry'] as int,
-        // ignore: avoid_as
         dateStart: json['date_start'] as int,
-        // ignore: avoid_as
         duration: json['duration'] as int,
-        // ignore: avoid_as
         durationUnit: json['duration_unit'] as String,
-        // ignore: avoid_as
         limitOrder: json['limit_order'] as Map<String, dynamic>,
-        // ignore: avoid_as
         multiplier: json['multiplier'] as num,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         productType: json['product_type'] as String,
         proposal: json['proposal'] == null ? null : json['proposal'] == 1,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         selectedTick: json['selected_tick'] as int,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        // ignore: avoid_as
         symbol: json['symbol'] as String,
-        // ignore: avoid_as
         tradingPeriodStart: json['trading_period_start'] as int,
       );
 

@@ -106,7 +106,8 @@ class APIBuilder extends Builder {
         DartFormatter().format(
           '''
             /// Generated automatically from ${buildStep.inputId}
-            
+            // ignore_for_file: avoid_as, always_specify_types
+
             ${_hasRequiredField(methodName, schema, schemaType, properties) ? 'import \'package:meta/meta.dart\';' : ''}
 
             import '../${schemaType == 'send' ? 'request' : 'response'}.dart';
@@ -389,15 +390,12 @@ class APIBuilder extends Builder {
                 type.substring(0, type.length - 1).replaceAll('List<', '');
 
             return '''
-                // ignore: avoid_as, always_specify_types
                 $name: (json['$key'] as List)
-                  // ignore: avoid_as
                   ?.map(($dynamic item) => item as $arrayType)
                   ?.toList(),
               ''';
           } else {
             return '''
-                // ignore: avoid_as
                 $name: json['$key'] as $type,
               ''';
           }

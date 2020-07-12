@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_new_account_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -36,43 +37,26 @@ class Mt5NewAccountRequest extends Request {
   /// Creates an instance from JSON
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>
       Mt5NewAccountRequest(
-        // ignore: avoid_as
         accountType: json['account_type'] as String,
-        // ignore: avoid_as
         address: json['address'] as String,
-        // ignore: avoid_as
         city: json['city'] as String,
-        // ignore: avoid_as
         company: json['company'] as String,
-        // ignore: avoid_as
         country: json['country'] as String,
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
-        // ignore: avoid_as
         email: json['email'] as String,
-        // ignore: avoid_as
         investPassword: json['investPassword'] as String,
-        // ignore: avoid_as
         leverage: json['leverage'] as num,
-        // ignore: avoid_as
         mainPassword: json['mainPassword'] as String,
-        // ignore: avoid_as
         mt5AccountType: json['mt5_account_type'] as String,
         mt5NewAccount: json['mt5_new_account'] == null
             ? null
             : json['mt5_new_account'] == 1,
-        // ignore: avoid_as
         name: json['name'] as String,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         phone: json['phone'] as String,
-        // ignore: avoid_as
         phonePassword: json['phonePassword'] as String,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         state: json['state'] as String,
-        // ignore: avoid_as
         zipCode: json['zipCode'] as String,
       );
 

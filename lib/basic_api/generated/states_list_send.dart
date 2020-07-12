@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/states_list_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -20,11 +21,8 @@ class StatesListRequest extends Request {
   /// Creates an instance from JSON
   factory StatesListRequest.fromJson(Map<String, dynamic> json) =>
       StatesListRequest(
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         statesList: json['states_list'] as String,
       );
 

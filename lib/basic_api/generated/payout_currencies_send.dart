@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/payout_currencies_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -18,12 +19,10 @@ class PayoutCurrenciesRequest extends Request {
   /// Creates an instance from JSON
   factory PayoutCurrenciesRequest.fromJson(Map<String, dynamic> json) =>
       PayoutCurrenciesRequest(
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         payoutCurrencies: json['payout_currencies'] == null
             ? null
             : json['payout_currencies'] == 1,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

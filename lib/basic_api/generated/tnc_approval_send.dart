@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/tnc_approval_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -19,13 +20,10 @@ class TncApprovalRequest extends Request {
   /// Creates an instance from JSON
   factory TncApprovalRequest.fromJson(Map<String, dynamic> json) =>
       TncApprovalRequest(
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
         tncApproval:
             json['tnc_approval'] == null ? null : json['tnc_approval'] == 1,
-        // ignore: avoid_as
         ukgcFundsProtection: json['ukgc_funds_protection'] as int,
       );
 

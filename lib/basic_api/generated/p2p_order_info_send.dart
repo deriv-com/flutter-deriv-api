@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_info_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -22,13 +23,10 @@ class P2pOrderInfoRequest extends Request {
   /// Creates an instance from JSON
   factory P2pOrderInfoRequest.fromJson(Map<String, dynamic> json) =>
       P2pOrderInfoRequest(
-        // ignore: avoid_as
         id: json['id'] as String,
         p2pOrderInfo:
             json['p2p_order_info'] == null ? null : json['p2p_order_info'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
       );

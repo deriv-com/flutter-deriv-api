@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/revoke_oauth_app_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -20,11 +21,8 @@ class RevokeOauthAppRequest extends Request {
   /// Creates an instance from JSON
   factory RevokeOauthAppRequest.fromJson(Map<String, dynamic> json) =>
       RevokeOauthAppRequest(
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         revokeOauthApp: json['revoke_oauth_app'] as int,
       );
 

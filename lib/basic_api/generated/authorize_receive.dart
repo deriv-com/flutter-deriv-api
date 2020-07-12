@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/authorize_receive.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../response.dart';
 
@@ -21,13 +22,9 @@ class AuthorizeResponse extends Response {
   /// Creates an instance from JSON
   factory AuthorizeResponse.fromJson(Map<String, dynamic> json) =>
       AuthorizeResponse(
-        // ignore: avoid_as
         authorize: json['authorize'] as Map<String, dynamic>,
-        // ignore: avoid_as
         echoReq: json['echo_req'] as Map<String, dynamic>,
-        // ignore: avoid_as
         msgType: json['msg_type'] as String,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

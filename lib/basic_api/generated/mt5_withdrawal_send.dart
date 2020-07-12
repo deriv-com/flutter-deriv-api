@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_withdrawal_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -23,17 +24,12 @@ class Mt5WithdrawalRequest extends Request {
   /// Creates an instance from JSON
   factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>
       Mt5WithdrawalRequest(
-        // ignore: avoid_as
         amount: json['amount'] as num,
-        // ignore: avoid_as
         fromMt5: json['from_mt5'] as String,
         mt5Withdrawal:
             json['mt5_withdrawal'] == null ? null : json['mt5_withdrawal'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         toBinary: json['to_binary'] as String,
       );
 

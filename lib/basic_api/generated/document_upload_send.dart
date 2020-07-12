@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/document_upload_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -27,26 +28,17 @@ class DocumentUploadRequest extends Request {
   /// Creates an instance from JSON
   factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>
       DocumentUploadRequest(
-        // ignore: avoid_as
         documentFormat: json['document_format'] as String,
-        // ignore: avoid_as
         documentId: json['document_id'] as String,
-        // ignore: avoid_as
         documentType: json['document_type'] as String,
         documentUpload: json['document_upload'] == null
             ? null
             : json['document_upload'] == 1,
-        // ignore: avoid_as
         expectedChecksum: json['expected_checksum'] as String,
-        // ignore: avoid_as
         expirationDate: json['expiration_date'] as String,
-        // ignore: avoid_as
         fileSize: json['file_size'] as int,
-        // ignore: avoid_as
         pageType: json['page_type'] as String,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

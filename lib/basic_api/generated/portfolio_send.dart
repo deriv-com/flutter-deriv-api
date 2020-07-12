@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/portfolio_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -18,10 +19,8 @@ class PortfolioRequest extends Request {
   /// Creates an instance from JSON
   factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>
       PortfolioRequest(
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         portfolio: json['portfolio'] == null ? null : json['portfolio'] == 1,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

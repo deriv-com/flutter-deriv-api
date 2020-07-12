@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cashier_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -22,17 +23,11 @@ class CashierRequest extends Request {
 
   /// Creates an instance from JSON
   factory CashierRequest.fromJson(Map<String, dynamic> json) => CashierRequest(
-        // ignore: avoid_as
         cashier: json['cashier'] as String,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         provider: json['provider'] as String,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         type: json['type'] as String,
-        // ignore: avoid_as
         verificationCode: json['verification_code'] as String,
       );
 

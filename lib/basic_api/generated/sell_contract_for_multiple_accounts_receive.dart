@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_contract_for_multiple_accounts_receive.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../response.dart';
 
@@ -22,13 +23,9 @@ class SellContractForMultipleAccountsResponse extends Response {
   factory SellContractForMultipleAccountsResponse.fromJson(
           Map<String, dynamic> json) =>
       SellContractForMultipleAccountsResponse(
-        // ignore: avoid_as
         echoReq: json['echo_req'] as Map<String, dynamic>,
-        // ignore: avoid_as
         msgType: json['msg_type'] as String,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
-        // ignore: avoid_as
         sellContractForMultipleAccounts:
             json['sell_contract_for_multiple_accounts'] as Map<String, dynamic>,
       );

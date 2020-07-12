@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_check_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import 'package:meta/meta.dart';
 
@@ -23,18 +24,13 @@ class Mt5PasswordCheckRequest extends Request {
   /// Creates an instance from JSON
   factory Mt5PasswordCheckRequest.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordCheckRequest(
-        // ignore: avoid_as
         login: json['login'] as String,
         mt5PasswordCheck: json['mt5_password_check'] == null
             ? null
             : json['mt5_password_check'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         password: json['password'] as String,
-        // ignore: avoid_as
         passwordType: json['password_type'] as String,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 

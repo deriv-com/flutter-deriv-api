@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_open_contract_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -20,14 +21,11 @@ class ProposalOpenContractRequest extends Request {
   /// Creates an instance from JSON
   factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>
       ProposalOpenContractRequest(
-        // ignore: avoid_as
         contractId: json['contract_id'] as int,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
         proposalOpenContract: json['proposal_open_contract'] == null
             ? null
             : json['proposal_open_contract'] == 1,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
       );

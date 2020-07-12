@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/logout_send.json
+// ignore_for_file: avoid_as, always_specify_types
 
 import '../request.dart';
 
@@ -18,9 +19,7 @@ class LogoutRequest extends Request {
   /// Creates an instance from JSON
   factory LogoutRequest.fromJson(Map<String, dynamic> json) => LogoutRequest(
         logout: json['logout'] == null ? null : json['logout'] == 1,
-        // ignore: avoid_as
         passthrough: json['passthrough'] as Map<String, dynamic>,
-        // ignore: avoid_as
         reqId: json['req_id'] as int,
       );
 
