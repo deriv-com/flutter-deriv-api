@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Mt5DepositRequest class
+/// Mt5 deposit request class
 class Mt5DepositRequest extends Request {
   /// Initialize Mt5DepositRequest
   const Mt5DepositRequest({

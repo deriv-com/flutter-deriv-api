@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// CopyStopRequest class
+/// Copy stop request class
 class CopyStopRequest extends Request {
   /// Initialize CopyStopRequest
   const CopyStopRequest({

@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// TransactionRequest class
+/// Transaction request class
 class TransactionRequest extends Request {
   /// Initialize TransactionRequest
   const TransactionRequest({

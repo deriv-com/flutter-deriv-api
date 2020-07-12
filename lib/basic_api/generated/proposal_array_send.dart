@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// ProposalArrayRequest class
+/// Proposal array request class
 class ProposalArrayRequest extends Request {
   /// Initialize ProposalArrayRequest
   const ProposalArrayRequest({

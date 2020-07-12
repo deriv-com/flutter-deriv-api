@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// TicksRequest class
+/// Ticks request class
 class TicksRequest extends Request {
   /// Initialize TicksRequest
   const TicksRequest({

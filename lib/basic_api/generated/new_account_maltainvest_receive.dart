@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// NewAccountMaltainvestResponse class
+/// New account maltainvest response class
 class NewAccountMaltainvestResponse extends Response {
   /// Initialize NewAccountMaltainvestResponse
   const NewAccountMaltainvestResponse({

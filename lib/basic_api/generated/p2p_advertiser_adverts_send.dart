@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// P2pAdvertiserAdvertsRequest class
+/// P2p advertiser adverts request class
 class P2pAdvertiserAdvertsRequest extends Request {
   /// Initialize P2pAdvertiserAdvertsRequest
   const P2pAdvertiserAdvertsRequest({

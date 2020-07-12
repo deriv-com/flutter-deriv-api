@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// TimeRequest class
+/// Time request class
 class TimeRequest extends Request {
   /// Initialize TimeRequest
   const TimeRequest({

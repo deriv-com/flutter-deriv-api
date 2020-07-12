@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// AppRegisterRequest class
+/// App register request class
 class AppRegisterRequest extends Request {
   /// Initialize AppRegisterRequest
   const AppRegisterRequest({

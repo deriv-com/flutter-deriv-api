@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// ApiTokenRequest class
+/// Api token request class
 class ApiTokenRequest extends Request {
   /// Initialize ApiTokenRequest
   const ApiTokenRequest({

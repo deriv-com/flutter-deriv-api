@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// PaymentagentWithdrawRequest class
+/// Paymentagent withdraw request class
 class PaymentagentWithdrawRequest extends Request {
   /// Initialize PaymentagentWithdrawRequest
   const PaymentagentWithdrawRequest({

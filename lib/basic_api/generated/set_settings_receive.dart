@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// SetSettingsResponse class
+/// Set settings response class
 class SetSettingsResponse extends Response {
   /// Initialize SetSettingsResponse
   const SetSettingsResponse({

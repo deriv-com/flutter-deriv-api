@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// SellContractForMultipleAccountsRequest class
+/// Sell contract for multiple accounts request class
 class SellContractForMultipleAccountsRequest extends Request {
   /// Initialize SellContractForMultipleAccountsRequest
   const SellContractForMultipleAccountsRequest({

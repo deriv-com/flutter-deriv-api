@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// NewAccountRealResponse class
+/// New account real response class
 class NewAccountRealResponse extends Response {
   /// Initialize NewAccountRealResponse
   const NewAccountRealResponse({

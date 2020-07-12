@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// BalanceResponse class
+/// Balance response class
 class BalanceResponse extends Response {
   /// Initialize BalanceResponse
   const BalanceResponse({

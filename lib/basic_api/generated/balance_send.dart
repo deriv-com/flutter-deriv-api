@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// BalanceRequest class
+/// Balance request class
 class BalanceRequest extends Request {
   /// Initialize BalanceRequest
   const BalanceRequest({

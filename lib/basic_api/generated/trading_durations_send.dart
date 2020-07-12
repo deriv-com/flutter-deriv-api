@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// TradingDurationsRequest class
+/// Trading durations request class
 class TradingDurationsRequest extends Request {
   /// Initialize TradingDurationsRequest
   const TradingDurationsRequest({

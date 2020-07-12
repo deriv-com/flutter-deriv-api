@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// AuthorizeRequest class
+/// Authorize request class
 class AuthorizeRequest extends Request {
   /// Initialize AuthorizeRequest
   const AuthorizeRequest({

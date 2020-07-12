@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// NewAccountRealRequest class
+/// New account real request class
 class NewAccountRealRequest extends Request {
   /// Initialize NewAccountRealRequest
   const NewAccountRealRequest({

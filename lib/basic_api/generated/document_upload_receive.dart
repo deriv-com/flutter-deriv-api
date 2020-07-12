@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// DocumentUploadResponse class
+/// Document upload response class
 class DocumentUploadResponse extends Response {
   /// Initialize DocumentUploadResponse
   const DocumentUploadResponse({

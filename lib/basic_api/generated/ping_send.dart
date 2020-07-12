@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// PingRequest class
+/// Ping request class
 class PingRequest extends Request {
   /// Initialize PingRequest
   const PingRequest({

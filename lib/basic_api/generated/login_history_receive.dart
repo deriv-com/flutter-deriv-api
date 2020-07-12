@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// LoginHistoryResponse class
+/// Login history response class
 class LoginHistoryResponse extends Response {
   /// Initialize LoginHistoryResponse
   const LoginHistoryResponse({

@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// TicksHistoryResponse class
+/// Ticks history response class
 class TicksHistoryResponse extends Response {
   /// Initialize TicksHistoryResponse
   const TicksHistoryResponse({

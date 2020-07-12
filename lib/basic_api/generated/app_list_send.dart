@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// AppListRequest class
+/// App list request class
 class AppListRequest extends Request {
   /// Initialize AppListRequest
   const AppListRequest({

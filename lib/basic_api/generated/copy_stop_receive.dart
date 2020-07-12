@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// CopyStopResponse class
+/// Copy stop response class
 class CopyStopResponse extends Response {
   /// Initialize CopyStopResponse
   const CopyStopResponse({

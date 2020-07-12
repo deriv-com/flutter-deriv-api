@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// ContractsForRequest class
+/// Contracts for request class
 class ContractsForRequest extends Request {
   /// Initialize ContractsForRequest
   const ContractsForRequest({

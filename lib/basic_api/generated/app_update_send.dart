@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// AppUpdateRequest class
+/// App update request class
 class AppUpdateRequest extends Request {
   /// Initialize AppUpdateRequest
   const AppUpdateRequest({

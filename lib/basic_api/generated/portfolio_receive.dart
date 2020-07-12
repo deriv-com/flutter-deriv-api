@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// PortfolioResponse class
+/// Portfolio response class
 class PortfolioResponse extends Response {
   /// Initialize PortfolioResponse
   const PortfolioResponse({

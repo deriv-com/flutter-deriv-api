@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// P2pChatCreateResponse class
+/// P2p chat create response class
 class P2pChatCreateResponse extends Response {
   /// Initialize P2pChatCreateResponse
   const P2pChatCreateResponse({

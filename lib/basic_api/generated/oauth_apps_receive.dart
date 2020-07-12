@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// OauthAppsResponse class
+/// Oauth apps response class
 class OauthAppsResponse extends Response {
   /// Initialize OauthAppsResponse
   const OauthAppsResponse({

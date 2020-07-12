@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// AuthorizeResponse class
+/// Authorize response class
 class AuthorizeResponse extends Response {
   /// Initialize AuthorizeResponse
   const AuthorizeResponse({

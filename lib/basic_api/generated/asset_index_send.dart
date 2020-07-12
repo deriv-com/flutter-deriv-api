@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// AssetIndexRequest class
+/// Asset index request class
 class AssetIndexRequest extends Request {
   /// Initialize AssetIndexRequest
   const AssetIndexRequest({

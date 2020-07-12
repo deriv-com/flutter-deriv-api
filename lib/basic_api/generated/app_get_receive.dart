@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// AppGetResponse class
+/// App get response class
 class AppGetResponse extends Response {
   /// Initialize AppGetResponse
   const AppGetResponse({

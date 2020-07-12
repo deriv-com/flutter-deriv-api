@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// ApiTokenResponse class
+/// Api token response class
 class ApiTokenResponse extends Response {
   /// Initialize ApiTokenResponse
   const ApiTokenResponse({

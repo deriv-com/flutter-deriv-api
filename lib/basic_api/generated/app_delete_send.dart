@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// AppDeleteRequest class
+/// App delete request class
 class AppDeleteRequest extends Request {
   /// Initialize AppDeleteRequest
   const AppDeleteRequest({

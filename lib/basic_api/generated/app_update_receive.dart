@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// AppUpdateResponse class
+/// App update response class
 class AppUpdateResponse extends Response {
   /// Initialize AppUpdateResponse
   const AppUpdateResponse({

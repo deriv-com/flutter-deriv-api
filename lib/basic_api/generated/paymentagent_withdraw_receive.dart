@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// PaymentagentWithdrawResponse class
+/// Paymentagent withdraw response class
 class PaymentagentWithdrawResponse extends Response {
   /// Initialize PaymentagentWithdrawResponse
   const PaymentagentWithdrawResponse({

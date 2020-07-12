@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// CashierRequest class
+/// Cashier request class
 class CashierRequest extends Request {
   /// Initialize CashierRequest
   const CashierRequest({

@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// PortfolioRequest class
+/// Portfolio request class
 class PortfolioRequest extends Request {
   /// Initialize PortfolioRequest
   const PortfolioRequest({

@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// TicksResponse class
+/// Ticks response class
 class TicksResponse extends Response {
   /// Initialize TicksResponse
   const TicksResponse({

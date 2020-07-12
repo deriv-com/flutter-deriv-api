@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// StatementRequest class
+/// Statement request class
 class StatementRequest extends Request {
   /// Initialize StatementRequest
   const StatementRequest({

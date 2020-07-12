@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// ContractUpdateHistoryRequest class
+/// Contract update history request class
 class ContractUpdateHistoryRequest extends Request {
   /// Initialize ContractUpdateHistoryRequest
   const ContractUpdateHistoryRequest({

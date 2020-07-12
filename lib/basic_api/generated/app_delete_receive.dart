@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// AppDeleteResponse class
+/// App delete response class
 class AppDeleteResponse extends Response {
   /// Initialize AppDeleteResponse
   const AppDeleteResponse({

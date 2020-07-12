@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// SetSettingsRequest class
+/// Set settings request class
 class SetSettingsRequest extends Request {
   /// Initialize SetSettingsRequest
   const SetSettingsRequest({

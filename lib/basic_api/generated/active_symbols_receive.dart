@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// ActiveSymbolsResponse class
+/// Active symbols response class
 class ActiveSymbolsResponse extends Response {
   /// Initialize ActiveSymbolsResponse
   const ActiveSymbolsResponse({

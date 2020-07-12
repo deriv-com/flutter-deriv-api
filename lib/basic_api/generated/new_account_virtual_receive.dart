@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// NewAccountVirtualResponse class
+/// New account virtual response class
 class NewAccountVirtualResponse extends Response {
   /// Initialize NewAccountVirtualResponse
   const NewAccountVirtualResponse({

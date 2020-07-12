@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// AppMarkupDetailsResponse class
+/// App markup details response class
 class AppMarkupDetailsResponse extends Response {
   /// Initialize AppMarkupDetailsResponse
   const AppMarkupDetailsResponse({

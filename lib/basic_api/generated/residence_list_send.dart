@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// ResidenceListRequest class
+/// Residence list request class
 class ResidenceListRequest extends Request {
   /// Initialize ResidenceListRequest
   const ResidenceListRequest({

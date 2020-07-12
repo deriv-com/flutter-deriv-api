@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// SetSelfExclusionRequest class
+/// Set self exclusion request class
 class SetSelfExclusionRequest extends Request {
   /// Initialize SetSelfExclusionRequest
   const SetSelfExclusionRequest({

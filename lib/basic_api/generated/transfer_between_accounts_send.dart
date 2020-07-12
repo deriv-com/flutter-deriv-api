@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// TransferBetweenAccountsRequest class
+/// Transfer between accounts request class
 class TransferBetweenAccountsRequest extends Request {
   /// Initialize TransferBetweenAccountsRequest
   const TransferBetweenAccountsRequest({

@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// P2pOrderInfoRequest class
+/// P2p order info request class
 class P2pOrderInfoRequest extends Request {
   /// Initialize P2pOrderInfoRequest
   const P2pOrderInfoRequest({

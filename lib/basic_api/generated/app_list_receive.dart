@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// AppListResponse class
+/// App list response class
 class AppListResponse extends Response {
   /// Initialize AppListResponse
   const AppListResponse({

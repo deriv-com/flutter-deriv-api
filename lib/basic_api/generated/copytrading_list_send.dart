@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// CopytradingListRequest class
+/// Copytrading list request class
 class CopytradingListRequest extends Request {
   /// Initialize CopytradingListRequest
   const CopytradingListRequest({

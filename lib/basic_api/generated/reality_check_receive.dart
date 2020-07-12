@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// RealityCheckResponse class
+/// Reality check response class
 class RealityCheckResponse extends Response {
   /// Initialize RealityCheckResponse
   const RealityCheckResponse({

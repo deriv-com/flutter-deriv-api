@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// Mt5LoginListRequest class
+/// Mt5 login list request class
 class Mt5LoginListRequest extends Request {
   /// Initialize Mt5LoginListRequest
   const Mt5LoginListRequest({

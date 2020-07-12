@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// PingResponse class
+/// Ping response class
 class PingResponse extends Response {
   /// Initialize PingResponse
   const PingResponse({

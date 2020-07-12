@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// SellExpiredRequest class
+/// Sell expired request class
 class SellExpiredRequest extends Request {
   /// Initialize SellExpiredRequest
   const SellExpiredRequest({

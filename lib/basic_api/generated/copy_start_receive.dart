@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// CopyStartResponse class
+/// Copy start response class
 class CopyStartResponse extends Response {
   /// Initialize CopyStartResponse
   const CopyStartResponse({

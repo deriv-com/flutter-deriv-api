@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// P2pOrderCancelRequest class
+/// P2p order cancel request class
 class P2pOrderCancelRequest extends Request {
   /// Initialize P2pOrderCancelRequest
   const P2pOrderCancelRequest({

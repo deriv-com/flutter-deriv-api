@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// TopupVirtualResponse class
+/// Topup virtual response class
 class TopupVirtualResponse extends Response {
   /// Initialize TopupVirtualResponse
   const TopupVirtualResponse({

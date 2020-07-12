@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// PaymentagentListRequest class
+/// Paymentagent list request class
 class PaymentagentListRequest extends Request {
   /// Initialize PaymentagentListRequest
   const PaymentagentListRequest({

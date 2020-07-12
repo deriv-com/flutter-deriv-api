@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// VerifyEmailResponse class
+/// Verify email response class
 class VerifyEmailResponse extends Response {
   /// Initialize VerifyEmailResponse
   const VerifyEmailResponse({

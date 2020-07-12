@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// P2pAdvertInfoRequest class
+/// P2p advert info request class
 class P2pAdvertInfoRequest extends Request {
   /// Initialize P2pAdvertInfoRequest
   const P2pAdvertInfoRequest({

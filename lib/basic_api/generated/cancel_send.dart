@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// CancelRequest class
+/// Cancel request class
 class CancelRequest extends Request {
   /// Initialize CancelRequest
   const CancelRequest({

@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// StatesListResponse class
+/// States list response class
 class StatesListResponse extends Response {
   /// Initialize StatesListResponse
   const StatesListResponse({

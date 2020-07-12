@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// WebsiteStatusResponse class
+/// Website status response class
 class WebsiteStatusResponse extends Response {
   /// Initialize WebsiteStatusResponse
   const WebsiteStatusResponse({

@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// RevokeOauthAppRequest class
+/// Revoke oauth app request class
 class RevokeOauthAppRequest extends Request {
   /// Initialize RevokeOauthAppRequest
   const RevokeOauthAppRequest({

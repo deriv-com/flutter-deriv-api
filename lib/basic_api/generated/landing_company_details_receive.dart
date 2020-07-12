@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// LandingCompanyDetailsResponse class
+/// Landing company details response class
 class LandingCompanyDetailsResponse extends Response {
   /// Initialize LandingCompanyDetailsResponse
   const LandingCompanyDetailsResponse({

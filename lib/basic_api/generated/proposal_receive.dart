@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// ProposalResponse class
+/// Proposal response class
 class ProposalResponse extends Response {
   /// Initialize ProposalResponse
   const ProposalResponse({

@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// VerifyEmailRequest class
+/// Verify email request class
 class VerifyEmailRequest extends Request {
   /// Initialize VerifyEmailRequest
   const VerifyEmailRequest({

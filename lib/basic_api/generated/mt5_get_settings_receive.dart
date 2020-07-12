@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// Mt5GetSettingsResponse class
+/// Mt5 get settings response class
 class Mt5GetSettingsResponse extends Response {
   /// Initialize Mt5GetSettingsResponse
   const Mt5GetSettingsResponse({

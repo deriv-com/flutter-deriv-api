@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// NewAccountVirtualRequest class
+/// New account virtual request class
 class NewAccountVirtualRequest extends Request {
   /// Initialize NewAccountVirtualRequest
   const NewAccountVirtualRequest({

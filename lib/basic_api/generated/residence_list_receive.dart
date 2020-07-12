@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// ResidenceListResponse class
+/// Residence list response class
 class ResidenceListResponse extends Response {
   /// Initialize ResidenceListResponse
   const ResidenceListResponse({

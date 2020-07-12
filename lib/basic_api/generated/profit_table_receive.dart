@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// ProfitTableResponse class
+/// Profit table response class
 class ProfitTableResponse extends Response {
   /// Initialize ProfitTableResponse
   const ProfitTableResponse({

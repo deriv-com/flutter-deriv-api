@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// GetSelfExclusionResponse class
+/// Get self exclusion response class
 class GetSelfExclusionResponse extends Response {
   /// Initialize GetSelfExclusionResponse
   const GetSelfExclusionResponse({

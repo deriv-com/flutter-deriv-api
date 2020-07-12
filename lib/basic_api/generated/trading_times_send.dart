@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// TradingTimesRequest class
+/// Trading times request class
 class TradingTimesRequest extends Request {
   /// Initialize TradingTimesRequest
   const TradingTimesRequest({

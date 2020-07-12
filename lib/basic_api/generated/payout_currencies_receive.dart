@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// PayoutCurrenciesResponse class
+/// Payout currencies response class
 class PayoutCurrenciesResponse extends Response {
   /// Initialize PayoutCurrenciesResponse
   const PayoutCurrenciesResponse({

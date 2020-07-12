@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// PaymentagentTransferRequest class
+/// Paymentagent transfer request class
 class PaymentagentTransferRequest extends Request {
   /// Initialize PaymentagentTransferRequest
   const PaymentagentTransferRequest({

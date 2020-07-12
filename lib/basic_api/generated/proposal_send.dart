@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// ProposalRequest class
+/// Proposal request class
 class ProposalRequest extends Request {
   /// Initialize ProposalRequest
   const ProposalRequest({

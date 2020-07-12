@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// SetAccountCurrencyResponse class
+/// Set account currency response class
 class SetAccountCurrencyResponse extends Response {
   /// Initialize SetAccountCurrencyResponse
   const SetAccountCurrencyResponse({

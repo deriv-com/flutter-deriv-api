@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// ProposalOpenContractRequest class
+/// Proposal open contract request class
 class ProposalOpenContractRequest extends Request {
   /// Initialize ProposalOpenContractRequest
   const ProposalOpenContractRequest({

@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// Mt5PasswordChangeResponse class
+/// Mt5 password change response class
 class Mt5PasswordChangeResponse extends Response {
   /// Initialize Mt5PasswordChangeResponse
   const Mt5PasswordChangeResponse({

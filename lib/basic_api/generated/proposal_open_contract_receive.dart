@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// ProposalOpenContractResponse class
+/// Proposal open contract response class
 class ProposalOpenContractResponse extends Response {
   /// Initialize ProposalOpenContractResponse
   const ProposalOpenContractResponse({

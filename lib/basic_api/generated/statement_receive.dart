@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// StatementResponse class
+/// Statement response class
 class StatementResponse extends Response {
   /// Initialize StatementResponse
   const StatementResponse({

@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// DocumentUploadRequest class
+/// Document upload request class
 class DocumentUploadRequest extends Request {
   /// Initialize DocumentUploadRequest
   const DocumentUploadRequest({

@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// GetLimitsResponse class
+/// Get limits response class
 class GetLimitsResponse extends Response {
   /// Initialize GetLimitsResponse
   const GetLimitsResponse({

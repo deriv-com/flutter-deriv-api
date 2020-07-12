@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// ForgetAllResponse class
+/// Forget all response class
 class ForgetAllResponse extends Response {
   /// Initialize ForgetAllResponse
   const ForgetAllResponse({

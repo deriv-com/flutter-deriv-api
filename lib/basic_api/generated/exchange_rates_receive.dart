@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// ExchangeRatesResponse class
+/// Exchange rates response class
 class ExchangeRatesResponse extends Response {
   /// Initialize ExchangeRatesResponse
   const ExchangeRatesResponse({

@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// LoginHistoryRequest class
+/// Login history request class
 class LoginHistoryRequest extends Request {
   /// Initialize LoginHistoryRequest
   const LoginHistoryRequest({

@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// SetAccountCurrencyRequest class
+/// Set account currency request class
 class SetAccountCurrencyRequest extends Request {
   /// Initialize SetAccountCurrencyRequest
   const SetAccountCurrencyRequest({

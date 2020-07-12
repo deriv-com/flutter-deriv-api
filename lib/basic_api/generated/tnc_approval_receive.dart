@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// TncApprovalResponse class
+/// Tnc approval response class
 class TncApprovalResponse extends Response {
   /// Initialize TncApprovalResponse
   const TncApprovalResponse({

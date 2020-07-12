@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// RevokeOauthAppResponse class
+/// Revoke oauth app response class
 class RevokeOauthAppResponse extends Response {
   /// Initialize RevokeOauthAppResponse
   const RevokeOauthAppResponse({

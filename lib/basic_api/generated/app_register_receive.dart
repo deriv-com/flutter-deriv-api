@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// AppRegisterResponse class
+/// App register response class
 class AppRegisterResponse extends Response {
   /// Initialize AppRegisterResponse
   const AppRegisterResponse({

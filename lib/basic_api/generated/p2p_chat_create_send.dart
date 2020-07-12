@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// P2pChatCreateRequest class
+/// P2p chat create request class
 class P2pChatCreateRequest extends Request {
   /// Initialize P2pChatCreateRequest
   const P2pChatCreateRequest({

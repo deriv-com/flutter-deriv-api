@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// PayoutCurrenciesRequest class
+/// Payout currencies request class
 class PayoutCurrenciesRequest extends Request {
   /// Initialize PayoutCurrenciesRequest
   const PayoutCurrenciesRequest({

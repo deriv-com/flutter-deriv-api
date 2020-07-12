@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// StatesListRequest class
+/// States list request class
 class StatesListRequest extends Request {
   /// Initialize StatesListRequest
   const StatesListRequest({

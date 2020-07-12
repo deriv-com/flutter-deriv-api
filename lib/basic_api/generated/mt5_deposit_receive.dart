@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// Mt5DepositResponse class
+/// Mt5 deposit response class
 class Mt5DepositResponse extends Response {
   /// Initialize Mt5DepositResponse
   const Mt5DepositResponse({

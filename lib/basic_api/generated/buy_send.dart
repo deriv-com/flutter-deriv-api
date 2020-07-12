@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// BuyRequest class
+/// Buy request class
 class BuyRequest extends Request {
   /// Initialize BuyRequest
   const BuyRequest({

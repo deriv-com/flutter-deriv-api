@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// CopytradingStatisticsRequest class
+/// Copytrading statistics request class
 class CopytradingStatisticsRequest extends Request {
   /// Initialize CopytradingStatisticsRequest
   const CopytradingStatisticsRequest({

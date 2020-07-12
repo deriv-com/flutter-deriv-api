@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// GetAccountStatusRequest class
+/// Get account status request class
 class GetAccountStatusRequest extends Request {
   /// Initialize GetAccountStatusRequest
   const GetAccountStatusRequest({

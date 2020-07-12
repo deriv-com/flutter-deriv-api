@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// TncApprovalRequest class
+/// Tnc approval request class
 class TncApprovalRequest extends Request {
   /// Initialize TncApprovalRequest
   const TncApprovalRequest({

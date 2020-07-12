@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// P2pAdvertUpdateResponse class
+/// P2p advert update response class
 class P2pAdvertUpdateResponse extends Response {
   /// Initialize P2pAdvertUpdateResponse
   const P2pAdvertUpdateResponse({

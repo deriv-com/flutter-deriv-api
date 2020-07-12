@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// TopupVirtualRequest class
+/// Topup virtual request class
 class TopupVirtualRequest extends Request {
   /// Initialize TopupVirtualRequest
   const TopupVirtualRequest({

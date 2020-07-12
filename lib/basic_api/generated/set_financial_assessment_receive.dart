@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// SetFinancialAssessmentResponse class
+/// Set financial assessment response class
 class SetFinancialAssessmentResponse extends Response {
   /// Initialize SetFinancialAssessmentResponse
   const SetFinancialAssessmentResponse({

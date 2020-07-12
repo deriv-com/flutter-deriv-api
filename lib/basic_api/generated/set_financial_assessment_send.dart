@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// SetFinancialAssessmentRequest class
+/// Set financial assessment request class
 class SetFinancialAssessmentRequest extends Request {
   /// Initialize SetFinancialAssessmentRequest
   const SetFinancialAssessmentRequest({

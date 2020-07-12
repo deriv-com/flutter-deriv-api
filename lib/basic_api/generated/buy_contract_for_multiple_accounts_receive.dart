@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// BuyContractForMultipleAccountsResponse class
+/// Buy contract for multiple accounts response class
 class BuyContractForMultipleAccountsResponse extends Response {
   /// Initialize BuyContractForMultipleAccountsResponse
   const BuyContractForMultipleAccountsResponse({

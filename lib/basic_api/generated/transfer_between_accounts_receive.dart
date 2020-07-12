@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// TransferBetweenAccountsResponse class
+/// Transfer between accounts response class
 class TransferBetweenAccountsResponse extends Response {
   /// Initialize TransferBetweenAccountsResponse
   const TransferBetweenAccountsResponse({

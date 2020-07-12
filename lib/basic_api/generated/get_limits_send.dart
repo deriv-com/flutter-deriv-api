@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// GetLimitsRequest class
+/// Get limits request class
 class GetLimitsRequest extends Request {
   /// Initialize GetLimitsRequest
   const GetLimitsRequest({

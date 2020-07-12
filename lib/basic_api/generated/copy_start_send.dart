@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// CopyStartRequest class
+/// Copy start request class
 class CopyStartRequest extends Request {
   /// Initialize CopyStartRequest
   const CopyStartRequest({

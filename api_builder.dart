@@ -112,7 +112,7 @@ class APIBuilder extends Builder {
 
             import '../${schemaType == 'send' ? 'request' : 'response'}.dart';
 
-            /// $classFullName class
+            /// ${ReCase(classFullName).sentenceCase} class
             class $classFullName extends ${schemaType == 'send' ? 'Request' : 'Response'} {
               /// Initialize $classFullName
               const $classFullName({

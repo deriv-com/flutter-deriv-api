@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// LogoutResponse class
+/// Logout response class
 class LogoutResponse extends Response {
   /// Initialize LogoutResponse
   const LogoutResponse({

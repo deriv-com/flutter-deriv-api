@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// GetSettingsRequest class
+/// Get settings request class
 class GetSettingsRequest extends Request {
   /// Initialize GetSettingsRequest
   const GetSettingsRequest({

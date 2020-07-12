@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// SellContractForMultipleAccountsResponse class
+/// Sell contract for multiple accounts response class
 class SellContractForMultipleAccountsResponse extends Response {
   /// Initialize SellContractForMultipleAccountsResponse
   const SellContractForMultipleAccountsResponse({

@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// OauthAppsRequest class
+/// Oauth apps request class
 class OauthAppsRequest extends Request {
   /// Initialize OauthAppsRequest
   const OauthAppsRequest({

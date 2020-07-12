@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// ExchangeRatesRequest class
+/// Exchange rates request class
 class ExchangeRatesRequest extends Request {
   /// Initialize ExchangeRatesRequest
   const ExchangeRatesRequest({

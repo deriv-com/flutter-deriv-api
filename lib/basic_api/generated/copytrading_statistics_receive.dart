@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// CopytradingStatisticsResponse class
+/// Copytrading statistics response class
 class CopytradingStatisticsResponse extends Response {
   /// Initialize CopytradingStatisticsResponse
   const CopytradingStatisticsResponse({

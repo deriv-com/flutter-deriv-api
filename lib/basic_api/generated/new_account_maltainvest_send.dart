@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// NewAccountMaltainvestRequest class
+/// New account maltainvest request class
 class NewAccountMaltainvestRequest extends Request {
   /// Initialize NewAccountMaltainvestRequest
   const NewAccountMaltainvestRequest({

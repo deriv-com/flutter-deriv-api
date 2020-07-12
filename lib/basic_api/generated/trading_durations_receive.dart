@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// TradingDurationsResponse class
+/// Trading durations response class
 class TradingDurationsResponse extends Response {
   /// Initialize TradingDurationsResponse
   const TradingDurationsResponse({

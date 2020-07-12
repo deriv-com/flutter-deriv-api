@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// AssetIndexResponse class
+/// Asset index response class
 class AssetIndexResponse extends Response {
   /// Initialize AssetIndexResponse
   const AssetIndexResponse({

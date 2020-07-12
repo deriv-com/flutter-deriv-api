@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// CashierResponse class
+/// Cashier response class
 class CashierResponse extends Response {
   /// Initialize CashierResponse
   const CashierResponse({

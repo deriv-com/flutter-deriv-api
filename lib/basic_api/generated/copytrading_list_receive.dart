@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// CopytradingListResponse class
+/// Copytrading list response class
 class CopytradingListResponse extends Response {
   /// Initialize CopytradingListResponse
   const CopytradingListResponse({

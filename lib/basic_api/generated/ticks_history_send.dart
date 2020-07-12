@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// TicksHistoryRequest class
+/// Ticks history request class
 class TicksHistoryRequest extends Request {
   /// Initialize TicksHistoryRequest
   const TicksHistoryRequest({

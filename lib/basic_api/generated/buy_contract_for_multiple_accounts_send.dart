@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// BuyContractForMultipleAccountsRequest class
+/// Buy contract for multiple accounts request class
 class BuyContractForMultipleAccountsRequest extends Request {
   /// Initialize BuyContractForMultipleAccountsRequest
   const BuyContractForMultipleAccountsRequest({

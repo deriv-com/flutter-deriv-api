@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// ContractsForResponse class
+/// Contracts for response class
 class ContractsForResponse extends Response {
   /// Initialize ContractsForResponse
   const ContractsForResponse({

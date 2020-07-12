@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// AppGetRequest class
+/// App get request class
 class AppGetRequest extends Request {
   /// Initialize AppGetRequest
   const AppGetRequest({

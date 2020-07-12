@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// SellExpiredResponse class
+/// Sell expired response class
 class SellExpiredResponse extends Response {
   /// Initialize SellExpiredResponse
   const SellExpiredResponse({

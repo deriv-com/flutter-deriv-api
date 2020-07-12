@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// BuyResponse class
+/// Buy response class
 class BuyResponse extends Response {
   /// Initialize BuyResponse
   const BuyResponse({

@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Mt5WithdrawalRequest class
+/// Mt5 withdrawal request class
 class Mt5WithdrawalRequest extends Request {
   /// Initialize Mt5WithdrawalRequest
   const Mt5WithdrawalRequest({

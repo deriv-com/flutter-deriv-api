@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Mt5GetSettingsRequest class
+/// Mt5 get settings request class
 class Mt5GetSettingsRequest extends Request {
   /// Initialize Mt5GetSettingsRequest
   const Mt5GetSettingsRequest({

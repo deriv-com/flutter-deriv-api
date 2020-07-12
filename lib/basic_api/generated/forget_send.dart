@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// ForgetRequest class
+/// Forget request class
 class ForgetRequest extends Request {
   /// Initialize ForgetRequest
   const ForgetRequest({

@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// P2pOrderInfoResponse class
+/// P2p order info response class
 class P2pOrderInfoResponse extends Response {
   /// Initialize P2pOrderInfoResponse
   const P2pOrderInfoResponse({

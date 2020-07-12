@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// ActiveSymbolsRequest class
+/// Active symbols request class
 class ActiveSymbolsRequest extends Request {
   /// Initialize ActiveSymbolsRequest
   const ActiveSymbolsRequest({

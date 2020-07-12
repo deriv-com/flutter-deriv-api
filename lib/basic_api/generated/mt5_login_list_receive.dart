@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// Mt5LoginListResponse class
+/// Mt5 login list response class
 class Mt5LoginListResponse extends Response {
   /// Initialize Mt5LoginListResponse
   const Mt5LoginListResponse({

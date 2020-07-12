@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// ProfitTableRequest class
+/// Profit table request class
 class ProfitTableRequest extends Request {
   /// Initialize ProfitTableRequest
   const ProfitTableRequest({

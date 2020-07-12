@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// CancelResponse class
+/// Cancel response class
 class CancelResponse extends Response {
   /// Initialize CancelResponse
   const CancelResponse({

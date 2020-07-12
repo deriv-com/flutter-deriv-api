@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// ForgetAllRequest class
+/// Forget all request class
 class ForgetAllRequest extends Request {
   /// Initialize ForgetAllRequest
   const ForgetAllRequest({

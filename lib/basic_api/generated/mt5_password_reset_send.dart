@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Mt5PasswordResetRequest class
+/// Mt5 password reset request class
 class Mt5PasswordResetRequest extends Request {
   /// Initialize Mt5PasswordResetRequest
   const Mt5PasswordResetRequest({

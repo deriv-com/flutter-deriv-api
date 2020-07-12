@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// TimeResponse class
+/// Time response class
 class TimeResponse extends Response {
   /// Initialize TimeResponse
   const TimeResponse({

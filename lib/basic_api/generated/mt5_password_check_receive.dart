@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// Mt5PasswordCheckResponse class
+/// Mt5 password check response class
 class Mt5PasswordCheckResponse extends Response {
   /// Initialize Mt5PasswordCheckResponse
   const Mt5PasswordCheckResponse({

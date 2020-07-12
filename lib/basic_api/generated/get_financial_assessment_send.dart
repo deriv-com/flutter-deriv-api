@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// GetFinancialAssessmentRequest class
+/// Get financial assessment request class
 class GetFinancialAssessmentRequest extends Request {
   /// Initialize GetFinancialAssessmentRequest
   const GetFinancialAssessmentRequest({

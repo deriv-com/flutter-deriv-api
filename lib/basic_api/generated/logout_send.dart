@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// LogoutRequest class
+/// Logout request class
 class LogoutRequest extends Request {
   /// Initialize LogoutRequest
   const LogoutRequest({

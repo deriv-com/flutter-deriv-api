@@ -3,7 +3,7 @@
 
 import '../request.dart';
 
-/// WebsiteStatusRequest class
+/// Website status request class
 class WebsiteStatusRequest extends Request {
   /// Initialize WebsiteStatusRequest
   const WebsiteStatusRequest({

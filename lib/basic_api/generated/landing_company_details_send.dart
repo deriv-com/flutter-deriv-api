@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// LandingCompanyDetailsRequest class
+/// Landing company details request class
 class LandingCompanyDetailsRequest extends Request {
   /// Initialize LandingCompanyDetailsRequest
   const LandingCompanyDetailsRequest({

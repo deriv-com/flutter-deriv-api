@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// PaymentagentTransferResponse class
+/// Paymentagent transfer response class
 class PaymentagentTransferResponse extends Response {
   /// Initialize PaymentagentTransferResponse
   const PaymentagentTransferResponse({

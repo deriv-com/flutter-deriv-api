@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Mt5NewAccountRequest class
+/// Mt5 new account request class
 class Mt5NewAccountRequest extends Request {
   /// Initialize Mt5NewAccountRequest
   const Mt5NewAccountRequest({

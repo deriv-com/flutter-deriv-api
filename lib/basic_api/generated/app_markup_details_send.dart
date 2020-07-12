@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// AppMarkupDetailsRequest class
+/// App markup details request class
 class AppMarkupDetailsRequest extends Request {
   /// Initialize AppMarkupDetailsRequest
   const AppMarkupDetailsRequest({

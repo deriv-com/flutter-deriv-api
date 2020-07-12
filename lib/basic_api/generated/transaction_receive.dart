@@ -3,7 +3,7 @@
 
 import '../response.dart';
 
-/// TransactionResponse class
+/// Transaction response class
 class TransactionResponse extends Response {
   /// Initialize TransactionResponse
   const TransactionResponse({
