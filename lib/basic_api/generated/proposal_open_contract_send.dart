@@ -38,7 +38,7 @@ class ProposalOpenContractRequest extends Request {
   /// Must be `true`
   final bool proposalOpenContract;
 
-  /// [Optional] `1` to stream.
+  /// [Optional] `true` to stream.
   final bool subscribe;
 
   /// Converts an instance to JSON

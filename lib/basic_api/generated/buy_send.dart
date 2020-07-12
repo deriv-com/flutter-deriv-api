@@ -44,7 +44,7 @@ class BuyRequest extends Request {
   /// Maximum price at which to purchase the contract.
   final num price;
 
-  /// [Optional] `1` to stream.
+  /// [Optional] `true` to stream.
   final bool subscribe;
 
   /// Converts an instance to JSON

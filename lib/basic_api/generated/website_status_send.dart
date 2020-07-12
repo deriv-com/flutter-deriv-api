@@ -28,7 +28,7 @@ class WebsiteStatusRequest extends Request {
             json['website_status'] == null ? null : json['website_status'] == 1,
       );
 
-  /// [Optional] `1` to stream the server/website status updates.
+  /// [Optional] `true` to stream the server/website status updates.
   final bool subscribe;
 
   /// Must be `true`

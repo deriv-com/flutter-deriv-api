@@ -165,6 +165,7 @@ class App extends AppModel {
       AppUpdate.updateApplication(
         AppUpdateRequest(
           appMarkupPercentage: appMarkupPercentage,
+          appUpdate: 1,
           appstore: appstore,
           github: github,
           googleplay: googleplay,

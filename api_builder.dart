@@ -187,6 +187,7 @@ class APIBuilder extends Builder {
           final String type = _getPropertyType(key, buildStep, property);
           final String description = property.description
               .replaceAll('\n', '\n/// ')
+              .replaceAll('`1` to stream', '`true` to stream')
               .replaceAll('Must be `1`', 'Must be `true`')
               .replaceAll('Must be 1', 'Must be `true`');
 
