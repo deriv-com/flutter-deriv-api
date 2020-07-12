@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_update_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'app_update_receive.g.dart';
-
-/// JSON conversion for 'app_update_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// AppUpdateResponse class
 class AppUpdateResponse extends Response {
   /// Initialize AppUpdateResponse
   const AppUpdateResponse({
@@ -24,14 +20,28 @@ class AppUpdateResponse extends Response {
 
   /// Creates an instance from JSON
   factory AppUpdateResponse.fromJson(Map<String, dynamic> json) =>
-      _$AppUpdateResponseFromJson(json);
+      AppUpdateResponse(
+        // ignore: avoid_as
+        appUpdate: json['app_update'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Information of the updated application.
   final Map<String, dynamic> appUpdate;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$AppUpdateResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'app_update': appUpdate,
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

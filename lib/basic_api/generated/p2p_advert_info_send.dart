@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_info_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'p2p_advert_info_send.g.dart';
-
-/// JSON conversion for 'p2p_advert_info_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2pAdvertInfoRequest class
 class P2pAdvertInfoRequest extends Request {
   /// Initialize P2pAdvertInfoRequest
   const P2pAdvertInfoRequest({
@@ -23,7 +20,16 @@ class P2pAdvertInfoRequest extends Request {
 
   /// Creates an instance from JSON
   factory P2pAdvertInfoRequest.fromJson(Map<String, dynamic> json) =>
-      _$P2pAdvertInfoRequestFromJson(json);
+      P2pAdvertInfoRequest(
+        // ignore: avoid_as
+        id: json['id'] as String,
+        // ignore: avoid_as
+        p2pAdvertInfo: json['p2p_advert_info'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// The unique identifier for this advert.
   final String id;
@@ -33,7 +39,12 @@ class P2pAdvertInfoRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pAdvertInfoRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'id': id,
+        'p2p_advert_info': p2pAdvertInfo,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

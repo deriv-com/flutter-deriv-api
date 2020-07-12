@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_register_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'app_register_receive.g.dart';
-
-/// JSON conversion for 'app_register_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// AppRegisterResponse class
 class AppRegisterResponse extends Response {
   /// Initialize AppRegisterResponse
   const AppRegisterResponse({
@@ -24,14 +20,28 @@ class AppRegisterResponse extends Response {
 
   /// Creates an instance from JSON
   factory AppRegisterResponse.fromJson(Map<String, dynamic> json) =>
-      _$AppRegisterResponseFromJson(json);
+      AppRegisterResponse(
+        // ignore: avoid_as
+        appRegister: json['app_register'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// The information of the created application.
   final Map<String, dynamic> appRegister;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$AppRegisterResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'app_register': appRegister,
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

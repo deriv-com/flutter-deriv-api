@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/asset_index_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'asset_index_send.g.dart';
-
-/// JSON conversion for 'asset_index_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// AssetIndexRequest class
 class AssetIndexRequest extends Request {
   /// Initialize AssetIndexRequest
   const AssetIndexRequest({
@@ -22,7 +18,16 @@ class AssetIndexRequest extends Request {
 
   /// Creates an instance from JSON
   factory AssetIndexRequest.fromJson(Map<String, dynamic> json) =>
-      _$AssetIndexRequestFromJson(json);
+      AssetIndexRequest(
+        // ignore: avoid_as
+        assetIndex: json['asset_index'] as int,
+        // ignore: avoid_as
+        landingCompany: json['landing_company'] as String,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Must be `1`
   final int assetIndex;
@@ -32,7 +37,12 @@ class AssetIndexRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$AssetIndexRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'asset_index': assetIndex,
+        'landing_company': landingCompany,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

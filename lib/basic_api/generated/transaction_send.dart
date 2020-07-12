@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transaction_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'transaction_send.g.dart';
-
-/// JSON conversion for 'transaction_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// TransactionRequest class
 class TransactionRequest extends Request {
   /// Initialize TransactionRequest
   const TransactionRequest({
@@ -22,7 +18,16 @@ class TransactionRequest extends Request {
 
   /// Creates an instance from JSON
   factory TransactionRequest.fromJson(Map<String, dynamic> json) =>
-      _$TransactionRequestFromJson(json);
+      TransactionRequest(
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        subscribe: json['subscribe'] as int,
+        // ignore: avoid_as
+        transaction: json['transaction'] as int,
+      );
 
   /// If set to 1, will send updates whenever there is an update to transactions. If not to 1 then it will not return any records.
   final int subscribe;
@@ -32,7 +37,12 @@ class TransactionRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TransactionRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'passthrough': passthrough,
+        'req_id': reqId,
+        'subscribe': subscribe,
+        'transaction': transaction,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_login_list_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'mt5_login_list_receive.g.dart';
-
-/// JSON conversion for 'mt5_login_list_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Mt5LoginListResponse class
 class Mt5LoginListResponse extends Response {
   /// Initialize Mt5LoginListResponse
   const Mt5LoginListResponse({
@@ -24,14 +20,31 @@ class Mt5LoginListResponse extends Response {
 
   /// Creates an instance from JSON
   factory Mt5LoginListResponse.fromJson(Map<String, dynamic> json) =>
-      _$Mt5LoginListResponseFromJson(json);
+      Mt5LoginListResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as, always_specify_types
+        mt5LoginList: (json['mt5_login_list'] as List)
+            // ignore: avoid_as
+            ?.map((dynamic item) => item as Map<String, dynamic>)
+            ?.toList(),
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Array containing MT5 account objects.
   final List<Map<String, dynamic>> mt5LoginList;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$Mt5LoginListResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'mt5_login_list': mt5LoginList,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

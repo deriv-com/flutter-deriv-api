@@ -130,7 +130,7 @@ void main() {
         const P2pAdvertiserUpdateRequest(
           contactInfo: 'contract information',
           defaultAdvertDescription: 'default advert description',
-          isListed: 1,
+          isListed: true,
           name: 'John Doe',
           paymentInfo: 'payment information',
         ),

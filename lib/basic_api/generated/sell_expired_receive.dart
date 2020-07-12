@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_expired_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'sell_expired_receive.g.dart';
-
-/// JSON conversion for 'sell_expired_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// SellExpiredResponse class
 class SellExpiredResponse extends Response {
   /// Initialize SellExpiredResponse
   const SellExpiredResponse({
@@ -24,14 +20,28 @@ class SellExpiredResponse extends Response {
 
   /// Creates an instance from JSON
   factory SellExpiredResponse.fromJson(Map<String, dynamic> json) =>
-      _$SellExpiredResponseFromJson(json);
+      SellExpiredResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        sellExpired: json['sell_expired'] as Map<String, dynamic>,
+      );
 
   /// Sell expired contract object containing count of contracts sold
   final Map<String, dynamic> sellExpired;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$SellExpiredResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+        'sell_expired': sellExpired,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

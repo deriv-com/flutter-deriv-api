@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'get_limits_send.g.dart';
-
-/// JSON conversion for 'get_limits_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// GetLimitsRequest class
 class GetLimitsRequest extends Request {
   /// Initialize GetLimitsRequest
   const GetLimitsRequest({
@@ -21,14 +17,25 @@ class GetLimitsRequest extends Request {
 
   /// Creates an instance from JSON
   factory GetLimitsRequest.fromJson(Map<String, dynamic> json) =>
-      _$GetLimitsRequestFromJson(json);
+      GetLimitsRequest(
+        // ignore: avoid_as
+        getLimits: json['get_limits'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Must be `1`
   final int getLimits;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$GetLimitsRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'get_limits': getLimits,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

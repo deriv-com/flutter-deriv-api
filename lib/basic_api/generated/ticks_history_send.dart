@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_history_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'ticks_history_send.g.dart';
-
-/// JSON conversion for 'ticks_history_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// TicksHistoryRequest class
 class TicksHistoryRequest extends Request {
   /// Initialize TicksHistoryRequest
   const TicksHistoryRequest({
@@ -29,7 +26,28 @@ class TicksHistoryRequest extends Request {
 
   /// Creates an instance from JSON
   factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>
-      _$TicksHistoryRequestFromJson(json);
+      TicksHistoryRequest(
+        // ignore: avoid_as
+        adjustStartTime: json['adjust_start_time'] as int,
+        // ignore: avoid_as
+        count: json['count'] as int,
+        // ignore: avoid_as
+        end: json['end'] as String,
+        // ignore: avoid_as
+        granularity: json['granularity'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        start: json['start'] as int,
+        // ignore: avoid_as
+        style: json['style'] as String,
+        // ignore: avoid_as
+        subscribe: json['subscribe'] as int,
+        // ignore: avoid_as
+        ticksHistory: json['ticks_history'] as String,
+      );
 
   /// [Optional] 1 - if the market is closed at the end time, or license limit is before end time, adjust interval backwards to compensate.
   final int adjustStartTime;
@@ -59,7 +77,18 @@ class TicksHistoryRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TicksHistoryRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'adjust_start_time': adjustStartTime,
+        'count': count,
+        'end': end,
+        'granularity': granularity,
+        'passthrough': passthrough,
+        'req_id': reqId,
+        'start': start,
+        'style': style,
+        'subscribe': subscribe,
+        'ticks_history': ticksHistory,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

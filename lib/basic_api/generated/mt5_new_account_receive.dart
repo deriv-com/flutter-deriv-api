@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_new_account_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'mt5_new_account_receive.g.dart';
-
-/// JSON conversion for 'mt5_new_account_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Mt5NewAccountResponse class
 class Mt5NewAccountResponse extends Response {
   /// Initialize Mt5NewAccountResponse
   const Mt5NewAccountResponse({
@@ -24,14 +20,28 @@ class Mt5NewAccountResponse extends Response {
 
   /// Creates an instance from JSON
   factory Mt5NewAccountResponse.fromJson(Map<String, dynamic> json) =>
-      _$Mt5NewAccountResponseFromJson(json);
+      Mt5NewAccountResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        mt5NewAccount: json['mt5_new_account'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// New MT5 account details
   final Map<String, dynamic> mt5NewAccount;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$Mt5NewAccountResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'mt5_new_account': mt5NewAccount,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

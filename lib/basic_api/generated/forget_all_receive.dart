@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_all_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'forget_all_receive.g.dart';
-
-/// JSON conversion for 'forget_all_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// ForgetAllResponse class
 class ForgetAllResponse extends Response {
   /// Initialize ForgetAllResponse
   const ForgetAllResponse({
@@ -24,14 +20,31 @@ class ForgetAllResponse extends Response {
 
   /// Creates an instance from JSON
   factory ForgetAllResponse.fromJson(Map<String, dynamic> json) =>
-      _$ForgetAllResponseFromJson(json);
+      ForgetAllResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as, always_specify_types
+        forgetAll: (json['forget_all'] as List)
+            // ignore: avoid_as
+            ?.map((dynamic item) => item as dynamic)
+            ?.toList(),
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// IDs of the cancelled streams
   final List<dynamic> forgetAll;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ForgetAllResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'forget_all': forgetAll,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

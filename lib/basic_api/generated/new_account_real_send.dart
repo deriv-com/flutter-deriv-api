@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'new_account_real_send.g.dart';
-
-/// JSON conversion for 'new_account_real_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// NewAccountRealRequest class
 class NewAccountRealRequest extends Request {
   /// Initialize NewAccountRealRequest
   const NewAccountRealRequest({
@@ -45,7 +42,60 @@ class NewAccountRealRequest extends Request {
 
   /// Creates an instance from JSON
   factory NewAccountRealRequest.fromJson(Map<String, dynamic> json) =>
-      _$NewAccountRealRequestFromJson(json);
+      NewAccountRealRequest(
+        // ignore: avoid_as
+        accountOpeningReason: json['account_opening_reason'] as String,
+        // ignore: avoid_as
+        accountTurnover: json['account_turnover'] as String,
+        // ignore: avoid_as
+        addressCity: json['address_city'] as String,
+        // ignore: avoid_as
+        addressLine1: json['address_line_1'] as String,
+        // ignore: avoid_as
+        addressLine2: json['address_line_2'] as String,
+        // ignore: avoid_as
+        addressPostcode: json['address_postcode'] as String,
+        // ignore: avoid_as
+        addressState: json['address_state'] as String,
+        // ignore: avoid_as
+        affiliateToken: json['affiliate_token'] as String,
+        // ignore: avoid_as
+        citizen: json['citizen'] as String,
+        // ignore: avoid_as
+        clientType: json['client_type'] as String,
+        // ignore: avoid_as
+        currency: json['currency'] as String,
+        // ignore: avoid_as
+        dateOfBirth: json['date_of_birth'] as String,
+        // ignore: avoid_as
+        firstName: json['first_name'] as String,
+        // ignore: avoid_as
+        lastName: json['last_name'] as String,
+        // ignore: avoid_as
+        newAccountReal: json['new_account_real'] as int,
+        // ignore: avoid_as
+        nonPepDeclaration: json['non_pep_declaration'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        phone: json['phone'] as String,
+        // ignore: avoid_as
+        placeOfBirth: json['place_of_birth'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        residence: json['residence'] as String,
+        // ignore: avoid_as
+        salutation: json['salutation'] as String,
+        // ignore: avoid_as
+        secretAnswer: json['secret_answer'] as String,
+        // ignore: avoid_as
+        secretQuestion: json['secret_question'] as String,
+        // ignore: avoid_as
+        taxIdentificationNumber: json['tax_identification_number'] as String,
+        // ignore: avoid_as
+        taxResidence: json['tax_residence'] as String,
+      );
 
   /// [Optional] Purpose and reason for requesting the account opening.
   final String accountOpeningReason;
@@ -92,7 +142,7 @@ class NewAccountRealRequest extends Request {
   /// Must be `1`
   final int newAccountReal;
 
-  /// [Optional] Indicates client's self-declaration of not being a PEP/RCA.
+  /// [Optional] Indicates client's self-declaration of not being a PEP/RCA (Politically Exposed Person/Relatives and Close Associates).
   final int nonPepDeclaration;
 
   /// [Optional] Starting with `+` followed by 8-35 digits, allowing hyphens or space.
@@ -121,7 +171,34 @@ class NewAccountRealRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$NewAccountRealRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'account_opening_reason': accountOpeningReason,
+        'account_turnover': accountTurnover,
+        'address_city': addressCity,
+        'address_line_1': addressLine1,
+        'address_line_2': addressLine2,
+        'address_postcode': addressPostcode,
+        'address_state': addressState,
+        'affiliate_token': affiliateToken,
+        'citizen': citizen,
+        'client_type': clientType,
+        'currency': currency,
+        'date_of_birth': dateOfBirth,
+        'first_name': firstName,
+        'last_name': lastName,
+        'new_account_real': newAccountReal,
+        'non_pep_declaration': nonPepDeclaration,
+        'passthrough': passthrough,
+        'phone': phone,
+        'place_of_birth': placeOfBirth,
+        'req_id': reqId,
+        'residence': residence,
+        'salutation': salutation,
+        'secret_answer': secretAnswer,
+        'secret_question': secretQuestion,
+        'tax_identification_number': taxIdentificationNumber,
+        'tax_residence': taxResidence,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

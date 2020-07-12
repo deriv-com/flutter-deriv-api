@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/payout_currencies_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'payout_currencies_send.g.dart';
-
-/// JSON conversion for 'payout_currencies_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// PayoutCurrenciesRequest class
 class PayoutCurrenciesRequest extends Request {
   /// Initialize PayoutCurrenciesRequest
   const PayoutCurrenciesRequest({
@@ -21,14 +17,25 @@ class PayoutCurrenciesRequest extends Request {
 
   /// Creates an instance from JSON
   factory PayoutCurrenciesRequest.fromJson(Map<String, dynamic> json) =>
-      _$PayoutCurrenciesRequestFromJson(json);
+      PayoutCurrenciesRequest(
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        payoutCurrencies: json['payout_currencies'] as int,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Must be `1`
   final int payoutCurrencies;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$PayoutCurrenciesRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'passthrough': passthrough,
+        'payout_currencies': payoutCurrencies,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

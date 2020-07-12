@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_contract_for_multiple_accounts_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'buy_contract_for_multiple_accounts_receive.g.dart';
-
-/// JSON conversion for 'buy_contract_for_multiple_accounts_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// BuyContractForMultipleAccountsResponse class
 class BuyContractForMultipleAccountsResponse extends Response {
   /// Initialize BuyContractForMultipleAccountsResponse
   const BuyContractForMultipleAccountsResponse({
@@ -25,15 +21,29 @@ class BuyContractForMultipleAccountsResponse extends Response {
   /// Creates an instance from JSON
   factory BuyContractForMultipleAccountsResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$BuyContractForMultipleAccountsResponseFromJson(json);
+      BuyContractForMultipleAccountsResponse(
+        // ignore: avoid_as
+        buyContractForMultipleAccounts:
+            json['buy_contract_for_multiple_accounts'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Receipt confirmation for the purchase
   final Map<String, dynamic> buyContractForMultipleAccounts;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() =>
-      _$BuyContractForMultipleAccountsResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'buy_contract_for_multiple_accounts': buyContractForMultipleAccounts,
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

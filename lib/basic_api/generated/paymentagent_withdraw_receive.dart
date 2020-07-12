@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'paymentagent_withdraw_receive.g.dart';
-
-/// JSON conversion for 'paymentagent_withdraw_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// PaymentagentWithdrawResponse class
 class PaymentagentWithdrawResponse extends Response {
   /// Initialize PaymentagentWithdrawResponse
   const PaymentagentWithdrawResponse({
@@ -26,7 +22,20 @@ class PaymentagentWithdrawResponse extends Response {
 
   /// Creates an instance from JSON
   factory PaymentagentWithdrawResponse.fromJson(Map<String, dynamic> json) =>
-      _$PaymentagentWithdrawResponseFromJson(json);
+      PaymentagentWithdrawResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        paymentagentName: json['paymentagent_name'] as String,
+        // ignore: avoid_as
+        paymentagentWithdraw: json['paymentagent_withdraw'] as int,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        transactionId: json['transaction_id'] as int,
+      );
 
   /// Payment agent name.
   final String paymentagentName;
@@ -39,7 +48,14 @@ class PaymentagentWithdrawResponse extends Response {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$PaymentagentWithdrawResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'paymentagent_name': paymentagentName,
+        'paymentagent_withdraw': paymentagentWithdraw,
+        'req_id': reqId,
+        'transaction_id': transactionId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

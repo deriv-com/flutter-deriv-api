@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_new_account_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'mt5_new_account_send.g.dart';
-
-/// JSON conversion for 'mt5_new_account_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Mt5NewAccountRequest class
 class Mt5NewAccountRequest extends Request {
   /// Initialize Mt5NewAccountRequest
   const Mt5NewAccountRequest({
@@ -38,7 +35,45 @@ class Mt5NewAccountRequest extends Request {
 
   /// Creates an instance from JSON
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>
-      _$Mt5NewAccountRequestFromJson(json);
+      Mt5NewAccountRequest(
+        // ignore: avoid_as
+        accountType: json['account_type'] as String,
+        // ignore: avoid_as
+        address: json['address'] as String,
+        // ignore: avoid_as
+        city: json['city'] as String,
+        // ignore: avoid_as
+        company: json['company'] as String,
+        // ignore: avoid_as
+        country: json['country'] as String,
+        dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
+        // ignore: avoid_as
+        email: json['email'] as String,
+        // ignore: avoid_as
+        investPassword: json['investPassword'] as String,
+        // ignore: avoid_as
+        leverage: json['leverage'] as num,
+        // ignore: avoid_as
+        mainPassword: json['mainPassword'] as String,
+        // ignore: avoid_as
+        mt5AccountType: json['mt5_account_type'] as String,
+        // ignore: avoid_as
+        mt5NewAccount: json['mt5_new_account'] as int,
+        // ignore: avoid_as
+        name: json['name'] as String,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        phone: json['phone'] as String,
+        // ignore: avoid_as
+        phonePassword: json['phonePassword'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        state: json['state'] as String,
+        // ignore: avoid_as
+        zipCode: json['zipCode'] as String,
+      );
 
   /// Account type
   final String accountType;
@@ -56,7 +91,7 @@ class Mt5NewAccountRequest extends Request {
   final String country;
 
   /// [Optional] If set to 1, only validation is performed.
-  final int dryRun;
+  final bool dryRun;
 
   /// Email address
   final String email;
@@ -70,7 +105,7 @@ class Mt5NewAccountRequest extends Request {
   /// The master password of the account. For validation (length within 8-25 chars, accepts at least 2 out of the following 3 types of characters: uppercase letters, lowercase letters, and numbers). This field is required.
   final String mainPassword;
 
-  /// [Optional] Standard: Variable spreads, High leverage. Advanced: Variable spreads, Medium Leverage, more products.
+  /// [Optional] Financial: Variable spreads, High leverage. Financial STP: Variable spreads, Medium Leverage, more products.
   final String mt5AccountType;
 
   /// Must be `1`
@@ -93,7 +128,27 @@ class Mt5NewAccountRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$Mt5NewAccountRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'account_type': accountType,
+        'address': address,
+        'city': city,
+        'company': company,
+        'country': country,
+        'dry_run': dryRun == null ? null : dryRun ? 1 : 0,
+        'email': email,
+        'investPassword': investPassword,
+        'leverage': leverage,
+        'mainPassword': mainPassword,
+        'mt5_account_type': mt5AccountType,
+        'mt5_new_account': mt5NewAccount,
+        'name': name,
+        'passthrough': passthrough,
+        'phone': phone,
+        'phonePassword': phonePassword,
+        'req_id': reqId,
+        'state': state,
+        'zipCode': zipCode,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -103,7 +158,7 @@ class Mt5NewAccountRequest extends Request {
     String city,
     String company,
     String country,
-    int dryRun,
+    bool dryRun,
     String email,
     String investPassword,
     num leverage,

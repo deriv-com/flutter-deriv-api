@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_update_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'p2p_advert_update_send.g.dart';
-
-/// JSON conversion for 'p2p_advert_update_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2pAdvertUpdateRequest class
 class P2pAdvertUpdateRequest extends Request {
   /// Initialize P2pAdvertUpdateRequest
   const P2pAdvertUpdateRequest({
@@ -25,30 +22,48 @@ class P2pAdvertUpdateRequest extends Request {
 
   /// Creates an instance from JSON
   factory P2pAdvertUpdateRequest.fromJson(Map<String, dynamic> json) =>
-      _$P2pAdvertUpdateRequestFromJson(json);
+      P2pAdvertUpdateRequest(
+        delete: json['delete'] == null ? null : json['delete'] == 1,
+        // ignore: avoid_as
+        id: json['id'] as String,
+        isActive: json['is_active'] == null ? null : json['is_active'] == 1,
+        // ignore: avoid_as
+        p2pAdvertUpdate: json['p2p_advert_update'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] If set to 1, permanently deletes the advert.
-  final int delete;
+  final bool delete;
 
   /// The unique identifier for this advert.
   final String id;
 
   /// [Optional] Activate or deactivate the advert.
-  final int isActive;
+  final bool isActive;
 
   /// Must be 1
   final int p2pAdvertUpdate;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pAdvertUpdateRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'delete': delete == null ? null : delete ? 1 : 0,
+        'id': id,
+        'is_active': isActive == null ? null : isActive ? 1 : 0,
+        'p2p_advert_update': p2pAdvertUpdate,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertUpdateRequest copyWith({
-    int delete,
+    bool delete,
     String id,
-    int isActive,
+    bool isActive,
     int p2pAdvertUpdate,
     Map<String, dynamic> passthrough,
     int reqId,

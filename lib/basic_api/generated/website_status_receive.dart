@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/website_status_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'website_status_receive.g.dart';
-
-/// JSON conversion for 'website_status_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// WebsiteStatusResponse class
 class WebsiteStatusResponse extends Response {
   /// Initialize WebsiteStatusResponse
   const WebsiteStatusResponse({
@@ -25,7 +21,18 @@ class WebsiteStatusResponse extends Response {
 
   /// Creates an instance from JSON
   factory WebsiteStatusResponse.fromJson(Map<String, dynamic> json) =>
-      _$WebsiteStatusResponseFromJson(json);
+      WebsiteStatusResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        subscription: json['subscription'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        websiteStatus: json['website_status'] as Map<String, dynamic>,
+      );
 
   /// For subscription requests only.
   final Map<String, dynamic> subscription;
@@ -35,7 +42,13 @@ class WebsiteStatusResponse extends Response {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$WebsiteStatusResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+        'subscription': subscription,
+        'website_status': websiteStatus,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

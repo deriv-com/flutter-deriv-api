@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'active_symbols_send.g.dart';
-
-/// JSON conversion for 'active_symbols_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// ActiveSymbolsRequest class
 class ActiveSymbolsRequest extends Request {
   /// Initialize ActiveSymbolsRequest
   const ActiveSymbolsRequest({
@@ -24,7 +21,18 @@ class ActiveSymbolsRequest extends Request {
 
   /// Creates an instance from JSON
   factory ActiveSymbolsRequest.fromJson(Map<String, dynamic> json) =>
-      _$ActiveSymbolsRequestFromJson(json);
+      ActiveSymbolsRequest(
+        // ignore: avoid_as
+        activeSymbols: json['active_symbols'] as String,
+        // ignore: avoid_as
+        landingCompany: json['landing_company'] as String,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        productType: json['product_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// If you use `brief`, only a subset of fields will be returned.
   final String activeSymbols;
@@ -37,7 +45,13 @@ class ActiveSymbolsRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ActiveSymbolsRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'active_symbols': activeSymbols,
+        'landing_company': landingCompany,
+        'passthrough': passthrough,
+        'product_type': productType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

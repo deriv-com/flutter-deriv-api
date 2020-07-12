@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'buy_send.g.dart';
-
-/// JSON conversion for 'buy_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// BuyRequest class
 class BuyRequest extends Request {
   /// Initialize BuyRequest
   const BuyRequest({
@@ -24,8 +21,20 @@ class BuyRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory BuyRequest.fromJson(Map<String, dynamic> json) =>
-      _$BuyRequestFromJson(json);
+  factory BuyRequest.fromJson(Map<String, dynamic> json) => BuyRequest(
+        // ignore: avoid_as
+        buy: json['buy'] as String,
+        // ignore: avoid_as
+        parameters: json['parameters'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        price: json['price'] as num,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        subscribe: json['subscribe'] as int,
+      );
 
   /// Either the ID received from a Price Proposal (`proposal` call), or `1` if contract buy parameters are passed in the `parameters` field.
   final String buy;
@@ -41,7 +50,14 @@ class BuyRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$BuyRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'buy': buy,
+        'parameters': parameters,
+        'passthrough': passthrough,
+        'price': price,
+        'req_id': reqId,
+        'subscribe': subscribe,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

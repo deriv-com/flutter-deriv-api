@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/time_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'time_receive.g.dart';
-
-/// JSON conversion for 'time_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// TimeResponse class
 class TimeResponse extends Response {
   /// Initialize TimeResponse
   const TimeResponse({
@@ -23,15 +19,28 @@ class TimeResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory TimeResponse.fromJson(Map<String, dynamic> json) =>
-      _$TimeResponseFromJson(json);
+  factory TimeResponse.fromJson(Map<String, dynamic> json) => TimeResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        time: json['time'] as int,
+      );
 
   /// Epoch of server time.
   final int time;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TimeResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+        'time': time,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

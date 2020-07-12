@@ -134,7 +134,7 @@ class MockAPI implements BaseAPI {
   Future<ForgetResponse> unsubscribe({
     @required String subscriptionId,
   }) async =>
-      const ForgetResponse(forget: 1);
+      const ForgetResponse(forget: true);
 
   @override
   Future<ForgetAllResponse> unsubscribeAll({

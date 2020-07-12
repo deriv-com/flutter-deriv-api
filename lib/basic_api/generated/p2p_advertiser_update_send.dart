@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_update_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'p2p_advertiser_update_send.g.dart';
-
-/// JSON conversion for 'p2p_advertiser_update_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2pAdvertiserUpdateRequest class
 class P2pAdvertiserUpdateRequest extends Request {
   /// Initialize P2pAdvertiserUpdateRequest
   const P2pAdvertiserUpdateRequest({
@@ -26,7 +22,23 @@ class P2pAdvertiserUpdateRequest extends Request {
 
   /// Creates an instance from JSON
   factory P2pAdvertiserUpdateRequest.fromJson(Map<String, dynamic> json) =>
-      _$P2pAdvertiserUpdateRequestFromJson(json);
+      P2pAdvertiserUpdateRequest(
+        // ignore: avoid_as
+        contactInfo: json['contact_info'] as String,
+        // ignore: avoid_as
+        defaultAdvertDescription: json['default_advert_description'] as String,
+        isListed: json['is_listed'] == null ? null : json['is_listed'] == 1,
+        // ignore: avoid_as
+        name: json['name'] as String,
+        // ignore: avoid_as
+        p2pAdvertiserUpdate: json['p2p_advertiser_update'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        paymentInfo: json['payment_info'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] Advertiser's contact information, to be used as a default for new sell adverts.
   final String contactInfo;
@@ -35,7 +47,7 @@ class P2pAdvertiserUpdateRequest extends Request {
   final String defaultAdvertDescription;
 
   /// [Optional] Used to set if the advertiser's adverts could be listed. When `0`, adverts won't be listed regardless of they are active or not. This doesn't change the `is_active` of each individual advert.
-  final int isListed;
+  final bool isListed;
 
   /// [Optional] The advertiser's displayed name.
   final String name;
@@ -48,14 +60,23 @@ class P2pAdvertiserUpdateRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pAdvertiserUpdateRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'contact_info': contactInfo,
+        'default_advert_description': defaultAdvertDescription,
+        'is_listed': isListed == null ? null : isListed ? 1 : 0,
+        'name': name,
+        'p2p_advertiser_update': p2pAdvertiserUpdate,
+        'passthrough': passthrough,
+        'payment_info': paymentInfo,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertiserUpdateRequest copyWith({
     String contactInfo,
     String defaultAdvertDescription,
-    int isListed,
+    bool isListed,
     String name,
     int p2pAdvertiserUpdate,
     String paymentInfo,

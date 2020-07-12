@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/tnc_approval_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'tnc_approval_send.g.dart';
-
-/// JSON conversion for 'tnc_approval_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// TncApprovalRequest class
 class TncApprovalRequest extends Request {
   /// Initialize TncApprovalRequest
   const TncApprovalRequest({
@@ -23,7 +20,16 @@ class TncApprovalRequest extends Request {
 
   /// Creates an instance from JSON
   factory TncApprovalRequest.fromJson(Map<String, dynamic> json) =>
-      _$TncApprovalRequestFromJson(json);
+      TncApprovalRequest(
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        tncApproval: json['tnc_approval'] as num,
+        // ignore: avoid_as
+        ukgcFundsProtection: json['ukgc_funds_protection'] as int,
+      );
 
   /// Must be `1`
   final num tncApproval;
@@ -33,7 +39,12 @@ class TncApprovalRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TncApprovalRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'passthrough': passthrough,
+        'req_id': reqId,
+        'tnc_approval': tncApproval,
+        'ukgc_funds_protection': ukgcFundsProtection,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

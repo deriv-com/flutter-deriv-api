@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_get_settings_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'mt5_get_settings_receive.g.dart';
-
-/// JSON conversion for 'mt5_get_settings_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Mt5GetSettingsResponse class
 class Mt5GetSettingsResponse extends Response {
   /// Initialize Mt5GetSettingsResponse
   const Mt5GetSettingsResponse({
@@ -24,14 +20,28 @@ class Mt5GetSettingsResponse extends Response {
 
   /// Creates an instance from JSON
   factory Mt5GetSettingsResponse.fromJson(Map<String, dynamic> json) =>
-      _$Mt5GetSettingsResponseFromJson(json);
+      Mt5GetSettingsResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        mt5GetSettings: json['mt5_get_settings'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// MT5 user account details
   final Map<String, dynamic> mt5GetSettings;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$Mt5GetSettingsResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'mt5_get_settings': mt5GetSettings,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

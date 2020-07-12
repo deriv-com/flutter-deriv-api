@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'app_markup_details_receive.g.dart';
-
-/// JSON conversion for 'app_markup_details_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// AppMarkupDetailsResponse class
 class AppMarkupDetailsResponse extends Response {
   /// Initialize AppMarkupDetailsResponse
   const AppMarkupDetailsResponse({
@@ -24,14 +20,28 @@ class AppMarkupDetailsResponse extends Response {
 
   /// Creates an instance from JSON
   factory AppMarkupDetailsResponse.fromJson(Map<String, dynamic> json) =>
-      _$AppMarkupDetailsResponseFromJson(json);
+      AppMarkupDetailsResponse(
+        // ignore: avoid_as
+        appMarkupDetails: json['app_markup_details'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// App Markup transaction details
   final Map<String, dynamic> appMarkupDetails;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$AppMarkupDetailsResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'app_markup_details': appMarkupDetails,
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

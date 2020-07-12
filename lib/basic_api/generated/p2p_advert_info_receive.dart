@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_info_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'p2p_advert_info_receive.g.dart';
-
-/// JSON conversion for 'p2p_advert_info_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2pAdvertInfoResponse class
 class P2pAdvertInfoResponse extends Response {
   /// Initialize P2pAdvertInfoResponse
   const P2pAdvertInfoResponse({
@@ -24,14 +20,28 @@ class P2pAdvertInfoResponse extends Response {
 
   /// Creates an instance from JSON
   factory P2pAdvertInfoResponse.fromJson(Map<String, dynamic> json) =>
-      _$P2pAdvertInfoResponseFromJson(json);
+      P2pAdvertInfoResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        p2pAdvertInfo: json['p2p_advert_info'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// P2P advert information.
   final Map<String, dynamic> p2pAdvertInfo;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pAdvertInfoResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'p2p_advert_info': p2pAdvertInfo,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

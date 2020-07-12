@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_contract_for_multiple_accounts_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'sell_contract_for_multiple_accounts_send.g.dart';
-
-/// JSON conversion for 'sell_contract_for_multiple_accounts_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// SellContractForMultipleAccountsRequest class
 class SellContractForMultipleAccountsRequest extends Request {
   /// Initialize SellContractForMultipleAccountsRequest
   const SellContractForMultipleAccountsRequest({
@@ -26,7 +23,24 @@ class SellContractForMultipleAccountsRequest extends Request {
   /// Creates an instance from JSON
   factory SellContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
-      _$SellContractForMultipleAccountsRequestFromJson(json);
+      SellContractForMultipleAccountsRequest(
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        price: json['price'] as num,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        sellContractForMultipleAccounts:
+            json['sell_contract_for_multiple_accounts'] as int,
+        // ignore: avoid_as
+        shortcode: json['shortcode'] as String,
+        // ignore: avoid_as, always_specify_types
+        tokens: (json['tokens'] as List)
+            // ignore: avoid_as
+            ?.map((dynamic item) => item as String)
+            ?.toList(),
+      );
 
   /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
   final num price;
@@ -42,8 +56,14 @@ class SellContractForMultipleAccountsRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() =>
-      _$SellContractForMultipleAccountsRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'passthrough': passthrough,
+        'price': price,
+        'req_id': reqId,
+        'sell_contract_for_multiple_accounts': sellContractForMultipleAccounts,
+        'shortcode': shortcode,
+        'tokens': tokens,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

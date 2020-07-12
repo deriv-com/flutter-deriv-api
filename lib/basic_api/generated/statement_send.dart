@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/statement_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'statement_send.g.dart';
-
-/// JSON conversion for 'statement_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// StatementRequest class
 class StatementRequest extends Request {
   /// Initialize StatementRequest
   const StatementRequest({
@@ -27,7 +23,26 @@ class StatementRequest extends Request {
 
   /// Creates an instance from JSON
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>
-      _$StatementRequestFromJson(json);
+      StatementRequest(
+        // ignore: avoid_as
+        actionType: json['action_type'] as String,
+        // ignore: avoid_as
+        dateFrom: json['date_from'] as int,
+        // ignore: avoid_as
+        dateTo: json['date_to'] as int,
+        description:
+            json['description'] == null ? null : json['description'] == 1,
+        // ignore: avoid_as
+        limit: json['limit'] as num,
+        // ignore: avoid_as
+        offset: json['offset'] as num,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        statement: json['statement'] as int,
+      );
 
   /// [Optional] To filter the statement according to the type of transaction.
   final String actionType;
@@ -39,7 +54,7 @@ class StatementRequest extends Request {
   final int dateTo;
 
   /// [Optional] If set to 1, will return full contracts description.
-  final int description;
+  final bool description;
 
   /// [Optional] Maximum number of transactions to receive.
   final num limit;
@@ -52,7 +67,17 @@ class StatementRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$StatementRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'action_type': actionType,
+        'date_from': dateFrom,
+        'date_to': dateTo,
+        'description': description == null ? null : description ? 1 : 0,
+        'limit': limit,
+        'offset': offset,
+        'passthrough': passthrough,
+        'req_id': reqId,
+        'statement': statement,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -60,7 +85,7 @@ class StatementRequest extends Request {
     String actionType,
     int dateFrom,
     int dateTo,
-    int description,
+    bool description,
     num limit,
     num offset,
     int statement,

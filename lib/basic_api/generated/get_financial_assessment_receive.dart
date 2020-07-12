@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_financial_assessment_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'get_financial_assessment_receive.g.dart';
-
-/// JSON conversion for 'get_financial_assessment_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// GetFinancialAssessmentResponse class
 class GetFinancialAssessmentResponse extends Response {
   /// Initialize GetFinancialAssessmentResponse
   const GetFinancialAssessmentResponse({
@@ -24,14 +20,29 @@ class GetFinancialAssessmentResponse extends Response {
 
   /// Creates an instance from JSON
   factory GetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetFinancialAssessmentResponseFromJson(json);
+      GetFinancialAssessmentResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        getFinancialAssessment:
+            json['get_financial_assessment'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Client's financial assessment details
   final Map<String, dynamic> getFinancialAssessment;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$GetFinancialAssessmentResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'get_financial_assessment': getFinancialAssessment,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

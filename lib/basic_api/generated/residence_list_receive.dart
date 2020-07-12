@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/residence_list_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'residence_list_receive.g.dart';
-
-/// JSON conversion for 'residence_list_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// ResidenceListResponse class
 class ResidenceListResponse extends Response {
   /// Initialize ResidenceListResponse
   const ResidenceListResponse({
@@ -24,14 +20,31 @@ class ResidenceListResponse extends Response {
 
   /// Creates an instance from JSON
   factory ResidenceListResponse.fromJson(Map<String, dynamic> json) =>
-      _$ResidenceListResponseFromJson(json);
+      ResidenceListResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as, always_specify_types
+        residenceList: (json['residence_list'] as List)
+            // ignore: avoid_as
+            ?.map((dynamic item) => item as Map<String, dynamic>)
+            ?.toList(),
+      );
 
   /// List of countries for account opening
   final List<Map<String, dynamic>> residenceList;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ResidenceListResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+        'residence_list': residenceList,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

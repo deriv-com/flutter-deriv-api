@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/authorize_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'authorize_receive.g.dart';
-
-/// JSON conversion for 'authorize_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// AuthorizeResponse class
 class AuthorizeResponse extends Response {
   /// Initialize AuthorizeResponse
   const AuthorizeResponse({
@@ -24,14 +20,28 @@ class AuthorizeResponse extends Response {
 
   /// Creates an instance from JSON
   factory AuthorizeResponse.fromJson(Map<String, dynamic> json) =>
-      _$AuthorizeResponseFromJson(json);
+      AuthorizeResponse(
+        // ignore: avoid_as
+        authorize: json['authorize'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Account information for the holder of the token.
   final Map<String, dynamic> authorize;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$AuthorizeResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'authorize': authorize,
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

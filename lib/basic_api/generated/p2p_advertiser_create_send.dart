@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_create_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'p2p_advertiser_create_send.g.dart';
-
-/// JSON conversion for 'p2p_advertiser_create_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2pAdvertiserCreateRequest class
 class P2pAdvertiserCreateRequest extends Request {
   /// Initialize P2pAdvertiserCreateRequest
   const P2pAdvertiserCreateRequest({
@@ -27,7 +24,24 @@ class P2pAdvertiserCreateRequest extends Request {
 
   /// Creates an instance from JSON
   factory P2pAdvertiserCreateRequest.fromJson(Map<String, dynamic> json) =>
-      _$P2pAdvertiserCreateRequestFromJson(json);
+      P2pAdvertiserCreateRequest(
+        // ignore: avoid_as
+        contactInfo: json['contact_info'] as String,
+        // ignore: avoid_as
+        defaultAdvertDescription: json['default_advert_description'] as String,
+        // ignore: avoid_as
+        name: json['name'] as String,
+        // ignore: avoid_as
+        p2pAdvertiserCreate: json['p2p_advertiser_create'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        paymentInfo: json['payment_info'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        subscribe: json['subscribe'] as int,
+      );
 
   /// [Optional] Advertiser's contact information, to be used as a default for new sell adverts.
   final String contactInfo;
@@ -49,7 +63,16 @@ class P2pAdvertiserCreateRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pAdvertiserCreateRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'contact_info': contactInfo,
+        'default_advert_description': defaultAdvertDescription,
+        'name': name,
+        'p2p_advertiser_create': p2pAdvertiserCreate,
+        'passthrough': passthrough,
+        'payment_info': paymentInfo,
+        'req_id': reqId,
+        'subscribe': subscribe,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

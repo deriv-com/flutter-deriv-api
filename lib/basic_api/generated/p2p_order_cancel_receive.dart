@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_cancel_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'p2p_order_cancel_receive.g.dart';
-
-/// JSON conversion for 'p2p_order_cancel_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2pOrderCancelResponse class
 class P2pOrderCancelResponse extends Response {
   /// Initialize P2pOrderCancelResponse
   const P2pOrderCancelResponse({
@@ -24,14 +20,28 @@ class P2pOrderCancelResponse extends Response {
 
   /// Creates an instance from JSON
   factory P2pOrderCancelResponse.fromJson(Map<String, dynamic> json) =>
-      _$P2pOrderCancelResponseFromJson(json);
+      P2pOrderCancelResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        p2pOrderCancel: json['p2p_order_cancel'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Cancellation details
   final Map<String, dynamic> p2pOrderCancel;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pOrderCancelResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'p2p_order_cancel': p2pOrderCancel,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'proposal_send.g.dart';
-
-/// JSON conversion for 'proposal_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// ProposalRequest class
 class ProposalRequest extends Request {
   /// Initialize ProposalRequest
   const ProposalRequest({
@@ -40,7 +37,50 @@ class ProposalRequest extends Request {
 
   /// Creates an instance from JSON
   factory ProposalRequest.fromJson(Map<String, dynamic> json) =>
-      _$ProposalRequestFromJson(json);
+      ProposalRequest(
+        // ignore: avoid_as
+        amount: json['amount'] as num,
+        // ignore: avoid_as
+        barrier: json['barrier'] as String,
+        // ignore: avoid_as
+        barrier2: json['barrier2'] as String,
+        // ignore: avoid_as
+        basis: json['basis'] as String,
+        // ignore: avoid_as
+        cancellation: json['cancellation'] as String,
+        // ignore: avoid_as
+        contractType: json['contract_type'] as String,
+        // ignore: avoid_as
+        currency: json['currency'] as String,
+        // ignore: avoid_as
+        dateExpiry: json['date_expiry'] as int,
+        // ignore: avoid_as
+        dateStart: json['date_start'] as int,
+        // ignore: avoid_as
+        duration: json['duration'] as int,
+        // ignore: avoid_as
+        durationUnit: json['duration_unit'] as String,
+        // ignore: avoid_as
+        limitOrder: json['limit_order'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        multiplier: json['multiplier'] as num,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        productType: json['product_type'] as String,
+        // ignore: avoid_as
+        proposal: json['proposal'] as int,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        selectedTick: json['selected_tick'] as int,
+        // ignore: avoid_as
+        subscribe: json['subscribe'] as int,
+        // ignore: avoid_as
+        symbol: json['symbol'] as String,
+        // ignore: avoid_as
+        tradingPeriodStart: json['trading_period_start'] as int,
+      );
 
   /// [Optional] Proposed contract payout or stake, or multiplier (for lookbacks).
   final num amount;
@@ -101,7 +141,29 @@ class ProposalRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ProposalRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'amount': amount,
+        'barrier': barrier,
+        'barrier2': barrier2,
+        'basis': basis,
+        'cancellation': cancellation,
+        'contract_type': contractType,
+        'currency': currency,
+        'date_expiry': dateExpiry,
+        'date_start': dateStart,
+        'duration': duration,
+        'duration_unit': durationUnit,
+        'limit_order': limitOrder,
+        'multiplier': multiplier,
+        'passthrough': passthrough,
+        'product_type': productType,
+        'proposal': proposal,
+        'req_id': reqId,
+        'selected_tick': selectedTick,
+        'subscribe': subscribe,
+        'symbol': symbol,
+        'trading_period_start': tradingPeriodStart,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_withdrawal_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'mt5_withdrawal_receive.g.dart';
-
-/// JSON conversion for 'mt5_withdrawal_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Mt5WithdrawalResponse class
 class Mt5WithdrawalResponse extends Response {
   /// Initialize Mt5WithdrawalResponse
   const Mt5WithdrawalResponse({
@@ -25,7 +21,18 @@ class Mt5WithdrawalResponse extends Response {
 
   /// Creates an instance from JSON
   factory Mt5WithdrawalResponse.fromJson(Map<String, dynamic> json) =>
-      _$Mt5WithdrawalResponseFromJson(json);
+      Mt5WithdrawalResponse(
+        // ignore: avoid_as
+        binaryTransactionId: json['binary_transaction_id'] as int,
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        mt5Withdrawal: json['mt5_withdrawal'] as int,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Deposit reference ID of Binary account.
   final int binaryTransactionId;
@@ -35,7 +42,13 @@ class Mt5WithdrawalResponse extends Response {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$Mt5WithdrawalResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'binary_transaction_id': binaryTransactionId,
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'mt5_withdrawal': mt5Withdrawal,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

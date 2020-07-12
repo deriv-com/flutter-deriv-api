@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_start_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'copy_start_send.g.dart';
-
-/// JSON conversion for 'copy_start_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// CopyStartRequest class
 class CopyStartRequest extends Request {
   /// Initialize CopyStartRequest
   const CopyStartRequest({
@@ -26,7 +23,22 @@ class CopyStartRequest extends Request {
 
   /// Creates an instance from JSON
   factory CopyStartRequest.fromJson(Map<String, dynamic> json) =>
-      _$CopyStartRequestFromJson(json);
+      CopyStartRequest(
+        // ignore: avoid_as
+        assets: json['assets'] as dynamic,
+        // ignore: avoid_as
+        copyStart: json['copy_start'] as String,
+        // ignore: avoid_as
+        maxTradeStake: json['max_trade_stake'] as num,
+        // ignore: avoid_as
+        minTradeStake: json['min_trade_stake'] as num,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        tradeTypes: json['trade_types'] as dynamic,
+      );
 
   /// [Optional] Used to set assets to be copied. E.x ["frxUSDJPY", "R_50"]
   final dynamic assets;
@@ -45,7 +57,15 @@ class CopyStartRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$CopyStartRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'assets': assets,
+        'copy_start': copyStart,
+        'max_trade_stake': maxTradeStake,
+        'min_trade_stake': minTradeStake,
+        'passthrough': passthrough,
+        'req_id': reqId,
+        'trade_types': tradeTypes,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

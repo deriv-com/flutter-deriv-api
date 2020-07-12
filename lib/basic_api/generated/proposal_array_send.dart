@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_array_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'proposal_array_send.g.dart';
-
-/// JSON conversion for 'proposal_array_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// ProposalArrayRequest class
 class ProposalArrayRequest extends Request {
   /// Initialize ProposalArrayRequest
   const ProposalArrayRequest({
@@ -36,7 +33,48 @@ class ProposalArrayRequest extends Request {
 
   /// Creates an instance from JSON
   factory ProposalArrayRequest.fromJson(Map<String, dynamic> json) =>
-      _$ProposalArrayRequestFromJson(json);
+      ProposalArrayRequest(
+        // ignore: avoid_as
+        amount: json['amount'] as num,
+        // ignore: avoid_as, always_specify_types
+        barriers: (json['barriers'] as List)
+            // ignore: avoid_as
+            ?.map((dynamic item) => item as Map<String, dynamic>)
+            ?.toList(),
+        // ignore: avoid_as
+        basis: json['basis'] as String,
+        // ignore: avoid_as, always_specify_types
+        contractType: (json['contract_type'] as List)
+            // ignore: avoid_as
+            ?.map((dynamic item) => item as dynamic)
+            ?.toList(),
+        // ignore: avoid_as
+        currency: json['currency'] as String,
+        // ignore: avoid_as
+        dateExpiry: json['date_expiry'] as int,
+        // ignore: avoid_as
+        dateStart: json['date_start'] as int,
+        // ignore: avoid_as
+        duration: json['duration'] as int,
+        // ignore: avoid_as
+        durationUnit: json['duration_unit'] as String,
+        // ignore: avoid_as
+        multiplier: json['multiplier'] as num,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        productType: json['product_type'] as String,
+        // ignore: avoid_as
+        proposalArray: json['proposal_array'] as int,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        subscribe: json['subscribe'] as int,
+        // ignore: avoid_as
+        symbol: json['symbol'] as String,
+        // ignore: avoid_as
+        tradingPeriodStart: json['trading_period_start'] as int,
+      );
 
   /// Proposed contract `payout` or `stake` value.
   final num amount;
@@ -85,7 +123,25 @@ class ProposalArrayRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ProposalArrayRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'amount': amount,
+        'barriers': barriers,
+        'basis': basis,
+        'contract_type': contractType,
+        'currency': currency,
+        'date_expiry': dateExpiry,
+        'date_start': dateStart,
+        'duration': duration,
+        'duration_unit': durationUnit,
+        'multiplier': multiplier,
+        'passthrough': passthrough,
+        'product_type': productType,
+        'proposal_array': proposalArray,
+        'req_id': reqId,
+        'subscribe': subscribe,
+        'symbol': symbol,
+        'trading_period_start': tradingPeriodStart,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

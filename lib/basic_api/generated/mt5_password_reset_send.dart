@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_reset_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'mt5_password_reset_send.g.dart';
-
-/// JSON conversion for 'mt5_password_reset_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Mt5PasswordResetRequest class
 class Mt5PasswordResetRequest extends Request {
   /// Initialize Mt5PasswordResetRequest
   const Mt5PasswordResetRequest({
@@ -26,7 +23,22 @@ class Mt5PasswordResetRequest extends Request {
 
   /// Creates an instance from JSON
   factory Mt5PasswordResetRequest.fromJson(Map<String, dynamic> json) =>
-      _$Mt5PasswordResetRequestFromJson(json);
+      Mt5PasswordResetRequest(
+        // ignore: avoid_as
+        login: json['login'] as String,
+        // ignore: avoid_as
+        mt5PasswordReset: json['mt5_password_reset'] as int,
+        // ignore: avoid_as
+        newPassword: json['new_password'] as String,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        passwordType: json['password_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        verificationCode: json['verification_code'] as String,
+      );
 
   /// MT5 user login
   final String login;
@@ -45,7 +57,15 @@ class Mt5PasswordResetRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$Mt5PasswordResetRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'login': login,
+        'mt5_password_reset': mt5PasswordReset,
+        'new_password': newPassword,
+        'passthrough': passthrough,
+        'password_type': passwordType,
+        'req_id': reqId,
+        'verification_code': verificationCode,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

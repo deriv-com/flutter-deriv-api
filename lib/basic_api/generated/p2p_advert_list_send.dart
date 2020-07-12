@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_list_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'p2p_advert_list_send.g.dart';
-
-/// JSON conversion for 'p2p_advert_list_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2pAdvertListRequest class
 class P2pAdvertListRequest extends Request {
   /// Initialize P2pAdvertListRequest
   const P2pAdvertListRequest({
@@ -27,7 +23,26 @@ class P2pAdvertListRequest extends Request {
 
   /// Creates an instance from JSON
   factory P2pAdvertListRequest.fromJson(Map<String, dynamic> json) =>
-      _$P2pAdvertListRequestFromJson(json);
+      P2pAdvertListRequest(
+        // ignore: avoid_as
+        advertiserId: json['advertiser_id'] as String,
+        // ignore: avoid_as
+        amount: json['amount'] as num,
+        // ignore: avoid_as
+        counterpartyType: json['counterparty_type'] as String,
+        // ignore: avoid_as
+        limit: json['limit'] as int,
+        // ignore: avoid_as
+        localCurrency: json['local_currency'] as String,
+        // ignore: avoid_as
+        offset: json['offset'] as int,
+        // ignore: avoid_as
+        p2pAdvertList: json['p2p_advert_list'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] Which advertiser to list adverts for.
   final String advertiserId;
@@ -52,7 +67,17 @@ class P2pAdvertListRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pAdvertListRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'advertiser_id': advertiserId,
+        'amount': amount,
+        'counterparty_type': counterpartyType,
+        'limit': limit,
+        'local_currency': localCurrency,
+        'offset': offset,
+        'p2p_advert_list': p2pAdvertList,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

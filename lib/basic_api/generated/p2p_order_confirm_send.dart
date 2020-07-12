@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_confirm_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'p2p_order_confirm_send.g.dart';
-
-/// JSON conversion for 'p2p_order_confirm_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2pOrderConfirmRequest class
 class P2pOrderConfirmRequest extends Request {
   /// Initialize P2pOrderConfirmRequest
   const P2pOrderConfirmRequest({
@@ -23,7 +20,16 @@ class P2pOrderConfirmRequest extends Request {
 
   /// Creates an instance from JSON
   factory P2pOrderConfirmRequest.fromJson(Map<String, dynamic> json) =>
-      _$P2pOrderConfirmRequestFromJson(json);
+      P2pOrderConfirmRequest(
+        // ignore: avoid_as
+        id: json['id'] as String,
+        // ignore: avoid_as
+        p2pOrderConfirm: json['p2p_order_confirm'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// The unique identifier for this order.
   final String id;
@@ -33,7 +39,12 @@ class P2pOrderConfirmRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pOrderConfirmRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'id': id,
+        'p2p_order_confirm': p2pOrderConfirm,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

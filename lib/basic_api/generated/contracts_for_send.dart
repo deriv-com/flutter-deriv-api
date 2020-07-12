@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contracts_for_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'contracts_for_send.g.dart';
-
-/// JSON conversion for 'contracts_for_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// ContractsForRequest class
 class ContractsForRequest extends Request {
   /// Initialize ContractsForRequest
   const ContractsForRequest({
@@ -25,7 +22,20 @@ class ContractsForRequest extends Request {
 
   /// Creates an instance from JSON
   factory ContractsForRequest.fromJson(Map<String, dynamic> json) =>
-      _$ContractsForRequestFromJson(json);
+      ContractsForRequest(
+        // ignore: avoid_as
+        contractsFor: json['contracts_for'] as String,
+        // ignore: avoid_as
+        currency: json['currency'] as String,
+        // ignore: avoid_as
+        landingCompany: json['landing_company'] as String,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        productType: json['product_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// The short symbol name (obtained from `active_symbols` call).
   final String contractsFor;
@@ -41,7 +51,14 @@ class ContractsForRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ContractsForRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'contracts_for': contractsFor,
+        'currency': currency,
+        'landing_company': landingCompany,
+        'passthrough': passthrough,
+        'product_type': productType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

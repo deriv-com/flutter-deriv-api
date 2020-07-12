@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_history_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'contract_update_history_send.g.dart';
-
-/// JSON conversion for 'contract_update_history_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// ContractUpdateHistoryRequest class
 class ContractUpdateHistoryRequest extends Request {
   /// Initialize ContractUpdateHistoryRequest
   const ContractUpdateHistoryRequest({
@@ -23,7 +20,16 @@ class ContractUpdateHistoryRequest extends Request {
 
   /// Creates an instance from JSON
   factory ContractUpdateHistoryRequest.fromJson(Map<String, dynamic> json) =>
-      _$ContractUpdateHistoryRequestFromJson(json);
+      ContractUpdateHistoryRequest(
+        // ignore: avoid_as
+        contractId: json['contract_id'] as int,
+        // ignore: avoid_as
+        contractUpdateHistory: json['contract_update_history'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Internal unique contract identifier.
   final int contractId;
@@ -33,7 +39,12 @@ class ContractUpdateHistoryRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ContractUpdateHistoryRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'contract_id': contractId,
+        'contract_update_history': contractUpdateHistory,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

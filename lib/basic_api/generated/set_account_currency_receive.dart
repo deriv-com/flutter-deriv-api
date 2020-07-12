@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_account_currency_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'set_account_currency_receive.g.dart';
-
-/// JSON conversion for 'set_account_currency_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// SetAccountCurrencyResponse class
 class SetAccountCurrencyResponse extends Response {
   /// Initialize SetAccountCurrencyResponse
   const SetAccountCurrencyResponse({
@@ -24,19 +20,35 @@ class SetAccountCurrencyResponse extends Response {
 
   /// Creates an instance from JSON
   factory SetAccountCurrencyResponse.fromJson(Map<String, dynamic> json) =>
-      _$SetAccountCurrencyResponseFromJson(json);
+      SetAccountCurrencyResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        setAccountCurrency: json['set_account_currency'] == null
+            ? null
+            : json['set_account_currency'] == 1,
+      );
 
   /// `1`: success, `0`: no change
-  final int setAccountCurrency;
+  final bool setAccountCurrency;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$SetAccountCurrencyResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+        'set_account_currency':
+            setAccountCurrency == null ? null : setAccountCurrency ? 1 : 0,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   SetAccountCurrencyResponse copyWith({
-    int setAccountCurrency,
+    bool setAccountCurrency,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,

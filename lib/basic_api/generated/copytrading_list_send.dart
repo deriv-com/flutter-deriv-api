@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_list_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'copytrading_list_send.g.dart';
-
-/// JSON conversion for 'copytrading_list_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// CopytradingListRequest class
 class CopytradingListRequest extends Request {
   /// Initialize CopytradingListRequest
   const CopytradingListRequest({
@@ -21,14 +17,25 @@ class CopytradingListRequest extends Request {
 
   /// Creates an instance from JSON
   factory CopytradingListRequest.fromJson(Map<String, dynamic> json) =>
-      _$CopytradingListRequestFromJson(json);
+      CopytradingListRequest(
+        // ignore: avoid_as
+        copytradingList: json['copytrading_list'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Must be `1`
   final int copytradingList;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$CopytradingListRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'copytrading_list': copytradingList,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

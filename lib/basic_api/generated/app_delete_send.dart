@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_delete_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'app_delete_send.g.dart';
-
-/// JSON conversion for 'app_delete_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// AppDeleteRequest class
 class AppDeleteRequest extends Request {
   /// Initialize AppDeleteRequest
   const AppDeleteRequest({
@@ -21,14 +17,25 @@ class AppDeleteRequest extends Request {
 
   /// Creates an instance from JSON
   factory AppDeleteRequest.fromJson(Map<String, dynamic> json) =>
-      _$AppDeleteRequestFromJson(json);
+      AppDeleteRequest(
+        // ignore: avoid_as
+        appDelete: json['app_delete'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Application app_id
   final int appDelete;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$AppDeleteRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'app_delete': appDelete,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

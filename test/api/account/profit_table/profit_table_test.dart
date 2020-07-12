@@ -15,7 +15,7 @@ void main() {
   test('Fetch Profit Table Test', () async {
     final ProfitTable profitTable = await ProfitTable.fetch(
       const ProfitTableRequest(
-        description: 1,
+        description: true,
         limit: 25,
         offset: 25,
         sort: 'ASC',

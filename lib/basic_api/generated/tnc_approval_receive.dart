@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/tnc_approval_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'tnc_approval_receive.g.dart';
-
-/// JSON conversion for 'tnc_approval_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// TncApprovalResponse class
 class TncApprovalResponse extends Response {
   /// Initialize TncApprovalResponse
   const TncApprovalResponse({
@@ -24,14 +20,28 @@ class TncApprovalResponse extends Response {
 
   /// Creates an instance from JSON
   factory TncApprovalResponse.fromJson(Map<String, dynamic> json) =>
-      _$TncApprovalResponseFromJson(json);
+      TncApprovalResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        tncApproval: json['tnc_approval'] as int,
+      );
 
   /// Set terms and conditions 1: success
   final int tncApproval;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TncApprovalResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+        'tnc_approval': tncApproval,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

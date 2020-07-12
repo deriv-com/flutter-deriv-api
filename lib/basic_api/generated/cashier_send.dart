@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cashier_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'cashier_send.g.dart';
-
-/// JSON conversion for 'cashier_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// CashierRequest class
 class CashierRequest extends Request {
   /// Initialize CashierRequest
   const CashierRequest({
@@ -24,8 +21,20 @@ class CashierRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory CashierRequest.fromJson(Map<String, dynamic> json) =>
-      _$CashierRequestFromJson(json);
+  factory CashierRequest.fromJson(Map<String, dynamic> json) => CashierRequest(
+        // ignore: avoid_as
+        cashier: json['cashier'] as String,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        provider: json['provider'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        type: json['type'] as String,
+        // ignore: avoid_as
+        verificationCode: json['verification_code'] as String,
+      );
 
   /// Operation which needs to be requested from cashier
   final String cashier;
@@ -41,7 +50,14 @@ class CashierRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$CashierRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'cashier': cashier,
+        'passthrough': passthrough,
+        'provider': provider,
+        'req_id': reqId,
+        'type': type,
+        'verification_code': verificationCode,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

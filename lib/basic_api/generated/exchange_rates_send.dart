@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/exchange_rates_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'exchange_rates_send.g.dart';
-
-/// JSON conversion for 'exchange_rates_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// ExchangeRatesRequest class
 class ExchangeRatesRequest extends Request {
   /// Initialize ExchangeRatesRequest
   const ExchangeRatesRequest({
@@ -23,7 +20,16 @@ class ExchangeRatesRequest extends Request {
 
   /// Creates an instance from JSON
   factory ExchangeRatesRequest.fromJson(Map<String, dynamic> json) =>
-      _$ExchangeRatesRequestFromJson(json);
+      ExchangeRatesRequest(
+        // ignore: avoid_as
+        baseCurrency: json['base_currency'] as String,
+        // ignore: avoid_as
+        exchangeRates: json['exchange_rates'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Base currency (can be obtained from `payout_currencies` call)
   final String baseCurrency;
@@ -33,7 +39,12 @@ class ExchangeRatesRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ExchangeRatesRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'base_currency': baseCurrency,
+        'exchange_rates': exchangeRates,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

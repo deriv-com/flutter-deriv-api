@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_chat_create_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'p2p_chat_create_send.g.dart';
-
-/// JSON conversion for 'p2p_chat_create_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2pChatCreateRequest class
 class P2pChatCreateRequest extends Request {
   /// Initialize P2pChatCreateRequest
   const P2pChatCreateRequest({
@@ -23,7 +20,16 @@ class P2pChatCreateRequest extends Request {
 
   /// Creates an instance from JSON
   factory P2pChatCreateRequest.fromJson(Map<String, dynamic> json) =>
-      _$P2pChatCreateRequestFromJson(json);
+      P2pChatCreateRequest(
+        // ignore: avoid_as
+        orderId: json['order_id'] as String,
+        // ignore: avoid_as
+        p2pChatCreate: json['p2p_chat_create'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// The unique identifier for the order to create the chat for.
   final String orderId;
@@ -33,7 +39,12 @@ class P2pChatCreateRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pChatCreateRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'order_id': orderId,
+        'p2p_chat_create': p2pChatCreate,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

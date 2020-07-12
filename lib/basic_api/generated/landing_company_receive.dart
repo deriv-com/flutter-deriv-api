@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/landing_company_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'landing_company_receive.g.dart';
-
-/// JSON conversion for 'landing_company_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// LandingCompanyResponse class
 class LandingCompanyResponse extends Response {
   /// Initialize LandingCompanyResponse
   const LandingCompanyResponse({
@@ -24,14 +20,28 @@ class LandingCompanyResponse extends Response {
 
   /// Creates an instance from JSON
   factory LandingCompanyResponse.fromJson(Map<String, dynamic> json) =>
-      _$LandingCompanyResponseFromJson(json);
+      LandingCompanyResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        landingCompany: json['landing_company'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Landing Company
   final Map<String, dynamic> landingCompany;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$LandingCompanyResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'landing_company': landingCompany,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

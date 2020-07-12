@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_transfer_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'paymentagent_transfer_send.g.dart';
-
-/// JSON conversion for 'paymentagent_transfer_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// PaymentagentTransferRequest class
 class PaymentagentTransferRequest extends Request {
   /// Initialize PaymentagentTransferRequest
   const PaymentagentTransferRequest({
@@ -27,7 +24,23 @@ class PaymentagentTransferRequest extends Request {
 
   /// Creates an instance from JSON
   factory PaymentagentTransferRequest.fromJson(Map<String, dynamic> json) =>
-      _$PaymentagentTransferRequestFromJson(json);
+      PaymentagentTransferRequest(
+        // ignore: avoid_as
+        amount: json['amount'] as num,
+        // ignore: avoid_as
+        currency: json['currency'] as String,
+        // ignore: avoid_as
+        description: json['description'] as String,
+        dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        paymentagentTransfer: json['paymentagent_transfer'] as int,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        transferTo: json['transfer_to'] as String,
+      );
 
   /// The amount to transfer.
   final num amount;
@@ -39,7 +52,7 @@ class PaymentagentTransferRequest extends Request {
   final String description;
 
   /// [Optional] If set to `1`, just do validation.
-  final int dryRun;
+  final bool dryRun;
 
   /// Must be `1`
   final int paymentagentTransfer;
@@ -49,7 +62,16 @@ class PaymentagentTransferRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$PaymentagentTransferRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'amount': amount,
+        'currency': currency,
+        'description': description,
+        'dry_run': dryRun == null ? null : dryRun ? 1 : 0,
+        'passthrough': passthrough,
+        'paymentagent_transfer': paymentagentTransfer,
+        'req_id': reqId,
+        'transfer_to': transferTo,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -57,7 +79,7 @@ class PaymentagentTransferRequest extends Request {
     num amount,
     String currency,
     String description,
-    int dryRun,
+    bool dryRun,
     int paymentagentTransfer,
     String transferTo,
     Map<String, dynamic> passthrough,

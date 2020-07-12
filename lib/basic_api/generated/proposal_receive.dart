@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'proposal_receive.g.dart';
-
-/// JSON conversion for 'proposal_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// ProposalResponse class
 class ProposalResponse extends Response {
   /// Initialize ProposalResponse
   const ProposalResponse({
@@ -25,7 +21,18 @@ class ProposalResponse extends Response {
 
   /// Creates an instance from JSON
   factory ProposalResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProposalResponseFromJson(json);
+      ProposalResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        proposal: json['proposal'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        subscription: json['subscription'] as Map<String, dynamic>,
+      );
 
   /// Latest price and other details for a given contract
   final Map<String, dynamic> proposal;
@@ -35,7 +42,13 @@ class ProposalResponse extends Response {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ProposalResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'proposal': proposal,
+        'req_id': reqId,
+        'subscription': subscription,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

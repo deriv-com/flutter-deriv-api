@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ping_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'ping_receive.g.dart';
-
-/// JSON conversion for 'ping_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// PingResponse class
 class PingResponse extends Response {
   /// Initialize PingResponse
   const PingResponse({
@@ -23,15 +19,28 @@ class PingResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory PingResponse.fromJson(Map<String, dynamic> json) =>
-      _$PingResponseFromJson(json);
+  factory PingResponse.fromJson(Map<String, dynamic> json) => PingResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        ping: json['ping'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Will return 'pong'
   final String ping;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$PingResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'ping': ping,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

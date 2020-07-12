@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'transfer_between_accounts_send.g.dart';
-
-/// JSON conversion for 'transfer_between_accounts_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// TransferBetweenAccountsRequest class
 class TransferBetweenAccountsRequest extends Request {
   /// Initialize TransferBetweenAccountsRequest
   const TransferBetweenAccountsRequest({
@@ -26,7 +22,24 @@ class TransferBetweenAccountsRequest extends Request {
 
   /// Creates an instance from JSON
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>
-      _$TransferBetweenAccountsRequestFromJson(json);
+      TransferBetweenAccountsRequest(
+        // ignore: avoid_as
+        accountFrom: json['account_from'] as String,
+        // ignore: avoid_as
+        accountTo: json['account_to'] as String,
+        // ignore: avoid_as
+        accounts: json['accounts'] as String,
+        // ignore: avoid_as
+        amount: json['amount'] as num,
+        // ignore: avoid_as
+        currency: json['currency'] as String,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        transferBetweenAccounts: json['transfer_between_accounts'] as int,
+      );
 
   /// [Optional] The loginid of the account to transfer funds from.
   final String accountFrom;
@@ -34,7 +47,7 @@ class TransferBetweenAccountsRequest extends Request {
   /// [Optional] The loginid of the account to transfer funds to.
   final String accountTo;
 
-  /// [Optional] To control the list of accounts returned when `account_from` or `account_to` is not provided. `brief` will only include standard trading accounts and can be faster.
+  /// [Optional] To control the list of accounts returned when `account_from` or `account_to` is not provided. `brief` will only include financial trading accounts with account_type equal to `binary` and can be faster. `all` will include accounts with both `mt5` and `binary` account_type
   final String accounts;
 
   /// [Optional] The amount to transfer.
@@ -48,7 +61,16 @@ class TransferBetweenAccountsRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TransferBetweenAccountsRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'account_from': accountFrom,
+        'account_to': accountTo,
+        'accounts': accounts,
+        'amount': amount,
+        'currency': currency,
+        'passthrough': passthrough,
+        'req_id': reqId,
+        'transfer_between_accounts': transferBetweenAccounts,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

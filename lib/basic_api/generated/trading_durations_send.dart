@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_durations_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'trading_durations_send.g.dart';
-
-/// JSON conversion for 'trading_durations_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// TradingDurationsRequest class
 class TradingDurationsRequest extends Request {
   /// Initialize TradingDurationsRequest
   const TradingDurationsRequest({
@@ -22,7 +18,16 @@ class TradingDurationsRequest extends Request {
 
   /// Creates an instance from JSON
   factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>
-      _$TradingDurationsRequestFromJson(json);
+      TradingDurationsRequest(
+        // ignore: avoid_as
+        landingCompany: json['landing_company'] as String,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        tradingDurations: json['trading_durations'] as int,
+      );
 
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
   final String landingCompany;
@@ -32,7 +37,12 @@ class TradingDurationsRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TradingDurationsRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'landing_company': landingCompany,
+        'passthrough': passthrough,
+        'req_id': reqId,
+        'trading_durations': tradingDurations,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_maltainvest_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'new_account_maltainvest_receive.g.dart';
-
-/// JSON conversion for 'new_account_maltainvest_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// NewAccountMaltainvestResponse class
 class NewAccountMaltainvestResponse extends Response {
   /// Initialize NewAccountMaltainvestResponse
   const NewAccountMaltainvestResponse({
@@ -24,14 +20,29 @@ class NewAccountMaltainvestResponse extends Response {
 
   /// Creates an instance from JSON
   factory NewAccountMaltainvestResponse.fromJson(Map<String, dynamic> json) =>
-      _$NewAccountMaltainvestResponseFromJson(json);
+      NewAccountMaltainvestResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        newAccountMaltainvest:
+            json['new_account_maltainvest'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// New `maltainvest` account details
   final Map<String, dynamic> newAccountMaltainvest;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$NewAccountMaltainvestResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'new_account_maltainvest': newAccountMaltainvest,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

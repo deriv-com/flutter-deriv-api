@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_open_contract_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'proposal_open_contract_send.g.dart';
-
-/// JSON conversion for 'proposal_open_contract_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// ProposalOpenContractRequest class
 class ProposalOpenContractRequest extends Request {
   /// Initialize ProposalOpenContractRequest
   const ProposalOpenContractRequest({
@@ -23,7 +19,18 @@ class ProposalOpenContractRequest extends Request {
 
   /// Creates an instance from JSON
   factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>
-      _$ProposalOpenContractRequestFromJson(json);
+      ProposalOpenContractRequest(
+        // ignore: avoid_as
+        contractId: json['contract_id'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        proposalOpenContract: json['proposal_open_contract'] as int,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        subscribe: json['subscribe'] as int,
+      );
 
   /// [Optional] Contract ID received from a `portfolio` request. If not set, you will receive stream of all open contracts.
   final int contractId;
@@ -36,7 +43,13 @@ class ProposalOpenContractRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ProposalOpenContractRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'contract_id': contractId,
+        'passthrough': passthrough,
+        'proposal_open_contract': proposalOpenContract,
+        'req_id': reqId,
+        'subscribe': subscribe,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

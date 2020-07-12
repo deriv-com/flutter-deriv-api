@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/api_token_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'api_token_send.g.dart';
-
-/// JSON conversion for 'api_token_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// ApiTokenRequest class
 class ApiTokenRequest extends Request {
   /// Initialize ApiTokenRequest
   const ApiTokenRequest({
@@ -25,7 +21,26 @@ class ApiTokenRequest extends Request {
 
   /// Creates an instance from JSON
   factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>
-      _$ApiTokenRequestFromJson(json);
+      ApiTokenRequest(
+        // ignore: avoid_as
+        apiToken: json['api_token'] as int,
+        // ignore: avoid_as
+        deleteToken: json['delete_token'] as String,
+        // ignore: avoid_as
+        newToken: json['new_token'] as String,
+        // ignore: avoid_as, always_specify_types
+        newTokenScopes: (json['new_token_scopes'] as List)
+            // ignore: avoid_as
+            ?.map((dynamic item) => item as String)
+            ?.toList(),
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        validForCurrentIpOnly: json['valid_for_current_ip_only'] == null
+            ? null
+            : json['valid_for_current_ip_only'] == 1,
+      );
 
   /// Must be `1`
   final int apiToken;
@@ -40,11 +55,21 @@ class ApiTokenRequest extends Request {
   final List<String> newTokenScopes;
 
   /// [Optional] If you set this parameter during token creation, then the token created will only work for the IP address that was used to create the token
-  final int validForCurrentIpOnly;
+  final bool validForCurrentIpOnly;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ApiTokenRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'api_token': apiToken,
+        'delete_token': deleteToken,
+        'new_token': newToken,
+        'new_token_scopes': newTokenScopes,
+        'passthrough': passthrough,
+        'req_id': reqId,
+        'valid_for_current_ip_only': validForCurrentIpOnly == null
+            ? null
+            : validForCurrentIpOnly ? 1 : 0,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -53,7 +78,7 @@ class ApiTokenRequest extends Request {
     String deleteToken,
     String newToken,
     List<String> newTokenScopes,
-    int validForCurrentIpOnly,
+    bool validForCurrentIpOnly,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

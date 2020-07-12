@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_self_exclusion_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'set_self_exclusion_send.g.dart';
-
-/// JSON conversion for 'set_self_exclusion_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// SetSelfExclusionRequest class
 class SetSelfExclusionRequest extends Request {
   /// Initialize SetSelfExclusionRequest
   const SetSelfExclusionRequest({
@@ -34,7 +30,40 @@ class SetSelfExclusionRequest extends Request {
 
   /// Creates an instance from JSON
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
-      _$SetSelfExclusionRequestFromJson(json);
+      SetSelfExclusionRequest(
+        // ignore: avoid_as
+        excludeUntil: json['exclude_until'] as String,
+        // ignore: avoid_as
+        max30dayLosses: json['max_30day_losses'] as num,
+        // ignore: avoid_as
+        max30dayTurnover: json['max_30day_turnover'] as num,
+        // ignore: avoid_as
+        max7dayLosses: json['max_7day_losses'] as num,
+        // ignore: avoid_as
+        max7dayTurnover: json['max_7day_turnover'] as num,
+        // ignore: avoid_as
+        maxBalance: json['max_balance'] as num,
+        // ignore: avoid_as
+        maxDeposit: json['max_deposit'] as num,
+        // ignore: avoid_as
+        maxDepositEndDate: json['max_deposit_end_date'] as String,
+        // ignore: avoid_as
+        maxLosses: json['max_losses'] as num,
+        // ignore: avoid_as
+        maxOpenBets: json['max_open_bets'] as int,
+        // ignore: avoid_as
+        maxTurnover: json['max_turnover'] as num,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        sessionDurationLimit: json['session_duration_limit'] as int,
+        // ignore: avoid_as
+        setSelfExclusion: json['set_self_exclusion'] as int,
+        // ignore: avoid_as
+        timeoutUntil: json['timeout_until'] as int,
+      );
 
   /// [Optional] Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
   final String excludeUntil;
@@ -80,7 +109,24 @@ class SetSelfExclusionRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$SetSelfExclusionRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'exclude_until': excludeUntil,
+        'max_30day_losses': max30dayLosses,
+        'max_30day_turnover': max30dayTurnover,
+        'max_7day_losses': max7dayLosses,
+        'max_7day_turnover': max7dayTurnover,
+        'max_balance': maxBalance,
+        'max_deposit': maxDeposit,
+        'max_deposit_end_date': maxDepositEndDate,
+        'max_losses': maxLosses,
+        'max_open_bets': maxOpenBets,
+        'max_turnover': maxTurnover,
+        'passthrough': passthrough,
+        'req_id': reqId,
+        'session_duration_limit': sessionDurationLimit,
+        'set_self_exclusion': setSelfExclusion,
+        'timeout_until': timeoutUntil,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

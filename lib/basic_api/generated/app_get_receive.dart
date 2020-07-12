@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_get_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'app_get_receive.g.dart';
-
-/// JSON conversion for 'app_get_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// AppGetResponse class
 class AppGetResponse extends Response {
   /// Initialize AppGetResponse
   const AppGetResponse({
@@ -23,15 +19,28 @@ class AppGetResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory AppGetResponse.fromJson(Map<String, dynamic> json) =>
-      _$AppGetResponseFromJson(json);
+  factory AppGetResponse.fromJson(Map<String, dynamic> json) => AppGetResponse(
+        // ignore: avoid_as
+        appGet: json['app_get'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// The information of the requested application.
   final Map<String, dynamic> appGet;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$AppGetResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'app_get': appGet,
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

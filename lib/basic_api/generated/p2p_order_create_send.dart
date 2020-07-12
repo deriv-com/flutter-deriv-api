@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_create_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'p2p_order_create_send.g.dart';
-
-/// JSON conversion for 'p2p_order_create_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2pOrderCreateRequest class
 class P2pOrderCreateRequest extends Request {
   /// Initialize P2pOrderCreateRequest
   const P2pOrderCreateRequest({
@@ -27,7 +24,24 @@ class P2pOrderCreateRequest extends Request {
 
   /// Creates an instance from JSON
   factory P2pOrderCreateRequest.fromJson(Map<String, dynamic> json) =>
-      _$P2pOrderCreateRequestFromJson(json);
+      P2pOrderCreateRequest(
+        // ignore: avoid_as
+        advertId: json['advert_id'] as String,
+        // ignore: avoid_as
+        amount: json['amount'] as num,
+        // ignore: avoid_as
+        contactInfo: json['contact_info'] as String,
+        // ignore: avoid_as
+        p2pOrderCreate: json['p2p_order_create'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        paymentInfo: json['payment_info'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        subscribe: json['subscribe'] as int,
+      );
 
   /// The unique identifier for the advert to create an order against.
   final String advertId;
@@ -49,7 +63,16 @@ class P2pOrderCreateRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pOrderCreateRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'advert_id': advertId,
+        'amount': amount,
+        'contact_info': contactInfo,
+        'p2p_order_create': p2pOrderCreate,
+        'passthrough': passthrough,
+        'payment_info': paymentInfo,
+        'req_id': reqId,
+        'subscribe': subscribe,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

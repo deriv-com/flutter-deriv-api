@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'mt5_deposit_send.g.dart';
-
-/// JSON conversion for 'mt5_deposit_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Mt5DepositRequest class
 class Mt5DepositRequest extends Request {
   /// Initialize Mt5DepositRequest
   const Mt5DepositRequest({
@@ -25,7 +22,20 @@ class Mt5DepositRequest extends Request {
 
   /// Creates an instance from JSON
   factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>
-      _$Mt5DepositRequestFromJson(json);
+      Mt5DepositRequest(
+        // ignore: avoid_as
+        amount: json['amount'] as num,
+        // ignore: avoid_as
+        fromBinary: json['from_binary'] as String,
+        // ignore: avoid_as
+        mt5Deposit: json['mt5_deposit'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        toMt5: json['to_mt5'] as String,
+      );
 
   /// Amount to deposit (in the currency of from_binary); min = $1 or an equivalent amount, max = $20000 or an equivalent amount
   final num amount;
@@ -41,7 +51,14 @@ class Mt5DepositRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$Mt5DepositRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'amount': amount,
+        'from_binary': fromBinary,
+        'mt5_deposit': mt5Deposit,
+        'passthrough': passthrough,
+        'req_id': reqId,
+        'to_mt5': toMt5,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

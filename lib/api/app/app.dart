@@ -129,7 +129,7 @@ class App extends AppModel {
           clientLoginid: clientLoginId,
           dateFrom: dateFrom.toString(),
           dateTo: dateTo.toString(),
-          description: getInt(description),
+          description: description,
           limit: limit,
           offset: offset,
           sort: sort,

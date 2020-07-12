@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_create_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'p2p_order_create_receive.g.dart';
-
-/// JSON conversion for 'p2p_order_create_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2pOrderCreateResponse class
 class P2pOrderCreateResponse extends Response {
   /// Initialize P2pOrderCreateResponse
   const P2pOrderCreateResponse({
@@ -25,7 +21,18 @@ class P2pOrderCreateResponse extends Response {
 
   /// Creates an instance from JSON
   factory P2pOrderCreateResponse.fromJson(Map<String, dynamic> json) =>
-      _$P2pOrderCreateResponseFromJson(json);
+      P2pOrderCreateResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        p2pOrderCreate: json['p2p_order_create'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        subscription: json['subscription'] as Map<String, dynamic>,
+      );
 
   /// Information of the creates P2P order.
   final Map<String, dynamic> p2pOrderCreate;
@@ -35,7 +42,13 @@ class P2pOrderCreateResponse extends Response {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pOrderCreateResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'p2p_order_create': p2pOrderCreate,
+        'req_id': reqId,
+        'subscription': subscription,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

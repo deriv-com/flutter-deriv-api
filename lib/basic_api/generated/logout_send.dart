@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/logout_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'logout_send.g.dart';
-
-/// JSON conversion for 'logout_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// LogoutRequest class
 class LogoutRequest extends Request {
   /// Initialize LogoutRequest
   const LogoutRequest({
@@ -20,15 +16,25 @@ class LogoutRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory LogoutRequest.fromJson(Map<String, dynamic> json) =>
-      _$LogoutRequestFromJson(json);
+  factory LogoutRequest.fromJson(Map<String, dynamic> json) => LogoutRequest(
+        // ignore: avoid_as
+        logout: json['logout'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Must be `1`
   final int logout;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$LogoutRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'logout': logout,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

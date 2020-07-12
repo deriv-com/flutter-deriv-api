@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/reality_check_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'reality_check_send.g.dart';
-
-/// JSON conversion for 'reality_check_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// RealityCheckRequest class
 class RealityCheckRequest extends Request {
   /// Initialize RealityCheckRequest
   const RealityCheckRequest({
@@ -21,14 +17,25 @@ class RealityCheckRequest extends Request {
 
   /// Creates an instance from JSON
   factory RealityCheckRequest.fromJson(Map<String, dynamic> json) =>
-      _$RealityCheckRequestFromJson(json);
+      RealityCheckRequest(
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        realityCheck: json['reality_check'] as int,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Must be `1`
   final int realityCheck;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$RealityCheckRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'passthrough': passthrough,
+        'reality_check': realityCheck,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

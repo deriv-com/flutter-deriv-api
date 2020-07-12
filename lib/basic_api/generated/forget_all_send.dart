@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_all_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'forget_all_send.g.dart';
-
-/// JSON conversion for 'forget_all_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// ForgetAllRequest class
 class ForgetAllRequest extends Request {
   /// Initialize ForgetAllRequest
   const ForgetAllRequest({
@@ -21,14 +17,25 @@ class ForgetAllRequest extends Request {
 
   /// Creates an instance from JSON
   factory ForgetAllRequest.fromJson(Map<String, dynamic> json) =>
-      _$ForgetAllRequestFromJson(json);
+      ForgetAllRequest(
+        // ignore: avoid_as
+        forgetAll: json['forget_all'] as dynamic,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Cancel all streams by type. The value can be either a single type e.g. `"ticks"`, or an array of multiple types e.g. `["candles", "ticks"]`.
   final dynamic forgetAll;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ForgetAllRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'forget_all': forgetAll,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

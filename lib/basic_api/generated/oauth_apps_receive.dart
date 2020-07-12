@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/oauth_apps_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'oauth_apps_receive.g.dart';
-
-/// JSON conversion for 'oauth_apps_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// OauthAppsResponse class
 class OauthAppsResponse extends Response {
   /// Initialize OauthAppsResponse
   const OauthAppsResponse({
@@ -24,14 +20,31 @@ class OauthAppsResponse extends Response {
 
   /// Creates an instance from JSON
   factory OauthAppsResponse.fromJson(Map<String, dynamic> json) =>
-      _$OauthAppsResponseFromJson(json);
+      OauthAppsResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as, always_specify_types
+        oauthApps: (json['oauth_apps'] as List)
+            // ignore: avoid_as
+            ?.map((dynamic item) => item as Map<String, dynamic>)
+            ?.toList(),
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// List of OAuth applications that used for the authorized account.
   final List<Map<String, dynamic>> oauthApps;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$OauthAppsResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'oauth_apps': oauthApps,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

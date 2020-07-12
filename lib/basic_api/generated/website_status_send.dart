@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/website_status_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'website_status_send.g.dart';
-
-/// JSON conversion for 'website_status_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// WebsiteStatusRequest class
 class WebsiteStatusRequest extends Request {
   /// Initialize WebsiteStatusRequest
   const WebsiteStatusRequest({
@@ -22,22 +18,35 @@ class WebsiteStatusRequest extends Request {
 
   /// Creates an instance from JSON
   factory WebsiteStatusRequest.fromJson(Map<String, dynamic> json) =>
-      _$WebsiteStatusRequestFromJson(json);
+      WebsiteStatusRequest(
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
+        // ignore: avoid_as
+        websiteStatus: json['website_status'] as int,
+      );
 
   /// [Optional] `1` to stream the server/website status updates.
-  final int subscribe;
+  final bool subscribe;
 
   /// Must be `1`
   final int websiteStatus;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$WebsiteStatusRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'passthrough': passthrough,
+        'req_id': reqId,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'website_status': websiteStatus,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   WebsiteStatusRequest copyWith({
-    int subscribe,
+    bool subscribe,
     int websiteStatus,
     Map<String, dynamic> passthrough,
     int reqId,

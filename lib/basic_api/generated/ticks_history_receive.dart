@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_history_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'ticks_history_receive.g.dart';
-
-/// JSON conversion for 'ticks_history_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// TicksHistoryResponse class
 class TicksHistoryResponse extends Response {
   /// Initialize TicksHistoryResponse
   const TicksHistoryResponse({
@@ -27,7 +23,25 @@ class TicksHistoryResponse extends Response {
 
   /// Creates an instance from JSON
   factory TicksHistoryResponse.fromJson(Map<String, dynamic> json) =>
-      _$TicksHistoryResponseFromJson(json);
+      TicksHistoryResponse(
+        // ignore: avoid_as, always_specify_types
+        candles: (json['candles'] as List)
+            // ignore: avoid_as
+            ?.map((dynamic item) => item as Map<String, dynamic>)
+            ?.toList(),
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        history: json['history'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        pipSize: json['pip_size'] as num,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        subscription: json['subscription'] as Map<String, dynamic>,
+      );
 
   /// Array of OHLC (open/high/low/close) price values for the given time (only for style=`candles`)
   final List<Map<String, dynamic>> candles;
@@ -43,7 +57,15 @@ class TicksHistoryResponse extends Response {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TicksHistoryResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'candles': candles,
+        'echo_req': echoReq,
+        'history': history,
+        'msg_type': msgType,
+        'pip_size': pipSize,
+        'req_id': reqId,
+        'subscription': subscription,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

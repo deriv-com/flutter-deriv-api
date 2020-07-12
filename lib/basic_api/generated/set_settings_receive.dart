@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_settings_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'set_settings_receive.g.dart';
-
-/// JSON conversion for 'set_settings_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// SetSettingsResponse class
 class SetSettingsResponse extends Response {
   /// Initialize SetSettingsResponse
   const SetSettingsResponse({
@@ -24,14 +20,28 @@ class SetSettingsResponse extends Response {
 
   /// Creates an instance from JSON
   factory SetSettingsResponse.fromJson(Map<String, dynamic> json) =>
-      _$SetSettingsResponseFromJson(json);
+      SetSettingsResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        setSettings: json['set_settings'] as int,
+      );
 
   /// 1 on success
   final int setSettings;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$SetSettingsResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+        'set_settings': setSettings,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

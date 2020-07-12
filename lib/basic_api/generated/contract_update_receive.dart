@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'contract_update_receive.g.dart';
-
-/// JSON conversion for 'contract_update_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// ContractUpdateResponse class
 class ContractUpdateResponse extends Response {
   /// Initialize ContractUpdateResponse
   const ContractUpdateResponse({
@@ -24,14 +20,28 @@ class ContractUpdateResponse extends Response {
 
   /// Creates an instance from JSON
   factory ContractUpdateResponse.fromJson(Map<String, dynamic> json) =>
-      _$ContractUpdateResponseFromJson(json);
+      ContractUpdateResponse(
+        // ignore: avoid_as
+        contractUpdate: json['contract_update'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Contains the update status of the request
   final Map<String, dynamic> contractUpdate;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ContractUpdateResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'contract_update': contractUpdate,
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

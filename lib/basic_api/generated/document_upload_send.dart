@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/document_upload_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'document_upload_send.g.dart';
-
-/// JSON conversion for 'document_upload_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// DocumentUploadRequest class
 class DocumentUploadRequest extends Request {
   /// Initialize DocumentUploadRequest
   const DocumentUploadRequest({
@@ -29,7 +26,28 @@ class DocumentUploadRequest extends Request {
 
   /// Creates an instance from JSON
   factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>
-      _$DocumentUploadRequestFromJson(json);
+      DocumentUploadRequest(
+        // ignore: avoid_as
+        documentFormat: json['document_format'] as String,
+        // ignore: avoid_as
+        documentId: json['document_id'] as String,
+        // ignore: avoid_as
+        documentType: json['document_type'] as String,
+        // ignore: avoid_as
+        documentUpload: json['document_upload'] as int,
+        // ignore: avoid_as
+        expectedChecksum: json['expected_checksum'] as String,
+        // ignore: avoid_as
+        expirationDate: json['expiration_date'] as String,
+        // ignore: avoid_as
+        fileSize: json['file_size'] as int,
+        // ignore: avoid_as
+        pageType: json['page_type'] as String,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Document file format
   final String documentFormat;
@@ -57,7 +75,18 @@ class DocumentUploadRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$DocumentUploadRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'document_format': documentFormat,
+        'document_id': documentId,
+        'document_type': documentType,
+        'document_upload': documentUpload,
+        'expected_checksum': expectedChecksum,
+        'expiration_date': expirationDate,
+        'file_size': fileSize,
+        'page_type': pageType,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

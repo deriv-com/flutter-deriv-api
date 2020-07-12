@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_check_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'mt5_password_check_send.g.dart';
-
-/// JSON conversion for 'mt5_password_check_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Mt5PasswordCheckRequest class
 class Mt5PasswordCheckRequest extends Request {
   /// Initialize Mt5PasswordCheckRequest
   const Mt5PasswordCheckRequest({
@@ -25,7 +22,20 @@ class Mt5PasswordCheckRequest extends Request {
 
   /// Creates an instance from JSON
   factory Mt5PasswordCheckRequest.fromJson(Map<String, dynamic> json) =>
-      _$Mt5PasswordCheckRequestFromJson(json);
+      Mt5PasswordCheckRequest(
+        // ignore: avoid_as
+        login: json['login'] as String,
+        // ignore: avoid_as
+        mt5PasswordCheck: json['mt5_password_check'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        password: json['password'] as String,
+        // ignore: avoid_as
+        passwordType: json['password_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// MT5 user login
   final String login;
@@ -41,7 +51,14 @@ class Mt5PasswordCheckRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$Mt5PasswordCheckRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'login': login,
+        'mt5_password_check': mt5PasswordCheck,
+        'passthrough': passthrough,
+        'password': password,
+        'password_type': passwordType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_virtual_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'new_account_virtual_send.g.dart';
-
-/// JSON conversion for 'new_account_virtual_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// NewAccountVirtualRequest class
 class NewAccountVirtualRequest extends Request {
   /// Initialize NewAccountVirtualRequest
   const NewAccountVirtualRequest({
@@ -32,7 +29,34 @@ class NewAccountVirtualRequest extends Request {
 
   /// Creates an instance from JSON
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>
-      _$NewAccountVirtualRequestFromJson(json);
+      NewAccountVirtualRequest(
+        // ignore: avoid_as
+        affiliateToken: json['affiliate_token'] as String,
+        // ignore: avoid_as
+        clientPassword: json['client_password'] as String,
+        // ignore: avoid_as
+        dateFirstContact: json['date_first_contact'] as String,
+        // ignore: avoid_as
+        gclidUrl: json['gclid_url'] as String,
+        // ignore: avoid_as
+        newAccountVirtual: json['new_account_virtual'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        residence: json['residence'] as String,
+        // ignore: avoid_as
+        signupDevice: json['signup_device'] as String,
+        // ignore: avoid_as
+        utmCampaign: json['utm_campaign'] as String,
+        // ignore: avoid_as
+        utmMedium: json['utm_medium'] as String,
+        // ignore: avoid_as
+        utmSource: json['utm_source'] as String,
+        // ignore: avoid_as
+        verificationCode: json['verification_code'] as String,
+      );
 
   /// [Optional] Affiliate token, within 32 characters.
   final String affiliateToken;
@@ -69,7 +93,21 @@ class NewAccountVirtualRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$NewAccountVirtualRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'affiliate_token': affiliateToken,
+        'client_password': clientPassword,
+        'date_first_contact': dateFirstContact,
+        'gclid_url': gclidUrl,
+        'new_account_virtual': newAccountVirtual,
+        'passthrough': passthrough,
+        'req_id': reqId,
+        'residence': residence,
+        'signup_device': signupDevice,
+        'utm_campaign': utmCampaign,
+        'utm_medium': utmMedium,
+        'utm_source': utmSource,
+        'verification_code': verificationCode,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

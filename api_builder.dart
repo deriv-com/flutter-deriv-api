@@ -19,6 +19,7 @@ class APIBuilder extends Builder {
     'integer': 'int',
     'string': 'String',
     'number': 'num',
+    'bool': 'bool',
     'object': 'Map<String, dynamic>',
     'array': 'List<String>',
     'undefined': 'dynamic',
@@ -105,15 +106,12 @@ class APIBuilder extends Builder {
         DartFormatter().format(
           '''
             /// Generated automatically from ${buildStep.inputId}
-            import 'package:json_annotation/json_annotation.dart';
+            
             ${_hasRequiredField(methodName, schema, schemaType, properties) ? 'import \'package:meta/meta.dart\';' : ''}
 
             import '../${schemaType == 'send' ? 'request' : 'response'}.dart';
 
-            part '$fileName.g.dart';
-
-            /// JSON conversion for '$fileName'
-            @JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+            /// $classFullName class
             class $classFullName extends ${schemaType == 'send' ? 'Request' : 'Response'} {
               /// Initialize $classFullName
               const $classFullName({
@@ -122,13 +120,13 @@ class APIBuilder extends Builder {
                 }): super(${_getSuperClassCallParameters(schemaType, methodName)},);
               
               /// Creates an instance from JSON
-              factory $classFullName.fromJson(Map<String, dynamic> json) => _\$${classFullName}FromJson(json);
+              ${_generateFromJson(classFullName, buildStep, schema, properties)}
               
               ${_getProperties(buildStep, schema, properties)}
 
               /// Converts an instance to JSON
               @override
-              Map<String, dynamic> toJson() => _\$${classFullName}ToJson(this);
+              ${_generateToJson(buildStep, schema, properties)}
 
               /// Creates a copy of instance with given parameters
               @override
@@ -195,28 +193,35 @@ class APIBuilder extends Builder {
       ).join('\n');
 
   String _getPropertyType(BuildStep buildStep, JsonSchema property) {
-      if (property.oneOf.isNotEmpty) {
-        return 'dynamic';
+    if (property.oneOf.isNotEmpty) {
+      return 'dynamic';
+    } else {
+      final String schemaType = _getSchemaType(property);
+
+      if (schemaType == 'array') {
+        // Some types aren't specified - forget_all for example
+        final String itemType = property.items?.type?.toString() ?? 'undefined';
+
+        return 'List<${typeMap[itemType]}>';
       } else {
-        final String schemaType = _getSchemaType(property);
-
-        if (schemaType == 'array') {
-          // Some types aren't specified - forget_all for example
-          final String itemType =
-              property.items?.type?.toString() ?? 'undefined';
-
-          return 'List<${typeMap[itemType]}>';
-        } else {
-          return typeMap[schemaType];
-        }
+        return typeMap[schemaType];
       }
+    }
   }
 
   String _getSchemaType(JsonSchema property) => property.typeList?.length == 2
       ? property.typeList.first.toString() != 'null'
           ? property.typeList.first.toString() ?? 'undefined'
           : property.typeList.last.toString() ?? 'undefined'
-      : property.type?.toString() ?? 'undefined';
+      : property.type?.toString() == null
+          ? 'undefined'
+          : _isBoolean(property) ? 'bool' : property.type?.toString();
+
+  bool _isBoolean(JsonSchema property) =>
+      property.type?.toString() == 'integer' &&
+      property?.enumValues?.length == 2 &&
+      property?.enumValues[0] == 0 &&
+      property?.enumValues[1] == 1;
 
   String _getCopyWithMethod(
     BuildStep buildStep,
@@ -234,7 +239,6 @@ class APIBuilder extends Builder {
           (String key) {
             final String name = ReCase(key).camelCase;
             final JsonSchema property = schema.properties[key];
-
             final String type = _getPropertyType(buildStep, property);
 
             return '$type $name';
@@ -346,6 +350,73 @@ class APIBuilder extends Builder {
       default:
         return 'null';
     }
+  }
+
+  String _generateFromJson(
+    String classFullName,
+    BuildStep buildStep,
+    JsonSchema schema,
+    List<String> properties,
+  ) {
+    final StringBuffer result = StringBuffer(
+      'factory $classFullName.fromJson(Map<String, dynamic> json) => $classFullName(',
+    )
+      ..write(
+        properties.map((String key) {
+          final String name = ReCase(key).camelCase;
+          final JsonSchema property = schema.properties[key];
+          final String type = _getPropertyType(buildStep, property);
+
+          if (type == 'bool') {
+            return '''
+                $name: json['$key'] == null ? null : json['$key'] == 1,
+              ''';
+          } else if (type.contains('List')) {
+            final String arrayType =
+                type.substring(0, type.length - 1).replaceAll('List<', '');
+
+            return '''
+                // ignore: avoid_as, always_specify_types
+                $name: (json['$key'] as List)
+                  // ignore: avoid_as
+                  ?.map(($dynamic item) => item as $arrayType)
+                  ?.toList(),
+              ''';
+          } else {
+            return '''
+                // ignore: avoid_as
+                $name: json['$key'] as $type,
+              ''';
+          }
+        }).join(),
+      )
+      ..write(');');
+
+    return result.toString();
+  }
+
+  String _generateToJson(
+    BuildStep buildStep,
+    JsonSchema schema,
+    List<String> properties,
+  ) {
+    final StringBuffer result = StringBuffer(
+      'Map<String, dynamic> toJson() => <String, dynamic>{',
+    )
+      ..write(
+        properties.map((String key) {
+          final String name = ReCase(key).camelCase;
+          final JsonSchema property = schema.properties[key];
+          final String type = _getPropertyType(buildStep, property);
+
+          return '''
+            '$key': $name${type == 'bool' ? ' == null ? null : $name ? 1 : 0' : ''},
+          ''';
+        }).join(),
+      )
+      ..write('};');
+
+    return result.toString();
   }
 }
 

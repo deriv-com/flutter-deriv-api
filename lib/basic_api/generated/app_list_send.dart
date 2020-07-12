@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_list_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'app_list_send.g.dart';
-
-/// JSON conversion for 'app_list_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// AppListRequest class
 class AppListRequest extends Request {
   /// Initialize AppListRequest
   const AppListRequest({
@@ -20,15 +16,25 @@ class AppListRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory AppListRequest.fromJson(Map<String, dynamic> json) =>
-      _$AppListRequestFromJson(json);
+  factory AppListRequest.fromJson(Map<String, dynamic> json) => AppListRequest(
+        // ignore: avoid_as
+        appList: json['app_list'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Must be `1`
   final int appList;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$AppListRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'app_list': appList,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

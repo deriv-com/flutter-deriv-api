@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'transfer_between_accounts_receive.g.dart';
-
-/// JSON conversion for 'transfer_between_accounts_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// TransferBetweenAccountsResponse class
 class TransferBetweenAccountsResponse extends Response {
   /// Initialize TransferBetweenAccountsResponse
   const TransferBetweenAccountsResponse({
@@ -28,7 +24,28 @@ class TransferBetweenAccountsResponse extends Response {
 
   /// Creates an instance from JSON
   factory TransferBetweenAccountsResponse.fromJson(Map<String, dynamic> json) =>
-      _$TransferBetweenAccountsResponseFromJson(json);
+      TransferBetweenAccountsResponse(
+        // ignore: avoid_as, always_specify_types
+        accounts: (json['accounts'] as List)
+            // ignore: avoid_as
+            ?.map((dynamic item) => item as Map<String, dynamic>)
+            ?.toList(),
+        // ignore: avoid_as
+        clientToFullName: json['client_to_full_name'] as String,
+        // ignore: avoid_as
+        clientToLoginid: json['client_to_loginid'] as String,
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        transactionId: json['transaction_id'] as int,
+        transferBetweenAccounts: json['transfer_between_accounts'] == null
+            ? null
+            : json['transfer_between_accounts'] == 1,
+      );
 
   /// The available accounts to transfer, or the accounts affected by a successful transfer.
   final List<Map<String, dynamic>> accounts;
@@ -43,12 +60,22 @@ class TransferBetweenAccountsResponse extends Response {
   final int transactionId;
 
   /// If set to 1, transfer succeeded.
-  final int transferBetweenAccounts;
+  final bool transferBetweenAccounts;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() =>
-      _$TransferBetweenAccountsResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'accounts': accounts,
+        'client_to_full_name': clientToFullName,
+        'client_to_loginid': clientToLoginid,
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+        'transaction_id': transactionId,
+        'transfer_between_accounts': transferBetweenAccounts == null
+            ? null
+            : transferBetweenAccounts ? 1 : 0,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -57,7 +84,7 @@ class TransferBetweenAccountsResponse extends Response {
     String clientToFullName,
     String clientToLoginid,
     int transactionId,
-    int transferBetweenAccounts,
+    bool transferBetweenAccounts,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,

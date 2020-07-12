@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cancel_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'cancel_receive.g.dart';
-
-/// JSON conversion for 'cancel_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// CancelResponse class
 class CancelResponse extends Response {
   /// Initialize CancelResponse
   const CancelResponse({
@@ -23,15 +19,28 @@ class CancelResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory CancelResponse.fromJson(Map<String, dynamic> json) =>
-      _$CancelResponseFromJson(json);
+  factory CancelResponse.fromJson(Map<String, dynamic> json) => CancelResponse(
+        // ignore: avoid_as
+        cancel: json['cancel'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Receipt for the transaction
   final Map<String, dynamic> cancel;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$CancelResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'cancel': cancel,
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

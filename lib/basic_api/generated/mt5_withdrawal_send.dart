@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_withdrawal_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'mt5_withdrawal_send.g.dart';
-
-/// JSON conversion for 'mt5_withdrawal_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Mt5WithdrawalRequest class
 class Mt5WithdrawalRequest extends Request {
   /// Initialize Mt5WithdrawalRequest
   const Mt5WithdrawalRequest({
@@ -25,7 +22,20 @@ class Mt5WithdrawalRequest extends Request {
 
   /// Creates an instance from JSON
   factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>
-      _$Mt5WithdrawalRequestFromJson(json);
+      Mt5WithdrawalRequest(
+        // ignore: avoid_as
+        amount: json['amount'] as num,
+        // ignore: avoid_as
+        fromMt5: json['from_mt5'] as String,
+        // ignore: avoid_as
+        mt5Withdrawal: json['mt5_withdrawal'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        toBinary: json['to_binary'] as String,
+      );
 
   /// Amount to withdraw (in the currency of the MT5 account); min = $1 or an equivalent amount, max = $20000 or an equivalent amount.
   final num amount;
@@ -41,7 +51,14 @@ class Mt5WithdrawalRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$Mt5WithdrawalRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'amount': amount,
+        'from_mt5': fromMt5,
+        'mt5_withdrawal': mt5Withdrawal,
+        'passthrough': passthrough,
+        'req_id': reqId,
+        'to_binary': toBinary,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

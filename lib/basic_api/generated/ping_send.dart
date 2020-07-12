@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ping_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'ping_send.g.dart';
-
-/// JSON conversion for 'ping_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// PingRequest class
 class PingRequest extends Request {
   /// Initialize PingRequest
   const PingRequest({
@@ -20,15 +16,25 @@ class PingRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory PingRequest.fromJson(Map<String, dynamic> json) =>
-      _$PingRequestFromJson(json);
+  factory PingRequest.fromJson(Map<String, dynamic> json) => PingRequest(
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        ping: json['ping'] as int,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Must be `1`
   final int ping;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$PingRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'passthrough': passthrough,
+        'ping': ping,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

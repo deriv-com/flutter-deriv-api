@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_contract_for_multiple_accounts_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'buy_contract_for_multiple_accounts_send.g.dart';
-
-/// JSON conversion for 'buy_contract_for_multiple_accounts_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// BuyContractForMultipleAccountsRequest class
 class BuyContractForMultipleAccountsRequest extends Request {
   /// Initialize BuyContractForMultipleAccountsRequest
   const BuyContractForMultipleAccountsRequest({
@@ -26,7 +23,24 @@ class BuyContractForMultipleAccountsRequest extends Request {
   /// Creates an instance from JSON
   factory BuyContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
-      _$BuyContractForMultipleAccountsRequestFromJson(json);
+      BuyContractForMultipleAccountsRequest(
+        // ignore: avoid_as
+        buyContractForMultipleAccounts:
+            json['buy_contract_for_multiple_accounts'] as String,
+        // ignore: avoid_as
+        parameters: json['parameters'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        price: json['price'] as num,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as, always_specify_types
+        tokens: (json['tokens'] as List)
+            // ignore: avoid_as
+            ?.map((dynamic item) => item as String)
+            ?.toList(),
+      );
 
   /// Either the ID received from a Price Proposal (`proposal` call), or `1` if contract buy parameters are passed in the `parameters` field.
   final String buyContractForMultipleAccounts;
@@ -42,8 +56,14 @@ class BuyContractForMultipleAccountsRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() =>
-      _$BuyContractForMultipleAccountsRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'buy_contract_for_multiple_accounts': buyContractForMultipleAccounts,
+        'parameters': parameters,
+        'passthrough': passthrough,
+        'price': price,
+        'req_id': reqId,
+        'tokens': tokens,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

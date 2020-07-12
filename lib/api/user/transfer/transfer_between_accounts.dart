@@ -28,7 +28,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
     TransferBetweenAccountsResponse response,
   ) =>
       TransferBetweenAccounts(
-        transferBetweenAccounts: getBool(response.transferBetweenAccounts),
+        transferBetweenAccounts: response.transferBetweenAccounts,
         accounts: getListFromMap(
           response.accounts,
           itemToTypeCallback: (dynamic item) =>

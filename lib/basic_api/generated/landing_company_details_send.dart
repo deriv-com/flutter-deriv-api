@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/landing_company_details_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'landing_company_details_send.g.dart';
-
-/// JSON conversion for 'landing_company_details_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// LandingCompanyDetailsRequest class
 class LandingCompanyDetailsRequest extends Request {
   /// Initialize LandingCompanyDetailsRequest
   const LandingCompanyDetailsRequest({
@@ -22,14 +19,25 @@ class LandingCompanyDetailsRequest extends Request {
 
   /// Creates an instance from JSON
   factory LandingCompanyDetailsRequest.fromJson(Map<String, dynamic> json) =>
-      _$LandingCompanyDetailsRequestFromJson(json);
+      LandingCompanyDetailsRequest(
+        // ignore: avoid_as
+        landingCompanyDetails: json['landing_company_details'] as String,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Landing company shortcode.
   final String landingCompanyDetails;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$LandingCompanyDetailsRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'landing_company_details': landingCompanyDetails,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

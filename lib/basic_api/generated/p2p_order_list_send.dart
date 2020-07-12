@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_list_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'p2p_order_list_send.g.dart';
-
-/// JSON conversion for 'p2p_order_list_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2pOrderListRequest class
 class P2pOrderListRequest extends Request {
   /// Initialize P2pOrderListRequest
   const P2pOrderListRequest({
@@ -26,7 +22,24 @@ class P2pOrderListRequest extends Request {
 
   /// Creates an instance from JSON
   factory P2pOrderListRequest.fromJson(Map<String, dynamic> json) =>
-      _$P2pOrderListRequestFromJson(json);
+      P2pOrderListRequest(
+        // ignore: avoid_as
+        active: json['active'] as num,
+        // ignore: avoid_as
+        advertId: json['advert_id'] as String,
+        // ignore: avoid_as
+        limit: json['limit'] as int,
+        // ignore: avoid_as
+        offset: json['offset'] as int,
+        // ignore: avoid_as
+        p2pOrderList: json['p2p_order_list'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        subscribe: json['subscribe'] as int,
+      );
 
   /// [Optional] Should be 1 to list active, 0 to list inactive (historical).
   final num active;
@@ -48,7 +61,16 @@ class P2pOrderListRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pOrderListRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'active': active,
+        'advert_id': advertId,
+        'limit': limit,
+        'offset': offset,
+        'p2p_order_list': p2pOrderList,
+        'passthrough': passthrough,
+        'req_id': reqId,
+        'subscribe': subscribe,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

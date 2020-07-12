@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'forget_send.g.dart';
-
-/// JSON conversion for 'forget_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// ForgetRequest class
 class ForgetRequest extends Request {
   /// Initialize ForgetRequest
   const ForgetRequest({
@@ -21,15 +18,25 @@ class ForgetRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory ForgetRequest.fromJson(Map<String, dynamic> json) =>
-      _$ForgetRequestFromJson(json);
+  factory ForgetRequest.fromJson(Map<String, dynamic> json) => ForgetRequest(
+        // ignore: avoid_as
+        forget: json['forget'] as String,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// ID of the real-time stream of messages to cancel.
   final String forget;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ForgetRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'forget': forget,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

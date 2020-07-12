@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_register_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'app_register_send.g.dart';
-
-/// JSON conversion for 'app_register_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// AppRegisterRequest class
 class AppRegisterRequest extends Request {
   /// Initialize AppRegisterRequest
   const AppRegisterRequest({
@@ -31,7 +28,35 @@ class AppRegisterRequest extends Request {
 
   /// Creates an instance from JSON
   factory AppRegisterRequest.fromJson(Map<String, dynamic> json) =>
-      _$AppRegisterRequestFromJson(json);
+      AppRegisterRequest(
+        // ignore: avoid_as
+        appMarkupPercentage: json['app_markup_percentage'] as num,
+        // ignore: avoid_as
+        appRegister: json['app_register'] as int,
+        // ignore: avoid_as
+        appstore: json['appstore'] as String,
+        // ignore: avoid_as
+        github: json['github'] as String,
+        // ignore: avoid_as
+        googleplay: json['googleplay'] as String,
+        // ignore: avoid_as
+        homepage: json['homepage'] as String,
+        // ignore: avoid_as
+        name: json['name'] as String,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        redirectUri: json['redirect_uri'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as, always_specify_types
+        scopes: (json['scopes'] as List)
+            // ignore: avoid_as
+            ?.map((dynamic item) => item as String)
+            ?.toList(),
+        // ignore: avoid_as
+        verificationUri: json['verification_uri'] as String,
+      );
 
   /// [Optional] Markup to be added to contract prices (as a percentage of contract payout).
   final num appMarkupPercentage;
@@ -65,7 +90,20 @@ class AppRegisterRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$AppRegisterRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'app_markup_percentage': appMarkupPercentage,
+        'app_register': appRegister,
+        'appstore': appstore,
+        'github': github,
+        'googleplay': googleplay,
+        'homepage': homepage,
+        'name': name,
+        'passthrough': passthrough,
+        'redirect_uri': redirectUri,
+        'req_id': reqId,
+        'scopes': scopes,
+        'verification_uri': verificationUri,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

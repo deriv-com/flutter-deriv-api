@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_login_list_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'mt5_login_list_send.g.dart';
-
-/// JSON conversion for 'mt5_login_list_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Mt5LoginListRequest class
 class Mt5LoginListRequest extends Request {
   /// Initialize Mt5LoginListRequest
   const Mt5LoginListRequest({
@@ -21,14 +17,25 @@ class Mt5LoginListRequest extends Request {
 
   /// Creates an instance from JSON
   factory Mt5LoginListRequest.fromJson(Map<String, dynamic> json) =>
-      _$Mt5LoginListRequestFromJson(json);
+      Mt5LoginListRequest(
+        // ignore: avoid_as
+        mt5LoginList: json['mt5_login_list'] as int,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Must be `1`
   final int mt5LoginList;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$Mt5LoginListRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'mt5_login_list': mt5LoginList,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

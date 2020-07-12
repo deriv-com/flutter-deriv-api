@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_reset_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'mt5_password_reset_receive.g.dart';
-
-/// JSON conversion for 'mt5_password_reset_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Mt5PasswordResetResponse class
 class Mt5PasswordResetResponse extends Response {
   /// Initialize Mt5PasswordResetResponse
   const Mt5PasswordResetResponse({
@@ -24,14 +20,28 @@ class Mt5PasswordResetResponse extends Response {
 
   /// Creates an instance from JSON
   factory Mt5PasswordResetResponse.fromJson(Map<String, dynamic> json) =>
-      _$Mt5PasswordResetResponseFromJson(json);
+      Mt5PasswordResetResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        mt5PasswordReset: json['mt5_password_reset'] as int,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// `1` on success
   final int mt5PasswordReset;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$Mt5PasswordResetResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'mt5_password_reset': mt5PasswordReset,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

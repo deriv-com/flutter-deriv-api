@@ -1,13 +1,10 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_send.json
-import 'package:json_annotation/json_annotation.dart';
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'app_markup_details_send.g.dart';
-
-/// JSON conversion for 'app_markup_details_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// AppMarkupDetailsRequest class
 class AppMarkupDetailsRequest extends Request {
   /// Initialize AppMarkupDetailsRequest
   const AppMarkupDetailsRequest({
@@ -31,7 +28,35 @@ class AppMarkupDetailsRequest extends Request {
 
   /// Creates an instance from JSON
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>
-      _$AppMarkupDetailsRequestFromJson(json);
+      AppMarkupDetailsRequest(
+        // ignore: avoid_as
+        appId: json['app_id'] as int,
+        // ignore: avoid_as
+        appMarkupDetails: json['app_markup_details'] as int,
+        // ignore: avoid_as
+        clientLoginid: json['client_loginid'] as String,
+        // ignore: avoid_as
+        dateFrom: json['date_from'] as String,
+        // ignore: avoid_as
+        dateTo: json['date_to'] as String,
+        description:
+            json['description'] == null ? null : json['description'] == 1,
+        // ignore: avoid_as
+        limit: json['limit'] as num,
+        // ignore: avoid_as
+        offset: json['offset'] as num,
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        sort: json['sort'] as String,
+        // ignore: avoid_as, always_specify_types
+        sortFields: (json['sort_fields'] as List)
+            // ignore: avoid_as
+            ?.map((dynamic item) => item as String)
+            ?.toList(),
+      );
 
   /// [Optional] Specific application `app_id` to report on.
   final int appId;
@@ -49,7 +74,7 @@ class AppMarkupDetailsRequest extends Request {
   final String dateTo;
 
   /// [Optional] If set to 1, will return `app_markup` transaction details.
-  final int description;
+  final bool description;
 
   /// [Optional] Apply upper limit to count of transactions received.
   final num limit;
@@ -65,7 +90,20 @@ class AppMarkupDetailsRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$AppMarkupDetailsRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'app_id': appId,
+        'app_markup_details': appMarkupDetails,
+        'client_loginid': clientLoginid,
+        'date_from': dateFrom,
+        'date_to': dateTo,
+        'description': description == null ? null : description ? 1 : 0,
+        'limit': limit,
+        'offset': offset,
+        'passthrough': passthrough,
+        'req_id': reqId,
+        'sort': sort,
+        'sort_fields': sortFields,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -75,7 +113,7 @@ class AppMarkupDetailsRequest extends Request {
     String clientLoginid,
     String dateFrom,
     String dateTo,
-    int description,
+    bool description,
     num limit,
     num offset,
     String sort,

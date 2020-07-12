@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_send.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../request.dart';
 
-part 'ticks_send.g.dart';
-
-/// JSON conversion for 'ticks_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// TicksRequest class
 class TicksRequest extends Request {
   /// Initialize TicksRequest
   const TicksRequest({
@@ -21,8 +17,16 @@ class TicksRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory TicksRequest.fromJson(Map<String, dynamic> json) =>
-      _$TicksRequestFromJson(json);
+  factory TicksRequest.fromJson(Map<String, dynamic> json) => TicksRequest(
+        // ignore: avoid_as
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        subscribe: json['subscribe'] as int,
+        // ignore: avoid_as
+        ticks: json['ticks'] as dynamic,
+      );
 
   /// [Optional] If set to 1, will send updates whenever a new tick is received.
   final int subscribe;
@@ -32,7 +36,12 @@ class TicksRequest extends Request {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TicksRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'passthrough': passthrough,
+        'req_id': reqId,
+        'subscribe': subscribe,
+        'ticks': ticks,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

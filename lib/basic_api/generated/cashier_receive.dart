@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cashier_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'cashier_receive.g.dart';
-
-/// JSON conversion for 'cashier_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// CashierResponse class
 class CashierResponse extends Response {
   /// Initialize CashierResponse
   const CashierResponse({
@@ -24,7 +20,16 @@ class CashierResponse extends Response {
 
   /// Creates an instance from JSON
   factory CashierResponse.fromJson(Map<String, dynamic> json) =>
-      _$CashierResponseFromJson(json);
+      CashierResponse(
+        // ignore: avoid_as
+        cashier: json['cashier'] as dynamic,
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Possible error codes are:
   /// - `ASK_TNC_APPROVAL`: API call `tnc_approval`
@@ -37,7 +42,12 @@ class CashierResponse extends Response {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$CashierResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'cashier': cashier,
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

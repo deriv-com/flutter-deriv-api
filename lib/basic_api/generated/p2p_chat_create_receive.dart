@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_chat_create_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'p2p_chat_create_receive.g.dart';
-
-/// JSON conversion for 'p2p_chat_create_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2pChatCreateResponse class
 class P2pChatCreateResponse extends Response {
   /// Initialize P2pChatCreateResponse
   const P2pChatCreateResponse({
@@ -24,14 +20,28 @@ class P2pChatCreateResponse extends Response {
 
   /// Creates an instance from JSON
   factory P2pChatCreateResponse.fromJson(Map<String, dynamic> json) =>
-      _$P2pChatCreateResponseFromJson(json);
+      P2pChatCreateResponse(
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        p2pChatCreate: json['p2p_chat_create'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+      );
 
   /// Information of the P2P chat.
   final Map<String, dynamic> p2pChatCreate;
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pChatCreateResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'p2p_chat_create': p2pChatCreate,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

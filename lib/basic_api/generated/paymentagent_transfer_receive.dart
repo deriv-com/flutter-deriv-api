@@ -1,12 +1,8 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_transfer_receive.json
-import 'package:json_annotation/json_annotation.dart';
 
 import '../response.dart';
 
-part 'paymentagent_transfer_receive.g.dart';
-
-/// JSON conversion for 'paymentagent_transfer_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// PaymentagentTransferResponse class
 class PaymentagentTransferResponse extends Response {
   /// Initialize PaymentagentTransferResponse
   const PaymentagentTransferResponse({
@@ -27,7 +23,22 @@ class PaymentagentTransferResponse extends Response {
 
   /// Creates an instance from JSON
   factory PaymentagentTransferResponse.fromJson(Map<String, dynamic> json) =>
-      _$PaymentagentTransferResponseFromJson(json);
+      PaymentagentTransferResponse(
+        // ignore: avoid_as
+        clientToFullName: json['client_to_full_name'] as String,
+        // ignore: avoid_as
+        clientToLoginid: json['client_to_loginid'] as String,
+        // ignore: avoid_as
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        // ignore: avoid_as
+        msgType: json['msg_type'] as String,
+        // ignore: avoid_as
+        paymentagentTransfer: json['paymentagent_transfer'] as int,
+        // ignore: avoid_as
+        reqId: json['req_id'] as int,
+        // ignore: avoid_as
+        transactionId: json['transaction_id'] as int,
+      );
 
   /// The `transfer_to` client full name
   final String clientToFullName;
@@ -43,7 +54,15 @@ class PaymentagentTransferResponse extends Response {
 
   /// Converts an instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$PaymentagentTransferResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'client_to_full_name': clientToFullName,
+        'client_to_loginid': clientToLoginid,
+        'echo_req': echoReq,
+        'msg_type': msgType,
+        'paymentagent_transfer': paymentagentTransfer,
+        'req_id': reqId,
+        'transaction_id': transactionId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
