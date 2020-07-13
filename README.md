@@ -84,7 +84,7 @@ Add this to your package's `pubspec.yaml` file:
 ```
 dependencies:
     ...
-    flutter-deriv-api:
+    flutter_deriv_api:
         git:
             url: https://github.com/regentmarkets/flutter-deriv-api.git
             ref: master
