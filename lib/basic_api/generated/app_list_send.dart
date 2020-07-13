@@ -26,7 +26,7 @@ class AppListRequest extends Request {
   /// Must be `true`
   final bool appList;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'app_list': appList == null ? null : appList ? 1 : 0,

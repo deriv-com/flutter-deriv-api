@@ -43,13 +43,13 @@ class SetSelfExclusionRequest extends Request {
         maxLosses: json['max_losses'] as num,
         maxOpenBets: json['max_open_bets'] as int,
         maxTurnover: json['max_turnover'] as num,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
         sessionDurationLimit: json['session_duration_limit'] as int,
         setSelfExclusion: json['set_self_exclusion'] == null
             ? null
             : json['set_self_exclusion'] == 1,
         timeoutUntil: json['timeout_until'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// [Optional] Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
@@ -94,7 +94,7 @@ class SetSelfExclusionRequest extends Request {
   /// [Optional] Exclude me from the website (for up to 6 weeks). Requires time in epoch format. Note: unlike `exclude_until`, this self-exclusion will be lifted automatically at the expiry of the timeout period.
   final int timeoutUntil;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'exclude_until': excludeUntil,
@@ -108,12 +108,12 @@ class SetSelfExclusionRequest extends Request {
         'max_losses': maxLosses,
         'max_open_bets': maxOpenBets,
         'max_turnover': maxTurnover,
-        'passthrough': passthrough,
-        'req_id': reqId,
         'session_duration_limit': sessionDurationLimit,
         'set_self_exclusion':
             setSelfExclusion == null ? null : setSelfExclusion ? 1 : 0,
         'timeout_until': timeoutUntil,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

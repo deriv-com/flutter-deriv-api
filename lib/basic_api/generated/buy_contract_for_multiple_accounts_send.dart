@@ -28,12 +28,12 @@ class BuyContractForMultipleAccountsRequest extends Request {
         buyContractForMultipleAccounts:
             json['buy_contract_for_multiple_accounts'] as String,
         parameters: json['parameters'] as Map<String, dynamic>,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         price: json['price'] as num,
-        reqId: json['req_id'] as int,
         tokens: (json['tokens'] as List)
-            ?.map((dynamic item) => item as String)
+            ?.map<String>((dynamic item) => item as String)
             ?.toList(),
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// Either the ID received from a Price Proposal (`proposal` call), or `1` if contract buy parameters are passed in the `parameters` field.
@@ -48,15 +48,15 @@ class BuyContractForMultipleAccountsRequest extends Request {
   /// List of API tokens identifying the accounts for which the contract is bought. Note: If the same token appears multiple times or if multiple tokens designate the same account, the contract is bought multiple times for this account.
   final List<String> tokens;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'buy_contract_for_multiple_accounts': buyContractForMultipleAccounts,
         'parameters': parameters,
-        'passthrough': passthrough,
         'price': price,
-        'req_id': reqId,
         'tokens': tokens,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

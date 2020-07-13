@@ -28,9 +28,9 @@ class Mt5PasswordCheckRequest extends Request {
         mt5PasswordCheck: json['mt5_password_check'] == null
             ? null
             : json['mt5_password_check'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         password: json['password'] as String,
         passwordType: json['password_type'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );
 
@@ -46,15 +46,15 @@ class Mt5PasswordCheckRequest extends Request {
   /// [Optional] Type of the password to check.
   final String passwordType;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'login': login,
         'mt5_password_check':
             mt5PasswordCheck == null ? null : mt5PasswordCheck ? 1 : 0,
-        'passthrough': passthrough,
         'password': password,
         'password_type': passwordType,
+        'passthrough': passthrough,
         'req_id': reqId,
       };
 

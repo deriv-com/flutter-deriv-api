@@ -22,12 +22,12 @@ class ProposalOpenContractRequest extends Request {
   factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>
       ProposalOpenContractRequest(
         contractId: json['contract_id'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         proposalOpenContract: json['proposal_open_contract'] == null
             ? null
             : json['proposal_open_contract'] == 1,
-        reqId: json['req_id'] as int,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// [Optional] Contract ID received from a `portfolio` request. If not set, you will receive stream of all open contracts.
@@ -39,15 +39,15 @@ class ProposalOpenContractRequest extends Request {
   /// [Optional] `true` to stream.
   final bool subscribe;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'contract_id': contractId,
-        'passthrough': passthrough,
         'proposal_open_contract':
             proposalOpenContract == null ? null : proposalOpenContract ? 1 : 0,
-        'req_id': reqId,
         'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

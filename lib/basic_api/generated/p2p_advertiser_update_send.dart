@@ -31,8 +31,8 @@ class P2pAdvertiserUpdateRequest extends Request {
         p2pAdvertiserUpdate: json['p2p_advertiser_update'] == null
             ? null
             : json['p2p_advertiser_update'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         paymentInfo: json['payment_info'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );
 
@@ -54,7 +54,7 @@ class P2pAdvertiserUpdateRequest extends Request {
   /// [Optional] Advertiser's payment information, to be used as a default for new sell adverts.
   final String paymentInfo;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'contact_info': contactInfo,
@@ -63,8 +63,8 @@ class P2pAdvertiserUpdateRequest extends Request {
         'name': name,
         'p2p_advertiser_update':
             p2pAdvertiserUpdate == null ? null : p2pAdvertiserUpdate ? 1 : 0,
-        'passthrough': passthrough,
         'payment_info': paymentInfo,
+        'passthrough': passthrough,
         'req_id': reqId,
       };
 

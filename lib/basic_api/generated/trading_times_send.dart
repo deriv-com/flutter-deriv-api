@@ -21,20 +21,20 @@ class TradingTimesRequest extends Request {
   /// Creates an instance from JSON
   factory TradingTimesRequest.fromJson(Map<String, dynamic> json) =>
       TradingTimesRequest(
+        tradingTimes: json['trading_times'] as String,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
-        tradingTimes: json['trading_times'] as String,
       );
 
   /// Date to receive market opening times for. (`yyyy-mm-dd` format. `today` can also be specified).
   final String tradingTimes;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'trading_times': tradingTimes,
         'passthrough': passthrough,
         'req_id': reqId,
-        'trading_times': tradingTimes,
       };
 
   /// Creates a copy of instance with given parameters

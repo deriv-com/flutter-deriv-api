@@ -27,13 +27,13 @@ class ApiTokenRequest extends Request {
         deleteToken: json['delete_token'] as String,
         newToken: json['new_token'] as String,
         newTokenScopes: (json['new_token_scopes'] as List)
-            ?.map((dynamic item) => item as String)
+            ?.map<String>((dynamic item) => item as String)
             ?.toList(),
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
         validForCurrentIpOnly: json['valid_for_current_ip_only'] == null
             ? null
             : json['valid_for_current_ip_only'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// Must be `true`
@@ -51,18 +51,18 @@ class ApiTokenRequest extends Request {
   /// [Optional] If you set this parameter during token creation, then the token created will only work for the IP address that was used to create the token
   final bool validForCurrentIpOnly;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'api_token': apiToken == null ? null : apiToken ? 1 : 0,
         'delete_token': deleteToken,
         'new_token': newToken,
         'new_token_scopes': newTokenScopes,
-        'passthrough': passthrough,
-        'req_id': reqId,
         'valid_for_current_ip_only': validForCurrentIpOnly == null
             ? null
             : validForCurrentIpOnly ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

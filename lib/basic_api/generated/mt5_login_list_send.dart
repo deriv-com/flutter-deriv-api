@@ -28,7 +28,7 @@ class Mt5LoginListRequest extends Request {
   /// Must be `true`
   final bool mt5LoginList;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'mt5_login_list': mt5LoginList == null ? null : mt5LoginList ? 1 : 0,

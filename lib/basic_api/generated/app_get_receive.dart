@@ -23,6 +23,7 @@ class AppGetResponse extends Response {
   factory AppGetResponse.fromJson(Map<String, dynamic> json) => AppGetResponse(
         appGet: json['app_get'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
         msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
       );
@@ -30,11 +31,12 @@ class AppGetResponse extends Response {
   /// The information of the requested application.
   final Map<String, dynamic> appGet;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'app_get': appGet,
         'echo_req': echoReq,
+        'error': error,
         'msg_type': msgType,
         'req_id': reqId,
       };

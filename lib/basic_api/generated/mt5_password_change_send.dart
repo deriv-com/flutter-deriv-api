@@ -31,8 +31,8 @@ class Mt5PasswordChangeRequest extends Request {
             : json['mt5_password_change'] == 1,
         newPassword: json['new_password'] as String,
         oldPassword: json['old_password'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         passwordType: json['password_type'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );
 
@@ -51,7 +51,7 @@ class Mt5PasswordChangeRequest extends Request {
   /// [Optional] Type of the password to change.
   final String passwordType;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'login': login,
@@ -59,8 +59,8 @@ class Mt5PasswordChangeRequest extends Request {
             mt5PasswordChange == null ? null : mt5PasswordChange ? 1 : 0,
         'new_password': newPassword,
         'old_password': oldPassword,
-        'passthrough': passthrough,
         'password_type': passwordType,
+        'passthrough': passthrough,
         'req_id': reqId,
       };
 

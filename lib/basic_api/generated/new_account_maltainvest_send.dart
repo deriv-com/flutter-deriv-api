@@ -98,10 +98,8 @@ class NewAccountMaltainvestRequest extends Request {
             json['other_instruments_trading_experience'] as String,
         otherInstrumentsTradingFrequency:
             json['other_instruments_trading_frequency'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         phone: json['phone'] as String,
         placeOfBirth: json['place_of_birth'] as String,
-        reqId: json['req_id'] as int,
         residence: json['residence'] as String,
         salutation: json['salutation'] as String,
         secretAnswer: json['secret_answer'] as String,
@@ -109,6 +107,8 @@ class NewAccountMaltainvestRequest extends Request {
         sourceOfWealth: json['source_of_wealth'] as String,
         taxIdentificationNumber: json['tax_identification_number'] as String,
         taxResidence: json['tax_residence'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// Show whether client has accepted risk disclaimer.
@@ -231,7 +231,7 @@ class NewAccountMaltainvestRequest extends Request {
   /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   final String taxResidence;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'accept_risk': acceptRisk == null ? null : acceptRisk ? 1 : 0,
@@ -268,10 +268,8 @@ class NewAccountMaltainvestRequest extends Request {
         'other_instruments_trading_experience':
             otherInstrumentsTradingExperience,
         'other_instruments_trading_frequency': otherInstrumentsTradingFrequency,
-        'passthrough': passthrough,
         'phone': phone,
         'place_of_birth': placeOfBirth,
-        'req_id': reqId,
         'residence': residence,
         'salutation': salutation,
         'secret_answer': secretAnswer,
@@ -279,6 +277,8 @@ class NewAccountMaltainvestRequest extends Request {
         'source_of_wealth': sourceOfWealth,
         'tax_identification_number': taxIdentificationNumber,
         'tax_residence': taxResidence,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

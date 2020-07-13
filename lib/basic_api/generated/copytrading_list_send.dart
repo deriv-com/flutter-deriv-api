@@ -29,7 +29,7 @@ class CopytradingListRequest extends Request {
   /// Must be `true`
   final bool copytradingList;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'copytrading_list':

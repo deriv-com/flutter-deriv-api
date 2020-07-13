@@ -39,7 +39,7 @@ class P2pAdvertiserAdvertsRequest extends Request {
   /// Must be `true`
   final bool p2pAdvertiserAdverts;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'limit': limit,

@@ -22,23 +22,26 @@ class OauthAppsResponse extends Response {
   /// Creates an instance from JSON
   factory OauthAppsResponse.fromJson(Map<String, dynamic> json) =>
       OauthAppsResponse(
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
         oauthApps: (json['oauth_apps'] as List)
-            ?.map((dynamic item) => item as Map<String, dynamic>)
+            ?.map<Map<String, dynamic>>(
+                (dynamic item) => item as Map<String, dynamic>)
             ?.toList(),
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
       );
 
   /// List of OAuth applications that used for the authorized account.
   final List<Map<String, dynamic>> oauthApps;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'echo_req': echoReq,
-        'msg_type': msgType,
         'oauth_apps': oauthApps,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
         'req_id': reqId,
       };
 

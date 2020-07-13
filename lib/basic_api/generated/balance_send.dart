@@ -22,9 +22,9 @@ class BalanceRequest extends Request {
   factory BalanceRequest.fromJson(Map<String, dynamic> json) => BalanceRequest(
         account: json['account'] as String,
         balance: json['balance'] == null ? null : json['balance'] == 1,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
-        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
       );
 
   /// [Optional] If set to `all`, return the balances of all accounts one by one; if set to `current`, return the balance of current account; if set as an account id, return the balance of that account.
@@ -36,14 +36,14 @@ class BalanceRequest extends Request {
   /// [Optional] If set to 1, will send updates whenever the balance changes.
   final bool subscribe;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'account': account,
         'balance': balance == null ? null : balance ? 1 : 0,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
-        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters

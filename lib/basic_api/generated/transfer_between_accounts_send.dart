@@ -31,9 +31,9 @@ class TransferBetweenAccountsRequest extends Request {
         accounts: json['accounts'] as String,
         amount: json['amount'] as num,
         currency: json['currency'] as String,
+        transferBetweenAccounts: json['transfer_between_accounts'] as int,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
-        transferBetweenAccounts: json['transfer_between_accounts'] as int,
       );
 
   /// [Optional] The loginid of the account to transfer funds from.
@@ -54,7 +54,7 @@ class TransferBetweenAccountsRequest extends Request {
   /// If `account_from` or `account_to` is not provided, it just returns the available accounts.
   final int transferBetweenAccounts;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'account_from': accountFrom,
@@ -62,9 +62,9 @@ class TransferBetweenAccountsRequest extends Request {
         'accounts': accounts,
         'amount': amount,
         'currency': currency,
+        'transfer_between_accounts': transferBetweenAccounts,
         'passthrough': passthrough,
         'req_id': reqId,
-        'transfer_between_accounts': transferBetweenAccounts,
       };
 
   /// Creates a copy of instance with given parameters

@@ -29,7 +29,7 @@ class CopyStopRequest extends Request {
   /// API tokens identifying the accounts which needs not to be copied
   final String copyStop;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'copy_stop': copyStop,

@@ -32,10 +32,10 @@ class P2pAdvertiserCreateRequest extends Request {
         p2pAdvertiserCreate: json['p2p_advertiser_create'] == null
             ? null
             : json['p2p_advertiser_create'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         paymentInfo: json['payment_info'] as String,
-        reqId: json['req_id'] as int,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// [Optional] Advertiser's contact information, to be used as a default for new sell adverts.
@@ -56,7 +56,7 @@ class P2pAdvertiserCreateRequest extends Request {
   /// [Optional] If set to 1, will send updates whenever there is an update to advertiser
   final bool subscribe;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'contact_info': contactInfo,
@@ -64,10 +64,10 @@ class P2pAdvertiserCreateRequest extends Request {
         'name': name,
         'p2p_advertiser_create':
             p2pAdvertiserCreate == null ? null : p2pAdvertiserCreate ? 1 : 0,
-        'passthrough': passthrough,
         'payment_info': paymentInfo,
-        'req_id': reqId,
         'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

@@ -36,7 +36,7 @@ class ContractUpdateHistoryRequest extends Request {
   /// Must be `true`
   final bool contractUpdateHistory;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'contract_id': contractId,

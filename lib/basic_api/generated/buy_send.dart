@@ -25,10 +25,10 @@ class BuyRequest extends Request {
   factory BuyRequest.fromJson(Map<String, dynamic> json) => BuyRequest(
         buy: json['buy'] as String,
         parameters: json['parameters'] as Map<String, dynamic>,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         price: json['price'] as num,
-        reqId: json['req_id'] as int,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// Either the ID received from a Price Proposal (`proposal` call), or `1` if contract buy parameters are passed in the `parameters` field.
@@ -43,15 +43,15 @@ class BuyRequest extends Request {
   /// [Optional] `true` to stream.
   final bool subscribe;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'buy': buy,
         'parameters': parameters,
-        'passthrough': passthrough,
         'price': price,
-        'req_id': reqId,
         'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

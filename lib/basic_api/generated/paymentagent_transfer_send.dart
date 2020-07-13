@@ -30,12 +30,12 @@ class PaymentagentTransferRequest extends Request {
         currency: json['currency'] as String,
         description: json['description'] as String,
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         paymentagentTransfer: json['paymentagent_transfer'] == null
             ? null
             : json['paymentagent_transfer'] == 1,
-        reqId: json['req_id'] as int,
         transferTo: json['transfer_to'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// The amount to transfer.
@@ -56,18 +56,18 @@ class PaymentagentTransferRequest extends Request {
   /// The loginid of the recipient account.
   final String transferTo;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'amount': amount,
         'currency': currency,
         'description': description,
         'dry_run': dryRun == null ? null : dryRun ? 1 : 0,
-        'passthrough': passthrough,
         'paymentagent_transfer':
             paymentagentTransfer == null ? null : paymentagentTransfer ? 1 : 0,
-        'req_id': reqId,
         'transfer_to': transferTo,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

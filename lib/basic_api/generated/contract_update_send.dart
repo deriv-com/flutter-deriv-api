@@ -41,7 +41,7 @@ class ContractUpdateRequest extends Request {
   /// Specify limit order to update.
   final Map<String, dynamic> limitOrder;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'contract_id': contractId,

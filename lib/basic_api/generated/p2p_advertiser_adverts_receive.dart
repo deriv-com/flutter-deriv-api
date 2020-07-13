@@ -22,22 +22,24 @@ class P2pAdvertiserAdvertsResponse extends Response {
   /// Creates an instance from JSON
   factory P2pAdvertiserAdvertsResponse.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserAdvertsResponse(
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
         p2pAdvertiserAdverts:
             json['p2p_advertiser_adverts'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
       );
 
   /// List of the P2P advertiser adverts.
   final Map<String, dynamic> p2pAdvertiserAdverts;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'echo_req': echoReq,
-        'msg_type': msgType,
         'p2p_advertiser_adverts': p2pAdvertiserAdverts,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
         'req_id': reqId,
       };
 

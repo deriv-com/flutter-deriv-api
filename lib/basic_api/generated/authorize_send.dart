@@ -34,7 +34,7 @@ class AuthorizeRequest extends Request {
   /// Authentication token. May be retrieved from https://www.binary.com/en/user/security/api_tokenws.html
   final String authorize;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'add_to_login_history': addToLoginHistory,

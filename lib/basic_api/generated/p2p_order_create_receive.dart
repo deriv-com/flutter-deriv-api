@@ -23,11 +23,12 @@ class P2pOrderCreateResponse extends Response {
   /// Creates an instance from JSON
   factory P2pOrderCreateResponse.fromJson(Map<String, dynamic> json) =>
       P2pOrderCreateResponse(
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
         p2pOrderCreate: json['p2p_order_create'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
         subscription: json['subscription'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
       );
 
   /// Information of the creates P2P order.
@@ -36,14 +37,15 @@ class P2pOrderCreateResponse extends Response {
   /// For subscription requests only.
   final Map<String, dynamic> subscription;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'echo_req': echoReq,
-        'msg_type': msgType,
         'p2p_order_create': p2pOrderCreate,
-        'req_id': reqId,
         'subscription': subscription,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

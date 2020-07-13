@@ -21,8 +21,9 @@ class ForgetResponse extends Response {
 
   /// Creates an instance from JSON
   factory ForgetResponse.fromJson(Map<String, dynamic> json) => ForgetResponse(
-        echoReq: json['echo_req'] as Map<String, dynamic>,
         forget: json['forget'] == null ? null : json['forget'] == 1,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
         msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
       );
@@ -30,11 +31,12 @@ class ForgetResponse extends Response {
   /// If set to 1, stream exited and stopped. If set to 0, stream did not exist.
   final bool forget;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'echo_req': echoReq,
         'forget': forget == null ? null : forget ? 1 : 0,
+        'echo_req': echoReq,
+        'error': error,
         'msg_type': msgType,
         'req_id': reqId,
       };

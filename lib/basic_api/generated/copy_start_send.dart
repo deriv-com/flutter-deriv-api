@@ -29,9 +29,9 @@ class CopyStartRequest extends Request {
         copyStart: json['copy_start'] as String,
         maxTradeStake: json['max_trade_stake'] as num,
         minTradeStake: json['min_trade_stake'] as num,
+        tradeTypes: json['trade_types'] as dynamic,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
-        tradeTypes: json['trade_types'] as dynamic,
       );
 
   /// [Optional] Used to set assets to be copied. E.x ["frxUSDJPY", "R_50"]
@@ -49,16 +49,16 @@ class CopyStartRequest extends Request {
   /// [Optional] Used to set trade types to be copied. E.x ["CALL", "PUT"]
   final dynamic tradeTypes;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'assets': assets,
         'copy_start': copyStart,
         'max_trade_stake': maxTradeStake,
         'min_trade_stake': minTradeStake,
+        'trade_types': tradeTypes,
         'passthrough': passthrough,
         'req_id': reqId,
-        'trade_types': tradeTypes,
       };
 
   /// Creates a copy of instance with given parameters

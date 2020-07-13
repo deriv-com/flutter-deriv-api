@@ -22,21 +22,23 @@ class Mt5PasswordChangeResponse extends Response {
   /// Creates an instance from JSON
   factory Mt5PasswordChangeResponse.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordChangeResponse(
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
         mt5PasswordChange: json['mt5_password_change'] as int,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
       );
 
   /// `1` on success
   final int mt5PasswordChange;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'echo_req': echoReq,
-        'msg_type': msgType,
         'mt5_password_change': mt5PasswordChange,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
         'req_id': reqId,
       };
 

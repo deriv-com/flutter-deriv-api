@@ -37,11 +37,12 @@ class ProposalArrayRequest extends Request {
       ProposalArrayRequest(
         amount: json['amount'] as num,
         barriers: (json['barriers'] as List)
-            ?.map((dynamic item) => item as Map<String, dynamic>)
+            ?.map<Map<String, dynamic>>(
+                (dynamic item) => item as Map<String, dynamic>)
             ?.toList(),
         basis: json['basis'] as String,
         contractType: (json['contract_type'] as List)
-            ?.map((dynamic item) => item as dynamic)
+            ?.map<dynamic>((dynamic item) => item as dynamic)
             ?.toList(),
         currency: json['currency'] as String,
         dateExpiry: json['date_expiry'] as int,
@@ -49,14 +50,14 @@ class ProposalArrayRequest extends Request {
         duration: json['duration'] as int,
         durationUnit: json['duration_unit'] as String,
         multiplier: json['multiplier'] as num,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         productType: json['product_type'] as String,
         proposalArray:
             json['proposal_array'] == null ? null : json['proposal_array'] == 1,
-        reqId: json['req_id'] as int,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         symbol: json['symbol'] as String,
         tradingPeriodStart: json['trading_period_start'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// Proposed contract `payout` or `stake` value.
@@ -104,7 +105,7 @@ class ProposalArrayRequest extends Request {
   /// Required only for multi-barrier trading. Defines the epoch value of the trading period start time.
   final int tradingPeriodStart;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'amount': amount,
@@ -117,13 +118,13 @@ class ProposalArrayRequest extends Request {
         'duration': duration,
         'duration_unit': durationUnit,
         'multiplier': multiplier,
-        'passthrough': passthrough,
         'product_type': productType,
         'proposal_array': proposalArray == null ? null : proposalArray ? 1 : 0,
-        'req_id': reqId,
         'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
         'symbol': symbol,
         'trading_period_start': tradingPeriodStart,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

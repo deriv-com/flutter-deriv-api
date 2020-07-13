@@ -66,7 +66,7 @@ class DocumentUploadRequest extends Request {
   /// [Optional] To determine document side
   final String pageType;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'document_format': documentFormat,

@@ -56,10 +56,8 @@ class SetSettingsRequest extends Request {
         firstName: json['first_name'] as String,
         lastName: json['last_name'] as String,
         nonPepDeclaration: json['non_pep_declaration'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         phone: json['phone'] as String,
         placeOfBirth: json['place_of_birth'] as String,
-        reqId: json['req_id'] as int,
         requestProfessionalStatus: json['request_professional_status'] as int,
         residence: json['residence'] as String,
         salutation: json['salutation'] as String,
@@ -69,6 +67,8 @@ class SetSettingsRequest extends Request {
             json['set_settings'] == null ? null : json['set_settings'] == 1,
         taxIdentificationNumber: json['tax_identification_number'] as String,
         taxResidence: json['tax_residence'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// [Optional] Purpose and reason for requesting the account opening. Only applicable for real money account. Required for clients that have not set it yet. Can only be set once.
@@ -140,7 +140,7 @@ class SetSettingsRequest extends Request {
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for maltainvest landing company.
   final String taxResidence;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'account_opening_reason': accountOpeningReason,
@@ -156,10 +156,8 @@ class SetSettingsRequest extends Request {
         'first_name': firstName,
         'last_name': lastName,
         'non_pep_declaration': nonPepDeclaration,
-        'passthrough': passthrough,
         'phone': phone,
         'place_of_birth': placeOfBirth,
-        'req_id': reqId,
         'request_professional_status': requestProfessionalStatus,
         'residence': residence,
         'salutation': salutation,
@@ -168,6 +166,8 @@ class SetSettingsRequest extends Request {
         'set_settings': setSettings == null ? null : setSettings ? 1 : 0,
         'tax_identification_number': taxIdentificationNumber,
         'tax_residence': taxResidence,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

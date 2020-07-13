@@ -30,10 +30,10 @@ class Mt5PasswordResetRequest extends Request {
             ? null
             : json['mt5_password_reset'] == 1,
         newPassword: json['new_password'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         passwordType: json['password_type'] as String,
-        reqId: json['req_id'] as int,
         verificationCode: json['verification_code'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// MT5 user login
@@ -51,17 +51,17 @@ class Mt5PasswordResetRequest extends Request {
   /// Email verification code (received from a `verify_email` call, which must be done first)
   final String verificationCode;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'login': login,
         'mt5_password_reset':
             mt5PasswordReset == null ? null : mt5PasswordReset ? 1 : 0,
         'new_password': newPassword,
-        'passthrough': passthrough,
         'password_type': passwordType,
-        'req_id': reqId,
         'verification_code': verificationCode,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

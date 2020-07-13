@@ -29,7 +29,7 @@ class LandingCompanyRequest extends Request {
   /// Client's 2-letter country code (obtained from `residence_list` call).
   final String landingCompany;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'landing_company': landingCompany,

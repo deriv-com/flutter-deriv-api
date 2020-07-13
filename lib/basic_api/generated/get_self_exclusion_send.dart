@@ -29,7 +29,7 @@ class GetSelfExclusionRequest extends Request {
   /// Must be `true`
   final bool getSelfExclusion;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'get_self_exclusion':

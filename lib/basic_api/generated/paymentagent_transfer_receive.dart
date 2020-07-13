@@ -27,11 +27,12 @@ class PaymentagentTransferResponse extends Response {
       PaymentagentTransferResponse(
         clientToFullName: json['client_to_full_name'] as String,
         clientToLoginid: json['client_to_loginid'] as String,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
         paymentagentTransfer: json['paymentagent_transfer'] as int,
-        reqId: json['req_id'] as int,
         transactionId: json['transaction_id'] as int,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
       );
 
   /// The `transfer_to` client full name
@@ -46,16 +47,17 @@ class PaymentagentTransferResponse extends Response {
   /// Reference ID of transfer performed
   final int transactionId;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'client_to_full_name': clientToFullName,
         'client_to_loginid': clientToLoginid,
-        'echo_req': echoReq,
-        'msg_type': msgType,
         'paymentagent_transfer': paymentagentTransfer,
-        'req_id': reqId,
         'transaction_id': transactionId,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

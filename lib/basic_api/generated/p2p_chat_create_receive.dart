@@ -22,21 +22,23 @@ class P2pChatCreateResponse extends Response {
   /// Creates an instance from JSON
   factory P2pChatCreateResponse.fromJson(Map<String, dynamic> json) =>
       P2pChatCreateResponse(
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
         p2pChatCreate: json['p2p_chat_create'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
       );
 
   /// Information of the P2P chat.
   final Map<String, dynamic> p2pChatCreate;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'echo_req': echoReq,
-        'msg_type': msgType,
         'p2p_chat_create': p2pChatCreate,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
         'req_id': reqId,
       };
 

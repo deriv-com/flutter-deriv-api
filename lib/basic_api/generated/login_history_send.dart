@@ -33,7 +33,7 @@ class LoginHistoryRequest extends Request {
   /// Must be `true`
   final bool loginHistory;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'limit': limit,

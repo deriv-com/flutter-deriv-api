@@ -37,13 +37,13 @@ class AppUpdateRequest extends Request {
         googleplay: json['googleplay'] as String,
         homepage: json['homepage'] as String,
         name: json['name'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         redirectUri: json['redirect_uri'] as String,
-        reqId: json['req_id'] as int,
         scopes: (json['scopes'] as List)
-            ?.map((dynamic item) => item as String)
+            ?.map<String>((dynamic item) => item as String)
             ?.toList(),
         verificationUri: json['verification_uri'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// [Optional] Markup to be added to contract prices (as a percentage of contract payout).
@@ -76,7 +76,7 @@ class AppUpdateRequest extends Request {
   /// [Optional] Used when `verify_email` called. If available, a URL containing the verification token will send to the client's email, otherwise only the token will be sent.
   final String verificationUri;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'app_markup_percentage': appMarkupPercentage,
@@ -86,11 +86,11 @@ class AppUpdateRequest extends Request {
         'googleplay': googleplay,
         'homepage': homepage,
         'name': name,
-        'passthrough': passthrough,
         'redirect_uri': redirectUri,
-        'req_id': reqId,
         'scopes': scopes,
         'verification_uri': verificationUri,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

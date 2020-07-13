@@ -52,12 +52,12 @@ class Mt5NewAccountRequest extends Request {
             ? null
             : json['mt5_new_account'] == 1,
         name: json['name'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         phone: json['phone'] as String,
         phonePassword: json['phonePassword'] as String,
-        reqId: json['req_id'] as int,
         state: json['state'] as String,
         zipCode: json['zipCode'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// Account type
@@ -111,7 +111,7 @@ class Mt5NewAccountRequest extends Request {
   /// [Optional] User's zip code.
   final String zipCode;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'account_type': accountType,
@@ -127,12 +127,12 @@ class Mt5NewAccountRequest extends Request {
         'mt5_account_type': mt5AccountType,
         'mt5_new_account': mt5NewAccount == null ? null : mt5NewAccount ? 1 : 0,
         'name': name,
-        'passthrough': passthrough,
         'phone': phone,
         'phonePassword': phonePassword,
-        'req_id': reqId,
         'state': state,
         'zipCode': zipCode,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

@@ -29,7 +29,7 @@ class LandingCompanyDetailsRequest extends Request {
   /// Landing company shortcode.
   final String landingCompanyDetails;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'landing_company_details': landingCompanyDetails,

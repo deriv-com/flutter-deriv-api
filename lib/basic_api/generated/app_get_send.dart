@@ -28,7 +28,7 @@ class AppGetRequest extends Request {
   /// Application app_id
   final int appGet;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'app_get': appGet,

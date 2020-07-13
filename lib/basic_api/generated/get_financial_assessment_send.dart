@@ -29,7 +29,7 @@ class GetFinancialAssessmentRequest extends Request {
   /// Must be `true`
   final bool getFinancialAssessment;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'get_financial_assessment': getFinancialAssessment == null

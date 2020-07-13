@@ -36,7 +36,7 @@ class P2pChatCreateRequest extends Request {
   /// Must be `true`
   final bool p2pChatCreate;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'order_id': orderId,

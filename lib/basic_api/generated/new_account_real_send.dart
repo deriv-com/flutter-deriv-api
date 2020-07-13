@@ -62,16 +62,16 @@ class NewAccountRealRequest extends Request {
             ? null
             : json['new_account_real'] == 1,
         nonPepDeclaration: json['non_pep_declaration'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         phone: json['phone'] as String,
         placeOfBirth: json['place_of_birth'] as String,
-        reqId: json['req_id'] as int,
         residence: json['residence'] as String,
         salutation: json['salutation'] as String,
         secretAnswer: json['secret_answer'] as String,
         secretQuestion: json['secret_question'] as String,
         taxIdentificationNumber: json['tax_identification_number'] as String,
         taxResidence: json['tax_residence'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// [Optional] Purpose and reason for requesting the account opening.
@@ -146,7 +146,7 @@ class NewAccountRealRequest extends Request {
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   final String taxResidence;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'account_opening_reason': accountOpeningReason,
@@ -166,16 +166,16 @@ class NewAccountRealRequest extends Request {
         'new_account_real':
             newAccountReal == null ? null : newAccountReal ? 1 : 0,
         'non_pep_declaration': nonPepDeclaration,
-        'passthrough': passthrough,
         'phone': phone,
         'place_of_birth': placeOfBirth,
-        'req_id': reqId,
         'residence': residence,
         'salutation': salutation,
         'secret_answer': secretAnswer,
         'secret_question': secretQuestion,
         'tax_identification_number': taxIdentificationNumber,
         'tax_residence': taxResidence,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

@@ -22,9 +22,10 @@ class GetFinancialAssessmentResponse extends Response {
   /// Creates an instance from JSON
   factory GetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>
       GetFinancialAssessmentResponse(
-        echoReq: json['echo_req'] as Map<String, dynamic>,
         getFinancialAssessment:
             json['get_financial_assessment'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
         msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
       );
@@ -32,11 +33,12 @@ class GetFinancialAssessmentResponse extends Response {
   /// Client's financial assessment details
   final Map<String, dynamic> getFinancialAssessment;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'echo_req': echoReq,
         'get_financial_assessment': getFinancialAssessment,
+        'echo_req': echoReq,
+        'error': error,
         'msg_type': msgType,
         'req_id': reqId,
       };

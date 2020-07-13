@@ -21,10 +21,10 @@ class SellRequest extends Request {
 
   /// Creates an instance from JSON
   factory SellRequest.fromJson(Map<String, dynamic> json) => SellRequest(
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         price: json['price'] as num,
-        reqId: json['req_id'] as int,
         sell: json['sell'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
@@ -33,13 +33,13 @@ class SellRequest extends Request {
   /// Pass contract_id received from the `portfolio` call.
   final int sell;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'passthrough': passthrough,
         'price': price,
-        'req_id': reqId,
         'sell': sell,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

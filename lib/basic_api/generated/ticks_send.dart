@@ -19,10 +19,10 @@ class TicksRequest extends Request {
 
   /// Creates an instance from JSON
   factory TicksRequest.fromJson(Map<String, dynamic> json) => TicksRequest(
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         ticks: json['ticks'] as dynamic,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// [Optional] If set to 1, will send updates whenever a new tick is received.
@@ -31,13 +31,13 @@ class TicksRequest extends Request {
   /// The short symbol name or array of symbols (obtained from `active_symbols` call).
   final dynamic ticks;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'passthrough': passthrough,
-        'req_id': reqId,
         'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
         'ticks': ticks,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

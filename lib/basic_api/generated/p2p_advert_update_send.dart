@@ -46,7 +46,7 @@ class P2pAdvertUpdateRequest extends Request {
   /// Must be `true`
   final bool p2pAdvertUpdate;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'delete': delete == null ? null : delete ? 1 : 0,

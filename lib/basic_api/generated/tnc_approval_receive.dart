@@ -22,22 +22,24 @@ class TncApprovalResponse extends Response {
   /// Creates an instance from JSON
   factory TncApprovalResponse.fromJson(Map<String, dynamic> json) =>
       TncApprovalResponse(
+        tncApproval: json['tnc_approval'] as int,
         echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
         msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
-        tncApproval: json['tnc_approval'] as int,
       );
 
   /// Set terms and conditions 1: success
   final int tncApproval;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'tnc_approval': tncApproval,
         'echo_req': echoReq,
+        'error': error,
         'msg_type': msgType,
         'req_id': reqId,
-        'tnc_approval': tncApproval,
       };
 
   /// Creates a copy of instance with given parameters

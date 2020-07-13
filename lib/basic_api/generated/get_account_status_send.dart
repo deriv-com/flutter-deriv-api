@@ -29,7 +29,7 @@ class GetAccountStatusRequest extends Request {
   /// Must be `true`
   final bool getAccountStatus;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'get_account_status':

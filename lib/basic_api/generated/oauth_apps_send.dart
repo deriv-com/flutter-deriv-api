@@ -27,7 +27,7 @@ class OauthAppsRequest extends Request {
   /// Must be `true`
   final bool oauthApps;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'oauth_apps': oauthApps == null ? null : oauthApps ? 1 : 0,

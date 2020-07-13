@@ -25,17 +25,17 @@ class SellContractForMultipleAccountsRequest extends Request {
   factory SellContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       SellContractForMultipleAccountsRequest(
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         price: json['price'] as num,
-        reqId: json['req_id'] as int,
         sellContractForMultipleAccounts:
             json['sell_contract_for_multiple_accounts'] == null
                 ? null
                 : json['sell_contract_for_multiple_accounts'] == 1,
         shortcode: json['shortcode'] as String,
         tokens: (json['tokens'] as List)
-            ?.map((dynamic item) => item as String)
+            ?.map<String>((dynamic item) => item as String)
             ?.toList(),
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
@@ -50,18 +50,18 @@ class SellContractForMultipleAccountsRequest extends Request {
   /// Authorisation tokens which select the accounts to sell use for the affected accounts.
   final List<String> tokens;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'passthrough': passthrough,
         'price': price,
-        'req_id': reqId,
         'sell_contract_for_multiple_accounts':
             sellContractForMultipleAccounts == null
                 ? null
                 : sellContractForMultipleAccounts ? 1 : 0,
         'shortcode': shortcode,
         'tokens': tokens,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

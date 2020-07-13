@@ -22,21 +22,23 @@ class P2pOrderCancelResponse extends Response {
   /// Creates an instance from JSON
   factory P2pOrderCancelResponse.fromJson(Map<String, dynamic> json) =>
       P2pOrderCancelResponse(
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
         p2pOrderCancel: json['p2p_order_cancel'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
       );
 
   /// Cancellation details
   final Map<String, dynamic> p2pOrderCancel;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'echo_req': echoReq,
-        'msg_type': msgType,
         'p2p_order_cancel': p2pOrderCancel,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
         'req_id': reqId,
       };
 

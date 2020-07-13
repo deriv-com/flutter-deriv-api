@@ -31,11 +31,11 @@ class ProfitTableRequest extends Request {
             json['description'] == null ? null : json['description'] == 1,
         limit: json['limit'] as num,
         offset: json['offset'] as num,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         profitTable:
             json['profit_table'] == null ? null : json['profit_table'] == 1,
-        reqId: json['req_id'] as int,
         sort: json['sort'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// [Optional] Start date (epoch or YYYY-MM-DD)
@@ -59,7 +59,7 @@ class ProfitTableRequest extends Request {
   /// [Optional] Sort direction.
   final String sort;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'date_from': dateFrom,
@@ -67,10 +67,10 @@ class ProfitTableRequest extends Request {
         'description': description == null ? null : description ? 1 : 0,
         'limit': limit,
         'offset': offset,
-        'passthrough': passthrough,
         'profit_table': profitTable == null ? null : profitTable ? 1 : 0,
-        'req_id': reqId,
         'sort': sort,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

@@ -18,20 +18,20 @@ class TimeRequest extends Request {
 
   /// Creates an instance from JSON
   factory TimeRequest.fromJson(Map<String, dynamic> json) => TimeRequest(
+        time: json['time'] == null ? null : json['time'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
-        time: json['time'] == null ? null : json['time'] == 1,
       );
 
   /// Must be `true`
   final bool time;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'time': time == null ? null : time ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
-        'time': time == null ? null : time ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters

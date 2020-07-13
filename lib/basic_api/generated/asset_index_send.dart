@@ -33,7 +33,7 @@ class AssetIndexRequest extends Request {
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
   final String landingCompany;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'asset_index': assetIndex == null ? null : assetIndex ? 1 : 0,

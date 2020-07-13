@@ -18,19 +18,19 @@ class PingRequest extends Request {
 
   /// Creates an instance from JSON
   factory PingRequest.fromJson(Map<String, dynamic> json) => PingRequest(
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         ping: json['ping'] == null ? null : json['ping'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );
 
   /// Must be `true`
   final bool ping;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'passthrough': passthrough,
         'ping': ping == null ? null : ping ? 1 : 0,
+        'passthrough': passthrough,
         'req_id': reqId,
       };
 

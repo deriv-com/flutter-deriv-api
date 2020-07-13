@@ -19,19 +19,19 @@ class PortfolioRequest extends Request {
   /// Creates an instance from JSON
   factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>
       PortfolioRequest(
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         portfolio: json['portfolio'] == null ? null : json['portfolio'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );
 
   /// Must be `true`
   final bool portfolio;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'passthrough': passthrough,
         'portfolio': portfolio == null ? null : portfolio ? 1 : 0,
+        'passthrough': passthrough,
         'req_id': reqId,
       };
 

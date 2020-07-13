@@ -52,14 +52,14 @@ class ProposalRequest extends Request {
         durationUnit: json['duration_unit'] as String,
         limitOrder: json['limit_order'] as Map<String, dynamic>,
         multiplier: json['multiplier'] as num,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         productType: json['product_type'] as String,
         proposal: json['proposal'] == null ? null : json['proposal'] == 1,
-        reqId: json['req_id'] as int,
         selectedTick: json['selected_tick'] as int,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         symbol: json['symbol'] as String,
         tradingPeriodStart: json['trading_period_start'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// [Optional] Proposed contract payout or stake, or multiplier (for lookbacks).
@@ -119,7 +119,7 @@ class ProposalRequest extends Request {
   /// [Optional] Required only for multi-barrier trading. Defines the epoch value of the trading period start time.
   final int tradingPeriodStart;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'amount': amount,
@@ -135,14 +135,14 @@ class ProposalRequest extends Request {
         'duration_unit': durationUnit,
         'limit_order': limitOrder,
         'multiplier': multiplier,
-        'passthrough': passthrough,
         'product_type': productType,
         'proposal': proposal == null ? null : proposal ? 1 : 0,
-        'req_id': reqId,
         'selected_tick': selectedTick,
         'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
         'symbol': symbol,
         'trading_period_start': tradingPeriodStart,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

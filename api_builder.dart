@@ -120,11 +120,11 @@ class APIBuilder extends Builder {
                   ${_getSuperClassParameters(schemaType)},
                 }): super(${_getSuperClassCallParameters(schemaType, methodName)},);
               
-              ${_generateFromJson(classFullName, schema, properties)}
+              ${_getFromJsonMethod(classFullName, schemaType, schema, properties)}
               
               ${_getProperties(schema, properties)}
 
-              ${_generateToJson(schema, properties)}
+              ${_getToJsonMethod(schemaType, schema, properties)}
 
               /// Creates a copy of instance with given parameters
               @override
@@ -233,44 +233,138 @@ class APIBuilder extends Builder {
           property.enumValues[0] == 0 &&
           property.enumValues[1] == 1;
 
-  String _getCopyWithMethod(
-    JsonSchema schema,
-    String schemaType,
+  StringBuffer _getFromJsonMethod(
     String classFullName,
+    String schemaType,
+    JsonSchema schema,
     List<String> properties,
-  ) {
-    final StringBuffer result = StringBuffer('{')
-      ..write(
-        properties
-            .where((String key) => !(requestCommonFields.containsKey(key) ||
-                responseCommonFields.containsKey(key)))
-            .map(
-          (String key) {
+  ) =>
+      StringBuffer(
+        '''
+          /// Creates an instance from JSON
+          factory $classFullName.fromJson(Map<String, dynamic> json) => $classFullName(
+        ''',
+      )
+        ..write(
+          properties
+              .where((String key) => !(requestCommonFields.containsKey(key) ||
+                  responseCommonFields.containsKey(key)))
+              .map((String key) {
             final String name = ReCase(key).camelCase;
             final JsonSchema property = schema.properties[key];
             final String type = _getPropertyType(key, property);
 
-            return '$type $name';
-          },
-        ).join(', '),
-      )
-      ..write(
-          ', ${_getSuperClassParameters(schemaType)}, }) => $classFullName (')
-      ..write(
-        properties
-            .where((String key) => !(requestCommonFields.containsKey(key) ||
-                responseCommonFields.containsKey(key)))
-            .map(
-          (String key) {
-            final String name = ReCase(key).camelCase;
-            return '$name: $name ?? this.$name';
-          },
-        ).join(', '),
-      )
-      ..write(', ${_getSupperClassAssignments(schemaType)},');
+            if (type == 'bool') {
+              return '''
+                $name: json['$key'] == null ? null : json['$key'] == 1,
+              ''';
+            } else if (type.contains('List')) {
+              final String arrayType = _getArrayType(type);
 
-    return result.toString();
-  }
+              return '''
+                $name: (json['$key'] as List)
+                  ?.map<$arrayType>(($dynamic item) => item as $arrayType)
+                  ?.toList(),
+              ''';
+            } else {
+              return '''
+                $name: json['$key'] as $type,
+              ''';
+            }
+          }).join(),
+        )
+        ..write('${_getFromJsonCommonFields(schemaType)});');
+
+  StringBuffer _getToJsonMethod(
+    String schemaType,
+    JsonSchema schema,
+    List<String> properties,
+  ) =>
+      StringBuffer(
+        '''
+          /// Converts this instance to JSON
+          @override
+          Map<String, dynamic> toJson() => <String, dynamic>{
+        ''',
+      )
+        ..write(
+          properties
+              .where((String key) => !(requestCommonFields.containsKey(key) ||
+                  responseCommonFields.containsKey(key)))
+              .map((String key) {
+            final String name = ReCase(key).camelCase;
+            final JsonSchema property = schema.properties[key];
+            final String type = _getPropertyType(key, property);
+
+            return '''
+            '$key': $name${type == 'bool' ? ' == null ? null : $name ? 1 : 0' : ''},
+          ''';
+          }).join(),
+        )
+        ..write('${_getToJsonCommonFields(schemaType)}};');
+
+  String _getArrayType(String type) =>
+      type.substring(0, type.length - 1).replaceAll('List<', '');
+
+  String _getFromJsonCommonFields(String schemaType) => schemaType == 'send'
+      ? '''
+          passthrough: json['passthrough'] as Map<String, dynamic>,	
+          reqId: json['req_id'] as int,
+        '''
+      : '''
+          echoReq: json['echo_req'] as Map<String, dynamic>,	
+          error: json['error'] as Map<String, dynamic>,	
+          msgType: json['msg_type'] as String,	
+          reqId: json['req_id'] as int,
+        ''';
+
+  String _getToJsonCommonFields(String schemaType) => schemaType == 'send'
+      ? '''
+          'passthrough': passthrough,	
+          'req_id': reqId,
+        '''
+      : '''
+          'echo_req': echoReq,	
+          'error': error,	
+          'msg_type': msgType,	
+          'req_id': reqId,
+        ''';
+
+  StringBuffer _getCopyWithMethod(
+    JsonSchema schema,
+    String schemaType,
+    String classFullName,
+    List<String> properties,
+  ) =>
+      StringBuffer('{')
+        ..write(
+          properties
+              .where((String key) => !(requestCommonFields.containsKey(key) ||
+                  responseCommonFields.containsKey(key)))
+              .map(
+            (String key) {
+              final String name = ReCase(key).camelCase;
+              final JsonSchema property = schema.properties[key];
+              final String type = _getPropertyType(key, property);
+
+              return '$type $name';
+            },
+          ).join(', '),
+        )
+        ..write(
+            ', ${_getSuperClassParameters(schemaType)}, }) => $classFullName (')
+        ..write(
+          properties
+              .where((String key) => !(requestCommonFields.containsKey(key) ||
+                  responseCommonFields.containsKey(key)))
+              .map(
+            (String key) {
+              final String name = ReCase(key).camelCase;
+              return '$name: $name ?? this.$name';
+            },
+          ).join(', '),
+        )
+        ..write(', ${_getSupperClassAssignments(schemaType)},');
 
   String _getSuperClassParameters(String schemaType) {
     final Map<String, String> superClassFields =
@@ -358,75 +452,6 @@ class APIBuilder extends Builder {
       default:
         return 'null';
     }
-  }
-
-  String _generateFromJson(
-    String classFullName,
-    JsonSchema schema,
-    List<String> properties,
-  ) {
-    final StringBuffer result = StringBuffer(
-      '''
-        /// Creates an instance from JSON
-        factory $classFullName.fromJson(Map<String, dynamic> json) => $classFullName(
-      ''',
-    )
-      ..write(
-        properties.map((String key) {
-          final String name = ReCase(key).camelCase;
-          final JsonSchema property = schema.properties[key];
-          final String type = _getPropertyType(key, property);
-
-          if (type == 'bool') {
-            return '''
-                $name: json['$key'] == null ? null : json['$key'] == 1,
-              ''';
-          } else if (type.contains('List')) {
-            final String arrayType =
-                type.substring(0, type.length - 1).replaceAll('List<', '');
-
-            return '''
-                $name: (json['$key'] as List)
-                  ?.map(($dynamic item) => item as $arrayType)
-                  ?.toList(),
-              ''';
-          } else {
-            return '''
-                $name: json['$key'] as $type,
-              ''';
-          }
-        }).join(),
-      )
-      ..write(');');
-
-    return result.toString();
-  }
-
-  String _generateToJson(
-    JsonSchema schema,
-    List<String> properties,
-  ) {
-    final StringBuffer result = StringBuffer(
-      '''
-        /// Converts an instance to JSON
-        @override
-        Map<String, dynamic> toJson() => <String, dynamic>{
-      ''',
-    )
-      ..write(
-        properties.map((String key) {
-          final String name = ReCase(key).camelCase;
-          final JsonSchema property = schema.properties[key];
-          final String type = _getPropertyType(key, property);
-
-          return '''
-            '$key': $name${type == 'bool' ? ' == null ? null : $name ? 1 : 0' : ''},
-          ''';
-        }).join(),
-      )
-      ..write('};');
-
-    return result.toString();
   }
 }
 

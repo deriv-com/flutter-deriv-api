@@ -27,8 +27,8 @@ class ContractsForRequest extends Request {
         contractsFor: json['contracts_for'] as String,
         currency: json['currency'] as String,
         landingCompany: json['landing_company'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         productType: json['product_type'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );
 
@@ -44,14 +44,14 @@ class ContractsForRequest extends Request {
   /// [Optional] If you specify this field, only contracts tradable through that contract type will be returned.
   final String productType;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'contracts_for': contractsFor,
         'currency': currency,
         'landing_company': landingCompany,
-        'passthrough': passthrough,
         'product_type': productType,
+        'passthrough': passthrough,
         'req_id': reqId,
       };
 

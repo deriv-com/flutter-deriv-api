@@ -28,9 +28,9 @@ class Mt5DepositRequest extends Request {
         fromBinary: json['from_binary'] as String,
         mt5Deposit:
             json['mt5_deposit'] == null ? null : json['mt5_deposit'] == 1,
+        toMt5: json['to_mt5'] as String,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
-        toMt5: json['to_mt5'] as String,
       );
 
   /// Amount to deposit (in the currency of from_binary); min = $1 or an equivalent amount, max = $20000 or an equivalent amount
@@ -45,15 +45,15 @@ class Mt5DepositRequest extends Request {
   /// MT5 account login to deposit money to
   final String toMt5;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'amount': amount,
         'from_binary': fromBinary,
         'mt5_deposit': mt5Deposit == null ? null : mt5Deposit ? 1 : 0,
+        'to_mt5': toMt5,
         'passthrough': passthrough,
         'req_id': reqId,
-        'to_mt5': toMt5,
       };
 
   /// Creates a copy of instance with given parameters

@@ -22,21 +22,23 @@ class PaymentagentListResponse extends Response {
   /// Creates an instance from JSON
   factory PaymentagentListResponse.fromJson(Map<String, dynamic> json) =>
       PaymentagentListResponse(
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
         paymentagentList: json['paymentagent_list'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
       );
 
   /// Payment Agent List
   final Map<String, dynamic> paymentagentList;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'echo_req': echoReq,
-        'msg_type': msgType,
         'paymentagent_list': paymentagentList,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
         'req_id': reqId,
       };
 

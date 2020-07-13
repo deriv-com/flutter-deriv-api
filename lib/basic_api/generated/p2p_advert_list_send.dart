@@ -59,7 +59,7 @@ class P2pAdvertListRequest extends Request {
   /// Must be `true`
   final bool p2pAdvertList;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'advertiser_id': advertiserId,

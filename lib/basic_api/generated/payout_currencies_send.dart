@@ -19,22 +19,22 @@ class PayoutCurrenciesRequest extends Request {
   /// Creates an instance from JSON
   factory PayoutCurrenciesRequest.fromJson(Map<String, dynamic> json) =>
       PayoutCurrenciesRequest(
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         payoutCurrencies: json['payout_currencies'] == null
             ? null
             : json['payout_currencies'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );
 
   /// Must be `true`
   final bool payoutCurrencies;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'passthrough': passthrough,
         'payout_currencies':
             payoutCurrencies == null ? null : payoutCurrencies ? 1 : 0,
+        'passthrough': passthrough,
         'req_id': reqId,
       };
 

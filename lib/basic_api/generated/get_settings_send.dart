@@ -28,7 +28,7 @@ class GetSettingsRequest extends Request {
   /// Must be `true`
   final bool getSettings;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'get_settings': getSettings == null ? null : getSettings ? 1 : 0,

@@ -58,12 +58,12 @@ class SetFinancialAssessmentRequest extends Request {
             json['other_instruments_trading_experience'] as String,
         otherInstrumentsTradingFrequency:
             json['other_instruments_trading_frequency'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
         setFinancialAssessment: json['set_financial_assessment'] == null
             ? null
             : json['set_financial_assessment'] == 1,
         sourceOfWealth: json['source_of_wealth'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// [Optional] The anticipated account turnover.
@@ -120,7 +120,7 @@ class SetFinancialAssessmentRequest extends Request {
   /// [Optional] Source of wealth.
   final String sourceOfWealth;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'account_turnover': accountTurnover,
@@ -140,12 +140,12 @@ class SetFinancialAssessmentRequest extends Request {
         'other_instruments_trading_experience':
             otherInstrumentsTradingExperience,
         'other_instruments_trading_frequency': otherInstrumentsTradingFrequency,
-        'passthrough': passthrough,
-        'req_id': reqId,
         'set_financial_assessment': setFinancialAssessment == null
             ? null
             : setFinancialAssessment ? 1 : 0,
         'source_of_wealth': sourceOfWealth,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

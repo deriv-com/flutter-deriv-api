@@ -41,12 +41,12 @@ class AppMarkupDetailsRequest extends Request {
             json['description'] == null ? null : json['description'] == 1,
         limit: json['limit'] as num,
         offset: json['offset'] as num,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
         sort: json['sort'] as String,
         sortFields: (json['sort_fields'] as List)
-            ?.map((dynamic item) => item as String)
+            ?.map<String>((dynamic item) => item as String)
             ?.toList(),
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// [Optional] Specific application `app_id` to report on.
@@ -79,7 +79,7 @@ class AppMarkupDetailsRequest extends Request {
   /// [Optional] One or more of the specified fields to sort on. Default sort field is by `transaction_time`.
   final List<String> sortFields;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'app_id': appId,
@@ -91,10 +91,10 @@ class AppMarkupDetailsRequest extends Request {
         'description': description == null ? null : description ? 1 : 0,
         'limit': limit,
         'offset': offset,
-        'passthrough': passthrough,
-        'req_id': reqId,
         'sort': sort,
         'sort_fields': sortFields,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

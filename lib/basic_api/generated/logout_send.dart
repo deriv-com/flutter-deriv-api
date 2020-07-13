@@ -26,7 +26,7 @@ class LogoutRequest extends Request {
   /// Must be `true`
   final bool logout;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'logout': logout == null ? null : logout ? 1 : 0,

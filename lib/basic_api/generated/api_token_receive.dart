@@ -24,6 +24,7 @@ class ApiTokenResponse extends Response {
       ApiTokenResponse(
         apiToken: json['api_token'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
         msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
       );
@@ -31,11 +32,12 @@ class ApiTokenResponse extends Response {
   /// Contains the result of API token according to the type of request.
   final Map<String, dynamic> apiToken;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'api_token': apiToken,
         'echo_req': echoReq,
+        'error': error,
         'msg_type': msgType,
         'req_id': reqId,
       };

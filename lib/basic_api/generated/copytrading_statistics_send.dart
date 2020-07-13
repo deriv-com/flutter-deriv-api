@@ -25,9 +25,9 @@ class CopytradingStatisticsRequest extends Request {
         copytradingStatistics: json['copytrading_statistics'] == null
             ? null
             : json['copytrading_statistics'] == 1,
+        traderId: json['trader_id'] as String,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
-        traderId: json['trader_id'] as String,
       );
 
   /// Must be `true`
@@ -36,15 +36,15 @@ class CopytradingStatisticsRequest extends Request {
   /// The ID of the target trader.
   final String traderId;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'copytrading_statistics': copytradingStatistics == null
             ? null
             : copytradingStatistics ? 1 : 0,
+        'trader_id': traderId,
         'passthrough': passthrough,
         'req_id': reqId,
-        'trader_id': traderId,
       };
 
   /// Creates a copy of instance with given parameters

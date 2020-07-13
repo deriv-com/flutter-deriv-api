@@ -32,9 +32,9 @@ class StatementRequest extends Request {
             json['description'] == null ? null : json['description'] == 1,
         limit: json['limit'] as num,
         offset: json['offset'] as num,
+        statement: json['statement'] == null ? null : json['statement'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
-        statement: json['statement'] == null ? null : json['statement'] == 1,
       );
 
   /// [Optional] To filter the statement according to the type of transaction.
@@ -58,7 +58,7 @@ class StatementRequest extends Request {
   /// Must be `true`
   final bool statement;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'action_type': actionType,
@@ -67,9 +67,9 @@ class StatementRequest extends Request {
         'description': description == null ? null : description ? 1 : 0,
         'limit': limit,
         'offset': offset,
+        'statement': statement == null ? null : statement ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
-        'statement': statement == null ? null : statement ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters

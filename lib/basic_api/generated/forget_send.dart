@@ -28,7 +28,7 @@ class ForgetRequest extends Request {
   /// ID of the real-time stream of messages to cancel.
   final String forget;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'forget': forget,

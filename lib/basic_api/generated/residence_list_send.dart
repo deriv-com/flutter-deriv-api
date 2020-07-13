@@ -19,21 +19,21 @@ class ResidenceListRequest extends Request {
   /// Creates an instance from JSON
   factory ResidenceListRequest.fromJson(Map<String, dynamic> json) =>
       ResidenceListRequest(
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
         residenceList:
             json['residence_list'] == null ? null : json['residence_list'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// Must be `true`
   final bool residenceList;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'residence_list': residenceList == null ? null : residenceList ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
-        'residence_list': residenceList == null ? null : residenceList ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters

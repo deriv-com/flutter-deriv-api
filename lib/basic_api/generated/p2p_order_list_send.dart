@@ -30,9 +30,9 @@ class P2pOrderListRequest extends Request {
         offset: json['offset'] as int,
         p2pOrderList:
             json['p2p_order_list'] == null ? null : json['p2p_order_list'] == 1,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
-        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
       );
 
   /// [Optional] Should be 1 to list active, 0 to list inactive (historical).
@@ -53,7 +53,7 @@ class P2pOrderListRequest extends Request {
   /// [Optional] If set to 1, will send updates whenever there is a change to any order belonging to you.
   final bool subscribe;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'active': active,
@@ -61,9 +61,9 @@ class P2pOrderListRequest extends Request {
         'limit': limit,
         'offset': offset,
         'p2p_order_list': p2pOrderList == null ? null : p2pOrderList ? 1 : 0,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
-        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters

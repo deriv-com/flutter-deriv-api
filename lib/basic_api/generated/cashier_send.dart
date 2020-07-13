@@ -24,11 +24,11 @@ class CashierRequest extends Request {
   /// Creates an instance from JSON
   factory CashierRequest.fromJson(Map<String, dynamic> json) => CashierRequest(
         cashier: json['cashier'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         provider: json['provider'] as String,
-        reqId: json['req_id'] as int,
         type: json['type'] as String,
         verificationCode: json['verification_code'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// Operation which needs to be requested from cashier
@@ -43,15 +43,15 @@ class CashierRequest extends Request {
   /// [Optional] Email verification code (received from a `verify_email` call, which must be done first)
   final String verificationCode;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'cashier': cashier,
-        'passthrough': passthrough,
         'provider': provider,
-        'req_id': reqId,
         'type': type,
         'verification_code': verificationCode,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

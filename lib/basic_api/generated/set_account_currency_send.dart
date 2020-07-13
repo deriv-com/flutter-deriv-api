@@ -21,20 +21,20 @@ class SetAccountCurrencyRequest extends Request {
   /// Creates an instance from JSON
   factory SetAccountCurrencyRequest.fromJson(Map<String, dynamic> json) =>
       SetAccountCurrencyRequest(
+        setAccountCurrency: json['set_account_currency'] as String,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
-        setAccountCurrency: json['set_account_currency'] as String,
       );
 
   /// Currency of the account. List of supported currencies can be acquired with `payout_currencies` call.
   final String setAccountCurrency;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'set_account_currency': setAccountCurrency,
         'passthrough': passthrough,
         'req_id': reqId,
-        'set_account_currency': setAccountCurrency,
       };
 
   /// Creates a copy of instance with given parameters

@@ -40,12 +40,12 @@ class P2pAdvertCreateRequest extends Request {
         p2pAdvertCreate: json['p2p_advert_create'] == null
             ? null
             : json['p2p_advert_create'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         paymentInfo: json['payment_info'] as String,
         paymentMethod: json['payment_method'] as String,
         rate: json['rate'] as num,
-        reqId: json['req_id'] as int,
         type: json['type'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// The total amount of the advert, in advertiser's account currency.
@@ -81,7 +81,7 @@ class P2pAdvertCreateRequest extends Request {
   /// Whether this is a buy or a sell.
   final String type;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'amount': amount,
@@ -92,12 +92,12 @@ class P2pAdvertCreateRequest extends Request {
         'min_order_amount': minOrderAmount,
         'p2p_advert_create':
             p2pAdvertCreate == null ? null : p2pAdvertCreate ? 1 : 0,
-        'passthrough': passthrough,
         'payment_info': paymentInfo,
         'payment_method': paymentMethod,
         'rate': rate,
-        'req_id': reqId,
         'type': type,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

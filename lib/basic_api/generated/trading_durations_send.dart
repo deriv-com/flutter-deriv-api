@@ -21,11 +21,11 @@ class TradingDurationsRequest extends Request {
   factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>
       TradingDurationsRequest(
         landingCompany: json['landing_company'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
         tradingDurations: json['trading_durations'] == null
             ? null
             : json['trading_durations'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
@@ -34,14 +34,14 @@ class TradingDurationsRequest extends Request {
   /// Must be `true`
   final bool tradingDurations;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'landing_company': landingCompany,
-        'passthrough': passthrough,
-        'req_id': reqId,
         'trading_durations':
             tradingDurations == null ? null : tradingDurations ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

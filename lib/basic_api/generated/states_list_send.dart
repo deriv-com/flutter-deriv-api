@@ -21,20 +21,20 @@ class StatesListRequest extends Request {
   /// Creates an instance from JSON
   factory StatesListRequest.fromJson(Map<String, dynamic> json) =>
       StatesListRequest(
+        statesList: json['states_list'] as String,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
-        statesList: json['states_list'] as String,
       );
 
   /// Client's 2-letter country code (obtained from `residence_list` call)
   final String statesList;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'states_list': statesList,
         'passthrough': passthrough,
         'req_id': reqId,
-        'states_list': statesList,
       };
 
   /// Creates a copy of instance with given parameters

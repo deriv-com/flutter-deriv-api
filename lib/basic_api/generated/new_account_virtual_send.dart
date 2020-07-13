@@ -38,14 +38,14 @@ class NewAccountVirtualRequest extends Request {
         newAccountVirtual: json['new_account_virtual'] == null
             ? null
             : json['new_account_virtual'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
         residence: json['residence'] as String,
         signupDevice: json['signup_device'] as String,
         utmCampaign: json['utm_campaign'] as String,
         utmMedium: json['utm_medium'] as String,
         utmSource: json['utm_source'] as String,
         verificationCode: json['verification_code'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// [Optional] Affiliate token, within 32 characters.
@@ -81,7 +81,7 @@ class NewAccountVirtualRequest extends Request {
   /// Email verification code (received from a `verify_email` call, which must be done first).
   final String verificationCode;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'affiliate_token': affiliateToken,
@@ -90,14 +90,14 @@ class NewAccountVirtualRequest extends Request {
         'gclid_url': gclidUrl,
         'new_account_virtual':
             newAccountVirtual == null ? null : newAccountVirtual ? 1 : 0,
-        'passthrough': passthrough,
-        'req_id': reqId,
         'residence': residence,
         'signup_device': signupDevice,
         'utm_campaign': utmCampaign,
         'utm_medium': utmMedium,
         'utm_source': utmSource,
         'verification_code': verificationCode,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

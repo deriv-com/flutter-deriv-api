@@ -19,20 +19,20 @@ class RealityCheckRequest extends Request {
   /// Creates an instance from JSON
   factory RealityCheckRequest.fromJson(Map<String, dynamic> json) =>
       RealityCheckRequest(
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         realityCheck:
             json['reality_check'] == null ? null : json['reality_check'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );
 
   /// Must be `true`
   final bool realityCheck;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'passthrough': passthrough,
         'reality_check': realityCheck == null ? null : realityCheck ? 1 : 0,
+        'passthrough': passthrough,
         'req_id': reqId,
       };
 

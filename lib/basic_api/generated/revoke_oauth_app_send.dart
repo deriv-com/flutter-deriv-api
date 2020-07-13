@@ -21,20 +21,20 @@ class RevokeOauthAppRequest extends Request {
   /// Creates an instance from JSON
   factory RevokeOauthAppRequest.fromJson(Map<String, dynamic> json) =>
       RevokeOauthAppRequest(
+        revokeOauthApp: json['revoke_oauth_app'] as int,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
-        revokeOauthApp: json['revoke_oauth_app'] as int,
       );
 
   /// The application ID to revoke.
   final int revokeOauthApp;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'revoke_oauth_app': revokeOauthApp,
         'passthrough': passthrough,
         'req_id': reqId,
-        'revoke_oauth_app': revokeOauthApp,
       };
 
   /// Creates a copy of instance with given parameters

@@ -24,6 +24,7 @@ class DocumentUploadResponse extends Response {
       DocumentUploadResponse(
         documentUpload: json['document_upload'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
         msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
       );
@@ -31,11 +32,12 @@ class DocumentUploadResponse extends Response {
   /// Details of the uploaded documents.
   final Map<String, dynamic> documentUpload;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'document_upload': documentUpload,
         'echo_req': echoReq,
+        'error': error,
         'msg_type': msgType,
         'req_id': reqId,
       };

@@ -22,21 +22,23 @@ class Mt5GetSettingsResponse extends Response {
   /// Creates an instance from JSON
   factory Mt5GetSettingsResponse.fromJson(Map<String, dynamic> json) =>
       Mt5GetSettingsResponse(
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
         mt5GetSettings: json['mt5_get_settings'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
       );
 
   /// MT5 user account details
   final Map<String, dynamic> mt5GetSettings;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'echo_req': echoReq,
-        'msg_type': msgType,
         'mt5_get_settings': mt5GetSettings,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
         'req_id': reqId,
       };
 

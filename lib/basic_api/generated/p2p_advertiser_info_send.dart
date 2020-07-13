@@ -25,9 +25,9 @@ class P2pAdvertiserInfoRequest extends Request {
         p2pAdvertiserInfo: json['p2p_advertiser_info'] == null
             ? null
             : json['p2p_advertiser_info'] == 1,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
-        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
       );
 
   /// [Optional] The unique identifier for this advertiser. If not provided, returns advertiser information about the current account.
@@ -39,15 +39,15 @@ class P2pAdvertiserInfoRequest extends Request {
   /// [Optional] If set to 1, will send updates whenever there is an update to advertiser
   final bool subscribe;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
         'p2p_advertiser_info':
             p2pAdvertiserInfo == null ? null : p2pAdvertiserInfo ? 1 : 0,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
-        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters

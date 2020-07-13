@@ -32,12 +32,12 @@ class TicksHistoryRequest extends Request {
         count: json['count'] as int,
         end: json['end'] as String,
         granularity: json['granularity'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
         start: json['start'] as int,
         style: json['style'] as String,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         ticksHistory: json['ticks_history'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// [Optional] 1 - if the market is closed at the end time, or license limit is before end time, adjust interval backwards to compensate.
@@ -66,19 +66,19 @@ class TicksHistoryRequest extends Request {
   /// Short symbol name (obtained from the `active_symbols` call).
   final String ticksHistory;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'adjust_start_time': adjustStartTime,
         'count': count,
         'end': end,
         'granularity': granularity,
-        'passthrough': passthrough,
-        'req_id': reqId,
         'start': start,
         'style': style,
         'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
         'ticks_history': ticksHistory,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

@@ -36,7 +36,7 @@ class Mt5GetSettingsRequest extends Request {
   /// Must be `true`
   final bool mt5GetSettings;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'login': login,

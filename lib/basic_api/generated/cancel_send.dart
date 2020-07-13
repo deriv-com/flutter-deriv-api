@@ -28,7 +28,7 @@ class CancelRequest extends Request {
   /// Value should be the `contract_id` which received from the `portfolio` call.
   final int cancel;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'cancel': cancel,

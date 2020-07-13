@@ -20,11 +20,11 @@ class TncApprovalRequest extends Request {
   /// Creates an instance from JSON
   factory TncApprovalRequest.fromJson(Map<String, dynamic> json) =>
       TncApprovalRequest(
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
         tncApproval:
             json['tnc_approval'] == null ? null : json['tnc_approval'] == 1,
         ukgcFundsProtection: json['ukgc_funds_protection'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// Must be `true`
@@ -33,13 +33,13 @@ class TncApprovalRequest extends Request {
   /// [Optional] For `ASK_UK_FUNDS_PROTECTION` in `cashier`.
   final int ukgcFundsProtection;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'passthrough': passthrough,
-        'req_id': reqId,
         'tnc_approval': tncApproval == null ? null : tncApproval ? 1 : 0,
         'ukgc_funds_protection': ukgcFundsProtection,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

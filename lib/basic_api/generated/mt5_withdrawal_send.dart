@@ -28,9 +28,9 @@ class Mt5WithdrawalRequest extends Request {
         fromMt5: json['from_mt5'] as String,
         mt5Withdrawal:
             json['mt5_withdrawal'] == null ? null : json['mt5_withdrawal'] == 1,
+        toBinary: json['to_binary'] as String,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
-        toBinary: json['to_binary'] as String,
       );
 
   /// Amount to withdraw (in the currency of the MT5 account); min = $1 or an equivalent amount, max = $20000 or an equivalent amount.
@@ -45,15 +45,15 @@ class Mt5WithdrawalRequest extends Request {
   /// Binary account loginid to transfer money to
   final String toBinary;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'amount': amount,
         'from_mt5': fromMt5,
         'mt5_withdrawal': mt5Withdrawal == null ? null : mt5Withdrawal ? 1 : 0,
+        'to_binary': toBinary,
         'passthrough': passthrough,
         'req_id': reqId,
-        'to_binary': toBinary,
       };
 
   /// Creates a copy of instance with given parameters

@@ -23,11 +23,11 @@ class VerifyEmailRequest extends Request {
   /// Creates an instance from JSON
   factory VerifyEmailRequest.fromJson(Map<String, dynamic> json) =>
       VerifyEmailRequest(
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
         type: json['type'] as String,
         urlParameters: json['url_parameters'] as Map<String, dynamic>,
         verifyEmail: json['verify_email'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// Purpose of the email verification call.
@@ -39,14 +39,14 @@ class VerifyEmailRequest extends Request {
   /// Email address to be verified.
   final String verifyEmail;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'passthrough': passthrough,
-        'req_id': reqId,
         'type': type,
         'url_parameters': urlParameters,
         'verify_email': verifyEmail,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

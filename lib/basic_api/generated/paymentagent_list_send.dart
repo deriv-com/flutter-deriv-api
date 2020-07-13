@@ -23,8 +23,8 @@ class PaymentagentListRequest extends Request {
   factory PaymentagentListRequest.fromJson(Map<String, dynamic> json) =>
       PaymentagentListRequest(
         currency: json['currency'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         paymentagentList: json['paymentagent_list'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );
 
@@ -34,12 +34,12 @@ class PaymentagentListRequest extends Request {
   /// Client's 2-letter country code (obtained from `residence_list` call).
   final String paymentagentList;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'currency': currency,
-        'passthrough': passthrough,
         'paymentagent_list': paymentagentList,
+        'passthrough': passthrough,
         'req_id': reqId,
       };
 

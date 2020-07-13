@@ -20,11 +20,11 @@ class WebsiteStatusRequest extends Request {
   /// Creates an instance from JSON
   factory WebsiteStatusRequest.fromJson(Map<String, dynamic> json) =>
       WebsiteStatusRequest(
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         websiteStatus:
             json['website_status'] == null ? null : json['website_status'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// [Optional] `true` to stream the server/website status updates.
@@ -33,13 +33,13 @@ class WebsiteStatusRequest extends Request {
   /// Must be `true`
   final bool websiteStatus;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'passthrough': passthrough,
-        'req_id': reqId,
         'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
         'website_status': websiteStatus == null ? null : websiteStatus ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

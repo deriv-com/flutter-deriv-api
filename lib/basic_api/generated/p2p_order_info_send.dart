@@ -26,9 +26,9 @@ class P2pOrderInfoRequest extends Request {
         id: json['id'] as String,
         p2pOrderInfo:
             json['p2p_order_info'] == null ? null : json['p2p_order_info'] == 1,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
-        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
       );
 
   /// The unique identifier for the order.
@@ -40,14 +40,14 @@ class P2pOrderInfoRequest extends Request {
   /// [Optional] If set to 1, will send updates whenever there is an update to order
   final bool subscribe;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
         'p2p_order_info': p2pOrderInfo == null ? null : p2pOrderInfo ? 1 : 0,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
-        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters

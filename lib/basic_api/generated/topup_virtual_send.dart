@@ -19,21 +19,21 @@ class TopupVirtualRequest extends Request {
   /// Creates an instance from JSON
   factory TopupVirtualRequest.fromJson(Map<String, dynamic> json) =>
       TopupVirtualRequest(
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
         topupVirtual:
             json['topup_virtual'] == null ? null : json['topup_virtual'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// Must be `true`
   final bool topupVirtual;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'topup_virtual': topupVirtual == null ? null : topupVirtual ? 1 : 0,
         'passthrough': passthrough,
         'req_id': reqId,
-        'topup_virtual': topupVirtual == null ? null : topupVirtual ? 1 : 0,
       };
 
   /// Creates a copy of instance with given parameters

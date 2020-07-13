@@ -35,7 +35,7 @@ class ExchangeRatesRequest extends Request {
   /// Must be `true`
   final bool exchangeRates;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'base_currency': baseCurrency,

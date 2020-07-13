@@ -36,7 +36,7 @@ class P2pOrderCancelRequest extends Request {
   /// Must be `true`
   final bool p2pOrderCancel;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,

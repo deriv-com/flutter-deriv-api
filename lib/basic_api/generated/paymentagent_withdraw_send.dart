@@ -31,13 +31,13 @@ class PaymentagentWithdrawRequest extends Request {
         currency: json['currency'] as String,
         description: json['description'] as String,
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         paymentagentLoginid: json['paymentagent_loginid'] as String,
         paymentagentWithdraw: json['paymentagent_withdraw'] == null
             ? null
             : json['paymentagent_withdraw'] == 1,
-        reqId: json['req_id'] as int,
         verificationCode: json['verification_code'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
       );
 
   /// The amount to withdraw to the payment agent.
@@ -61,19 +61,19 @@ class PaymentagentWithdrawRequest extends Request {
   /// Email verification code (received from a `verify_email` call, which must be done first)
   final String verificationCode;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'amount': amount,
         'currency': currency,
         'description': description,
         'dry_run': dryRun == null ? null : dryRun ? 1 : 0,
-        'passthrough': passthrough,
         'paymentagent_loginid': paymentagentLoginid,
         'paymentagent_withdraw':
             paymentagentWithdraw == null ? null : paymentagentWithdraw ? 1 : 0,
-        'req_id': reqId,
         'verification_code': verificationCode,
+        'passthrough': passthrough,
+        'req_id': reqId,
       };
 
   /// Creates a copy of instance with given parameters

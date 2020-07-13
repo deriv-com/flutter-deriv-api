@@ -25,8 +25,8 @@ class ActiveSymbolsRequest extends Request {
       ActiveSymbolsRequest(
         activeSymbols: json['active_symbols'] as String,
         landingCompany: json['landing_company'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
         productType: json['product_type'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );
 
@@ -39,13 +39,13 @@ class ActiveSymbolsRequest extends Request {
   /// [Optional] If you specify this field, only symbols that can be traded through that product type will be returned.
   final String productType;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'active_symbols': activeSymbols,
         'landing_company': landingCompany,
-        'passthrough': passthrough,
         'product_type': productType,
+        'passthrough': passthrough,
         'req_id': reqId,
       };
 

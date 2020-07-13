@@ -22,24 +22,27 @@ class TradingDurationsResponse extends Response {
   /// Creates an instance from JSON
   factory TradingDurationsResponse.fromJson(Map<String, dynamic> json) =>
       TradingDurationsResponse(
+        tradingDurations: (json['trading_durations'] as List)
+            ?.map<Map<String, dynamic>>(
+                (dynamic item) => item as Map<String, dynamic>)
+            ?.toList(),
         echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
         msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
-        tradingDurations: (json['trading_durations'] as List)
-            ?.map((dynamic item) => item as Map<String, dynamic>)
-            ?.toList(),
       );
 
   /// List of underlyings by their display name and symbol followed by their available contract types and trading duration boundaries.
   final List<Map<String, dynamic>> tradingDurations;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'trading_durations': tradingDurations,
         'echo_req': echoReq,
+        'error': error,
         'msg_type': msgType,
         'req_id': reqId,
-        'trading_durations': tradingDurations,
       };
 
   /// Creates a copy of instance with given parameters
