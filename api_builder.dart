@@ -190,7 +190,7 @@ class APIBuilder extends Builder {
 
           return '''
             /// $description
-            final ${type ?? "unknown"} ${name ?? "unknown"};
+            final ${type ?? 'unknown'} ${name ?? 'unknown'};
           ''';
         },
       ).join('\n');
@@ -229,9 +229,9 @@ class APIBuilder extends Builder {
       property.description.contains('Must be `1`') ||
       property.description.contains('Must be 1') ||
       property.type?.toString() == 'integer' &&
-          property?.enumValues?.length == 2 &&
-          property?.enumValues[0] == 0 &&
-          property?.enumValues[1] == 1;
+          property.enumValues?.length == 2 &&
+          property.enumValues[0] == 0 &&
+          property.enumValues[1] == 1;
 
   String _getCopyWithMethod(
     JsonSchema schema,
