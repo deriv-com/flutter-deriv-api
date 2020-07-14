@@ -75,7 +75,7 @@ class Mt5NewAccountRequest extends Request {
   /// [Optional] 2-letter country code (value received from `residence_list` call).
   final String country;
 
-  /// [Optional] If set to 1, only validation is performed.
+  /// [Optional] If set to `true`, only validation is performed.
   final bool dryRun;
 
   /// Email address

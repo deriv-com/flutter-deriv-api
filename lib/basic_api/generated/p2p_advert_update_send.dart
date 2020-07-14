@@ -34,7 +34,7 @@ class P2pAdvertUpdateRequest extends Request {
         reqId: json['req_id'] as int,
       );
 
-  /// [Optional] If set to 1, permanently deletes the advert.
+  /// [Optional] If set to `true`, permanently deletes the advert.
   final bool delete;
 
   /// The unique identifier for this advert.

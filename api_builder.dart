@@ -154,7 +154,7 @@ class APIBuilder extends Builder {
           final JsonSchema property = schema.properties[key];
 
           if (property.typeList?.isNotEmpty ?? false) {
-            // Set method default value to 1
+            // Set method default value to `true`
             if (schemaType == 'send' &&
                 key == methodName &&
                 _getPropertyType(key, property) == 'bool') {
@@ -178,18 +178,25 @@ class APIBuilder extends Builder {
           final String name = ReCase(key).camelCase;
           final JsonSchema property = schema.properties[key];
           final String type = _getPropertyType(key, property);
-          final String description = property.description
-              .replaceAll('\n', '\n/// ')
-              .replaceAll('`1` to stream', '`true` to stream')
-              .replaceAll('Must be `1`', 'Must be `true`')
-              .replaceAll('Must be 1', 'Must be `true`');
 
           return '''
-            /// $description
+            /// ${_preparePropertyDescription(type, property.description)}
             final ${type ?? 'unknown'} ${name ?? 'unknown'};
           ''';
         },
       ).join('\n');
+
+  String _preparePropertyDescription(String type, String description) =>
+      type == 'bool'
+          ? description
+              .replaceAll('\n', '\n/// ')
+              .replaceAll('`1`', '`true`')
+              .replaceAll('`0`', '`false`')
+              .replaceAll(' 1', ' `true`')
+              .replaceAll(' 0', ' `false`')
+              .replaceAll(' 1 ', ' `true` ')
+              .replaceAll(' 0 ', ' `false` ')
+          : description.replaceAll('\n', '\n/// ');
 
   String _getPropertyType(
     String key,

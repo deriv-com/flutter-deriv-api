@@ -42,7 +42,7 @@ class P2pAdvertiserUpdateRequest extends Request {
   /// [Optional] Default description that can be used every time an advert is created.
   final String defaultAdvertDescription;
 
-  /// [Optional] Used to set if the advertiser's adverts could be listed. When `0`, adverts won't be listed regardless of they are active or not. This doesn't change the `is_active` of each individual advert.
+  /// [Optional] Used to set if the advertiser's adverts could be listed. When `false`, adverts won't be listed regardless of they are active or not. This doesn't change the `is_active` of each individual advert.
   final bool isListed;
 
   /// [Optional] The advertiser's displayed name.

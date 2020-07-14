@@ -49,7 +49,7 @@ class PaymentagentWithdrawRequest extends Request {
   /// [Optional] Remarks about the withdraw. Only letters, numbers, space, period, comma, - ' are allowed.
   final String description;
 
-  /// [Optional] If set to 1, just do validation.
+  /// [Optional] If set to `true`, just do validation.
   final bool dryRun;
 
   /// The payment agent loginid received from the `paymentagent_list` call.

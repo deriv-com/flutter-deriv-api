@@ -54,7 +54,7 @@ class TransferBetweenAccountsResponse extends Response {
   /// Reference ID of transfer performed
   final int transactionId;
 
-  /// If set to 1, transfer succeeded.
+  /// If set to `true`, transfer succeeded.
   final bool transferBetweenAccounts;
 
   /// Converts this instance to JSON

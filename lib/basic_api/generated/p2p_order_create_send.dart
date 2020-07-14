@@ -53,7 +53,7 @@ class P2pOrderCreateRequest extends Request {
   /// [Optional] Payment instructions. Only applicable for 'sell orders'.
   final String paymentInfo;
 
-  /// [Optional] If set to 1, will send updates whenever there is an update to the order.
+  /// [Optional] If set to `true`, will send updates whenever there is an update to the order.
   final bool subscribe;
 
   /// Converts this instance to JSON

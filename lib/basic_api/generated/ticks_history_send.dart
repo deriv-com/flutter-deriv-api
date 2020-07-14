@@ -60,7 +60,7 @@ class TicksHistoryRequest extends Request {
   /// [Optional] The tick-output style.
   final String style;
 
-  /// [Optional] 1 - to send updates whenever a new tick is received.
+  /// [Optional] `true` - to send updates whenever a new tick is received.
   final bool subscribe;
 
   /// Short symbol name (obtained from the `active_symbols` call).

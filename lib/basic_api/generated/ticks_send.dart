@@ -25,7 +25,7 @@ class TicksRequest extends Request {
         reqId: json['req_id'] as int,
       );
 
-  /// [Optional] If set to 1, will send updates whenever a new tick is received.
+  /// [Optional] If set to `true`, will send updates whenever a new tick is received.
   final bool subscribe;
 
   /// The short symbol name or array of symbols (obtained from `active_symbols` call).

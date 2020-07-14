@@ -28,7 +28,7 @@ class ForgetResponse extends Response {
         reqId: json['req_id'] as int,
       );
 
-  /// If set to 1, stream exited and stopped. If set to 0, stream did not exist.
+  /// If set to `true`, stream exited and stopped. If set to `false`, stream did not exist.
   final bool forget;
 
   /// Converts this instance to JSON

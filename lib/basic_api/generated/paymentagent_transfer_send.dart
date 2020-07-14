@@ -47,7 +47,7 @@ class PaymentagentTransferRequest extends Request {
   /// [Optional] Remarks about the transfer.
   final String description;
 
-  /// [Optional] If set to `1`, just do validation.
+  /// [Optional] If set to `true`, just do validation.
   final bool dryRun;
 
   /// Must be `true`

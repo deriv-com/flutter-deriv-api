@@ -46,7 +46,7 @@ class StatementRequest extends Request {
   /// [Optional] End date (epoch)
   final int dateTo;
 
-  /// [Optional] If set to 1, will return full contracts description.
+  /// [Optional] If set to `true`, will return full contracts description.
   final bool description;
 
   /// [Optional] Maximum number of transactions to receive.

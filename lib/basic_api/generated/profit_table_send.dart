@@ -44,7 +44,7 @@ class ProfitTableRequest extends Request {
   /// [Optional] End date (epoch or YYYY-MM-DD)
   final String dateTo;
 
-  /// [Optional] If set to 1, will return full contracts description.
+  /// [Optional] If set to `true`, will return full contracts description.
   final bool description;
 
   /// [Optional] Apply upper limit to count of transactions received.

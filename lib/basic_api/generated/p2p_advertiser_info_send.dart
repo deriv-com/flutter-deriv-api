@@ -36,7 +36,7 @@ class P2pAdvertiserInfoRequest extends Request {
   /// Must be `true`
   final bool p2pAdvertiserInfo;
 
-  /// [Optional] If set to 1, will send updates whenever there is an update to advertiser
+  /// [Optional] If set to `true`, will send updates whenever there is an update to advertiser
   final bool subscribe;
 
   /// Converts this instance to JSON

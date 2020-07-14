@@ -37,7 +37,7 @@ class P2pOrderInfoRequest extends Request {
   /// Must be `true`
   final bool p2pOrderInfo;
 
-  /// [Optional] If set to 1, will send updates whenever there is an update to order
+  /// [Optional] If set to `true`, will send updates whenever there is an update to order
   final bool subscribe;
 
   /// Converts this instance to JSON

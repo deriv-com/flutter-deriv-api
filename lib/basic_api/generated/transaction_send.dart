@@ -27,7 +27,7 @@ class TransactionRequest extends Request {
         reqId: json['req_id'] as int,
       );
 
-  /// If set to 1, will send updates whenever there is an update to transactions. If not to 1 then it will not return any records.
+  /// If set to `true`, will send updates whenever there is an update to transactions. If not to `true` then it will not return any records.
   final bool subscribe;
 
   /// Must be `true`

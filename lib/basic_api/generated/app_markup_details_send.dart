@@ -64,7 +64,7 @@ class AppMarkupDetailsRequest extends Request {
   /// End date (epoch or YYYY-MM-DD HH::MM::SS). Results are inclusive of this time.
   final String dateTo;
 
-  /// [Optional] If set to 1, will return `app_markup` transaction details.
+  /// [Optional] If set to `true`, will return `app_markup` transaction details.
   final bool description;
 
   /// [Optional] Apply upper limit to count of transactions received.

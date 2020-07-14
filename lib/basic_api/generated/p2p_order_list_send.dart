@@ -50,7 +50,7 @@ class P2pOrderListRequest extends Request {
   /// Must be `true`
   final bool p2pOrderList;
 
-  /// [Optional] If set to 1, will send updates whenever there is a change to any order belonging to you.
+  /// [Optional] If set to `true`, will send updates whenever there is a change to any order belonging to you.
   final bool subscribe;
 
   /// Converts this instance to JSON

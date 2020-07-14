@@ -53,7 +53,7 @@ class P2pAdvertiserCreateRequest extends Request {
   /// [Optional] Advertiser's payment information, to be used as a default for new sell adverts.
   final String paymentInfo;
 
-  /// [Optional] If set to 1, will send updates whenever there is an update to advertiser
+  /// [Optional] If set to `true`, will send updates whenever there is an update to advertiser
   final bool subscribe;
 
   /// Converts this instance to JSON

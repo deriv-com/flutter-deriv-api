@@ -31,7 +31,7 @@ class SetAccountCurrencyResponse extends Response {
         reqId: json['req_id'] as int,
       );
 
-  /// `1`: success, `0`: no change
+  /// `true`: success, `false`: no change
   final bool setAccountCurrency;
 
   /// Converts this instance to JSON

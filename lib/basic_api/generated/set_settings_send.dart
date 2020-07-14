@@ -89,7 +89,7 @@ class SetSettingsRequest extends Request {
   /// [Optional] Note: not applicable for virtual account. Optional field for real money account.
   final String addressState;
 
-  /// [Optional] Boolean value 1 or 0, indicating permission to allow others to follow your trades. Note: not applicable for Virtual account. Only allow for real money account.
+  /// [Optional] Boolean value `true` or `false`, indicating permission to allow others to follow your trades. Note: not applicable for Virtual account. Only allow for real money account.
   final bool allowCopiers;
 
   /// [Optional] Country of legal citizenship, 2-letter country code.
@@ -98,7 +98,7 @@ class SetSettingsRequest extends Request {
   /// [Optional] Date of birth format: yyyy-mm-dd (can only be changed on unauthenticated svg accounts).
   final String dateOfBirth;
 
-  /// [Optional] Boolean value 1 or 0, indicating permission to use email address for any contact which may include marketing
+  /// [Optional] Boolean value `true` or `false`, indicating permission to use email address for any contact which may include marketing
   final bool emailConsent;
 
   /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).

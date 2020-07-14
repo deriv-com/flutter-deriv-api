@@ -33,7 +33,7 @@ class BalanceRequest extends Request {
   /// Must be `true`
   final bool balance;
 
-  /// [Optional] If set to 1, will send updates whenever the balance changes.
+  /// [Optional] If set to `true`, will send updates whenever the balance changes.
   final bool subscribe;
 
   /// Converts this instance to JSON
