@@ -359,12 +359,18 @@ class JsonSchemaParser {
       isBoolean
           ? description
               .replaceAll('\n', '\n/// ')
-              .replaceAll('`1`', '`true`')
-              .replaceAll('`0`', '`false`')
-              .replaceAll(' 1', ' `true`')
-              .replaceAll(' 0', ' `false`')
-              .replaceAll(' 1 ', ' `true` ')
-              .replaceAll(' 0 ', ' `false` ')
+              .replaceAllMapped(
+                RegExp(r'`1`| 1| 1 '),
+                (Match match) => match
+                    .group(0)
+                    .replaceAllMapped(RegExp(r'`1`|1'), (_) => '`true`'),
+              )
+              .replaceAllMapped(
+                RegExp(r'`0`| 0| 0 '),
+                (Match match) => match
+                    .group(0)
+                    .replaceAllMapped(RegExp(r'`0`|0'), (_) => '`false`'),
+              )
           : description.replaceAll('\n', '\n/// ');
 }
 
