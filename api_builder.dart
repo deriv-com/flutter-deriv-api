@@ -126,12 +126,8 @@ class APIBuilder extends Builder {
 
               ${_getToJsonMethod(schemaType, schema, properties)}
 
-              /// Creates a copy of instance with given parameters
-              @override
-              $classFullName copyWith(
-                ${_getCopyWithMethod(schema, schemaType, classFullName, properties)}
-              );
-
+              ${_getCopyWithMethod(schema, schemaType, classFullName, properties)}
+              
               /// Override equatable class
               @override
               List<Object> get props => ${_getEquatableFields(classFullName, properties)};
@@ -255,9 +251,7 @@ class APIBuilder extends Builder {
             final String type = _getPropertyType(key, property);
 
             if (type == 'bool') {
-              return '''
-                $name: json['$key'] == null ? null : json['$key'] == 1,
-              ''';
+              return '$name: json[\'$key\'] == null ? null : json[\'$key\'] == 1,';
             } else if (type.contains('List')) {
               final String arrayType = _getArrayType(type);
 
@@ -267,13 +261,11 @@ class APIBuilder extends Builder {
                   ?.toList(),
               ''';
             } else {
-              return '''
-                $name: json['$key'] as $type,
-              ''';
+              return '$name: json[\'$key\'] as $type,';
             }
           }).join(),
         )
-        ..write('${_getFromJsonCommonFields(schemaType)});');
+        ..write('${_getFromJsonMethodCommonFields(schemaType == 'send')});');
 
   StringBuffer _getToJsonMethod(
     String schemaType,
@@ -296,39 +288,28 @@ class APIBuilder extends Builder {
             final JsonSchema property = schema.properties[key];
             final String type = _getPropertyType(key, property);
 
-            return '''
-            '$key': $name${type == 'bool' ? ' == null ? null : $name ? 1 : 0' : ''},
-          ''';
+            return '\'$key\': $name${type == 'bool' ? ' == null ? null : $name ? 1 : 0' : ''},';
           }).join(),
         )
-        ..write('${_getToJsonCommonFields(schemaType)}};');
+        ..write('${_getToJsonMethodCommonFields(schemaType == 'send')}};');
+
+  StringBuffer _getFromJsonMethodCommonFields(bool isRequest) => StringBuffer()
+    ..write(
+      (isRequest ? requestCommonFields.entries : responseCommonFields.entries)
+          .map<String>((MapEntry<String, String> entry) =>
+              '${ReCase(entry.key).camelCase}: json[\'${entry.key}\'] as ${typeMap[entry.value]},')
+          .join(),
+    );
+
+  StringBuffer _getToJsonMethodCommonFields(bool isRequest) => StringBuffer()
+    ..write(
+      (isRequest ? requestCommonFields.keys : responseCommonFields.keys)
+          .map((String key) => '\'$key\': ${ReCase(key).camelCase},')
+          .join(),
+    );
 
   String _getArrayType(String type) =>
       type.substring(0, type.length - 1).replaceAll('List<', '');
-
-  String _getFromJsonCommonFields(String schemaType) => schemaType == 'send'
-      ? '''
-          passthrough: json['passthrough'] as Map<String, dynamic>,	
-          reqId: json['req_id'] as int,
-        '''
-      : '''
-          echoReq: json['echo_req'] as Map<String, dynamic>,	
-          error: json['error'] as Map<String, dynamic>,	
-          msgType: json['msg_type'] as String,	
-          reqId: json['req_id'] as int,
-        ''';
-
-  String _getToJsonCommonFields(String schemaType) => schemaType == 'send'
-      ? '''
-          'passthrough': passthrough,	
-          'req_id': reqId,
-        '''
-      : '''
-          'echo_req': echoReq,	
-          'error': error,	
-          'msg_type': msgType,	
-          'req_id': reqId,
-        ''';
 
   StringBuffer _getCopyWithMethod(
     JsonSchema schema,
@@ -336,7 +317,13 @@ class APIBuilder extends Builder {
     String classFullName,
     List<String> properties,
   ) =>
-      StringBuffer('{')
+      StringBuffer(
+        '''
+          /// Creates a copy of instance with given parameters
+            @override
+            $classFullName copyWith({
+        ''',
+      )
         ..write(
           properties
               .where((String key) => !(requestCommonFields.containsKey(key) ||
@@ -352,7 +339,7 @@ class APIBuilder extends Builder {
           ).join(', '),
         )
         ..write(
-            ', ${_getSuperClassParameters(schemaType)}, }) => $classFullName (')
+            ', ${_getSuperClassParameters(schemaType)},}) => $classFullName (')
         ..write(
           properties
               .where((String key) => !(requestCommonFields.containsKey(key) ||
@@ -364,7 +351,7 @@ class APIBuilder extends Builder {
             },
           ).join(', '),
         )
-        ..write(', ${_getSupperClassAssignments(schemaType)},');
+        ..write(', ${_getSupperClassAssignments(schemaType)},);');
 
   String _getSuperClassParameters(String schemaType) {
     final Map<String, String> superClassFields =
