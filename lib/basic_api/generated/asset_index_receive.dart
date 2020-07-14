@@ -1,5 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/asset_index_receive.json
-// ignore_for_file: avoid_as, always_specify_types
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
@@ -22,9 +22,7 @@ class AssetIndexResponse extends Response {
   /// Creates an instance from JSON
   factory AssetIndexResponse.fromJson(Map<String, dynamic> json) =>
       AssetIndexResponse(
-        assetIndex: (json['asset_index'] as List)
-            ?.map<dynamic>((dynamic item) => item as dynamic)
-            ?.toList(),
+        assetIndex: json['asset_index'] as List<dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
         error: json['error'] as Map<String, dynamic>,
         msgType: json['msg_type'] as String,

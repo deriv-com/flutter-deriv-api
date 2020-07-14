@@ -1,5 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_durations_receive.json
-// ignore_for_file: avoid_as, always_specify_types
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
@@ -22,7 +22,7 @@ class TradingDurationsResponse extends Response {
   /// Creates an instance from JSON
   factory TradingDurationsResponse.fromJson(Map<String, dynamic> json) =>
       TradingDurationsResponse(
-        tradingDurations: (json['trading_durations'] as List)
+        tradingDurations: (json['trading_durations'] as List<dynamic>)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
             ?.toList(),

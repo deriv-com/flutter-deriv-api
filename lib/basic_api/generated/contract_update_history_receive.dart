@@ -1,5 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_history_receive.json
-// ignore_for_file: avoid_as, always_specify_types
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
@@ -22,10 +22,11 @@ class ContractUpdateHistoryResponse extends Response {
   /// Creates an instance from JSON
   factory ContractUpdateHistoryResponse.fromJson(Map<String, dynamic> json) =>
       ContractUpdateHistoryResponse(
-        contractUpdateHistory: (json['contract_update_history'] as List)
-            ?.map<Map<String, dynamic>>(
-                (dynamic item) => item as Map<String, dynamic>)
-            ?.toList(),
+        contractUpdateHistory:
+            (json['contract_update_history'] as List<dynamic>)
+                ?.map<Map<String, dynamic>>(
+                    (dynamic item) => item as Map<String, dynamic>)
+                ?.toList(),
         echoReq: json['echo_req'] as Map<String, dynamic>,
         error: json['error'] as Map<String, dynamic>,
         msgType: json['msg_type'] as String,

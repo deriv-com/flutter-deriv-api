@@ -1,5 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_login_list_receive.json
-// ignore_for_file: avoid_as, always_specify_types
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
@@ -22,7 +22,7 @@ class Mt5LoginListResponse extends Response {
   /// Creates an instance from JSON
   factory Mt5LoginListResponse.fromJson(Map<String, dynamic> json) =>
       Mt5LoginListResponse(
-        mt5LoginList: (json['mt5_login_list'] as List)
+        mt5LoginList: (json['mt5_login_list'] as List<dynamic>)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
             ?.toList(),

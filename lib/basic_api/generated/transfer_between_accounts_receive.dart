@@ -1,5 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_receive.json
-// ignore_for_file: avoid_as, always_specify_types
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
@@ -26,7 +26,7 @@ class TransferBetweenAccountsResponse extends Response {
   /// Creates an instance from JSON
   factory TransferBetweenAccountsResponse.fromJson(Map<String, dynamic> json) =>
       TransferBetweenAccountsResponse(
-        accounts: (json['accounts'] as List)
+        accounts: (json['accounts'] as List<dynamic>)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
             ?.toList(),

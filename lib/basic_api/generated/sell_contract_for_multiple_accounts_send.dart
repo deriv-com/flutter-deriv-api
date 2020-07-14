@@ -1,5 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_contract_for_multiple_accounts_send.json
-// ignore_for_file: avoid_as, always_specify_types
+// ignore_for_file: avoid_as
 
 import 'package:meta/meta.dart';
 
@@ -31,7 +31,7 @@ class SellContractForMultipleAccountsRequest extends Request {
                 ? null
                 : json['sell_contract_for_multiple_accounts'] == 1,
         shortcode: json['shortcode'] as String,
-        tokens: (json['tokens'] as List)
+        tokens: (json['tokens'] as List<dynamic>)
             ?.map<String>((dynamic item) => item as String)
             ?.toList(),
         passthrough: json['passthrough'] as Map<String, dynamic>,

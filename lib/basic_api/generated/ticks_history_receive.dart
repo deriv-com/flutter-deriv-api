@@ -1,5 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_history_receive.json
-// ignore_for_file: avoid_as, always_specify_types
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
@@ -25,7 +25,7 @@ class TicksHistoryResponse extends Response {
   /// Creates an instance from JSON
   factory TicksHistoryResponse.fromJson(Map<String, dynamic> json) =>
       TicksHistoryResponse(
-        candles: (json['candles'] as List)
+        candles: (json['candles'] as List<dynamic>)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
             ?.toList(),

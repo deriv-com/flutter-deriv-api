@@ -1,5 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/payout_currencies_receive.json
-// ignore_for_file: avoid_as, always_specify_types
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
@@ -22,7 +22,7 @@ class PayoutCurrenciesResponse extends Response {
   /// Creates an instance from JSON
   factory PayoutCurrenciesResponse.fromJson(Map<String, dynamic> json) =>
       PayoutCurrenciesResponse(
-        payoutCurrencies: (json['payout_currencies'] as List)
+        payoutCurrencies: (json['payout_currencies'] as List<dynamic>)
             ?.map<String>((dynamic item) => item as String)
             ?.toList(),
         echoReq: json['echo_req'] as Map<String, dynamic>,

@@ -1,5 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/oauth_apps_receive.json
-// ignore_for_file: avoid_as, always_specify_types
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
@@ -22,7 +22,7 @@ class OauthAppsResponse extends Response {
   /// Creates an instance from JSON
   factory OauthAppsResponse.fromJson(Map<String, dynamic> json) =>
       OauthAppsResponse(
-        oauthApps: (json['oauth_apps'] as List)
+        oauthApps: (json['oauth_apps'] as List<dynamic>)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
             ?.toList(),

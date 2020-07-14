@@ -106,7 +106,7 @@ class APIBuilder extends Builder {
         DartFormatter().format(
           '''
             /// Generated automatically from ${buildStep.inputId}
-            // ignore_for_file: avoid_as, always_specify_types
+            // ignore_for_file: avoid_as
 
             ${_hasRequiredField(methodName, schema, schemaType, properties) ? 'import \'package:meta/meta.dart\';' : ''}
 
@@ -255,11 +255,13 @@ class APIBuilder extends Builder {
             } else if (type.contains('List')) {
               final String arrayType = _getArrayType(type);
 
-              return '''
-                $name: (json['$key'] as List)
-                  ?.map<$arrayType>(($dynamic item) => item as $arrayType)
-                  ?.toList(),
-              ''';
+              return arrayType == 'dynamic'
+                  ? '$name: json[\'$key\'] as $type,'
+                  : '''
+                      $name: (json['$key'] as List<dynamic>)
+                        ?.map<$arrayType>((dynamic item) => item as $arrayType)
+                        ?.toList(),
+                    ''';
             } else {
               return '$name: json[\'$key\'] as $type,';
             }

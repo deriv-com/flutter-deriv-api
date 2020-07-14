@@ -1,5 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_array_send.json
-// ignore_for_file: avoid_as, always_specify_types
+// ignore_for_file: avoid_as
 
 import 'package:meta/meta.dart';
 
@@ -36,14 +36,12 @@ class ProposalArrayRequest extends Request {
   factory ProposalArrayRequest.fromJson(Map<String, dynamic> json) =>
       ProposalArrayRequest(
         amount: json['amount'] as num,
-        barriers: (json['barriers'] as List)
+        barriers: (json['barriers'] as List<dynamic>)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
             ?.toList(),
         basis: json['basis'] as String,
-        contractType: (json['contract_type'] as List)
-            ?.map<dynamic>((dynamic item) => item as dynamic)
-            ?.toList(),
+        contractType: json['contract_type'] as List<dynamic>,
         currency: json['currency'] as String,
         dateExpiry: json['date_expiry'] as int,
         dateStart: json['date_start'] as int,

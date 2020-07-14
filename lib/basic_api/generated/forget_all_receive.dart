@@ -1,5 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_all_receive.json
-// ignore_for_file: avoid_as, always_specify_types
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
@@ -22,9 +22,7 @@ class ForgetAllResponse extends Response {
   /// Creates an instance from JSON
   factory ForgetAllResponse.fromJson(Map<String, dynamic> json) =>
       ForgetAllResponse(
-        forgetAll: (json['forget_all'] as List)
-            ?.map<dynamic>((dynamic item) => item as dynamic)
-            ?.toList(),
+        forgetAll: json['forget_all'] as List<dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
         error: json['error'] as Map<String, dynamic>,
         msgType: json['msg_type'] as String,

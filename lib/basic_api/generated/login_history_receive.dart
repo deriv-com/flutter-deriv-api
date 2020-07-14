@@ -1,5 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/login_history_receive.json
-// ignore_for_file: avoid_as, always_specify_types
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
@@ -22,7 +22,7 @@ class LoginHistoryResponse extends Response {
   /// Creates an instance from JSON
   factory LoginHistoryResponse.fromJson(Map<String, dynamic> json) =>
       LoginHistoryResponse(
-        loginHistory: (json['login_history'] as List)
+        loginHistory: (json['login_history'] as List<dynamic>)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
             ?.toList(),
