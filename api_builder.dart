@@ -140,7 +140,7 @@ class APIBuilder extends Builder {
     }
   }
 
-  String _getConstructorParameters(
+  static String _getConstructorParameters(
     String methodName,
     JsonSchema schema,
     String schemaType,
@@ -166,7 +166,7 @@ class APIBuilder extends Builder {
         },
       ).join(', ');
 
-  String _getProperties(
+  static String _getProperties(
     JsonSchema schema,
     List<String> properties,
   ) =>
@@ -180,25 +180,34 @@ class APIBuilder extends Builder {
           final String type = _getPropertyType(key, property);
 
           return '''
-            /// ${_preparePropertyDescription(type, property.description)}
+            /// ${_preparePropertyDescription(type == 'bool', property.description)}
             final ${type ?? 'unknown'} ${name ?? 'unknown'};
           ''';
         },
       ).join('\n');
 
-  String _preparePropertyDescription(String type, String description) =>
-      type == 'bool'
+  static String _preparePropertyDescription(
+    bool isBoolean,
+    String description,
+  ) =>
+      isBoolean
           ? description
               .replaceAll('\n', '\n/// ')
-              .replaceAll('`1`', '`true`')
-              .replaceAll('`0`', '`false`')
-              .replaceAll(' 1', ' `true`')
-              .replaceAll(' 0', ' `false`')
-              .replaceAll(' 1 ', ' `true` ')
-              .replaceAll(' 0 ', ' `false` ')
+              .replaceAllMapped(
+                RegExp(r'`1`| 1| 1 '),
+                (Match match) => match
+                    .group(0)
+                    .replaceAllMapped(RegExp(r'`1`|1'), (_) => '`true`'),
+              )
+              .replaceAllMapped(
+                RegExp(r'`0`| 0| 0 '),
+                (Match match) => match
+                    .group(0)
+                    .replaceAllMapped(RegExp(r'`0`|0'), (_) => '`false`'),
+              )
           : description.replaceAll('\n', '\n/// ');
 
-  String _getPropertyType(
+  static String _getPropertyType(
     String key,
     JsonSchema property,
   ) {
@@ -218,7 +227,7 @@ class APIBuilder extends Builder {
     }
   }
 
-  String _getPropertySchemaType(String key, JsonSchema property) =>
+  static String _getPropertySchemaType(String key, JsonSchema property) =>
       property.typeList?.length == 2
           ? property.typeList.first.toString() != 'null'
               ? property.typeList.first.toString() ?? 'undefined'
@@ -227,7 +236,7 @@ class APIBuilder extends Builder {
               ? 'undefined'
               : _isBoolean(key, property) ? 'bool' : property.type?.toString();
 
-  bool _isBoolean(String key, JsonSchema property) =>
+  static bool _isBoolean(String key, JsonSchema property) =>
       key == 'subscribe' ||
       property.description.contains('Must be `1`') ||
       property.description.contains('Must be 1') ||
@@ -236,7 +245,7 @@ class APIBuilder extends Builder {
           property.enumValues[0] == 0 &&
           property.enumValues[1] == 1;
 
-  StringBuffer _getFromJsonMethod(
+  static StringBuffer _getFromJsonMethod(
     String classFullName,
     String schemaType,
     JsonSchema schema,
@@ -276,7 +285,7 @@ class APIBuilder extends Builder {
         )
         ..write('${_getFromJsonMethodCommonFields(schemaType == 'send')});');
 
-  StringBuffer _getToJsonMethod(
+  static StringBuffer _getToJsonMethod(
     String schemaType,
     JsonSchema schema,
     List<String> properties,
@@ -302,25 +311,29 @@ class APIBuilder extends Builder {
         )
         ..write('${_getToJsonMethodCommonFields(schemaType == 'send')}};');
 
-  StringBuffer _getFromJsonMethodCommonFields(bool isRequest) => StringBuffer()
-    ..write(
-      (isRequest ? requestCommonFields.entries : responseCommonFields.entries)
-          .map<String>((MapEntry<String, String> entry) =>
-              '${ReCase(entry.key).camelCase}: json[\'${entry.key}\'] as ${typeMap[entry.value]},')
-          .join(),
-    );
+  static StringBuffer _getFromJsonMethodCommonFields(bool isRequest) =>
+      StringBuffer()
+        ..write(
+          (isRequest
+                  ? requestCommonFields.entries
+                  : responseCommonFields.entries)
+              .map<String>((MapEntry<String, String> entry) =>
+                  '${ReCase(entry.key).camelCase}: json[\'${entry.key}\'] as ${typeMap[entry.value]},')
+              .join(),
+        );
 
-  StringBuffer _getToJsonMethodCommonFields(bool isRequest) => StringBuffer()
-    ..write(
-      (isRequest ? requestCommonFields.keys : responseCommonFields.keys)
-          .map((String key) => '\'$key\': ${ReCase(key).camelCase},')
-          .join(),
-    );
+  static StringBuffer _getToJsonMethodCommonFields(bool isRequest) =>
+      StringBuffer()
+        ..write(
+          (isRequest ? requestCommonFields.keys : responseCommonFields.keys)
+              .map((String key) => '\'$key\': ${ReCase(key).camelCase},')
+              .join(),
+        );
 
-  String _getArrayType(String type) =>
+  static String _getArrayType(String type) =>
       type.substring(0, type.length - 1).replaceAll('List<', '');
 
-  StringBuffer _getCopyWithMethod(
+  static StringBuffer _getCopyWithMethod(
     JsonSchema schema,
     String schemaType,
     String classFullName,
@@ -362,7 +375,7 @@ class APIBuilder extends Builder {
         )
         ..write(', ${_getSupperClassAssignments(schemaType)},);');
 
-  String _getSuperClassParameters(String schemaType) {
+  static String _getSuperClassParameters(String schemaType) {
     final Map<String, String> superClassFields =
         _getSuperClassFields(schemaType);
 
@@ -372,7 +385,10 @@ class APIBuilder extends Builder {
         .join(', ');
   }
 
-  String _getSuperClassCallParameters(String schemaType, String methodName) {
+  static String _getSuperClassCallParameters(
+    String schemaType,
+    String methodName,
+  ) {
     final StringBuffer superCallParameters = StringBuffer();
 
     if (schemaType == 'send') {
@@ -389,7 +405,7 @@ class APIBuilder extends Builder {
     return superCallParameters.toString();
   }
 
-  String _getSupperClassAssignments(String schemaType) =>
+  static String _getSupperClassAssignments(String schemaType) =>
       _getSuperClassFields(schemaType).keys.map(
         (String key) {
           final String propertyName = ReCase(key).camelCase;
@@ -397,10 +413,10 @@ class APIBuilder extends Builder {
         },
       ).join(', ');
 
-  Map<String, String> _getSuperClassFields(String schemaType) =>
+  static Map<String, String> _getSuperClassFields(String schemaType) =>
       schemaType == 'send' ? requestCommonFields : responseCommonFields;
 
-  bool _isFieldRequired(
+  static bool _isFieldRequired(
     String key,
     String schemaType,
     JsonSchema property,
@@ -410,7 +426,7 @@ class APIBuilder extends Builder {
       property.typeList?.length == 1 &&
       !property.description.contains('[Optional]');
 
-  bool _hasRequiredField(
+  static bool _hasRequiredField(
     String methodName,
     JsonSchema schema,
     String schemaType,
@@ -435,7 +451,10 @@ class APIBuilder extends Builder {
     return false;
   }
 
-  String _getEquatableFields(String classFullName, List<String> properties) {
+  static String _getEquatableFields(
+    String classFullName,
+    List<String> properties,
+  ) {
     switch (classFullName) {
       case 'TicksRequest':
         return '<Object>[ticks]';
