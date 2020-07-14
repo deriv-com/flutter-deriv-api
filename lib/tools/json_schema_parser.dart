@@ -285,7 +285,10 @@ class JsonSchemaParser {
               arrayType: arrayType,
             )
             ..isRequired = _isRequired(entry)
-            ..description = description.replaceAll('\n', '\n/// ')
+            ..description = _preparePropertyDescription(
+              isBoolean: isBoolean,
+              description: description,
+            )
             ..schemaTitle = name
             ..schemaType = type
             ..children = <_SchemaModel>[];
@@ -348,6 +351,21 @@ class JsonSchemaParser {
   static bool _isRequired(dynamic entry) =>
       entry.value['type']?.length != 2 &&
       !entry.value['description'].contains('[Optional]');
+
+  static String _preparePropertyDescription({
+    bool isBoolean,
+    String description,
+  }) =>
+      isBoolean
+          ? description
+              .replaceAll('\n', '\n/// ')
+              .replaceAll('`1`', '`true`')
+              .replaceAll('`0`', '`false`')
+              .replaceAll(' 1', ' `true`')
+              .replaceAll(' 0', ' `false`')
+              .replaceAll(' 1 ', ' `true` ')
+              .replaceAll(' 0 ', ' `false` ')
+          : description.replaceAll('\n', '\n/// ');
 }
 
 /// Model to store schema information
