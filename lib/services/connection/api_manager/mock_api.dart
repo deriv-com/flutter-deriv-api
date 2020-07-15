@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.helper.dart';
+import 'package:flutter_deriv_api/basic_api/helper/response_mapper.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -107,7 +107,11 @@ class MockAPI implements BaseAPI {
   static const int _responseDelayMilliseconds = 0;
 
   @override
-  Future<void> connect(ConnectionInformation connectionInformation) async =>
+  Future<void> connect(
+    ConnectionInformation connectionInformation, {
+    ConnectionCallback onDone,
+    ConnectionCallback onOpen,
+  }) async =>
       true;
 
   @override
@@ -129,14 +133,12 @@ class MockAPI implements BaseAPI {
   @override
   Future<ForgetResponse> unsubscribe({
     @required String subscriptionId,
-    bool shouldForced = false,
   }) async =>
       const ForgetResponse(forget: 1);
 
   @override
   Future<ForgetAllResponse> unsubscribeAll({
     @required ForgetStreamType method,
-    bool shouldForced = false,
   }) async =>
       null;
 

@@ -6,6 +6,7 @@ const String residenceListResponse = '''{
   "msg_type": "residence_list",
   "residence_list": [
     {
+      "disabled": "DISABLED",
       "phone_idd": "00",
       "text": "SampleCountry",
       "value": "sc"

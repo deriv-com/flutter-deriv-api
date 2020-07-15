@@ -7,10 +7,17 @@ import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
+/// Callbacks for websocket connection
+typedef ConnectionCallback = void Function();
+
 /// Base class for handling API connection and calling APIs
 abstract class BaseAPI {
   /// Connects to API
-  Future<void> connect(ConnectionInformation connectionInformation);
+  Future<void> connect(
+    ConnectionInformation connectionInformation, {
+    ConnectionCallback onDone,
+    ConnectionCallback onOpen,
+  });
 
   /// Adds request to stream channel
   void addToChannel(Map<String, dynamic> request);
@@ -28,13 +35,11 @@ abstract class BaseAPI {
   /// Unsubscribe with a specific [subscriptionId]
   Future<ForgetResponse> unsubscribe({
     @required String subscriptionId,
-    bool shouldForced = false,
   });
 
   /// Unsubscribe to multiple [method]s all at once
   Future<ForgetAllResponse> unsubscribeAll({
     @required ForgetStreamType method,
-    bool shouldForced = false,
   });
 
   /// Disconnects from API

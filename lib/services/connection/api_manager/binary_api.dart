@@ -42,8 +42,10 @@ class BinaryAPI implements BaseAPI {
 
   @override
   Future<void> connect(
-    ConnectionInformation connectionInformation,
-  ) async {
+    ConnectionInformation connectionInformation, {
+    ConnectionCallback onDone,
+    ConnectionCallback onOpen,
+  }) async {
     _connected = false;
 
     final Uri uri = Uri(
@@ -79,8 +81,8 @@ class BinaryAPI implements BaseAPI {
 
                 _connected = false;
 
-                if (connectionInformation.onDone != null) {
-                  connectionInformation.onDone();
+                if (onDone != null) {
+                  onDone();
                 }
               },
             );
@@ -92,8 +94,8 @@ class BinaryAPI implements BaseAPI {
 
     dev.log('web socket is connected.');
 
-    if (connectionInformation.onOpen != null) {
-      connectionInformation.onOpen();
+    if (onOpen != null) {
+      onOpen();
     }
   }
 
@@ -113,31 +115,29 @@ class BinaryAPI implements BaseAPI {
   @override
   Stream<Response> subscribe({
     @required Request request,
+    int cacheSize = 0,
     RequestCompareFunction comparePredicate,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this))(
         request: request,
+        cacheSize: cacheSize,
         comparePredicate: comparePredicate,
       );
 
   @override
   Future<ForgetResponse> unsubscribe({
     @required String subscriptionId,
-    bool shouldForced = false,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this)).unsubscribe(
         subscriptionId: subscriptionId,
-        shouldForced: shouldForced,
       );
 
   @override
   Future<ForgetAllResponse> unsubscribeAll({
     @required ForgetStreamType method,
-    bool shouldForced = false,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this)).unsubscribeAll(
         method: method,
-        shouldForced: shouldForced,
       );
 
   @override
