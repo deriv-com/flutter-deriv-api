@@ -15,7 +15,7 @@ dependencies:
   code_builder: ^3.1.1
   connectivity: ^0.4.4
   dart_style: ^1.0.0
-  flutter_bloc: ^5.0.0
+  flutter_bloc: ^5.0.1
   flutter_webview_plugin: ^0.3.8
   json_annotation: ^3.0.0
   meta: ^1.1.8
