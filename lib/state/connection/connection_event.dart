@@ -24,10 +24,3 @@ class Reconnect extends ConnectionEvent {
   @override
   String toString() => 'ConnectionEvent(Reconnect)';
 }
-
-/// when added, bloc will fetch the server time and will update the serverTime
-/// in [Connected] state
-class FetchServerTime extends ConnectionEvent {
-  @override
-  String toString() => 'ConnectionEvent(FetchServerTime)';
-}

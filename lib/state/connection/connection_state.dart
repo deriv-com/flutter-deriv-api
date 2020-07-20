@@ -19,30 +19,10 @@ class Connecting extends ConnectionState {
   String toString() => 'ConnectionState(Connecting)';
 }
 
-/// connected state
+/// Connected state
 class Connected extends ConnectionState {
-  /// Initializes
-  Connected({
-    this.serverTime,
-  }) : timeDifference = serverTime == null
-            ? null
-            : getSecondsSinceEpochDateTime(serverTime) - getCurrentLocalEpoch();
-
-  /// fetched server time
-  final DateTime serverTime;
-
-  /// difference between [serverTime] and the time of the device
-  final int timeDifference;
-
-  /// Creates a copy of instance with given parameters
-  Connected copyWith({
-    DateTime serverTime,
-  }) =>
-      Connected(serverTime: serverTime ?? this.serverTime);
-
   @override
-  String toString() =>
-      'ConnectionState(Connected, serverTime: $serverTime, timeDifference: $timeDifference)';
+  String toString() => 'ConnectionState(Connected)';
 }
 
 /// Connection error state
