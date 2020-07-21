@@ -1,17 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/common/models/transfer_account_limitation_model.dart';
 import 'package:flutter_deriv_api/api/common/models/website_status_crypto_config_model.dart';
 import 'package:flutter_deriv_api/api/common/models/website_status_currency_config_model.dart';
 import 'package:flutter_deriv_api/api/common/website_status/website_status.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  setUp(() {
-    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
-  });
+  setUp(() => APIInitializer().initialize(true));
 
   test('Fetch Website Status Test', () async {
     final WebsiteStatus websiteStatus =

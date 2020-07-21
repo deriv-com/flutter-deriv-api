@@ -5,16 +5,13 @@ import 'package:flutter_deriv_api/api/account/authorize/authorize.dart';
 import 'package:flutter_deriv_api/api/account/authorize/login_history.dart';
 import 'package:flutter_deriv_api/api/account/authorize/logout.dart';
 import 'package:flutter_deriv_api/api/account/models/local_currency_model.dart';
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  setUpAll(() {
-    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
-  });
+  setUpAll(() => APIInitializer().initialize(true));
 
   group('Authorize Group ->', () {
     test('Authorize Test', () async {

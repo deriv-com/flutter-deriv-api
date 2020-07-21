@@ -1,18 +1,15 @@
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/common/models/market_model.dart';
 import 'package:flutter_deriv_api/api/common/models/submarket_model.dart';
 import 'package:flutter_deriv_api/api/common/models/trade_event_model.dart';
 import 'package:flutter_deriv_api/api/common/models/trade_times_model.dart';
 import 'package:flutter_deriv_api/api/common/trading/trading_times.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  setUp(() {
-    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
-  });
+  setUp(() => APIInitializer().initialize(true));
 
   test('Fetch Trading Times Test', () async {
     final TradingTimes tradingTimes = await TradingTimes.fetchTradingTimes(

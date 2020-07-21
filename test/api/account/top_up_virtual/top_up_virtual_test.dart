@@ -1,13 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/top_up_virtual/top_up_virtual.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 
 void main() {
-  setUp(() {
-    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
-  });
+  setUp(() => APIInitializer().initialize(true));
 
   test('Top Up Virtual Test', () async {
     final TopUpVirtual topUpVirtual = await TopUpVirtual.topUp();

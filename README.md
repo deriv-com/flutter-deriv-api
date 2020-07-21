@@ -11,7 +11,7 @@ Initialize `ModuleContainer` to prepare API instance for dependency injection, y
 Establishing a connection to WebSocket needs an instance of the `ConnectionInformation` class for initializing API connection.
 
 ```dart
-ModuleContainer().initialize(Injector.getInjector(), isMock: false);
+APIInitializer().initialize();
 
 Injector.getInjector().get<BaseAPI>()
     .connect(
