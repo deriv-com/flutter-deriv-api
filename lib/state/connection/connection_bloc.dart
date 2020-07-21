@@ -27,6 +27,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
   BaseAPI _api;
   Timer _serverTimeInterval;
+
   /// Connection information of WebSocket (endpoint, brand, appId)
   final ConnectionInformation connectionInformation;
 
@@ -44,7 +45,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
         _serverTimeInterval = Timer.periodic(const Duration(seconds: 90),
             (Timer timer) => add(FetchServerTime()));
       } on Exception catch (e) {
-        dev.log(e.toString());
+        dev.log(e.toString(), error: e);
 
         yield ConnectionError(e.toString());
       }

@@ -210,7 +210,7 @@ class BinaryAPI implements BaseAPI {
         dev.log('no req_id, ignoring.');
       }
     } on Exception catch (e) {
-      dev.log('failed to process $response - $e');
+      dev.log('failed to process $response - $e', error: e);
     }
   }
 }
