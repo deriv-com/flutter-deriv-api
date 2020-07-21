@@ -16,11 +16,11 @@ class ServerTimeBloc extends Bloc<ServerTimeEvent, ServerTimeState> {
   ServerTimeBloc(this._connectionBloc) {
     _connectionSubscription = _connectionBloc.listen((ConnectionState state) {
       if (state is Connected) {
+        add(FetchServerTime());
+
         _serverTimeInterval = Timer.periodic(const Duration(seconds: 90),
             (Timer timer) => add(FetchServerTime()));
-      } else if (state is Disconnect ||
-          state is InitialConnectionState ||
-          state is ConnectionError) {
+      } else {
         _serverTimeInterval?.cancel();
       }
     });
@@ -38,14 +38,17 @@ class ServerTimeBloc extends Bloc<ServerTimeEvent, ServerTimeState> {
   @override
   Stream<ServerTimeState> mapEventToState(ServerTimeEvent event) async* {
     if (event is FetchServerTime) {
-      try {
-        final ServerTime serverTime = await ServerTime.fetchTime();
+      if (_connectionBloc.state is Connected) {
+        try {
+          final ServerTime serverTime =
+              await ServerTime.fetchTime().timeout(const Duration(seconds: 30));
 
-        yield ServerTimeFetched(serverTime: serverTime.time);
-      } on ServerTimeException catch (e) {
-        yield ServerTimeError(e.message);
-      } on Exception catch (e) {
-        yield ServerTimeError(e.toString());
+          yield ServerTimeFetched(serverTime: serverTime.time);
+        } on ServerTimeException catch (e) {
+          yield ServerTimeError(e.message);
+        } on Exception catch (e) {
+          yield ServerTimeError(e.toString());
+        }
       }
     }
   }
@@ -53,7 +56,7 @@ class ServerTimeBloc extends Bloc<ServerTimeEvent, ServerTimeState> {
   @override
   Future<void> close() {
     _connectionSubscription?.cancel();
-    
+
     return super.close();
   }
 }
