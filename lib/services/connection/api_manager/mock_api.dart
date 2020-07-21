@@ -107,7 +107,11 @@ class MockAPI implements BaseAPI {
   static const int _responseDelayMilliseconds = 0;
 
   @override
-  Future<void> connect(ConnectionInformation connectionInformation) async =>
+  Future<void> connect(
+    ConnectionInformation connectionInformation, {
+    ConnectionCallback onDone,
+    ConnectionCallback onOpen,
+  }) async =>
       true;
 
   @override

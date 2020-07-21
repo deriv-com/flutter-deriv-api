@@ -17,14 +17,17 @@ part 'connection_state.dart';
 /// Bringing ConnectionBloc to flutter-deriv-api to simplify the usage of api
 class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   /// Initializes
-  ConnectionBloc() {
+  ConnectionBloc(this.connectionInformation) {
     APIInitializer().initialize();
 
-    connectWebsocket();
+    connectWebSocket();
   }
 
   BaseAPI _api;
   Timer _serverTimeInterval;
+
+  /// Connection information of WebSocket (endpoint, brand, appId)
+  final ConnectionInformation connectionInformation;
 
   @override
   ConnectionState get initialState => InitialConnectionState();
@@ -87,19 +90,18 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
       await Future<void>.delayed(const Duration(seconds: 10));
 
-      connectWebsocket();
+      connectWebSocket();
     }
   }
 
   /// connects the [BinaryAPI] to the web socket
-  void connectWebsocket() {
+  void connectWebSocket() {
     _api ??= Injector.getInjector().get<BaseAPI>();
 
     _api.connect(
-      ConnectionInformation(
-        onDone: () => add(Reconnect()),
-        onOpen: () => add(Connect()),
-      ),
+      connectionInformation,
+      onDone: () => add(Reconnect()),
+      onOpen: () => add(Connect()),
     );
   }
 }
