@@ -27,7 +27,7 @@ class BalanceResponse extends Response {
   factory BalanceResponse.fromJson(Map<String, dynamic> json) =>
       _$BalanceResponseFromJson(json);
 
-  /// Realtime stream of user balance changes.
+  /// Current balance of one or more accounts.
   final Map<String, dynamic> balance;
 
   /// For subscription requests only.
