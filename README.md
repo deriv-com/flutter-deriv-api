@@ -6,13 +6,15 @@ Flutter Deriv API is an abstraction layer over `Binary WebSocket` (_https://gith
 
 ### A. Creating a websocket connection
 
-Initialize `ModuleContainer` to prepare API instance for dependency injection, you can pass `true` to `isMock` parameter for testing purposes.
+Use `APIInitializer` to prepare API instance for dependency injection, you can pass `true` to `isMock` parameter for testing purposes.
+
+```dart
+APIInitializer().initialize();
+```
 
 Establishing a connection to WebSocket needs an instance of the `ConnectionInformation` class for initializing API connection.
 
 ```dart
-APIInitializer().initialize();
-
 Injector.getInjector().get<BaseAPI>()
     .connect(
         ConnectionInformation(
