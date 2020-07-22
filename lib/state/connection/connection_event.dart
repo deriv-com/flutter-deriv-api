@@ -31,3 +31,14 @@ class DisplayConnectionError extends ConnectionEvent {
   String toString() => 'ConnectionEvent(DisplayConnectionError)';
 }
 
+/// When [ConnectionInformation] of the bloc changes
+class Reconfigure extends ConnectionEvent {
+  /// Initializes
+  Reconfigure(this.connectionInformation);
+
+  /// New connection information to connect
+  final ConnectionInformation connectionInformation;
+
+  @override
+  String toString() => 'ConnectionEvent(Reconfigure)';
+}
