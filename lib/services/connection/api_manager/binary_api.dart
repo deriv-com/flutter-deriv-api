@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:meta/meta.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
@@ -17,7 +18,10 @@ import 'package:flutter_deriv_api/services/connection/api_manager/connection_inf
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
 
 /// This class is for handling Binary API connection and calling Binary APIs
-class BinaryAPI implements BaseAPI {
+class BinaryAPI extends BaseAPI {
+  /// Initializes
+  BinaryAPI(UniqueKey uniqueKey) : super(uniqueKey);
+
   /// Indicates current connection status - only set `true` once
   /// we have established SSL *and* web socket handshake steps
   bool _connected = false;
@@ -83,7 +87,7 @@ class BinaryAPI implements BaseAPI {
                 _connected = false;
 
                 if (onDone != null) {
-                  onDone();
+                  onDone(uniqueKey);
                 }
               },
             );
@@ -96,7 +100,7 @@ class BinaryAPI implements BaseAPI {
     print('web socket is connected.');
 
     if (onOpen != null) {
-      onOpen();
+      onOpen(uniqueKey);
     }
   }
 

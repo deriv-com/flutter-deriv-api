@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer' as dev;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -16,12 +17,14 @@ part 'connection_state.dart';
 class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   /// Initializes
   ConnectionBloc(this.connectionInformation) {
-    ModuleContainer().initialize(Injector.getInjector());
+    ModuleContainer().initialize(Injector.getInjector(), uniqueKey: _uniqueKey);
 
     _connectWebSocket();
   }
 
   BaseAPI _api;
+
+  final UniqueKey _uniqueKey = UniqueKey();
 
   /// Connection information of WebSocket (endpoint, brand, appId)
   final ConnectionInformation connectionInformation;
@@ -59,8 +62,16 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
     _api.connect(
       connectionInformation,
-      onDone: () => add(Reconnect()),
-      onOpen: () => add(Connect()),
+      onDone: (UniqueKey key) {
+        if (key == _uniqueKey) {
+          add(Reconnect());
+        }
+      },
+      onOpen: (UniqueKey key) {
+        if (key == _uniqueKey) {
+          add(Connect());
+        }
+      },
     );
   }
 }
