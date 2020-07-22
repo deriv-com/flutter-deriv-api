@@ -49,8 +49,11 @@ class BinaryAPI extends BaseAPI {
     ConnectionInformation connectionInformation, {
     ConnectionCallback onDone,
     ConnectionCallback onOpen,
+    ConnectionCallback onError,
   }) async {
     _connected = false;
+    
+    _resetCallManagers();
 
     final Uri uri = Uri(
       scheme: 'wss',
@@ -79,16 +82,17 @@ class BinaryAPI extends BaseAPI {
             .listen(
               (Map<String, dynamic> message) =>
                   _handleResponse(connectionCompleter, message),
-              onError: (Object error) =>
-                  print('the web socket connection is closed: $error.'),
+              onError: (Object error) {
+                print('the web socket connection is closed: $error.');
+
+                onError?.call(uniqueKey);
+              },
               onDone: () async {
                 print('web socket is closed.');
 
                 _connected = false;
 
-                if (onDone != null) {
-                  onDone(uniqueKey);
-                }
+                onDone?.call(uniqueKey);
               },
             );
 
@@ -99,9 +103,12 @@ class BinaryAPI extends BaseAPI {
 
     print('web socket is connected.');
 
-    if (onOpen != null) {
-      onOpen(uniqueKey);
-    }
+    onOpen?.call(uniqueKey);
+  }
+
+  void _resetCallManagers() {
+    _callManager = CallManager(this);
+    _subscriptionManager = SubscriptionManager(this);
   }
 
   @override

@@ -9,6 +9,8 @@ import 'package:flutter_deriv_api/services/connection/api_manager/connection_inf
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
+import 'connection_service.dart';
+
 part 'connection_event.dart';
 
 part 'connection_state.dart';
@@ -36,42 +38,64 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   Stream<ConnectionState> mapEventToState(ConnectionEvent event) async* {
     if (event is Connect) {
       yield Connected();
+    } else if (event is Reconnect) {
+      bool shouldReconnect = true;
+      // api.close should be always invoked before changing the state otherwise the onDone function which is passed to the run funciton will be invoked one more time.
+      if (state is Connected) {
+        try {
+          shouldReconnect = false;
+          await _api.disconnect();
+        } on Exception catch (e) {
+          shouldReconnect = true;
+          dev.log(e.toString());
+        }
+      }
+
+      if (event is Reconnect) {
+        if (await ConnectionService().checkConnectivity() && shouldReconnect) {
+          yield Reconnecting();
+          return;
+        } else {
+          yield Disconnected();
+        }
+      } else {
+        // needed to reset state after changing the endpoint from settings page
+        yield InitialConnectionState();
+      }
+
+      await Future<void>.delayed(const Duration(seconds: 10));
+      _connectWebSocket();
     } else if (event is Disconnect) {
       if (state is Connected) {
         await _api.disconnect();
       }
-      yield InitialConnectionState();
-    } else if (event is Reconnect) {
-      dev.log('Reconnecting ws connection!');
 
-      // api.close should be always invoked before changing the state otherwise the onDone function which is passed to the run function will be invoked one more time.
-      if (state is Connected) {
-        await _api.disconnect();
+      if (state is! Disconnected) {
+        yield Disconnected();
       }
-
-      yield InitialConnectionState();
-
-      await Future<void>.delayed(const Duration(seconds: 10));
-
-      _connectWebSocket();
+    } else if (event is DisplayConnectionError) {
+      // For any errors related connection, this new event can be used. Currently
+      // this is used to handle invalid endpoints and we don't need to show any messages
+      yield ConnectionError('');
     }
   }
 
   void _connectWebSocket() {
     _api ??= Injector.getInjector().get<BaseAPI>();
 
-    _api.connect(
-      connectionInformation,
-      onDone: (UniqueKey key) {
-        if (key == _uniqueKey) {
-          add(Reconnect());
-        }
-      },
-      onOpen: (UniqueKey key) {
-        if (key == _uniqueKey) {
-          add(Connect());
-        }
-      },
-    );
+    _api.connect(connectionInformation, onDone: (UniqueKey key) {
+      if (key == _uniqueKey) {
+        add(Reconnect());
+      }
+    }, onOpen: (UniqueKey key) {
+      if (key == _uniqueKey) {
+        add(Connect());
+      }
+    }, onError: (UniqueKey key) {
+      // ignore reporting errors if there is no connection
+      if (key == _uniqueKey && state is! Disconnected) {
+        add(DisplayConnectionError());
+      }
+    });
   }
 }

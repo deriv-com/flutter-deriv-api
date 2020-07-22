@@ -24,3 +24,10 @@ class Reconnect extends ConnectionEvent {
   @override
   String toString() => 'ConnectionEvent(Reconnect)';
 }
+
+/// DisplayConnectionError
+class DisplayConnectionError extends ConnectionEvent {
+  @override
+  String toString() => 'ConnectionEvent(DisplayConnectionError)';
+}
+

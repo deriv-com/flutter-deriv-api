@@ -115,6 +115,7 @@ class MockAPI extends BaseAPI {
     ConnectionInformation connectionInformation, {
     ConnectionCallback onDone,
     ConnectionCallback onOpen,
+    ConnectionCallback onError,
   }) async =>
       true;
 

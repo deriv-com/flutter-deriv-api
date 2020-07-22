@@ -16,13 +16,25 @@ class Connecting extends ConnectionState {
   Connecting();
 
   @override
-  String toString() => 'ConnectionState(Connecting)';
+  String toString() => 'ConnectionState(Connecting...)';
 }
 
 /// Connected state
 class Connected extends ConnectionState {
   @override
   String toString() => 'ConnectionState(Connected)';
+}
+
+/// Disconnected state
+class Disconnected extends ConnectionState {
+  @override
+  String toString() => 'ConnectionState(Disconnected)';
+}
+
+/// Reconnecting state
+class Reconnecting extends ConnectionState {
+  @override
+  String toString() => 'ConnectionState(Reconnecting...)';
 }
 
 /// Connection error state
