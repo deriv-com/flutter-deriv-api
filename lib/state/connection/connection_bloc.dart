@@ -9,7 +9,8 @@ import 'package:flutter_deriv_api/services/connection/api_manager/connection_inf
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
-import 'connection_service.dart';
+import '../internet/connection_service.dart';
+import '../internet/internet_bloc.dart' as internet_bloc;
 
 part 'connection_event.dart';
 
@@ -21,10 +22,27 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   ConnectionBloc(this.connectionInformation) {
     ModuleContainer().initialize(Injector.getInjector(), uniqueKey: _uniqueKey);
 
+    _internetBloc = internet_bloc.InternetBloc();
+
     _connectWebSocket();
+
+    _internetListener =
+        _internetBloc.listen((internet_bloc.InternetState state) {
+      if (state is internet_bloc.Disconnected) {
+        add(Disconnect());
+      } else if (state is internet_bloc.Connected) {
+        _reconnectToWebSocket();
+      }
+    });
   }
 
+  static const int _reconnectInterval = 5;
+
   BaseAPI _api;
+
+  StreamSubscription<internet_bloc.InternetState> _internetListener;
+
+  internet_bloc.InternetBloc _internetBloc;
 
   final UniqueKey _uniqueKey = UniqueKey();
 
@@ -63,7 +81,8 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
         yield InitialConnectionState();
       }
 
-      await Future<void>.delayed(const Duration(seconds: 10));
+      await Future<void>.delayed(const Duration(seconds: _reconnectInterval));
+
       _connectWebSocket();
     } else if (event is Disconnect) {
       if (state is Connected) {
@@ -97,5 +116,18 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
         add(DisplayConnectionError());
       }
     });
+  }
+
+  void _reconnectToWebSocket() {
+    if (state is! Reconnecting && state is! Connected) {
+      add(Reconnect());
+    }
+  }
+
+  @override
+  Future<void> close() {
+    _internetListener?.cancel();
+
+    return super.close();
   }
 }
