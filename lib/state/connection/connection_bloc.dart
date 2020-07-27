@@ -20,6 +20,7 @@ part 'connection_state.dart';
 class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   /// Initializes
   ConnectionBloc(ConnectionInformation connectionInformation) {
+    ConnectionService().initialize();
     _connectionInformation = connectionInformation;
     _internetBloc = internet_bloc.InternetBloc();
     ModuleContainer().initialize(Injector.getInjector(), uniqueKey: _uniqueKey);
