@@ -26,6 +26,7 @@ import '../generated/copy_stop_receive.dart';
 import '../generated/copytrading_list_receive.dart';
 import '../generated/copytrading_statistics_receive.dart';
 import '../generated/document_upload_receive.dart';
+import '../generated/economic_calendar_receive.dart';
 import '../generated/exchange_rates_receive.dart';
 import '../generated/forget_all_receive.dart';
 import '../generated/forget_receive.dart';
@@ -149,6 +150,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return CopytradingStatisticsResponse.fromJson(responseMap);
     case 'document_upload':
       return DocumentUploadResponse.fromJson(responseMap);
+    case 'economic_calendar':
+      return EconomicCalendarResponse.fromJson(responseMap);
     case 'exchange_rates':
       return ExchangeRatesResponse.fromJson(responseMap);
     case 'forget_all':
