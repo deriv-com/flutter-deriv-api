@@ -9,7 +9,7 @@ import 'package:flutter_deriv_api/services/connection/api_manager/connection_inf
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
-import '../internet/connection_service.dart';
+import '../../services/connection/connection_service.dart';
 import '../internet/internet_bloc.dart' as internet_bloc;
 
 part 'connection_event.dart';

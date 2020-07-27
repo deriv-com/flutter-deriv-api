@@ -3,7 +3,7 @@ import 'dart:developer' as dev;
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'connection_service.dart';
+import '../../services/connection/connection_service.dart';
 
 part 'internet_event.dart';
 

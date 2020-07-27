@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:rxdart/rxdart.dart';
 import 'package:bloc/bloc.dart';
 
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
@@ -26,6 +27,16 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
 
   @override
   PriceProposalState get initialState => PriceProposalLoading();
+
+  @override
+  Stream<Transition<PriceProposalEvent, PriceProposalState>> transformEvents(
+    Stream<PriceProposalEvent> events,
+    TransitionFunction<PriceProposalEvent, PriceProposalState> transitionFn,
+  ) =>
+      super.transformEvents(
+        events.debounceTime(const Duration(milliseconds: 500)),
+        transitionFn,
+      );
 
   @override
   Stream<PriceProposalState> mapEventToState(

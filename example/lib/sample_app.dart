@@ -31,6 +31,7 @@ class _SampleAppState extends State<SampleApp> {
       brand: 'binary',
       endpoint: 'frontend.binaryws.com',
     ));
+
     _activeSymbolsBloc = ActiveSymbolsBloc();
     _availableContractsBloc = AvailableContractsBloc(_activeSymbolsBloc);
   }
@@ -75,10 +76,14 @@ class _SampleAppState extends State<SampleApp> {
                     Expanded(flex: 2, child: PriceProposalWidget()),
                   ],
                 );
-              } else if (state is api_connection.InitialConnectionState) {
+              } else if (state is api_connection.InitialConnectionState ||
+                  state is api_connection.Connecting) {
                 return _buildCenterText('Connecting...');
               } else if (state is api_connection.ConnectionError) {
                 return _buildCenterText('Connection Error\n${state.error}');
+              } else if (state is api_connection.Disconnected ||
+                  state is api_connection.Reconnecting) {
+                return _buildCenterText('Reconnecting...');
               }
               return Container();
             },

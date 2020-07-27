@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:rxdart/rxdart.dart';
 import 'package:bloc/bloc.dart';
 
 import 'package:flutter_deriv_api/api/common/active_symbols/active_symbols.dart';
@@ -26,6 +27,16 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
 
   @override
   TicksState get initialState => TicksLoading();
+
+  @override
+  Stream<Transition<TicksEvent, TicksState>> transformEvents(
+    Stream<TicksEvent> events,
+    TransitionFunction<TicksEvent, TicksState> transitionFn,
+  ) =>
+      super.transformEvents(
+        events.debounceTime(const Duration(milliseconds: 500)),
+        transitionFn,
+      );
 
   @override
   Stream<TicksState> mapEventToState(

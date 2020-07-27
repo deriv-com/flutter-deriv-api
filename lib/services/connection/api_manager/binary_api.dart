@@ -113,7 +113,7 @@ class BinaryAPI extends BaseAPI {
 
   @override
   void addToChannel(Map<String, dynamic> request) {
-    _webSocketChannel.sink.add(utf8.encode(jsonEncode(request)));
+    _webSocketChannel?.sink?.add(utf8.encode(jsonEncode(request)));
   }
 
   @override
