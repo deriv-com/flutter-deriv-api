@@ -131,7 +131,6 @@ void main() {
           contactInfo: 'contract information',
           defaultAdvertDescription: 'default advert description',
           isListed: 1,
-          name: 'John Doe',
           paymentInfo: 'payment information',
         ),
       );
