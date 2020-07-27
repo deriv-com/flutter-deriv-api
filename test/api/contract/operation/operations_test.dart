@@ -1,3 +1,4 @@
+import 'dart:developer' as dev;
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
@@ -296,7 +297,7 @@ void main() {
             'CALL_R_100_50_1587533920_1587533980_S10P_0');
         expect(openContract.status, ContractStatus.open);
       } on ContractOperationException catch (e) {
-        print(e.message);
+        dev.log(e.message);
       }
     });
 
