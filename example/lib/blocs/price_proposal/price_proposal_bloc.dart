@@ -34,7 +34,7 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
     TransitionFunction<PriceProposalEvent, PriceProposalState> transitionFn,
   ) =>
       super.transformEvents(
-        events.debounceTime(const Duration(milliseconds: 500)),
+        events.debounceTime(const Duration(milliseconds: 200)),
         transitionFn,
       );
 

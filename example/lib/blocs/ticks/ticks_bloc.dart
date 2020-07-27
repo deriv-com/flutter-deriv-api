@@ -34,7 +34,7 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
     TransitionFunction<TicksEvent, TicksState> transitionFn,
   ) =>
       super.transformEvents(
-        events.debounceTime(const Duration(milliseconds: 500)),
+        events.debounceTime(const Duration(milliseconds: 200)),
         transitionFn,
       );
 
