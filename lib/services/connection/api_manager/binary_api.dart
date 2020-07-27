@@ -61,7 +61,6 @@ class BinaryAPI implements BaseAPI {
     );
 
     dev.log('connecting to $uri.');
-    print('connecting to $uri.');
 
     final Completer<bool> connectionCompleter = Completer<bool>();
 
@@ -71,14 +70,14 @@ class BinaryAPI implements BaseAPI {
     _webSocketListener =
         _webSocketChannel // .cast<String>().transform(utf8.decode)
             .stream
-            .map<Map<String, dynamic>>((Object str) => jsonDecode(str))
+            .map<Map<String, dynamic>>((Object result) => jsonDecode(result))
             .listen(
               (Map<String, dynamic> message) =>
                   _handleResponse(connectionCompleter, message),
               onError: (Object error) =>
-                  print('the web socket connection is closed: $error.'),
+                  dev.log('the web socket connection is closed: $error.'),
               onDone: () async {
-                print('web socket is closed.');
+                dev.log('web socket is closed.');
 
                 _connected = false;
 
@@ -88,12 +87,12 @@ class BinaryAPI implements BaseAPI {
               },
             );
 
-    print('send initial message.');
+    dev.log('send initial message.');
 
     await call(request: const PingRequest());
     await connectionCompleter.future;
 
-    print('web socket is connected.');
+    dev.log('web socket is connected.');
 
     if (onOpen != null) {
       onOpen();
@@ -172,25 +171,25 @@ class BinaryAPI implements BaseAPI {
       // Make sure that the received message is a map and it's parsable otherwise it throws an exception
       final Map<String, dynamic> message = Map<String, dynamic>.from(response);
 
-      print('and we cast to: ${message.runtimeType}');
+      dev.log('and we cast to: ${message.runtimeType}');
 
       if (!_connected) {
-        print('web socket is connected.');
+        dev.log('web socket is connected.');
 
         _connected = true;
         connectionCompleter.complete(true);
       }
 
-      print('api response: $message.');
-      print('check for req_id in received message.');
+      dev.log('api response: $message.');
+      dev.log('check for req_id in received message.');
 
       if (message.containsKey('req_id')) {
-        print('have req_id in received message:');
-        print(message['req_id'].runtimeType);
+        dev.log('have req_id in received message:');
+        dev.log(message['req_id'].runtimeType.toString());
 
         final int requestId = message['req_id'];
 
-        print('have request id: $requestId.');
+        dev.log('have request id: $requestId.');
 
         if (_callManager?.contains(requestId) ?? false) {
           _callManager.handleResponse(
@@ -203,15 +202,15 @@ class BinaryAPI implements BaseAPI {
             response: message,
           );
         } else {
-          print(
+          dev.log(
             'this has a request id, but does not match anything in our pending queue.',
           );
         }
       } else {
-        print('no req_id, ignoring.');
+        dev.log('no req_id, ignoring.');
       }
     } on Exception catch (e) {
-      print('failed to process $response - $e');
+      dev.log('failed to process $response - $e', error: e);
     }
   }
 }
