@@ -13,6 +13,7 @@ class ContractUpdateHistoryRequest extends Request {
   const ContractUpdateHistoryRequest({
     @required this.contractId,
     this.contractUpdateHistory = 1,
+    this.limit,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -31,6 +32,9 @@ class ContractUpdateHistoryRequest extends Request {
   /// Must be `1`
   final int contractUpdateHistory;
 
+  /// [Optional] Maximum number of historical updates to receive.
+  final num limit;
+
   /// Converts an instance to JSON
   @override
   Map<String, dynamic> toJson() => _$ContractUpdateHistoryRequestToJson(this);
@@ -40,6 +44,7 @@ class ContractUpdateHistoryRequest extends Request {
   ContractUpdateHistoryRequest copyWith({
     int contractId,
     int contractUpdateHistory,
+    num limit,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -47,6 +52,7 @@ class ContractUpdateHistoryRequest extends Request {
         contractId: contractId ?? this.contractId,
         contractUpdateHistory:
             contractUpdateHistory ?? this.contractUpdateHistory,
+        limit: limit ?? this.limit,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

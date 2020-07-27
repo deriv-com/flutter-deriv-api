@@ -13,7 +13,6 @@ class P2pAdvertiserUpdateRequest extends Request {
     this.contactInfo,
     this.defaultAdvertDescription,
     this.isListed,
-    this.name,
     this.p2pAdvertiserUpdate = 1,
     this.paymentInfo,
     Map<String, dynamic> passthrough,
@@ -37,9 +36,6 @@ class P2pAdvertiserUpdateRequest extends Request {
   /// [Optional] Used to set if the advertiser's adverts could be listed. When `0`, adverts won't be listed regardless of they are active or not. This doesn't change the `is_active` of each individual advert.
   final int isListed;
 
-  /// [Optional] The advertiser's displayed name.
-  final String name;
-
   /// Must be 1
   final int p2pAdvertiserUpdate;
 
@@ -56,7 +52,6 @@ class P2pAdvertiserUpdateRequest extends Request {
     String contactInfo,
     String defaultAdvertDescription,
     int isListed,
-    String name,
     int p2pAdvertiserUpdate,
     String paymentInfo,
     Map<String, dynamic> passthrough,
@@ -67,7 +62,6 @@ class P2pAdvertiserUpdateRequest extends Request {
         defaultAdvertDescription:
             defaultAdvertDescription ?? this.defaultAdvertDescription,
         isListed: isListed ?? this.isListed,
-        name: name ?? this.name,
         p2pAdvertiserUpdate: p2pAdvertiserUpdate ?? this.p2pAdvertiserUpdate,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         passthrough: passthrough ?? this.passthrough,

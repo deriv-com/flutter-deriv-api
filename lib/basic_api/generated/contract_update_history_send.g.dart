@@ -11,6 +11,7 @@ ContractUpdateHistoryRequest _$ContractUpdateHistoryRequestFromJson(
   return ContractUpdateHistoryRequest(
     contractId: json['contract_id'] as int,
     contractUpdateHistory: json['contract_update_history'] as int,
+    limit: json['limit'] as num,
     passthrough: json['passthrough'] as Map<String, dynamic>,
     reqId: json['req_id'] as int,
   );
@@ -23,4 +24,5 @@ Map<String, dynamic> _$ContractUpdateHistoryRequestToJson(
       'req_id': instance.reqId,
       'contract_id': instance.contractId,
       'contract_update_history': instance.contractUpdateHistory,
+      'limit': instance.limit,
     };
