@@ -11,30 +11,30 @@ void main() {
 
     tearDownAll(() => connectionBloc.close());
 
-    blocTest<ConnectionBloc, ConnectionEvent, ConnectionState>(
+    blocTest<ConnectionBloc, ConnectionState>(
       'Emits [Connect] Test.',
-      build: () async => connectionBloc,
+      build: () => connectionBloc,
       act: (ConnectionBloc bloc) async => bloc.add(Connect()),
-      expect: <dynamic>[isA<Connected>()],
+      expect: <dynamic>[isA<Connected>(), isA<Connected>()],
     );
 
-    blocTest<ConnectionBloc, ConnectionEvent, ConnectionState>(
+    blocTest<ConnectionBloc, ConnectionState>(
       'Emits [FetchServerTime] Test.',
-      build: () async => connectionBloc,
+      build: () => connectionBloc,
       act: (ConnectionBloc bloc) async => bloc.add(FetchServerTime()),
       expect: <dynamic>[],
     );
 
-    blocTest<ConnectionBloc, ConnectionEvent, ConnectionState>(
+    blocTest<ConnectionBloc, ConnectionState>(
       'Emits [Disconnect] Test.',
-      build: () async => connectionBloc,
+      build: () => connectionBloc,
       act: (ConnectionBloc bloc) async => bloc.add(Disconnect()),
       expect: <dynamic>[],
     );
 
-    blocTest<ConnectionBloc, ConnectionEvent, ConnectionState>(
+    blocTest<ConnectionBloc, ConnectionState>(
       'Emits [Reconnect] Test.',
-      build: () async => connectionBloc,
+      build: () => connectionBloc,
       act: (ConnectionBloc bloc) async => bloc.add(Reconnect()),
       expect: <dynamic>[],
     );
