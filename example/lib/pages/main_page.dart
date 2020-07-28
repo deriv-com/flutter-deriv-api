@@ -26,12 +26,10 @@ class _MainPageState extends State<MainPage> {
 
   @override
   void dispose() {
-    try {
-      _availableContractsBloc.close();
-      _activeSymbolsBloc.close();
-    } finally {
-      super.dispose();
-    }
+    _availableContractsBloc.close();
+    _activeSymbolsBloc.close();
+
+    super.dispose();
   }
 
   @override

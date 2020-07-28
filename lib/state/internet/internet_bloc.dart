@@ -45,9 +45,7 @@ class InternetBloc extends Bloc<InternetEvent, InternetState> {
 
     if (event is Offline) {
       yield Disconnected();
-    } else if (event is SocketDisconnected) {
-      yield Disconnected(isWebSocketClosed: true);
-    } else if (event is Online || event is SocketConnected) {
+    } else if (event is Online) {
       yield Connected();
     }
   }

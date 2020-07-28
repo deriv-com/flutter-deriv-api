@@ -27,11 +27,9 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
 
   @override
   void dispose() {
-    try {
-      _priceProposalBloc.close();
-    } finally {
-      super.dispose();
-    }
+    _priceProposalBloc.close();
+
+    super.dispose();
   }
 
   // Duration units are hardcoded in this example.

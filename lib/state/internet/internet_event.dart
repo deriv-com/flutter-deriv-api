@@ -14,15 +14,3 @@ class Online extends InternetEvent {
   @override
   String toString() => 'InternetEvent: Online';
 }
-
-/// SocketConnected
-class SocketConnected extends InternetEvent {
-  @override
-  String toString() => 'InternetEvent: SocketConnected';
-}
-
-/// SocketDisconnected
-class SocketDisconnected extends InternetEvent {
-  @override
-  String toString() => 'InternetEvent: SocketDisconnected';
-}
