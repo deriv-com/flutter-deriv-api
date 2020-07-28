@@ -1,19 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_deriv_api/api/p2p/p2p_order/p2p_order.dart';
-import 'package:flutter_deriv_api/api/p2p/p2p_order/p2p_order_list.dart';
+import 'package:flutter_deriv_api/api/api_initializer.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_advert/p2p_advert.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_advertiser/p2p_advertiser.dart';
-import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/api/p2p/p2p_order/p2p_order.dart';
+import 'package:flutter_deriv_api/api/p2p/p2p_order/p2p_order_list.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  setUpAll(() {
-    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
-  });
+  setUpAll(() => APIInitializer().initialize(true));
 
   group('P2P Order Group ->', () {
     test('Create Order Test', () async {

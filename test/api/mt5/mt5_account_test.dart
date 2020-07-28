@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/mt5/mt5_account.dart';
 import 'package:flutter_deriv_api/api/mt5/mt5_deposit.dart';
@@ -9,13 +10,9 @@ import 'package:flutter_deriv_api/api/mt5/mt5_password_reset.dart';
 import 'package:flutter_deriv_api/api/mt5/mt5_settings.dart';
 import 'package:flutter_deriv_api/api/mt5/mt5_withdrawal.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  setUpAll(() {
-    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
-  });
+  setUpAll(() => APIInitializer().initialize(true));
 
   group('MT5 Account Group ->', () {
     test('Create New MT5 Account Test', () async {

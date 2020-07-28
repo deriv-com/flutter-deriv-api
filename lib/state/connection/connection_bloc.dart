@@ -3,11 +3,11 @@ import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/connection/connection_service.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/state/internet/internet_bloc.dart'
     as internet_bloc;
 
@@ -20,9 +20,10 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   /// Initializes
   ConnectionBloc(ConnectionInformation connectionInformation) {
     ConnectionService().initialize();
+    APIInitializer().initialize(false, _uniqueKey);
+
     _connectionInformation = connectionInformation;
     _internetBloc = internet_bloc.InternetBloc();
-    ModuleContainer().initialize(Injector.getInjector(), uniqueKey: _uniqueKey);
     _api ??= Injector.getInjector().get<BaseAPI>();
 
     _connectWebSocket();
