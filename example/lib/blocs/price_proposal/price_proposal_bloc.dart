@@ -1,5 +1,4 @@
-import 'dart:async';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
