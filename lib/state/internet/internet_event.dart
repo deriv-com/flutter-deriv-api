@@ -6,23 +6,23 @@ abstract class InternetEvent {}
 /// Offline
 class Offline extends InternetEvent {
   @override
-  String toString() => 'InternetEvent(Offline)';
+  String toString() => 'InternetEvent: Offline';
 }
 
 /// Online
 class Online extends InternetEvent {
   @override
-  String toString() => 'InternetEvent(Online)';
+  String toString() => 'InternetEvent: Online';
 }
 
 /// SocketConnected
 class SocketConnected extends InternetEvent {
   @override
-  String toString() => 'InternetEvent(SocketConnected)';
+  String toString() => 'InternetEvent: SocketConnected';
 }
 
 /// SocketDisconnected
 class SocketDisconnected extends InternetEvent {
   @override
-  String toString() => 'InternetEvent(SocketDisconnected)';
+  String toString() => 'InternetEvent: SocketDisconnected';
 }

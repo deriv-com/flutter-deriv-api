@@ -6,7 +6,7 @@ abstract class ServerTimeState {}
 /// Initial state
 class InitialServerTime extends ServerTimeState {
   @override
-  String toString() => 'InitialServerTime';
+  String toString() => 'ServerTimeState: InitialServerTime';
 }
 
 /// Shows that we are in the process of fetching server time
@@ -15,7 +15,7 @@ class FetchingServerTime extends ServerTimeState {
   FetchingServerTime();
 
   @override
-  String toString() => 'FetchingServerTime';
+  String toString() => 'ServerTimeState: FetchingServerTime';
 }
 
 /// Server time fetched state
@@ -41,7 +41,7 @@ class ServerTimeFetched extends ServerTimeState {
 
   @override
   String toString() =>
-      'ServerTimeFetched(serverTime: $serverTime, timeDifference: $timeDifference)';
+      'ServerTimeState: ServerTimeFetched(serverTime: $serverTime, timeDifference: $timeDifference)';
 }
 
 /// Server time error state
@@ -53,5 +53,5 @@ class ServerTimeError extends ServerTimeState {
   final String error;
 
   @override
-  String toString() => 'ServerTimeError($error)';
+  String toString() => 'ServerTimeState: ServerTimeError(error: $error)';
 }

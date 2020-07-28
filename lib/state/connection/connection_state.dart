@@ -1,13 +1,12 @@
 part of 'connection_bloc.dart';
 
 /// Connection States
-@immutable
 abstract class ConnectionState {}
 
 /// Initial state
 class InitialConnectionState extends ConnectionState {
   @override
-  String toString() => 'InitialConnectionState';
+  String toString() => 'ConnectionState: InitialConnectionState';
 }
 
 /// shows that we are in the process of connecting
@@ -46,5 +45,5 @@ class ConnectionError extends ConnectionState {
   final String error;
 
   @override
-  String toString() => 'ConnectionState: Error $error';
+  String toString() => 'ConnectionState: Error(error: $error)';
 }

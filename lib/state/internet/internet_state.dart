@@ -4,9 +4,9 @@ part of 'internet_bloc.dart';
 abstract class InternetState {}
 
 /// Initial Internet state
-class InternetStateUninitialized extends InternetState {
+class InitialInternetState extends InternetState {
   @override
-  String toString() => 'InternetStateUninitialized';
+  String toString() => 'InternetState: InitialInternetState';
 }
 
 /// Internet connected

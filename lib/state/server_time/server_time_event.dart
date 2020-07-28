@@ -6,5 +6,5 @@ abstract class ServerTimeEvent {}
 /// When added, bloc will fetch the server time
 class FetchServerTime extends ServerTimeEvent {
   @override
-  String toString() => 'ServerTimeEvent(FetchServerTime)';
+  String toString() => 'ServerTimeEvent: FetchServerTime';
 }

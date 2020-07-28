@@ -1,7 +1,6 @@
 part of 'connection_bloc.dart';
 
 /// Connection Events
-@immutable
 abstract class ConnectionEvent {}
 
 /// add this event when we are connected to the WS
@@ -10,25 +9,25 @@ class Connect extends ConnectionEvent {
   Connect();
 
   @override
-  String toString() => 'ConnectionEvent(Connect)';
+  String toString() => 'ConnectionEvent: Connect';
 }
 
 /// add this when want to disconnect WS
 class Disconnect extends ConnectionEvent {
   @override
-  String toString() => 'ConnectionEvent(Disconnect)';
+  String toString() => 'ConnectionEvent: Disconnect';
 }
 
 /// reconnect to WS
 class Reconnect extends ConnectionEvent {
   @override
-  String toString() => 'ConnectionEvent(Reconnect)';
+  String toString() => 'ConnectionEvent: Reconnect';
 }
 
 /// DisplayConnectionError
 class DisplayConnectionError extends ConnectionEvent {
   @override
-  String toString() => 'ConnectionEvent(DisplayConnectionError)';
+  String toString() => 'ConnectionEvent: DisplayConnectionError';
 }
 
 /// When [ConnectionInformation] of the bloc changes
@@ -40,5 +39,5 @@ class Reconfigure extends ConnectionEvent {
   final ConnectionInformation connectionInformation;
 
   @override
-  String toString() => 'ConnectionEvent(Reconfigure)';
+  String toString() => 'ConnectionEvent: Reconfigure';
 }
