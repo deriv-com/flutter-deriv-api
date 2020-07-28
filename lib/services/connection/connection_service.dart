@@ -27,6 +27,7 @@ class ConnectionService {
 
   Future<bool> _checkConnection(ConnectivityResult result) async {
     final bool previousConnection = _hasConnection;
+
     switch (result) {
       case ConnectivityResult.wifi:
       case ConnectivityResult.mobile:
@@ -37,7 +38,6 @@ class ConnectionService {
         break;
       default:
         _hasConnection = false;
-        break;
     }
 
     if (previousConnection != _hasConnection) {

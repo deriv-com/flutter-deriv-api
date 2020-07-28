@@ -42,6 +42,7 @@ class InternetBloc extends Bloc<InternetEvent, InternetState> {
   @override
   Stream<InternetState> mapEventToState(InternetEvent event) async* {
     dev.log(event.toString());
+
     if (event is Offline) {
       yield Disconnected();
     } else if (event is SocketDisconnected) {
