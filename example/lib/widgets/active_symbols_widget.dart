@@ -29,9 +29,11 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
 
   @override
   void dispose() {
-    _ticksBloc.close();
-
-    super.dispose();
+    try {
+      _ticksBloc.close();
+    } finally {
+      super.dispose();
+    }
   }
 
   @override

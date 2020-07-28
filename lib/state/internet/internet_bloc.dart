@@ -31,7 +31,7 @@ class InternetBloc extends Bloc<InternetEvent, InternetState> {
   StreamSubscription<bool> _connectivityListener;
 
   @override
-  InternetState get initialState => InitialState();
+  InternetState get initialState => InternetStateUninitialized();
 
   @override
   Future<void> close() {

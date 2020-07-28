@@ -1,13 +1,12 @@
 part of 'server_time_bloc.dart';
 
 /// Server time states
-@immutable
 abstract class ServerTimeState {}
 
 /// Initial state
-class InitialServerTimeState extends ServerTimeState {
+class InitialServerTime extends ServerTimeState {
   @override
-  String toString() => 'InitialServerTimeState';
+  String toString() => 'InitialServerTime';
 }
 
 /// Shows that we are in the process of fetching server time

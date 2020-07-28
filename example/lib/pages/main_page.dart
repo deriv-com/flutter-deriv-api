@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
+
 import 'package:flutter_deriv_api_example/blocs/active_symbols/active_symbols_bloc.dart';
 import 'package:flutter_deriv_api_example/blocs/available_contracts/available_contracts_bloc.dart';
 import 'package:flutter_deriv_api_example/widgets/active_symbols_widget.dart';
@@ -25,10 +26,12 @@ class _MainPageState extends State<MainPage> {
 
   @override
   void dispose() {
-    _availableContractsBloc.close();
-    _activeSymbolsBloc.close();
-
-    super.dispose();
+    try {
+      _availableContractsBloc.close();
+      _activeSymbolsBloc.close();
+    } finally {
+      super.dispose();
+    }
   }
 
   @override
