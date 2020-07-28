@@ -128,7 +128,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     );
 
     if (response.error == null) {
-      for (int id in requestIds) {
+      for (final int id in requestIds) {
         await _removePendingRequest(id);
       }
     }

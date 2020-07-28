@@ -6,10 +6,10 @@ import 'top_snack_bar.dart';
 class TopSnackBarWidget extends StatefulWidget {
   /// Initializes
   const TopSnackBarWidget({
-    Key key,
     @required this.child,
     @required this.snackAnimationController,
     @required this.contextWidth,
+    Key key,
     this.dismissible,
     this.duration,
   }) : super(key: key);

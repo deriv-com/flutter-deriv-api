@@ -104,8 +104,6 @@ import 'mock_data/user/verify_email_response.dart';
 
 /// This class is for handling mock API connection and calling mock APIs
 class MockAPI implements BaseAPI {
-  static const int _responseDelayMilliseconds = 0;
-
   @override
   Future<void> connect(
     ConnectionInformation connectionInformation, {
@@ -147,7 +145,7 @@ class MockAPI implements BaseAPI {
 
   Future<Response> _getFutureResponse(Request request) async =>
       Future<Response>.delayed(
-        const Duration(milliseconds: _responseDelayMilliseconds),
+        const Duration(),
         () => getResponseByMsgType(
           jsonDecode(_getResponse(request.msgType)),
         ),
@@ -155,7 +153,7 @@ class MockAPI implements BaseAPI {
 
   Stream<Response> _getStreamResponse(Request request) =>
       Stream<Response>.periodic(
-        const Duration(milliseconds: _responseDelayMilliseconds),
+        const Duration(),
         (int computationCount) => getResponseByMsgType(
           jsonDecode(_getResponse(request.msgType)),
         ),

@@ -276,8 +276,8 @@ class P2PAdvert extends P2PAdvertModel {
   Future<P2PAdvert> update({bool delete, bool isActive}) => updateAdvert(
         P2pAdvertUpdateRequest(
           id: id,
-          delete: getInt(delete ?? false),
-          isActive: getInt(isActive ?? this.isActive),
+          delete: getInt(value: delete ?? false),
+          isActive: getInt(value: isActive ?? this.isActive),
         ),
       );
 

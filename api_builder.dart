@@ -195,21 +195,20 @@ class APIBuilder extends Builder {
       ).join('\n');
 
   String _getPropertyType(BuildStep buildStep, JsonSchema property) {
-      if (property.oneOf.isNotEmpty) {
-        return 'dynamic';
+    if (property.oneOf.isNotEmpty) {
+      return 'dynamic';
+    } else {
+      final String schemaType = _getSchemaType(property);
+
+      if (schemaType == 'array') {
+        // Some types aren't specified - forget_all for example
+        final String itemType = property.items?.type?.toString() ?? 'undefined';
+
+        return 'List<${typeMap[itemType]}>';
       } else {
-        final String schemaType = _getSchemaType(property);
-
-        if (schemaType == 'array') {
-          // Some types aren't specified - forget_all for example
-          final String itemType =
-              property.items?.type?.toString() ?? 'undefined';
-
-          return 'List<${typeMap[itemType]}>';
-        } else {
-          return typeMap[schemaType];
-        }
+        return typeMap[schemaType];
       }
+    }
   }
 
   String _getSchemaType(JsonSchema property) => property.typeList?.length == 2
@@ -314,7 +313,7 @@ class APIBuilder extends Builder {
     List<String> properties,
   ) {
     if (schemaType == 'send') {
-      for (String key in properties) {
+      for (final String key in properties) {
         final JsonSchema property = schema.properties[key];
 
         if (property.typeList?.isNotEmpty ?? false) {
