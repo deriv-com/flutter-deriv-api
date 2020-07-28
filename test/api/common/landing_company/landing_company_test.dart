@@ -1,16 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/common/landing_company/landing_company.dart';
 import 'package:flutter_deriv_api/api/common/models/landing_company_detail_model.dart';
 import 'package:flutter_deriv_api/api/common/models/landing_company_fields_info_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  setUpAll(() {
-    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
-  });
+  setUpAll(() => APIInitializer().initialize(true));
 
   group('Landing Company Group ->', () {
     test('Fetch Landing Companies Test', () async {

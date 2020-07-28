@@ -2,13 +2,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/account_settings/account_settings.dart';
 import 'package:flutter_deriv_api/api/account/models/set_account_setting_model.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 
 void main() {
-  setUpAll(() {
-    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
-  });
+  setUpAll(() => APIInitializer().initialize(true));
 
   group('Account Setting Group ->', () {
     test('Fetch Account Settings Test', () async {

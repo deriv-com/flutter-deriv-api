@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/app/app.dart';
 import 'package:flutter_deriv_api/api/app/app_delete.dart';
 import 'package:flutter_deriv_api/api/app/app_markup_details.dart';
@@ -8,14 +9,10 @@ import 'package:flutter_deriv_api/api/app/app_update.dart';
 import 'package:flutter_deriv_api/api/app/revoke_oauth_app.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  setUpAll(() {
-    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
-  });
+  setUpAll(() => APIInitializer().initialize(true));
 
   group('Application Group ->', () {
     test('Fetch Application Details Test', () async {
