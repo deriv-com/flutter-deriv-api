@@ -1,15 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/user/financial_assessment/financial_assessment.dart';
 import 'package:flutter_deriv_api/api/user/financial_assessment/set_financial_assessment.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  setUpAll(() {
-    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
-  });
+  setUpAll(() => APIInitializer().initialize(true));
 
   group('Financial Assessment Group ->', () {
     test('Fetch Assessment Test', () async {
@@ -56,7 +53,14 @@ void main() {
     test('Set Assessment Test', () async {
       final SetFinancialAssessment financialAssessmentModel =
           await SetFinancialAssessment.setAssessment(
-        const SetFinancialAssessmentRequest(),
+        const SetFinancialAssessmentRequest(
+          educationLevel: 'Primary',
+          estimatedWorth: 'Less than \$100,000',
+          netIncome: 'Less than \$25,000',
+          incomeSource: 'Salaried Employee',
+          occupation: 'Air Crew Officer',
+          employmentIndustry: 'Construction',
+        ),
       );
 
       expect(financialAssessmentModel.cfdScore, 926);

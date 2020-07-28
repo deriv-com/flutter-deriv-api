@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/common/models/country_model.dart';
 import 'package:flutter_deriv_api/api/common/models/payment_agent_model.dart';
 import 'package:flutter_deriv_api/api/common/payment_agent/payment_agent_list.dart';
@@ -7,13 +8,9 @@ import 'package:flutter_deriv_api/api/common/payment_agent/payment_agent_transfe
 import 'package:flutter_deriv_api/api/common/payment_agent/payment_agent_withdraw.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  setUpAll(() {
-    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
-  });
+  setUpAll(() => APIInitializer().initialize(true));
 
   group('Payment Agent Group ->', () {
     test('Fetch Payment Agent List Test', () async {
