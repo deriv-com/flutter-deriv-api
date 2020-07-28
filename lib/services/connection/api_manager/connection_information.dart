@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
+
 /// Connection information class
 class ConnectionInformation {
   /// Initializes
   ConnectionInformation({
-    this.appId = '1089',
-    this.brand = 'deriv',
-    this.endpoint = 'frontend.binaryws.com',
+    @required this.appId,
+    @required this.brand,
+    @required this.endpoint,
     this.language = 'en',
   });
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/state/connection/connection_bloc.dart'
     as api_connection;
 import 'package:flutter_deriv_api_example/widgets/contracts_type_widget.dart';
@@ -25,7 +26,13 @@ class _SampleAppState extends State<SampleApp> {
   void initState() {
     super.initState();
 
-    _connectionBloc = api_connection.ConnectionBloc();
+    _connectionBloc = api_connection.ConnectionBloc(
+      ConnectionInformation(
+        appId: '1089',
+        brand: 'deriv',
+        endpoint: 'frontend.binaryws.com',
+      ),
+    );
     _activeSymbolsBloc = ActiveSymbolsBloc();
     _availableContractsBloc = AvailableContractsBloc(_activeSymbolsBloc);
   }

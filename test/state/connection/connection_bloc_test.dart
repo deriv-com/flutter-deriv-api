@@ -1,13 +1,22 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
 
 void main() {
   group('Connection Bloc =>', () {
     ConnectionBloc connectionBloc;
 
-    setUpAll(() => connectionBloc = ConnectionBloc());
+    setUpAll(
+      () => connectionBloc = ConnectionBloc(
+        ConnectionInformation(
+          appId: '1089',
+          brand: 'deriv',
+          endpoint: 'frontend.binaryws.com',
+        ),
+      ),
+    );
 
     tearDownAll(() => connectionBloc.close());
 
