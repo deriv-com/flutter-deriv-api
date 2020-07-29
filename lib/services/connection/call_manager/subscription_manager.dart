@@ -105,9 +105,8 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
           'message': 'No SubscriptionId found for this subscription!'
         },
       );
-    }
-
-    if (onlyCurrentListener && pendingRequests[requestId].listenersCount > 1) {
+    } else if (onlyCurrentListener &&
+        pendingRequests[requestId].listenersCount > 1) {
       pendingRequests[requestId] = _decreaseListenersCount(
         pendingRequests[requestId],
       );
