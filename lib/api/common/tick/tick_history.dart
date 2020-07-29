@@ -65,7 +65,8 @@ class TickHistory extends TickHistoryModel {
   }) async {
     if (subscribe) {
       final Stream<Response> responseStream = _api.subscribe(request: request);
-      final Response firstResponse = await responseStream.first;
+      final Response firstResponse =
+          await responseStream.first.timeout(const Duration(seconds: 5));
 
       _checkException(firstResponse);
 

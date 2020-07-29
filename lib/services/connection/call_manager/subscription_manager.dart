@@ -45,6 +45,10 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
 
     // Broadcasts the new message into the stream
     getSubscriptionStream(requestId)?.add(getResponseByMsgType(response));
+
+    if (response.containsKey('error')) {
+      _removePendingRequest(requestId);
+    }
   }
 
   @override
@@ -85,8 +89,20 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     @required String subscriptionId,
     bool onlyCurrentListener = true,
   }) async {
-    final int requestId = pendingRequests.keys
-        .singleWhere((int id) => getSubscriptionId(id) == subscriptionId);
+    final int requestId = pendingRequests.keys.singleWhere(
+        (int id) => getSubscriptionId(id) == subscriptionId,
+        orElse: () => -1);
+
+    if (requestId == -1) {
+      return const ForgetResponse(
+        forget: 1,
+        msgType: 'forget',
+        error: <String, dynamic>{
+          'code': 'NoSubscriptionId',
+          'message': 'No SubscriptionId found for this subscription!'
+        },
+      );
+    }
 
     if (onlyCurrentListener && pendingRequests[requestId].listenersCount > 1) {
       pendingRequests[requestId] = _decreaseListenersCount(
@@ -137,7 +153,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   }
 
   Future<void> _removePendingRequest(int requestId) async {
-    await getSubscriptionStream(requestId).closeStream();
+    await getSubscriptionStream(requestId)?.closeStream();
 
     pendingRequests.remove(requestId);
   }
