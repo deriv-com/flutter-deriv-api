@@ -23,6 +23,7 @@ dependencies:
   web_socket_channel: ^1.0.15
   equatable: ^1.1.1
   recase: ^2.0.1
+  inflection2: ^0.4.3
   rxdart: ^0.24.1
 
 dev_dependencies:

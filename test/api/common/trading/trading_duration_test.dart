@@ -1,17 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/common/models/duration_model.dart';
 import 'package:flutter_deriv_api/api/common/models/symbol_model.dart';
 import 'package:flutter_deriv_api/api/common/models/trading_duration_data_model.dart';
 import 'package:flutter_deriv_api/api/common/trading/trading_duration.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  setUp(() {
-    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
-  });
+  setUp(() => APIInitializer().initialize(true));
 
   test('Fetch Trading Duration Test', () async {
     final List<TradingDuration> tradeDuration =

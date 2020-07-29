@@ -22,6 +22,7 @@ class SetSettingsRequest extends Request {
     this.emailConsent,
     this.firstName,
     this.lastName,
+    this.nonPepDeclaration,
     this.phone,
     this.placeOfBirth,
     this.requestProfessionalStatus,
@@ -80,6 +81,9 @@ class SetSettingsRequest extends Request {
   /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
   final String lastName;
 
+  /// [Optional] Indicates client's self-declaration of not being a PEP/RCA (Politically Exposed Person/Relatives and Close Associates). Effective for real accounts only.
+  final int nonPepDeclaration;
+
   /// [Optional] Note: not applicable for virtual account. Required field for real money account. Starting with `+` followed by 8-35 digits, allowing hyphens or space.
   final String phone;
 
@@ -129,6 +133,7 @@ class SetSettingsRequest extends Request {
     int emailConsent,
     String firstName,
     String lastName,
+    int nonPepDeclaration,
     String phone,
     String placeOfBirth,
     int requestProfessionalStatus,
@@ -155,6 +160,7 @@ class SetSettingsRequest extends Request {
         emailConsent: emailConsent ?? this.emailConsent,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
+        nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,
         phone: phone ?? this.phone,
         placeOfBirth: placeOfBirth ?? this.placeOfBirth,
         requestProfessionalStatus:

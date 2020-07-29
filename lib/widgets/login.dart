@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
@@ -73,28 +74,29 @@ class _LoginScreenState extends State<LoginScreen> {
 
     _onStateChanged =
         webview.onStateChanged.listen((final WebViewStateChanged state) {
-      print('onStateChanged: ${state.type} ${state.url}');
+      dev.log('onStateChanged: ${state.type} ${state.url}');
     });
 
     // Add a listener to on url changed
     _onUrlChanged = webview.onUrlChanged.listen((final String url) {
       if (mounted) {
         setState(() {
-          print('URL changed: $url');
+          dev.log('URL changed: $url');
           if (url.startsWith(redirectURL)) {
             emitURL(url);
 
             // This seems relatively uncontroversial
             webview.close();
           } else {
-            print('Invalid URL detected - $url');
+            dev.log('Invalid URL detected - $url');
             // We're not closing the page here. Why not? Well, maybe there's a useful error message...?
             // If not, the back functionality might do something helpful
           }
         });
       } else {
-        print(
-            'Failure to handle URL event, since this route is not currently mounted');
+        dev.log(
+          'Failure to handle URL event, since this route is not currently mounted',
+        );
       }
     });
   }
@@ -136,9 +138,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
       // At this point, we have a collection of accounts, and presumably something
       // is going to react to that in a suitably-surprised fashion.
-      print('Account list:');
-      for (Account a in accountList) {
-        print('${a.acct} currency ${a.cur} and token ${a.token}');
+      dev.log('Account list:');
+      for (Account account in accountList) {
+        dev.log(
+          '${account.acct} currency ${account.cur} and token ${account.token}',
+        );
       }
 
       // Things we could be doing here!

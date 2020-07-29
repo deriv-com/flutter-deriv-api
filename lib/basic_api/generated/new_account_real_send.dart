@@ -92,7 +92,7 @@ class NewAccountRealRequest extends Request {
   /// Must be `1`
   final int newAccountReal;
 
-  /// [Optional] Indicates client's self-declaration of not being a PEP/RCA.
+  /// [Optional] Indicates client's self-declaration of not being a PEP/RCA (Politically Exposed Person/Relatives and Close Associates).
   final int nonPepDeclaration;
 
   /// [Optional] Starting with `+` followed by 8-35 digits, allowing hyphens or space.

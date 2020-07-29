@@ -1,31 +1,32 @@
 import 'dart:async';
+import 'dart:developer' as dev;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/basic_api/generated/time_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/time_send.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 part 'connection_event.dart';
-
 part 'connection_state.dart';
 
 /// Bringing ConnectionBloc to flutter-deriv-api to simplify the usage of api
 class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   /// Initializes
   ConnectionBloc(this.connectionInformation) {
-    ModuleContainer().initialize(Injector.getInjector());
+    APIInitializer().initialize();
 
     connectWebSocket();
   }
 
   BaseAPI _api;
   Timer _serverTimeInterval;
+
   /// Connection information of WebSocket (endpoint, brand, appId)
   final ConnectionInformation connectionInformation;
 
@@ -43,7 +44,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
         _serverTimeInterval = Timer.periodic(const Duration(seconds: 90),
             (Timer timer) => add(FetchServerTime()));
       } on Exception catch (e) {
-        print(e);
+        dev.log(e.toString(), error: e);
 
         yield ConnectionError(e.toString());
       }
@@ -54,11 +55,11 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
             await _api.call(request: const TimeRequest());
 
         if (timeResponse.error != null) {
-          print('Fetching server time failed: ${timeResponse.error}');
+          dev.log('Fetching server time failed: ${timeResponse.error}');
           throw Exception(timeResponse.error['message']);
         }
 
-        print('Server time is: ${timeResponse.time}');
+        dev.log('Server time is: ${timeResponse.time}');
 
         yield currentState.copyWith(serverTime: getDateTime(timeResponse.time));
       } else if (state is InitialConnectionState) {
@@ -75,7 +76,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
       yield InitialConnectionState();
     } else if (event is Reconnect) {
-      print('Reconnecting ws connection!');
+      dev.log('Reconnecting ws connection!');
 
       // api.close should be always invoked before changing the state otherwise the onDone function which is passed to the run function will be invoked one more time.
       if (state is Connected) {

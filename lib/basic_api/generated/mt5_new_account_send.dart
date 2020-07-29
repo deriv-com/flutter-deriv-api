@@ -70,7 +70,7 @@ class Mt5NewAccountRequest extends Request {
   /// The master password of the account. For validation (length within 8-25 chars, accepts at least 2 out of the following 3 types of characters: uppercase letters, lowercase letters, and numbers). This field is required.
   final String mainPassword;
 
-  /// [Optional] Standard: Variable spreads, High leverage. Advanced: Variable spreads, Medium Leverage, more products.
+  /// [Optional] Financial: Variable spreads, High leverage. Financial STP: Variable spreads, Medium Leverage, more products.
   final String mt5AccountType;
 
   /// Must be `1`
