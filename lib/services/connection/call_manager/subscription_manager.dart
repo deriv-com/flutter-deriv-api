@@ -46,6 +46,8 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     // Broadcasts the new message into the stream
     getSubscriptionStream(requestId)?.add(getResponseByMsgType(response));
 
+    // Removing pending request and closing stream.
+    // Stream contains an error, and we won't get any other responses from this subscription.
     if (response.containsKey('error')) {
       _removePendingRequest(requestId);
     }
@@ -90,8 +92,9 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     bool onlyCurrentListener = true,
   }) async {
     final int requestId = pendingRequests.keys.singleWhere(
-        (int id) => getSubscriptionId(id) == subscriptionId,
-        orElse: () => -1);
+      (int id) => getSubscriptionId(id) == subscriptionId,
+      orElse: () => -1,
+    );
 
     if (requestId == -1) {
       return const ForgetResponse(
