@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_settings_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'set_settings_send.g.dart';
-
-/// JSON conversion for 'set_settings_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Set settings request class
 class SetSettingsRequest extends Request {
   /// Initialize SetSettingsRequest
   const SetSettingsRequest({
@@ -30,7 +27,7 @@ class SetSettingsRequest extends Request {
     this.salutation,
     this.secretAnswer,
     this.secretQuestion,
-    this.setSettings = 1,
+    this.setSettings = true,
     this.taxIdentificationNumber,
     this.taxResidence,
     Map<String, dynamic> passthrough,
@@ -43,7 +40,36 @@ class SetSettingsRequest extends Request {
 
   /// Creates an instance from JSON
   factory SetSettingsRequest.fromJson(Map<String, dynamic> json) =>
-      _$SetSettingsRequestFromJson(json);
+      SetSettingsRequest(
+        accountOpeningReason: json['account_opening_reason'] as String,
+        addressCity: json['address_city'] as String,
+        addressLine1: json['address_line_1'] as String,
+        addressLine2: json['address_line_2'] as String,
+        addressPostcode: json['address_postcode'] as String,
+        addressState: json['address_state'] as String,
+        allowCopiers:
+            json['allow_copiers'] == null ? null : json['allow_copiers'] == 1,
+        citizen: json['citizen'] as String,
+        dateOfBirth: json['date_of_birth'] as String,
+        emailConsent:
+            json['email_consent'] == null ? null : json['email_consent'] == 1,
+        firstName: json['first_name'] as String,
+        lastName: json['last_name'] as String,
+        nonPepDeclaration: json['non_pep_declaration'] as int,
+        phone: json['phone'] as String,
+        placeOfBirth: json['place_of_birth'] as String,
+        requestProfessionalStatus: json['request_professional_status'] as int,
+        residence: json['residence'] as String,
+        salutation: json['salutation'] as String,
+        secretAnswer: json['secret_answer'] as String,
+        secretQuestion: json['secret_question'] as String,
+        setSettings:
+            json['set_settings'] == null ? null : json['set_settings'] == 1,
+        taxIdentificationNumber: json['tax_identification_number'] as String,
+        taxResidence: json['tax_residence'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] Purpose and reason for requesting the account opening. Only applicable for real money account. Required for clients that have not set it yet. Can only be set once.
   final String accountOpeningReason;
@@ -63,8 +89,8 @@ class SetSettingsRequest extends Request {
   /// [Optional] Note: not applicable for virtual account. Optional field for real money account.
   final String addressState;
 
-  /// [Optional] Boolean value 1 or 0, indicating permission to allow others to follow your trades. Note: not applicable for Virtual account. Only allow for real money account.
-  final int allowCopiers;
+  /// [Optional] Boolean value `true` or `false`, indicating permission to allow others to follow your trades. Note: not applicable for Virtual account. Only allow for real money account.
+  final bool allowCopiers;
 
   /// [Optional] Country of legal citizenship, 2-letter country code.
   final String citizen;
@@ -72,8 +98,8 @@ class SetSettingsRequest extends Request {
   /// [Optional] Date of birth format: yyyy-mm-dd (can only be changed on unauthenticated svg accounts).
   final String dateOfBirth;
 
-  /// [Optional] Boolean value 1 or 0, indicating permission to use email address for any contact which may include marketing
-  final int emailConsent;
+  /// [Optional] Boolean value `true` or `false`, indicating permission to use email address for any contact which may include marketing
+  final bool emailConsent;
 
   /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
   final String firstName;
@@ -105,8 +131,8 @@ class SetSettingsRequest extends Request {
   /// [Optional] Accept any value in enum list. Required for new account and existing client details will be used if client opens another account.
   final String secretQuestion;
 
-  /// Must be `1`
-  final int setSettings;
+  /// Must be `true`
+  final bool setSettings;
 
   /// [Optional] Tax identification number. Only applicable for real money account. Required for maltainvest landing company.
   final String taxIdentificationNumber;
@@ -114,9 +140,35 @@ class SetSettingsRequest extends Request {
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for maltainvest landing company.
   final String taxResidence;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$SetSettingsRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'account_opening_reason': accountOpeningReason,
+        'address_city': addressCity,
+        'address_line_1': addressLine1,
+        'address_line_2': addressLine2,
+        'address_postcode': addressPostcode,
+        'address_state': addressState,
+        'allow_copiers': allowCopiers == null ? null : allowCopiers ? 1 : 0,
+        'citizen': citizen,
+        'date_of_birth': dateOfBirth,
+        'email_consent': emailConsent == null ? null : emailConsent ? 1 : 0,
+        'first_name': firstName,
+        'last_name': lastName,
+        'non_pep_declaration': nonPepDeclaration,
+        'phone': phone,
+        'place_of_birth': placeOfBirth,
+        'request_professional_status': requestProfessionalStatus,
+        'residence': residence,
+        'salutation': salutation,
+        'secret_answer': secretAnswer,
+        'secret_question': secretQuestion,
+        'set_settings': setSettings == null ? null : setSettings ? 1 : 0,
+        'tax_identification_number': taxIdentificationNumber,
+        'tax_residence': taxResidence,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -127,10 +179,10 @@ class SetSettingsRequest extends Request {
     String addressLine2,
     String addressPostcode,
     String addressState,
-    int allowCopiers,
+    bool allowCopiers,
     String citizen,
     String dateOfBirth,
-    int emailConsent,
+    bool emailConsent,
     String firstName,
     String lastName,
     int nonPepDeclaration,
@@ -141,7 +193,7 @@ class SetSettingsRequest extends Request {
     String salutation,
     String secretAnswer,
     String secretQuestion,
-    int setSettings,
+    bool setSettings,
     String taxIdentificationNumber,
     String taxResidence,
     Map<String, dynamic> passthrough,

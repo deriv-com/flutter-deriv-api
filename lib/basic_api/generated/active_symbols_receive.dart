@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'active_symbols_receive.g.dart';
-
-/// JSON conversion for 'active_symbols_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Active symbols response class
 class ActiveSymbolsResponse extends Response {
   /// Initialize ActiveSymbolsResponse
   const ActiveSymbolsResponse({
@@ -24,14 +21,29 @@ class ActiveSymbolsResponse extends Response {
 
   /// Creates an instance from JSON
   factory ActiveSymbolsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ActiveSymbolsResponseFromJson(json);
+      ActiveSymbolsResponse(
+        activeSymbols: (json['active_symbols'] as List<dynamic>)
+            ?.map<Map<String, dynamic>>(
+                (dynamic item) => item as Map<String, dynamic>)
+            ?.toList(),
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// List of active symbols.
   final List<Map<String, dynamic>> activeSymbols;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ActiveSymbolsResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'active_symbols': activeSymbols,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

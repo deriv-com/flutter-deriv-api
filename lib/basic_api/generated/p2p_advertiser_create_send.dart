@@ -1,20 +1,18 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_create_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'p2p_advertiser_create_send.g.dart';
-
-/// JSON conversion for 'p2p_advertiser_create_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2p advertiser create request class
 class P2pAdvertiserCreateRequest extends Request {
   /// Initialize P2pAdvertiserCreateRequest
   const P2pAdvertiserCreateRequest({
     this.contactInfo,
     this.defaultAdvertDescription,
     @required this.name,
-    this.p2pAdvertiserCreate = 1,
+    this.p2pAdvertiserCreate = true,
     this.paymentInfo,
     this.subscribe,
     Map<String, dynamic> passthrough,
@@ -27,7 +25,18 @@ class P2pAdvertiserCreateRequest extends Request {
 
   /// Creates an instance from JSON
   factory P2pAdvertiserCreateRequest.fromJson(Map<String, dynamic> json) =>
-      _$P2pAdvertiserCreateRequestFromJson(json);
+      P2pAdvertiserCreateRequest(
+        contactInfo: json['contact_info'] as String,
+        defaultAdvertDescription: json['default_advert_description'] as String,
+        name: json['name'] as String,
+        p2pAdvertiserCreate: json['p2p_advertiser_create'] == null
+            ? null
+            : json['p2p_advertiser_create'] == 1,
+        paymentInfo: json['payment_info'] as String,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] Advertiser's contact information, to be used as a default for new sell adverts.
   final String contactInfo;
@@ -38,18 +47,28 @@ class P2pAdvertiserCreateRequest extends Request {
   /// The advertiser's displayed name.
   final String name;
 
-  /// Must be 1
-  final int p2pAdvertiserCreate;
+  /// Must be `true`
+  final bool p2pAdvertiserCreate;
 
   /// [Optional] Advertiser's payment information, to be used as a default for new sell adverts.
   final String paymentInfo;
 
-  /// [Optional] If set to 1, will send updates whenever there is an update to advertiser
-  final int subscribe;
+  /// [Optional] If set to `true`, will send updates whenever there is an update to advertiser
+  final bool subscribe;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pAdvertiserCreateRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'contact_info': contactInfo,
+        'default_advert_description': defaultAdvertDescription,
+        'name': name,
+        'p2p_advertiser_create':
+            p2pAdvertiserCreate == null ? null : p2pAdvertiserCreate ? 1 : 0,
+        'payment_info': paymentInfo,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -57,9 +76,9 @@ class P2pAdvertiserCreateRequest extends Request {
     String contactInfo,
     String defaultAdvertDescription,
     String name,
-    int p2pAdvertiserCreate,
+    bool p2pAdvertiserCreate,
     String paymentInfo,
-    int subscribe,
+    bool subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

@@ -1,17 +1,14 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/login_history_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'login_history_send.g.dart';
-
-/// JSON conversion for 'login_history_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Login history request class
 class LoginHistoryRequest extends Request {
   /// Initialize LoginHistoryRequest
   const LoginHistoryRequest({
     this.limit,
-    this.loginHistory = 1,
+    this.loginHistory = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -22,23 +19,34 @@ class LoginHistoryRequest extends Request {
 
   /// Creates an instance from JSON
   factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>
-      _$LoginHistoryRequestFromJson(json);
+      LoginHistoryRequest(
+        limit: json['limit'] as int,
+        loginHistory:
+            json['login_history'] == null ? null : json['login_history'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] Apply limit to count of login history records.
   final int limit;
 
-  /// Must be `1`
-  final int loginHistory;
+  /// Must be `true`
+  final bool loginHistory;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$LoginHistoryRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'limit': limit,
+        'login_history': loginHistory == null ? null : loginHistory ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   LoginHistoryRequest copyWith({
     int limit,
-    int loginHistory,
+    bool loginHistory,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

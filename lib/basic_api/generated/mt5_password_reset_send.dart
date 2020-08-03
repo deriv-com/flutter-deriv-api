@@ -1,18 +1,16 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_reset_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'mt5_password_reset_send.g.dart';
-
-/// JSON conversion for 'mt5_password_reset_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Mt5 password reset request class
 class Mt5PasswordResetRequest extends Request {
   /// Initialize Mt5PasswordResetRequest
   const Mt5PasswordResetRequest({
     @required this.login,
-    this.mt5PasswordReset = 1,
+    this.mt5PasswordReset = true,
     @required this.newPassword,
     this.passwordType,
     @required this.verificationCode,
@@ -26,13 +24,23 @@ class Mt5PasswordResetRequest extends Request {
 
   /// Creates an instance from JSON
   factory Mt5PasswordResetRequest.fromJson(Map<String, dynamic> json) =>
-      _$Mt5PasswordResetRequestFromJson(json);
+      Mt5PasswordResetRequest(
+        login: json['login'] as String,
+        mt5PasswordReset: json['mt5_password_reset'] == null
+            ? null
+            : json['mt5_password_reset'] == 1,
+        newPassword: json['new_password'] as String,
+        passwordType: json['password_type'] as String,
+        verificationCode: json['verification_code'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// MT5 user login
   final String login;
 
-  /// Must be `1`
-  final int mt5PasswordReset;
+  /// Must be `true`
+  final bool mt5PasswordReset;
 
   /// New password of the account. For validation (length within 8-25 chars, accepts at least 2 out of the following 3 types of characters: uppercase letters, lowercase letters, and numbers).
   final String newPassword;
@@ -43,15 +51,24 @@ class Mt5PasswordResetRequest extends Request {
   /// Email verification code (received from a `verify_email` call, which must be done first)
   final String verificationCode;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$Mt5PasswordResetRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'login': login,
+        'mt5_password_reset':
+            mt5PasswordReset == null ? null : mt5PasswordReset ? 1 : 0,
+        'new_password': newPassword,
+        'password_type': passwordType,
+        'verification_code': verificationCode,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   Mt5PasswordResetRequest copyWith({
     String login,
-    int mt5PasswordReset,
+    bool mt5PasswordReset,
     String newPassword,
     String passwordType,
     String verificationCode,

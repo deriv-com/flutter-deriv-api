@@ -1,13 +1,11 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/verify_email_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'verify_email_send.g.dart';
-
-/// JSON conversion for 'verify_email_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Verify email request class
 class VerifyEmailRequest extends Request {
   /// Initialize VerifyEmailRequest
   const VerifyEmailRequest({
@@ -24,7 +22,13 @@ class VerifyEmailRequest extends Request {
 
   /// Creates an instance from JSON
   factory VerifyEmailRequest.fromJson(Map<String, dynamic> json) =>
-      _$VerifyEmailRequestFromJson(json);
+      VerifyEmailRequest(
+        type: json['type'] as String,
+        urlParameters: json['url_parameters'] as Map<String, dynamic>,
+        verifyEmail: json['verify_email'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// Purpose of the email verification call.
   final String type;
@@ -35,9 +39,15 @@ class VerifyEmailRequest extends Request {
   /// Email address to be verified.
   final String verifyEmail;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$VerifyEmailRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'type': type,
+        'url_parameters': urlParameters,
+        'verify_email': verifyEmail,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

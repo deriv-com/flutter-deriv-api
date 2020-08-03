@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/profit_table_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'profit_table_send.g.dart';
-
-/// JSON conversion for 'profit_table_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Profit table request class
 class ProfitTableRequest extends Request {
   /// Initialize ProfitTableRequest
   const ProfitTableRequest({
@@ -15,7 +12,7 @@ class ProfitTableRequest extends Request {
     this.description,
     this.limit,
     this.offset,
-    this.profitTable = 1,
+    this.profitTable = true,
     this.sort,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -27,7 +24,19 @@ class ProfitTableRequest extends Request {
 
   /// Creates an instance from JSON
   factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>
-      _$ProfitTableRequestFromJson(json);
+      ProfitTableRequest(
+        dateFrom: json['date_from'] as String,
+        dateTo: json['date_to'] as String,
+        description:
+            json['description'] == null ? null : json['description'] == 1,
+        limit: json['limit'] as num,
+        offset: json['offset'] as num,
+        profitTable:
+            json['profit_table'] == null ? null : json['profit_table'] == 1,
+        sort: json['sort'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] Start date (epoch or YYYY-MM-DD)
   final String dateFrom;
@@ -35,8 +44,8 @@ class ProfitTableRequest extends Request {
   /// [Optional] End date (epoch or YYYY-MM-DD)
   final String dateTo;
 
-  /// [Optional] If set to 1, will return full contracts description.
-  final int description;
+  /// [Optional] If set to `true`, will return full contracts description.
+  final bool description;
 
   /// [Optional] Apply upper limit to count of transactions received.
   final num limit;
@@ -44,25 +53,35 @@ class ProfitTableRequest extends Request {
   /// [Optional] Number of transactions to skip.
   final num offset;
 
-  /// Must be `1`
-  final int profitTable;
+  /// Must be `true`
+  final bool profitTable;
 
   /// [Optional] Sort direction.
   final String sort;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ProfitTableRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'date_from': dateFrom,
+        'date_to': dateTo,
+        'description': description == null ? null : description ? 1 : 0,
+        'limit': limit,
+        'offset': offset,
+        'profit_table': profitTable == null ? null : profitTable ? 1 : 0,
+        'sort': sort,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   ProfitTableRequest copyWith({
     String dateFrom,
     String dateTo,
-    int description,
+    bool description,
     num limit,
     num offset,
-    int profitTable,
+    bool profitTable,
     String sort,
     Map<String, dynamic> passthrough,
     int reqId,

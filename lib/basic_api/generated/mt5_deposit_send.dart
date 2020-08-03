@@ -1,19 +1,17 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'mt5_deposit_send.g.dart';
-
-/// JSON conversion for 'mt5_deposit_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Mt5 deposit request class
 class Mt5DepositRequest extends Request {
   /// Initialize Mt5DepositRequest
   const Mt5DepositRequest({
     @required this.amount,
     @required this.fromBinary,
-    this.mt5Deposit = 1,
+    this.mt5Deposit = true,
     @required this.toMt5,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -25,7 +23,15 @@ class Mt5DepositRequest extends Request {
 
   /// Creates an instance from JSON
   factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>
-      _$Mt5DepositRequestFromJson(json);
+      Mt5DepositRequest(
+        amount: json['amount'] as num,
+        fromBinary: json['from_binary'] as String,
+        mt5Deposit:
+            json['mt5_deposit'] == null ? null : json['mt5_deposit'] == 1,
+        toMt5: json['to_mt5'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// Amount to deposit (in the currency of from_binary); min = $1 or an equivalent amount, max = $20000 or an equivalent amount
   final num amount;
@@ -33,22 +39,29 @@ class Mt5DepositRequest extends Request {
   /// Binary account loginid to transfer money from
   final String fromBinary;
 
-  /// Must be `1`
-  final int mt5Deposit;
+  /// Must be `true`
+  final bool mt5Deposit;
 
   /// MT5 account login to deposit money to
   final String toMt5;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$Mt5DepositRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'amount': amount,
+        'from_binary': fromBinary,
+        'mt5_deposit': mt5Deposit == null ? null : mt5Deposit ? 1 : 0,
+        'to_mt5': toMt5,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   Mt5DepositRequest copyWith({
     num amount,
     String fromBinary,
-    int mt5Deposit,
+    bool mt5Deposit,
     String toMt5,
     Map<String, dynamic> passthrough,
     int reqId,

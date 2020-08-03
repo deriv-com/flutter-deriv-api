@@ -14,7 +14,7 @@ class VerifyEmail extends VerifyEmailModel {
 
   /// Generates an instance from response
   factory VerifyEmail.fromResponse(VerifyEmailResponse response) =>
-      VerifyEmail(verified: getBool(response.verifyEmail));
+      VerifyEmail(verified: response.verifyEmail);
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 

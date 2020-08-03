@@ -1,17 +1,15 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_statistics_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'copytrading_statistics_send.g.dart';
-
-/// JSON conversion for 'copytrading_statistics_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Copytrading statistics request class
 class CopytradingStatisticsRequest extends Request {
   /// Initialize CopytradingStatisticsRequest
   const CopytradingStatisticsRequest({
-    this.copytradingStatistics = 1,
+    this.copytradingStatistics = true,
     @required this.traderId,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -23,22 +21,36 @@ class CopytradingStatisticsRequest extends Request {
 
   /// Creates an instance from JSON
   factory CopytradingStatisticsRequest.fromJson(Map<String, dynamic> json) =>
-      _$CopytradingStatisticsRequestFromJson(json);
+      CopytradingStatisticsRequest(
+        copytradingStatistics: json['copytrading_statistics'] == null
+            ? null
+            : json['copytrading_statistics'] == 1,
+        traderId: json['trader_id'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
-  /// Must be `1`
-  final int copytradingStatistics;
+  /// Must be `true`
+  final bool copytradingStatistics;
 
   /// The ID of the target trader.
   final String traderId;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$CopytradingStatisticsRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'copytrading_statistics': copytradingStatistics == null
+            ? null
+            : copytradingStatistics ? 1 : 0,
+        'trader_id': traderId,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   CopytradingStatisticsRequest copyWith({
-    int copytradingStatistics,
+    bool copytradingStatistics,
     String traderId,
     Map<String, dynamic> passthrough,
     int reqId,

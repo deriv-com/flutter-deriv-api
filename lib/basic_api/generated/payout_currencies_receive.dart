@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/payout_currencies_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'payout_currencies_receive.g.dart';
-
-/// JSON conversion for 'payout_currencies_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Payout currencies response class
 class PayoutCurrenciesResponse extends Response {
   /// Initialize PayoutCurrenciesResponse
   const PayoutCurrenciesResponse({
@@ -24,14 +21,28 @@ class PayoutCurrenciesResponse extends Response {
 
   /// Creates an instance from JSON
   factory PayoutCurrenciesResponse.fromJson(Map<String, dynamic> json) =>
-      _$PayoutCurrenciesResponseFromJson(json);
+      PayoutCurrenciesResponse(
+        payoutCurrencies: (json['payout_currencies'] as List<dynamic>)
+            ?.map<String>((dynamic item) => item as String)
+            ?.toList(),
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// Available payout currencies. Note: if a user is logged in, only the currency available for the account will be returned.
   final List<String> payoutCurrencies;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$PayoutCurrenciesResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'payout_currencies': payoutCurrencies,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

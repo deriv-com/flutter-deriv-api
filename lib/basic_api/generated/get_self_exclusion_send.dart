@@ -1,16 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_self_exclusion_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'get_self_exclusion_send.g.dart';
-
-/// JSON conversion for 'get_self_exclusion_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Get self exclusion request class
 class GetSelfExclusionRequest extends Request {
   /// Initialize GetSelfExclusionRequest
   const GetSelfExclusionRequest({
-    this.getSelfExclusion = 1,
+    this.getSelfExclusion = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -21,19 +18,30 @@ class GetSelfExclusionRequest extends Request {
 
   /// Creates an instance from JSON
   factory GetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
-      _$GetSelfExclusionRequestFromJson(json);
+      GetSelfExclusionRequest(
+        getSelfExclusion: json['get_self_exclusion'] == null
+            ? null
+            : json['get_self_exclusion'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
-  /// Must be `1`
-  final int getSelfExclusion;
+  /// Must be `true`
+  final bool getSelfExclusion;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$GetSelfExclusionRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'get_self_exclusion':
+            getSelfExclusion == null ? null : getSelfExclusion ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   GetSelfExclusionRequest copyWith({
-    int getSelfExclusion,
+    bool getSelfExclusion,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

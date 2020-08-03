@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_times_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'trading_times_receive.g.dart';
-
-/// JSON conversion for 'trading_times_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Trading times response class
 class TradingTimesResponse extends Response {
   /// Initialize TradingTimesResponse
   const TradingTimesResponse({
@@ -24,14 +21,26 @@ class TradingTimesResponse extends Response {
 
   /// Creates an instance from JSON
   factory TradingTimesResponse.fromJson(Map<String, dynamic> json) =>
-      _$TradingTimesResponseFromJson(json);
+      TradingTimesResponse(
+        tradingTimes: json['trading_times'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// The trading times structure is a hierarchy as follows: Market -> SubMarket -> Underlyings
   final Map<String, dynamic> tradingTimes;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TradingTimesResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'trading_times': tradingTimes,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

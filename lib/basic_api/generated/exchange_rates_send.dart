@@ -1,18 +1,16 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/exchange_rates_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'exchange_rates_send.g.dart';
-
-/// JSON conversion for 'exchange_rates_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Exchange rates request class
 class ExchangeRatesRequest extends Request {
   /// Initialize ExchangeRatesRequest
   const ExchangeRatesRequest({
     @required this.baseCurrency,
-    this.exchangeRates = 1,
+    this.exchangeRates = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -23,23 +21,34 @@ class ExchangeRatesRequest extends Request {
 
   /// Creates an instance from JSON
   factory ExchangeRatesRequest.fromJson(Map<String, dynamic> json) =>
-      _$ExchangeRatesRequestFromJson(json);
+      ExchangeRatesRequest(
+        baseCurrency: json['base_currency'] as String,
+        exchangeRates:
+            json['exchange_rates'] == null ? null : json['exchange_rates'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// Base currency (can be obtained from `payout_currencies` call)
   final String baseCurrency;
 
-  /// Must be `1`
-  final int exchangeRates;
+  /// Must be `true`
+  final bool exchangeRates;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ExchangeRatesRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'base_currency': baseCurrency,
+        'exchange_rates': exchangeRates == null ? null : exchangeRates ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   ExchangeRatesRequest copyWith({
     String baseCurrency,
-    int exchangeRates,
+    bool exchangeRates,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

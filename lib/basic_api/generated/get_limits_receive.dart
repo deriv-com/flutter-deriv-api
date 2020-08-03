@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'get_limits_receive.g.dart';
-
-/// JSON conversion for 'get_limits_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Get limits response class
 class GetLimitsResponse extends Response {
   /// Initialize GetLimitsResponse
   const GetLimitsResponse({
@@ -24,14 +21,26 @@ class GetLimitsResponse extends Response {
 
   /// Creates an instance from JSON
   factory GetLimitsResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetLimitsResponseFromJson(json);
+      GetLimitsResponse(
+        getLimits: json['get_limits'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// Trading limits of real account user
   final Map<String, dynamic> getLimits;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$GetLimitsResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'get_limits': getLimits,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

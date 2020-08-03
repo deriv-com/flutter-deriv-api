@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'mt5_deposit_receive.g.dart';
-
-/// JSON conversion for 'mt5_deposit_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Mt5 deposit response class
 class Mt5DepositResponse extends Response {
   /// Initialize Mt5DepositResponse
   const Mt5DepositResponse({
@@ -25,7 +22,14 @@ class Mt5DepositResponse extends Response {
 
   /// Creates an instance from JSON
   factory Mt5DepositResponse.fromJson(Map<String, dynamic> json) =>
-      _$Mt5DepositResponseFromJson(json);
+      Mt5DepositResponse(
+        binaryTransactionId: json['binary_transaction_id'] as int,
+        mt5Deposit: json['mt5_deposit'] as int,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// Withdrawal reference ID of Binary account
   final int binaryTransactionId;
@@ -33,9 +37,16 @@ class Mt5DepositResponse extends Response {
   /// 1 on success
   final int mt5Deposit;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$Mt5DepositResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'binary_transaction_id': binaryTransactionId,
+        'mt5_deposit': mt5Deposit,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

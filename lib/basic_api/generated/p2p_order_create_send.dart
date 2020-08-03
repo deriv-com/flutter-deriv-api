@@ -1,20 +1,18 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_create_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'p2p_order_create_send.g.dart';
-
-/// JSON conversion for 'p2p_order_create_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2p order create request class
 class P2pOrderCreateRequest extends Request {
   /// Initialize P2pOrderCreateRequest
   const P2pOrderCreateRequest({
     @required this.advertId,
     @required this.amount,
     this.contactInfo,
-    this.p2pOrderCreate = 1,
+    this.p2pOrderCreate = true,
     this.paymentInfo,
     this.subscribe,
     Map<String, dynamic> passthrough,
@@ -27,7 +25,18 @@ class P2pOrderCreateRequest extends Request {
 
   /// Creates an instance from JSON
   factory P2pOrderCreateRequest.fromJson(Map<String, dynamic> json) =>
-      _$P2pOrderCreateRequestFromJson(json);
+      P2pOrderCreateRequest(
+        advertId: json['advert_id'] as String,
+        amount: json['amount'] as num,
+        contactInfo: json['contact_info'] as String,
+        p2pOrderCreate: json['p2p_order_create'] == null
+            ? null
+            : json['p2p_order_create'] == 1,
+        paymentInfo: json['payment_info'] as String,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// The unique identifier for the advert to create an order against.
   final String advertId;
@@ -38,18 +47,28 @@ class P2pOrderCreateRequest extends Request {
   /// [Optional] Seller contact information. Only applicable for 'sell orders'.
   final String contactInfo;
 
-  /// Must be 1
-  final int p2pOrderCreate;
+  /// Must be `true`
+  final bool p2pOrderCreate;
 
   /// [Optional] Payment instructions. Only applicable for 'sell orders'.
   final String paymentInfo;
 
-  /// [Optional] If set to 1, will send updates whenever there is an update to the order.
-  final int subscribe;
+  /// [Optional] If set to `true`, will send updates whenever there is an update to the order.
+  final bool subscribe;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pOrderCreateRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'advert_id': advertId,
+        'amount': amount,
+        'contact_info': contactInfo,
+        'p2p_order_create':
+            p2pOrderCreate == null ? null : p2pOrderCreate ? 1 : 0,
+        'payment_info': paymentInfo,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -57,9 +76,9 @@ class P2pOrderCreateRequest extends Request {
     String advertId,
     num amount,
     String contactInfo,
-    int p2pOrderCreate,
+    bool p2pOrderCreate,
     String paymentInfo,
-    int subscribe,
+    bool subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

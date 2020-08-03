@@ -1,13 +1,11 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'active_symbols_send.g.dart';
-
-/// JSON conversion for 'active_symbols_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Active symbols request class
 class ActiveSymbolsRequest extends Request {
   /// Initialize ActiveSymbolsRequest
   const ActiveSymbolsRequest({
@@ -24,7 +22,13 @@ class ActiveSymbolsRequest extends Request {
 
   /// Creates an instance from JSON
   factory ActiveSymbolsRequest.fromJson(Map<String, dynamic> json) =>
-      _$ActiveSymbolsRequestFromJson(json);
+      ActiveSymbolsRequest(
+        activeSymbols: json['active_symbols'] as String,
+        landingCompany: json['landing_company'] as String,
+        productType: json['product_type'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// If you use `brief`, only a subset of fields will be returned.
   final String activeSymbols;
@@ -35,9 +39,15 @@ class ActiveSymbolsRequest extends Request {
   /// [Optional] If you specify this field, only symbols that can be traded through that product type will be returned.
   final String productType;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ActiveSymbolsRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'active_symbols': activeSymbols,
+        'landing_company': landingCompany,
+        'product_type': productType,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

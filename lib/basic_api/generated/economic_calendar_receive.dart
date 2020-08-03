@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/economic_calendar_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'economic_calendar_receive.g.dart';
-
-/// JSON conversion for 'economic_calendar_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Economic calendar response class
 class EconomicCalendarResponse extends Response {
   /// Initialize EconomicCalendarResponse
   const EconomicCalendarResponse({
@@ -24,14 +21,26 @@ class EconomicCalendarResponse extends Response {
 
   /// Creates an instance from JSON
   factory EconomicCalendarResponse.fromJson(Map<String, dynamic> json) =>
-      _$EconomicCalendarResponseFromJson(json);
+      EconomicCalendarResponse(
+        economicCalendar: json['economic_calendar'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// Economic calendar.
   final Map<String, dynamic> economicCalendar;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$EconomicCalendarResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'economic_calendar': economicCalendar,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

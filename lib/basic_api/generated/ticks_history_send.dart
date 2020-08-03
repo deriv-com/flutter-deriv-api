@@ -1,13 +1,11 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_history_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'ticks_history_send.g.dart';
-
-/// JSON conversion for 'ticks_history_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Ticks history request class
 class TicksHistoryRequest extends Request {
   /// Initialize TicksHistoryRequest
   const TicksHistoryRequest({
@@ -29,7 +27,18 @@ class TicksHistoryRequest extends Request {
 
   /// Creates an instance from JSON
   factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>
-      _$TicksHistoryRequestFromJson(json);
+      TicksHistoryRequest(
+        adjustStartTime: json['adjust_start_time'] as int,
+        count: json['count'] as int,
+        end: json['end'] as String,
+        granularity: json['granularity'] as int,
+        start: json['start'] as int,
+        style: json['style'] as String,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
+        ticksHistory: json['ticks_history'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] 1 - if the market is closed at the end time, or license limit is before end time, adjust interval backwards to compensate.
   final int adjustStartTime;
@@ -51,15 +60,26 @@ class TicksHistoryRequest extends Request {
   /// [Optional] The tick-output style.
   final String style;
 
-  /// [Optional] 1 - to send updates whenever a new tick is received.
-  final int subscribe;
+  /// [Optional] `true` - to send updates whenever a new tick is received.
+  final bool subscribe;
 
   /// Short symbol name (obtained from the `active_symbols` call).
   final String ticksHistory;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TicksHistoryRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'adjust_start_time': adjustStartTime,
+        'count': count,
+        'end': end,
+        'granularity': granularity,
+        'start': start,
+        'style': style,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'ticks_history': ticksHistory,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -70,7 +90,7 @@ class TicksHistoryRequest extends Request {
     int granularity,
     int start,
     String style,
-    int subscribe,
+    bool subscribe,
     String ticksHistory,
     Map<String, dynamic> passthrough,
     int reqId,

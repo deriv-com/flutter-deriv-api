@@ -1,13 +1,11 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_array_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'proposal_array_send.g.dart';
-
-/// JSON conversion for 'proposal_array_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Proposal array request class
 class ProposalArrayRequest extends Request {
   /// Initialize ProposalArrayRequest
   const ProposalArrayRequest({
@@ -22,7 +20,7 @@ class ProposalArrayRequest extends Request {
     this.durationUnit,
     @required this.multiplier,
     this.productType,
-    this.proposalArray = 1,
+    this.proposalArray = true,
     this.subscribe,
     @required this.symbol,
     @required this.tradingPeriodStart,
@@ -36,7 +34,29 @@ class ProposalArrayRequest extends Request {
 
   /// Creates an instance from JSON
   factory ProposalArrayRequest.fromJson(Map<String, dynamic> json) =>
-      _$ProposalArrayRequestFromJson(json);
+      ProposalArrayRequest(
+        amount: json['amount'] as num,
+        barriers: (json['barriers'] as List<dynamic>)
+            ?.map<Map<String, dynamic>>(
+                (dynamic item) => item as Map<String, dynamic>)
+            ?.toList(),
+        basis: json['basis'] as String,
+        contractType: json['contract_type'] as List<dynamic>,
+        currency: json['currency'] as String,
+        dateExpiry: json['date_expiry'] as int,
+        dateStart: json['date_start'] as int,
+        duration: json['duration'] as int,
+        durationUnit: json['duration_unit'] as String,
+        multiplier: json['multiplier'] as num,
+        productType: json['product_type'] as String,
+        proposalArray:
+            json['proposal_array'] == null ? null : json['proposal_array'] == 1,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
+        symbol: json['symbol'] as String,
+        tradingPeriodStart: json['trading_period_start'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// Proposed contract `payout` or `stake` value.
   final num amount;
@@ -71,11 +91,11 @@ class ProposalArrayRequest extends Request {
   /// [Optional] If you specify this field, only contracts tradable through that contract type will be returned.
   final String productType;
 
-  /// Must be `1`
-  final int proposalArray;
+  /// Must be `true`
+  final bool proposalArray;
 
-  /// [Optional] 1 - to initiate a realtime stream of prices. Note that tick trades (without a user-defined barrier), digit trades and less than 24 hours at-the-money contracts for the following underlying symbols are not streamed: `R_10`, `R_25`, `R_50`, `R_75`, `R_100`, `RDBULL`, `RDBEAR` (this is because their price is constant).
-  final int subscribe;
+  /// [Optional] `true` - to initiate a realtime stream of prices. Note that tick trades (without a user-defined barrier), digit trades and less than 24 hours at-the-money contracts for the following underlying symbols are not streamed: `R_10`, `R_25`, `R_50`, `R_75`, `R_100`, `RDBULL`, `RDBEAR` (this is because their price is constant).
+  final bool subscribe;
 
   /// Symbol code.
   final String symbol;
@@ -83,9 +103,27 @@ class ProposalArrayRequest extends Request {
   /// Required only for multi-barrier trading. Defines the epoch value of the trading period start time.
   final int tradingPeriodStart;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ProposalArrayRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'amount': amount,
+        'barriers': barriers,
+        'basis': basis,
+        'contract_type': contractType,
+        'currency': currency,
+        'date_expiry': dateExpiry,
+        'date_start': dateStart,
+        'duration': duration,
+        'duration_unit': durationUnit,
+        'multiplier': multiplier,
+        'product_type': productType,
+        'proposal_array': proposalArray == null ? null : proposalArray ? 1 : 0,
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'symbol': symbol,
+        'trading_period_start': tradingPeriodStart,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -101,8 +139,8 @@ class ProposalArrayRequest extends Request {
     String durationUnit,
     num multiplier,
     String productType,
-    int proposalArray,
-    int subscribe,
+    bool proposalArray,
+    bool subscribe,
     String symbol,
     int tradingPeriodStart,
     Map<String, dynamic> passthrough,
