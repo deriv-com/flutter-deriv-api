@@ -1,34 +1,56 @@
 import 'dart:async';
 import 'dart:developer' as dev;
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/basic_api/generated/time_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/time_send.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/binary_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
+import 'package:flutter_deriv_api/services/connection/connection_service.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/state/internet/internet_bloc.dart'
+    as internet_bloc;
 
 part 'connection_event.dart';
+
 part 'connection_state.dart';
 
 /// Bringing ConnectionBloc to flutter-deriv-api to simplify the usage of api
 class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   /// Initializes
-  ConnectionBloc(this.connectionInformation) {
-    APIInitializer().initialize();
+  ConnectionBloc(ConnectionInformation connectionInformation) {
+    ConnectionService().initialize();
+    APIInitializer().initialize(false, _uniqueKey);
 
-    connectWebSocket();
+    _connectionInformation = connectionInformation;
+    _internetBloc = internet_bloc.InternetBloc();
+    _api ??= Injector.getInjector().get<BaseAPI>();
+
+    _connectWebSocket();
+
+    _internetListener =
+        _internetBloc.listen((internet_bloc.InternetState state) {
+      if (state is internet_bloc.Disconnected) {
+        add(Disconnect());
+      } else if (state is internet_bloc.Connected) {
+        _reconnectToWebSocket();
+      }
+    });
   }
 
+  static const int _reconnectInterval = 5;
+
   BaseAPI _api;
-  Timer _serverTimeInterval;
+
+  StreamSubscription<internet_bloc.InternetState> _internetListener;
+
+  internet_bloc.InternetBloc _internetBloc;
+
+  final UniqueKey _uniqueKey = UniqueKey();
 
   /// Connection information of WebSocket (endpoint, brand, appId)
-  final ConnectionInformation connectionInformation;
+  ConnectionInformation get connectionInformation => _connectionInformation;
+  ConnectionInformation _connectionInformation;
 
   @override
   ConnectionState get initialState => InitialConnectionState();
@@ -36,73 +58,79 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   @override
   Stream<ConnectionState> mapEventToState(ConnectionEvent event) async* {
     if (event is Connect) {
-      try {
-        yield Connected();
-
-        add(FetchServerTime());
-
-        _serverTimeInterval = Timer.periodic(const Duration(seconds: 90),
-            (Timer timer) => add(FetchServerTime()));
-      } on Exception catch (e) {
-        dev.log(e.toString(), error: e);
-
-        yield ConnectionError(e.toString());
+      yield Connected();
+    } else if (event is Reconnect || event is Reconfigure) {
+      if (event is Reconfigure) {
+        _connectionInformation = event.connectionInformation;
       }
-    } else if (event is FetchServerTime) {
+      bool shouldReconnect = true;
+      // _api.disconnect should be always invoked before changing the state
+      // otherwise the onDone function which is passed to the run function will be invoked one more time.
       if (state is Connected) {
-        final Connected currentState = state;
-        final TimeResponse timeResponse =
-            await _api.call(request: const TimeRequest());
-
-        if (timeResponse.error != null) {
-          dev.log('Fetching server time failed: ${timeResponse.error}');
-          throw Exception(timeResponse.error['message']);
+        try {
+          shouldReconnect = false;
+          await _api.disconnect();
+        } on Exception catch (e) {
+          shouldReconnect = true;
+          dev.log(e.toString(), error: e);
         }
-
-        dev.log('Server time is: ${timeResponse.time}');
-
-        yield currentState.copyWith(serverTime: getDateTime(timeResponse.time));
-      } else if (state is InitialConnectionState) {
-        _serverTimeInterval.cancel();
       }
+
+      if (event is Reconnect) {
+        if (await ConnectionService().checkConnectivity() && shouldReconnect) {
+          yield Reconnecting();
+        } else {
+          yield Disconnected();
+        }
+      } else {
+        // Needed to reset state after changing the endpoint from settings page
+        yield InitialConnectionState();
+      }
+
+      await Future<void>.delayed(const Duration(seconds: _reconnectInterval));
+      _connectWebSocket();
     } else if (event is Disconnect) {
       if (state is Connected) {
         await _api.disconnect();
       }
 
-      if (_serverTimeInterval != null && _serverTimeInterval.isActive) {
-        _serverTimeInterval.cancel();
+      if (state is! Disconnected) {
+        yield Disconnected();
+      } else if (event is DisplayConnectionError) {
+        // For any errors related connection, this new event can be used. Currently
+        // this is used to handle invalid endpoints and we don't need to show any messages
+        yield ConnectionError('');
       }
-
-      yield InitialConnectionState();
-    } else if (event is Reconnect) {
-      dev.log('Reconnecting ws connection!');
-
-      // api.close should be always invoked before changing the state otherwise the onDone function which is passed to the run function will be invoked one more time.
-      if (state is Connected) {
-        await _api.disconnect();
-      }
-
-      yield InitialConnectionState();
-
-      if (_serverTimeInterval != null && _serverTimeInterval.isActive) {
-        _serverTimeInterval.cancel();
-      }
-
-      await Future<void>.delayed(const Duration(seconds: 10));
-
-      connectWebSocket();
     }
   }
 
-  /// connects the [BinaryAPI] to the web socket
-  void connectWebSocket() {
-    _api ??= Injector.getInjector().get<BaseAPI>();
+  void _connectWebSocket() {
+    _api.connect(connectionInformation, onDone: (UniqueKey uniqueKey) {
+      if (_uniqueKey == uniqueKey) {
+        _reconnectToWebSocket();
+      }
+    }, onOpen: (UniqueKey uniqueKey) {
+      if (_uniqueKey == uniqueKey) {
+        add(Connect());
+      }
+    }, onError: (UniqueKey uniqueKey) {
+      // ignore reporting errors if there is no connection
+      if (_uniqueKey == uniqueKey && state is! Disconnected) {
+        add(DisplayConnectionError());
+      }
+    });
+  }
 
-    _api.connect(
-      connectionInformation,
-      onDone: () => add(Reconnect()),
-      onOpen: () => add(Connect()),
-    );
+  void _reconnectToWebSocket() {
+    if (state is! Reconnecting && state is! Connected) {
+      add(Reconnect());
+    }
+  }
+
+  @override
+  Future<void> close() {
+    _internetListener?.cancel();
+
+    return super.close();
   }
 }
