@@ -1,16 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/time_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'time_send.g.dart';
-
-/// JSON conversion for 'time_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Time request class
 class TimeRequest extends Request {
   /// Initialize TimeRequest
   const TimeRequest({
-    this.time = 1,
+    this.time = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -20,20 +17,27 @@ class TimeRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory TimeRequest.fromJson(Map<String, dynamic> json) =>
-      _$TimeRequestFromJson(json);
+  factory TimeRequest.fromJson(Map<String, dynamic> json) => TimeRequest(
+        time: json['time'] == null ? null : json['time'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
-  /// Must be `1`
-  final int time;
+  /// Must be `true`
+  final bool time;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TimeRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'time': time == null ? null : time ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   TimeRequest copyWith({
-    int time,
+    bool time,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

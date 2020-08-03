@@ -14,7 +14,7 @@ void main() {
     final Statement statement = await Statement.fetch(
       const StatementRequest(
         actionType: 'deposit',
-        description: 1,
+        description: true,
       ),
     );
 

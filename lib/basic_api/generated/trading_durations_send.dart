@@ -1,17 +1,14 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_durations_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'trading_durations_send.g.dart';
-
-/// JSON conversion for 'trading_durations_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Trading durations request class
 class TradingDurationsRequest extends Request {
   /// Initialize TradingDurationsRequest
   const TradingDurationsRequest({
     this.landingCompany,
-    this.tradingDurations = 1,
+    this.tradingDurations = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -22,23 +19,36 @@ class TradingDurationsRequest extends Request {
 
   /// Creates an instance from JSON
   factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>
-      _$TradingDurationsRequestFromJson(json);
+      TradingDurationsRequest(
+        landingCompany: json['landing_company'] as String,
+        tradingDurations: json['trading_durations'] == null
+            ? null
+            : json['trading_durations'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
   final String landingCompany;
 
-  /// Must be `1`
-  final int tradingDurations;
+  /// Must be `true`
+  final bool tradingDurations;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TradingDurationsRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'landing_company': landingCompany,
+        'trading_durations':
+            tradingDurations == null ? null : tradingDurations ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   TradingDurationsRequest copyWith({
     String landingCompany,
-    int tradingDurations,
+    bool tradingDurations,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_statistics_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'copytrading_statistics_receive.g.dart';
-
-/// JSON conversion for 'copytrading_statistics_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Copytrading statistics response class
 class CopytradingStatisticsResponse extends Response {
   /// Initialize CopytradingStatisticsResponse
   const CopytradingStatisticsResponse({
@@ -24,14 +21,27 @@ class CopytradingStatisticsResponse extends Response {
 
   /// Creates an instance from JSON
   factory CopytradingStatisticsResponse.fromJson(Map<String, dynamic> json) =>
-      _$CopytradingStatisticsResponseFromJson(json);
+      CopytradingStatisticsResponse(
+        copytradingStatistics:
+            json['copytrading_statistics'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// Statistics of the trader
   final Map<String, dynamic> copytradingStatistics;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$CopytradingStatisticsResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'copytrading_statistics': copytradingStatistics,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

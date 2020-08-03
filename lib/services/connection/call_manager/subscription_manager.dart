@@ -93,7 +93,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
         pendingRequests[requestId],
       );
 
-      return const ForgetResponse(forget: 1, msgType: 'forget');
+      return const ForgetResponse(forget: true, msgType: 'forget');
     }
 
     // Send forget request

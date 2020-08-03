@@ -1,13 +1,11 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_financial_assessment_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'set_financial_assessment_send.g.dart';
-
-/// JSON conversion for 'set_financial_assessment_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Set financial assessment request class
 class SetFinancialAssessmentRequest extends Request {
   /// Initialize SetFinancialAssessmentRequest
   const SetFinancialAssessmentRequest({
@@ -27,7 +25,7 @@ class SetFinancialAssessmentRequest extends Request {
     @required this.occupation,
     this.otherInstrumentsTradingExperience,
     this.otherInstrumentsTradingFrequency,
-    this.setFinancialAssessment = 1,
+    this.setFinancialAssessment = true,
     this.sourceOfWealth,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -39,7 +37,34 @@ class SetFinancialAssessmentRequest extends Request {
 
   /// Creates an instance from JSON
   factory SetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
-      _$SetFinancialAssessmentRequestFromJson(json);
+      SetFinancialAssessmentRequest(
+        accountTurnover: json['account_turnover'] as String,
+        binaryOptionsTradingExperience:
+            json['binary_options_trading_experience'] as String,
+        binaryOptionsTradingFrequency:
+            json['binary_options_trading_frequency'] as String,
+        cfdTradingExperience: json['cfd_trading_experience'] as String,
+        cfdTradingFrequency: json['cfd_trading_frequency'] as String,
+        educationLevel: json['education_level'] as String,
+        employmentIndustry: json['employment_industry'] as String,
+        employmentStatus: json['employment_status'] as String,
+        estimatedWorth: json['estimated_worth'] as String,
+        forexTradingExperience: json['forex_trading_experience'] as String,
+        forexTradingFrequency: json['forex_trading_frequency'] as String,
+        incomeSource: json['income_source'] as String,
+        netIncome: json['net_income'] as String,
+        occupation: json['occupation'] as String,
+        otherInstrumentsTradingExperience:
+            json['other_instruments_trading_experience'] as String,
+        otherInstrumentsTradingFrequency:
+            json['other_instruments_trading_frequency'] as String,
+        setFinancialAssessment: json['set_financial_assessment'] == null
+            ? null
+            : json['set_financial_assessment'] == 1,
+        sourceOfWealth: json['source_of_wealth'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] The anticipated account turnover.
   final String accountTurnover;
@@ -89,15 +114,39 @@ class SetFinancialAssessmentRequest extends Request {
   /// [Optional] Trading frequency in other financial instruments.
   final String otherInstrumentsTradingFrequency;
 
-  /// Must be `1`
-  final int setFinancialAssessment;
+  /// Must be `true`
+  final bool setFinancialAssessment;
 
   /// [Optional] Source of wealth.
   final String sourceOfWealth;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$SetFinancialAssessmentRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'account_turnover': accountTurnover,
+        'binary_options_trading_experience': binaryOptionsTradingExperience,
+        'binary_options_trading_frequency': binaryOptionsTradingFrequency,
+        'cfd_trading_experience': cfdTradingExperience,
+        'cfd_trading_frequency': cfdTradingFrequency,
+        'education_level': educationLevel,
+        'employment_industry': employmentIndustry,
+        'employment_status': employmentStatus,
+        'estimated_worth': estimatedWorth,
+        'forex_trading_experience': forexTradingExperience,
+        'forex_trading_frequency': forexTradingFrequency,
+        'income_source': incomeSource,
+        'net_income': netIncome,
+        'occupation': occupation,
+        'other_instruments_trading_experience':
+            otherInstrumentsTradingExperience,
+        'other_instruments_trading_frequency': otherInstrumentsTradingFrequency,
+        'set_financial_assessment': setFinancialAssessment == null
+            ? null
+            : setFinancialAssessment ? 1 : 0,
+        'source_of_wealth': sourceOfWealth,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -118,7 +167,7 @@ class SetFinancialAssessmentRequest extends Request {
     String occupation,
     String otherInstrumentsTradingExperience,
     String otherInstrumentsTradingFrequency,
-    int setFinancialAssessment,
+    bool setFinancialAssessment,
     String sourceOfWealth,
     Map<String, dynamic> passthrough,
     int reqId,

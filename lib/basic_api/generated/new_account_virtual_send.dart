@@ -1,13 +1,11 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_virtual_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'new_account_virtual_send.g.dart';
-
-/// JSON conversion for 'new_account_virtual_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// New account virtual request class
 class NewAccountVirtualRequest extends Request {
   /// Initialize NewAccountVirtualRequest
   const NewAccountVirtualRequest({
@@ -15,7 +13,7 @@ class NewAccountVirtualRequest extends Request {
     @required this.clientPassword,
     this.dateFirstContact,
     this.gclidUrl,
-    this.newAccountVirtual = 1,
+    this.newAccountVirtual = true,
     @required this.residence,
     this.signupDevice,
     this.utmCampaign,
@@ -32,7 +30,23 @@ class NewAccountVirtualRequest extends Request {
 
   /// Creates an instance from JSON
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>
-      _$NewAccountVirtualRequestFromJson(json);
+      NewAccountVirtualRequest(
+        affiliateToken: json['affiliate_token'] as String,
+        clientPassword: json['client_password'] as String,
+        dateFirstContact: json['date_first_contact'] as String,
+        gclidUrl: json['gclid_url'] as String,
+        newAccountVirtual: json['new_account_virtual'] == null
+            ? null
+            : json['new_account_virtual'] == 1,
+        residence: json['residence'] as String,
+        signupDevice: json['signup_device'] as String,
+        utmCampaign: json['utm_campaign'] as String,
+        utmMedium: json['utm_medium'] as String,
+        utmSource: json['utm_source'] as String,
+        verificationCode: json['verification_code'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] Affiliate token, within 32 characters.
   final String affiliateToken;
@@ -46,8 +60,8 @@ class NewAccountVirtualRequest extends Request {
   /// [Optional] Google Click Identifier to track source.
   final String gclidUrl;
 
-  /// Must be `1`
-  final int newAccountVirtual;
+  /// Must be `true`
+  final bool newAccountVirtual;
 
   /// 2-letter country code (obtained from `residence_list` call).
   final String residence;
@@ -67,9 +81,24 @@ class NewAccountVirtualRequest extends Request {
   /// Email verification code (received from a `verify_email` call, which must be done first).
   final String verificationCode;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$NewAccountVirtualRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'affiliate_token': affiliateToken,
+        'client_password': clientPassword,
+        'date_first_contact': dateFirstContact,
+        'gclid_url': gclidUrl,
+        'new_account_virtual':
+            newAccountVirtual == null ? null : newAccountVirtual ? 1 : 0,
+        'residence': residence,
+        'signup_device': signupDevice,
+        'utm_campaign': utmCampaign,
+        'utm_medium': utmMedium,
+        'utm_source': utmSource,
+        'verification_code': verificationCode,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -78,7 +107,7 @@ class NewAccountVirtualRequest extends Request {
     String clientPassword,
     String dateFirstContact,
     String gclidUrl,
-    int newAccountVirtual,
+    bool newAccountVirtual,
     String residence,
     String signupDevice,
     String utmCampaign,

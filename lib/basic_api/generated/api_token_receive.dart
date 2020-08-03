@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/api_token_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'api_token_receive.g.dart';
-
-/// JSON conversion for 'api_token_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Api token response class
 class ApiTokenResponse extends Response {
   /// Initialize ApiTokenResponse
   const ApiTokenResponse({
@@ -24,14 +21,26 @@ class ApiTokenResponse extends Response {
 
   /// Creates an instance from JSON
   factory ApiTokenResponse.fromJson(Map<String, dynamic> json) =>
-      _$ApiTokenResponseFromJson(json);
+      ApiTokenResponse(
+        apiToken: json['api_token'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// Contains the result of API token according to the type of request.
   final Map<String, dynamic> apiToken;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ApiTokenResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'api_token': apiToken,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

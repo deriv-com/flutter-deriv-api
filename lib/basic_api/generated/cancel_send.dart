@@ -1,16 +1,15 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cancel_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'cancel_send.g.dart';
-
-/// JSON conversion for 'cancel_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Cancel request class
 class CancelRequest extends Request {
   /// Initialize CancelRequest
   const CancelRequest({
-    this.cancel = 1,
+    @required this.cancel,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -20,15 +19,22 @@ class CancelRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory CancelRequest.fromJson(Map<String, dynamic> json) =>
-      _$CancelRequestFromJson(json);
+  factory CancelRequest.fromJson(Map<String, dynamic> json) => CancelRequest(
+        cancel: json['cancel'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// Value should be the `contract_id` which received from the `portfolio` call.
   final int cancel;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$CancelRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'cancel': cancel,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

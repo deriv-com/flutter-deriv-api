@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_transfer_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'paymentagent_transfer_receive.g.dart';
-
-/// JSON conversion for 'paymentagent_transfer_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Paymentagent transfer response class
 class PaymentagentTransferResponse extends Response {
   /// Initialize PaymentagentTransferResponse
   const PaymentagentTransferResponse({
@@ -27,7 +24,16 @@ class PaymentagentTransferResponse extends Response {
 
   /// Creates an instance from JSON
   factory PaymentagentTransferResponse.fromJson(Map<String, dynamic> json) =>
-      _$PaymentagentTransferResponseFromJson(json);
+      PaymentagentTransferResponse(
+        clientToFullName: json['client_to_full_name'] as String,
+        clientToLoginid: json['client_to_loginid'] as String,
+        paymentagentTransfer: json['paymentagent_transfer'] as int,
+        transactionId: json['transaction_id'] as int,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// The `transfer_to` client full name
   final String clientToFullName;
@@ -41,9 +47,18 @@ class PaymentagentTransferResponse extends Response {
   /// Reference ID of transfer performed
   final int transactionId;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$PaymentagentTransferResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'client_to_full_name': clientToFullName,
+        'client_to_loginid': clientToLoginid,
+        'paymentagent_transfer': paymentagentTransfer,
+        'transaction_id': transactionId,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

@@ -1,12 +1,11 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'transfer_between_accounts_send.g.dart';
-
-/// JSON conversion for 'transfer_between_accounts_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Transfer between accounts request class
 class TransferBetweenAccountsRequest extends Request {
   /// Initialize TransferBetweenAccountsRequest
   const TransferBetweenAccountsRequest({
@@ -15,7 +14,7 @@ class TransferBetweenAccountsRequest extends Request {
     this.accounts,
     this.amount,
     this.currency,
-    this.transferBetweenAccounts = 1,
+    @required this.transferBetweenAccounts,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -26,7 +25,16 @@ class TransferBetweenAccountsRequest extends Request {
 
   /// Creates an instance from JSON
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>
-      _$TransferBetweenAccountsRequestFromJson(json);
+      TransferBetweenAccountsRequest(
+        accountFrom: json['account_from'] as String,
+        accountTo: json['account_to'] as String,
+        accounts: json['accounts'] as String,
+        amount: json['amount'] as num,
+        currency: json['currency'] as String,
+        transferBetweenAccounts: json['transfer_between_accounts'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] The loginid of the account to transfer funds from.
   final String accountFrom;
@@ -46,9 +54,18 @@ class TransferBetweenAccountsRequest extends Request {
   /// If `account_from` or `account_to` is not provided, it just returns the available accounts.
   final int transferBetweenAccounts;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TransferBetweenAccountsRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'account_from': accountFrom,
+        'account_to': accountTo,
+        'accounts': accounts,
+        'amount': amount,
+        'currency': currency,
+        'transfer_between_accounts': transferBetweenAccounts,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

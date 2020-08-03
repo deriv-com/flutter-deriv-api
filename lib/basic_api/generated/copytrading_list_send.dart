@@ -1,16 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_list_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'copytrading_list_send.g.dart';
-
-/// JSON conversion for 'copytrading_list_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Copytrading list request class
 class CopytradingListRequest extends Request {
   /// Initialize CopytradingListRequest
   const CopytradingListRequest({
-    this.copytradingList = 1,
+    this.copytradingList = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -21,19 +18,30 @@ class CopytradingListRequest extends Request {
 
   /// Creates an instance from JSON
   factory CopytradingListRequest.fromJson(Map<String, dynamic> json) =>
-      _$CopytradingListRequestFromJson(json);
+      CopytradingListRequest(
+        copytradingList: json['copytrading_list'] == null
+            ? null
+            : json['copytrading_list'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
-  /// Must be `1`
-  final int copytradingList;
+  /// Must be `true`
+  final bool copytradingList;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$CopytradingListRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'copytrading_list':
+            copytradingList == null ? null : copytradingList ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   CopytradingListRequest copyWith({
-    int copytradingList,
+    bool copytradingList,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_list_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'p2p_order_list_receive.g.dart';
-
-/// JSON conversion for 'p2p_order_list_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2p order list response class
 class P2pOrderListResponse extends Response {
   /// Initialize P2pOrderListResponse
   const P2pOrderListResponse({
@@ -25,7 +22,14 @@ class P2pOrderListResponse extends Response {
 
   /// Creates an instance from JSON
   factory P2pOrderListResponse.fromJson(Map<String, dynamic> json) =>
-      _$P2pOrderListResponseFromJson(json);
+      P2pOrderListResponse(
+        p2pOrderList: json['p2p_order_list'] as Map<String, dynamic>,
+        subscription: json['subscription'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// List of P2P orders.
   final Map<String, dynamic> p2pOrderList;
@@ -33,9 +37,16 @@ class P2pOrderListResponse extends Response {
   /// For subscription requests only.
   final Map<String, dynamic> subscription;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pOrderListResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'p2p_order_list': p2pOrderList,
+        'subscription': subscription,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

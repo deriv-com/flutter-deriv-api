@@ -1,18 +1,16 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'sell_send.g.dart';
-
-/// JSON conversion for 'sell_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Sell request class
 class SellRequest extends Request {
   /// Initialize SellRequest
   const SellRequest({
     @required this.price,
-    this.sell = 1,
+    @required this.sell,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -22,8 +20,12 @@ class SellRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory SellRequest.fromJson(Map<String, dynamic> json) =>
-      _$SellRequestFromJson(json);
+  factory SellRequest.fromJson(Map<String, dynamic> json) => SellRequest(
+        price: json['price'] as num,
+        sell: json['sell'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
   final num price;
@@ -31,9 +33,14 @@ class SellRequest extends Request {
   /// Pass contract_id received from the `portfolio` call.
   final int sell;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$SellRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'price': price,
+        'sell': sell,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

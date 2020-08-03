@@ -1,13 +1,11 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_stop_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'copy_stop_send.g.dart';
-
-/// JSON conversion for 'copy_stop_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Copy stop request class
 class CopyStopRequest extends Request {
   /// Initialize CopyStopRequest
   const CopyStopRequest({
@@ -22,14 +20,22 @@ class CopyStopRequest extends Request {
 
   /// Creates an instance from JSON
   factory CopyStopRequest.fromJson(Map<String, dynamic> json) =>
-      _$CopyStopRequestFromJson(json);
+      CopyStopRequest(
+        copyStop: json['copy_stop'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// API tokens identifying the accounts which needs not to be copied
   final String copyStop;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$CopyStopRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'copy_stop': copyStop,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

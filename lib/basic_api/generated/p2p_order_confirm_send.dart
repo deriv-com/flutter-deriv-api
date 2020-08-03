@@ -1,18 +1,16 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_confirm_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'p2p_order_confirm_send.g.dart';
-
-/// JSON conversion for 'p2p_order_confirm_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2p order confirm request class
 class P2pOrderConfirmRequest extends Request {
   /// Initialize P2pOrderConfirmRequest
   const P2pOrderConfirmRequest({
     @required this.id,
-    this.p2pOrderConfirm = 1,
+    this.p2pOrderConfirm = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -23,23 +21,36 @@ class P2pOrderConfirmRequest extends Request {
 
   /// Creates an instance from JSON
   factory P2pOrderConfirmRequest.fromJson(Map<String, dynamic> json) =>
-      _$P2pOrderConfirmRequestFromJson(json);
+      P2pOrderConfirmRequest(
+        id: json['id'] as String,
+        p2pOrderConfirm: json['p2p_order_confirm'] == null
+            ? null
+            : json['p2p_order_confirm'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// The unique identifier for this order.
   final String id;
 
-  /// Must be 1
-  final int p2pOrderConfirm;
+  /// Must be `true`
+  final bool p2pOrderConfirm;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pOrderConfirmRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'id': id,
+        'p2p_order_confirm':
+            p2pOrderConfirm == null ? null : p2pOrderConfirm ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   P2pOrderConfirmRequest copyWith({
     String id,
-    int p2pOrderConfirm,
+    bool p2pOrderConfirm,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

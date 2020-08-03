@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'forget_receive.g.dart';
-
-/// JSON conversion for 'forget_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Forget response class
 class ForgetResponse extends Response {
   /// Initialize ForgetResponse
   const ForgetResponse({
@@ -23,20 +20,31 @@ class ForgetResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory ForgetResponse.fromJson(Map<String, dynamic> json) =>
-      _$ForgetResponseFromJson(json);
+  factory ForgetResponse.fromJson(Map<String, dynamic> json) => ForgetResponse(
+        forget: json['forget'] == null ? null : json['forget'] == 1,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
-  /// If set to 1, stream exited and stopped. If set to 0, stream did not exist.
-  final int forget;
+  /// If set to `true`, stream exited and stopped. If set to `false`, stream did not exist.
+  final bool forget;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ForgetResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'forget': forget == null ? null : forget ? 1 : 0,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   ForgetResponse copyWith({
-    int forget,
+    bool forget,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,

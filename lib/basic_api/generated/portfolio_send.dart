@@ -1,16 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/portfolio_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'portfolio_send.g.dart';
-
-/// JSON conversion for 'portfolio_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Portfolio request class
 class PortfolioRequest extends Request {
   /// Initialize PortfolioRequest
   const PortfolioRequest({
-    this.portfolio = 1,
+    this.portfolio = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -21,19 +18,27 @@ class PortfolioRequest extends Request {
 
   /// Creates an instance from JSON
   factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>
-      _$PortfolioRequestFromJson(json);
+      PortfolioRequest(
+        portfolio: json['portfolio'] == null ? null : json['portfolio'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
-  /// Must be `1`
-  final int portfolio;
+  /// Must be `true`
+  final bool portfolio;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$PortfolioRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'portfolio': portfolio == null ? null : portfolio ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   PortfolioRequest copyWith({
-    int portfolio,
+    bool portfolio,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

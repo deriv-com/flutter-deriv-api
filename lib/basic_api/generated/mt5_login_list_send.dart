@@ -1,16 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_login_list_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'mt5_login_list_send.g.dart';
-
-/// JSON conversion for 'mt5_login_list_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Mt5 login list request class
 class Mt5LoginListRequest extends Request {
   /// Initialize Mt5LoginListRequest
   const Mt5LoginListRequest({
-    this.mt5LoginList = 1,
+    this.mt5LoginList = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -21,19 +18,28 @@ class Mt5LoginListRequest extends Request {
 
   /// Creates an instance from JSON
   factory Mt5LoginListRequest.fromJson(Map<String, dynamic> json) =>
-      _$Mt5LoginListRequestFromJson(json);
+      Mt5LoginListRequest(
+        mt5LoginList:
+            json['mt5_login_list'] == null ? null : json['mt5_login_list'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
-  /// Must be `1`
-  final int mt5LoginList;
+  /// Must be `true`
+  final bool mt5LoginList;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$Mt5LoginListRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'mt5_login_list': mt5LoginList == null ? null : mt5LoginList ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   Mt5LoginListRequest copyWith({
-    int mt5LoginList,
+    bool mt5LoginList,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
