@@ -1,16 +1,15 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/revoke_oauth_app_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'revoke_oauth_app_send.g.dart';
-
-/// JSON conversion for 'revoke_oauth_app_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Revoke oauth app request class
 class RevokeOauthAppRequest extends Request {
   /// Initialize RevokeOauthAppRequest
   const RevokeOauthAppRequest({
-    this.revokeOauthApp = 1,
+    @required this.revokeOauthApp,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -21,14 +20,22 @@ class RevokeOauthAppRequest extends Request {
 
   /// Creates an instance from JSON
   factory RevokeOauthAppRequest.fromJson(Map<String, dynamic> json) =>
-      _$RevokeOauthAppRequestFromJson(json);
+      RevokeOauthAppRequest(
+        revokeOauthApp: json['revoke_oauth_app'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// The application ID to revoke.
   final int revokeOauthApp;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$RevokeOauthAppRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'revoke_oauth_app': revokeOauthApp,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

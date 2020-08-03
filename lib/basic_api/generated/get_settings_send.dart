@@ -1,16 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_settings_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'get_settings_send.g.dart';
-
-/// JSON conversion for 'get_settings_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Get settings request class
 class GetSettingsRequest extends Request {
   /// Initialize GetSettingsRequest
   const GetSettingsRequest({
-    this.getSettings = 1,
+    this.getSettings = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -21,19 +18,28 @@ class GetSettingsRequest extends Request {
 
   /// Creates an instance from JSON
   factory GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
-      _$GetSettingsRequestFromJson(json);
+      GetSettingsRequest(
+        getSettings:
+            json['get_settings'] == null ? null : json['get_settings'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
-  /// Must be `1`
-  final int getSettings;
+  /// Must be `true`
+  final bool getSettings;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$GetSettingsRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'get_settings': getSettings == null ? null : getSettings ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   GetSettingsRequest copyWith({
-    int getSettings,
+    bool getSettings,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

@@ -1,13 +1,13 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_times_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/economic_calendar_receive.json
 // ignore_for_file: avoid_as
 
 import '../response.dart';
 
-/// Trading times response class
-class TradingTimesResponse extends Response {
-  /// Initialize TradingTimesResponse
-  const TradingTimesResponse({
-    this.tradingTimes,
+/// Economic calendar response class
+class EconomicCalendarResponse extends Response {
+  /// Initialize EconomicCalendarResponse
+  const EconomicCalendarResponse({
+    this.economicCalendar,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -20,22 +20,22 @@ class TradingTimesResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory TradingTimesResponse.fromJson(Map<String, dynamic> json) =>
-      TradingTimesResponse(
-        tradingTimes: json['trading_times'] as Map<String, dynamic>,
+  factory EconomicCalendarResponse.fromJson(Map<String, dynamic> json) =>
+      EconomicCalendarResponse(
+        economicCalendar: json['economic_calendar'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
         error: json['error'] as Map<String, dynamic>,
         msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
       );
 
-  /// The trading times structure is a hierarchy as follows: Market -> SubMarket -> Underlyings
-  final Map<String, dynamic> tradingTimes;
+  /// Economic calendar.
+  final Map<String, dynamic> economicCalendar;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'trading_times': tradingTimes,
+        'economic_calendar': economicCalendar,
         'echo_req': echoReq,
         'error': error,
         'msg_type': msgType,
@@ -44,15 +44,15 @@ class TradingTimesResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TradingTimesResponse copyWith({
-    Map<String, dynamic> tradingTimes,
+  EconomicCalendarResponse copyWith({
+    Map<String, dynamic> economicCalendar,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      TradingTimesResponse(
-        tradingTimes: tradingTimes ?? this.tradingTimes,
+      EconomicCalendarResponse(
+        economicCalendar: economicCalendar ?? this.economicCalendar,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
         msgType: msgType ?? this.msgType,

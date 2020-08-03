@@ -1,16 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_account_status_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'get_account_status_send.g.dart';
-
-/// JSON conversion for 'get_account_status_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Get account status request class
 class GetAccountStatusRequest extends Request {
   /// Initialize GetAccountStatusRequest
   const GetAccountStatusRequest({
-    this.getAccountStatus = 1,
+    this.getAccountStatus = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -21,19 +18,30 @@ class GetAccountStatusRequest extends Request {
 
   /// Creates an instance from JSON
   factory GetAccountStatusRequest.fromJson(Map<String, dynamic> json) =>
-      _$GetAccountStatusRequestFromJson(json);
+      GetAccountStatusRequest(
+        getAccountStatus: json['get_account_status'] == null
+            ? null
+            : json['get_account_status'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
-  /// Must be `1`
-  final int getAccountStatus;
+  /// Must be `true`
+  final bool getAccountStatus;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$GetAccountStatusRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'get_account_status':
+            getAccountStatus == null ? null : getAccountStatus ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   GetAccountStatusRequest copyWith({
-    int getAccountStatus,
+    bool getAccountStatus,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

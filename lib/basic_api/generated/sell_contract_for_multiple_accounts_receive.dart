@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_contract_for_multiple_accounts_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'sell_contract_for_multiple_accounts_receive.g.dart';
-
-/// JSON conversion for 'sell_contract_for_multiple_accounts_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Sell contract for multiple accounts response class
 class SellContractForMultipleAccountsResponse extends Response {
   /// Initialize SellContractForMultipleAccountsResponse
   const SellContractForMultipleAccountsResponse({
@@ -25,15 +22,27 @@ class SellContractForMultipleAccountsResponse extends Response {
   /// Creates an instance from JSON
   factory SellContractForMultipleAccountsResponse.fromJson(
           Map<String, dynamic> json) =>
-      _$SellContractForMultipleAccountsResponseFromJson(json);
+      SellContractForMultipleAccountsResponse(
+        sellContractForMultipleAccounts:
+            json['sell_contract_for_multiple_accounts'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// Status information for each affected account.
   final Map<String, dynamic> sellContractForMultipleAccounts;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() =>
-      _$SellContractForMultipleAccountsResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'sell_contract_for_multiple_accounts': sellContractForMultipleAccounts,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

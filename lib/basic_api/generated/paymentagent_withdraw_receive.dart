@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'paymentagent_withdraw_receive.g.dart';
-
-/// JSON conversion for 'paymentagent_withdraw_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Paymentagent withdraw response class
 class PaymentagentWithdrawResponse extends Response {
   /// Initialize PaymentagentWithdrawResponse
   const PaymentagentWithdrawResponse({
@@ -26,7 +23,15 @@ class PaymentagentWithdrawResponse extends Response {
 
   /// Creates an instance from JSON
   factory PaymentagentWithdrawResponse.fromJson(Map<String, dynamic> json) =>
-      _$PaymentagentWithdrawResponseFromJson(json);
+      PaymentagentWithdrawResponse(
+        paymentagentName: json['paymentagent_name'] as String,
+        paymentagentWithdraw: json['paymentagent_withdraw'] as int,
+        transactionId: json['transaction_id'] as int,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// Payment agent name.
   final String paymentagentName;
@@ -37,9 +42,17 @@ class PaymentagentWithdrawResponse extends Response {
   /// Reference ID of withdrawal performed.
   final int transactionId;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$PaymentagentWithdrawResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'paymentagent_name': paymentagentName,
+        'paymentagent_withdraw': paymentagentWithdraw,
+        'transaction_id': transactionId,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

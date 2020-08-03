@@ -44,6 +44,8 @@ export "copytrading_statistics_receive.dart";
 export "copytrading_statistics_send.dart";
 export "document_upload_receive.dart";
 export "document_upload_send.dart";
+export "economic_calendar_receive.dart";
+export "economic_calendar_send.dart";
 export "exchange_rates_receive.dart";
 export "exchange_rates_send.dart";
 export "forget_receive.dart";

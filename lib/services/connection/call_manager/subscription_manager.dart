@@ -98,7 +98,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
 
     if (requestId == -1) {
       return const ForgetResponse(
-        forget: 1,
+        forget: true,
         msgType: 'forget',
         error: <String, dynamic>{
           'code': 'NoSubscriptionId',
@@ -111,7 +111,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
         pendingRequests[requestId],
       );
 
-      return const ForgetResponse(forget: 1, msgType: 'forget');
+      return const ForgetResponse(forget: true, msgType: 'forget');
     }
 
     // Send forget request

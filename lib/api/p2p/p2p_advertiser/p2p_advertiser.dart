@@ -106,7 +106,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     P2pAdvertiserInfoRequest request,
   ) async {
     final P2pAdvertiserInfoResponse response = await _api.call(
-      request: request.copyWith(subscribe: 0),
+      request: request.copyWith(subscribe: false),
     );
 
     checkException(
@@ -149,7 +149,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     P2pAdvertiserCreateRequest request,
   ) async {
     final P2pAdvertiserCreateResponse response = await _api.call(
-      request: request.copyWith(subscribe: 0),
+      request: request.copyWith(subscribe: false),
     );
 
     checkException(

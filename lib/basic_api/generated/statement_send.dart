@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/statement_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'statement_send.g.dart';
-
-/// JSON conversion for 'statement_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Statement request class
 class StatementRequest extends Request {
   /// Initialize StatementRequest
   const StatementRequest({
@@ -16,7 +13,7 @@ class StatementRequest extends Request {
     this.description,
     this.limit,
     this.offset,
-    this.statement = 1,
+    this.statement = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -27,7 +24,18 @@ class StatementRequest extends Request {
 
   /// Creates an instance from JSON
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>
-      _$StatementRequestFromJson(json);
+      StatementRequest(
+        actionType: json['action_type'] as String,
+        dateFrom: json['date_from'] as int,
+        dateTo: json['date_to'] as int,
+        description:
+            json['description'] == null ? null : json['description'] == 1,
+        limit: json['limit'] as num,
+        offset: json['offset'] as num,
+        statement: json['statement'] == null ? null : json['statement'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] To filter the statement according to the type of transaction.
   final String actionType;
@@ -38,8 +46,8 @@ class StatementRequest extends Request {
   /// [Optional] End date (epoch)
   final int dateTo;
 
-  /// [Optional] If set to 1, will return full contracts description.
-  final int description;
+  /// [Optional] If set to `true`, will return full contracts description.
+  final bool description;
 
   /// [Optional] Maximum number of transactions to receive.
   final num limit;
@@ -47,12 +55,22 @@ class StatementRequest extends Request {
   /// [Optional] Number of transactions to skip.
   final num offset;
 
-  /// Must be `1`
-  final int statement;
+  /// Must be `true`
+  final bool statement;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$StatementRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'action_type': actionType,
+        'date_from': dateFrom,
+        'date_to': dateTo,
+        'description': description == null ? null : description ? 1 : 0,
+        'limit': limit,
+        'offset': offset,
+        'statement': statement == null ? null : statement ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -60,10 +78,10 @@ class StatementRequest extends Request {
     String actionType,
     int dateFrom,
     int dateTo,
-    int description,
+    bool description,
     num limit,
     num offset,
-    int statement,
+    bool statement,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

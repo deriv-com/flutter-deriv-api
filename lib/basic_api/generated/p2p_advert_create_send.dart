@@ -1,13 +1,11 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_create_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'p2p_advert_create_send.g.dart';
-
-/// JSON conversion for 'p2p_advert_create_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2p advert create request class
 class P2pAdvertCreateRequest extends Request {
   /// Initialize P2pAdvertCreateRequest
   const P2pAdvertCreateRequest({
@@ -17,7 +15,7 @@ class P2pAdvertCreateRequest extends Request {
     this.localCurrency,
     @required this.maxOrderAmount,
     @required this.minOrderAmount,
-    this.p2pAdvertCreate = 1,
+    this.p2pAdvertCreate = true,
     this.paymentInfo,
     @required this.paymentMethod,
     @required this.rate,
@@ -32,7 +30,23 @@ class P2pAdvertCreateRequest extends Request {
 
   /// Creates an instance from JSON
   factory P2pAdvertCreateRequest.fromJson(Map<String, dynamic> json) =>
-      _$P2pAdvertCreateRequestFromJson(json);
+      P2pAdvertCreateRequest(
+        amount: json['amount'] as num,
+        contactInfo: json['contact_info'] as String,
+        description: json['description'] as String,
+        localCurrency: json['local_currency'] as String,
+        maxOrderAmount: json['max_order_amount'] as num,
+        minOrderAmount: json['min_order_amount'] as num,
+        p2pAdvertCreate: json['p2p_advert_create'] == null
+            ? null
+            : json['p2p_advert_create'] == 1,
+        paymentInfo: json['payment_info'] as String,
+        paymentMethod: json['payment_method'] as String,
+        rate: json['rate'] as num,
+        type: json['type'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// The total amount of the advert, in advertiser's account currency.
   final num amount;
@@ -52,8 +66,8 @@ class P2pAdvertCreateRequest extends Request {
   /// Minimum allowed amount for the orders of this advert, in advertiser's `account_currency`. Should be less than `max_order_amount`.
   final num minOrderAmount;
 
-  /// Must be 1
-  final int p2pAdvertCreate;
+  /// Must be `true`
+  final bool p2pAdvertCreate;
 
   /// [Optional] Payment instructions. Only applicable for 'sell adverts'.
   final String paymentInfo;
@@ -67,9 +81,24 @@ class P2pAdvertCreateRequest extends Request {
   /// Whether this is a buy or a sell.
   final String type;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pAdvertCreateRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'amount': amount,
+        'contact_info': contactInfo,
+        'description': description,
+        'local_currency': localCurrency,
+        'max_order_amount': maxOrderAmount,
+        'min_order_amount': minOrderAmount,
+        'p2p_advert_create':
+            p2pAdvertCreate == null ? null : p2pAdvertCreate ? 1 : 0,
+        'payment_info': paymentInfo,
+        'payment_method': paymentMethod,
+        'rate': rate,
+        'type': type,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -80,7 +109,7 @@ class P2pAdvertCreateRequest extends Request {
     String localCurrency,
     num maxOrderAmount,
     num minOrderAmount,
-    int p2pAdvertCreate,
+    bool p2pAdvertCreate,
     String paymentInfo,
     String paymentMethod,
     num rate,

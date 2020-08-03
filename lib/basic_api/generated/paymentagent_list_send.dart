@@ -1,13 +1,11 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_list_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'paymentagent_list_send.g.dart';
-
-/// JSON conversion for 'paymentagent_list_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Paymentagent list request class
 class PaymentagentListRequest extends Request {
   /// Initialize PaymentagentListRequest
   const PaymentagentListRequest({
@@ -23,7 +21,12 @@ class PaymentagentListRequest extends Request {
 
   /// Creates an instance from JSON
   factory PaymentagentListRequest.fromJson(Map<String, dynamic> json) =>
-      _$PaymentagentListRequestFromJson(json);
+      PaymentagentListRequest(
+        currency: json['currency'] as String,
+        paymentagentList: json['paymentagent_list'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] If specified, only payment agents that supports that currency will be returned (obtained from `payout_currencies` call).
   final String currency;
@@ -31,9 +34,14 @@ class PaymentagentListRequest extends Request {
   /// Client's 2-letter country code (obtained from `residence_list` call).
   final String paymentagentList;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$PaymentagentListRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'currency': currency,
+        'paymentagent_list': paymentagentList,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

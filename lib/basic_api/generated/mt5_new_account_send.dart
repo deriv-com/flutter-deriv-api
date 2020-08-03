@@ -1,13 +1,11 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_new_account_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'mt5_new_account_send.g.dart';
-
-/// JSON conversion for 'mt5_new_account_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Mt5 new account request class
 class Mt5NewAccountRequest extends Request {
   /// Initialize Mt5NewAccountRequest
   const Mt5NewAccountRequest({
@@ -22,7 +20,7 @@ class Mt5NewAccountRequest extends Request {
     @required this.leverage,
     @required this.mainPassword,
     this.mt5AccountType,
-    this.mt5NewAccount = 1,
+    this.mt5NewAccount = true,
     @required this.name,
     this.phone,
     this.phonePassword,
@@ -38,7 +36,29 @@ class Mt5NewAccountRequest extends Request {
 
   /// Creates an instance from JSON
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>
-      _$Mt5NewAccountRequestFromJson(json);
+      Mt5NewAccountRequest(
+        accountType: json['account_type'] as String,
+        address: json['address'] as String,
+        city: json['city'] as String,
+        company: json['company'] as String,
+        country: json['country'] as String,
+        dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
+        email: json['email'] as String,
+        investPassword: json['investPassword'] as String,
+        leverage: json['leverage'] as num,
+        mainPassword: json['mainPassword'] as String,
+        mt5AccountType: json['mt5_account_type'] as String,
+        mt5NewAccount: json['mt5_new_account'] == null
+            ? null
+            : json['mt5_new_account'] == 1,
+        name: json['name'] as String,
+        phone: json['phone'] as String,
+        phonePassword: json['phonePassword'] as String,
+        state: json['state'] as String,
+        zipCode: json['zipCode'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// Account type
   final String accountType;
@@ -55,8 +75,8 @@ class Mt5NewAccountRequest extends Request {
   /// [Optional] 2-letter country code (value received from `residence_list` call).
   final String country;
 
-  /// [Optional] If set to 1, only validation is performed.
-  final int dryRun;
+  /// [Optional] If set to `true`, only validation is performed.
+  final bool dryRun;
 
   /// Email address
   final String email;
@@ -73,8 +93,8 @@ class Mt5NewAccountRequest extends Request {
   /// [Optional] Financial: Variable spreads, High leverage. Financial STP: Variable spreads, Medium Leverage, more products.
   final String mt5AccountType;
 
-  /// Must be `1`
-  final int mt5NewAccount;
+  /// Must be `true`
+  final bool mt5NewAccount;
 
   /// Client's name. The maximum length here is 101 characters.
   final String name;
@@ -91,9 +111,29 @@ class Mt5NewAccountRequest extends Request {
   /// [Optional] User's zip code.
   final String zipCode;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$Mt5NewAccountRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'account_type': accountType,
+        'address': address,
+        'city': city,
+        'company': company,
+        'country': country,
+        'dry_run': dryRun == null ? null : dryRun ? 1 : 0,
+        'email': email,
+        'investPassword': investPassword,
+        'leverage': leverage,
+        'mainPassword': mainPassword,
+        'mt5_account_type': mt5AccountType,
+        'mt5_new_account': mt5NewAccount == null ? null : mt5NewAccount ? 1 : 0,
+        'name': name,
+        'phone': phone,
+        'phonePassword': phonePassword,
+        'state': state,
+        'zipCode': zipCode,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -103,13 +143,13 @@ class Mt5NewAccountRequest extends Request {
     String city,
     String company,
     String country,
-    int dryRun,
+    bool dryRun,
     String email,
     String investPassword,
     num leverage,
     String mainPassword,
     String mt5AccountType,
-    int mt5NewAccount,
+    bool mt5NewAccount,
     String name,
     String phone,
     String phonePassword,

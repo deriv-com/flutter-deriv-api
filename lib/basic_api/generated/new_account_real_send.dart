@@ -1,13 +1,11 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'new_account_real_send.g.dart';
-
-/// JSON conversion for 'new_account_real_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// New account real request class
 class NewAccountRealRequest extends Request {
   /// Initialize NewAccountRealRequest
   const NewAccountRealRequest({
@@ -25,7 +23,7 @@ class NewAccountRealRequest extends Request {
     @required this.dateOfBirth,
     @required this.firstName,
     @required this.lastName,
-    this.newAccountReal = 1,
+    this.newAccountReal = true,
     this.nonPepDeclaration,
     this.phone,
     this.placeOfBirth,
@@ -45,7 +43,36 @@ class NewAccountRealRequest extends Request {
 
   /// Creates an instance from JSON
   factory NewAccountRealRequest.fromJson(Map<String, dynamic> json) =>
-      _$NewAccountRealRequestFromJson(json);
+      NewAccountRealRequest(
+        accountOpeningReason: json['account_opening_reason'] as String,
+        accountTurnover: json['account_turnover'] as String,
+        addressCity: json['address_city'] as String,
+        addressLine1: json['address_line_1'] as String,
+        addressLine2: json['address_line_2'] as String,
+        addressPostcode: json['address_postcode'] as String,
+        addressState: json['address_state'] as String,
+        affiliateToken: json['affiliate_token'] as String,
+        citizen: json['citizen'] as String,
+        clientType: json['client_type'] as String,
+        currency: json['currency'] as String,
+        dateOfBirth: json['date_of_birth'] as String,
+        firstName: json['first_name'] as String,
+        lastName: json['last_name'] as String,
+        newAccountReal: json['new_account_real'] == null
+            ? null
+            : json['new_account_real'] == 1,
+        nonPepDeclaration: json['non_pep_declaration'] as int,
+        phone: json['phone'] as String,
+        placeOfBirth: json['place_of_birth'] as String,
+        residence: json['residence'] as String,
+        salutation: json['salutation'] as String,
+        secretAnswer: json['secret_answer'] as String,
+        secretQuestion: json['secret_question'] as String,
+        taxIdentificationNumber: json['tax_identification_number'] as String,
+        taxResidence: json['tax_residence'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] Purpose and reason for requesting the account opening.
   final String accountOpeningReason;
@@ -89,8 +116,8 @@ class NewAccountRealRequest extends Request {
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
   final String lastName;
 
-  /// Must be `1`
-  final int newAccountReal;
+  /// Must be `true`
+  final bool newAccountReal;
 
   /// [Optional] Indicates client's self-declaration of not being a PEP/RCA (Politically Exposed Person/Relatives and Close Associates).
   final int nonPepDeclaration;
@@ -119,9 +146,37 @@ class NewAccountRealRequest extends Request {
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
   final String taxResidence;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$NewAccountRealRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'account_opening_reason': accountOpeningReason,
+        'account_turnover': accountTurnover,
+        'address_city': addressCity,
+        'address_line_1': addressLine1,
+        'address_line_2': addressLine2,
+        'address_postcode': addressPostcode,
+        'address_state': addressState,
+        'affiliate_token': affiliateToken,
+        'citizen': citizen,
+        'client_type': clientType,
+        'currency': currency,
+        'date_of_birth': dateOfBirth,
+        'first_name': firstName,
+        'last_name': lastName,
+        'new_account_real':
+            newAccountReal == null ? null : newAccountReal ? 1 : 0,
+        'non_pep_declaration': nonPepDeclaration,
+        'phone': phone,
+        'place_of_birth': placeOfBirth,
+        'residence': residence,
+        'salutation': salutation,
+        'secret_answer': secretAnswer,
+        'secret_question': secretQuestion,
+        'tax_identification_number': taxIdentificationNumber,
+        'tax_residence': taxResidence,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -140,7 +195,7 @@ class NewAccountRealRequest extends Request {
     String dateOfBirth,
     String firstName,
     String lastName,
-    int newAccountReal,
+    bool newAccountReal,
     int nonPepDeclaration,
     String phone,
     String placeOfBirth,
