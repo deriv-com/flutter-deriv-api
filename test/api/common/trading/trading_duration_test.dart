@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/api/common/trading/trading_duration.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(true));
+  setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Trading Duration Test', () async {
     final List<TradingDuration> tradeDuration =

@@ -1,10 +1,10 @@
-import 'dart:async';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rxdart/rxdart.dart';
 
 import 'package:flutter_deriv_api/api/common/active_symbols/active_symbols.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
-import 'package:flutter_deriv_api/api/common/tick/tick.dart';
 import 'package:flutter_deriv_api/api/common/tick/exceptions/tick_exception.dart';
+import 'package:flutter_deriv_api/api/common/tick/tick.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 import '../active_symbols/active_symbols_bloc.dart';
@@ -22,6 +22,16 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
       }
     });
   }
+
+  @override
+  Stream<Transition<TicksEvent, TicksState>> transformEvents(
+    Stream<TicksEvent> events,
+    TransitionFunction<TicksEvent, TicksState> transitionFn,
+  ) =>
+      super.transformEvents(
+        events.debounceTime(const Duration(milliseconds: 200)),
+        transitionFn,
+      );
 
   @override
   Stream<TicksState> mapEventToState(

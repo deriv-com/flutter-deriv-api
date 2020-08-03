@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/api/user/transfer/transfer_between_accounts.da
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(true));
+  setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Transfer Between Accounts Test', () async {
     final TransferBetweenAccounts transferBetweenAccounts =

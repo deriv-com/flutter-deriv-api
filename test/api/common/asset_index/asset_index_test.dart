@@ -5,7 +5,7 @@ import 'package:flutter_deriv_api/api/common/asset_index/asset_index.dart';
 import 'package:flutter_deriv_api/api/common/models/index_contract_model.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(true));
+  setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Asset Index Test', () async {
     final List<AssetIndex> assetIndices = await AssetIndex.fetchAssetIndices();

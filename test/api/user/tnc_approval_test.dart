@@ -5,7 +5,7 @@ import 'package:flutter_deriv_api/api/user/tnc_approval.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(true));
+  setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Terms and Conditions Approval Test', () async {
     final TNCApproval tncApproval =

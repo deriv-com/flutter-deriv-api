@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/user/financial_assessment/set_financial_as
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 void main() {
-  setUpAll(() => APIInitializer().initialize(true));
+  setUpAll(() => APIInitializer().initialize(isMock: true));
 
   group('Financial Assessment Group ->', () {
     test('Fetch Assessment Test', () async {

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
@@ -17,7 +18,10 @@ import 'package:flutter_deriv_api/services/connection/api_manager/connection_inf
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
 
 /// This class is for handling Binary API connection and calling Binary APIs
-class BinaryAPI implements BaseAPI {
+class BinaryAPI extends BaseAPI {
+  /// Initializes
+  BinaryAPI(UniqueKey uniqueKey) : super(uniqueKey);
+
   /// Indicates current connection status - only set `true` once
   /// we have established SSL *and* web socket handshake steps
   bool _connected = false;
@@ -45,8 +49,11 @@ class BinaryAPI implements BaseAPI {
     ConnectionInformation connectionInformation, {
     ConnectionCallback onDone,
     ConnectionCallback onOpen,
+    ConnectionCallback onError,
   }) async {
     _connected = false;
+    
+    _resetCallManagers();
 
     final Uri uri = Uri(
       scheme: 'wss',
@@ -74,16 +81,17 @@ class BinaryAPI implements BaseAPI {
             .listen(
               (Map<String, dynamic> message) =>
                   _handleResponse(connectionCompleter, message),
-              onError: (Object error) =>
-                  dev.log('the web socket connection is closed: $error.'),
+              onError: (Object error) {
+                dev.log('the web socket connection is closed: $error.');
+
+                onError?.call(uniqueKey);
+              },
               onDone: () async {
                 dev.log('web socket is closed.');
 
                 _connected = false;
 
-                if (onDone != null) {
-                  onDone();
-                }
+                onDone?.call(uniqueKey);
               },
             );
 
@@ -94,14 +102,17 @@ class BinaryAPI implements BaseAPI {
 
     dev.log('web socket is connected.');
 
-    if (onOpen != null) {
-      onOpen();
-    }
+    onOpen?.call(uniqueKey);
+  }
+
+  void _resetCallManagers() {
+    _callManager = CallManager(this);
+    _subscriptionManager = SubscriptionManager(this);
   }
 
   @override
   void addToChannel(Map<String, dynamic> request) {
-    _webSocketChannel.sink.add(utf8.encode(jsonEncode(request)));
+    _webSocketChannel?.sink?.add(utf8.encode(jsonEncode(request)));
   }
 
   @override

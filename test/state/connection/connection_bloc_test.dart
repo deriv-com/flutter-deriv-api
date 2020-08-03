@@ -15,6 +15,7 @@ void main() {
           brand: 'deriv',
           endpoint: 'frontend.binaryws.com',
         ),
+        isMock: true,
       ),
     );
 
@@ -24,14 +25,7 @@ void main() {
       'Emits [Connect] Test.',
       build: () => connectionBloc,
       act: (ConnectionBloc bloc) async => bloc.add(Connect()),
-      expect: <dynamic>[isA<Connected>(), isA<Connected>()],
-    );
-
-    blocTest<ConnectionBloc, ConnectionState>(
-      'Emits [FetchServerTime] Test.',
-      build: () => connectionBloc,
-      act: (ConnectionBloc bloc) async => bloc.add(FetchServerTime()),
-      expect: <dynamic>[],
+      expect: <dynamic>[isA<Connected>()],
     );
 
     blocTest<ConnectionBloc, ConnectionState>(

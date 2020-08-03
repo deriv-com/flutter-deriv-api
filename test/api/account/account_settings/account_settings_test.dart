@@ -5,7 +5,7 @@ import 'package:flutter_deriv_api/api/account/models/set_account_setting_model.d
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 
 void main() {
-  setUpAll(() => APIInitializer().initialize(true));
+  setUpAll(() => APIInitializer().initialize(isMock: true));
 
   group('Account Setting Group ->', () {
     test('Fetch Account Settings Test', () async {
