@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -103,7 +104,10 @@ import 'mock_data/user/transfer_between_accounts_response.dart';
 import 'mock_data/user/verify_email_response.dart';
 
 /// This class is for handling mock API connection and calling mock APIs
-class MockAPI implements BaseAPI {
+class MockAPI extends BaseAPI {
+  /// Initializes
+  MockAPI(UniqueKey uniqueKey) : super(uniqueKey);
+
   static const int _responseDelayMilliseconds = 0;
 
   @override
@@ -111,6 +115,7 @@ class MockAPI implements BaseAPI {
     ConnectionInformation connectionInformation, {
     ConnectionCallback onDone,
     ConnectionCallback onOpen,
+    ConnectionCallback onError,
   }) async =>
       true;
 
