@@ -1,13 +1,12 @@
 part of 'connection_bloc.dart';
 
 /// Connection States
-@immutable
 abstract class ConnectionState {}
 
 /// Initial state
 class InitialConnectionState extends ConnectionState {
   @override
-  String toString() => 'InitialConnectionState';
+  String toString() => 'ConnectionState: InitialConnectionState';
 }
 
 /// shows that we are in the process of connecting
@@ -16,33 +15,25 @@ class Connecting extends ConnectionState {
   Connecting();
 
   @override
-  String toString() => 'ConnectionState(Connecting)';
+  String toString() => 'ConnectionState: Connecting...';
 }
 
-/// connected state
+/// Connected state
 class Connected extends ConnectionState {
-  /// Initializes
-  Connected({
-    this.serverTime,
-  }) : timeDifference = serverTime == null
-            ? null
-            : getSecondsSinceEpochDateTime(serverTime) - getCurrentLocalEpoch();
-
-  /// fetched server time
-  final DateTime serverTime;
-
-  /// difference between [serverTime] and the time of the device
-  final int timeDifference;
-
-  /// Creates a copy of instance with given parameters
-  Connected copyWith({
-    DateTime serverTime,
-  }) =>
-      Connected(serverTime: serverTime ?? this.serverTime);
-
   @override
-  String toString() =>
-      'ConnectionState(Connected, serverTime: $serverTime, timeDifference: $timeDifference)';
+  String toString() => 'ConnectionState: Connected';
+}
+
+/// Disconnected state
+class Disconnected extends ConnectionState {
+  @override
+  String toString() => 'ConnectionState: Disconnected';
+}
+
+/// Reconnecting state
+class Reconnecting extends ConnectionState {
+  @override
+  String toString() => 'ConnectionState: Reconnecting...';
 }
 
 /// Connection error state
@@ -54,5 +45,5 @@ class ConnectionError extends ConnectionState {
   final String error;
 
   @override
-  String toString() => 'ConnectionState(Error)';
+  String toString() => 'ConnectionState: Error(error: $error)';
 }

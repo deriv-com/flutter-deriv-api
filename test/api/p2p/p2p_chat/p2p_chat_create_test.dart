@@ -1,14 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_chat/p2p_chat_create.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/services/dependency_injector/module_container.dart';
 
 void main() {
-  setUp(() {
-    ModuleContainer().initialize(Injector.getInjector(), isMock: true);
-  });
+  setUp(() => APIInitializer().initialize(true));
 
   test('Create P2P Chat Test', () async {
     final P2PChatCreate createChat = await P2PChatCreate.createChat(

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -8,15 +9,22 @@ import 'package:flutter_deriv_api/services/connection/api_manager/connection_inf
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 
 /// Callbacks for websocket connection
-typedef ConnectionCallback = void Function();
+typedef ConnectionCallback = void Function(UniqueKey uniqueKey);
 
 /// Base class for handling API connection and calling APIs
 abstract class BaseAPI {
+  /// Initializes
+  BaseAPI(this.uniqueKey);
+
+  /// A key to check the `onDone` function is called from the same instance.
+  final UniqueKey uniqueKey;
+
   /// Connects to API
   Future<void> connect(
     ConnectionInformation connectionInformation, {
     ConnectionCallback onDone,
     ConnectionCallback onOpen,
+    ConnectionCallback onError,
   });
 
   /// Adds request to stream channel
