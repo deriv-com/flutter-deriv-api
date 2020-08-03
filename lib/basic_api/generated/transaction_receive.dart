@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transaction_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'transaction_receive.g.dart';
-
-/// JSON conversion for 'transaction_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Transaction response class
 class TransactionResponse extends Response {
   /// Initialize TransactionResponse
   const TransactionResponse({
@@ -25,7 +22,14 @@ class TransactionResponse extends Response {
 
   /// Creates an instance from JSON
   factory TransactionResponse.fromJson(Map<String, dynamic> json) =>
-      _$TransactionResponseFromJson(json);
+      TransactionResponse(
+        subscription: json['subscription'] as Map<String, dynamic>,
+        transaction: json['transaction'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// For subscription requests only.
   final Map<String, dynamic> subscription;
@@ -33,9 +37,16 @@ class TransactionResponse extends Response {
   /// Realtime stream of user transaction updates.
   final Map<String, dynamic> transaction;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TransactionResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'subscription': subscription,
+        'transaction': transaction,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

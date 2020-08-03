@@ -1,16 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_expired_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'sell_expired_send.g.dart';
-
-/// JSON conversion for 'sell_expired_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Sell expired request class
 class SellExpiredRequest extends Request {
   /// Initialize SellExpiredRequest
   const SellExpiredRequest({
-    this.sellExpired = 1,
+    this.sellExpired = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -21,19 +18,28 @@ class SellExpiredRequest extends Request {
 
   /// Creates an instance from JSON
   factory SellExpiredRequest.fromJson(Map<String, dynamic> json) =>
-      _$SellExpiredRequestFromJson(json);
+      SellExpiredRequest(
+        sellExpired:
+            json['sell_expired'] == null ? null : json['sell_expired'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
-  /// Must be `1`
-  final int sellExpired;
+  /// Must be `true`
+  final bool sellExpired;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$SellExpiredRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'sell_expired': sellExpired == null ? null : sellExpired ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   SellExpiredRequest copyWith({
-    int sellExpired,
+    bool sellExpired,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

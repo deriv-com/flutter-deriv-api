@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/document_upload_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'document_upload_receive.g.dart';
-
-/// JSON conversion for 'document_upload_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Document upload response class
 class DocumentUploadResponse extends Response {
   /// Initialize DocumentUploadResponse
   const DocumentUploadResponse({
@@ -24,14 +21,26 @@ class DocumentUploadResponse extends Response {
 
   /// Creates an instance from JSON
   factory DocumentUploadResponse.fromJson(Map<String, dynamic> json) =>
-      _$DocumentUploadResponseFromJson(json);
+      DocumentUploadResponse(
+        documentUpload: json['document_upload'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// Details of the uploaded documents.
   final Map<String, dynamic> documentUpload;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$DocumentUploadResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'document_upload': documentUpload,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

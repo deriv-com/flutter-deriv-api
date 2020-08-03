@@ -1,13 +1,11 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/landing_company_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'landing_company_send.g.dart';
-
-/// JSON conversion for 'landing_company_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Landing company request class
 class LandingCompanyRequest extends Request {
   /// Initialize LandingCompanyRequest
   const LandingCompanyRequest({
@@ -22,14 +20,22 @@ class LandingCompanyRequest extends Request {
 
   /// Creates an instance from JSON
   factory LandingCompanyRequest.fromJson(Map<String, dynamic> json) =>
-      _$LandingCompanyRequestFromJson(json);
+      LandingCompanyRequest(
+        landingCompany: json['landing_company'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// Client's 2-letter country code (obtained from `residence_list` call).
   final String landingCompany;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$LandingCompanyRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'landing_company': landingCompany,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

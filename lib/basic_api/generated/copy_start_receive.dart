@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_start_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'copy_start_receive.g.dart';
-
-/// JSON conversion for 'copy_start_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Copy start response class
 class CopyStartResponse extends Response {
   /// Initialize CopyStartResponse
   const CopyStartResponse({
@@ -24,14 +21,26 @@ class CopyStartResponse extends Response {
 
   /// Creates an instance from JSON
   factory CopyStartResponse.fromJson(Map<String, dynamic> json) =>
-      _$CopyStartResponseFromJson(json);
+      CopyStartResponse(
+        copyStart: json['copy_start'] as int,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// Copy start confirmation. Returns 1 is success.
   final int copyStart;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$CopyStartResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'copy_start': copyStart,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'buy_receive.g.dart';
-
-/// JSON conversion for 'buy_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Buy response class
 class BuyResponse extends Response {
   /// Initialize BuyResponse
   const BuyResponse({
@@ -24,8 +21,14 @@ class BuyResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory BuyResponse.fromJson(Map<String, dynamic> json) =>
-      _$BuyResponseFromJson(json);
+  factory BuyResponse.fromJson(Map<String, dynamic> json) => BuyResponse(
+        buy: json['buy'] as Map<String, dynamic>,
+        subscription: json['subscription'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// Receipt confirmation for the purchase
   final Map<String, dynamic> buy;
@@ -33,9 +36,16 @@ class BuyResponse extends Response {
   /// For subscription requests only.
   final Map<String, dynamic> subscription;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$BuyResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'buy': buy,
+        'subscription': subscription,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

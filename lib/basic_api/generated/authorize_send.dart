@@ -1,13 +1,11 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/authorize_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'authorize_send.g.dart';
-
-/// JSON conversion for 'authorize_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Authorize request class
 class AuthorizeRequest extends Request {
   /// Initialize AuthorizeRequest
   const AuthorizeRequest({
@@ -23,7 +21,12 @@ class AuthorizeRequest extends Request {
 
   /// Creates an instance from JSON
   factory AuthorizeRequest.fromJson(Map<String, dynamic> json) =>
-      _$AuthorizeRequestFromJson(json);
+      AuthorizeRequest(
+        addToLoginHistory: json['add_to_login_history'] as int,
+        authorize: json['authorize'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] Send this when you use api tokens for authorization and want to track activity using `login_history` call.
   final int addToLoginHistory;
@@ -31,9 +34,14 @@ class AuthorizeRequest extends Request {
   /// Authentication token. May be retrieved from https://www.binary.com/en/user/security/api_tokenws.html
   final String authorize;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$AuthorizeRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'add_to_login_history': addToLoginHistory,
+        'authorize': authorize,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

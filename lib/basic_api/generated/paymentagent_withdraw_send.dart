@@ -1,13 +1,11 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'paymentagent_withdraw_send.g.dart';
-
-/// JSON conversion for 'paymentagent_withdraw_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Paymentagent withdraw request class
 class PaymentagentWithdrawRequest extends Request {
   /// Initialize PaymentagentWithdrawRequest
   const PaymentagentWithdrawRequest({
@@ -16,7 +14,7 @@ class PaymentagentWithdrawRequest extends Request {
     this.description,
     this.dryRun,
     @required this.paymentagentLoginid,
-    this.paymentagentWithdraw = 1,
+    this.paymentagentWithdraw = true,
     @required this.verificationCode,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -28,7 +26,19 @@ class PaymentagentWithdrawRequest extends Request {
 
   /// Creates an instance from JSON
   factory PaymentagentWithdrawRequest.fromJson(Map<String, dynamic> json) =>
-      _$PaymentagentWithdrawRequestFromJson(json);
+      PaymentagentWithdrawRequest(
+        amount: json['amount'] as num,
+        currency: json['currency'] as String,
+        description: json['description'] as String,
+        dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
+        paymentagentLoginid: json['paymentagent_loginid'] as String,
+        paymentagentWithdraw: json['paymentagent_withdraw'] == null
+            ? null
+            : json['paymentagent_withdraw'] == 1,
+        verificationCode: json['verification_code'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// The amount to withdraw to the payment agent.
   final num amount;
@@ -39,21 +49,32 @@ class PaymentagentWithdrawRequest extends Request {
   /// [Optional] Remarks about the withdraw. Only letters, numbers, space, period, comma, - ' are allowed.
   final String description;
 
-  /// [Optional] If set to 1, just do validation.
-  final int dryRun;
+  /// [Optional] If set to `true`, just do validation.
+  final bool dryRun;
 
   /// The payment agent loginid received from the `paymentagent_list` call.
   final String paymentagentLoginid;
 
-  /// Must be `1`
-  final int paymentagentWithdraw;
+  /// Must be `true`
+  final bool paymentagentWithdraw;
 
   /// Email verification code (received from a `verify_email` call, which must be done first)
   final String verificationCode;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$PaymentagentWithdrawRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'amount': amount,
+        'currency': currency,
+        'description': description,
+        'dry_run': dryRun == null ? null : dryRun ? 1 : 0,
+        'paymentagent_loginid': paymentagentLoginid,
+        'paymentagent_withdraw':
+            paymentagentWithdraw == null ? null : paymentagentWithdraw ? 1 : 0,
+        'verification_code': verificationCode,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -61,9 +82,9 @@ class PaymentagentWithdrawRequest extends Request {
     num amount,
     String currency,
     String description,
-    int dryRun,
+    bool dryRun,
     String paymentagentLoginid,
-    int paymentagentWithdraw,
+    bool paymentagentWithdraw,
     String verificationCode,
     Map<String, dynamic> passthrough,
     int reqId,

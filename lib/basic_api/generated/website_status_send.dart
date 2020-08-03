@@ -1,17 +1,14 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/website_status_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'website_status_send.g.dart';
-
-/// JSON conversion for 'website_status_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Website status request class
 class WebsiteStatusRequest extends Request {
   /// Initialize WebsiteStatusRequest
   const WebsiteStatusRequest({
     this.subscribe,
-    this.websiteStatus = 1,
+    this.websiteStatus = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -22,23 +19,34 @@ class WebsiteStatusRequest extends Request {
 
   /// Creates an instance from JSON
   factory WebsiteStatusRequest.fromJson(Map<String, dynamic> json) =>
-      _$WebsiteStatusRequestFromJson(json);
+      WebsiteStatusRequest(
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
+        websiteStatus:
+            json['website_status'] == null ? null : json['website_status'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
-  /// [Optional] `1` to stream the server/website status updates.
-  final int subscribe;
+  /// [Optional] `true` to stream the server/website status updates.
+  final bool subscribe;
 
-  /// Must be `1`
-  final int websiteStatus;
+  /// Must be `true`
+  final bool websiteStatus;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$WebsiteStatusRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'website_status': websiteStatus == null ? null : websiteStatus ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   WebsiteStatusRequest copyWith({
-    int subscribe,
-    int websiteStatus,
+    bool subscribe,
+    bool websiteStatus,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

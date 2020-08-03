@@ -1,18 +1,16 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'app_markup_details_send.g.dart';
-
-/// JSON conversion for 'app_markup_details_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// App markup details request class
 class AppMarkupDetailsRequest extends Request {
   /// Initialize AppMarkupDetailsRequest
   const AppMarkupDetailsRequest({
     this.appId,
-    this.appMarkupDetails = 1,
+    this.appMarkupDetails = true,
     this.clientLoginid,
     @required this.dateFrom,
     @required this.dateTo,
@@ -31,13 +29,31 @@ class AppMarkupDetailsRequest extends Request {
 
   /// Creates an instance from JSON
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>
-      _$AppMarkupDetailsRequestFromJson(json);
+      AppMarkupDetailsRequest(
+        appId: json['app_id'] as int,
+        appMarkupDetails: json['app_markup_details'] == null
+            ? null
+            : json['app_markup_details'] == 1,
+        clientLoginid: json['client_loginid'] as String,
+        dateFrom: json['date_from'] as String,
+        dateTo: json['date_to'] as String,
+        description:
+            json['description'] == null ? null : json['description'] == 1,
+        limit: json['limit'] as num,
+        offset: json['offset'] as num,
+        sort: json['sort'] as String,
+        sortFields: (json['sort_fields'] as List<dynamic>)
+            ?.map<String>((dynamic item) => item as String)
+            ?.toList(),
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] Specific application `app_id` to report on.
   final int appId;
 
-  /// Must be `1`
-  final int appMarkupDetails;
+  /// Must be `true`
+  final bool appMarkupDetails;
 
   /// [Optional] Specific client loginid to report on, like CR12345
   final String clientLoginid;
@@ -48,8 +64,8 @@ class AppMarkupDetailsRequest extends Request {
   /// End date (epoch or YYYY-MM-DD HH::MM::SS). Results are inclusive of this time.
   final String dateTo;
 
-  /// [Optional] If set to 1, will return `app_markup` transaction details.
-  final int description;
+  /// [Optional] If set to `true`, will return `app_markup` transaction details.
+  final bool description;
 
   /// [Optional] Apply upper limit to count of transactions received.
   final num limit;
@@ -63,19 +79,33 @@ class AppMarkupDetailsRequest extends Request {
   /// [Optional] One or more of the specified fields to sort on. Default sort field is by `transaction_time`.
   final List<String> sortFields;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$AppMarkupDetailsRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'app_id': appId,
+        'app_markup_details':
+            appMarkupDetails == null ? null : appMarkupDetails ? 1 : 0,
+        'client_loginid': clientLoginid,
+        'date_from': dateFrom,
+        'date_to': dateTo,
+        'description': description == null ? null : description ? 1 : 0,
+        'limit': limit,
+        'offset': offset,
+        'sort': sort,
+        'sort_fields': sortFields,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   AppMarkupDetailsRequest copyWith({
     int appId,
-    int appMarkupDetails,
+    bool appMarkupDetails,
     String clientLoginid,
     String dateFrom,
     String dateTo,
-    int description,
+    bool description,
     num limit,
     num offset,
     String sort,

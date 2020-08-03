@@ -1,16 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/topup_virtual_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'topup_virtual_send.g.dart';
-
-/// JSON conversion for 'topup_virtual_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Topup virtual request class
 class TopupVirtualRequest extends Request {
   /// Initialize TopupVirtualRequest
   const TopupVirtualRequest({
-    this.topupVirtual = 1,
+    this.topupVirtual = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -21,19 +18,28 @@ class TopupVirtualRequest extends Request {
 
   /// Creates an instance from JSON
   factory TopupVirtualRequest.fromJson(Map<String, dynamic> json) =>
-      _$TopupVirtualRequestFromJson(json);
+      TopupVirtualRequest(
+        topupVirtual:
+            json['topup_virtual'] == null ? null : json['topup_virtual'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
-  /// Must be `1`
-  final int topupVirtual;
+  /// Must be `true`
+  final bool topupVirtual;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TopupVirtualRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'topup_virtual': topupVirtual == null ? null : topupVirtual ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   TopupVirtualRequest copyWith({
-    int topupVirtual,
+    bool topupVirtual,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

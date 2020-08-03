@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_stop_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'copy_stop_receive.g.dart';
-
-/// JSON conversion for 'copy_stop_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Copy stop response class
 class CopyStopResponse extends Response {
   /// Initialize CopyStopResponse
   const CopyStopResponse({
@@ -24,14 +21,26 @@ class CopyStopResponse extends Response {
 
   /// Creates an instance from JSON
   factory CopyStopResponse.fromJson(Map<String, dynamic> json) =>
-      _$CopyStopResponseFromJson(json);
+      CopyStopResponse(
+        copyStop: json['copy_stop'] as int,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// Copy stopping confirmation. Returns 1 is success.
   final int copyStop;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$CopyStopResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'copy_stop': copyStop,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

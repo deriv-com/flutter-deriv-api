@@ -1,17 +1,14 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transaction_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'transaction_send.g.dart';
-
-/// JSON conversion for 'transaction_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Transaction request class
 class TransactionRequest extends Request {
   /// Initialize TransactionRequest
   const TransactionRequest({
     this.subscribe,
-    this.transaction = 1,
+    this.transaction = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -22,23 +19,34 @@ class TransactionRequest extends Request {
 
   /// Creates an instance from JSON
   factory TransactionRequest.fromJson(Map<String, dynamic> json) =>
-      _$TransactionRequestFromJson(json);
+      TransactionRequest(
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
+        transaction:
+            json['transaction'] == null ? null : json['transaction'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
-  /// If set to 1, will send updates whenever there is an update to transactions. If not to 1 then it will not return any records.
-  final int subscribe;
+  /// If set to `true`, will send updates whenever there is an update to transactions. If not to `true` then it will not return any records.
+  final bool subscribe;
 
-  /// Must be `1`
-  final int transaction;
+  /// Must be `true`
+  final bool transaction;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TransactionRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'transaction': transaction == null ? null : transaction ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   TransactionRequest copyWith({
-    int subscribe,
-    int transaction,
+    bool subscribe,
+    bool transaction,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

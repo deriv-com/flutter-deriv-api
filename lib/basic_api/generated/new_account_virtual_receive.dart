@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_virtual_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'new_account_virtual_receive.g.dart';
-
-/// JSON conversion for 'new_account_virtual_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// New account virtual response class
 class NewAccountVirtualResponse extends Response {
   /// Initialize NewAccountVirtualResponse
   const NewAccountVirtualResponse({
@@ -24,14 +21,26 @@ class NewAccountVirtualResponse extends Response {
 
   /// Creates an instance from JSON
   factory NewAccountVirtualResponse.fromJson(Map<String, dynamic> json) =>
-      _$NewAccountVirtualResponseFromJson(json);
+      NewAccountVirtualResponse(
+        newAccountVirtual: json['new_account_virtual'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// New virtual-money account details
   final Map<String, dynamic> newAccountVirtual;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$NewAccountVirtualResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'new_account_virtual': newAccountVirtual,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

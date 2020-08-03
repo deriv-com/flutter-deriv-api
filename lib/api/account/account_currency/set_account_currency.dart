@@ -16,7 +16,7 @@ class SetAccountCurrency extends SetAccountCurrencyModel {
   factory SetAccountCurrency.fromResponse(
     SetAccountCurrencyResponse response,
   ) =>
-      SetAccountCurrency(succeeded: getBool(response.setAccountCurrency));
+      SetAccountCurrency(succeeded: response.setAccountCurrency);
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 

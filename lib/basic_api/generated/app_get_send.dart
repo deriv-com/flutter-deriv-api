@@ -1,16 +1,15 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_get_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
+import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'app_get_send.g.dart';
-
-/// JSON conversion for 'app_get_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// App get request class
 class AppGetRequest extends Request {
   /// Initialize AppGetRequest
   const AppGetRequest({
-    this.appGet = 1,
+    @required this.appGet,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -20,15 +19,22 @@ class AppGetRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory AppGetRequest.fromJson(Map<String, dynamic> json) =>
-      _$AppGetRequestFromJson(json);
+  factory AppGetRequest.fromJson(Map<String, dynamic> json) => AppGetRequest(
+        appGet: json['app_get'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// Application app_id
   final int appGet;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$AppGetRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'app_get': appGet,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

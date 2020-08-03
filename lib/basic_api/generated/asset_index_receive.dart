@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/asset_index_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'asset_index_receive.g.dart';
-
-/// JSON conversion for 'asset_index_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Asset index response class
 class AssetIndexResponse extends Response {
   /// Initialize AssetIndexResponse
   const AssetIndexResponse({
@@ -24,14 +21,26 @@ class AssetIndexResponse extends Response {
 
   /// Creates an instance from JSON
   factory AssetIndexResponse.fromJson(Map<String, dynamic> json) =>
-      _$AssetIndexResponseFromJson(json);
+      AssetIndexResponse(
+        assetIndex: json['asset_index'] as List<dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// List of underlyings by their display name and symbol followed by their available contract types and duration boundaries.
   final List<dynamic> assetIndex;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$AssetIndexResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'asset_index': assetIndex,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

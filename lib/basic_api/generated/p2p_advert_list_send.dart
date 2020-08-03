@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_list_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'p2p_advert_list_send.g.dart';
-
-/// JSON conversion for 'p2p_advert_list_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2p advert list request class
 class P2pAdvertListRequest extends Request {
   /// Initialize P2pAdvertListRequest
   const P2pAdvertListRequest({
@@ -16,7 +13,7 @@ class P2pAdvertListRequest extends Request {
     this.limit,
     this.localCurrency,
     this.offset,
-    this.p2pAdvertList = 1,
+    this.p2pAdvertList = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -27,7 +24,19 @@ class P2pAdvertListRequest extends Request {
 
   /// Creates an instance from JSON
   factory P2pAdvertListRequest.fromJson(Map<String, dynamic> json) =>
-      _$P2pAdvertListRequestFromJson(json);
+      P2pAdvertListRequest(
+        advertiserId: json['advertiser_id'] as String,
+        amount: json['amount'] as num,
+        counterpartyType: json['counterparty_type'] as String,
+        limit: json['limit'] as int,
+        localCurrency: json['local_currency'] as String,
+        offset: json['offset'] as int,
+        p2pAdvertList: json['p2p_advert_list'] == null
+            ? null
+            : json['p2p_advert_list'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] Which advertiser to list adverts for.
   final String advertiserId;
@@ -47,12 +56,22 @@ class P2pAdvertListRequest extends Request {
   /// [Optional] Used for paging.
   final int offset;
 
-  /// Must be 1
-  final int p2pAdvertList;
+  /// Must be `true`
+  final bool p2pAdvertList;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pAdvertListRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'advertiser_id': advertiserId,
+        'amount': amount,
+        'counterparty_type': counterpartyType,
+        'limit': limit,
+        'local_currency': localCurrency,
+        'offset': offset,
+        'p2p_advert_list': p2pAdvertList == null ? null : p2pAdvertList ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -63,7 +82,7 @@ class P2pAdvertListRequest extends Request {
     int limit,
     String localCurrency,
     int offset,
-    int p2pAdvertList,
+    bool p2pAdvertList,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
