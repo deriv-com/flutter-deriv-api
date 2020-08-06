@@ -57,7 +57,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
   @override
   Stream<ConnectionState> mapEventToState(ConnectionEvent event) async* {
-    if (event is Connect) {
+    if (event is Connect && state is! Connected) {
       yield Connected();
     } else if (event is Reconnect || event is Reconfigure) {
       if (event is Reconfigure) {
@@ -77,9 +77,11 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       }
 
       if (event is Reconnect) {
-        if (await ConnectionService().checkConnectivity() && shouldReconnect) {
+        if (await ConnectionService().checkConnectivity() &&
+            shouldReconnect &&
+            state is! Reconnecting) {
           yield Reconnecting();
-        } else {
+        } else if (state is! Disconnected) {
           yield Disconnected();
         }
       } else {
