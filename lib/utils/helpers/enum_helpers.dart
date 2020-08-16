@@ -7,6 +7,9 @@ enum EnumCase {
 
   /// Param case (e.g. param-case)
   paramCase,
+
+  /// Uppercase (e.g. uppercase)
+  upperCase,
 }
 
 /// Converts enum to string
@@ -25,6 +28,8 @@ String getStringFromEnum<T>(
       return ReCase(item).snakeCase;
     case EnumCase.paramCase:
       return ReCase(item).paramCase;
+    case EnumCase.upperCase:
+      return item.toUpperCase();
 
     default:
       return item;
@@ -48,6 +53,8 @@ T getEnumFromString<T>({
                   return ReCase(item).snakeCase.compareTo(name) == 0;
                 case EnumCase.paramCase:
                   return ReCase(item).paramCase.compareTo(name) == 0;
+                case EnumCase.upperCase:
+                  return item.toUpperCase().compareTo(name) == 0;
 
                 default:
                   return item.compareTo(name) == 0;

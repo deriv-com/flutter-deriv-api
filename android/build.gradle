@@ -1,4 +1,4 @@
-group 'com.example.flutter_deriv_api'
+group 'com.deriv.flutter_deriv_api'
 version '1.0-SNAPSHOT'
 
 buildscript {

@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 /// This represent the current status for proof of identity document
 /// submitted for authentication.
 enum AccountIdentityStatus {
@@ -309,4 +311,41 @@ enum ForgetStreamType {
 
   /// Website status
   websiteStatus
+}
+
+/// Contract types
+enum ContractType {
+  multup,
+  multdown,
+  upordown,
+  expiryrange,
+  onetouch,
+  calle,
+  lbhighlow,
+  asiand,
+  expiryrangee,
+  digitdiff,
+  digitmatch,
+  digitover,
+  pute,
+  digitunder,
+  notouch,
+  call,
+  range,
+  lbfloatput,
+  digitodd,
+  put,
+  asianu,
+  lbfloatcall,
+  expirymisse,
+  expirymiss,
+  digiteven,
+  tickhigh,
+  ticklow,
+  resetcall,
+  resetput,
+  callspread,
+  putspread,
+  runhigh,
+  runlow
 }

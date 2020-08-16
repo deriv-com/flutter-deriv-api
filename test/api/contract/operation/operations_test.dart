@@ -90,11 +90,13 @@ void main() {
       expect(openContract.profitPercentage, 103.67);
       expect(openContract.purchaseTime, getDateTime(1587533920));
       expect(openContract.dateStart, getDateTime(1587533920));
-      expect(openContract.contractType, 'CALL');
+      expect(openContract.contractType, ContractType.call);
       expect(openContract.currency, 'USD');
       expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
-      expect(openContract.auditDetails.contractEnd.first.epoch,
-          getDateTime(1587533976));
+      expect(
+        openContract.auditDetails.contractEnd.first.epoch,
+        getDateTime(1587533976),
+      );
       expect(openContract.underlying, 'R_100');
       expect(openContract.barrier, '1417.75');
       expect(openContract.barrierCount, 1.0);
@@ -107,7 +109,9 @@ void main() {
       expect(openContract.isIntraday, true);
       expect(openContract.isSold, false);
       expect(
-          openContract.shortCode, 'CALL_R_100_50_1587533920_1587533980_S10P_0');
+        openContract.shortCode,
+        'CALL_R_100_50_1587533920_1587533980_S10P_0',
+      );
       expect(openContract.status, ContractStatus.open);
 
       buyContract
@@ -120,11 +124,13 @@ void main() {
         expect(openContract.profitPercentage, 103.67);
         expect(openContract.purchaseTime, getDateTime(1587533920));
         expect(openContract.dateStart, getDateTime(1587533920));
-        expect(openContract.contractType, 'CALL');
+        expect(openContract.contractType, ContractType.call);
         expect(openContract.currency, 'USD');
         expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
-        expect(openContract.auditDetails.contractEnd.first.epoch,
-            getDateTime(1587533976));
+        expect(
+          openContract.auditDetails.contractEnd.first.epoch,
+          getDateTime(1587533976),
+        );
         expect(openContract.underlying, 'R_100');
         expect(openContract.barrier, '1417.75');
         expect(openContract.barrierCount, 1.0);
@@ -136,8 +142,10 @@ void main() {
         expect(openContract.isForwardStarting, false);
         expect(openContract.isIntraday, true);
         expect(openContract.isSold, false);
-        expect(openContract.shortCode,
-            'CALL_R_100_50_1587533920_1587533980_S10P_0');
+        expect(
+          openContract.shortCode,
+          'CALL_R_100_50_1587533920_1587533980_S10P_0',
+        );
         expect(openContract.status, ContractStatus.open);
 
         expect(
@@ -277,11 +285,13 @@ void main() {
         expect(openContract.profit, 25.45);
         expect(openContract.profitPercentage, 103.67);
         expect(openContract.purchaseTime, getDateTime(1587533920));
-        expect(openContract.contractType, 'CALL');
+        expect(openContract.contractType, ContractType.call);
         expect(openContract.currency, 'USD');
         expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
-        expect(openContract.auditDetails.contractEnd.first.epoch,
-            getDateTime(1587533976));
+        expect(
+          openContract.auditDetails.contractEnd.first.epoch,
+          getDateTime(1587533976),
+        );
         expect(openContract.underlying, 'R_100');
         expect(openContract.barrier, '1417.75');
         expect(openContract.barrierCount, 1.0);
@@ -293,8 +303,10 @@ void main() {
         expect(openContract.isForwardStarting, false);
         expect(openContract.isIntraday, true);
         expect(openContract.isSold, false);
-        expect(openContract.shortCode,
-            'CALL_R_100_50_1587533920_1587533980_S10P_0');
+        expect(
+          openContract.shortCode,
+          'CALL_R_100_50_1587533920_1587533980_S10P_0',
+        );
         expect(openContract.status, ContractStatus.open);
       } on ContractOperationException catch (e) {
         dev.log(e.message);
@@ -311,11 +323,13 @@ void main() {
           expect(openContract.profit, 25.45);
           expect(openContract.profitPercentage, 103.67);
           expect(openContract.purchaseTime, getDateTime(1587533920));
-          expect(openContract.contractType, 'CALL');
+          expect(openContract.contractType, ContractType.call);
           expect(openContract.currency, 'USD');
           expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
-          expect(openContract.auditDetails.contractEnd.first.epoch,
-              getDateTime(1587533976));
+          expect(
+            openContract.auditDetails.contractEnd.first.epoch,
+            getDateTime(1587533976),
+          );
           expect(openContract.underlying, 'R_100');
           expect(openContract.barrier, '1417.75');
           expect(openContract.barrierCount, 1.0);
@@ -327,8 +341,10 @@ void main() {
           expect(openContract.isForwardStarting, false);
           expect(openContract.isIntraday, true);
           expect(openContract.isSold, false);
-          expect(openContract.shortCode,
-              'CALL_R_100_50_1587533920_1587533980_S10P_0');
+          expect(
+            openContract.shortCode,
+            'CALL_R_100_50_1587533920_1587533980_S10P_0',
+          );
           expect(openContract.status, ContractStatus.open);
 
           expect(

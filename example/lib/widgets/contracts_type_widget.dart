@@ -83,11 +83,12 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(2),
+                const Padding(
+                  padding: EdgeInsets.all(2),
                   child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: Icon(Icons.keyboard_arrow_down)),
+                    alignment: Alignment.bottomRight,
+                    child: Icon(Icons.keyboard_arrow_down),
+                  ),
                 )
               ],
             ),
