@@ -30,12 +30,13 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
           child: InkWell(
             onTap: () {
               showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) =>
-                      BlocProvider<AvailableContractsBloc>.value(
-                        value: _availableContractsBloc,
-                        child: ContractsTypeListDialog(),
-                      ));
+                context: context,
+                builder: (BuildContext context) =>
+                    BlocProvider<AvailableContractsBloc>.value(
+                  value: _availableContractsBloc,
+                  child: ContractsTypeListDialog(),
+                ),
+              );
             },
             child: Stack(
               children: <Widget>[
@@ -45,7 +46,7 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                     child: Center(
                       child: BlocBuilder<AvailableContractsBloc,
                           AvailableContractsState>(
-                        bloc: _availableContractsBloc,
+                        cubit: _availableContractsBloc,
                         builder: (BuildContext context,
                             AvailableContractsState state) {
                           if (state is AvailableContractsLoaded) {
@@ -86,8 +87,9 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                 Padding(
                   padding: const EdgeInsets.all(2),
                   child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: Icon(Icons.keyboard_arrow_down)),
+                    alignment: Alignment.bottomRight,
+                    child: Icon(Icons.keyboard_arrow_down),
+                  ),
                 )
               ],
             ),

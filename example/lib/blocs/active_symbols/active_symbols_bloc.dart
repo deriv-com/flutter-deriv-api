@@ -6,13 +6,11 @@ import 'package:flutter_deriv_api/api/common/active_symbols/exceptions/active_sy
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 part 'active_symbols_event.dart';
-
 part 'active_symbols_state.dart';
 
 /// ActiveSymbolsBloc
 class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
-  @override
-  ActiveSymbolsState get initialState => ActiveSymbolsLoading();
+  ActiveSymbolsBloc() : super(ActiveSymbolsLoading());
 
   @override
   Stream<ActiveSymbolsState> mapEventToState(ActiveSymbolsEvent event) async* {

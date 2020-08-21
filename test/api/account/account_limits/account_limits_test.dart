@@ -5,7 +5,7 @@ import 'package:flutter_deriv_api/api/account/models/market_limit_model.dart';
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(true));
+  setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Account Limits Test', () async {
     final AccountLimits accountLimits =

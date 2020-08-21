@@ -9,7 +9,7 @@ import 'package:flutter_deriv_api/api/common/trading/trading_times.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(true));
+  setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Trading Times Test', () async {
     final TradingTimes tradingTimes = await TradingTimes.fetchTradingTimes(

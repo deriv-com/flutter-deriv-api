@@ -5,7 +5,7 @@ import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(true));
+  setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Reality Check Test', () async {
     final RealityCheck realityCheck = await RealityCheck.check();

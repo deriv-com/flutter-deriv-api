@@ -53,7 +53,13 @@ class ConnectionService {
   }
 
   /// Initializes
-  Future<void> initialize() async {
+  Future<void> initialize({
+    bool isMock = false,
+  }) async {
+    if (isMock) {
+      return;
+    }
+
     await _connectivity.checkConnectivity();
     _connectivity.onConnectivityChanged.listen(_checkConnection);
   }
@@ -62,6 +68,7 @@ class ConnectionService {
   Future<bool> checkConnectivity() async {
     final ConnectivityResult connectivityResult =
         await _connectivity.checkConnectivity();
+
     return _checkConnection(connectivityResult);
   }
 }

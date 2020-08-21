@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/common/copy_trading/copy_trading_stop.dart
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 void main() {
-  setUpAll(() => APIInitializer().initialize(true));
+  setUpAll(() => APIInitializer().initialize(isMock: true));
 
   group('Copy Trading Group ->', () {
     test('Start Copy Trading Test', () async {

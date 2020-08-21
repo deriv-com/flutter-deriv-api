@@ -19,11 +19,13 @@ class _SampleAppState extends State<SampleApp> {
   void initState() {
     super.initState();
 
-    _connectionBloc = api_connection.ConnectionBloc(ConnectionInformation(
-      appId: '1089',
-      brand: 'binary',
-      endpoint: 'frontend.binaryws.com',
-    ));
+    _connectionBloc = api_connection.ConnectionBloc(
+      ConnectionInformation(
+        appId: '1089',
+        brand: 'binary',
+        endpoint: 'frontend.binaryws.com',
+      ),
+    );
   }
 
   @override
@@ -61,7 +63,7 @@ class _SampleAppState extends State<SampleApp> {
                 return _buildCenterText(
                   'Connection is down, trying to reconnect...',
                 );
-              } else if (state is api_connection.Reconnecting){
+              } else if (state is api_connection.Reconnecting) {
                 return _buildCenterText('Reconnecting...');
               }
               return Container();
