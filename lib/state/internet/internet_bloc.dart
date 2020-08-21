@@ -12,7 +12,7 @@ part 'internet_state.dart';
 /// A bloc which listens to internet and WebSocket connectivity changes
 class InternetBloc extends Bloc<InternetEvent, InternetState> {
   /// Initializes
-  InternetBloc() {
+  InternetBloc() : super(InitialInternetState()) {
     _connectivityListener = ConnectionService().state.listen(
       (bool state) {
         if (state) {
@@ -29,9 +29,6 @@ class InternetBloc extends Bloc<InternetEvent, InternetState> {
   }
 
   StreamSubscription<bool> _connectivityListener;
-
-  @override
-  InternetState get initialState => InitialInternetState();
 
   @override
   Future<void> close() {
