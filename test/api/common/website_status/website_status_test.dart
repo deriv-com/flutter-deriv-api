@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/api/common/website_status/website_status.dart'
 import 'package:flutter_deriv_api/api/models/enums.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(true));
+  setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Website Status Test', () async {
     final WebsiteStatus websiteStatus =

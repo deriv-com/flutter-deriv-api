@@ -39,12 +39,14 @@ class _DropDownMenuState<T> extends State<DropDownMenu<T>> {
   @override
   Widget build(BuildContext context) => Row(
         children: <Widget>[
-          Text('${widget.title}: ', style: TextStyle(color: Colors.indigo)),
+          Text(
+            '${widget.title}: ',
+            style: const TextStyle(color: Colors.indigo),
+          ),
           const SizedBox(width: 12),
           DropdownButton<T>(
             value: _item,
-            icon: Icon(Icons.keyboard_arrow_down),
-            iconSize: 24,
+            icon: const Icon(Icons.keyboard_arrow_down),
             underline: Container(height: 2, color: Colors.grey),
             onChanged: (T newValue) {
               widget.onItemSelected(newValue);

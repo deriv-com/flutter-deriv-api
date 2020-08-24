@@ -31,11 +31,11 @@ class AccountStatusCurrencyConfigModel extends APIBaseModel {
   final bool isWithdrawalSuspended;
 
   /// Creates a copy of instance with given parameters
-  AccountStatusCurrencyConfigModel copyWith(
+  AccountStatusCurrencyConfigModel copyWith({
     String currency,
     bool isDepositSuspended,
     bool isWithdrawalSuspended,
-  ) =>
+  }) =>
       AccountStatusCurrencyConfigModel(
         currency: currency ?? this.currency,
         isDepositSuspended: isDepositSuspended ?? this.isDepositSuspended,

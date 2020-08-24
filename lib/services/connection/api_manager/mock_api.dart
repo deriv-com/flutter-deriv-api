@@ -108,8 +108,6 @@ class MockAPI extends BaseAPI {
   /// Initializes
   MockAPI(UniqueKey uniqueKey) : super(uniqueKey);
 
-  static const int _responseDelayMilliseconds = 0;
-
   @override
   Future<void> connect(
     ConnectionInformation connectionInformation, {
@@ -152,7 +150,7 @@ class MockAPI extends BaseAPI {
 
   Future<Response> _getFutureResponse(Request request) async =>
       Future<Response>.delayed(
-        const Duration(milliseconds: _responseDelayMilliseconds),
+        const Duration(),
         () => getResponseByMsgType(
           jsonDecode(_getResponse(request.msgType)),
         ),
@@ -160,7 +158,7 @@ class MockAPI extends BaseAPI {
 
   Stream<Response> _getStreamResponse(Request request) =>
       Stream<Response>.periodic(
-        const Duration(milliseconds: _responseDelayMilliseconds),
+        const Duration(),
         (int computationCount) => getResponseByMsgType(
           jsonDecode(_getResponse(request.msgType)),
         ),

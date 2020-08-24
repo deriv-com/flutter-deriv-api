@@ -9,17 +9,17 @@ void main(List<String> arguments) {
   }
 
   final List<StringBuffer> result = JsonSchemaParser().getClasses(
-    className: arguments.last,
     models: JsonSchemaParser.getModels(
       schema: json.decode(
         File(arguments.first).readAsStringSync(),
       ),
     ),
+    className: arguments.last,
   );
 
   final File output = File('${arguments.first.split('.').first}_result.dart');
 
-  for (StringBuffer item in result) {
+  for (final StringBuffer item in result) {
     output.writeAsStringSync('${item.toString()}', mode: FileMode.append);
   }
 }

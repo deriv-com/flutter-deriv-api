@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(true));
+  setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Contracts For Test', () async {
     final ContractsForSymbol contractsFor =

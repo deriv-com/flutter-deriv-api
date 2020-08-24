@@ -33,8 +33,7 @@ class SnackBarContent extends StatelessWidget {
           color: backgroundColor ?? Colors.redAccent,
         ),
         child: ListTile(
-          contentPadding:
-              const EdgeInsets.only(left: 16, right: 16, top: 0, bottom: 0),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16),
           title: title != null
               ? Text(
                   title,

@@ -72,7 +72,6 @@ class TopSnackBar {
     final RenderBox renderBox = context.findRenderObject();
     final Size size = renderBox.size;
     _overlayEntry = OverlayEntry(
-      opaque: false,
       builder: (BuildContext context) => TopSnackBarWidget(
         dismissible: dismissible,
         duration: duration,

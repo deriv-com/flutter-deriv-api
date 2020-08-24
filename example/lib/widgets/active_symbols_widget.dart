@@ -57,7 +57,7 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                     padding: const EdgeInsets.all(20),
                     // ignore: always_specify_types
                     child: BlocBuilder(
-                        bloc: _activeSymbolsBloc,
+                        cubit: _activeSymbolsBloc,
                         builder:
                             (BuildContext context, ActiveSymbolsState state) {
                           if (state is ActiveSymbolsLoaded) {
@@ -95,7 +95,7 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                       children: <Widget>[
                         Flexible(
                           child: BlocBuilder<TicksBloc, TicksState>(
-                              bloc: _ticksBloc,
+                              cubit: _ticksBloc,
                               builder:
                                   (BuildContext context, TicksState state) {
                                 if (state is TicksLoaded) {
@@ -141,7 +141,7 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                               }),
                         ),
                         const SizedBox(height: 12),
-                        Icon(Icons.keyboard_arrow_down)
+                        const Icon(Icons.keyboard_arrow_down)
                       ],
                     ),
                   ),

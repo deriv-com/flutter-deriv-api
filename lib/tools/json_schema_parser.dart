@@ -101,7 +101,7 @@ class JsonSchemaParser {
         ''',
       );
 
-    for (_SchemaModel model in models) {
+    for (final _SchemaModel model in models) {
       result
         ..write('${model.isRequired ? '@required' : ''} ')
         ..write(
@@ -112,7 +112,7 @@ class JsonSchemaParser {
     if (isSubclass) {
       result.write('}) : super(');
 
-      for (_SchemaModel model in models) {
+      for (final _SchemaModel model in models) {
         result.write('${model.title}: ${model.title},');
       }
 
@@ -127,7 +127,7 @@ class JsonSchemaParser {
   static StringBuffer _generateProperties({List<_SchemaModel> models}) {
     final StringBuffer result = StringBuffer();
 
-    for (_SchemaModel model in models) {
+    for (final _SchemaModel model in models) {
       result.write(
         '''
           /// ${model.description}
@@ -147,7 +147,7 @@ class JsonSchemaParser {
       'factory $className.fromJson(Map<String, dynamic> json) => $className(',
     );
 
-    for (_SchemaModel model in models) {
+    for (final _SchemaModel model in models) {
       final String className = model.className;
       final String title = model.title;
       final String schemaTitle = model.schemaTitle;
@@ -192,7 +192,7 @@ class JsonSchemaParser {
         ''',
       );
 
-    for (_SchemaModel model in models) {
+    for (final _SchemaModel model in models) {
       final String title = model.title;
       final String schemaTitle = model.schemaTitle;
       final String schemaType = model.schemaType;
@@ -234,13 +234,13 @@ class JsonSchemaParser {
         ''',
       );
 
-    for (_SchemaModel model in models) {
+    for (final _SchemaModel model in models) {
       result.write('${model.type} ${model.title},');
     }
 
     result.write('}) => $className(');
 
-    for (_SchemaModel model in models) {
+    for (final _SchemaModel model in models) {
       result.write('${model.title}: ${model.title} ?? this.${model.title},');
     }
 
@@ -259,7 +259,7 @@ class JsonSchemaParser {
       final Map<String, dynamic> schemaProperties = schema['properties'];
 
       if (schemaProperties != null) {
-        for (dynamic entry in schemaProperties.entries) {
+        for (final dynamic entry in schemaProperties.entries) {
           final String name = entry.key;
           final String type = _getType(entry);
           final String arrayType = entry.value['type'] == 'array'
@@ -309,8 +309,8 @@ class JsonSchemaParser {
 
   /// Generating main and nested classes from schema models that comes from `getModel()` method.
   List<StringBuffer> getClasses({
-    String className = 'MainClass',
     @required List<_SchemaModel> models,
+    String className = 'MainClass',
     bool clearResult = true,
   }) {
     if (clearResult) {
@@ -328,10 +328,10 @@ class JsonSchemaParser {
       );
     }
 
-    for (_SchemaModel model in models) {
+    for (final _SchemaModel model in models) {
       getClasses(
-        className: model.className,
         models: model.children,
+        className: model.className,
         clearResult: false,
       );
     }
