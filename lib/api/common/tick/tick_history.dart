@@ -2,6 +2,7 @@ import 'package:flutter_deriv_api/api/common/models/candle_model.dart';
 import 'package:flutter_deriv_api/api/common/models/history_model.dart';
 import 'package:flutter_deriv_api/api/common/models/tick_history_model.dart';
 import 'package:flutter_deriv_api/api/common/tick/exceptions/tick_exception.dart';
+import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/manually/ohlc_receive.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
@@ -21,6 +22,7 @@ class TickHistory extends TickHistoryModel {
     List<CandleModel> candles,
     HistoryModel history,
     int pipSize,
+    this.subscriptionInformation,
   }) : super(
           candles,
           history,
@@ -39,9 +41,14 @@ class TickHistory extends TickHistoryModel {
           itemToTypeCallback: (dynamic item) => HistoryModel.fromJson(item),
         ),
         pipSize: response.pipSize,
+        subscriptionInformation:
+            SubscriptionModel.fromJson(response.subscription),
       );
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Subscription information
+  final SubscriptionModel subscriptionInformation;
 
   /// Gets the [TickHistory] for the given [symbol] in [request]
   ///
