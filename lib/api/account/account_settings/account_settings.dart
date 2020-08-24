@@ -158,7 +158,7 @@ class AccountSettings extends AccountSettingsModel {
           phone: phone,
           placeOfBirth: placeOfBirth
               .toString(), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
-          requestProfessionalStatus: getInt(requestProfessionalStatus),
+          requestProfessionalStatus: getInt(value: requestProfessionalStatus),
           residence: residence,
           salutation: salutation,
           secretAnswer: secretAnswer,

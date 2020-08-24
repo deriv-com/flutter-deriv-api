@@ -139,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // At this point, we have a collection of accounts, and presumably something
       // is going to react to that in a suitably-surprised fashion.
       dev.log('Account list:');
-      for (Account account in accountList) {
+      for (final Account account in accountList) {
         dev.log(
           '${account.acct} currency ${account.cur} and token ${account.token}',
         );
