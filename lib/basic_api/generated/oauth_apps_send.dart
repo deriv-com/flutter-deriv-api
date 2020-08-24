@@ -1,16 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/oauth_apps_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'oauth_apps_send.g.dart';
-
-/// JSON conversion for 'oauth_apps_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Oauth apps request class
 class OauthAppsRequest extends Request {
   /// Initialize OauthAppsRequest
   const OauthAppsRequest({
-    this.oauthApps = 1,
+    this.oauthApps = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -21,19 +18,27 @@ class OauthAppsRequest extends Request {
 
   /// Creates an instance from JSON
   factory OauthAppsRequest.fromJson(Map<String, dynamic> json) =>
-      _$OauthAppsRequestFromJson(json);
+      OauthAppsRequest(
+        oauthApps: json['oauth_apps'] == null ? null : json['oauth_apps'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
-  /// Must be `1`
-  final int oauthApps;
+  /// Must be `true`
+  final bool oauthApps;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$OauthAppsRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'oauth_apps': oauthApps == null ? null : oauthApps ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   OauthAppsRequest copyWith({
-    int oauthApps,
+    bool oauthApps,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

@@ -5,7 +5,7 @@ import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(true));
+  setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Account Status Test', () async {
     final AccountStatus accountStatus =

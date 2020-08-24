@@ -14,7 +14,7 @@ class Forget extends ForgetModel {
 
   /// Creates an instance from response
   factory Forget.fromResponse(ForgetResponse response) =>
-      Forget(succeeded: getBool(response.forget));
+      Forget(succeeded: response.forget);
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 

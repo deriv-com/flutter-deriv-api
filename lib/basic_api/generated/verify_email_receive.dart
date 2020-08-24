@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/verify_email_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'verify_email_receive.g.dart';
-
-/// JSON conversion for 'verify_email_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Verify email response class
 class VerifyEmailResponse extends Response {
   /// Initialize VerifyEmailResponse
   const VerifyEmailResponse({
@@ -24,19 +21,32 @@ class VerifyEmailResponse extends Response {
 
   /// Creates an instance from JSON
   factory VerifyEmailResponse.fromJson(Map<String, dynamic> json) =>
-      _$VerifyEmailResponseFromJson(json);
+      VerifyEmailResponse(
+        verifyEmail:
+            json['verify_email'] == null ? null : json['verify_email'] == 1,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// 1 for success (secure code has been sent to the email address)
-  final int verifyEmail;
+  final bool verifyEmail;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$VerifyEmailResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'verify_email': verifyEmail == null ? null : verifyEmail ? 1 : 0,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   VerifyEmailResponse copyWith({
-    int verifyEmail,
+    bool verifyEmail,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,

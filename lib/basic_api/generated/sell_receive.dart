@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'sell_receive.g.dart';
-
-/// JSON conversion for 'sell_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Sell response class
 class SellResponse extends Response {
   /// Initialize SellResponse
   const SellResponse({
@@ -23,15 +20,26 @@ class SellResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory SellResponse.fromJson(Map<String, dynamic> json) =>
-      _$SellResponseFromJson(json);
+  factory SellResponse.fromJson(Map<String, dynamic> json) => SellResponse(
+        sell: json['sell'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// Receipt for the transaction
   final Map<String, dynamic> sell;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$SellResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'sell': sell,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

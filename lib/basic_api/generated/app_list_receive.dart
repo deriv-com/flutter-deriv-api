@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_list_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'app_list_receive.g.dart';
-
-/// JSON conversion for 'app_list_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// App list response class
 class AppListResponse extends Response {
   /// Initialize AppListResponse
   const AppListResponse({
@@ -24,14 +21,29 @@ class AppListResponse extends Response {
 
   /// Creates an instance from JSON
   factory AppListResponse.fromJson(Map<String, dynamic> json) =>
-      _$AppListResponseFromJson(json);
+      AppListResponse(
+        appList: (json['app_list'] as List<dynamic>)
+            ?.map<Map<String, dynamic>>(
+                (dynamic item) => item as Map<String, dynamic>)
+            ?.toList(),
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// List of created applications for the authorized account.
   final List<Map<String, dynamic>> appList;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$AppListResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'app_list': appList,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

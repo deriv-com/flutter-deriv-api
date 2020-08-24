@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_self_exclusion_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'set_self_exclusion_send.g.dart';
-
-/// JSON conversion for 'set_self_exclusion_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Set self exclusion request class
 class SetSelfExclusionRequest extends Request {
   /// Initialize SetSelfExclusionRequest
   const SetSelfExclusionRequest({
@@ -22,7 +19,7 @@ class SetSelfExclusionRequest extends Request {
     this.maxOpenBets,
     this.maxTurnover,
     this.sessionDurationLimit,
-    this.setSelfExclusion = 1,
+    this.setSelfExclusion = true,
     this.timeoutUntil,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -34,7 +31,26 @@ class SetSelfExclusionRequest extends Request {
 
   /// Creates an instance from JSON
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
-      _$SetSelfExclusionRequestFromJson(json);
+      SetSelfExclusionRequest(
+        excludeUntil: json['exclude_until'] as String,
+        max30dayLosses: json['max_30day_losses'] as num,
+        max30dayTurnover: json['max_30day_turnover'] as num,
+        max7dayLosses: json['max_7day_losses'] as num,
+        max7dayTurnover: json['max_7day_turnover'] as num,
+        maxBalance: json['max_balance'] as num,
+        maxDeposit: json['max_deposit'] as num,
+        maxDepositEndDate: json['max_deposit_end_date'] as String,
+        maxLosses: json['max_losses'] as num,
+        maxOpenBets: json['max_open_bets'] as int,
+        maxTurnover: json['max_turnover'] as num,
+        sessionDurationLimit: json['session_duration_limit'] as int,
+        setSelfExclusion: json['set_self_exclusion'] == null
+            ? null
+            : json['set_self_exclusion'] == 1,
+        timeoutUntil: json['timeout_until'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
   final String excludeUntil;
@@ -72,15 +88,33 @@ class SetSelfExclusionRequest extends Request {
   /// [Optional] Session duration limit, in minutes.
   final int sessionDurationLimit;
 
-  /// Must be `1`
-  final int setSelfExclusion;
+  /// Must be `true`
+  final bool setSelfExclusion;
 
   /// [Optional] Exclude me from the website (for up to 6 weeks). Requires time in epoch format. Note: unlike `exclude_until`, this self-exclusion will be lifted automatically at the expiry of the timeout period.
   final int timeoutUntil;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$SetSelfExclusionRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'exclude_until': excludeUntil,
+        'max_30day_losses': max30dayLosses,
+        'max_30day_turnover': max30dayTurnover,
+        'max_7day_losses': max7dayLosses,
+        'max_7day_turnover': max7dayTurnover,
+        'max_balance': maxBalance,
+        'max_deposit': maxDeposit,
+        'max_deposit_end_date': maxDepositEndDate,
+        'max_losses': maxLosses,
+        'max_open_bets': maxOpenBets,
+        'max_turnover': maxTurnover,
+        'session_duration_limit': sessionDurationLimit,
+        'set_self_exclusion':
+            setSelfExclusion == null ? null : setSelfExclusion ? 1 : 0,
+        'timeout_until': timeoutUntil,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
@@ -97,7 +131,7 @@ class SetSelfExclusionRequest extends Request {
     int maxOpenBets,
     num maxTurnover,
     int sessionDurationLimit,
-    int setSelfExclusion,
+    bool setSelfExclusion,
     int timeoutUntil,
     Map<String, dynamic> passthrough,
     int reqId,

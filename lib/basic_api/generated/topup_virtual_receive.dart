@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/topup_virtual_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'topup_virtual_receive.g.dart';
-
-/// JSON conversion for 'topup_virtual_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Topup virtual response class
 class TopupVirtualResponse extends Response {
   /// Initialize TopupVirtualResponse
   const TopupVirtualResponse({
@@ -24,14 +21,26 @@ class TopupVirtualResponse extends Response {
 
   /// Creates an instance from JSON
   factory TopupVirtualResponse.fromJson(Map<String, dynamic> json) =>
-      _$TopupVirtualResponseFromJson(json);
+      TopupVirtualResponse(
+        topupVirtual: json['topup_virtual'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// The information regarding a successful top up for a virtual money account
   final Map<String, dynamic> topupVirtual;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TopupVirtualResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'topup_virtual': topupVirtual,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

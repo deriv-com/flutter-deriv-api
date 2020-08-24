@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/app/new_account/new_account_virtual.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 void main() {
-  setUpAll(() => APIInitializer().initialize(true));
+  setUpAll(() => APIInitializer().initialize(isMock: true));
 
   group('New Account Group ->', () {
     test('Open New Account Real Test', () async {
@@ -23,7 +23,7 @@ void main() {
           dateOfBirth: '1980-01-31',
           firstName: 'Peter',
           lastName: 'Pan',
-          newAccountReal: 1,
+          newAccountReal: true,
           nonPepDeclaration: 1,
           phone: '+6123456789',
           placeOfBirth: 'id',
@@ -46,7 +46,7 @@ void main() {
       final NewAccountVirtual newAccountVirtual =
           await NewAccountVirtual.openNewVirtualAccount(
         const NewAccountVirtualRequest(
-          newAccountVirtual: 1,
+          newAccountVirtual: true,
           clientPassword: 'Abc123de',
           residence: 'id',
           verificationCode: 'uoJvVuQ6',

@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'ticks_send.g.dart';
-
-/// JSON conversion for 'ticks_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Ticks request class
 class TicksRequest extends Request {
   /// Initialize TicksRequest
   const TicksRequest({
@@ -21,23 +18,32 @@ class TicksRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory TicksRequest.fromJson(Map<String, dynamic> json) =>
-      _$TicksRequestFromJson(json);
+  factory TicksRequest.fromJson(Map<String, dynamic> json) => TicksRequest(
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
+        ticks: json['ticks'] as dynamic,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
-  /// [Optional] If set to 1, will send updates whenever a new tick is received.
-  final int subscribe;
+  /// [Optional] If set to `true`, will send updates whenever a new tick is received.
+  final bool subscribe;
 
   /// The short symbol name or array of symbols (obtained from `active_symbols` call).
   final dynamic ticks;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$TicksRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'ticks': ticks,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   TicksRequest copyWith({
-    int subscribe,
+    bool subscribe,
     dynamic ticks,
     Map<String, dynamic> passthrough,
     int reqId,

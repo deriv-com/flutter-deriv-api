@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_confirm_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'p2p_order_confirm_receive.g.dart';
-
-/// JSON conversion for 'p2p_order_confirm_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// P2p order confirm response class
 class P2pOrderConfirmResponse extends Response {
   /// Initialize P2pOrderConfirmResponse
   const P2pOrderConfirmResponse({
@@ -24,14 +21,26 @@ class P2pOrderConfirmResponse extends Response {
 
   /// Creates an instance from JSON
   factory P2pOrderConfirmResponse.fromJson(Map<String, dynamic> json) =>
-      _$P2pOrderConfirmResponseFromJson(json);
+      P2pOrderConfirmResponse(
+        p2pOrderConfirm: json['p2p_order_confirm'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// Confirmation details
   final Map<String, dynamic> p2pOrderConfirm;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$P2pOrderConfirmResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'p2p_order_confirm': p2pOrderConfirm,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

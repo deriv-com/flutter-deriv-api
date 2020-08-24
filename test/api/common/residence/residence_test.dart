@@ -4,7 +4,7 @@ import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/common/residence/residence.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(true));
+  setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Residence List Test', () async {
     final List<Residence> residenceList = await Residence.fetchResidenceList();

@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/balance_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'balance_receive.g.dart';
-
-/// JSON conversion for 'balance_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Balance response class
 class BalanceResponse extends Response {
   /// Initialize BalanceResponse
   const BalanceResponse({
@@ -25,7 +22,14 @@ class BalanceResponse extends Response {
 
   /// Creates an instance from JSON
   factory BalanceResponse.fromJson(Map<String, dynamic> json) =>
-      _$BalanceResponseFromJson(json);
+      BalanceResponse(
+        balance: json['balance'] as Map<String, dynamic>,
+        subscription: json['subscription'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// Current balance of one or more accounts.
   final Map<String, dynamic> balance;
@@ -33,9 +37,16 @@ class BalanceResponse extends Response {
   /// For subscription requests only.
   final Map<String, dynamic> subscription;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$BalanceResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'balance': balance,
+        'subscription': subscription,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

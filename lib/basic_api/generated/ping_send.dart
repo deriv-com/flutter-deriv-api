@@ -1,16 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ping_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'ping_send.g.dart';
-
-/// JSON conversion for 'ping_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Ping request class
 class PingRequest extends Request {
   /// Initialize PingRequest
   const PingRequest({
-    this.ping = 1,
+    this.ping = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -20,20 +17,27 @@ class PingRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory PingRequest.fromJson(Map<String, dynamic> json) =>
-      _$PingRequestFromJson(json);
+  factory PingRequest.fromJson(Map<String, dynamic> json) => PingRequest(
+        ping: json['ping'] == null ? null : json['ping'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
-  /// Must be `1`
-  final int ping;
+  /// Must be `true`
+  final bool ping;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$PingRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'ping': ping == null ? null : ping ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   PingRequest copyWith({
-    int ping,
+    bool ping,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

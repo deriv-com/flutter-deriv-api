@@ -1,18 +1,16 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_register_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'app_register_send.g.dart';
-
-/// JSON conversion for 'app_register_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// App register request class
 class AppRegisterRequest extends Request {
   /// Initialize AppRegisterRequest
   const AppRegisterRequest({
     this.appMarkupPercentage,
-    this.appRegister = 1,
+    this.appRegister = true,
     this.appstore,
     this.github,
     this.googleplay,
@@ -31,13 +29,29 @@ class AppRegisterRequest extends Request {
 
   /// Creates an instance from JSON
   factory AppRegisterRequest.fromJson(Map<String, dynamic> json) =>
-      _$AppRegisterRequestFromJson(json);
+      AppRegisterRequest(
+        appMarkupPercentage: json['app_markup_percentage'] as num,
+        appRegister:
+            json['app_register'] == null ? null : json['app_register'] == 1,
+        appstore: json['appstore'] as String,
+        github: json['github'] as String,
+        googleplay: json['googleplay'] as String,
+        homepage: json['homepage'] as String,
+        name: json['name'] as String,
+        redirectUri: json['redirect_uri'] as String,
+        scopes: (json['scopes'] as List<dynamic>)
+            ?.map<String>((dynamic item) => item as String)
+            ?.toList(),
+        verificationUri: json['verification_uri'] as String,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// [Optional] Markup to be added to contract prices (as a percentage of contract payout).
   final num appMarkupPercentage;
 
-  /// Must be `1`
-  final int appRegister;
+  /// Must be `true`
+  final bool appRegister;
 
   /// [Optional] Application's App Store URL (if applicable).
   final String appstore;
@@ -63,15 +77,28 @@ class AppRegisterRequest extends Request {
   /// [Optional] Used when `verify_email` called. If available, a URL containing the verification token will be sent to the client's email, otherwise only the token will be sent.
   final String verificationUri;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$AppRegisterRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'app_markup_percentage': appMarkupPercentage,
+        'app_register': appRegister == null ? null : appRegister ? 1 : 0,
+        'appstore': appstore,
+        'github': github,
+        'googleplay': googleplay,
+        'homepage': homepage,
+        'name': name,
+        'redirect_uri': redirectUri,
+        'scopes': scopes,
+        'verification_uri': verificationUri,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   AppRegisterRequest copyWith({
     num appMarkupPercentage,
-    int appRegister,
+    bool appRegister,
     String appstore,
     String github,
     String googleplay,

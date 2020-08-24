@@ -1,18 +1,16 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_history_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
+
 import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-part 'contract_update_history_send.g.dart';
-
-/// JSON conversion for 'contract_update_history_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Contract update history request class
 class ContractUpdateHistoryRequest extends Request {
   /// Initialize ContractUpdateHistoryRequest
   const ContractUpdateHistoryRequest({
     @required this.contractId,
-    this.contractUpdateHistory = 1,
+    this.contractUpdateHistory = true,
     this.limit,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -24,26 +22,42 @@ class ContractUpdateHistoryRequest extends Request {
 
   /// Creates an instance from JSON
   factory ContractUpdateHistoryRequest.fromJson(Map<String, dynamic> json) =>
-      _$ContractUpdateHistoryRequestFromJson(json);
+      ContractUpdateHistoryRequest(
+        contractId: json['contract_id'] as int,
+        contractUpdateHistory: json['contract_update_history'] == null
+            ? null
+            : json['contract_update_history'] == 1,
+        limit: json['limit'] as num,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
   /// Internal unique contract identifier.
   final int contractId;
 
-  /// Must be `1`
-  final int contractUpdateHistory;
+  /// Must be `true`
+  final bool contractUpdateHistory;
 
   /// [Optional] Maximum number of historical updates to receive.
   final num limit;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$ContractUpdateHistoryRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'contract_id': contractId,
+        'contract_update_history': contractUpdateHistory == null
+            ? null
+            : contractUpdateHistory ? 1 : 0,
+        'limit': limit,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   ContractUpdateHistoryRequest copyWith({
     int contractId,
-    int contractUpdateHistory,
+    bool contractUpdateHistory,
     num limit,
     Map<String, dynamic> passthrough,
     int reqId,

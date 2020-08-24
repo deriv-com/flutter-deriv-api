@@ -62,7 +62,7 @@ class APIToken extends APITokenModel {
       request: ApiTokenRequest(
         newToken: name,
         newTokenScopes: getStringListFromEnums(scopes),
-        validForCurrentIpOnly: getInt(value: validForCurrentIPOnly),
+        validForCurrentIpOnly: validForCurrentIPOnly,
       ),
     );
 

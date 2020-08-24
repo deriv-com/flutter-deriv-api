@@ -1,12 +1,9 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_account_status_receive.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../response.dart';
 
-part 'get_account_status_receive.g.dart';
-
-/// JSON conversion for 'get_account_status_receive'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Get account status response class
 class GetAccountStatusResponse extends Response {
   /// Initialize GetAccountStatusResponse
   const GetAccountStatusResponse({
@@ -24,14 +21,26 @@ class GetAccountStatusResponse extends Response {
 
   /// Creates an instance from JSON
   factory GetAccountStatusResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetAccountStatusResponseFromJson(json);
+      GetAccountStatusResponse(
+        getAccountStatus: json['get_account_status'] as Map<String, dynamic>,
+        echoReq: json['echo_req'] as Map<String, dynamic>,
+        error: json['error'] as Map<String, dynamic>,
+        msgType: json['msg_type'] as String,
+        reqId: json['req_id'] as int,
+      );
 
   /// Account status details
   final Map<String, dynamic> getAccountStatus;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$GetAccountStatusResponseToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'get_account_status': getAccountStatus,
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override

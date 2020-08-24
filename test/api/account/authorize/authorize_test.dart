@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  setUpAll(() => APIInitializer().initialize(true));
+  setUpAll(() => APIInitializer().initialize(isMock: true));
 
   group('Authorize Group ->', () {
     test('Authorize Test', () async {

@@ -148,11 +148,11 @@ class AccountSettings extends AccountSettingsModel {
           addressLine2: addressLine2,
           addressPostcode: addressPostcode,
           addressState: addressState,
-          allowCopiers: getInt(value: allowCopiers),
+          allowCopiers: allowCopiers,
           citizen: citizen,
           dateOfBirth: dateOfBirth
               .toString(), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
-          emailConsent: getInt(value: emailConsent),
+          emailConsent: emailConsent,
           firstName: firstName,
           lastName: lastName,
           phone: phone,

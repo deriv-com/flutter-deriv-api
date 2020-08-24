@@ -1,16 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_financial_assessment_send.json
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: avoid_as
 
 import '../request.dart';
 
-part 'get_financial_assessment_send.g.dart';
-
-/// JSON conversion for 'get_financial_assessment_send'
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// Get financial assessment request class
 class GetFinancialAssessmentRequest extends Request {
   /// Initialize GetFinancialAssessmentRequest
   const GetFinancialAssessmentRequest({
-    this.getFinancialAssessment = 1,
+    this.getFinancialAssessment = true,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -21,19 +18,31 @@ class GetFinancialAssessmentRequest extends Request {
 
   /// Creates an instance from JSON
   factory GetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
-      _$GetFinancialAssessmentRequestFromJson(json);
+      GetFinancialAssessmentRequest(
+        getFinancialAssessment: json['get_financial_assessment'] == null
+            ? null
+            : json['get_financial_assessment'] == 1,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
 
-  /// Must be `1`
-  final int getFinancialAssessment;
+  /// Must be `true`
+  final bool getFinancialAssessment;
 
-  /// Converts an instance to JSON
+  /// Converts this instance to JSON
   @override
-  Map<String, dynamic> toJson() => _$GetFinancialAssessmentRequestToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'get_financial_assessment': getFinancialAssessment == null
+            ? null
+            : getFinancialAssessment ? 1 : 0,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
   /// Creates a copy of instance with given parameters
   @override
   GetFinancialAssessmentRequest copyWith({
-    int getFinancialAssessment,
+    bool getFinancialAssessment,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

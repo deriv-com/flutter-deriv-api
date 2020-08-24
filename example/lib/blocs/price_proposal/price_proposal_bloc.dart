@@ -10,22 +10,19 @@ import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import '../available_contracts/available_contracts_bloc.dart';
 
 part 'price_proposal_event.dart';
-
 part 'price_proposal_state.dart';
 
 /// PriceProposalBloc
 class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
   ///Initializes
-  PriceProposalBloc(AvailableContractsBloc availableContractsBloc) {
+  PriceProposalBloc(AvailableContractsBloc availableContractsBloc)
+      : super(PriceProposalLoading()) {
     availableContractsBloc.listen((AvailableContractsState state) {
       if (state is AvailableContractsLoaded) {
         add(SubscribeProposal(state.selectedContract));
       }
     });
   }
-
-  @override
-  PriceProposalState get initialState => PriceProposalLoading();
 
   @override
   Stream<Transition<PriceProposalEvent, PriceProposalState>> transformEvents(

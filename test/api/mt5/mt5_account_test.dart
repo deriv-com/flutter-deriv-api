@@ -12,7 +12,7 @@ import 'package:flutter_deriv_api/api/mt5/mt5_withdrawal.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 void main() {
-  setUpAll(() => APIInitializer().initialize(true));
+  setUpAll(() => APIInitializer().initialize(isMock: true));
 
   group('MT5 Account Group ->', () {
     test('Create New MT5 Account Test', () async {

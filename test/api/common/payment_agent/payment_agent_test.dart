@@ -10,7 +10,7 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 void main() {
-  setUpAll(() => APIInitializer().initialize(true));
+  setUpAll(() => APIInitializer().initialize(isMock: true));
 
   group('Payment Agent Group ->', () {
     test('Fetch Payment Agent List Test', () async {
@@ -67,7 +67,7 @@ void main() {
       final PaymentAgentWithdraw paymentAgentWithdraw =
           await PaymentAgentWithdraw.withdraw(
         const PaymentagentWithdrawRequest(
-          paymentagentWithdraw: 1,
+          paymentagentWithdraw: true,
           amount: 1000,
           currency: 'USD',
           paymentagentLoginid: 'CR100001',
