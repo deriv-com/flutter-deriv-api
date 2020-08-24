@@ -141,7 +141,7 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                               }),
                         ),
                         const SizedBox(height: 12),
-                        Icon(Icons.keyboard_arrow_down)
+                        const Icon(Icons.keyboard_arrow_down)
                       ],
                     ),
                   ),

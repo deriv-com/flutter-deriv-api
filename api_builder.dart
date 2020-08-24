@@ -433,7 +433,7 @@ class APIBuilder extends Builder {
     List<String> properties,
   ) {
     if (schemaType == 'send') {
-      for (String key in properties) {
+      for (final String key in properties) {
         final JsonSchema property = schema.properties[key];
 
         if (property.typeList?.isNotEmpty ?? false) {

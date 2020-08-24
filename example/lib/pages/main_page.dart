@@ -44,8 +44,8 @@ class _MainPageState extends State<MainPage> {
         ],
         child: Column(
           children: <Widget>[
-            Expanded(flex: 1, child: ActiveSymbolsWidget()),
-            Expanded(flex: 1, child: ContractsTypeWidget()),
+            Expanded(child: ActiveSymbolsWidget()),
+            Expanded(child: ContractsTypeWidget()),
             Expanded(flex: 2, child: PriceProposalWidget()),
           ],
         ),
