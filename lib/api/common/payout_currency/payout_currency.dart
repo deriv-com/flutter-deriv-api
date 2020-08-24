@@ -9,7 +9,7 @@ import '../models/payout_currency_model.dart';
 /// Payout currency class
 class PayoutCurrency extends PayoutCurrencyModel {
   /// Initializes
-  PayoutCurrency(String currency) : super(currency);
+  PayoutCurrency(String currency) : super(currency: currency);
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
