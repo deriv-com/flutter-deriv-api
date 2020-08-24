@@ -7,7 +7,7 @@ import 'package:flutter_deriv_api/api/common/models/landing_company_fields_info_
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 void main() {
-  setUpAll(() => APIInitializer().initialize(true));
+  setUpAll(() => APIInitializer().initialize(isMock: true));
 
   group('Landing Company Group ->', () {
     test('Fetch Landing Companies Test', () async {

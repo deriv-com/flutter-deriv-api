@@ -5,7 +5,7 @@ import 'package:flutter_deriv_api/api/cashier/cashier_information.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(true));
+  setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Cashier URL Test', () async {
     final CashierInformation cashierInformation =

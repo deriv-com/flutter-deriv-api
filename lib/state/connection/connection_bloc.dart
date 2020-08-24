@@ -18,9 +18,12 @@ part 'connection_state.dart';
 /// Bringing ConnectionBloc to flutter-deriv-api to simplify the usage of api
 class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   /// Initializes
-  ConnectionBloc(ConnectionInformation connectionInformation) {
-    ConnectionService().initialize();
-    APIInitializer().initialize(false, _uniqueKey);
+  ConnectionBloc(
+    ConnectionInformation connectionInformation, {
+    this.isMock = false,
+  }) : super(InitialConnectionState()) {
+    ConnectionService().initialize(isMock: isMock);
+    APIInitializer().initialize(isMock: isMock, uniqueKey: _uniqueKey);
 
     _connectionInformation = connectionInformation;
     _internetBloc = internet_bloc.InternetBloc();
@@ -28,15 +31,19 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
     _connectWebSocket();
 
-    _internetListener =
-        _internetBloc.listen((internet_bloc.InternetState state) {
-      if (state is internet_bloc.Disconnected) {
-        add(Disconnect());
-      } else if (state is internet_bloc.Connected) {
-        _reconnectToWebSocket();
-      }
-    });
+    _internetListener = _internetBloc.listen(
+      (internet_bloc.InternetState state) {
+        if (state is internet_bloc.Disconnected) {
+          add(Disconnect());
+        } else if (state is internet_bloc.Connected) {
+          _reconnectToWebSocket();
+        }
+      },
+    );
   }
+
+  /// Creates mock connection, sets this to [true] for testing purposes
+  final bool isMock;
 
   static const int _reconnectInterval = 5;
 
@@ -51,9 +58,6 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   /// Connection information of WebSocket (endpoint, brand, appId)
   ConnectionInformation get connectionInformation => _connectionInformation;
   ConnectionInformation _connectionInformation;
-
-  @override
-  ConnectionState get initialState => InitialConnectionState();
 
   @override
   Stream<ConnectionState> mapEventToState(ConnectionEvent event) async* {

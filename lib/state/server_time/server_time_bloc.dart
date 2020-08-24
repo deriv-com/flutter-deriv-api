@@ -13,7 +13,7 @@ part 'server_time_state.dart';
 /// A Bloc for fetching server time
 class ServerTimeBloc extends Bloc<ServerTimeEvent, ServerTimeState> {
   /// Initializes
-  ServerTimeBloc(this._connectionBloc) {
+  ServerTimeBloc(this._connectionBloc) : super(InitialServerTime()) {
     _connectionSubscription = _connectionBloc.listen((ConnectionState state) {
       if (state is Connected) {
         add(FetchServerTime());
@@ -31,9 +31,6 @@ class ServerTimeBloc extends Bloc<ServerTimeEvent, ServerTimeState> {
   StreamSubscription<ConnectionState> _connectionSubscription;
 
   Timer _serverTimeInterval;
-
-  @override
-  ServerTimeState get initialState => InitialServerTime();
 
   @override
   Stream<ServerTimeState> mapEventToState(ServerTimeEvent event) async* {

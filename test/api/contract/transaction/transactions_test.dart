@@ -5,7 +5,7 @@ import 'package:flutter_deriv_api/api/contract/transaction/transaction.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 void main() {
-  setUp(() => APIInitializer().initialize(true));
+  setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Transactions Subscription Test', () async {
     Transaction.subscribeTransactions().take(1).listen(
