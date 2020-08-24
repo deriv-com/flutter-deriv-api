@@ -47,7 +47,6 @@ class _DropDownMenuState<T> extends State<DropDownMenu<T>> {
           DropdownButton<T>(
             value: _item,
             icon: const Icon(Icons.keyboard_arrow_down),
-            iconSize: 24,
             underline: Container(height: 2, color: Colors.grey),
             onChanged: (T newValue) {
               widget.onItemSelected(newValue);

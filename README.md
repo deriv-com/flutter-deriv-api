@@ -139,7 +139,7 @@ $ dartdoc
 
 - Call `getModels(Map<String, dynamic> schema)` method and pass decoded schema to it.
 
-- Pass the result of `getModels` method to `getClasses(String className, List<SchemaModel> models)` as `models` parameter.
+- Pass the result of `getModels` method to `getClasses(List<SchemaModel> models, String className)` as `models` parameter.
 
 The final result is a `string` that contains the main class and all related classes of that schema file including `Model Classes, Constructors, Properties` and `toJson(), fromJson(), copyWith()` Methods.
 
