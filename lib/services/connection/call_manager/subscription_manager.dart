@@ -35,20 +35,18 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   }) {
     super.handleResponse(requestId: requestId, response: response);
 
+    // Broadcasts the new message into the stream
+    getSubscriptionStream(requestId)?.add(getResponseByMsgType(response));
+
     // Adds the subscription id to the pending request object for further references
     if (response.containsKey('subscription')) {
       _setSubscriptionId(
         requestId: requestId,
         subscriptionId: response['subscription']['id'],
       );
-    }
-
-    // Broadcasts the new message into the stream
-    getSubscriptionStream(requestId)?.add(getResponseByMsgType(response));
-
-    // Removing pending request and closing stream.
-    // Stream contains an error, and we won't get any other responses from this subscription.
-    if (response.containsKey('error')) {
+    } else if (response.containsKey('error')) {
+      // Removing pending request and closing stream.
+      // Stream contains an error, and we won't get any other responses from this subscription.
       _removePendingRequest(requestId);
     }
   }
