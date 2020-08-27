@@ -22,6 +22,8 @@ class BinaryAPI extends BaseAPI {
   /// Initializes
   BinaryAPI(UniqueKey uniqueKey) : super(uniqueKey);
 
+  static const Duration _wsConnectTimeOut = Duration(seconds: 10);
+
   /// Indicates current connection status - only set `true` once
   /// we have established SSL *and* web socket handshake steps
   bool _connected = false;
@@ -52,7 +54,7 @@ class BinaryAPI extends BaseAPI {
     ConnectionCallback onError,
   }) async {
     _connected = false;
-    
+
     _resetCallManagers();
 
     final Uri uri = Uri(
@@ -79,30 +81,33 @@ class BinaryAPI extends BaseAPI {
             .stream
             .map<Map<String, dynamic>>((Object result) => jsonDecode(result))
             .listen(
-              (Map<String, dynamic> message) =>
-                  _handleResponse(connectionCompleter, message),
-              onError: (Object error) {
-                dev.log('the web socket connection is closed: $error.');
+      (Map<String, dynamic> message) =>
+          _handleResponse(connectionCompleter, message),
+      onError: (Object error) {
+        dev.log('the web socket connection is closed: $error.');
 
-                onError?.call(uniqueKey);
-              },
-              onDone: () async {
-                dev.log('web socket is closed.');
+        onError?.call(uniqueKey);
+      },
+      onDone: () async {
+        dev.log('web socket is closed.');
 
-                _connected = false;
+        _connected = false;
 
-                onDone?.call(uniqueKey);
-              },
-            );
+        onDone?.call(uniqueKey);
+      },
+    );
 
     dev.log('send initial message.');
 
-    await call(request: const PingRequest());
-    await connectionCompleter.future;
+    try {
+      await call(request: const PingRequest()).timeout(_wsConnectTimeOut);
+      await connectionCompleter.future.timeout(_wsConnectTimeOut);
+      dev.log('web socket is connected.');
 
-    dev.log('web socket is connected.');
-
-    onOpen?.call(uniqueKey);
+      onOpen?.call(uniqueKey);
+    } on Exception {
+      onDone?.call(uniqueKey);
+    }
   }
 
   void _resetCallManagers() {
@@ -188,15 +193,17 @@ class BinaryAPI extends BaseAPI {
         dev.log('web socket is connected.');
 
         _connected = true;
-        connectionCompleter.complete(true);
+        if (!connectionCompleter.isCompleted) {
+          connectionCompleter.complete(true);
+        }
       }
 
       dev.log('api response: $message.');
-      dev.log('check for req_id in received message.');
 
       if (message.containsKey('req_id')) {
-        dev.log('have req_id in received message:');
-        dev.log(message['req_id'].runtimeType.toString());
+        dev.log(
+          'have req_id in received message: ${message['req_id'].runtimeType.toString()}',
+        );
 
         final int requestId = message['req_id'];
 
