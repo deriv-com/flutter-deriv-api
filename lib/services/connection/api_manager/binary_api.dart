@@ -158,16 +158,10 @@ class BinaryAPI extends BaseAPI {
 
   @override
   Future<void> disconnect() async {
-    // The onDone function of the listener is set to null intentionally
-    // to prevent it from being invoked after destroying the web socket object.
-    _webSocketListener
-      ..onDone(null)
-      ..onError(null);
-
-    await _webSocketListener.cancel();
+    await _webSocketListener?.cancel();
 
     if (_connected) {
-      await _webSocketChannel.sink.close(status.goingAway);
+      await _webSocketChannel?.sink?.close(status.goingAway);
     }
 
     _webSocketListener = null;

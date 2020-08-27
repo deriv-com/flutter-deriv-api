@@ -36,8 +36,10 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       (internet_bloc.InternetState state) {
         if (state is internet_bloc.Disconnected) {
           add(Disconnect());
+          _stopPingTimer();
         } else if (state is internet_bloc.Connected) {
           _reconnectToWebSocket();
+          _startPingTimer();
         }
       },
     );
@@ -66,9 +68,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   Stream<ConnectionState> mapEventToState(ConnectionEvent event) async* {
     if (event is Connect && state is! Connected) {
       yield Connected();
-      if (_pingTimer == null || !_pingTimer.isActive) {
-        _startPingTimer();
-      }
+      _startPingTimer();
     } else if (event is Reconnect || event is Reconfigure) {
       if (event is Reconfigure) {
         _connectionInformation = event.connectionInformation;
@@ -117,8 +117,9 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   }
 
   void _connectWebSocket() {
-    _api.connect(connectionInformation, onDone: (UniqueKey uniqueKey) {
+    _api.connect(connectionInformation, onDone: (UniqueKey uniqueKey) async {
       if (_uniqueKey == uniqueKey) {
+        await _api.disconnect();
         _reconnectToWebSocket();
       }
     }, onOpen: (UniqueKey uniqueKey) {
@@ -134,7 +135,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   }
 
   void _reconnectToWebSocket() {
-    if (/*state is! Reconnecting && */state is! Connected) {
+    if (/*state is! Reconnecting && */ state is! Connected) {
       add(Reconnect());
     }
   }
@@ -149,16 +150,20 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   Timer _pingTimer;
 
   void _startPingTimer() {
-    _pingTimer = Timer.periodic(_pingInterval, (Timer timer) async {
-      try {
-        await Ping.ping().timeout(_callTimeOut);
-      } on Exception catch (e) {
-        if (state is! Reconnecting) {
-          timer.cancel();
-          add(Reconnect());
+    if (_pingTimer == null || !_pingTimer.isActive) {
+      _pingTimer = Timer.periodic(_pingInterval, (Timer timer) async {
+        try {
+          await Ping.ping().timeout(_callTimeOut);
+        } on Exception catch (e) {
+          if (state is! Reconnecting) {
+            timer.cancel();
+            add(Reconnect());
+          }
+          dev.log(e.toString(), error: e);
         }
-        dev.log(e.toString(), error: e);
-      }
-    });
+      });
+    }
   }
+
+  void _stopPingTimer() => _pingTimer?.cancel();
 }
