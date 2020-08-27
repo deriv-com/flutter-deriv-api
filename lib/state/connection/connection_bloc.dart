@@ -68,6 +68,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   Stream<ConnectionState> mapEventToState(ConnectionEvent event) async* {
     if (event is Connect && state is! Connected) {
       yield Connected();
+
       _startPingTimer();
     } else if (event is Reconnect || event is Reconfigure) {
       if (event is Reconfigure) {
@@ -135,7 +136,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   }
 
   void _reconnectToWebSocket() {
-    if (/*state is! Reconnecting && */ state is! Connected) {
+    if (state is! Connected) {
       add(Reconnect());
     }
   }
