@@ -22,7 +22,7 @@ dependencies:
   preferences: ^5.0.2
   web_socket_channel: ^1.0.15
   equatable: ^1.2.3
-  recase: ^2.0.1
+  recase: ^3.0.0
   inflection2: ^0.4.3
   rxdart: ^0.24.1
 
