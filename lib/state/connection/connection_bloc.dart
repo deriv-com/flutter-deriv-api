@@ -58,6 +58,8 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
   internet_bloc.InternetBloc _internetBloc;
 
+  Timer _pingTimer;
+
   final UniqueKey _uniqueKey = UniqueKey();
 
   /// Connection information of WebSocket (endpoint, brand, appId)
@@ -147,8 +149,6 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
     return super.close();
   }
-
-  Timer _pingTimer;
 
   void _startPingTimer() {
     if (_pingTimer == null || !_pingTimer.isActive) {
