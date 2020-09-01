@@ -1,3 +1,10 @@
+import 'package:flutter_deriv_api/api/common/forget/forget.dart';
+import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
+import 'exceptions/tick_exception.dart';
 import 'tick_base.dart';
 import 'tick_history.dart';
 
@@ -11,6 +18,28 @@ class TickHistorySubscription {
 
   /// The stream of the tick
   final Stream<TickBase> tickStream;
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Unsubscribes from tick history stream
+  ///
+  /// Throws a [TickException] if API response contains an error
+  Future<Forget> unsubscribe() async {
+    if (tickHistory.subscriptionInformation?.id == null) {
+      return null;
+    }
+
+    final ForgetResponse response = await _api.unsubscribe(
+      subscriptionId: tickHistory.subscriptionInformation.id,
+    );
+
+    checkException(
+      response: response,
+      exceptionCreator: (String message) => TickException(message: message),
+    );
+
+    return Forget.fromResponse(response);
+  }
 
   /// Creates a copy of instance with given parameters
   TickHistorySubscription copyWith(
