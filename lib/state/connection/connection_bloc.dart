@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
+import 'package:flutter_deriv_api/api/common/ping/ping.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/connection/connection_service.dart';
@@ -35,8 +36,10 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       (internet_bloc.InternetState state) {
         if (state is internet_bloc.Disconnected) {
           add(Disconnect());
+          _stopPingTimer();
         } else if (state is internet_bloc.Connected) {
           _reconnectToWebSocket();
+          _startPingTimer();
         }
       },
     );
@@ -45,13 +48,17 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   /// Creates mock connection, sets this to [true] for testing purposes
   final bool isMock;
 
-  static const int _reconnectInterval = 5;
+  static const Duration _reconnectInterval = Duration(seconds: 5);
+  static const Duration _pingInterval = Duration(seconds: 12);
+  static const Duration _callTimeOut = Duration(seconds: 10);
 
   BaseAPI _api;
 
   StreamSubscription<internet_bloc.InternetState> _internetListener;
 
   internet_bloc.InternetBloc _internetBloc;
+
+  Timer _pingTimer;
 
   final UniqueKey _uniqueKey = UniqueKey();
 
@@ -61,8 +68,10 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
   @override
   Stream<ConnectionState> mapEventToState(ConnectionEvent event) async* {
-    if (event is Connect) {
+    if (event is Connect && state is! Connected) {
       yield Connected();
+
+      _startPingTimer();
     } else if (event is Reconnect || event is Reconfigure) {
       if (event is Reconfigure) {
         _connectionInformation = event.connectionInformation;
@@ -73,7 +82,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       if (state is Connected) {
         try {
           shouldReconnect = false;
-          await _api.disconnect();
+          await _api.disconnect().timeout(_callTimeOut);
         } on Exception catch (e) {
           shouldReconnect = true;
           dev.log(e.toString(), error: e);
@@ -81,9 +90,11 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       }
 
       if (event is Reconnect) {
-        if (await ConnectionService().checkConnectivity() && shouldReconnect) {
+        if (await ConnectionService().checkConnectivity() &&
+            shouldReconnect &&
+            state is! Reconnecting) {
           yield Reconnecting();
-        } else {
+        } else if (state is! Disconnected) {
           yield Disconnected();
         }
       } else {
@@ -91,7 +102,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
         yield InitialConnectionState();
       }
 
-      await Future<void>.delayed(const Duration(seconds: _reconnectInterval));
+      await Future<void>.delayed(_reconnectInterval);
       _connectWebSocket();
     } else if (event is Disconnect) {
       if (state is Connected) {
@@ -109,8 +120,9 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   }
 
   void _connectWebSocket() {
-    _api.connect(connectionInformation, onDone: (UniqueKey uniqueKey) {
+    _api.connect(connectionInformation, onDone: (UniqueKey uniqueKey) async {
       if (_uniqueKey == uniqueKey) {
+        await _api.disconnect();
         _reconnectToWebSocket();
       }
     }, onOpen: (UniqueKey uniqueKey) {
@@ -126,7 +138,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   }
 
   void _reconnectToWebSocket() {
-    if (state is! Reconnecting && state is! Connected) {
+    if (state is! Connected) {
       add(Reconnect());
     }
   }
@@ -137,4 +149,22 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
     return super.close();
   }
+
+  void _startPingTimer() {
+    if (_pingTimer == null || !_pingTimer.isActive) {
+      _pingTimer = Timer.periodic(_pingInterval, (Timer timer) async {
+        try {
+          await Ping.ping().timeout(_callTimeOut);
+        } on Exception catch (e) {
+          if (state is! Reconnecting) {
+            timer.cancel();
+            add(Reconnect());
+          }
+          dev.log(e.toString(), error: e);
+        }
+      });
+    }
+  }
+
+  void _stopPingTimer() => _pingTimer?.cancel();
 }
