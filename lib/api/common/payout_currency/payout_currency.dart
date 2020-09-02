@@ -9,7 +9,9 @@ import '../models/payout_currency_model.dart';
 /// Payout currency class
 class PayoutCurrency extends PayoutCurrencyModel {
   /// Initializes
-  PayoutCurrency(String currency) : super(currency: currency);
+  PayoutCurrency({
+    String currency,
+  }) : super(currency: currency);
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
@@ -32,7 +34,8 @@ class PayoutCurrency extends PayoutCurrencyModel {
 
     return getListFromMap(
       response.payoutCurrencies,
-      itemToTypeCallback: (dynamic item) => PayoutCurrency(item.toString()),
+      itemToTypeCallback: (dynamic item) =>
+          PayoutCurrency(currency: item.toString()),
     );
   }
 
@@ -40,5 +43,5 @@ class PayoutCurrency extends PayoutCurrencyModel {
   PayoutCurrency copyWith(
     String currency,
   ) =>
-      PayoutCurrency(currency ?? this.currency);
+      PayoutCurrency(currency: currency ?? this.currency);
 }
