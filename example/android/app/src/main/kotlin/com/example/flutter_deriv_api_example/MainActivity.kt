@@ -1,4 +1,4 @@
-package com.example.flutter_deriv_api_example
+package com.deriv.flutter_deriv_api_example
 
 import android.os.Bundle
 

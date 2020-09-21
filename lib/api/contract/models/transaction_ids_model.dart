@@ -3,18 +3,18 @@ import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 /// Transaction id contract
 class TransactionIdsModel extends APIBaseModel {
   /// Initializes
-  TransactionIdsModel(
+  TransactionIdsModel({
     this.buyID,
     this.sellID,
-  );
+  });
 
   /// Generate an instance from JSON
   factory TransactionIdsModel.fromJson(
     Map<String, dynamic> json,
   ) =>
       TransactionIdsModel(
-        json['buy'],
-        json['sell'],
+        buyID: json['buy'],
+        sellID: json['sell'],
       );
 
   /// Buy ID
@@ -29,7 +29,7 @@ class TransactionIdsModel extends APIBaseModel {
     int sellID,
   ) =>
       TransactionIdsModel(
-        buyID ?? this.buyID,
-        sellID ?? this.sellID,
+        buyID: buyID ?? this.buyID,
+        sellID: sellID ?? this.sellID,
       );
 }

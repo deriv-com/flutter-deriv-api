@@ -6,20 +6,24 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 /// (Only applicable for contract with limit order).
 class LimitOrderModel extends APIBaseModel {
   /// Initializes
-  LimitOrderModel(this.stopLoss, this.stopOut, this.takeProfit);
+  LimitOrderModel({
+    this.stopLoss,
+    this.stopOut,
+    this.takeProfit,
+  });
 
   /// Generate an instance from JSON
   factory LimitOrderModel.fromJson(Map<String, dynamic> json) =>
       LimitOrderModel(
-        getItemFromMap(
+        stopLoss: getItemFromMap(
           json['stop_loss'],
           itemToTypeCallback: (dynamic item) => SpotPriceModel.fromJson(item),
         ),
-        getItemFromMap(
+        stopOut: getItemFromMap(
           json['stop_out'],
           itemToTypeCallback: (dynamic item) => SpotPriceModel.fromJson(item),
         ),
-        getItemFromMap(
+        takeProfit: getItemFromMap(
           json['take_profit'],
           itemToTypeCallback: (dynamic item) => SpotPriceModel.fromJson(item),
         ),
@@ -44,8 +48,8 @@ class LimitOrderModel extends APIBaseModel {
     SpotPriceModel takeProfit,
   ) =>
       LimitOrderModel(
-        stopLoss ?? this.stopLoss,
-        stopOut ?? this.stopOut,
-        takeProfit ?? this.takeProfit,
+        stopLoss: stopLoss ?? this.stopLoss,
+        stopOut: stopOut ?? this.stopOut,
+        takeProfit: takeProfit ?? this.takeProfit,
       );
 }

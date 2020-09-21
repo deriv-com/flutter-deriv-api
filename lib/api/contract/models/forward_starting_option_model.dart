@@ -4,14 +4,18 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 /// Forward starting option
 class ForwardStartingOptionModel extends APIBaseModel {
   /// Initializes
-  ForwardStartingOptionModel(this.close, this.date, this.open);
+  ForwardStartingOptionModel({
+    this.close,
+    this.date,
+    this.open,
+  });
 
   /// Generate an instance from JSON
   factory ForwardStartingOptionModel.fromJson(Map<String, dynamic> json) =>
       ForwardStartingOptionModel(
-        json['close'] = getDateTime(int.parse(json['close'])),
-        json['date'] = getDateTime(int.parse(json['date'])),
-        json['open'] = getDateTime(int.parse(json['open'])),
+        close: json['close'] = getDateTime(int.parse(json['close'])),
+        date: json['date'] = getDateTime(int.parse(json['date'])),
+        open: json['open'] = getDateTime(int.parse(json['open'])),
       );
 
   /// The epoch value for the closing date of forward starting session.
@@ -26,8 +30,8 @@ class ForwardStartingOptionModel extends APIBaseModel {
   /// Generate a copy of instance with given parameters
   ForwardStartingOptionModel copyWith({int close, int date, int open}) =>
       ForwardStartingOptionModel(
-        close ?? this.close,
-        date ?? this.date,
-        open ?? this.open,
+        close: close ?? this.close,
+        date: date ?? this.date,
+        open: open ?? this.open,
       );
 }

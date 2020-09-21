@@ -3,13 +3,16 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 /// Contains information about contract cancellation option.
 class CancellationInfoModel {
   /// Initializes
-  CancellationInfoModel(this.askPrice, this.dateExpiry);
+  CancellationInfoModel({
+    this.askPrice,
+    this.dateExpiry,
+  });
 
   /// Generate an instance from JSON
   factory CancellationInfoModel.fromJson(Map<String, dynamic> json) =>
       CancellationInfoModel(
-        json['ask_price'],
-        getDateTime(json['date_expiry']),
+        askPrice: json['ask_price'],
+        dateExpiry: getDateTime(json['date_expiry']),
       );
 
   /// Ask price of contract cancellation option.
@@ -24,7 +27,7 @@ class CancellationInfoModel {
     DateTime dateExpiry,
   }) =>
       CancellationInfoModel(
-        askPrice ?? this.askPrice,
-        dateExpiry ?? this.dateExpiry,
+        askPrice: askPrice ?? this.askPrice,
+        dateExpiry: dateExpiry ?? this.dateExpiry,
       );
 }
