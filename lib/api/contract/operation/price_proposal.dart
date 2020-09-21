@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/contract/models/cancellation_info_model.dart';
@@ -33,18 +34,18 @@ class PriceProposal extends PriceProposalModel {
     DateTime spotTime,
     this.subscriptionInformation,
   }) : super(
-          askPrice,
-          cancellation,
-          commission,
-          dateStart,
-          displayValue,
-          id,
-          limitOrder,
-          longCode,
-          multiplier,
-          payout,
-          spot,
-          spotTime,
+          askPrice: askPrice,
+          cancellation: cancellation,
+          commission: commission,
+          dateStart: dateStart,
+          displayValue: displayValue,
+          id: id,
+          limitOrder: limitOrder,
+          longCode: longCode,
+          multiplier: multiplier,
+          payout: payout,
+          spot: spot,
+          spotTime: spotTime,
         );
 
   /// Generates an instance from JSON

@@ -5,7 +5,7 @@ import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 /// Latest price and other details for a given contract
 abstract class PriceProposalModel extends APIBaseModel {
   /// Initializes
-  PriceProposalModel(
+  PriceProposalModel({
     this.askPrice,
     this.cancellation,
     this.commission,
@@ -18,7 +18,7 @@ abstract class PriceProposalModel extends APIBaseModel {
     this.payout,
     this.spot,
     this.spotTime,
-  );
+  });
 
   /// The ask price.
   final double askPrice;

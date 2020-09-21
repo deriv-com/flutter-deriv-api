@@ -113,7 +113,11 @@ class OpenContract extends Contract {
               CancellationInfoModel.fromJson(item),
         ),
         commission: json['commision']?.toDouble(),
-        contractType: json['contract_type'],
+        contractType: getEnumFromString(
+          values: ContractType.values,
+          name: json['contract_type'],
+          enumCase: EnumCase.upperCase,
+        ),
         currency: json['currency'],
         currentSpot: json['current_spot']?.toDouble(),
         currentSpotDisplayValue: json['current_spot_display_value'],
@@ -204,7 +208,7 @@ class OpenContract extends Contract {
   final double commission;
 
   /// Contract type.
-  final String contractType;
+  final ContractType contractType;
 
   /// The currency code of the contract.
   final String currency;
@@ -430,7 +434,7 @@ class OpenContract extends Contract {
     double bidPrice,
     CancellationInfoModel cancellation,
     String commission,
-    String contractType,
+    ContractType contractType,
     String currency,
     double currentSpot,
     String currentSpotDisplayValue,
