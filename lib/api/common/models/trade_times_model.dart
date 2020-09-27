@@ -13,8 +13,8 @@ class TradeTimesModel extends APIBaseModel {
   /// Creates an instance from JSON
   factory TradeTimesModel.fromJson(Map<String, dynamic> json) =>
       TradeTimesModel(
-        open: getListFromMap(json['close']),
-        close: getListFromMap(json['open']),
+        open: getListFromMap(json['open']),
+        close: getListFromMap(json['close']),
         settlement: json['settlement'],
       );
 
