@@ -40,8 +40,8 @@ void main() {
     expect(times.close.length, 1);
     expect(times.open.length, 1);
 
-    expect(times.close.first, '00:00:00');
-    expect(times.open.first, '23:59:59');
+    expect(times.open.first, '00:00:00');
+    expect(times.close.first, '23:59:59');
 
     expect(times.settlement, '23:59:59');
   });
