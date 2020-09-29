@@ -57,7 +57,7 @@ class Authorize extends AuthorizeModel {
         landingCompanyFullName: json['landing_company_fullname'],
         landingCompanyName: json['landing_company_name'],
         localCurrencies: getListFromMap(
-          json['local_currencies'].entries,
+          json['local_currencies']?.entries,
           itemToTypeCallback: (dynamic item) => LocalCurrencyModel.fromJson(
             <String, dynamic>{
               'key': item.key,

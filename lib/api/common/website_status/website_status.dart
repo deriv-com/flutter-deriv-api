@@ -43,7 +43,7 @@ class WebsiteStatus extends WebsiteStatusModel {
   }) =>
       WebsiteStatus(
         currencyConfig: getListFromMap(
-          json['currencies_config'].entries,
+          json['currencies_config']?.entries,
           itemToTypeCallback: (dynamic item) =>
               WebsiteStatusCurrencyConfigModel.fromJson(item.key, item.value),
         ),
@@ -54,7 +54,7 @@ class WebsiteStatus extends WebsiteStatusModel {
         ),
         clientsCountry: json['clients_country'],
         cryptoConfig: getListFromMap(
-          json['crypto_config'].entries,
+          json['crypto_config']?.entries,
           itemToTypeCallback: (dynamic item) =>
               WebsiteStatusCryptoConfigModel.fromJson(item.key, item.value),
         ),
