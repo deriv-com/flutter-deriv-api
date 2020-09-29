@@ -24,7 +24,7 @@ class ExchangeRates extends ExchangeRatesModel {
         baseCurrency: json['base_currency'],
         date: getDateTime(json['date']),
         rates: getListFromMap(
-          json['rates'].entries,
+          json['rates']?.entries,
           itemToTypeCallback: (dynamic item) => RateModel.fromJson(
             <String, dynamic>{
               'key': item.key,

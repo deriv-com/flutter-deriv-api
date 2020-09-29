@@ -30,13 +30,13 @@ class LandingCompanyDetailModel extends APIBaseModel {
                 .map<String>((dynamic item) => item.toString())
                 .toList(),
         changeableFields: getListFromMap(
-          json['changeable_fields'].entries,
+          json['changeable_fields']?.entries,
           itemToTypeCallback: (dynamic item) =>
               LandingCompanyFieldsInfoModel.fromJson(item.key, item.value),
         ),
         country: json['country'],
         marketsCurrencies: getListFromMap(
-          json['currency_config'].entries,
+          json['currency_config']?.entries,
           itemToTypeCallback: (dynamic item) =>
               LandingCompanyCurrencyModel.fromJson(item.key, item.value),
         ),
