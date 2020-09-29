@@ -153,8 +153,8 @@ class FinancialAssessment extends FinancialAssessmentModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          FinancialAssessmentException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          FinancialAssessmentException(code: code, message: message),
     );
 
     return FinancialAssessment.fromJson(response.getFinancialAssessment);

@@ -353,8 +353,8 @@ class OpenContract extends Contract {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          ContractOperationException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          ContractOperationException(code: code, message: message),
     );
 
     return OpenContract.fromJson(
@@ -375,8 +375,8 @@ class OpenContract extends Contract {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: (String message) =>
-                ContractOperationException(message: message),
+            exceptionCreator: ({String code, String message}) =>
+                ContractOperationException(code: code, message: message),
           );
 
           return response is ProposalOpenContractResponse
@@ -401,8 +401,8 @@ class OpenContract extends Contract {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          ContractOperationException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          ContractOperationException(code: code, message: message),
     );
 
     return Forget.fromResponse(response);
@@ -418,8 +418,8 @@ class OpenContract extends Contract {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          ContractOperationException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          ContractOperationException(code: code, message: message),
     );
 
     return ForgetAll.fromResponse(response);

@@ -71,8 +71,8 @@ class Tick extends TickBase {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: (String message) =>
-                TickException(message: message),
+            exceptionCreator: ({String code, String message}) =>
+                TickException(code: code, message: message),
           );
 
           return response is TicksResponse
@@ -93,7 +93,8 @@ class Tick extends TickBase {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => TickException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          TickException(code: code, message: message),
     );
 
     return ForgetAll.fromResponse(response);

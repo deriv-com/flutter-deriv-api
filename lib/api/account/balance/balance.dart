@@ -61,7 +61,8 @@ class Balance extends BalanceModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => BalanceException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          BalanceException(code: code, message: message),
     );
 
     return Balance.fromJson(response.balance);
@@ -74,8 +75,8 @@ class Balance extends BalanceModel {
       _api.subscribe(request: request).map((Response response) {
         checkException(
           response: response,
-          exceptionCreator: (String message) =>
-              BalanceException(message: message),
+          exceptionCreator: ({String code, String message}) =>
+              BalanceException(code: code, message: message),
         );
 
         return response is BalanceResponse
@@ -99,7 +100,8 @@ class Balance extends BalanceModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => BalanceException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          BalanceException(code: code, message: message),
     );
 
     return Forget.fromResponse(response);
@@ -114,7 +116,8 @@ class Balance extends BalanceModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => BalanceException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          BalanceException(code: code, message: message),
     );
 
     return ForgetAll.fromResponse(response);
