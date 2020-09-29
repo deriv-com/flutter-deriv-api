@@ -50,20 +50,20 @@ class CopyTradingStatistics extends CopyTradingStatisticsModel {
         last12monthsProfitableTrades:
             json['last_12months_profitable_trades']?.toDouble(),
         monthlyProfitableTrades: getListFromMap(
-          json['monthly_profitable_trades'].entries,
+          json['monthly_profitable_trades']?.entries,
           itemToTypeCallback: (dynamic item) =>
               ProfitableTradeModel.fromJson(item),
         ),
         performanceProbability: json['performance_probability']?.toDouble(),
         totalTrades: json['total_trades'],
         tradesBreakdown: getListFromMap(
-          json['trades_breakdown'].entries,
+          json['trades_breakdown']?.entries,
           itemToTypeCallback: (dynamic item) =>
               MarketTradesBreakdownModel.fromJson(item),
         ),
         tradesProfitable: json['trades_profitable']?.toDouble(),
         yearlyProfitableTrades: getListFromMap(
-          json['yearly_profitable_trades'].entries,
+          json['yearly_profitable_trades']?.entries,
           itemToTypeCallback: (dynamic item) =>
               ProfitableTradeModel.fromJson(item),
         ),

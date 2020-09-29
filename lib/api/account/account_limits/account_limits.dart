@@ -45,7 +45,7 @@ class AccountLimits extends AccountLimitsModel {
         dailyTurnover: json['daily_turnover'],
         lifetimeLimit: json['lifetime_limit']?.toDouble(),
         marketSpecific: getListFromMap(
-          json['market_specific'].entries,
+          json['market_specific']?.entries,
           itemToTypeCallback: (dynamic item) =>
               AccountMarketLimitsModel.fromJson(item.key, item.value),
         ),

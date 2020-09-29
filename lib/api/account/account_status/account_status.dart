@@ -36,7 +36,7 @@ class AccountStatus extends AccountStatusModel {
               AccountAuthenticationStatusModel.fromJson(map),
         ),
         currencyConfig: getListFromMap(
-          json['experimental_suspended'].entries,
+          json['experimental_suspended']?.entries,
           itemToTypeCallback: (dynamic item) =>
               AccountStatusCurrencyConfigModel.fromJson(item.key, item.value),
         ),
