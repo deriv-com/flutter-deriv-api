@@ -15,5 +15,5 @@ class APIBaseException implements Exception {
   final String message;
 
   @override
-  String toString() => '$runtimeType: $message, code: $code';
+  String toString() => '$runtimeType(code: $code, message: $message)';
 }
