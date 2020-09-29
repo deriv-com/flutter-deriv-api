@@ -77,8 +77,8 @@ class AccountLimits extends AccountLimitsModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          AccountLimitsException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          AccountLimitsException(code: code, message: message),
     );
 
     return AccountLimits.fromJson(response.getLimits);

@@ -35,8 +35,8 @@ class CopyTradingStop extends CopyTradingStopModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          CopyTradingException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          CopyTradingException(code: code, message: message),
     );
 
     return CopyTradingStop.fromResponse(response);

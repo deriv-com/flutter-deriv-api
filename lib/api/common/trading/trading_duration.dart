@@ -65,7 +65,8 @@ class TradingDuration extends TradingDurationModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => TradingException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          TradingException(code: code, message: message),
     );
 
     return getListFromMap(

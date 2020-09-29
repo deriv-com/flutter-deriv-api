@@ -84,8 +84,8 @@ class RealityCheck extends RealityCheckModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          RealityCheckException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          RealityCheckException(code: code, message: message),
     );
 
     return RealityCheck.fromJson(response.realityCheck);

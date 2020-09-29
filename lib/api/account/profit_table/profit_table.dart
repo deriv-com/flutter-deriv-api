@@ -48,8 +48,8 @@ class ProfitTable extends ProfitTableModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          ProfitTableException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          ProfitTableException(code: code, message: message),
     );
 
     return ProfitTable.fromJson(response.profitTable);

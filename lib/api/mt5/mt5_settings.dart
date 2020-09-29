@@ -110,7 +110,8 @@ class MT5Settings extends MT5SettingsModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => MT5Exception(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          MT5Exception(code: code, message: message),
     );
 
     return MT5Settings.fromJson(response.mt5GetSettings);

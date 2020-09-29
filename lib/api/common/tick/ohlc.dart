@@ -88,7 +88,8 @@ class OHLC extends TickBase {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => TickException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          TickException(code: code, message: message),
     );
 
     return ForgetAll.fromResponse(response);

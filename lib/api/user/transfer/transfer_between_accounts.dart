@@ -72,7 +72,8 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => TransferException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          TransferException(code: code, message: message),
     );
 
     return TransferBetweenAccounts.fromResponse(response);

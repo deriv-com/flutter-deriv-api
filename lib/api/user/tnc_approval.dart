@@ -37,7 +37,8 @@ class TNCApproval extends TNCApprovalModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => UserException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          UserException(code: code, message: message),
     );
 
     return TNCApproval.fromResponse(response);

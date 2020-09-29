@@ -54,8 +54,8 @@ class AssetIndex extends AssetIndexModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          AssetIndexException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          AssetIndexException(code: code, message: message),
     );
 
     return getListFromMap(
