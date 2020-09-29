@@ -83,8 +83,8 @@ class CopyTradingStatistics extends CopyTradingStatisticsModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          CopyTradingException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          CopyTradingException(code: code, message: message),
     );
 
     return CopyTradingStatistics.fromJson(response.copytradingStatistics);

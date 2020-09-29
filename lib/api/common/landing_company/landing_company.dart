@@ -78,8 +78,8 @@ class LandingCompany extends LandingCompanyModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          LandingCompanyException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          LandingCompanyException(code: code, message: message),
     );
 
     return LandingCompany.fromJson(response.landingCompany);
@@ -97,8 +97,8 @@ class LandingCompany extends LandingCompanyModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          LandingCompanyException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          LandingCompanyException(code: code, message: message),
     );
 
     return LandingCompanyDetailModel.fromJson(response.landingCompanyDetails);

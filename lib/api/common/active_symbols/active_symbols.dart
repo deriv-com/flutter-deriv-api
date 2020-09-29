@@ -84,8 +84,8 @@ class ActiveSymbol extends ActiveSymbolModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          ActiveSymbolsException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          ActiveSymbolsException(code: code, message: message),
     );
 
     return response.activeSymbols

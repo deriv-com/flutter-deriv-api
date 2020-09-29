@@ -37,7 +37,8 @@ class MT5PasswordReset extends MT5PasswordResetModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => MT5Exception(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          MT5Exception(code: code, message: message),
     );
 
     return MT5PasswordReset.fromResponse(response);

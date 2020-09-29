@@ -32,7 +32,8 @@ class State extends StateModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => StateException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          StateException(code: code, message: message),
     );
 
     return getListFromMap(

@@ -3,5 +3,8 @@ import 'package:flutter_deriv_api/api/contract/exceptions/contract_exception.dar
 /// Exception for contract for symbol request call
 class ContractsForSymbolException extends ContractException {
   /// Initializes
-  ContractsForSymbolException({String message}) : super(message: message);
+  ContractsForSymbolException({
+    String code,
+    String message,
+  }) : super(code: code, message: message);
 }

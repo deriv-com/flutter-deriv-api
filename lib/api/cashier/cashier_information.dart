@@ -40,7 +40,8 @@ class CashierInformation extends CashierInformationModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => CashierException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          CashierException(code: code, message: message),
     );
 
     return CashierInformation.fromResponse(response);

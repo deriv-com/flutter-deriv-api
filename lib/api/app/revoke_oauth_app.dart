@@ -37,7 +37,8 @@ class RevokeOauthApp extends RevokeOauthAppModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => AppException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          AppException(code: code, message: message),
     );
 
     return RevokeOauthApp.fromResponse(response);

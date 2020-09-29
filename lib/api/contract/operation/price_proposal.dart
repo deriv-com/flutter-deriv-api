@@ -92,8 +92,8 @@ class PriceProposal extends PriceProposalModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          ContractOperationException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          ContractOperationException(code: code, message: message),
     );
 
     return PriceProposal.fromJson(response.proposal);
@@ -110,8 +110,8 @@ class PriceProposal extends PriceProposalModel {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: (String message) =>
-                ContractOperationException(message: message),
+            exceptionCreator: ({String code, String message}) =>
+                ContractOperationException(code: code, message: message),
           );
 
           return response is ProposalResponse
@@ -136,8 +136,8 @@ class PriceProposal extends PriceProposalModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          ContractOperationException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          ContractOperationException(code: code, message: message),
     );
 
     return Forget.fromResponse(response);
@@ -152,8 +152,8 @@ class PriceProposal extends PriceProposalModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          ContractOperationException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          ContractOperationException(code: code, message: message),
     );
 
     return ForgetAll.fromResponse(response);

@@ -25,9 +25,12 @@ String parseWebSocketUrl(String url, {bool isAuthUrl = false}) {
 /// Checks for existence of error in [response] and throws exception created by [exceptionCreator]
 void checkException({
   Response response,
-  APIBaseException Function(String message) exceptionCreator,
+  APIBaseException Function({String code, String message}) exceptionCreator,
 }) {
   if (response.error != null) {
-    throw exceptionCreator(response.error['message']);
+    throw exceptionCreator(
+      code: response.error['code'],
+      message: response.error['message'],
+    );
   }
 }

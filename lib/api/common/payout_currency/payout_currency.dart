@@ -28,8 +28,8 @@ class PayoutCurrency extends PayoutCurrencyModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          PayoutCurrencyException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          PayoutCurrencyException(code: code, message: message),
     );
 
     return getListFromMap(

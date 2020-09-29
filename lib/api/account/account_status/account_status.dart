@@ -65,8 +65,8 @@ class AccountStatus extends AccountStatusModel {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) =>
-          AccountStatusException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          AccountStatusException(code: code, message: message),
     );
 
     return AccountStatus.fromJson(response.getAccountStatus);

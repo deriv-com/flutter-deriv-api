@@ -35,7 +35,8 @@ class TickHistorySubscription {
 
     checkException(
       response: response,
-      exceptionCreator: (String message) => TickException(message: message),
+      exceptionCreator: ({String code, String message}) =>
+          TickException(code: code, message: message),
     );
 
     return Forget.fromResponse(response);
