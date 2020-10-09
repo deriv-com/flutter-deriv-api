@@ -25,6 +25,8 @@ class ConnectionService {
   /// Returns true if we are connected to the Internet.
   bool get isConnectedToInternet => _hasConnection;
 
+  Timer _connectivityTimer;
+
   Future<bool> _checkConnection(ConnectivityResult result) async {
     final bool previousConnection = _hasConnection;
 
@@ -50,6 +52,7 @@ class ConnectionService {
   /// Closes the connection service
   void dispose() {
     connectionChangeController?.close();
+    _stopConnectivityTimer();
   }
 
   /// Initializes
@@ -62,6 +65,8 @@ class ConnectionService {
 
     await _connectivity.checkConnectivity();
     _connectivity.onConnectivityChanged.listen(_checkConnection);
+
+    _startConnectivityTimer();
   }
 
   /// Checks devices connectivity
@@ -71,4 +76,16 @@ class ConnectionService {
 
     return _checkConnection(connectivityResult);
   }
+
+  // Checks for change to connectivity to internet every 15 seconds
+  void _startConnectivityTimer() {
+    if (_connectivityTimer == null || !_connectivityTimer.isActive) {
+      _connectivityTimer =
+          Timer.periodic(const Duration(seconds: 15), (Timer timer) async {
+        checkConnectivity();
+      });
+    }
+  }
+
+  void _stopConnectivityTimer() => _connectivityTimer?.cancel();
 }

@@ -38,7 +38,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
           add(Disconnect());
           _stopPingTimer();
         } else if (state is internet_bloc.Connected) {
-          _reconnectToWebSocket();
+          _connectWebSocket();
           _startPingTimer();
         }
       },
@@ -87,6 +87,8 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
           shouldReconnect = true;
           dev.log(e.toString(), error: e);
         }
+
+        _connectWebSocket();
       }
 
       if (event is Reconnect) {
@@ -102,8 +104,6 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
         yield InitialConnectionState();
       }
 
-      await Future<void>.delayed(_reconnectInterval);
-      _connectWebSocket();
     } else if (event is Disconnect) {
       if (state is Connected) {
         await _api.disconnect();
@@ -123,7 +123,6 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
     _api.connect(connectionInformation, onDone: (UniqueKey uniqueKey) async {
       if (_uniqueKey == uniqueKey) {
         await _api.disconnect();
-        _reconnectToWebSocket();
       }
     }, onOpen: (UniqueKey uniqueKey) {
       if (_uniqueKey == uniqueKey) {
