@@ -48,7 +48,6 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   /// Creates mock connection, sets this to [true] for testing purposes
   final bool isMock;
 
-  static const Duration _reconnectInterval = Duration(seconds: 5);
   static const Duration _pingInterval = Duration(seconds: 12);
   static const Duration _callTimeOut = Duration(seconds: 10);
 
@@ -134,12 +133,6 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
         add(DisplayConnectionError());
       }
     });
-  }
-
-  void _reconnectToWebSocket() {
-    if (state is! Connected) {
-      add(Reconnect());
-    }
   }
 
   @override

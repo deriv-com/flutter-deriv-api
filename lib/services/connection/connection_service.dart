@@ -82,7 +82,7 @@ class ConnectionService {
     if (_connectivityTimer == null || !_connectivityTimer.isActive) {
       _connectivityTimer =
           Timer.periodic(const Duration(seconds: 15), (Timer timer) async {
-        checkConnectivity();
+        await checkConnectivity();
       });
     }
   }
