@@ -35,7 +35,7 @@ class Balance extends BalanceModel {
     Map<String, dynamic> subscriptionJson,
   }) =>
       Balance(
-        balance: json['balance'],
+        balance: json['balance']?.toDouble(),
         currency: json['currency'],
         id: json['id'],
         loginId: json['loginid'],
