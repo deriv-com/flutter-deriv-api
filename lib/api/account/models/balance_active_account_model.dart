@@ -10,6 +10,7 @@ class BalanceActiveAccountModel {
       this.demoAccount,
       this.type});
 
+
   /// The balance amount of current account.
   double balance;
 
