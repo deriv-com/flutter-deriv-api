@@ -1,6 +1,7 @@
 import 'package:flutter_deriv_api/api/account/balance/exceptions/balance_exception.dart';
 import 'package:flutter_deriv_api/api/account/models/balance_model.dart';
 import 'package:flutter_deriv_api/api/account/models/balance_total_model.dart';
+import 'package:flutter_deriv_api/api/account/models/balance_active_account_model.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -15,6 +16,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 class Balance extends BalanceModel {
   /// Initializes
   Balance({
+    Map<String, BalanceActiveAccountModel> accounts,
     double balance,
     String currency,
     String id,
@@ -22,6 +24,7 @@ class Balance extends BalanceModel {
     BalanceTotalModel total,
     this.subscriptionInformation,
   }) : super(
+          accounts: accounts,
           balance: balance,
           currency: currency,
           id: id,
@@ -35,6 +38,9 @@ class Balance extends BalanceModel {
     Map<String, dynamic> subscriptionJson,
   }) =>
       Balance(
+        accounts: json["accounts"] == null ? null :  Map.from(json["accounts"]).map((k, v) =>
+            MapEntry<String, BalanceActiveAccountModel>(
+                k, BalanceActiveAccountModel.fromJson(v))) ?? null,
         balance: json['balance']?.toDouble(),
         currency: json['currency'],
         id: json['id'],
@@ -125,6 +131,7 @@ class Balance extends BalanceModel {
 
   /// Creates a copy of instance with given parameters
   Balance copyWith({
+    Map<String, BalanceActiveAccountModel> accounts,
     double balance,
     String currency,
     String id,
@@ -133,6 +140,7 @@ class Balance extends BalanceModel {
     SubscriptionModel subscriptionInformation,
   }) =>
       Balance(
+        accounts: accounts?? this.accounts,
         balance: balance ?? this.balance,
         currency: currency ?? this.currency,
         id: id ?? this.id,

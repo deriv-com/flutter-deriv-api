@@ -10,7 +10,7 @@ class BalanceAccountModel extends APIBaseModel {
     Map<String, dynamic> json,
   ) =>
       BalanceAccountModel(
-        amount: json['amount'],
+        amount: json['amount']?.toDouble(),
         currency: json['currency'],
       );
 
