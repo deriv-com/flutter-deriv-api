@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:connectivity/connectivity.dart';
+import 'package:http/http.dart' as http;
 
 /// A class to check the connectivity of the device to the Internet
 class ConnectionService {
@@ -33,7 +34,8 @@ class ConnectionService {
     switch (result) {
       case ConnectivityResult.wifi:
       case ConnectivityResult.mobile:
-        _hasConnection = true;
+        _hasConnection = await _pingGoogle();
+
         break;
       case ConnectivityResult.none:
         _hasConnection = false;
@@ -88,4 +90,18 @@ class ConnectionService {
   }
 
   void _stopConnectivityTimer() => _connectivityTimer?.cancel();
+
+  Future<bool> _pingGoogle() async {
+    try {
+      final http.Response response = await http
+          .get('https://google.com')
+          .timeout(const Duration(seconds: 5));
+      if (response.statusCode < 200 || response.statusCode > 299) {
+        return Future<bool>.value(false);
+      }
+    } on Exception catch (_) {
+      return Future<bool>.value(false);
+    }
+    return Future<bool>.value(true);
+  }
 }
