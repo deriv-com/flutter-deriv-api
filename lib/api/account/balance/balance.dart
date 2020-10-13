@@ -38,9 +38,12 @@ class Balance extends BalanceModel {
     Map<String, dynamic> subscriptionJson,
   }) =>
       Balance(
-        accounts: json["accounts"] == null ? null :  Map.from(json["accounts"]).map((k, v) =>
-            MapEntry<String, BalanceActiveAccountModel>(
-                k, BalanceActiveAccountModel.fromJson(v))) ?? null,
+        accounts: json['accounts'] == null
+            ? null
+            : Map<String, dynamic>.from(json['accounts']).map(
+                    (String k, dynamic v) =>
+                        MapEntry<String, BalanceActiveAccountModel>(
+                            k, BalanceActiveAccountModel.fromJson(v))),
         balance: json['balance']?.toDouble(),
         currency: json['currency'],
         id: json['id'],
@@ -140,7 +143,7 @@ class Balance extends BalanceModel {
     SubscriptionModel subscriptionInformation,
   }) =>
       Balance(
-        accounts: accounts?? this.accounts,
+        accounts: accounts ?? this.accounts,
         balance: balance ?? this.balance,
         currency: currency ?? this.currency,
         id: id ?? this.id,

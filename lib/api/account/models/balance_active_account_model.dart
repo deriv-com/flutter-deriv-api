@@ -11,6 +11,14 @@ class BalanceActiveAccountModel {
       this.type});
 
 
+  /// Generate an instance from JSON
+  BalanceActiveAccountModel.fromJson(Map<String, dynamic> json) {
+    balance = json['balance']?.toDouble();
+    convertedAmount = json['converted_amount']?.toDouble();
+    currency = json['currency'];
+    demoAccount = json['demo_account']?.toInt();
+    type = json['type'];
+  }
   /// The balance amount of current account.
   double balance;
 
@@ -25,22 +33,16 @@ class BalanceActiveAccountModel {
 
   /// Type of account.
   String type;
-
-  BalanceActiveAccountModel.fromJson(Map<String, dynamic> json) {
-    balance = json['balance']?.toDouble();
-    convertedAmount = json['converted_amount']?.toDouble();
-    currency = json['currency'];
-    demoAccount = json['demo_account']?.toInt();
-    type = json['type'];
-  }
+  
+  
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['balance'] = this.balance;
-    data['converted_amount'] = this.convertedAmount;
-    data['currency'] = this.currency;
-    data['demo_account'] = this.demoAccount;
-    data['type'] = this.type;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['balance'] = balance;
+    data['converted_amount'] = convertedAmount;
+    data['currency'] = currency;
+    data['demo_account'] = demoAccount;
+    data['type'] = type;
     return data;
   }
 }
