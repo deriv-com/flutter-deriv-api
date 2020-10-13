@@ -35,7 +35,7 @@ class BalanceActiveAccountModel {
   String type;
   
   
-
+  /// Generate json from instance.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['balance'] = balance;
