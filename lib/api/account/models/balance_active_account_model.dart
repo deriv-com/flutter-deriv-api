@@ -49,7 +49,7 @@ class BalanceActiveAccountModel {
   final UserAccountType type;
 
   /// Generate a copy of instance with given parameters.
-  BalanceActiveAccountModel copyWith(
+  BalanceActiveAccountModel copyWith({
     String loginId,
     double balance,
     double convertedAmount,
@@ -57,7 +57,7 @@ class BalanceActiveAccountModel {
     // ignore: avoid_positional_boolean_parameters
     bool demoAccount,
     UserAccountType type,
-  ) =>
+  }) =>
       BalanceActiveAccountModel(
         loginId: loginId ?? this.loginId,
         balance: balance ?? this.balance,
