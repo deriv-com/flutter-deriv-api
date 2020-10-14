@@ -21,6 +21,7 @@ void main() {
       expect(balance.id, '811e7ac4-1454-b909-6adb-904a2e9cb374');
       expect(balance.loginId, 'VRTC2351953');
       expect(balance.accounts.length, 1);
+      expect(balance.accounts.first.type,UserAccountType.deriv);
       expect(balance.accounts.first.loginId, 'VRTC2351953');
       expect(balance.accounts.first.convertedAmount, 10006.86);
       expect(balance.accounts.first.demoAccount, isTrue);

@@ -1,4 +1,3 @@
-import 'package:flutter_deriv_api/api/account/models/balance_total_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
@@ -55,7 +54,8 @@ class BalanceActiveAccountModel {
     double balance,
     double convertedAmount,
     String currency,
-    int demoAccount,
+    // ignore: avoid_positional_boolean_parameters
+    bool demoAccount,
     UserAccountType type,
   ) =>
       BalanceActiveAccountModel(

@@ -315,39 +315,39 @@ enum ForgetStreamType {
 
 /// Contract types
 enum ContractType {
-  multup,
-  multdown,
-  upordown,
-  expiryrange,
-  onetouch,
-  calle,
-  lbhighlow,
-  asiand,
-  expiryrangee,
-  digitdiff,
-  digitmatch,
-  digitover,
-  pute,
-  digitunder,
-  notouch,
+  multUp,
+  multDown,
+  upOrDown,
+  expiryRange,
+  oneTouch,
+  callE,
+  lbHighLow,
+  asianD,
+  expiryRangeE,
+  digitDiff,
+  digitMatch,
+  digitOver,
+  putE,
+  digitUnder,
+  noTouch,
   call,
   range,
-  lbfloatput,
-  digitodd,
+  lbFloatPut,
+  digitOdd,
   put,
-  asianu,
-  lbfloatcall,
-  expirymisse,
-  expirymiss,
-  digiteven,
-  tickhigh,
-  ticklow,
-  resetcall,
-  resetput,
-  callspread,
-  putspread,
-  runhigh,
-  runlow
+  asianU,
+  lbFloatCall,
+  expiryMissE,
+  expiryMiss,
+  digitEven,
+  tickHigh,
+  tickLow,
+  resetCall,
+  resetPut,
+  callSpread,
+  putSpread,
+  runHigh,
+  runLow
 }
 
 /// Defines the type of the users account
@@ -355,12 +355,6 @@ enum UserAccountType {
   /// Real money Deriv account.
   deriv,
 
-  /// Demo Deriv account.¬
-  derivDemo,
-
   /// MT5 account.
   mt5,
-
-  /// MT5 demo account.
-  mt5Demo,
 }
