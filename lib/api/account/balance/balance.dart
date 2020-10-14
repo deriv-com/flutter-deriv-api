@@ -38,19 +38,17 @@ class Balance extends BalanceModel {
     Map<String, dynamic> subscriptionJson,
   }) =>
       Balance(
-        accounts: json['accounts'] == null
-            ? null
-            : getItemFromMap(json['accounts'],
-                itemToTypeCallback: (dynamic item) =>
-                    // ignore: avoid_as
-                    (item as Map<String, dynamic>)
-                        .entries
-                        .map((MapEntry<String, dynamic> e) =>
-                            BalanceActiveAccountModel.fromJson(
-                              key: e.key,
-                              json: e.value,
-                            ))
-                        .toList()),
+        accounts: getItemFromMap(
+          json['accounts'],
+          itemToTypeCallback: (dynamic item) => item.entries
+              .map<BalanceActiveAccountModel>(
+                  (MapEntry<String, dynamic> entry) =>
+                      BalanceActiveAccountModel.fromJson(
+                        loginId: entry.key,
+                        json: entry.value,
+                      ))
+              .toList(),
+        ),
         balance: json['balance']?.toDouble(),
         currency: json['currency'],
         id: json['id'],
@@ -141,7 +139,7 @@ class Balance extends BalanceModel {
 
   /// Creates a copy of instance with given parameters
   Balance copyWith({
-    Map<String, BalanceActiveAccountModel> accounts,
+    List<BalanceActiveAccountModel> accounts,
     double balance,
     String currency,
     String id,

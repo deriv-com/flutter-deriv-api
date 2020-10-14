@@ -1,6 +1,6 @@
-/// Individual accounts details.
+/// Balance active account model class
 class BalanceActiveAccountModel {
-  /// Initializes the model
+  /// Initializes
   BalanceActiveAccountModel({
     this.loginId,
     this.balance,
@@ -11,32 +11,36 @@ class BalanceActiveAccountModel {
   });
 
   /// Generate an instance from JSON
-  BalanceActiveAccountModel.fromJson({String key, Map<String, dynamic> json}) {
-    loginId = key;
-    balance = json['balance']?.toDouble();
-    convertedAmount = json['converted_amount']?.toDouble();
-    currency = json['currency'];
-    demoAccount = json['demo_account']?.toInt();
-    type = json['type'];
-  }
+  factory BalanceActiveAccountModel.fromJson({
+    String loginId,
+    Map<String, dynamic> json,
+  }) =>
+      BalanceActiveAccountModel(
+        loginId: loginId,
+        balance: json['balance']?.toDouble(),
+        convertedAmount: json['converted_amount']?.toDouble(),
+        currency: json['currency'],
+        demoAccount: json['demo_account']?.toInt(),
+        type: json['type'],
+      );
 
-  /// Client loginid.
-  String loginId;
+  /// Client login id.
+  final String loginId;
 
   /// The balance amount of current account.
-  double balance;
+  final double balance;
 
   /// Account balance converted the total currency.
-  double convertedAmount;
+  final double convertedAmount;
 
   /// Account currency.
-  String currency;
+  final String currency;
 
   /// If set to 1, this is a demo account.
-  int demoAccount;
+  final int demoAccount;
 
   /// Type of account.
-  String type;
+  final String type;
 
   /// Generate a copy of instance with given parameters.
   BalanceActiveAccountModel copyWith(

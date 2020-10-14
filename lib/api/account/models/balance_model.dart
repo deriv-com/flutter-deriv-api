@@ -15,7 +15,7 @@ abstract class BalanceModel extends APIBaseModel {
   });
 
   /// User active accounts list
-  List<BalanceActiveAccountModel> accounts;
+  final List<BalanceActiveAccountModel> accounts;
 
   /// Balance amount
   final double balance;
