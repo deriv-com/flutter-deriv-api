@@ -11,10 +11,9 @@ class BalanceTotalModel extends APIBaseModel {
     this.mt5Demo,
     this.deriv,
     this.derivDemo,
-    this.real,
   });
 
-  /// Generate an instance from JSON
+  /// Generate an instance from JSON.
   factory BalanceTotalModel.fromJson(
     Map<String, dynamic> json,
   ) =>
@@ -39,11 +38,6 @@ class BalanceTotalModel extends APIBaseModel {
           itemToTypeCallback: (dynamic item) =>
               BalanceAccountModel.fromJson(item),
         ),
-        real: getItemFromMap(
-          json['real'],
-          itemToTypeCallback: (dynamic item) =>
-              BalanceAccountModel.fromJson(item),
-        ),
       );
 
   /// Total balance of all MT5 accounts
@@ -58,22 +52,17 @@ class BalanceTotalModel extends APIBaseModel {
   /// Total balance of all demo Deriv accounts.
   final BalanceAccountModel derivDemo;
 
-  /// Total amount of balance in all real accounts (excluding MT5)
-  final BalanceAccountModel real;
-
   /// Generate a copy of instance with given parameters
   BalanceTotalModel copyWith({
     BalanceAccountModel mt5,
     BalanceAccountModel mt5Demo,
     BalanceAccountModel deriv,
     BalanceAccountModel derivDemo,
-    BalanceAccountModel real,
   }) =>
       BalanceTotalModel(
         mt5: mt5 ?? this.mt5,
         mt5Demo: mt5Demo ?? this.mt5Demo,
         deriv: deriv ?? this.deriv,
         derivDemo: derivDemo ?? this.derivDemo,
-        real: real ?? this.real,
       );
 }

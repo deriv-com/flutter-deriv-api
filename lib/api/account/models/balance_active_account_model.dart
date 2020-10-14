@@ -1,24 +1,28 @@
-/// {@template balanceActiveAccountModel}
-/// Active accounts info from Balance.
-/// {@endtemplate}
+/// Individual accounts details.
 class BalanceActiveAccountModel {
-  /// {@macro balanceActiveAccountModel}
-  BalanceActiveAccountModel(
-      {this.balance,
-      this.convertedAmount,
-      this.currency,
-      this.demoAccount,
-      this.type});
-
+  /// Initializes the model
+  BalanceActiveAccountModel({
+    this.loginId,
+    this.balance,
+    this.convertedAmount,
+    this.currency,
+    this.demoAccount,
+    this.type,
+  });
 
   /// Generate an instance from JSON
-  BalanceActiveAccountModel.fromJson(Map<String, dynamic> json) {
+  BalanceActiveAccountModel.fromJson({String key, Map<String, dynamic> json}) {
+    loginId = key;
     balance = json['balance']?.toDouble();
     convertedAmount = json['converted_amount']?.toDouble();
     currency = json['currency'];
     demoAccount = json['demo_account']?.toInt();
     type = json['type'];
   }
+
+  /// Client loginid.
+  String loginId;
+
   /// The balance amount of current account.
   double balance;
 
@@ -33,16 +37,22 @@ class BalanceActiveAccountModel {
 
   /// Type of account.
   String type;
-  
-  
-  /// Generate json from instance.
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['balance'] = balance;
-    data['converted_amount'] = convertedAmount;
-    data['currency'] = currency;
-    data['demo_account'] = demoAccount;
-    data['type'] = type;
-    return data;
-  }
+
+  /// Generate a copy of instance with given parameters.
+  BalanceActiveAccountModel copyWith(
+    String loginId,
+    double balance,
+    double convertedAmount,
+    String currency,
+    int demoAccount,
+    String type,
+  ) =>
+      BalanceActiveAccountModel(
+        loginId: loginId ?? this.loginId,
+        balance: balance ?? this.balance,
+        convertedAmount: convertedAmount ?? this.convertedAmount,
+        currency: currency ?? this.currency,
+        demoAccount: demoAccount ?? this.demoAccount,
+        type: type ?? this.type,
+      );
 }

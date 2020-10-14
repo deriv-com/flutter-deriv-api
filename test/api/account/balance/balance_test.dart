@@ -11,7 +11,7 @@ void main() {
     test('Fetch Balance Test', () async {
       final Balance balance = await Balance.fetchBalance(
         const BalanceRequest(
-          account: 'current',
+          account: 'all',
         ),
       );
 
@@ -19,6 +19,13 @@ void main() {
       expect(balance.currency, 'USD');
       expect(balance.id, '811e7ac4-1454-b909-6adb-904a2e9cb374');
       expect(balance.loginId, 'VRTC2351953');
+      expect(balance.accounts.length, 1);
+      expect(balance.accounts[0].loginId, 'VRTC2351953');
+      expect(balance.accounts[0].convertedAmount, 10006.86);
+      expect(balance.accounts[0].demoAccount, 1);
+      expect(balance.accounts[0].currency, 'USD');
+      expect(balance.total.derivDemo.amount, 9650.74);
+      expect(balance.total.deriv.amount, 0);
     });
 
     test('Subscribe Balance Test', () {

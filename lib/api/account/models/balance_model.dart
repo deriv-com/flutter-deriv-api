@@ -1,6 +1,6 @@
+import 'package:flutter_deriv_api/api/account/models/balance_active_account_model.dart';
 import 'package:flutter_deriv_api/api/account/models/balance_total_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
-import 'package:flutter_deriv_api/api/account/models/balance_active_account_model.dart';
 
 /// Abstract class Balance of account
 abstract class BalanceModel extends APIBaseModel {
@@ -13,8 +13,9 @@ abstract class BalanceModel extends APIBaseModel {
     this.loginId,
     this.total,
   });
+
   /// User active accounts list
-  Map<String, BalanceActiveAccountModel> accounts;
+  List<BalanceActiveAccountModel> accounts;
 
   /// Balance amount
   final double balance;
