@@ -349,3 +349,18 @@ enum ContractType {
   runhigh,
   runlow
 }
+
+/// Defines the type of the users account
+enum UserAccountType {
+  /// Real money Deriv account.
+  deriv,
+
+  /// Demo Deriv account.¬
+  derivDemo,
+
+  /// MT5 account.
+  mt5,
+
+  /// MT5 demo account.
+  mt5Demo,
+}

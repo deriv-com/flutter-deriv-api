@@ -1,3 +1,7 @@
+import 'package:flutter_deriv_api/api/account/models/balance_total_model.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
 /// Balance active account model class
 class BalanceActiveAccountModel {
   /// Initializes
@@ -20,8 +24,11 @@ class BalanceActiveAccountModel {
         balance: json['balance']?.toDouble(),
         convertedAmount: json['converted_amount']?.toDouble(),
         currency: json['currency'],
-        demoAccount: json['demo_account']?.toInt(),
-        type: json['type'],
+        demoAccount: getBool(json['demo_account']),
+        type: getEnumFromString(
+          values: UserAccountType.values,
+          name: json['type'],
+        ),
       );
 
   /// Client login id.
@@ -37,10 +44,10 @@ class BalanceActiveAccountModel {
   final String currency;
 
   /// If set to 1, this is a demo account.
-  final int demoAccount;
+  final bool demoAccount;
 
   /// Type of account.
-  final String type;
+  final UserAccountType type;
 
   /// Generate a copy of instance with given parameters.
   BalanceActiveAccountModel copyWith(
@@ -49,7 +56,7 @@ class BalanceActiveAccountModel {
     double convertedAmount,
     String currency,
     int demoAccount,
-    String type,
+    UserAccountType type,
   ) =>
       BalanceActiveAccountModel(
         loginId: loginId ?? this.loginId,

@@ -1,4 +1,5 @@
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'balance_account_model.dart';
@@ -19,22 +20,22 @@ class BalanceTotalModel extends APIBaseModel {
   ) =>
       BalanceTotalModel(
         mt5: getItemFromMap(
-          json['mt5'],
+          json[getStringFromEnum(UserAccountType.mt5)],
           itemToTypeCallback: (dynamic item) =>
               BalanceAccountModel.fromJson(item),
         ),
         mt5Demo: getItemFromMap(
-          json['mt5_demo'],
+          json[getStringFromEnum(UserAccountType.mt5Demo)],
           itemToTypeCallback: (dynamic item) =>
               BalanceAccountModel.fromJson(item),
         ),
         deriv: getItemFromMap(
-          json['deriv'],
+          json[getStringFromEnum(UserAccountType.deriv)],
           itemToTypeCallback: (dynamic item) =>
               BalanceAccountModel.fromJson(item),
         ),
         derivDemo: getItemFromMap(
-          json['deriv_demo'],
+          json[getStringFromEnum(UserAccountType.derivDemo)],
           itemToTypeCallback: (dynamic item) =>
               BalanceAccountModel.fromJson(item),
         ),
