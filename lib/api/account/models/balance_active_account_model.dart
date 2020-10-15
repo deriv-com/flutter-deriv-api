@@ -54,7 +54,6 @@ class BalanceActiveAccountModel {
     double balance,
     double convertedAmount,
     String currency,
-    // ignore: avoid_positional_boolean_parameters
     bool demoAccount,
     UserAccountType type,
   }) =>
