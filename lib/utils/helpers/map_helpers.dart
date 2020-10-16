@@ -9,9 +9,8 @@ List<T> getListFromMap<T>(
         ? null
         : mapList
             .map<T>(
-              (dynamic item) => itemToTypeCallback == null
-                  ? item.toString()
-                  : itemToTypeCallback(item),
+              (dynamic item) =>
+                  itemToTypeCallback == null ? item : itemToTypeCallback(item),
             )
             .toList();
 

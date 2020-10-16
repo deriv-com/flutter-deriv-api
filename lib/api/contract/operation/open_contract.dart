@@ -151,7 +151,8 @@ class OpenContract extends Contract {
         lowBarrier: json['low_barrier'],
         multiplier: json['multiplier']?.toDouble(),
         profit: json['profit']?.toDouble(),
-        profitPercentage: json['profit_percentage'],
+        // ignore: avoid_as
+        profitPercentage: json['profit_percentage'] as double,
         resetTime: getDateTime(json['reset_time']),
         sellPrice: json['sell_price']?.toDouble(),
         sellSpot: json['sell_spot']?.toDouble(),
