@@ -1,4 +1,5 @@
 import 'package:flutter_deriv_api/api/account/balance/exceptions/balance_exception.dart';
+import 'package:flutter_deriv_api/api/account/models/balance_active_account_model.dart';
 import 'package:flutter_deriv_api/api/account/models/balance_model.dart';
 import 'package:flutter_deriv_api/api/account/models/balance_total_model.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
@@ -15,6 +16,7 @@ import 'package:flutter_deriv_api/utils/helpers.dart';
 class Balance extends BalanceModel {
   /// Initializes
   Balance({
+    List<BalanceActiveAccountModel> accounts,
     double balance,
     String currency,
     String id,
@@ -22,6 +24,7 @@ class Balance extends BalanceModel {
     BalanceTotalModel total,
     this.subscriptionInformation,
   }) : super(
+          accounts: accounts,
           balance: balance,
           currency: currency,
           id: id,
@@ -35,7 +38,18 @@ class Balance extends BalanceModel {
     Map<String, dynamic> subscriptionJson,
   }) =>
       Balance(
-        balance: json['balance'],
+        accounts: getItemFromMap(
+          json['accounts'],
+          itemToTypeCallback: (dynamic item) => item.entries
+              .map<BalanceActiveAccountModel>(
+                  (MapEntry<String, dynamic> entry) =>
+                      BalanceActiveAccountModel.fromJson(
+                        loginId: entry.key,
+                        json: entry.value,
+                      ))
+              .toList(),
+        ),
+        balance: json['balance']?.toDouble(),
         currency: json['currency'],
         id: json['id'],
         loginId: json['loginid'],
@@ -125,6 +139,7 @@ class Balance extends BalanceModel {
 
   /// Creates a copy of instance with given parameters
   Balance copyWith({
+    List<BalanceActiveAccountModel> accounts,
     double balance,
     String currency,
     String id,
@@ -133,6 +148,7 @@ class Balance extends BalanceModel {
     SubscriptionModel subscriptionInformation,
   }) =>
       Balance(
+        accounts: accounts ?? this.accounts,
         balance: balance ?? this.balance,
         currency: currency ?? this.currency,
         id: id ?? this.id,
