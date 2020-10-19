@@ -85,7 +85,7 @@ class PriceProposal extends PriceProposalModel {
         'commission': commission,
         'date_start': dateStart,
         'id': id,
-        'limit_order': limitOrder,
+        'limit_order': limitOrder.toJson(),
         'longcode': longCode,
         'multiplier': multiplier,
         'payout': payout,
@@ -233,8 +233,7 @@ class PriceProposal extends PriceProposalModel {
       other.commission == commission &&
       other.multiplier == multiplier &&
       other.cancellation == cancellation &&
-      other.limitOrder.takeProfit == limitOrder?.takeProfit &&
-      other.limitOrder.stopLoss == limitOrder.stopLoss;
+      other.limitOrder == limitOrder;
 
   @override
   int get hashCode => super.hashCode;

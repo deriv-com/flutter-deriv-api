@@ -1,7 +1,9 @@
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:meta/meta.dart';
 
 /// Stop loss model class
+@immutable
 class SpotPriceModel extends APIBaseModel {
   /// Initializes
   SpotPriceModel({
@@ -44,4 +46,22 @@ class SpotPriceModel extends APIBaseModel {
         orderDate: orderDate ?? this.orderDate,
         value: value ?? this.value,
       );
+
+  /// Converts this instance to JSON
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'display_name': displayName,
+    'order_amount': orderAmount,
+    'value': value,
+
+  };
+
+  @override
+  bool operator ==(Object other) =>
+      other is SpotPriceModel &&
+      other.displayName == displayName &&
+      other.orderAmount == orderAmount;
+
+
+  @override
+  int get hashCode => super.hashCode;
 }
