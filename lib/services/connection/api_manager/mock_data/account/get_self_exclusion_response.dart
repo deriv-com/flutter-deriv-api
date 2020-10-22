@@ -6,8 +6,10 @@ const String getSelfExclusiveResponse = '''
   },
   "get_self_exclusion": {
   "exclude_until": "2020-01-01",
+  "max_30day_deposit": 700000,
   "max_30day_losses": 100000,
   "max_30day_turnover": 1000,
+  "max_7day_deposit": 700000,
   "max_7day_losses": 100000,
   "max_7day_turnover": 1000,
   "max_balance": 100000,
