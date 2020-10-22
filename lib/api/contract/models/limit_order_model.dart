@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+
+import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/contract/models/spot_price_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
@@ -56,18 +57,11 @@ class LimitOrderModel extends APIBaseModel {
         takeProfit: takeProfit ?? this.takeProfit,
       );
 
-  /// Converts this instance to JSON
-  Map<String, dynamic> toJson() => <String, dynamic>{
-    'stop_loss': stopLoss?.toJson(),
-    'take_profit': takeProfit?.toJson(),
-
-  };
-
   @override
   bool operator ==(Object other) =>
       other is LimitOrderModel &&
-          other.takeProfit == takeProfit &&
-          other.stopLoss == stopLoss;
+      other.takeProfit == takeProfit &&
+      other.stopLoss == stopLoss;
 
   @override
   int get hashCode => super.hashCode;

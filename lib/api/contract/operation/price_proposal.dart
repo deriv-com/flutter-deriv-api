@@ -85,7 +85,7 @@ class PriceProposal extends PriceProposalModel {
         'commission': commission,
         'date_start': dateStart,
         'id': id,
-        'limit_order': limitOrder.toJson(),
+        'limit_order': limitOrder,
         'longcode': longCode,
         'multiplier': multiplier,
         'payout': payout,
@@ -233,6 +233,7 @@ class PriceProposal extends PriceProposalModel {
       other.commission == commission &&
       other.multiplier == multiplier &&
       other.cancellation == cancellation &&
+      other.id == id &&
       other.limitOrder == limitOrder;
 
   @override

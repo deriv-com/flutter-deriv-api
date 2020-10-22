@@ -17,7 +17,7 @@ class ForgetAll extends ForgetAllModel {
   /// Creates an instance from response
   factory ForgetAll.fromResponse(ForgetAllResponse response) => ForgetAll(
         cancelledStreams:
-            response.forgetAll.map((dynamic item) => item.toString()).toList(),
+            response?.forgetAll?.map((dynamic item) => item.toString())?.toList(),
       );
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
