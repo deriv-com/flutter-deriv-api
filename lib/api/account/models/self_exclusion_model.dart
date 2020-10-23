@@ -5,13 +5,14 @@ abstract class SelfExclusionModel extends APIBaseModel {
   /// Initializes
   SelfExclusionModel({
     this.excludeUntil,
+    this.max30dayDeposit,
     this.max30dayLosses,
     this.max30dayTurnover,
+    this.max7dayDeposit,
     this.max7dayLosses,
     this.max7dayTurnover,
     this.maxBalance,
     this.maxDeposit,
-    this.maxDepositEndDate,
     this.maxLosses,
     this.maxOpenBets,
     this.maxTurnover,
@@ -22,11 +23,17 @@ abstract class SelfExclusionModel extends APIBaseModel {
   /// Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
   final DateTime excludeUntil;
 
+  /// 7-day limit on deposits.
+  final num max30dayDeposit;
+
   /// 30-day limit on losses
   final double max30dayLosses;
 
   /// 30-day turnover limit
   final double max30dayTurnover;
+
+  /// 7-day limit on deposits.
+  final num max7dayDeposit;
 
   /// 7-day limit on losses
   final double max7dayLosses;
@@ -39,9 +46,6 @@ abstract class SelfExclusionModel extends APIBaseModel {
 
   /// Deposit limit.
   final double maxDeposit;
-
-  /// Exclude me from making deposits when the cumulative sum of deposits exceeds specified deposit limit starting from the date the limit has been set.
-  final DateTime maxDepositEndDate;
 
   /// Daily limit on losses
   final double maxLosses;

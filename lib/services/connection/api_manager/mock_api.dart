@@ -90,6 +90,7 @@ import 'mock_data/p2p/p2p_advert_update_response.dart';
 import 'mock_data/p2p/p2p_advertiser_adverts_response.dart';
 import 'mock_data/p2p/p2p_advertiser_create_response.dart';
 import 'mock_data/p2p/p2p_advertiser_info_response.dart';
+import 'mock_data/p2p/p2p_advertiser_stats_response.dart';
 import 'mock_data/p2p/p2p_advertiser_update_response.dart';
 import 'mock_data/p2p/p2p_chat_create_response.dart';
 import 'mock_data/p2p/p2p_order_cancel_response.dart';
@@ -271,6 +272,8 @@ class MockAPI extends BaseAPI {
         return p2pAdvertiserCreateResponse;
       case 'p2p_advertiser_info':
         return p2pAdvertiserInfoResponse;
+      case 'p2p_advertiser_stats':
+        return p2pAdvertiserStatsResponse;
       case 'p2p_advertiser_update':
         return p2pAdvertiserUpdateResponse;
       case 'p2p_chat_create':
