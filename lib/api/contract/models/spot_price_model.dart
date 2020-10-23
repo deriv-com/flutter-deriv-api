@@ -48,6 +48,13 @@ class SpotPriceModel extends APIBaseModel {
         value: value ?? this.value,
       );
 
+  /// Converts this instance to JSON
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'display_name': displayName,
+        'order_amount': orderAmount,
+        'value': value,
+      };
+
   @override
   bool operator ==(Object other) =>
       other is SpotPriceModel &&

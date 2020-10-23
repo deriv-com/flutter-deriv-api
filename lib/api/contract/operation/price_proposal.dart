@@ -85,7 +85,7 @@ class PriceProposal extends PriceProposalModel {
         'commission': commission,
         'date_start': dateStart,
         'id': id,
-        'limit_order': limitOrder,
+        'limit_order': limitOrder.toJson(),
         'longcode': longCode,
         'multiplier': multiplier,
         'payout': payout,
