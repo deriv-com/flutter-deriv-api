@@ -42,7 +42,7 @@ class Mt5PasswordResetRequest extends Request {
   /// Must be `true`
   final bool mt5PasswordReset;
 
-  /// New password of the account. For validation (length within 8-25 chars, accepts at least 2 out of the following 3 types of characters: uppercase letters, lowercase letters, and numbers).
+  /// New password of the account. For validation (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address).
   final String newPassword;
 
   /// [Optional] Type of the password to reset.
