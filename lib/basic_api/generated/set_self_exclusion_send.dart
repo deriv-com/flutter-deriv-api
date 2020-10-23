@@ -8,13 +8,14 @@ class SetSelfExclusionRequest extends Request {
   /// Initialize SetSelfExclusionRequest
   const SetSelfExclusionRequest({
     this.excludeUntil,
+    this.max30dayDeposit,
     this.max30dayLosses,
     this.max30dayTurnover,
+    this.max7dayDeposit,
     this.max7dayLosses,
     this.max7dayTurnover,
     this.maxBalance,
     this.maxDeposit,
-    this.maxDepositEndDate,
     this.maxLosses,
     this.maxOpenBets,
     this.maxTurnover,
@@ -33,13 +34,14 @@ class SetSelfExclusionRequest extends Request {
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       SetSelfExclusionRequest(
         excludeUntil: json['exclude_until'] as String,
+        max30dayDeposit: json['max_30day_deposit'] as num,
         max30dayLosses: json['max_30day_losses'] as num,
         max30dayTurnover: json['max_30day_turnover'] as num,
+        max7dayDeposit: json['max_7day_deposit'] as num,
         max7dayLosses: json['max_7day_losses'] as num,
         max7dayTurnover: json['max_7day_turnover'] as num,
         maxBalance: json['max_balance'] as num,
         maxDeposit: json['max_deposit'] as num,
-        maxDepositEndDate: json['max_deposit_end_date'] as String,
         maxLosses: json['max_losses'] as num,
         maxOpenBets: json['max_open_bets'] as int,
         maxTurnover: json['max_turnover'] as num,
@@ -55,11 +57,17 @@ class SetSelfExclusionRequest extends Request {
   /// [Optional] Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
   final String excludeUntil;
 
+  /// [Optional] 7-day limit on deposits.
+  final num max30dayDeposit;
+
   /// [Optional] 30-day limit on losses.
   final num max30dayLosses;
 
   /// [Optional] 30-day turnover limit.
   final num max30dayTurnover;
+
+  /// [Optional] 7-day limit on deposits.
+  final num max7dayDeposit;
 
   /// [Optional] 7-day limit on losses.
   final num max7dayLosses;
@@ -70,11 +78,8 @@ class SetSelfExclusionRequest extends Request {
   /// [Optional] Maximum account cash balance.
   final num maxBalance;
 
-  /// [Optional] Deposit limit.
+  /// [Optional] Daily deposit limit.
   final num maxDeposit;
-
-  /// [Optional] Exclude me from making deposits when the cumulative sum of deposits exceeds specified deposit limit.
-  final String maxDepositEndDate;
 
   /// [Optional] Daily limit on losses.
   final num maxLosses;
@@ -98,19 +103,23 @@ class SetSelfExclusionRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'exclude_until': excludeUntil,
+        'max_30day_deposit': max30dayDeposit,
         'max_30day_losses': max30dayLosses,
         'max_30day_turnover': max30dayTurnover,
+        'max_7day_deposit': max7dayDeposit,
         'max_7day_losses': max7dayLosses,
         'max_7day_turnover': max7dayTurnover,
         'max_balance': maxBalance,
         'max_deposit': maxDeposit,
-        'max_deposit_end_date': maxDepositEndDate,
         'max_losses': maxLosses,
         'max_open_bets': maxOpenBets,
         'max_turnover': maxTurnover,
         'session_duration_limit': sessionDurationLimit,
-        'set_self_exclusion':
-            setSelfExclusion == null ? null : setSelfExclusion ? 1 : 0,
+        'set_self_exclusion': setSelfExclusion == null
+            ? null
+            : setSelfExclusion
+                ? 1
+                : 0,
         'timeout_until': timeoutUntil,
         'passthrough': passthrough,
         'req_id': reqId,
@@ -120,13 +129,14 @@ class SetSelfExclusionRequest extends Request {
   @override
   SetSelfExclusionRequest copyWith({
     String excludeUntil,
+    num max30dayDeposit,
     num max30dayLosses,
     num max30dayTurnover,
+    num max7dayDeposit,
     num max7dayLosses,
     num max7dayTurnover,
     num maxBalance,
     num maxDeposit,
-    String maxDepositEndDate,
     num maxLosses,
     int maxOpenBets,
     num maxTurnover,
@@ -138,13 +148,14 @@ class SetSelfExclusionRequest extends Request {
   }) =>
       SetSelfExclusionRequest(
         excludeUntil: excludeUntil ?? this.excludeUntil,
+        max30dayDeposit: max30dayDeposit ?? this.max30dayDeposit,
         max30dayLosses: max30dayLosses ?? this.max30dayLosses,
         max30dayTurnover: max30dayTurnover ?? this.max30dayTurnover,
+        max7dayDeposit: max7dayDeposit ?? this.max7dayDeposit,
         max7dayLosses: max7dayLosses ?? this.max7dayLosses,
         max7dayTurnover: max7dayTurnover ?? this.max7dayTurnover,
         maxBalance: maxBalance ?? this.maxBalance,
         maxDeposit: maxDeposit ?? this.maxDeposit,
-        maxDepositEndDate: maxDepositEndDate ?? this.maxDepositEndDate,
         maxLosses: maxLosses ?? this.maxLosses,
         maxOpenBets: maxOpenBets ?? this.maxOpenBets,
         maxTurnover: maxTurnover ?? this.maxTurnover,

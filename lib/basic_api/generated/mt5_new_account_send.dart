@@ -14,11 +14,13 @@ class Mt5NewAccountRequest extends Request {
     this.city,
     this.company,
     this.country,
+    this.currency,
     this.dryRun,
     @required this.email,
     this.investPassword,
     @required this.leverage,
     @required this.mainPassword,
+    this.mt5AccountCategory,
     this.mt5AccountType,
     this.mt5NewAccount = true,
     @required this.name,
@@ -42,11 +44,13 @@ class Mt5NewAccountRequest extends Request {
         city: json['city'] as String,
         company: json['company'] as String,
         country: json['country'] as String,
+        currency: json['currency'] as String,
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
         email: json['email'] as String,
         investPassword: json['investPassword'] as String,
         leverage: json['leverage'] as num,
         mainPassword: json['mainPassword'] as String,
+        mt5AccountCategory: json['mt5_account_category'] as String,
         mt5AccountType: json['mt5_account_type'] as String,
         mt5NewAccount: json['mt5_new_account'] == null
             ? null
@@ -60,7 +64,7 @@ class Mt5NewAccountRequest extends Request {
         reqId: json['req_id'] as int,
       );
 
-  /// Account type
+  /// Account type. If set to 'financial', setting 'mt5_account_type' is also required.
   final String accountType;
 
   /// [Optional] The address of the user. The maximum length of this address field is 128 characters.
@@ -75,22 +79,28 @@ class Mt5NewAccountRequest extends Request {
   /// [Optional] 2-letter country code (value received from `residence_list` call).
   final String country;
 
+  /// [Optional] MT5 account currency, the default value will be the qualified account currency.
+  final String currency;
+
   /// [Optional] If set to `true`, only validation is performed.
   final bool dryRun;
 
   /// Email address
   final String email;
 
-  /// [Optional] The investor password of the account. For validation (length within 8-25 chars, accepts at least 2 out of the following 3 types of characters: uppercase letters, lowercase letters, and numbers).
+  /// [Optional] The investor password of the account. For validation (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address).
   final String investPassword;
 
   /// Client leverage (from 1 to 1000).
   final num leverage;
 
-  /// The master password of the account. For validation (length within 8-25 chars, accepts at least 2 out of the following 3 types of characters: uppercase letters, lowercase letters, and numbers). This field is required.
+  /// The master password of the account. For validation (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address). This field is required.
   final String mainPassword;
 
-  /// [Optional] Financial: Variable spreads, High leverage. Financial STP: Variable spreads, Medium Leverage, more products.
+  /// [Optional] To choose whether account is conventional or swap_free. Unavailable for financial_stp MT5_account_type
+  final String mt5AccountCategory;
+
+  /// [Optional] Financial: Variable spreads, High leverage. Financial STP: Variable spreads, Medium Leverage, more products. If 'account_type' set to 'financial', setting 'mt5_account_type' is also required.
   final String mt5AccountType;
 
   /// Must be `true`
@@ -119,13 +129,23 @@ class Mt5NewAccountRequest extends Request {
         'city': city,
         'company': company,
         'country': country,
-        'dry_run': dryRun == null ? null : dryRun ? 1 : 0,
+        'currency': currency,
+        'dry_run': dryRun == null
+            ? null
+            : dryRun
+                ? 1
+                : 0,
         'email': email,
         'investPassword': investPassword,
         'leverage': leverage,
         'mainPassword': mainPassword,
+        'mt5_account_category': mt5AccountCategory,
         'mt5_account_type': mt5AccountType,
-        'mt5_new_account': mt5NewAccount == null ? null : mt5NewAccount ? 1 : 0,
+        'mt5_new_account': mt5NewAccount == null
+            ? null
+            : mt5NewAccount
+                ? 1
+                : 0,
         'name': name,
         'phone': phone,
         'phonePassword': phonePassword,
@@ -143,11 +163,13 @@ class Mt5NewAccountRequest extends Request {
     String city,
     String company,
     String country,
+    String currency,
     bool dryRun,
     String email,
     String investPassword,
     num leverage,
     String mainPassword,
+    String mt5AccountCategory,
     String mt5AccountType,
     bool mt5NewAccount,
     String name,
@@ -164,11 +186,13 @@ class Mt5NewAccountRequest extends Request {
         city: city ?? this.city,
         company: company ?? this.company,
         country: country ?? this.country,
+        currency: currency ?? this.currency,
         dryRun: dryRun ?? this.dryRun,
         email: email ?? this.email,
         investPassword: investPassword ?? this.investPassword,
         leverage: leverage ?? this.leverage,
         mainPassword: mainPassword ?? this.mainPassword,
+        mt5AccountCategory: mt5AccountCategory ?? this.mt5AccountCategory,
         mt5AccountType: mt5AccountType ?? this.mt5AccountType,
         mt5NewAccount: mt5NewAccount ?? this.mt5NewAccount,
         name: name ?? this.name,
