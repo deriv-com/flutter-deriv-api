@@ -37,7 +37,7 @@ class PortfolioContractModel extends APIBaseModel {
         dateStart: getDateTime(json['date_start']),
         expiryTime: getDateTime(json['expiry_time']),
         longCode: json['longcode'],
-        payout: json['payout'],
+        payout: json['payout']?.toDouble(),
         purchaseTime: getDateTime(json['purchase_time']),
         symbol: json['symbol'],
         transactionId: json['transaction_id'],

@@ -134,6 +134,7 @@ class PriceProposal extends PriceProposalModel {
             exceptionCreator: ({String code, String message}) =>
                 ContractOperationException(code: code, message: message),
           );
+
           return response is ProposalResponse
               ? PriceProposal.fromJson(
                   response.proposal,
