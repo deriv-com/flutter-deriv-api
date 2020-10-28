@@ -10,6 +10,7 @@ class AvailableContractModel extends APIBaseModel {
     this.barrier,
     this.barrierCategory,
     this.barriers,
+    this.cancellationRange,
     this.contractCategory,
     this.contractCategoryDisplay,
     this.contractDisplay,
@@ -21,6 +22,7 @@ class AvailableContractModel extends APIBaseModel {
     this.market,
     this.maxContractDuration,
     this.minContractDuration,
+    this.multiplierRange,
     this.sentiment,
     this.startType,
     this.submarket,
@@ -35,6 +37,7 @@ class AvailableContractModel extends APIBaseModel {
         barrier: json['barrier'].toString(),
         barrierCategory: json['barrier_category'],
         barriers: json['barriers'],
+        cancellationRange: getListFromMap(json['cancellation_range']),
         contractCategory: json['contract_category'],
         contractCategoryDisplay: json['contract_category_display'],
         contractDisplay: json['contract_display'],
@@ -50,6 +53,7 @@ class AvailableContractModel extends APIBaseModel {
         market: json['market'],
         maxContractDuration: json['max_contract_duration'],
         minContractDuration: json['min_contract_duration'],
+        multiplierRange: getListFromMap(json['multiplier_range']),
         sentiment: json['sentiment'],
         startType: json['start_type'],
         submarket: json['submarket'],
@@ -68,6 +72,9 @@ class AvailableContractModel extends APIBaseModel {
 
   /// Number of barriers.
   final int barriers;
+
+  /// Deal cancellation values range of the contract.
+  final List<String> cancellationRange;
 
   /// Category of the contract.
   final String contractCategory;
@@ -102,6 +109,9 @@ class AvailableContractModel extends APIBaseModel {
   /// Minimum contract duration.
   final String minContractDuration;
 
+  /// List of multipliers values range.
+  final List<int> multiplierRange;
+
   /// Type of sentiment.
   final String sentiment;
 
@@ -123,6 +133,7 @@ class AvailableContractModel extends APIBaseModel {
     String barrier,
     String barrierCategory,
     int barriers,
+    List<String> cancellationRange,
     String contractCategory,
     String contractCategoryDisplay,
     String contractDisplay,
@@ -134,6 +145,7 @@ class AvailableContractModel extends APIBaseModel {
     String market,
     String maxContractDuration,
     String minContractDuration,
+    List<int> multiplierRange,
     String sentiment,
     String startType,
     String submarket,
@@ -145,6 +157,7 @@ class AvailableContractModel extends APIBaseModel {
         barrier: barrier ?? this.barrier,
         barrierCategory: barrierCategory ?? this.barrierCategory,
         barriers: barriers ?? this.barriers,
+        cancellationRange: cancellationRange ?? this.cancellationRange,
         contractCategory: contractCategory ?? this.contractCategory,
         contractCategoryDisplay:
             contractCategoryDisplay ?? this.contractCategoryDisplay,
@@ -158,6 +171,7 @@ class AvailableContractModel extends APIBaseModel {
         market: market ?? this.market,
         maxContractDuration: maxContractDuration ?? this.maxContractDuration,
         minContractDuration: minContractDuration ?? this.minContractDuration,
+        multiplierRange: multiplierRange ?? this.multiplierRange,
         sentiment: sentiment ?? this.sentiment,
         startType: startType ?? this.startType,
         submarket: submarket ?? this.submarket,
