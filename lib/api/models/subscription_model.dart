@@ -13,6 +13,11 @@ class SubscriptionModel extends APIBaseModel {
         id: json == null ? null : json['id'],
       );
 
+  /// Converts this instance to JSON
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'id': id,
+      };
+
   /// A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
   final String id;
 

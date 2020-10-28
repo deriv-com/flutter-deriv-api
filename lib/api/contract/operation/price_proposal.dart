@@ -10,6 +10,7 @@ import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
@@ -17,6 +18,7 @@ import 'contract.dart';
 import 'exceptions/contract_operations_exception.dart';
 
 /// Implementation of [PriceProposalModel]
+@immutable
 class PriceProposal extends PriceProposalModel {
   /// Initializes
   PriceProposal({
@@ -76,6 +78,22 @@ class PriceProposal extends PriceProposalModel {
         subscriptionInformation: SubscriptionModel.fromJson(subscriptionJson),
       );
 
+  /// Converts this instance to JSON
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'ask_price': askPrice,
+        'cancellation': cancellation,
+        'commission': commission,
+        'date_start': dateStart,
+        'id': id,
+        'limit_order': limitOrder.toJson(),
+        'longcode': longCode,
+        'multiplier': multiplier,
+        'payout': payout,
+        'spot': spot,
+        'spot_time': spotTime,
+        'subscription': subscriptionInformation.toJson(),
+      };
+
   /// Subscription Information
   final SubscriptionModel subscriptionInformation;
 
@@ -104,9 +122,12 @@ class PriceProposal extends PriceProposalModel {
   /// For parameters information refer to [ProposalRequest]
   /// Throws a [ContractOperationException] if API response contains an error
   static Stream<PriceProposal> subscribePriceForContract(
-    ProposalRequest request,
-  ) =>
-      _api.subscribe(request: request).map<PriceProposal>(
+    ProposalRequest request, {
+    RequestCompareFunction comparePredicate,
+  }) =>
+      _api
+          .subscribe(request: request, comparePredicate: comparePredicate)
+          .map<PriceProposal>(
         (Response response) {
           checkException(
             response: response,
@@ -205,4 +226,17 @@ class PriceProposal extends PriceProposalModel {
         spot: spot ?? this.spot,
         spotTime: spotTime ?? this.spotTime,
       );
+
+  @override
+  bool operator ==(Object other) =>
+      other is PriceProposal &&
+      other.askPrice == askPrice &&
+      other.commission == commission &&
+      other.multiplier == multiplier &&
+      other.cancellation == cancellation &&
+      other.id == id &&
+      other.limitOrder == limitOrder;
+
+  @override
+  int get hashCode => super.hashCode;
 }

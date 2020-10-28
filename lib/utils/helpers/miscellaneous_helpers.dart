@@ -27,7 +27,7 @@ void checkException({
   Response response,
   APIBaseException Function({String code, String message}) exceptionCreator,
 }) {
-  if (response.error != null) {
+  if (response?.error != null) {
     throw exceptionCreator(
       code: response.error['code'],
       message: response.error['message'],

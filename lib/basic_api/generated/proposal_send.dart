@@ -13,14 +13,14 @@ class ProposalRequest extends Request {
     this.barrier,
     this.barrier2,
     this.basis,
-    @required this.cancellation,
+    this.cancellation,
     @required this.contractType,
     @required this.currency,
     this.dateExpiry,
     this.dateStart,
     this.duration,
     this.durationUnit,
-    @required this.limitOrder,
+    this.limitOrder,
     this.multiplier,
     this.productType,
     this.proposal = true,
@@ -136,9 +136,17 @@ class ProposalRequest extends Request {
         'limit_order': limitOrder,
         'multiplier': multiplier,
         'product_type': productType,
-        'proposal': proposal == null ? null : proposal ? 1 : 0,
+        'proposal': proposal == null
+            ? null
+            : proposal
+                ? 1
+                : 0,
         'selected_tick': selectedTick,
-        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'subscribe': subscribe == null
+            ? null
+            : subscribe
+                ? 1
+                : 0,
         'symbol': symbol,
         'trading_period_start': tradingPeriodStart,
         'passthrough': passthrough,
