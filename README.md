@@ -52,6 +52,33 @@ final PingResponse response =
 print(response.ping);
 ```
 
+### Request Compare Predicate
+
+To prevent adding duplicate requests `Subscription Manager` applies some mechanism to compare and return a suitable result if a subscription request already exists.
+
+By default, the subscription manager uses the `Equatable` package to compare the current request with the request pool. Sometimes you do not want to rely on the package, in that case you can add `Compare Predicate` to your call API, and compare your request with already existing requests in subscription manager.
+
+You just need to define a `Compare Predicate` method to compare your request.
+
+```dart
+...
+
+subscribeToSomeApiCall(request, comparePredicate: getComparePredicate);
+
+...
+
+bool getComparePredicate({
+    bool equatableResult,
+    PendingRequest<Response> pendingRequest,
+    Request request,
+}) {
+    SomeRequest otherRequest = pendingRequest.request as SomeRequest;
+    SomeRequest currentRequest = request as SomeRequest;
+
+    return equatableResult && otherRequest.param01 == currentRequest.param01 && ...;
+}
+```
+
 ---
 
 ## Documentation
