@@ -36,14 +36,13 @@ class CancellationInfoModel {
 
   /// Converts this instance to JSON
   Map<String, dynamic> toJson() => <String, dynamic>{
-    'ask_price': askPrice,
-    'date_expiry': dateExpiry,
-  };
+        'ask_price': askPrice,
+        'date_expiry': dateExpiry,
+      };
 
   @override
   bool operator ==(Object other) =>
-      other is CancellationInfoModel &&
-          other.askPrice == askPrice;
+      other is CancellationInfoModel && other.askPrice == askPrice;
 
   @override
   int get hashCode => super.hashCode;
