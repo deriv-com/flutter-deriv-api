@@ -81,7 +81,7 @@ class PriceProposal extends PriceProposalModel {
   /// Converts this instance to JSON
   Map<String, dynamic> toJson() => <String, dynamic>{
         'ask_price': askPrice,
-        'cancellation': cancellation,
+        'cancellation': cancellation.toJson(),
         'commission': commission,
         'date_start': dateStart,
         'id': id,
