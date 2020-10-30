@@ -1,9 +1,12 @@
+import 'package:meta/meta.dart';
+
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Contains information about contract cancellation option.
+@immutable
 class CancellationInfoModel {
   /// Initializes
-  CancellationInfoModel({
+  const CancellationInfoModel({
     this.askPrice,
     this.dateExpiry,
   });
@@ -30,4 +33,18 @@ class CancellationInfoModel {
         askPrice: askPrice ?? this.askPrice,
         dateExpiry: dateExpiry ?? this.dateExpiry,
       );
+
+  /// Converts this instance to JSON
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'ask_price': askPrice,
+    'date_expiry': dateExpiry,
+  };
+
+  @override
+  bool operator ==(Object other) =>
+      other is CancellationInfoModel &&
+          other.askPrice == askPrice;
+
+  @override
+  int get hashCode => super.hashCode;
 }
