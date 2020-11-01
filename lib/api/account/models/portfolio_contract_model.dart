@@ -1,4 +1,5 @@
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Contract model in portfolio
@@ -27,12 +28,16 @@ class PortfolioContractModel extends APIBaseModel {
         appId: json['app_id'],
         buyPrice: json['buy_price']?.toDouble(),
         contractId: json['contract_id'],
-        contractType: json['contract_type'],
+        contractType: getEnumFromString(
+          values: ContractType.values,
+          name: json['contract_type'],
+          enumCase: EnumCase.upperCase,
+        ),
         currency: json['currency'],
         dateStart: getDateTime(json['date_start']),
         expiryTime: getDateTime(json['expiry_time']),
         longCode: json['longcode'],
-        payout: json['payout'],
+        payout: json['payout']?.toDouble(),
         purchaseTime: getDateTime(json['purchase_time']),
         symbol: json['symbol'],
         transactionId: json['transaction_id'],
@@ -48,7 +53,7 @@ class PortfolioContractModel extends APIBaseModel {
   final int contractId;
 
   /// Contract type
-  final String contractType;
+  final ContractType contractType;
 
   /// Contract currency
   final String currency;
@@ -79,7 +84,7 @@ class PortfolioContractModel extends APIBaseModel {
     int appId,
     double buyPrice,
     int contractId,
-    String contractType,
+    ContractType contractType,
     String currency,
     DateTime dateStart,
     DateTime expiryTime,

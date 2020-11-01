@@ -1,4 +1,4 @@
-/// P2P  advertiser adverts response
+/// P2P advertiser adverts response
 const String p2pAdvertiserAdvertsResponse = '''
 {
   "echo_req": {
