@@ -1,6 +1,5 @@
 package com.deriv.flutter_deriv_api
 
-import android.content.Context
 import androidx.annotation.NonNull
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.BinaryMessenger
