@@ -9,7 +9,7 @@ const String profitTableResponse = '''
     "sort": "ASC"
   },
   "profit_table": {
-    "count": "1",
+    "count": 1,
     "transactions": [
       {
         "app_id": 1234,
