@@ -8,17 +8,17 @@ const String portfolioResponse = '''{
     "contracts": [
       {
         "app_id": 1,
-        "buy_price": 10,
-        "contract_id": 80080459208,
-        "contract_type": "PUT",
+        "buy_price": 10.52,
+        "contract_id": 98350591008,
+        "contract_type": "MULTUP",
         "currency": "USD",
         "date_start": 1587634074,
         "expiry_time": 1587761700,
-        "longcode": "Win payout if EUR/GBP is strictly lower than 0.87821 at close on 2020-04-24.",
+        "longcode": "Win 100% of your stake for every 1% rise in Volatility 50 (1s) Index.",
         "payout": 10.88,
         "purchase_time": 1587634074,
-        "shortcode": "PUT_FRXEURGBP_10.88_1587634074_1587761700_878210_0",
-        "symbol": "frxEURGBP",
+        "shortcode": "MULTUP_1HZ50V_10_100_1603787727_4757387727_5m_0.00",
+        "symbol": "1HZ50V",
         "transaction_id": 160058875308
       }
     ]

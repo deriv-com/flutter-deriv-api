@@ -9,10 +9,10 @@ const String buyContractResponse = '''
     "balance_after": 9706.5,
     "buy_price": 49.12,
     "contract_id": 79939279308,
-    "longcode": "Win payout if Volatility 100 Index is strictly higher than entry spot plus 0.10 at 1 minute after contract start time.",
+    "longcode": "Win 50% of your stake for every 1% fall in USD/JPY.",
     "payout": 100,
     "purchase_time": 1587528886,
-    "shortcode": "CALL_R_100_100_1587528886_1587528946_S10P_0",
+    "shortcode": "MULTDOWN_FRXUSDJPY_7_50_1603975474_4757575474_60m_0.00",
     "start_time": 1587528886,
     "transaction_id": 159779308968
   },

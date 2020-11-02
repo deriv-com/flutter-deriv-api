@@ -12,7 +12,7 @@ void main() {
 
   group('Ticks Group ->', () {
     test('Tick Stream Test', () {
-      Tick.subscribeTick(const TicksRequest(ticks: 'R_50')).take(1).listen(
+      Tick.subscribeTick(const TicksRequest(ticks: 'R_50')).listen(
         expectAsync1(
           (Tick tick) {
             expect(tick.ask, 218.1026);

@@ -163,7 +163,7 @@ class MockAPI extends BaseAPI {
         (int computationCount) => getResponseByMsgType(
           jsonDecode(_getResponse(request.msgType)),
         ),
-      );
+      ).take(1);
 
   String _getResponse(String method) {
     switch (method) {

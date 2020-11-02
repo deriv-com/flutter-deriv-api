@@ -31,9 +31,7 @@ void main() {
     });
 
     test('Subscribe Balance Test', () {
-      Balance.subscribeBalance(const BalanceRequest(account: 'current'))
-          .take(1)
-          .listen(
+      Balance.subscribeBalance(const BalanceRequest(account: 'current')).listen(
         expectAsync1(
           (Balance balance) {
             expect(balance.balance, 9650.74);
