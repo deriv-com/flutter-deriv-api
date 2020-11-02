@@ -136,7 +136,7 @@ class PriceProposal extends PriceProposalModel {
                 ContractOperationException(
                     code: baseException.code,
                     message: baseException.message,
-                    field: baseException.field),
+                    field: baseException.details['field']),
           );
 
           return response is ProposalResponse

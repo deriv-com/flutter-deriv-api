@@ -28,16 +28,11 @@ void checkException({
   APIBaseException Function({BaseException baseException}) exceptionCreator,
 }) {
   if (response?.error != null) {
-    String field;
-    final Map<String, dynamic> errorDetails = response.error['details'];
-    if (errorDetails != null) {
-      field = errorDetails['field'];
-    }
     throw exceptionCreator(
       baseException: BaseException(
         code: response.error['code'],
         message: response.error['message'],
-        field: field,
+        details: response.error['details'],
       ),
     );
   }
@@ -50,7 +45,7 @@ class BaseException {
   BaseException({
     this.code,
     this.message,
-    this.field,
+    this.details,
   });
 
   /// Error code.
@@ -59,6 +54,6 @@ class BaseException {
   /// Error message.
   final String message;
 
-  /// Error filed.
-  final String field;
+  /// Error details.
+  final Map<String, dynamic> details;
 }
