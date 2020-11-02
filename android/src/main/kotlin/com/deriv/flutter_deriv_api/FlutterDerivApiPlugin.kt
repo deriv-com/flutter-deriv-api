@@ -27,7 +27,7 @@ class FlutterDerivApiPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
-    teardownChannel();
+    channel.setMethodCallHandler(null)
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
@@ -43,7 +43,4 @@ class FlutterDerivApiPlugin: FlutterPlugin, MethodCallHandler {
     channel.setMethodCallHandler(this)
   }
 
-  private fun teardownChannel() {
-    channel.setMethodCallHandler(null)
-  }
 }
