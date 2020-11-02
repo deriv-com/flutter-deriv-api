@@ -8,7 +8,7 @@ void main() {
   setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Transactions Subscription Test', () async {
-    Transaction.subscribeTransactions().take(1).listen(
+    Transaction.subscribeTransactions().listen(
       expectAsync1(
         (Transaction transaction) {
           expect(transaction.symbol, 'frxAUDJPY');

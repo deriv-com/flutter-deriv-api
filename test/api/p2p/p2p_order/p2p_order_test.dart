@@ -135,7 +135,7 @@ void main() {
       P2POrder.createAndSubscribe(const P2pOrderCreateRequest(
         advertId: '8',
         amount: 50.0,
-      )).take(1).listen(expectAsync1(
+      )).listen(expectAsync1(
         (P2POrder order) {
           expect(order.accountCurrency, 'USD');
           expect(order.amount, 50.0);
@@ -173,7 +173,7 @@ void main() {
     });
 
     test('Fetch Order List and Subscribe Test', () {
-      P2POrderList.subscribeOrderList().take(1).listen(expectAsync1(
+      P2POrderList.subscribeOrderList().listen(expectAsync1(
         (P2POrderList orderList) {
           final P2POrder firstOrder = orderList.list.first;
 
@@ -214,7 +214,6 @@ void main() {
 
     test('Order Info Subscription Test', () {
       P2POrder.subscribeOrder(const P2pOrderInfoRequest(id: '107'))
-          .take(1)
           .listen(expectAsync1(
         (P2POrder order) {
           expect(order.accountCurrency, 'USD');

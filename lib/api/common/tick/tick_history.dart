@@ -8,6 +8,7 @@ import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/manually/ohlc_receive.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
@@ -69,10 +70,12 @@ class TickHistory extends TickHistoryModel {
   /// Throws [TickException] if API response contains an error
   static Future<TickHistorySubscription> fetchTicksAndSubscribe(
     TicksHistoryRequest request, {
+    RequestCompareFunction comparePredicate,
     bool subscribe = true,
   }) async {
     if (subscribe) {
-      final Stream<Response> responseStream = _api.subscribe(request: request);
+      final Stream<Response> responseStream =
+          _api.subscribe(request: request, comparePredicate: comparePredicate);
       final Response firstResponse = await responseStream.first;
 
       _checkException(firstResponse);
