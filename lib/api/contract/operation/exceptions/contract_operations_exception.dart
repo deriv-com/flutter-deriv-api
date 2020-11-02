@@ -6,5 +6,6 @@ class ContractOperationException extends ContractException {
   ContractOperationException({
     String code,
     String message,
-  }) : super(code: code, message: message);
+    String field,
+  }) : super(code: code, message: message, field: field);
 }

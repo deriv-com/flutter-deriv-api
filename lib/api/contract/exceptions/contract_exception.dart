@@ -6,5 +6,6 @@ class ContractException extends APIBaseException {
   ContractException({
     String code,
     String message,
-  }) : super(code: code, message: message);
+    String field,
+  }) : super(code: code, message: message, field: field);
 }
