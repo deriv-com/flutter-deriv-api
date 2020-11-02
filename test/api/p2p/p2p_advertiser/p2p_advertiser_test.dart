@@ -35,7 +35,7 @@ void main() {
     test('Subscribe to Advertiser Test', () {
       P2PAdvertiser.subscribeAdvertiserInformation(
         const P2pAdvertiserInfoRequest(id: '1'),
-      ).take(1).listen(
+      ).listen(
         expectAsync1((P2PAdvertiser advertiser) {
           expect(
             advertiser.chatToken,
@@ -95,7 +95,7 @@ void main() {
           name: 'John Doe',
           paymentInfo: 'payment information',
         ),
-      ).take(1).listen(
+      ).listen(
         expectAsync1((P2PAdvertiser advertiser) {
           expect(
             advertiser.chatToken,

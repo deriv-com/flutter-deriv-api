@@ -69,7 +69,7 @@ const String proposalOpenContractResponse = '''
     "bid_price": 50,
     "buy_price": 24.55,
     "contract_id": 79944933588,
-    "contract_type": "CALL",
+    "contract_type": "MULTDOWN",
     "currency": "USD",
     "current_spot": 1419.53,
     "current_spot_display_value": "1419.53",
@@ -77,7 +77,7 @@ const String proposalOpenContractResponse = '''
     "date_expiry": 1587533980,
     "date_settlement": 1587533980,
     "date_start": 1587533920,
-    "display_name": "Volatility 100 Index",
+    "display_name": "USD/JPY",
     "entry_spot": 1417.65,
     "entry_spot_display_value": "1417.65",
     "entry_tick": 1417.65,
@@ -95,17 +95,18 @@ const String proposalOpenContractResponse = '''
     "is_sold": 0,
     "is_valid_to_cancel": 0,
     "is_valid_to_sell": 1,
-    "longcode": "Win payout if Volatility 100 Index is strictly higher than entry spot plus 0.10 at 1 minute after contract start time.",
+    "longcode": "Win 50% of your stake for every 1% fall in USD/JPY.",
     "payout": 50,
     "profit": 25.45,
     "profit_percentage": 103.67,
     "purchase_time": 1587533920,
-    "shortcode": "CALL_R_100_50_1587533920_1587533980_S10P_0",
+    "shortcode": "MULTDOWN_FRXUSDJPY_7_50_1603975474_4757575474_60m_0.00",
     "status": "open",
+    "multiplier": 100.0,
     "transaction_ids": {
       "buy": 159790493028
     },
-    "underlying": "R_100"
+    "underlying": "frxUSDJPY"
   },
   "subscription": {
     "id": "042922fe-5664-09e4-c3bf-b3bbcf8f31db"

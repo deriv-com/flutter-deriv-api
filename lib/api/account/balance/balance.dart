@@ -9,6 +9,7 @@ import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
@@ -85,8 +86,13 @@ class Balance extends BalanceModel {
   /// Instead of one call [Balance.fetchBalance] gets stream of [Balance]
   ///
   /// Throws a [BalanceException] if API response contains an error
-  static Stream<Balance> subscribeBalance(BalanceRequest request) =>
-      _api.subscribe(request: request).map((Response response) {
+  static Stream<Balance> subscribeBalance(
+    BalanceRequest request, {
+    RequestCompareFunction comparePredicate,
+  }) =>
+      _api
+          .subscribe(request: request, comparePredicate: comparePredicate)
+          .map((Response response) {
         checkException(
           response: response,
           exceptionCreator: ({String code, String message}) =>

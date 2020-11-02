@@ -60,8 +60,9 @@ class P2POrderList {
   }) =>
       _api
           .subscribe(
-              request: request ?? const P2pOrderListRequest(),
-              comparePredicate: comparePredicate)
+        request: request ?? const P2pOrderListRequest(),
+        comparePredicate: comparePredicate,
+      )
           .map<P2POrderList>(
         (Response response) {
           checkException(
