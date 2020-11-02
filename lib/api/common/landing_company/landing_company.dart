@@ -3,6 +3,7 @@ import 'package:flutter_deriv_api/api/common/models/landing_company_config_model
 import 'package:flutter_deriv_api/api/common/models/landing_company_detail_model.dart';
 import 'package:flutter_deriv_api/api/common/models/landing_company_model.dart';
 import 'package:flutter_deriv_api/api/common/models/mt_landing_company_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -78,9 +79,8 @@ class LandingCompany extends LandingCompanyModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) =>
-          LandingCompanyException(
-              code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          LandingCompanyException(baseExceptionModel: baseExceptionModel),
     );
 
     return LandingCompany.fromJson(response.landingCompany);
@@ -98,9 +98,8 @@ class LandingCompany extends LandingCompanyModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) =>
-          LandingCompanyException(
-              code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          LandingCompanyException(baseExceptionModel: baseExceptionModel),
     );
 
     return LandingCompanyDetailModel.fromJson(response.landingCompanyDetails);

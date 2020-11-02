@@ -1,4 +1,5 @@
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -88,8 +89,8 @@ class OHLC extends TickBase {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => TickException(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          TickException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAll.fromResponse(response);

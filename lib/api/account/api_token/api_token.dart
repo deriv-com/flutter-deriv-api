@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/account/api_token/exceptions/api_token_exception.dart';
@@ -68,8 +69,8 @@ class APIToken extends APITokenModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => APITokenException(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          APITokenException(baseExceptionModel: baseExceptionModel),
     );
 
     return APIToken.fromJson(response.apiToken);
@@ -87,8 +88,8 @@ class APIToken extends APITokenModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => APITokenException(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          APITokenException(baseExceptionModel: baseExceptionModel),
     );
 
     return APIToken.fromJson(response.apiToken);

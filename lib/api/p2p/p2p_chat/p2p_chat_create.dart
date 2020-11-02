@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_chat_create_model.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_chat/exceptions/p2p_chat_exception.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -45,8 +46,8 @@ class P2PChatCreate extends P2PChatCreateModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => P2PChatException(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2PChatException(baseExceptionModel: baseExceptionModel),
     );
 
     return P2PChatCreate.fromJson(response.p2pChatCreate);

@@ -1,4 +1,5 @@
 import 'package:flutter_deriv_api/api/contract/models/cancel_contract_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -42,9 +43,8 @@ class CancelContract extends CancelContractModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) =>
-          ContractOperationException(
-              code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return CancelContract.fromJson(response.cancel);

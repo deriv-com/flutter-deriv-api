@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/account/models/reality_check_model.dart';
 import 'package:flutter_deriv_api/api/account/reality_check/exceptions/reality_check_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -84,9 +85,8 @@ class RealityCheck extends RealityCheckModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) =>
-          RealityCheckException(
-              code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          RealityCheckException(baseExceptionModel: baseExceptionModel),
     );
 
     return RealityCheck.fromJson(response.realityCheck);

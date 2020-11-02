@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/user/financial_assessment/exceptions/financial_assessment_exception.dart';
 import 'package:flutter_deriv_api/api/user/models/financial_assessment_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -153,9 +154,8 @@ class FinancialAssessment extends FinancialAssessmentModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) =>
-          FinancialAssessmentException(
-              code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          FinancialAssessmentException(baseExceptionModel: baseExceptionModel),
     );
 
     return FinancialAssessment.fromJson(response.getFinancialAssessment);

@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/common/models/payment_agent_transfer_model.dart';
 import 'package:flutter_deriv_api/api/common/payment_agent/exceptions/payment_agent_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -62,9 +63,8 @@ class PaymentAgentTransfer extends PaymentAgentTransferModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) =>
-          PaymentAgentException(
-              code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          PaymentAgentException(baseExceptionModel: baseExceptionModel),
     );
 
     return PaymentAgentTransfer.fromResponse(response);

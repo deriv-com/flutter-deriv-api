@@ -1,6 +1,7 @@
 import 'package:flutter_deriv_api/api/account/account_settings/exceptions/account_settings_exception.dart';
 import 'package:flutter_deriv_api/api/account/models/account_settings_model.dart';
 import 'package:flutter_deriv_api/api/account/models/set_account_setting_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -111,9 +112,9 @@ class AccountSettings extends AccountSettingsModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) =>
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
           AccountSettingsException(
-              code: baseException.code, message: baseException.message),
+              baseExceptionModel: baseExceptionModel),
     );
 
     return AccountSettings.fromJson(response.getSettings);
@@ -129,9 +130,9 @@ class AccountSettings extends AccountSettingsModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) =>
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
           AccountSettingsException(
-              code: baseException.code, message: baseException.message),
+              baseExceptionModel: baseExceptionModel),
     );
 
     return SetAccountSettingModel(succeeded: getBool(response.setSettings));

@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/app/exceptions/app_exception.dart';
 import 'package:flutter_deriv_api/api/app/models/app_delete_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -35,8 +36,8 @@ class AppDelete extends AppDeleteModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => AppException(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) => AppException(
+          baseExceptionModel: baseExceptionModel),
     );
 
     return AppDelete.fromResponse(response);

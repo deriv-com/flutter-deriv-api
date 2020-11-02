@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/account/models/self_exclusion_model.dart';
 import 'package:flutter_deriv_api/api/account/self_exclusion/exceptions/self_exclusion_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -112,9 +113,8 @@ class SelfExclusion extends SelfExclusionModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) =>
-          SelfExclusionException(
-              code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          SelfExclusionException(baseExceptionModel: baseExceptionModel),
     );
 
     return SelfExclusion.fromJson(response.getSelfExclusion);
@@ -129,9 +129,8 @@ class SelfExclusion extends SelfExclusionModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) =>
-          SelfExclusionException(
-              code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          SelfExclusionException(baseExceptionModel: baseExceptionModel),
     );
 
     return getBool(response.setSelfExclusion);
@@ -164,9 +163,8 @@ class SelfExclusion extends SelfExclusionModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) =>
-          SelfExclusionException(
-              code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          SelfExclusionException(baseExceptionModel: baseExceptionModel),
     );
 
     return getBool(response.setSelfExclusion);

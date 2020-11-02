@@ -1,6 +1,7 @@
 import 'package:flutter_deriv_api/api/account/models/copy_trading_statistics_model.dart';
 import 'package:flutter_deriv_api/api/account/models/market_trades_breakdown_model.dart';
 import 'package:flutter_deriv_api/api/account/models/profitable_trade_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -83,8 +84,8 @@ class CopyTradingStatistics extends CopyTradingStatisticsModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => CopyTradingException(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          CopyTradingException(baseExceptionModel: baseExceptionModel),
     );
 
     return CopyTradingStatistics.fromJson(response.copytradingStatistics);

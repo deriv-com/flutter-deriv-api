@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/app/models/new_account_virtual_model.dart';
 import 'package:flutter_deriv_api/api/app/new_account/exceptions/new_account_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -62,8 +63,8 @@ class NewAccountVirtual extends NewAccountVirtualModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => NewAccountException(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          NewAccountException(baseExceptionModel: baseExceptionModel),
     );
 
     return NewAccountVirtual.fromJson(response.newAccountVirtual);

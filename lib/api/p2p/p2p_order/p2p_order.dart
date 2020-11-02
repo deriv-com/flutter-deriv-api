@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_order_model.dart';
@@ -109,8 +110,8 @@ class P2POrder extends P2POrderModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => P2POrderException(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return P2POrder.fromJson(response.p2pOrderCreate);
@@ -127,9 +128,8 @@ class P2POrder extends P2POrderModel {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseException baseException}) =>
-                P2POrderException(
-                    code: baseException.code, message: baseException.message),
+            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+                P2POrderException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is P2pOrderCreateResponse
@@ -154,8 +154,8 @@ class P2POrder extends P2POrderModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => P2POrderException(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return P2POrder.fromJson(response.p2pOrderInfo);
@@ -183,9 +183,8 @@ class P2POrder extends P2POrderModel {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseException baseException}) =>
-                P2POrderException(
-                    code: baseException.code, message: baseException.message),
+            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+                P2POrderException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is P2pOrderInfoResponse
@@ -210,8 +209,8 @@ class P2POrder extends P2POrderModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => P2POrderException(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return Forget.fromResponse(response);
@@ -226,8 +225,8 @@ class P2POrder extends P2POrderModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => P2POrderException(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAll.fromResponse(response);
@@ -243,8 +242,8 @@ class P2POrder extends P2POrderModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => P2POrderException(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return copyWith(status: P2POrder.fromJson(response.p2pOrderCancel).status);
@@ -260,8 +259,8 @@ class P2POrder extends P2POrderModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => P2POrderException(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return copyWith(status: P2POrder.fromJson(response.p2pOrderConfirm).status);

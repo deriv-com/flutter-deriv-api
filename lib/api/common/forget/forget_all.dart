@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/common/forget/exceptions/forget_exception.dart';
 import 'package:flutter_deriv_api/api/common/models/forget_all_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -42,8 +43,8 @@ class ForgetAll extends ForgetAllModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => ForgetException(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ForgetException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAll.fromResponse(response);

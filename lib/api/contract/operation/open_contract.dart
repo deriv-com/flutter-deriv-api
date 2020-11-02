@@ -5,6 +5,7 @@ import 'package:flutter_deriv_api/api/contract/models/cancellation_info_model.da
 import 'package:flutter_deriv_api/api/contract/models/limit_order_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/contract_tick_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/transaction_ids_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -353,9 +354,8 @@ class OpenContract extends Contract {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) =>
-          ContractOperationException(
-              code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return OpenContract.fromJson(
@@ -376,9 +376,9 @@ class OpenContract extends Contract {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseException baseException}) =>
+            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
                 ContractOperationException(
-                    code: baseException.code, message: baseException.message),
+                    baseExceptionModel: baseExceptionModel),
           );
 
           return response is ProposalOpenContractResponse
@@ -403,9 +403,8 @@ class OpenContract extends Contract {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) =>
-          ContractOperationException(
-              code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return Forget.fromResponse(response);
@@ -421,9 +420,8 @@ class OpenContract extends Contract {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) =>
-          ContractOperationException(
-              code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAll.fromResponse(response);

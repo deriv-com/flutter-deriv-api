@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/common/active_symbols/exceptions/active_symbols_exception.dart';
 import 'package:flutter_deriv_api/api/common/models/active_symbols_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -84,9 +85,8 @@ class ActiveSymbol extends ActiveSymbolModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) =>
-          ActiveSymbolsException(
-              code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ActiveSymbolsException(baseExceptionModel: baseExceptionModel),
     );
 
     return response.activeSymbols

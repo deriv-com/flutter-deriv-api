@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/mt5/exceptions/mt5_exception.dart';
 import 'package:flutter_deriv_api/api/mt5/models/mt5_password_reset_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -37,8 +38,8 @@ class MT5PasswordReset extends MT5PasswordResetModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => MT5Exception(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 
     return MT5PasswordReset.fromResponse(response);

@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/common/models/state_model.dart';
 import 'package:flutter_deriv_api/api/common/states/exceptions/state_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -32,8 +33,8 @@ class State extends StateModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => StateException(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          StateException(baseExceptionModel: baseExceptionModel),
     );
 
     return getListFromMap(

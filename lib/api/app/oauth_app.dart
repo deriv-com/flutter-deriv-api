@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/app/exceptions/app_exception.dart';
 import 'package:flutter_deriv_api/api/app/models/oauth_app_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -66,8 +67,8 @@ class OauthApp extends OauthAppModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseException baseException}) => AppException(
-          code: baseException.code, message: baseException.message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          AppException(baseExceptionModel: baseExceptionModel),
     );
 
     return getListFromMap(
