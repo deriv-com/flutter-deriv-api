@@ -23,7 +23,7 @@ class FlutterDerivApiPlugin: FlutterPlugin, MethodCallHandler {
   private lateinit var channel: MethodChannel
 
   override fun onAttachedToEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
-    setupChannel(binding.getBinaryMessenger())
+    setupChannel(binding.binaryMessenger)
   }
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
