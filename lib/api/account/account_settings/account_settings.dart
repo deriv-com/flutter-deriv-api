@@ -111,8 +111,9 @@ class AccountSettings extends AccountSettingsModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          AccountSettingsException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          AccountSettingsException(
+              code: baseException.code, message: baseException.message),
     );
 
     return AccountSettings.fromJson(response.getSettings);
@@ -128,8 +129,9 @@ class AccountSettings extends AccountSettingsModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          AccountSettingsException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          AccountSettingsException(
+              code: baseException.code, message: baseException.message),
     );
 
     return SetAccountSettingModel(succeeded: getBool(response.setSettings));
@@ -150,14 +152,14 @@ class AccountSettings extends AccountSettingsModel {
           addressState: addressState,
           allowCopiers: allowCopiers,
           citizen: citizen,
-          dateOfBirth: dateOfBirth
-              .toString(), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+          dateOfBirth: dateOfBirth.toString(),
+          // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
           emailConsent: emailConsent,
           firstName: firstName,
           lastName: lastName,
           phone: phone,
-          placeOfBirth: placeOfBirth
-              .toString(), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+          placeOfBirth: placeOfBirth.toString(),
+          // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
           requestProfessionalStatus: getInt(value: requestProfessionalStatus),
           residence: residence,
           salutation: salutation,

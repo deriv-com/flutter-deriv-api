@@ -38,8 +38,8 @@ class VerifyEmail extends VerifyEmailModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          UserException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => UserException(
+          code: baseException.code, message: baseException.message),
     );
 
     return VerifyEmail.fromResponse(response);

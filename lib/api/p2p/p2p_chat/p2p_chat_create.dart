@@ -45,8 +45,8 @@ class P2PChatCreate extends P2PChatCreateModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2PChatException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => P2PChatException(
+          code: baseException.code, message: baseException.message),
     );
 
     return P2PChatCreate.fromJson(response.p2pChatCreate);

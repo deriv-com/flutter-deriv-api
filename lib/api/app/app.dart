@@ -86,8 +86,8 @@ class App extends AppModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          AppException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => AppException(
+          code: baseException.code, message: baseException.message),
     );
 
     return App.fromJson(response.appGet);
@@ -104,8 +104,8 @@ class App extends AppModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          AppException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => AppException(
+          code: baseException.code, message: baseException.message),
     );
 
     return getListFromMap(

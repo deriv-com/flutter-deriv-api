@@ -57,8 +57,8 @@ class Residence extends ResidenceModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ResidenceException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => ResidenceException(
+          code: baseException.code, message: baseException.message),
     );
 
     return getListFromMap(

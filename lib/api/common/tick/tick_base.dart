@@ -55,8 +55,8 @@ class TickBase extends TickBaseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          TickException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => TickException(
+          code: baseException.code, message: baseException.message),
     );
 
     return Forget.fromResponse(response);

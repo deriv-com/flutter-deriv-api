@@ -35,8 +35,8 @@ class AppDelete extends AppDeleteModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          AppException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => AppException(
+          code: baseException.code, message: baseException.message),
     );
 
     return AppDelete.fromResponse(response);

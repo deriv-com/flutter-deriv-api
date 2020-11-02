@@ -38,7 +38,7 @@ class ServerTime extends ServerTimeModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
+      exceptionCreator: ({BaseException baseException}) =>
           ServerTimeException(),
     );
 

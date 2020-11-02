@@ -110,8 +110,9 @@ class PriceProposal extends PriceProposalModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ContractOperationException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          ContractOperationException(
+              code: baseException.code, message: baseException.message),
     );
 
     return PriceProposal.fromJson(response.proposal);
@@ -131,8 +132,11 @@ class PriceProposal extends PriceProposalModel {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({String code, String message}) =>
-                ContractOperationException(code: code, message: message),
+            exceptionCreator: ({BaseException baseException}) =>
+                ContractOperationException(
+                    code: baseException.code,
+                    message: baseException.message,
+                    field: baseException.field),
           );
 
           return response is ProposalResponse
@@ -157,8 +161,9 @@ class PriceProposal extends PriceProposalModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ContractOperationException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          ContractOperationException(
+              code: baseException.code, message: baseException.message),
     );
 
     return Forget.fromResponse(response);
@@ -173,8 +178,9 @@ class PriceProposal extends PriceProposalModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ContractOperationException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          ContractOperationException(
+              code: baseException.code, message: baseException.message),
     );
 
     return ForgetAll.fromResponse(response);

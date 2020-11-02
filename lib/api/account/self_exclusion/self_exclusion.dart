@@ -44,7 +44,8 @@ class SelfExclusion extends SelfExclusionModel {
   factory SelfExclusion.fromJson(Map<String, dynamic> json) => SelfExclusion(
         excludeUntil: DateTime.parse(
           json['exclude_until'],
-        ), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+        ),
+        // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
         max30dayDeposit: json['max_30day_deposit']?.toDouble(),
         max30dayLosses: json['max_30day_losses']?.toDouble(),
         max30dayTurnover: json['max_30day_turnover']?.toDouble(),
@@ -52,7 +53,8 @@ class SelfExclusion extends SelfExclusionModel {
         max7dayLosses: json['max_7day_losses']?.toDouble(),
         max7dayTurnover: json['max_7day_turnover']?.toDouble(),
         maxBalance: json['max_balance']?.toDouble(),
-        maxDeposit: json['max_deposit'].toDouble(), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+        maxDeposit: json['max_deposit'].toDouble(),
+        // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
         maxLosses: json['max_losses']?.toDouble(),
         maxOpenBets: json['max_open_bets'],
         maxTurnover: json['max_turnover']?.toDouble(),
@@ -111,8 +113,9 @@ class SelfExclusion extends SelfExclusionModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          SelfExclusionException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          SelfExclusionException(
+              code: baseException.code, message: baseException.message),
     );
 
     return SelfExclusion.fromJson(response.getSelfExclusion);
@@ -127,8 +130,9 @@ class SelfExclusion extends SelfExclusionModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          SelfExclusionException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          SelfExclusionException(
+              code: baseException.code, message: baseException.message),
     );
 
     return getBool(response.setSelfExclusion);
@@ -141,7 +145,8 @@ class SelfExclusion extends SelfExclusionModel {
   Future<bool> exclude() async {
     final SetSelfExclusionResponse response = await _api.call(
       request: SetSelfExclusionRequest(
-        excludeUntil: excludeUntil.toString(), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+        excludeUntil: excludeUntil.toString(),
+        // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
         max30dayDeposit: max30dayDeposit,
         max30dayLosses: max30dayLosses,
         max30dayTurnover: max30dayTurnover,
@@ -160,8 +165,9 @@ class SelfExclusion extends SelfExclusionModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          SelfExclusionException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          SelfExclusionException(
+              code: baseException.code, message: baseException.message),
     );
 
     return getBool(response.setSelfExclusion);

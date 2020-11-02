@@ -44,8 +44,8 @@ class TradingTimes extends TradingTimesModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          TradingException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => TradingException(
+          code: baseException.code, message: baseException.message),
     );
 
     return TradingTimes.fromJson(response.tradingTimes);

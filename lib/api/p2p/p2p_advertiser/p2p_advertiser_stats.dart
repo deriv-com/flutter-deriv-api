@@ -67,8 +67,9 @@ class P2PAdvertiserStats extends P2PAdvertiserStatsModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2PAdvertiserStatsException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          P2PAdvertiserStatsException(
+              code: baseException.code, message: baseException.message),
     );
 
     return P2PAdvertiserStats.fromJson(response.p2pAdvertiserStats);

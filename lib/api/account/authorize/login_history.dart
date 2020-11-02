@@ -61,8 +61,8 @@ class LoginHistory extends LoginHistoryModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          AuthorizeException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => AuthorizeException(
+          code: baseException.code, message: baseException.message),
     );
 
     return getListFromMap(

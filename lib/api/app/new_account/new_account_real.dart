@@ -55,8 +55,8 @@ class NewAccountReal extends NewAccountRealModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          NewAccountException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => NewAccountException(
+          code: baseException.code, message: baseException.message),
     );
 
     return NewAccountReal.fromJson(response.newAccountReal);

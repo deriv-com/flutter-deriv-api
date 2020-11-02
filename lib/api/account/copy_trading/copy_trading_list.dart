@@ -45,8 +45,8 @@ class CopyTradingList extends CopyTradingListModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          CopyTradingException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => CopyTradingException(
+          code: baseException.code, message: baseException.message),
     );
 
     return CopyTradingList.fromJson(response.copytradingList);

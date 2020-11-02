@@ -42,8 +42,8 @@ class AppUpdate extends AppUpdateModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          AppException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => AppException(
+          code: baseException.code, message: baseException.message),
     );
 
     return AppUpdate.fromJson(response.appUpdate);

@@ -49,8 +49,8 @@ class MT5Withdrawal extends MT5WithdrawalModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          MT5Exception(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => MT5Exception(
+          code: baseException.code, message: baseException.message),
     );
 
     return MT5Withdrawal.fromResponse(

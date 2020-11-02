@@ -74,8 +74,9 @@ class Contract extends ContractModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ContractOperationException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          ContractOperationException(
+              code: baseException.code, message: baseException.message),
     );
 
     return Contract.fromJson(response.buy);
@@ -94,8 +95,9 @@ class Contract extends ContractModel {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({String code, String message}) =>
-                ContractOperationException(code: code, message: message),
+            exceptionCreator: ({BaseException baseException}) =>
+                ContractOperationException(
+                    code: baseException.code, message: baseException.message),
           );
 
           return response is BuyResponse

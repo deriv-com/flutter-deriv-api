@@ -6,7 +6,6 @@ class APIBaseException implements Exception {
   APIBaseException({
     @required this.code,
     @required this.message,
-    this.field,
   });
 
   /// Exception code
@@ -14,9 +13,6 @@ class APIBaseException implements Exception {
 
   /// Exception message
   final String message;
-
-  /// Exception details field
-  final String field;
 
   @override
   String toString() => '$runtimeType(code: $code, message: $message)';

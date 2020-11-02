@@ -84,8 +84,9 @@ class WebsiteStatus extends WebsiteStatusModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          WebsiteStatusException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          WebsiteStatusException(
+              code: baseException.code, message: baseException.message),
     );
 
     return WebsiteStatus.fromJson(response.websiteStatus);
@@ -102,8 +103,9 @@ class WebsiteStatus extends WebsiteStatusModel {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({String code, String message}) =>
-                WebsiteStatusException(code: code, message: message),
+            exceptionCreator: ({BaseException baseException}) =>
+                WebsiteStatusException(
+                    code: baseException.code, message: baseException.message),
           );
 
           return response is WebsiteStatusResponse
@@ -128,8 +130,9 @@ class WebsiteStatus extends WebsiteStatusModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          WebsiteStatusException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          WebsiteStatusException(
+              code: baseException.code, message: baseException.message),
     );
 
     return Forget.fromResponse(response);
@@ -144,8 +147,9 @@ class WebsiteStatus extends WebsiteStatusModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          WebsiteStatusException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          WebsiteStatusException(
+              code: baseException.code, message: baseException.message),
     );
 
     return ForgetAll.fromResponse(response);

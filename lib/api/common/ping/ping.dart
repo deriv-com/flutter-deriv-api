@@ -39,8 +39,8 @@ class Ping extends PingModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          PingException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => PingException(
+          code: baseException.code, message: baseException.message),
     );
 
     return Ping.fromResponse(response);

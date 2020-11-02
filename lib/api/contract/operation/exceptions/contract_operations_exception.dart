@@ -6,6 +6,10 @@ class ContractOperationException extends ContractException {
   ContractOperationException({
     String code,
     String message,
-    String field,
-  }) : super(code: code, message: message, field: field);
+    this.field,
+  }) : super(code: code, message: message);
+
+  /// An extra detail added to error message that indicates which field -
+  /// usually in UI - is affected by the reported error.
+  String field;
 }

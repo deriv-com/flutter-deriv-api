@@ -100,8 +100,9 @@ class Transaction extends TransactionModel {
           .map<Transaction>((Response response) {
         checkException(
           response: response,
-          exceptionCreator: ({String code, String message}) =>
-              TransactionsException(code: code, message: message),
+          exceptionCreator: ({BaseException baseException}) =>
+              TransactionsException(
+                  code: baseException.code, message: baseException.message),
         );
 
         return response is TransactionResponse
@@ -125,8 +126,9 @@ class Transaction extends TransactionModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          TransactionsException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          TransactionsException(
+              code: baseException.code, message: baseException.message),
     );
 
     return Forget.fromResponse(response);
@@ -141,8 +143,9 @@ class Transaction extends TransactionModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          TransactionsException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          TransactionsException(
+              code: baseException.code, message: baseException.message),
     );
 
     return ForgetAll.fromResponse(response);

@@ -43,8 +43,9 @@ class UpdateContract extends UpdateContractModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ContractOperationException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          ContractOperationException(
+              code: baseException.code, message: baseException.message),
     );
 
     return UpdateContract.fromJson(response.contractUpdate);
@@ -61,8 +62,9 @@ class UpdateContract extends UpdateContractModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ContractOperationException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          ContractOperationException(
+              code: baseException.code, message: baseException.message),
     );
 
     return getListFromMap(

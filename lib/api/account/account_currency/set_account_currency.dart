@@ -41,8 +41,9 @@ class SetAccountCurrency extends SetAccountCurrencyModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          AccountCurrencyException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) =>
+          AccountCurrencyException(
+              code: baseException.code, message: baseException.message),
     );
 
     return SetAccountCurrency.fromResponse(response);

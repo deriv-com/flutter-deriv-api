@@ -46,8 +46,8 @@ class P2POrderList {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2POrderException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => P2POrderException(
+          code: baseException.code, message: baseException.message),
     );
 
     return P2POrderList.fromJson(response.p2pOrderList['list']);
@@ -66,8 +66,9 @@ class P2POrderList {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({String code, String message}) =>
-                P2POrderException(code: code, message: message),
+            exceptionCreator: ({BaseException baseException}) =>
+                P2POrderException(
+                    code: baseException.code, message: baseException.message),
           );
 
           return response is P2pOrderListResponse
@@ -92,8 +93,8 @@ class P2POrderList {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2POrderException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => P2POrderException(
+          code: baseException.code, message: baseException.message),
     );
 
     return Forget.fromResponse(response);

@@ -37,8 +37,8 @@ class MT5PasswordCheck extends MT5PasswordCheckModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          MT5Exception(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => MT5Exception(
+          code: baseException.code, message: baseException.message),
     );
 
     return MT5PasswordCheck.fromResponse(response);

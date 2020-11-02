@@ -59,8 +59,8 @@ class ExchangeRates extends ExchangeRatesModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ExchangeException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => ExchangeException(
+          code: baseException.code, message: baseException.message),
     );
 
     return ExchangeRates.fromJson(response.exchangeRates);

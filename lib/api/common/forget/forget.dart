@@ -37,8 +37,8 @@ class Forget extends ForgetModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ForgetException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => ForgetException(
+          code: baseException.code, message: baseException.message),
     );
 
     return Forget.fromResponse(response);

@@ -48,8 +48,8 @@ class Statement extends StatementModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          StatementException(code: code, message: message),
+      exceptionCreator: ({BaseException baseException}) => StatementException(
+          code: baseException.code, message: baseException.message),
     );
 
     return Statement.fromJson(response.statement);

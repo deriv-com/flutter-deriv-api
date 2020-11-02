@@ -108,8 +108,8 @@ class TickHistory extends TickHistoryModel {
 
   static void _checkException(Response response) => checkException(
         response: response,
-        exceptionCreator: ({String code, String message}) =>
-            TickException(code: code, message: message),
+        exceptionCreator: ({BaseException baseException}) => TickException(
+            code: baseException.code, message: baseException.message),
       );
 
   /// Generate a copy of instance with given parameters
