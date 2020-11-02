@@ -43,14 +43,22 @@ void checkException({
   }
 }
 
+/// Base Exception class
 class BaseException {
+  /// This model contains error [code], [message], and [field], and potentially
+  /// any other error details.
   BaseException({
     this.code,
     this.message,
     this.field,
   });
 
+  /// Error code.
   final String code;
+
+  /// Error message.
   final String message;
+
+  /// Error filed.
   final String field;
 }
