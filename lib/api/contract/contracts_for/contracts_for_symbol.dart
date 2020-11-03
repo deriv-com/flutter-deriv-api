@@ -1,6 +1,7 @@
 import 'package:flutter_deriv_api/api/contract/contracts_for/exceptions/contract_for_symbol_exception.dart';
 import 'package:flutter_deriv_api/api/contract/models/available_contract_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/contracts_for_symbol_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/generated/contracts_for_send.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -56,8 +57,8 @@ class ContractsForSymbol extends ContractsForSymbolModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ContractsForSymbolException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ContractsForSymbolException(baseExceptionModel: baseExceptionModel),
     );
 
     return ContractsForSymbol.fromJson(response.contractsFor);

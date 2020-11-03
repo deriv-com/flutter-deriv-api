@@ -311,7 +311,7 @@ void main() {
         );
         expect(openContract.status, ContractStatus.open);
       } on ContractOperationException catch (e) {
-        dev.log(e.message);
+        dev.log(e.baseExceptionModel.message);
       }
     });
 

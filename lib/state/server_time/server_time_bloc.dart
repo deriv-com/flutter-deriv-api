@@ -42,7 +42,7 @@ class ServerTimeBloc extends Bloc<ServerTimeEvent, ServerTimeState> {
 
           yield ServerTimeFetched(serverTime: serverTime.time);
         } on ServerTimeException catch (e) {
-          yield ServerTimeError(e.message);
+          yield ServerTimeError(e.baseExceptionModel.message);
         } on Exception catch (e) {
           yield ServerTimeError(e.toString());
         }

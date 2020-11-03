@@ -44,7 +44,7 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
 
       _subscribeTick(event.selectedSymbol)
           .handleError((dynamic error) => error is TickException
-              ? add(YieldError(error.message))
+              ? add(YieldError(error.baseExceptionModel.message))
               : add(YieldError(error.toString())))
           .listen((Tick tick) => add(YieldTick(tick)));
     } else if (event is YieldTick) {

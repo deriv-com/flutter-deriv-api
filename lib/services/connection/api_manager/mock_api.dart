@@ -160,7 +160,7 @@ class MockAPI extends BaseAPI {
   Stream<Response> _getStreamResponse(Request request) =>
       Stream<Response>.periodic(
         const Duration(),
-        (int computationCount) => getResponseByMsgType(
+            (int computationCount) => getResponseByMsgType(
           jsonDecode(_getResponse(request.msgType)),
         ),
       ).take(1);

@@ -2,6 +2,7 @@ import 'package:flutter_deriv_api/api/common/models/candle_model.dart';
 import 'package:flutter_deriv_api/api/common/models/history_model.dart';
 import 'package:flutter_deriv_api/api/common/models/tick_history_model.dart';
 import 'package:flutter_deriv_api/api/common/tick/exceptions/tick_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/manually/ohlc_receive.dart';
@@ -111,8 +112,8 @@ class TickHistory extends TickHistoryModel {
 
   static void _checkException(Response response) => checkException(
         response: response,
-        exceptionCreator: ({String code, String message}) =>
-            TickException(code: code, message: message),
+        exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+            TickException(baseExceptionModel: baseExceptionModel),
       );
 
   /// Generate a copy of instance with given parameters

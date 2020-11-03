@@ -1,6 +1,7 @@
 import 'package:flutter_deriv_api/api/account/account_limits/exceptions/account_limits_exception.dart';
 import 'package:flutter_deriv_api/api/account/models/account_limits_model.dart';
 import 'package:flutter_deriv_api/api/account/models/account_market_limits_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -77,8 +78,8 @@ class AccountLimits extends AccountLimitsModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          AccountLimitsException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          AccountLimitsException(baseExceptionModel: baseExceptionModel),
     );
 
     return AccountLimits.fromJson(response.getLimits);

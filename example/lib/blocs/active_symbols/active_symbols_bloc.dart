@@ -21,7 +21,7 @@ class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
         final List<ActiveSymbol> symbols = await _fetchActiveSymbols();
         yield ActiveSymbolsLoaded(activeSymbols: symbols);
       } on ActiveSymbolsException catch (error) {
-        yield ActiveSymbolsError(error.message);
+        yield ActiveSymbolsError(error.baseExceptionModel.message);
       }
     } else if (event is SelectActiveSymbol) {
       if (state is ActiveSymbolsLoaded) {
