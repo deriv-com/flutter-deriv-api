@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/common/copy_trading/exceptions/copy_trading_exception.dart';
 import 'package:flutter_deriv_api/api/common/models/copy_trading_start_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -35,8 +36,8 @@ class CopyTradingStart extends CopyTradingStartModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          CopyTradingException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          CopyTradingException(baseExceptionModel: baseExceptionModel),
     );
 
     return CopyTradingStart.fromResponse(response);

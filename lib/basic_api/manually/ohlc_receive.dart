@@ -16,11 +16,11 @@ class OHLCResponse extends Response {
     String msgType,
     int reqId,
   }) : super(
-    echoReq: echoReq,
-    error: error,
-    msgType: msgType,
-    reqId: reqId,
-  );
+          echoReq: echoReq,
+          error: error,
+          msgType: msgType,
+          reqId: reqId,
+        );
 
   /// Creates an instance from JSON
   factory OHLCResponse.fromJson(Map<String, dynamic> json) =>

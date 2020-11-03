@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/account/account_currency/exceptions/account_currency_exception.dart';
 import 'package:flutter_deriv_api/api/account/models/set_account_currency_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -41,8 +42,8 @@ class SetAccountCurrency extends SetAccountCurrencyModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          AccountCurrencyException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          AccountCurrencyException(baseExceptionModel: baseExceptionModel),
     );
 
     return SetAccountCurrency.fromResponse(response);

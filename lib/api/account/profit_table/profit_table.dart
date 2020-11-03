@@ -1,6 +1,7 @@
 import 'package:flutter_deriv_api/api/account/models/profit_table_model.dart';
 import 'package:flutter_deriv_api/api/account/models/profit_transaction_model.dart';
 import 'package:flutter_deriv_api/api/account/profit_table/exceptions/profit_table_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -19,7 +20,7 @@ class ProfitTable extends ProfitTableModel {
 
   /// Generates an instance from JSON
   factory ProfitTable.fromJson(Map<String, dynamic> json) => ProfitTable(
-        count: int.parse(json['count']),
+        count: json['count'],
         transactions: getListFromMap(
           json['transactions'],
           itemToTypeCallback: (dynamic item) =>
@@ -48,8 +49,8 @@ class ProfitTable extends ProfitTableModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ProfitTableException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ProfitTableException(baseExceptionModel: baseExceptionModel),
     );
 
     return ProfitTable.fromJson(response.profitTable);

@@ -24,13 +24,13 @@ void main() {
           await PriceProposal.fetchPriceForContract(
         // ignore: missing_required_param
         const ProposalRequest(
-          symbol: 'R_100',
+          symbol: 'frxUSDJPY',
           durationUnit: 'm',
           duration: 2,
           barrier: '+0.1',
           amount: 100,
           basis: 'payout',
-          contractType: 'CALL',
+          contractType: 'MULTDOWN',
           currency: 'USD',
         ),
       );
@@ -47,16 +47,16 @@ void main() {
       PriceProposal.subscribePriceForContract(
         // ignore: missing_required_param
         const ProposalRequest(
-          symbol: 'R_100',
+          symbol: 'frxUSDJPY',
           durationUnit: 'm',
           duration: 2,
           barrier: '+0.1',
           amount: 100,
           basis: 'payout',
-          contractType: 'CALL',
+          contractType: 'MULTDOWN',
           currency: 'USD',
         ),
-      ).take(1).listen(expectAsync1((PriceProposal priceProposal) {
+      ).listen(expectAsync1((PriceProposal priceProposal) {
         expect(priceProposal.askPrice, 10);
         expect(priceProposal.id, '042922fe-5664-09e4-c3bf-b3bbe98f31db');
         expect(priceProposal.dateStart, getDateTime(1586335719));
@@ -78,7 +78,7 @@ void main() {
       expect(buyContract.dateStart, getDateTime(1587528886));
       expect(
         buyContract.shortCode,
-        'CALL_R_100_100_1587528886_1587528946_S10P_0',
+        'MULTDOWN_FRXUSDJPY_7_50_1603975474_4757575474_60m_0.00',
       );
       expect(buyContract.buyPrice, 49.12);
       expect(buyContract.transactionId, 159779308968);
@@ -90,33 +90,33 @@ void main() {
       expect(openContract.profitPercentage, 103.67);
       expect(openContract.purchaseTime, getDateTime(1587533920));
       expect(openContract.dateStart, getDateTime(1587533920));
-      expect(openContract.contractType, ContractType.call);
+      expect(openContract.contractType, ContractType.multDown);
       expect(openContract.currency, 'USD');
       expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
       expect(
         openContract.auditDetails.contractEnd.first.epoch,
         getDateTime(1587533976),
       );
-      expect(openContract.underlying, 'R_100');
+      expect(openContract.underlying, 'frxUSDJPY');
       expect(openContract.barrier, '1417.75');
       expect(openContract.barrierCount, 1.0);
       expect(openContract.bidPrice, 50.0);
       expect(openContract.currentSpot, 1419.53);
-      expect(openContract.displayName, 'Volatility 100 Index');
+      expect(openContract.displayName, 'USD/JPY');
       expect(openContract.exitTick, 1419.53);
       expect(openContract.isExpired, true);
       expect(openContract.isForwardStarting, false);
       expect(openContract.isIntraday, true);
       expect(openContract.isSold, false);
+      expect(openContract.multiplier, 100);
       expect(
         openContract.shortCode,
-        'CALL_R_100_50_1587533920_1587533980_S10P_0',
+        'MULTDOWN_FRXUSDJPY_7_50_1603975474_4757575474_60m_0.00',
       );
       expect(openContract.status, ContractStatus.open);
 
       buyContract
           .subscribeState()
-          .take(1)
           .listen(expectAsync1((OpenContract openContract) {
         expect(openContract.contractId, 79944933588);
         expect(openContract.payout, 50.0);
@@ -124,27 +124,28 @@ void main() {
         expect(openContract.profitPercentage, 103.67);
         expect(openContract.purchaseTime, getDateTime(1587533920));
         expect(openContract.dateStart, getDateTime(1587533920));
-        expect(openContract.contractType, ContractType.call);
+        expect(openContract.contractType, ContractType.multDown);
         expect(openContract.currency, 'USD');
         expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
         expect(
           openContract.auditDetails.contractEnd.first.epoch,
           getDateTime(1587533976),
         );
-        expect(openContract.underlying, 'R_100');
+        expect(openContract.underlying, 'frxUSDJPY');
         expect(openContract.barrier, '1417.75');
         expect(openContract.barrierCount, 1.0);
         expect(openContract.bidPrice, 50.0);
         expect(openContract.currentSpot, 1419.53);
-        expect(openContract.displayName, 'Volatility 100 Index');
+        expect(openContract.displayName, 'USD/JPY');
         expect(openContract.exitTick, 1419.53);
         expect(openContract.isExpired, true);
         expect(openContract.isForwardStarting, false);
         expect(openContract.isIntraday, true);
         expect(openContract.isSold, false);
+        expect(openContract.multiplier, 100);
         expect(
           openContract.shortCode,
-          'CALL_R_100_50_1587533920_1587533980_S10P_0',
+          'MULTDOWN_FRXUSDJPY_7_50_1603975474_4757575474_60m_0.00',
         );
         expect(openContract.status, ContractStatus.open);
 
@@ -226,13 +227,13 @@ void main() {
             await PriceProposal.fetchPriceForContract(
           // ignore: missing_required_param
           const ProposalRequest(
-            symbol: 'R_100',
+            symbol: 'frxUSDJPY',
             durationUnit: 'm',
             duration: 2,
             barrier: '+0.1',
             amount: 100,
             basis: 'payout',
-            contractType: 'CALL',
+            contractType: 'MULTDOWM',
             currency: 'USD',
             cancellation: 'MULTUP',
           ),
@@ -249,7 +250,7 @@ void main() {
         expect(boughtContract.dateStart, getDateTime(1587528886));
         expect(
           boughtContract.shortCode,
-          'CALL_R_100_100_1587528886_1587528946_S10P_0',
+          'MULTDOWN_FRXUSDJPY_7_50_1603975474_4757575474_60m_0.00',
         );
         expect(boughtContract.buyPrice, 49.12);
         expect(boughtContract.transactionId, 159779308968);
@@ -285,65 +286,67 @@ void main() {
         expect(openContract.profit, 25.45);
         expect(openContract.profitPercentage, 103.67);
         expect(openContract.purchaseTime, getDateTime(1587533920));
-        expect(openContract.contractType, ContractType.call);
+        expect(openContract.contractType, ContractType.multDown);
         expect(openContract.currency, 'USD');
         expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
         expect(
           openContract.auditDetails.contractEnd.first.epoch,
           getDateTime(1587533976),
         );
-        expect(openContract.underlying, 'R_100');
+        expect(openContract.underlying, 'frxUSDJPY');
         expect(openContract.barrier, '1417.75');
         expect(openContract.barrierCount, 1.0);
         expect(openContract.bidPrice, 50.0);
         expect(openContract.currentSpot, 1419.53);
-        expect(openContract.displayName, 'Volatility 100 Index');
+        expect(openContract.displayName, 'USD/JPY');
         expect(openContract.exitTick, 1419.53);
         expect(openContract.isExpired, true);
         expect(openContract.isForwardStarting, false);
         expect(openContract.isIntraday, true);
         expect(openContract.isSold, false);
+        expect(openContract.multiplier, 100);
         expect(
           openContract.shortCode,
-          'CALL_R_100_50_1587533920_1587533980_S10P_0',
+          'MULTDOWN_FRXUSDJPY_7_50_1603975474_4757575474_60m_0.00',
         );
         expect(openContract.status, ContractStatus.open);
       } on ContractOperationException catch (e) {
-        dev.log(e.message);
+        dev.log(e.baseExceptionModel.message);
       }
     });
 
     test('Open Contract Subscription Test', () {
       OpenContract.subscribeContractState(
         const ProposalOpenContractRequest(contractId: 79944933588),
-      ).take(1).listen(
+      ).listen(
         expectAsync1((OpenContract openContract) {
           expect(openContract.contractId, 79944933588);
           expect(openContract.payout, 50.0);
           expect(openContract.profit, 25.45);
           expect(openContract.profitPercentage, 103.67);
           expect(openContract.purchaseTime, getDateTime(1587533920));
-          expect(openContract.contractType, ContractType.call);
+          expect(openContract.contractType, ContractType.multDown);
           expect(openContract.currency, 'USD');
           expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
           expect(
             openContract.auditDetails.contractEnd.first.epoch,
             getDateTime(1587533976),
           );
-          expect(openContract.underlying, 'R_100');
+          expect(openContract.underlying, 'frxUSDJPY');
           expect(openContract.barrier, '1417.75');
           expect(openContract.barrierCount, 1.0);
           expect(openContract.bidPrice, 50.0);
           expect(openContract.currentSpot, 1419.53);
-          expect(openContract.displayName, 'Volatility 100 Index');
+          expect(openContract.displayName, 'USD/JPY');
           expect(openContract.exitTick, 1419.53);
           expect(openContract.isExpired, true);
           expect(openContract.isForwardStarting, false);
           expect(openContract.isIntraday, true);
           expect(openContract.isSold, false);
+          expect(openContract.multiplier, 100);
           expect(
             openContract.shortCode,
-            'CALL_R_100_50_1587533920_1587533980_S10P_0',
+            'MULTDOWN_FRXUSDJPY_7_50_1603975474_4757575474_60m_0.00',
           );
           expect(openContract.status, ContractStatus.open);
 

@@ -5,6 +5,7 @@ import 'package:flutter_deriv_api/api/app/app_update.dart';
 import 'package:flutter_deriv_api/api/app/exceptions/app_exception.dart';
 import 'package:flutter_deriv_api/api/app/models/app_model.dart';
 import 'package:flutter_deriv_api/api/app/revoke_oauth_app.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -86,8 +87,8 @@ class App extends AppModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          AppException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          AppException(baseExceptionModel: baseExceptionModel),
     );
 
     return App.fromJson(response.appGet);
@@ -104,8 +105,8 @@ class App extends AppModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          AppException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          AppException(baseExceptionModel: baseExceptionModel),
     );
 
     return getListFromMap(

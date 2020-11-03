@@ -1,6 +1,7 @@
 import 'package:flutter_deriv_api/api/account/account_settings/exceptions/account_settings_exception.dart';
 import 'package:flutter_deriv_api/api/account/models/account_settings_model.dart';
 import 'package:flutter_deriv_api/api/account/models/set_account_setting_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -111,8 +112,8 @@ class AccountSettings extends AccountSettingsModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          AccountSettingsException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          AccountSettingsException(baseExceptionModel: baseExceptionModel),
     );
 
     return AccountSettings.fromJson(response.getSettings);
@@ -128,8 +129,8 @@ class AccountSettings extends AccountSettingsModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          AccountSettingsException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          AccountSettingsException(baseExceptionModel: baseExceptionModel),
     );
 
     return SetAccountSettingModel(succeeded: getBool(response.setSettings));
@@ -150,14 +151,14 @@ class AccountSettings extends AccountSettingsModel {
           addressState: addressState,
           allowCopiers: allowCopiers,
           citizen: citizen,
-          dateOfBirth: dateOfBirth
-              .toString(), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+          dateOfBirth: dateOfBirth.toString(),
+          // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
           emailConsent: emailConsent,
           firstName: firstName,
           lastName: lastName,
           phone: phone,
-          placeOfBirth: placeOfBirth
-              .toString(), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+          placeOfBirth: placeOfBirth.toString(),
+          // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
           requestProfessionalStatus: getInt(value: requestProfessionalStatus),
           residence: residence,
           salutation: salutation,

@@ -1,6 +1,7 @@
 import 'package:flutter_deriv_api/api/contract/models/history_spot_price_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/spot_price_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/update_contract_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -43,8 +44,8 @@ class UpdateContract extends UpdateContractModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ContractOperationException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return UpdateContract.fromJson(response.contractUpdate);
@@ -61,8 +62,8 @@ class UpdateContract extends UpdateContractModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ContractOperationException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return getListFromMap(

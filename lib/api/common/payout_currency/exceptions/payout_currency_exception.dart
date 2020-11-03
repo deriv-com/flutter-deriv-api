@@ -1,10 +1,11 @@
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+
 import '../../exceptions/common_exception.dart';
 
 /// Payout currency exception class
 class PayoutCurrencyException extends CommonException {
   /// Initializes
   PayoutCurrencyException({
-    String code,
-    String message,
-  }) : super(code: code, message: message);
+    BaseExceptionModel baseExceptionModel,
+  }) : super(baseExceptionModel: baseExceptionModel);
 }

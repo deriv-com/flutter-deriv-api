@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/mt5/exceptions/mt5_exception.dart';
 import 'package:flutter_deriv_api/api/mt5/models/mt5_deposit_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -47,8 +48,8 @@ class MT5Deposit extends MT5DepositModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          MT5Exception(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 
     return MT5Deposit.fromResponse(

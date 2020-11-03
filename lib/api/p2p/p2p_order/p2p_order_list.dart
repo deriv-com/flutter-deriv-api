@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_order/exceptions/p2p_order_exception.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_order/p2p_order.dart';
@@ -46,8 +47,8 @@ class P2POrderList {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2POrderException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return P2POrderList.fromJson(response.p2pOrderList['list']);
@@ -60,14 +61,15 @@ class P2POrderList {
   }) =>
       _api
           .subscribe(
-              request: request ?? const P2pOrderListRequest(),
-              comparePredicate: comparePredicate)
+        request: request ?? const P2pOrderListRequest(),
+        comparePredicate: comparePredicate,
+      )
           .map<P2POrderList>(
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({String code, String message}) =>
-                P2POrderException(code: code, message: message),
+            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+                P2POrderException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is P2pOrderListResponse
@@ -92,8 +94,8 @@ class P2POrderList {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2POrderException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
     return Forget.fromResponse(response);

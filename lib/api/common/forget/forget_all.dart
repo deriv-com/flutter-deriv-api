@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/common/forget/exceptions/forget_exception.dart';
 import 'package:flutter_deriv_api/api/common/models/forget_all_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -16,8 +17,9 @@ class ForgetAll extends ForgetAllModel {
 
   /// Creates an instance from response
   factory ForgetAll.fromResponse(ForgetAllResponse response) => ForgetAll(
-        cancelledStreams:
-            response?.forgetAll?.map((dynamic item) => item.toString())?.toList(),
+        cancelledStreams: response?.forgetAll
+            ?.map((dynamic item) => item.toString())
+            ?.toList(),
       );
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
@@ -41,8 +43,8 @@ class ForgetAll extends ForgetAllModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ForgetException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ForgetException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAll.fromResponse(response);

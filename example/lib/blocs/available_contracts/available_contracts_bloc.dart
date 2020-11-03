@@ -40,7 +40,7 @@ class AvailableContractsBloc
 
         yield AvailableContractsLoaded(contracts: contracts);
       } on ContractsForSymbolException catch (error) {
-        yield AvailableContractsError(error.message);
+        yield AvailableContractsError(error.baseExceptionModel.message);
       }
     } else if (event is SelectContract) {
       if (state is AvailableContractsLoaded) {

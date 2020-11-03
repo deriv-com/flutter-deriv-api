@@ -2,6 +2,7 @@ import 'package:flutter_deriv_api/api/account/copy_trading/exceptions/copy_tradi
 import 'package:flutter_deriv_api/api/account/models/copier_model.dart';
 import 'package:flutter_deriv_api/api/account/models/copy_trading_list_model.dart';
 import 'package:flutter_deriv_api/api/account/models/trader_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -45,8 +46,8 @@ class CopyTradingList extends CopyTradingListModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          CopyTradingException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          CopyTradingException(baseExceptionModel: baseExceptionModel),
     );
 
     return CopyTradingList.fromJson(response.copytradingList);

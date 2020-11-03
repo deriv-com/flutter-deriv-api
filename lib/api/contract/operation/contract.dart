@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/contract/models/contract_model.dart';
 import 'package:flutter_deriv_api/api/contract/operation/open_contract.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
@@ -74,8 +75,8 @@ class Contract extends ContractModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ContractOperationException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return Contract.fromJson(response.buy);
@@ -94,8 +95,9 @@ class Contract extends ContractModel {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({String code, String message}) =>
-                ContractOperationException(code: code, message: message),
+            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+                ContractOperationException(
+                    baseExceptionModel: baseExceptionModel),
           );
 
           return response is BuyResponse

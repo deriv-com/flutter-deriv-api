@@ -16,13 +16,13 @@ void main() {
 
     expect(portfolio.contracts.first.currency, 'USD');
     expect(portfolio.contracts.first.payout, 10.88);
-    expect(portfolio.contracts.first.symbol, 'frxEURGBP');
+    expect(portfolio.contracts.first.symbol, '1HZ50V');
     expect(portfolio.contracts.first.transactionId, 160058875308);
-    expect(portfolio.contracts.first.contractId, 80080459208);
-    expect(portfolio.contracts.first.contractType, ContractType.put);
+    expect(portfolio.contracts.first.contractId, 98350591008);
+    expect(portfolio.contracts.first.contractType, ContractType.multUp);
     expect(portfolio.contracts.first.purchaseTime, getDateTime(1587634074));
     expect(portfolio.contracts.first.expiryTime, getDateTime(1587761700));
     expect(portfolio.contracts.first.expiryTime, getDateTime(1587761700));
-    expect(portfolio.contracts.first.buyPrice, 10.0);
+    expect(portfolio.contracts.first.buyPrice, 10.52);
   });
 }
