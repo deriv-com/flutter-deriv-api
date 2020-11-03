@@ -11,6 +11,15 @@ class APIBaseException implements Exception {
   /// Exception code
   final BaseExceptionModel baseExceptionModel;
 
+  /// The exception's message
+  String get message => baseExceptionModel.message;
+
+  /// The exception's code
+  String get code => baseExceptionModel.code;
+
+  /// The exception's details.
+  Map<String, dynamic> get details => baseExceptionModel.details;
+
   @override
   String toString() =>
       '$runtimeType(code: ${baseExceptionModel.code}, message: ${baseExceptionModel.message})';
