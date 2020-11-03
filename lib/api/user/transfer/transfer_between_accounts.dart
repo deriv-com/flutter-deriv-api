@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/user/models/transfer_account_model.dart';
 import 'package:flutter_deriv_api/api/user/models/transfer_between_accounts_model.dart';
 import 'package:flutter_deriv_api/api/user/transfer/exceptions/transfer_exception.dart';
@@ -72,8 +73,8 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          TransferException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          TransferException(baseExceptionModel: baseExceptionModel),
     );
 
     return TransferBetweenAccounts.fromResponse(response);

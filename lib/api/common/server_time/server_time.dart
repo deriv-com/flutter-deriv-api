@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/common/models/server_time_model.dart';
 import 'package:flutter_deriv_api/api/common/server_time/exceptions/server_time_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -38,7 +39,7 @@ class ServerTime extends ServerTimeModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
           ServerTimeException(),
     );
 

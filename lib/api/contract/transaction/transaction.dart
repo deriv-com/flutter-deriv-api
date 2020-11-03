@@ -2,6 +2,7 @@ import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/contract/models/transaction_model.dart';
 import 'package:flutter_deriv_api/api/contract/transaction/exceptions/transactions_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -107,8 +108,8 @@ class Transaction extends TransactionModel {
           .map<Transaction>((Response response) {
         checkException(
           response: response,
-          exceptionCreator: ({String code, String message}) =>
-              TransactionsException(code: code, message: message),
+          exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+              TransactionsException(baseExceptionModel: baseExceptionModel),
         );
 
         return response is TransactionResponse
@@ -132,8 +133,8 @@ class Transaction extends TransactionModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          TransactionsException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          TransactionsException(baseExceptionModel: baseExceptionModel),
     );
 
     return Forget.fromResponse(response);
@@ -148,8 +149,8 @@ class Transaction extends TransactionModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          TransactionsException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          TransactionsException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAll.fromResponse(response);

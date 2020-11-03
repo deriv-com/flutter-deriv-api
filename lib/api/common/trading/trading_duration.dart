@@ -3,6 +3,7 @@ import 'package:flutter_deriv_api/api/common/models/submarket_model.dart';
 import 'package:flutter_deriv_api/api/common/models/trading_duration_data_model.dart';
 import 'package:flutter_deriv_api/api/common/models/trading_duration_model.dart';
 import 'package:flutter_deriv_api/api/common/trading/exceptions/trading_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -65,8 +66,8 @@ class TradingDuration extends TradingDurationModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          TradingException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          TradingException(baseExceptionModel: baseExceptionModel),
     );
 
     return getListFromMap(

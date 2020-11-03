@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/user/exceptions/user_exception.dart';
 import 'package:flutter_deriv_api/api/user/models/verify_email_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -38,8 +39,8 @@ class VerifyEmail extends VerifyEmailModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          UserException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          UserException(baseExceptionModel: baseExceptionModel),
     );
 
     return VerifyEmail.fromResponse(response);

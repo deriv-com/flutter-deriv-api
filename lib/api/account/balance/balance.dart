@@ -4,6 +4,7 @@ import 'package:flutter_deriv_api/api/account/models/balance_model.dart';
 import 'package:flutter_deriv_api/api/account/models/balance_total_model.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -76,8 +77,8 @@ class Balance extends BalanceModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          BalanceException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          BalanceException(baseExceptionModel: baseExceptionModel),
     );
 
     return Balance.fromJson(response.balance);
@@ -95,8 +96,8 @@ class Balance extends BalanceModel {
           .map((Response response) {
         checkException(
           response: response,
-          exceptionCreator: ({String code, String message}) =>
-              BalanceException(code: code, message: message),
+          exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+              BalanceException(baseExceptionModel: baseExceptionModel),
         );
 
         return response is BalanceResponse
@@ -120,8 +121,8 @@ class Balance extends BalanceModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          BalanceException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          BalanceException(baseExceptionModel: baseExceptionModel),
     );
 
     return Forget.fromResponse(response);
@@ -136,8 +137,8 @@ class Balance extends BalanceModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          BalanceException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          BalanceException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAll.fromResponse(response);

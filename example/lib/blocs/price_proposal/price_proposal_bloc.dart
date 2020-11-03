@@ -45,7 +45,7 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
 
       _subscribeProposal(event)
           .handleError((dynamic error) => error is ContractOperationException
-              ? add(YieldError(error.message))
+              ? add(YieldError(error.baseExceptionModel.message))
               : add(YieldError(error.toString())))
           .listen(
               (PriceProposal proposal) => add(YieldProposalLoaded(proposal)));

@@ -1,6 +1,7 @@
 import 'package:flutter_deriv_api/api/common/exchange/exceptions/exchange_exception.dart';
 import 'package:flutter_deriv_api/api/common/models/exchange_rates_model.dart';
 import 'package:flutter_deriv_api/api/common/models/rate_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -59,8 +60,8 @@ class ExchangeRates extends ExchangeRatesModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ExchangeException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ExchangeException(baseExceptionModel: baseExceptionModel),
     );
 
     return ExchangeRates.fromJson(response.exchangeRates);

@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/mt5/exceptions/mt5_exception.dart';
 import 'package:flutter_deriv_api/api/mt5/models/mt5_account_model.dart';
@@ -103,8 +104,8 @@ class MT5Account extends MT5AccountModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          MT5Exception(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 
     return MT5Account.fromJson(response.mt5NewAccount);
@@ -121,8 +122,8 @@ class MT5Account extends MT5AccountModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          MT5Exception(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 
     return getListFromMap(
