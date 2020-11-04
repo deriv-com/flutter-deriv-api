@@ -49,11 +49,22 @@ class P2pAdvertUpdateRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'delete': delete == null ? null : delete ? 1 : 0,
+        'delete': delete == null
+            ? null
+            : delete
+                ? 1
+                : 0,
         'id': id,
-        'is_active': isActive == null ? null : isActive ? 1 : 0,
-        'p2p_advert_update':
-            p2pAdvertUpdate == null ? null : p2pAdvertUpdate ? 1 : 0,
+        'is_active': isActive == null
+            ? null
+            : isActive
+                ? 1
+                : 0,
+        'p2p_advert_update': p2pAdvertUpdate == null
+            ? null
+            : p2pAdvertUpdate
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

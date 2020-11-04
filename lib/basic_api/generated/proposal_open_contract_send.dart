@@ -43,9 +43,16 @@ class ProposalOpenContractRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'contract_id': contractId,
-        'proposal_open_contract':
-            proposalOpenContract == null ? null : proposalOpenContract ? 1 : 0,
-        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'proposal_open_contract': proposalOpenContract == null
+            ? null
+            : proposalOpenContract
+                ? 1
+                : 0,
+        'subscribe': subscribe == null
+            ? null
+            : subscribe
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

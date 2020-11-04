@@ -32,8 +32,11 @@ class CopytradingListRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'copytrading_list':
-            copytradingList == null ? null : copytradingList ? 1 : 0,
+        'copytrading_list': copytradingList == null
+            ? null
+            : copytradingList
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

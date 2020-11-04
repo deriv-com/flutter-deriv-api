@@ -43,9 +43,16 @@ class P2pAdvertiserInfoRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
-        'p2p_advertiser_info':
-            p2pAdvertiserInfo == null ? null : p2pAdvertiserInfo ? 1 : 0,
-        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'p2p_advertiser_info': p2pAdvertiserInfo == null
+            ? null
+            : p2pAdvertiserInfo
+                ? 1
+                : 0,
+        'subscribe': subscribe == null
+            ? null
+            : subscribe
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

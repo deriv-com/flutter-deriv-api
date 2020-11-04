@@ -12,6 +12,7 @@ class P2pAdvertiserUpdateRequest extends Request {
     this.isListed,
     this.p2pAdvertiserUpdate = true,
     this.paymentInfo,
+    this.showName,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -30,6 +31,7 @@ class P2pAdvertiserUpdateRequest extends Request {
             ? null
             : json['p2p_advertiser_update'] == 1,
         paymentInfo: json['payment_info'] as String,
+        showName: json['show_name'] == null ? null : json['show_name'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );
@@ -49,15 +51,30 @@ class P2pAdvertiserUpdateRequest extends Request {
   /// [Optional] Advertiser's payment information, to be used as a default for new sell adverts.
   final String paymentInfo;
 
+  /// [Optional] When `true`, the advertiser's real name will be displayed on to other users on adverts and orders.
+  final bool showName;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'contact_info': contactInfo,
         'default_advert_description': defaultAdvertDescription,
-        'is_listed': isListed == null ? null : isListed ? 1 : 0,
-        'p2p_advertiser_update':
-            p2pAdvertiserUpdate == null ? null : p2pAdvertiserUpdate ? 1 : 0,
+        'is_listed': isListed == null
+            ? null
+            : isListed
+                ? 1
+                : 0,
+        'p2p_advertiser_update': p2pAdvertiserUpdate == null
+            ? null
+            : p2pAdvertiserUpdate
+                ? 1
+                : 0,
         'payment_info': paymentInfo,
+        'show_name': showName == null
+            ? null
+            : showName
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -70,6 +87,7 @@ class P2pAdvertiserUpdateRequest extends Request {
     bool isListed,
     bool p2pAdvertiserUpdate,
     String paymentInfo,
+    bool showName,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -80,6 +98,7 @@ class P2pAdvertiserUpdateRequest extends Request {
         isListed: isListed ?? this.isListed,
         p2pAdvertiserUpdate: p2pAdvertiserUpdate ?? this.p2pAdvertiserUpdate,
         paymentInfo: paymentInfo ?? this.paymentInfo,
+        showName: showName ?? this.showName,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

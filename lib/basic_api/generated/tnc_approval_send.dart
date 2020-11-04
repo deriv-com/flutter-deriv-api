@@ -36,7 +36,11 @@ class TncApprovalRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'tnc_approval': tncApproval == null ? null : tncApproval ? 1 : 0,
+        'tnc_approval': tncApproval == null
+            ? null
+            : tncApproval
+                ? 1
+                : 0,
         'ukgc_funds_protection': ukgcFundsProtection,
         'passthrough': passthrough,
         'req_id': reqId,

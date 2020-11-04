@@ -31,7 +31,11 @@ class RealityCheckRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'reality_check': realityCheck == null ? null : realityCheck ? 1 : 0,
+        'reality_check': realityCheck == null
+            ? null
+            : realityCheck
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

@@ -40,7 +40,11 @@ class P2pChatCreateRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'order_id': orderId,
-        'p2p_chat_create': p2pChatCreate == null ? null : p2pChatCreate ? 1 : 0,
+        'p2p_chat_create': p2pChatCreate == null
+            ? null
+            : p2pChatCreate
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

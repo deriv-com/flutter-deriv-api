@@ -142,7 +142,9 @@ class SetFinancialAssessmentRequest extends Request {
         'other_instruments_trading_frequency': otherInstrumentsTradingFrequency,
         'set_financial_assessment': setFinancialAssessment == null
             ? null
-            : setFinancialAssessment ? 1 : 0,
+            : setFinancialAssessment
+                ? 1
+                : 0,
         'source_of_wealth': sourceOfWealth,
         'passthrough': passthrough,
         'req_id': reqId,

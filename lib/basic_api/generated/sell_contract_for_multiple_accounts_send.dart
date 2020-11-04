@@ -57,7 +57,9 @@ class SellContractForMultipleAccountsRequest extends Request {
         'sell_contract_for_multiple_accounts':
             sellContractForMultipleAccounts == null
                 ? null
-                : sellContractForMultipleAccounts ? 1 : 0,
+                : sellContractForMultipleAccounts
+                    ? 1
+                    : 0,
         'shortcode': shortcode,
         'tokens': tokens,
         'passthrough': passthrough,

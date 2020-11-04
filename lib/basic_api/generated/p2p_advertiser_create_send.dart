@@ -62,10 +62,17 @@ class P2pAdvertiserCreateRequest extends Request {
         'contact_info': contactInfo,
         'default_advert_description': defaultAdvertDescription,
         'name': name,
-        'p2p_advertiser_create':
-            p2pAdvertiserCreate == null ? null : p2pAdvertiserCreate ? 1 : 0,
+        'p2p_advertiser_create': p2pAdvertiserCreate == null
+            ? null
+            : p2pAdvertiserCreate
+                ? 1
+                : 0,
         'payment_info': paymentInfo,
-        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'subscribe': subscribe == null
+            ? null
+            : subscribe
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

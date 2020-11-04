@@ -36,8 +36,16 @@ class WebsiteStatusRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
-        'website_status': websiteStatus == null ? null : websiteStatus ? 1 : 0,
+        'subscribe': subscribe == null
+            ? null
+            : subscribe
+                ? 1
+                : 0,
+        'website_status': websiteStatus == null
+            ? null
+            : websiteStatus
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

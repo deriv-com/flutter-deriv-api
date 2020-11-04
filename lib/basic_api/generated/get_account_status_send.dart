@@ -32,8 +32,11 @@ class GetAccountStatusRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'get_account_status':
-            getAccountStatus == null ? null : getAccountStatus ? 1 : 0,
+        'get_account_status': getAccountStatus == null
+            ? null
+            : getAccountStatus
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

@@ -45,8 +45,11 @@ class ContractUpdateRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'contract_id': contractId,
-        'contract_update':
-            contractUpdate == null ? null : contractUpdate ? 1 : 0,
+        'contract_update': contractUpdate == null
+            ? null
+            : contractUpdate
+                ? 1
+                : 0,
         'limit_order': limitOrder,
         'passthrough': passthrough,
         'req_id': reqId,

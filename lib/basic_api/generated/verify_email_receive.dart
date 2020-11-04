@@ -36,7 +36,11 @@ class VerifyEmailResponse extends Response {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'verify_email': verifyEmail == null ? null : verifyEmail ? 1 : 0,
+        'verify_email': verifyEmail == null
+            ? null
+            : verifyEmail
+                ? 1
+                : 0,
         'echo_req': echoReq,
         'error': error,
         'msg_type': msgType,
