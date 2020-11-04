@@ -44,8 +44,16 @@ class P2pOrderInfoRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
-        'p2p_order_info': p2pOrderInfo == null ? null : p2pOrderInfo ? 1 : 0,
-        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'p2p_order_info': p2pOrderInfo == null
+            ? null
+            : p2pOrderInfo
+                ? 1
+                : 0,
+        'subscribe': subscribe == null
+            ? null
+            : subscribe
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

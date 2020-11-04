@@ -54,13 +54,19 @@ class ApiTokenRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'api_token': apiToken == null ? null : apiToken ? 1 : 0,
+        'api_token': apiToken == null
+            ? null
+            : apiToken
+                ? 1
+                : 0,
         'delete_token': deleteToken,
         'new_token': newToken,
         'new_token_scopes': newTokenScopes,
         'valid_for_current_ip_only': validForCurrentIpOnly == null
             ? null
-            : validForCurrentIpOnly ? 1 : 0,
+            : validForCurrentIpOnly
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

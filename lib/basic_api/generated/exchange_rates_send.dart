@@ -39,7 +39,11 @@ class ExchangeRatesRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'base_currency': baseCurrency,
-        'exchange_rates': exchangeRates == null ? null : exchangeRates ? 1 : 0,
+        'exchange_rates': exchangeRates == null
+            ? null
+            : exchangeRates
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

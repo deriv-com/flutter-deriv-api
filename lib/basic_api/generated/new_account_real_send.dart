@@ -163,8 +163,11 @@ class NewAccountRealRequest extends Request {
         'date_of_birth': dateOfBirth,
         'first_name': firstName,
         'last_name': lastName,
-        'new_account_real':
-            newAccountReal == null ? null : newAccountReal ? 1 : 0,
+        'new_account_real': newAccountReal == null
+            ? null
+            : newAccountReal
+                ? 1
+                : 0,
         'non_pep_declaration': nonPepDeclaration,
         'phone': phone,
         'place_of_birth': placeOfBirth,

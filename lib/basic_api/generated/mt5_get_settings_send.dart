@@ -40,8 +40,11 @@ class Mt5GetSettingsRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'login': login,
-        'mt5_get_settings':
-            mt5GetSettings == null ? null : mt5GetSettings ? 1 : 0,
+        'mt5_get_settings': mt5GetSettings == null
+            ? null
+            : mt5GetSettings
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

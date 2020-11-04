@@ -50,8 +50,11 @@ class Mt5PasswordCheckRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'login': login,
-        'mt5_password_check':
-            mt5PasswordCheck == null ? null : mt5PasswordCheck ? 1 : 0,
+        'mt5_password_check': mt5PasswordCheck == null
+            ? null
+            : mt5PasswordCheck
+                ? 1
+                : 0,
         'password': password,
         'password_type': passwordType,
         'passthrough': passthrough,

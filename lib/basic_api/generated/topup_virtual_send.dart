@@ -31,7 +31,11 @@ class TopupVirtualRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'topup_virtual': topupVirtual == null ? null : topupVirtual ? 1 : 0,
+        'topup_virtual': topupVirtual == null
+            ? null
+            : topupVirtual
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

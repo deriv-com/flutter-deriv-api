@@ -41,7 +41,9 @@ class CopytradingStatisticsRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'copytrading_statistics': copytradingStatistics == null
             ? null
-            : copytradingStatistics ? 1 : 0,
+            : copytradingStatistics
+                ? 1
+                : 0,
         'trader_id': traderId,
         'passthrough': passthrough,
         'req_id': reqId,

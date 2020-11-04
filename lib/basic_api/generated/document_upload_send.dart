@@ -72,8 +72,11 @@ class DocumentUploadRequest extends Request {
         'document_format': documentFormat,
         'document_id': documentId,
         'document_type': documentType,
-        'document_upload':
-            documentUpload == null ? null : documentUpload ? 1 : 0,
+        'document_upload': documentUpload == null
+            ? null
+            : documentUpload
+                ? 1
+                : 0,
         'expected_checksum': expectedChecksum,
         'expiration_date': expirationDate,
         'file_size': fileSize,

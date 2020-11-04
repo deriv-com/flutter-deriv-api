@@ -62,10 +62,17 @@ class P2pOrderCreateRequest extends Request {
         'advert_id': advertId,
         'amount': amount,
         'contact_info': contactInfo,
-        'p2p_order_create':
-            p2pOrderCreate == null ? null : p2pOrderCreate ? 1 : 0,
+        'p2p_order_create': p2pOrderCreate == null
+            ? null
+            : p2pOrderCreate
+                ? 1
+                : 0,
         'payment_info': paymentInfo,
-        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'subscribe': subscribe == null
+            ? null
+            : subscribe
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
