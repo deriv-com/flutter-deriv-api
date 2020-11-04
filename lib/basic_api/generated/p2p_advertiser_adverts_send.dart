@@ -44,8 +44,11 @@ class P2pAdvertiserAdvertsRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'limit': limit,
         'offset': offset,
-        'p2p_advertiser_adverts':
-            p2pAdvertiserAdverts == null ? null : p2pAdvertiserAdverts ? 1 : 0,
+        'p2p_advertiser_adverts': p2pAdvertiserAdverts == null
+            ? null
+            : p2pAdvertiserAdverts
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

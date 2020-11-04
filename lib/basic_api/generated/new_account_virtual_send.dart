@@ -69,7 +69,7 @@ class NewAccountVirtualRequest extends Request {
   /// [Optional] Affiliate token, within 32 characters.
   final String affiliateToken;
 
-  /// Password (length within 6-25 chars, accepts any printable ASCII character).
+  /// Password (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address).
   final String clientPassword;
 
   /// [Optional] Date of first contact, format: `yyyy-mm-dd` in GMT timezone.
@@ -133,8 +133,11 @@ class NewAccountVirtualRequest extends Request {
         'client_password': clientPassword,
         'date_first_contact': dateFirstContact,
         'gclid_url': gclidUrl,
-        'new_account_virtual':
-            newAccountVirtual == null ? null : newAccountVirtual ? 1 : 0,
+        'new_account_virtual': newAccountVirtual == null
+            ? null
+            : newAccountVirtual
+                ? 1
+                : 0,
         'residence': residence,
         'signup_device': signupDevice,
         'utm_ad_id': utmAdId,

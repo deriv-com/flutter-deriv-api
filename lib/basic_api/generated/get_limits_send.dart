@@ -30,7 +30,11 @@ class GetLimitsRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'get_limits': getLimits == null ? null : getLimits ? 1 : 0,
+        'get_limits': getLimits == null
+            ? null
+            : getLimits
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

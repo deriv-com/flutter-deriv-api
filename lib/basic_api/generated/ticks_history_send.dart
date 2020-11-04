@@ -75,7 +75,11 @@ class TicksHistoryRequest extends Request {
         'granularity': granularity,
         'start': start,
         'style': style,
-        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'subscribe': subscribe == null
+            ? null
+            : subscribe
+                ? 1
+                : 0,
         'ticks_history': ticksHistory,
         'passthrough': passthrough,
         'req_id': reqId,

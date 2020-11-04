@@ -40,8 +40,11 @@ class P2pOrderCancelRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
-        'p2p_order_cancel':
-            p2pOrderCancel == null ? null : p2pOrderCancel ? 1 : 0,
+        'p2p_order_cancel': p2pOrderCancel == null
+            ? null
+            : p2pOrderCancel
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

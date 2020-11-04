@@ -55,8 +55,11 @@ class Mt5PasswordResetRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'login': login,
-        'mt5_password_reset':
-            mt5PasswordReset == null ? null : mt5PasswordReset ? 1 : 0,
+        'mt5_password_reset': mt5PasswordReset == null
+            ? null
+            : mt5PasswordReset
+                ? 1
+                : 0,
         'new_password': newPassword,
         'password_type': passwordType,
         'verification_code': verificationCode,

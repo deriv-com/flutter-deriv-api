@@ -47,7 +47,9 @@ class ContractUpdateHistoryRequest extends Request {
         'contract_id': contractId,
         'contract_update_history': contractUpdateHistory == null
             ? null
-            : contractUpdateHistory ? 1 : 0,
+            : contractUpdateHistory
+                ? 1
+                : 0,
         'limit': limit,
         'passthrough': passthrough,
         'req_id': reqId,

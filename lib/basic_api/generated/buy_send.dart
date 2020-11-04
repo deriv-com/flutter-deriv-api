@@ -49,7 +49,11 @@ class BuyRequest extends Request {
         'buy': buy,
         'parameters': parameters,
         'price': price,
-        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'subscribe': subscribe == null
+            ? null
+            : subscribe
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

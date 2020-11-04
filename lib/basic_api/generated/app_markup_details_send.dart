@@ -83,12 +83,19 @@ class AppMarkupDetailsRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'app_id': appId,
-        'app_markup_details':
-            appMarkupDetails == null ? null : appMarkupDetails ? 1 : 0,
+        'app_markup_details': appMarkupDetails == null
+            ? null
+            : appMarkupDetails
+                ? 1
+                : 0,
         'client_loginid': clientLoginid,
         'date_from': dateFrom,
         'date_to': dateTo,
-        'description': description == null ? null : description ? 1 : 0,
+        'description': description == null
+            ? null
+            : description
+                ? 1
+                : 0,
         'limit': limit,
         'offset': offset,
         'sort': sort,

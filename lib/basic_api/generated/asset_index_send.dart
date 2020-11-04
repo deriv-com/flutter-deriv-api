@@ -36,7 +36,11 @@ class AssetIndexRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'asset_index': assetIndex == null ? null : assetIndex ? 1 : 0,
+        'asset_index': assetIndex == null
+            ? null
+            : assetIndex
+                ? 1
+                : 0,
         'landing_company': landingCompany,
         'passthrough': passthrough,
         'req_id': reqId,

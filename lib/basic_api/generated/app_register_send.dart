@@ -81,7 +81,11 @@ class AppRegisterRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'app_markup_percentage': appMarkupPercentage,
-        'app_register': appRegister == null ? null : appRegister ? 1 : 0,
+        'app_register': appRegister == null
+            ? null
+            : appRegister
+                ? 1
+                : 0,
         'appstore': appstore,
         'github': github,
         'googleplay': googleplay,

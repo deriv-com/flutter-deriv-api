@@ -1,12 +1,15 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/profit_table_send.json
 // ignore_for_file: avoid_as
 
+import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Profit table request class
 class ProfitTableRequest extends Request {
   /// Initialize ProfitTableRequest
   const ProfitTableRequest({
+    @required this.contractType,
     this.dateFrom,
     this.dateTo,
     this.description,
@@ -25,6 +28,9 @@ class ProfitTableRequest extends Request {
   /// Creates an instance from JSON
   factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>
       ProfitTableRequest(
+        contractType: (json['contract_type'] as List<dynamic>)
+            ?.map<String>((dynamic item) => item as String)
+            ?.toList(),
         dateFrom: json['date_from'] as String,
         dateTo: json['date_to'] as String,
         description:
@@ -37,6 +43,9 @@ class ProfitTableRequest extends Request {
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );
+
+  /// Return only contracts of the specified types
+  final List<String> contractType;
 
   /// [Optional] Start date (epoch or YYYY-MM-DD)
   final String dateFrom;
@@ -62,12 +71,21 @@ class ProfitTableRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'contract_type': contractType,
         'date_from': dateFrom,
         'date_to': dateTo,
-        'description': description == null ? null : description ? 1 : 0,
+        'description': description == null
+            ? null
+            : description
+                ? 1
+                : 0,
         'limit': limit,
         'offset': offset,
-        'profit_table': profitTable == null ? null : profitTable ? 1 : 0,
+        'profit_table': profitTable == null
+            ? null
+            : profitTable
+                ? 1
+                : 0,
         'sort': sort,
         'passthrough': passthrough,
         'req_id': reqId,
@@ -76,6 +94,7 @@ class ProfitTableRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ProfitTableRequest copyWith({
+    List<String> contractType,
     String dateFrom,
     String dateTo,
     bool description,
@@ -87,6 +106,7 @@ class ProfitTableRequest extends Request {
     int reqId,
   }) =>
       ProfitTableRequest(
+        contractType: contractType ?? this.contractType,
         dateFrom: dateFrom ?? this.dateFrom,
         dateTo: dateTo ?? this.dateTo,
         description: description ?? this.description,

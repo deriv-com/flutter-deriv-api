@@ -29,7 +29,11 @@ class LogoutRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'logout': logout == null ? null : logout ? 1 : 0,
+        'logout': logout == null
+            ? null
+            : logout
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

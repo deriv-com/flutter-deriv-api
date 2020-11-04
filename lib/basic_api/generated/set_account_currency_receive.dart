@@ -37,8 +37,11 @@ class SetAccountCurrencyResponse extends Response {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'set_account_currency':
-            setAccountCurrency == null ? null : setAccountCurrency ? 1 : 0,
+        'set_account_currency': setAccountCurrency == null
+            ? null
+            : setAccountCurrency
+                ? 1
+                : 0,
         'echo_req': echoReq,
         'error': error,
         'msg_type': msgType,

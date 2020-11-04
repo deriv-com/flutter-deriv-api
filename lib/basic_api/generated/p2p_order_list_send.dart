@@ -60,8 +60,16 @@ class P2pOrderListRequest extends Request {
         'advert_id': advertId,
         'limit': limit,
         'offset': offset,
-        'p2p_order_list': p2pOrderList == null ? null : p2pOrderList ? 1 : 0,
-        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'p2p_order_list': p2pOrderList == null
+            ? null
+            : p2pOrderList
+                ? 1
+                : 0,
+        'subscribe': subscribe == null
+            ? null
+            : subscribe
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

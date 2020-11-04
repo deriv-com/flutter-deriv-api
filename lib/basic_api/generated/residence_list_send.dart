@@ -31,7 +31,11 @@ class ResidenceListRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'residence_list': residenceList == null ? null : residenceList ? 1 : 0,
+        'residence_list': residenceList == null
+            ? null
+            : residenceList
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
