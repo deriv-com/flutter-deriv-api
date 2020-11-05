@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_stats_model.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_advertiser/exceptions/p2p_advertiser_stats_exception.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -67,8 +68,8 @@ class P2PAdvertiserStats extends P2PAdvertiserStatsModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2PAdvertiserStatsException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2PAdvertiserStatsException(baseExceptionModel: baseExceptionModel),
     );
 
     return P2PAdvertiserStats.fromJson(response.p2pAdvertiserStats);

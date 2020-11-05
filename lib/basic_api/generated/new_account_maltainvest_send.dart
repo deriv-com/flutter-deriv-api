@@ -234,7 +234,11 @@ class NewAccountMaltainvestRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'accept_risk': acceptRisk == null ? null : acceptRisk ? 1 : 0,
+        'accept_risk': acceptRisk == null
+            ? null
+            : acceptRisk
+                ? 1
+                : 0,
         'account_opening_reason': accountOpeningReason,
         'account_turnover': accountTurnover,
         'address_city': addressCity,
@@ -262,7 +266,9 @@ class NewAccountMaltainvestRequest extends Request {
         'net_income': netIncome,
         'new_account_maltainvest': newAccountMaltainvest == null
             ? null
-            : newAccountMaltainvest ? 1 : 0,
+            : newAccountMaltainvest
+                ? 1
+                : 0,
         'non_pep_declaration': nonPepDeclaration,
         'occupation': occupation,
         'other_instruments_trading_experience':

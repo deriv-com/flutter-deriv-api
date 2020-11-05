@@ -90,8 +90,11 @@ class P2pAdvertCreateRequest extends Request {
         'local_currency': localCurrency,
         'max_order_amount': maxOrderAmount,
         'min_order_amount': minOrderAmount,
-        'p2p_advert_create':
-            p2pAdvertCreate == null ? null : p2pAdvertCreate ? 1 : 0,
+        'p2p_advert_create': p2pAdvertCreate == null
+            ? null
+            : p2pAdvertCreate
+                ? 1
+                : 0,
         'payment_info': paymentInfo,
         'payment_method': paymentMethod,
         'rate': rate,

@@ -4,7 +4,6 @@ import '../response.dart';
 
 import 'response_mapper.helper.dart';
 
-
 /// Creates a sub-type of [Response] object based on [responseMap]'s 'msg_type'
 ///
 /// Exceptional cases will be added here, the rest will be auto-generated from

@@ -1,6 +1,5 @@
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 
-
 /// States list model class
 abstract class StateModel extends APIBaseModel {
   /// Initializes

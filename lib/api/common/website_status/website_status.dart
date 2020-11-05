@@ -5,6 +5,7 @@ import 'package:flutter_deriv_api/api/common/models/website_status_crypto_config
 import 'package:flutter_deriv_api/api/common/models/website_status_currency_config_model.dart';
 import 'package:flutter_deriv_api/api/common/models/website_status_model.dart';
 import 'package:flutter_deriv_api/api/common/website_status/exceptions/website_status_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -84,8 +85,8 @@ class WebsiteStatus extends WebsiteStatusModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          WebsiteStatusException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          WebsiteStatusException(baseExceptionModel: baseExceptionModel),
     );
 
     return WebsiteStatus.fromJson(response.websiteStatus);
@@ -102,8 +103,8 @@ class WebsiteStatus extends WebsiteStatusModel {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({String code, String message}) =>
-                WebsiteStatusException(code: code, message: message),
+            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+                WebsiteStatusException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is WebsiteStatusResponse
@@ -128,8 +129,8 @@ class WebsiteStatus extends WebsiteStatusModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          WebsiteStatusException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          WebsiteStatusException(baseExceptionModel: baseExceptionModel),
     );
 
     return Forget.fromResponse(response);
@@ -144,8 +145,8 @@ class WebsiteStatus extends WebsiteStatusModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          WebsiteStatusException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          WebsiteStatusException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAll.fromResponse(response);

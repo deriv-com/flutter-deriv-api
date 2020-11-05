@@ -29,7 +29,11 @@ class TimeRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'time': time == null ? null : time ? 1 : 0,
+        'time': time == null
+            ? null
+            : time
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

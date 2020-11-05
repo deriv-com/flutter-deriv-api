@@ -30,7 +30,11 @@ class OauthAppsRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'oauth_apps': oauthApps == null ? null : oauthApps ? 1 : 0,
+        'oauth_apps': oauthApps == null
+            ? null
+            : oauthApps
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

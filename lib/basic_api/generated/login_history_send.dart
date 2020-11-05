@@ -37,7 +37,11 @@ class LoginHistoryRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'limit': limit,
-        'login_history': loginHistory == null ? null : loginHistory ? 1 : 0,
+        'login_history': loginHistory == null
+            ? null
+            : loginHistory
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

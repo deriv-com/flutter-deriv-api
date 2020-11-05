@@ -1,19 +1,26 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 
 /// Base exception class
 class APIBaseException implements Exception {
   /// Initializes
   APIBaseException({
-    @required this.code,
-    @required this.message,
+    @required this.baseExceptionModel,
   });
 
   /// Exception code
-  final String code;
+  final BaseExceptionModel baseExceptionModel;
 
-  /// Exception message
-  final String message;
+  /// The exception's message
+  String get message => baseExceptionModel.message;
+
+  /// The exception's code
+  String get code => baseExceptionModel.code;
+
+  /// The exception's details.
+  Map<String, dynamic> get details => baseExceptionModel.details;
 
   @override
-  String toString() => '$runtimeType(code: $code, message: $message)';
+  String toString() =>
+      '$runtimeType(code: ${baseExceptionModel.code}, message: ${baseExceptionModel.message})';
 }

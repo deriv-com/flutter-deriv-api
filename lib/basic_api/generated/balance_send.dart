@@ -40,8 +40,16 @@ class BalanceRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'account': account,
-        'balance': balance == null ? null : balance ? 1 : 0,
-        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
+        'balance': balance == null
+            ? null
+            : balance
+                ? 1
+                : 0,
+        'subscribe': subscribe == null
+            ? null
+            : subscribe
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

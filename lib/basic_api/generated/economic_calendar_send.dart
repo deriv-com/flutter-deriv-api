@@ -48,8 +48,11 @@ class EconomicCalendarRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'currency': currency,
-        'economic_calendar':
-            economicCalendar == null ? null : economicCalendar ? 1 : 0,
+        'economic_calendar': economicCalendar == null
+            ? null
+            : economicCalendar
+                ? 1
+                : 0,
         'end_date': endDate,
         'start_date': startDate,
         'passthrough': passthrough,

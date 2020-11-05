@@ -2,6 +2,7 @@ import 'package:flutter_deriv_api/api/common/models/candle_model.dart';
 import 'package:flutter_deriv_api/api/common/models/history_model.dart';
 import 'package:flutter_deriv_api/api/common/models/tick_history_model.dart';
 import 'package:flutter_deriv_api/api/common/tick/exceptions/tick_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/manually/ohlc_receive.dart';
@@ -68,34 +69,35 @@ class TickHistory extends TickHistoryModel {
   ///
   /// Throws [TickException] if API response contains an error
   static Future<TickHistorySubscription> fetchTicksAndSubscribe(
-      TicksHistoryRequest request, {
-        RequestCompareFunction comparePredicate,
-        bool subscribe = true,
-      }) async {
+    TicksHistoryRequest request, {
+    RequestCompareFunction comparePredicate,
+    bool subscribe = true,
+  }) async {
     if (subscribe) {
-      final Stream<Response> responseStream = _api.subscribe(
-        request: request,
-        comparePredicate: comparePredicate,
-      );
+      final Stream<Response> responseStream =
+          _api.subscribe(request: request, comparePredicate: comparePredicate);
       final Response firstResponse = await responseStream.first;
+
       _checkException(firstResponse);
+
       if (firstResponse is TicksHistoryResponse) {
         return TickHistorySubscription(
           tickHistory: TickHistory.fromResponse(firstResponse),
           tickStream: responseStream.map<TickBase>(
-                (Response response) {
+            (Response response) {
               _checkException(response);
+
               return response is TicksResponse
                   ? Tick.fromJson(
-                response.tick,
-                subscriptionJson: response.subscription,
-              )
+                      response.tick,
+                      subscriptionJson: response.subscription,
+                    )
                   : response is OHLCResponse
-                  ? OHLC.fromJson(
-                response.ohlc,
-                subscriptionJson: response.subscription,
-              )
-                  : null;
+                      ? OHLC.fromJson(
+                          response.ohlc,
+                          subscriptionJson: response.subscription,
+                        )
+                      : null;
             },
           ),
         );
@@ -110,8 +112,8 @@ class TickHistory extends TickHistoryModel {
 
   static void _checkException(Response response) => checkException(
         response: response,
-        exceptionCreator: ({String code, String message}) =>
-            TickException(code: code, message: message),
+        exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+            TickException(baseExceptionModel: baseExceptionModel),
       );
 
   /// Generate a copy of instance with given parameters

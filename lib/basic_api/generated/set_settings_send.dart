@@ -149,10 +149,18 @@ class SetSettingsRequest extends Request {
         'address_line_2': addressLine2,
         'address_postcode': addressPostcode,
         'address_state': addressState,
-        'allow_copiers': allowCopiers == null ? null : allowCopiers ? 1 : 0,
+        'allow_copiers': allowCopiers == null
+            ? null
+            : allowCopiers
+                ? 1
+                : 0,
         'citizen': citizen,
         'date_of_birth': dateOfBirth,
-        'email_consent': emailConsent == null ? null : emailConsent ? 1 : 0,
+        'email_consent': emailConsent == null
+            ? null
+            : emailConsent
+                ? 1
+                : 0,
         'first_name': firstName,
         'last_name': lastName,
         'non_pep_declaration': nonPepDeclaration,
@@ -163,7 +171,11 @@ class SetSettingsRequest extends Request {
         'salutation': salutation,
         'secret_answer': secretAnswer,
         'secret_question': secretQuestion,
-        'set_settings': setSettings == null ? null : setSettings ? 1 : 0,
+        'set_settings': setSettings == null
+            ? null
+            : setSettings
+                ? 1
+                : 0,
         'tax_identification_number': taxIdentificationNumber,
         'tax_residence': taxResidence,
         'passthrough': passthrough,

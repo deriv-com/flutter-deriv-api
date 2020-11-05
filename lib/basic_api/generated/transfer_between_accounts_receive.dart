@@ -66,7 +66,9 @@ class TransferBetweenAccountsResponse extends Response {
         'transaction_id': transactionId,
         'transfer_between_accounts': transferBetweenAccounts == null
             ? null
-            : transferBetweenAccounts ? 1 : 0,
+            : transferBetweenAccounts
+                ? 1
+                : 0,
         'echo_req': echoReq,
         'error': error,
         'msg_type': msgType,

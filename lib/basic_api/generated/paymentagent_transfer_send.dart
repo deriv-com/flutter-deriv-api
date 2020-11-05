@@ -62,9 +62,16 @@ class PaymentagentTransferRequest extends Request {
         'amount': amount,
         'currency': currency,
         'description': description,
-        'dry_run': dryRun == null ? null : dryRun ? 1 : 0,
-        'paymentagent_transfer':
-            paymentagentTransfer == null ? null : paymentagentTransfer ? 1 : 0,
+        'dry_run': dryRun == null
+            ? null
+            : dryRun
+                ? 1
+                : 0,
+        'paymentagent_transfer': paymentagentTransfer == null
+            ? null
+            : paymentagentTransfer
+                ? 1
+                : 0,
         'transfer_to': transferTo,
         'passthrough': passthrough,
         'req_id': reqId,

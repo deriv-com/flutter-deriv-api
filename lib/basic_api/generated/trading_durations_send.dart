@@ -38,8 +38,11 @@ class TradingDurationsRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'landing_company': landingCompany,
-        'trading_durations':
-            tradingDurations == null ? null : tradingDurations ? 1 : 0,
+        'trading_durations': tradingDurations == null
+            ? null
+            : tradingDurations
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_model.dart';
@@ -111,8 +112,8 @@ class P2PAdvertiser extends P2PAdvertiserModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2PAdvertiserException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
     return P2PAdvertiser.fromJson(response.p2pAdvertiserInfo);
@@ -130,8 +131,8 @@ class P2PAdvertiser extends P2PAdvertiserModel {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({String code, String message}) =>
-                P2PAdvertiserException(code: code, message: message),
+            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+                P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is P2pAdvertiserInfoResponse
@@ -154,8 +155,8 @@ class P2PAdvertiser extends P2PAdvertiserModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2PAdvertiserException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
     return P2PAdvertiser.fromJson(response.p2pAdvertiserCreate);
@@ -173,8 +174,8 @@ class P2PAdvertiser extends P2PAdvertiserModel {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({String code, String message}) =>
-                P2PAdvertiserException(code: code, message: message),
+            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+                P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is P2pAdvertiserInfoResponse
@@ -202,8 +203,8 @@ class P2PAdvertiser extends P2PAdvertiserModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2PAdvertiserException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
     return P2PAdvertiser.fromJson(response.p2pAdvertiserUpdate);
@@ -220,8 +221,8 @@ class P2PAdvertiser extends P2PAdvertiserModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2PAdvertiserException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
     return getListFromMap(
@@ -243,8 +244,8 @@ class P2PAdvertiser extends P2PAdvertiserModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2PAdvertiserException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
     return Forget.fromResponse(response);
@@ -259,8 +260,8 @@ class P2PAdvertiser extends P2PAdvertiserModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2PAdvertiserException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAll.fromResponse(response);

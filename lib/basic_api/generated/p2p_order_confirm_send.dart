@@ -40,8 +40,11 @@ class P2pOrderConfirmRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
-        'p2p_order_confirm':
-            p2pOrderConfirm == null ? null : p2pOrderConfirm ? 1 : 0,
+        'p2p_order_confirm': p2pOrderConfirm == null
+            ? null
+            : p2pOrderConfirm
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

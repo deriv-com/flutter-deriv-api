@@ -2,11 +2,13 @@ import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/contract/models/transaction_model.dart';
 import 'package:flutter_deriv_api/api/contract/transaction/exceptions/transactions_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
@@ -95,13 +97,19 @@ class Transaction extends TransactionModel {
   /// Subscribes to account's transactions
   ///
   /// Throws a [TransactionsException] if API response contains an error
-  static Stream<Transaction> subscribeTransactions() => _api
-          .subscribe(request: const TransactionRequest())
+  static Stream<Transaction> subscribeTransactions({
+    RequestCompareFunction comparePredicate,
+  }) =>
+      _api
+          .subscribe(
+        request: const TransactionRequest(),
+        comparePredicate: comparePredicate,
+      )
           .map<Transaction>((Response response) {
         checkException(
           response: response,
-          exceptionCreator: ({String code, String message}) =>
-              TransactionsException(code: code, message: message),
+          exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+              TransactionsException(baseExceptionModel: baseExceptionModel),
         );
 
         return response is TransactionResponse
@@ -125,8 +133,8 @@ class Transaction extends TransactionModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          TransactionsException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          TransactionsException(baseExceptionModel: baseExceptionModel),
     );
 
     return Forget.fromResponse(response);
@@ -141,8 +149,8 @@ class Transaction extends TransactionModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          TransactionsException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          TransactionsException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAll.fromResponse(response);

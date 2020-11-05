@@ -34,7 +34,9 @@ class GetFinancialAssessmentRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'get_financial_assessment': getFinancialAssessment == null
             ? null
-            : getFinancialAssessment ? 1 : 0,
+            : getFinancialAssessment
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

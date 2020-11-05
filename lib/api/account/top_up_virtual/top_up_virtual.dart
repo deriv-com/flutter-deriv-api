@@ -1,5 +1,6 @@
 import 'package:flutter_deriv_api/api/account/models/top_up_virtual_model.dart';
 import 'package:flutter_deriv_api/api/account/top_up_virtual/exceptions/top_up_virtual_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -47,8 +48,8 @@ class TopUpVirtual extends TopUpVirtualModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          TopUpVirtualException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          TopUpVirtualException(baseExceptionModel: baseExceptionModel),
     );
 
     return TopUpVirtual.fromJson(response.topupVirtual);

@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -204,8 +205,8 @@ class P2PAdvert extends P2PAdvertModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2PAdvertException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2PAdvertException(baseExceptionModel: baseExceptionModel),
     );
 
     return P2PAdvert.fromJson(response.p2pAdvertInfo);
@@ -222,8 +223,8 @@ class P2PAdvert extends P2PAdvertModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2PAdvertException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2PAdvertException(baseExceptionModel: baseExceptionModel),
     );
 
     return getListFromMap(
@@ -243,8 +244,8 @@ class P2PAdvert extends P2PAdvertModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2PAdvertException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2PAdvertException(baseExceptionModel: baseExceptionModel),
     );
 
     return P2PAdvert.fromJson(response.p2pAdvertCreate);
@@ -261,8 +262,8 @@ class P2PAdvert extends P2PAdvertModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          P2PAdvertException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          P2PAdvertException(baseExceptionModel: baseExceptionModel),
     );
 
     return P2PAdvert.fromJson(response.p2pAdvertUpdate);

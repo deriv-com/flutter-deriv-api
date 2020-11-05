@@ -5,6 +5,7 @@ import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/contract/models/cancellation_info_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/limit_order_model.dart';
 import 'package:flutter_deriv_api/api/contract/models/price_proposal_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -110,8 +111,8 @@ class PriceProposal extends PriceProposalModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ContractOperationException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return PriceProposal.fromJson(response.proposal);
@@ -131,8 +132,9 @@ class PriceProposal extends PriceProposalModel {
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({String code, String message}) =>
-                ContractOperationException(code: code, message: message),
+            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+                ContractOperationException(
+                    baseExceptionModel: baseExceptionModel),
           );
 
           return response is ProposalResponse
@@ -157,8 +159,8 @@ class PriceProposal extends PriceProposalModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ContractOperationException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return Forget.fromResponse(response);
@@ -173,8 +175,8 @@ class PriceProposal extends PriceProposalModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({String code, String message}) =>
-          ContractOperationException(code: code, message: message),
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return ForgetAll.fromResponse(response);

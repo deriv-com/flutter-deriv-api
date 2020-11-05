@@ -34,7 +34,11 @@ class ForgetResponse extends Response {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'forget': forget == null ? null : forget ? 1 : 0,
+        'forget': forget == null
+            ? null
+            : forget
+                ? 1
+                : 0,
         'echo_req': echoReq,
         'error': error,
         'msg_type': msgType,
