@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs
 
 /// This represent the current status for proof of identity document
 /// submitted for authentication.
