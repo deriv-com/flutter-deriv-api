@@ -32,8 +32,11 @@ class PayoutCurrenciesRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'payout_currencies':
-            payoutCurrencies == null ? null : payoutCurrencies ? 1 : 0,
+        'payout_currencies': payoutCurrencies == null
+            ? null
+            : payoutCurrencies
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

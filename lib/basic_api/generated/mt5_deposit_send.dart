@@ -50,7 +50,11 @@ class Mt5DepositRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'amount': amount,
         'from_binary': fromBinary,
-        'mt5_deposit': mt5Deposit == null ? null : mt5Deposit ? 1 : 0,
+        'mt5_deposit': mt5Deposit == null
+            ? null
+            : mt5Deposit
+                ? 1
+                : 0,
         'to_mt5': toMt5,
         'passthrough': passthrough,
         'req_id': reqId,

@@ -36,8 +36,16 @@ class TransactionRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'subscribe': subscribe == null ? null : subscribe ? 1 : 0,
-        'transaction': transaction == null ? null : transaction ? 1 : 0,
+        'subscribe': subscribe == null
+            ? null
+            : subscribe
+                ? 1
+                : 0,
+        'transaction': transaction == null
+            ? null
+            : transaction
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };

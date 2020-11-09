@@ -14,6 +14,7 @@ class P2pAdvertListRequest extends Request {
     this.localCurrency,
     this.offset,
     this.p2pAdvertList = true,
+    this.useClientLimits,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -34,6 +35,9 @@ class P2pAdvertListRequest extends Request {
         p2pAdvertList: json['p2p_advert_list'] == null
             ? null
             : json['p2p_advert_list'] == 1,
+        useClientLimits: json['use_client_limits'] == null
+            ? null
+            : json['use_client_limits'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );
@@ -59,6 +63,9 @@ class P2pAdvertListRequest extends Request {
   /// Must be `true`
   final bool p2pAdvertList;
 
+  /// [Optional] If set to `true`, ads that exceed this account's balance or turnover limits will not be shown.
+  final bool useClientLimits;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -68,7 +75,16 @@ class P2pAdvertListRequest extends Request {
         'limit': limit,
         'local_currency': localCurrency,
         'offset': offset,
-        'p2p_advert_list': p2pAdvertList == null ? null : p2pAdvertList ? 1 : 0,
+        'p2p_advert_list': p2pAdvertList == null
+            ? null
+            : p2pAdvertList
+                ? 1
+                : 0,
+        'use_client_limits': useClientLimits == null
+            ? null
+            : useClientLimits
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -83,6 +99,7 @@ class P2pAdvertListRequest extends Request {
     String localCurrency,
     int offset,
     bool p2pAdvertList,
+    bool useClientLimits,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -94,6 +111,7 @@ class P2pAdvertListRequest extends Request {
         localCurrency: localCurrency ?? this.localCurrency,
         offset: offset ?? this.offset,
         p2pAdvertList: p2pAdvertList ?? this.p2pAdvertList,
+        useClientLimits: useClientLimits ?? this.useClientLimits,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

@@ -67,10 +67,17 @@ class PaymentagentWithdrawRequest extends Request {
         'amount': amount,
         'currency': currency,
         'description': description,
-        'dry_run': dryRun == null ? null : dryRun ? 1 : 0,
+        'dry_run': dryRun == null
+            ? null
+            : dryRun
+                ? 1
+                : 0,
         'paymentagent_loginid': paymentagentLoginid,
-        'paymentagent_withdraw':
-            paymentagentWithdraw == null ? null : paymentagentWithdraw ? 1 : 0,
+        'paymentagent_withdraw': paymentagentWithdraw == null
+            ? null
+            : paymentagentWithdraw
+                ? 1
+                : 0,
         'verification_code': verificationCode,
         'passthrough': passthrough,
         'req_id': reqId,

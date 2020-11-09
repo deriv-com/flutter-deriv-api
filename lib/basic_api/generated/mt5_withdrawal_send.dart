@@ -50,7 +50,11 @@ class Mt5WithdrawalRequest extends Request {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'amount': amount,
         'from_mt5': fromMt5,
-        'mt5_withdrawal': mt5Withdrawal == null ? null : mt5Withdrawal ? 1 : 0,
+        'mt5_withdrawal': mt5Withdrawal == null
+            ? null
+            : mt5Withdrawal
+                ? 1
+                : 0,
         'to_binary': toBinary,
         'passthrough': passthrough,
         'req_id': reqId,

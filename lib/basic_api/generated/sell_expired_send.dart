@@ -31,7 +31,11 @@ class SellExpiredRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'sell_expired': sellExpired == null ? null : sellExpired ? 1 : 0,
+        'sell_expired': sellExpired == null
+            ? null
+            : sellExpired
+                ? 1
+                : 0,
         'passthrough': passthrough,
         'req_id': reqId,
       };
