@@ -14,7 +14,7 @@ class CancellationInfoModel {
   /// Generate an instance from JSON
   factory CancellationInfoModel.fromJson(Map<String, dynamic> json) =>
       CancellationInfoModel(
-        askPrice: json['ask_price'],
+        askPrice: json['ask_price']?.toDouble(),
         dateExpiry: getDateTime(json['date_expiry']),
       );
 
