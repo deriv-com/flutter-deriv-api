@@ -21,7 +21,9 @@ class HistorySpotPriceModel extends SpotPriceModel {
   factory HistorySpotPriceModel.fromJson(Map<String, dynamic> json) =>
       HistorySpotPriceModel(
         displayName: json['display_name'],
-        orderAmount: json['order_amount']?.toDouble(),
+        orderAmount: json['order_amount'] is String
+            ? double.tryParse(json['order_amount'])
+            : json['order_amount']?.toDouble(),
         orderDate: getDateTime(json['order_date']),
         orderType: json['order_type'],
         value: json['value'],
