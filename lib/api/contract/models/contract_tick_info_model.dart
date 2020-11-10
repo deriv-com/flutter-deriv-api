@@ -22,7 +22,7 @@ class ContractTickInfoModel extends ContractTickModel {
         epoch: getDateTime(json['epoch']),
         flag: json['flag'],
         name: json['name'],
-        tick: json['tick'],
+        tick: json['tick']?.toDouble(),
         tickDisplayValue: json['tick_display_value'],
       );
 
