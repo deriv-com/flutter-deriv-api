@@ -19,9 +19,9 @@ void main() {
       ),
     );
 
-    expect(profitTable.count, 1);
+    expect(profitTable.count, 2);
 
-    expect(profitTable.transactions.length, 1);
+    expect(profitTable.transactions.length, 2);
 
     final ProfitTransactionModel transaction = profitTable.transactions.first;
 
@@ -30,13 +30,16 @@ void main() {
     expect(transaction.contractId, 4867502908);
     expect(
       transaction.longCode,
-      'Win payout if Volatility 10 (1s) Index after 5 ticks is strictly higher than entry spot.',
+      'Win 50% of your stake for every 1% fall in USD/JPY.',
     );
     expect(transaction.payout, 10.0);
     expect(transaction.purchaseTime, getDateTime(1587544006));
     expect(transaction.sellPrice, 5.25);
     expect(transaction.sellTime, getDateTime(1587554006));
-    expect(transaction.shortCode, 'CALL_1HZ10V_1.95_1589779082_5T_S0P_0');
+    expect(
+      transaction.shortCode,
+      'MULTDOWN_FRXUSDJPY_7_50_1603975474_4757575474_60m_0.00',
+    );
     expect(transaction.transactionId, 10867502908);
   });
 }
