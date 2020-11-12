@@ -34,5 +34,9 @@ void main() {
       accountStatus.authentication.identity.status,
       AccountIdentityStatus.none,
     );
+
+    expect(accountStatus.authentication.needsVerification.length, 2);
+    expect(accountStatus.authentication.needsVerification.first, 'document');
+    expect(accountStatus.authentication.needsVerification.last, 'identity');
   });
 }
