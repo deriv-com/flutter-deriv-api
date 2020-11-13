@@ -358,3 +358,12 @@ enum UserAccountType {
   /// MT5 account.
   mt5,
 }
+
+/// Verification Types
+enum VerificationType {
+  /// Document verification
+  document,
+
+  /// Identity verification
+  identity,
+}

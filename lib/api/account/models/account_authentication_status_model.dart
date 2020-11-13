@@ -1,6 +1,7 @@
 import 'package:flutter_deriv_api/api/account/models/account_authentication_document_model.dart';
 import 'package:flutter_deriv_api/api/account/models/account_identity_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// This represents the authentication status of the user and it
@@ -15,7 +16,8 @@ class AccountAuthenticationStatusModel extends APIBaseModel {
 
   /// Generate an instance from JSON
   factory AccountAuthenticationStatusModel.fromJson(
-          Map<String, dynamic> json) =>
+    Map<String, dynamic> json,
+  ) =>
       AccountAuthenticationStatusModel(
         document: getItemFromMap(
           json['document'],
@@ -27,7 +29,10 @@ class AccountAuthenticationStatusModel extends APIBaseModel {
           itemToTypeCallback: (dynamic map) =>
               AccountIdentityModel.fromJson(map),
         ),
-        needsVerification: getListFromMap(json['needs_verification']),
+        needsVerification: getEnumListFromStrings(
+          names: getListFromMap(json['needs_verification']),
+          values: VerificationType.values,
+        ),
       );
 
   /// The authentication status for document.
@@ -37,7 +42,7 @@ class AccountAuthenticationStatusModel extends APIBaseModel {
   final AccountIdentityModel identity;
 
   /// An array containing the list of required authentication.
-  final List<String> needsVerification;
+  final List<VerificationType> needsVerification;
 
   /// Generate a copy of instance with given parameters
   AccountAuthenticationStatusModel copyWith({
