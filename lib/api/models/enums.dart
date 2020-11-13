@@ -40,6 +40,9 @@ enum AccountStatusType {
   /// Client is age-verified.
   ageVerification,
 
+  /// To enable uploading documents.
+  allowDocumentUpload,
+
   /// Client is fully authenticated.
   authenticated,
 
@@ -57,6 +60,9 @@ enum AccountStatusType {
 
   /// Client's submitted proof-of-identity documents are expiring within a month.
   documentExpiringSoon,
+
+  /// Indication of an action needed for address or identity documents.
+  documentNeedsAction,
 
   /// Client has not completed financial assessment.
   financialAssessmentNotComplete,
