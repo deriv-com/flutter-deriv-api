@@ -40,6 +40,9 @@ enum AccountStatusType {
   /// Client is age-verified.
   ageVerification,
 
+  /// To enable uploading documents.
+  allowDocumentUpload,
+
   /// Client is fully authenticated.
   authenticated,
 
@@ -58,11 +61,17 @@ enum AccountStatusType {
   /// Client's submitted proof-of-identity documents are expiring within a month.
   documentExpiringSoon,
 
+  /// Indication of an action needed for address or identity documents.
+  documentNeedsAction,
+
   /// Client has not completed financial assessment.
   financialAssessmentNotComplete,
 
   /// Client has not completed financial information.
   financialInformationNotComplete,
+
+  /// MT5 withdrawal locked.
+  mt5WithdrawalLocked,
 
   /// This client has opted for a professional account.
   professional,
