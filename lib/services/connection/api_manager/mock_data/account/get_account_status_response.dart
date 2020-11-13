@@ -21,7 +21,8 @@ const String getAccountStatusResponse = '''{
         "status": "none"
       },
       "needs_verification": [
-
+        "document",
+        "identity"
       ]
     },
     "experimental_suspended": {
