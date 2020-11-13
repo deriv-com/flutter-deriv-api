@@ -70,6 +70,9 @@ enum AccountStatusType {
   /// Client has not completed financial information.
   financialInformationNotComplete,
 
+  /// MT5 withdrawal locked.
+  mt5WithdrawalLocked,
+
   /// This client has opted for a professional account.
   professional,
 
