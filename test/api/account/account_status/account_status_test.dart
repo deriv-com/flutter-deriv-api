@@ -34,5 +34,19 @@ void main() {
       accountStatus.authentication.identity.status,
       AccountIdentityStatus.none,
     );
+
+    expect(
+      accountStatus.authentication.needsVerification,
+      isA<List<VerificationType>>(),
+    );
+    expect(accountStatus.authentication.needsVerification.length, 2);
+    expect(
+      accountStatus.authentication.needsVerification.first,
+      VerificationType.document,
+    );
+    expect(
+      accountStatus.authentication.needsVerification.last,
+      VerificationType.identity,
+    );
   });
 }
