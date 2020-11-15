@@ -113,7 +113,7 @@ class OpenContract extends Contract {
           itemToTypeCallback: (dynamic item) =>
               CancellationInfoModel.fromJson(item),
         ),
-        commission: json['commision']?.toDouble(),
+        commission: getDouble(json['commission']),
         contractType: getEnumFromString(
           values: ContractType.values,
           name: json['contract_type'],

@@ -25,7 +25,7 @@ int getDecimalDigits(String value) {
 //   return formatter;
 // }
 
-/// Formats a string [value] of number [decimalDigits] and [currency] symbol
+/// Formats a string [value] of number [decimalDigits] and [_currency] symbol
 // TODO(Morteza): The funciton has been commented since it need Intl lib. Unfortunately, the `json_schema` lib has conflicts with the latest version of Intl.
 // String getFormattedValue({
 //   String value,
@@ -107,3 +107,8 @@ int generateRandomInt({
   int max = 10,
 }) =>
     min + Random().nextInt(max - min);
+
+/// Parse double value from string or number value.
+double getDouble(dynamic value)=> value is String
+      ? double.tryParse(value)
+      : value?.toDouble();
