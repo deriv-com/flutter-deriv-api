@@ -29,7 +29,7 @@ void main() {
     final WebsiteStatusCurrencyConfigModel aud = currencyConfigs.first;
 
     expect(aud.name, 'Australian Dollar');
-    expect(aud.code, 'AUD');
+    expect(aud.code, 'USD');
     expect(aud.isSuspended, false);
     expect(aud.stakeDefault, 10.0);
     expect(aud.type, CurrencyType.fiat);
