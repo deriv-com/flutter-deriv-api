@@ -109,14 +109,8 @@ int generateRandomInt({
     min + Random().nextInt(max - min);
 
 /// Parse double value from string or number value.
-double getDouble(dynamic value) {
-  switch (value.runtimeType) {
-    case String:
-      return double.tryParse(value);
-    case num:
-      return value.toDouble();
-    default:
-      // ignore: avoid_returning_null
-      return null;
-  }
-}
+double getDouble(dynamic value) => value is String
+      ? double.tryParse(value)
+      : value is num
+          ? value.toDouble()
+          : null;
