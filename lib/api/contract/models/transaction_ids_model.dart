@@ -4,8 +4,8 @@ import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 class TransactionIdsModel extends APIBaseModel {
   /// Initializes
   TransactionIdsModel({
-    this.buyID,
-    this.sellID,
+    this.buyId,
+    this.sellId,
   });
 
   /// Generate an instance from JSON
@@ -13,23 +13,23 @@ class TransactionIdsModel extends APIBaseModel {
     Map<String, dynamic> json,
   ) =>
       TransactionIdsModel(
-        buyID: json['buy'],
-        sellID: json['sell'],
+        buyId: json['buy'],
+        sellId: json['sell'],
       );
 
   /// Buy ID
-  final int buyID;
+  final int buyId;
 
   /// Sell ID
-  final int sellID;
+  final int sellId;
 
   /// Generate a copy of instance with given parameters
   TransactionIdsModel copyWith(
-    int buyID,
-    int sellID,
+    int buyId,
+    int sellId,
   ) =>
       TransactionIdsModel(
-        buyID: buyID ?? this.buyID,
-        sellID: sellID ?? this.sellID,
+        buyId: buyId ?? this.buyId,
+        sellId: sellId ?? this.sellId,
       );
 }
