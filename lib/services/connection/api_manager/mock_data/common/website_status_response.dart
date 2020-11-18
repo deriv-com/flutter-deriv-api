@@ -36,7 +36,7 @@ const String websiteStatusResponse = '''{
       }
     },
     "currencies_config": {
-      "AUD": {
+      "USD": {
         "fractional_digits": 2,
         "is_deposit_suspended": 0,
         "is_suspended": 0,
