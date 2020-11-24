@@ -107,3 +107,10 @@ int generateRandomInt({
   int max = 10,
 }) =>
     min + Random().nextInt(max - min);
+
+/// Parse double value from string or number value.
+double getDouble(dynamic value) => value is String
+      ? double.tryParse(value)
+      : value is num
+          ? value.toDouble()
+          : null;
