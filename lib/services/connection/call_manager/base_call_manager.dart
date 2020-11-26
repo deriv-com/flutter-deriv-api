@@ -32,7 +32,7 @@ abstract class BaseCallManager<T> {
   final CallHistory _callHistory = CallHistory();
 
   /// Store available request id
-  int _requestId = 0;
+  static int _requestId = 0;
 
   /// Get pending requests queue
   Map<int, PendingRequest<Response>> get pendingRequests => _pendingRequests;
