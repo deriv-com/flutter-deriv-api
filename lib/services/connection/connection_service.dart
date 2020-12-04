@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter_deriv_api/api/common/ping/ping.dart';
 import 'package:connectivity/connectivity.dart';
-import 'package:http/http.dart' as http;
 
 /// A class to check the connectivity of the device to the Internet
 class ConnectionService {
@@ -11,8 +11,10 @@ class ConnectionService {
   ConnectionService._internal();
 
   static final ConnectionService _instance = ConnectionService._internal();
+  final int _connectivityCheckInterval = 15;
+  final int _pingTimeout = 10;
 
-  bool _hasConnection = true;
+  bool _hasConnection;
 
   /// Stream of connection states
   StreamController<bool> connectionChangeController =
@@ -34,7 +36,12 @@ class ConnectionService {
     switch (result) {
       case ConnectivityResult.wifi:
       case ConnectivityResult.mobile:
-        _hasConnection = await _pingGoogle();
+        // Don't call ping at this stage as web socket is not connected yet.
+        if (_hasConnection != null) {
+          _hasConnection = await _ping();
+        }
+        _hasConnection = true;
+        connectionChangeController.add(_hasConnection);
 
         break;
       case ConnectivityResult.none:
@@ -79,11 +86,11 @@ class ConnectionService {
     return _checkConnection(connectivityResult);
   }
 
-  // Checks for change to connectivity to internet every 15 seconds
+  // Checks for change to connectivity to internet every [_connectivityCheckInterval] seconds
   void _startConnectivityTimer() {
     if (_connectivityTimer == null || !_connectivityTimer.isActive) {
-      _connectivityTimer =
-          Timer.periodic(const Duration(seconds: 15), (Timer timer) async {
+      _connectivityTimer = Timer.periodic(
+          Duration(seconds: _connectivityCheckInterval), (Timer timer) async {
         await checkConnectivity();
       });
     }
@@ -91,17 +98,13 @@ class ConnectionService {
 
   void _stopConnectivityTimer() => _connectivityTimer?.cancel();
 
-  Future<bool> _pingGoogle() async {
+  Future<bool> _ping() async {
     try {
-      final http.Response response = await http
-          .get('https://google.com')
-          .timeout(const Duration(seconds: 5));
-      if (response.statusCode < 200 || response.statusCode > 299) {
-        return Future<bool>.value(false);
-      }
+      await Ping.ping().timeout(Duration(seconds: _pingTimeout));
     } on Exception catch (_) {
       return Future<bool>.value(false);
     }
+
     return Future<bool>.value(true);
   }
 }
