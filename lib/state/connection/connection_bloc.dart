@@ -22,21 +22,20 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
     ConnectionInformation connectionInformation, {
     this.isMock = false,
   }) : super(InitialConnectionState()) {
-    ConnectionService().initialize(isMock: isMock);
+    ConnectionService().initialize(connectionBloc: this, isMock: isMock);
     APIInitializer().initialize(isMock: isMock, uniqueKey: _uniqueKey);
 
     _connectionInformation = connectionInformation;
-    _internetBloc = internet_bloc.InternetBloc();
     _api ??= Injector.getInjector().get<BaseAPI>();
 
-    _connectWebSocket();
+    connectWebSocket();
+
+    _internetBloc = internet_bloc.InternetBloc();
 
     _internetListener = _internetBloc.listen(
       (internet_bloc.InternetState state) {
         if (state is internet_bloc.Disconnected) {
           add(Disconnect());
-        } else if (state is internet_bloc.Connected) {
-          _connectWebSocket();
         }
       },
     );
@@ -70,22 +69,21 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       bool shouldReconnect = true;
       // _api.disconnect should be always invoked before changing the state
       // otherwise the onDone function which is passed to the run function will be invoked one more time.
-      if (state is Connected) {
-        try {
-          shouldReconnect = false;
-          await _api.disconnect().timeout(_callTimeOut);
-        } on Exception catch (e) {
-          shouldReconnect = true;
-          dev.log(e.toString(), error: e);
-        }
 
-        _connectWebSocket();
+      try {
+        shouldReconnect = false;
+        await _api.disconnect().timeout(_callTimeOut);
+      } on Exception catch (e) {
+        shouldReconnect = true;
+        dev.log(e.toString(), error: e);
+      }
+
+      if (state is! Reconnecting) {
+        await connectWebSocket();
       }
 
       if (event is Reconnect) {
-        if (await ConnectionService().checkConnectivity() &&
-            shouldReconnect &&
-            state is! Reconnecting) {
+        if (shouldReconnect && state is! Reconnecting) {
           yield Reconnecting();
         } else if (state is! Disconnected) {
           yield Disconnected();
@@ -106,11 +104,18 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
         // this is used to handle invalid endpoints and we don't need to show any messages
         yield ConnectionError('');
       }
+    } else if (event is ReconnectingEvent) {
+      yield Reconnecting();
     }
   }
 
-  void _connectWebSocket() {
-    _api.connect(connectionInformation, onDone: (UniqueKey uniqueKey) async {
+  /// Connects to the web socket.
+  /// This function MUST NOT be called outside of this package.
+  Future<void> connectWebSocket() async {
+    add(ReconnectingEvent());
+    await _api.disconnect().timeout(_callTimeOut);
+    await _api.connect(connectionInformation,
+        onDone: (UniqueKey uniqueKey) async {
       if (_uniqueKey == uniqueKey) {
         await _api.disconnect();
       }
