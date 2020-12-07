@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_deriv_api/api/common/ping/ping.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
 
 /// A class to check the connectivity of the device to the Internet
 class ConnectionService {
@@ -30,18 +31,19 @@ class ConnectionService {
 
   Timer _connectivityTimer;
 
+  ConnectionBloc _connectionBloc;
+
   Future<bool> _checkConnection(ConnectivityResult result) async {
     final bool previousConnection = _hasConnection;
 
     switch (result) {
       case ConnectivityResult.wifi:
       case ConnectivityResult.mobile:
-        // Don't call ping at this stage as web socket is not connected yet.
-        if (_hasConnection != null) {
-          _hasConnection = await _ping();
+        if (_connectionBloc.state is! Connected) {
+          await _connectionBloc.connectWebSocket();
         }
-        _hasConnection = true;
-        connectionChangeController.add(_hasConnection);
+
+        _hasConnection = await _ping();
 
         break;
       case ConnectivityResult.none:
@@ -66,12 +68,14 @@ class ConnectionService {
 
   /// Initializes
   Future<void> initialize({
+    ConnectionBloc connectionBloc,
     bool isMock = false,
   }) async {
     if (isMock) {
       return;
     }
 
+    _connectionBloc = connectionBloc;
     await _connectivity.checkConnectivity();
     _connectivity.onConnectivityChanged.listen(_checkConnection);
 
