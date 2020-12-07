@@ -41,3 +41,9 @@ class Reconfigure extends ConnectionEvent {
   @override
   String toString() => 'ConnectionEvent: Reconfigure';
 }
+
+/// Attempting to reconnect to WS is in progress event.
+class ReconnectingEvent extends ConnectionEvent {
+  @override
+  String toString() => 'ConnectionEvent: ReconnectingEvent';
+}
