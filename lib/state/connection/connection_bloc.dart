@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/common/ping/ping.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/connection/connection_service.dart';
@@ -23,23 +22,20 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
     ConnectionInformation connectionInformation, {
     this.isMock = false,
   }) : super(InitialConnectionState()) {
-    ConnectionService().initialize(isMock: isMock);
+    ConnectionService().initialize(connectionBloc: this, isMock: isMock);
     APIInitializer().initialize(isMock: isMock, uniqueKey: _uniqueKey);
 
     _connectionInformation = connectionInformation;
-    _internetBloc = internet_bloc.InternetBloc();
     _api ??= Injector.getInjector().get<BaseAPI>();
 
-    _connectWebSocket();
+    connectWebSocket();
+
+    _internetBloc = internet_bloc.InternetBloc();
 
     _internetListener = _internetBloc.listen(
       (internet_bloc.InternetState state) {
         if (state is internet_bloc.Disconnected) {
           add(Disconnect());
-          _stopPingTimer();
-        } else if (state is internet_bloc.Connected) {
-          _connectWebSocket();
-          _startPingTimer();
         }
       },
     );
@@ -48,7 +44,6 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   /// Creates mock connection, sets this to [true] for testing purposes
   final bool isMock;
 
-  static const Duration _pingInterval = Duration(seconds: 12);
   static const Duration _callTimeOut = Duration(seconds: 10);
 
   BaseAPI _api;
@@ -56,8 +51,6 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   StreamSubscription<internet_bloc.InternetState> _internetListener;
 
   internet_bloc.InternetBloc _internetBloc;
-
-  Timer _pingTimer;
 
   final UniqueKey _uniqueKey = UniqueKey();
 
@@ -69,8 +62,6 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   Stream<ConnectionState> mapEventToState(ConnectionEvent event) async* {
     if (event is Connect && state is! Connected) {
       yield Connected();
-
-      _startPingTimer();
     } else if (event is Reconnect || event is Reconfigure) {
       if (event is Reconfigure) {
         _connectionInformation = event.connectionInformation;
@@ -78,22 +69,21 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       bool shouldReconnect = true;
       // _api.disconnect should be always invoked before changing the state
       // otherwise the onDone function which is passed to the run function will be invoked one more time.
-      if (state is Connected) {
-        try {
-          shouldReconnect = false;
-          await _api.disconnect().timeout(_callTimeOut);
-        } on Exception catch (e) {
-          shouldReconnect = true;
-          dev.log(e.toString(), error: e);
-        }
 
-        _connectWebSocket();
+      try {
+        shouldReconnect = false;
+        await _api.disconnect().timeout(_callTimeOut);
+      } on Exception catch (e) {
+        shouldReconnect = true;
+        dev.log(e.toString(), error: e);
+      }
+
+      if (state is! Reconnecting) {
+        await connectWebSocket();
       }
 
       if (event is Reconnect) {
-        if (await ConnectionService().checkConnectivity() &&
-            shouldReconnect &&
-            state is! Reconnecting) {
+        if (shouldReconnect && state is! Reconnecting) {
           yield Reconnecting();
         } else if (state is! Disconnected) {
           yield Disconnected();
@@ -102,7 +92,6 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
         // Needed to reset state after changing the endpoint from settings page
         yield InitialConnectionState();
       }
-
     } else if (event is Disconnect) {
       if (state is Connected) {
         await _api.disconnect();
@@ -115,11 +104,18 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
         // this is used to handle invalid endpoints and we don't need to show any messages
         yield ConnectionError('');
       }
+    } else if (event is ReconnectingEvent) {
+      yield Reconnecting();
     }
   }
 
-  void _connectWebSocket() {
-    _api.connect(connectionInformation, onDone: (UniqueKey uniqueKey) async {
+  /// Connects to the web socket.
+  /// This function MUST NOT be called outside of this package.
+  Future<void> connectWebSocket() async {
+    add(ReconnectingEvent());
+    await _api.disconnect().timeout(_callTimeOut);
+    await _api.connect(connectionInformation,
+        onDone: (UniqueKey uniqueKey) async {
       if (_uniqueKey == uniqueKey) {
         await _api.disconnect();
       }
@@ -141,22 +137,4 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
     return super.close();
   }
-
-  void _startPingTimer() {
-    if (_pingTimer == null || !_pingTimer.isActive) {
-      _pingTimer = Timer.periodic(_pingInterval, (Timer timer) async {
-        try {
-          await Ping.ping().timeout(_callTimeOut);
-        } on Exception catch (e) {
-          if (state is! Reconnecting) {
-            timer.cancel();
-            add(Reconnect());
-          }
-          dev.log(e.toString(), error: e);
-        }
-      });
-    }
-  }
-
-  void _stopPingTimer() => _pingTimer?.cancel();
 }
