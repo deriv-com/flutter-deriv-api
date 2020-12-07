@@ -22,7 +22,7 @@ class BinaryAPI extends BaseAPI {
   /// Initializes
   BinaryAPI(UniqueKey uniqueKey) : super(uniqueKey);
 
-  static const Duration _wsConnectTimeOut = Duration(seconds: 10);
+  static const Duration _wsConnectTimeOut = Duration(seconds: 15);
 
   /// Indicates current connection status - only set `true` once
   /// we have established SSL *and* web socket handshake steps
@@ -71,18 +71,20 @@ class BinaryAPI extends BaseAPI {
 
     dev.log('connecting to $uri.');
 
-    final Completer<bool> connectionCompleter = Completer<bool>();
-
     // Initialize connection to web socket server
-    _webSocketChannel = IOWebSocketChannel.connect(uri.toString());
+    _webSocketChannel = IOWebSocketChannel.connect(uri.toString(),
+        pingInterval: _wsConnectTimeOut);
 
     _webSocketListener =
         _webSocketChannel // .cast<String>().transform(utf8.decode)
             .stream
             .map<Map<String, dynamic>>((Object result) => jsonDecode(result))
             .listen(
-      (Map<String, dynamic> message) =>
-          _handleResponse(connectionCompleter, message),
+      (Map<String, dynamic> message) {
+        _connected = true;
+        onOpen?.call(uniqueKey);
+        _handleResponse(message);
+      },
       onError: (Object error) {
         dev.log('the web socket connection is closed: $error.');
 
@@ -98,16 +100,6 @@ class BinaryAPI extends BaseAPI {
     );
 
     dev.log('send initial message.');
-
-    try {
-      await call(request: const PingRequest()).timeout(_wsConnectTimeOut);
-      await connectionCompleter.future.timeout(_wsConnectTimeOut);
-      dev.log('web socket is connected.');
-
-      onOpen?.call(uniqueKey);
-    } on Exception {
-      onDone?.call(uniqueKey);
-    }
   }
 
   void _resetCallManagers() {
@@ -172,7 +164,6 @@ class BinaryAPI extends BaseAPI {
   /// caller's Future or add the response to caller's stream if it was a
   /// subscription call
   void _handleResponse(
-    Completer<bool> connectionCompleter,
     Map<String, dynamic> response,
   ) {
     try {
@@ -187,9 +178,6 @@ class BinaryAPI extends BaseAPI {
         dev.log('web socket is connected.');
 
         _connected = true;
-        if (!connectionCompleter.isCompleted) {
-          connectionCompleter.complete(true);
-        }
       }
 
       dev.log('api response: $message.');
