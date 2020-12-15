@@ -1,4 +1,4 @@
-part of '../helpers.dart';
+import 'package:intl/intl.dart';
 
 /// Fetches the device time
 int getCurrentLocalEpoch() =>

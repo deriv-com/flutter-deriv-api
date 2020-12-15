@@ -1,6 +1,6 @@
 import 'package:flutter_deriv_api/api/contract/models/contract_tick_info_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Audit details for expired contract.
 class AuditDetailModel extends APIBaseModel {

@@ -9,7 +9,7 @@ import 'package:flutter_deriv_api/api/app/app_update.dart';
 import 'package:flutter_deriv_api/api/app/revoke_oauth_app.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));

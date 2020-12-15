@@ -3,9 +3,9 @@ import 'package:flutter_deriv_api/api/account/models/profit_transaction_model.da
 import 'package:flutter_deriv_api/api/account/profit_table/exceptions/profit_table_exception.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Profit table class
 class ProfitTable extends ProfitTableModel {

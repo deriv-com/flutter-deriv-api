@@ -3,9 +3,9 @@ import 'package:flutter_deriv_api/api/account/models/account_settings_model.dart
 import 'package:flutter_deriv_api/api/account/models/set_account_setting_model.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// User information and settings (email, date of birth, address etc).
 class AccountSettings extends AccountSettingsModel {

@@ -4,7 +4,7 @@ import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/common/exchange/exchange_rates.dart';
 import 'package:flutter_deriv_api/api/common/models/rate_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 void main() {
   setUp(() => APIInitializer().initialize(isMock: true));
