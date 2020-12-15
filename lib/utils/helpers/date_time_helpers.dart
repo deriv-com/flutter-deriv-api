@@ -27,3 +27,7 @@ int getSecondsSinceEpoch(int millisecondsSinceEpoch) =>
 int getSecondsSinceEpochDateTime(DateTime dateTime) => dateTime == null
     ? null
     : getSecondsSinceEpoch(dateTime.millisecondsSinceEpoch);
+
+/// Gets a string in `yyyy-MM-dd` format from a [DateTime].
+String getStringFromDateTime(DateTime dateTime) =>
+    dateTime == null ? null : DateFormat('yyyy-MM-dd').format(dateTime);

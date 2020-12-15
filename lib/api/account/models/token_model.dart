@@ -16,9 +16,7 @@ class TokenModel extends APIBaseModel {
   /// Creates an instance from JSON
   factory TokenModel.fromJson(Map<String, dynamic> json) => TokenModel(
         displayName: json['display_name'],
-        lastUsed: DateTime.parse(
-          json['last_used'],
-        ), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+        lastUsed: DateTime.parse(json['last_used']),
         scopes: getListFromMap(
           json['scopes'],
           itemToTypeCallback: (dynamic item) => getEnumFromString(

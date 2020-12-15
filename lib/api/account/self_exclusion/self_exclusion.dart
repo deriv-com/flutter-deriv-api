@@ -43,10 +43,7 @@ class SelfExclusion extends SelfExclusionModel {
 
   /// Creates an instance from JSON
   factory SelfExclusion.fromJson(Map<String, dynamic> json) => SelfExclusion(
-        // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
-        excludeUntil: DateTime.parse(
-          json['exclude_until'],
-        ),
+        excludeUntil: DateTime.parse(json['exclude_until']),
         max30dayDeposit: json['max_30day_deposit']?.toDouble(),
         max30dayLosses: json['max_30day_losses']?.toDouble(),
         max30dayTurnover: json['max_30day_turnover']?.toDouble(),
@@ -143,8 +140,7 @@ class SelfExclusion extends SelfExclusionModel {
   Future<bool> exclude() async {
     final SetSelfExclusionResponse response = await _api.call(
       request: SetSelfExclusionRequest(
-        // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
-        excludeUntil: excludeUntil.toString(),
+        excludeUntil: getStringFromDateTime(excludeUntil),
         max30dayDeposit: max30dayDeposit,
         max30dayLosses: max30dayLosses,
         max30dayTurnover: max30dayTurnover,
