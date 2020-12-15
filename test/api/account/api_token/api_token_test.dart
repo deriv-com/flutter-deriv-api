@@ -24,13 +24,17 @@ void main() {
 
       expect(createAPIToken.tokens.first.displayName, 'sample token');
       expect(
-          createAPIToken.tokens.first.lastUsed, DateTime.parse('2020-01-11'));
+        createAPIToken.tokens.first.lastUsed,
+        DateTime.tryParse('2020-01-11'),
+      );
 
       expect(createAPIToken.tokens.first.scopes.length, 2);
 
       expect(createAPIToken.tokens.first.scopes.first, TokenScope.read);
       expect(
-          createAPIToken.tokens.first.scopes[1], TokenScope.tradingInformation);
+        createAPIToken.tokens.first.scopes[1],
+        TokenScope.tradingInformation,
+      );
 
       expect(createAPIToken.tokens.first.token, 'thisIsASampleTOKEN123');
       expect(createAPIToken.tokens.first.validForIp, '178.32.12.45');
@@ -47,7 +51,7 @@ void main() {
       expect(deleteAPIToken.tokens.first.displayName, 'sample token');
       expect(
         deleteAPIToken.tokens.first.lastUsed,
-        DateTime.parse('2020-01-11'),
+        DateTime.tryParse('2020-01-11'),
       );
 
       expect(deleteAPIToken.tokens.first.scopes.length, 2);

@@ -59,8 +59,8 @@ void main() {
       final AppMarkupDetails appMarkupDetails =
           await App(appId: 1234).fetchApplicationMarkupDetails(
         clientLoginId: 'CR12345',
-        dateFrom: DateTime.parse('2017-08-01 00:00:00'),
-        dateTo: DateTime.parse('2017-08-31 23:59:59'),
+        dateFrom: DateTime.tryParse('2017-08-01 00:00:00'),
+        dateTo: DateTime.tryParse('2017-08-31 23:59:59'),
         description: true,
         limit: 100,
         offset: 0,

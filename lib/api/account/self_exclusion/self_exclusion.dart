@@ -43,7 +43,7 @@ class SelfExclusion extends SelfExclusionModel {
 
   /// Creates an instance from JSON
   factory SelfExclusion.fromJson(Map<String, dynamic> json) => SelfExclusion(
-        excludeUntil: DateTime.parse(json['exclude_until']),
+        excludeUntil: DateTime.tryParse(json['exclude_until']),
         max30dayDeposit: json['max_30day_deposit']?.toDouble(),
         max30dayLosses: json['max_30day_losses']?.toDouble(),
         max30dayTurnover: json['max_30day_turnover']?.toDouble(),

@@ -13,7 +13,7 @@ void main() {
       final SelfExclusion selfExclusive =
           await SelfExclusion.fetchSelfExclusion();
 
-      expect(selfExclusive.excludeUntil, DateTime.parse('2020-01-01'));
+      expect(selfExclusive.excludeUntil, DateTime.tryParse('2020-01-01'));
       expect(selfExclusive.max30dayDeposit, 700000);
       expect(selfExclusive.max30dayLosses, 100000);
       expect(selfExclusive.max30dayTurnover, 1000);
@@ -52,7 +52,7 @@ void main() {
 
     test('Exclude Self Exclusion Instance Test', () async {
       final bool setSelfExclusion = await SelfExclusion(
-        excludeUntil: DateTime.parse('2020-01-01'),
+        excludeUntil: DateTime.tryParse('2020-01-01'),
         max30dayDeposit: 700000,
         max30dayLosses: 100000,
         max30dayTurnover: 1000,
@@ -63,7 +63,7 @@ void main() {
         maxLosses: 100000,
         maxTurnover: 1000,
         sessionDurationLimit: 3600,
-        timeoutUntil: DateTime.parse('2020-01-02'),
+        timeoutUntil: DateTime.tryParse('2020-01-02'),
       ).exclude();
 
       expect(setSelfExclusion, true);
