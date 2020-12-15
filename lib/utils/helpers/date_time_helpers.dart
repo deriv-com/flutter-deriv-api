@@ -28,6 +28,11 @@ int getSecondsSinceEpochDateTime(DateTime dateTime) => dateTime == null
     ? null
     : getSecondsSinceEpoch(dateTime.millisecondsSinceEpoch);
 
-/// Gets a string in `yyyy-MM-dd` format from a [DateTime].
-String getStringFromDateTime(DateTime dateTime) =>
-    dateTime == null ? null : DateFormat('yyyy-MM-dd').format(dateTime);
+/// Gets a string from a [DateTime] object.
+///
+/// Default pattern is `yyyy-MM-dd`.
+String getStringFromDateTime(
+  DateTime dateTime, {
+  String pattern = 'yyyy-MM-dd',
+}) =>
+    dateTime == null ? null : DateFormat(pattern).format(dateTime);
