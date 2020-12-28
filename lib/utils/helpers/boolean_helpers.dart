@@ -1,7 +1,12 @@
 part of '../helpers.dart';
 
 /// Converts int to boolean
-bool getBool(int value) => value == null ? null : value == 1;
+bool getBool(dynamic value) =>
+    value == null ? null : value == 1 || value == true;
 
 /// Converts boolean to int
-int getInt({bool value}) => value == null ? null : value ? 1 : 0;
+int getInt({bool value}) => value == null
+    ? null
+    : value
+        ? 1
+        : 0;

@@ -1,10 +1,15 @@
+import 'dart:math';
+
 import 'package:dart_style/dart_style.dart';
 import 'package:inflection2/inflection2.dart';
 import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
 
 const String _objectType = 'object';
+const String _objectUnknownType = 'objectEmpty';
 const String _arrayType = 'array';
+const String _arrayUnknownType = 'arrayEmpty';
+const String _arrayEnumType = 'arrayEnum';
 const List<String> _ignoredParameters = <String>[
   'req_id',
   'passthrough',
@@ -36,27 +41,51 @@ class JsonSchemaParser {
     'boolean': 'bool',
   };
 
-  static String _getClassName({
+  static String _getClassNameOrType({
     @required String name,
     @required String type,
     String arrayType,
-  }) =>
-      type == _objectType
-          ? ReCase(name).pascalCase
-          : type == _arrayType
-              ? arrayType != null && _typeMap.containsKey(arrayType)
-                  ? _typeMap[arrayType]
-                  : convertToSingular(ReCase(name).pascalCase)
-              : _typeMap[type] ?? 'UNKNOWN_TYPE';
+  }) {
+    if (type != _objectType) {
+      if (type == _arrayType) {
+        if (arrayType == _arrayEnumType) {
+          return '${ReCase(name).pascalCase}Enum';
+        }
+        if (arrayType != null && _typeMap.containsKey(arrayType)) {
+          return _typeMap[arrayType];
+        }
+        return convertToSingular(ReCase(name).pascalCase);
+      }
+      return _typeMap[type] ?? 'dynamic';
+    }
+    return ReCase(name).pascalCase;
+  }
+
+  // TODO(Mohammad): We must go through the model children to obtain a model type completely(for types like nested Lists and maps, it won't work)
+  // Need Refactor for this feature, cause the _getObjectType process get called before all parrent's children get completed.
 
   static String _getObjectType({
     @required String name,
     @required String type,
     String arrayType,
-  }) =>
-      type == _arrayType
-          ? 'List<${_getClassName(name: name, type: type, arrayType: arrayType)}>'
-          : _getClassName(name: name, type: type, arrayType: arrayType);
+  }) {
+    if (type == _arrayType) {
+      // Array Type
+      if (arrayType == _arrayUnknownType) {
+        return 'List<dynamic>';
+      }
+      if(arrayType == _arrayType){
+        
+      }
+      return 'List<${_getClassNameOrType(name: name, type: type, arrayType: arrayType)}>';
+    } else {
+      // Obj Type
+      if (type == _objectUnknownType) {
+        return 'Map<String,dynamic>';
+      }
+      return _getClassNameOrType(name: name, type: type, arrayType: arrayType);
+    }
+  }
 
   static String _generateClass({
     @required String className,
@@ -82,7 +111,10 @@ class JsonSchemaParser {
             ${_generateToJson(models: models)}
             /// Creates a copy of instance with given parameters
             ${_copyWith(className: className, models: models)}
+            ${_generateEnumMappers(className: className, models: models)}
           }
+
+          ${_generateEnums(className: className, models: models)}
         ''',
       );
 
@@ -131,12 +163,83 @@ class JsonSchemaParser {
       result.write(
         '''
           /// ${model.description}
-          final ${model.type} ${model.title};
+          final ${model.isEnum && !model.isArray ? model.enumName : model.type} ${model.title};
         ''',
       );
     }
 
     return result;
+  }
+
+  static StringBuffer _generateEnumMappers({
+    @required String className,
+    @required List<_SchemaModel> models,
+  }) {
+    final StringBuffer result = StringBuffer();
+    final bool hasEnum = models.any((_SchemaModel model) => model.isEnum);
+    if (hasEnum) {
+      result.write('''
+      // Creating Enum Mappers
+      ''');
+      final String enumString = models.map((_SchemaModel model) {
+        if (model.isEnum) {
+          final String enumName = model.enumName;
+          final String mapStr = model.enumValues
+              .map((String e) =>
+                  '$enumName.${_toEnumName(e)}: r\'$e\',') // There are some cases where enum values has ['], so should be scaped.
+              .join();
+          return '''
+       static final Map<$enumName, String> ${enumName.camelCase}Mapper = {
+            $mapStr
+          };
+          
+        ''';
+        }
+        return '';
+      }).join('\n');
+      result.write(enumString);
+    }
+    return result;
+  }
+
+  static StringBuffer _generateEnums({
+    @required String className,
+    @required List<_SchemaModel> models,
+  }) {
+    final StringBuffer result = StringBuffer();
+    final bool hasEnum = models.any((_SchemaModel model) => model.isEnum);
+    if (hasEnum) {
+      result.write('''
+      // Creating Enums
+      ''');
+      final String enumString = models.map((_SchemaModel model) {
+        if (model.isEnum) {
+          final String enumName = model.enumName;
+          return '''
+        enum $enumName{
+          ${model.enumValues.map((String e) => '${_toEnumName(e)},').join('\n')}
+          }
+
+        ''';
+        }
+        return '';
+      }).join('\n');
+      result.write(enumString);
+    }
+    return result;
+  }
+  /*
+   final Map<$enumName, String> ${enumName}Mapper = {
+            ${model.enumValues.map((String e) => '$enumName.${_toEnumName(e)}: \'$e\',')}
+          };
+  */
+
+  static String _toEnumName(String name) {
+    final String formatted = name.snakeCase
+        .replaceAll('\'', '')
+        .replaceAll(',', '')
+        .replaceAll('&', '');
+    return formatted.startsWith(RegExp(r'\d')) ? '_$formatted' : formatted;
   }
 
   static StringBuffer _generateFromJson({
@@ -152,8 +255,27 @@ class JsonSchemaParser {
       final String title = model.title;
       final String schemaTitle = model.schemaTitle;
       final String schemaType = model.schemaType;
+      final String schemaArrType = model.schemaArrType;
 
-      if (schemaType == _objectType) {
+      if (model.isEnum) {
+        if (model.isArray) {
+          result.write('''
+          $title: List<${model.enumName}>.from(json['$schemaTitle'].map((x) => ${model.enumName.camelCase}Mapper.entries
+          .firstWhere((entry) => entry.value == x,
+              orElse: () => null)
+          ?.key)),
+          ''');
+        } else {
+          result.write('''
+            $title: json['$schemaTitle'] == null
+              ? null
+              : ${model.enumName.camelCase}Mapper.entries
+          .firstWhere((entry) => entry.value == json['$schemaTitle'],
+              orElse: () => null)
+          ?.key,
+          ''');
+        }
+      } else if (schemaType == _objectType) {
         result.write(
           '''
             $title: json['$schemaTitle'] == null
@@ -161,15 +283,26 @@ class JsonSchemaParser {
               : $className.fromJson(json['$schemaTitle']),
           ''',
         );
+        // TODO: check if we need to process List<BaseTypes> too.
       } else if (schemaType == _arrayType) {
-        result.write(
-          '''
+        if (schemaArrType == _objectType) {
+          result.write(
+            '''
             $title: json['$schemaTitle'] == null
               ? null
               : json['$schemaTitle'].map<$className>((dynamic item) => 
-                  ${_primaryTypes.contains(className) ? 'item' : '$className.fromJson(item)'}).toList(),
+                  ${'$className.fromJson(item)'}).toList(),
           ''',
-        );
+          );
+        } else if (schemaArrType != _arrayUnknownType) {
+          result.write('''
+          $title: List<${_typeMap[schemaArrType]}>.from(json['$schemaTitle'].map((x) => x)),
+          ''');
+        }
+      } else if (schemaType == 'number') {
+        result.write('''$title: getDouble(json['$schemaTitle']),''');
+      } else if (schemaType == 'boolean') {
+        result.write('''$title: getBool(json['$schemaTitle']),''');
       } else {
         result.write('''$title: json['$schemaTitle'],''');
       }
@@ -196,8 +329,22 @@ class JsonSchemaParser {
       final String title = model.title;
       final String schemaTitle = model.schemaTitle;
       final String schemaType = model.schemaType;
+      final String schemaArrType = model.schemaArrType;
 
-      if (schemaType == _objectType) {
+      if (model.isEnum) {
+        if (model.isArray) {
+          result.write(
+            '''
+            if ($title != null) {
+              result['$schemaTitle'] = $title.map((item) => ${model.enumName.camelCase}Mapper[item]).toList();
+            }
+          ''',
+          );
+        } else {
+          result.write(
+              '''result['$schemaTitle'] = ${model.enumName.camelCase}Mapper[$title];''');
+        }
+      } else if (schemaType == _objectType) {
         result.write(
           '''
             if ($title != null) {
@@ -205,7 +352,7 @@ class JsonSchemaParser {
             }
           ''',
         );
-      } else if (schemaType == _arrayType) {
+      } else if (schemaType == _arrayType && schemaArrType == _objectType) {
         result.write(
           '''
             if ($title != null) {
@@ -262,9 +409,7 @@ class JsonSchemaParser {
         for (final dynamic entry in schemaProperties.entries) {
           final String name = entry.key;
           final String type = _getType(entry);
-          final String arrayType = entry.value['type'] == 'array'
-              ? entry.value['items']['type']
-              : null;
+          final String arrayType = type == 'array' ? _getArrType(entry) : null;
           final String description = entry.value['description'];
           final bool isBoolean = _isBoolean(entry);
 
@@ -273,7 +418,7 @@ class JsonSchemaParser {
           }
 
           final _SchemaModel childModel = _SchemaModel()
-            ..className = _getClassName(
+            ..className = _getClassNameOrType(
               name: name,
               type: isBoolean ? 'boolean' : type,
               arrayType: arrayType,
@@ -290,13 +435,36 @@ class JsonSchemaParser {
               description: description,
             )
             ..schemaTitle = name
-            ..schemaType = type
+            ..schemaType = isBoolean ? 'boolean' : type
+            ..schemaArrType = arrayType
             ..children = <_SchemaModel>[];
 
+          // When entity is a string and has enum values
+          if (entry.value['enum'] != null) {
+            if (type == 'string') {
+              childModel.enumValues = List<String>.from(
+                  entry.value['enum'].map((dynamic x) => x.toString()));
+            }
+          }
+          // When entity is an array of strings which has enum values
+          if (arrayType == _arrayEnumType) {
+            childModel.enumValues = List<String>.from(
+                entry.value['items']['enum'].map((dynamic x) => x.toString()));
+          }
           if (type == _objectType) {
-            childModel.children.addAll(getModels(schema: entry.value));
+            if (type == _objectUnknownType) {
+              // TODO: may need some mark for this condition.
+
+            } else {
+              childModel.children.addAll(getModels(schema: entry.value));
+            }
           } else if (type == _arrayType) {
-            childModel.children.addAll(getModels(schema: entry.value['items']));
+            if (arrayType == _arrayUnknownType) {
+              // TODO: may need some mark for this condition.
+            } else {
+              childModel.children
+                  .addAll(getModels(schema: entry.value['items']));
+            }
           }
 
           parentModel.add(childModel);
@@ -339,11 +507,55 @@ class JsonSchemaParser {
     return _result;
   }
 
-  static String _getType(dynamic entry) => entry.value['type']?.length == 2
-      ? entry.value['type'][0] != 'null'
-          ? entry.value['type'][0]
-          : entry.value['type'][1]
-      : entry.value['type'];
+  static String _getArrType(dynamic entry) {
+    final Map<String, dynamic> items = entry.value['items'];
+    if (items == null) {
+      // It's a condition where provided shcema has a entry which is an Array, but doesn't have [Properties], so we don't know the type of Array.
+      // Assuming this case as object(map) for now (but it may not be map).
+      return _arrayUnknownType;
+    }
+    // For now, we just handle string type for array of enums
+    else if (items['enum'] != null && items['type'] == 'string') {
+      return _arrayEnumType;
+    } else {
+      return items['type'];
+    }
+  }
+
+  static String _getType(MapEntry<String, dynamic> entry) {
+    String type;
+    // Check if there are multiple types for this entry
+    if (entry.value['type'] is List) {
+      final List<dynamic> types = entry.value['type'];
+      // Check if its just nullable
+      if (types.length == 2 &&
+          types.where((dynamic e) => e == null).isNotEmpty) {
+        type =
+            types.firstWhere((dynamic e) => e != null, orElse: () => 'string');
+      } else {
+        // Check if povided types are more than 2
+        // in this case, we apply [number] for the type of entity
+        // If there are no number types available, take the first type as default.
+        if (types
+            .where((dynamic e) => e == 'integer' || e == 'number')
+            .isNotEmpty) {
+          type = 'number';
+        } else {
+          type = types.firstWhere((dynamic e) => e != null,
+              orElse: () => 'string');
+        }
+      }
+    } else {
+      type = entry.value['type'];
+      if (type == _objectType && entry.value['properties'] == null) {
+        // This is where the provided entry is [object] but doesn't have [properties],
+        // Assume this case as Map<String,dynamic> at the end.
+        type = _objectUnknownType;
+      }
+    }
+
+    return type;
+  }
 
   static bool _isBoolean(dynamic entry) =>
       entry.value['type'] == 'integer' && entry.value['enum']?.length == 2;
@@ -397,6 +609,19 @@ class _SchemaModel {
   /// Schema object field type
   String schemaType;
 
+  /// Schema array type
+  String schemaArrType;
+
   /// List of nested classes
   List<_SchemaModel> children;
+
+  List<String> enumValues;
+
+  bool get isEnum =>
+      enumValues != null &&
+      (schemaType == 'string' || schemaArrType == _arrayEnumType);
+
+  String get enumName => '${ReCase(schemaTitle).pascalCase}Enum';
+
+  bool get isArray => schemaType == 'array';
 }
