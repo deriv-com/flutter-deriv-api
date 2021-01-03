@@ -1,0 +1,19 @@
+static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Immediately cancels the real-time stream of messages with a specific id.
+  ///
+  /// For parameters information refer to [ForgetRequest].
+  /// Throws a [ForgetException] if API response contains an error
+  static Future<Forget> forget(
+    ForgetRequest request,
+  ) async {
+    final ForgetResponse response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ForgetException(baseExceptionModel: baseExceptionModel),
+    );
+
+    return Forget.fromResponse(response);
+  }

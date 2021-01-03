@@ -1,7 +1,21 @@
-/// Buy receive model class
-abstract class BuyReceiveModel {
+import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_operations_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/buy_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/buy_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/proposal_open_contract_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/proposal_open_contract_receive_result.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:meta/meta.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
+import '../response.dart';
+
+/// Base buy model class
+abstract class BaseBuyModel {
   /// Initializes
-  BuyReceiveModel({
+  BaseBuyModel({
     @required this.buy,
     @required this.subscription,
   });
@@ -13,10 +27,10 @@ abstract class BuyReceiveModel {
   final Subscription subscription;
 }
 
-/// Buy receive class
-class BuyReceive extends BuyReceiveModel {
+/// Base buy class
+class BaseBuy extends BaseBuyModel {
   /// Initializes
-  BuyReceive({
+  BaseBuy({
     @required Buy buy,
     @required Subscription subscription,
   }) : super(
@@ -25,37 +39,90 @@ class BuyReceive extends BuyReceiveModel {
         );
 
   /// Creates an instance from JSON
-  factory BuyReceive.fromJson(Map<String, dynamic> json) => BuyReceive(
-        buy: json['buy'] == null ? null : Buy.fromJson(json['buy']),
-        subscription: json['subscription'] == null
+  factory BaseBuy.fromJson(
+    Map<String, dynamic> buyJson,
+    Map<String, dynamic> subscriptionJson,
+  ) =>
+      BaseBuy(
+        buy: buyJson == null ? null : Buy.fromJson(buyJson),
+        subscription: subscriptionJson == null
             ? null
-            : Subscription.fromJson(json['subscription']),
+            : Subscription.fromJson(subscriptionJson),
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> result = <String, dynamic>{};
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (buy != null) {
-      result['buy'] = buy.toJson();
+      resultMap['buy'] = buy.toJson();
     }
     if (subscription != null) {
-      result['subscription'] = subscription.toJson();
+      resultMap['subscription'] = subscription.toJson();
     }
 
-    return result;
+    return resultMap;
   }
 
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Buys a contract with parameters specified in given [BuyRequest]
+  ///
+  /// Throws a [ContractOperationException] if API response contains an error
+  static Future<BaseBuy> buyMethod(BuyRequest request) async {
+    final BuyResponse response = await _api.call(
+      request: request,
+    );
+
+    checkException(
+      response: response,
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ContractOperationException(baseExceptionModel: baseExceptionModel),
+    );
+
+    return BaseBuy.fromJson(response.buy, response.subscription);
+  }
+
+  /// Buys contract with parameters specified in request and subscribes to it.
+  ///
+  /// Throws a [ContractOperationException] is API response contains an error
+  static Stream<BaseBuy> buyAndSubscribe(
+    BuyRequest request, {
+    RequestCompareFunction comparePredicate,
+  }) =>
+      _api
+          .subscribe(request: request, comparePredicate: comparePredicate)
+          .map<BaseBuy>(
+        (Response response) {
+          checkException(
+            response: response,
+            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+                ContractOperationException(
+                    baseExceptionModel: baseExceptionModel),
+          );
+
+          return response is BuyResponse
+              ? BaseBuy.fromJson(response.buy, response.subscription)
+              : response is ProposalOpenContractResponse
+                  ? BaseProposalOpenContract.fromJson(
+                      response.proposalOpenContract,
+                      response.subscription,
+                    )
+                  : null;
+        },
+      );
+
   /// Creates a copy of instance with given parameters
-  BuyReceive copyWith({
+  BaseBuy copyWith({
     Buy buy,
     Subscription subscription,
   }) =>
-      BuyReceive(
+      BaseBuy(
         buy: buy ?? this.buy,
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// Buy model class
 abstract class BuyModel {
   /// Initializes
@@ -87,13 +154,13 @@ abstract class BuyModel {
   final double payout;
 
   /// Epoch value of the transaction purchase time
-  final int purchaseTime;
+  final DateTime purchaseTime;
 
   /// Compact description of the contract purchased
   final String shortcode;
 
   /// Epoch value showing the expected start time of the contract
-  final int startTime;
+  final DateTime startTime;
 
   /// Internal transaction identifier
   final int transactionId;
@@ -108,9 +175,9 @@ class Buy extends BuyModel {
     @required int contractId,
     @required String longcode,
     @required double payout,
-    @required int purchaseTime,
+    @required DateTime purchaseTime,
     @required String shortcode,
-    @required int startTime,
+    @required DateTime startTime,
     @required int transactionId,
   }) : super(
           balanceAfter: balanceAfter,
@@ -131,27 +198,27 @@ class Buy extends BuyModel {
         contractId: json['contract_id'],
         longcode: json['longcode'],
         payout: getDouble(json['payout']),
-        purchaseTime: json['purchase_time'],
+        purchaseTime: getDateTime(json['purchase_time']),
         shortcode: json['shortcode'],
-        startTime: json['start_time'],
+        startTime: getDateTime(json['start_time']),
         transactionId: json['transaction_id'],
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> result = <String, dynamic>{};
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    result['balance_after'] = balanceAfter;
-    result['buy_price'] = buyPrice;
-    result['contract_id'] = contractId;
-    result['longcode'] = longcode;
-    result['payout'] = payout;
-    result['purchase_time'] = purchaseTime;
-    result['shortcode'] = shortcode;
-    result['start_time'] = startTime;
-    result['transaction_id'] = transactionId;
+    resultMap['balance_after'] = balanceAfter;
+    resultMap['buy_price'] = buyPrice;
+    resultMap['contract_id'] = contractId;
+    resultMap['longcode'] = longcode;
+    resultMap['payout'] = payout;
+    resultMap['purchase_time'] = getSecondsSinceEpochDateTime(purchaseTime);
+    resultMap['shortcode'] = shortcode;
+    resultMap['start_time'] = getSecondsSinceEpochDateTime(startTime);
+    resultMap['transaction_id'] = transactionId;
 
-    return result;
+    return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
@@ -161,9 +228,9 @@ class Buy extends BuyModel {
     int contractId,
     String longcode,
     double payout,
-    int purchaseTime,
+    DateTime purchaseTime,
     String shortcode,
-    int startTime,
+    DateTime startTime,
     int transactionId,
   }) =>
       Buy(
@@ -178,6 +245,7 @@ class Buy extends BuyModel {
         transactionId: transactionId ?? this.transactionId,
       );
 }
+
 /// Subscription model class
 abstract class SubscriptionModel {
   /// Initializes
@@ -205,11 +273,11 @@ class Subscription extends SubscriptionModel {
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> result = <String, dynamic>{};
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    result['id'] = id;
+    resultMap['id'] = id;
 
-    return result;
+    return resultMap;
   }
 
   /// Creates a copy of instance with given parameters

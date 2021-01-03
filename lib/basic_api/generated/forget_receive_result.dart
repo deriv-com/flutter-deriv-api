@@ -1,7 +1,17 @@
-/// Forget receive model class
-abstract class ForgetReceiveModel {
+import 'package:flutter_deriv_api/api/common/forget/exceptions/forget_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
+
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+import 'package:meta/meta.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
+
+/// Base forget model class
+abstract class BaseForgetModel {
   /// Initializes
-  ForgetReceiveModel({
+  BaseForgetModel({
     @required this.forget,
   });
 
@@ -9,34 +19,57 @@ abstract class ForgetReceiveModel {
   final bool forget;
 }
 
-/// Forget receive class
-class ForgetReceive extends ForgetReceiveModel {
+/// Base forget class
+class BaseForget extends BaseForgetModel {
   /// Initializes
-  ForgetReceive({
+  BaseForget({
     @required bool forget,
   }) : super(
           forget: forget,
         );
 
   /// Creates an instance from JSON
-  factory ForgetReceive.fromJson(Map<String, dynamic> json) => ForgetReceive(
-        forget: getBool(json['forget']),
+  factory BaseForget.fromJson(
+    dynamic forgetJson,
+  ) =>
+      BaseForget(
+        forget: getBool(forgetJson),
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> result = <String, dynamic>{};
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    result['forget'] = forget;
+    resultMap['forget'] = forget;
 
-    return result;
+    return resultMap;
+  }
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Immediately cancels the real-time stream of messages with a specific id.
+  ///
+  /// For parameters information refer to [ForgetRequest].
+  /// Throws a [ForgetException] if API response contains an error
+  static Future<BaseForget> forgetMethod(
+    ForgetRequest request,
+  ) async {
+    final ForgetResponse response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          ForgetException(baseExceptionModel: baseExceptionModel),
+    );
+
+    return BaseForget.fromJson(response);
   }
 
   /// Creates a copy of instance with given parameters
-  ForgetReceive copyWith({
+  BaseForget copyWith({
     bool forget,
   }) =>
-      ForgetReceive(
+      BaseForget(
         forget: forget ?? this.forget,
       );
 }

@@ -1,7 +1,9 @@
-/// Proposal open contract receive model class
-abstract class ProposalOpenContractReceiveModel {
+import 'package:meta/meta.dart';
+import 'package:flutter_deriv_api/utils/helpers.dart';
+/// Proposal open contract response model class
+abstract class ProposalOpenContractResponseModel {
   /// Initializes
-  ProposalOpenContractReceiveModel({
+  ProposalOpenContractResponseModel({
     @required this.proposalOpenContract,
     @required this.subscription,
   });
@@ -13,10 +15,10 @@ abstract class ProposalOpenContractReceiveModel {
   final Subscription subscription;
 }
 
-/// Proposal open contract receive class
-class ProposalOpenContractReceive extends ProposalOpenContractReceiveModel {
+/// Proposal open contract response class
+class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
   /// Initializes
-  ProposalOpenContractReceive({
+  ProposalOpenContractResponse({
     @required ProposalOpenContract proposalOpenContract,
     @required Subscription subscription,
   }) : super(
@@ -25,39 +27,61 @@ class ProposalOpenContractReceive extends ProposalOpenContractReceiveModel {
         );
 
   /// Creates an instance from JSON
-  factory ProposalOpenContractReceive.fromJson(Map<String, dynamic> json) =>
-      ProposalOpenContractReceive(
-        proposalOpenContract: json['proposal_open_contract'] == null
+  factory ProposalOpenContractResponse.fromJson(
+    Map<String, dynamic> proposalOpenContractJson,
+    Map<String, dynamic> subscriptionJson,
+  ) =>
+      ProposalOpenContractResponse(
+        proposalOpenContract: proposalOpenContractJson == null
             ? null
-            : ProposalOpenContract.fromJson(json['proposal_open_contract']),
-        subscription: json['subscription'] == null
+            : ProposalOpenContract.fromJson(proposalOpenContractJson),
+        subscription: subscriptionJson == null
             ? null
-            : Subscription.fromJson(json['subscription']),
+            : Subscription.fromJson(subscriptionJson),
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> result = <String, dynamic>{};
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (proposalOpenContract != null) {
-      result['proposal_open_contract'] = proposalOpenContract.toJson();
+      resultMap['proposal_open_contract'] = proposalOpenContract.toJson();
     }
     if (subscription != null) {
-      result['subscription'] = subscription.toJson();
+      resultMap['subscription'] = subscription.toJson();
     }
 
-    return result;
+    return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
-  ProposalOpenContractReceive copyWith({
+  ProposalOpenContractResponse copyWith({
     ProposalOpenContract proposalOpenContract,
     Subscription subscription,
   }) =>
-      ProposalOpenContractReceive(
+      ProposalOpenContractResponse(
         proposalOpenContract: proposalOpenContract ?? this.proposalOpenContract,
         subscription: subscription ?? this.subscription,
       );
+}
+
+final Map<String, StatusEnum> statusEnumMapper = <String, StatusEnum>{
+  "open": StatusEnum.open,
+  "sold": StatusEnum.sold,
+  "won": StatusEnum.won,
+  "lost": StatusEnum.lost,
+  "cancelled": StatusEnum.cancelled,
+  "null": StatusEnum._null,
+};
+
+/// status Enum
+enum StatusEnum {
+  open,
+  sold,
+  won,
+  lost,
+  cancelled,
+  _null,
 }
 /// Proposal open contract model class
 abstract class ProposalOpenContractModel {
@@ -123,10 +147,10 @@ abstract class ProposalOpenContractModel {
   });
 
   /// Tick details around contract start and end time.
-  final UNKNOWN_TYPE auditDetails;
+  final AuditDetails auditDetails;
 
   /// Barrier of the contract (if any).
-  final UNKNOWN_TYPE barrier;
+  final String barrier;
 
   /// The number of barriers a contract has.
   final double barrierCount;
@@ -159,16 +183,16 @@ abstract class ProposalOpenContractModel {
   final String currentSpotDisplayValue;
 
   /// The corresponding time of the current spot.
-  final int currentSpotTime;
+  final DateTime currentSpotTime;
 
   /// Expiry date (epoch) of the Contract. Please note that it is not applicable for tick trade contracts.
-  final int dateExpiry;
+  final DateTime dateExpiry;
 
   /// Settlement date (epoch) of the contract.
-  final int dateSettlement;
+  final DateTime dateSettlement;
 
   /// Start date (epoch) of the contract.
-  final int dateStart;
+  final DateTime dateStart;
 
   /// Display name of underlying
   final String displayName;
@@ -180,7 +204,7 @@ abstract class ProposalOpenContractModel {
   final double entrySpot;
 
   /// Same as `entry_tick_display_value`. For backwards compatibility.
-  final UNKNOWN_TYPE entrySpotDisplayValue;
+  final String entrySpotDisplayValue;
 
   /// This is the entry spot of the contract. For contracts starting immediately it is the next tick after the start time. For forward-starting contracts it is the spot at the start time.
   final double entryTick;
@@ -189,7 +213,7 @@ abstract class ProposalOpenContractModel {
   final String entryTickDisplayValue;
 
   /// This is the epoch time of the entry tick.
-  final int entryTickTime;
+  final DateTime entryTickTime;
 
   /// Exit tick can refer to the latest tick at the end time, the tick that fulfils the contract's winning or losing condition for path dependent contracts (Touch/No Touch and Stays Between/Goes Outside) or the tick at which the contract is sold before expiry.
   final double exitTick;
@@ -198,7 +222,7 @@ abstract class ProposalOpenContractModel {
   final String exitTickDisplayValue;
 
   /// This is the epoch time of the exit tick. Note that since certain instruments don't tick every second, the exit tick time may be a few seconds before the end time.
-  final int exitTickTime;
+  final DateTime exitTickTime;
 
   /// High barrier of the contract (if any).
   final String highBarrier;
@@ -252,10 +276,10 @@ abstract class ProposalOpenContractModel {
   final double profitPercentage;
 
   /// Epoch of purchase time, will be same as `date_start` for all contracts except forward starting contracts.
-  final int purchaseTime;
+  final DateTime purchaseTime;
 
   /// [Only for reset trades] The epoch time of a barrier reset.
-  final int resetTime;
+  final DateTime resetTime;
 
   /// Price at which contract was sold, only available when contract has been sold.
   final double sellPrice;
@@ -267,22 +291,22 @@ abstract class ProposalOpenContractModel {
   final String sellSpotDisplayValue;
 
   /// Epoch time of the sell spot. Note that since certain underlyings don't tick every second, the sell spot time may be a few seconds before the sell time. (only present for contracts already sold). Will no longer be supported in the next API release.
-  final int sellSpotTime;
+  final DateTime sellSpotTime;
 
   /// Epoch time of when the contract was sold (only present for contracts already sold)
-  final double sellTime;
+  final DateTime sellTime;
 
   /// Coded description of the contract purchased.
   final String shortcode;
 
   /// Contract status. Will be `sold` if the contract was sold back before expiry, `won` if won and `lost` if lost at expiry. Otherwise will be `open`
-  final UNKNOWN_TYPE status;
+  final StatusEnum status;
 
   /// Only for tick trades, number of ticks
   final int tickCount;
 
   /// Tick stream from entry to end time.
-  final List<TickStream> tickStream;
+  final List<TickStreamItem> tickStream;
 
   /// Every contract has buy and sell transaction ids, i.e. when you purchase a contract we associate it with buy transaction id, and if contract is already sold we associate that with sell transaction id.
   final TransactionIds transactionIds;
@@ -298,8 +322,8 @@ abstract class ProposalOpenContractModel {
 class ProposalOpenContract extends ProposalOpenContractModel {
   /// Initializes
   ProposalOpenContract({
-    UNKNOWN_TYPE auditDetails,
-    UNKNOWN_TYPE barrier,
+    AuditDetails auditDetails,
+    String barrier,
     @required double barrierCount,
     @required double bidPrice,
     @required double buyPrice,
@@ -310,20 +334,20 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     @required String currency,
     @required double currentSpot,
     @required String currentSpotDisplayValue,
-    @required int currentSpotTime,
-    @required int dateExpiry,
-    @required int dateSettlement,
-    @required int dateStart,
+    @required DateTime currentSpotTime,
+    @required DateTime dateExpiry,
+    @required DateTime dateSettlement,
+    @required DateTime dateStart,
     @required String displayName,
     @required String displayValue,
     double entrySpot,
-    UNKNOWN_TYPE entrySpotDisplayValue,
+    String entrySpotDisplayValue,
     @required double entryTick,
     @required String entryTickDisplayValue,
-    @required int entryTickTime,
+    @required DateTime entryTickTime,
     @required double exitTick,
     @required String exitTickDisplayValue,
-    @required int exitTickTime,
+    @required DateTime exitTickTime,
     @required String highBarrier,
     @required String id,
     @required bool isExpired,
@@ -341,17 +365,17 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     @required double payout,
     @required double profit,
     @required double profitPercentage,
-    @required int purchaseTime,
-    @required int resetTime,
+    @required DateTime purchaseTime,
+    @required DateTime resetTime,
     @required double sellPrice,
     @required double sellSpot,
     @required String sellSpotDisplayValue,
-    @required int sellSpotTime,
-    double sellTime,
+    @required DateTime sellSpotTime,
+    DateTime sellTime,
     @required String shortcode,
-    UNKNOWN_TYPE status,
+    StatusEnum status,
     @required int tickCount,
-    @required List<TickStream> tickStream,
+    @required List<TickStreamItem> tickStream,
     @required TransactionIds transactionIds,
     @required String underlying,
     @required String validationError,
@@ -418,7 +442,9 @@ class ProposalOpenContract extends ProposalOpenContractModel {
   /// Creates an instance from JSON
   factory ProposalOpenContract.fromJson(Map<String, dynamic> json) =>
       ProposalOpenContract(
-        auditDetails: json['audit_details'],
+        auditDetails: json['audit_details'] == null
+            ? null
+            : AuditDetails.fromJson(json['audit_details']),
         barrier: json['barrier'],
         barrierCount: getDouble(json['barrier_count']),
         bidPrice: getDouble(json['bid_price']),
@@ -432,20 +458,20 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         currency: json['currency'],
         currentSpot: getDouble(json['current_spot']),
         currentSpotDisplayValue: json['current_spot_display_value'],
-        currentSpotTime: json['current_spot_time'],
-        dateExpiry: json['date_expiry'],
-        dateSettlement: json['date_settlement'],
-        dateStart: json['date_start'],
+        currentSpotTime: getDateTime(json['current_spot_time']),
+        dateExpiry: getDateTime(json['date_expiry']),
+        dateSettlement: getDateTime(json['date_settlement']),
+        dateStart: getDateTime(json['date_start']),
         displayName: json['display_name'],
         displayValue: json['display_value'],
         entrySpot: getDouble(json['entry_spot']),
         entrySpotDisplayValue: json['entry_spot_display_value'],
         entryTick: getDouble(json['entry_tick']),
         entryTickDisplayValue: json['entry_tick_display_value'],
-        entryTickTime: json['entry_tick_time'],
+        entryTickTime: getDateTime(json['entry_tick_time']),
         exitTick: getDouble(json['exit_tick']),
         exitTickDisplayValue: json['exit_tick_display_value'],
-        exitTickTime: json['exit_tick_time'],
+        exitTickTime: getDateTime(json['exit_tick_time']),
         highBarrier: json['high_barrier'],
         id: json['id'],
         isExpired: getBool(json['is_expired']),
@@ -465,21 +491,20 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         payout: getDouble(json['payout']),
         profit: getDouble(json['profit']),
         profitPercentage: getDouble(json['profit_percentage']),
-        purchaseTime: json['purchase_time'],
-        resetTime: json['reset_time'],
+        purchaseTime: getDateTime(json['purchase_time']),
+        resetTime: getDateTime(json['reset_time']),
         sellPrice: getDouble(json['sell_price']),
         sellSpot: getDouble(json['sell_spot']),
         sellSpotDisplayValue: json['sell_spot_display_value'],
-        sellSpotTime: json['sell_spot_time'],
-        sellTime: getDouble(json['sell_time']),
+        sellSpotTime: getDateTime(json['sell_spot_time']),
+        sellTime: getDateTime(json['sell_time']),
         shortcode: json['shortcode'],
-        status: json['status'],
+        status: statusEnumMapper[json['status']],
         tickCount: json['tick_count'],
         tickStream: json['tick_stream'] == null
             ? null
-            : json['tick_stream']
-                .map<TickStream>((dynamic item) => TickStream.fromJson(item))
-                .toList(),
+            : List<TickStreamItem>.from(json['tick_stream']
+                .map((dynamic item) => TickStreamItem.fromJson(item))),
         transactionIds: json['transaction_ids'] == null
             ? null
             : TransactionIds.fromJson(json['transaction_ids']),
@@ -489,81 +514,88 @@ class ProposalOpenContract extends ProposalOpenContractModel {
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> result = <String, dynamic>{};
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    result['audit_details'] = auditDetails;
-    result['barrier'] = barrier;
-    result['barrier_count'] = barrierCount;
-    result['bid_price'] = bidPrice;
-    result['buy_price'] = buyPrice;
+    if (auditDetails != null) {
+      resultMap['audit_details'] = auditDetails.toJson();
+    }
+    resultMap['barrier'] = barrier;
+    resultMap['barrier_count'] = barrierCount;
+    resultMap['bid_price'] = bidPrice;
+    resultMap['buy_price'] = buyPrice;
     if (cancellation != null) {
-      result['cancellation'] = cancellation.toJson();
+      resultMap['cancellation'] = cancellation.toJson();
     }
-    result['commision'] = commision;
-    result['contract_id'] = contractId;
-    result['contract_type'] = contractType;
-    result['currency'] = currency;
-    result['current_spot'] = currentSpot;
-    result['current_spot_display_value'] = currentSpotDisplayValue;
-    result['current_spot_time'] = currentSpotTime;
-    result['date_expiry'] = dateExpiry;
-    result['date_settlement'] = dateSettlement;
-    result['date_start'] = dateStart;
-    result['display_name'] = displayName;
-    result['display_value'] = displayValue;
-    result['entry_spot'] = entrySpot;
-    result['entry_spot_display_value'] = entrySpotDisplayValue;
-    result['entry_tick'] = entryTick;
-    result['entry_tick_display_value'] = entryTickDisplayValue;
-    result['entry_tick_time'] = entryTickTime;
-    result['exit_tick'] = exitTick;
-    result['exit_tick_display_value'] = exitTickDisplayValue;
-    result['exit_tick_time'] = exitTickTime;
-    result['high_barrier'] = highBarrier;
-    result['id'] = id;
-    result['is_expired'] = isExpired;
-    result['is_forward_starting'] = isForwardStarting;
-    result['is_intraday'] = isIntraday;
-    result['is_path_dependent'] = isPathDependent;
-    result['is_settleable'] = isSettleable;
-    result['is_sold'] = isSold;
-    result['is_valid_to_cancel'] = isValidToCancel;
-    result['is_valid_to_sell'] = isValidToSell;
+    resultMap['commision'] = commision;
+    resultMap['contract_id'] = contractId;
+    resultMap['contract_type'] = contractType;
+    resultMap['currency'] = currency;
+    resultMap['current_spot'] = currentSpot;
+    resultMap['current_spot_display_value'] = currentSpotDisplayValue;
+    resultMap['current_spot_time'] =
+        getSecondsSinceEpochDateTime(currentSpotTime);
+    resultMap['date_expiry'] = getSecondsSinceEpochDateTime(dateExpiry);
+    resultMap['date_settlement'] = getSecondsSinceEpochDateTime(dateSettlement);
+    resultMap['date_start'] = getSecondsSinceEpochDateTime(dateStart);
+    resultMap['display_name'] = displayName;
+    resultMap['display_value'] = displayValue;
+    resultMap['entry_spot'] = entrySpot;
+    resultMap['entry_spot_display_value'] = entrySpotDisplayValue;
+    resultMap['entry_tick'] = entryTick;
+    resultMap['entry_tick_display_value'] = entryTickDisplayValue;
+    resultMap['entry_tick_time'] = getSecondsSinceEpochDateTime(entryTickTime);
+    resultMap['exit_tick'] = exitTick;
+    resultMap['exit_tick_display_value'] = exitTickDisplayValue;
+    resultMap['exit_tick_time'] = getSecondsSinceEpochDateTime(exitTickTime);
+    resultMap['high_barrier'] = highBarrier;
+    resultMap['id'] = id;
+    resultMap['is_expired'] = isExpired;
+    resultMap['is_forward_starting'] = isForwardStarting;
+    resultMap['is_intraday'] = isIntraday;
+    resultMap['is_path_dependent'] = isPathDependent;
+    resultMap['is_settleable'] = isSettleable;
+    resultMap['is_sold'] = isSold;
+    resultMap['is_valid_to_cancel'] = isValidToCancel;
+    resultMap['is_valid_to_sell'] = isValidToSell;
     if (limitOrder != null) {
-      result['limit_order'] = limitOrder.toJson();
+      resultMap['limit_order'] = limitOrder.toJson();
     }
-    result['longcode'] = longcode;
-    result['low_barrier'] = lowBarrier;
-    result['multiplier'] = multiplier;
-    result['payout'] = payout;
-    result['profit'] = profit;
-    result['profit_percentage'] = profitPercentage;
-    result['purchase_time'] = purchaseTime;
-    result['reset_time'] = resetTime;
-    result['sell_price'] = sellPrice;
-    result['sell_spot'] = sellSpot;
-    result['sell_spot_display_value'] = sellSpotDisplayValue;
-    result['sell_spot_time'] = sellSpotTime;
-    result['sell_time'] = sellTime;
-    result['shortcode'] = shortcode;
-    result['status'] = status;
-    result['tick_count'] = tickCount;
+    resultMap['longcode'] = longcode;
+    resultMap['low_barrier'] = lowBarrier;
+    resultMap['multiplier'] = multiplier;
+    resultMap['payout'] = payout;
+    resultMap['profit'] = profit;
+    resultMap['profit_percentage'] = profitPercentage;
+    resultMap['purchase_time'] = getSecondsSinceEpochDateTime(purchaseTime);
+    resultMap['reset_time'] = getSecondsSinceEpochDateTime(resetTime);
+    resultMap['sell_price'] = sellPrice;
+    resultMap['sell_spot'] = sellSpot;
+    resultMap['sell_spot_display_value'] = sellSpotDisplayValue;
+    resultMap['sell_spot_time'] = getSecondsSinceEpochDateTime(sellSpotTime);
+    resultMap['sell_time'] = getSecondsSinceEpochDateTime(sellTime);
+    resultMap['shortcode'] = shortcode;
+    resultMap['status'] = statusEnumMapper.entries
+        .firstWhere((entry) => entry.value == status, orElse: () => null)
+        ?.key;
+    resultMap['tick_count'] = tickCount;
     if (tickStream != null) {
-      result['tick_stream'] = tickStream.map((item) => item.toJson()).toList();
+      resultMap['tick_stream'] = tickStream
+          .map<dynamic>((TickStreamItem item) => item.toJson())
+          .toList();
     }
     if (transactionIds != null) {
-      result['transaction_ids'] = transactionIds.toJson();
+      resultMap['transaction_ids'] = transactionIds.toJson();
     }
-    result['underlying'] = underlying;
-    result['validation_error'] = validationError;
+    resultMap['underlying'] = underlying;
+    resultMap['validation_error'] = validationError;
 
-    return result;
+    return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   ProposalOpenContract copyWith({
-    UNKNOWN_TYPE auditDetails,
-    UNKNOWN_TYPE barrier,
+    AuditDetails auditDetails,
+    String barrier,
     double barrierCount,
     double bidPrice,
     double buyPrice,
@@ -574,20 +606,20 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     String currency,
     double currentSpot,
     String currentSpotDisplayValue,
-    int currentSpotTime,
-    int dateExpiry,
-    int dateSettlement,
-    int dateStart,
+    DateTime currentSpotTime,
+    DateTime dateExpiry,
+    DateTime dateSettlement,
+    DateTime dateStart,
     String displayName,
     String displayValue,
     double entrySpot,
-    UNKNOWN_TYPE entrySpotDisplayValue,
+    String entrySpotDisplayValue,
     double entryTick,
     String entryTickDisplayValue,
-    int entryTickTime,
+    DateTime entryTickTime,
     double exitTick,
     String exitTickDisplayValue,
-    int exitTickTime,
+    DateTime exitTickTime,
     String highBarrier,
     String id,
     bool isExpired,
@@ -605,17 +637,17 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     double payout,
     double profit,
     double profitPercentage,
-    int purchaseTime,
-    int resetTime,
+    DateTime purchaseTime,
+    DateTime resetTime,
     double sellPrice,
     double sellSpot,
     String sellSpotDisplayValue,
-    int sellSpotTime,
-    double sellTime,
+    DateTime sellSpotTime,
+    DateTime sellTime,
     String shortcode,
-    UNKNOWN_TYPE status,
+    StatusEnum status,
     int tickCount,
-    List<TickStream> tickStream,
+    List<TickStreamItem> tickStream,
     TransactionIds transactionIds,
     String underlying,
     String validationError,
@@ -683,6 +715,336 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         validationError: validationError ?? this.validationError,
       );
 }
+/// Audit details model class
+abstract class AuditDetailsModel {
+  /// Initializes
+  AuditDetailsModel({
+    @required this.allTicks,
+    @required this.contractEnd,
+    @required this.contractStart,
+  });
+
+  /// Ticks for tick expiry contract from start time till expiry.
+  final List<AllTicksItem> allTicks;
+
+  /// Ticks around contract end time.
+  final List<ContractEndItem> contractEnd;
+
+  /// Ticks around contract start time.
+  final List<ContractStartItem> contractStart;
+}
+
+/// Audit details class
+class AuditDetails extends AuditDetailsModel {
+  /// Initializes
+  AuditDetails({
+    @required List<AllTicksItem> allTicks,
+    @required List<ContractEndItem> contractEnd,
+    @required List<ContractStartItem> contractStart,
+  }) : super(
+          allTicks: allTicks,
+          contractEnd: contractEnd,
+          contractStart: contractStart,
+        );
+
+  /// Creates an instance from JSON
+  factory AuditDetails.fromJson(Map<String, dynamic> json) => AuditDetails(
+        allTicks: json['all_ticks'] == null
+            ? null
+            : List<AllTicksItem>.from(json['all_ticks']
+                .map((dynamic item) => AllTicksItem.fromJson(item))),
+        contractEnd: json['contract_end'] == null
+            ? null
+            : List<ContractEndItem>.from(json['contract_end']
+                .map((dynamic item) => ContractEndItem.fromJson(item))),
+        contractStart: json['contract_start'] == null
+            ? null
+            : List<ContractStartItem>.from(json['contract_start']
+                .map((dynamic item) => ContractStartItem.fromJson(item))),
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (allTicks != null) {
+      resultMap['all_ticks'] =
+          allTicks.map<dynamic>((AllTicksItem item) => item.toJson()).toList();
+    }
+    if (contractEnd != null) {
+      resultMap['contract_end'] = contractEnd
+          .map<dynamic>((ContractEndItem item) => item.toJson())
+          .toList();
+    }
+    if (contractStart != null) {
+      resultMap['contract_start'] = contractStart
+          .map<dynamic>((ContractStartItem item) => item.toJson())
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  AuditDetails copyWith({
+    List<AllTicksItem> allTicks,
+    List<ContractEndItem> contractEnd,
+    List<ContractStartItem> contractStart,
+  }) =>
+      AuditDetails(
+        allTicks: allTicks ?? this.allTicks,
+        contractEnd: contractEnd ?? this.contractEnd,
+        contractStart: contractStart ?? this.contractStart,
+      );
+}
+/// All ticks item model class
+abstract class AllTicksItemModel {
+  /// Initializes
+  AllTicksItemModel({
+    @required this.epoch,
+    this.flag,
+    this.name,
+    this.tick,
+    this.tickDisplayValue,
+  });
+
+  /// Epoch time of a tick or the contract start or end time.
+  final DateTime epoch;
+
+  /// A flag used to highlight the record in front-end applications.
+  final String flag;
+
+  /// A short description of the data. It could be a tick or a time associated with the contract.
+  final String name;
+
+  /// The spot value at the given epoch.
+  final double tick;
+
+  /// The spot value with the correct precision at the given epoch.
+  final String tickDisplayValue;
+}
+
+/// All ticks item class
+class AllTicksItem extends AllTicksItemModel {
+  /// Initializes
+  AllTicksItem({
+    @required DateTime epoch,
+    String flag,
+    String name,
+    double tick,
+    String tickDisplayValue,
+  }) : super(
+          epoch: epoch,
+          flag: flag,
+          name: name,
+          tick: tick,
+          tickDisplayValue: tickDisplayValue,
+        );
+
+  /// Creates an instance from JSON
+  factory AllTicksItem.fromJson(Map<String, dynamic> json) => AllTicksItem(
+        epoch: getDateTime(json['epoch']),
+        flag: json['flag'],
+        name: json['name'],
+        tick: getDouble(json['tick']),
+        tickDisplayValue: json['tick_display_value'],
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['epoch'] = getSecondsSinceEpochDateTime(epoch);
+    resultMap['flag'] = flag;
+    resultMap['name'] = name;
+    resultMap['tick'] = tick;
+    resultMap['tick_display_value'] = tickDisplayValue;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  AllTicksItem copyWith({
+    DateTime epoch,
+    String flag,
+    String name,
+    double tick,
+    String tickDisplayValue,
+  }) =>
+      AllTicksItem(
+        epoch: epoch ?? this.epoch,
+        flag: flag ?? this.flag,
+        name: name ?? this.name,
+        tick: tick ?? this.tick,
+        tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
+      );
+}
+/// Contract end item model class
+abstract class ContractEndItemModel {
+  /// Initializes
+  ContractEndItemModel({
+    @required this.epoch,
+    this.flag,
+    this.name,
+    this.tick,
+    this.tickDisplayValue,
+  });
+
+  /// Epoch time of a tick or the contract start or end time.
+  final DateTime epoch;
+
+  /// A flag used to highlight the record in front-end applications.
+  final String flag;
+
+  /// A short description of the data. It could be a tick or a time associated with the contract.
+  final String name;
+
+  /// The spot value at the given epoch.
+  final double tick;
+
+  /// The spot value with the correct precision at the given epoch.
+  final String tickDisplayValue;
+}
+
+/// Contract end item class
+class ContractEndItem extends ContractEndItemModel {
+  /// Initializes
+  ContractEndItem({
+    @required DateTime epoch,
+    String flag,
+    String name,
+    double tick,
+    String tickDisplayValue,
+  }) : super(
+          epoch: epoch,
+          flag: flag,
+          name: name,
+          tick: tick,
+          tickDisplayValue: tickDisplayValue,
+        );
+
+  /// Creates an instance from JSON
+  factory ContractEndItem.fromJson(Map<String, dynamic> json) =>
+      ContractEndItem(
+        epoch: getDateTime(json['epoch']),
+        flag: json['flag'],
+        name: json['name'],
+        tick: getDouble(json['tick']),
+        tickDisplayValue: json['tick_display_value'],
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['epoch'] = getSecondsSinceEpochDateTime(epoch);
+    resultMap['flag'] = flag;
+    resultMap['name'] = name;
+    resultMap['tick'] = tick;
+    resultMap['tick_display_value'] = tickDisplayValue;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  ContractEndItem copyWith({
+    DateTime epoch,
+    String flag,
+    String name,
+    double tick,
+    String tickDisplayValue,
+  }) =>
+      ContractEndItem(
+        epoch: epoch ?? this.epoch,
+        flag: flag ?? this.flag,
+        name: name ?? this.name,
+        tick: tick ?? this.tick,
+        tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
+      );
+}
+/// Contract start item model class
+abstract class ContractStartItemModel {
+  /// Initializes
+  ContractStartItemModel({
+    @required this.epoch,
+    this.flag,
+    this.name,
+    this.tick,
+    this.tickDisplayValue,
+  });
+
+  /// Epoch time of a tick or the contract start or end time.
+  final DateTime epoch;
+
+  /// A flag used to highlight the record in front-end applications.
+  final String flag;
+
+  /// A short description of the data. It could be a tick or a time associated with the contract.
+  final String name;
+
+  /// The spot value at the given epoch.
+  final double tick;
+
+  /// The spot value with the correct precision at the given epoch.
+  final String tickDisplayValue;
+}
+
+/// Contract start item class
+class ContractStartItem extends ContractStartItemModel {
+  /// Initializes
+  ContractStartItem({
+    @required DateTime epoch,
+    String flag,
+    String name,
+    double tick,
+    String tickDisplayValue,
+  }) : super(
+          epoch: epoch,
+          flag: flag,
+          name: name,
+          tick: tick,
+          tickDisplayValue: tickDisplayValue,
+        );
+
+  /// Creates an instance from JSON
+  factory ContractStartItem.fromJson(Map<String, dynamic> json) =>
+      ContractStartItem(
+        epoch: getDateTime(json['epoch']),
+        flag: json['flag'],
+        name: json['name'],
+        tick: getDouble(json['tick']),
+        tickDisplayValue: json['tick_display_value'],
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['epoch'] = getSecondsSinceEpochDateTime(epoch);
+    resultMap['flag'] = flag;
+    resultMap['name'] = name;
+    resultMap['tick'] = tick;
+    resultMap['tick_display_value'] = tickDisplayValue;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  ContractStartItem copyWith({
+    DateTime epoch,
+    String flag,
+    String name,
+    double tick,
+    String tickDisplayValue,
+  }) =>
+      ContractStartItem(
+        epoch: epoch ?? this.epoch,
+        flag: flag ?? this.flag,
+        name: name ?? this.name,
+        tick: tick ?? this.tick,
+        tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
+      );
+}
 /// Cancellation model class
 abstract class CancellationModel {
   /// Initializes
@@ -695,7 +1057,7 @@ abstract class CancellationModel {
   final double askPrice;
 
   /// Expiry time in epoch for contract cancellation option.
-  final int dateExpiry;
+  final DateTime dateExpiry;
 }
 
 /// Cancellation class
@@ -703,7 +1065,7 @@ class Cancellation extends CancellationModel {
   /// Initializes
   Cancellation({
     @required double askPrice,
-    @required int dateExpiry,
+    @required DateTime dateExpiry,
   }) : super(
           askPrice: askPrice,
           dateExpiry: dateExpiry,
@@ -712,23 +1074,23 @@ class Cancellation extends CancellationModel {
   /// Creates an instance from JSON
   factory Cancellation.fromJson(Map<String, dynamic> json) => Cancellation(
         askPrice: getDouble(json['ask_price']),
-        dateExpiry: json['date_expiry'],
+        dateExpiry: getDateTime(json['date_expiry']),
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> result = <String, dynamic>{};
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    result['ask_price'] = askPrice;
-    result['date_expiry'] = dateExpiry;
+    resultMap['ask_price'] = askPrice;
+    resultMap['date_expiry'] = getSecondsSinceEpochDateTime(dateExpiry);
 
-    return result;
+    return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   Cancellation copyWith({
     double askPrice,
-    int dateExpiry,
+    DateTime dateExpiry,
   }) =>
       Cancellation(
         askPrice: askPrice ?? this.askPrice,
@@ -782,19 +1144,19 @@ class LimitOrder extends LimitOrderModel {
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> result = <String, dynamic>{};
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (stopLoss != null) {
-      result['stop_loss'] = stopLoss.toJson();
+      resultMap['stop_loss'] = stopLoss.toJson();
     }
     if (stopOut != null) {
-      result['stop_out'] = stopOut.toJson();
+      resultMap['stop_out'] = stopOut.toJson();
     }
     if (takeProfit != null) {
-      result['take_profit'] = takeProfit.toJson();
+      resultMap['take_profit'] = takeProfit.toJson();
     }
 
-    return result;
+    return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
@@ -826,10 +1188,10 @@ abstract class StopLossModel {
   final double orderAmount;
 
   /// Stop loss order epoch
-  final int orderDate;
+  final DateTime orderDate;
 
   /// Pip-sized barrier value
-  final UNKNOWN_TYPE value;
+  final String value;
 }
 
 /// Stop loss class
@@ -838,8 +1200,8 @@ class StopLoss extends StopLossModel {
   StopLoss({
     @required String displayName,
     double orderAmount,
-    @required int orderDate,
-    UNKNOWN_TYPE value,
+    @required DateTime orderDate,
+    String value,
   }) : super(
           displayName: displayName,
           orderAmount: orderAmount,
@@ -851,28 +1213,28 @@ class StopLoss extends StopLossModel {
   factory StopLoss.fromJson(Map<String, dynamic> json) => StopLoss(
         displayName: json['display_name'],
         orderAmount: getDouble(json['order_amount']),
-        orderDate: json['order_date'],
+        orderDate: getDateTime(json['order_date']),
         value: json['value'],
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> result = <String, dynamic>{};
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    result['display_name'] = displayName;
-    result['order_amount'] = orderAmount;
-    result['order_date'] = orderDate;
-    result['value'] = value;
+    resultMap['display_name'] = displayName;
+    resultMap['order_amount'] = orderAmount;
+    resultMap['order_date'] = getSecondsSinceEpochDateTime(orderDate);
+    resultMap['value'] = value;
 
-    return result;
+    return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   StopLoss copyWith({
     String displayName,
     double orderAmount,
-    int orderDate,
-    UNKNOWN_TYPE value,
+    DateTime orderDate,
+    String value,
   }) =>
       StopLoss(
         displayName: displayName ?? this.displayName,
@@ -898,7 +1260,7 @@ abstract class StopOutModel {
   final double orderAmount;
 
   /// Stop out order epoch
-  final int orderDate;
+  final DateTime orderDate;
 
   /// Pip-sized barrier value
   final String value;
@@ -910,7 +1272,7 @@ class StopOut extends StopOutModel {
   StopOut({
     @required String displayName,
     @required double orderAmount,
-    @required int orderDate,
+    @required DateTime orderDate,
     @required String value,
   }) : super(
           displayName: displayName,
@@ -923,27 +1285,27 @@ class StopOut extends StopOutModel {
   factory StopOut.fromJson(Map<String, dynamic> json) => StopOut(
         displayName: json['display_name'],
         orderAmount: getDouble(json['order_amount']),
-        orderDate: json['order_date'],
+        orderDate: getDateTime(json['order_date']),
         value: json['value'],
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> result = <String, dynamic>{};
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    result['display_name'] = displayName;
-    result['order_amount'] = orderAmount;
-    result['order_date'] = orderDate;
-    result['value'] = value;
+    resultMap['display_name'] = displayName;
+    resultMap['order_amount'] = orderAmount;
+    resultMap['order_date'] = getSecondsSinceEpochDateTime(orderDate);
+    resultMap['value'] = value;
 
-    return result;
+    return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   StopOut copyWith({
     String displayName,
     double orderAmount,
-    int orderDate,
+    DateTime orderDate,
     String value,
   }) =>
       StopOut(
@@ -970,10 +1332,10 @@ abstract class TakeProfitModel {
   final double orderAmount;
 
   /// Take profit order epoch
-  final int orderDate;
+  final DateTime orderDate;
 
   /// Pip-sized barrier value
-  final UNKNOWN_TYPE value;
+  final String value;
 }
 
 /// Take profit class
@@ -982,8 +1344,8 @@ class TakeProfit extends TakeProfitModel {
   TakeProfit({
     @required String displayName,
     double orderAmount,
-    @required int orderDate,
-    UNKNOWN_TYPE value,
+    @required DateTime orderDate,
+    String value,
   }) : super(
           displayName: displayName,
           orderAmount: orderAmount,
@@ -995,28 +1357,28 @@ class TakeProfit extends TakeProfitModel {
   factory TakeProfit.fromJson(Map<String, dynamic> json) => TakeProfit(
         displayName: json['display_name'],
         orderAmount: getDouble(json['order_amount']),
-        orderDate: json['order_date'],
+        orderDate: getDateTime(json['order_date']),
         value: json['value'],
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> result = <String, dynamic>{};
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    result['display_name'] = displayName;
-    result['order_amount'] = orderAmount;
-    result['order_date'] = orderDate;
-    result['value'] = value;
+    resultMap['display_name'] = displayName;
+    resultMap['order_amount'] = orderAmount;
+    resultMap['order_date'] = getSecondsSinceEpochDateTime(orderDate);
+    resultMap['value'] = value;
 
-    return result;
+    return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   TakeProfit copyWith({
     String displayName,
     double orderAmount,
-    int orderDate,
-    UNKNOWN_TYPE value,
+    DateTime orderDate,
+    String value,
   }) =>
       TakeProfit(
         displayName: displayName ?? this.displayName,
@@ -1025,32 +1387,32 @@ class TakeProfit extends TakeProfitModel {
         value: value ?? this.value,
       );
 }
-/// Tick stream model class
-abstract class TickStreamModel {
+/// Tick stream item model class
+abstract class TickStreamItemModel {
   /// Initializes
-  TickStreamModel({
+  TickStreamItemModel({
     @required this.epoch,
     this.tick,
     this.tickDisplayValue,
   });
 
   /// Epoch time of a tick or the contract start or end time.
-  final int epoch;
+  final DateTime epoch;
 
   /// The spot value at the given epoch.
   final double tick;
 
   /// The spot value with the correct precision at the given epoch.
-  final UNKNOWN_TYPE tickDisplayValue;
+  final String tickDisplayValue;
 }
 
-/// Tick stream class
-class TickStream extends TickStreamModel {
+/// Tick stream item class
+class TickStreamItem extends TickStreamItemModel {
   /// Initializes
-  TickStream({
-    @required int epoch,
+  TickStreamItem({
+    @required DateTime epoch,
     double tick,
-    UNKNOWN_TYPE tickDisplayValue,
+    String tickDisplayValue,
   }) : super(
           epoch: epoch,
           tick: tick,
@@ -1058,30 +1420,30 @@ class TickStream extends TickStreamModel {
         );
 
   /// Creates an instance from JSON
-  factory TickStream.fromJson(Map<String, dynamic> json) => TickStream(
-        epoch: json['epoch'],
+  factory TickStreamItem.fromJson(Map<String, dynamic> json) => TickStreamItem(
+        epoch: getDateTime(json['epoch']),
         tick: getDouble(json['tick']),
         tickDisplayValue: json['tick_display_value'],
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> result = <String, dynamic>{};
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    result['epoch'] = epoch;
-    result['tick'] = tick;
-    result['tick_display_value'] = tickDisplayValue;
+    resultMap['epoch'] = getSecondsSinceEpochDateTime(epoch);
+    resultMap['tick'] = tick;
+    resultMap['tick_display_value'] = tickDisplayValue;
 
-    return result;
+    return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
-  TickStream copyWith({
-    int epoch,
+  TickStreamItem copyWith({
+    DateTime epoch,
     double tick,
-    UNKNOWN_TYPE tickDisplayValue,
+    String tickDisplayValue,
   }) =>
-      TickStream(
+      TickStreamItem(
         epoch: epoch ?? this.epoch,
         tick: tick ?? this.tick,
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
@@ -1121,12 +1483,12 @@ class TransactionIds extends TransactionIdsModel {
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> result = <String, dynamic>{};
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    result['buy'] = buy;
-    result['sell'] = sell;
+    resultMap['buy'] = buy;
+    resultMap['sell'] = sell;
 
-    return result;
+    return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
@@ -1166,11 +1528,11 @@ class Subscription extends SubscriptionModel {
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> result = <String, dynamic>{};
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    result['id'] = id;
+    resultMap['id'] = id;
 
-    return result;
+    return resultMap;
   }
 
   /// Creates a copy of instance with given parameters

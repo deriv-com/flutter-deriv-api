@@ -24,13 +24,6 @@ class ForgetAll extends ForgetAllModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Creates a copy of instance with given parameters
-  ForgetAll copyWith({
-    List<String> cancelledStreams,
-  }) =>
-      ForgetAll(
-        cancelledStreams: cancelledStreams ?? this.cancelledStreams,
-      );
 
   /// Immediately cancels the real-time streams of messages of given type.
   ///
@@ -49,4 +42,11 @@ class ForgetAll extends ForgetAllModel {
 
     return ForgetAll.fromResponse(response);
   }
+  /// Creates a copy of instance with given parameters
+  ForgetAll copyWith({
+    List<String> cancelledStreams,
+  }) =>
+      ForgetAll(
+        cancelledStreams: cancelledStreams ?? this.cancelledStreams,
+      );
 }

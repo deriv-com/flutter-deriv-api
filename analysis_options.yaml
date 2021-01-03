@@ -1,8 +1,5 @@
 analyzer:
   exclude:
-    - lib/basic_api/**
-    - lib/generated/**
-    - test/**
   strong-mode:
     implicit-dynamic: false
   errors:

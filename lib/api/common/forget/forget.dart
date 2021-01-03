@@ -19,14 +19,6 @@ class Forget extends ForgetModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
-  /// Creates a copy of instance with given parameters
-  Forget copyWith({
-    bool succeeded,
-  }) =>
-      Forget(
-        succeeded: succeeded ?? this.succeeded,
-      );
-
   /// Immediately cancels the real-time stream of messages with a specific id.
   ///
   /// For parameters information refer to [ForgetRequest].
@@ -44,4 +36,12 @@ class Forget extends ForgetModel {
 
     return Forget.fromResponse(response);
   }
+
+  /// Creates a copy of instance with given parameters
+  Forget copyWith({
+    bool succeeded,
+  }) =>
+      Forget(
+        succeeded: succeeded ?? this.succeeded,
+      );
 }
