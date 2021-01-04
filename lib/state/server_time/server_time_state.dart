@@ -1,42 +1,40 @@
 part of 'server_time_bloc.dart';
 
-/// Server time states
-abstract class ServerTimeState {}
+/// Server time base states.
+abstract class ServerTimeState {
+  /// Initializes base server time state.
+  const ServerTimeState([this.timeDifference = 0]);
 
-/// Initial state
+  /// Difference between [serverTime] and the machine time.
+  final int timeDifference;
+}
+
+/// Initial server time state.
 class InitialServerTime extends ServerTimeState {
   @override
   String toString() => 'ServerTimeState: InitialServerTime';
 }
 
-/// Shows that we are in the process of fetching server time
+/// Shows that we are in the process of fetching server time.
 class FetchingServerTime extends ServerTimeState {
-  /// Initializes
-  FetchingServerTime();
-
   @override
   String toString() => 'ServerTimeState: FetchingServerTime';
 }
 
-/// Server time fetched state
+/// Server time fetched state.
 class ServerTimeFetched extends ServerTimeState {
-  /// Initializes
-  ServerTimeFetched({
-    this.serverTime,
-  }) : timeDifference = serverTime == null
-            ? null
-            : getSecondsSinceEpochDateTime(serverTime) - getCurrentLocalEpoch();
+  /// Initializes server time fetched state.
+  ServerTimeFetched({this.serverTime, int timeDifference})
+      : super(
+          timeDifference =
+              getSecondsSinceEpochDateTime(serverTime) - getCurrentLocalEpoch(),
+        );
 
-  /// Fetched server time
+  /// Fetched server time.
   final DateTime serverTime;
 
-  /// Difference between [serverTime] and the machine time
-  final int timeDifference;
-
-  /// Creates a copy of instance with given parameters
-  ServerTimeFetched copyWith({
-    DateTime serverTime,
-  }) =>
+  /// Creates a copy of instance with given parameters.
+  ServerTimeFetched copyWith({DateTime serverTime}) =>
       ServerTimeFetched(serverTime: serverTime ?? this.serverTime);
 
   @override
@@ -44,12 +42,12 @@ class ServerTimeFetched extends ServerTimeState {
       'ServerTimeState: ServerTimeFetched(serverTime: $serverTime, timeDifference: $timeDifference)';
 }
 
-/// Server time error state
+/// Server time error state.
 class ServerTimeError extends ServerTimeState {
-  /// Initializes with the this [error] message
+  /// Initializes with the this [error] message.
   ServerTimeError(this.error);
 
-  /// An exception or message from the server
+  /// An exception or message from the server.
   final String error;
 
   @override
