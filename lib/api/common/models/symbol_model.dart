@@ -1,7 +1,7 @@
 import 'package:flutter_deriv_api/api/common/models/trade_event_model.dart';
 import 'package:flutter_deriv_api/api/common/models/trade_times_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Symbol class
 class SymbolModel extends APIBaseModel {

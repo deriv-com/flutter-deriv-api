@@ -1,7 +1,7 @@
 import 'package:flutter_deriv_api/api/common/models/transfer_account_limitation_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Currency information
 class WebsiteStatusCurrencyConfigModel extends APIBaseModel {

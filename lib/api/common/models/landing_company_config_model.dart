@@ -1,5 +1,5 @@
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Landing company config
 class LandingCompanyConfigModel extends APIBaseModel {

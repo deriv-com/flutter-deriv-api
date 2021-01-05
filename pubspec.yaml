@@ -15,21 +15,23 @@ dependencies:
   code_builder: ^3.1.1
   connectivity: ^2.0.2
   dart_style: ^1.0.0
-  flutter_bloc: ^6.1.0
+  equatable: ^1.2.5
+  flutter_bloc: ^6.1.1
   flutter_webview_plugin: ^0.3.8
+  http: ^0.12.2
+  inflection2: ^0.4.3
+  intl: ^0.16.1
   json_annotation: ^3.0.0
   meta: ^1.1.8
   preferences: ^5.0.2
-  web_socket_channel: ^1.0.15
-  equatable: ^1.2.5
   recase: ^3.0.0
-  inflection2: ^0.4.3
   rxdart: ^0.24.1
-  http: ^0.12.2
+  web_socket_channel: ^1.0.15
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  bloc_test: ^7.1.0
   build_runner: ^1.10.1
   build_test: ^0.10.9+1
   build_verify: ^1.0.0
@@ -37,7 +39,6 @@ dev_dependencies:
   json_serializable: ^3.2.5
   path: ^1.5.1
   test: ^1.6.0
-  bloc_test: ^7.1.0
 
 flutter:
   plugin:

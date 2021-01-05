@@ -1,14 +1,14 @@
-import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/account/api_token/exceptions/api_token_exception.dart';
 import 'package:flutter_deriv_api/api/account/models/api_token_model.dart';
 import 'package:flutter_deriv_api/api/account/models/token_model.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// A class for handling API tokens
 class APIToken extends APITokenModel {

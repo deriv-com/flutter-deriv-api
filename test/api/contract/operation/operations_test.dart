@@ -13,7 +13,7 @@ import 'package:flutter_deriv_api/api/contract/operation/sell_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/update_contract.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));

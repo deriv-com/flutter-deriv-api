@@ -3,9 +3,9 @@ import 'package:flutter_deriv_api/api/account/models/account_settings_model.dart
 import 'package:flutter_deriv_api/api/account/models/set_account_setting_model.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// User information and settings (email, date of birth, address etc).
 class AccountSettings extends AccountSettingsModel {
@@ -151,14 +151,12 @@ class AccountSettings extends AccountSettingsModel {
           addressState: addressState,
           allowCopiers: allowCopiers,
           citizen: citizen,
-          dateOfBirth: dateOfBirth.toString(),
-          // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+          dateOfBirth: getStringFromDateTime(dateOfBirth),
           emailConsent: emailConsent,
           firstName: firstName,
           lastName: lastName,
           phone: phone,
-          placeOfBirth: placeOfBirth.toString(),
-          // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+          placeOfBirth: placeOfBirth,
           requestProfessionalStatus: getInt(value: requestProfessionalStatus),
           residence: residence,
           salutation: salutation,

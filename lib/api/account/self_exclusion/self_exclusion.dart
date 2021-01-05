@@ -2,9 +2,9 @@ import 'package:flutter_deriv_api/api/account/models/self_exclusion_model.dart';
 import 'package:flutter_deriv_api/api/account/self_exclusion/exceptions/self_exclusion_exception.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Self exclusion class
 class SelfExclusion extends SelfExclusionModel {
@@ -43,10 +43,7 @@ class SelfExclusion extends SelfExclusionModel {
 
   /// Creates an instance from JSON
   factory SelfExclusion.fromJson(Map<String, dynamic> json) => SelfExclusion(
-        // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
-        excludeUntil: DateTime.parse(
-          json['exclude_until'],
-        ),
+        excludeUntil: DateTime.tryParse(json['exclude_until']),
         max30dayDeposit: json['max_30day_deposit']?.toDouble(),
         max30dayLosses: json['max_30day_losses']?.toDouble(),
         max30dayTurnover: json['max_30day_turnover']?.toDouble(),
@@ -143,8 +140,7 @@ class SelfExclusion extends SelfExclusionModel {
   Future<bool> exclude() async {
     final SetSelfExclusionResponse response = await _api.call(
       request: SetSelfExclusionRequest(
-        // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
-        excludeUntil: excludeUntil.toString(),
+        excludeUntil: getStringFromDateTime(excludeUntil),
         max30dayDeposit: max30dayDeposit,
         max30dayLosses: max30dayLosses,
         max30dayTurnover: max30dayTurnover,
