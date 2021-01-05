@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Copy start request class
-class CopyStartRequest extends Request {
-  /// Initialize CopyStartRequest
-  const CopyStartRequest({
+/// Copy start send class
+class CopyStartSend extends Request {
+  /// Initialize CopyStartSend
+  const CopyStartSend({
     this.assets,
     @required this.copyStart,
     this.maxTradeStake,
@@ -23,8 +23,7 @@ class CopyStartRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory CopyStartRequest.fromJson(Map<String, dynamic> json) =>
-      CopyStartRequest(
+  factory CopyStartSend.fromJson(Map<String, dynamic> json) => CopyStartSend(
         assets: json['assets'] as dynamic,
         copyStart: json['copy_start'] as String,
         maxTradeStake: json['max_trade_stake'] as num,
@@ -63,7 +62,7 @@ class CopyStartRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  CopyStartRequest copyWith({
+  CopyStartSend copyWith({
     dynamic assets,
     String copyStart,
     num maxTradeStake,
@@ -72,7 +71,7 @@ class CopyStartRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      CopyStartRequest(
+      CopyStartSend(
         assets: assets ?? this.assets,
         copyStart: copyStart ?? this.copyStart,
         maxTradeStake: maxTradeStake ?? this.maxTradeStake,

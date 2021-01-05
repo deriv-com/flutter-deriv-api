@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// P2p advert create response class
-class P2pAdvertCreateResponse extends Response {
-  /// Initialize P2pAdvertCreateResponse
-  const P2pAdvertCreateResponse({
+/// P2p advert create receive class
+class P2pAdvertCreateReceive extends Response {
+  /// Initialize P2pAdvertCreateReceive
+  const P2pAdvertCreateReceive({
     this.p2pAdvertCreate,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
@@ -20,8 +20,8 @@ class P2pAdvertCreateResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory P2pAdvertCreateResponse.fromJson(Map<String, dynamic> json) =>
-      P2pAdvertCreateResponse(
+  factory P2pAdvertCreateReceive.fromJson(Map<String, dynamic> json) =>
+      P2pAdvertCreateReceive(
         p2pAdvertCreate: json['p2p_advert_create'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
         error: json['error'] as Map<String, dynamic>,
@@ -44,14 +44,14 @@ class P2pAdvertCreateResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pAdvertCreateResponse copyWith({
+  P2pAdvertCreateReceive copyWith({
     Map<String, dynamic> p2pAdvertCreate,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      P2pAdvertCreateResponse(
+      P2pAdvertCreateReceive(
         p2pAdvertCreate: p2pAdvertCreate ?? this.p2pAdvertCreate,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

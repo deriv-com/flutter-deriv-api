@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Contract update history request class
-class ContractUpdateHistoryRequest extends Request {
-  /// Initialize ContractUpdateHistoryRequest
-  const ContractUpdateHistoryRequest({
+/// Contract update history send class
+class ContractUpdateHistorySend extends Request {
+  /// Initialize ContractUpdateHistorySend
+  const ContractUpdateHistorySend({
     @required this.contractId,
     this.contractUpdateHistory = true,
     this.limit,
@@ -21,8 +21,8 @@ class ContractUpdateHistoryRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory ContractUpdateHistoryRequest.fromJson(Map<String, dynamic> json) =>
-      ContractUpdateHistoryRequest(
+  factory ContractUpdateHistorySend.fromJson(Map<String, dynamic> json) =>
+      ContractUpdateHistorySend(
         contractId: json['contract_id'] as int,
         contractUpdateHistory: json['contract_update_history'] == null
             ? null
@@ -57,14 +57,14 @@ class ContractUpdateHistoryRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  ContractUpdateHistoryRequest copyWith({
+  ContractUpdateHistorySend copyWith({
     int contractId,
     bool contractUpdateHistory,
     num limit,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      ContractUpdateHistoryRequest(
+      ContractUpdateHistorySend(
         contractId: contractId ?? this.contractId,
         contractUpdateHistory:
             contractUpdateHistory ?? this.contractUpdateHistory,

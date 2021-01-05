@@ -33,8 +33,6 @@ class APIToken extends APITokenModel {
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
-
   /// Creates a copy of instance with given parameters
   APIToken copyWith({
     bool deleteToken,
@@ -46,6 +44,8 @@ class APIToken extends APITokenModel {
         newToken: newToken ?? this.newToken,
         tokens: tokens ?? this.tokens,
       );
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates an API tokens
   ///

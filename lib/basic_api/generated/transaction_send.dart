@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Transaction request class
-class TransactionRequest extends Request {
-  /// Initialize TransactionRequest
-  const TransactionRequest({
+/// Transaction send class
+class TransactionSend extends Request {
+  /// Initialize TransactionSend
+  const TransactionSend({
     this.subscribe,
     this.transaction = true,
     Map<String, dynamic> passthrough,
@@ -18,8 +18,8 @@ class TransactionRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory TransactionRequest.fromJson(Map<String, dynamic> json) =>
-      TransactionRequest(
+  factory TransactionSend.fromJson(Map<String, dynamic> json) =>
+      TransactionSend(
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         transaction:
             json['transaction'] == null ? null : json['transaction'] == 1,
@@ -52,13 +52,13 @@ class TransactionRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  TransactionRequest copyWith({
+  TransactionSend copyWith({
     bool subscribe,
     bool transaction,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      TransactionRequest(
+      TransactionSend(
         subscribe: subscribe ?? this.subscribe,
         transaction: transaction ?? this.transaction,
         passthrough: passthrough ?? this.passthrough,

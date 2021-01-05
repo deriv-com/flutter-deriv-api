@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Transfer between accounts request class
-class TransferBetweenAccountsRequest extends Request {
-  /// Initialize TransferBetweenAccountsRequest
-  const TransferBetweenAccountsRequest({
+/// Transfer between accounts send class
+class TransferBetweenAccountsSend extends Request {
+  /// Initialize TransferBetweenAccountsSend
+  const TransferBetweenAccountsSend({
     this.accountFrom,
     this.accountTo,
     this.accounts,
@@ -24,8 +24,8 @@ class TransferBetweenAccountsRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>
-      TransferBetweenAccountsRequest(
+  factory TransferBetweenAccountsSend.fromJson(Map<String, dynamic> json) =>
+      TransferBetweenAccountsSend(
         accountFrom: json['account_from'] as String,
         accountTo: json['account_to'] as String,
         accounts: json['accounts'] as String,
@@ -69,7 +69,7 @@ class TransferBetweenAccountsRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  TransferBetweenAccountsRequest copyWith({
+  TransferBetweenAccountsSend copyWith({
     String accountFrom,
     String accountTo,
     String accounts,
@@ -79,7 +79,7 @@ class TransferBetweenAccountsRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      TransferBetweenAccountsRequest(
+      TransferBetweenAccountsSend(
         accountFrom: accountFrom ?? this.accountFrom,
         accountTo: accountTo ?? this.accountTo,
         accounts: accounts ?? this.accounts,

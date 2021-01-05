@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// P2p advert list request class
-class P2pAdvertListRequest extends Request {
-  /// Initialize P2pAdvertListRequest
-  const P2pAdvertListRequest({
+/// P2p advert list send class
+class P2pAdvertListSend extends Request {
+  /// Initialize P2pAdvertListSend
+  const P2pAdvertListSend({
     this.advertiserId,
     this.amount,
     this.counterpartyType,
@@ -24,8 +24,8 @@ class P2pAdvertListRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory P2pAdvertListRequest.fromJson(Map<String, dynamic> json) =>
-      P2pAdvertListRequest(
+  factory P2pAdvertListSend.fromJson(Map<String, dynamic> json) =>
+      P2pAdvertListSend(
         advertiserId: json['advertiser_id'] as String,
         amount: json['amount'] as num,
         counterpartyType: json['counterparty_type'] as String,
@@ -91,7 +91,7 @@ class P2pAdvertListRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pAdvertListRequest copyWith({
+  P2pAdvertListSend copyWith({
     String advertiserId,
     num amount,
     String counterpartyType,
@@ -103,7 +103,7 @@ class P2pAdvertListRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      P2pAdvertListRequest(
+      P2pAdvertListSend(
         advertiserId: advertiserId ?? this.advertiserId,
         amount: amount ?? this.amount,
         counterpartyType: counterpartyType ?? this.counterpartyType,

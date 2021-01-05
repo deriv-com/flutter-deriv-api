@@ -26,8 +26,8 @@ class APIBuilder extends Builder {
   };
 
   static const Map<String, String> schemaTypeMap = <String, String>{
-    'send': 'Request',
-    'receive': 'Response',
+    'send': 'Send',
+    'receive': 'Receive',
   };
 
   static const Map<String, String> requestCommonFields = <String, String>{

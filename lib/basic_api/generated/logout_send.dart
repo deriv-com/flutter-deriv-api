@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Logout request class
-class LogoutRequest extends Request {
-  /// Initialize LogoutRequest
-  const LogoutRequest({
+/// Logout send class
+class LogoutSend extends Request {
+  /// Initialize LogoutSend
+  const LogoutSend({
     this.logout = true,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -17,7 +17,7 @@ class LogoutRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory LogoutRequest.fromJson(Map<String, dynamic> json) => LogoutRequest(
+  factory LogoutSend.fromJson(Map<String, dynamic> json) => LogoutSend(
         logout: json['logout'] == null ? null : json['logout'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
@@ -40,12 +40,12 @@ class LogoutRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  LogoutRequest copyWith({
+  LogoutSend copyWith({
     bool logout,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      LogoutRequest(
+      LogoutSend(
         logout: logout ?? this.logout,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

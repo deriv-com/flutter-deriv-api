@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// App register request class
-class AppRegisterRequest extends Request {
-  /// Initialize AppRegisterRequest
-  const AppRegisterRequest({
+/// App register send class
+class AppRegisterSend extends Request {
+  /// Initialize AppRegisterSend
+  const AppRegisterSend({
     this.appMarkupPercentage,
     this.appRegister = true,
     this.appstore,
@@ -28,8 +28,8 @@ class AppRegisterRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory AppRegisterRequest.fromJson(Map<String, dynamic> json) =>
-      AppRegisterRequest(
+  factory AppRegisterSend.fromJson(Map<String, dynamic> json) =>
+      AppRegisterSend(
         appMarkupPercentage: json['app_markup_percentage'] as num,
         appRegister:
             json['app_register'] == null ? null : json['app_register'] == 1,
@@ -100,7 +100,7 @@ class AppRegisterRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  AppRegisterRequest copyWith({
+  AppRegisterSend copyWith({
     num appMarkupPercentage,
     bool appRegister,
     String appstore,
@@ -114,7 +114,7 @@ class AppRegisterRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      AppRegisterRequest(
+      AppRegisterSend(
         appMarkupPercentage: appMarkupPercentage ?? this.appMarkupPercentage,
         appRegister: appRegister ?? this.appRegister,
         appstore: appstore ?? this.appstore,

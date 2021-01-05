@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// P2p advertiser create request class
-class P2pAdvertiserCreateRequest extends Request {
-  /// Initialize P2pAdvertiserCreateRequest
-  const P2pAdvertiserCreateRequest({
+/// P2p advertiser create send class
+class P2pAdvertiserCreateSend extends Request {
+  /// Initialize P2pAdvertiserCreateSend
+  const P2pAdvertiserCreateSend({
     this.contactInfo,
     this.defaultAdvertDescription,
     @required this.name,
@@ -24,8 +24,8 @@ class P2pAdvertiserCreateRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory P2pAdvertiserCreateRequest.fromJson(Map<String, dynamic> json) =>
-      P2pAdvertiserCreateRequest(
+  factory P2pAdvertiserCreateSend.fromJson(Map<String, dynamic> json) =>
+      P2pAdvertiserCreateSend(
         contactInfo: json['contact_info'] as String,
         defaultAdvertDescription: json['default_advert_description'] as String,
         name: json['name'] as String,
@@ -79,7 +79,7 @@ class P2pAdvertiserCreateRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pAdvertiserCreateRequest copyWith({
+  P2pAdvertiserCreateSend copyWith({
     String contactInfo,
     String defaultAdvertDescription,
     String name,
@@ -89,7 +89,7 @@ class P2pAdvertiserCreateRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      P2pAdvertiserCreateRequest(
+      P2pAdvertiserCreateSend(
         contactInfo: contactInfo ?? this.contactInfo,
         defaultAdvertDescription:
             defaultAdvertDescription ?? this.defaultAdvertDescription,

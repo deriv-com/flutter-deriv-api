@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Get account status request class
-class GetAccountStatusRequest extends Request {
-  /// Initialize GetAccountStatusRequest
-  const GetAccountStatusRequest({
+/// Get account status send class
+class GetAccountStatusSend extends Request {
+  /// Initialize GetAccountStatusSend
+  const GetAccountStatusSend({
     this.getAccountStatus = true,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -17,8 +17,8 @@ class GetAccountStatusRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory GetAccountStatusRequest.fromJson(Map<String, dynamic> json) =>
-      GetAccountStatusRequest(
+  factory GetAccountStatusSend.fromJson(Map<String, dynamic> json) =>
+      GetAccountStatusSend(
         getAccountStatus: json['get_account_status'] == null
             ? null
             : json['get_account_status'] == 1,
@@ -43,12 +43,12 @@ class GetAccountStatusRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  GetAccountStatusRequest copyWith({
+  GetAccountStatusSend copyWith({
     bool getAccountStatus,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      GetAccountStatusRequest(
+      GetAccountStatusSend(
         getAccountStatus: getAccountStatus ?? this.getAccountStatus,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

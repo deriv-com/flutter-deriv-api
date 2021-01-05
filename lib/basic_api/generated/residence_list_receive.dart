@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// Residence list response class
-class ResidenceListResponse extends Response {
-  /// Initialize ResidenceListResponse
-  const ResidenceListResponse({
+/// Residence list receive class
+class ResidenceListReceive extends Response {
+  /// Initialize ResidenceListReceive
+  const ResidenceListReceive({
     this.residenceList,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
@@ -20,8 +20,8 @@ class ResidenceListResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory ResidenceListResponse.fromJson(Map<String, dynamic> json) =>
-      ResidenceListResponse(
+  factory ResidenceListReceive.fromJson(Map<String, dynamic> json) =>
+      ResidenceListReceive(
         residenceList: (json['residence_list'] as List<dynamic>)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
@@ -47,14 +47,14 @@ class ResidenceListResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  ResidenceListResponse copyWith({
+  ResidenceListReceive copyWith({
     List<Map<String, dynamic>> residenceList,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      ResidenceListResponse(
+      ResidenceListReceive(
         residenceList: residenceList ?? this.residenceList,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// P2p advertiser stats request class
-class P2pAdvertiserStatsRequest extends Request {
-  /// Initialize P2pAdvertiserStatsRequest
-  const P2pAdvertiserStatsRequest({
+/// P2p advertiser stats send class
+class P2pAdvertiserStatsSend extends Request {
+  /// Initialize P2pAdvertiserStatsSend
+  const P2pAdvertiserStatsSend({
     this.days,
     this.id,
     this.p2pAdvertiserStats = true,
@@ -19,8 +19,8 @@ class P2pAdvertiserStatsRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory P2pAdvertiserStatsRequest.fromJson(Map<String, dynamic> json) =>
-      P2pAdvertiserStatsRequest(
+  factory P2pAdvertiserStatsSend.fromJson(Map<String, dynamic> json) =>
+      P2pAdvertiserStatsSend(
         days: json['days'] as int,
         id: json['id'] as String,
         p2pAdvertiserStats: json['p2p_advertiser_stats'] == null
@@ -55,14 +55,14 @@ class P2pAdvertiserStatsRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pAdvertiserStatsRequest copyWith({
+  P2pAdvertiserStatsSend copyWith({
     int days,
     String id,
     bool p2pAdvertiserStats,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      P2pAdvertiserStatsRequest(
+      P2pAdvertiserStatsSend(
         days: days ?? this.days,
         id: id ?? this.id,
         p2pAdvertiserStats: p2pAdvertiserStats ?? this.p2pAdvertiserStats,

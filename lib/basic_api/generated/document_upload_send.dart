@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Document upload request class
-class DocumentUploadRequest extends Request {
-  /// Initialize DocumentUploadRequest
-  const DocumentUploadRequest({
+/// Document upload send class
+class DocumentUploadSend extends Request {
+  /// Initialize DocumentUploadSend
+  const DocumentUploadSend({
     @required this.documentFormat,
     this.documentId,
     @required this.documentType,
@@ -26,8 +26,8 @@ class DocumentUploadRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>
-      DocumentUploadRequest(
+  factory DocumentUploadSend.fromJson(Map<String, dynamic> json) =>
+      DocumentUploadSend(
         documentFormat: json['document_format'] as String,
         documentId: json['document_id'] as String,
         documentType: json['document_type'] as String,
@@ -87,7 +87,7 @@ class DocumentUploadRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  DocumentUploadRequest copyWith({
+  DocumentUploadSend copyWith({
     String documentFormat,
     String documentId,
     String documentType,
@@ -99,7 +99,7 @@ class DocumentUploadRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      DocumentUploadRequest(
+      DocumentUploadSend(
         documentFormat: documentFormat ?? this.documentFormat,
         documentId: documentId ?? this.documentId,
         documentType: documentType ?? this.documentType,

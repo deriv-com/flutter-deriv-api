@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// App get request class
-class AppGetRequest extends Request {
-  /// Initialize AppGetRequest
-  const AppGetRequest({
+/// App get send class
+class AppGetSend extends Request {
+  /// Initialize AppGetSend
+  const AppGetSend({
     @required this.appGet,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -19,7 +19,7 @@ class AppGetRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory AppGetRequest.fromJson(Map<String, dynamic> json) => AppGetRequest(
+  factory AppGetSend.fromJson(Map<String, dynamic> json) => AppGetSend(
         appGet: json['app_get'] as int,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
@@ -38,12 +38,12 @@ class AppGetRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  AppGetRequest copyWith({
+  AppGetSend copyWith({
     int appGet,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      AppGetRequest(
+      AppGetSend(
         appGet: appGet ?? this.appGet,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

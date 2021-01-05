@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// P2p chat create request class
-class P2pChatCreateRequest extends Request {
-  /// Initialize P2pChatCreateRequest
-  const P2pChatCreateRequest({
+/// P2p chat create send class
+class P2pChatCreateSend extends Request {
+  /// Initialize P2pChatCreateSend
+  const P2pChatCreateSend({
     @required this.orderId,
     this.p2pChatCreate = true,
     Map<String, dynamic> passthrough,
@@ -20,8 +20,8 @@ class P2pChatCreateRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory P2pChatCreateRequest.fromJson(Map<String, dynamic> json) =>
-      P2pChatCreateRequest(
+  factory P2pChatCreateSend.fromJson(Map<String, dynamic> json) =>
+      P2pChatCreateSend(
         orderId: json['order_id'] as String,
         p2pChatCreate: json['p2p_chat_create'] == null
             ? null
@@ -51,13 +51,13 @@ class P2pChatCreateRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pChatCreateRequest copyWith({
+  P2pChatCreateSend copyWith({
     String orderId,
     bool p2pChatCreate,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      P2pChatCreateRequest(
+      P2pChatCreateSend(
         orderId: orderId ?? this.orderId,
         p2pChatCreate: p2pChatCreate ?? this.p2pChatCreate,
         passthrough: passthrough ?? this.passthrough,

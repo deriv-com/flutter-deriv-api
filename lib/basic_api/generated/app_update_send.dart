@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// App update request class
-class AppUpdateRequest extends Request {
-  /// Initialize AppUpdateRequest
-  const AppUpdateRequest({
+/// App update send class
+class AppUpdateSend extends Request {
+  /// Initialize AppUpdateSend
+  const AppUpdateSend({
     this.appMarkupPercentage,
     @required this.appUpdate,
     this.appstore,
@@ -28,8 +28,7 @@ class AppUpdateRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory AppUpdateRequest.fromJson(Map<String, dynamic> json) =>
-      AppUpdateRequest(
+  factory AppUpdateSend.fromJson(Map<String, dynamic> json) => AppUpdateSend(
         appMarkupPercentage: json['app_markup_percentage'] as num,
         appUpdate: json['app_update'] as int,
         appstore: json['appstore'] as String,
@@ -95,7 +94,7 @@ class AppUpdateRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  AppUpdateRequest copyWith({
+  AppUpdateSend copyWith({
     num appMarkupPercentage,
     int appUpdate,
     String appstore,
@@ -109,7 +108,7 @@ class AppUpdateRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      AppUpdateRequest(
+      AppUpdateSend(
         appMarkupPercentage: appMarkupPercentage ?? this.appMarkupPercentage,
         appUpdate: appUpdate ?? this.appUpdate,
         appstore: appstore ?? this.appstore,

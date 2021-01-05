@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// Landing company details response class
-class LandingCompanyDetailsResponse extends Response {
-  /// Initialize LandingCompanyDetailsResponse
-  const LandingCompanyDetailsResponse({
+/// Landing company details receive class
+class LandingCompanyDetailsReceive extends Response {
+  /// Initialize LandingCompanyDetailsReceive
+  const LandingCompanyDetailsReceive({
     this.landingCompanyDetails,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
@@ -20,8 +20,8 @@ class LandingCompanyDetailsResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory LandingCompanyDetailsResponse.fromJson(Map<String, dynamic> json) =>
-      LandingCompanyDetailsResponse(
+  factory LandingCompanyDetailsReceive.fromJson(Map<String, dynamic> json) =>
+      LandingCompanyDetailsReceive(
         landingCompanyDetails:
             json['landing_company_details'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
@@ -45,14 +45,14 @@ class LandingCompanyDetailsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  LandingCompanyDetailsResponse copyWith({
+  LandingCompanyDetailsReceive copyWith({
     Map<String, dynamic> landingCompanyDetails,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      LandingCompanyDetailsResponse(
+      LandingCompanyDetailsReceive(
         landingCompanyDetails:
             landingCompanyDetails ?? this.landingCompanyDetails,
         echoReq: echoReq ?? this.echoReq,

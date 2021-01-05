@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Forget all request class
-class ForgetAllRequest extends Request {
-  /// Initialize ForgetAllRequest
-  const ForgetAllRequest({
+/// Forget all send class
+class ForgetAllSend extends Request {
+  /// Initialize ForgetAllSend
+  const ForgetAllSend({
     this.forgetAll,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -17,8 +17,7 @@ class ForgetAllRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory ForgetAllRequest.fromJson(Map<String, dynamic> json) =>
-      ForgetAllRequest(
+  factory ForgetAllSend.fromJson(Map<String, dynamic> json) => ForgetAllSend(
         forgetAll: json['forget_all'] as dynamic,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
@@ -37,12 +36,12 @@ class ForgetAllRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  ForgetAllRequest copyWith({
+  ForgetAllSend copyWith({
     dynamic forgetAll,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      ForgetAllRequest(
+      ForgetAllSend(
         forgetAll: forgetAll ?? this.forgetAll,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

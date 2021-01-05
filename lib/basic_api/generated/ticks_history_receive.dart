@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// Ticks history response class
-class TicksHistoryResponse extends Response {
-  /// Initialize TicksHistoryResponse
-  const TicksHistoryResponse({
+/// Ticks history receive class
+class TicksHistoryReceive extends Response {
+  /// Initialize TicksHistoryReceive
+  const TicksHistoryReceive({
     this.candles,
     this.history,
     this.pipSize,
@@ -23,8 +23,8 @@ class TicksHistoryResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory TicksHistoryResponse.fromJson(Map<String, dynamic> json) =>
-      TicksHistoryResponse(
+  factory TicksHistoryReceive.fromJson(Map<String, dynamic> json) =>
+      TicksHistoryReceive(
         candles: (json['candles'] as List<dynamic>)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
@@ -65,7 +65,7 @@ class TicksHistoryResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TicksHistoryResponse copyWith({
+  TicksHistoryReceive copyWith({
     List<Map<String, dynamic>> candles,
     Map<String, dynamic> history,
     num pipSize,
@@ -75,7 +75,7 @@ class TicksHistoryResponse extends Response {
     String msgType,
     int reqId,
   }) =>
-      TicksHistoryResponse(
+      TicksHistoryReceive(
         candles: candles ?? this.candles,
         history: history ?? this.history,
         pipSize: pipSize ?? this.pipSize,

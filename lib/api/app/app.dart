@@ -50,8 +50,6 @@ class App extends AppModel {
         verificationUri: json['verification_uri'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
-
   /// Creates a copy of instance with given parameters
   App copyWith({
     int appId,
@@ -75,6 +73,8 @@ class App extends AppModel {
         redirectUri: redirectUri ?? this.redirectUri,
         verificationUri: verificationUri ?? this.verificationUri,
       );
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the information of the OAuth application specified by [appId] in [request]
   ///

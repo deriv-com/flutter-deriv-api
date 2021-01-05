@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// P2p order create request class
-class P2pOrderCreateRequest extends Request {
-  /// Initialize P2pOrderCreateRequest
-  const P2pOrderCreateRequest({
+/// P2p order create send class
+class P2pOrderCreateSend extends Request {
+  /// Initialize P2pOrderCreateSend
+  const P2pOrderCreateSend({
     @required this.advertId,
     @required this.amount,
     this.contactInfo,
@@ -24,8 +24,8 @@ class P2pOrderCreateRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory P2pOrderCreateRequest.fromJson(Map<String, dynamic> json) =>
-      P2pOrderCreateRequest(
+  factory P2pOrderCreateSend.fromJson(Map<String, dynamic> json) =>
+      P2pOrderCreateSend(
         advertId: json['advert_id'] as String,
         amount: json['amount'] as num,
         contactInfo: json['contact_info'] as String,
@@ -79,7 +79,7 @@ class P2pOrderCreateRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pOrderCreateRequest copyWith({
+  P2pOrderCreateSend copyWith({
     String advertId,
     num amount,
     String contactInfo,
@@ -89,7 +89,7 @@ class P2pOrderCreateRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      P2pOrderCreateRequest(
+      P2pOrderCreateSend(
         advertId: advertId ?? this.advertId,
         amount: amount ?? this.amount,
         contactInfo: contactInfo ?? this.contactInfo,

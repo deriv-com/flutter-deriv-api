@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// App markup details request class
-class AppMarkupDetailsRequest extends Request {
-  /// Initialize AppMarkupDetailsRequest
-  const AppMarkupDetailsRequest({
+/// App markup details send class
+class AppMarkupDetailsSend extends Request {
+  /// Initialize AppMarkupDetailsSend
+  const AppMarkupDetailsSend({
     this.appId,
     this.appMarkupDetails = true,
     this.clientLoginid,
@@ -28,8 +28,8 @@ class AppMarkupDetailsRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>
-      AppMarkupDetailsRequest(
+  factory AppMarkupDetailsSend.fromJson(Map<String, dynamic> json) =>
+      AppMarkupDetailsSend(
         appId: json['app_id'] as int,
         appMarkupDetails: json['app_markup_details'] == null
             ? null
@@ -106,7 +106,7 @@ class AppMarkupDetailsRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  AppMarkupDetailsRequest copyWith({
+  AppMarkupDetailsSend copyWith({
     int appId,
     bool appMarkupDetails,
     String clientLoginid,
@@ -120,7 +120,7 @@ class AppMarkupDetailsRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      AppMarkupDetailsRequest(
+      AppMarkupDetailsSend(
         appId: appId ?? this.appId,
         appMarkupDetails: appMarkupDetails ?? this.appMarkupDetails,
         clientLoginid: clientLoginid ?? this.clientLoginid,

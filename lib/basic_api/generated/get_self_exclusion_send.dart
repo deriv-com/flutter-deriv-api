@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Get self exclusion request class
-class GetSelfExclusionRequest extends Request {
-  /// Initialize GetSelfExclusionRequest
-  const GetSelfExclusionRequest({
+/// Get self exclusion send class
+class GetSelfExclusionSend extends Request {
+  /// Initialize GetSelfExclusionSend
+  const GetSelfExclusionSend({
     this.getSelfExclusion = true,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -17,8 +17,8 @@ class GetSelfExclusionRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory GetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
-      GetSelfExclusionRequest(
+  factory GetSelfExclusionSend.fromJson(Map<String, dynamic> json) =>
+      GetSelfExclusionSend(
         getSelfExclusion: json['get_self_exclusion'] == null
             ? null
             : json['get_self_exclusion'] == 1,
@@ -43,12 +43,12 @@ class GetSelfExclusionRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  GetSelfExclusionRequest copyWith({
+  GetSelfExclusionSend copyWith({
     bool getSelfExclusion,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      GetSelfExclusionRequest(
+      GetSelfExclusionSend(
         getSelfExclusion: getSelfExclusion ?? this.getSelfExclusion,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

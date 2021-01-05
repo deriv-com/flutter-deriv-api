@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// New account real request class
-class NewAccountRealRequest extends Request {
-  /// Initialize NewAccountRealRequest
-  const NewAccountRealRequest({
+/// New account real send class
+class NewAccountRealSend extends Request {
+  /// Initialize NewAccountRealSend
+  const NewAccountRealSend({
     this.accountOpeningReason,
     this.accountTurnover,
     this.addressCity,
@@ -42,8 +42,8 @@ class NewAccountRealRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory NewAccountRealRequest.fromJson(Map<String, dynamic> json) =>
-      NewAccountRealRequest(
+  factory NewAccountRealSend.fromJson(Map<String, dynamic> json) =>
+      NewAccountRealSend(
         accountOpeningReason: json['account_opening_reason'] as String,
         accountTurnover: json['account_turnover'] as String,
         addressCity: json['address_city'] as String,
@@ -183,7 +183,7 @@ class NewAccountRealRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  NewAccountRealRequest copyWith({
+  NewAccountRealSend copyWith({
     String accountOpeningReason,
     String accountTurnover,
     String addressCity,
@@ -211,7 +211,7 @@ class NewAccountRealRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      NewAccountRealRequest(
+      NewAccountRealSend(
         accountOpeningReason: accountOpeningReason ?? this.accountOpeningReason,
         accountTurnover: accountTurnover ?? this.accountTurnover,
         addressCity: addressCity ?? this.addressCity,

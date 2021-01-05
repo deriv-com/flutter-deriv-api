@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Buy request class
-class BuyRequest extends Request {
-  /// Initialize BuyRequest
-  const BuyRequest({
+/// Buy send class
+class BuySend extends Request {
+  /// Initialize BuySend
+  const BuySend({
     @required this.buy,
     this.parameters,
     @required this.price,
@@ -22,7 +22,7 @@ class BuyRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory BuyRequest.fromJson(Map<String, dynamic> json) => BuyRequest(
+  factory BuySend.fromJson(Map<String, dynamic> json) => BuySend(
         buy: json['buy'] as String,
         parameters: json['parameters'] as Map<String, dynamic>,
         price: json['price'] as num,
@@ -60,7 +60,7 @@ class BuyRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  BuyRequest copyWith({
+  BuySend copyWith({
     String buy,
     Map<String, dynamic> parameters,
     num price,
@@ -68,7 +68,7 @@ class BuyRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      BuyRequest(
+      BuySend(
         buy: buy ?? this.buy,
         parameters: parameters ?? this.parameters,
         price: price ?? this.price,

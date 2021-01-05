@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Profit table request class
-class ProfitTableRequest extends Request {
-  /// Initialize ProfitTableRequest
-  const ProfitTableRequest({
+/// Profit table send class
+class ProfitTableSend extends Request {
+  /// Initialize ProfitTableSend
+  const ProfitTableSend({
     @required this.contractType,
     this.dateFrom,
     this.dateTo,
@@ -26,8 +26,8 @@ class ProfitTableRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>
-      ProfitTableRequest(
+  factory ProfitTableSend.fromJson(Map<String, dynamic> json) =>
+      ProfitTableSend(
         contractType: (json['contract_type'] as List<dynamic>)
             ?.map<String>((dynamic item) => item as String)
             ?.toList(),
@@ -93,7 +93,7 @@ class ProfitTableRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  ProfitTableRequest copyWith({
+  ProfitTableSend copyWith({
     List<String> contractType,
     String dateFrom,
     String dateTo,
@@ -105,7 +105,7 @@ class ProfitTableRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      ProfitTableRequest(
+      ProfitTableSend(
         contractType: contractType ?? this.contractType,
         dateFrom: dateFrom ?? this.dateFrom,
         dateTo: dateTo ?? this.dateTo,

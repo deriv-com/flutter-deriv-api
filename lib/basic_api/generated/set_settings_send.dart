@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Set settings request class
-class SetSettingsRequest extends Request {
-  /// Initialize SetSettingsRequest
-  const SetSettingsRequest({
+/// Set settings send class
+class SetSettingsSend extends Request {
+  /// Initialize SetSettingsSend
+  const SetSettingsSend({
     this.accountOpeningReason,
     this.addressCity,
     this.addressLine1,
@@ -39,8 +39,8 @@ class SetSettingsRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory SetSettingsRequest.fromJson(Map<String, dynamic> json) =>
-      SetSettingsRequest(
+  factory SetSettingsSend.fromJson(Map<String, dynamic> json) =>
+      SetSettingsSend(
         accountOpeningReason: json['account_opening_reason'] as String,
         addressCity: json['address_city'] as String,
         addressLine1: json['address_line_1'] as String,
@@ -184,7 +184,7 @@ class SetSettingsRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  SetSettingsRequest copyWith({
+  SetSettingsSend copyWith({
     String accountOpeningReason,
     String addressCity,
     String addressLine1,
@@ -211,7 +211,7 @@ class SetSettingsRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      SetSettingsRequest(
+      SetSettingsSend(
         accountOpeningReason: accountOpeningReason ?? this.accountOpeningReason,
         addressCity: addressCity ?? this.addressCity,
         addressLine1: addressLine1 ?? this.addressLine1,

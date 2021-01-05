@@ -32,7 +32,10 @@ class SchemaModel {
   SchemaModel schemaArrType;
 
   /// List of nested classes (for Objs)
-  List<SchemaModel> children;
+  List<SchemaModel> children = <SchemaModel>[];
+
+  /// Parrent Model
+  SchemaModel parrent;
 
   /// Values of enum model (for now it only supports String type)
   List<String> enumValues;
@@ -41,10 +44,18 @@ class SchemaModel {
   String get fieldTitle => ReCase(schemaTitle).camelCase;
 
   /// Class name
-  String get className => ReCase(schemaTitle).pascalCase;
+  String _className;
+
+  /// Class name
+  set className(String className) {
+    _className = className;
+  }
 
   /// True if this model is an Enum
   bool get isEnum => enumValues != null;
+
+  /// Class name
+  String get className => _className ?? ReCase(schemaTitle).pascalCase;
 
   /// Returns enum name format of this model
   String get enumName => '${ReCase(schemaTitle).pascalCase}Enum';

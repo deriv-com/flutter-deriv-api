@@ -1,7 +1,7 @@
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/contract/models/transaction_model.dart';
-import 'package:flutter_deriv_api/api/contract/transaction/exceptions/transactions_exception.dart';
+import 'package:flutter_deriv_api/api/exceptions/transactions_exception.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/models/subscription_model.dart';

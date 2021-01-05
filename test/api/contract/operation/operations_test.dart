@@ -1,5 +1,5 @@
 import 'dart:developer' as dev;
-import 'package:flutter_deriv_api/basic_api/generated/buy_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/buy_receive_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/proposal_receive_result.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/api/contract/models/history_spot_price_model.d
 import 'package:flutter_deriv_api/api/contract/models/sell_expired_contract_model.dart';
 import 'package:flutter_deriv_api/api/contract/operation/cancel_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/contract.dart';
-import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_operations_exception.dart';
+import 'package:flutter_deriv_api/api/exceptions/contract_operations_exception.dart';
 import 'package:flutter_deriv_api/api/contract/operation/open_contract.dart';
 import 'package:flutter_deriv_api/api/contract/operation/price_proposal.dart';
 import 'package:flutter_deriv_api/api/contract/operation/sell_contract.dart';

@@ -24,8 +24,6 @@ class AppUpdate extends AppUpdateModel {
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
-
   /// Creates a copy of instance with given parameters
   AppUpdate copyWith({
     App appDetails,
@@ -33,6 +31,8 @@ class AppUpdate extends AppUpdateModel {
       AppUpdate(
         appDetails: appDetails ?? this.appDetails,
       );
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Updates the application specified in [request].
   ///

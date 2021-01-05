@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// Portfolio response class
-class PortfolioResponse extends Response {
-  /// Initialize PortfolioResponse
-  const PortfolioResponse({
+/// Portfolio receive class
+class PortfolioReceive extends Response {
+  /// Initialize PortfolioReceive
+  const PortfolioReceive({
     this.portfolio,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
@@ -20,8 +20,8 @@ class PortfolioResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory PortfolioResponse.fromJson(Map<String, dynamic> json) =>
-      PortfolioResponse(
+  factory PortfolioReceive.fromJson(Map<String, dynamic> json) =>
+      PortfolioReceive(
         portfolio: json['portfolio'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
         error: json['error'] as Map<String, dynamic>,
@@ -44,14 +44,14 @@ class PortfolioResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  PortfolioResponse copyWith({
+  PortfolioReceive copyWith({
     Map<String, dynamic> portfolio,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      PortfolioResponse(
+      PortfolioReceive(
         portfolio: portfolio ?? this.portfolio,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// Set settings response class
-class SetSettingsResponse extends Response {
-  /// Initialize SetSettingsResponse
-  const SetSettingsResponse({
+/// Set settings receive class
+class SetSettingsReceive extends Response {
+  /// Initialize SetSettingsReceive
+  const SetSettingsReceive({
     this.setSettings,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
@@ -20,8 +20,8 @@ class SetSettingsResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory SetSettingsResponse.fromJson(Map<String, dynamic> json) =>
-      SetSettingsResponse(
+  factory SetSettingsReceive.fromJson(Map<String, dynamic> json) =>
+      SetSettingsReceive(
         setSettings: json['set_settings'] as int,
         echoReq: json['echo_req'] as Map<String, dynamic>,
         error: json['error'] as Map<String, dynamic>,
@@ -44,14 +44,14 @@ class SetSettingsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  SetSettingsResponse copyWith({
+  SetSettingsReceive copyWith({
     int setSettings,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      SetSettingsResponse(
+      SetSettingsReceive(
         setSettings: setSettings ?? this.setSettings,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

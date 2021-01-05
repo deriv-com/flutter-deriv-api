@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Ticks history request class
-class TicksHistoryRequest extends Request {
-  /// Initialize TicksHistoryRequest
-  const TicksHistoryRequest({
+/// Ticks history send class
+class TicksHistorySend extends Request {
+  /// Initialize TicksHistorySend
+  const TicksHistorySend({
     this.adjustStartTime,
     this.count,
     @required this.end,
@@ -26,8 +26,8 @@ class TicksHistoryRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>
-      TicksHistoryRequest(
+  factory TicksHistorySend.fromJson(Map<String, dynamic> json) =>
+      TicksHistorySend(
         adjustStartTime: json['adjust_start_time'] as int,
         count: json['count'] as int,
         end: json['end'] as String,
@@ -87,7 +87,7 @@ class TicksHistoryRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  TicksHistoryRequest copyWith({
+  TicksHistorySend copyWith({
     int adjustStartTime,
     int count,
     String end,
@@ -99,7 +99,7 @@ class TicksHistoryRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      TicksHistoryRequest(
+      TicksHistorySend(
         adjustStartTime: adjustStartTime ?? this.adjustStartTime,
         count: count ?? this.count,
         end: end ?? this.end,

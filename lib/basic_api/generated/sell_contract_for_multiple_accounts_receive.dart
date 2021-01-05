@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// Sell contract for multiple accounts response class
-class SellContractForMultipleAccountsResponse extends Response {
-  /// Initialize SellContractForMultipleAccountsResponse
-  const SellContractForMultipleAccountsResponse({
+/// Sell contract for multiple accounts receive class
+class SellContractForMultipleAccountsReceive extends Response {
+  /// Initialize SellContractForMultipleAccountsReceive
+  const SellContractForMultipleAccountsReceive({
     this.sellContractForMultipleAccounts,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
@@ -20,9 +20,9 @@ class SellContractForMultipleAccountsResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory SellContractForMultipleAccountsResponse.fromJson(
+  factory SellContractForMultipleAccountsReceive.fromJson(
           Map<String, dynamic> json) =>
-      SellContractForMultipleAccountsResponse(
+      SellContractForMultipleAccountsReceive(
         sellContractForMultipleAccounts:
             json['sell_contract_for_multiple_accounts'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
@@ -46,14 +46,14 @@ class SellContractForMultipleAccountsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  SellContractForMultipleAccountsResponse copyWith({
+  SellContractForMultipleAccountsReceive copyWith({
     Map<String, dynamic> sellContractForMultipleAccounts,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      SellContractForMultipleAccountsResponse(
+      SellContractForMultipleAccountsReceive(
         sellContractForMultipleAccounts: sellContractForMultipleAccounts ??
             this.sellContractForMultipleAccounts,
         echoReq: echoReq ?? this.echoReq,

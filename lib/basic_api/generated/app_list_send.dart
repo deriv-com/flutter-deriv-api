@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// App list request class
-class AppListRequest extends Request {
-  /// Initialize AppListRequest
-  const AppListRequest({
+/// App list send class
+class AppListSend extends Request {
+  /// Initialize AppListSend
+  const AppListSend({
     this.appList = true,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -17,7 +17,7 @@ class AppListRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory AppListRequest.fromJson(Map<String, dynamic> json) => AppListRequest(
+  factory AppListSend.fromJson(Map<String, dynamic> json) => AppListSend(
         appList: json['app_list'] == null ? null : json['app_list'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
@@ -40,12 +40,12 @@ class AppListRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  AppListRequest copyWith({
+  AppListSend copyWith({
     bool appList,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      AppListRequest(
+      AppListSend(
         appList: appList ?? this.appList,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

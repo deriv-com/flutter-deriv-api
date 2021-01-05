@@ -395,7 +395,7 @@ class JsonSchemaParser {
       return null;
     }
 
-    final SchemaModel childModel = SchemaModel()
+    final SchemaModel theModel = SchemaModel()
       ..isRequired = _isRequired(entry)
       ..description = _preparePropertyDescription(
         isBoolean: isBoolean,
@@ -408,22 +408,26 @@ class JsonSchemaParser {
     // When entity is a string and has enum values
     if (entry.value['enum'] != null) {
       if (type == 'string') {
-        childModel.enumValues = List<String>.from(
+        theModel.enumValues = List<String>.from(
             entry.value['enum'].map((dynamic x) => x.toString()));
       }
     }
 
-    if (childModel.schemaType == _objectType) {
-      childModel.children.addAll(preProcessModels(entry.value));
-    } else if (childModel.schemaType == _arrayType) {
+    if (theModel.schemaType == _objectType) {
+      final List<SchemaModel> children = preProcessModels(entry.value);
+      for (final SchemaModel child in children) {
+        child.parrent = theModel;
+      }
+      theModel.children.addAll(children);
+    } else if (theModel.schemaType == _arrayType) {
       final Map<String, dynamic> arrChildEntry = entry.value['items'];
-      childModel.schemaArrType = arrChildEntry != null
+      theModel.schemaArrType = arrChildEntry != null
           ? _processEntry(
               MapEntry<String, dynamic>('${schemaTitle}Item', arrChildEntry))
           : SchemaModel.dynamicModel();
     }
 
-    return childModel;
+    return theModel;
   }
 
   /// Get dart class types of the provided models
@@ -452,6 +456,7 @@ class JsonSchemaParser {
     switch (model.schemaType) {
       case _objectType:
         getClassTypesFor(model.children);
+        _assignClassName(model);
         return model.className;
       case _objectUnknownType:
         return 'Map<String,dynamic>';
@@ -475,50 +480,42 @@ class JsonSchemaParser {
   }
 
   /// Generating main and nested classes from schema models that comes from `getModel()` method.
-  List<StringBuffer> getClasses(List<SchemaModel> models,
-      {String methodsString = '',
-      String parrentClassName = '',
-      String className = 'MainClass',
-      bool isArr = false,
-      bool isRoot = false}) {
-    // Check if its Obj(second condition is for bypassing arrays, we just need to go through thier child, not creat class for them)
-    if (models.isNotEmpty && !isArr) {
-      // final String finalClassName = classNamesArray.contains(className)
-      //     ? '$parrentClassName$className'
-      //     : className;
-      // classNamesArray.add(finalClassName);
+  List<StringBuffer> getClasses(
+    SchemaModel model, {
+    String methodsString = '',
+    bool isRoot = false,
+  }) {
+    // Check if its Object
+    if (model.children.isNotEmpty) {
       _result.add(
         StringBuffer(
           _generateClass(
-              className: className,
+              className: model.className,
               methodsString: methodsString,
-              models: models,
+              models: model.children,
               isRoot: isRoot),
         ),
       );
     }
-    for (final SchemaModel model in models) {
-      if (model.schemaType == dynamicType) {
+
+    for (final SchemaModel theModel in model.children) {
+      if (theModel.schemaType == dynamicType) {
         continue;
       }
-      getClasses(
-        model.children,
-        parrentClassName: className,
-        className: model.className,
-      );
 
-      // check for arr type of current model, it may be object.
-      if (model.isArray) {
-        getClasses(
-          <SchemaModel>[model.schemaArrType],
-          parrentClassName: className,
-          className: model.className,
-          isArr: true,
-        );
-      }
+      getClasses(
+        theModel.isArray ? theModel.schemaArrType : theModel,
+      );
     }
 
     return _result;
+  }
+
+  static void _assignClassName(SchemaModel model) {
+    model.className = classNamesArray.contains(model.className)
+        ? '${model.parrent.className}${ReCase(model.schemaTitle).pascalCase}'
+        : ReCase(model.schemaTitle).pascalCase;
+    classNamesArray.add(model.className);
   }
 
   static String _getSchemaType(MapEntry<String, dynamic> entry) {

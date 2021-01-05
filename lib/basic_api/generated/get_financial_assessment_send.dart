@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Get financial assessment request class
-class GetFinancialAssessmentRequest extends Request {
-  /// Initialize GetFinancialAssessmentRequest
-  const GetFinancialAssessmentRequest({
+/// Get financial assessment send class
+class GetFinancialAssessmentSend extends Request {
+  /// Initialize GetFinancialAssessmentSend
+  const GetFinancialAssessmentSend({
     this.getFinancialAssessment = true,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -17,8 +17,8 @@ class GetFinancialAssessmentRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory GetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
-      GetFinancialAssessmentRequest(
+  factory GetFinancialAssessmentSend.fromJson(Map<String, dynamic> json) =>
+      GetFinancialAssessmentSend(
         getFinancialAssessment: json['get_financial_assessment'] == null
             ? null
             : json['get_financial_assessment'] == 1,
@@ -43,12 +43,12 @@ class GetFinancialAssessmentRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  GetFinancialAssessmentRequest copyWith({
+  GetFinancialAssessmentSend copyWith({
     bool getFinancialAssessment,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      GetFinancialAssessmentRequest(
+      GetFinancialAssessmentSend(
         getFinancialAssessment:
             getFinancialAssessment ?? this.getFinancialAssessment,
         passthrough: passthrough ?? this.passthrough,

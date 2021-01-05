@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// Active symbols response class
-class ActiveSymbolsResponse extends Response {
-  /// Initialize ActiveSymbolsResponse
-  const ActiveSymbolsResponse({
+/// Active symbols receive class
+class ActiveSymbolsReceive extends Response {
+  /// Initialize ActiveSymbolsReceive
+  const ActiveSymbolsReceive({
     this.activeSymbols,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
@@ -20,8 +20,8 @@ class ActiveSymbolsResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory ActiveSymbolsResponse.fromJson(Map<String, dynamic> json) =>
-      ActiveSymbolsResponse(
+  factory ActiveSymbolsReceive.fromJson(Map<String, dynamic> json) =>
+      ActiveSymbolsReceive(
         activeSymbols: (json['active_symbols'] as List<dynamic>)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
@@ -47,14 +47,14 @@ class ActiveSymbolsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  ActiveSymbolsResponse copyWith({
+  ActiveSymbolsReceive copyWith({
     List<Map<String, dynamic>> activeSymbols,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      ActiveSymbolsResponse(
+      ActiveSymbolsReceive(
         activeSymbols: activeSymbols ?? this.activeSymbols,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

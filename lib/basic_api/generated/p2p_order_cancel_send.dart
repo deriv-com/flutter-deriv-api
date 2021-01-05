@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// P2p order cancel request class
-class P2pOrderCancelRequest extends Request {
-  /// Initialize P2pOrderCancelRequest
-  const P2pOrderCancelRequest({
+/// P2p order cancel send class
+class P2pOrderCancelSend extends Request {
+  /// Initialize P2pOrderCancelSend
+  const P2pOrderCancelSend({
     @required this.id,
     this.p2pOrderCancel = true,
     Map<String, dynamic> passthrough,
@@ -20,8 +20,8 @@ class P2pOrderCancelRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory P2pOrderCancelRequest.fromJson(Map<String, dynamic> json) =>
-      P2pOrderCancelRequest(
+  factory P2pOrderCancelSend.fromJson(Map<String, dynamic> json) =>
+      P2pOrderCancelSend(
         id: json['id'] as String,
         p2pOrderCancel: json['p2p_order_cancel'] == null
             ? null
@@ -51,13 +51,13 @@ class P2pOrderCancelRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pOrderCancelRequest copyWith({
+  P2pOrderCancelSend copyWith({
     String id,
     bool p2pOrderCancel,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      P2pOrderCancelRequest(
+      P2pOrderCancelSend(
         id: id ?? this.id,
         p2pOrderCancel: p2pOrderCancel ?? this.p2pOrderCancel,
         passthrough: passthrough ?? this.passthrough,

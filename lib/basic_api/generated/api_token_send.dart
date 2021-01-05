@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Api token request class
-class ApiTokenRequest extends Request {
-  /// Initialize ApiTokenRequest
-  const ApiTokenRequest({
+/// Api token send class
+class ApiTokenSend extends Request {
+  /// Initialize ApiTokenSend
+  const ApiTokenSend({
     this.apiToken = true,
     this.deleteToken,
     this.newToken,
@@ -21,8 +21,7 @@ class ApiTokenRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>
-      ApiTokenRequest(
+  factory ApiTokenSend.fromJson(Map<String, dynamic> json) => ApiTokenSend(
         apiToken: json['api_token'] == null ? null : json['api_token'] == 1,
         deleteToken: json['delete_token'] as String,
         newToken: json['new_token'] as String,
@@ -73,7 +72,7 @@ class ApiTokenRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  ApiTokenRequest copyWith({
+  ApiTokenSend copyWith({
     bool apiToken,
     String deleteToken,
     String newToken,
@@ -82,7 +81,7 @@ class ApiTokenRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      ApiTokenRequest(
+      ApiTokenSend(
         apiToken: apiToken ?? this.apiToken,
         deleteToken: deleteToken ?? this.deleteToken,
         newToken: newToken ?? this.newToken,

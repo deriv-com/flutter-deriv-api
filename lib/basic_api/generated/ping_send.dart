@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Ping request class
-class PingRequest extends Request {
-  /// Initialize PingRequest
-  const PingRequest({
+/// Ping send class
+class PingSend extends Request {
+  /// Initialize PingSend
+  const PingSend({
     this.ping = true,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -17,7 +17,7 @@ class PingRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory PingRequest.fromJson(Map<String, dynamic> json) => PingRequest(
+  factory PingSend.fromJson(Map<String, dynamic> json) => PingSend(
         ping: json['ping'] == null ? null : json['ping'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
@@ -40,12 +40,12 @@ class PingRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  PingRequest copyWith({
+  PingSend copyWith({
     bool ping,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      PingRequest(
+      PingSend(
         ping: ping ?? this.ping,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

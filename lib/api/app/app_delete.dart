@@ -17,8 +17,6 @@ class AppDelete extends AppDeleteModel {
   factory AppDelete.fromResponse(AppDeleteResponse response) =>
       AppDelete(succeeded: getBool(response.appDelete));
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
-
   /// Creates a copy of instance with given parameters
   AppDelete copyWith({
     bool succeeded,
@@ -26,6 +24,8 @@ class AppDelete extends AppDeleteModel {
       AppDelete(
         succeeded: succeeded ?? this.succeeded,
       );
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Deletes the application by appId specified in [AppDeleteRequest.appDelete].
   ///

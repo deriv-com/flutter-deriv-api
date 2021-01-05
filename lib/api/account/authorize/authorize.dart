@@ -74,8 +74,6 @@ class Authorize extends AuthorizeModel {
         userId: json['user_id'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
-
   /// Generates a copy of instance with given parameters
   Authorize copyWith({
     List<Account> accountList,
@@ -111,6 +109,8 @@ class Authorize extends AuthorizeModel {
             upgradeableLandingCompanies ?? this.upgradeableLandingCompanies,
         userId: userId ?? this.userId,
       );
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Authorizes current WebSocket session to act on behalf of the owner of a given token.
   ///

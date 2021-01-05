@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Verify email request class
-class VerifyEmailRequest extends Request {
-  /// Initialize VerifyEmailRequest
-  const VerifyEmailRequest({
+/// Verify email send class
+class VerifyEmailSend extends Request {
+  /// Initialize VerifyEmailSend
+  const VerifyEmailSend({
     @required this.type,
     this.urlParameters,
     @required this.verifyEmail,
@@ -21,8 +21,8 @@ class VerifyEmailRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory VerifyEmailRequest.fromJson(Map<String, dynamic> json) =>
-      VerifyEmailRequest(
+  factory VerifyEmailSend.fromJson(Map<String, dynamic> json) =>
+      VerifyEmailSend(
         type: json['type'] as String,
         urlParameters: json['url_parameters'] as Map<String, dynamic>,
         verifyEmail: json['verify_email'] as String,
@@ -51,14 +51,14 @@ class VerifyEmailRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  VerifyEmailRequest copyWith({
+  VerifyEmailSend copyWith({
     String type,
     Map<String, dynamic> urlParameters,
     String verifyEmail,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      VerifyEmailRequest(
+      VerifyEmailSend(
         type: type ?? this.type,
         urlParameters: urlParameters ?? this.urlParameters,
         verifyEmail: verifyEmail ?? this.verifyEmail,

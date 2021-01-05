@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// App delete request class
-class AppDeleteRequest extends Request {
-  /// Initialize AppDeleteRequest
-  const AppDeleteRequest({
+/// App delete send class
+class AppDeleteSend extends Request {
+  /// Initialize AppDeleteSend
+  const AppDeleteSend({
     @required this.appDelete,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -19,8 +19,7 @@ class AppDeleteRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory AppDeleteRequest.fromJson(Map<String, dynamic> json) =>
-      AppDeleteRequest(
+  factory AppDeleteSend.fromJson(Map<String, dynamic> json) => AppDeleteSend(
         appDelete: json['app_delete'] as int,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
@@ -39,12 +38,12 @@ class AppDeleteRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  AppDeleteRequest copyWith({
+  AppDeleteSend copyWith({
     int appDelete,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      AppDeleteRequest(
+      AppDeleteSend(
         appDelete: appDelete ?? this.appDelete,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

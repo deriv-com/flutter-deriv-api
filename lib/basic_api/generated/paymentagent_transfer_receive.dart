@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// Paymentagent transfer response class
-class PaymentagentTransferResponse extends Response {
-  /// Initialize PaymentagentTransferResponse
-  const PaymentagentTransferResponse({
+/// Paymentagent transfer receive class
+class PaymentagentTransferReceive extends Response {
+  /// Initialize PaymentagentTransferReceive
+  const PaymentagentTransferReceive({
     this.clientToFullName,
     this.clientToLoginid,
     this.paymentagentTransfer,
@@ -23,8 +23,8 @@ class PaymentagentTransferResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory PaymentagentTransferResponse.fromJson(Map<String, dynamic> json) =>
-      PaymentagentTransferResponse(
+  factory PaymentagentTransferReceive.fromJson(Map<String, dynamic> json) =>
+      PaymentagentTransferReceive(
         clientToFullName: json['client_to_full_name'] as String,
         clientToLoginid: json['client_to_loginid'] as String,
         paymentagentTransfer: json['paymentagent_transfer'] as int,
@@ -62,7 +62,7 @@ class PaymentagentTransferResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  PaymentagentTransferResponse copyWith({
+  PaymentagentTransferReceive copyWith({
     String clientToFullName,
     String clientToLoginid,
     int paymentagentTransfer,
@@ -72,7 +72,7 @@ class PaymentagentTransferResponse extends Response {
     String msgType,
     int reqId,
   }) =>
-      PaymentagentTransferResponse(
+      PaymentagentTransferReceive(
         clientToFullName: clientToFullName ?? this.clientToFullName,
         clientToLoginid: clientToLoginid ?? this.clientToLoginid,
         paymentagentTransfer: paymentagentTransfer ?? this.paymentagentTransfer,

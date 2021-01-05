@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// Ticks response class
-class TicksResponse extends Response {
-  /// Initialize TicksResponse
-  const TicksResponse({
+/// Ticks receive class
+class TicksReceive extends Response {
+  /// Initialize TicksReceive
+  const TicksReceive({
     this.subscription,
     this.tick,
     Map<String, dynamic> echoReq,
@@ -21,7 +21,7 @@ class TicksResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory TicksResponse.fromJson(Map<String, dynamic> json) => TicksResponse(
+  factory TicksReceive.fromJson(Map<String, dynamic> json) => TicksReceive(
         subscription: json['subscription'] as Map<String, dynamic>,
         tick: json['tick'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
@@ -49,7 +49,7 @@ class TicksResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  TicksResponse copyWith({
+  TicksReceive copyWith({
     Map<String, dynamic> subscription,
     Map<String, dynamic> tick,
     Map<String, dynamic> echoReq,
@@ -57,7 +57,7 @@ class TicksResponse extends Response {
     String msgType,
     int reqId,
   }) =>
-      TicksResponse(
+      TicksReceive(
         subscription: subscription ?? this.subscription,
         tick: tick ?? this.tick,
         echoReq: echoReq ?? this.echoReq,

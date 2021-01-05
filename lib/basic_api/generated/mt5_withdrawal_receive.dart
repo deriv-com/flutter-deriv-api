@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// Mt5 withdrawal response class
-class Mt5WithdrawalResponse extends Response {
-  /// Initialize Mt5WithdrawalResponse
-  const Mt5WithdrawalResponse({
+/// Mt5 withdrawal receive class
+class Mt5WithdrawalReceive extends Response {
+  /// Initialize Mt5WithdrawalReceive
+  const Mt5WithdrawalReceive({
     this.binaryTransactionId,
     this.mt5Withdrawal,
     Map<String, dynamic> echoReq,
@@ -21,8 +21,8 @@ class Mt5WithdrawalResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory Mt5WithdrawalResponse.fromJson(Map<String, dynamic> json) =>
-      Mt5WithdrawalResponse(
+  factory Mt5WithdrawalReceive.fromJson(Map<String, dynamic> json) =>
+      Mt5WithdrawalReceive(
         binaryTransactionId: json['binary_transaction_id'] as int,
         mt5Withdrawal: json['mt5_withdrawal'] as int,
         echoReq: json['echo_req'] as Map<String, dynamic>,
@@ -50,7 +50,7 @@ class Mt5WithdrawalResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  Mt5WithdrawalResponse copyWith({
+  Mt5WithdrawalReceive copyWith({
     int binaryTransactionId,
     int mt5Withdrawal,
     Map<String, dynamic> echoReq,
@@ -58,7 +58,7 @@ class Mt5WithdrawalResponse extends Response {
     String msgType,
     int reqId,
   }) =>
-      Mt5WithdrawalResponse(
+      Mt5WithdrawalReceive(
         binaryTransactionId: binaryTransactionId ?? this.binaryTransactionId,
         mt5Withdrawal: mt5Withdrawal ?? this.mt5Withdrawal,
         echoReq: echoReq ?? this.echoReq,

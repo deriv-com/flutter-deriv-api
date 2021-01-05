@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Mt5 login list request class
-class Mt5LoginListRequest extends Request {
-  /// Initialize Mt5LoginListRequest
-  const Mt5LoginListRequest({
+/// Mt5 login list send class
+class Mt5LoginListSend extends Request {
+  /// Initialize Mt5LoginListSend
+  const Mt5LoginListSend({
     this.mt5LoginList = true,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -17,8 +17,8 @@ class Mt5LoginListRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory Mt5LoginListRequest.fromJson(Map<String, dynamic> json) =>
-      Mt5LoginListRequest(
+  factory Mt5LoginListSend.fromJson(Map<String, dynamic> json) =>
+      Mt5LoginListSend(
         mt5LoginList:
             json['mt5_login_list'] == null ? null : json['mt5_login_list'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
@@ -42,12 +42,12 @@ class Mt5LoginListRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  Mt5LoginListRequest copyWith({
+  Mt5LoginListSend copyWith({
     bool mt5LoginList,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      Mt5LoginListRequest(
+      Mt5LoginListSend(
         mt5LoginList: mt5LoginList ?? this.mt5LoginList,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

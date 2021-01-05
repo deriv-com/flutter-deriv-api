@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// P2p order cancel response class
-class P2pOrderCancelResponse extends Response {
-  /// Initialize P2pOrderCancelResponse
-  const P2pOrderCancelResponse({
+/// P2p order cancel receive class
+class P2pOrderCancelReceive extends Response {
+  /// Initialize P2pOrderCancelReceive
+  const P2pOrderCancelReceive({
     this.p2pOrderCancel,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
@@ -20,8 +20,8 @@ class P2pOrderCancelResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory P2pOrderCancelResponse.fromJson(Map<String, dynamic> json) =>
-      P2pOrderCancelResponse(
+  factory P2pOrderCancelReceive.fromJson(Map<String, dynamic> json) =>
+      P2pOrderCancelReceive(
         p2pOrderCancel: json['p2p_order_cancel'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
         error: json['error'] as Map<String, dynamic>,
@@ -44,14 +44,14 @@ class P2pOrderCancelResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pOrderCancelResponse copyWith({
+  P2pOrderCancelReceive copyWith({
     Map<String, dynamic> p2pOrderCancel,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      P2pOrderCancelResponse(
+      P2pOrderCancelReceive(
         p2pOrderCancel: p2pOrderCancel ?? this.p2pOrderCancel,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Sell request class
-class SellRequest extends Request {
-  /// Initialize SellRequest
-  const SellRequest({
+/// Sell send class
+class SellSend extends Request {
+  /// Initialize SellSend
+  const SellSend({
     @required this.price,
     @required this.sell,
     Map<String, dynamic> passthrough,
@@ -20,7 +20,7 @@ class SellRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory SellRequest.fromJson(Map<String, dynamic> json) => SellRequest(
+  factory SellSend.fromJson(Map<String, dynamic> json) => SellSend(
         price: json['price'] as num,
         sell: json['sell'] as int,
         passthrough: json['passthrough'] as Map<String, dynamic>,
@@ -44,13 +44,13 @@ class SellRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  SellRequest copyWith({
+  SellSend copyWith({
     num price,
     int sell,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      SellRequest(
+      SellSend(
         price: price ?? this.price,
         sell: sell ?? this.sell,
         passthrough: passthrough ?? this.passthrough,

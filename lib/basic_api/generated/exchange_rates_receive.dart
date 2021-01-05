@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// Exchange rates response class
-class ExchangeRatesResponse extends Response {
-  /// Initialize ExchangeRatesResponse
-  const ExchangeRatesResponse({
+/// Exchange rates receive class
+class ExchangeRatesReceive extends Response {
+  /// Initialize ExchangeRatesReceive
+  const ExchangeRatesReceive({
     this.exchangeRates,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
@@ -20,8 +20,8 @@ class ExchangeRatesResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory ExchangeRatesResponse.fromJson(Map<String, dynamic> json) =>
-      ExchangeRatesResponse(
+  factory ExchangeRatesReceive.fromJson(Map<String, dynamic> json) =>
+      ExchangeRatesReceive(
         exchangeRates: json['exchange_rates'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
         error: json['error'] as Map<String, dynamic>,
@@ -44,14 +44,14 @@ class ExchangeRatesResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  ExchangeRatesResponse copyWith({
+  ExchangeRatesReceive copyWith({
     Map<String, dynamic> exchangeRates,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      ExchangeRatesResponse(
+      ExchangeRatesReceive(
         exchangeRates: exchangeRates ?? this.exchangeRates,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

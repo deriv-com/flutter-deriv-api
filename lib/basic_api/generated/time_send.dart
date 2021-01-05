@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Time request class
-class TimeRequest extends Request {
-  /// Initialize TimeRequest
-  const TimeRequest({
+/// Time send class
+class TimeSend extends Request {
+  /// Initialize TimeSend
+  const TimeSend({
     this.time = true,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -17,7 +17,7 @@ class TimeRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory TimeRequest.fromJson(Map<String, dynamic> json) => TimeRequest(
+  factory TimeSend.fromJson(Map<String, dynamic> json) => TimeSend(
         time: json['time'] == null ? null : json['time'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
@@ -40,12 +40,12 @@ class TimeRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  TimeRequest copyWith({
+  TimeSend copyWith({
     bool time,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      TimeRequest(
+      TimeSend(
         time: time ?? this.time,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

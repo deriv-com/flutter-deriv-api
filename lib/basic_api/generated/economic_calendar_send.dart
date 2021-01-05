@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Economic calendar request class
-class EconomicCalendarRequest extends Request {
-  /// Initialize EconomicCalendarRequest
-  const EconomicCalendarRequest({
+/// Economic calendar send class
+class EconomicCalendarSend extends Request {
+  /// Initialize EconomicCalendarSend
+  const EconomicCalendarSend({
     this.currency,
     this.economicCalendar = true,
     this.endDate,
@@ -20,8 +20,8 @@ class EconomicCalendarRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory EconomicCalendarRequest.fromJson(Map<String, dynamic> json) =>
-      EconomicCalendarRequest(
+  factory EconomicCalendarSend.fromJson(Map<String, dynamic> json) =>
+      EconomicCalendarSend(
         currency: json['currency'] as String,
         economicCalendar: json['economic_calendar'] == null
             ? null
@@ -61,7 +61,7 @@ class EconomicCalendarRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  EconomicCalendarRequest copyWith({
+  EconomicCalendarSend copyWith({
     String currency,
     bool economicCalendar,
     int endDate,
@@ -69,7 +69,7 @@ class EconomicCalendarRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      EconomicCalendarRequest(
+      EconomicCalendarSend(
         currency: currency ?? this.currency,
         economicCalendar: economicCalendar ?? this.economicCalendar,
         endDate: endDate ?? this.endDate,

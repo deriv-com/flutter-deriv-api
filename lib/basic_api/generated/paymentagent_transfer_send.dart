@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Paymentagent transfer request class
-class PaymentagentTransferRequest extends Request {
-  /// Initialize PaymentagentTransferRequest
-  const PaymentagentTransferRequest({
+/// Paymentagent transfer send class
+class PaymentagentTransferSend extends Request {
+  /// Initialize PaymentagentTransferSend
+  const PaymentagentTransferSend({
     @required this.amount,
     @required this.currency,
     this.description,
@@ -24,8 +24,8 @@ class PaymentagentTransferRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory PaymentagentTransferRequest.fromJson(Map<String, dynamic> json) =>
-      PaymentagentTransferRequest(
+  factory PaymentagentTransferSend.fromJson(Map<String, dynamic> json) =>
+      PaymentagentTransferSend(
         amount: json['amount'] as num,
         currency: json['currency'] as String,
         description: json['description'] as String,
@@ -79,7 +79,7 @@ class PaymentagentTransferRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  PaymentagentTransferRequest copyWith({
+  PaymentagentTransferSend copyWith({
     num amount,
     String currency,
     String description,
@@ -89,7 +89,7 @@ class PaymentagentTransferRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      PaymentagentTransferRequest(
+      PaymentagentTransferSend(
         amount: amount ?? this.amount,
         currency: currency ?? this.currency,
         description: description ?? this.description,

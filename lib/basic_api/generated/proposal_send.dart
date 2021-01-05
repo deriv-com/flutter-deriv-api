@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Proposal request class
-class ProposalRequest extends Request {
-  /// Initialize ProposalRequest
-  const ProposalRequest({
+/// Proposal send class
+class ProposalSend extends Request {
+  /// Initialize ProposalSend
+  const ProposalSend({
     this.amount,
     this.barrier,
     this.barrier2,
@@ -37,8 +37,7 @@ class ProposalRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory ProposalRequest.fromJson(Map<String, dynamic> json) =>
-      ProposalRequest(
+  factory ProposalSend.fromJson(Map<String, dynamic> json) => ProposalSend(
         amount: json['amount'] as num,
         barrier: json['barrier'] as String,
         barrier2: json['barrier2'] as String,
@@ -155,7 +154,7 @@ class ProposalRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  ProposalRequest copyWith({
+  ProposalSend copyWith({
     num amount,
     String barrier,
     String barrier2,
@@ -178,7 +177,7 @@ class ProposalRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      ProposalRequest(
+      ProposalSend(
         amount: amount ?? this.amount,
         barrier: barrier ?? this.barrier,
         barrier2: barrier2 ?? this.barrier2,

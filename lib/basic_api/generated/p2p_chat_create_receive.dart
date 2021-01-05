@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// P2p chat create response class
-class P2pChatCreateResponse extends Response {
-  /// Initialize P2pChatCreateResponse
-  const P2pChatCreateResponse({
+/// P2p chat create receive class
+class P2pChatCreateReceive extends Response {
+  /// Initialize P2pChatCreateReceive
+  const P2pChatCreateReceive({
     this.p2pChatCreate,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
@@ -20,8 +20,8 @@ class P2pChatCreateResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory P2pChatCreateResponse.fromJson(Map<String, dynamic> json) =>
-      P2pChatCreateResponse(
+  factory P2pChatCreateReceive.fromJson(Map<String, dynamic> json) =>
+      P2pChatCreateReceive(
         p2pChatCreate: json['p2p_chat_create'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
         error: json['error'] as Map<String, dynamic>,
@@ -44,14 +44,14 @@ class P2pChatCreateResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pChatCreateResponse copyWith({
+  P2pChatCreateReceive copyWith({
     Map<String, dynamic> p2pChatCreate,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      P2pChatCreateResponse(
+      P2pChatCreateReceive(
         p2pChatCreate: p2pChatCreate ?? this.p2pChatCreate,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

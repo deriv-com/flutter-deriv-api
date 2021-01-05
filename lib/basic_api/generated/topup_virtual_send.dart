@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Topup virtual request class
-class TopupVirtualRequest extends Request {
-  /// Initialize TopupVirtualRequest
-  const TopupVirtualRequest({
+/// Topup virtual send class
+class TopupVirtualSend extends Request {
+  /// Initialize TopupVirtualSend
+  const TopupVirtualSend({
     this.topupVirtual = true,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -17,8 +17,8 @@ class TopupVirtualRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory TopupVirtualRequest.fromJson(Map<String, dynamic> json) =>
-      TopupVirtualRequest(
+  factory TopupVirtualSend.fromJson(Map<String, dynamic> json) =>
+      TopupVirtualSend(
         topupVirtual:
             json['topup_virtual'] == null ? null : json['topup_virtual'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
@@ -42,12 +42,12 @@ class TopupVirtualRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  TopupVirtualRequest copyWith({
+  TopupVirtualSend copyWith({
     bool topupVirtual,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      TopupVirtualRequest(
+      TopupVirtualSend(
         topupVirtual: topupVirtual ?? this.topupVirtual,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Residence list request class
-class ResidenceListRequest extends Request {
-  /// Initialize ResidenceListRequest
-  const ResidenceListRequest({
+/// Residence list send class
+class ResidenceListSend extends Request {
+  /// Initialize ResidenceListSend
+  const ResidenceListSend({
     this.residenceList = true,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -17,8 +17,8 @@ class ResidenceListRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory ResidenceListRequest.fromJson(Map<String, dynamic> json) =>
-      ResidenceListRequest(
+  factory ResidenceListSend.fromJson(Map<String, dynamic> json) =>
+      ResidenceListSend(
         residenceList:
             json['residence_list'] == null ? null : json['residence_list'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
@@ -42,12 +42,12 @@ class ResidenceListRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  ResidenceListRequest copyWith({
+  ResidenceListSend copyWith({
     bool residenceList,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      ResidenceListRequest(
+      ResidenceListSend(
         residenceList: residenceList ?? this.residenceList,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

@@ -26,8 +26,6 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
-
   /// Creates a copy of instance with given parameters
   AppMarkupDetails copyWith({
     List<AppTransactionModel> transactions,
@@ -35,6 +33,8 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
       AppMarkupDetails(
         transactions: transactions ?? this.transactions,
       );
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
 
   /// Retrieve details of app markup according to criteria specified.
   ///

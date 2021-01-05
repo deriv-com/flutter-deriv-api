@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// Oauth apps response class
-class OauthAppsResponse extends Response {
-  /// Initialize OauthAppsResponse
-  const OauthAppsResponse({
+/// Oauth apps receive class
+class OauthAppsReceive extends Response {
+  /// Initialize OauthAppsReceive
+  const OauthAppsReceive({
     this.oauthApps,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
@@ -20,8 +20,8 @@ class OauthAppsResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory OauthAppsResponse.fromJson(Map<String, dynamic> json) =>
-      OauthAppsResponse(
+  factory OauthAppsReceive.fromJson(Map<String, dynamic> json) =>
+      OauthAppsReceive(
         oauthApps: (json['oauth_apps'] as List<dynamic>)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
@@ -47,14 +47,14 @@ class OauthAppsResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  OauthAppsResponse copyWith({
+  OauthAppsReceive copyWith({
     List<Map<String, dynamic>> oauthApps,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      OauthAppsResponse(
+      OauthAppsReceive(
         oauthApps: oauthApps ?? this.oauthApps,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

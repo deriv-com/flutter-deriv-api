@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Mt5 get settings request class
-class Mt5GetSettingsRequest extends Request {
-  /// Initialize Mt5GetSettingsRequest
-  const Mt5GetSettingsRequest({
+/// Mt5 get settings send class
+class Mt5GetSettingsSend extends Request {
+  /// Initialize Mt5GetSettingsSend
+  const Mt5GetSettingsSend({
     @required this.login,
     this.mt5GetSettings = true,
     Map<String, dynamic> passthrough,
@@ -20,8 +20,8 @@ class Mt5GetSettingsRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory Mt5GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
-      Mt5GetSettingsRequest(
+  factory Mt5GetSettingsSend.fromJson(Map<String, dynamic> json) =>
+      Mt5GetSettingsSend(
         login: json['login'] as String,
         mt5GetSettings: json['mt5_get_settings'] == null
             ? null
@@ -51,13 +51,13 @@ class Mt5GetSettingsRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  Mt5GetSettingsRequest copyWith({
+  Mt5GetSettingsSend copyWith({
     String login,
     bool mt5GetSettings,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      Mt5GetSettingsRequest(
+      Mt5GetSettingsSend(
         login: login ?? this.login,
         mt5GetSettings: mt5GetSettings ?? this.mt5GetSettings,
         passthrough: passthrough ?? this.passthrough,

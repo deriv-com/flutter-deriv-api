@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Portfolio request class
-class PortfolioRequest extends Request {
-  /// Initialize PortfolioRequest
-  const PortfolioRequest({
+/// Portfolio send class
+class PortfolioSend extends Request {
+  /// Initialize PortfolioSend
+  const PortfolioSend({
     @required this.contractType,
     this.portfolio = true,
     Map<String, dynamic> passthrough,
@@ -20,8 +20,7 @@ class PortfolioRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>
-      PortfolioRequest(
+  factory PortfolioSend.fromJson(Map<String, dynamic> json) => PortfolioSend(
         contractType: (json['contract_type'] as List<dynamic>)
             ?.map<String>((dynamic item) => item as String)
             ?.toList(),
@@ -51,13 +50,13 @@ class PortfolioRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  PortfolioRequest copyWith({
+  PortfolioSend copyWith({
     List<String> contractType,
     bool portfolio,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      PortfolioRequest(
+      PortfolioSend(
         contractType: contractType ?? this.contractType,
         portfolio: portfolio ?? this.portfolio,
         passthrough: passthrough ?? this.passthrough,

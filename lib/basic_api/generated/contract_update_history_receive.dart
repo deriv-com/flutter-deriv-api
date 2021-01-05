@@ -4,9 +4,9 @@
 import '../response.dart';
 
 /// Contract update history response class
-class ContractUpdateHistoryResponse extends Response {
+class ContractUpdateHistoryReceive extends Response {
   /// Initialize ContractUpdateHistoryResponse
-  const ContractUpdateHistoryResponse({
+  const ContractUpdateHistoryReceive({
     this.contractUpdateHistory,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
@@ -20,8 +20,8 @@ class ContractUpdateHistoryResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory ContractUpdateHistoryResponse.fromJson(Map<String, dynamic> json) =>
-      ContractUpdateHistoryResponse(
+  factory ContractUpdateHistoryReceive.fromJson(Map<String, dynamic> json) =>
+      ContractUpdateHistoryReceive(
         contractUpdateHistory:
             (json['contract_update_history'] as List<dynamic>)
                 ?.map<Map<String, dynamic>>(
@@ -48,14 +48,14 @@ class ContractUpdateHistoryResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  ContractUpdateHistoryResponse copyWith({
+  ContractUpdateHistoryReceive copyWith({
     List<Map<String, dynamic>> contractUpdateHistory,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      ContractUpdateHistoryResponse(
+      ContractUpdateHistoryReceive(
         contractUpdateHistory:
             contractUpdateHistory ?? this.contractUpdateHistory,
         echoReq: echoReq ?? this.echoReq,

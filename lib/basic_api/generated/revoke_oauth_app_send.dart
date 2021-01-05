@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Revoke oauth app request class
-class RevokeOauthAppRequest extends Request {
-  /// Initialize RevokeOauthAppRequest
-  const RevokeOauthAppRequest({
+/// Revoke oauth app send class
+class RevokeOauthAppSend extends Request {
+  /// Initialize RevokeOauthAppSend
+  const RevokeOauthAppSend({
     @required this.revokeOauthApp,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -19,8 +19,8 @@ class RevokeOauthAppRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory RevokeOauthAppRequest.fromJson(Map<String, dynamic> json) =>
-      RevokeOauthAppRequest(
+  factory RevokeOauthAppSend.fromJson(Map<String, dynamic> json) =>
+      RevokeOauthAppSend(
         revokeOauthApp: json['revoke_oauth_app'] as int,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
@@ -39,12 +39,12 @@ class RevokeOauthAppRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  RevokeOauthAppRequest copyWith({
+  RevokeOauthAppSend copyWith({
     int revokeOauthApp,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      RevokeOauthAppRequest(
+      RevokeOauthAppSend(
         revokeOauthApp: revokeOauthApp ?? this.revokeOauthApp,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

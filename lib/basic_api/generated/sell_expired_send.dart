@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Sell expired request class
-class SellExpiredRequest extends Request {
-  /// Initialize SellExpiredRequest
-  const SellExpiredRequest({
+/// Sell expired send class
+class SellExpiredSend extends Request {
+  /// Initialize SellExpiredSend
+  const SellExpiredSend({
     this.sellExpired = true,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -17,8 +17,8 @@ class SellExpiredRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory SellExpiredRequest.fromJson(Map<String, dynamic> json) =>
-      SellExpiredRequest(
+  factory SellExpiredSend.fromJson(Map<String, dynamic> json) =>
+      SellExpiredSend(
         sellExpired:
             json['sell_expired'] == null ? null : json['sell_expired'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
@@ -42,12 +42,12 @@ class SellExpiredRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  SellExpiredRequest copyWith({
+  SellExpiredSend copyWith({
     bool sellExpired,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      SellExpiredRequest(
+      SellExpiredSend(
         sellExpired: sellExpired ?? this.sellExpired,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

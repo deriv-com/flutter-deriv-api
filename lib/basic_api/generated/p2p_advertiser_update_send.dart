@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// P2p advertiser update request class
-class P2pAdvertiserUpdateRequest extends Request {
-  /// Initialize P2pAdvertiserUpdateRequest
-  const P2pAdvertiserUpdateRequest({
+/// P2p advertiser update send class
+class P2pAdvertiserUpdateSend extends Request {
+  /// Initialize P2pAdvertiserUpdateSend
+  const P2pAdvertiserUpdateSend({
     this.contactInfo,
     this.defaultAdvertDescription,
     this.isListed,
@@ -22,8 +22,8 @@ class P2pAdvertiserUpdateRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory P2pAdvertiserUpdateRequest.fromJson(Map<String, dynamic> json) =>
-      P2pAdvertiserUpdateRequest(
+  factory P2pAdvertiserUpdateSend.fromJson(Map<String, dynamic> json) =>
+      P2pAdvertiserUpdateSend(
         contactInfo: json['contact_info'] as String,
         defaultAdvertDescription: json['default_advert_description'] as String,
         isListed: json['is_listed'] == null ? null : json['is_listed'] == 1,
@@ -81,7 +81,7 @@ class P2pAdvertiserUpdateRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pAdvertiserUpdateRequest copyWith({
+  P2pAdvertiserUpdateSend copyWith({
     String contactInfo,
     String defaultAdvertDescription,
     bool isListed,
@@ -91,7 +91,7 @@ class P2pAdvertiserUpdateRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      P2pAdvertiserUpdateRequest(
+      P2pAdvertiserUpdateSend(
         contactInfo: contactInfo ?? this.contactInfo,
         defaultAdvertDescription:
             defaultAdvertDescription ?? this.defaultAdvertDescription,

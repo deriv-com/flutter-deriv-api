@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// P2p order info request class
-class P2pOrderInfoRequest extends Request {
-  /// Initialize P2pOrderInfoRequest
-  const P2pOrderInfoRequest({
+/// P2p order info send class
+class P2pOrderInfoSend extends Request {
+  /// Initialize P2pOrderInfoSend
+  const P2pOrderInfoSend({
     @required this.id,
     this.p2pOrderInfo = true,
     this.subscribe,
@@ -21,8 +21,8 @@ class P2pOrderInfoRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory P2pOrderInfoRequest.fromJson(Map<String, dynamic> json) =>
-      P2pOrderInfoRequest(
+  factory P2pOrderInfoSend.fromJson(Map<String, dynamic> json) =>
+      P2pOrderInfoSend(
         id: json['id'] as String,
         p2pOrderInfo:
             json['p2p_order_info'] == null ? null : json['p2p_order_info'] == 1,
@@ -60,14 +60,14 @@ class P2pOrderInfoRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pOrderInfoRequest copyWith({
+  P2pOrderInfoSend copyWith({
     String id,
     bool p2pOrderInfo,
     bool subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      P2pOrderInfoRequest(
+      P2pOrderInfoSend(
         id: id ?? this.id,
         p2pOrderInfo: p2pOrderInfo ?? this.p2pOrderInfo,
         subscribe: subscribe ?? this.subscribe,
@@ -77,5 +77,5 @@ class P2pOrderInfoRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => <Object>[id];
+  List<Object> get props => null;
 }

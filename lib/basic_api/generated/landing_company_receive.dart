@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// Landing company response class
-class LandingCompanyResponse extends Response {
-  /// Initialize LandingCompanyResponse
-  const LandingCompanyResponse({
+/// Landing company receive class
+class LandingCompanyReceive extends Response {
+  /// Initialize LandingCompanyReceive
+  const LandingCompanyReceive({
     this.landingCompany,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
@@ -20,8 +20,8 @@ class LandingCompanyResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory LandingCompanyResponse.fromJson(Map<String, dynamic> json) =>
-      LandingCompanyResponse(
+  factory LandingCompanyReceive.fromJson(Map<String, dynamic> json) =>
+      LandingCompanyReceive(
         landingCompany: json['landing_company'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
         error: json['error'] as Map<String, dynamic>,
@@ -44,14 +44,14 @@ class LandingCompanyResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  LandingCompanyResponse copyWith({
+  LandingCompanyReceive copyWith({
     Map<String, dynamic> landingCompany,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      LandingCompanyResponse(
+      LandingCompanyReceive(
         landingCompany: landingCompany ?? this.landingCompany,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Set self exclusion request class
-class SetSelfExclusionRequest extends Request {
-  /// Initialize SetSelfExclusionRequest
-  const SetSelfExclusionRequest({
+/// Set self exclusion send class
+class SetSelfExclusionSend extends Request {
+  /// Initialize SetSelfExclusionSend
+  const SetSelfExclusionSend({
     this.excludeUntil,
     this.max30dayDeposit,
     this.max30dayLosses,
@@ -31,8 +31,8 @@ class SetSelfExclusionRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
-      SetSelfExclusionRequest(
+  factory SetSelfExclusionSend.fromJson(Map<String, dynamic> json) =>
+      SetSelfExclusionSend(
         excludeUntil: json['exclude_until'] as String,
         max30dayDeposit: json['max_30day_deposit'] as num,
         max30dayLosses: json['max_30day_losses'] as num,
@@ -127,7 +127,7 @@ class SetSelfExclusionRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  SetSelfExclusionRequest copyWith({
+  SetSelfExclusionSend copyWith({
     String excludeUntil,
     num max30dayDeposit,
     num max30dayLosses,
@@ -146,7 +146,7 @@ class SetSelfExclusionRequest extends Request {
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      SetSelfExclusionRequest(
+      SetSelfExclusionSend(
         excludeUntil: excludeUntil ?? this.excludeUntil,
         max30dayDeposit: max30dayDeposit ?? this.max30dayDeposit,
         max30dayLosses: max30dayLosses ?? this.max30dayLosses,

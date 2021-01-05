@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// Get financial assessment response class
-class GetFinancialAssessmentResponse extends Response {
-  /// Initialize GetFinancialAssessmentResponse
-  const GetFinancialAssessmentResponse({
+/// Get financial assessment receive class
+class GetFinancialAssessmentReceive extends Response {
+  /// Initialize GetFinancialAssessmentReceive
+  const GetFinancialAssessmentReceive({
     this.getFinancialAssessment,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
@@ -20,8 +20,8 @@ class GetFinancialAssessmentResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory GetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>
-      GetFinancialAssessmentResponse(
+  factory GetFinancialAssessmentReceive.fromJson(Map<String, dynamic> json) =>
+      GetFinancialAssessmentReceive(
         getFinancialAssessment:
             json['get_financial_assessment'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
@@ -45,14 +45,14 @@ class GetFinancialAssessmentResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  GetFinancialAssessmentResponse copyWith({
+  GetFinancialAssessmentReceive copyWith({
     Map<String, dynamic> getFinancialAssessment,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      GetFinancialAssessmentResponse(
+      GetFinancialAssessmentReceive(
         getFinancialAssessment:
             getFinancialAssessment ?? this.getFinancialAssessment,
         echoReq: echoReq ?? this.echoReq,

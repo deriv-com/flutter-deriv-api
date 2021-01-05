@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// Get account status response class
-class GetAccountStatusResponse extends Response {
-  /// Initialize GetAccountStatusResponse
-  const GetAccountStatusResponse({
+/// Get account status receive class
+class GetAccountStatusReceive extends Response {
+  /// Initialize GetAccountStatusReceive
+  const GetAccountStatusReceive({
     this.getAccountStatus,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
@@ -20,8 +20,8 @@ class GetAccountStatusResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory GetAccountStatusResponse.fromJson(Map<String, dynamic> json) =>
-      GetAccountStatusResponse(
+  factory GetAccountStatusReceive.fromJson(Map<String, dynamic> json) =>
+      GetAccountStatusReceive(
         getAccountStatus: json['get_account_status'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
         error: json['error'] as Map<String, dynamic>,
@@ -44,14 +44,14 @@ class GetAccountStatusResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  GetAccountStatusResponse copyWith({
+  GetAccountStatusReceive copyWith({
     Map<String, dynamic> getAccountStatus,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      GetAccountStatusResponse(
+      GetAccountStatusReceive(
         getAccountStatus: getAccountStatus ?? this.getAccountStatus,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

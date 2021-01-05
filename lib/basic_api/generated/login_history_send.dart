@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Login history request class
-class LoginHistoryRequest extends Request {
-  /// Initialize LoginHistoryRequest
-  const LoginHistoryRequest({
+/// Login history send class
+class LoginHistorySend extends Request {
+  /// Initialize LoginHistorySend
+  const LoginHistorySend({
     this.limit,
     this.loginHistory = true,
     Map<String, dynamic> passthrough,
@@ -18,8 +18,8 @@ class LoginHistoryRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>
-      LoginHistoryRequest(
+  factory LoginHistorySend.fromJson(Map<String, dynamic> json) =>
+      LoginHistorySend(
         limit: json['limit'] as int,
         loginHistory:
             json['login_history'] == null ? null : json['login_history'] == 1,
@@ -48,13 +48,13 @@ class LoginHistoryRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  LoginHistoryRequest copyWith({
+  LoginHistorySend copyWith({
     int limit,
     bool loginHistory,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      LoginHistoryRequest(
+      LoginHistorySend(
         limit: limit ?? this.limit,
         loginHistory: loginHistory ?? this.loginHistory,
         passthrough: passthrough ?? this.passthrough,

@@ -16,7 +16,7 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'contract.dart';
-import 'exceptions/contract_operations_exception.dart';
+import '../../exceptions/contract_operations_exception.dart';
 
 /// Open contract class
 class OpenContract extends Contract {

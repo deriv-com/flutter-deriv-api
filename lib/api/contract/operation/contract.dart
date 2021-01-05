@@ -10,7 +10,7 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 import 'package:flutter_deriv_api/utils/helpers.dart';
 
 import 'cancel_contract.dart';
-import 'exceptions/contract_operations_exception.dart';
+import '../../exceptions/contract_operations_exception.dart';
 import 'sell_contract.dart';
 import 'update_contract.dart';
 

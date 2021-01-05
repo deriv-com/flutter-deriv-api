@@ -3,10 +3,10 @@
 
 import '../response.dart';
 
-/// Api token response class
-class ApiTokenResponse extends Response {
-  /// Initialize ApiTokenResponse
-  const ApiTokenResponse({
+/// Api token receive class
+class ApiTokenReceive extends Response {
+  /// Initialize ApiTokenReceive
+  const ApiTokenReceive({
     this.apiToken,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
@@ -20,8 +20,8 @@ class ApiTokenResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory ApiTokenResponse.fromJson(Map<String, dynamic> json) =>
-      ApiTokenResponse(
+  factory ApiTokenReceive.fromJson(Map<String, dynamic> json) =>
+      ApiTokenReceive(
         apiToken: json['api_token'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
         error: json['error'] as Map<String, dynamic>,
@@ -44,14 +44,14 @@ class ApiTokenResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  ApiTokenResponse copyWith({
+  ApiTokenReceive copyWith({
     Map<String, dynamic> apiToken,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      ApiTokenResponse(
+      ApiTokenReceive(
         apiToken: apiToken ?? this.apiToken,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,

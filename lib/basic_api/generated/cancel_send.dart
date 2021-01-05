@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Cancel request class
-class CancelRequest extends Request {
-  /// Initialize CancelRequest
-  const CancelRequest({
+/// Cancel send class
+class CancelSend extends Request {
+  /// Initialize CancelSend
+  const CancelSend({
     @required this.cancel,
     Map<String, dynamic> passthrough,
     int reqId,
@@ -19,7 +19,7 @@ class CancelRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory CancelRequest.fromJson(Map<String, dynamic> json) => CancelRequest(
+  factory CancelSend.fromJson(Map<String, dynamic> json) => CancelSend(
         cancel: json['cancel'] as int,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
@@ -38,12 +38,12 @@ class CancelRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  CancelRequest copyWith({
+  CancelSend copyWith({
     int cancel,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      CancelRequest(
+      CancelSend(
         cancel: cancel ?? this.cancel,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

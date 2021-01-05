@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 
 import '../request.dart';
 
-/// Copytrading statistics request class
-class CopytradingStatisticsRequest extends Request {
-  /// Initialize CopytradingStatisticsRequest
-  const CopytradingStatisticsRequest({
+/// Copytrading statistics send class
+class CopytradingStatisticsSend extends Request {
+  /// Initialize CopytradingStatisticsSend
+  const CopytradingStatisticsSend({
     this.copytradingStatistics = true,
     @required this.traderId,
     Map<String, dynamic> passthrough,
@@ -20,8 +20,8 @@ class CopytradingStatisticsRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory CopytradingStatisticsRequest.fromJson(Map<String, dynamic> json) =>
-      CopytradingStatisticsRequest(
+  factory CopytradingStatisticsSend.fromJson(Map<String, dynamic> json) =>
+      CopytradingStatisticsSend(
         copytradingStatistics: json['copytrading_statistics'] == null
             ? null
             : json['copytrading_statistics'] == 1,
@@ -51,13 +51,13 @@ class CopytradingStatisticsRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  CopytradingStatisticsRequest copyWith({
+  CopytradingStatisticsSend copyWith({
     bool copytradingStatistics,
     String traderId,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      CopytradingStatisticsRequest(
+      CopytradingStatisticsSend(
         copytradingStatistics:
             copytradingStatistics ?? this.copytradingStatistics,
         traderId: traderId ?? this.traderId,

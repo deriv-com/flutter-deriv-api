@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Proposal open contract request class
-class ProposalOpenContractRequest extends Request {
-  /// Initialize ProposalOpenContractRequest
-  const ProposalOpenContractRequest({
+/// Proposal open contract send class
+class ProposalOpenContractSend extends Request {
+  /// Initialize ProposalOpenContractSend
+  const ProposalOpenContractSend({
     this.contractId,
     this.proposalOpenContract = true,
     this.subscribe,
@@ -19,8 +19,8 @@ class ProposalOpenContractRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>
-      ProposalOpenContractRequest(
+  factory ProposalOpenContractSend.fromJson(Map<String, dynamic> json) =>
+      ProposalOpenContractSend(
         contractId: json['contract_id'] as int,
         proposalOpenContract: json['proposal_open_contract'] == null
             ? null
@@ -59,14 +59,14 @@ class ProposalOpenContractRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  ProposalOpenContractRequest copyWith({
+  ProposalOpenContractSend copyWith({
     int contractId,
     bool proposalOpenContract,
     bool subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      ProposalOpenContractRequest(
+      ProposalOpenContractSend(
         contractId: contractId ?? this.contractId,
         proposalOpenContract: proposalOpenContract ?? this.proposalOpenContract,
         subscribe: subscribe ?? this.subscribe,
@@ -76,5 +76,5 @@ class ProposalOpenContractRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => <Object>[contractId];
+  List<Object> get props => null;
 }
