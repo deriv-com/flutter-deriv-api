@@ -1,4 +1,6 @@
-part of '../helpers.dart';
+import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
 
 /// Parses the [url] and gets the endpoint out of it
 String parseWebSocketUrl(String url, {bool isAuthUrl = false}) {

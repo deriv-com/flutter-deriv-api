@@ -9,7 +9,7 @@ import 'package:flutter_deriv_api/api/app/app_update.dart';
 import 'package:flutter_deriv_api/api/app/revoke_oauth_app.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));
@@ -59,8 +59,8 @@ void main() {
       final AppMarkupDetails appMarkupDetails =
           await App(appId: 1234).fetchApplicationMarkupDetails(
         clientLoginId: 'CR12345',
-        dateFrom: DateTime.parse('2017-08-01 00:00:00'),
-        dateTo: DateTime.parse('2017-08-31 23:59:59'),
+        dateFrom: DateTime.tryParse('2017-08-01 00:00:00'),
+        dateTo: DateTime.tryParse('2017-08-31 23:59:59'),
         description: true,
         limit: 100,
         offset: 0,

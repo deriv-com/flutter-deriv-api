@@ -5,7 +5,7 @@ import 'package:flutter_deriv_api/api/common/tick/tick.dart';
 import 'package:flutter_deriv_api/api/common/tick/tick_history.dart';
 import 'package:flutter_deriv_api/api/common/tick/tick_history_subscription.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));

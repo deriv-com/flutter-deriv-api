@@ -1,5 +1,5 @@
 import 'package:flutter_deriv_api/api/account/models/account_model.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Account class
 class Account extends AccountModel {

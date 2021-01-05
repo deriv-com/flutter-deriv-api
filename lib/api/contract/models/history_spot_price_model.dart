@@ -1,5 +1,5 @@
 import 'package:flutter_deriv_api/api/contract/models/spot_price_model.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// History spot price model
 class HistorySpotPriceModel extends SpotPriceModel {

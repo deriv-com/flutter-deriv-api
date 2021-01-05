@@ -3,9 +3,9 @@ import 'package:flutter_deriv_api/api/common/models/asset_index_model.dart';
 import 'package:flutter_deriv_api/api/common/models/index_contract_model.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Asset index class
 class AssetIndex extends AssetIndexModel {

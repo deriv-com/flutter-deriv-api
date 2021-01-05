@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/api/common/server_time/exceptions/server_time_
 import 'package:flutter_deriv_api/api/common/server_time/server_time.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 part 'server_time_event.dart';
 part 'server_time_state.dart';

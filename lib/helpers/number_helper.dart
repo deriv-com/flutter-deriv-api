@@ -1,4 +1,6 @@
-part of '../helpers.dart';
+import 'dart:math';
+
+import 'package:meta/meta.dart';
 
 /// Calculates the number of decimal digits for string [value] of a number
 int getDecimalDigits(String value) {
@@ -110,7 +112,7 @@ int generateRandomInt({
 
 /// Parse double value from string or number value.
 double getDouble(dynamic value) => value is String
-      ? double.tryParse(value)
-      : value is num
-          ? value.toDouble()
-          : null;
+    ? double.tryParse(value)
+    : value is num
+        ? value.toDouble()
+        : null;

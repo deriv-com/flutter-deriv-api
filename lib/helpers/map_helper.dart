@@ -1,5 +1,3 @@
-part of '../helpers.dart';
-
 /// Gets a list of models from a map
 List<T> getListFromMap<T>(
   Iterable<dynamic> mapList, {

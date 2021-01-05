@@ -1,7 +1,7 @@
 import 'package:flutter_deriv_api/api/common/models/max_proposal_subscription_model.dart';
 import 'package:flutter_deriv_api/api/common/models/max_request_allowed_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Maximum number of API calls during specified period of time.
 class ApiCallLimitModel extends APIBaseModel {

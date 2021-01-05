@@ -8,7 +8,7 @@ const String oauthAppsResponse = '''{
     {
       "app_id": 1159,
       "app_markup_percentage": 0,
-      "last_used": "2019-10-13 07:11:29.999974",
+      "last_used": "2019-10-13 07:11:29",
       "name": "Binary Static localhost for dev",
       "scopes": [
         "read",
