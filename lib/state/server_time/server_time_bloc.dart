@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_deriv_api/api/common/server_time/exceptions/server_time_exception.dart';
 import 'package:flutter_deriv_api/api/common/server_time/server_time.dart';
 import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 part 'server_time_event.dart';
 

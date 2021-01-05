@@ -1,6 +1,6 @@
 import 'package:flutter_deriv_api/api/common/models/submarket_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Market class
 class MarketModel extends APIBaseModel {

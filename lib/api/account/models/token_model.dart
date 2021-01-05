@@ -1,6 +1,6 @@
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Token model class
 class TokenModel extends APIBaseModel {
@@ -16,9 +16,7 @@ class TokenModel extends APIBaseModel {
   /// Creates an instance from JSON
   factory TokenModel.fromJson(Map<String, dynamic> json) => TokenModel(
         displayName: json['display_name'],
-        lastUsed: DateTime.parse(
-          json['last_used'],
-        ), // TODO(hamed): change format to `yyyy-MM-dd` after adding intl package
+        lastUsed: DateTime.tryParse(json['last_used']),
         scopes: getListFromMap(
           json['scopes'],
           itemToTypeCallback: (dynamic item) => getEnumFromString(

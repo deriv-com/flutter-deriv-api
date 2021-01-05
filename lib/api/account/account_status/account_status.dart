@@ -5,9 +5,9 @@ import 'package:flutter_deriv_api/api/account/models/account_status_model.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
 
 /// Account's documents and authentication status
 class AccountStatus extends AccountStatusModel {

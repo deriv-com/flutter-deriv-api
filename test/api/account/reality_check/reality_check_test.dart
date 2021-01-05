@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/reality_check/reality_check.dart';
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 void main() {
   setUp(() => APIInitializer().initialize(isMock: true));

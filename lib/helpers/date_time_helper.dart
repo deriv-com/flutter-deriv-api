@@ -1,4 +1,4 @@
-part of '../helpers.dart';
+import 'package:intl/intl.dart';
 
 /// Fetches the device time
 int getCurrentLocalEpoch() =>
@@ -27,3 +27,12 @@ int getSecondsSinceEpoch(int millisecondsSinceEpoch) =>
 int getSecondsSinceEpochDateTime(DateTime dateTime) => dateTime == null
     ? null
     : getSecondsSinceEpoch(dateTime.millisecondsSinceEpoch);
+
+/// Gets a string from a [DateTime] object.
+///
+/// Default pattern is `yyyy-MM-dd`.
+String getStringFromDateTime(
+  DateTime dateTime, {
+  String pattern = 'yyyy-MM-dd',
+}) =>
+    dateTime == null ? null : DateFormat(pattern).format(dateTime);

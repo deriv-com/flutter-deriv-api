@@ -1,5 +1,5 @@
 import 'package:flutter_deriv_api/api/contract/models/contract_tick_model.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// ContractTimeInfo
 class ContractTickInfoModel extends ContractTickModel {
