@@ -2,7 +2,7 @@ import 'package:flutter_deriv_api/api/account/models/account_authentication_docu
 import 'package:flutter_deriv_api/api/account/models/account_identity_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// This represents the authentication status of the user and it
 /// includes what authentication is needed.

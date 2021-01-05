@@ -1,7 +1,7 @@
 import 'package:flutter_deriv_api/api/common/models/symbol_model.dart';
 import 'package:flutter_deriv_api/api/common/models/trade_duration_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Trading duration model class
 class TradingDurationDataModel extends APIBaseModel {

@@ -1,4 +1,5 @@
-part of '../helpers.dart';
+import 'package:meta/meta.dart';
+import 'package:recase/recase.dart';
 
 /// Enum case type
 enum EnumCase {

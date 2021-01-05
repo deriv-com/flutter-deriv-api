@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/contract/models/spot_price_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Contains limit order information.
 /// (Only applicable for contract with limit order).

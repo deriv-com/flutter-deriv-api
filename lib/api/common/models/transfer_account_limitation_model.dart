@@ -1,7 +1,7 @@
 import 'package:flutter_deriv_api/api/common/models/transfer_amount_model.dart';
 import 'package:flutter_deriv_api/api/common/models/transfer_fee_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
-import 'package:flutter_deriv_api/utils/helpers.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Fees and range of allowed amount for transfer between accounts with
 /// different types of currencies.
