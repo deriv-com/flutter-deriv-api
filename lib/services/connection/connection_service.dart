@@ -104,7 +104,12 @@ class ConnectionService {
 
   Future<bool> _ping() async {
     try {
-      await Ping.ping().timeout(Duration(seconds: _pingTimeout));
+      final Ping response =
+          await Ping.ping().timeout(Duration(seconds: _pingTimeout));
+
+      if (response == null || !response.succeeded) {
+        return Future<bool>.value(false);
+      }
     } on Exception catch (_) {
       return Future<bool>.value(false);
     }
