@@ -5,7 +5,9 @@ abstract class ServerTimeState {
   /// Initializes base server time state.
   const ServerTimeState([this.timeDifference = 0]);
 
-  /// Difference between [serverTime] and the machine time.
+  /// Difference between [serverTime] and the machine time (value will be represented as `server time - machine time`).
+  ///
+  /// Default value is `0`.
   final int timeDifference;
 }
 
