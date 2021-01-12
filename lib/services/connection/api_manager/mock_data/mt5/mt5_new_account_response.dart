@@ -26,7 +26,7 @@ const String mt5NewAccountResponse = '''
     "currency": "USD",
     "display_balance": "350.0",
     "login": "MT346525",
-    "mt5_account_type": "advanced"
+    "mt5_account_type": "financial"
   }
 }
 ''';

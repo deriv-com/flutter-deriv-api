@@ -4,8 +4,8 @@ import '../../basic_api/generated/app_update_receive.dart';
 import '../../basic_api/generated/app_update_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
-import '../../utils/helpers.dart';
-import '../exceptions/app_exception.dart';
+import '../../helpers/helpers.dart';
+import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
 /// App update response model class
@@ -30,7 +30,7 @@ class AppUpdateResponse extends AppUpdateResponseModel {
 
   /// Creates an instance from JSON
   factory AppUpdateResponse.fromJson(
-    Map<String, dynamic> appUpdateJson,
+    dynamic appUpdateJson,
   ) =>
       AppUpdateResponse(
         appUpdate:
@@ -75,7 +75,6 @@ class AppUpdateResponse extends AppUpdateResponseModel {
         appUpdate: appUpdate ?? this.appUpdate,
       );
 }
-
 /// App update model class
 abstract class AppUpdateModel {
   /// Initializes

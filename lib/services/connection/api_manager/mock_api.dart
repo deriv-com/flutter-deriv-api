@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/helper/response_mapper.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
@@ -135,13 +136,13 @@ class MockAPI extends BaseAPI {
       _getStreamResponse(request);
 
   @override
-  Future<ForgetResponse> unsubscribe({
+  Future<ForgetReceive> unsubscribe({
     @required String subscriptionId,
   }) async =>
-      const ForgetResponse(forget: true);
+      const ForgetReceive(forget: true);
 
   @override
-  Future<ForgetAllResponse> unsubscribeAll({
+  Future<ForgetAllReceive> unsubscribeAll({
     @required ForgetStreamType method,
   }) async =>
       null;
@@ -160,7 +161,7 @@ class MockAPI extends BaseAPI {
   Stream<Response> _getStreamResponse(Request request) =>
       Stream<Response>.periodic(
         const Duration(),
-            (int computationCount) => getResponseByMsgType(
+        (int computationCount) => getResponseByMsgType(
           jsonDecode(_getResponse(request.msgType)),
         ),
       ).take(1);

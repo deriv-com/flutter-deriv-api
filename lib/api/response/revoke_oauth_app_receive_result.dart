@@ -4,8 +4,8 @@ import '../../basic_api/generated/revoke_oauth_app_receive.dart';
 import '../../basic_api/generated/revoke_oauth_app_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
-import '../../utils/helpers.dart';
-import '../exceptions/app_exception.dart';
+import '../../helpers/helpers.dart';
+import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
 /// Revoke oauth app response model class
@@ -62,7 +62,7 @@ class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
           AppException(baseExceptionModel: baseExceptionModel),
     );
 
-    return RevokeOauthAppResponse.fromJson(response);
+    return RevokeOauthAppResponse.fromJson(response.revokeOauthApp);
   }
 
   /// Creates a copy of instance with given parameters

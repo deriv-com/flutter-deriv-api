@@ -1,30 +1,28 @@
+import 'package:flutter_deriv_api/basic_api/generated/authorize_send.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/authorize_response.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:flutter_deriv_api/api/account/account.dart';
-import 'package:flutter_deriv_api/api/account/authorize/authorize.dart';
-import 'package:flutter_deriv_api/api/account/authorize/login_history.dart';
-import 'package:flutter_deriv_api/api/account/authorize/logout.dart';
-import 'package:flutter_deriv_api/api/account/models/local_currency_model.dart';
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/api/response/authorize_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/logout_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/login_history_receive_result.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));
 
   group('Authorize Group ->', () {
     test('Authorize Test', () async {
-      final Authorize authorize = await Authorize.authorize(
-        const AuthorizeRequest(
+      final AuthorizeResponse authorize =
+          await AuthorizeResponse.authorizeMethod(
+        const AuthorizeSend(
           authorize: 'sample_token_334da73d',
           addToLoginHistory: 1,
         ),
       );
 
-      final List<Account> accounts = authorize.accountList;
-      final List<LocalCurrencyModel> localCurrencies =
-          authorize.localCurrencies;
+      final List<AccountListItem> accounts = authorize.authorize.accountList;
+      // final List<LocalCurrencyModel> localCurrencies =
+      //   authorize.authorize.localCurrencies;
 
       expect(accounts.length, 2);
 
@@ -36,7 +34,7 @@ void main() {
       expect(accounts.first.isDisabled, false);
       expect(accounts.first.isVirtual, false);
       expect(accounts.first.landingCompanyName, 'svg');
-      expect(accounts.first.loginId, 'CR90000028');
+      expect(accounts.first.loginid, 'CR90000028');
 
       expect(accounts[1].currency, 'USD');
       expect(
@@ -46,49 +44,49 @@ void main() {
       expect(accounts[1].isDisabled, false);
       expect(accounts[1].isVirtual, true);
       expect(accounts[1].landingCompanyName, 'virtual');
-      expect(accounts[1].loginId, 'VRTC90000028');
+      expect(accounts[1].loginid, 'VRTC90000028');
 
-      expect(localCurrencies.length, 2);
+      // expect(localCurrencies.length, 2);
 
-      expect(localCurrencies.first.currencyCode, 'ZAR');
-      expect(localCurrencies.first.fractionalDigits, 2);
+      // expect(localCurrencies.first.currencyCode, 'ZAR');
+      // expect(localCurrencies.first.fractionalDigits, 2);
 
-      expect(localCurrencies[1].currencyCode, 'USD');
-      expect(localCurrencies[1].fractionalDigits, 3);
+      // expect(localCurrencies[1].currencyCode, 'USD');
+      // expect(localCurrencies[1].fractionalDigits, 3);
 
-      expect(authorize.balance, 10000);
-      expect(authorize.country, 'za');
-      expect(authorize.currency, 'USD');
-      expect(authorize.email, 'test@site.com');
-      expect(authorize.fullName, 'Ms QA script testSTX');
-      expect(authorize.isVirtual, false);
-      expect(authorize.landingCompanyFullName, 'Binary (SVG) Ltd.');
-      expect(authorize.landingCompanyName, 'svg');
-      expect(authorize.loginId, 'CR90000028');
-      expect(authorize.scopes.length, 4);
-      expect(authorize.upgradeableLandingCompanies.length, 1);
-      expect(authorize.userId, 29);
+      expect(authorize.authorize.balance, 10000);
+      expect(authorize.authorize.country, 'za');
+      expect(authorize.authorize.currency, 'USD');
+      expect(authorize.authorize.email, 'test@site.com');
+      expect(authorize.authorize.fullname, 'Ms QA script testSTX');
+      expect(authorize.authorize.isVirtual, false);
+      expect(authorize.authorize.landingCompanyFullname, 'Binary (SVG) Ltd.');
+      expect(authorize.authorize.landingCompanyName, 'svg');
+      expect(authorize.authorize.loginid, 'CR90000028');
+      expect(authorize.authorize.scopes.length, 4);
+      expect(authorize.authorize.upgradeableLandingCompanies.length, 1);
+      expect(authorize.authorize.userId, 29);
     });
 
     test('Logout Test', () async {
-      final Logout logout = await Logout.logout();
+      final LogoutResponse logout = await LogoutResponse.logoutMethod();
 
-      expect(logout.succeeded, true);
+      expect(logout.logout, 1);
     });
 
     test('Login History Test', () async {
-      final List<LoginHistory> loginHistories =
-          await LoginHistory.fetchHistory();
+      final LoginHistoryResponse loginHistories =
+          await LoginHistoryResponse.fetchHistory();
 
-      expect(loginHistories.length, 2);
+      expect(loginHistories.loginHistory.length, 2);
 
-      expect(loginHistories.first.action, LoginAction.login);
+      expect(loginHistories.loginHistory.first.action, 'login');
       expect(
-        loginHistories.first.environment,
+        loginHistories.loginHistory.first.environment,
         '27-Apr-20 10:44:02GMT IP=x.x.x.x IP_COUNTRY=x User_AGENT=Mozilla/5.0 (Linux; Android 9; AOSP on IA Emulator Build/PSR1.180720.117) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36 LANG=EN',
       );
-      expect(loginHistories.first.status, true);
-      expect(loginHistories.first.time, getDateTime(1587984243));
+      expect(loginHistories.loginHistory.first.status, true);
+      expect(loginHistories.loginHistory.first.time, getDateTime(1587984243));
     });
   });
 }

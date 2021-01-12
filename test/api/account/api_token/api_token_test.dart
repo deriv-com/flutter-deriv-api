@@ -1,69 +1,70 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_deriv_api/api/account/api_token/api_token.dart';
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/api/response/api_token_receive_result.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));
 
   group('API Token Group ->', () {
     test('Create Token Test', () async {
-      final APIToken createAPIToken = await APIToken.create(
+      final ApiTokenResponse createAPIToken = await ApiTokenResponse.create(
         name: 'sample token',
-        scopes: <TokenScope>[
-          TokenScope.read,
-          TokenScope.tradingInformation,
+        scopes: <ScopesItemEnum>[
+          ScopesItemEnum.read,
+          ScopesItemEnum.tradingInformation,
         ],
         validForCurrentIPOnly: false,
       );
 
-      expect(createAPIToken.newToken, true);
+      expect(createAPIToken.apiToken.newToken, 1);
 
-      expect(createAPIToken.tokens.length, 1);
+      expect(createAPIToken.apiToken.tokens.length, 1);
 
-      expect(createAPIToken.tokens.first.displayName, 'sample token');
+      expect(createAPIToken.apiToken.tokens.first.displayName, 'sample token');
       expect(
-        createAPIToken.tokens.first.lastUsed,
-        DateTime.tryParse('2020-01-11'),
+        createAPIToken.apiToken.tokens.first.lastUsed,
+       // DateTime.tryParse('2020-01-11'),
+       '2020-01-11'
       );
 
-      expect(createAPIToken.tokens.first.scopes.length, 2);
+      expect(createAPIToken.apiToken.tokens.first.scopes.length, 2);
 
-      expect(createAPIToken.tokens.first.scopes.first, TokenScope.read);
+      expect(createAPIToken.apiToken.tokens.first.scopes.first, ScopesItemEnum.read);
       expect(
-        createAPIToken.tokens.first.scopes[1],
-        TokenScope.tradingInformation,
+        createAPIToken.apiToken.tokens.first.scopes[1],
+        ScopesItemEnum.tradingInformation,
       );
 
-      expect(createAPIToken.tokens.first.token, 'thisIsASampleTOKEN123');
-      expect(createAPIToken.tokens.first.validForIp, '178.32.12.45');
+      expect(createAPIToken.apiToken.tokens.first.token, 'thisIsASampleTOKEN123');
+      expect(createAPIToken.apiToken.tokens.first.validForIp, '178.32.12.45');
     });
 
     test('Delete Token Test', () async {
-      final APIToken deleteAPIToken =
-          await APIToken.delete(token: 'thisIsASampleTOKEN123');
+      final ApiTokenResponse deleteAPIToken =
+          await ApiTokenResponse.delete(token: 'thisIsASampleTOKEN123');
 
-      expect(deleteAPIToken.deleteToken, true);
+      expect(deleteAPIToken.apiToken.deleteToken, 1);
 
-      expect(deleteAPIToken.tokens.length, 1);
+      expect(deleteAPIToken.apiToken.tokens.length, 1);
 
-      expect(deleteAPIToken.tokens.first.displayName, 'sample token');
+      expect(deleteAPIToken.apiToken.tokens.first.displayName, 'sample token');
       expect(
-        deleteAPIToken.tokens.first.lastUsed,
-        DateTime.tryParse('2020-01-11'),
+        deleteAPIToken.apiToken.tokens.first.lastUsed,
+        //DateTime.tryParse('2020-01-11'),
+        '2020-01-11'
       );
 
-      expect(deleteAPIToken.tokens.first.scopes.length, 2);
+      expect(deleteAPIToken.apiToken.tokens.first.scopes.length, 2);
 
-      expect(deleteAPIToken.tokens.first.scopes.first, TokenScope.read);
+      expect(deleteAPIToken.apiToken.tokens.first.scopes.first, ScopesItemEnum.read);
       expect(
-        deleteAPIToken.tokens.first.scopes[1],
-        TokenScope.tradingInformation,
+        deleteAPIToken.apiToken.tokens.first.scopes[1],
+        ScopesItemEnum.tradingInformation,
       );
 
-      expect(deleteAPIToken.tokens.first.token, 'thisIsASampleTOKEN123');
-      expect(deleteAPIToken.tokens.first.validForIp, '178.32.12.45');
+      expect(deleteAPIToken.apiToken.tokens.first.token, 'thisIsASampleTOKEN123');
+      expect(deleteAPIToken.apiToken.tokens.first.validForIp, '178.32.12.45');
     });
   });
 }

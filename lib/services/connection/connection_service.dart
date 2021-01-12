@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter_deriv_api/api/common/ping/ping.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter_deriv_api/api/response/ping_receive_result.dart';
 import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
 
 /// A class to check the connectivity of the device to the Internet
@@ -104,7 +104,7 @@ class ConnectionService {
 
   Future<bool> _ping() async {
     try {
-      await Ping.ping().timeout(Duration(seconds: _pingTimeout));
+      await PingResponse.pingMethod().timeout(Duration(seconds: _pingTimeout));
     } on Exception catch (_) {
       return Future<bool>.value(false);
     }

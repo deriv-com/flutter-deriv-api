@@ -4,8 +4,8 @@ import '../../basic_api/generated/forget_all_receive.dart';
 import '../../basic_api/generated/forget_all_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
-import '../../utils/helpers.dart';
-import '../exceptions/forget_exception.dart';
+import '../../helpers/helpers.dart';
+import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
 /// Forget all response model class
@@ -67,7 +67,7 @@ class ForgetAllResponse extends ForgetAllResponseModel {
           ForgetException(baseExceptionModel: baseExceptionModel),
     );
 
-    return ForgetAllResponse.fromJson(response.error);
+    return ForgetAllResponse.fromJson(response.forgetAll);
   }
 
   /// Creates a copy of instance with given parameters

@@ -1,19 +1,22 @@
+import 'package:flutter_deriv_api/basic_api/generated/get_financial_assessment_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/set_financial_assessment_send.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:flutter_deriv_api/api/response/get_financial_assessment_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/set_financial_assessment_receive_result.dart';
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/user/financial_assessment/financial_assessment.dart';
-import 'package:flutter_deriv_api/api/user/financial_assessment/set_financial_assessment.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));
 
   group('Financial Assessment Group ->', () {
     test('Fetch Assessment Test', () async {
-      final FinancialAssessment financialAssessment =
-          await FinancialAssessment.fetchAssessment(
-        const GetFinancialAssessmentRequest(),
+      final GetFinancialAssessmentResponse financialAssessmentResponse =
+          await GetFinancialAssessmentResponse.fetchAssessment(
+        const GetFinancialAssessmentSend(),
       );
+
+      final financialAssessment =
+          financialAssessmentResponse.getFinancialAssessment;
 
       expect(financialAssessment.accountTurnover, '120.0');
       expect(financialAssessment.binaryOptionsTradingExperience, '0-1 year');
@@ -51,9 +54,9 @@ void main() {
     });
 
     test('Set Assessment Test', () async {
-      final SetFinancialAssessment financialAssessmentModel =
-          await SetFinancialAssessment.setAssessment(
-        const SetFinancialAssessmentRequest(
+      final SetFinancialAssessmentResponse financialAssessmentModel =
+          await SetFinancialAssessmentResponse.setAssessment(
+        const SetFinancialAssessmentSend(
           educationLevel: 'Primary',
           estimatedWorth: 'Less than \$100,000',
           netIncome: 'Less than \$25,000',
@@ -63,10 +66,13 @@ void main() {
         ),
       );
 
-      expect(financialAssessmentModel.cfdScore, 926);
-      expect(financialAssessmentModel.financialInformationScore, 751);
-      expect(financialAssessmentModel.totalScore, 921);
-      expect(financialAssessmentModel.tradingScore, 460);
+      expect(financialAssessmentModel.setFinancialAssessment.cfdScore, 926);
+      expect(
+          financialAssessmentModel
+              .setFinancialAssessment.financialInformationScore,
+          751);
+      expect(financialAssessmentModel.setFinancialAssessment.totalScore, 921);
+      expect(financialAssessmentModel.setFinancialAssessment.tradingScore, 460);
     });
   });
 }

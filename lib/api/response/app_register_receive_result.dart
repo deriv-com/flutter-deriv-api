@@ -4,8 +4,8 @@ import '../../basic_api/generated/app_register_receive.dart';
 import '../../basic_api/generated/app_register_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
-import '../../utils/helpers.dart';
-import '../exceptions/app_exception.dart';
+import '../../helpers/helpers.dart';
+import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
 /// App register response model class
@@ -30,7 +30,7 @@ class AppRegisterResponse extends AppRegisterResponseModel {
 
   /// Creates an instance from JSON
   factory AppRegisterResponse.fromJson(
-    Map<String, dynamic> appRegisterJson,
+    dynamic appRegisterJson,
   ) =>
       AppRegisterResponse(
         appRegister: appRegisterJson == null
@@ -77,7 +77,6 @@ class AppRegisterResponse extends AppRegisterResponseModel {
         appRegister: appRegister ?? this.appRegister,
       );
 }
-
 /// App register model class
 abstract class AppRegisterModel {
   /// Initializes

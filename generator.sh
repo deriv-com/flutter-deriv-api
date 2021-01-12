@@ -9,7 +9,10 @@ className=`echo $filename | sed -r 's/_([a-z])/\U\1/gi' | sed -r 's/^([A-Z])/\l\
 
 echo "Start Decoding For $filename
 "
+if [[ $file == *receive.json ]]
+then
 flutter pub run lib/tools/parser.dart $file $className
+fi
 
 done
 

@@ -7,8 +7,8 @@ import '../../basic_api/generated/sell_receive.dart';
 import '../../basic_api/generated/sell_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
-import '../../utils/helpers.dart';
-import '../exceptions/contract_operations_exception.dart';
+import '../../helpers/helpers.dart';
+import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 import 'sell_expired_receive_result.dart';
 
@@ -34,7 +34,7 @@ class SellResponse extends SellResponseModel {
 
   /// Creates an instance from JSON
   factory SellResponse.fromJson(
-    Map<String, dynamic> sellJson,
+    dynamic sellJson,
   ) =>
       SellResponse(
         sell: sellJson == null ? null : Sell.fromJson(sellJson),

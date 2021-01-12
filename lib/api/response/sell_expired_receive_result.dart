@@ -22,7 +22,7 @@ class SellExpiredResponse extends SellExpiredResponseModel {
 
   /// Creates an instance from JSON
   factory SellExpiredResponse.fromJson(
-    Map<String, dynamic> sellExpiredJson,
+    dynamic sellExpiredJson,
   ) =>
       SellExpiredResponse(
         sellExpired: sellExpiredJson == null
@@ -49,7 +49,6 @@ class SellExpiredResponse extends SellExpiredResponseModel {
         sellExpired: sellExpired ?? this.sellExpired,
       );
 }
-
 /// Sell expired model class
 abstract class SellExpiredModel {
   /// Initializes

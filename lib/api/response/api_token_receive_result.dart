@@ -4,8 +4,8 @@ import '../../basic_api/generated/api_token_receive.dart';
 import '../../basic_api/generated/api_token_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
-import '../../utils/helpers.dart';
-import '../exceptions/api_token_exception.dart';
+import '../../helpers/helpers.dart';
+import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
 /// Api token response model class
@@ -30,7 +30,7 @@ class ApiTokenResponse extends ApiTokenResponseModel {
 
   /// Creates an instance from JSON
   factory ApiTokenResponse.fromJson(
-    Map<String, dynamic> apiTokenJson,
+    dynamic apiTokenJson,
   ) =>
       ApiTokenResponse(
         apiToken: apiTokenJson == null ? null : ApiToken.fromJson(apiTokenJson),
@@ -124,7 +124,6 @@ enum ScopesItemEnum {
   payments,
   admin,
 }
-
 /// Api token model class
 abstract class ApiTokenModel {
   /// Initializes
@@ -193,7 +192,6 @@ class ApiToken extends ApiTokenModel {
         tokens: tokens ?? this.tokens,
       );
 }
-
 /// Tokens item model class
 abstract class TokensItemModel {
   /// Initializes

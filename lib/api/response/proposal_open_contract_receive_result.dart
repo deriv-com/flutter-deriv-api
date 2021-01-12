@@ -8,8 +8,8 @@ import '../../basic_api/response.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/connection/call_manager/base_call_manager.dart';
 import '../../services/dependency_injector/injector.dart';
-import '../../utils/helpers.dart';
-import '../exceptions/contract_operations_exception.dart';
+import '../../helpers/helpers.dart';
+import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 import '../models/enums.dart';
 import 'forget_all_receive_result.dart';
@@ -43,8 +43,8 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
 
   /// Creates an instance from JSON
   factory ProposalOpenContractResponse.fromJson(
-    Map<String, dynamic> proposalOpenContractJson,
-    Map<String, dynamic> subscriptionJson,
+    dynamic proposalOpenContractJson,
+    dynamic subscriptionJson,
   ) =>
       ProposalOpenContractResponse(
         proposalOpenContract: proposalOpenContractJson == null
@@ -135,7 +135,7 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
-    return ForgetResponse.fromJson(response);
+    return ForgetResponse.fromJson(response.forget);
   }
 
   /// Unsubscribes all open contract subscriptions.
@@ -152,7 +152,7 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
-    return ForgetAllResponse.fromJson(response);
+    return ForgetAllResponse.fromJson(response.forgetAll);
   }
 
   /// Creates a copy of instance with given parameters
@@ -184,7 +184,6 @@ enum StatusEnum {
   cancelled,
   _null,
 }
-
 /// Proposal open contract model class
 abstract class ProposalOpenContractModel {
   /// Initializes
@@ -817,7 +816,6 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         validationError: validationError ?? this.validationError,
       );
 }
-
 /// Audit details model class
 abstract class AuditDetailsModel {
   /// Initializes
@@ -900,7 +898,6 @@ class AuditDetails extends AuditDetailsModel {
         contractStart: contractStart ?? this.contractStart,
       );
 }
-
 /// All ticks item model class
 abstract class AllTicksItemModel {
   /// Initializes
@@ -983,7 +980,6 @@ class AllTicksItem extends AllTicksItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
-
 /// Contract end item model class
 abstract class ContractEndItemModel {
   /// Initializes
@@ -1067,7 +1063,6 @@ class ContractEndItem extends ContractEndItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
-
 /// Contract start item model class
 abstract class ContractStartItemModel {
   /// Initializes
@@ -1151,7 +1146,6 @@ class ContractStartItem extends ContractStartItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
-
 /// Cancellation model class
 abstract class CancellationModel {
   /// Initializes
@@ -1204,7 +1198,6 @@ class Cancellation extends CancellationModel {
         dateExpiry: dateExpiry ?? this.dateExpiry,
       );
 }
-
 /// Limit order model class
 abstract class LimitOrderModel {
   /// Initializes
@@ -1279,7 +1272,6 @@ class LimitOrder extends LimitOrderModel {
         takeProfit: takeProfit ?? this.takeProfit,
       );
 }
-
 /// Stop loss model class
 abstract class StopLossModel {
   /// Initializes
@@ -1352,7 +1344,6 @@ class StopLoss extends StopLossModel {
         value: value ?? this.value,
       );
 }
-
 /// Stop out model class
 abstract class StopOutModel {
   /// Initializes
@@ -1425,7 +1416,6 @@ class StopOut extends StopOutModel {
         value: value ?? this.value,
       );
 }
-
 /// Take profit model class
 abstract class TakeProfitModel {
   /// Initializes
@@ -1498,7 +1488,6 @@ class TakeProfit extends TakeProfitModel {
         value: value ?? this.value,
       );
 }
-
 /// Tick stream item model class
 abstract class TickStreamItemModel {
   /// Initializes
@@ -1561,7 +1550,6 @@ class TickStreamItem extends TickStreamItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
-
 /// Transaction ids model class
 abstract class TransactionIdsModel {
   /// Initializes
@@ -1614,7 +1602,6 @@ class TransactionIds extends TransactionIdsModel {
         sell: sell ?? this.sell,
       );
 }
-
 /// Subscription model class
 abstract class SubscriptionModel {
   /// Initializes

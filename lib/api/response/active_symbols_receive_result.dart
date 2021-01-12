@@ -4,7 +4,7 @@ import '../../basic_api/generated/active_symbols_receive.dart';
 import '../../basic_api/generated/active_symbols_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
-import '../../utils/helpers.dart';
+import '../../helpers/helpers.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
@@ -58,7 +58,7 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
   ///
   /// For parameters information refer to [ActiveSymbolsRequest].
   /// Throws an [ActiveSymbolsException] if API response contains an error
-  static Future<List<ActiveSymbolsResponse>> fetchActiveSymbols(
+  static Future<ActiveSymbolsResponse> fetchActiveSymbols(
     ActiveSymbolsSend request,
   ) async {
     final ActiveSymbolsReceive response = await _api.call(
@@ -71,10 +71,7 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
           ActiveSymbolsException(baseExceptionModel: baseExceptionModel),
     );
 
-    return response.activeSymbols
-        .map<ActiveSymbolsResponse>((dynamic symbolEntry) =>
-            ActiveSymbolsResponse.fromJson(symbolEntry))
-        .toList();
+    return ActiveSymbolsResponse.fromJson(response.activeSymbols);
   }
 
   /// Creates a copy of instance with given parameters

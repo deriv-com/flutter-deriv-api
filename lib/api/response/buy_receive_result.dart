@@ -11,8 +11,8 @@ import '../../basic_api/response.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/connection/call_manager/base_call_manager.dart';
 import '../../services/dependency_injector/injector.dart';
-import '../../utils/helpers.dart';
-import '../exceptions/contract_operations_exception.dart';
+import '../../helpers/helpers.dart';
+import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 import 'cancel_receive_result.dart';
 import 'contract_update_receive_result.dart';
@@ -47,8 +47,8 @@ class BuyResponse extends BuyResponseModel {
 
   /// Creates an instance from JSON
   factory BuyResponse.fromJson(
-    Map<String, dynamic> buyJson,
-    Map<String, dynamic> subscriptionJson,
+    dynamic buyJson,
+    dynamic subscriptionJson,
   ) =>
       BuyResponse(
         buy: buyJson == null ? null : Buy.fromJson(buyJson),
@@ -93,13 +93,13 @@ class BuyResponse extends BuyResponseModel {
   /// Buys contract with parameters specified in request and subscribes to it.
   ///
   /// Throws a [ContractOperationException] is API response contains an error
-  static Stream<BuyResponse> buyAndSubscribe(
+  static Stream<ProposalOpenContractResponse> buyAndSubscribe(
     BuySend request, {
     RequestCompareFunction comparePredicate,
   }) =>
       _api
           .subscribe(request: request, comparePredicate: comparePredicate)
-          .map<BuyResponse>(
+          .map<ProposalOpenContractResponse>(
         (Response response) {
           checkException(
             response: response,
@@ -107,15 +107,12 @@ class BuyResponse extends BuyResponseModel {
                 ContractOperationException(
                     baseExceptionModel: baseExceptionModel),
           );
-
-          return response is BuyReceive
-              ? BuyResponse.fromJson(response.buy, response.subscription)
-              : response is ProposalOpenContractReceive
-                  ? ProposalOpenContractResponse.fromJson(
-                      response.proposalOpenContract,
-                      response.subscription,
-                    )
-                  : null;
+          return response is ProposalOpenContractReceive
+              ? ProposalOpenContractResponse.fromJson(
+                  response.proposalOpenContract,
+                  response.subscription,
+                )
+              : null;
         },
       );
 
@@ -181,7 +178,6 @@ class BuyResponse extends BuyResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-
 /// Buy model class
 abstract class BuyModel {
   /// Initializes
@@ -304,7 +300,6 @@ class Buy extends BuyModel {
         transactionId: transactionId ?? this.transactionId,
       );
 }
-
 /// Subscription model class
 abstract class SubscriptionModel {
   /// Initializes

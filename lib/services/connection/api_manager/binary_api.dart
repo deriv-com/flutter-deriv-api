@@ -2,12 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:meta/meta.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -133,7 +134,7 @@ class BinaryAPI extends BaseAPI {
       );
 
   @override
-  Future<ForgetResponse> unsubscribe({
+  Future<ForgetReceive> unsubscribe({
     @required String subscriptionId,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this)).unsubscribe(
@@ -141,7 +142,7 @@ class BinaryAPI extends BaseAPI {
       );
 
   @override
-  Future<ForgetAllResponse> unsubscribeAll({
+  Future<ForgetAllReceive> unsubscribeAll({
     @required ForgetStreamType method,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this)).unsubscribeAll(

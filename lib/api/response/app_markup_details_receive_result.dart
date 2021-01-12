@@ -1,12 +1,12 @@
 import 'package:meta/meta.dart';
 
-import '../../api/exceptions/app_exception.dart';
+import '../../api/exceptions/exceptions.dart';
 import '../../api/models/base_exception_model.dart';
 import '../../basic_api/generated/app_markup_details_receive.dart';
 import '../../basic_api/generated/app_markup_details_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
-import '../../utils/helpers.dart';
+import '../../helpers/helpers.dart';
 
 /// App markup details response model class
 abstract class AppMarkupDetailsResponseModel {
@@ -30,7 +30,7 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
 
   /// Creates an instance from JSON
   factory AppMarkupDetailsResponse.fromJson(
-    Map<String, dynamic> appMarkupDetailsJson,
+    dynamic appMarkupDetailsJson,
   ) =>
       AppMarkupDetailsResponse(
         appMarkupDetails: appMarkupDetailsJson == null
@@ -77,7 +77,6 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
         appMarkupDetails: appMarkupDetails ?? this.appMarkupDetails,
       );
 }
-
 /// App markup details model class
 abstract class AppMarkupDetailsModel {
   /// Initializes
@@ -128,7 +127,6 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
         transactions: transactions ?? this.transactions,
       );
 }
-
 /// Transactions item model class
 abstract class TransactionsItemModel {
   /// Initializes

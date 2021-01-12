@@ -42,7 +42,7 @@ class AppGetResponse extends AppGetResponseModel {
 
   /// Creates an instance from JSON
   factory AppGetResponse.fromJson(
-    Map<String, dynamic> appGetJson,
+    dynamic appGetJson,
   ) =>
       AppGetResponse(
         appGet: appGetJson == null ? null : AppGet.fromJson(appGetJson),
@@ -182,7 +182,6 @@ class AppGetResponse extends AppGetResponseModel {
         appGet: appGet ?? this.appGet,
       );
 }
-
 /// App get model class
 abstract class AppGetModel {
   /// Initializes

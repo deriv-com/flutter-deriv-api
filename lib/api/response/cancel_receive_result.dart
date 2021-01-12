@@ -4,8 +4,8 @@ import '../../basic_api/generated/cancel_receive.dart';
 import '../../basic_api/generated/cancel_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
-import '../../utils/helpers.dart';
-import '../exceptions/contract_operations_exception.dart';
+import '../../helpers/helpers.dart';
+import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
 /// Cancel response model class
@@ -30,7 +30,7 @@ class CancelResponse extends CancelResponseModel {
 
   /// Creates an instance from JSON
   factory CancelResponse.fromJson(
-    Map<String, dynamic> cancelJson,
+    dynamic cancelJson,
   ) =>
       CancelResponse(
         cancel: cancelJson == null ? null : Cancel.fromJson(cancelJson),
@@ -72,7 +72,6 @@ class CancelResponse extends CancelResponseModel {
         cancel: cancel ?? this.cancel,
       );
 }
-
 /// Cancel model class
 abstract class CancelModel {
   /// Initializes

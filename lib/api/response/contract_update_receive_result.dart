@@ -1,14 +1,11 @@
 import 'package:meta/meta.dart';
 
-import '../../basic_api/generated/contract_update_history_receive.dart';
-import 'contract_update_history_receive_result.dart';
-import '../../basic_api/generated/contract_update_history_send.dart';
 import '../../basic_api/generated/contract_update_receive.dart';
 import '../../basic_api/generated/contract_update_send.dart';
+import '../../helpers/helpers.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
-import '../../utils/helpers.dart';
-import '../exceptions/contract_operations_exception.dart';
+import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
 /// Contract update response model class
@@ -33,7 +30,7 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
 
   /// Creates an instance from JSON
   factory ContractUpdateResponse.fromJson(
-    Map<String, dynamic> contractUpdateJson,
+    dynamic contractUpdateJson,
   ) =>
       ContractUpdateResponse(
         contractUpdate: contractUpdateJson == null
@@ -71,28 +68,6 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
     return ContractUpdateResponse.fromJson(response.contractUpdate);
   }
 
-  /// Gets update history for contract as List of [HistorySpotPriceModel]
-  ///
-  /// Throws a [ContractOperationException] if API response contains an error
-  static Future<List<ContractUpdateHistoryResponse>> fetchContractUpdateHistory(
-    ContractUpdateHistorySend request,
-  ) async {
-    final ContractUpdateHistoryReceive response =
-        await _api.call(request: request);
-
-    checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
-          ContractOperationException(baseExceptionModel: baseExceptionModel),
-    );
-
-    return getListFromMap(
-      response.contractUpdateHistory,
-      itemToTypeCallback: (dynamic item) =>
-          ContractUpdateHistoryResponse.fromJson(item),
-    );
-  }
-
   /// Creates a copy of instance with given parameters
   ContractUpdateResponse copyWith({
     ContractUpdate contractUpdate,
@@ -101,7 +76,6 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
         contractUpdate: contractUpdate ?? this.contractUpdate,
       );
 }
-
 /// Contract update model class
 abstract class ContractUpdateModel {
   /// Initializes
@@ -162,7 +136,6 @@ class ContractUpdate extends ContractUpdateModel {
         takeProfit: takeProfit ?? this.takeProfit,
       );
 }
-
 /// Stop loss model class
 abstract class StopLossModel {
   /// Initializes
@@ -235,7 +208,6 @@ class StopLoss extends StopLossModel {
         value: value ?? this.value,
       );
 }
-
 /// Take profit model class
 abstract class TakeProfitModel {
   /// Initializes

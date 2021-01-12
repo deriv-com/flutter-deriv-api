@@ -1,5 +1,7 @@
-import '../generated/api.dart';
-import '../manually/ohlc_receive.dart';
+import 'package:flutter_deriv_api/api/manually/ohlc_receive.dart';
+import 'package:flutter_deriv_api/api/response/ticks_history_receive_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/ticks_history_receive.dart';
+
 import '../response.dart';
 
 import 'response_mapper.helper.dart';
@@ -14,7 +16,7 @@ Response getResponseByMsgType(Map<String, dynamic> responseMap) {
       return OHLCResponse.fromJson(responseMap);
     case 'candles':
     case 'history':
-      return TicksHistoryResponse.fromJson(responseMap);
+      return TicksHistoryReceive.fromJson(responseMap);
     default:
       return getGeneratedResponse(responseMap);
   }

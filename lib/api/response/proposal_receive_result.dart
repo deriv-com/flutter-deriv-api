@@ -6,16 +6,17 @@ import '../../basic_api/generated/forget_receive.dart';
 import '../../basic_api/generated/proposal_receive.dart';
 import '../../basic_api/generated/proposal_send.dart';
 import '../../basic_api/response.dart';
+import '../../helpers/helpers.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/connection/call_manager/base_call_manager.dart';
 import '../../services/dependency_injector/injector.dart';
-import '../../utils/helpers.dart';
 import '../exceptions/contract_operations_exception.dart';
 import '../models/base_exception_model.dart';
 import '../models/enums.dart';
 import 'buy_receive_result.dart';
 import 'forget_all_receive_result.dart';
 import 'forget_receive_result.dart';
+import 'proposal_open_contract_receive_result.dart';
 
 /// Proposal response model class
 abstract class ProposalResponseModel {
@@ -45,8 +46,8 @@ class ProposalResponse extends ProposalResponseModel {
 
   /// Creates an instance from JSON
   factory ProposalResponse.fromJson(
-    Map<String, dynamic> proposalJson,
-    Map<String, dynamic> subscriptionJson,
+    dynamic proposalJson,
+    dynamic subscriptionJson,
   ) =>
       ProposalResponse(
         proposal: proposalJson == null ? null : Proposal.fromJson(proposalJson),
@@ -134,7 +135,7 @@ class ProposalResponse extends ProposalResponseModel {
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
-    return ForgetResponse.fromJson(response);
+    return ForgetResponse.fromJson(response.forget);
   }
 
   /// Unsubscribes all proposal subscriptions.
@@ -150,7 +151,7 @@ class ProposalResponse extends ProposalResponseModel {
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
-    return ForgetAllResponse.fromJson(response);
+    return ForgetAllResponse.fromJson(response.forgetAll);
   }
 
   /// Buys this proposal contract with [price] specified.
@@ -165,7 +166,8 @@ class ProposalResponse extends ProposalResponseModel {
   /// Buys this proposal contract with [price] specified and subscribes to it.
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Stream<BuyResponse> buyAndSubscribe({@required double price}) =>
+  Stream<ProposalOpenContractResponse> buyAndSubscribe(
+          {@required double price}) =>
       BuyResponse.buyAndSubscribe(BuySend(
         buy: proposal.id,
         price: price ?? proposal.askPrice,
@@ -181,7 +183,6 @@ class ProposalResponse extends ProposalResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-
 /// Proposal model class
 abstract class ProposalModel {
   /// Initializes
@@ -342,7 +343,6 @@ class Proposal extends ProposalModel {
         spotTime: spotTime ?? this.spotTime,
       );
 }
-
 /// Cancellation model class
 abstract class CancellationModel {
   /// Initializes
@@ -395,7 +395,6 @@ class Cancellation extends CancellationModel {
         dateExpiry: dateExpiry ?? this.dateExpiry,
       );
 }
-
 /// Limit order model class
 abstract class LimitOrderModel {
   /// Initializes
@@ -470,7 +469,6 @@ class LimitOrder extends LimitOrderModel {
         takeProfit: takeProfit ?? this.takeProfit,
       );
 }
-
 /// Stop loss model class
 abstract class StopLossModel {
   /// Initializes
@@ -543,7 +541,6 @@ class StopLoss extends StopLossModel {
         value: value ?? this.value,
       );
 }
-
 /// Stop out model class
 abstract class StopOutModel {
   /// Initializes
@@ -616,7 +613,6 @@ class StopOut extends StopOutModel {
         value: value ?? this.value,
       );
 }
-
 /// Take profit model class
 abstract class TakeProfitModel {
   /// Initializes
@@ -689,7 +685,6 @@ class TakeProfit extends TakeProfitModel {
         value: value ?? this.value,
       );
 }
-
 /// Subscription model class
 abstract class SubscriptionModel {
   /// Initializes

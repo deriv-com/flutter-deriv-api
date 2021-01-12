@@ -9,6 +9,8 @@ const String _objectUnknownType = 'objectEmpty';
 const String _arrayType = 'array';
 const String _arrayUnknownType = 'arrayEmpty';
 const String _dateTimeType = 'dateTime';
+const String _limitsMultiType = 'limitsMultiType';
+const String _cashierMultiType = 'cashierMultiType';
 
 const List<String> _ignoredParameters = <String>[
   'req_id',
@@ -38,6 +40,7 @@ class JsonSchemaParser {
     'string': 'String',
     'number': 'double',
     'boolean': 'bool',
+    'null': 'null'
   };
 
   static String _generateClass({
@@ -64,7 +67,9 @@ class JsonSchemaParser {
             ${_generateFromJson(className: className, models: models, isRoot: isRoot)}
             /// Converts an instance to JSON
             ${_generateToJson(models: models)}
+
             $methodsString
+
             /// Creates a copy of instance with given parameters
             ${_copyWith(className: className, models: models)}
           }
@@ -93,8 +98,8 @@ class JsonSchemaParser {
         ..write('${model.isRequired ? '@required' : ''} ')
         ..write(
           isSubclass
-              ? '${model.classType} ${model.fieldTitle},'
-              : 'this.${model.fieldTitle},',
+              ? '${model.classType} ${model.fieldName},'
+              : 'this.${model.fieldName},',
         );
     }
 
@@ -102,7 +107,7 @@ class JsonSchemaParser {
       result.write('}) : super(');
 
       for (final SchemaModel model in models) {
-        result.write('${model.fieldTitle}: ${model.fieldTitle},');
+        result.write('${model.fieldName}: ${model.fieldName},');
       }
 
       result.write(');');
@@ -120,7 +125,7 @@ class JsonSchemaParser {
       result.write(
         '''
           /// ${model.description}
-          final ${model.classType} ${model.fieldTitle};
+          final ${model.classType} ${model.fieldName};
         ''',
       );
     }
@@ -175,55 +180,25 @@ class JsonSchemaParser {
     bool isRoot = false,
   }) {
     final String rootInput = models
-        .map((SchemaModel model) =>
-            '${model.schemaType == _objectType ? 'Map<String,dynamic>' : 'dynamic'} ${model.fieldTitle}Json,')
+        .map((SchemaModel model) => '${'dynamic'} ${model.fieldName}Json,')
+        //'${model.schemaType == _objectType ? 'Map<String,dynamic>' : 'dynamic'} ${model.fieldName}Json,')
         .join();
     final StringBuffer result = StringBuffer(
       'factory $className.fromJson(${isRoot ? rootInput : 'Map<String,dynamic> json'}) => $className(',
     );
 
     for (final SchemaModel model in models) {
-      final String className = model.className;
-      final String title = model.fieldTitle;
-      final String schemaTitle = model.schemaTitle;
-      final String sourceFieldName =
-          isRoot ? '${title}Json' : 'json[\'$schemaTitle\']';
-
-      switch (model.schemaType) {
-        case _arrayType:
-          result.write(
-            '''
-            $title: $sourceFieldName == null
-              ? null
-              : ${_fromJsonFromArray(model, isParrent: true, sourceFieldName: sourceFieldName)},
-          ''',
-          );
-          break;
-        case _objectType:
-          result.write(
-            '''
-            $title: $sourceFieldName == null
-              ? null
-              : $className.fromJson($sourceFieldName),
-          ''',
-          );
-          break;
-        case 'number':
-          result.write('''$title: getDouble($sourceFieldName),''');
-          break;
-        case 'boolean':
-          result.write('''$title: getBool($sourceFieldName),''');
-          break;
-        case _dateTimeType:
-          result.write('''$title: getDateTime($sourceFieldName),''');
-          break;
-
-        default:
-          model.isEnum
-              ? result.write(
-                  '$title: ${model.enumName.camelCase}Mapper[$sourceFieldName],')
-              : result.write('''$title: $sourceFieldName,''');
+      if (model.fieldName == 'cashierObject' ||
+          model.fieldName == 'cashierString') {
+        result.write('''
+    ${model.fieldName}: ${model.fieldName}Json is ${model.fieldName == 'cashierObject' ? 'Map<String,dynamic>' : 'String'}  ? ${_getFromJsonFor(model: model, isRoot: isRoot)} : null ,
+    ''');
+        continue;
       }
+
+      result.write('''
+    ${model.fieldName}: ${_getFromJsonFor(model: model, isRoot: isRoot)},
+    ''');
     }
 
     result.write(');');
@@ -231,6 +206,52 @@ class JsonSchemaParser {
     return result;
   }
 
+  static String _getFromJsonFor(
+      {@required SchemaModel model,
+      bool isRoot = false,
+      String forceSrouceFieldName}) {
+    String fromJsonStr;
+    final String className = model.className;
+    final String title = model.fieldName;
+    final String schemaTitle = model.schemaTitle;
+    final String sourceFieldName = forceSrouceFieldName ??
+        (isRoot ? '${title}Json' : 'json[\'$schemaTitle\']');
+
+    switch (model.schemaType) {
+      case _arrayType:
+        fromJsonStr = '''
+           $sourceFieldName == null
+              ? null
+              : ${_getFromJsonFromArray(model, isParrent: true, sourceFieldName: sourceFieldName)}
+          ''';
+        break;
+      case _objectType:
+        fromJsonStr = '''
+          $sourceFieldName == null
+              ? null
+              : $className.fromJson($sourceFieldName)
+          ''';
+        break;
+      case 'number':
+        fromJsonStr = '''getDouble($sourceFieldName)''';
+        break;
+      case 'boolean':
+        fromJsonStr = '''getBool($sourceFieldName)''';
+        break;
+      case _dateTimeType:
+        fromJsonStr = '''getDateTime($sourceFieldName)''';
+        break;
+
+      default:
+        fromJsonStr = model.isEnum
+            ? '${model.enumName.camelCase}Mapper[$sourceFieldName]'
+            : '''$sourceFieldName''';
+    }
+
+    return fromJsonStr;
+  }
+
+  // TODO(mohammd): use same pattern as fromJson(create _getToJsonFor function)
   static StringBuffer _generateToJson({
     @required List<SchemaModel> models,
   }) {
@@ -244,7 +265,7 @@ class JsonSchemaParser {
       );
 
     for (final SchemaModel model in models) {
-      final String title = model.fieldTitle;
+      final String title = model.fieldName;
       final String schemaTitle = model.schemaTitle;
       final String schemaType = model.schemaType;
 
@@ -262,7 +283,7 @@ class JsonSchemaParser {
           result.write(
             '''
             if ($title != null) {
-              resultMap['$schemaTitle'] = ${_toJsonFromArray(model, isParrent: true)};
+              resultMap['$schemaTitle'] = ${_getToJsonFromArray(model, isParrent: true)};
             }
           ''',
           );
@@ -286,7 +307,7 @@ class JsonSchemaParser {
   }
 
   /// Hanlde ToJson function for a property that is an array(recursive function)
-  static String _toJsonFromArray(
+  static String _getToJsonFromArray(
     SchemaModel model, {
     bool isParrent = false,
   }) {
@@ -305,12 +326,12 @@ class JsonSchemaParser {
     }
 
     return isParrent
-        ? '${model.fieldTitle}.map<dynamic>((${model.schemaArrType.classType} item) => ${_toJsonFromArray(model.schemaArrType)}).toList()'
-        : 'item.map((item) => ${_toJsonFromArray(model.schemaArrType)}).toList()';
+        ? '${model.fieldName}.map<dynamic>((${model.schemaArrType.classType} item) => ${_getToJsonFromArray(model.schemaArrType)}).toList()'
+        : 'item.map((item) => ${_getToJsonFromArray(model.schemaArrType)}).toList()';
   }
 
   /// Hanlde FromJson function for a property that is an array(recursive function)
-  static String _fromJsonFromArray(
+  static String _getFromJsonFromArray(
     SchemaModel model, {
     bool isParrent = false,
     String sourceFieldName,
@@ -330,8 +351,8 @@ class JsonSchemaParser {
     }
 
     return isParrent
-        ? '${model.classType}.from($sourceFieldName.map((dynamic item) => ${_fromJsonFromArray(model.schemaArrType)}))'
-        : '${model.classType}.from(item.map((dynamic item) => ${_fromJsonFromArray(model.schemaArrType)}))';
+        ? '${model.classType}.from($sourceFieldName.map((dynamic item) => ${_getFromJsonFromArray(model.schemaArrType)}))'
+        : '${model.classType}.from(item.map((dynamic item) => ${_getFromJsonFromArray(model.schemaArrType)}))';
   }
 
   static StringBuffer _copyWith({
@@ -346,14 +367,14 @@ class JsonSchemaParser {
       );
 
     for (final SchemaModel model in models) {
-      result.write('${model.classType} ${model.fieldTitle},');
+      result.write('${model.classType} ${model.fieldName},');
     }
 
     result.write('}) => $className(');
 
     for (final SchemaModel model in models) {
       result.write(
-          '${model.fieldTitle}: ${model.fieldTitle} ?? this.${model.fieldTitle},');
+          '${model.fieldName}: ${model.fieldName} ?? this.${model.fieldName},');
     }
 
     result.write(');');
@@ -374,14 +395,16 @@ class JsonSchemaParser {
         for (final MapEntry<String, dynamic> entry
             in schemaProperties.entries) {
           final SchemaModel processed = _processEntry(entry);
-
           if (processed != null) {
+            if (processed.schemaType == _cashierMultiType) {
+              parentModel.addAll(processed.multiTypes);
+              continue;
+            }
             parentModel.add(processed);
           }
         }
       }
     }
-
     return parentModel;
   }
 
@@ -410,6 +433,16 @@ class JsonSchemaParser {
       if (type == 'string') {
         theModel.enumValues = List<String>.from(
             entry.value['enum'].map((dynamic x) => x.toString()));
+      }
+    }
+
+    if (theModel.schemaType == _limitsMultiType) {
+      return _processEntry(MapEntry<String, dynamic>(
+          theModel.schemaTitle, entry.value['oneOf'][0]));
+    } else if (theModel.schemaType == _cashierMultiType) {
+      for (final Map<String, dynamic> item in entry.value['oneOf']) {
+        theModel.multiTypes.add(_processEntry(
+            MapEntry<String, dynamic>('${schemaTitle}_${item['type']}', item)));
       }
     }
 
@@ -454,6 +487,10 @@ class JsonSchemaParser {
     }
 
     switch (model.schemaType) {
+      case _cashierMultiType:
+        getClassTypesFor(model.multiTypes);
+        // For now we only support multiType for Cashier model(hardcoded)
+        return _cashierMultiType;
       case _objectType:
         getClassTypesFor(model.children);
         _assignClassName(model);
@@ -466,9 +503,15 @@ class JsonSchemaParser {
       case _arrayUnknownType:
         return 'List<dynamic>';
       case 'integer':
-        if (model.description.toLowerCase().contains('epoch') ||
-            model.schemaTitle.contains('date') ||
-            model.schemaTitle.contains('time')) {
+        final bool descriptionHasEpoch =
+            model.description.toLowerCase().contains('epoch');
+        final bool titleHasDate = model.schemaTitle.contains('date');
+        final bool titleHasTime = model.schemaTitle.contains('time');
+        final bool descriptionHasInSeconds =
+            model.description.toLowerCase().contains('in seconds');
+
+        if ((descriptionHasEpoch || titleHasDate || titleHasTime) &&
+            !descriptionHasInSeconds) {
           model.schemaType = _dateTimeType;
           return 'DateTime';
         }
@@ -532,19 +575,27 @@ class JsonSchemaParser {
         );
       } else {
         // Check if povided types are more than 2
-        // in this case, we apply [number] for the type of entity
-        // If there are no number types available, take the first type as default.
+        // if provided types are both number and integer , we apply number for the type of entity
+        // else case, type is dynamic
         if (types
-            .where((dynamic e) => e == 'integer' || e == 'number')
+            .where((dynamic e) => e == 'integer' && e == 'number')
             .isNotEmpty) {
           type = 'number';
         } else {
-          type = types.firstWhere((dynamic e) => e != null,
-              orElse: () => 'string');
+          type = dynamicType;
         }
       }
     } else {
       type = entry.value['type'];
+      // Check if it's Multi Type
+      if (type == null && entry.value['oneOf'] != null) {
+        // hardcode
+        if (entry.key == 'limits') {
+          return _limitsMultiType;
+        } else if (entry.key == 'cashier') {
+          return _cashierMultiType;
+        }
+      }
       if (type == _objectType && entry.value['properties'] == null) {
         // This is where the provided entry is [object] but doesn't have [properties],
         // Assume this case as Map<String,dynamic> at the end.

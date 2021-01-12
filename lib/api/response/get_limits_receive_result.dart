@@ -1,0 +1,361 @@
+import 'package:meta/meta.dart';
+
+import '../../basic_api/generated/get_limits_receive.dart';
+import '../../basic_api/generated/get_limits_send.dart';
+import '../../helpers/helpers.dart';
+import '../../services/connection/api_manager/base_api.dart';
+import '../../services/dependency_injector/injector.dart';
+import '../exceptions/exceptions.dart';
+import '../models/base_exception_model.dart';
+
+/// Get limits response model class
+abstract class GetLimitsResponseModel {
+  /// Initializes
+  GetLimitsResponseModel({
+    @required this.getLimits,
+  });
+
+  /// Trading limits of real account user
+  final GetLimits getLimits;
+}
+
+/// Get limits response class
+class GetLimitsResponse extends GetLimitsResponseModel {
+  /// Initializes
+  GetLimitsResponse({
+    @required GetLimits getLimits,
+  }) : super(
+          getLimits: getLimits,
+        );
+
+  /// Creates an instance from JSON
+  factory GetLimitsResponse.fromJson(
+    dynamic getLimitsJson,
+  ) =>
+      GetLimitsResponse(
+        getLimits:
+            getLimitsJson == null ? null : GetLimits.fromJson(getLimitsJson),
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (getLimits != null) {
+      resultMap['get_limits'] = getLimits.toJson();
+    }
+
+    return resultMap;
+  }
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Gets the trading and withdrawal limits for logged in account
+  ///
+  /// Throws an [AccountLimitsException] if API response contains an error
+  static Future<GetLimitsResponse> fetchAccountLimits([
+    GetLimitsSend request,
+  ]) async {
+    final GetLimitsReceive response = await _api.call(
+      request: request ?? const GetLimitsSend(),
+    );
+
+    checkException(
+      response: response,
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          AccountLimitsException(baseExceptionModel: baseExceptionModel),
+    );
+
+    return GetLimitsResponse.fromJson(response.getLimits);
+  }
+
+  /// Creates a copy of instance with given parameters
+  GetLimitsResponse copyWith({
+    GetLimits getLimits,
+  }) =>
+      GetLimitsResponse(
+        getLimits: getLimits ?? this.getLimits,
+      );
+}
+/// Get limits model class
+abstract class GetLimitsModel {
+  /// Initializes
+  GetLimitsModel({
+    @required this.accountBalance,
+    @required this.dailyTurnover,
+    @required this.lifetimeLimit,
+    @required this.marketSpecific,
+    @required this.numOfDays,
+    @required this.numOfDaysLimit,
+    @required this.openPositions,
+    @required this.payout,
+    this.payoutPerSymbol,
+    @required this.payoutPerSymbolAndContractType,
+    @required this.remainder,
+    @required this.withdrawalForXDaysMonetary,
+    @required this.withdrawalSinceInceptionMonetary,
+  });
+
+  /// Maximum account cash balance
+  final double accountBalance;
+
+  /// Maximum daily turnover
+  final double dailyTurnover;
+
+  /// Lifetime withdrawal limit
+  final double lifetimeLimit;
+
+  /// Contains limitation information for each market.
+  final Map<String, dynamic> marketSpecific;
+
+  /// Number of days for num_of_days_limit withdrawal limit
+  final int numOfDays;
+
+  /// Withdrawal limit for num_of_days days
+  final double numOfDaysLimit;
+
+  /// Maximum number of open positions
+  final int openPositions;
+
+  /// Maximum aggregate payouts on open positions
+  final double payout;
+
+  /// Maximum payout for each symbol based on different barrier types.
+  final PayoutPerSymbol payoutPerSymbol;
+
+  /// Maximum aggregate payouts on open positions per symbol and contract type. This limit can be exceeded up to the overall payout limit if there is no prior open position.
+  final double payoutPerSymbolAndContractType;
+
+  /// Amount left to reach withdrawal limit
+  final double remainder;
+
+  /// Total withdrawal for num_of_days days
+  final double withdrawalForXDaysMonetary;
+
+  /// Total withdrawal since inception
+  final double withdrawalSinceInceptionMonetary;
+}
+
+/// Get limits class
+class GetLimits extends GetLimitsModel {
+  /// Initializes
+  GetLimits({
+    @required double accountBalance,
+    @required double dailyTurnover,
+    @required double lifetimeLimit,
+    @required Map<String, dynamic> marketSpecific,
+    @required int numOfDays,
+    @required double numOfDaysLimit,
+    @required int openPositions,
+    @required double payout,
+    PayoutPerSymbol payoutPerSymbol,
+    @required double payoutPerSymbolAndContractType,
+    @required double remainder,
+    @required double withdrawalForXDaysMonetary,
+    @required double withdrawalSinceInceptionMonetary,
+  }) : super(
+          accountBalance: accountBalance,
+          dailyTurnover: dailyTurnover,
+          lifetimeLimit: lifetimeLimit,
+          marketSpecific: marketSpecific,
+          numOfDays: numOfDays,
+          numOfDaysLimit: numOfDaysLimit,
+          openPositions: openPositions,
+          payout: payout,
+          payoutPerSymbol: payoutPerSymbol,
+          payoutPerSymbolAndContractType: payoutPerSymbolAndContractType,
+          remainder: remainder,
+          withdrawalForXDaysMonetary: withdrawalForXDaysMonetary,
+          withdrawalSinceInceptionMonetary: withdrawalSinceInceptionMonetary,
+        );
+
+  /// Creates an instance from JSON
+  factory GetLimits.fromJson(Map<String, dynamic> json) => GetLimits(
+        accountBalance: getDouble(json['account_balance']),
+        dailyTurnover: getDouble(json['daily_turnover']),
+        lifetimeLimit: getDouble(json['lifetime_limit']),
+        marketSpecific: json['market_specific'],
+        numOfDays: json['num_of_days'],
+        numOfDaysLimit: getDouble(json['num_of_days_limit']),
+        openPositions: json['open_positions'],
+        payout: getDouble(json['payout']),
+        payoutPerSymbol: json['payout_per_symbol'] == null
+            ? null
+            : PayoutPerSymbol.fromJson(json['payout_per_symbol']),
+        payoutPerSymbolAndContractType:
+            getDouble(json['payout_per_symbol_and_contract_type']),
+        remainder: getDouble(json['remainder']),
+        withdrawalForXDaysMonetary:
+            getDouble(json['withdrawal_for_x_days_monetary']),
+        withdrawalSinceInceptionMonetary:
+            getDouble(json['withdrawal_since_inception_monetary']),
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['account_balance'] = accountBalance;
+    resultMap['daily_turnover'] = dailyTurnover;
+    resultMap['lifetime_limit'] = lifetimeLimit;
+    resultMap['market_specific'] = marketSpecific;
+    resultMap['num_of_days'] = numOfDays;
+    resultMap['num_of_days_limit'] = numOfDaysLimit;
+    resultMap['open_positions'] = openPositions;
+    resultMap['payout'] = payout;
+    if (payoutPerSymbol != null) {
+      resultMap['payout_per_symbol'] = payoutPerSymbol.toJson();
+    }
+    resultMap['payout_per_symbol_and_contract_type'] =
+        payoutPerSymbolAndContractType;
+    resultMap['remainder'] = remainder;
+    resultMap['withdrawal_for_x_days_monetary'] = withdrawalForXDaysMonetary;
+    resultMap['withdrawal_since_inception_monetary'] =
+        withdrawalSinceInceptionMonetary;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  GetLimits copyWith({
+    double accountBalance,
+    double dailyTurnover,
+    double lifetimeLimit,
+    Map<String, dynamic> marketSpecific,
+    int numOfDays,
+    double numOfDaysLimit,
+    int openPositions,
+    double payout,
+    PayoutPerSymbol payoutPerSymbol,
+    double payoutPerSymbolAndContractType,
+    double remainder,
+    double withdrawalForXDaysMonetary,
+    double withdrawalSinceInceptionMonetary,
+  }) =>
+      GetLimits(
+        accountBalance: accountBalance ?? this.accountBalance,
+        dailyTurnover: dailyTurnover ?? this.dailyTurnover,
+        lifetimeLimit: lifetimeLimit ?? this.lifetimeLimit,
+        marketSpecific: marketSpecific ?? this.marketSpecific,
+        numOfDays: numOfDays ?? this.numOfDays,
+        numOfDaysLimit: numOfDaysLimit ?? this.numOfDaysLimit,
+        openPositions: openPositions ?? this.openPositions,
+        payout: payout ?? this.payout,
+        payoutPerSymbol: payoutPerSymbol ?? this.payoutPerSymbol,
+        payoutPerSymbolAndContractType: payoutPerSymbolAndContractType ??
+            this.payoutPerSymbolAndContractType,
+        remainder: remainder ?? this.remainder,
+        withdrawalForXDaysMonetary:
+            withdrawalForXDaysMonetary ?? this.withdrawalForXDaysMonetary,
+        withdrawalSinceInceptionMonetary: withdrawalSinceInceptionMonetary ??
+            this.withdrawalSinceInceptionMonetary,
+      );
+}
+/// Payout per symbol model class
+abstract class PayoutPerSymbolModel {
+  /// Initializes
+  PayoutPerSymbolModel({
+    this.atm,
+    @required this.nonAtm,
+  });
+
+  /// Maximum aggregate payouts on open positions per symbol for contracts where barrier is same as entry spot.
+  final double atm;
+
+  /// Maximum aggregate payouts on open positions per symbol for contract where barrier is different from entry spot.
+  final NonAtm nonAtm;
+}
+
+/// Payout per symbol class
+class PayoutPerSymbol extends PayoutPerSymbolModel {
+  /// Initializes
+  PayoutPerSymbol({
+    double atm,
+    @required NonAtm nonAtm,
+  }) : super(
+          atm: atm,
+          nonAtm: nonAtm,
+        );
+
+  /// Creates an instance from JSON
+  factory PayoutPerSymbol.fromJson(Map<String, dynamic> json) =>
+      PayoutPerSymbol(
+        atm: getDouble(json['atm']),
+        nonAtm:
+            json['non_atm'] == null ? null : NonAtm.fromJson(json['non_atm']),
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['atm'] = atm;
+    if (nonAtm != null) {
+      resultMap['non_atm'] = nonAtm.toJson();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  PayoutPerSymbol copyWith({
+    double atm,
+    NonAtm nonAtm,
+  }) =>
+      PayoutPerSymbol(
+        atm: atm ?? this.atm,
+        nonAtm: nonAtm ?? this.nonAtm,
+      );
+}
+/// Non atm model class
+abstract class NonAtmModel {
+  /// Initializes
+  NonAtmModel({
+    @required this.lessThanSevenDays,
+    @required this.moreThanSevenDays,
+  });
+
+  /// Maximum aggregate payouts on open positions per symbol for contract where barrier is different from entry spot and duration is less than and equal to seven days
+  final double lessThanSevenDays;
+
+  /// Maximum aggregate payouts on open positions per symbol for contract where barrier is different from entry spot and duration is more to seven days
+  final double moreThanSevenDays;
+}
+
+/// Non atm class
+class NonAtm extends NonAtmModel {
+  /// Initializes
+  NonAtm({
+    @required double lessThanSevenDays,
+    @required double moreThanSevenDays,
+  }) : super(
+          lessThanSevenDays: lessThanSevenDays,
+          moreThanSevenDays: moreThanSevenDays,
+        );
+
+  /// Creates an instance from JSON
+  factory NonAtm.fromJson(Map<String, dynamic> json) => NonAtm(
+        lessThanSevenDays: getDouble(json['less_than_seven_days']),
+        moreThanSevenDays: getDouble(json['more_than_seven_days']),
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['less_than_seven_days'] = lessThanSevenDays;
+    resultMap['more_than_seven_days'] = moreThanSevenDays;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  NonAtm copyWith({
+    double lessThanSevenDays,
+    double moreThanSevenDays,
+  }) =>
+      NonAtm(
+        lessThanSevenDays: lessThanSevenDays ?? this.lessThanSevenDays,
+        moreThanSevenDays: moreThanSevenDays ?? this.moreThanSevenDays,
+      );
+}

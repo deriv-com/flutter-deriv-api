@@ -8,8 +8,8 @@ import '../../basic_api/response.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/connection/call_manager/base_call_manager.dart';
 import '../../services/dependency_injector/injector.dart';
-import '../../utils/helpers.dart';
-import '../exceptions/balance_exception.dart';
+import '../../helpers/helpers.dart';
+import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 import '../models/enums.dart';
 import 'forget_all_receive_result.dart';
@@ -43,8 +43,8 @@ class BalanceResponse extends BalanceResponseModel {
 
   /// Creates an instance from JSON
   factory BalanceResponse.fromJson(
-    Map<String, dynamic> balanceJson,
-    Map<String, dynamic> subscriptionJson,
+    dynamic balanceJson,
+    dynamic subscriptionJson,
   ) =>
       BalanceResponse(
         balance: balanceJson == null ? null : Balance.fromJson(balanceJson),
@@ -126,7 +126,7 @@ class BalanceResponse extends BalanceResponseModel {
           BalanceException(baseExceptionModel: baseExceptionModel),
     );
 
-    return ForgetResponse.fromJson(response);
+    return ForgetResponse.fromJson(response.forget);
   }
 
   /// Unsubscribes all balance subscriptions.
@@ -142,7 +142,7 @@ class BalanceResponse extends BalanceResponseModel {
           BalanceException(baseExceptionModel: baseExceptionModel),
     );
 
-    return ForgetAllResponse.fromJson(response);
+    return ForgetAllResponse.fromJson(response.forgetAll);
   }
 
   /// Creates a copy of instance with given parameters
@@ -155,7 +155,6 @@ class BalanceResponse extends BalanceResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-
 /// Balance model class
 abstract class BalanceModel {
   /// Initializes
@@ -250,7 +249,6 @@ class Balance extends BalanceModel {
         total: total ?? this.total,
       );
 }
-
 /// Total model class
 abstract class TotalModel {
   /// Initializes
@@ -335,7 +333,6 @@ class Total extends TotalModel {
         mt5Demo: mt5Demo ?? this.mt5Demo,
       );
 }
-
 /// Deriv model class
 abstract class DerivModel {
   /// Initializes
@@ -388,7 +385,6 @@ class Deriv extends DerivModel {
         currency: currency ?? this.currency,
       );
 }
-
 /// Deriv demo model class
 abstract class DerivDemoModel {
   /// Initializes
@@ -441,7 +437,6 @@ class DerivDemo extends DerivDemoModel {
         currency: currency ?? this.currency,
       );
 }
-
 /// Mt5 model class
 abstract class Mt5Model {
   /// Initializes
@@ -494,7 +489,6 @@ class Mt5 extends Mt5Model {
         currency: currency ?? this.currency,
       );
 }
-
 /// Mt5 demo model class
 abstract class Mt5DemoModel {
   /// Initializes
@@ -547,7 +541,6 @@ class Mt5Demo extends Mt5DemoModel {
         currency: currency ?? this.currency,
       );
 }
-
 /// Subscription model class
 abstract class SubscriptionModel {
   /// Initializes

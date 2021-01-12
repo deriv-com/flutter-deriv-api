@@ -1,0 +1,151 @@
+import 'package:meta/meta.dart';
+
+import '../../basic_api/generated/new_account_real_receive.dart';
+import '../../basic_api/generated/new_account_real_send.dart';
+import '../../helpers/helpers.dart';
+import '../../services/connection/api_manager/base_api.dart';
+import '../../services/dependency_injector/injector.dart';
+import '../exceptions/exceptions.dart';
+import '../models/base_exception_model.dart';
+
+/// New account real response model class
+abstract class NewAccountRealResponseModel {
+  /// Initializes
+  NewAccountRealResponseModel({
+    @required this.newAccountReal,
+  });
+
+  /// New real money account details
+  final NewAccountReal newAccountReal;
+}
+
+/// New account real response class
+class NewAccountRealResponse extends NewAccountRealResponseModel {
+  /// Initializes
+  NewAccountRealResponse({
+    @required NewAccountReal newAccountReal,
+  }) : super(
+          newAccountReal: newAccountReal,
+        );
+
+  /// Creates an instance from JSON
+  factory NewAccountRealResponse.fromJson(
+    dynamic newAccountRealJson,
+  ) =>
+      NewAccountRealResponse(
+        newAccountReal: newAccountRealJson == null
+            ? null
+            : NewAccountReal.fromJson(newAccountRealJson),
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (newAccountReal != null) {
+      resultMap['new_account_real'] = newAccountReal.toJson();
+    }
+
+    return resultMap;
+  }
+
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+
+  /// Opens a new real account.
+  ///
+  /// For parameters information refer to [NewAccountRealRequest].
+  /// Throws a [NewAccountException] ifAP
+  static Future<NewAccountRealResponse> openNewRealAccount(
+    NewAccountRealSend request,
+  ) async {
+    final NewAccountRealReceive response = await _api.call(request: request);
+
+    checkException(
+      response: response,
+      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          NewAccountException(baseExceptionModel: baseExceptionModel),
+    );
+
+    return NewAccountRealResponse.fromJson(response.newAccountReal);
+  }
+
+  /// Creates a copy of instance with given parameters
+  NewAccountRealResponse copyWith({
+    NewAccountReal newAccountReal,
+  }) =>
+      NewAccountRealResponse(
+        newAccountReal: newAccountReal ?? this.newAccountReal,
+      );
+}
+/// New account real model class
+abstract class NewAccountRealModel {
+  /// Initializes
+  NewAccountRealModel({
+    @required this.clientId,
+    @required this.landingCompany,
+    @required this.landingCompanyShort,
+    @required this.oauthToken,
+  });
+
+  /// Client ID of new real money account
+  final String clientId;
+
+  /// Landing company full name
+  final String landingCompany;
+
+  /// Landing company shortcode
+  final String landingCompanyShort;
+
+  /// OAuth token for client's login session
+  final String oauthToken;
+}
+
+/// New account real class
+class NewAccountReal extends NewAccountRealModel {
+  /// Initializes
+  NewAccountReal({
+    @required String clientId,
+    @required String landingCompany,
+    @required String landingCompanyShort,
+    @required String oauthToken,
+  }) : super(
+          clientId: clientId,
+          landingCompany: landingCompany,
+          landingCompanyShort: landingCompanyShort,
+          oauthToken: oauthToken,
+        );
+
+  /// Creates an instance from JSON
+  factory NewAccountReal.fromJson(Map<String, dynamic> json) => NewAccountReal(
+        clientId: json['client_id'],
+        landingCompany: json['landing_company'],
+        landingCompanyShort: json['landing_company_short'],
+        oauthToken: json['oauth_token'],
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['client_id'] = clientId;
+    resultMap['landing_company'] = landingCompany;
+    resultMap['landing_company_short'] = landingCompanyShort;
+    resultMap['oauth_token'] = oauthToken;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  NewAccountReal copyWith({
+    String clientId,
+    String landingCompany,
+    String landingCompanyShort,
+    String oauthToken,
+  }) =>
+      NewAccountReal(
+        clientId: clientId ?? this.clientId,
+        landingCompany: landingCompany ?? this.landingCompany,
+        landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
+        oauthToken: oauthToken ?? this.oauthToken,
+      );
+}

@@ -1,11 +1,19 @@
+import 'package:flutter_deriv_api/api/response/p2p_advert_create_receive_result.dart'
+    as advert_create;
+import 'package:flutter_deriv_api/api/response/p2p_advert_info_receive_result.dart'
+    as advert_info;
+import 'package:flutter_deriv_api/api/response/p2p_advert_list_receive_result.dart'
+    as advert_list;
+import 'package:flutter_deriv_api/api/response/p2p_order_create_receive_result.dart'
+    as order_create;
+import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_create_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_info_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_send.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_deriv_api/api/response/p2p_advert_update_receive_result.dart'
+    as advert_update;
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/p2p/p2p_advert/p2p_advert.dart';
-import 'package:flutter_deriv_api/api/p2p/p2p_advertiser/p2p_advertiser.dart';
-import 'package:flutter_deriv_api/api/p2p/p2p_order/p2p_order.dart';
-import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 void main() {
@@ -13,15 +21,18 @@ void main() {
 
   group('P2P Advert Group ->', () {
     test('Fetch Advert Information Test', () async {
-      final P2PAdvert advert =
-          await P2PAdvert.fetchAdvert(const P2pAdvertInfoRequest(id: '21'));
+      final advert_info.P2pAdvertInfoResponse advertResponse =
+          await advert_info.P2pAdvertInfoResponse.fetchAdvert(
+              const P2pAdvertInfoSend(id: '21'));
+
+      final advert_info.P2pAdvertInfo advert = advertResponse.p2pAdvertInfo;
 
       expect(advert.accountCurrency, 'USD');
 
       expect(advert.advertiserDetails.id, '2');
       expect(advert.advertiserDetails.name, 'za advertiser 1010');
 
-      expect(advert.counterpartyType, TransactionType.sell);
+      expect(advert.counterpartyType, advert_info.CounterpartyTypeEnum.sell);
       expect(advert.country, 'za');
       expect(advert.createdTime, getDateTime(1589279547));
       expect(
@@ -35,18 +46,20 @@ void main() {
       expect(advert.maxOrderAmountLimitDisplay, '15.00');
       expect(advert.minOrderAmountLimit, 3);
       expect(advert.minOrderAmountLimitDisplay, '3.00');
-      expect(advert.paymentMethod, PaymentMethod.bankTransfer);
+      expect(advert.paymentMethod, advert_info.PaymentMethodEnum.bankTransfer);
       expect(advert.price, 2.3);
       expect(advert.priceDisplay, '2.30');
       expect(advert.rate, 2.3);
       expect(advert.rateDisplay, '2.30');
-      expect(advert.type, TransactionType.buy);
+      expect(advert.type, advert_info.TypeEnum.buy);
     });
 
     test('Fetch Advert List Test', () async {
-      final List<P2PAdvert> adverts = await P2PAdvert.fetchAdvertList(
-        const P2pAdvertListRequest(counterpartyType: 'sell'),
+      final advert_list.P2pAdvertListResponse advertsRes =
+          await advert_list.P2pAdvertListResponse.fetchAdvertList(
+        const P2pAdvertListSend(counterpartyType: 'sell'),
       );
+      final List<advert_list.ListItem> adverts = advertsRes.p2pAdvertList.list;
 
       expect(adverts.length, 2);
 
@@ -58,7 +71,8 @@ void main() {
         'advertiser CR90000018',
       );
 
-      expect(adverts.first.counterpartyType, TransactionType.sell);
+      expect(adverts.first.counterpartyType,
+          advert_list.CounterpartyTypeEnum.sell);
       expect(adverts.first.country, 'za');
       expect(adverts.first.createdTime, getDateTime(1589270475));
       expect(
@@ -72,17 +86,19 @@ void main() {
       expect(adverts.first.maxOrderAmountLimitDisplay, '100.00');
       expect(adverts.first.minOrderAmountLimit, 10);
       expect(adverts.first.minOrderAmountLimitDisplay, '10.00');
-      expect(adverts.first.paymentMethod, PaymentMethod.bankTransfer);
+      expect(adverts.first.paymentMethod,
+          advert_list.PaymentMethodEnum.bankTransfer);
       expect(adverts.first.price, 14500);
       expect(adverts.first.priceDisplay, '14500.00');
       expect(adverts.first.rate, 14500);
       expect(adverts.first.rateDisplay, '14500.00');
-      expect(adverts.first.type, TransactionType.buy);
+      expect(adverts.first.type, advert_list.TypeEnum.buy);
     });
 
     test('Create Advert Test', () async {
-      final P2PAdvert advert = await P2PAdvert.createAdvert(
-        const P2pAdvertCreateRequest(
+      final advert_create.P2pAdvertCreateResponse advertRes =
+          await advert_create.P2pAdvertCreateResponse.createAdvert(
+        const P2pAdvertCreateSend(
           description: 'Please transfer to account number 1234',
           type: 'buy',
           amount: 100,
@@ -93,6 +109,8 @@ void main() {
         ),
       );
 
+      final advert_create.P2pAdvertCreate advert = advertRes.p2pAdvertCreate;
+
       expect(advert.accountCurrency, 'USD');
 
       expect(advert.advertiserDetails.id, '3');
@@ -101,7 +119,7 @@ void main() {
       expect(advert.amount, 100);
       expect(advert.amountDisplay, '100.00');
       expect(advert.contactInfo, 'Please transfer to account number 1234');
-      expect(advert.counterpartyType, TransactionType.buy);
+      expect(advert.counterpartyType, advert_create.CounterpartyTypeEnum.buy);
       expect(advert.country, 'za');
       expect(advert.createdTime, getDateTime(1589279547));
       expect(advert.description, 'advert information');
@@ -113,22 +131,29 @@ void main() {
       expect(advert.minOrderAmount, 20);
       expect(advert.minOrderAmountDisplay, '20.00');
       expect(advert.paymentInfo, 'it is a sell order');
-      expect(advert.paymentMethod, PaymentMethod.bankTransfer);
+      expect(
+          advert.paymentMethod, advert_create.PaymentMethodEnum.bankTransfer);
       expect(advert.price, 2.3);
       expect(advert.priceDisplay, '2.30');
       expect(advert.rate, 2.7);
       expect(advert.rateDisplay, '2.70');
       expect(advert.remainingAmount, 50);
       expect(advert.remainingAmountDisplay, '50.00');
-      expect(advert.type, TransactionType.sell);
+      expect(advert.type, advert_create.TypeEnum.sell);
     });
 
     test('Update Advert Test', () async {
-      final P2PAdvert advert =
-          await P2PAdvert.fetchAdvert(const P2pAdvertInfoRequest(id: '25'));
-      final P2PAdvert updatedAdvert =
-          (await advert.update(delete: false, isActive: false))
-              .copyWith(isActive: false);
+      final advert_info.P2pAdvertInfoResponse advert =
+          await advert_info.P2pAdvertInfoResponse.fetchAdvert(
+              const P2pAdvertInfoSend(id: '25'));
+      advert_update.P2pAdvertUpdateResponse advertResponse =
+          await advert.update(delete: false, isActive: false);
+      advertResponse = advert_update.P2pAdvertUpdateResponse(
+          p2pAdvertUpdate: advertResponse.p2pAdvertUpdate.copyWith(
+              isActive:
+                  false)); // TODO(mohamad): why we still need copyWith to make isActive to false(also in 2 next tests);
+      final advert_update.P2pAdvertUpdate updatedAdvert =
+          advertResponse.p2pAdvertUpdate;
 
       expect(updatedAdvert.accountCurrency, 'USD');
 
@@ -141,7 +166,8 @@ void main() {
         updatedAdvert.contactInfo,
         'Please transfer to account number 1234',
       );
-      expect(updatedAdvert.counterpartyType, TransactionType.buy);
+      expect(updatedAdvert.counterpartyType,
+          advert_update.CounterpartyTypeEnum.buy);
       expect(updatedAdvert.country, 'za');
       expect(updatedAdvert.createdTime, getDateTime(1589279547));
       expect(updatedAdvert.description, 'advert information');
@@ -153,55 +179,72 @@ void main() {
       expect(updatedAdvert.minOrderAmount, 20);
       expect(updatedAdvert.minOrderAmountDisplay, '20.00');
       expect(updatedAdvert.paymentInfo, 'it is a sell order');
-      expect(updatedAdvert.paymentMethod, PaymentMethod.bankTransfer);
+      expect(updatedAdvert.paymentMethod,
+          advert_update.PaymentMethodEnum.bankTransfer);
       expect(updatedAdvert.price, 2.3);
       expect(updatedAdvert.priceDisplay, '2.30');
       expect(updatedAdvert.rate, 2.7);
       expect(updatedAdvert.rateDisplay, '2.70');
       expect(updatedAdvert.remainingAmount, 50);
       expect(updatedAdvert.remainingAmountDisplay, '50.00');
-      expect(updatedAdvert.type, TransactionType.sell);
+      expect(updatedAdvert.type, advert_update.TypeEnum.sell);
     });
 
     test('Activate Advert Test', () async {
-      final P2PAdvert advert =
-          await P2PAdvert.fetchAdvert(const P2pAdvertInfoRequest(id: '21'));
-      final P2PAdvert activatedAdvert =
-          (await advert.activate()).copyWith(isActive: true);
+      final advert_info.P2pAdvertInfoResponse advert =
+          await advert_info.P2pAdvertInfoResponse.fetchAdvert(
+              const P2pAdvertInfoSend(id: '21'));
+      final advert_update.P2pAdvertUpdateResponse advertResponse =
+          await advert.activate();
 
+      final advert_update.P2pAdvertUpdate activatedAdvert =
+          advertResponse.p2pAdvertUpdate;
       expect(activatedAdvert.accountCurrency, 'USD');
 
-      expect(activatedAdvert.advertiserDetails.id, '2');
+      expect(activatedAdvert.advertiserDetails.id, '3');
       expect(activatedAdvert.advertiserDetails.name, 'za advertiser 1010');
 
-      expect(activatedAdvert.counterpartyType, TransactionType.sell);
-      expect(activatedAdvert.country, 'za');
-      expect(activatedAdvert.createdTime, getDateTime(1589279547));
+      expect(activatedAdvert.amount, 100);
+      expect(activatedAdvert.amountDisplay, '100.00');
       expect(
-        activatedAdvert.description,
+        activatedAdvert.contactInfo,
         'Please transfer to account number 1234',
       );
-      expect(activatedAdvert.id, '21');
+      expect(activatedAdvert.counterpartyType,
+          advert_update.CounterpartyTypeEnum.buy);
+      expect(activatedAdvert.country, 'za');
+      expect(activatedAdvert.createdTime, getDateTime(1589279547));
+      expect(activatedAdvert.description, 'advert information');
+      expect(activatedAdvert.id, '25');
       expect(activatedAdvert.isActive, true);
       expect(activatedAdvert.localCurrency, 'ZAR');
-      expect(activatedAdvert.maxOrderAmountLimit, 15);
-      expect(activatedAdvert.maxOrderAmountLimitDisplay, '15.00');
-      expect(activatedAdvert.minOrderAmountLimit, 3);
-      expect(activatedAdvert.minOrderAmountLimitDisplay, '3.00');
-      expect(activatedAdvert.paymentMethod, PaymentMethod.bankTransfer);
+      expect(activatedAdvert.maxOrderAmount, 50);
+      expect(activatedAdvert.maxOrderAmountDisplay, '50.00');
+      expect(activatedAdvert.minOrderAmount, 20);
+      expect(activatedAdvert.minOrderAmountDisplay, '20.00');
+      expect(activatedAdvert.paymentInfo, 'it is a sell order');
+      expect(activatedAdvert.paymentMethod,
+          advert_update.PaymentMethodEnum.bankTransfer);
       expect(activatedAdvert.price, 2.3);
       expect(activatedAdvert.priceDisplay, '2.30');
-      expect(activatedAdvert.rate, 2.3);
-      expect(activatedAdvert.rateDisplay, '2.30');
-      expect(activatedAdvert.type, TransactionType.buy);
+      expect(activatedAdvert.rate, 2.7);
+      expect(activatedAdvert.rateDisplay, '2.70');
+      expect(activatedAdvert.remainingAmount, 50);
+      expect(activatedAdvert.remainingAmountDisplay, '50.00');
+      expect(activatedAdvert.type, advert_update.TypeEnum.sell);
     });
 
     test('Deactivate Advert Test', () async {
-      final P2PAdvert advert =
-          await P2PAdvert.fetchAdvert(const P2pAdvertInfoRequest(id: '25'));
-      final P2PAdvert deactivatedAdvert =
-          (await advert.deactivate()).copyWith(isActive: false);
-
+      final advert_info.P2pAdvertInfoResponse advert =
+          await advert_info.P2pAdvertInfoResponse.fetchAdvert(
+              const P2pAdvertInfoSend(id: '25'));
+      advert_update.P2pAdvertUpdateResponse advertResponse =
+          await advert.deactivate();
+      advertResponse = advert_update.P2pAdvertUpdateResponse(
+          p2pAdvertUpdate:
+              advertResponse.p2pAdvertUpdate.copyWith(isActive: false));
+      final advert_update.P2pAdvertUpdate deactivatedAdvert =
+          advertResponse.p2pAdvertUpdate;
       expect(deactivatedAdvert.accountCurrency, 'USD');
 
       expect(deactivatedAdvert.advertiserDetails.id, '3');
@@ -213,7 +256,8 @@ void main() {
         deactivatedAdvert.contactInfo,
         'Please transfer to account number 1234',
       );
-      expect(deactivatedAdvert.counterpartyType, TransactionType.buy);
+      expect(deactivatedAdvert.counterpartyType,
+          advert_update.CounterpartyTypeEnum.buy);
       expect(deactivatedAdvert.country, 'za');
       expect(deactivatedAdvert.createdTime, getDateTime(1589279547));
       expect(deactivatedAdvert.description, 'advert information');
@@ -225,20 +269,26 @@ void main() {
       expect(deactivatedAdvert.minOrderAmount, 20);
       expect(deactivatedAdvert.minOrderAmountDisplay, '20.00');
       expect(deactivatedAdvert.paymentInfo, 'it is a sell order');
-      expect(deactivatedAdvert.paymentMethod, PaymentMethod.bankTransfer);
+      expect(deactivatedAdvert.paymentMethod,
+          advert_update.PaymentMethodEnum.bankTransfer);
       expect(deactivatedAdvert.price, 2.3);
       expect(deactivatedAdvert.priceDisplay, '2.30');
       expect(deactivatedAdvert.rate, 2.7);
       expect(deactivatedAdvert.rateDisplay, '2.70');
       expect(deactivatedAdvert.remainingAmount, 50);
       expect(deactivatedAdvert.remainingAmountDisplay, '50.00');
-      expect(deactivatedAdvert.type, TransactionType.sell);
+      expect(deactivatedAdvert.type, advert_update.TypeEnum.sell);
     });
 
     test('Delete Advert Test', () async {
-      final P2PAdvert advert =
-          await P2PAdvert.fetchAdvert(const P2pAdvertInfoRequest(id: '25'));
-      final P2PAdvert deletedAdvert = await advert.delete();
+      final advert_info.P2pAdvertInfoResponse advert =
+          await advert_info.P2pAdvertInfoResponse.fetchAdvert(
+              const P2pAdvertInfoSend(id: '25'));
+      final advert_update.P2pAdvertUpdateResponse deletedAdvertResponse =
+          await advert.delete();
+
+      final advert_update.P2pAdvertUpdate deletedAdvert =
+          deletedAdvertResponse.p2pAdvertUpdate;
 
       expect(deletedAdvert.accountCurrency, 'USD');
 
@@ -251,7 +301,8 @@ void main() {
         deletedAdvert.contactInfo,
         'Please transfer to account number 1234',
       );
-      expect(deletedAdvert.counterpartyType, TransactionType.buy);
+      expect(deletedAdvert.counterpartyType,
+          advert_update.CounterpartyTypeEnum.buy);
       expect(deletedAdvert.country, 'za');
       expect(deletedAdvert.createdTime, getDateTime(1589279547));
       expect(deletedAdvert.description, 'advert information');
@@ -263,20 +314,26 @@ void main() {
       expect(deletedAdvert.minOrderAmount, 20);
       expect(deletedAdvert.minOrderAmountDisplay, '20.00');
       expect(deletedAdvert.paymentInfo, 'it is a sell order');
-      expect(deletedAdvert.paymentMethod, PaymentMethod.bankTransfer);
+      expect(deletedAdvert.paymentMethod,
+          advert_update.PaymentMethodEnum.bankTransfer);
       expect(deletedAdvert.price, 2.3);
       expect(deletedAdvert.priceDisplay, '2.30');
       expect(deletedAdvert.rate, 2.7);
       expect(deletedAdvert.rateDisplay, '2.70');
       expect(deletedAdvert.remainingAmount, 50);
       expect(deletedAdvert.remainingAmountDisplay, '50.00');
-      expect(deletedAdvert.type, TransactionType.sell);
+      expect(deletedAdvert.type, advert_update.TypeEnum.sell);
     });
 
     test('Create Order From Advert Test', () async {
-      final P2PAdvert advert =
-          await P2PAdvert.fetchAdvert(const P2pAdvertInfoRequest(id: '2'));
-      final P2POrder order = await advert.createOrder(amount: 50);
+      final advert_info.P2pAdvertInfoResponse advert =
+          await advert_info.P2pAdvertInfoResponse.fetchAdvert(
+              const P2pAdvertInfoSend(id: '2'));
+      final order_create.P2pOrderCreateResponse orderResponse =
+          await advert.createOrder(amount: 50);
+
+      final order_create.P2pOrderCreate order = orderResponse.p2pOrderCreate;
+      ;
 
       expect(order.accountCurrency, 'USD');
       expect(order.amount, 50.0);
@@ -292,10 +349,10 @@ void main() {
       expect(order.priceDisplay, '675000.00');
       expect(order.rate, 13500.0);
       expect(order.rateDisplay, '13500.00');
-      expect(order.status, OrderStatusType.pending);
-      expect(order.type, OrderType.buy);
+      expect(order.status, order_create.StatusEnum.pending);
+      expect(order.type, order_create.TypeEnum.buy);
 
-      final P2PAdvertiser advertiser = order.advertiserDetails;
+      final order_create.AdvertiserDetails advertiser = order.advertiserDetails;
 
       expect(advertiser.id, '2');
       expect(advertiser.name, 'advertiser CR90000018');

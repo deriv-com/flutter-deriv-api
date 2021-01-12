@@ -4,49 +4,58 @@ import '../../basic_api/generated/cashier_receive.dart';
 import '../../basic_api/generated/cashier_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
-import '../../utils/helpers.dart';
-import '../exceptions/cashier_exception.dart';
+import '../../helpers/helpers.dart';
+import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
 /// Cashier response model class
 abstract class CashierResponseModel {
   /// Initializes
   CashierResponseModel({
-    @required this.cashier,
+    @required this.cashierString,
+    @required this.cashierObject,
   });
 
-  /// Possible error codes are:
-  /// - `ASK_TNC_APPROVAL`: API call `tnc_approval`
-  /// - `ASK_AUTHENTICATE`
-  /// - `ASK_UK_FUNDS_PROTECTION`: API call `tnc_approval`
-  /// - `ASK_CURRENCY`: API call `set_account_currency`
-  /// - `ASK_EMAIL_VERIFY`: API call `verify_email`
-  /// - `ASK_FIX_DETAILS`: API call `set_settings`
-  final dynamic cashier;
+  /// Response for type `url`, It will return url to cashier service.
+  final String cashierString;
+
+  /// Response for type `api'.
+  final CashierObject cashierObject;
 }
 
 /// Cashier response class
 class CashierResponse extends CashierResponseModel {
   /// Initializes
   CashierResponse({
-    @required dynamic cashier,
+    @required String cashierString,
+    @required CashierObject cashierObject,
   }) : super(
-          cashier: cashier,
+          cashierString: cashierString,
+          cashierObject: cashierObject,
         );
 
   /// Creates an instance from JSON
   factory CashierResponse.fromJson(
-    dynamic cashierJson,
+    dynamic cashierStringJson,
+    dynamic cashierObjectJson,
   ) =>
       CashierResponse(
-        cashier: cashierJson,
+        cashierString: cashierStringJson is String ? cashierStringJson : null,
+        cashierObject: cashierObjectJson is Map<String, dynamic>
+            ? cashierObjectJson == null
+                ? null
+                : CashierObject.fromJson(cashierObjectJson)
+            : null,
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    resultMap['cashier'] = cashier;
+    resultMap['cashier_string'] = cashierString;
+    if (cashierObject != null) {
+      resultMap['cashier_object'] = cashierObject.toJson();
+    }
 
     return resultMap;
   }
@@ -65,14 +74,124 @@ class CashierResponse extends CashierResponseModel {
           CashierException(baseExceptionModel: baseExceptionModel),
     );
 
-    return CashierResponse.fromJson(response);
+    return CashierResponse.fromJson(response.cashier, response.cashier);
   }
 
   /// Creates a copy of instance with given parameters
   CashierResponse copyWith({
-    dynamic cashier,
+    String cashierString,
+    CashierObject cashierObject,
   }) =>
       CashierResponse(
-        cashier: cashier ?? this.cashier,
+        cashierString: cashierString ?? this.cashierString,
+        cashierObject: cashierObject ?? this.cashierObject,
+      );
+}
+
+final Map<String, ActionEnum> actionEnumMapper = <String, ActionEnum>{
+  "deposit": ActionEnum.deposit,
+};
+
+/// action Enum
+enum ActionEnum {
+  deposit,
+}
+/// Cashier object model class
+abstract class CashierObjectModel {
+  /// Initializes
+  CashierObjectModel({
+    @required this.action,
+    this.deposit,
+  });
+
+  /// Type of operation, which is requested.
+  final ActionEnum action;
+
+  /// [Optional] Result for deposit operation.
+  final Deposit deposit;
+}
+
+/// Cashier object class
+class CashierObject extends CashierObjectModel {
+  /// Initializes
+  CashierObject({
+    @required ActionEnum action,
+    Deposit deposit,
+  }) : super(
+          action: action,
+          deposit: deposit,
+        );
+
+  /// Creates an instance from JSON
+  factory CashierObject.fromJson(Map<String, dynamic> json) => CashierObject(
+        action: actionEnumMapper[json['action']],
+        deposit:
+            json['deposit'] == null ? null : Deposit.fromJson(json['deposit']),
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['action'] = actionEnumMapper.entries
+        .firstWhere((entry) => entry.value == action, orElse: () => null)
+        ?.key;
+    if (deposit != null) {
+      resultMap['deposit'] = deposit.toJson();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  CashierObject copyWith({
+    ActionEnum action,
+    Deposit deposit,
+  }) =>
+      CashierObject(
+        action: action ?? this.action,
+        deposit: deposit ?? this.deposit,
+      );
+}
+/// Deposit model class
+abstract class DepositModel {
+  /// Initializes
+  DepositModel({
+    @required this.address,
+  });
+
+  /// Address for crypto deposit.
+  final String address;
+}
+
+/// Deposit class
+class Deposit extends DepositModel {
+  /// Initializes
+  Deposit({
+    @required String address,
+  }) : super(
+          address: address,
+        );
+
+  /// Creates an instance from JSON
+  factory Deposit.fromJson(Map<String, dynamic> json) => Deposit(
+        address: json['address'],
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['address'] = address;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  Deposit copyWith({
+    String address,
+  }) =>
+      Deposit(
+        address: address ?? this.address,
       );
 }

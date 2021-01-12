@@ -4,7 +4,7 @@ import 'package:recase/recase.dart';
 const String dynamicType = 'dynamic';
 
 /// Model to store schema information
-class SchemaModel {
+class SchemaModel extends Object {
   /// Default constructor
   SchemaModel();
 
@@ -28,6 +28,9 @@ class SchemaModel {
   /// Schema object field type
   String schemaType;
 
+  /// Holding all possible types of this schema when it cloud be one of them
+  List<SchemaModel> multiTypes = <SchemaModel>[];
+
   /// Schema array type (for Arrays)
   SchemaModel schemaArrType;
 
@@ -41,7 +44,7 @@ class SchemaModel {
   List<String> enumValues;
 
   /// Field title
-  String get fieldTitle => ReCase(schemaTitle).camelCase;
+  String get fieldName => ReCase(schemaTitle).camelCase;
 
   /// Class name
   String _className;
@@ -62,4 +65,15 @@ class SchemaModel {
 
   /// True if this model type is array
   bool get isArray => schemaType == 'array';
+
+  @override
+  String toString() => '''
+    {
+      title: $schemaTitle,
+      type: $schemaType,
+      classType: $classType,
+      multiTypes: $multiTypes,
+      children: $children,
+    } 
+    ''';
 }

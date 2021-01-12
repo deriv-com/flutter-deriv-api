@@ -85,7 +85,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   }
 
   /// Unsubscribe with a specific [subscriptionId]
-  Future<ForgetResponse> unsubscribe({
+  Future<ForgetReceive> unsubscribe({
     @required String subscriptionId,
     bool onlyCurrentListener = true,
   }) async {
@@ -95,7 +95,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     );
 
     if (requestId == -1) {
-      return const ForgetResponse(
+      return const ForgetReceive(
         forget: true,
         msgType: 'forget',
         error: <String, dynamic>{
@@ -109,12 +109,12 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
         pendingRequests[requestId],
       );
 
-      return const ForgetResponse(forget: true, msgType: 'forget');
+      return const ForgetReceive(forget: true, msgType: 'forget');
     }
 
     // Send forget request
     final Response response = await api.call(
-      request: ForgetRequest(forget: getSubscriptionId(requestId)),
+      request: ForgetSend(forget: getSubscriptionId(requestId)),
     );
 
     if (response.error == null) {
@@ -125,7 +125,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   }
 
   /// Unsubscribe to multiple [method]s all at once
-  Future<ForgetAllResponse> unsubscribeAll({
+  Future<ForgetAllReceive> unsubscribeAll({
     @required ForgetStreamType method,
   }) async {
     final String methodName = getStringFromEnum(method);
@@ -139,8 +139,8 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
       },
     ).toList();
 
-    final ForgetAllResponse response = await api.call(
-      request: ForgetAllRequest(forgetAll: methodName),
+    final ForgetAllReceive response = await api.call(
+      request: ForgetAllSend(forgetAll: methodName),
     );
 
     if (response.error == null) {

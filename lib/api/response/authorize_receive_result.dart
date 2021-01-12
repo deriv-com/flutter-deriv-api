@@ -4,8 +4,8 @@ import '../../basic_api/generated/authorize_receive.dart';
 import '../../basic_api/generated/authorize_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
-import '../../utils/helpers.dart';
-import '../exceptions/authorize_exception.dart';
+import '../../helpers/helpers.dart';
+import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
 /// Authorize response model class
@@ -30,7 +30,7 @@ class AuthorizeResponse extends AuthorizeResponseModel {
 
   /// Creates an instance from JSON
   factory AuthorizeResponse.fromJson(
-    Map<String, dynamic> authorizeJson,
+    dynamic authorizeJson,
   ) =>
       AuthorizeResponse(
         authorize:
@@ -77,7 +77,6 @@ class AuthorizeResponse extends AuthorizeResponseModel {
         authorize: authorize ?? this.authorize,
       );
 }
-
 /// Authorize model class
 abstract class AuthorizeModel {
   /// Initializes
@@ -271,7 +270,6 @@ class Authorize extends AuthorizeModel {
         userId: userId ?? this.userId,
       );
 }
-
 /// Account list item model class
 abstract class AccountListItemModel {
   /// Initializes
