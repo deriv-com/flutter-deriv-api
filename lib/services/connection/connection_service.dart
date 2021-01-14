@@ -12,7 +12,7 @@ class ConnectionService {
   ConnectionService._internal();
 
   static final ConnectionService _instance = ConnectionService._internal();
-  final int _connectivityCheckInterval = 3;
+  final int _connectivityCheckInterval = 5;
   final int _pingTimeout = 10;
 
   bool _hasConnection;
