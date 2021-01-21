@@ -82,8 +82,8 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
         await connectWebSocket();
       }
 
-      if (event is Reconnect) {
-        if (shouldReconnect && state is! Reconnecting) {
+      if (event is Reconnect && state is! Reconnecting) {
+        if (shouldReconnect) {
           yield Reconnecting();
         } else if (state is! Disconnected) {
           yield Disconnected();

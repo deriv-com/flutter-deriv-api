@@ -12,7 +12,7 @@ class ConnectionService {
   ConnectionService._internal();
 
   static final ConnectionService _instance = ConnectionService._internal();
-  final int _connectivityCheckInterval = 15;
+  final int _connectivityCheckInterval = 5;
   final int _pingTimeout = 10;
 
   bool _hasConnection;
@@ -104,7 +104,12 @@ class ConnectionService {
 
   Future<bool> _ping() async {
     try {
-      await Ping.ping().timeout(Duration(seconds: _pingTimeout));
+      final Ping response =
+          await Ping.ping().timeout(Duration(seconds: _pingTimeout));
+
+      if (response == null || !response.succeeded) {
+        return Future<bool>.value(false);
+      }
     } on Exception catch (_) {
       return Future<bool>.value(false);
     }
