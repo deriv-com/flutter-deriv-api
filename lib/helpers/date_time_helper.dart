@@ -8,12 +8,12 @@ int getCurrentLocalEpoch() =>
 DateTime getCurrentServerTime(int timeDifference) =>
     DateTime.fromMillisecondsSinceEpoch(
       (getCurrentLocalEpoch() + timeDifference) * 1000,
-    );
+    ).toUtc();
 
 /// Creates a [DateTime] from time given in seconds
 DateTime getDateTime(int timeInSeconds) => timeInSeconds == null
     ? null
-    : DateTime.fromMillisecondsSinceEpoch(timeInSeconds * 1000);
+    : DateTime.fromMillisecondsSinceEpoch(timeInSeconds * 1000).toUtc();
 
 /// Creates a [DateTime] from time given string in seconds
 DateTime getDateTimeFromString(String timeInSeconds) =>

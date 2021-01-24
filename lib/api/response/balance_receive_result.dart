@@ -155,6 +155,17 @@ class BalanceResponse extends BalanceResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
+final Map<String, TypeEnum> typeEnumMapper = <String, TypeEnum>{
+  "mt5": TypeEnum.mt5,
+  "deriv": TypeEnum.deriv,
+};
+
+/// type Enum
+enum TypeEnum {
+  mt5,
+  deriv,
+}
 /// Balance model class
 abstract class BalanceModel {
   /// Initializes
@@ -171,7 +182,7 @@ abstract class BalanceModel {
   final double balance;
 
   /// List of active accounts.
-  final Map<String, dynamic> accounts;
+  final Map<String, AccountsProperty> accounts;
 
   /// Currency of current account.
   final String currency;
@@ -191,7 +202,7 @@ class Balance extends BalanceModel {
   /// Initializes
   Balance({
     @required double balance,
-    @required Map<String, dynamic> accounts,
+    @required Map<String, AccountsProperty> accounts,
     @required String currency,
     @required String id,
     @required String loginid,
@@ -208,7 +219,17 @@ class Balance extends BalanceModel {
   /// Creates an instance from JSON
   factory Balance.fromJson(Map<String, dynamic> json) => Balance(
         balance: getDouble(json['balance']),
-        accounts: json['accounts'],
+        accounts: json['accounts'] == null
+            ? null
+            : Map<String, AccountsProperty>.fromEntries(json['accounts']
+                .entries
+                .map<MapEntry<String, AccountsProperty>>(
+                    (MapEntry<String, dynamic> entry) =>
+                        MapEntry<String, AccountsProperty>(
+                            entry.key,
+                            entry.value == null
+                                ? null
+                                : AccountsProperty.fromJson(entry.value)))),
         currency: json['currency'],
         id: json['id'],
         loginid: json['loginid'],
@@ -234,7 +255,7 @@ class Balance extends BalanceModel {
   /// Creates a copy of instance with given parameters
   Balance copyWith({
     double balance,
-    Map<String, dynamic> accounts,
+    Map<String, AccountsProperty> accounts,
     String currency,
     String id,
     String loginid,
@@ -247,6 +268,91 @@ class Balance extends BalanceModel {
         id: id ?? this.id,
         loginid: loginid ?? this.loginid,
         total: total ?? this.total,
+      );
+}
+/// Accounts property model class
+abstract class AccountsPropertyModel {
+  /// Initializes
+  AccountsPropertyModel({
+    @required this.balance,
+    @required this.convertedAmount,
+    @required this.currency,
+    @required this.demoAccount,
+    @required this.type,
+  });
+
+  /// Account balance
+  final double balance;
+
+  /// Account balance converted the total currency.
+  final double convertedAmount;
+
+  /// Account currency.
+  final String currency;
+
+  /// If set to `true`, this is a demo account.
+  final bool demoAccount;
+
+  /// Type of account.
+  final TypeEnum type;
+}
+
+/// Accounts property class
+class AccountsProperty extends AccountsPropertyModel {
+  /// Initializes
+  AccountsProperty({
+    @required double balance,
+    @required double convertedAmount,
+    @required String currency,
+    @required bool demoAccount,
+    @required TypeEnum type,
+  }) : super(
+          balance: balance,
+          convertedAmount: convertedAmount,
+          currency: currency,
+          demoAccount: demoAccount,
+          type: type,
+        );
+
+  /// Creates an instance from JSON
+  factory AccountsProperty.fromJson(Map<String, dynamic> json) =>
+      AccountsProperty(
+        balance: getDouble(json['balance']),
+        convertedAmount: getDouble(json['converted_amount']),
+        currency: json['currency'],
+        demoAccount: getBool(json['demo_account']),
+        type: typeEnumMapper[json['type']],
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['balance'] = balance;
+    resultMap['converted_amount'] = convertedAmount;
+    resultMap['currency'] = currency;
+    resultMap['demo_account'] = demoAccount;
+    resultMap['type'] = typeEnumMapper.entries
+        .firstWhere((entry) => entry.value == type, orElse: () => null)
+        ?.key;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  AccountsProperty copyWith({
+    double balance,
+    double convertedAmount,
+    String currency,
+    bool demoAccount,
+    TypeEnum type,
+  }) =>
+      AccountsProperty(
+        balance: balance ?? this.balance,
+        convertedAmount: convertedAmount ?? this.convertedAmount,
+        currency: currency ?? this.currency,
+        demoAccount: demoAccount ?? this.demoAccount,
+        type: type ?? this.type,
       );
 }
 /// Total model class

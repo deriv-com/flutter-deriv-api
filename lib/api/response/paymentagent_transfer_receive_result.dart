@@ -18,8 +18,8 @@ abstract class PaymentagentTransferResponseModel {
     @required this.transactionId,
   });
 
-  /// If set to `true`, transfer success. If set to `2`, dry-run success.
-  final bool paymentagentTransfer;
+  /// If set to `1`, transfer success. If set to `2`, dry-run success.
+  final int paymentagentTransfer;
 
   /// The `transfer_to` client full name
   final String clientToFullName;
@@ -35,7 +35,7 @@ abstract class PaymentagentTransferResponseModel {
 class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
   /// Initializes
   PaymentagentTransferResponse({
-    @required bool paymentagentTransfer,
+    @required int paymentagentTransfer,
     @required String clientToFullName,
     @required String clientToLoginid,
     @required int transactionId,
@@ -54,7 +54,7 @@ class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
     dynamic transactionIdJson,
   ) =>
       PaymentagentTransferResponse(
-        paymentagentTransfer: getBool(paymentagentTransferJson),
+        paymentagentTransfer: paymentagentTransferJson,
         clientToFullName: clientToFullNameJson,
         clientToLoginid: clientToLoginidJson,
         transactionId: transactionIdJson,
@@ -100,7 +100,7 @@ class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
 
   /// Creates a copy of instance with given parameters
   PaymentagentTransferResponse copyWith({
-    bool paymentagentTransfer,
+    int paymentagentTransfer,
     String clientToFullName,
     String clientToLoginid,
     int transactionId,

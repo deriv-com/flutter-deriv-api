@@ -125,7 +125,7 @@ abstract class AuthorizeModel {
   final String landingCompanyName;
 
   /// Currencies in client's residence country
-  final Map<String, dynamic> localCurrencies;
+  final Map<String, LocalCurrenciesProperty> localCurrencies;
 
   /// The account ID that the token was issued for.
   final String loginid;
@@ -153,7 +153,7 @@ class Authorize extends AuthorizeModel {
     @required bool isVirtual,
     @required String landingCompanyFullname,
     @required String landingCompanyName,
-    @required Map<String, dynamic> localCurrencies,
+    @required Map<String, LocalCurrenciesProperty> localCurrencies,
     @required String loginid,
     @required List<String> scopes,
     @required List<dynamic> upgradeableLandingCompanies,
@@ -189,7 +189,19 @@ class Authorize extends AuthorizeModel {
         isVirtual: getBool(json['is_virtual']),
         landingCompanyFullname: json['landing_company_fullname'],
         landingCompanyName: json['landing_company_name'],
-        localCurrencies: json['local_currencies'],
+        localCurrencies: json['local_currencies'] == null
+            ? null
+            : Map<String, LocalCurrenciesProperty>.fromEntries(
+                json['local_currencies']
+                    .entries
+                    .map<MapEntry<String, LocalCurrenciesProperty>>(
+                        (MapEntry<String, dynamic> entry) =>
+                            MapEntry<String, LocalCurrenciesProperty>(
+                                entry.key,
+                                entry.value == null
+                                    ? null
+                                    : LocalCurrenciesProperty.fromJson(
+                                        entry.value)))),
         loginid: json['loginid'],
         scopes: json['scopes'] == null
             ? null
@@ -245,7 +257,7 @@ class Authorize extends AuthorizeModel {
     bool isVirtual,
     String landingCompanyFullname,
     String landingCompanyName,
-    Map<String, dynamic> localCurrencies,
+    Map<String, LocalCurrenciesProperty> localCurrencies,
     String loginid,
     List<String> scopes,
     List<dynamic> upgradeableLandingCompanies,
@@ -288,11 +300,11 @@ abstract class AccountListItemModel {
   /// Epoch of date till client has excluded him/herself from the website, only present if client is self excluded.
   final DateTime excludedUntil;
 
-  /// Boolean value: `true` or `false`, indicating whether the account is marked as disabled or not.
-  final bool isDisabled;
+  /// Boolean value: 1 or 0, indicating whether the account is marked as disabled or not.
+  final int isDisabled;
 
-  /// Boolean value: `true` or `false`, indicating whether the account is a virtual-money account.
-  final bool isVirtual;
+  /// Boolean value: 1 or 0, indicating whether the account is a virtual-money account.
+  final int isVirtual;
 
   /// Landing company shortcode the account belongs to.
   final String landingCompanyName;
@@ -307,8 +319,8 @@ class AccountListItem extends AccountListItemModel {
   AccountListItem({
     @required String currency,
     @required DateTime excludedUntil,
-    @required bool isDisabled,
-    @required bool isVirtual,
+    @required int isDisabled,
+    @required int isVirtual,
     @required String landingCompanyName,
     @required String loginid,
   }) : super(
@@ -325,8 +337,8 @@ class AccountListItem extends AccountListItemModel {
       AccountListItem(
         currency: json['currency'],
         excludedUntil: getDateTime(json['excluded_until']),
-        isDisabled: getBool(json['is_disabled']),
-        isVirtual: getBool(json['is_virtual']),
+        isDisabled: json['is_disabled'],
+        isVirtual: json['is_virtual'],
         landingCompanyName: json['landing_company_name'],
         loginid: json['loginid'],
       );
@@ -349,8 +361,8 @@ class AccountListItem extends AccountListItemModel {
   AccountListItem copyWith({
     String currency,
     DateTime excludedUntil,
-    bool isDisabled,
-    bool isVirtual,
+    int isDisabled,
+    int isVirtual,
     String landingCompanyName,
     String loginid,
   }) =>
@@ -361,5 +373,48 @@ class AccountListItem extends AccountListItemModel {
         isVirtual: isVirtual ?? this.isVirtual,
         landingCompanyName: landingCompanyName ?? this.landingCompanyName,
         loginid: loginid ?? this.loginid,
+      );
+}
+/// Local currencies property model class
+abstract class LocalCurrenciesPropertyModel {
+  /// Initializes
+  LocalCurrenciesPropertyModel({
+    @required this.fractionalDigits,
+  });
+
+  /// Number of fractional digits.
+  final int fractionalDigits;
+}
+
+/// Local currencies property class
+class LocalCurrenciesProperty extends LocalCurrenciesPropertyModel {
+  /// Initializes
+  LocalCurrenciesProperty({
+    @required int fractionalDigits,
+  }) : super(
+          fractionalDigits: fractionalDigits,
+        );
+
+  /// Creates an instance from JSON
+  factory LocalCurrenciesProperty.fromJson(Map<String, dynamic> json) =>
+      LocalCurrenciesProperty(
+        fractionalDigits: json['fractional_digits'],
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['fractional_digits'] = fractionalDigits;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  LocalCurrenciesProperty copyWith({
+    int fractionalDigits,
+  }) =>
+      LocalCurrenciesProperty(
+        fractionalDigits: fractionalDigits ?? this.fractionalDigits,
       );
 }

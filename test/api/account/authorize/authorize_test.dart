@@ -9,6 +9,7 @@ import 'package:flutter_deriv_api/api/response/login_history_receive_result.dart
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));
+        //DateTime.tryParse('2020-01-11'),
 
   group('Authorize Group ->', () {
     test('Authorize Test', () async {

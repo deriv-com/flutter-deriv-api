@@ -1,3 +1,4 @@
+import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
 
 /// Represents dynamic type. mostly used for unknown types.
@@ -12,6 +13,19 @@ class SchemaModel extends Object {
   factory SchemaModel.dynamicModel() => SchemaModel()
     ..classType = dynamicType
     ..schemaType = dynamicType;
+
+  /// Create new `SchemaModel` parrent for given children
+  factory SchemaModel.newModelWithChildren(
+      {@required List<SchemaModel> children, @required String className}) {
+    final SchemaModel rootModel = SchemaModel()
+      ..className = className
+      ..children = children;
+
+    for (final SchemaModel model in children) {
+      model.parrent = rootModel;
+    }
+    return rootModel;
+  }
 
   /// Object type
   String classType;

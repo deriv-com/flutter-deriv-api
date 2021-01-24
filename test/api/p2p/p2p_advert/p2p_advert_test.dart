@@ -333,7 +333,7 @@ void main() {
           await advert.createOrder(amount: 50);
 
       final order_create.P2pOrderCreate order = orderResponse.p2pOrderCreate;
-      ;
+      
 
       expect(order.accountCurrency, 'USD');
       expect(order.amount, 50.0);

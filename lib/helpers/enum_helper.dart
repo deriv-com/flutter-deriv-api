@@ -13,6 +13,16 @@ enum EnumCase {
   upperCase,
 }
 
+/// Simple converter for converting strings to valid enum names which dart would accepts.
+String getEnumName(String rawName) {
+  final String formatted = rawName.camelCase
+      .replaceAll('\'', '')
+      .replaceAll(',', '')
+      .replaceAll('null', '_null')
+      .replaceAll('&', '');
+  return formatted.startsWith(RegExp(r'\d')) ? '_$formatted' : formatted;
+}
+
 /// Converts enum to string
 String getStringFromEnum<T>(
   T value, {

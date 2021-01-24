@@ -106,7 +106,7 @@ abstract class GetLimitsModel {
   final double lifetimeLimit;
 
   /// Contains limitation information for each market.
-  final Map<String, dynamic> marketSpecific;
+  final Map<String, List<MarketSpecificPropertyItem>> marketSpecific;
 
   /// Number of days for num_of_days_limit withdrawal limit
   final int numOfDays;
@@ -143,7 +143,7 @@ class GetLimits extends GetLimitsModel {
     @required double accountBalance,
     @required double dailyTurnover,
     @required double lifetimeLimit,
-    @required Map<String, dynamic> marketSpecific,
+    @required Map<String, List<MarketSpecificPropertyItem>> marketSpecific,
     @required int numOfDays,
     @required double numOfDaysLimit,
     @required int openPositions,
@@ -174,7 +174,20 @@ class GetLimits extends GetLimitsModel {
         accountBalance: getDouble(json['account_balance']),
         dailyTurnover: getDouble(json['daily_turnover']),
         lifetimeLimit: getDouble(json['lifetime_limit']),
-        marketSpecific: json['market_specific'],
+        marketSpecific: json['market_specific'] == null
+            ? null
+            : Map<String, List<MarketSpecificPropertyItem>>.fromEntries(
+                json['market_specific']
+                    .entries
+                    .map<MapEntry<String, List<MarketSpecificPropertyItem>>>(
+                        (MapEntry<String, dynamic> entry) =>
+                            MapEntry<String, List<MarketSpecificPropertyItem>>(
+                                entry.key,
+                                entry.value == null
+                                    ? null
+                                    : List<MarketSpecificPropertyItem>.from(entry
+                                        .value
+                                        .map((dynamic item) => MarketSpecificPropertyItem.fromJson(item)))))),
         numOfDays: json['num_of_days'],
         numOfDaysLimit: getDouble(json['num_of_days_limit']),
         openPositions: json['open_positions'],
@@ -221,7 +234,7 @@ class GetLimits extends GetLimitsModel {
     double accountBalance,
     double dailyTurnover,
     double lifetimeLimit,
-    Map<String, dynamic> marketSpecific,
+    Map<String, List<MarketSpecificPropertyItem>> marketSpecific,
     int numOfDays,
     double numOfDaysLimit,
     int openPositions,
@@ -249,6 +262,79 @@ class GetLimits extends GetLimitsModel {
             withdrawalForXDaysMonetary ?? this.withdrawalForXDaysMonetary,
         withdrawalSinceInceptionMonetary: withdrawalSinceInceptionMonetary ??
             this.withdrawalSinceInceptionMonetary,
+      );
+}
+/// Market specific property item model class
+abstract class MarketSpecificPropertyItemModel {
+  /// Initializes
+  MarketSpecificPropertyItemModel({
+    @required this.name,
+    @required this.payoutLimit,
+    @required this.profileName,
+    @required this.turnoverLimit,
+  });
+
+  /// The submarket display name.
+  final String name;
+
+  /// The limit of payout for the submarket
+  final double payoutLimit;
+
+  /// The limitation profile name.
+  final String profileName;
+
+  /// The limit of turnover for the submarket
+  final double turnoverLimit;
+}
+
+/// Market specific property item class
+class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
+  /// Initializes
+  MarketSpecificPropertyItem({
+    @required String name,
+    @required double payoutLimit,
+    @required String profileName,
+    @required double turnoverLimit,
+  }) : super(
+          name: name,
+          payoutLimit: payoutLimit,
+          profileName: profileName,
+          turnoverLimit: turnoverLimit,
+        );
+
+  /// Creates an instance from JSON
+  factory MarketSpecificPropertyItem.fromJson(Map<String, dynamic> json) =>
+      MarketSpecificPropertyItem(
+        name: json['name'],
+        payoutLimit: getDouble(json['payout_limit']),
+        profileName: json['profile_name'],
+        turnoverLimit: getDouble(json['turnover_limit']),
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['name'] = name;
+    resultMap['payout_limit'] = payoutLimit;
+    resultMap['profile_name'] = profileName;
+    resultMap['turnover_limit'] = turnoverLimit;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  MarketSpecificPropertyItem copyWith({
+    String name,
+    double payoutLimit,
+    String profileName,
+    double turnoverLimit,
+  }) =>
+      MarketSpecificPropertyItem(
+        name: name ?? this.name,
+        payoutLimit: payoutLimit ?? this.payoutLimit,
+        profileName: profileName ?? this.profileName,
+        turnoverLimit: turnoverLimit ?? this.turnoverLimit,
       );
 }
 /// Payout per symbol model class
