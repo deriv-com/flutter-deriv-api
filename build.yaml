@@ -1,37 +1,52 @@
 targets:
   $default:
     builders:
-      flutter_deriv_api|api:
+      flutter_deriv_api|apiParser:
         enabled: true
         generate_for:
-        - lib/basic_api/generated/*_send.json
         - lib/basic_api/generated/*_receive.json
-      flutter_deriv_api|apiHelper:
-        enabled: true
+      # flutter_deriv_api|api:
+      #   enabled: true
+      #   generate_for:
+      #   - lib/basic_api/generated/*_send.json
+      #   - lib/basic_api/generated/*_receive.json
+      # flutter_deriv_api|apiHelper:
+      #   enabled: true
 builders:
-  api:
-    import: './api_builder.dart'
-    builder_factories: ["apiBuilder"]
+  apiParser:
+    import: './lib/tools/parser.dart'
+    builder_factories: ["apiParser"]
     auto_apply: root_package
     build_extensions: {".json": [".dart"]}
     is_optional: False
     build_to: source
-    runs_before:
-      - flutter_deriv_api|apiHelper
     defaults:
       generate_for:
         include:
-          - lib/basic_api/generated/**
-  apiHelper:
-    import: './api_helper_builder.dart'
-    builder_factories: ["apiHelperBuilder"]
-    build_extensions: {".dart": [".helper.dart"]}
-    is_optional: False
-    build_to: source
-    required_inputs: ["api"]
-    runs_before:
-      - json_serializable|json_serializable
-    defaults:
-      generate_for:
-        include:
-          - lib/basic_api/helper/response_mapper.dart
+          - lib/basic_api/generated/*_receive.json
+  # api:
+  #   import: './api_builder.dart'
+  #   builder_factories: ["apiBuilder"]
+  #   auto_apply: root_package
+  #   build_extensions: {".json": [".dart"]}
+  #   is_optional: False
+  #   build_to: source
+  #   runs_before:
+  #     - flutter_deriv_api|apiHelper
+  #   defaults:
+  #     generate_for:
+  #       include:
+  #         - lib/basic_api/generated/**
+  # apiHelper:
+  #   import: './api_helper_builder.dart'
+  #   builder_factories: ["apiHelperBuilder"]
+  #   build_extensions: {".dart": [".helper.dart"]}
+  #   is_optional: False
+  #   build_to: source
+  #   required_inputs: ["api"]
+  #   runs_before:
+  #     - json_serializable|json_serializable
+  #   defaults:
+  #     generate_for:
+  #       include:
+  #         - lib/basic_api/helper/response_mapper.dart
