@@ -1,13 +1,14 @@
 import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_deriv_api/api/common/server_time/exceptions/server_time_exception.dart';
 import 'package:flutter_deriv_api/api/common/server_time/server_time.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 part 'server_time_event.dart';
-
 part 'server_time_state.dart';
 
 /// A Bloc for fetching server time
@@ -39,6 +40,13 @@ class ServerTimeBloc extends Bloc<ServerTimeEvent, ServerTimeState> {
         try {
           final ServerTime serverTime =
               await ServerTime.fetchTime().timeout(const Duration(seconds: 30));
+
+          if (serverTime == null) {
+            throw ServerTimeException(
+              baseExceptionModel:
+                  BaseExceptionModel(message: 'Server time is null.'),
+            );
+          }
 
           yield ServerTimeFetched(serverTime: serverTime.time);
         } on ServerTimeException catch (e) {
