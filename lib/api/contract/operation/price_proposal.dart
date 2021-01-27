@@ -63,7 +63,7 @@ class PriceProposal extends PriceProposalModel {
           itemToTypeCallback: (dynamic item) =>
               CancellationInfoModel.fromJson(item),
         ),
-        commission: json['commission'],
+        commission: json['commission']?.toDouble(),
         dateStart: getDateTime(json['date_start']),
         displayValue: json['display_value'],
         id: json['id'],
@@ -74,7 +74,7 @@ class PriceProposal extends PriceProposalModel {
         longCode: json['longcode'],
         multiplier: json['multiplier'],
         payout: json['payout']?.toDouble(),
-        spot: json['spot'],
+        spot: json['spot']?.toDouble(),
         spotTime: getDateTime(json['spot_time']),
         subscriptionInformation: SubscriptionModel.fromJson(subscriptionJson),
       );
