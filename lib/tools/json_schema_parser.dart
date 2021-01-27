@@ -514,7 +514,7 @@ class JsonSchemaParser {
         return _cashierMultiType;
       case _objectType:
         getClassTypesFor(model.children);
-        _assignClassName(model);
+        _assignClassName(model); 
         return model.className;
       case _objectUnknownType:
         return 'Map<String,dynamic>';
@@ -577,7 +577,7 @@ class JsonSchemaParser {
 
   static void _assignClassName(SchemaModel model) {
     model.className = classNamesArray.contains(model.className)
-        ? '${model.parrent.className}${ReCase(model.schemaTitle).pascalCase}'
+        ? '${model.parrent?.className ?? ''}${ReCase(model.schemaTitle).pascalCase}'
         : ReCase(model.schemaTitle).pascalCase;
     classNamesArray.add(model.className);
   }

@@ -22,6 +22,8 @@ class APIParser extends Builder {
 
       final String className = '${ReCase(fileBaseName).pascalCase}Response';
 
+      
+
       final List<SchemaModel> rootChildern =
           JsonSchemaParser.getClassTypesFor(JsonSchemaParser.preProcessModels(
         conv.json.decode(
@@ -37,19 +39,19 @@ class APIParser extends Builder {
           methodsString: methodsjson['methods'],
           isRoot: true);
 
-      final StringBuffer result =
-          _addImports(source: source, imports: methodsjson['imports']).fold<StringBuffer>(StringBuffer(), (previousValue, element) => StringBuffer(previousValue.toString()+ element.toString()));
+      // final StringBuffer result =
+      //     _addImports(source: source, imports: methodsjson['imports']).fold<StringBuffer>(StringBuffer(), (previousValue, element) => StringBuffer(previousValue.toString()+ element.toString()));
      
-      // final List<StringBuffer> result =
-      //     _addImports(source: source, imports: methodsjson['imports']);
+      final List<StringBuffer> result =
+          _addImports(source: source, imports: methodsjson['imports']);
      
-      // final File output =
-      //     File('lib/api/response/${fileBaseName}_receive_result.dart');
+      final File output =
+          File('lib/api/response/${fileBaseName}_receive_result.dart');
 
-      // for (final StringBuffer item in result) {
-      //   output.writeAsStringSync('${item.toString()}', mode: FileMode.append);
-      // }
-      buildStep.writeAsString(buildStep.inputId.changeExtension('.dart'), result.toString());
+      for (final StringBuffer item in result) {
+        output.writeAsStringSync('${item.toString()}', mode: FileMode.append);
+      }
+     // buildStep.writeAsString(buildStep.inputId.changeExtension('_result.dart'), result.toString());
 
     } on Exception catch (e, stack) {
       log
@@ -60,7 +62,7 @@ class APIParser extends Builder {
 
   @override
   Map<String, List<String>> get buildExtensions => const <String, List<String>>{
-        '.json': <String>['.dart']
+        '.json': <String>['_result.dart']
       };
 }
 

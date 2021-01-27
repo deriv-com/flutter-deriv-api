@@ -15,7 +15,7 @@ void main() {
         ),
       );
 
-      expect(balance.balance, 9650.74);
+      expect(balance.balance.balance, 9650.74);
       expect(balance.balance.currency, 'USD');
       expect(balance.balance.id, '811e7ac4-1454-b909-6adb-904a2e9cb374');
       expect(balance.balance.loginid, 'VRTC2351953');

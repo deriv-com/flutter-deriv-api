@@ -352,7 +352,7 @@ void main() {
       expect(order.status, order_create.StatusEnum.pending);
       expect(order.type, order_create.TypeEnum.buy);
 
-      final order_create.AdvertiserDetails advertiser = order.advertiserDetails;
+      final order_create.P2pOrderCreateAdvertiserDetails advertiser = order.advertiserDetails;
 
       expect(advertiser.id, '2');
       expect(advertiser.name, 'advertiser CR90000018');

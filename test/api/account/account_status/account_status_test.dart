@@ -23,7 +23,7 @@ void main() {
     //   accountStatus.status[1],
     //   AccountStatusType.tradingExperienceNotComplete,
     // );
-    expect(accountStatus.getAccountStatus.promptClientToAuthenticate, false);
+    expect(accountStatus.getAccountStatus.promptClientToAuthenticate, 0);
     expect(accountStatus.getAccountStatus.riskClassification, 'low');
     expect(
       accountStatus.getAccountStatus.authentication.document.status,

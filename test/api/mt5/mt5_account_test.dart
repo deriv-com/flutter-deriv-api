@@ -1,6 +1,6 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/response/mt5_login_list_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/mt5_new_account_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/mt5_new_account_receive_result.dart' as new_account;
 import 'package:flutter_deriv_api/basic_api/generated/mt5_login_list_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/mt5_new_account_send.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -18,8 +18,8 @@ void main() {
 
   group('MT5 Account Group ->', () {
     test('Create New MT5 Account Test', () async {
-      final Mt5NewAccountResponse mt5Account =
-          await Mt5NewAccountResponse.createNewAccount(
+      final new_account.Mt5NewAccountResponse mt5Account =
+          await new_account.Mt5NewAccountResponse.createNewAccount(
         const Mt5NewAccountSend(
           accountType: 'gaming',
           address: 'Dummy address',
@@ -39,13 +39,13 @@ void main() {
         ),
       );
 
-      expect(mt5Account.mt5NewAccount.accountType, AccountTypeEnum.gaming);
+      expect(mt5Account.mt5NewAccount.accountType, new_account.AccountTypeEnum.gaming);
       expect(mt5Account.mt5NewAccount.balance, 350.0);
       expect(mt5Account.mt5NewAccount.currency, 'USD');
       expect(mt5Account.mt5NewAccount.displayBalance, '350.0');
       expect(mt5Account.mt5NewAccount.login, 'MT346525');
       expect(mt5Account.mt5NewAccount.mt5AccountType,
-          Mt5AccountTypeEnum.financial);
+          new_account.Mt5AccountTypeEnum.financial);
     });
 
     test('MT5 Login List Test', () async {
@@ -69,8 +69,8 @@ void main() {
 
     test('MT5 Deposit Test', () async {
       // ignore: missing_required_param
-      final Mt5DepositResponse mt5Deposit = await Mt5NewAccountResponse(
-        mt5NewAccount: Mt5NewAccount(login: 'MTR1000'),
+      final Mt5DepositResponse mt5Deposit = await new_account.Mt5NewAccountResponse(
+        mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).deposit(
         amount: 1000,
         fromBinary: 'CR100001',
@@ -81,8 +81,8 @@ void main() {
     });
 
     test('MT5 Change Password Test', () async {
-      final Mt5PasswordChangeResponse result = await Mt5NewAccountResponse(
-        mt5NewAccount: Mt5NewAccount(login: 'MTR1000'),
+      final Mt5PasswordChangeResponse result = await new_account.Mt5NewAccountResponse(
+        mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).changePassword(
         newPassword: 'abcd1234',
         oldPassword: 'Abc1234',
@@ -93,8 +93,8 @@ void main() {
     });
 
     test('MT5 Check Password Test', () async {
-      final Mt5PasswordCheckResponse result = await Mt5NewAccountResponse(
-        mt5NewAccount: Mt5NewAccount(login: 'MTR1000'),
+      final Mt5PasswordCheckResponse result = await new_account.Mt5NewAccountResponse(
+        mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).checkPassword(
         password: 'abcd1234',
         passwordType: PasswordType.main,
@@ -104,8 +104,8 @@ void main() {
     });
 
     test('MT5 Reset Password Test', () async {
-      final Mt5PasswordResetResponse result = await Mt5NewAccountResponse(
-        mt5NewAccount: Mt5NewAccount(login: 'MTR1000'),
+      final Mt5PasswordResetResponse result = await new_account.Mt5NewAccountResponse(
+        mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).resetPassword(
         newPassword: 'abcd1234',
         passwordType: PasswordType.main,
@@ -116,8 +116,8 @@ void main() {
     });
 
     test('Fetch MT5 Settings Test', () async {
-      final Mt5GetSettingsResponse mt5Settings = await Mt5NewAccountResponse(
-        mt5NewAccount: Mt5NewAccount(login: 'MTR1000'),
+      final Mt5GetSettingsResponse mt5Settings = await new_account.Mt5NewAccountResponse(
+        mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).fetchSettings();
 
       expect(mt5Settings.mt5GetSettings.address, 'sample address');
@@ -138,8 +138,8 @@ void main() {
     });
 
     test('MT5 Withdrawal Test', () async {
-      final Mt5WithdrawalResponse mt5Withdrawal = await Mt5NewAccountResponse(
-        mt5NewAccount: Mt5NewAccount(login: 'MTR1000'),
+      final Mt5WithdrawalResponse mt5Withdrawal = await new_account.Mt5NewAccountResponse(
+        mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).withdraw(
         amount: 1000,
         toBinary: 'CR100001',

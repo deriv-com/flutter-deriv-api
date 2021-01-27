@@ -16,6 +16,6 @@ void main() {
       ),
     );
 
-    expect(verifyEmail.verifyEmail, 1);
+    expect(verifyEmail.verifyEmail, true);
   });
 }
