@@ -30,20 +30,20 @@ void main() {
       expect(accounts.first.currency, 'USD');
       expect(
         accounts[1].excludedUntil,
-        DateTime.fromMillisecondsSinceEpoch(1587486726000),
+        DateTime.fromMillisecondsSinceEpoch(1587486726000,isUtc: true),
       );
-      expect(accounts.first.isDisabled, false);
-      expect(accounts.first.isVirtual, false);
+      expect(accounts.first.isDisabled, 0);
+      expect(accounts.first.isVirtual, 0);
       expect(accounts.first.landingCompanyName, 'svg');
       expect(accounts.first.loginid, 'CR90000028');
 
       expect(accounts[1].currency, 'USD');
       expect(
         accounts[1].excludedUntil,
-        DateTime.fromMillisecondsSinceEpoch(1587486726000),
+        DateTime.fromMillisecondsSinceEpoch(1587486726000,isUtc: true),
       );
-      expect(accounts[1].isDisabled, false);
-      expect(accounts[1].isVirtual, true);
+      expect(accounts[1].isDisabled, 0);
+      expect(accounts[1].isVirtual, 1);
       expect(accounts[1].landingCompanyName, 'virtual');
       expect(accounts[1].loginid, 'VRTC90000028');
 

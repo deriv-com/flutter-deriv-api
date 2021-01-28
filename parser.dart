@@ -19,10 +19,7 @@ class APIParser extends Builder {
       final String path = buildStep.inputId.path;
       final String fileBaseName =
           (path.split('/').last.split('_')..removeLast()).join('_');
-
       final String className = '${ReCase(fileBaseName).pascalCase}Response';
-
-      
 
       final List<SchemaModel> rootChildern =
           JsonSchemaParser.getClassTypesFor(JsonSchemaParser.preProcessModels(
@@ -31,27 +28,28 @@ class APIParser extends Builder {
         ),
       ));
 
+      final String leftPartPath =
+          (path.split('.').first.split('/')..removeLast()).join('/');
+      final String rightPartPath = path.split('.').first.split('/').last;
       final Map<String, dynamic> methodsjson = conv.json.decode(
-          File('${path.split('.').first}_methods.json').readAsStringSync());
+          File('$leftPartPath/methods/${rightPartPath}_methods.json')
+              .readAsStringSync());
+
       final List<StringBuffer> source = JsonSchemaParser().getClasses(
           SchemaModel.newModelWithChildren(
               children: rootChildern, className: className),
           methodsString: methodsjson['methods'],
           isRoot: true);
 
-      // final StringBuffer result =
-      //     _addImports(source: source, imports: methodsjson['imports']).fold<StringBuffer>(StringBuffer(), (previousValue, element) => StringBuffer(previousValue.toString()+ element.toString()));
-     
       final List<StringBuffer> result =
           _addImports(source: source, imports: methodsjson['imports']);
-     
+
       final File output =
           File('lib/api/response/${fileBaseName}_receive_result.dart');
-
       for (final StringBuffer item in result) {
         output.writeAsStringSync('${item.toString()}', mode: FileMode.append);
       }
-     // buildStep.writeAsString(buildStep.inputId.changeExtension('_result.dart'), result.toString());
+      // buildStep.writeAsString(buildStep.inputId.changeExtension('_result.dart'), result.toString());
 
     } on Exception catch (e, stack) {
       log
