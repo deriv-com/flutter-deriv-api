@@ -42,9 +42,7 @@ class ConnectionService {
         if (_connectionBloc.state is! Connected) {
           await _connectionBloc.connectWebSocket();
         }
-
         _hasConnection = await _ping();
-
         break;
       case ConnectivityResult.none:
         _hasConnection = false;
@@ -77,11 +75,9 @@ class ConnectionService {
 
     _connectionBloc = connectionBloc;
     await _connectivity.checkConnectivity();
+    await checkConnectivity();
     _connectivity.onConnectivityChanged.listen(_checkConnection);
-
-    Future.delayed(Duration(seconds: _connectivityCheckInterval), (){
-      _startConnectivityTimer();
-    });
+    _startConnectivityTimer();
   }
 
   /// Checks devices connectivity
