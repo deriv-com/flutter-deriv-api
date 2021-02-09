@@ -79,7 +79,9 @@ class ConnectionService {
     await _connectivity.checkConnectivity();
     _connectivity.onConnectivityChanged.listen(_checkConnection);
 
-    _startConnectivityTimer();
+    Future.delayed(Duration(seconds: _connectivityCheckInterval), (){
+      _startConnectivityTimer();
+    });
   }
 
   /// Checks devices connectivity
