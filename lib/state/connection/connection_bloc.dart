@@ -22,23 +22,25 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
     ConnectionInformation connectionInformation, {
     this.isMock = false,
   }) : super(InitialConnectionState()) {
-    ConnectionService().initialize(connectionBloc: this, isMock: isMock);
     APIInitializer().initialize(isMock: isMock, uniqueKey: _uniqueKey);
-
-    _connectionInformation = connectionInformation;
     _api ??= Injector.getInjector().get<BaseAPI>();
+    _connectionInformation = connectionInformation;
 
-    connectWebSocket();
+    ConnectionService()
+        .initialize(connectionBloc: this, isMock: isMock)
+        .then((val) {
+      //connectWebSocket();
 
-    _internetBloc = internet_bloc.InternetBloc();
+      _internetBloc = internet_bloc.InternetBloc();
 
-    _internetListener = _internetBloc.listen(
-      (internet_bloc.InternetState state) {
-        if (state is internet_bloc.Disconnected) {
-          add(Disconnect());
-        }
-      },
-    );
+      _internetListener = _internetBloc.listen(
+        (internet_bloc.InternetState state) {
+          if (state is internet_bloc.Disconnected) {
+            add(Disconnect());
+          }
+        },
+      );
+    });
   }
 
   /// Creates mock connection, sets this to [true] for testing purposes
