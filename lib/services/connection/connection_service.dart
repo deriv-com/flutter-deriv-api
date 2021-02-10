@@ -15,7 +15,7 @@ class ConnectionService {
   final int _connectivityCheckInterval = 5;
   final int _pingTimeout = 10;
 
-  bool _hasConnection;
+  bool _hasConnection = false;
 
   /// Stream of connection states
   StreamController<bool> connectionChangeController =
@@ -39,7 +39,8 @@ class ConnectionService {
     switch (result) {
       case ConnectivityResult.wifi:
       case ConnectivityResult.mobile:
-        if (_connectionBloc.state is! Connected) {
+        if (_connectionBloc.state is Disconnected ||
+            _connectionBloc.state is ConnectionError) {
           await _connectionBloc.connectWebSocket();
         }
         _hasConnection = await _ping();
