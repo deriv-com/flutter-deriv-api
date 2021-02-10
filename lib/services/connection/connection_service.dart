@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:flutter_deriv_api/api/common/ping/ping.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:flutter/material.dart';
 
 /// A class to check the connectivity of the device to the Internet
 class ConnectionService {
@@ -41,16 +39,7 @@ class ConnectionService {
     switch (result) {
       case ConnectivityResult.wifi:
       case ConnectivityResult.mobile:
-        Fluttertoast.showToast(
-            msg: _connectionBloc.state.toString(),
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
-
-        if (_connectionBloc.state is Reconnecting || _connectionBloc.state is Connecting) {
+        if (_connectionBloc.state is Reconnecting) {
           return previousConnection;
         }
 
