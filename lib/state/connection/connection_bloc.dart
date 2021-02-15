@@ -34,8 +34,8 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       _internetBloc = internet_bloc.InternetBloc();
 
       _internetListener = _internetBloc.listen(
-        (internet_bloc.InternetState state) {
-          if (state is internet_bloc.Disconnected) {
+        (internet_bloc.InternetState internetState) {
+          if (internetState is internet_bloc.Disconnected) {
             add(Disconnect());
           }
         },
