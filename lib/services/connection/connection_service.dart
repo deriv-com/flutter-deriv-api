@@ -36,13 +36,14 @@ class ConnectionService {
   Future<bool> _checkConnection(ConnectivityResult result) async {
     final bool previousConnection = _hasConnection;
 
+    if (_connectionBloc.state is Reconnecting ||
+        _connectionBloc.state is Connecting) {
+      return previousConnection;
+    }
+
     switch (result) {
       case ConnectivityResult.wifi:
       case ConnectivityResult.mobile:
-        if (_connectionBloc.state is Reconnecting) {
-          return previousConnection;
-        }
-
         if (_connectionBloc.state is! Connected) {
           await _connectionBloc.connectWebSocket();
         }
