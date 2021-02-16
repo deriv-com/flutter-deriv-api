@@ -13,7 +13,7 @@ class ConnectionService {
 
   static final ConnectionService _instance = ConnectionService._internal();
   final int _connectivityCheckInterval = 5;
-  final int _pingTimeout = 10;
+  final int _pingTimeout = 5;
 
   bool _hasConnection = false;
 
@@ -111,8 +111,10 @@ class ConnectionService {
       if (response == null || !response.succeeded) {
         return Future<bool>.value(false);
       }
-    } on Exception catch (_) {
-      return Future<bool>.value(false);
+    } on Exception catch (_ ) {
+      if(!_hasConnection){
+        return Future<bool>.value(false);
+      }
     }
 
     return Future<bool>.value(true);
