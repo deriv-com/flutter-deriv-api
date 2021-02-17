@@ -111,7 +111,7 @@ class ConnectionService {
       if (response == null || !response.succeeded) {
         return Future<bool>.value(false);
       }
-    } on Exception catch (_ ) {
+    } on Exception catch (_) {
       if(!_hasConnection){
         return Future<bool>.value(false);
       }
