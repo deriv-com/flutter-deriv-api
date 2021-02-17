@@ -26,6 +26,7 @@ class Mt5NewAccountRequest extends Request {
     @required this.name,
     this.phone,
     this.phonePassword,
+    this.server,
     this.state,
     this.zipCode,
     Map<String, dynamic> passthrough,
@@ -58,6 +59,7 @@ class Mt5NewAccountRequest extends Request {
         name: json['name'] as String,
         phone: json['phone'] as String,
         phonePassword: json['phonePassword'] as String,
+        server: json['server'] as String,
         state: json['state'] as String,
         zipCode: json['zipCode'] as String,
         passthrough: json['passthrough'] as Map<String, dynamic>,
@@ -115,6 +117,9 @@ class Mt5NewAccountRequest extends Request {
   /// [Optional] The user's phone password.
   final String phonePassword;
 
+  /// [Optional] Trade server.
+  final String server;
+
   /// [Optional] User's state (region) of residence.
   final String state;
 
@@ -149,6 +154,7 @@ class Mt5NewAccountRequest extends Request {
         'name': name,
         'phone': phone,
         'phonePassword': phonePassword,
+        'server': server,
         'state': state,
         'zipCode': zipCode,
         'passthrough': passthrough,
@@ -175,6 +181,7 @@ class Mt5NewAccountRequest extends Request {
     String name,
     String phone,
     String phonePassword,
+    String server,
     String state,
     String zipCode,
     Map<String, dynamic> passthrough,
@@ -198,6 +205,7 @@ class Mt5NewAccountRequest extends Request {
         name: name ?? this.name,
         phone: phone ?? this.phone,
         phonePassword: phonePassword ?? this.phonePassword,
+        server: server ?? this.server,
         state: state ?? this.state,
         zipCode: zipCode ?? this.zipCode,
         passthrough: passthrough ?? this.passthrough,

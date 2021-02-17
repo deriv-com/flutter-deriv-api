@@ -178,6 +178,8 @@ export "topup_virtual_receive.dart";
 export "topup_virtual_send.dart";
 export "trading_durations_receive.dart";
 export "trading_durations_send.dart";
+export "trading_servers_receive.dart";
+export "trading_servers_send.dart";
 export "trading_times_receive.dart";
 export "trading_times_send.dart";
 export "transaction_receive.dart";

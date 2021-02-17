@@ -60,7 +60,7 @@ class DocumentUploadRequest extends Request {
   /// [Optional] Document expiration date (required for Passport, Proof of ID and Driver's License)
   final String expirationDate;
 
-  /// Document size (should be less than 3MB)
+  /// Document size (should be less than 10MB)
   final int fileSize;
 
   /// [Optional] To determine document side

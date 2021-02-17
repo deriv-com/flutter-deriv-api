@@ -11,6 +11,7 @@ class P2pAdvertInfoRequest extends Request {
   const P2pAdvertInfoRequest({
     @required this.id,
     this.p2pAdvertInfo = true,
+    this.useClientLimits,
     Map<String, dynamic> passthrough,
     int reqId,
   }) : super(
@@ -26,6 +27,9 @@ class P2pAdvertInfoRequest extends Request {
         p2pAdvertInfo: json['p2p_advert_info'] == null
             ? null
             : json['p2p_advert_info'] == 1,
+        useClientLimits: json['use_client_limits'] == null
+            ? null
+            : json['use_client_limits'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );
@@ -36,6 +40,9 @@ class P2pAdvertInfoRequest extends Request {
   /// Must be `true`
   final bool p2pAdvertInfo;
 
+  /// [Optional] If set to `true`, the maximum order amount will be adjusted to the current balance and turnover limits of the account.
+  final bool useClientLimits;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -43,6 +50,11 @@ class P2pAdvertInfoRequest extends Request {
         'p2p_advert_info': p2pAdvertInfo == null
             ? null
             : p2pAdvertInfo
+                ? 1
+                : 0,
+        'use_client_limits': useClientLimits == null
+            ? null
+            : useClientLimits
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -54,12 +66,14 @@ class P2pAdvertInfoRequest extends Request {
   P2pAdvertInfoRequest copyWith({
     String id,
     bool p2pAdvertInfo,
+    bool useClientLimits,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
       P2pAdvertInfoRequest(
         id: id ?? this.id,
         p2pAdvertInfo: p2pAdvertInfo ?? this.p2pAdvertInfo,
+        useClientLimits: useClientLimits ?? this.useClientLimits,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );
