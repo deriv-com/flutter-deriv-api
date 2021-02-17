@@ -28,7 +28,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
     ConnectionService()
         .initialize(connectionBloc: this, isMock: isMock)
-        .then((void _) {
+        .then((_) {
       //connectWebSocket();
 
       _internetBloc = internet_bloc.InternetBloc();
