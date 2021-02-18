@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_deriv_api/api/common/active_symbols/active_symbols.dart';
+import 'package:flutter_deriv_api/api/response/active_symbols_receive_result.dart';
 import 'package:flutter_deriv_api/api/common/active_symbols/exceptions/active_symbols_exception.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 
@@ -38,8 +38,8 @@ class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
     }
   }
 
-  Future<List<ActiveSymbol>> _fetchActiveSymbols() async =>
-      ActiveSymbol.fetchActiveSymbols(const ActiveSymbolsRequest(
+  Future<ActiveSymbolsResponse> _fetchActiveSymbols() async =>
+      ActiveSymbolsResponse.fetchActiveSymbols(const ActiveSymbolsSend(
         activeSymbols: 'brief',
         productType: 'basic',
       ));

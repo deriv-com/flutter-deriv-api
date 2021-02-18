@@ -1,5 +1,4 @@
 import 'package:flutter_deriv_api/basic_api/generated/authorize_send.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/account/authorize_response.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';

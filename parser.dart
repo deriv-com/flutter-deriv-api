@@ -45,12 +45,13 @@ class APIParser extends Builder {
           _addImports(source: source, imports: methodsjson['imports']);
 
       final File output =
-          File('lib/api/response/${fileBaseName}_receive_result.dart');
-      for (final StringBuffer item in result) {
-        output.writeAsStringSync('${item.toString()}', mode: FileMode.append);
+          File('lib/api/response/${fileBaseName}_receive_result.dart')
+            ..createSync(recursive: true);
+      if (!output.existsSync()) {
+        for (final StringBuffer item in result) {
+          output.writeAsStringSync('${item.toString()}', mode: FileMode.append);
+        }
       }
-      // buildStep.writeAsString(buildStep.inputId.changeExtension('_result.dart'), result.toString());
-
     } on Exception catch (e, stack) {
       log
         ..severe('Failed to process ${buildStep.inputId} - $e')
@@ -62,42 +63,6 @@ class APIParser extends Builder {
   Map<String, List<String>> get buildExtensions => const <String, List<String>>{
         '.json': <String>['_result.dart']
       };
-}
-
-void main(List<String> arguments) {
-  if (arguments.isEmpty) {
-    throw Exception('Invalid arguments.');
-  }
-
-  final String fileBaseName =
-      (arguments.first.split('/').last.split('_')..removeLast()).join('_');
-
-  final String className = '${ReCase(fileBaseName).pascalCase}Response';
-
-  final List<SchemaModel> rootChildern =
-      JsonSchemaParser.getClassTypesFor(JsonSchemaParser.preProcessModels(
-    conv.json.decode(
-      File(arguments.first).readAsStringSync(),
-    ),
-  ));
-
-  final Map<String, dynamic> methodsjson = conv.json.decode(
-      File('${arguments.first.split('.').first}_methods.json')
-          .readAsStringSync());
-  final List<StringBuffer> source = JsonSchemaParser().getClasses(
-      SchemaModel.newModelWithChildren(
-          children: rootChildern, className: className),
-      methodsString: methodsjson['methods'],
-      isRoot: true);
-
-  final List<StringBuffer> result =
-      _addImports(source: source, imports: methodsjson['imports']);
-  final File output =
-      File('lib/api/response/${fileBaseName}_receive_result.dart');
-
-  for (final StringBuffer item in result) {
-    output.writeAsStringSync('${item.toString()}', mode: FileMode.append);
-  }
 }
 
 List<StringBuffer> _addImports(

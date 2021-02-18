@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 
-import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/api/response/contracts_for_receive_result.dart';
 
 void main() {

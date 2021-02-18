@@ -59,14 +59,14 @@ class JsonSchemaParser {
           /// ${ReCase(className).sentenceCase} model class
           abstract class ${className}Model {
             /// Initializes
-            ${_generateContractor(className: '${className}Model', models: models, isSubclass: false)}
+            ${_generateConstructor(className: '${className}Model', models: models, isSubclass: false)}
             ${_generateProperties(models)}
           }
         
           /// ${ReCase(className).sentenceCase} class
           class $className extends ${className}Model {
             /// Initializes
-            ${_generateContractor(className: className, models: models)}
+            ${_generateConstructor(className: className, models: models)}
             /// Creates an instance from JSON
             ${_generateFromJson(className: className, models: models, isRoot: isRoot)}
             /// Converts an instance to JSON
@@ -85,7 +85,7 @@ class JsonSchemaParser {
     return DartFormatter().format(result.toString());
   }
 
-  static StringBuffer _generateContractor({
+  static StringBuffer _generateConstructor({
     @required String className,
     @required List<SchemaModel> models,
     bool isSubclass = true,
@@ -96,6 +96,15 @@ class JsonSchemaParser {
           $className({
         ''',
       );
+
+    for (int i = 0; i < models.length; i++) {
+      final SchemaModel model = models[i];
+      if (models[i].isRequired) {
+        models.removeAt(i);
+        // ignore: cascade_invocations
+        models.insert(0, model);
+      }
+    }
 
     for (final SchemaModel model in models) {
       result
@@ -514,12 +523,12 @@ class JsonSchemaParser {
         return _cashierMultiType;
       case _objectType:
         getClassTypesFor(model.children);
-        _assignClassName(model); 
+        _assignClassName(model);
         return model.className;
       case _objectUnknownType:
         return 'Map<String,dynamic>';
       case _arrayType:
-        getClassTypesFor([model.schemaArrType]);
+        getClassTypesFor(<SchemaModel>[model.schemaArrType]);
         return 'List<${_getClassTypeString(model.schemaArrType)}>';
       case _arrayUnknownType:
         return 'List<dynamic>';

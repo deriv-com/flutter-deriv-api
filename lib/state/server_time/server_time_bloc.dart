@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/common/server_time_response.dart';
 import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/api/response/time_receive_result.dart';

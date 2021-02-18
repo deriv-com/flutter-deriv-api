@@ -15,7 +15,7 @@ void main() {
         const GetFinancialAssessmentSend(),
       );
 
-      final financialAssessment =
+      final GetFinancialAssessment financialAssessment =
           financialAssessmentResponse.getFinancialAssessment;
 
       expect(financialAssessment.accountTurnover, '120.0');

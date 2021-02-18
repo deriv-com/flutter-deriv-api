@@ -67,7 +67,6 @@ void main() {
       final PaymentagentWithdrawResponse paymentAgentWithdraw =
           await PaymentagentWithdrawResponse.withdraw(
         const PaymentagentWithdrawSend(
-          paymentagentWithdraw: true,
           amount: 1000,
           currency: 'USD',
           paymentagentLoginid: 'CR100001',

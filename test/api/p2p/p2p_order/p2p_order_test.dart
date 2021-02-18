@@ -8,13 +8,11 @@ import 'package:flutter_deriv_api/api/response/p2p_order_list_receive_result.dar
     as order_list;
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_create_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_info_send.dart';
-import 'package:flutter_deriv_api/services/connection/api_manager/mock_data/p2p/p2p_order_list_response.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_deriv_api/api/response/p2p_order_info_receive_result.dart'
     as order_info;
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/models/enums.dart';
 
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
@@ -80,7 +78,7 @@ void main() {
       expect(firstOrder.status, order_list.StatusEnum.pending);
       expect(firstOrder.type, order_list.TypeEnum.buy);
 
-      final order_list.AdvertDetails advert = firstOrder.advertDetails;
+      final order_list.ListItemAdvertDetails advert = firstOrder.advertDetails;
       expect(advert.description, 'Please contact via whatsapp 1234');
       expect(advert.id, '6');
       expect(advert.paymentMethod, 'bank_transfer');
@@ -117,13 +115,13 @@ void main() {
       expect(order.status, order_info.StatusEnum.pending);
       expect(order.type, order_info.TypeEnum.buy);
 
-      final order_info.P2pOrderInfoAdvertDetails advert = order.advertDetails;
+      final order_info.AdvertDetails advert = order.advertDetails;
       expect(advert.description, 'Please contact via whatsapp 1234');
       expect(advert.id, '6');
       expect(advert.paymentMethod, 'bank_transfer');
       expect(advert.type, order_info.TypeEnum.sell);
 
-      final order_info.P2pOrderInfoAdvertiserDetails advertiser = order.advertiserDetails;
+      final order_info.AdvertiserDetails advertiser = order.advertiserDetails;
       expect(advertiser.id, '2');
       expect(advertiser.name, 'advertiser CR90000018');
     });
@@ -218,7 +216,7 @@ void main() {
           expect(firstOrder.status, order_list.StatusEnum.pending);
           expect(firstOrder.type, order_list.TypeEnum.buy);
 
-          final order_list.AdvertDetails advert = firstOrder.advertDetails;
+          final order_list.ListItemAdvertDetails advert = firstOrder.advertDetails;
           expect(advert.description, 'Please contact via whatsapp 1234');
           expect(advert.id, '6');
           expect(advert.paymentMethod, 'bank_transfer');
@@ -258,13 +256,13 @@ void main() {
           expect(order.status, order_info.StatusEnum.pending);
           expect(order.type, order_info.TypeEnum.buy);
 
-          final order_info.P2pOrderInfoAdvertDetails advert = order.advertDetails;
+          final order_info.AdvertDetails advert = order.advertDetails;
           expect(advert.description, 'Please contact via whatsapp 1234');
           expect(advert.id, '6');
           expect(advert.paymentMethod, 'bank_transfer');
           expect(advert.type, order_info.TypeEnum.sell);
 
-          final order_info.P2pOrderInfoAdvertiserDetails advertiser = order.advertiserDetails;
+          final order_info.AdvertiserDetails advertiser = order.advertiserDetails;
           expect(advertiser.id, '2');
           expect(advertiser.name, 'advertiser CR90000018');
 
