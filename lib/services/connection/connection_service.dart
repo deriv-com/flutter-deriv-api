@@ -14,6 +14,9 @@ class ConnectionService {
   static final ConnectionService _instance = ConnectionService._internal();
   final int _connectivityCheckInterval = 5;
   final int _pingTimeout = 5;
+  final int _pingMaxExceptionCount = 3;
+  int _pingExceptionCount = 0;
+
 
   bool _hasConnection = false;
 
@@ -45,7 +48,16 @@ class ConnectionService {
         if (_connectionBloc.state is! Connected) {
           await _connectionBloc.connectWebSocket();
         }
-        _hasConnection = await _ping();
+        bool _pingSuccess = await _ping();
+        if (!_pingSuccess) {
+          _pingExceptionCount += 1;
+          if(_pingExceptionCount >= _pingMaxExceptionCount){
+            _hasConnection = false;
+          }
+        } else {
+          _pingExceptionCount = 0;
+          _hasConnection = true;
+        }
         break;
       case ConnectivityResult.none:
         _hasConnection = false;
@@ -112,9 +124,7 @@ class ConnectionService {
         return Future<bool>.value(false);
       }
     } on Exception catch (_) {
-      if(!_hasConnection){
-        return Future<bool>.value(false);
-      }
+      return Future<bool>.value(false);
     }
 
     return Future<bool>.value(true);
