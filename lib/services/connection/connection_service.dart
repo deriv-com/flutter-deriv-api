@@ -48,7 +48,7 @@ class ConnectionService {
         if (_connectionBloc.state is! Connected) {
           await _connectionBloc.connectWebSocket();
         }
-        bool _pingSuccess = await _ping();
+        final bool _pingSuccess = await _ping();
         if (!_pingSuccess) {
           _pingExceptionCount += 1;
           if(_pingExceptionCount >= _pingMaxExceptionCount){
