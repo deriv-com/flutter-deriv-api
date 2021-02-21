@@ -1,5 +1,11 @@
 analyzer:
   exclude:
+    - lib/basic_api/*
+    - lib/api/response/*.dart
+    - lib/api/manually/*
+    - lib/generated/*
+    - test/*
+    
   strong-mode:
     implicit-dynamic: false
   errors:

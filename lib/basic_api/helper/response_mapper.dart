@@ -1,5 +1,4 @@
 import 'package:flutter_deriv_api/api/manually/ohlc_receive.dart';
-import 'package:flutter_deriv_api/api/response/ticks_history_receive_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/ticks_history_receive.dart';
 
 import '../response.dart';
