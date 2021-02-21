@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_deriv_api/api/response/active_symbols_receive_result.dart';
-import 'package:flutter_deriv_api/api/common/active_symbols/exceptions/active_symbols_exception.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 
 part 'active_symbols_event.dart';
 part 'active_symbols_state.dart';
@@ -18,8 +18,8 @@ class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
       yield ActiveSymbolsLoading();
 
       try {
-        final List<ActiveSymbol> symbols = await _fetchActiveSymbols();
-        yield ActiveSymbolsLoaded(activeSymbols: symbols);
+        final ActiveSymbolsResponse symbols = await _fetchActiveSymbols();
+        yield ActiveSymbolsLoaded(activeSymbols: symbols.activeSymbols);
       } on ActiveSymbolsException catch (error) {
         yield ActiveSymbolsError(error.message);
       }

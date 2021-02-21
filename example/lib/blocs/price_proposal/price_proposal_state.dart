@@ -30,7 +30,7 @@ class PriceProposalLoaded extends PriceProposalState {
   PriceProposalLoaded(this.proposal);
 
   /// Loaded proposal
-  final PriceProposal proposal;
+  final Proposal proposal;
 
   @override
   String toString() => 'PriceProposal $proposal loaded';

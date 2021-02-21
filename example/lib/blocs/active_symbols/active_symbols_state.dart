@@ -29,16 +29,16 @@ class ActiveSymbolsLoaded extends ActiveSymbolsState {
   /// Initializes
   ActiveSymbolsLoaded({
     this.activeSymbols,
-    ActiveSymbol selectedSymbol,
+    ActiveSymbolsItem selectedSymbol,
   }) : _selectedSymbol = selectedSymbol ?? activeSymbols?.first;
 
   /// List of symbols
-  final List<ActiveSymbol> activeSymbols;
+  final List<ActiveSymbolsItem> activeSymbols;
 
-  final ActiveSymbol _selectedSymbol;
+  final ActiveSymbolsItem _selectedSymbol;
 
   /// Selected symbol
-  ActiveSymbol get selectedSymbol => _selectedSymbol;
+  ActiveSymbolsItem get selectedSymbol => _selectedSymbol;
 
   @override
   String toString() => 'ActiveSymbolsLoaded ${activeSymbols.length} symbols';

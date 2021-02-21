@@ -29,19 +29,19 @@ class AvailableContractsLoaded extends AvailableContractsState {
   ///Initializes
   AvailableContractsLoaded({
     this.contracts,
-    AvailableContractModel selectedContract,
+    AvailableItem selectedContract,
   }) : _selectedContract =
-            selectedContract ?? contracts?.availableContracts?.first;
+            selectedContract ?? contracts?.available?.first;
 
   /// Contracts
-  final ContractsForSymbol contracts;
+  final ContractsFor contracts;
 
-  final AvailableContractModel _selectedContract;
+  final AvailableItem _selectedContract;
 
   /// Selected Contract
-  AvailableContractModel get selectedContract => _selectedContract;
+  AvailableItem get selectedContract => _selectedContract;
 
   @override
   String toString() =>
-      'AvailableContractsLoaded ${contracts.availableContracts.length} contracts';
+      'AvailableContractsLoaded ${contracts.available.length} contracts';
 }

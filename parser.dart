@@ -45,9 +45,9 @@ class APIParser extends Builder {
           _addImports(source: source, imports: methodsjson['imports']);
 
       final File output =
-          File('lib/api/response/${fileBaseName}_receive_result.dart')
-            ..createSync(recursive: true);
+          File('lib/api/response/${fileBaseName}_receive_result.dart');
       if (!output.existsSync()) {
+        output.createSync(recursive: true);
         for (final StringBuffer item in result) {
           output.writeAsStringSync('${item.toString()}', mode: FileMode.append);
         }

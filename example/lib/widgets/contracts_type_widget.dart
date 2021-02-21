@@ -53,7 +53,7 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                             return Column(
                               children: <Widget>[
                                 Text(
-                                  '${state.contracts.availableContracts.length}',
+                                  '${state.contracts.available.length}',
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
@@ -68,7 +68,7 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                                 ),
                                 const SizedBox(height: 12),
                                 Text(
-                                  'Selected: ${state.selectedContract.contractDisplay}, ${state.selectedContract.contractType}, ${state.selectedContract.contractCategory}',
+                                  'Selected: ${state.selectedContract.contractsDisplay}, ${state.selectedContract.contractType}, ${state.selectedContract.contractCategory}',
                                   style: const TextStyle(fontSize: 14),
                                   textAlign: TextAlign.center,
                                 ),

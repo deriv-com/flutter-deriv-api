@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
-import 'package:flutter_deriv_api/api/contract/operation/exceptions/contract_operations_exception.dart';
-import 'package:flutter_deriv_api/api/contract/operation/price_proposal.dart';
-import 'package:flutter_deriv_api/api/contract/models/available_contract_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/api/response/forget_all_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/proposal_receive_result.dart';
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/response/contracts_for_receive_result.dart';
 
 import '../available_contracts/available_contracts_bloc.dart';
 
@@ -47,19 +47,19 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
           .handleError((dynamic error) => error is ContractOperationException
               ? add(YieldError(error.message))
               : add(YieldError(error.toString())))
-          .listen(
-              (PriceProposal proposal) => add(YieldProposalLoaded(proposal)));
+          .listen((ProposalResponse proposal) =>
+              add(YieldProposalLoaded(proposal)));
     } else if (event is YieldProposalLoaded) {
-      yield PriceProposalLoaded(event.proposal);
+      yield PriceProposalLoaded(event.proposal.proposal);
     } else if (event is YieldError) {
       yield PriceProposalError(event.message);
     }
   }
 
-  Stream<PriceProposal> _subscribeProposal(SubscribeProposal event) =>
-      PriceProposal.subscribePriceForContract(
+  Stream<ProposalResponse> _subscribeProposal(SubscribeProposal event) =>
+      ProposalResponse.subscribePriceForContract(
         // ignore: missing_required_param
-        ProposalRequest(
+        ProposalSend(
           amount: event?.amount,
           durationUnit: event?.durationUnit,
           duration: event?.duration,
@@ -70,8 +70,8 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
         ),
       );
 
-  Future<ForgetAll> _unsubscribeProposal() =>
-      PriceProposal.unsubscribeAllProposal();
+  Future<ForgetAllResponse> _unsubscribeProposal() =>
+      ProposalResponse.unsubscribeAllProposal();
 
   @override
   Future<void> close() async {
