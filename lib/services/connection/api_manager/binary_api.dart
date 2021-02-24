@@ -23,7 +23,7 @@ class BinaryAPI extends BaseAPI {
   /// Initializes
   BinaryAPI(UniqueKey uniqueKey) : super(uniqueKey);
 
-  static const Duration _wsConnectTimeOut = Duration(seconds: 15);
+  static const Duration _wsConnectTimeOut = Duration(seconds: 10);
 
   /// Indicates current connection status - only set `true` once
   /// we have established SSL *and* web socket handshake steps
