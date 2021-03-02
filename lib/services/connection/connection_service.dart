@@ -79,7 +79,6 @@ class ConnectionService {
     }
 
     _connectionBloc = connectionBloc;
-    await _connectivity.checkConnectivity();
     await checkConnectivity();
     _connectivity.onConnectivityChanged.listen(_checkConnection);
     _startConnectivityTimer();
