@@ -1,0 +1,53 @@
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_all_send.json
+// ignore_for_file: avoid_as
+
+import '../request.dart';
+
+/// Forget all send class
+class ForgetAllSend extends Request {
+  /// Initialize ForgetAllSend
+  const ForgetAllSend({
+    this.forgetAll,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) : super(
+          msgType: 'forget_all',
+          passthrough: passthrough,
+          reqId: reqId,
+        );
+
+  /// Creates an instance from JSON
+  factory ForgetAllSend.fromJson(Map<String, dynamic> json) => ForgetAllSend(
+        forgetAll: json['forget_all'] as dynamic,
+        passthrough: json['passthrough'] as Map<String, dynamic>,
+        reqId: json['req_id'] as int,
+      );
+
+  /// Cancel all streams by type. The value can be either a single type e.g. `"ticks"`, or an array of multiple types e.g. `["candles", "ticks"]`.
+  final dynamic forgetAll;
+
+  /// Converts this instance to JSON
+  @override
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'forget_all': forgetAll,
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
+
+  /// Creates a copy of instance with given parameters
+  @override
+  ForgetAllSend copyWith({
+    dynamic forgetAll,
+    Map<String, dynamic> passthrough,
+    int reqId,
+  }) =>
+      ForgetAllSend(
+        forgetAll: forgetAll ?? this.forgetAll,
+        passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
+      );
+
+  /// Override equatable class
+  @override
+  List<Object> get props => null;
+}

@@ -1,7 +1,5 @@
 # Soft links to websokect's json files
 lib/basic_api/generated/*.json
-lib/basic_api/generated/*.dart
-lib/api/response/*.dart
 
 # Miscellaneous
 *.swp
