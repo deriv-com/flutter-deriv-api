@@ -29,10 +29,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
     ConnectionService()
         .initialize(connectionBloc: this, isMock: isMock)
         .then((_) {
-      //connectWebSocket();
-
       _internetBloc = internet_bloc.InternetBloc();
-
       _internetListener = _internetBloc.listen(
         (internet_bloc.InternetState internetState) {
           if (internetState is internet_bloc.Disconnected) {

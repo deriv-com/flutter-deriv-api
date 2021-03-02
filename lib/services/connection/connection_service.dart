@@ -17,7 +17,6 @@ class ConnectionService {
   final int _pingMaxExceptionCount = 3;
   int _pingExceptionCount = 0;
 
-
   bool _hasConnection = false;
 
   /// Stream of connection states
@@ -48,16 +47,7 @@ class ConnectionService {
         if (_connectionBloc.state is! Connected) {
           await _connectionBloc.connectWebSocket();
         }
-        final bool _pingSuccess = await _ping();
-        if (!_pingSuccess) {
-          _pingExceptionCount += 1;
-          if(_pingExceptionCount >= _pingMaxExceptionCount){
-            _hasConnection = false;
-          }
-        } else {
-          _pingExceptionCount = 0;
-          _hasConnection = true;
-        }
+        _hasConnection = await _checkPingConnection();
         break;
       case ConnectivityResult.none:
         _hasConnection = false;
@@ -128,5 +118,18 @@ class ConnectionService {
     }
 
     return Future<bool>.value(true);
+  }
+
+  Future<bool> _checkPingConnection() async {
+    final bool _pingSuccess = await _ping();
+    if (!_pingSuccess) {
+      _pingExceptionCount++;
+      if (_pingExceptionCount >= _pingMaxExceptionCount) {
+        return false;
+      }
+      return _hasConnection;
+    }
+    _pingExceptionCount = 0;
+    return true;
   }
 }
