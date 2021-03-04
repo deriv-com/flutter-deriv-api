@@ -120,10 +120,10 @@ class NewAccountMaltainvestRequest extends Request {
   /// [Optional] The anticipated account turnover.
   final String accountTurnover;
 
-  /// Within 35 characters
+  /// Within 100 characters
   final String addressCity;
 
-  /// Within 70 characters.
+  /// Within 70 characters, with no leading whitespaces and may contain letters/numbers and/or any of following characters '.,:;()@#/-
   final String addressLine1;
 
   /// [Optional] Within 70 characters.
