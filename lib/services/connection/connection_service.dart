@@ -13,9 +13,11 @@ class ConnectionService {
 
   static final ConnectionService _instance = ConnectionService._internal();
   final int _connectivityCheckInterval = 5;
-  final int _pingTimeout = 10;
+  final int _pingTimeout = 5;
+  final int _pingMaxExceptionCount = 3;
+  int _pingExceptionCount = 0;
 
-  bool _hasConnection;
+  bool _hasConnection = false;
 
   /// Stream of connection states
   StreamController<bool> connectionChangeController =
@@ -35,6 +37,9 @@ class ConnectionService {
 
   Future<bool> _checkConnection(ConnectivityResult result) async {
     final bool previousConnection = _hasConnection;
+    if (_connectionBloc.state is Reconnecting) {
+      return previousConnection;
+    }
 
     switch (result) {
       case ConnectivityResult.wifi:
@@ -42,9 +47,7 @@ class ConnectionService {
         if (_connectionBloc.state is! Connected) {
           await _connectionBloc.connectWebSocket();
         }
-
-        _hasConnection = await _ping();
-
+        _hasConnection = await _checkPingConnection();
         break;
       case ConnectivityResult.none:
         _hasConnection = false;
@@ -76,9 +79,8 @@ class ConnectionService {
     }
 
     _connectionBloc = connectionBloc;
-    await _connectivity.checkConnectivity();
+    await checkConnectivity();
     _connectivity.onConnectivityChanged.listen(_checkConnection);
-
     _startConnectivityTimer();
   }
 
@@ -115,5 +117,18 @@ class ConnectionService {
     }
 
     return Future<bool>.value(true);
+  }
+
+  Future<bool> _checkPingConnection() async {
+    final bool _pingSuccess = await _ping();
+    if (!_pingSuccess) {
+      _pingExceptionCount++;
+      if (_pingExceptionCount >= _pingMaxExceptionCount) {
+        return false;
+      }
+      return _hasConnection;
+    }
+    _pingExceptionCount = 0;
+    return true;
   }
 }

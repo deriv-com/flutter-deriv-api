@@ -12,6 +12,7 @@ class NewAccountVirtualRequest extends Request {
     this.affiliateToken,
     @required this.clientPassword,
     this.dateFirstContact,
+    this.emailConsent,
     this.gclidUrl,
     this.newAccountVirtual = true,
     @required this.residence,
@@ -43,6 +44,7 @@ class NewAccountVirtualRequest extends Request {
         affiliateToken: json['affiliate_token'] as String,
         clientPassword: json['client_password'] as String,
         dateFirstContact: json['date_first_contact'] as String,
+        emailConsent: json['email_consent'] as int,
         gclidUrl: json['gclid_url'] as String,
         newAccountVirtual: json['new_account_virtual'] == null
             ? null
@@ -74,6 +76,9 @@ class NewAccountVirtualRequest extends Request {
 
   /// [Optional] Date of first contact, format: `yyyy-mm-dd` in GMT timezone.
   final String dateFirstContact;
+
+  /// [Optional] Boolean value: 1 or 0, indicating whether the client has given consent for marketing emails.
+  final int emailConsent;
 
   /// [Optional] Google Click Identifier to track source.
   final String gclidUrl;
@@ -132,6 +137,7 @@ class NewAccountVirtualRequest extends Request {
         'affiliate_token': affiliateToken,
         'client_password': clientPassword,
         'date_first_contact': dateFirstContact,
+        'email_consent': emailConsent,
         'gclid_url': gclidUrl,
         'new_account_virtual': newAccountVirtual == null
             ? null
@@ -163,6 +169,7 @@ class NewAccountVirtualRequest extends Request {
     String affiliateToken,
     String clientPassword,
     String dateFirstContact,
+    int emailConsent,
     String gclidUrl,
     bool newAccountVirtual,
     String residence,
@@ -187,6 +194,7 @@ class NewAccountVirtualRequest extends Request {
         affiliateToken: affiliateToken ?? this.affiliateToken,
         clientPassword: clientPassword ?? this.clientPassword,
         dateFirstContact: dateFirstContact ?? this.dateFirstContact,
+        emailConsent: emailConsent ?? this.emailConsent,
         gclidUrl: gclidUrl ?? this.gclidUrl,
         newAccountVirtual: newAccountVirtual ?? this.newAccountVirtual,
         residence: residence ?? this.residence,

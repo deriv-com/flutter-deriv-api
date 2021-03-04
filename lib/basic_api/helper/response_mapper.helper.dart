@@ -58,7 +58,6 @@ import '../generated/p2p_advert_update_receive.dart';
 import '../generated/p2p_advertiser_adverts_receive.dart';
 import '../generated/p2p_advertiser_create_receive.dart';
 import '../generated/p2p_advertiser_info_receive.dart';
-import '../generated/p2p_advertiser_stats_receive.dart';
 import '../generated/p2p_advertiser_update_receive.dart';
 import '../generated/p2p_chat_create_receive.dart';
 import '../generated/p2p_order_cancel_receive.dart';
@@ -66,6 +65,7 @@ import '../generated/p2p_order_confirm_receive.dart';
 import '../generated/p2p_order_create_receive.dart';
 import '../generated/p2p_order_info_receive.dart';
 import '../generated/p2p_order_list_receive.dart';
+import '../generated/payment_methods_receive.dart';
 import '../generated/paymentagent_list_receive.dart';
 import '../generated/paymentagent_transfer_receive.dart';
 import '../generated/paymentagent_withdraw_receive.dart';
@@ -93,6 +93,7 @@ import '../generated/time_receive.dart';
 import '../generated/tnc_approval_receive.dart';
 import '../generated/topup_virtual_receive.dart';
 import '../generated/trading_durations_receive.dart';
+import '../generated/trading_servers_receive.dart';
 import '../generated/trading_times_receive.dart';
 import '../generated/transaction_receive.dart';
 import '../generated/transfer_between_accounts_receive.dart';
@@ -214,8 +215,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return P2pAdvertiserCreateResponse.fromJson(responseMap);
     case 'p2p_advertiser_info':
       return P2pAdvertiserInfoResponse.fromJson(responseMap);
-    case 'p2p_advertiser_stats':
-      return P2pAdvertiserStatsResponse.fromJson(responseMap);
     case 'p2p_advertiser_update':
       return P2pAdvertiserUpdateResponse.fromJson(responseMap);
     case 'p2p_chat_create':
@@ -230,6 +229,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return P2pOrderInfoResponse.fromJson(responseMap);
     case 'p2p_order_list':
       return P2pOrderListResponse.fromJson(responseMap);
+    case 'payment_methods':
+      return PaymentMethodsResponse.fromJson(responseMap);
     case 'paymentagent_list':
       return PaymentagentListResponse.fromJson(responseMap);
     case 'paymentagent_transfer':
@@ -284,6 +285,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return TopupVirtualResponse.fromJson(responseMap);
     case 'trading_durations':
       return TradingDurationsResponse.fromJson(responseMap);
+    case 'trading_servers':
+      return TradingServersResponse.fromJson(responseMap);
     case 'trading_times':
       return TradingTimesResponse.fromJson(responseMap);
     case 'transaction':

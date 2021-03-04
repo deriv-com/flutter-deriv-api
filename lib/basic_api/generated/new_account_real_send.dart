@@ -12,7 +12,7 @@ class NewAccountRealRequest extends Request {
     this.accountOpeningReason,
     this.accountTurnover,
     this.addressCity,
-    this.addressLine1,
+    @required this.addressLine1,
     this.addressLine2,
     this.addressPostcode,
     this.addressState,
@@ -80,10 +80,10 @@ class NewAccountRealRequest extends Request {
   /// [Optional] The anticipated account turnover.
   final String accountTurnover;
 
-  /// [Optional] Within 35 characters.
+  /// [Optional] Within 100 characters.
   final String addressCity;
 
-  /// [Optional] Mailing address.
+  /// Within 70 characters, with no leading whitespaces and may contain letters/numbers and/or any of following characters '.,:;()@#/-
   final String addressLine1;
 
   /// [Optional] Within 70 characters.
