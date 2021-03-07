@@ -27,6 +27,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
     _connectionInformation = connectionInformation;
 
     ConnectionService().initialize(connectionBloc: this, isMock: isMock);
+
     _internetBloc = internet_bloc.InternetBloc();
     _internetListener = _internetBloc.listen(
       (internet_bloc.InternetState internetState) {

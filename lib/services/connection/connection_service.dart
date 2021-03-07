@@ -40,6 +40,7 @@ class ConnectionService {
 
   Future<ConnectionStatus> _checkConnection(ConnectivityResult result) async {
     final ConnectionStatus previousConnection = _connectionStatus;
+
     if (_connectionBloc.state is Reconnecting) {
       return ConnectionStatus.connecting;
     }
@@ -58,6 +59,7 @@ class ConnectionService {
       case ConnectivityResult.none:
         _connectionStatus = ConnectionStatus.disconnected;
         break;
+        
       default:
         _connectionStatus = ConnectionStatus.disconnected;
     }
