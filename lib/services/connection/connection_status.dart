@@ -1,12 +1,12 @@
 
-/// Defines status of a connection
+/// Defines status of a connection.
 enum ConnectionStatus {
-  /// connected status
+  /// Connected status.
   connected,
 
-  /// connecting status
+  /// Connecting status.
   connecting,
 
-  /// disconnected status
+  /// Disconnected status.
   disconnected
 }
