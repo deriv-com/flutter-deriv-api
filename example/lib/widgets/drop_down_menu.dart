@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 /// A [DropdownButton] with items of type [T]
 class DropDownMenu<T> extends StatefulWidget {
+  /// Initializes dropdown menu
   const DropDownMenu({
     @required this.items,
     @required this.initialItem,

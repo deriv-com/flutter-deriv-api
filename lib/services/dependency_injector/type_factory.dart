@@ -1,7 +1,9 @@
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
+/// Object factory function type.
 typedef ObjectFactoryFunction<T> = T Function(Injector injector);
 
+/// Object factory with parameters function type.
 typedef ObjectFactoryWithParametersFunction<T> = T Function(
   Injector injector,
   Map<String, dynamic> additionalParameters,
