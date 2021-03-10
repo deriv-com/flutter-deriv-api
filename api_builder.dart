@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:build/build.dart';
-import 'package:recase/recase.dart';
 import 'package:dart_style/dart_style.dart';
-import 'package:json_schema/json_schema.dart';
+import 'package:json_schema2/json_schema2.dart';
+import 'package:recase/recase.dart';
 
 Builder apiBuilder(final BuilderOptions _) => APIBuilder();
 
@@ -234,7 +235,9 @@ class APIBuilder extends Builder {
               : property.typeList.last.toString() ?? 'undefined'
           : property.type?.toString() == null
               ? 'undefined'
-              : _isBoolean(key, property) ? 'bool' : property.type?.toString();
+              : _isBoolean(key, property)
+                  ? 'bool'
+                  : property.type?.toString();
 
   static bool _isBoolean(String key, JsonSchema property) =>
       key == 'subscribe' ||

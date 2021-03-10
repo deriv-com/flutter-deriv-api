@@ -11,7 +11,7 @@ void main() {
 
   test('Fetch Portfolio Test', () async {
     final Portfolio portfolio = await Portfolio.fetchPortfolio(
-      const PortfolioRequest(),
+      const PortfolioRequest(contractType: <String>['multUp']),
     );
 
     expect(portfolio.contracts.first.currency, 'USD');

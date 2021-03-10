@@ -25,21 +25,21 @@ void main() {
       'Emits [Connect] Test.',
       build: () => connectionBloc,
       act: (ConnectionBloc bloc) async => bloc.add(Connect()),
-      expect: <dynamic>[isA<Connected>()],
+      expect: () => <dynamic>[isA<Connected>()],
     );
 
     blocTest<ConnectionBloc, ConnectionState>(
       'Emits [Disconnect] Test.',
       build: () => connectionBloc,
       act: (ConnectionBloc bloc) async => bloc.add(Disconnect()),
-      expect: <dynamic>[],
+      expect: () => <dynamic>[],
     );
 
     blocTest<ConnectionBloc, ConnectionState>(
       'Emits [Reconnect] Test.',
       build: () => connectionBloc,
       act: (ConnectionBloc bloc) async => bloc.add(Reconnect()),
-      expect: <dynamic>[],
+      expect: () => <dynamic>[],
     );
   });
 }

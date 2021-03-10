@@ -142,7 +142,7 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
 
   BlocBuilder<PriceProposalBloc, PriceProposalState> _buildProposalResult() =>
       BlocBuilder<PriceProposalBloc, PriceProposalState>(
-        cubit: _priceProposalBloc,
+        bloc: _priceProposalBloc,
         builder: (BuildContext context, PriceProposalState state) {
           if (state is PriceProposalLoaded) {
             return Row(

@@ -16,6 +16,7 @@ void main() {
         limit: 25,
         offset: 25,
         sort: 'ASC',
+        contractType: <String>['multUp'],
       ),
     );
 

@@ -46,7 +46,7 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                     child: Center(
                       child: BlocBuilder<AvailableContractsBloc,
                           AvailableContractsState>(
-                        cubit: _availableContractsBloc,
+                        bloc: _availableContractsBloc,
                         builder: (BuildContext context,
                             AvailableContractsState state) {
                           if (state is AvailableContractsLoaded) {
