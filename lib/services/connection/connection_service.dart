@@ -16,6 +16,8 @@ class ConnectionService {
   static final ConnectionService _instance = ConnectionService._internal();
   final int _connectivityCheckInterval = 5;
   final int _pingTimeout = 5;
+  // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 8 sec.
+  final int _initialPingTimeOut = 8;
   final int _pingMaxExceptionCount = 3;
   int _pingExceptionCount = 0;
 
@@ -59,7 +61,7 @@ class ConnectionService {
       case ConnectivityResult.none:
         _connectionStatus = ConnectionStatus.disconnected;
         break;
-        
+
       default:
         _connectionStatus = ConnectionStatus.disconnected;
     }
@@ -117,8 +119,10 @@ class ConnectionService {
 
   Future<bool> _ping() async {
     try {
-      final Ping response =
-          await Ping.ping().timeout(Duration(seconds: _pingTimeout));
+      final Ping response = await Ping.ping().timeout(Duration(
+          seconds: _connectionBloc.state is InitialConnectionState
+              ? _initialPingTimeOut
+              : _pingTimeout));
 
       if (response == null || !response.succeeded) {
         return Future<bool>.value(false);
