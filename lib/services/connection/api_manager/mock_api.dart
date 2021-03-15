@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_deriv_api/api/response/payment_methods_receive_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:meta/meta.dart';
@@ -64,6 +65,7 @@ import 'mock_data/common/states_list_response.dart';
 import 'mock_data/common/tick_history_response.dart';
 import 'mock_data/common/tick_response.dart';
 import 'mock_data/common/trading_durations_response.dart';
+import 'mock_data/common/payment_methods_response.dart';
 import 'mock_data/common/trading_times_response.dart';
 import 'mock_data/common/website_status_response.dart';
 import 'mock_data/contract/buy_contract_response.dart';
@@ -297,6 +299,8 @@ class MockAPI extends BaseAPI {
         return paymentAgentWithdrawResponse;
       case 'payout_currencies':
         return payoutCurrenciesResponse;
+      case 'payment_methods':
+        return paymentMethodsResponse;
       case 'ping':
         return pingResponse;
       case 'portfolio':

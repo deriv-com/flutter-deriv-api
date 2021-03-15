@@ -30,6 +30,7 @@ export 'p2p_advertiser_stats_exception.dart';
 export 'p2p_chat_exception.dart';
 export 'p2p_exception.dart';
 export 'p2p_order_exception.dart';
+export 'payment_exception.dart';
 export 'payment_agent_exception.dart';
 export 'payout_currency_exception.dart';
 export 'ping_exception.dart';
@@ -48,3 +49,4 @@ export 'transactions_exception.dart';
 export 'transfer_exception.dart';
 export 'user_exception.dart';
 export 'website_status_exception.dart';
+

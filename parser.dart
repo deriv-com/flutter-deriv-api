@@ -11,7 +11,7 @@ import 'lib/tools/schema_model.dart';
 
 Builder apiParser(final BuilderOptions _) => APIParser();
 
-/// APIParser Class handles generating resn
+/// APIParser Class which handles generating API response classes.
 class APIParser extends Builder {
   @override
   FutureOr<void> build(BuildStep buildStep) {
@@ -21,7 +21,7 @@ class APIParser extends Builder {
           (path.split('/').last.split('_')..removeLast()).join('_');
       final String className = '${ReCase(fileBaseName).pascalCase}Response';
 
-      final List<SchemaModel> rootChildern =
+      final List<SchemaModel> rootChildren =
           JsonSchemaParser.getClassTypesFor(JsonSchemaParser.preProcessModels(
         conv.json.decode(
           File(path).readAsStringSync(),
@@ -31,18 +31,18 @@ class APIParser extends Builder {
       final String leftPartPath =
           (path.split('.').first.split('/')..removeLast()).join('/');
       final String rightPartPath = path.split('.').first.split('/').last;
-      final Map<String, dynamic> methodsjson = conv.json.decode(
+      final Map<String, dynamic> methodsJSON = conv.json.decode(
           File('$leftPartPath/methods/${rightPartPath}_methods.json')
               .readAsStringSync());
 
       final List<StringBuffer> source = JsonSchemaParser().getClasses(
           SchemaModel.newModelWithChildren(
-              children: rootChildern, className: className),
-          methodsString: methodsjson['methods'],
+              children: rootChildren, className: className),
+          methodsString: methodsJSON['methods'],
           isRoot: true);
 
       final List<StringBuffer> result =
-          _addImports(source: source, imports: methodsjson['imports']);
+          _addImports(source: source, imports: methodsJSON['imports']);
 
       final File output =
           File('lib/api/response/${fileBaseName}_receive_result.dart');

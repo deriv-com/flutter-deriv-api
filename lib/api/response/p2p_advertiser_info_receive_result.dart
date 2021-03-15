@@ -188,6 +188,7 @@ abstract class P2pAdvertiserInfoModel {
     @required this.chatUserId,
     @required this.chatToken,
     @required this.buyOrdersCount,
+    @required this.blockedUntil,
     @required this.basicVerification,
     @required this.balanceAvailable,
     this.buyCompletionRate,
@@ -260,6 +261,9 @@ abstract class P2pAdvertiserInfoModel {
   /// The number of buy order completed within the past 30 days.
   final int buyOrdersCount;
 
+  /// If a temporary bar was placed, this is the epoch time at which it will end.
+  final DateTime blockedUntil;
+
   /// Boolean value: 1 or 0, indicating whether the advertiser's identify has been verified.
   final int basicVerification;
 
@@ -288,6 +292,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
   P2pAdvertiserInfo({
     @required double balanceAvailable,
     @required int basicVerification,
+    @required DateTime blockedUntil,
     @required int buyOrdersCount,
     @required String chatToken,
     @required String chatUserId,
@@ -317,6 +322,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
   }) : super(
           balanceAvailable: balanceAvailable,
           basicVerification: basicVerification,
+          blockedUntil: blockedUntil,
           buyOrdersCount: buyOrdersCount,
           chatToken: chatToken,
           chatUserId: chatUserId,
@@ -350,6 +356,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
       P2pAdvertiserInfo(
         balanceAvailable: getDouble(json['balance_available']),
         basicVerification: json['basic_verification'],
+        blockedUntil: getDateTime(json['blocked_until']),
         buyOrdersCount: json['buy_orders_count'],
         chatToken: json['chat_token'],
         chatUserId: json['chat_user_id'],
@@ -384,6 +391,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
 
     resultMap['balance_available'] = balanceAvailable;
     resultMap['basic_verification'] = basicVerification;
+    resultMap['blocked_until'] = getSecondsSinceEpochDateTime(blockedUntil);
     resultMap['buy_orders_count'] = buyOrdersCount;
     resultMap['chat_token'] = chatToken;
     resultMap['chat_user_id'] = chatUserId;
@@ -418,6 +426,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
   P2pAdvertiserInfo copyWith({
     double balanceAvailable,
     int basicVerification,
+    DateTime blockedUntil,
     int buyOrdersCount,
     String chatToken,
     String chatUserId,
@@ -448,6 +457,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
       P2pAdvertiserInfo(
         balanceAvailable: balanceAvailable ?? this.balanceAvailable,
         basicVerification: basicVerification ?? this.basicVerification,
+        blockedUntil: blockedUntil ?? this.blockedUntil,
         buyOrdersCount: buyOrdersCount ?? this.buyOrdersCount,
         chatToken: chatToken ?? this.chatToken,
         chatUserId: chatUserId ?? this.chatUserId,

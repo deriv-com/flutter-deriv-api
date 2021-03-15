@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Payment methods request class
-class PaymentMethodsRequest extends Request {
-  /// Initialize PaymentMethodsRequest
-  const PaymentMethodsRequest({
+/// Payment methods send class
+class PaymentMethodsSend extends Request {
+  /// Initialize PaymentMethodsSend
+  const PaymentMethodsSend({
     this.country,
     this.paymentMethods = true,
     Map<String, dynamic> passthrough,
@@ -18,8 +18,8 @@ class PaymentMethodsRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory PaymentMethodsRequest.fromJson(Map<String, dynamic> json) =>
-      PaymentMethodsRequest(
+  factory PaymentMethodsSend.fromJson(Map<String, dynamic> json) =>
+      PaymentMethodsSend(
         country: json['country'] as String,
         paymentMethods: json['payment_methods'] == null
             ? null
@@ -49,13 +49,13 @@ class PaymentMethodsRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  PaymentMethodsRequest copyWith({
+  PaymentMethodsSend copyWith({
     String country,
     bool paymentMethods,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      PaymentMethodsRequest(
+      PaymentMethodsSend(
         country: country ?? this.country,
         paymentMethods: paymentMethods ?? this.paymentMethods,
         passthrough: passthrough ?? this.passthrough,
