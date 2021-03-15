@@ -3,10 +3,10 @@
 
 import '../request.dart';
 
-/// Trading servers request class
-class TradingServersRequest extends Request {
-  /// Initialize TradingServersRequest
-  const TradingServersRequest({
+/// Trading servers send class
+class TradingServersSend extends Request {
+  /// Initialize TradingServersSend
+  const TradingServersSend({
     this.environment,
     this.platform,
     this.tradingServers = true,
@@ -19,8 +19,8 @@ class TradingServersRequest extends Request {
         );
 
   /// Creates an instance from JSON
-  factory TradingServersRequest.fromJson(Map<String, dynamic> json) =>
-      TradingServersRequest(
+  factory TradingServersSend.fromJson(Map<String, dynamic> json) =>
+      TradingServersSend(
         environment: json['environment'] as String,
         platform: json['platform'] as String,
         tradingServers: json['trading_servers'] == null
@@ -55,14 +55,14 @@ class TradingServersRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  TradingServersRequest copyWith({
+  TradingServersSend copyWith({
     String environment,
     String platform,
     bool tradingServers,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
-      TradingServersRequest(
+      TradingServersSend(
         environment: environment ?? this.environment,
         platform: platform ?? this.platform,
         tradingServers: tradingServers ?? this.tradingServers,
