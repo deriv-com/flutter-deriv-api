@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter_deriv_api/api/response/ping_receive_result.dart';
+
+import 'package:flutter_deriv_api/services/connection/connection_status.dart';
 import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
 
 /// A class to check the connectivity of the device to the Internet
@@ -13,9 +15,13 @@ class ConnectionService {
 
   static final ConnectionService _instance = ConnectionService._internal();
   final int _connectivityCheckInterval = 5;
-  final int _pingTimeout = 10;
+  final int _pingTimeout = 5;
+  // In some devices like Samsung J6 or Huawei Y7, the call manager doesn't response to the ping call less than 8 sec.
+  final int _initialPingTimeOut = 8;
+  final int _pingMaxExceptionCount = 3;
+  int _pingExceptionCount = 0;
 
-  bool _hasConnection;
+  ConnectionStatus _connectionStatus = ConnectionStatus.connecting;
 
   /// Stream of connection states
   StreamController<bool> connectionChangeController =
@@ -27,14 +33,19 @@ class ConnectionService {
   Stream<bool> get state => connectionChangeController.stream;
 
   /// Returns true if we are connected to the Internet.
-  bool get isConnectedToInternet => _hasConnection;
+  bool get isConnectedToInternet =>
+      _connectionStatus == ConnectionStatus.connected;
 
   Timer _connectivityTimer;
 
   ConnectionBloc _connectionBloc;
 
-  Future<bool> _checkConnection(ConnectivityResult result) async {
-    final bool previousConnection = _hasConnection;
+  Future<ConnectionStatus> _checkConnection(ConnectivityResult result) async {
+    final ConnectionStatus previousConnection = _connectionStatus;
+
+    if (_connectionBloc.state is Reconnecting) {
+      return ConnectionStatus.connecting;
+    }
 
     switch (result) {
       case ConnectivityResult.wifi:
@@ -42,22 +53,25 @@ class ConnectionService {
         if (_connectionBloc.state is! Connected) {
           await _connectionBloc.connectWebSocket();
         }
-
-        _hasConnection = await _ping();
-
+        final bool pingResult = await _checkPingConnection();
+        _connectionStatus = pingResult
+            ? ConnectionStatus.connected
+            : ConnectionStatus.disconnected;
         break;
       case ConnectivityResult.none:
-        _hasConnection = false;
+        _connectionStatus = ConnectionStatus.disconnected;
         break;
+
       default:
-        _hasConnection = false;
+        _connectionStatus = ConnectionStatus.disconnected;
     }
 
-    if (previousConnection != _hasConnection) {
-      connectionChangeController.add(_hasConnection);
+    if (previousConnection != _connectionStatus) {
+      connectionChangeController
+          .add(_connectionStatus == ConnectionStatus.connected);
     }
 
-    return _hasConnection;
+    return _connectionStatus;
   }
 
   /// Closes the connection service
@@ -76,9 +90,8 @@ class ConnectionService {
     }
 
     _connectionBloc = connectionBloc;
-    await _connectivity.checkConnectivity();
+    await checkConnectivity();
     _connectivity.onConnectivityChanged.listen(_checkConnection);
-
     _startConnectivityTimer();
   }
 
@@ -87,7 +100,9 @@ class ConnectionService {
     final ConnectivityResult connectivityResult =
         await _connectivity.checkConnectivity();
 
-    return _checkConnection(connectivityResult);
+    final ConnectionStatus connectionResult =
+        await _checkConnection(connectivityResult);
+    return connectionResult == ConnectionStatus.connected;
   }
 
   // Checks for change to connectivity to internet every [_connectivityCheckInterval] seconds
@@ -104,8 +119,10 @@ class ConnectionService {
 
   Future<bool> _ping() async {
     try {
-      final PingResponse response = await PingResponse.pingMethod()
-          .timeout(Duration(seconds: _pingTimeout));
+      final PingResponse response = await PingResponse.pingMethod().timeout(Duration(
+          seconds: _connectionBloc.state is InitialConnectionState
+              ? _initialPingTimeOut
+              : _pingTimeout));
 
       if (response == null || response.ping != PingEnum.pong) {
         return Future<bool>.value(false);
@@ -115,5 +132,18 @@ class ConnectionService {
     }
 
     return Future<bool>.value(true);
+  }
+
+  Future<bool> _checkPingConnection() async {
+    final bool _pingSuccess = await _ping();
+    if (!_pingSuccess) {
+      _pingExceptionCount++;
+      if (_pingExceptionCount >= _pingMaxExceptionCount) {
+        return false;
+      }
+      return _connectionStatus == ConnectionStatus.connected;
+    }
+    _pingExceptionCount = 0;
+    return true;
   }
 }
