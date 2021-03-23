@@ -12,6 +12,7 @@ class SymbolModel extends APIBaseModel {
     this.events,
     this.symbol,
     this.times,
+    this.tradingDays,
   });
 
   /// Creates an instance from JSON
@@ -26,6 +27,10 @@ class SymbolModel extends APIBaseModel {
         times: getItemFromMap(
           json['times'],
           itemToTypeCallback: (dynamic item) => TradeTimesModel.fromJson(item),
+        ),
+        tradingDays: getListFromMap(
+          json['trading_days'],
+          itemToTypeCallback: (dynamic item) => item,
         ),
       );
 
@@ -44,6 +49,9 @@ class SymbolModel extends APIBaseModel {
   /// Trade Times
   final TradeTimesModel times;
 
+  /// Trading days
+  final List<String> tradingDays;
+
   /// Creates a copy of instance with given parameters
   SymbolModel copyWith({
     String displayName,
@@ -51,6 +59,7 @@ class SymbolModel extends APIBaseModel {
     List<TradeEventModel> events,
     String symbol,
     TradeTimesModel times,
+    List<String> tradingDays,
   }) =>
       SymbolModel(
         displayName: displayName ?? this.displayName,
@@ -58,5 +67,6 @@ class SymbolModel extends APIBaseModel {
         events: events ?? this.events,
         symbol: symbol ?? this.symbol,
         times: times ?? this.times,
+        tradingDays: tradingDays ?? this.tradingDays,
       );
 }
