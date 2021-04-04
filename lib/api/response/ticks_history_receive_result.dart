@@ -11,10 +11,10 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../manually/ohlc_receive.dart';
 import '../manually/ohlc_receive_result.dart';
+import '..//manually/tick.dart';
 import '../manually/tick_base.dart';
 import '../manually/tick_history_subscription.dart';
 import '../models/base_exception_model.dart';
-import 'ticks_receive_result.dart';
 
 /// Ticks history response model class
 abstract class TicksHistoryResponseModel {
@@ -146,9 +146,9 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
               );
 
               return response is TicksReceive
-                  ? TicksResponse.fromJson(
+                  ? Tick.fromJson(
                       response.tick,
-                      response.subscription,
+                      subscriptionJson: response.subscription,
                     )
                   : response is OHLCResponse
                       ? OHLC.fromJson(
@@ -182,6 +182,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
+
 /// Candles item model class
 abstract class CandlesItemModel {
   /// Initializes
@@ -264,6 +265,7 @@ class CandlesItem extends CandlesItemModel {
         open: open ?? this.open,
       );
 }
+
 /// History model class
 abstract class HistoryModel {
   /// Initializes
@@ -327,6 +329,7 @@ class History extends HistoryModel {
         times: times ?? this.times,
       );
 }
+
 /// Subscription model class
 abstract class SubscriptionModel {
   /// Initializes
