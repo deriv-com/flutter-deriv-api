@@ -49,7 +49,7 @@ class SymbolModel extends APIBaseModel {
   /// Trade Times
   final TradeTimesModel times;
 
-  /// Trading days
+  /// Trading days.
   final List<String> tradingDays;
 
   /// Creates a copy of instance with given parameters
