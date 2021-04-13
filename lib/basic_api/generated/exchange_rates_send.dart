@@ -30,10 +30,10 @@ class ExchangeRatesRequest extends Request {
       );
 
   /// Base currency (can be obtained from `payout_currencies` call)
-  final String baseCurrency;
+  final String? baseCurrency;
 
   /// Must be `true`
-  final bool exchangeRates;
+  final bool? exchangeRates;
 
   /// Converts this instance to JSON
   @override
@@ -41,7 +41,7 @@ class ExchangeRatesRequest extends Request {
         'base_currency': baseCurrency,
         'exchange_rates': exchangeRates == null
             ? null
-            : exchangeRates
+            : exchangeRates!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -51,8 +51,8 @@ class ExchangeRatesRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ExchangeRatesRequest copyWith({
-    String baseCurrency,
-    bool exchangeRates,
+    String? baseCurrency,
+    bool? exchangeRates,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -65,5 +65,5 @@ class ExchangeRatesRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

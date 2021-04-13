@@ -31,10 +31,10 @@ class P2pChatCreateRequest extends Request {
       );
 
   /// The unique identifier for the order to create the chat for.
-  final String orderId;
+  final String? orderId;
 
   /// Must be `true`
-  final bool p2pChatCreate;
+  final bool? p2pChatCreate;
 
   /// Converts this instance to JSON
   @override
@@ -42,7 +42,7 @@ class P2pChatCreateRequest extends Request {
         'order_id': orderId,
         'p2p_chat_create': p2pChatCreate == null
             ? null
-            : p2pChatCreate
+            : p2pChatCreate!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -52,8 +52,8 @@ class P2pChatCreateRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pChatCreateRequest copyWith({
-    String orderId,
-    bool p2pChatCreate,
+    String? orderId,
+    bool? p2pChatCreate,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -66,5 +66,5 @@ class P2pChatCreateRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

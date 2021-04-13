@@ -16,29 +16,29 @@ abstract class ContractModel extends APIBaseModel {
   });
 
   /// The new account balance after completion of the purchase
-  final double balanceAfter;
+  final double? balanceAfter;
 
   /// Price at which contract was purchased
-  final double buyPrice;
+  final double? buyPrice;
 
   /// The internal contract identifier
-  final int contractId;
+  final int? contractId;
 
   /// Epoch of purchase time, will be same as `date_start` for all contracts except forward starting contracts.
-  final DateTime dateStart;
+  final DateTime? dateStart;
 
   /// Text description of the contract purchased, Example: Win payout if Volatility 100 Index is strictly higher than entry spot at 10 minutes after contract start time.
-  final String longCode;
+  final String? longCode;
 
   /// Payout value of the contract.
-  final double payout;
+  final double? payout;
 
   /// Epoch of purchase time, will be same as `date_start` for all contracts except forward starting contracts.
-  final DateTime purchaseTime;
+  final DateTime? purchaseTime;
 
   /// Coded description of the contract purchased.
-  final String shortCode;
+  final String? shortCode;
 
   /// Internal transaction identifier
-  final int transactionId;
+  final int? transactionId;
 }

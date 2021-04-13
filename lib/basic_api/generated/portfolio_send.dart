@@ -31,10 +31,10 @@ class PortfolioRequest extends Request {
       );
 
   /// Return only contracts of the specified types
-  final List<String> contractType;
+  final List<String>? contractType;
 
   /// Must be `true`
-  final bool portfolio;
+  final bool? portfolio;
 
   /// Converts this instance to JSON
   @override
@@ -42,7 +42,7 @@ class PortfolioRequest extends Request {
         'contract_type': contractType,
         'portfolio': portfolio == null
             ? null
-            : portfolio
+            : portfolio!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -52,8 +52,8 @@ class PortfolioRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   PortfolioRequest copyWith({
-    List<String> contractType,
-    bool portfolio,
+    List<String>? contractType,
+    bool? portfolio,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -66,5 +66,5 @@ class PortfolioRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

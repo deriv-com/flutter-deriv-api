@@ -1,7 +1,5 @@
 import 'dart:math';
 
-import 'package:meta/meta.dart';
-
 /// Calculates the number of decimal digits for string [value] of a number
 int getDecimalDigits(String value) {
   final List<String> parts = value.split('.');
@@ -46,37 +44,36 @@ class NumberValidator {
   /// checks if the given [stringValue] is a number
   static bool isANumber(String stringValue) {
     final String newString = stringValue.replaceAll(RegExp(r','), '');
-    double result;
 
     try {
-      result = double.parse(newString);
+      double.parse(newString,);
     } on Exception {
       return false;
     }
 
-    return result != null;
+    return true;
   }
 
   /// Checks if [stringValue] of a number is in the range of [lowerLimit] and [upperLimit]
   static bool isBetweenLimits({
-    @required String stringValue,
-    @required double upperLimit,
-    @required double lowerLimit,
+    required String stringValue,
+    required double upperLimit,
+    required double lowerLimit,
   }) =>
       isMoreThanLimit(stringValue: stringValue, lowerLimit: lowerLimit) &&
       isLessThanLimit(stringValue: stringValue, upperLimit: upperLimit);
 
   /// Checks if [stringValue] of a number is less than [upperLimit]
   static bool isLessThanLimit({
-    @required String stringValue,
-    @required double upperLimit,
+    required String stringValue,
+    required double upperLimit,
   }) =>
       double.parse(stringValue) <= upperLimit;
 
   /// Checks if [stringValue] of number exceeds the given value
   static bool isMoreThanLimit({
-    @required String stringValue,
-    @required double lowerLimit,
+    required String stringValue,
+    required double lowerLimit,
   }) =>
       double.parse(stringValue) >= lowerLimit;
 
@@ -86,8 +83,8 @@ class NumberValidator {
 
   /// Checks if the [stringValue] of number matches with the [validDecimalNumber]
   static bool hasValidPrecision({
-    @required String stringValue,
-    @required int validDecimalNumber,
+    required String stringValue,
+    required int validDecimalNumber,
   }) {
     final List<String> splitValue = stringValue.split('.');
 
@@ -111,7 +108,7 @@ int generateRandomInt({
     min + Random().nextInt(max - min);
 
 /// Parse double value from string or number value.
-double getDouble(dynamic value) => value is String
+double? getDouble(dynamic value) => value is String
     ? double.tryParse(value)
     : value is num
         ? value.toDouble()

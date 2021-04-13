@@ -30,7 +30,7 @@ class GetSettingsResponse extends Response {
       );
 
   /// User information and settings.
-  final Map<String, dynamic> getSettings;
+  final Map<String, dynamic>? getSettings;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class GetSettingsResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   GetSettingsResponse copyWith({
-    Map<String, dynamic> getSettings,
+    Map<String, dynamic>? getSettings,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class GetSettingsResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

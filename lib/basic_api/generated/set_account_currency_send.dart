@@ -27,7 +27,7 @@ class SetAccountCurrencyRequest extends Request {
       );
 
   /// Currency of the account. List of supported currencies can be acquired with `payout_currencies` call.
-  final String setAccountCurrency;
+  final String? setAccountCurrency;
 
   /// Converts this instance to JSON
   @override
@@ -40,7 +40,7 @@ class SetAccountCurrencyRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   SetAccountCurrencyRequest copyWith({
-    String setAccountCurrency,
+    String? setAccountCurrency,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -52,5 +52,5 @@ class SetAccountCurrencyRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

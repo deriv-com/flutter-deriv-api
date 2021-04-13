@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class AppRegister extends AppRegisterModel {
   /// Initializes
   AppRegister({
-    App appDetails,
+    App? appDetails,
   }) : super(
           appDetails: appDetails,
         );
@@ -24,14 +24,14 @@ class AppRegister extends AppRegisterModel {
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   AppRegister copyWith({
-    App appDetails,
+    App? appDetails,
   }) =>
       AppRegister(
-        appDetails: appDetails ?? this.appDetails,
+        appDetails: appDetails ?? this.appDetails as App?,
       );
 
   /// Registers a new OAuth application.
@@ -41,11 +41,11 @@ class AppRegister extends AppRegisterModel {
   static Future<AppRegister> registerApplication(
     AppRegisterRequest request,
   ) async {
-    final AppRegisterResponse response = await _api.call(request: request);
+    final AppRegisterResponse response = await _api!.call<AppRegisterResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AppException(baseExceptionModel: baseExceptionModel),
     );
 

@@ -29,10 +29,10 @@ class PaymentagentListRequest extends Request {
       );
 
   /// [Optional] If specified, only payment agents that supports that currency will be returned (obtained from `payout_currencies` call).
-  final String currency;
+  final String? currency;
 
   /// Client's 2-letter country code (obtained from `residence_list` call).
-  final String paymentagentList;
+  final String? paymentagentList;
 
   /// Converts this instance to JSON
   @override
@@ -46,8 +46,8 @@ class PaymentagentListRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   PaymentagentListRequest copyWith({
-    String currency,
-    String paymentagentList,
+    String? currency,
+    String? paymentagentList,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -60,5 +60,5 @@ class PaymentagentListRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

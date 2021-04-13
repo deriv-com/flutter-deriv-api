@@ -26,7 +26,7 @@ class CancelRequest extends Request {
       );
 
   /// Value should be the `contract_id` which received from the `portfolio` call.
-  final int cancel;
+  final int? cancel;
 
   /// Converts this instance to JSON
   @override
@@ -39,7 +39,7 @@ class CancelRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   CancelRequest copyWith({
-    int cancel,
+    int? cancel,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -51,5 +51,5 @@ class CancelRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

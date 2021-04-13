@@ -33,7 +33,7 @@ class TradingServersResponse extends Response {
       );
 
   /// Array containing platform server objects.
-  final List<Map<String, dynamic>> tradingServers;
+  final List<Map<String, dynamic>>? tradingServers;
 
   /// Converts this instance to JSON
   @override
@@ -48,7 +48,7 @@ class TradingServersResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   TradingServersResponse copyWith({
-    List<Map<String, dynamic>> tradingServers,
+    List<Map<String, dynamic>>? tradingServers,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -64,5 +64,5 @@ class TradingServersResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

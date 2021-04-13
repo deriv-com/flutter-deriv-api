@@ -29,10 +29,10 @@ class PaymentMethodsRequest extends Request {
       );
 
   /// [Optional] 2-letter country code (ISO standard).
-  final String country;
+  final String? country;
 
   /// Must be `true`
-  final bool paymentMethods;
+  final bool? paymentMethods;
 
   /// Converts this instance to JSON
   @override
@@ -40,7 +40,7 @@ class PaymentMethodsRequest extends Request {
         'country': country,
         'payment_methods': paymentMethods == null
             ? null
-            : paymentMethods
+            : paymentMethods!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -50,8 +50,8 @@ class PaymentMethodsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   PaymentMethodsRequest copyWith({
-    String country,
-    bool paymentMethods,
+    String? country,
+    bool? paymentMethods,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -64,5 +64,5 @@ class PaymentMethodsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

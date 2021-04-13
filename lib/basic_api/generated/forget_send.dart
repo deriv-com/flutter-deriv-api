@@ -26,7 +26,7 @@ class ForgetRequest extends Request {
       );
 
   /// ID of the real-time stream of messages to cancel.
-  final String forget;
+  final String? forget;
 
   /// Converts this instance to JSON
   @override
@@ -39,7 +39,7 @@ class ForgetRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ForgetRequest copyWith({
-    String forget,
+    String? forget,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -51,5 +51,5 @@ class ForgetRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

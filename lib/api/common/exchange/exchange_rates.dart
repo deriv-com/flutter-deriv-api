@@ -11,9 +11,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class ExchangeRates extends ExchangeRatesModel {
   /// Initializes
   ExchangeRates({
-    String baseCurrency,
-    DateTime date,
-    List<RateModel> rates,
+    String? baseCurrency,
+    DateTime? date,
+    List<RateModel?>? rates,
   }) : super(
           baseCurrency: baseCurrency,
           date: date,
@@ -35,13 +35,13 @@ class ExchangeRates extends ExchangeRatesModel {
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   ExchangeRates copyWith({
-    String baseCurrency,
-    DateTime date,
-    List<RateModel> rates,
+    String? baseCurrency,
+    DateTime? date,
+    List<RateModel>? rates,
   }) =>
       ExchangeRates(
         baseCurrency: baseCurrency ?? this.baseCurrency,
@@ -56,11 +56,12 @@ class ExchangeRates extends ExchangeRatesModel {
   static Future<ExchangeRates> fetchExchangeRates(
     ExchangeRatesRequest request,
   ) async {
-    final ExchangeRatesResponse response = await _api.call(request: request);
+    final ExchangeRatesResponse response =
+        await _api!.call<ExchangeRatesResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ExchangeException(baseExceptionModel: baseExceptionModel),
     );
 

@@ -11,10 +11,10 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class LoginHistory extends LoginHistoryModel {
   /// Initializes
   LoginHistory({
-    LoginAction action,
-    String environment,
-    bool status,
-    DateTime time,
+    LoginAction? action,
+    String? environment,
+    bool? status,
+    DateTime? time,
   }) : super(
           action: action,
           environment: environment,
@@ -33,14 +33,14 @@ class LoginHistory extends LoginHistoryModel {
         time: getDateTime(json['time']),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   LoginHistory copyWith({
-    LoginAction action,
-    String environment,
-    bool status,
-    DateTime time,
+    LoginAction? action,
+    String? environment,
+    bool? status,
+    DateTime? time,
   }) =>
       LoginHistory(
         action: action ?? this.action,
@@ -53,16 +53,16 @@ class LoginHistory extends LoginHistoryModel {
   ///
   /// For parameters information refer to [LoginHistory].
   /// Throws an [AuthorizeException] if API response contains an error
-  static Future<List<LoginHistory>> fetchHistory([
-    LoginHistoryRequest request,
+  static Future<List<LoginHistory?>?> fetchHistory([
+    LoginHistoryRequest? request,
   ]) async {
-    final LoginHistoryResponse response = await _api.call(
+    final LoginHistoryResponse response = await _api!.call<LoginHistoryResponse>(
       request: request ?? const LoginHistoryRequest(limit: 10),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AuthorizeException(baseExceptionModel: baseExceptionModel),
     );
 

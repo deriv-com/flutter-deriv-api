@@ -26,7 +26,7 @@ class AppGetRequest extends Request {
       );
 
   /// Application app_id
-  final int appGet;
+  final int? appGet;
 
   /// Converts this instance to JSON
   @override
@@ -39,7 +39,7 @@ class AppGetRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   AppGetRequest copyWith({
-    int appGet,
+    int? appGet,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -51,5 +51,5 @@ class AppGetRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

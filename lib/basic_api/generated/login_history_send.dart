@@ -28,10 +28,10 @@ class LoginHistoryRequest extends Request {
       );
 
   /// [Optional] Apply limit to count of login history records.
-  final int limit;
+  final int? limit;
 
   /// Must be `true`
-  final bool loginHistory;
+  final bool? loginHistory;
 
   /// Converts this instance to JSON
   @override
@@ -39,7 +39,7 @@ class LoginHistoryRequest extends Request {
         'limit': limit,
         'login_history': loginHistory == null
             ? null
-            : loginHistory
+            : loginHistory!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -49,8 +49,8 @@ class LoginHistoryRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   LoginHistoryRequest copyWith({
-    int limit,
-    bool loginHistory,
+    int? limit,
+    bool? loginHistory,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -63,5 +63,5 @@ class LoginHistoryRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

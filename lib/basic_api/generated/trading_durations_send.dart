@@ -29,10 +29,10 @@ class TradingDurationsRequest extends Request {
       );
 
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
-  final String landingCompany;
+  final String? landingCompany;
 
   /// Must be `true`
-  final bool tradingDurations;
+  final bool? tradingDurations;
 
   /// Converts this instance to JSON
   @override
@@ -40,7 +40,7 @@ class TradingDurationsRequest extends Request {
         'landing_company': landingCompany,
         'trading_durations': tradingDurations == null
             ? null
-            : tradingDurations
+            : tradingDurations!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -50,8 +50,8 @@ class TradingDurationsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TradingDurationsRequest copyWith({
-    String landingCompany,
-    bool tradingDurations,
+    String? landingCompany,
+    bool? tradingDurations,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -64,5 +64,5 @@ class TradingDurationsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

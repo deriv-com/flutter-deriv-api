@@ -39,16 +39,16 @@ class TicksHistoryResponse extends Response {
       );
 
   /// Array of OHLC (open/high/low/close) price values for the given time (only for style=`candles`)
-  final List<Map<String, dynamic>> candles;
+  final List<Map<String, dynamic>>? candles;
 
   /// Historic tick data for a given symbol. Note: this will always return the latest possible set of ticks with accordance to the parameters specified.
-  final Map<String, dynamic> history;
+  final Map<String, dynamic>? history;
 
   /// Indicates the number of decimal points that the returned amounts must be displayed with
-  final num pipSize;
+  final num? pipSize;
 
   /// For subscription requests only.
-  final Map<String, dynamic> subscription;
+  final Map<String, dynamic>? subscription;
 
   /// Converts this instance to JSON
   @override
@@ -66,10 +66,10 @@ class TicksHistoryResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   TicksHistoryResponse copyWith({
-    List<Map<String, dynamic>> candles,
-    Map<String, dynamic> history,
-    num pipSize,
-    Map<String, dynamic> subscription,
+    List<Map<String, dynamic>>? candles,
+    Map<String, dynamic>? history,
+    num? pipSize,
+    Map<String, dynamic>? subscription,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -88,5 +88,5 @@ class TicksHistoryResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

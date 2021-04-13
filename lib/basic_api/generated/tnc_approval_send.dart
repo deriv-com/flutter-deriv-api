@@ -28,17 +28,17 @@ class TncApprovalRequest extends Request {
       );
 
   /// Must be `true`
-  final bool tncApproval;
+  final bool? tncApproval;
 
   /// [Optional] For `ASK_UK_FUNDS_PROTECTION` in `cashier`.
-  final int ukgcFundsProtection;
+  final int? ukgcFundsProtection;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'tnc_approval': tncApproval == null
             ? null
-            : tncApproval
+            : tncApproval!
                 ? 1
                 : 0,
         'ukgc_funds_protection': ukgcFundsProtection,
@@ -49,8 +49,8 @@ class TncApprovalRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TncApprovalRequest copyWith({
-    bool tncApproval,
-    int ukgcFundsProtection,
+    bool? tncApproval,
+    int? ukgcFundsProtection,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -63,5 +63,5 @@ class TncApprovalRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

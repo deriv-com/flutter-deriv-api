@@ -39,22 +39,22 @@ class PaymentagentTransferRequest extends Request {
       );
 
   /// The amount to transfer.
-  final num amount;
+  final num? amount;
 
   /// Currency code.
-  final String currency;
+  final String? currency;
 
   /// [Optional] Remarks about the transfer.
-  final String description;
+  final String? description;
 
   /// [Optional] If set to `true`, just do validation.
-  final bool dryRun;
+  final bool? dryRun;
 
   /// Must be `true`
-  final bool paymentagentTransfer;
+  final bool? paymentagentTransfer;
 
   /// The loginid of the recipient account.
-  final String transferTo;
+  final String? transferTo;
 
   /// Converts this instance to JSON
   @override
@@ -64,12 +64,12 @@ class PaymentagentTransferRequest extends Request {
         'description': description,
         'dry_run': dryRun == null
             ? null
-            : dryRun
+            : dryRun!
                 ? 1
                 : 0,
         'paymentagent_transfer': paymentagentTransfer == null
             ? null
-            : paymentagentTransfer
+            : paymentagentTransfer!
                 ? 1
                 : 0,
         'transfer_to': transferTo,
@@ -80,12 +80,12 @@ class PaymentagentTransferRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   PaymentagentTransferRequest copyWith({
-    num amount,
-    String currency,
-    String description,
-    bool dryRun,
-    bool paymentagentTransfer,
-    String transferTo,
+    num? amount,
+    String? currency,
+    String? description,
+    bool? dryRun,
+    bool? paymentagentTransfer,
+    String? transferTo,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -102,5 +102,5 @@ class PaymentagentTransferRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

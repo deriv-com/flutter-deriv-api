@@ -38,25 +38,25 @@ class StatementRequest extends Request {
       );
 
   /// [Optional] To filter the statement according to the type of transaction.
-  final String actionType;
+  final String? actionType;
 
   /// [Optional] Start date (epoch)
-  final int dateFrom;
+  final int? dateFrom;
 
   /// [Optional] End date (epoch)
-  final int dateTo;
+  final int? dateTo;
 
   /// [Optional] If set to `true`, will return full contracts description.
-  final bool description;
+  final bool? description;
 
   /// [Optional] Maximum number of transactions to receive.
-  final num limit;
+  final num? limit;
 
   /// [Optional] Number of transactions to skip.
-  final num offset;
+  final num? offset;
 
   /// Must be `true`
-  final bool statement;
+  final bool? statement;
 
   /// Converts this instance to JSON
   @override
@@ -66,14 +66,14 @@ class StatementRequest extends Request {
         'date_to': dateTo,
         'description': description == null
             ? null
-            : description
+            : description!
                 ? 1
                 : 0,
         'limit': limit,
         'offset': offset,
         'statement': statement == null
             ? null
-            : statement
+            : statement!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -83,13 +83,13 @@ class StatementRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   StatementRequest copyWith({
-    String actionType,
-    int dateFrom,
-    int dateTo,
-    bool description,
-    num limit,
-    num offset,
-    bool statement,
+    String? actionType,
+    int? dateFrom,
+    int? dateTo,
+    bool? description,
+    num? limit,
+    num? offset,
+    bool? statement,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -107,5 +107,5 @@ class StatementRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

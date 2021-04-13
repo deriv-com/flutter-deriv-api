@@ -12,11 +12,11 @@ import 'exceptions/contract_operations_exception.dart';
 class SellContract extends SellContractModel {
   /// Initializes
   SellContract({
-    double balanceAfter,
-    int contractId,
-    int referenceId,
-    double soldFor,
-    int transactionId,
+    double? balanceAfter,
+    int? contractId,
+    int? referenceId,
+    double? soldFor,
+    int? transactionId,
   }) : super(
           balanceAfter: balanceAfter,
           contractId: contractId,
@@ -34,17 +34,18 @@ class SellContract extends SellContractModel {
         transactionId: json['transaction_id'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Sells a contract with parameters specified in [SellRequest].
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   static Future<SellContract> sellContract(SellRequest request) async {
-    final SellResponse response = await _api.call(request: request);
+    final SellResponse response =
+        await _api!.call<SellResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -55,15 +56,15 @@ class SellContract extends SellContractModel {
   ///
   /// Throws [ContractOperationException] if API response contains an error
   static Future<SellExpiredContractModel> sellExpiredContracts([
-    SellExpiredRequest request,
+    SellExpiredRequest? request,
   ]) async {
-    final SellExpiredResponse response = await _api.call(
+    final SellExpiredResponse response = await _api!.call<SellExpiredResponse>(
       request: request ?? const SellExpiredRequest(),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -72,11 +73,11 @@ class SellContract extends SellContractModel {
 
   /// Generates a copy of instance with given parameters
   SellContract copyWith({
-    double balanceAfter,
-    int contractId,
-    int referenceId,
-    double soldFor,
-    int transactionId,
+    double? balanceAfter,
+    int? contractId,
+    int? referenceId,
+    double? soldFor,
+    int? transactionId,
   }) =>
       SellContract(
         balanceAfter: balanceAfter ?? this.balanceAfter,

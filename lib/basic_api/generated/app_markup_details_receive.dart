@@ -30,7 +30,7 @@ class AppMarkupDetailsResponse extends Response {
       );
 
   /// App Markup transaction details
-  final Map<String, dynamic> appMarkupDetails;
+  final Map<String, dynamic>? appMarkupDetails;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class AppMarkupDetailsResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   AppMarkupDetailsResponse copyWith({
-    Map<String, dynamic> appMarkupDetails,
+    Map<String, dynamic>? appMarkupDetails,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class AppMarkupDetailsResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

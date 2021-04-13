@@ -28,17 +28,17 @@ class AssetIndexRequest extends Request {
       );
 
   /// Must be `true`
-  final bool assetIndex;
+  final bool? assetIndex;
 
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
-  final String landingCompany;
+  final String? landingCompany;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'asset_index': assetIndex == null
             ? null
-            : assetIndex
+            : assetIndex!
                 ? 1
                 : 0,
         'landing_company': landingCompany,
@@ -49,8 +49,8 @@ class AssetIndexRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   AssetIndexRequest copyWith({
-    bool assetIndex,
-    String landingCompany,
+    bool? assetIndex,
+    String? landingCompany,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -63,5 +63,5 @@ class AssetIndexRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

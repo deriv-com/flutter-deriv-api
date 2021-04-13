@@ -29,7 +29,7 @@ class LogoutResponse extends Response {
       );
 
   /// The result of logout request which is 1
-  final int logout;
+  final int? logout;
 
   /// Converts this instance to JSON
   @override
@@ -44,7 +44,7 @@ class LogoutResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   LogoutResponse copyWith({
-    int logout,
+    int? logout,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -60,5 +60,5 @@ class LogoutResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

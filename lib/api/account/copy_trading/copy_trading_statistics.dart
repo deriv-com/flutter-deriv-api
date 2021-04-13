@@ -13,18 +13,18 @@ import 'exceptions/copy_trading_exception.dart';
 class CopyTradingStatistics extends CopyTradingStatisticsModel {
   /// Initializes
   CopyTradingStatistics({
-    DateTime activeSince,
-    int avgDuration,
-    double avgLoss,
-    double avgProfit,
-    int copiers,
-    double last12monthsProfitableTrades,
-    List<ProfitableTradeModel> monthlyProfitableTrades,
-    double performanceProbability,
-    int totalTrades,
-    List<MarketTradesBreakdownModel> tradesBreakdown,
-    double tradesProfitable,
-    List<ProfitableTradeModel> yearlyProfitableTrades,
+    DateTime? activeSince,
+    int? avgDuration,
+    double? avgLoss,
+    double? avgProfit,
+    int? copiers,
+    double? last12monthsProfitableTrades,
+    List<ProfitableTradeModel?>? monthlyProfitableTrades,
+    double? performanceProbability,
+    int? totalTrades,
+    List<MarketTradesBreakdownModel?>? tradesBreakdown,
+    double? tradesProfitable,
+    List<ProfitableTradeModel?>? yearlyProfitableTrades,
   }) : super(
           activeSince: activeSince,
           avgDuration: avgDuration,
@@ -70,7 +70,7 @@ class CopyTradingStatistics extends CopyTradingStatisticsModel {
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the copy trading statistics for given `traderId` in [request]
   ///
@@ -78,13 +78,13 @@ class CopyTradingStatistics extends CopyTradingStatisticsModel {
   static Future<CopyTradingStatistics> fetchStatistics(
     CopytradingStatisticsRequest request,
   ) async {
-    final CopytradingStatisticsResponse response = await _api.call(
+    final CopytradingStatisticsResponse response = await _api!.call<CopytradingStatisticsResponse>(
       request: request,
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           CopyTradingException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -93,18 +93,18 @@ class CopyTradingStatistics extends CopyTradingStatisticsModel {
 
   /// Creates a copy of instance with given parameters
   CopyTradingStatistics copyWith({
-    DateTime activeSince,
-    int avgDuration,
-    double avgLoss,
-    double avgProfit,
-    int copiers,
-    double last12monthsProfitableTrades,
-    List<ProfitableTradeModel> monthlyProfitableTrades,
-    double performanceProbability,
-    int totalTrades,
-    List<MarketTradesBreakdownModel> tradesBreakdown,
-    double tradesProfitable,
-    List<ProfitableTradeModel> yearlyProfitableTrades,
+    DateTime? activeSince,
+    int? avgDuration,
+    double? avgLoss,
+    double? avgProfit,
+    int? copiers,
+    double? last12monthsProfitableTrades,
+    List<ProfitableTradeModel>? monthlyProfitableTrades,
+    double? performanceProbability,
+    int? totalTrades,
+    List<MarketTradesBreakdownModel>? tradesBreakdown,
+    double? tradesProfitable,
+    List<ProfitableTradeModel>? yearlyProfitableTrades,
   }) =>
       CopyTradingStatistics(
         activeSince: activeSince ?? this.activeSince,

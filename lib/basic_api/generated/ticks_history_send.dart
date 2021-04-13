@@ -41,30 +41,30 @@ class TicksHistoryRequest extends Request {
       );
 
   /// [Optional] 1 - if the market is closed at the end time, or license limit is before end time, adjust interval backwards to compensate.
-  final int adjustStartTime;
+  final int? adjustStartTime;
 
   /// [Optional] An upper limit on ticks to receive.
-  final int count;
+  final int? count;
 
   /// Epoch value representing the latest boundary of the returned ticks. If `latest` is specified, this will be the latest available timestamp.
-  final String end;
+  final String? end;
 
   /// [Optional] Only applicable for style: `candles`. Candle time-dimension width setting. (default: `60`).
-  final int granularity;
+  final int? granularity;
 
   /// [Optional] Epoch value representing the earliest boundary of the returned ticks.
   /// - For `"style": "ticks"`: this will default to 1 day ago.
   /// - For `"style": "candles"`: it will default to 1 day ago if count or granularity is undefined.
-  final int start;
+  final int? start;
 
   /// [Optional] The tick-output style.
-  final String style;
+  final String? style;
 
   /// [Optional] `true` - to send updates whenever a new tick is received.
-  final bool subscribe;
+  final bool? subscribe;
 
   /// Short symbol name (obtained from the `active_symbols` call).
-  final String ticksHistory;
+  final String? ticksHistory;
 
   /// Converts this instance to JSON
   @override
@@ -77,7 +77,7 @@ class TicksHistoryRequest extends Request {
         'style': style,
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'ticks_history': ticksHistory,
@@ -88,14 +88,14 @@ class TicksHistoryRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TicksHistoryRequest copyWith({
-    int adjustStartTime,
-    int count,
-    String end,
-    int granularity,
-    int start,
-    String style,
-    bool subscribe,
-    String ticksHistory,
+    int? adjustStartTime,
+    int? count,
+    String? end,
+    int? granularity,
+    int? start,
+    String? style,
+    bool? subscribe,
+    String? ticksHistory,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -114,5 +114,5 @@ class TicksHistoryRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

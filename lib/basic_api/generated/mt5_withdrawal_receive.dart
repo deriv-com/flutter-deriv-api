@@ -32,10 +32,10 @@ class Mt5WithdrawalResponse extends Response {
       );
 
   /// Deposit reference ID of Binary account.
-  final int binaryTransactionId;
+  final int? binaryTransactionId;
 
   /// `1` on success
-  final int mt5Withdrawal;
+  final int? mt5Withdrawal;
 
   /// Converts this instance to JSON
   @override
@@ -51,8 +51,8 @@ class Mt5WithdrawalResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   Mt5WithdrawalResponse copyWith({
-    int binaryTransactionId,
-    int mt5Withdrawal,
+    int? binaryTransactionId,
+    int? mt5Withdrawal,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -69,5 +69,5 @@ class Mt5WithdrawalResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

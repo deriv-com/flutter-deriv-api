@@ -26,14 +26,14 @@ class RealityCheckRequest extends Request {
       );
 
   /// Must be `true`
-  final bool realityCheck;
+  final bool? realityCheck;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'reality_check': realityCheck == null
             ? null
-            : realityCheck
+            : realityCheck!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -43,7 +43,7 @@ class RealityCheckRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   RealityCheckRequest copyWith({
-    bool realityCheck,
+    bool? realityCheck,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -55,5 +55,5 @@ class RealityCheckRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -35,34 +35,34 @@ class P2pAdvertUpdateRequest extends Request {
       );
 
   /// [Optional] If set to `true`, permanently deletes the advert.
-  final bool delete;
+  final bool? delete;
 
   /// The unique identifier for this advert.
-  final String id;
+  final String? id;
 
   /// [Optional] Activate or deactivate the advert.
-  final bool isActive;
+  final bool? isActive;
 
   /// Must be `true`
-  final bool p2pAdvertUpdate;
+  final bool? p2pAdvertUpdate;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'delete': delete == null
             ? null
-            : delete
+            : delete!
                 ? 1
                 : 0,
         'id': id,
         'is_active': isActive == null
             ? null
-            : isActive
+            : isActive!
                 ? 1
                 : 0,
         'p2p_advert_update': p2pAdvertUpdate == null
             ? null
-            : p2pAdvertUpdate
+            : p2pAdvertUpdate!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -72,10 +72,10 @@ class P2pAdvertUpdateRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertUpdateRequest copyWith({
-    bool delete,
-    String id,
-    bool isActive,
-    bool p2pAdvertUpdate,
+    bool? delete,
+    String? id,
+    bool? isActive,
+    bool? p2pAdvertUpdate,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -90,5 +90,5 @@ class P2pAdvertUpdateRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

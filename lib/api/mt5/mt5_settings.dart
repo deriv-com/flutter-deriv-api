@@ -10,21 +10,21 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class MT5Settings extends MT5SettingsModel {
   /// Initializes
   MT5Settings({
-    String address,
-    String balance,
-    String city,
-    String company,
-    String country,
-    String currency,
-    String email,
-    String group,
-    int leverage,
-    String login,
-    String name,
-    String phone,
-    String phonePassword,
-    String state,
-    String zipCode,
+    String? address,
+    String? balance,
+    String? city,
+    String? company,
+    String? country,
+    String? currency,
+    String? email,
+    String? group,
+    int? leverage,
+    String? login,
+    String? name,
+    String? phone,
+    String? phonePassword,
+    String? state,
+    String? zipCode,
   }) : super(
           address: address,
           balance: balance,
@@ -62,25 +62,25 @@ class MT5Settings extends MT5SettingsModel {
         zipCode: json['zipCode'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   MT5Settings copyWith({
-    String address,
-    String balance,
-    String city,
-    String company,
-    String country,
-    String currency,
-    String email,
-    String group,
-    int leverage,
-    String login,
-    String name,
-    String phone,
-    String phonePassword,
-    String state,
-    String zipCode,
+    String? address,
+    String? balance,
+    String? city,
+    String? company,
+    String? country,
+    String? currency,
+    String? email,
+    String? group,
+    int? leverage,
+    String? login,
+    String? name,
+    String? phone,
+    String? phonePassword,
+    String? state,
+    String? zipCode,
   }) =>
       MT5Settings(
         address: address ?? this.address,
@@ -107,11 +107,11 @@ class MT5Settings extends MT5SettingsModel {
   static Future<MT5Settings> fetchSettings(
     Mt5GetSettingsRequest request,
   ) async {
-    final Mt5GetSettingsResponse response = await _api.call(request: request);
+    final Mt5GetSettingsResponse response = await _api!.call<Mt5GetSettingsResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 

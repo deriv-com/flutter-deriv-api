@@ -31,10 +31,10 @@ class P2pOrderConfirmRequest extends Request {
       );
 
   /// The unique identifier for this order.
-  final String id;
+  final String? id;
 
   /// Must be `true`
-  final bool p2pOrderConfirm;
+  final bool? p2pOrderConfirm;
 
   /// Converts this instance to JSON
   @override
@@ -42,7 +42,7 @@ class P2pOrderConfirmRequest extends Request {
         'id': id,
         'p2p_order_confirm': p2pOrderConfirm == null
             ? null
-            : p2pOrderConfirm
+            : p2pOrderConfirm!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -52,8 +52,8 @@ class P2pOrderConfirmRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pOrderConfirmRequest copyWith({
-    String id,
-    bool p2pOrderConfirm,
+    String? id,
+    bool? p2pOrderConfirm,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -66,5 +66,5 @@ class P2pOrderConfirmRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

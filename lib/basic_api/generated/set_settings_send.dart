@@ -72,73 +72,73 @@ class SetSettingsRequest extends Request {
       );
 
   /// [Optional] Purpose and reason for requesting the account opening. Only applicable for real money account. Required for clients that have not set it yet. Can only be set once.
-  final String accountOpeningReason;
+  final String? accountOpeningReason;
 
   /// [Optional] Note: not applicable for virtual account. Required field for real money account.
-  final String addressCity;
+  final String? addressCity;
 
   /// [Optional] Note: not applicable for virtual account. Required field for real money account.
-  final String addressLine1;
+  final String? addressLine1;
 
   /// [Optional] Note: not applicable for virtual account. Optional field for real money account.
-  final String addressLine2;
+  final String? addressLine2;
 
   /// [Optional] Note: not applicable for virtual account. Optional field for real money account.
-  final String addressPostcode;
+  final String? addressPostcode;
 
   /// [Optional] Note: not applicable for virtual account. Optional field for real money account.
-  final String addressState;
+  final String? addressState;
 
   /// [Optional] Boolean value `true` or `false`, indicating permission to allow others to follow your trades. Note: not applicable for Virtual account. Only allow for real money account.
-  final bool allowCopiers;
+  final bool? allowCopiers;
 
   /// [Optional] Country of legal citizenship, 2-letter country code.
-  final String citizen;
+  final String? citizen;
 
   /// [Optional] Date of birth format: yyyy-mm-dd (can only be changed on unauthenticated svg accounts).
-  final String dateOfBirth;
+  final String? dateOfBirth;
 
   /// [Optional] Boolean value `true` or `false`, indicating permission to use email address for any contact which may include marketing
-  final bool emailConsent;
+  final bool? emailConsent;
 
   /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
-  final String firstName;
+  final String? firstName;
 
   /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
-  final String lastName;
+  final String? lastName;
 
   /// [Optional] Indicates client's self-declaration of not being a PEP/RCA (Politically Exposed Person/Relatives and Close Associates). Effective for real accounts only.
-  final int nonPepDeclaration;
+  final int? nonPepDeclaration;
 
   /// [Optional] Note: not applicable for virtual account. Required field for real money account. Starting with `+` followed by 8-35 digits, allowing hyphens or space.
-  final String phone;
+  final String? phone;
 
   /// [Optional] Place of birth, 2-letter country code.
-  final String placeOfBirth;
+  final String? placeOfBirth;
 
   /// [Optional] Required when client wants to be treated as professional. Applicable for financial accounts only.
-  final int requestProfessionalStatus;
+  final int? requestProfessionalStatus;
 
   /// [Optional] 2-letter country code. Note: not applicable for real money account. Only allow for Virtual account without residence set.
-  final String residence;
+  final String? residence;
 
   /// [Optional] Accept any value in enum list (can only be changed on unauthenticated svg accounts).
-  final String salutation;
+  final String? salutation;
 
   /// [Optional] Answer to secret question, within 4-50 characters. Required for new account and existing client details will be used if client opens another account.
-  final String secretAnswer;
+  final String? secretAnswer;
 
   /// [Optional] Accept any value in enum list. Required for new account and existing client details will be used if client opens another account.
-  final String secretQuestion;
+  final String? secretQuestion;
 
   /// Must be `true`
-  final bool setSettings;
+  final bool? setSettings;
 
   /// [Optional] Tax identification number. Only applicable for real money account. Required for maltainvest landing company.
-  final String taxIdentificationNumber;
+  final String? taxIdentificationNumber;
 
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for maltainvest landing company.
-  final String taxResidence;
+  final String? taxResidence;
 
   /// Converts this instance to JSON
   @override
@@ -151,14 +151,14 @@ class SetSettingsRequest extends Request {
         'address_state': addressState,
         'allow_copiers': allowCopiers == null
             ? null
-            : allowCopiers
+            : allowCopiers!
                 ? 1
                 : 0,
         'citizen': citizen,
         'date_of_birth': dateOfBirth,
         'email_consent': emailConsent == null
             ? null
-            : emailConsent
+            : emailConsent!
                 ? 1
                 : 0,
         'first_name': firstName,
@@ -173,7 +173,7 @@ class SetSettingsRequest extends Request {
         'secret_question': secretQuestion,
         'set_settings': setSettings == null
             ? null
-            : setSettings
+            : setSettings!
                 ? 1
                 : 0,
         'tax_identification_number': taxIdentificationNumber,
@@ -185,29 +185,29 @@ class SetSettingsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   SetSettingsRequest copyWith({
-    String accountOpeningReason,
-    String addressCity,
-    String addressLine1,
-    String addressLine2,
-    String addressPostcode,
-    String addressState,
-    bool allowCopiers,
-    String citizen,
-    String dateOfBirth,
-    bool emailConsent,
-    String firstName,
-    String lastName,
-    int nonPepDeclaration,
-    String phone,
-    String placeOfBirth,
-    int requestProfessionalStatus,
-    String residence,
-    String salutation,
-    String secretAnswer,
-    String secretQuestion,
-    bool setSettings,
-    String taxIdentificationNumber,
-    String taxResidence,
+    String? accountOpeningReason,
+    String? addressCity,
+    String? addressLine1,
+    String? addressLine2,
+    String? addressPostcode,
+    String? addressState,
+    bool? allowCopiers,
+    String? citizen,
+    String? dateOfBirth,
+    bool? emailConsent,
+    String? firstName,
+    String? lastName,
+    int? nonPepDeclaration,
+    String? phone,
+    String? placeOfBirth,
+    int? requestProfessionalStatus,
+    String? residence,
+    String? salutation,
+    String? secretAnswer,
+    String? secretQuestion,
+    bool? setSettings,
+    String? taxIdentificationNumber,
+    String? taxResidence,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -243,5 +243,5 @@ class SetSettingsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

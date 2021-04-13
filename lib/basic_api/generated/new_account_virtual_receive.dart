@@ -30,7 +30,7 @@ class NewAccountVirtualResponse extends Response {
       );
 
   /// New virtual-money account details
-  final Map<String, dynamic> newAccountVirtual;
+  final Map<String, dynamic>? newAccountVirtual;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class NewAccountVirtualResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   NewAccountVirtualResponse copyWith({
-    Map<String, dynamic> newAccountVirtual,
+    Map<String, dynamic>? newAccountVirtual,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class NewAccountVirtualResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

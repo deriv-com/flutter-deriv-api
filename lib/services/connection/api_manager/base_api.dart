@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -21,33 +20,33 @@ abstract class BaseAPI {
 
   /// Connects to API
   Future<void> connect(
-    ConnectionInformation connectionInformation, {
-    ConnectionCallback onDone,
-    ConnectionCallback onOpen,
-    ConnectionCallback onError,
+    ConnectionInformation? connectionInformation, {
+    ConnectionCallback? onDone,
+    ConnectionCallback? onOpen,
+    ConnectionCallback? onError,
   });
 
   /// Adds request to stream channel
   void addToChannel(Map<String, dynamic> request);
 
   /// Calls a API method by [request]
-  Future<Response> call({@required Request request});
+  Future<T> call<T>({required Request request});
 
   /// Subscribe to a [request]
   /// [comparePredicate] indicates compare condition for current [request] and [pendingRequest]s
-  Stream<Response> subscribe({
-    @required Request request,
-    RequestCompareFunction comparePredicate,
+  Stream<Response>? subscribe({
+    required Request request,
+    RequestCompareFunction? comparePredicate,
   });
 
   /// Unsubscribe with a specific [subscriptionId]
   Future<ForgetResponse> unsubscribe({
-    @required String subscriptionId,
+    required String? subscriptionId,
   });
 
   /// Unsubscribe to multiple [method]s all at once
-  Future<ForgetAllResponse> unsubscribeAll({
-    @required ForgetStreamType method,
+  Future<ForgetAllResponse?> unsubscribeAll({
+    required ForgetStreamType method,
   });
 
   /// Disconnects from API

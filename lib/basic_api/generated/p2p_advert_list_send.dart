@@ -47,34 +47,34 @@ class P2pAdvertListRequest extends Request {
       );
 
   /// [Optional] ID of the advertiser to list adverts for.
-  final String advertiserId;
+  final String? advertiserId;
 
   /// [Optional] Search for advertiser by name. Partial matches will be returned.
-  final String advertiserName;
+  final String? advertiserName;
 
   /// [Optional] How much to buy or sell, used to calculate prices.
-  final num amount;
+  final num? amount;
 
   /// [Optional] Filter the adverts by `counterparty_type`.
-  final String counterpartyType;
+  final String? counterpartyType;
 
   /// [Optional] Used for paging.
-  final int limit;
+  final int? limit;
 
   /// [Optional] Currency to conduct payment transaction in, defaults to the main currency for the client's country.
-  final String localCurrency;
+  final String? localCurrency;
 
   /// [Optional] Used for paging.
-  final int offset;
+  final int? offset;
 
   /// Must be `true`
-  final bool p2pAdvertList;
+  final bool? p2pAdvertList;
 
   /// [Optional] How the results are sorted: best rate, or advertiser completion rate.
-  final String sortBy;
+  final String? sortBy;
 
   /// [Optional] If set to `true`, ads that exceed this account's balance or turnover limits will not be shown.
-  final bool useClientLimits;
+  final bool? useClientLimits;
 
   /// Converts this instance to JSON
   @override
@@ -88,13 +88,13 @@ class P2pAdvertListRequest extends Request {
         'offset': offset,
         'p2p_advert_list': p2pAdvertList == null
             ? null
-            : p2pAdvertList
+            : p2pAdvertList!
                 ? 1
                 : 0,
         'sort_by': sortBy,
         'use_client_limits': useClientLimits == null
             ? null
-            : useClientLimits
+            : useClientLimits!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -104,16 +104,16 @@ class P2pAdvertListRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertListRequest copyWith({
-    String advertiserId,
-    String advertiserName,
-    num amount,
-    String counterpartyType,
-    int limit,
-    String localCurrency,
-    int offset,
-    bool p2pAdvertList,
-    String sortBy,
-    bool useClientLimits,
+    String? advertiserId,
+    String? advertiserName,
+    num? amount,
+    String? counterpartyType,
+    int? limit,
+    String? localCurrency,
+    int? offset,
+    bool? p2pAdvertList,
+    String? sortBy,
+    bool? useClientLimits,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -134,5 +134,5 @@ class P2pAdvertListRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

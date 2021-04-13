@@ -29,7 +29,7 @@ class PingResponse extends Response {
       );
 
   /// Will return 'pong'
-  final String ping;
+  final String? ping;
 
   /// Converts this instance to JSON
   @override
@@ -44,7 +44,7 @@ class PingResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   PingResponse copyWith({
-    String ping,
+    String? ping,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -60,5 +60,5 @@ class PingResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

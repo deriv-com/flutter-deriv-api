@@ -30,7 +30,7 @@ class GetSelfExclusionResponse extends Response {
       );
 
   /// List of values set for self exclusion.
-  final Map<String, dynamic> getSelfExclusion;
+  final Map<String, dynamic>? getSelfExclusion;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class GetSelfExclusionResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   GetSelfExclusionResponse copyWith({
-    Map<String, dynamic> getSelfExclusion,
+    Map<String, dynamic>? getSelfExclusion,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class GetSelfExclusionResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

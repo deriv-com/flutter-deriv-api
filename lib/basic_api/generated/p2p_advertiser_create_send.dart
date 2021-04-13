@@ -39,22 +39,22 @@ class P2pAdvertiserCreateRequest extends Request {
       );
 
   /// [Optional] Advertiser's contact information, to be used as a default for new sell adverts.
-  final String contactInfo;
+  final String? contactInfo;
 
   /// [Optional] Default description that can be used every time an advert is created.
-  final String defaultAdvertDescription;
+  final String? defaultAdvertDescription;
 
   /// The advertiser's displayed name.
-  final String name;
+  final String? name;
 
   /// Must be `true`
-  final bool p2pAdvertiserCreate;
+  final bool? p2pAdvertiserCreate;
 
   /// [Optional] Advertiser's payment information, to be used as a default for new sell adverts.
-  final String paymentInfo;
+  final String? paymentInfo;
 
   /// [Optional] If set to `true`, will send updates whenever there is an update to advertiser
-  final bool subscribe;
+  final bool? subscribe;
 
   /// Converts this instance to JSON
   @override
@@ -64,13 +64,13 @@ class P2pAdvertiserCreateRequest extends Request {
         'name': name,
         'p2p_advertiser_create': p2pAdvertiserCreate == null
             ? null
-            : p2pAdvertiserCreate
+            : p2pAdvertiserCreate!
                 ? 1
                 : 0,
         'payment_info': paymentInfo,
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -80,12 +80,12 @@ class P2pAdvertiserCreateRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertiserCreateRequest copyWith({
-    String contactInfo,
-    String defaultAdvertDescription,
-    String name,
-    bool p2pAdvertiserCreate,
-    String paymentInfo,
-    bool subscribe,
+    String? contactInfo,
+    String? defaultAdvertDescription,
+    String? name,
+    bool? p2pAdvertiserCreate,
+    String? paymentInfo,
+    bool? subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -103,5 +103,5 @@ class P2pAdvertiserCreateRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

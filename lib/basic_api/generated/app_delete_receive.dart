@@ -30,7 +30,7 @@ class AppDeleteResponse extends Response {
       );
 
   /// 1 on success
-  final int appDelete;
+  final int? appDelete;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class AppDeleteResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   AppDeleteResponse copyWith({
-    int appDelete,
+    int? appDelete,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class AppDeleteResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

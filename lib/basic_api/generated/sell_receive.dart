@@ -29,7 +29,7 @@ class SellResponse extends Response {
       );
 
   /// Receipt for the transaction
-  final Map<String, dynamic> sell;
+  final Map<String, dynamic>? sell;
 
   /// Converts this instance to JSON
   @override
@@ -44,7 +44,7 @@ class SellResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   SellResponse copyWith({
-    Map<String, dynamic> sell,
+    Map<String, dynamic>? sell,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -60,5 +60,5 @@ class SellResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

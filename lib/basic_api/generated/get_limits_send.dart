@@ -25,14 +25,14 @@ class GetLimitsRequest extends Request {
       );
 
   /// Must be `true`
-  final bool getLimits;
+  final bool? getLimits;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'get_limits': getLimits == null
             ? null
-            : getLimits
+            : getLimits!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -42,7 +42,7 @@ class GetLimitsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   GetLimitsRequest copyWith({
-    bool getLimits,
+    bool? getLimits,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -54,5 +54,5 @@ class GetLimitsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

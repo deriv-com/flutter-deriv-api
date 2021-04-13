@@ -30,7 +30,7 @@ class DocumentUploadResponse extends Response {
       );
 
   /// Details of the uploaded documents.
-  final Map<String, dynamic> documentUpload;
+  final Map<String, dynamic>? documentUpload;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class DocumentUploadResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   DocumentUploadResponse copyWith({
-    Map<String, dynamic> documentUpload,
+    Map<String, dynamic>? documentUpload,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class DocumentUploadResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -11,8 +11,8 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class Statement extends StatementModel {
   /// Initializes
   Statement({
-    int count,
-    List<StatementTransactionModel> transactions,
+    int? count,
+    List<StatementTransactionModel?>? transactions,
   }) : super(
           count: count,
           transactions: transactions,
@@ -28,12 +28,12 @@ class Statement extends StatementModel {
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   Statement copyWith({
-    int count,
-    List<StatementTransactionModel> transactions,
+    int? count,
+    List<StatementTransactionModel>? transactions,
   }) =>
       Statement(
         count: count ?? this.count,
@@ -45,11 +45,11 @@ class Statement extends StatementModel {
   /// For parameters information refer to [StatementRequest].
   /// Throws a [StatementException] if API response contains an error
   static Future<Statement> fetch(StatementRequest request) async {
-    final StatementResponse response = await _api.call(request: request);
+    final StatementResponse response = await _api!.call<StatementResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           StatementException(baseExceptionModel: baseExceptionModel),
     );
 

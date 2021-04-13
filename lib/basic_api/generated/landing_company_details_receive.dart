@@ -31,7 +31,7 @@ class LandingCompanyDetailsResponse extends Response {
       );
 
   /// The detailed information of the requested landing company.
-  final Map<String, dynamic> landingCompanyDetails;
+  final Map<String, dynamic>? landingCompanyDetails;
 
   /// Converts this instance to JSON
   @override
@@ -46,7 +46,7 @@ class LandingCompanyDetailsResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   LandingCompanyDetailsResponse copyWith({
-    Map<String, dynamic> landingCompanyDetails,
+    Map<String, dynamic>? landingCompanyDetails,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -63,5 +63,5 @@ class LandingCompanyDetailsResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

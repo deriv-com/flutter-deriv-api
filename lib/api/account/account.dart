@@ -5,12 +5,12 @@ import 'package:flutter_deriv_api/helpers/helpers.dart';
 class Account extends AccountModel {
   /// Initializes
   Account({
-    String currency,
-    DateTime excludedUntil,
-    bool isDisabled,
-    bool isVirtual,
-    String landingCompanyName,
-    String loginId,
+    String? currency,
+    DateTime? excludedUntil,
+    bool? isDisabled,
+    bool? isVirtual,
+    String? landingCompanyName,
+    String? loginId,
   }) : super(
           currency: currency,
           excludedUntil: excludedUntil,
@@ -32,16 +32,16 @@ class Account extends AccountModel {
 
   /// Generates a copy of instance with given parameters
   Account copyWith({
-    String currency,
-    int excludedUntil,
-    bool isDisabled,
-    bool isVirtual,
-    String landingCompanyName,
-    String loginId,
+    String? currency,
+    int? excludedUntil,
+    bool? isDisabled,
+    bool? isVirtual,
+    String? landingCompanyName,
+    String? loginId,
   }) =>
       Account(
         currency: currency ?? this.currency,
-        excludedUntil: excludedUntil ?? this.excludedUntil,
+        excludedUntil: excludedUntil as DateTime? ?? this.excludedUntil,
         isDisabled: isDisabled ?? this.isDisabled,
         isVirtual: isVirtual ?? this.isVirtual,
         landingCompanyName: landingCompanyName ?? this.landingCompanyName,

@@ -12,14 +12,14 @@ abstract class PaymentAgentTransferModel extends APIBaseModel {
   });
 
   /// If set to `withdrawalOrTransfer`, transfer success. If set to `dryrun`, dry-run success.
-  final PaymentResult paymentAgentTransfer;
+  final PaymentResult? paymentAgentTransfer;
 
   /// The `transfer_to` client full name
-  final String clientToFullName;
+  final String? clientToFullName;
 
   /// The `transfer_to` client login id
-  final String clientToLoginId;
+  final String? clientToLoginId;
 
   /// Reference ID of transfer performed
-  final int transactionId;
+  final int? transactionId;
 }

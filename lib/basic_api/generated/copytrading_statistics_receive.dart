@@ -31,7 +31,7 @@ class CopytradingStatisticsResponse extends Response {
       );
 
   /// Statistics of the trader
-  final Map<String, dynamic> copytradingStatistics;
+  final Map<String, dynamic>? copytradingStatistics;
 
   /// Converts this instance to JSON
   @override
@@ -46,7 +46,7 @@ class CopytradingStatisticsResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   CopytradingStatisticsResponse copyWith({
-    Map<String, dynamic> copytradingStatistics,
+    Map<String, dynamic>? copytradingStatistics,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -63,5 +63,5 @@ class CopytradingStatisticsResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

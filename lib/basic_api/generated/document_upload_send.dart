@@ -43,28 +43,28 @@ class DocumentUploadRequest extends Request {
       );
 
   /// Document file format
-  final String documentFormat;
+  final String? documentFormat;
 
   /// [Optional] Document ID (required for Passport, Proof of ID and Driver's License)
-  final String documentId;
+  final String? documentId;
 
   /// Document type
-  final String documentType;
+  final String? documentType;
 
   /// Must be `true`
-  final bool documentUpload;
+  final bool? documentUpload;
 
   /// The checksum of the file to be uploaded
-  final String expectedChecksum;
+  final String? expectedChecksum;
 
   /// [Optional] Document expiration date (required for Passport, Proof of ID and Driver's License)
-  final String expirationDate;
+  final String? expirationDate;
 
   /// Document size (should be less than 10MB)
-  final int fileSize;
+  final int? fileSize;
 
   /// [Optional] To determine document side
-  final String pageType;
+  final String? pageType;
 
   /// Converts this instance to JSON
   @override
@@ -74,7 +74,7 @@ class DocumentUploadRequest extends Request {
         'document_type': documentType,
         'document_upload': documentUpload == null
             ? null
-            : documentUpload
+            : documentUpload!
                 ? 1
                 : 0,
         'expected_checksum': expectedChecksum,
@@ -88,14 +88,14 @@ class DocumentUploadRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   DocumentUploadRequest copyWith({
-    String documentFormat,
-    String documentId,
-    String documentType,
-    bool documentUpload,
-    String expectedChecksum,
-    String expirationDate,
-    int fileSize,
-    String pageType,
+    String? documentFormat,
+    String? documentId,
+    String? documentType,
+    bool? documentUpload,
+    String? expectedChecksum,
+    String? expirationDate,
+    int? fileSize,
+    String? pageType,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -114,5 +114,5 @@ class DocumentUploadRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

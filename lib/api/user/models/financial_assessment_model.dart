@@ -28,65 +28,65 @@ abstract class FinancialAssessmentModel extends APIBaseModel {
   });
 
   /// The anticipated account turnover
-  final String accountTurnover;
+  final String? accountTurnover;
 
   /// Binary options trading experience
-  final String binaryOptionsTradingExperience;
+  final String? binaryOptionsTradingExperience;
 
   /// Binary options trading frequency
-  final String binaryOptionsTradingFrequency;
+  final String? binaryOptionsTradingFrequency;
 
   /// CFD Score
-  final int cfdScore;
+  final int? cfdScore;
 
   /// CFDs trading experience
-  final String cfdTradingExperience;
+  final String? cfdTradingExperience;
 
   /// CFDs trading frequency
-  final String cfdTradingFrequency;
+  final String? cfdTradingFrequency;
 
   /// Level of Education
-  final String educationLevel;
+  final String? educationLevel;
 
   /// Industry of Employment
-  final String employmentIndustry;
+  final String? employmentIndustry;
 
   /// Employment Status
-  final String employmentStatus;
+  final String? employmentStatus;
 
   /// Estimated Net Worth
-  final String estimatedWorth;
+  final String? estimatedWorth;
 
   /// Financial Information Score
-  final int financialInformationScore;
+  final int? financialInformationScore;
 
   /// Forex trading experience
-  final String forexTradingExperience;
+  final String? forexTradingExperience;
 
   /// Forex trading frequency
-  final String forexTradingFrequency;
+  final String? forexTradingFrequency;
 
   /// Income Source
-  final String incomeSource;
+  final String? incomeSource;
 
   /// Net Annual Income
-  final String netIncome;
+  final String? netIncome;
 
   /// Occupation
-  final String occupation;
+  final String? occupation;
 
   /// Trading experience in other financial instruments
-  final String otherInstrumentsTradingExperience;
+  final String? otherInstrumentsTradingExperience;
 
   /// Trading frequency in other financial instruments
-  final String otherInstrumentsTradingFrequency;
+  final String? otherInstrumentsTradingFrequency;
 
   /// Source of wealth
-  final String sourceOfWealth;
+  final String? sourceOfWealth;
 
   /// Total Score
-  final int totalScore;
+  final int? totalScore;
 
   /// Trading Experience Score
-  final int tradingScore;
+  final int? tradingScore;
 }

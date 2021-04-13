@@ -25,7 +25,7 @@ class ForgetAllRequest extends Request {
       );
 
   /// Cancel all streams by type. The value can be either a single type e.g. `"ticks"`, or an array of multiple types e.g. `["candles", "ticks"]`.
-  final dynamic forgetAll;
+  final dynamic? forgetAll;
 
   /// Converts this instance to JSON
   @override
@@ -38,7 +38,7 @@ class ForgetAllRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ForgetAllRequest copyWith({
-    dynamic forgetAll,
+    dynamic? forgetAll,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -50,5 +50,5 @@ class ForgetAllRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

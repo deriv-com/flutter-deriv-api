@@ -30,7 +30,7 @@ class CopyStartResponse extends Response {
       );
 
   /// Copy start confirmation. Returns 1 is success.
-  final int copyStart;
+  final int? copyStart;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class CopyStartResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   CopyStartResponse copyWith({
-    int copyStart,
+    int? copyStart,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class CopyStartResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

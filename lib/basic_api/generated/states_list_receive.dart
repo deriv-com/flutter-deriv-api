@@ -33,7 +33,7 @@ class StatesListResponse extends Response {
       );
 
   /// List of states.
-  final List<Map<String, dynamic>> statesList;
+  final List<Map<String, dynamic>>? statesList;
 
   /// Converts this instance to JSON
   @override
@@ -48,7 +48,7 @@ class StatesListResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   StatesListResponse copyWith({
-    List<Map<String, dynamic>> statesList,
+    List<Map<String, dynamic>>? statesList,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -64,5 +64,5 @@ class StatesListResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

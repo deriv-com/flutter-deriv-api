@@ -33,7 +33,7 @@ class OauthAppsResponse extends Response {
       );
 
   /// List of OAuth applications that used for the authorized account.
-  final List<Map<String, dynamic>> oauthApps;
+  final List<Map<String, dynamic>>? oauthApps;
 
   /// Converts this instance to JSON
   @override
@@ -48,7 +48,7 @@ class OauthAppsResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   OauthAppsResponse copyWith({
-    List<Map<String, dynamic>> oauthApps,
+    List<Map<String, dynamic>>? oauthApps,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -64,5 +64,5 @@ class OauthAppsResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

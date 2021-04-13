@@ -37,26 +37,26 @@ class ApiTokenRequest extends Request {
       );
 
   /// Must be `true`
-  final bool apiToken;
+  final bool? apiToken;
 
   /// [Optional] The token to remove.
-  final String deleteToken;
+  final String? deleteToken;
 
   /// [Optional] The name of the created token.
-  final String newToken;
+  final String? newToken;
 
   /// [Optional] List of permission scopes to provide with the token.
-  final List<String> newTokenScopes;
+  final List<String>? newTokenScopes;
 
   /// [Optional] If you set this parameter during token creation, then the token created will only work for the IP address that was used to create the token
-  final bool validForCurrentIpOnly;
+  final bool? validForCurrentIpOnly;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'api_token': apiToken == null
             ? null
-            : apiToken
+            : apiToken!
                 ? 1
                 : 0,
         'delete_token': deleteToken,
@@ -64,7 +64,7 @@ class ApiTokenRequest extends Request {
         'new_token_scopes': newTokenScopes,
         'valid_for_current_ip_only': validForCurrentIpOnly == null
             ? null
-            : validForCurrentIpOnly
+            : validForCurrentIpOnly!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -74,11 +74,11 @@ class ApiTokenRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ApiTokenRequest copyWith({
-    bool apiToken,
-    String deleteToken,
-    String newToken,
-    List<String> newTokenScopes,
-    bool validForCurrentIpOnly,
+    bool? apiToken,
+    String? deleteToken,
+    String? newToken,
+    List<String>? newTokenScopes,
+    bool? validForCurrentIpOnly,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -95,5 +95,5 @@ class ApiTokenRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -30,7 +30,7 @@ class ContractUpdateResponse extends Response {
       );
 
   /// Contains the update status of the request
-  final Map<String, dynamic> contractUpdate;
+  final Map<String, dynamic>? contractUpdate;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class ContractUpdateResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   ContractUpdateResponse copyWith({
-    Map<String, dynamic> contractUpdate,
+    Map<String, dynamic>? contractUpdate,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class ContractUpdateResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

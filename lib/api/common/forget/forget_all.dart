@@ -10,23 +10,23 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class ForgetAll extends ForgetAllModel {
   /// Initializes
   ForgetAll({
-    List<String> cancelledStreams,
+    List<String>? cancelledStreams,
   }) : super(
           cancelledStreams: cancelledStreams,
         );
 
   /// Creates an instance from response
-  factory ForgetAll.fromResponse(ForgetAllResponse response) => ForgetAll(
+  factory ForgetAll.fromResponse(ForgetAllResponse? response) => ForgetAll(
         cancelledStreams: response?.forgetAll
-            ?.map((dynamic item) => item.toString())
-            ?.toList(),
+            .map((dynamic item) => item.toString())
+            .toList(),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   ForgetAll copyWith({
-    List<String> cancelledStreams,
+    List<String>? cancelledStreams,
   }) =>
       ForgetAll(
         cancelledStreams: cancelledStreams ?? this.cancelledStreams,
@@ -39,11 +39,12 @@ class ForgetAll extends ForgetAllModel {
   static Future<ForgetAll> forgetAll(
     ForgetAllRequest request,
   ) async {
-    final ForgetAllResponse response = await _api.call(request: request);
+    final ForgetAllResponse response =
+        await _api!.call<ForgetAllResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ForgetException(baseExceptionModel: baseExceptionModel),
     );
 

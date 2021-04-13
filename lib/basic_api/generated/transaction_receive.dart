@@ -32,10 +32,10 @@ class TransactionResponse extends Response {
       );
 
   /// For subscription requests only.
-  final Map<String, dynamic> subscription;
+  final Map<String, dynamic>? subscription;
 
   /// Realtime stream of user transaction updates.
-  final Map<String, dynamic> transaction;
+  final Map<String, dynamic>? transaction;
 
   /// Converts this instance to JSON
   @override
@@ -51,8 +51,8 @@ class TransactionResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   TransactionResponse copyWith({
-    Map<String, dynamic> subscription,
-    Map<String, dynamic> transaction,
+    Map<String, dynamic>? subscription,
+    Map<String, dynamic>? transaction,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -69,5 +69,5 @@ class TransactionResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

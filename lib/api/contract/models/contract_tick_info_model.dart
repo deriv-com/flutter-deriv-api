@@ -7,9 +7,9 @@ class ContractTickInfoModel extends ContractTickModel {
   ContractTickInfoModel({
     this.flag,
     this.name,
-    DateTime epoch,
-    double tick,
-    String tickDisplayValue,
+    DateTime? epoch,
+    double? tick,
+    String? tickDisplayValue,
   }) : super(
           epoch: epoch,
           tick: tick,
@@ -27,17 +27,17 @@ class ContractTickInfoModel extends ContractTickModel {
       );
 
   /// A flag used to highlight the record in front-end applications
-  final String flag;
+  final String? flag;
 
   /// A short description of the data. It could be a tick or a time associated with the contract.
-  final String name;
+  final String? name;
 
   /// Generates a copy of instance with given parameters
   @override
   ContractTickInfoModel copyWith({
-    DateTime epoch,
-    double tick,
-    String tickDisplayValue,
+    DateTime? epoch,
+    double? tick,
+    String? tickDisplayValue,
   }) =>
       ContractTickInfoModel(
         epoch: epoch ?? this.epoch,

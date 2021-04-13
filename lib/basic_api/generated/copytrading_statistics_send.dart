@@ -31,17 +31,17 @@ class CopytradingStatisticsRequest extends Request {
       );
 
   /// Must be `true`
-  final bool copytradingStatistics;
+  final bool? copytradingStatistics;
 
   /// The ID of the target trader.
-  final String traderId;
+  final String? traderId;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'copytrading_statistics': copytradingStatistics == null
             ? null
-            : copytradingStatistics
+            : copytradingStatistics!
                 ? 1
                 : 0,
         'trader_id': traderId,
@@ -52,8 +52,8 @@ class CopytradingStatisticsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   CopytradingStatisticsRequest copyWith({
-    bool copytradingStatistics,
-    String traderId,
+    bool? copytradingStatistics,
+    String? traderId,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -67,5 +67,5 @@ class CopytradingStatisticsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

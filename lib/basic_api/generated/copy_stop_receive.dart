@@ -30,7 +30,7 @@ class CopyStopResponse extends Response {
       );
 
   /// Copy stopping confirmation. Returns 1 is success.
-  final int copyStop;
+  final int? copyStop;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class CopyStopResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   CopyStopResponse copyWith({
-    int copyStop,
+    int? copyStop,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class CopyStopResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

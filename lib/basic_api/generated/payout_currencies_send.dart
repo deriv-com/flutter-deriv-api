@@ -27,14 +27,14 @@ class PayoutCurrenciesRequest extends Request {
       );
 
   /// Must be `true`
-  final bool payoutCurrencies;
+  final bool? payoutCurrencies;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'payout_currencies': payoutCurrencies == null
             ? null
-            : payoutCurrencies
+            : payoutCurrencies!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -44,7 +44,7 @@ class PayoutCurrenciesRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   PayoutCurrenciesRequest copyWith({
-    bool payoutCurrencies,
+    bool? payoutCurrencies,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -56,5 +56,5 @@ class PayoutCurrenciesRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

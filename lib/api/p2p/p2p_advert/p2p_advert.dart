@@ -1,6 +1,4 @@
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
-import 'package:meta/meta.dart';
-
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_advert_model.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_details_model.dart';
@@ -16,35 +14,35 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class P2PAdvert extends P2PAdvertModel {
   /// Initializes
   P2PAdvert({
-    String accountCurrency,
-    P2PAdvertiserDetailsModel advertiserDetails,
-    double amount,
-    String amountDisplay,
-    String contactInfo,
-    TransactionType counterpartyType,
-    String country,
-    DateTime createdTime,
-    String description,
-    String id,
-    bool isActive,
-    String localCurrency,
-    double maxOrderAmount,
-    String maxOrderAmountDisplay,
-    double maxOrderAmountLimit,
-    String maxOrderAmountLimitDisplay,
-    double minOrderAmount,
-    String minOrderAmountDisplay,
-    double minOrderAmountLimit,
-    String minOrderAmountLimitDisplay,
-    String paymentInfo,
-    PaymentMethod paymentMethod,
-    double price,
-    String priceDisplay,
-    double rate,
-    String rateDisplay,
-    double remainingAmount,
-    String remainingAmountDisplay,
-    TransactionType type,
+    String? accountCurrency,
+    P2PAdvertiserDetailsModel? advertiserDetails,
+    double? amount,
+    String? amountDisplay,
+    String? contactInfo,
+    TransactionType? counterpartyType,
+    String? country,
+    DateTime? createdTime,
+    String? description,
+    String? id,
+    bool? isActive,
+    String? localCurrency,
+    double? maxOrderAmount,
+    String? maxOrderAmountDisplay,
+    double? maxOrderAmountLimit,
+    String? maxOrderAmountLimitDisplay,
+    double? minOrderAmount,
+    String? minOrderAmountDisplay,
+    double? minOrderAmountLimit,
+    String? minOrderAmountLimitDisplay,
+    String? paymentInfo,
+    PaymentMethod? paymentMethod,
+    double? price,
+    String? priceDisplay,
+    double? rate,
+    String? rateDisplay,
+    double? remainingAmount,
+    String? remainingAmountDisplay,
+    TransactionType? type,
   }) : super(
           accountCurrency: accountCurrency,
           advertiserDetails: advertiserDetails,
@@ -123,39 +121,39 @@ class P2PAdvert extends P2PAdvertModel {
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   P2PAdvert copyWith({
-    String accountCurrency,
-    P2PAdvertiserDetailsModel advertiserDetails,
-    double amount,
-    String amountDisplay,
-    String contactInfo,
-    TransactionType counterpartyType,
-    String country,
-    DateTime createdTime,
-    String description,
-    String id,
-    bool isActive,
-    String localCurrency,
-    double maxOrderAmount,
-    String maxOrderAmountDisplay,
-    double maxOrderAmountLimit,
-    String maxOrderAmountLimitDisplay,
-    double minOrderAmount,
-    String minOrderAmountDisplay,
-    double minOrderAmountLimit,
-    String minOrderAmountLimitDisplay,
-    String paymentInfo,
-    PaymentMethod paymentMethod,
-    double price,
-    String priceDisplay,
-    double rate,
-    String rateDisplay,
-    double remainingAmount,
-    String remainingAmountDisplay,
-    TransactionType type,
+    String? accountCurrency,
+    P2PAdvertiserDetailsModel? advertiserDetails,
+    double? amount,
+    String? amountDisplay,
+    String? contactInfo,
+    TransactionType? counterpartyType,
+    String? country,
+    DateTime? createdTime,
+    String? description,
+    String? id,
+    bool? isActive,
+    String? localCurrency,
+    double? maxOrderAmount,
+    String? maxOrderAmountDisplay,
+    double? maxOrderAmountLimit,
+    String? maxOrderAmountLimitDisplay,
+    double? minOrderAmount,
+    String? minOrderAmountDisplay,
+    double? minOrderAmountLimit,
+    String? minOrderAmountLimitDisplay,
+    String? paymentInfo,
+    PaymentMethod? paymentMethod,
+    double? price,
+    String? priceDisplay,
+    double? rate,
+    String? rateDisplay,
+    double? remainingAmount,
+    String? remainingAmountDisplay,
+    TransactionType? type,
   }) =>
       P2PAdvert(
         accountCurrency: accountCurrency ?? this.accountCurrency,
@@ -201,11 +199,12 @@ class P2PAdvert extends P2PAdvertModel {
   static Future<P2PAdvert> fetchAdvert(
     P2pAdvertInfoRequest request,
   ) async {
-    final P2pAdvertInfoResponse response = await _api.call(request: request);
+    final P2pAdvertInfoResponse response =
+        await _api!.call<P2pAdvertInfoResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2PAdvertException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -216,14 +215,15 @@ class P2PAdvert extends P2PAdvertModel {
   ///
   /// For parameters information refer to [P2pAdvertListRequest].
   /// Throws a [P2PAdvertException] if API response contains an error
-  static Future<List<P2PAdvert>> fetchAdvertList(
+  static Future<List<P2PAdvert?>?> fetchAdvertList(
     P2pAdvertListRequest request,
   ) async {
-    final P2pAdvertListResponse response = await _api.call(request: request);
+    final P2pAdvertListResponse response =
+        await _api!.call<P2pAdvertListResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2PAdvertException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -240,11 +240,12 @@ class P2PAdvert extends P2PAdvertModel {
   static Future<P2PAdvert> createAdvert(
     P2pAdvertCreateRequest request,
   ) async {
-    final P2pAdvertCreateResponse response = await _api.call(request: request);
+    final P2pAdvertCreateResponse response =
+        await _api!.call<P2pAdvertCreateResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2PAdvertException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -258,11 +259,12 @@ class P2PAdvert extends P2PAdvertModel {
   static Future<P2PAdvert> updateAdvert(
     P2pAdvertUpdateRequest request,
   ) async {
-    final P2pAdvertUpdateResponse response = await _api.call(request: request);
+    final P2pAdvertUpdateResponse response =
+        await _api!.call<P2pAdvertUpdateResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2PAdvertException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -274,11 +276,11 @@ class P2PAdvert extends P2PAdvertModel {
   /// [delete] to permanently delete the advert
   /// [isActive] to activate or deactivate the advert
   /// Throws a [P2PAdvertException] if API response contains an error
-  Future<P2PAdvert> update({bool delete, bool isActive}) => updateAdvert(
+  Future<P2PAdvert> update({bool? delete, bool? isActive}) => updateAdvert(
         P2pAdvertUpdateRequest(
-          id: id,
+          id: id!,
           delete: delete ?? false,
-          isActive: isActive ?? this.isActive,
+          isActive: isActive ?? this.isActive!,
         ),
       );
 
@@ -291,13 +293,13 @@ class P2PAdvert extends P2PAdvertModel {
   ///
   /// Throws a [P2PAdvertException] if API response contains an error
   Future<P2PAdvert> activate() async =>
-      isActive ? this : update(isActive: true);
+      isActive! ? Future<P2PAdvert>.value(this) : update(isActive: true);
 
   /// Deactivates a P2P (peer to peer) advert. Can only be used by the advertiser.
   ///
   /// Throws a [P2PAdvertException] if API response contains an error
   Future<P2PAdvert> deactivate() async =>
-      isActive ? update(isActive: false) : this;
+      isActive! ? update(isActive: false) : Future<P2PAdvert>.value(this);
 
   /// Creates order on this advert.
   ///
@@ -306,13 +308,13 @@ class P2PAdvert extends P2PAdvertModel {
   /// [paymentInfo] is payment instructions. Only applicable for [OrderType.sell].
   /// Throws [P2POrderException] if API response contains an error.
   Future<P2POrder> createOrder({
-    @required double amount,
-    String contactInfo,
-    String paymentInfo,
+    required double amount,
+    required String contactInfo,
+    required String paymentInfo,
   }) =>
       P2POrder.create(
         P2pOrderCreateRequest(
-          advertId: id,
+          advertId: id!,
           amount: amount,
           contactInfo: contactInfo,
           paymentInfo: paymentInfo,

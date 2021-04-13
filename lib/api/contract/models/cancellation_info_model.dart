@@ -19,15 +19,15 @@ class CancellationInfoModel {
       );
 
   /// Ask price of contract cancellation option.
-  final double askPrice;
+  final double? askPrice;
 
   /// Expiry time in epoch for contract cancellation option.
-  final DateTime dateExpiry;
+  final DateTime? dateExpiry;
 
   /// Generate a copy of instance with given parameters
   CancellationInfoModel copyWith({
-    double askPrice,
-    DateTime dateExpiry,
+    double? askPrice,
+    DateTime? dateExpiry,
   }) =>
       CancellationInfoModel(
         askPrice: askPrice ?? this.askPrice,

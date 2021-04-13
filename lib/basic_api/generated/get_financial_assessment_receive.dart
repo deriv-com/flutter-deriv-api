@@ -31,7 +31,7 @@ class GetFinancialAssessmentResponse extends Response {
       );
 
   /// Client's financial assessment details
-  final Map<String, dynamic> getFinancialAssessment;
+  final Map<String, dynamic>? getFinancialAssessment;
 
   /// Converts this instance to JSON
   @override
@@ -46,7 +46,7 @@ class GetFinancialAssessmentResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   GetFinancialAssessmentResponse copyWith({
-    Map<String, dynamic> getFinancialAssessment,
+    Map<String, dynamic>? getFinancialAssessment,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -63,5 +63,5 @@ class GetFinancialAssessmentResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

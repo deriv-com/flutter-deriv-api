@@ -9,5 +9,5 @@ abstract class AppMarkupDetailsModel extends APIBaseModel {
   });
 
   /// Array of returned transactions
-  final List<AppTransactionModel> transactions;
+  final List<AppTransactionModel?>? transactions;
 }

@@ -26,17 +26,17 @@ class TicksRequest extends Request {
       );
 
   /// [Optional] If set to `true`, will send updates whenever a new tick is received.
-  final bool subscribe;
+  final bool? subscribe;
 
   /// The short symbol name or array of symbols (obtained from `active_symbols` call).
-  final dynamic ticks;
+  final dynamic? ticks;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'ticks': ticks,
@@ -47,8 +47,8 @@ class TicksRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TicksRequest copyWith({
-    bool subscribe,
-    dynamic ticks,
+    bool? subscribe,
+    dynamic? ticks,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

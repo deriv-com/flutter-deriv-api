@@ -19,11 +19,11 @@ class Tick extends TickBase {
     this.ask,
     this.bid,
     this.quote,
-    DateTime epoch,
-    String id,
-    int pipSize,
-    String symbol,
-    SubscriptionModel subscriptionInformation,
+    DateTime? epoch,
+    String? id,
+    int? pipSize,
+    String? symbol,
+    SubscriptionModel? subscriptionInformation,
   }) : super(
           epoch: epoch,
           id: id,
@@ -35,7 +35,7 @@ class Tick extends TickBase {
   /// Generates an instance from JSON
   factory Tick.fromJson(
     Map<String, dynamic> json, {
-    Map<String, dynamic> subscriptionJson,
+    Map<String, dynamic>? subscriptionJson,
   }) =>
       Tick(
         ask: json['ask']?.toDouble(),
@@ -49,30 +49,30 @@ class Tick extends TickBase {
       );
 
   /// Market ask at the epoch
-  final double ask;
+  final double? ask;
 
   /// Market bid at the epoch
-  final double bid;
+  final double? bid;
 
   /// Market value at the epoch
-  final double quote;
+  final double? quote;
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Subscribes to a tick for given [TickRequest]
   ///
   /// Throws [TickException] if API response contains an error
-  static Stream<Tick> subscribeTick(
+  static Stream<Tick?> subscribeTick(
     TicksRequest tickRequest, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
-      _api
-          .subscribe(request: tickRequest, comparePredicate: comparePredicate)
-          .map<Tick>(
+      _api!
+          .subscribe(request: tickRequest, comparePredicate: comparePredicate)!
+          .map<Tick?>(
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
                 TickException(baseExceptionModel: baseExceptionModel),
           );
 
@@ -89,12 +89,12 @@ class Tick extends TickBase {
   ///
   /// Throws a [TickException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllTicks() async {
-    final ForgetAllResponse response =
-        await _api.unsubscribeAll(method: ForgetStreamType.ticks);
+    final ForgetAllResponse? response =
+        await _api!.unsubscribeAll(method: ForgetStreamType.ticks);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TickException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -104,14 +104,14 @@ class Tick extends TickBase {
   /// Creates a copy of instance with given parameters
   @override
   Tick copyWith({
-    double ask,
-    double bid,
-    double quote,
-    DateTime epoch,
-    String id,
-    int pipSize,
-    String symbol,
-    SubscriptionModel subscriptionInformation,
+    double? ask,
+    double? bid,
+    double? quote,
+    DateTime? epoch,
+    String? id,
+    int? pipSize,
+    String? symbol,
+    SubscriptionModel? subscriptionInformation,
   }) =>
       Tick(
         ask: ask ?? this.ask,

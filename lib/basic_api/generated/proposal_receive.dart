@@ -32,10 +32,10 @@ class ProposalResponse extends Response {
       );
 
   /// Latest price and other details for a given contract
-  final Map<String, dynamic> proposal;
+  final Map<String, dynamic>? proposal;
 
   /// For subscription requests only.
-  final Map<String, dynamic> subscription;
+  final Map<String, dynamic>? subscription;
 
   /// Converts this instance to JSON
   @override
@@ -51,8 +51,8 @@ class ProposalResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   ProposalResponse copyWith({
-    Map<String, dynamic> proposal,
-    Map<String, dynamic> subscription,
+    Map<String, dynamic>? proposal,
+    Map<String, dynamic>? subscription,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -69,5 +69,5 @@ class ProposalResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

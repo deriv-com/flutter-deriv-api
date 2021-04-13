@@ -32,14 +32,14 @@ class SetAccountCurrencyResponse extends Response {
       );
 
   /// `true`: success, `false`: no change
-  final bool setAccountCurrency;
+  final bool? setAccountCurrency;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'set_account_currency': setAccountCurrency == null
             ? null
-            : setAccountCurrency
+            : setAccountCurrency!
                 ? 1
                 : 0,
         'echo_req': echoReq,
@@ -51,7 +51,7 @@ class SetAccountCurrencyResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   SetAccountCurrencyResponse copyWith({
-    bool setAccountCurrency,
+    bool? setAccountCurrency,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -67,5 +67,5 @@ class SetAccountCurrencyResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

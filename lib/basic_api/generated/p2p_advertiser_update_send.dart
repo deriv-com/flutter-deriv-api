@@ -37,22 +37,22 @@ class P2pAdvertiserUpdateRequest extends Request {
       );
 
   /// [Optional] Advertiser's contact information, to be used as a default for new sell adverts.
-  final String contactInfo;
+  final String? contactInfo;
 
   /// [Optional] Default description that can be used every time an advert is created.
-  final String defaultAdvertDescription;
+  final String? defaultAdvertDescription;
 
   /// [Optional] Used to set if the advertiser's adverts could be listed. When `false`, adverts won't be listed regardless of they are active or not. This doesn't change the `is_active` of each individual advert.
-  final bool isListed;
+  final bool? isListed;
 
   /// Must be `true`
-  final bool p2pAdvertiserUpdate;
+  final bool? p2pAdvertiserUpdate;
 
   /// [Optional] Advertiser's payment information, to be used as a default for new sell adverts.
-  final String paymentInfo;
+  final String? paymentInfo;
 
   /// [Optional] When `true`, the advertiser's real name will be displayed on to other users on adverts and orders.
-  final bool showName;
+  final bool? showName;
 
   /// Converts this instance to JSON
   @override
@@ -61,18 +61,18 @@ class P2pAdvertiserUpdateRequest extends Request {
         'default_advert_description': defaultAdvertDescription,
         'is_listed': isListed == null
             ? null
-            : isListed
+            : isListed!
                 ? 1
                 : 0,
         'p2p_advertiser_update': p2pAdvertiserUpdate == null
             ? null
-            : p2pAdvertiserUpdate
+            : p2pAdvertiserUpdate!
                 ? 1
                 : 0,
         'payment_info': paymentInfo,
         'show_name': showName == null
             ? null
-            : showName
+            : showName!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -82,12 +82,12 @@ class P2pAdvertiserUpdateRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertiserUpdateRequest copyWith({
-    String contactInfo,
-    String defaultAdvertDescription,
-    bool isListed,
-    bool p2pAdvertiserUpdate,
-    String paymentInfo,
-    bool showName,
+    String? contactInfo,
+    String? defaultAdvertDescription,
+    bool? isListed,
+    bool? p2pAdvertiserUpdate,
+    String? paymentInfo,
+    bool? showName,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -105,5 +105,5 @@ class P2pAdvertiserUpdateRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

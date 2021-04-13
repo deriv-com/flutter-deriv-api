@@ -10,18 +10,18 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class CopyTradingStop extends CopyTradingStopModel {
   /// Initializes
   CopyTradingStop({
-    bool succeeded,
+    bool? succeeded,
   }) : super(succeeded: succeeded);
 
   /// Generate an instance from response
   factory CopyTradingStop.fromResponse(CopyStopResponse response) =>
       CopyTradingStop(succeeded: getBool(response.copyStop));
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generate a copy of instance with given parameters
   CopyTradingStop copyWith({
-    bool succeeded,
+    bool? succeeded,
   }) =>
       CopyTradingStop(
         succeeded: succeeded ?? this.succeeded,
@@ -32,11 +32,11 @@ class CopyTradingStop extends CopyTradingStopModel {
   /// For parameters information refer to [CopyStopRequest].
   /// Throws a [CopyTradingException] if API response contains an error
   static Future<CopyTradingStop> stop(CopyStopRequest request) async {
-    final CopyStopResponse response = await _api.call(request: request);
+    final CopyStopResponse response = await _api!.call<CopyStopResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           CopyTradingException(baseExceptionModel: baseExceptionModel),
     );
 

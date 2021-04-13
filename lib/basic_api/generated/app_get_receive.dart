@@ -29,7 +29,7 @@ class AppGetResponse extends Response {
       );
 
   /// The information of the requested application.
-  final Map<String, dynamic> appGet;
+  final Map<String, dynamic>? appGet;
 
   /// Converts this instance to JSON
   @override
@@ -44,7 +44,7 @@ class AppGetResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   AppGetResponse copyWith({
-    Map<String, dynamic> appGet,
+    Map<String, dynamic>? appGet,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -60,5 +60,5 @@ class AppGetResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

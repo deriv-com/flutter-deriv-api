@@ -26,14 +26,14 @@ class GetSettingsRequest extends Request {
       );
 
   /// Must be `true`
-  final bool getSettings;
+  final bool? getSettings;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'get_settings': getSettings == null
             ? null
-            : getSettings
+            : getSettings!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -43,7 +43,7 @@ class GetSettingsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   GetSettingsRequest copyWith({
-    bool getSettings,
+    bool? getSettings,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -55,5 +55,5 @@ class GetSettingsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -31,10 +31,10 @@ class BuyResponse extends Response {
       );
 
   /// Receipt confirmation for the purchase
-  final Map<String, dynamic> buy;
+  final Map<String, dynamic>? buy;
 
   /// For subscription requests only.
-  final Map<String, dynamic> subscription;
+  final Map<String, dynamic>? subscription;
 
   /// Converts this instance to JSON
   @override
@@ -50,8 +50,8 @@ class BuyResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   BuyResponse copyWith({
-    Map<String, dynamic> buy,
-    Map<String, dynamic> subscription,
+    Map<String, dynamic>? buy,
+    Map<String, dynamic>? subscription,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -68,5 +68,5 @@ class BuyResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

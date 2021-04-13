@@ -32,7 +32,7 @@ class PayoutCurrenciesResponse extends Response {
       );
 
   /// Available payout currencies. Note: if a user is logged in, only the currency available for the account will be returned.
-  final List<String> payoutCurrencies;
+  final List<String>? payoutCurrencies;
 
   /// Converts this instance to JSON
   @override
@@ -47,7 +47,7 @@ class PayoutCurrenciesResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   PayoutCurrenciesResponse copyWith({
-    List<String> payoutCurrencies,
+    List<String>? payoutCurrencies,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -63,5 +63,5 @@ class PayoutCurrenciesResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

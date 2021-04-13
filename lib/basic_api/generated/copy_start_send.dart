@@ -35,19 +35,19 @@ class CopyStartRequest extends Request {
       );
 
   /// [Optional] Used to set assets to be copied. E.x ["frxUSDJPY", "R_50"]
-  final dynamic assets;
+  final dynamic? assets;
 
   /// API tokens identifying the accounts of trader which will be used to copy trades
-  final String copyStart;
+  final String? copyStart;
 
   /// [Optional] Used to set maximum trade stake to be copied.
-  final num maxTradeStake;
+  final num? maxTradeStake;
 
   /// [Optional] Used to set minimal trade stake to be copied.
-  final num minTradeStake;
+  final num? minTradeStake;
 
   /// [Optional] Used to set trade types to be copied. E.x ["CALL", "PUT"]
-  final dynamic tradeTypes;
+  final dynamic? tradeTypes;
 
   /// Converts this instance to JSON
   @override
@@ -64,11 +64,11 @@ class CopyStartRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   CopyStartRequest copyWith({
-    dynamic assets,
-    String copyStart,
-    num maxTradeStake,
-    num minTradeStake,
-    dynamic tradeTypes,
+    dynamic? assets,
+    String? copyStart,
+    num? maxTradeStake,
+    num? minTradeStake,
+    dynamic? tradeTypes,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -84,5 +84,5 @@ class CopyStartRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

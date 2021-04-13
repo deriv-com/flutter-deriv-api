@@ -24,14 +24,14 @@ class PingRequest extends Request {
       );
 
   /// Must be `true`
-  final bool ping;
+  final bool? ping;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'ping': ping == null
             ? null
-            : ping
+            : ping!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -41,7 +41,7 @@ class PingRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   PingRequest copyWith({
-    bool ping,
+    bool? ping,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -53,5 +53,5 @@ class PingRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

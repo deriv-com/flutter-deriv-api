@@ -33,32 +33,32 @@ class AppTransactionModel extends APIBaseModel {
       );
 
   /// ID of the application where this contract was purchased.
-  final int appId;
+  final int? appId;
 
   /// The markup the client paid in their currency
-  final double appMarkup;
+  final double? appMarkup;
 
   /// The markup the client paid in USD
-  final double appMarkupUsd;
+  final double? appMarkupUsd;
 
   /// The markup the client paid in the app developer's currency
-  final double appMarkupValue;
+  final double? appMarkupValue;
 
   /// Currency code of the client
-  final String clientCurrencyCode;
+  final String? clientCurrencyCode;
 
   /// Login ID of the client
-  final String clientLoginId;
+  final String? clientLoginId;
 
   /// Currency code of the app developer
-  final String devCurrencyCode;
+  final String? devCurrencyCode;
 
   /// Login ID of the app developer
-  final String devLoginId;
+  final String? devLoginId;
 
   /// The transaction ID. Every contract (buy or sell) and every payment has a unique ID.
-  final int transactionId;
+  final int? transactionId;
 
   /// The epoch value of purchase time of transaction
-  final DateTime transactionTime;
+  final DateTime? transactionTime;
 }

@@ -30,7 +30,7 @@ class ForgetAllResponse extends Response {
       );
 
   /// IDs of the cancelled streams
-  final List<dynamic> forgetAll;
+  final List<dynamic>? forgetAll;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class ForgetAllResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   ForgetAllResponse copyWith({
-    List<dynamic> forgetAll,
+    List<dynamic>? forgetAll,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class ForgetAllResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

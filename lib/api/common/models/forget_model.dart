@@ -8,5 +8,5 @@ abstract class ForgetModel extends APIBaseModel {
   });
 
   /// If set to true, stream exited and stopped. If set to false, stream did not exist.
-  final bool succeeded;
+  final bool? succeeded;
 }

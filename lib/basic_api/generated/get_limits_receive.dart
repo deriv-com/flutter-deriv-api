@@ -30,7 +30,7 @@ class GetLimitsResponse extends Response {
       );
 
   /// Trading limits of real account user
-  final Map<String, dynamic> getLimits;
+  final Map<String, dynamic>? getLimits;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class GetLimitsResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   GetLimitsResponse copyWith({
-    Map<String, dynamic> getLimits,
+    Map<String, dynamic>? getLimits,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class GetLimitsResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

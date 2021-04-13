@@ -32,7 +32,7 @@ class BuyContractForMultipleAccountsResponse extends Response {
       );
 
   /// Receipt confirmation for the purchase
-  final Map<String, dynamic> buyContractForMultipleAccounts;
+  final Map<String, dynamic>? buyContractForMultipleAccounts;
 
   /// Converts this instance to JSON
   @override
@@ -47,7 +47,7 @@ class BuyContractForMultipleAccountsResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   BuyContractForMultipleAccountsResponse copyWith({
-    Map<String, dynamic> buyContractForMultipleAccounts,
+    Map<String, dynamic>? buyContractForMultipleAccounts,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -64,5 +64,5 @@ class BuyContractForMultipleAccountsResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

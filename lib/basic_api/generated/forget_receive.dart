@@ -29,14 +29,14 @@ class ForgetResponse extends Response {
       );
 
   /// If set to `true`, stream exited and stopped. If set to `false`, stream did not exist.
-  final bool forget;
+  final bool? forget;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'forget': forget == null
             ? null
-            : forget
+            : forget!
                 ? 1
                 : 0,
         'echo_req': echoReq,
@@ -48,7 +48,7 @@ class ForgetResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   ForgetResponse copyWith({
-    bool forget,
+    bool? forget,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -64,5 +64,5 @@ class ForgetResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

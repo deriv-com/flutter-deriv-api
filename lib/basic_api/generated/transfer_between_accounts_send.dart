@@ -37,22 +37,22 @@ class TransferBetweenAccountsRequest extends Request {
       );
 
   /// [Optional] The loginid of the account to transfer funds from.
-  final String accountFrom;
+  final String? accountFrom;
 
   /// [Optional] The loginid of the account to transfer funds to.
-  final String accountTo;
+  final String? accountTo;
 
   /// [Optional] To control the list of accounts returned when `account_from` or `account_to` is not provided. `brief` will only include financial trading accounts with account_type equal to `binary` and can be faster. `all` will include accounts with both `mt5` and `binary` account_type
-  final String accounts;
+  final String? accounts;
 
   /// [Optional] The amount to transfer.
-  final num amount;
+  final num? amount;
 
   /// [Optional] Currency code.
-  final String currency;
+  final String? currency;
 
   /// If `account_from` or `account_to` is not provided, it just returns the available accounts.
-  final int transferBetweenAccounts;
+  final int? transferBetweenAccounts;
 
   /// Converts this instance to JSON
   @override
@@ -70,12 +70,12 @@ class TransferBetweenAccountsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TransferBetweenAccountsRequest copyWith({
-    String accountFrom,
-    String accountTo,
-    String accounts,
-    num amount,
-    String currency,
-    int transferBetweenAccounts,
+    String? accountFrom,
+    String? accountTo,
+    String? accounts,
+    num? amount,
+    String? currency,
+    int? transferBetweenAccounts,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -93,5 +93,5 @@ class TransferBetweenAccountsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

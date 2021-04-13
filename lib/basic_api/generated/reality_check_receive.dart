@@ -30,7 +30,7 @@ class RealityCheckResponse extends Response {
       );
 
   /// Reality check summary of trades.
-  final Map<String, dynamic> realityCheck;
+  final Map<String, dynamic>? realityCheck;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class RealityCheckResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   RealityCheckResponse copyWith({
-    Map<String, dynamic> realityCheck,
+    Map<String, dynamic>? realityCheck,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class RealityCheckResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

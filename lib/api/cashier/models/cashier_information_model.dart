@@ -10,11 +10,11 @@ abstract class CashierInformationModel extends APIBaseModel {
   });
 
   /// Response for type `api' in request.
-  final CashierAPIModel cashierAPI;
+  final CashierAPIModel? cashierAPI;
 
   /// Cashier URL. Note: possible error codes are: ASK_TNC_APPROVAL
   /// (API tnc_approval), ASK_AUTHENTICATE, ASK_UK_FUNDS_PROTECTION
   /// (API tnc_approval), ASK_CURRENCY (API set_account_currency),
   /// ASK_EMAIL_VERIFY (verify_email), ASK_FIX_DETAILS (API set_settings).
-  final String cashierURL;
+  final String? cashierURL;
 }

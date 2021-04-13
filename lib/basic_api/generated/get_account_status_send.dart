@@ -27,14 +27,14 @@ class GetAccountStatusRequest extends Request {
       );
 
   /// Must be `true`
-  final bool getAccountStatus;
+  final bool? getAccountStatus;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'get_account_status': getAccountStatus == null
             ? null
-            : getAccountStatus
+            : getAccountStatus!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -44,7 +44,7 @@ class GetAccountStatusRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   GetAccountStatusRequest copyWith({
-    bool getAccountStatus,
+    bool? getAccountStatus,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -56,5 +56,5 @@ class GetAccountStatusRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

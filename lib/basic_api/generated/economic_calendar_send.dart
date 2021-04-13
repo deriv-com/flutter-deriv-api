@@ -33,16 +33,16 @@ class EconomicCalendarRequest extends Request {
       );
 
   /// [Optional] Currency symbol.
-  final String currency;
+  final String? currency;
 
   /// Must be `true`
-  final bool economicCalendar;
+  final bool? economicCalendar;
 
   /// [Optional] End date.
-  final int endDate;
+  final int? endDate;
 
   /// [Optional] Start date.
-  final int startDate;
+  final int? startDate;
 
   /// Converts this instance to JSON
   @override
@@ -50,7 +50,7 @@ class EconomicCalendarRequest extends Request {
         'currency': currency,
         'economic_calendar': economicCalendar == null
             ? null
-            : economicCalendar
+            : economicCalendar!
                 ? 1
                 : 0,
         'end_date': endDate,
@@ -62,10 +62,10 @@ class EconomicCalendarRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   EconomicCalendarRequest copyWith({
-    String currency,
-    bool economicCalendar,
-    int endDate,
-    int startDate,
+    String? currency,
+    bool? economicCalendar,
+    int? endDate,
+    int? startDate,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -80,5 +80,5 @@ class EconomicCalendarRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

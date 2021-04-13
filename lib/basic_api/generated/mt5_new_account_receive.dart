@@ -30,7 +30,7 @@ class Mt5NewAccountResponse extends Response {
       );
 
   /// New MT5 account details
-  final Map<String, dynamic> mt5NewAccount;
+  final Map<String, dynamic>? mt5NewAccount;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class Mt5NewAccountResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   Mt5NewAccountResponse copyWith({
-    Map<String, dynamic> mt5NewAccount,
+    Map<String, dynamic>? mt5NewAccount,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class Mt5NewAccountResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

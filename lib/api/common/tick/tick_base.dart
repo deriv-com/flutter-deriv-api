@@ -13,10 +13,10 @@ import 'exceptions/tick_exception.dart';
 class TickBase extends TickBaseModel {
   /// Initializes
   TickBase({
-    DateTime epoch,
-    String id,
-    int pipSize,
-    String symbol,
+    DateTime? epoch,
+    String? id,
+    int? pipSize,
+    String? symbol,
     this.subscriptionInformation,
   }) : super(
           epoch: epoch,
@@ -28,7 +28,7 @@ class TickBase extends TickBaseModel {
   /// Generates an instance from JSON
   factory TickBase.fromJson(
     Map<String, dynamic> json, {
-    Map<String, dynamic> subscriptionJson,
+    Map<String, dynamic>? subscriptionJson,
   }) =>
       TickBase(
         epoch: getDateTime(json['epoch']),
@@ -39,24 +39,24 @@ class TickBase extends TickBaseModel {
       );
 
   /// Subscription information
-  final SubscriptionModel subscriptionInformation;
+  final SubscriptionModel? subscriptionInformation;
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Unsubscribes from tick stream
   ///
   /// Throws a [TickException] if API response contains an error
-  Future<Forget> unsubscribe() async {
+  Future<Forget?> unsubscribe() async {
     if (subscriptionInformation?.id == null) {
       return null;
     }
 
     final ForgetResponse response =
-        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+        await _api!.unsubscribe(subscriptionId: subscriptionInformation!.id);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TickException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -65,11 +65,11 @@ class TickBase extends TickBaseModel {
 
   /// Generates a copy of instance with given parameters
   TickBase copyWith({
-    DateTime epoch,
-    String id,
-    int pipSize,
-    String symbol,
-    SubscriptionModel subscriptionInformation,
+    DateTime? epoch,
+    String? id,
+    int? pipSize,
+    String? symbol,
+    SubscriptionModel? subscriptionInformation,
   }) =>
       TickBase(
         epoch: epoch ?? this.epoch,

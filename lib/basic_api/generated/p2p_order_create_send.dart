@@ -39,22 +39,22 @@ class P2pOrderCreateRequest extends Request {
       );
 
   /// The unique identifier for the advert to create an order against.
-  final String advertId;
+  final String? advertId;
 
   /// The amount of currency to be bought or sold.
-  final num amount;
+  final num? amount;
 
   /// [Optional] Seller contact information. Only applicable for 'sell orders'.
-  final String contactInfo;
+  final String? contactInfo;
 
   /// Must be `true`
-  final bool p2pOrderCreate;
+  final bool? p2pOrderCreate;
 
   /// [Optional] Payment instructions. Only applicable for 'sell orders'.
-  final String paymentInfo;
+  final String? paymentInfo;
 
   /// [Optional] If set to `true`, will send updates whenever there is an update to the order.
-  final bool subscribe;
+  final bool? subscribe;
 
   /// Converts this instance to JSON
   @override
@@ -64,13 +64,13 @@ class P2pOrderCreateRequest extends Request {
         'contact_info': contactInfo,
         'p2p_order_create': p2pOrderCreate == null
             ? null
-            : p2pOrderCreate
+            : p2pOrderCreate!
                 ? 1
                 : 0,
         'payment_info': paymentInfo,
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -80,12 +80,12 @@ class P2pOrderCreateRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pOrderCreateRequest copyWith({
-    String advertId,
-    num amount,
-    String contactInfo,
-    bool p2pOrderCreate,
-    String paymentInfo,
-    bool subscribe,
+    String? advertId,
+    num? amount,
+    String? contactInfo,
+    bool? p2pOrderCreate,
+    String? paymentInfo,
+    bool? subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -102,5 +102,5 @@ class P2pOrderCreateRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

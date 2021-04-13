@@ -31,14 +31,14 @@ class VerifyEmailResponse extends Response {
       );
 
   /// 1 for success (secure code has been sent to the email address)
-  final bool verifyEmail;
+  final bool? verifyEmail;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'verify_email': verifyEmail == null
             ? null
-            : verifyEmail
+            : verifyEmail!
                 ? 1
                 : 0,
         'echo_req': echoReq,
@@ -50,7 +50,7 @@ class VerifyEmailResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   VerifyEmailResponse copyWith({
-    bool verifyEmail,
+    bool? verifyEmail,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -66,5 +66,5 @@ class VerifyEmailResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

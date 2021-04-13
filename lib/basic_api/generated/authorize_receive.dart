@@ -30,7 +30,7 @@ class AuthorizeResponse extends Response {
       );
 
   /// Account information for the holder of the token.
-  final Map<String, dynamic> authorize;
+  final Map<String, dynamic>? authorize;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class AuthorizeResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   AuthorizeResponse copyWith({
-    Map<String, dynamic> authorize,
+    Map<String, dynamic>? authorize,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class AuthorizeResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

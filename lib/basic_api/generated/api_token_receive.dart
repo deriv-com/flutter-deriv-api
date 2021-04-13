@@ -30,7 +30,7 @@ class ApiTokenResponse extends Response {
       );
 
   /// Contains the result of API token according to the type of request.
-  final Map<String, dynamic> apiToken;
+  final Map<String, dynamic>? apiToken;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class ApiTokenResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   ApiTokenResponse copyWith({
-    Map<String, dynamic> apiToken,
+    Map<String, dynamic>? apiToken,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class ApiTokenResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

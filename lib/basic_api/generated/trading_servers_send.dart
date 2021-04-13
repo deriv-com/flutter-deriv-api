@@ -31,13 +31,13 @@ class TradingServersRequest extends Request {
       );
 
   /// [Optional] Pass the environment (installation) instance short code. Currently, there is only one environment instance. Defaults to 'env_01'.
-  final String environment;
+  final String? environment;
 
   /// [Optional] Pass the trading platform name, default to mt5
-  final String platform;
+  final String? platform;
 
   /// Must be `true`
-  final bool tradingServers;
+  final bool? tradingServers;
 
   /// Converts this instance to JSON
   @override
@@ -46,7 +46,7 @@ class TradingServersRequest extends Request {
         'platform': platform,
         'trading_servers': tradingServers == null
             ? null
-            : tradingServers
+            : tradingServers!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -56,9 +56,9 @@ class TradingServersRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TradingServersRequest copyWith({
-    String environment,
-    String platform,
-    bool tradingServers,
+    String? environment,
+    String? platform,
+    bool? tradingServers,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -72,5 +72,5 @@ class TradingServersRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

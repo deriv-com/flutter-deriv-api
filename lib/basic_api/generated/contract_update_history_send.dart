@@ -33,13 +33,13 @@ class ContractUpdateHistoryRequest extends Request {
       );
 
   /// Internal unique contract identifier.
-  final int contractId;
+  final int? contractId;
 
   /// Must be `true`
-  final bool contractUpdateHistory;
+  final bool? contractUpdateHistory;
 
   /// [Optional] Maximum number of historical updates to receive.
-  final num limit;
+  final num? limit;
 
   /// Converts this instance to JSON
   @override
@@ -47,7 +47,7 @@ class ContractUpdateHistoryRequest extends Request {
         'contract_id': contractId,
         'contract_update_history': contractUpdateHistory == null
             ? null
-            : contractUpdateHistory
+            : contractUpdateHistory!
                 ? 1
                 : 0,
         'limit': limit,
@@ -58,9 +58,9 @@ class ContractUpdateHistoryRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ContractUpdateHistoryRequest copyWith({
-    int contractId,
-    bool contractUpdateHistory,
-    num limit,
+    int? contractId,
+    bool? contractUpdateHistory,
+    num? limit,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -75,5 +75,5 @@ class ContractUpdateHistoryRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

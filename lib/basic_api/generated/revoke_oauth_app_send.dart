@@ -27,7 +27,7 @@ class RevokeOauthAppRequest extends Request {
       );
 
   /// The application ID to revoke.
-  final int revokeOauthApp;
+  final int? revokeOauthApp;
 
   /// Converts this instance to JSON
   @override
@@ -40,7 +40,7 @@ class RevokeOauthAppRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   RevokeOauthAppRequest copyWith({
-    int revokeOauthApp,
+    int? revokeOauthApp,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -52,5 +52,5 @@ class RevokeOauthAppRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

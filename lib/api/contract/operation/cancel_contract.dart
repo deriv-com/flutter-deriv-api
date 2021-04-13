@@ -11,11 +11,11 @@ import 'exceptions/contract_operations_exception.dart';
 class CancelContract extends CancelContractModel {
   /// Initializes
   CancelContract({
-    double balanceAfter,
-    int contractId,
-    int referenceId,
-    double soldFor,
-    int transactionId,
+    double? balanceAfter,
+    int? contractId,
+    int? referenceId,
+    double? soldFor,
+    int? transactionId,
   }) : super(
           balanceAfter: balanceAfter,
           contractId: contractId,
@@ -33,17 +33,18 @@ class CancelContract extends CancelContractModel {
         transactionId: json['transaction_id'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Cancels a contract with parameters specified in [CancelRequest].
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   static Future<CancelContract> cancelContract(CancelRequest request) async {
-    final CancelResponse response = await _api.call(request: request);
+    final CancelResponse response =
+        await _api!.call<CancelResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -52,11 +53,11 @@ class CancelContract extends CancelContractModel {
 
   /// Creates a copy of instance with given parameters
   CancelContract copyWith({
-    double balanceAfter,
-    int contractId,
-    int referenceId,
-    double soldFor,
-    int transactionId,
+    double? balanceAfter,
+    int? contractId,
+    int? referenceId,
+    double? soldFor,
+    int? transactionId,
   }) =>
       CancelContract(
         balanceAfter: balanceAfter ?? this.balanceAfter,

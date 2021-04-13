@@ -31,13 +31,13 @@ class ActiveSymbolsRequest extends Request {
       );
 
   /// If you use `brief`, only a subset of fields will be returned.
-  final String activeSymbols;
+  final String? activeSymbols;
 
   /// [Optional] If you specify this field, only symbols available for trading by that landing company will be returned. If you are logged in, only symbols available for trading by your landing company will be returned regardless of what you specify in this field.
-  final String landingCompany;
+  final String? landingCompany;
 
   /// [Optional] If you specify this field, only symbols that can be traded through that product type will be returned.
-  final String productType;
+  final String? productType;
 
   /// Converts this instance to JSON
   @override
@@ -52,9 +52,9 @@ class ActiveSymbolsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ActiveSymbolsRequest copyWith({
-    String activeSymbols,
-    String landingCompany,
-    String productType,
+    String? activeSymbols,
+    String? landingCompany,
+    String? productType,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -68,5 +68,5 @@ class ActiveSymbolsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

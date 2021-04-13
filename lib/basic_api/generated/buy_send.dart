@@ -32,16 +32,16 @@ class BuyRequest extends Request {
       );
 
   /// Either the ID received from a Price Proposal (`proposal` call), or `1` if contract buy parameters are passed in the `parameters` field.
-  final String buy;
+  final String? buy;
 
   /// [Optional] Used to pass the parameters for contract buy.
-  final Map<String, dynamic> parameters;
+  final Map<String, dynamic>? parameters;
 
   /// Maximum price at which to purchase the contract.
-  final num price;
+  final num? price;
 
   /// [Optional] `true` to stream.
-  final bool subscribe;
+  final bool? subscribe;
 
   /// Converts this instance to JSON
   @override
@@ -51,7 +51,7 @@ class BuyRequest extends Request {
         'price': price,
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -61,10 +61,10 @@ class BuyRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   BuyRequest copyWith({
-    String buy,
-    Map<String, dynamic> parameters,
-    num price,
-    bool subscribe,
+    String? buy,
+    Map<String, dynamic>? parameters,
+    num? price,
+    bool? subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -79,5 +79,5 @@ class BuyRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -27,14 +27,14 @@ class GetFinancialAssessmentRequest extends Request {
       );
 
   /// Must be `true`
-  final bool getFinancialAssessment;
+  final bool? getFinancialAssessment;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'get_financial_assessment': getFinancialAssessment == null
             ? null
-            : getFinancialAssessment
+            : getFinancialAssessment!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -44,7 +44,7 @@ class GetFinancialAssessmentRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   GetFinancialAssessmentRequest copyWith({
-    bool getFinancialAssessment,
+    bool? getFinancialAssessment,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -57,5 +57,5 @@ class GetFinancialAssessmentRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

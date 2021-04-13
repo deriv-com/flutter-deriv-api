@@ -32,10 +32,10 @@ class P2pOrderListResponse extends Response {
       );
 
   /// List of P2P orders.
-  final Map<String, dynamic> p2pOrderList;
+  final Map<String, dynamic>? p2pOrderList;
 
   /// For subscription requests only.
-  final Map<String, dynamic> subscription;
+  final Map<String, dynamic>? subscription;
 
   /// Converts this instance to JSON
   @override
@@ -51,8 +51,8 @@ class P2pOrderListResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   P2pOrderListResponse copyWith({
-    Map<String, dynamic> p2pOrderList,
-    Map<String, dynamic> subscription,
+    Map<String, dynamic>? p2pOrderList,
+    Map<String, dynamic>? subscription,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -69,5 +69,5 @@ class P2pOrderListResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

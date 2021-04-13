@@ -31,10 +31,10 @@ class P2pOrderCancelRequest extends Request {
       );
 
   /// The unique identifier for this order.
-  final String id;
+  final String? id;
 
   /// Must be `true`
-  final bool p2pOrderCancel;
+  final bool? p2pOrderCancel;
 
   /// Converts this instance to JSON
   @override
@@ -42,7 +42,7 @@ class P2pOrderCancelRequest extends Request {
         'id': id,
         'p2p_order_cancel': p2pOrderCancel == null
             ? null
-            : p2pOrderCancel
+            : p2pOrderCancel!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -52,8 +52,8 @@ class P2pOrderCancelRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pOrderCancelRequest copyWith({
-    String id,
-    bool p2pOrderCancel,
+    String? id,
+    bool? p2pOrderCancel,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -66,5 +66,5 @@ class P2pOrderCancelRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -33,7 +33,7 @@ class PaymentMethodsResponse extends Response {
       );
 
   /// Available payment methods for a given country. Note: if a user is logged in, the residence country will be considered.
-  final List<Map<String, dynamic>> paymentMethods;
+  final List<Map<String, dynamic>>? paymentMethods;
 
   /// Converts this instance to JSON
   @override
@@ -48,7 +48,7 @@ class PaymentMethodsResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   PaymentMethodsResponse copyWith({
-    List<Map<String, dynamic>> paymentMethods,
+    List<Map<String, dynamic>>? paymentMethods,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -64,5 +64,5 @@ class PaymentMethodsResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

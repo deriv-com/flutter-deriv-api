@@ -29,10 +29,10 @@ class AuthorizeRequest extends Request {
       );
 
   /// [Optional] Send this when you use api tokens for authorization and want to track activity using `login_history` call.
-  final int addToLoginHistory;
+  final int? addToLoginHistory;
 
   /// Authentication token. May be retrieved from https://www.binary.com/en/user/security/api_tokenws.html
-  final String authorize;
+  final String? authorize;
 
   /// Converts this instance to JSON
   @override
@@ -46,8 +46,8 @@ class AuthorizeRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   AuthorizeRequest copyWith({
-    int addToLoginHistory,
-    String authorize,
+    int? addToLoginHistory,
+    String? authorize,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -60,5 +60,5 @@ class AuthorizeRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

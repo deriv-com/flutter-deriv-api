@@ -30,7 +30,7 @@ class PortfolioResponse extends Response {
       );
 
   /// Current account's open positions.
-  final Map<String, dynamic> portfolio;
+  final Map<String, dynamic>? portfolio;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class PortfolioResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   PortfolioResponse copyWith({
-    Map<String, dynamic> portfolio,
+    Map<String, dynamic>? portfolio,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class PortfolioResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

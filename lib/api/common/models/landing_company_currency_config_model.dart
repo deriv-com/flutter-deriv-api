@@ -11,7 +11,7 @@ class LandingCompanyCurrencyConfigModel extends APIBaseModel {
 
   /// Creates an instance from JSON
   factory LandingCompanyCurrencyConfigModel.fromJson(
-    String code,
+    String? code,
     Map<String, dynamic> currencyMap,
   ) =>
       LandingCompanyCurrencyConfigModel(
@@ -21,11 +21,11 @@ class LandingCompanyCurrencyConfigModel extends APIBaseModel {
       );
 
   /// Code of the currency
-  final String code;
+  final String? code;
 
   /// Currency's max payout
-  final double maxPayout;
+  final double? maxPayout;
 
   /// Currency's min stake
-  final double minStake;
+  final double? minStake;
 }

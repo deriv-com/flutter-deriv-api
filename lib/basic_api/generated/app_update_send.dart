@@ -47,34 +47,34 @@ class AppUpdateRequest extends Request {
       );
 
   /// [Optional] Markup to be added to contract prices (as a percentage of contract payout).
-  final num appMarkupPercentage;
+  final num? appMarkupPercentage;
 
   /// Application app_id.
-  final int appUpdate;
+  final int? appUpdate;
 
   /// [Optional] Application's App Store URL (if applicable).
-  final String appstore;
+  final String? appstore;
 
   /// [Optional] Application's GitHub page (for open-source projects).
-  final String github;
+  final String? github;
 
   /// [Optional] Application's Google Play URL (if applicable).
-  final String googleplay;
+  final String? googleplay;
 
   /// [Optional] Application's homepage URL.
-  final String homepage;
+  final String? homepage;
 
   /// Application name.
-  final String name;
+  final String? name;
 
   /// The URL to redirect to after a successful login.
-  final String redirectUri;
+  final String? redirectUri;
 
   /// Change scopes will revoke all user's grants and log them out.
-  final List<String> scopes;
+  final List<String>? scopes;
 
   /// [Optional] Used when `verify_email` called. If available, a URL containing the verification token will send to the client's email, otherwise only the token will be sent.
-  final String verificationUri;
+  final String? verificationUri;
 
   /// Converts this instance to JSON
   @override
@@ -96,16 +96,16 @@ class AppUpdateRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   AppUpdateRequest copyWith({
-    num appMarkupPercentage,
-    int appUpdate,
-    String appstore,
-    String github,
-    String googleplay,
-    String homepage,
-    String name,
-    String redirectUri,
-    List<String> scopes,
-    String verificationUri,
+    num? appMarkupPercentage,
+    int? appUpdate,
+    String? appstore,
+    String? github,
+    String? googleplay,
+    String? homepage,
+    String? name,
+    String? redirectUri,
+    List<String>? scopes,
+    String? verificationUri,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -126,5 +126,5 @@ class AppUpdateRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

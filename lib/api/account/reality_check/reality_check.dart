@@ -10,15 +10,15 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class RealityCheck extends RealityCheckModel {
   /// Initializes
   RealityCheck({
-    double buyAmount,
-    int buyCount,
-    String currency,
-    String loginId,
-    int openContractCount,
-    double potentialProfit,
-    double sellAmount,
-    int sellCount,
-    DateTime startTime,
+    double? buyAmount,
+    int? buyCount,
+    String? currency,
+    String? loginId,
+    int? openContractCount,
+    double? potentialProfit,
+    double? sellAmount,
+    int? sellCount,
+    DateTime? startTime,
   }) : super(
           buyAmount: buyAmount,
           buyCount: buyCount,
@@ -44,19 +44,19 @@ class RealityCheck extends RealityCheckModel {
         startTime: getDateTime(json['start_time']),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   RealityCheck copyWith({
-    double buyAmount,
-    int buyCount,
-    String currency,
-    String loginId,
-    int openContractCount,
-    double potentialProfit,
-    double sellAmount,
-    int sellCount,
-    DateTime startTime,
+    double? buyAmount,
+    int? buyCount,
+    String? currency,
+    String? loginId,
+    int? openContractCount,
+    double? potentialProfit,
+    double? sellAmount,
+    int? sellCount,
+    DateTime? startTime,
   }) =>
       RealityCheck(
         buyAmount: buyAmount ?? this.buyAmount,
@@ -77,15 +77,16 @@ class RealityCheck extends RealityCheckModel {
   /// For parameters information refer to [RealityCheckRequest].
   /// Throws a [RealityCheckException] if API response contains an error
   static Future<RealityCheck> check([
-    RealityCheckRequest request,
+    RealityCheckRequest? request,
   ]) async {
-    final RealityCheckResponse response = await _api.call(
+    final RealityCheckResponse response =
+        await _api!.call<RealityCheckResponse>(
       request: request ?? const RealityCheckRequest(),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           RealityCheckException(baseExceptionModel: baseExceptionModel),
     );
 

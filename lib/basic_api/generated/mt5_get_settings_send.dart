@@ -31,10 +31,10 @@ class Mt5GetSettingsRequest extends Request {
       );
 
   /// MT5 user login
-  final String login;
+  final String? login;
 
   /// Must be `true`
-  final bool mt5GetSettings;
+  final bool? mt5GetSettings;
 
   /// Converts this instance to JSON
   @override
@@ -42,7 +42,7 @@ class Mt5GetSettingsRequest extends Request {
         'login': login,
         'mt5_get_settings': mt5GetSettings == null
             ? null
-            : mt5GetSettings
+            : mt5GetSettings!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -52,8 +52,8 @@ class Mt5GetSettingsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   Mt5GetSettingsRequest copyWith({
-    String login,
-    bool mt5GetSettings,
+    String? login,
+    bool? mt5GetSettings,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -66,5 +66,5 @@ class Mt5GetSettingsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

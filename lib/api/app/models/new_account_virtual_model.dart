@@ -5,21 +5,21 @@ abstract class NewAccountVirtualModel extends NewAccountBaseModel {
   /// Initializes
   NewAccountVirtualModel({
     this.balance,
-    String clientId,
+    String? clientId,
     this.currency,
     this.email,
-    String oauthToken,
+    String? oauthToken,
   }) : super(
           clientId: clientId,
           oauthToken: oauthToken,
         );
 
   /// Account balance
-  final double balance;
+  final double? balance;
 
   /// Account currency
-  final String currency;
+  final String? currency;
 
   /// Email of the new virtual-money account
-  final String email;
+  final String? email;
 }

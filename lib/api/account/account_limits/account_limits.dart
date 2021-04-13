@@ -11,19 +11,19 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class AccountLimits extends AccountLimitsModel {
   /// Initializes
   AccountLimits({
-    double accountBalance,
-    double dailyTurnover,
-    double lifetimeLimit,
-    List<AccountMarketLimitsModel> marketSpecific,
-    int numOfDays,
-    double numOfDaysLimit,
-    int openPositions,
-    double payout,
-    String payoutPerSymbol,
-    double payoutPerSymbolAndContractType,
-    double remainder,
-    double withdrawalForXDaysMonetary,
-    double withdrawalSinceInceptionMonetary,
+    double? accountBalance,
+    double? dailyTurnover,
+    double? lifetimeLimit,
+    List<AccountMarketLimitsModel?>? marketSpecific,
+    int? numOfDays,
+    double? numOfDaysLimit,
+    int? openPositions,
+    double? payout,
+    String? payoutPerSymbol,
+    double? payoutPerSymbolAndContractType,
+    double? remainder,
+    double? withdrawalForXDaysMonetary,
+    double? withdrawalSinceInceptionMonetary,
   }) : super(
           accountBalance: accountBalance,
           dailyTurnover: dailyTurnover,
@@ -64,21 +64,21 @@ class AccountLimits extends AccountLimitsModel {
             json['withdrawal_since_inception_monetary']?.toDouble(),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the trading and withdrawal limits for logged in account
   ///
   /// Throws an [AccountLimitsException] if API response contains an error
   static Future<AccountLimits> fetchAccountLimits([
-    GetLimitsRequest request,
+    GetLimitsRequest? request,
   ]) async {
-    final GetLimitsResponse response = await _api.call(
+    final GetLimitsResponse response = await _api!.call<GetLimitsResponse>(
       request: request ?? const GetLimitsRequest(),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AccountLimitsException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -87,19 +87,19 @@ class AccountLimits extends AccountLimitsModel {
 
   /// Generates a copy of instance with given parameters
   AccountLimits copyWith({
-    double accountBalance,
-    double dailyTurnover,
-    double lifetimeLimit,
-    List<AccountMarketLimitsModel> marketSpecific,
-    int numOfDays,
-    double numOfDaysLimit,
-    int openPositions,
-    double payout,
-    String payoutPerSymbol,
-    double payoutPerSymbolAndContractType,
-    double remainder,
-    double withdrawalForXDaysMonetary,
-    double withdrawalSinceInceptionMonetary,
+    double? accountBalance,
+    double? dailyTurnover,
+    double? lifetimeLimit,
+    List<AccountMarketLimitsModel>? marketSpecific,
+    int? numOfDays,
+    double? numOfDaysLimit,
+    int? openPositions,
+    double? payout,
+    String? payoutPerSymbol,
+    double? payoutPerSymbolAndContractType,
+    double? remainder,
+    double? withdrawalForXDaysMonetary,
+    double? withdrawalSinceInceptionMonetary,
   }) =>
       AccountLimits(
         accountBalance: accountBalance ?? this.accountBalance,

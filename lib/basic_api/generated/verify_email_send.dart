@@ -31,13 +31,13 @@ class VerifyEmailRequest extends Request {
       );
 
   /// Purpose of the email verification call.
-  final String type;
+  final String? type;
 
   /// [Optional] Extra parameters that can be attached to the verify email link URL.
-  final Map<String, dynamic> urlParameters;
+  final Map<String, dynamic>? urlParameters;
 
   /// Email address to be verified.
-  final String verifyEmail;
+  final String? verifyEmail;
 
   /// Converts this instance to JSON
   @override
@@ -52,9 +52,9 @@ class VerifyEmailRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   VerifyEmailRequest copyWith({
-    String type,
-    Map<String, dynamic> urlParameters,
-    String verifyEmail,
+    String? type,
+    Map<String, dynamic>? urlParameters,
+    String? verifyEmail,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -68,5 +68,5 @@ class VerifyEmailRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

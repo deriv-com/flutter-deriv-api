@@ -30,7 +30,7 @@ class Mt5PasswordResetResponse extends Response {
       );
 
   /// `1` on success
-  final int mt5PasswordReset;
+  final int? mt5PasswordReset;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class Mt5PasswordResetResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   Mt5PasswordResetResponse copyWith({
-    int mt5PasswordReset,
+    int? mt5PasswordReset,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class Mt5PasswordResetResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

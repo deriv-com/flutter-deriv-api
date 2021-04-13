@@ -16,15 +16,15 @@ class LocalCurrencyModel extends APIBaseModel {
       );
 
   /// Currency code
-  final String currencyCode;
+  final String? currencyCode;
 
   /// Number of fractional digits.
-  final int fractionalDigits;
+  final int? fractionalDigits;
 
   /// Generate a copy of instance with given parameters
   LocalCurrencyModel copyWith({
-    String currencyCode,
-    int fractionalDigits,
+    String? currencyCode,
+    int? fractionalDigits,
   }) =>
       LocalCurrencyModel(
         currencyCode: currencyCode ?? this.currencyCode,

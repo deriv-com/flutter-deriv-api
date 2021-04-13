@@ -1,4 +1,4 @@
-import 'package:meta/meta.dart';
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:recase/recase.dart';
 
 /// Enum case type
@@ -19,7 +19,7 @@ String getStringFromEnum<T>(
   EnumCase enumCase = EnumCase.snakeCase,
 }) {
   if (value == null) {
-    return null;
+    return '';
   }
 
   final String item = value.toString().split('.')[1];
@@ -38,14 +38,14 @@ String getStringFromEnum<T>(
 }
 
 /// Gets enum form a string
-T getEnumFromString<T>({
-  @required List<T> values,
-  @required String name,
+T? getEnumFromString<T>({
+  required List<T> values,
+  required String? name,
   EnumCase enumCase = EnumCase.snakeCase,
 }) =>
-    name == null || values == null || values.isEmpty
+    name == null || values.isEmpty
         ? null
-        : values.firstWhere(
+        : values.firstWhereOrNull(
             (T enumItem) {
               final String item = enumItem.toString().split('.')[1];
 
@@ -61,7 +61,6 @@ T getEnumFromString<T>({
                   return item.compareTo(name) == 0;
               }
             },
-            orElse: () => null,
           );
 
 /// Converts a list of enums to a string list
@@ -69,22 +68,20 @@ List<String> getStringListFromEnums<T>(
   List<T> values, {
   EnumCase enumCase = EnumCase.snakeCase,
 }) =>
-    values == null || values.isEmpty
-        ? null
-        : values
-            .map((T value) => getStringFromEnum(value, enumCase: enumCase))
-            .toList();
+    values
+        .map((T value) => getStringFromEnum(value, enumCase: enumCase))
+        .toList();
 
 /// Converts a list of strings to a enum list
-List<T> getEnumListFromStrings<T>({
-  @required List<T> values,
-  @required List<String> names,
+List<T?>? getEnumListFromStrings<T>({
+  required List<T> values,
+  required List<String?>? names,
   EnumCase enumCase = EnumCase.snakeCase,
 }) =>
     names == null || names.isEmpty
         ? null
         : names
-            .map((String name) => getEnumFromString(
+            .map((String? name) => getEnumFromString(
                   values: values,
                   name: name,
                   enumCase: enumCase,

@@ -8,5 +8,5 @@ abstract class TNCApprovalModel extends APIBaseModel {
   });
 
   /// Set terms and conditions true: success
-  final bool approved;
+  final bool? approved;
 }

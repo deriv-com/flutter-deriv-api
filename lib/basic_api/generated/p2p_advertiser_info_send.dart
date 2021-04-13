@@ -31,13 +31,13 @@ class P2pAdvertiserInfoRequest extends Request {
       );
 
   /// [Optional] The unique identifier for this advertiser. If not provided, returns advertiser information about the current account.
-  final String id;
+  final String? id;
 
   /// Must be `true`
-  final bool p2pAdvertiserInfo;
+  final bool? p2pAdvertiserInfo;
 
   /// [Optional] If set to `true`, will send updates whenever there is an update to advertiser
-  final bool subscribe;
+  final bool? subscribe;
 
   /// Converts this instance to JSON
   @override
@@ -45,12 +45,12 @@ class P2pAdvertiserInfoRequest extends Request {
         'id': id,
         'p2p_advertiser_info': p2pAdvertiserInfo == null
             ? null
-            : p2pAdvertiserInfo
+            : p2pAdvertiserInfo!
                 ? 1
                 : 0,
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -60,9 +60,9 @@ class P2pAdvertiserInfoRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertiserInfoRequest copyWith({
-    String id,
-    bool p2pAdvertiserInfo,
-    bool subscribe,
+    String? id,
+    bool? p2pAdvertiserInfo,
+    bool? subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

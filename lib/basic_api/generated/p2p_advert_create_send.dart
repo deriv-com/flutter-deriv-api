@@ -49,37 +49,37 @@ class P2pAdvertCreateRequest extends Request {
       );
 
   /// The total amount of the advert, in advertiser's account currency.
-  final num amount;
+  final num? amount;
 
   /// [Optional] Advertiser contact information. Only applicable for 'sell adverts'.
-  final String contactInfo;
+  final String? contactInfo;
 
   /// [Optional] General information about the advert.
-  final String description;
+  final String? description;
 
   /// [Optional] Local currency for this advert. If not provided, will use the currency of client's residence by default.
-  final String localCurrency;
+  final String? localCurrency;
 
   /// Maximum allowed amount for the orders of this advert, in advertiser's `account_currency`. Should be less than or equal to total `amount` of the advert.
-  final num maxOrderAmount;
+  final num? maxOrderAmount;
 
   /// Minimum allowed amount for the orders of this advert, in advertiser's `account_currency`. Should be less than `max_order_amount`.
-  final num minOrderAmount;
+  final num? minOrderAmount;
 
   /// Must be `true`
-  final bool p2pAdvertCreate;
+  final bool? p2pAdvertCreate;
 
   /// [Optional] Payment instructions. Only applicable for 'sell adverts'.
-  final String paymentInfo;
+  final String? paymentInfo;
 
   /// The payment method.
-  final String paymentMethod;
+  final String? paymentMethod;
 
   /// Conversion rate from advertiser's account currency to `local_currency`.
-  final num rate;
+  final num? rate;
 
   /// Whether this is a buy or a sell.
-  final String type;
+  final String? type;
 
   /// Converts this instance to JSON
   @override
@@ -92,7 +92,7 @@ class P2pAdvertCreateRequest extends Request {
         'min_order_amount': minOrderAmount,
         'p2p_advert_create': p2pAdvertCreate == null
             ? null
-            : p2pAdvertCreate
+            : p2pAdvertCreate!
                 ? 1
                 : 0,
         'payment_info': paymentInfo,
@@ -106,17 +106,17 @@ class P2pAdvertCreateRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertCreateRequest copyWith({
-    num amount,
-    String contactInfo,
-    String description,
-    String localCurrency,
-    num maxOrderAmount,
-    num minOrderAmount,
-    bool p2pAdvertCreate,
-    String paymentInfo,
-    String paymentMethod,
-    num rate,
-    String type,
+    num? amount,
+    String? contactInfo,
+    String? description,
+    String? localCurrency,
+    num? maxOrderAmount,
+    num? minOrderAmount,
+    bool? p2pAdvertCreate,
+    String? paymentInfo,
+    String? paymentMethod,
+    num? rate,
+    String? type,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -138,5 +138,5 @@ class P2pAdvertCreateRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

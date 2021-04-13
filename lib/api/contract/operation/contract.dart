@@ -18,15 +18,15 @@ import 'update_contract.dart';
 class Contract extends ContractModel {
   /// Initializes
   Contract({
-    double balanceAfter,
-    double buyPrice,
-    int contractId,
-    DateTime dateStart,
-    String longCode,
-    double payout,
-    DateTime purchaseTime,
-    String shortCode,
-    int transactionId,
+    double? balanceAfter,
+    double? buyPrice,
+    int? contractId,
+    DateTime? dateStart,
+    String? longCode,
+    double? payout,
+    DateTime? purchaseTime,
+    String? shortCode,
+    int? transactionId,
     this.subscriptionInformation,
   }) : super(
           balanceAfter: balanceAfter,
@@ -43,7 +43,7 @@ class Contract extends ContractModel {
   /// Generates an instance from JSON
   factory Contract.fromJson(
     Map<String, dynamic> json, {
-    Map<String, dynamic> subscriptionJson,
+    Map<String, dynamic>? subscriptionJson,
   }) =>
       Contract(
         balanceAfter: json['balanceAfter']?.toDouble(),
@@ -60,22 +60,22 @@ class Contract extends ContractModel {
         subscriptionInformation: SubscriptionModel.fromJson(subscriptionJson),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Subscription information
-  final SubscriptionModel subscriptionInformation;
+  final SubscriptionModel? subscriptionInformation;
 
   /// Buys a contract with parameters specified in given [BuyRequest]
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   static Future<Contract> buy(BuyRequest request) async {
-    final BuyResponse response = await _api.call(
+    final BuyResponse response = await _api!.call<BuyResponse>(
       request: request,
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -85,17 +85,17 @@ class Contract extends ContractModel {
   /// Buys contract with parameters specified in request and subscribes to it.
   ///
   /// Throws a [ContractOperationException] is API response contains an error
-  static Stream<Contract> buyAndSubscribe(
+  static Stream<Contract?> buyAndSubscribe(
     BuyRequest request, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
-      _api
-          .subscribe(request: request, comparePredicate: comparePredicate)
-          .map<Contract>(
+      _api!
+          .subscribe(request: request, comparePredicate: comparePredicate)!
+          .map<Contract?>(
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
                 ContractOperationException(
                     baseExceptionModel: baseExceptionModel),
           );
@@ -116,18 +116,18 @@ class Contract extends ContractModel {
   /// Throws a [ContractOperationException] if API response contains an error
   Future<OpenContract> fetchState() => OpenContract.fetchContractState(
         ProposalOpenContractRequest(
-          contractId: contractId,
+          contractId: contractId!,
         ),
       );
 
   /// Subscribes to this bought contract spot and returns its spot update as [ContractBaseModel].
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Stream<OpenContract> subscribeState({
-    RequestCompareFunction comparePredicate,
+  Stream<OpenContract?> subscribeState({
+    RequestCompareFunction? comparePredicate,
   }) =>
       OpenContract.subscribeContractState(
-        ProposalOpenContractRequest(contractId: contractId),
+        ProposalOpenContractRequest(contractId: contractId!),
         comparePredicate: comparePredicate,
       );
 
@@ -137,13 +137,13 @@ class Contract extends ContractModel {
   /// Default be 0 for 'sell at market'.
   /// Throws a [ContractOperationException] if API response contains an error
   Future<SellContract> sell({double price = 0}) =>
-      SellContract.sellContract(SellRequest(sell: contractId, price: price));
+      SellContract.sellContract(SellRequest(sell: contractId!, price: price));
 
   /// Cancels this contract
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   Future<CancelContract> cancel() =>
-      CancelContract.cancelContract(CancelRequest(cancel: contractId));
+      CancelContract.cancelContract(CancelRequest(cancel: contractId!));
 
   /// Updates this contract
   ///
@@ -151,11 +151,11 @@ class Contract extends ContractModel {
   /// New [takeProfit] value for a contract. To cancel, pass null.
   /// Throws a [ContractOperationException] if API response contains an error
   Future<UpdateContract> update({
-    double stopLoss,
-    double takeProfit,
+    double? stopLoss,
+    double? takeProfit,
   }) =>
       UpdateContract.updateContract(ContractUpdateRequest(
-        contractId: contractId,
+        contractId: contractId!,
         limitOrder: <String, dynamic>{
           'stop_loss': stopLoss,
           'take_profit': takeProfit,
@@ -164,16 +164,16 @@ class Contract extends ContractModel {
 
   /// Generates a copy of instance with given parameters
   Contract copyWith({
-    double balanceAfter,
-    double buyPrice,
-    int contractId,
-    DateTime dateStart,
-    String longCode,
-    double payout,
-    DateTime purchaseTime,
-    String shortCode,
-    int transactionId,
-    SubscriptionModel subscriptionInformation,
+    double? balanceAfter,
+    double? buyPrice,
+    int? contractId,
+    DateTime? dateStart,
+    String? longCode,
+    double? payout,
+    DateTime? purchaseTime,
+    String? shortCode,
+    int? transactionId,
+    SubscriptionModel? subscriptionInformation,
   }) =>
       Contract(
         balanceAfter: balanceAfter ?? this.balanceAfter,

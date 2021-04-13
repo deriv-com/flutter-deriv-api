@@ -30,7 +30,7 @@ class StatementResponse extends Response {
       );
 
   /// Account statement.
-  final Map<String, dynamic> statement;
+  final Map<String, dynamic>? statement;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class StatementResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   StatementResponse copyWith({
-    Map<String, dynamic> statement,
+    Map<String, dynamic>? statement,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class StatementResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

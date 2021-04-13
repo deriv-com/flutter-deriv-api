@@ -30,27 +30,27 @@ class SymbolModel extends APIBaseModel {
       );
 
   /// Translated symbol name.
-  final String displayName;
+  final String? displayName;
 
   /// Symbol name.
-  final String name;
+  final String? name;
 
   /// Events
-  final List<TradeEventModel> events;
+  final List<TradeEventModel?>? events;
 
   /// Symbol
-  final String symbol;
+  final String? symbol;
 
   /// Trade Times
-  final TradeTimesModel times;
+  final TradeTimesModel? times;
 
   /// Creates a copy of instance with given parameters
   SymbolModel copyWith({
-    String displayName,
-    String name,
-    List<TradeEventModel> events,
-    String symbol,
-    TradeTimesModel times,
+    String? displayName,
+    String? name,
+    List<TradeEventModel>? events,
+    String? symbol,
+    TradeTimesModel? times,
   }) =>
       SymbolModel(
         displayName: displayName ?? this.displayName,

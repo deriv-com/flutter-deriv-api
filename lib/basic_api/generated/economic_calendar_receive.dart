@@ -30,7 +30,7 @@ class EconomicCalendarResponse extends Response {
       );
 
   /// Economic calendar.
-  final Map<String, dynamic> economicCalendar;
+  final Map<String, dynamic>? economicCalendar;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class EconomicCalendarResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   EconomicCalendarResponse copyWith({
-    Map<String, dynamic> economicCalendar,
+    Map<String, dynamic>? economicCalendar,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class EconomicCalendarResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

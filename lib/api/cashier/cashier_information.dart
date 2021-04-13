@@ -12,8 +12,8 @@ import 'models/cashier_api_model.dart';
 class CashierInformation extends CashierInformationModel {
   /// Initializes
   CashierInformation({
-    CashierAPIModel cashierAPI,
-    String cashierURL,
+    CashierAPIModel? cashierAPI,
+    String? cashierURL,
   }) : super(cashierAPI: cashierAPI, cashierURL: cashierURL);
 
   /// Generates an instance from JSON
@@ -31,17 +31,18 @@ class CashierInformation extends CashierInformationModel {
             : null,
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the cashier URL for given [CashierRequest]
   static Future<CashierInformation> fetchInformation(
     CashierRequest request,
   ) async {
-    final CashierResponse response = await _api.call(request: request);
+    final CashierResponse response =
+        await _api!.call<CashierResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           CashierException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -50,8 +51,8 @@ class CashierInformation extends CashierInformationModel {
 
   /// Creates a copy with given parameters
   CashierInformation copyWith({
-    CashierAPIModel cashierAPI,
-    String cashierURL,
+    CashierAPIModel? cashierAPI,
+    String? cashierURL,
   }) =>
       CashierInformation(
         cashierAPI: cashierAPI ?? this.cashierAPI,

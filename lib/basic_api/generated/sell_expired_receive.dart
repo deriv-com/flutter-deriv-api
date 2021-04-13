@@ -30,7 +30,7 @@ class SellExpiredResponse extends Response {
       );
 
   /// Sell expired contract object containing count of contracts sold
-  final Map<String, dynamic> sellExpired;
+  final Map<String, dynamic>? sellExpired;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class SellExpiredResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   SellExpiredResponse copyWith({
-    Map<String, dynamic> sellExpired,
+    Map<String, dynamic>? sellExpired,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class SellExpiredResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

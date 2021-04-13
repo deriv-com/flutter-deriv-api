@@ -28,22 +28,22 @@ class WebsiteStatusRequest extends Request {
       );
 
   /// [Optional] `true` to stream the server/website status updates.
-  final bool subscribe;
+  final bool? subscribe;
 
   /// Must be `true`
-  final bool websiteStatus;
+  final bool? websiteStatus;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'website_status': websiteStatus == null
             ? null
-            : websiteStatus
+            : websiteStatus!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -53,8 +53,8 @@ class WebsiteStatusRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   WebsiteStatusRequest copyWith({
-    bool subscribe,
-    bool websiteStatus,
+    bool? subscribe,
+    bool? websiteStatus,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -67,5 +67,5 @@ class WebsiteStatusRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

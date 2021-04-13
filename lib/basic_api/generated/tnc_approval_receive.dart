@@ -30,7 +30,7 @@ class TncApprovalResponse extends Response {
       );
 
   /// Set terms and conditions 1: success
-  final int tncApproval;
+  final int? tncApproval;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class TncApprovalResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   TncApprovalResponse copyWith({
-    int tncApproval,
+    int? tncApproval,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class TncApprovalResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

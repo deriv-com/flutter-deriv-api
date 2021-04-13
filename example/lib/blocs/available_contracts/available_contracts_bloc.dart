@@ -18,7 +18,7 @@ class AvailableContractsBloc
   /// Initializes
   AvailableContractsBloc(ActiveSymbolsBloc activeSymbolsBloc)
       : super(AvailableContractsLoading()) {
-    activeSymbolsBloc.listen((ActiveSymbolsState activeSymbolsState) {
+    activeSymbolsBloc.stream.listen((ActiveSymbolsState activeSymbolsState) {
       if (activeSymbolsState is ActiveSymbolsLoaded) {
         add(FetchAvailableContracts(
           activeSymbol: activeSymbolsState.selectedSymbol,

@@ -10,12 +10,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class Residence extends ResidenceModel {
   /// Initializes
   Residence({
-    String phoneIdd,
-    String countryName,
-    String countryCode,
-    List<String> tinFormat,
-    String disabled,
-    String selected,
+    String? phoneIdd,
+    String? countryName,
+    String? countryCode,
+    List<String?>? tinFormat,
+    String? disabled,
+    String? selected,
   }) : super(
           phoneIdd: phoneIdd,
           countryName: countryName,
@@ -38,7 +38,7 @@ class Residence extends ResidenceModel {
         selected: json['selected'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// 'true' if disabled
   bool get isDisabled => disabled?.toLowerCase() == 'disabled';
@@ -49,16 +49,17 @@ class Residence extends ResidenceModel {
   /// Gets Residence list for the given [ResidenceListRequest]
   ///
   /// Throws a [ResidenceException] if API response contains an error
-  static Future<List<Residence>> fetchResidenceList([
-    ResidenceListRequest request,
+  static Future<List<Residence?>?> fetchResidenceList([
+    ResidenceListRequest? request,
   ]) async {
-    final ResidenceListResponse response = await _api.call(
+    final ResidenceListResponse response =
+        await _api!.call<ResidenceListResponse>(
       request: request ?? const ResidenceListRequest(),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ResidenceException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -70,12 +71,12 @@ class Residence extends ResidenceModel {
 
   /// Generates a copy of instance with given parameters
   Residence copyWith({
-    String phoneIdd,
-    String countryName,
-    String countryCode,
-    List<String> tinFormat,
-    String disabled,
-    String selected,
+    String? phoneIdd,
+    String? countryName,
+    String? countryCode,
+    List<String>? tinFormat,
+    String? disabled,
+    String? selected,
   }) =>
       Residence(
         phoneIdd: phoneIdd ?? this.phoneIdd,

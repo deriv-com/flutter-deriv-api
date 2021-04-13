@@ -13,8 +13,8 @@ import 'exceptions/contract_operations_exception.dart';
 class UpdateContract extends UpdateContractModel {
   /// Initializes
   UpdateContract({
-    SpotPriceModel stopLoss,
-    SpotPriceModel takeProfit,
+    SpotPriceModel? stopLoss,
+    SpotPriceModel? takeProfit,
   }) : super(
           stopLoss: stopLoss,
           takeProfit: takeProfit,
@@ -32,7 +32,7 @@ class UpdateContract extends UpdateContractModel {
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// updates a contract with parameters specified in [ContractUpdateRequest].
   ///
@@ -40,11 +40,12 @@ class UpdateContract extends UpdateContractModel {
   static Future<UpdateContract> updateContract(
     ContractUpdateRequest request,
   ) async {
-    final ContractUpdateResponse response = await _api.call(request: request);
+    final ContractUpdateResponse response =
+        await _api!.call<ContractUpdateResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -54,15 +55,15 @@ class UpdateContract extends UpdateContractModel {
   /// Gets update history for contract as List of [HistorySpotPriceModel]
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  static Future<List<HistorySpotPriceModel>> fetchContractUpdateHistory(
+  static Future<List<HistorySpotPriceModel?>?> fetchContractUpdateHistory(
     ContractUpdateHistoryRequest request,
   ) async {
     final ContractUpdateHistoryResponse response =
-        await _api.call(request: request);
+        await _api!.call<ContractUpdateHistoryResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -75,8 +76,8 @@ class UpdateContract extends UpdateContractModel {
 
   /// Generates a copy of instance with given parameters
   UpdateContract copyWith({
-    SpotPriceModel stopLoss,
-    SpotPriceModel takeProfit,
+    SpotPriceModel? stopLoss,
+    SpotPriceModel? takeProfit,
   }) =>
       UpdateContract(
         stopLoss: stopLoss ?? this.stopLoss,

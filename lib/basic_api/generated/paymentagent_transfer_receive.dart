@@ -36,16 +36,16 @@ class PaymentagentTransferResponse extends Response {
       );
 
   /// The `transfer_to` client full name
-  final String clientToFullName;
+  final String? clientToFullName;
 
   /// The `transfer_to` client loginid
-  final String clientToLoginid;
+  final String? clientToLoginid;
 
   /// If set to `1`, transfer success. If set to `2`, dry-run success.
-  final int paymentagentTransfer;
+  final int? paymentagentTransfer;
 
   /// Reference ID of transfer performed
-  final int transactionId;
+  final int? transactionId;
 
   /// Converts this instance to JSON
   @override
@@ -63,10 +63,10 @@ class PaymentagentTransferResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   PaymentagentTransferResponse copyWith({
-    String clientToFullName,
-    String clientToLoginid,
-    int paymentagentTransfer,
-    int transactionId,
+    String? clientToFullName,
+    String? clientToLoginid,
+    int? paymentagentTransfer,
+    int? transactionId,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -85,5 +85,5 @@ class PaymentagentTransferResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

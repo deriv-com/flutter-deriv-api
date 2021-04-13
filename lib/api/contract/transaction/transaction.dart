@@ -16,25 +16,25 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class Transaction extends TransactionModel {
   /// Initializes
   Transaction({
-    TransactionActionType action,
-    double amount,
-    double balance,
-    String barrier,
-    String contractId,
-    String currency,
-    DateTime dateExpiry,
-    String displayName,
-    String highBarrier,
-    String id,
-    String longCode,
-    String lowBarrier,
-    DateTime purchaseTime,
-    String stopLoss,
-    String stopOut,
-    String symbol,
-    String takeProfit,
-    int transactionId,
-    DateTime transactionTime,
+    TransactionActionType? action,
+    double? amount,
+    double? balance,
+    String? barrier,
+    String? contractId,
+    String? currency,
+    DateTime? dateExpiry,
+    String? displayName,
+    String? highBarrier,
+    String? id,
+    String? longCode,
+    String? lowBarrier,
+    DateTime? purchaseTime,
+    String? stopLoss,
+    String? stopOut,
+    String? symbol,
+    String? takeProfit,
+    int? transactionId,
+    DateTime? transactionTime,
     this.subscriptionInformation,
   }) : super(
           action: action,
@@ -61,7 +61,7 @@ class Transaction extends TransactionModel {
   /// Generates an instance from JSON
   factory Transaction.fromJson(
     Map<String, dynamic> json, {
-    Map<String, dynamic> subscriptionJson,
+    Map<String, dynamic>? subscriptionJson,
   }) =>
       Transaction(
         action: getEnumFromString(
@@ -90,25 +90,25 @@ class Transaction extends TransactionModel {
       );
 
   /// Subscription information
-  final SubscriptionModel subscriptionInformation;
+  final SubscriptionModel? subscriptionInformation;
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Subscribes to account's transactions
   ///
   /// Throws a [TransactionsException] if API response contains an error
-  static Stream<Transaction> subscribeTransactions({
-    RequestCompareFunction comparePredicate,
+  static Stream<Transaction?> subscribeTransactions({
+    RequestCompareFunction? comparePredicate,
   }) =>
-      _api
+      _api!
           .subscribe(
         request: const TransactionRequest(),
         comparePredicate: comparePredicate,
-      )
-          .map<Transaction>((Response response) {
+      )!
+          .map<Transaction?>((Response response) {
         checkException(
           response: response,
-          exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
               TransactionsException(baseExceptionModel: baseExceptionModel),
         );
 
@@ -123,17 +123,17 @@ class Transaction extends TransactionModel {
   /// Unsubscribes from transaction subscription.
   ///
   /// Throws a [TransactionsException] if API response contains an error
-  Future<Forget> unsubscribeTransaction() async {
+  Future<Forget?> unsubscribeTransaction() async {
     if (subscriptionInformation?.id == null) {
       return null;
     }
 
     final ForgetResponse response =
-        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+        await _api!.unsubscribe(subscriptionId: subscriptionInformation!.id);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TransactionsException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -144,12 +144,12 @@ class Transaction extends TransactionModel {
   ///
   /// Throws a [TransactionsException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllTransaction() async {
-    final ForgetAllResponse response =
-        await _api.unsubscribeAll(method: ForgetStreamType.transaction);
+    final ForgetAllResponse? response =
+        await _api!.unsubscribeAll(method: ForgetStreamType.transaction);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TransactionsException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -158,25 +158,25 @@ class Transaction extends TransactionModel {
 
   /// Generates a copy of instance with given parameters
   TransactionModel copyWith({
-    TransactionActionType action,
-    double amount,
-    double balance,
-    String barrier,
-    String contractId,
-    String currency,
-    DateTime dateExpiry,
-    String displayName,
-    String highBarrier,
-    String id,
-    String longCode,
-    String lowBarrier,
-    DateTime purchaseTime,
-    String stopLoss,
-    String stopOut,
-    String symbol,
-    String takeProfit,
-    int transactionId,
-    DateTime transactionTime,
+    TransactionActionType? action,
+    double? amount,
+    double? balance,
+    String? barrier,
+    String? contractId,
+    String? currency,
+    DateTime? dateExpiry,
+    String? displayName,
+    String? highBarrier,
+    String? id,
+    String? longCode,
+    String? lowBarrier,
+    DateTime? purchaseTime,
+    String? stopLoss,
+    String? stopOut,
+    String? symbol,
+    String? takeProfit,
+    int? transactionId,
+    DateTime? transactionTime,
   }) =>
       Transaction(
           action: action ?? this.action,

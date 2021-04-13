@@ -10,10 +10,10 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class SetFinancialAssessment extends SetFinancialAssessmentModel {
   /// Initializes
   SetFinancialAssessment({
-    int cfdScore,
-    int financialInformationScore,
-    int totalScore,
-    int tradingScore,
+    int? cfdScore,
+    int? financialInformationScore,
+    int? totalScore,
+    int? tradingScore,
   }) : super(
           cfdScore: cfdScore,
           financialInformationScore: financialInformationScore,
@@ -30,14 +30,14 @@ class SetFinancialAssessment extends SetFinancialAssessmentModel {
         tradingScore: json['trading_score'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   SetFinancialAssessment copyWith({
-    int cfdScore,
-    int financialInformationScore,
-    int totalScore,
-    int tradingScore,
+    int? cfdScore,
+    int? financialInformationScore,
+    int? totalScore,
+    int? tradingScore,
   }) =>
       SetFinancialAssessment(
         cfdScore: cfdScore ?? this.cfdScore,
@@ -57,11 +57,11 @@ class SetFinancialAssessment extends SetFinancialAssessmentModel {
     SetFinancialAssessmentRequest request,
   ) async {
     final SetFinancialAssessmentResponse response =
-        await _api.call(request: request);
+        await _api!.call<SetFinancialAssessmentResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           FinancialAssessmentException(baseExceptionModel: baseExceptionModel),
     );
 

@@ -29,7 +29,7 @@ class TimeResponse extends Response {
       );
 
   /// Epoch of server time.
-  final int time;
+  final int? time;
 
   /// Converts this instance to JSON
   @override
@@ -44,7 +44,7 @@ class TimeResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   TimeResponse copyWith({
-    int time,
+    int? time,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -60,5 +60,5 @@ class TimeResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

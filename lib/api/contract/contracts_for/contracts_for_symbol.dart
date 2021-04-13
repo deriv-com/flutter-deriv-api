@@ -13,12 +13,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class ContractsForSymbol extends ContractsForSymbolModel {
   /// Initializes
   ContractsForSymbol({
-    List<AvailableContractModel> availableContracts,
-    DateTime close,
-    String feedLicense,
-    int hitCount,
-    DateTime open,
-    double spot,
+    List<AvailableContractModel?>? availableContracts,
+    DateTime? close,
+    String? feedLicense,
+    int? hitCount,
+    DateTime? open,
+    double? spot,
   }) : super(
           availableContracts: availableContracts,
           close: close,
@@ -43,7 +43,7 @@ class ContractsForSymbol extends ContractsForSymbolModel {
         spot: json['spot']?.toDouble(),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets available contracts for given symbol in [ContractsForRequest]
   ///
@@ -51,13 +51,13 @@ class ContractsForSymbol extends ContractsForSymbolModel {
   static Future<ContractsForSymbol> fetchContractsForSymbol(
     ContractsForRequest request,
   ) async {
-    final ContractsForResponse response = await _api.call(
+    final ContractsForResponse response = await _api!.call<ContractsForResponse>(
       request: request,
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractsForSymbolException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -66,16 +66,16 @@ class ContractsForSymbol extends ContractsForSymbolModel {
 
   /// Generates a copy of instance with given parameters
   ContractsForSymbol copyWith({
-    List<AvailableContractModel> availableContracts,
-    int close,
-    String feedLicense,
-    int hitCount,
-    DateTime open,
-    double spot,
+    List<AvailableContractModel>? availableContracts,
+    int? close,
+    String? feedLicense,
+    int? hitCount,
+    DateTime? open,
+    double? spot,
   }) =>
       ContractsForSymbol(
         availableContracts: availableContracts ?? this.availableContracts,
-        close: close ?? this.close,
+        close: close as DateTime? ?? this.close,
         feedLicense: feedLicense ?? this.feedLicense,
         hitCount: hitCount ?? this.hitCount,
         open: open ?? this.open,

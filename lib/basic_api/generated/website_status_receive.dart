@@ -32,10 +32,10 @@ class WebsiteStatusResponse extends Response {
       );
 
   /// For subscription requests only.
-  final Map<String, dynamic> subscription;
+  final Map<String, dynamic>? subscription;
 
   /// Server status and other information regarding general settings
-  final Map<String, dynamic> websiteStatus;
+  final Map<String, dynamic>? websiteStatus;
 
   /// Converts this instance to JSON
   @override
@@ -51,8 +51,8 @@ class WebsiteStatusResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   WebsiteStatusResponse copyWith({
-    Map<String, dynamic> subscription,
-    Map<String, dynamic> websiteStatus,
+    Map<String, dynamic>? subscription,
+    Map<String, dynamic>? websiteStatus,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -69,5 +69,5 @@ class WebsiteStatusResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

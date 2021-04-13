@@ -26,17 +26,17 @@ class FetchingServerTime extends ServerTimeState {
 /// Server time fetched state.
 class ServerTimeFetched extends ServerTimeState {
   /// Initializes server time fetched state.
-  ServerTimeFetched({this.serverTime, int timeDifference})
+  ServerTimeFetched({this.serverTime, int? timeDifference})
       : super(
           timeDifference =
-              getSecondsSinceEpochDateTime(serverTime) - getCurrentLocalEpoch(),
+              getSecondsSinceEpochDateTime(serverTime)! - getCurrentLocalEpoch(),
         );
 
   /// Fetched server time.
-  final DateTime serverTime;
+  final DateTime? serverTime;
 
   /// Creates a copy of instance with given parameters.
-  ServerTimeFetched copyWith({DateTime serverTime}) =>
+  ServerTimeFetched copyWith({DateTime? serverTime}) =>
       ServerTimeFetched(serverTime: serverTime ?? this.serverTime);
 
   @override
@@ -50,7 +50,7 @@ class ServerTimeError extends ServerTimeState {
   ServerTimeError(this.error);
 
   /// An exception or message from the server.
-  final String error;
+  final String? error;
 
   @override
   String toString() => 'ServerTimeState: ServerTimeError(error: $error)';

@@ -30,7 +30,7 @@ class GetAccountStatusResponse extends Response {
       );
 
   /// Account status details
-  final Map<String, dynamic> getAccountStatus;
+  final Map<String, dynamic>? getAccountStatus;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class GetAccountStatusResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   GetAccountStatusResponse copyWith({
-    Map<String, dynamic> getAccountStatus,
+    Map<String, dynamic>? getAccountStatus,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class GetAccountStatusResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -9,5 +9,5 @@ abstract class TradingTimesModel extends APIBaseModel {
   });
 
   /// Markets in which the underlyings listed in `symbol` located.
-  final List<MarketModel> markets;
+  final List<MarketModel?>? markets;
 }

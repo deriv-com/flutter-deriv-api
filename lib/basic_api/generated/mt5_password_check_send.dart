@@ -35,16 +35,16 @@ class Mt5PasswordCheckRequest extends Request {
       );
 
   /// MT5 user login
-  final String login;
+  final String? login;
 
   /// Must be `true`
-  final bool mt5PasswordCheck;
+  final bool? mt5PasswordCheck;
 
   /// The password of the account.
-  final String password;
+  final String? password;
 
   /// [Optional] Type of the password to check.
-  final String passwordType;
+  final String? passwordType;
 
   /// Converts this instance to JSON
   @override
@@ -52,7 +52,7 @@ class Mt5PasswordCheckRequest extends Request {
         'login': login,
         'mt5_password_check': mt5PasswordCheck == null
             ? null
-            : mt5PasswordCheck
+            : mt5PasswordCheck!
                 ? 1
                 : 0,
         'password': password,
@@ -64,10 +64,10 @@ class Mt5PasswordCheckRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   Mt5PasswordCheckRequest copyWith({
-    String login,
-    bool mt5PasswordCheck,
-    String password,
-    String passwordType,
+    String? login,
+    bool? mt5PasswordCheck,
+    String? password,
+    String? passwordType,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -82,5 +82,5 @@ class Mt5PasswordCheckRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

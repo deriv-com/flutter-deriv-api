@@ -11,11 +11,11 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class OauthApp extends OauthAppModel {
   /// Initializes
   OauthApp({
-    int appId,
-    double appMarkupPercentage,
-    DateTime lastUsed,
-    String name,
-    List<TokenScope> scopes,
+    int? appId,
+    double? appMarkupPercentage,
+    DateTime? lastUsed,
+    String? name,
+    List<TokenScope?>? scopes,
   }) : super(
           appId: appId,
           appMarkupPercentage: appMarkupPercentage,
@@ -32,20 +32,20 @@ class OauthApp extends OauthAppModel {
         name: json['name'],
         scopes: getListFromMap(
           json['scopes'],
-          itemToTypeCallback: (dynamic item) =>
-              getEnumFromString(values: TokenScope.values, name: item),
+          itemToTypeCallback: ((dynamic item) =>
+              getEnumFromString(values: TokenScope.values, name: item)!) as TokenScope Function(dynamic)?,
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   OauthApp copyWith({
-    int appId,
-    double appMarkupPercentage,
-    DateTime lastUsed,
-    String name,
-    List<TokenScope> scopes,
+    int? appId,
+    double? appMarkupPercentage,
+    DateTime? lastUsed,
+    String? name,
+    List<TokenScope>? scopes,
   }) =>
       OauthApp(
         appId: appId ?? this.appId,
@@ -58,16 +58,16 @@ class OauthApp extends OauthAppModel {
   /// Gets oauth application that used for the authorized account.
   ///
   /// Throws an [AppException] if API response contains an error
-  static Future<List<OauthApp>> fetchOauthApps([
-    OauthAppsRequest request,
+  static Future<List<OauthApp?>?> fetchOauthApps([
+    OauthAppsRequest? request,
   ]) async {
-    final OauthAppsResponse response = await _api.call(
+    final OauthAppsResponse response = await _api!.call<OauthAppsResponse>(
       request: request ?? const OauthAppsRequest(),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AppException(baseExceptionModel: baseExceptionModel),
     );
 

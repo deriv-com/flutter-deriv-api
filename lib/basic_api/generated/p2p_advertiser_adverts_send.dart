@@ -31,13 +31,13 @@ class P2pAdvertiserAdvertsRequest extends Request {
       );
 
   /// [Optional] Used for paging.
-  final int limit;
+  final int? limit;
 
   /// [Optional] Used for paging.
-  final int offset;
+  final int? offset;
 
   /// Must be `true`
-  final bool p2pAdvertiserAdverts;
+  final bool? p2pAdvertiserAdverts;
 
   /// Converts this instance to JSON
   @override
@@ -46,7 +46,7 @@ class P2pAdvertiserAdvertsRequest extends Request {
         'offset': offset,
         'p2p_advertiser_adverts': p2pAdvertiserAdverts == null
             ? null
-            : p2pAdvertiserAdverts
+            : p2pAdvertiserAdverts!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -56,9 +56,9 @@ class P2pAdvertiserAdvertsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertiserAdvertsRequest copyWith({
-    int limit,
-    int offset,
-    bool p2pAdvertiserAdverts,
+    int? limit,
+    int? offset,
+    bool? p2pAdvertiserAdverts,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -72,5 +72,5 @@ class P2pAdvertiserAdvertsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

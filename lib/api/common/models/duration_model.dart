@@ -19,23 +19,23 @@ class DurationModel extends APIBaseModel {
       );
 
   /// Translated duration type name.
-  final String displayName;
+  final String? displayName;
 
   /// Maximum allowed duration for this type.
-  final int max;
+  final int? max;
 
   /// Minimum allowed duration for this type.
-  final int min;
+  final int? min;
 
   /// Duration type name.
-  final String name;
+  final String? name;
 
   /// Creates a copy of instance with given parameters
   DurationModel copyWith({
-    String displayName,
-    int max,
-    int min,
-    String name,
+    String? displayName,
+    int? max,
+    int? min,
+    String? name,
   }) =>
       DurationModel(
         displayName: displayName ?? this.displayName,

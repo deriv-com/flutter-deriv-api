@@ -30,7 +30,7 @@ class P2pChatCreateResponse extends Response {
       );
 
   /// Information of the P2P chat.
-  final Map<String, dynamic> p2pChatCreate;
+  final Map<String, dynamic>? p2pChatCreate;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class P2pChatCreateResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   P2pChatCreateResponse copyWith({
-    Map<String, dynamic> p2pChatCreate,
+    Map<String, dynamic>? p2pChatCreate,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class P2pChatCreateResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

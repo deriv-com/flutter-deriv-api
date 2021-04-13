@@ -24,14 +24,14 @@ class AppListRequest extends Request {
       );
 
   /// Must be `true`
-  final bool appList;
+  final bool? appList;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'app_list': appList == null
             ? null
-            : appList
+            : appList!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -41,7 +41,7 @@ class AppListRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   AppListRequest copyWith({
-    bool appList,
+    bool? appList,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -53,5 +53,5 @@ class AppListRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

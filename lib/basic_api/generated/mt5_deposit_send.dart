@@ -34,16 +34,16 @@ class Mt5DepositRequest extends Request {
       );
 
   /// Amount to deposit (in the currency of from_binary); min = $1 or an equivalent amount, max = $20000 or an equivalent amount
-  final num amount;
+  final num? amount;
 
   /// Binary account loginid to transfer money from
-  final String fromBinary;
+  final String? fromBinary;
 
   /// Must be `true`
-  final bool mt5Deposit;
+  final bool? mt5Deposit;
 
   /// MT5 account login to deposit money to
-  final String toMt5;
+  final String? toMt5;
 
   /// Converts this instance to JSON
   @override
@@ -52,7 +52,7 @@ class Mt5DepositRequest extends Request {
         'from_binary': fromBinary,
         'mt5_deposit': mt5Deposit == null
             ? null
-            : mt5Deposit
+            : mt5Deposit!
                 ? 1
                 : 0,
         'to_mt5': toMt5,
@@ -63,10 +63,10 @@ class Mt5DepositRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   Mt5DepositRequest copyWith({
-    num amount,
-    String fromBinary,
-    bool mt5Deposit,
-    String toMt5,
+    num? amount,
+    String? fromBinary,
+    bool? mt5Deposit,
+    String? toMt5,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -81,5 +81,5 @@ class Mt5DepositRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

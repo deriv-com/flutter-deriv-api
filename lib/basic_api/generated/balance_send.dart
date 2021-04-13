@@ -28,13 +28,13 @@ class BalanceRequest extends Request {
       );
 
   /// [Optional] If set to `all`, return the balances of all accounts one by one; if set to `current`, return the balance of current account; if set as an account id, return the balance of that account.
-  final String account;
+  final String? account;
 
   /// Must be `true`
-  final bool balance;
+  final bool? balance;
 
   /// [Optional] If set to `true`, will send updates whenever the balance changes.
-  final bool subscribe;
+  final bool? subscribe;
 
   /// Converts this instance to JSON
   @override
@@ -42,12 +42,12 @@ class BalanceRequest extends Request {
         'account': account,
         'balance': balance == null
             ? null
-            : balance
+            : balance!
                 ? 1
                 : 0,
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -57,9 +57,9 @@ class BalanceRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   BalanceRequest copyWith({
-    String account,
-    bool balance,
-    bool subscribe,
+    String? account,
+    bool? balance,
+    bool? subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -73,5 +73,5 @@ class BalanceRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

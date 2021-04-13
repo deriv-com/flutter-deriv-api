@@ -33,10 +33,10 @@ class P2pAdvertiserCreateResponse extends Response {
       );
 
   /// P2P advertiser information.
-  final Map<String, dynamic> p2pAdvertiserCreate;
+  final Map<String, dynamic>? p2pAdvertiserCreate;
 
   /// For subscription requests only.
-  final Map<String, dynamic> subscription;
+  final Map<String, dynamic>? subscription;
 
   /// Converts this instance to JSON
   @override
@@ -52,8 +52,8 @@ class P2pAdvertiserCreateResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertiserCreateResponse copyWith({
-    Map<String, dynamic> p2pAdvertiserCreate,
-    Map<String, dynamic> subscription,
+    Map<String, dynamic>? p2pAdvertiserCreate,
+    Map<String, dynamic>? subscription,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -70,5 +70,5 @@ class P2pAdvertiserCreateResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

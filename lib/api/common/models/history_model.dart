@@ -10,26 +10,26 @@ class HistoryModel extends APIBaseModel {
   factory HistoryModel.fromJson(Map<String, dynamic> json) => HistoryModel(
         prices: getListFromMap(
           json['prices'],
-          itemToTypeCallback: (dynamic item) => item?.toDouble(),
+          itemToTypeCallback: ((dynamic item) => item?.toDouble()) as double Function(dynamic)?,
         ),
         times: getListFromMap(
           json['times'],
-          itemToTypeCallback: (dynamic item) => getDateTime(item),
+          itemToTypeCallback: ((dynamic item) => getDateTime(item)!) as DateTime Function(dynamic)?,
         ),
       );
 
   /// Containing list of tick values for the
   /// corresponding epoch values in `times` array.
-  final List<double> prices;
+  final List<double?>? prices;
 
   /// Containing list of epoch values for the
   /// corresponding tick values in `prices` array.
-  final List<DateTime> times;
+  final List<DateTime?>? times;
 
   /// Generate a copy of instance with given parameters
   HistoryModel copyWith({
-    List<double> prices,
-    List<DateTime> times,
+    List<double>? prices,
+    List<DateTime>? times,
   }) =>
       HistoryModel(
         prices: prices ?? this.prices,

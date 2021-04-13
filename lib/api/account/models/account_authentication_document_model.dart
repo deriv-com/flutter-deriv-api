@@ -25,26 +25,26 @@ class AccountAuthenticationDocumentModel extends APIBaseModel {
       );
 
   /// This is the epoch of the document expiry date.
-  final DateTime expiryDate;
+  final DateTime? expiryDate;
 
   /// This represent the number of submissions allowed for client to
   /// submit documents
-  final bool furtherSubmissionsAllowed;
+  final bool? furtherSubmissionsAllowed;
 
   /// This represents the current status of the proof of address document
   /// submitted for authentication.
-  final AccountIdentityStatus status;
+  final AccountIdentityStatus? status;
 
   /// Generate a copy of instance with given parameters
   AccountAuthenticationDocumentModel copyWith({
-    DateTime expiryDate,
-    int furtherSubmissionsAllowed,
-    AccountIdentityStatus status,
+    DateTime? expiryDate,
+    int? furtherSubmissionsAllowed,
+    AccountIdentityStatus? status,
   }) =>
       AccountAuthenticationDocumentModel(
         expiryDate: expiryDate ?? this.expiryDate,
         furtherSubmissionsAllowed:
-            furtherSubmissionsAllowed ?? this.furtherSubmissionsAllowed,
+            furtherSubmissionsAllowed as bool? ?? this.furtherSubmissionsAllowed,
         status: status ?? this.status,
       );
 }

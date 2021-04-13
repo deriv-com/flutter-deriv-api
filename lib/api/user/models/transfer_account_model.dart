@@ -27,27 +27,27 @@ class TransferAccountModel extends APIBaseModel {
       );
 
   /// Type of the account.
-  final TransferAccountType accountType;
+  final TransferAccountType? accountType;
 
   /// Account balance.
-  final String balance;
+  final String? balance;
 
   /// Default account currency.
-  final String currency;
+  final String? currency;
 
   /// Client loginid.
-  final String loginId;
+  final String? loginId;
 
   /// The group of mt5 account.
-  final String mt5Group;
+  final String? mt5Group;
 
   /// Generate a copy of instance with given parameters
   TransferAccountModel copyWith({
-    TransferAccountType accountType,
-    String balance,
-    String currency,
-    String loginId,
-    String mt5Group,
+    TransferAccountType? accountType,
+    String? balance,
+    String? currency,
+    String? loginId,
+    String? mt5Group,
   }) =>
       TransferAccountModel(
         accountType: accountType ?? this.accountType,

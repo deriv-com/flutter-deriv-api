@@ -33,7 +33,7 @@ class AppListResponse extends Response {
       );
 
   /// List of created applications for the authorized account.
-  final List<Map<String, dynamic>> appList;
+  final List<Map<String, dynamic>>? appList;
 
   /// Converts this instance to JSON
   @override
@@ -48,7 +48,7 @@ class AppListResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   AppListResponse copyWith({
-    List<Map<String, dynamic>> appList,
+    List<Map<String, dynamic>>? appList,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -64,5 +64,5 @@ class AppListResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -15,15 +15,15 @@ class MaxProposalSubscriptionModel extends APIBaseModel {
       );
 
   /// Describes which calls this limit applies to.
-  final String appliesTo;
+  final String? appliesTo;
 
   /// Maximum number of allowed calls.
-  final int max;
+  final int? max;
 
   /// Generate a copy of instance with given parameters
   MaxProposalSubscriptionModel copyWith({
-    String appliesTo,
-    int max,
+    String? appliesTo,
+    int? max,
   }) =>
       MaxProposalSubscriptionModel(
         appliesTo: appliesTo ?? this.appliesTo,

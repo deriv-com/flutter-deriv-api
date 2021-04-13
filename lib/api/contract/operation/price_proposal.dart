@@ -23,18 +23,18 @@ import 'exceptions/contract_operations_exception.dart';
 class PriceProposal extends PriceProposalModel {
   /// Initializes
   PriceProposal({
-    double askPrice,
-    CancellationInfoModel cancellation,
-    double commission,
-    DateTime dateStart,
-    String displayValue,
-    String id,
-    LimitOrderModel limitOrder,
-    String longCode,
-    int multiplier,
-    double payout,
-    double spot,
-    DateTime spotTime,
+    double? askPrice,
+    CancellationInfoModel? cancellation,
+    double? commission,
+    DateTime? dateStart,
+    String? displayValue,
+    String? id,
+    LimitOrderModel? limitOrder,
+    String? longCode,
+    int? multiplier,
+    double? payout,
+    double? spot,
+    DateTime? spotTime,
     this.subscriptionInformation,
   }) : super(
           askPrice: askPrice,
@@ -54,7 +54,7 @@ class PriceProposal extends PriceProposalModel {
   /// Generates an instance from JSON
   factory PriceProposal.fromJson(
     Map<String, dynamic> json, {
-    Map<String, dynamic> subscriptionJson,
+    Map<String, dynamic>? subscriptionJson,
   }) =>
       PriceProposal(
         askPrice: json['ask_price']?.toDouble(),
@@ -82,23 +82,23 @@ class PriceProposal extends PriceProposalModel {
   /// Converts this instance to JSON
   Map<String, dynamic> toJson() => <String, dynamic>{
         'ask_price': askPrice,
-        'cancellation': cancellation.toJson(),
+        'cancellation': cancellation!.toJson(),
         'commission': commission,
         'date_start': dateStart,
         'id': id,
-        'limit_order': limitOrder.toJson(),
+        'limit_order': limitOrder!.toJson(),
         'longcode': longCode,
         'multiplier': multiplier,
         'payout': payout,
         'spot': spot,
         'spot_time': spotTime,
-        'subscription': subscriptionInformation.toJson(),
+        'subscription': subscriptionInformation!.toJson(),
       };
 
   /// Subscription Information
-  final SubscriptionModel subscriptionInformation;
+  final SubscriptionModel? subscriptionInformation;
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the price proposal for contract
   ///
@@ -107,11 +107,12 @@ class PriceProposal extends PriceProposalModel {
   static Future<PriceProposal> fetchPriceForContract(
     ProposalRequest request,
   ) async {
-    final ProposalResponse response = await _api.call(request: request);
+    final ProposalResponse response =
+        await _api!.call<ProposalResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -122,17 +123,17 @@ class PriceProposal extends PriceProposalModel {
   ///
   /// For parameters information refer to [ProposalRequest]
   /// Throws a [ContractOperationException] if API response contains an error
-  static Stream<PriceProposal> subscribePriceForContract(
+  static Stream<PriceProposal?> subscribePriceForContract(
     ProposalRequest request, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
-      _api
-          .subscribe(request: request, comparePredicate: comparePredicate)
-          .map<PriceProposal>(
+      _api!
+          .subscribe(request: request, comparePredicate: comparePredicate)!
+          .map<PriceProposal?>(
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
                 ContractOperationException(
                     baseExceptionModel: baseExceptionModel),
           );
@@ -149,17 +150,17 @@ class PriceProposal extends PriceProposalModel {
   /// Unsubscribes from price proposal subscription.
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Future<Forget> unsubscribeProposal() async {
+  Future<Forget?> unsubscribeProposal() async {
     if (subscriptionInformation?.id == null) {
       return null;
     }
 
     final ForgetResponse response =
-        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+        await _api!.unsubscribe(subscriptionId: subscriptionInformation!.id);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -170,12 +171,12 @@ class PriceProposal extends PriceProposalModel {
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllProposal() async {
-    final ForgetAllResponse response =
-        await _api.unsubscribeAll(method: ForgetStreamType.proposal);
+    final ForgetAllResponse? response =
+        await _api!.unsubscribeAll(method: ForgetStreamType.proposal);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -185,40 +186,40 @@ class PriceProposal extends PriceProposalModel {
   /// Buys this proposal contract with [price] specified.
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Future<Contract> buy({@required double price}) => Contract.buy(BuyRequest(
-        buy: id,
-        price: price ?? askPrice,
+  Future<Contract> buy({required double price}) => Contract.buy(BuyRequest(
+        buy: id!,
+        price: price,
       ));
 
   /// Buys this proposal contract with [price] specified and subscribes to it.
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Stream<Contract> buyAndSubscribe({@required double price}) =>
+  Stream<Contract?> buyAndSubscribe({required double price}) =>
       Contract.buyAndSubscribe(BuyRequest(
-        buy: id,
-        price: price ?? askPrice,
+        buy: id!,
+        price: price,
       ));
 
   /// Generates a copy of instance with given parameters
   PriceProposal copyWith({
-    double askPrice,
-    CancellationInfoModel cancellation,
-    double commission,
-    int dateStart,
-    String displayValue,
-    String id,
-    LimitOrderModel limitOrder,
-    String longCode,
-    int multiplier,
-    double payout,
-    double spot,
-    DateTime spotTime,
+    double? askPrice,
+    CancellationInfoModel? cancellation,
+    double? commission,
+    int? dateStart,
+    String? displayValue,
+    String? id,
+    LimitOrderModel? limitOrder,
+    String? longCode,
+    int? multiplier,
+    double? payout,
+    double? spot,
+    DateTime? spotTime,
   }) =>
       PriceProposal(
         askPrice: askPrice ?? this.askPrice,
         cancellation: cancellation ?? this.cancellation,
         commission: commission ?? this.commission,
-        dateStart: dateStart ?? this.dateStart,
+        dateStart: dateStart as DateTime? ?? this.dateStart,
         displayValue: displayValue ?? this.displayValue,
         id: id ?? this.id,
         limitOrder: limitOrder ?? this.limitOrder,

@@ -26,14 +26,14 @@ class SellExpiredRequest extends Request {
       );
 
   /// Must be `true`
-  final bool sellExpired;
+  final bool? sellExpired;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'sell_expired': sellExpired == null
             ? null
-            : sellExpired
+            : sellExpired!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -43,7 +43,7 @@ class SellExpiredRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   SellExpiredRequest copyWith({
-    bool sellExpired,
+    bool? sellExpired,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -55,5 +55,5 @@ class SellExpiredRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

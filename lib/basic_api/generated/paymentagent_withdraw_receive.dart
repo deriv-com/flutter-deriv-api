@@ -34,13 +34,13 @@ class PaymentagentWithdrawResponse extends Response {
       );
 
   /// Payment agent name.
-  final String paymentagentName;
+  final String? paymentagentName;
 
   /// If set to `1`, withdrawal success. If set to `2`, dry-run success.
-  final int paymentagentWithdraw;
+  final int? paymentagentWithdraw;
 
   /// Reference ID of withdrawal performed.
-  final int transactionId;
+  final int? transactionId;
 
   /// Converts this instance to JSON
   @override
@@ -57,9 +57,9 @@ class PaymentagentWithdrawResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   PaymentagentWithdrawResponse copyWith({
-    String paymentagentName,
-    int paymentagentWithdraw,
-    int transactionId,
+    String? paymentagentName,
+    int? paymentagentWithdraw,
+    int? transactionId,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -77,5 +77,5 @@ class PaymentagentWithdrawResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -32,13 +32,13 @@ class P2pOrderInfoRequest extends Request {
       );
 
   /// The unique identifier for the order.
-  final String id;
+  final String? id;
 
   /// Must be `true`
-  final bool p2pOrderInfo;
+  final bool? p2pOrderInfo;
 
   /// [Optional] If set to `true`, will send updates whenever there is an update to order
-  final bool subscribe;
+  final bool? subscribe;
 
   /// Converts this instance to JSON
   @override
@@ -46,12 +46,12 @@ class P2pOrderInfoRequest extends Request {
         'id': id,
         'p2p_order_info': p2pOrderInfo == null
             ? null
-            : p2pOrderInfo
+            : p2pOrderInfo!
                 ? 1
                 : 0,
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -61,9 +61,9 @@ class P2pOrderInfoRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pOrderInfoRequest copyWith({
-    String id,
-    bool p2pOrderInfo,
-    bool subscribe,
+    String? id,
+    bool? p2pOrderInfo,
+    bool? subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

@@ -8,5 +8,5 @@ abstract class MT5PasswordResetModel extends APIBaseModel {
   });
 
   /// `true` on success
-  final bool succeeded;
+  final bool? succeeded;
 }

@@ -10,8 +10,8 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class P2PChatCreate extends P2PChatCreateModel {
   /// Initializes
   P2PChatCreate({
-    String channelUrl,
-    String orderId,
+    String? channelUrl,
+    String? orderId,
   }) : super(
           channelUrl: channelUrl,
           orderId: orderId,
@@ -23,12 +23,12 @@ class P2PChatCreate extends P2PChatCreateModel {
         orderId: json['order_id'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   P2PChatCreate copyWith({
-    String channelUrl,
-    String orderId,
+    String? channelUrl,
+    String? orderId,
   }) =>
       P2PChatCreate(
         channelUrl: channelUrl ?? this.channelUrl,
@@ -42,11 +42,11 @@ class P2PChatCreate extends P2PChatCreateModel {
   static Future<P2PChatCreate> createChat(
     P2pChatCreateRequest request,
   ) async {
-    final P2pChatCreateResponse response = await _api.call(request: request);
+    final P2pChatCreateResponse response = await _api!.call<P2pChatCreateResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2PChatException(baseExceptionModel: baseExceptionModel),
     );
 

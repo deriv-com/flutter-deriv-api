@@ -43,19 +43,19 @@ class TransferBetweenAccountsResponse extends Response {
       );
 
   /// The available accounts to transfer, or the accounts affected by a successful transfer.
-  final List<Map<String, dynamic>> accounts;
+  final List<Map<String, dynamic>>? accounts;
 
   /// The account to client full name
-  final String clientToFullName;
+  final String? clientToFullName;
 
   /// The account to client loginid
-  final String clientToLoginid;
+  final String? clientToLoginid;
 
   /// Reference ID of transfer performed
-  final int transactionId;
+  final int? transactionId;
 
   /// If set to `true`, transfer succeeded.
-  final bool transferBetweenAccounts;
+  final bool? transferBetweenAccounts;
 
   /// Converts this instance to JSON
   @override
@@ -66,7 +66,7 @@ class TransferBetweenAccountsResponse extends Response {
         'transaction_id': transactionId,
         'transfer_between_accounts': transferBetweenAccounts == null
             ? null
-            : transferBetweenAccounts
+            : transferBetweenAccounts!
                 ? 1
                 : 0,
         'echo_req': echoReq,
@@ -78,11 +78,11 @@ class TransferBetweenAccountsResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   TransferBetweenAccountsResponse copyWith({
-    List<Map<String, dynamic>> accounts,
-    String clientToFullName,
-    String clientToLoginid,
-    int transactionId,
-    bool transferBetweenAccounts,
+    List<Map<String, dynamic>>? accounts,
+    String? clientToFullName,
+    String? clientToLoginid,
+    int? transactionId,
+    bool? transferBetweenAccounts,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -103,5 +103,5 @@ class TransferBetweenAccountsResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

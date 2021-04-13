@@ -15,13 +15,13 @@ class SetSelfExclusionModel extends APIBaseModel {
       );
 
   /// `true` on success
-  final bool setSelfExclusion;
+  final bool? setSelfExclusion;
 
   /// Creates a copy of instance with given parameters
   SetSelfExclusionModel copyWith({
-    int setSelfExclusion,
+    int? setSelfExclusion,
   }) =>
       SetSelfExclusionModel(
-        setSelfExclusion: setSelfExclusion ?? this.setSelfExclusion,
+        setSelfExclusion: setSelfExclusion as bool? ?? this.setSelfExclusion,
       );
 }

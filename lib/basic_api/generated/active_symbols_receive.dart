@@ -33,7 +33,7 @@ class ActiveSymbolsResponse extends Response {
       );
 
   /// List of active symbols.
-  final List<Map<String, dynamic>> activeSymbols;
+  final List<Map<String, dynamic>>? activeSymbols;
 
   /// Converts this instance to JSON
   @override
@@ -48,7 +48,7 @@ class ActiveSymbolsResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   ActiveSymbolsResponse copyWith({
-    List<Map<String, dynamic>> activeSymbols,
+    List<Map<String, dynamic>>? activeSymbols,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -64,5 +64,5 @@ class ActiveSymbolsResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

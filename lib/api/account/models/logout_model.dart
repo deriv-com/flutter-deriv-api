@@ -8,5 +8,5 @@ abstract class LogoutModel extends APIBaseModel {
   });
 
   /// The result of logout request which is `true`
-  final bool succeeded;
+  final bool? succeeded;
 }

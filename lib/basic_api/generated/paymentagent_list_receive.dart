@@ -30,7 +30,7 @@ class PaymentagentListResponse extends Response {
       );
 
   /// Payment Agent List
-  final Map<String, dynamic> paymentagentList;
+  final Map<String, dynamic>? paymentagentList;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class PaymentagentListResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   PaymentagentListResponse copyWith({
-    Map<String, dynamic> paymentagentList,
+    Map<String, dynamic>? paymentagentList,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class PaymentagentListResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

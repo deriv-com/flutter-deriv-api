@@ -10,18 +10,18 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class Forget extends ForgetModel {
   /// Initializes
   Forget({
-    bool succeeded,
+    bool? succeeded,
   }) : super(succeeded: succeeded);
 
   /// Creates an instance from response
   factory Forget.fromResponse(ForgetResponse response) =>
       Forget(succeeded: response.forget);
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   Forget copyWith({
-    bool succeeded,
+    bool? succeeded,
   }) =>
       Forget(
         succeeded: succeeded ?? this.succeeded,
@@ -34,11 +34,11 @@ class Forget extends ForgetModel {
   static Future<Forget> forget(
     ForgetRequest request,
   ) async {
-    final ForgetResponse response = await _api.call(request: request);
+    final ForgetResponse response = await _api!.call<ForgetResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ForgetException(baseExceptionModel: baseExceptionModel),
     );
 

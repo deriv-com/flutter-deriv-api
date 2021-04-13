@@ -8,5 +8,5 @@ abstract class ServerTimeModel extends APIBaseModel {
   });
 
   /// Epoch of server time.
-  final DateTime time;
+  final DateTime? time;
 }

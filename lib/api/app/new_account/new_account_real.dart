@@ -10,10 +10,10 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class NewAccountReal extends NewAccountRealModel {
   /// Initializes
   NewAccountReal({
-    String clientId,
-    String landingCompany,
-    String landingCompanyShort,
-    String oauthToken,
+    String? clientId,
+    String? landingCompany,
+    String? landingCompanyShort,
+    String? oauthToken,
   }) : super(
           clientId: clientId,
           landingCompany: landingCompany,
@@ -29,14 +29,14 @@ class NewAccountReal extends NewAccountRealModel {
         oauthToken: json['oauth_token'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   NewAccountReal copyWith({
-    String clientId,
-    String landingCompany,
-    String landingCompanyShort,
-    String oauthToken,
+    String? clientId,
+    String? landingCompany,
+    String? landingCompanyShort,
+    String? oauthToken,
   }) =>
       NewAccountReal(
         clientId: clientId ?? this.clientId,
@@ -52,11 +52,11 @@ class NewAccountReal extends NewAccountRealModel {
   static Future<NewAccountReal> openNewRealAccount(
     NewAccountRealRequest request,
   ) async {
-    final NewAccountRealResponse response = await _api.call(request: request);
+    final NewAccountRealResponse response = await _api!.call<NewAccountRealResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           NewAccountException(baseExceptionModel: baseExceptionModel),
     );
 

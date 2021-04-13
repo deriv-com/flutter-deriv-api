@@ -33,7 +33,7 @@ class LoginHistoryResponse extends Response {
       );
 
   /// Array of records of client login/logout activities
-  final List<Map<String, dynamic>> loginHistory;
+  final List<Map<String, dynamic>>? loginHistory;
 
   /// Converts this instance to JSON
   @override
@@ -48,7 +48,7 @@ class LoginHistoryResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   LoginHistoryResponse copyWith({
-    List<Map<String, dynamic>> loginHistory,
+    List<Map<String, dynamic>>? loginHistory,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -64,5 +64,5 @@ class LoginHistoryResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

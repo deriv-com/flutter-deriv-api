@@ -75,76 +75,76 @@ class NewAccountRealRequest extends Request {
       );
 
   /// [Optional] Purpose and reason for requesting the account opening.
-  final String accountOpeningReason;
+  final String? accountOpeningReason;
 
   /// [Optional] The anticipated account turnover.
-  final String accountTurnover;
+  final String? accountTurnover;
 
   /// [Optional] Within 100 characters.
-  final String addressCity;
+  final String? addressCity;
 
   /// Within 70 characters, with no leading whitespaces and may contain letters/numbers and/or any of following characters '.,:;()@#/-
-  final String addressLine1;
+  final String? addressLine1;
 
   /// [Optional] Within 70 characters.
-  final String addressLine2;
+  final String? addressLine2;
 
   /// [Optional] Within 20 characters and may not contain '+'.
-  final String addressPostcode;
+  final String? addressPostcode;
 
   /// [Optional] Possible value receive from `states_list` call.
-  final String addressState;
+  final String? addressState;
 
   /// [Optional] Affiliate token, within 32 characters.
-  final String affiliateToken;
+  final String? affiliateToken;
 
   /// [Optional] Country of legal citizenship, 2-letter country code.
-  final String citizen;
+  final String? citizen;
 
   /// [Optional] Indicates whether this is for a client requesting an account with professional status.
-  final String clientType;
+  final String? clientType;
 
   /// [Optional] To set currency of the account. List of supported currencies can be acquired with `payout_currencies` call.
-  final String currency;
+  final String? currency;
 
   /// Date of birth format: `yyyy-mm-dd`.
-  final String dateOfBirth;
+  final String? dateOfBirth;
 
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
-  final String firstName;
+  final String? firstName;
 
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
-  final String lastName;
+  final String? lastName;
 
   /// Must be `true`
-  final bool newAccountReal;
+  final bool? newAccountReal;
 
   /// [Optional] Indicates client's self-declaration of not being a PEP/RCA (Politically Exposed Person/Relatives and Close Associates).
-  final int nonPepDeclaration;
+  final int? nonPepDeclaration;
 
   /// [Optional] Starting with `+` followed by 8-35 digits, allowing hyphens or space.
-  final String phone;
+  final String? phone;
 
   /// [Optional] Place of birth, 2-letter country code.
-  final String placeOfBirth;
+  final String? placeOfBirth;
 
   /// 2-letter country code, possible value receive from `residence_list` call.
-  final String residence;
+  final String? residence;
 
   /// [Optional] Accept any value in enum list.
-  final String salutation;
+  final String? salutation;
 
   /// [Optional] Answer to secret question, within 4-50 characters. Required for new account and existing client details will be used if client open another account.
-  final String secretAnswer;
+  final String? secretAnswer;
 
   /// [Optional] Accept any value in enum list. Required for new account and existing client details will be used if client open another account.
-  final String secretQuestion;
+  final String? secretQuestion;
 
   /// [Optional] Tax identification number. Only applicable for real money account. Required for `maltainvest` landing company.
-  final String taxIdentificationNumber;
+  final String? taxIdentificationNumber;
 
   /// [Optional] Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
-  final String taxResidence;
+  final String? taxResidence;
 
   /// Converts this instance to JSON
   @override
@@ -165,7 +165,7 @@ class NewAccountRealRequest extends Request {
         'last_name': lastName,
         'new_account_real': newAccountReal == null
             ? null
-            : newAccountReal
+            : newAccountReal!
                 ? 1
                 : 0,
         'non_pep_declaration': nonPepDeclaration,
@@ -184,30 +184,30 @@ class NewAccountRealRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   NewAccountRealRequest copyWith({
-    String accountOpeningReason,
-    String accountTurnover,
-    String addressCity,
-    String addressLine1,
-    String addressLine2,
-    String addressPostcode,
-    String addressState,
-    String affiliateToken,
-    String citizen,
-    String clientType,
-    String currency,
-    String dateOfBirth,
-    String firstName,
-    String lastName,
-    bool newAccountReal,
-    int nonPepDeclaration,
-    String phone,
-    String placeOfBirth,
-    String residence,
-    String salutation,
-    String secretAnswer,
-    String secretQuestion,
-    String taxIdentificationNumber,
-    String taxResidence,
+    String? accountOpeningReason,
+    String? accountTurnover,
+    String? addressCity,
+    String? addressLine1,
+    String? addressLine2,
+    String? addressPostcode,
+    String? addressState,
+    String? affiliateToken,
+    String? citizen,
+    String? clientType,
+    String? currency,
+    String? dateOfBirth,
+    String? firstName,
+    String? lastName,
+    bool? newAccountReal,
+    int? nonPepDeclaration,
+    String? phone,
+    String? placeOfBirth,
+    String? residence,
+    String? salutation,
+    String? secretAnswer,
+    String? secretQuestion,
+    String? taxIdentificationNumber,
+    String? taxResidence,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -243,5 +243,5 @@ class NewAccountRealRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

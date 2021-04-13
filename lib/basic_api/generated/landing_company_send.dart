@@ -27,7 +27,7 @@ class LandingCompanyRequest extends Request {
       );
 
   /// Client's 2-letter country code (obtained from `residence_list` call).
-  final String landingCompany;
+  final String? landingCompany;
 
   /// Converts this instance to JSON
   @override
@@ -40,7 +40,7 @@ class LandingCompanyRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   LandingCompanyRequest copyWith({
-    String landingCompany,
+    String? landingCompany,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -52,5 +52,5 @@ class LandingCompanyRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

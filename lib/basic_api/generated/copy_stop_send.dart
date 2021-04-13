@@ -27,7 +27,7 @@ class CopyStopRequest extends Request {
       );
 
   /// API tokens identifying the accounts which needs not to be copied
-  final String copyStop;
+  final String? copyStop;
 
   /// Converts this instance to JSON
   @override
@@ -40,7 +40,7 @@ class CopyStopRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   CopyStopRequest copyWith({
-    String copyStop,
+    String? copyStop,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -52,5 +52,5 @@ class CopyStopRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -18,8 +18,8 @@ class APIHelperBuilder extends Builder {
   @override
   Future<void> build(BuildStep buildStep) async {
     try {
-      final List<String> importFileNames = generatedResponses
-          .map<String>((GeneratedResponseJson response) => response.fileName)
+      final List<String?> importFileNames = generatedResponses
+          .map<String?>((GeneratedResponseJson response) => response.fileName)
           .toList()
             ..sort();
 
@@ -34,7 +34,7 @@ class APIHelperBuilder extends Builder {
             // uses collected `msg_type`s from the 1st step to create a helper
             // function that maps the `msg_type`s to equivalent Response objects
             
-            ${importFileNames.map((String fileName) => 'import \'../generated/$fileName.dart\';').join('\n')}
+            ${importFileNames.map((String? fileName) => 'import \'../generated/$fileName.dart\';').join('\n')}
             import '../response.dart';
 
             /// A function that create a sub-type of [Response] based on

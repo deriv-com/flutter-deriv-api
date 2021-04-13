@@ -11,11 +11,11 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class TransferBetweenAccounts extends TransferBetweenAccountsModel {
   /// Initializes
   TransferBetweenAccounts({
-    bool transferBetweenAccounts,
-    List<TransferAccountModel> accounts,
-    String clientToFullName,
-    String clientToLoginId,
-    int transactionId,
+    bool? transferBetweenAccounts,
+    List<TransferAccountModel?>? accounts,
+    String? clientToFullName,
+    String? clientToLoginId,
+    int? transactionId,
   }) : super(
           transferBetweenAccounts: transferBetweenAccounts,
           accounts: accounts,
@@ -40,15 +40,15 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
         transactionId: response.transactionId,
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   TransferBetweenAccounts copyWith({
-    bool transferBetweenAccounts,
-    List<TransferAccountModel> accounts,
-    String clientToFullName,
-    String clientToLoginId,
-    int transactionId,
+    bool? transferBetweenAccounts,
+    List<TransferAccountModel>? accounts,
+    String? clientToFullName,
+    String? clientToLoginId,
+    int? transactionId,
   }) =>
       TransferBetweenAccounts(
         transferBetweenAccounts:
@@ -69,11 +69,11 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
     TransferBetweenAccountsRequest request,
   ) async {
     final TransferBetweenAccountsResponse response =
-        await _api.call(request: request);
+        await _api!.call<TransferBetweenAccountsResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TransferException(baseExceptionModel: baseExceptionModel),
     );
 

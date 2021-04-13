@@ -33,13 +33,13 @@ class ContractUpdateRequest extends Request {
       );
 
   /// Internal unique contract identifier.
-  final int contractId;
+  final int? contractId;
 
   /// Must be `true`
-  final bool contractUpdate;
+  final bool? contractUpdate;
 
   /// Specify limit order to update.
-  final Map<String, dynamic> limitOrder;
+  final Map<String, dynamic>? limitOrder;
 
   /// Converts this instance to JSON
   @override
@@ -47,7 +47,7 @@ class ContractUpdateRequest extends Request {
         'contract_id': contractId,
         'contract_update': contractUpdate == null
             ? null
-            : contractUpdate
+            : contractUpdate!
                 ? 1
                 : 0,
         'limit_order': limitOrder,
@@ -58,9 +58,9 @@ class ContractUpdateRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ContractUpdateRequest copyWith({
-    int contractId,
-    bool contractUpdate,
-    Map<String, dynamic> limitOrder,
+    int? contractId,
+    bool? contractUpdate,
+    Map<String, dynamic>? limitOrder,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -74,5 +74,5 @@ class ContractUpdateRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -30,7 +30,7 @@ class TopupVirtualResponse extends Response {
       );
 
   /// The information regarding a successful top up for a virtual money account
-  final Map<String, dynamic> topupVirtual;
+  final Map<String, dynamic>? topupVirtual;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class TopupVirtualResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   TopupVirtualResponse copyWith({
-    Map<String, dynamic> topupVirtual,
+    Map<String, dynamic>? topupVirtual,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class TopupVirtualResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

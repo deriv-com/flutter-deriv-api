@@ -50,34 +50,34 @@ class AppMarkupDetailsRequest extends Request {
       );
 
   /// [Optional] Specific application `app_id` to report on.
-  final int appId;
+  final int? appId;
 
   /// Must be `true`
-  final bool appMarkupDetails;
+  final bool? appMarkupDetails;
 
   /// [Optional] Specific client loginid to report on, like CR12345
-  final String clientLoginid;
+  final String? clientLoginid;
 
   /// Start date (epoch or YYYY-MM-DD HH:MM:SS). Results are inclusive of this time.
-  final String dateFrom;
+  final String? dateFrom;
 
   /// End date (epoch or YYYY-MM-DD HH::MM::SS). Results are inclusive of this time.
-  final String dateTo;
+  final String? dateTo;
 
   /// [Optional] If set to `true`, will return `app_markup` transaction details.
-  final bool description;
+  final bool? description;
 
   /// [Optional] Apply upper limit to count of transactions received.
-  final num limit;
+  final num? limit;
 
   /// [Optional] Number of transactions to skip.
-  final num offset;
+  final num? offset;
 
   /// [Optional] Sort direction on `transaction_time`. Other fields sort order is ASC.
-  final String sort;
+  final String? sort;
 
   /// [Optional] One or more of the specified fields to sort on. Default sort field is by `transaction_time`.
-  final List<String> sortFields;
+  final List<String>? sortFields;
 
   /// Converts this instance to JSON
   @override
@@ -85,7 +85,7 @@ class AppMarkupDetailsRequest extends Request {
         'app_id': appId,
         'app_markup_details': appMarkupDetails == null
             ? null
-            : appMarkupDetails
+            : appMarkupDetails!
                 ? 1
                 : 0,
         'client_loginid': clientLoginid,
@@ -93,7 +93,7 @@ class AppMarkupDetailsRequest extends Request {
         'date_to': dateTo,
         'description': description == null
             ? null
-            : description
+            : description!
                 ? 1
                 : 0,
         'limit': limit,
@@ -107,16 +107,16 @@ class AppMarkupDetailsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   AppMarkupDetailsRequest copyWith({
-    int appId,
-    bool appMarkupDetails,
-    String clientLoginid,
-    String dateFrom,
-    String dateTo,
-    bool description,
-    num limit,
-    num offset,
-    String sort,
-    List<String> sortFields,
+    int? appId,
+    bool? appMarkupDetails,
+    String? clientLoginid,
+    String? dateFrom,
+    String? dateTo,
+    bool? description,
+    num? limit,
+    num? offset,
+    String? sort,
+    List<String>? sortFields,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -137,5 +137,5 @@ class AppMarkupDetailsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -30,7 +30,7 @@ class CopytradingListResponse extends Response {
       );
 
   /// The trading information of copiers or traders.
-  final Map<String, dynamic> copytradingList;
+  final Map<String, dynamic>? copytradingList;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class CopytradingListResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   CopytradingListResponse copyWith({
-    Map<String, dynamic> copytradingList,
+    Map<String, dynamic>? copytradingList,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class CopytradingListResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

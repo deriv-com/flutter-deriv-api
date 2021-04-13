@@ -30,7 +30,7 @@ class ContractsForResponse extends Response {
       );
 
   /// List of available contracts. Note: if the user is authenticated, then only contracts allowed under his account will be returned.
-  final Map<String, dynamic> contractsFor;
+  final Map<String, dynamic>? contractsFor;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class ContractsForResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   ContractsForResponse copyWith({
-    Map<String, dynamic> contractsFor,
+    Map<String, dynamic>? contractsFor,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class ContractsForResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

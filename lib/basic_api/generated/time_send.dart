@@ -24,14 +24,14 @@ class TimeRequest extends Request {
       );
 
   /// Must be `true`
-  final bool time;
+  final bool? time;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'time': time == null
             ? null
-            : time
+            : time!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -41,7 +41,7 @@ class TimeRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TimeRequest copyWith({
-    bool time,
+    bool? time,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -53,5 +53,5 @@ class TimeRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

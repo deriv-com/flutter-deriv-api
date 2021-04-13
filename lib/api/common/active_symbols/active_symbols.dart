@@ -10,24 +10,24 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class ActiveSymbol extends ActiveSymbolModel {
   /// Initializes
   ActiveSymbol({
-    bool allowForwardStarting,
-    int delayAmount,
-    String displayName,
-    bool exchangeIsOpen,
-    String exchangeName,
-    int intradayIntervalMinutes,
-    bool isTradingSuspended,
-    String market,
-    String marketDisplayName,
-    double pip,
-    String quotedCurrencySymbol,
-    double spot,
-    String spotAge,
-    DateTime spotTime,
-    String submarket,
-    String submarketDisplayName,
-    String symbol,
-    String symbolType,
+    bool? allowForwardStarting,
+    int? delayAmount,
+    String? displayName,
+    bool? exchangeIsOpen,
+    String? exchangeName,
+    int? intradayIntervalMinutes,
+    bool? isTradingSuspended,
+    String? market,
+    String? marketDisplayName,
+    double? pip,
+    String? quotedCurrencySymbol,
+    double? spot,
+    String? spotAge,
+    DateTime? spotTime,
+    String? submarket,
+    String? submarketDisplayName,
+    String? symbol,
+    String? symbolType,
   }) : super(
             allowForwardStarting: allowForwardStarting,
             delayAmount: delayAmount,
@@ -70,7 +70,7 @@ class ActiveSymbol extends ActiveSymbolModel {
         symbolType: json['symbol_type'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the list of active symbols.
   ///
@@ -79,13 +79,14 @@ class ActiveSymbol extends ActiveSymbolModel {
   static Future<List<ActiveSymbol>> fetchActiveSymbols(
     ActiveSymbolsRequest request,
   ) async {
-    final ActiveSymbolsResponse response = await _api.call(
+    final ActiveSymbolsResponse response =
+        await _api!.call<ActiveSymbolsResponse>(
       request: request,
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ActiveSymbolsException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -97,24 +98,24 @@ class ActiveSymbol extends ActiveSymbolModel {
 
   /// Generates a copy of instance with given parameters
   ActiveSymbol copyWith({
-    bool allowForwardStarting,
-    int delayAmount,
-    String displayName,
-    bool exchangeIsOpen,
-    String exchangeName,
-    int intradayIntervalMinutes,
-    bool isTradingSuspended,
-    String market,
-    String marketDisplayName,
-    double pip,
-    String quotedCurrencySymbol,
-    double spot,
-    String spotAge,
-    DateTime spotTime,
-    String submarket,
-    String submarketDisplayName,
-    String symbol,
-    String symbolType,
+    bool? allowForwardStarting,
+    int? delayAmount,
+    String? displayName,
+    bool? exchangeIsOpen,
+    String? exchangeName,
+    int? intradayIntervalMinutes,
+    bool? isTradingSuspended,
+    String? market,
+    String? marketDisplayName,
+    double? pip,
+    String? quotedCurrencySymbol,
+    double? spot,
+    String? spotAge,
+    DateTime? spotTime,
+    String? submarket,
+    String? submarketDisplayName,
+    String? symbol,
+    String? symbolType,
   }) =>
       ActiveSymbol(
         allowForwardStarting: allowForwardStarting ?? this.allowForwardStarting,

@@ -29,7 +29,7 @@ class CancelResponse extends Response {
       );
 
   /// Receipt for the transaction
-  final Map<String, dynamic> cancel;
+  final Map<String, dynamic>? cancel;
 
   /// Converts this instance to JSON
   @override
@@ -44,7 +44,7 @@ class CancelResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   CancelResponse copyWith({
-    Map<String, dynamic> cancel,
+    Map<String, dynamic>? cancel,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -60,5 +60,5 @@ class CancelResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

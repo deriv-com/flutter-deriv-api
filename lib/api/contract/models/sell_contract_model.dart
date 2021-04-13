@@ -12,17 +12,17 @@ abstract class SellContractModel extends APIBaseModel {
   });
 
   /// New account balance after completion of the sale
-  final double balanceAfter;
+  final double? balanceAfter;
 
   /// Internal contract identifier for the sold contract
-  final int contractId;
+  final int? contractId;
 
   /// Internal transaction identifier for the corresponding buy transaction
-  final int referenceId;
+  final int? referenceId;
 
   /// Actual effected sale price
-  final double soldFor;
+  final double? soldFor;
 
   /// Internal transaction identifier for the sale transaction
-  final int transactionId;
+  final int? transactionId;
 }

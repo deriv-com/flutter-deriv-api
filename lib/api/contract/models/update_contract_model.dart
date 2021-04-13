@@ -10,8 +10,8 @@ abstract class UpdateContractModel extends APIBaseModel {
   });
 
   /// The target spot price where the contract will be closed automatically at the loss specified by the user.
-  final SpotPriceModel stopLoss;
+  final SpotPriceModel? stopLoss;
 
   /// The target spot price where the contract will be closed automatically at the profit specified by the user.
-  final SpotPriceModel takeProfit;
+  final SpotPriceModel? takeProfit;
 }

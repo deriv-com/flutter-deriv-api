@@ -28,10 +28,10 @@ class SellRequest extends Request {
       );
 
   /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
-  final num price;
+  final num? price;
 
   /// Pass contract_id received from the `portfolio` call.
-  final int sell;
+  final int? sell;
 
   /// Converts this instance to JSON
   @override
@@ -45,8 +45,8 @@ class SellRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   SellRequest copyWith({
-    num price,
-    int sell,
+    num? price,
+    int? sell,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -59,5 +59,5 @@ class SellRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

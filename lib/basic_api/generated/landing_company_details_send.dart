@@ -27,7 +27,7 @@ class LandingCompanyDetailsRequest extends Request {
       );
 
   /// Landing company shortcode.
-  final String landingCompanyDetails;
+  final String? landingCompanyDetails;
 
   /// Converts this instance to JSON
   @override
@@ -40,7 +40,7 @@ class LandingCompanyDetailsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   LandingCompanyDetailsRequest copyWith({
-    String landingCompanyDetails,
+    String? landingCompanyDetails,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -53,5 +53,5 @@ class LandingCompanyDetailsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -31,10 +31,10 @@ class TicksResponse extends Response {
       );
 
   /// For subscription requests only.
-  final Map<String, dynamic> subscription;
+  final Map<String, dynamic>? subscription;
 
   /// Tick by tick list of streamed data
-  final Map<String, dynamic> tick;
+  final Map<String, dynamic>? tick;
 
   /// Converts this instance to JSON
   @override
@@ -50,8 +50,8 @@ class TicksResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   TicksResponse copyWith({
-    Map<String, dynamic> subscription,
-    Map<String, dynamic> tick,
+    Map<String, dynamic>? subscription,
+    Map<String, dynamic>? tick,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -68,5 +68,5 @@ class TicksResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

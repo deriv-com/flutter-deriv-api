@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class AppMarkupDetails extends AppMarkupDetailsModel {
   /// Initializes
   AppMarkupDetails({
-    List<AppTransactionModel> transactions,
+    List<AppTransactionModel?>? transactions,
   }) : super(
           transactions: transactions,
         );
@@ -26,11 +26,11 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   AppMarkupDetails copyWith({
-    List<AppTransactionModel> transactions,
+    List<AppTransactionModel>? transactions,
   }) =>
       AppMarkupDetails(
         transactions: transactions ?? this.transactions,
@@ -43,11 +43,11 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
   static Future<AppMarkupDetails> fetchApplicationMarkupDetails(
     AppMarkupDetailsRequest request,
   ) async {
-    final AppMarkupDetailsResponse response = await _api.call(request: request);
+    final AppMarkupDetailsResponse response = await _api!.call<AppMarkupDetailsResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AppException(baseExceptionModel: baseExceptionModel),
     );
 

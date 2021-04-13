@@ -31,7 +31,7 @@ class NewAccountMaltainvestResponse extends Response {
       );
 
   /// New `maltainvest` account details
-  final Map<String, dynamic> newAccountMaltainvest;
+  final Map<String, dynamic>? newAccountMaltainvest;
 
   /// Converts this instance to JSON
   @override
@@ -46,7 +46,7 @@ class NewAccountMaltainvestResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   NewAccountMaltainvestResponse copyWith({
-    Map<String, dynamic> newAccountMaltainvest,
+    Map<String, dynamic>? newAccountMaltainvest,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -63,5 +63,5 @@ class NewAccountMaltainvestResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

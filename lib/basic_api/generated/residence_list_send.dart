@@ -26,14 +26,14 @@ class ResidenceListRequest extends Request {
       );
 
   /// Must be `true`
-  final bool residenceList;
+  final bool? residenceList;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'residence_list': residenceList == null
             ? null
-            : residenceList
+            : residenceList!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -43,7 +43,7 @@ class ResidenceListRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ResidenceListRequest copyWith({
-    bool residenceList,
+    bool? residenceList,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -55,5 +55,5 @@ class ResidenceListRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

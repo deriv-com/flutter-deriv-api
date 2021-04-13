@@ -30,7 +30,7 @@ class AppUpdateResponse extends Response {
       );
 
   /// Information of the updated application.
-  final Map<String, dynamic> appUpdate;
+  final Map<String, dynamic>? appUpdate;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class AppUpdateResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   AppUpdateResponse copyWith({
-    Map<String, dynamic> appUpdate,
+    Map<String, dynamic>? appUpdate,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class AppUpdateResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

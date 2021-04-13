@@ -21,9 +21,9 @@ import 'tick_history_subscription.dart';
 class TickHistory extends TickHistoryModel {
   /// Initializes
   TickHistory({
-    List<CandleModel> candles,
-    HistoryModel history,
-    int pipSize,
+    List<CandleModel?>? candles,
+    HistoryModel? history,
+    int? pipSize,
     this.subscriptionInformation,
   }) : super(
           candles,
@@ -42,15 +42,15 @@ class TickHistory extends TickHistoryModel {
           response.history,
           itemToTypeCallback: (dynamic item) => HistoryModel.fromJson(item),
         ),
-        pipSize: response.pipSize,
+        pipSize: response.pipSize as int?,
         subscriptionInformation:
             SubscriptionModel.fromJson(response.subscription),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Subscription information
-  final SubscriptionModel subscriptionInformation;
+  final SubscriptionModel? subscriptionInformation;
 
   /// Gets the [TickHistory] for the given [symbol] in [request]
   ///
@@ -58,24 +58,24 @@ class TickHistory extends TickHistoryModel {
   static Future<TickHistory> fetchTickHistory(
     TicksHistoryRequest request,
   ) async {
-    final TicksHistoryResponse response = await _api.call(request: request);
-
+    final TicksHistoryResponse response = await _api!.call<TicksHistoryResponse>(request: request);
+    
     _checkException(response);
 
-    return TickHistory.fromResponse(response);
+      return TickHistory.fromResponse(response);
   }
 
   /// Gets ticks history and its stream
   ///
   /// Throws [TickException] if API response contains an error
-  static Future<TickHistorySubscription> fetchTicksAndSubscribe(
+  static Future<TickHistorySubscription?> fetchTicksAndSubscribe(
     TicksHistoryRequest request, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
     bool subscribe = true,
   }) async {
     if (subscribe) {
-      final Stream<Response> responseStream =
-          _api.subscribe(request: request, comparePredicate: comparePredicate);
+      final Stream<Response> responseStream = _api!
+          .subscribe(request: request, comparePredicate: comparePredicate)!;
       final Response firstResponse = await responseStream.first;
 
       _checkException(firstResponse);
@@ -83,7 +83,7 @@ class TickHistory extends TickHistoryModel {
       if (firstResponse is TicksHistoryResponse) {
         return TickHistorySubscription(
           tickHistory: TickHistory.fromResponse(firstResponse),
-          tickStream: responseStream.map<TickBase>(
+          tickStream: responseStream.map<TickBase?>(
             (Response response) {
               _checkException(response);
 
@@ -112,15 +112,15 @@ class TickHistory extends TickHistoryModel {
 
   static void _checkException(Response response) => checkException(
         response: response,
-        exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+        exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
             TickException(baseExceptionModel: baseExceptionModel),
       );
 
   /// Generate a copy of instance with given parameters
   TickHistory copyWith({
-    List<CandleModel> candles,
-    HistoryModel history,
-    int pipSize,
+    List<CandleModel>? candles,
+    HistoryModel? history,
+    int? pipSize,
   }) =>
       TickHistory(
         candles: candles ?? this.candles,

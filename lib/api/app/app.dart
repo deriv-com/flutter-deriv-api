@@ -16,15 +16,15 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class App extends AppModel {
   /// Initializes
   App({
-    int appId,
-    double appMarkupPercentage,
-    String appstore,
-    String github,
-    String googleplay,
-    String homepage,
-    String name,
-    String redirectUri,
-    String verificationUri,
+    int? appId,
+    double? appMarkupPercentage,
+    String? appstore,
+    String? github,
+    String? googleplay,
+    String? homepage,
+    String? name,
+    String? redirectUri,
+    String? verificationUri,
   }) : super(
           appId: appId,
           appMarkupPercentage: appMarkupPercentage,
@@ -50,19 +50,19 @@ class App extends AppModel {
         verificationUri: json['verification_uri'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   App copyWith({
-    int appId,
-    double appMarkupPercentage,
-    String appstore,
-    String github,
-    String googleplay,
-    String homepage,
-    String name,
-    String redirectUri,
-    String verificationUri,
+    int? appId,
+    double? appMarkupPercentage,
+    String? appstore,
+    String? github,
+    String? googleplay,
+    String? homepage,
+    String? name,
+    String? redirectUri,
+    String? verificationUri,
   }) =>
       App(
         appId: appId ?? this.appId,
@@ -83,11 +83,11 @@ class App extends AppModel {
   static Future<App> fetchApplicationDetails(
     AppGetRequest request,
   ) async {
-    final AppGetResponse response = await _api.call(request: request);
+    final AppGetResponse response = await _api!.call<AppGetResponse>(request: request) ;
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AppException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -98,14 +98,14 @@ class App extends AppModel {
   ///
   /// For parameters information refer to [AppListRequest].
   /// Throws an [AppException] if API response contains an error
-  static Future<List<App>> fetchApplicationList(
+  static Future<List<App?>?> fetchApplicationList(
     AppListRequest request,
   ) async {
-    final AppListResponse response = await _api.call(request: request);
+    final AppListResponse response = await _api!.call<AppListResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AppException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -117,18 +117,18 @@ class App extends AppModel {
 
   /// Retrieves details of app markup according to criteria specified.
   Future<AppMarkupDetails> fetchApplicationMarkupDetails({
-    String clientLoginId,
-    DateTime dateFrom,
-    DateTime dateTo,
-    bool description,
-    int limit,
-    int offset,
-    String sort,
-    List<String> sortFields,
+    required String clientLoginId,
+    DateTime? dateFrom,
+    DateTime? dateTo,
+    required bool description,
+    required int limit,
+    required int offset,
+    required String sort,
+    required List<String> sortFields,
   }) =>
       AppMarkupDetails.fetchApplicationMarkupDetails(
         AppMarkupDetailsRequest(
-          appId: appId,
+          appId: appId!,
           clientLoginid: clientLoginId,
           dateFrom: dateFrom.toString(),
           dateTo: dateTo.toString(),
@@ -142,49 +142,49 @@ class App extends AppModel {
 
   /// The request for deleting an application.
   Future<AppDelete> deleteApplication() => AppDelete.deleteApplication(
-        AppDeleteRequest(appDelete: appId),
+        AppDeleteRequest(appDelete: appId!),
       );
 
   /// Register a new Oauth application.
-  Future<AppRegister> registerApplication({List<TokenScope> scopes}) =>
+  Future<AppRegister> registerApplication({required List<TokenScope> scopes}) =>
       AppRegister.registerApplication(
         AppRegisterRequest(
-          appMarkupPercentage: appMarkupPercentage,
-          appstore: appstore,
-          github: github,
-          googleplay: googleplay,
-          homepage: homepage,
-          name: name,
-          redirectUri: redirectUri,
+          appMarkupPercentage: appMarkupPercentage!,
+          appstore: appstore!,
+          github: github!,
+          googleplay: googleplay!,
+          homepage: homepage!,
+          name: name!,
+          redirectUri: redirectUri!,
           scopes: scopes
               .map((TokenScope scope) => getStringFromEnum(scope))
               .toList(),
-          verificationUri: verificationUri,
+          verificationUri: verificationUri!,
         ),
       );
 
   /// Update application.
-  Future<AppUpdate> updateApplication({List<TokenScope> scopes}) =>
+  Future<AppUpdate> updateApplication({required List<TokenScope> scopes}) =>
       AppUpdate.updateApplication(
         AppUpdateRequest(
-          appMarkupPercentage: appMarkupPercentage,
-          appUpdate: appId,
-          appstore: appstore,
-          github: github,
-          googleplay: googleplay,
-          homepage: homepage,
-          name: name,
-          redirectUri: redirectUri,
+          appMarkupPercentage: appMarkupPercentage!,
+          appUpdate: appId!,
+          appstore: appstore!,
+          github: github!,
+          googleplay: googleplay!,
+          homepage: homepage!,
+          name: name!,
+          redirectUri: redirectUri!,
           scopes: scopes
               .map((TokenScope scope) => getStringFromEnum(scope))
               .toList(),
-          verificationUri: verificationUri,
+          verificationUri: verificationUri!,
         ),
       );
 
   /// Revoke access of particular app.
   Future<RevokeOauthApp> revokeOauthApplication() =>
       RevokeOauthApp.revokeOauthApplication(
-        RevokeOauthAppRequest(revokeOauthApp: appId),
+        RevokeOauthAppRequest(revokeOauthApp: appId!),
       );
 }

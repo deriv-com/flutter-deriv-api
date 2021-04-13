@@ -30,7 +30,7 @@ class P2pOrderConfirmResponse extends Response {
       );
 
   /// Confirmation details
-  final Map<String, dynamic> p2pOrderConfirm;
+  final Map<String, dynamic>? p2pOrderConfirm;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class P2pOrderConfirmResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   P2pOrderConfirmResponse copyWith({
-    Map<String, dynamic> p2pOrderConfirm,
+    Map<String, dynamic>? p2pOrderConfirm,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class P2pOrderConfirmResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

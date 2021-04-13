@@ -27,14 +27,14 @@ class GetSelfExclusionRequest extends Request {
       );
 
   /// Must be `true`
-  final bool getSelfExclusion;
+  final bool? getSelfExclusion;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'get_self_exclusion': getSelfExclusion == null
             ? null
-            : getSelfExclusion
+            : getSelfExclusion!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -44,7 +44,7 @@ class GetSelfExclusionRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   GetSelfExclusionRequest copyWith({
-    bool getSelfExclusion,
+    bool? getSelfExclusion,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -56,5 +56,5 @@ class GetSelfExclusionRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

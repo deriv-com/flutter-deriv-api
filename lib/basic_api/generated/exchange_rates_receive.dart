@@ -30,7 +30,7 @@ class ExchangeRatesResponse extends Response {
       );
 
   /// Exchange rate values from base to all other currencies
-  final Map<String, dynamic> exchangeRates;
+  final Map<String, dynamic>? exchangeRates;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class ExchangeRatesResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   ExchangeRatesResponse copyWith({
-    Map<String, dynamic> exchangeRates,
+    Map<String, dynamic>? exchangeRates,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class ExchangeRatesResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

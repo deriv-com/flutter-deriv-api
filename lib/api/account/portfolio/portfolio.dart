@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class Portfolio extends PortfolioModel {
   /// Initializes
   Portfolio({
-    List<PortfolioContractModel> contracts,
+    List<PortfolioContractModel?>? contracts,
   }) : super(
           contracts: contracts,
         );
@@ -28,17 +28,17 @@ class Portfolio extends PortfolioModel {
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the portfolio fo logged-in account
   ///
   /// Throws a [PortfolioException] if API response contains an error
   static Future<Portfolio> fetchPortfolio(PortfolioRequest request) async {
-    final PortfolioResponse response = await _api.call(request: request);
+    final PortfolioResponse response = await _api!.call<PortfolioResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           PortfolioException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -47,7 +47,7 @@ class Portfolio extends PortfolioModel {
 
   /// Generates a copy of instance with given parameters
   Portfolio copyWith({
-    List<PortfolioContractModel> contracts,
+    List<PortfolioContractModel>? contracts,
   }) =>
       Portfolio(
         contracts: contracts ?? this.contracts,

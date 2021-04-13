@@ -30,7 +30,7 @@ class AppRegisterResponse extends Response {
       );
 
   /// The information of the created application.
-  final Map<String, dynamic> appRegister;
+  final Map<String, dynamic>? appRegister;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class AppRegisterResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   AppRegisterResponse copyWith({
-    Map<String, dynamic> appRegister,
+    Map<String, dynamic>? appRegister,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class AppRegisterResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

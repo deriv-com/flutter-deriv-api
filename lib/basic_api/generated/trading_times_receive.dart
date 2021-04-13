@@ -30,7 +30,7 @@ class TradingTimesResponse extends Response {
       );
 
   /// The trading times structure is a hierarchy as follows: Market -> SubMarket -> Underlyings
-  final Map<String, dynamic> tradingTimes;
+  final Map<String, dynamic>? tradingTimes;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class TradingTimesResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   TradingTimesResponse copyWith({
-    Map<String, dynamic> tradingTimes,
+    Map<String, dynamic>? tradingTimes,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class TradingTimesResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

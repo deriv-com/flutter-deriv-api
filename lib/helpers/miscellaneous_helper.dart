@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 
 /// Parses the [url] and gets the endpoint out of it
-String parseWebSocketUrl(String url, {bool isAuthUrl = false}) {
+String? parseWebSocketUrl(String url, {bool isAuthUrl = false}) {
   if (url == null) {
     return null;
   }
@@ -18,7 +18,7 @@ String parseWebSocketUrl(String url, {bool isAuthUrl = false}) {
   }
 
   if (isAuthUrl && derivRegx.hasMatch(result)) {
-    result = derivRegx.stringMatch(result);
+    result = derivRegx.stringMatch(result)!;
   }
 
   return result;
@@ -26,14 +26,14 @@ String parseWebSocketUrl(String url, {bool isAuthUrl = false}) {
 
 /// Checks for existence of error in [response] and throws exception created by [exceptionCreator]
 void checkException({
-  Response response,
-  APIBaseException Function({BaseExceptionModel baseExceptionModel})
+  Response? response,
+  APIBaseException Function({BaseExceptionModel? baseExceptionModel})?
       exceptionCreator,
 }) {
   if (response?.error != null) {
-    throw exceptionCreator(
+    throw exceptionCreator!(
       baseExceptionModel: BaseExceptionModel(
-        code: response.error['code'],
+        code: response!.error['code'],
         message: response.error['message'],
         details: response.error['details'],
       ),

@@ -12,19 +12,19 @@ class SnackBarContent extends StatelessWidget {
   });
 
   /// title of snack bar
-  final String title;
+  final String? title;
 
   /// subtitle
-  final String subtitle;
+  final String? subtitle;
 
   ///background color
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// Title text style
-  final TextStyle titleStyle;
+  final TextStyle? titleStyle;
 
   /// Subtitle text style
-  final TextStyle subtitleStyle;
+  final TextStyle? subtitleStyle;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -36,13 +36,13 @@ class SnackBarContent extends StatelessWidget {
           contentPadding: const EdgeInsets.symmetric(horizontal: 16),
           title: title != null
               ? Text(
-                  title,
+                  title!,
                   style: titleStyle,
                 )
               : null,
           subtitle: subtitle != null
               ? Text(
-                  subtitle,
+                  subtitle!,
                   style: subtitleStyle,
                 )
               : null,

@@ -11,32 +11,32 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class AccountSettings extends AccountSettingsModel {
   /// Initializes
   AccountSettings({
-    String accountOpeningReason,
-    String addressCity,
-    String addressLine1,
-    String addressLine2,
-    String addressPostcode,
-    String addressState,
-    bool allowCopiers,
-    String citizen,
-    String clientTncStatus,
-    String country,
-    String countryCode,
-    DateTime dateOfBirth,
-    String email,
-    bool emailConsent,
-    String firstName,
-    bool hasSecretAnswer,
-    bool isAuthenticatedPaymentAgent,
-    String lastName,
-    String phone,
-    String placeOfBirth,
-    bool requestProfessionalStatus,
-    String residence,
-    String salutation,
-    String taxIdentificationNumber,
-    String taxResidence,
-    String userHash,
+    String? accountOpeningReason,
+    String? addressCity,
+    String? addressLine1,
+    String? addressLine2,
+    String? addressPostcode,
+    String? addressState,
+    bool? allowCopiers,
+    String? citizen,
+    String? clientTncStatus,
+    String? country,
+    String? countryCode,
+    DateTime? dateOfBirth,
+    String? email,
+    bool? emailConsent,
+    String? firstName,
+    bool? hasSecretAnswer,
+    bool? isAuthenticatedPaymentAgent,
+    String? lastName,
+    String? phone,
+    String? placeOfBirth,
+    bool? requestProfessionalStatus,
+    String? residence,
+    String? salutation,
+    String? taxIdentificationNumber,
+    String? taxResidence,
+    String? userHash,
   }) : super(
           accountOpeningReason: accountOpeningReason,
           addressCity: addressCity,
@@ -98,25 +98,25 @@ class AccountSettings extends AccountSettingsModel {
         userHash: json['user_hash'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets user's settings (email, date of birth, address etc)
   ///
   /// Throws an [AccountSettingsException] if API response contains an error
   static Future<AccountSettings> fetchAccountSetting([
-    GetSettingsRequest request,
+    GetSettingsRequest? request,
   ]) async {
-    final GetSettingsResponse response = await _api.call(
+    final GetSettingsResponse? response = await _api!.call<GetSettingsResponse>(
       request: request ?? const GetSettingsRequest(),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AccountSettingsException(baseExceptionModel: baseExceptionModel),
     );
 
-    return AccountSettings.fromJson(response.getSettings);
+    return AccountSettings.fromJson(response!.getSettings);
   }
 
   /// Changes the user's settings with parameters specified as [SetSettingsRequest]
@@ -125,11 +125,12 @@ class AccountSettings extends AccountSettingsModel {
   static Future<SetAccountSettingModel> changeAccountSetting(
     SetSettingsRequest request,
   ) async {
-    final SetSettingsResponse response = await _api.call(request: request);
+    final SetSettingsResponse response =
+        await _api!.call<SetSettingsResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AccountSettingsException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -138,63 +139,63 @@ class AccountSettings extends AccountSettingsModel {
 
   /// Changes user's setting
   Future<SetAccountSettingModel> changeSetting({
-    String secretAnswer,
-    String secretQuestion,
+    required String secretAnswer,
+    required String secretQuestion,
   }) =>
       changeAccountSetting(
         SetSettingsRequest(
-          accountOpeningReason: accountOpeningReason,
-          addressCity: addressCity,
-          addressLine1: addressLine1,
-          addressLine2: addressLine2,
-          addressPostcode: addressPostcode,
-          addressState: addressState,
-          allowCopiers: allowCopiers,
-          citizen: citizen,
-          dateOfBirth: getStringFromDateTime(dateOfBirth),
-          emailConsent: emailConsent,
-          firstName: firstName,
-          lastName: lastName,
-          phone: phone,
-          placeOfBirth: placeOfBirth,
-          requestProfessionalStatus: getInt(value: requestProfessionalStatus),
-          residence: residence,
-          salutation: salutation,
+          accountOpeningReason: accountOpeningReason!,
+          addressCity: addressCity!,
+          addressLine1: addressLine1!,
+          addressLine2: addressLine2!,
+          addressPostcode: addressPostcode!,
+          addressState: addressState!,
+          allowCopiers: allowCopiers!,
+          citizen: citizen!,
+          dateOfBirth: getStringFromDateTime(dateOfBirth)!,
+          emailConsent: emailConsent!,
+          firstName: firstName!,
+          lastName: lastName!,
+          phone: phone!,
+          placeOfBirth: placeOfBirth!,
+          requestProfessionalStatus: getInt(value: requestProfessionalStatus)!,
+          residence: residence!,
+          salutation: salutation!,
           secretAnswer: secretAnswer,
           secretQuestion: secretQuestion,
-          taxIdentificationNumber: taxIdentificationNumber,
-          taxResidence: taxResidence,
+          taxIdentificationNumber: taxIdentificationNumber!,
+          taxResidence: taxResidence!,
         ),
       );
 
   /// Generates a copy of instance with given parameters
   AccountSettings copyWith({
-    String accountOpeningReason,
-    String addressCity,
-    String addressLine1,
-    String addressLine2,
-    String addressPostcode,
-    String addressState,
-    bool allowCopiers,
-    String citizen,
-    String clientTncStatus,
-    String country,
-    String countryCode,
-    DateTime dateOfBirth,
-    String email,
-    bool emailConsent,
-    String firstName,
-    bool hasSecretAnswer,
-    bool isAuthenticatedPaymentAgent,
-    String lastName,
-    String phone,
-    String placeOfBirth,
-    bool requestProfessionalStatus,
-    String residence,
-    String salutation,
-    String taxIdentificationNumber,
-    String taxResidence,
-    String userHash,
+    String? accountOpeningReason,
+    String? addressCity,
+    String? addressLine1,
+    String? addressLine2,
+    String? addressPostcode,
+    String? addressState,
+    bool? allowCopiers,
+    String? citizen,
+    String? clientTncStatus,
+    String? country,
+    String? countryCode,
+    DateTime? dateOfBirth,
+    String? email,
+    bool? emailConsent,
+    String? firstName,
+    bool? hasSecretAnswer,
+    bool? isAuthenticatedPaymentAgent,
+    String? lastName,
+    String? phone,
+    String? placeOfBirth,
+    bool? requestProfessionalStatus,
+    String? residence,
+    String? salutation,
+    String? taxIdentificationNumber,
+    String? taxResidence,
+    String? userHash,
   }) =>
       AccountSettings(
         accountOpeningReason: accountOpeningReason ?? this.accountOpeningReason,

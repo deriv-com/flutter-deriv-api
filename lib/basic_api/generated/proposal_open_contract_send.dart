@@ -31,13 +31,13 @@ class ProposalOpenContractRequest extends Request {
       );
 
   /// [Optional] Contract ID received from a `portfolio` request. If not set, you will receive stream of all open contracts.
-  final int contractId;
+  final int? contractId;
 
   /// Must be `true`
-  final bool proposalOpenContract;
+  final bool? proposalOpenContract;
 
   /// [Optional] `true` to stream.
-  final bool subscribe;
+  final bool? subscribe;
 
   /// Converts this instance to JSON
   @override
@@ -45,12 +45,12 @@ class ProposalOpenContractRequest extends Request {
         'contract_id': contractId,
         'proposal_open_contract': proposalOpenContract == null
             ? null
-            : proposalOpenContract
+            : proposalOpenContract!
                 ? 1
                 : 0,
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -60,9 +60,9 @@ class ProposalOpenContractRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ProposalOpenContractRequest copyWith({
-    int contractId,
-    bool proposalOpenContract,
-    bool subscribe,
+    int? contractId,
+    bool? proposalOpenContract,
+    bool? subscribe,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>

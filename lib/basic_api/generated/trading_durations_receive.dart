@@ -33,7 +33,7 @@ class TradingDurationsResponse extends Response {
       );
 
   /// List of underlyings by their display name and symbol followed by their available contract types and trading duration boundaries.
-  final List<Map<String, dynamic>> tradingDurations;
+  final List<Map<String, dynamic>>? tradingDurations;
 
   /// Converts this instance to JSON
   @override
@@ -48,7 +48,7 @@ class TradingDurationsResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   TradingDurationsResponse copyWith({
-    List<Map<String, dynamic>> tradingDurations,
+    List<Map<String, dynamic>>? tradingDurations,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -64,5 +64,5 @@ class TradingDurationsResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

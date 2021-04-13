@@ -24,14 +24,14 @@ class LogoutRequest extends Request {
       );
 
   /// Must be `true`
-  final bool logout;
+  final bool? logout;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'logout': logout == null
             ? null
-            : logout
+            : logout!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -41,7 +41,7 @@ class LogoutRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   LogoutRequest copyWith({
-    bool logout,
+    bool? logout,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -53,5 +53,5 @@ class LogoutRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

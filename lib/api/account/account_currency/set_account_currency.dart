@@ -2,6 +2,7 @@ import 'package:flutter_deriv_api/api/account/account_currency/exceptions/accoun
 import 'package:flutter_deriv_api/api/account/models/set_account_currency_model.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
@@ -10,7 +11,7 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class SetAccountCurrency extends SetAccountCurrencyModel {
   /// Initializes
   SetAccountCurrency({
-    bool succeeded,
+    bool? succeeded,
   }) : super(succeeded: succeeded);
 
   /// Creates an instance from response
@@ -19,11 +20,11 @@ class SetAccountCurrency extends SetAccountCurrencyModel {
   ) =>
       SetAccountCurrency(succeeded: response.setAccountCurrency);
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   SetAccountCurrency copyWith({
-    bool succeeded,
+    bool? succeeded,
   }) =>
       SetAccountCurrency(
         succeeded: succeeded ?? this.succeeded,
@@ -37,15 +38,14 @@ class SetAccountCurrency extends SetAccountCurrencyModel {
   static Future<SetAccountCurrency> setCurrency(
     SetAccountCurrencyRequest request,
   ) async {
-    final SetAccountCurrencyResponse response =
-        await _api.call(request: request);
+    final SetAccountCurrencyResponse response = await _api!.call<SetAccountCurrencyResponse>(request: request);
 
     checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
-          AccountCurrencyException(baseExceptionModel: baseExceptionModel),
-    );
+        response: response,
+        exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+            AccountCurrencyException(baseExceptionModel: baseExceptionModel),
+      );
 
-    return SetAccountCurrency.fromResponse(response);
+      return SetAccountCurrency.fromResponse(response);
   }
 }

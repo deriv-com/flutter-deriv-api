@@ -37,19 +37,19 @@ class Mt5PasswordChangeRequest extends Request {
       );
 
   /// MT5 user login
-  final String login;
+  final String? login;
 
   /// Must be `true`
-  final bool mt5PasswordChange;
+  final bool? mt5PasswordChange;
 
   /// New password of the account. For validation (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address).
-  final String newPassword;
+  final String? newPassword;
 
   /// Old password for validation (non-empty string, accepts any printable ASCII character)
-  final String oldPassword;
+  final String? oldPassword;
 
   /// [Optional] Type of the password to change.
-  final String passwordType;
+  final String? passwordType;
 
   /// Converts this instance to JSON
   @override
@@ -57,7 +57,7 @@ class Mt5PasswordChangeRequest extends Request {
         'login': login,
         'mt5_password_change': mt5PasswordChange == null
             ? null
-            : mt5PasswordChange
+            : mt5PasswordChange!
                 ? 1
                 : 0,
         'new_password': newPassword,
@@ -70,11 +70,11 @@ class Mt5PasswordChangeRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   Mt5PasswordChangeRequest copyWith({
-    String login,
-    bool mt5PasswordChange,
-    String newPassword,
-    String oldPassword,
-    String passwordType,
+    String? login,
+    bool? mt5PasswordChange,
+    String? newPassword,
+    String? oldPassword,
+    String? passwordType,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -90,5 +90,5 @@ class Mt5PasswordChangeRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

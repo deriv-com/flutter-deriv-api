@@ -10,20 +10,20 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class SelfExclusion extends SelfExclusionModel {
   /// Initializes
   SelfExclusion({
-    DateTime excludeUntil,
-    double max30dayLosses,
-    double max30dayDeposit,
-    double max30dayTurnover,
-    double max7dayDeposit,
-    double max7dayLosses,
-    double max7dayTurnover,
-    double maxBalance,
-    double maxDeposit,
-    double maxLosses,
-    int maxOpenBets,
-    double maxTurnover,
-    int sessionDurationLimit,
-    DateTime timeoutUntil,
+    DateTime? excludeUntil,
+    double? max30dayLosses,
+    double? max30dayDeposit,
+    double? max30dayTurnover,
+    double? max7dayDeposit,
+    double? max7dayLosses,
+    double? max7dayTurnover,
+    double? maxBalance,
+    double? maxDeposit,
+    double? maxLosses,
+    int? maxOpenBets,
+    double? maxTurnover,
+    int? sessionDurationLimit,
+    DateTime? timeoutUntil,
   }) : super(
           excludeUntil: excludeUntil,
           max30dayDeposit: max30dayDeposit,
@@ -59,31 +59,31 @@ class SelfExclusion extends SelfExclusionModel {
         timeoutUntil: getDateTime(json['timeout_until']),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   SelfExclusion copyWith({
-    DateTime excludeUntil,
-    double max30dayDeposit,
-    double max30dayLosses,
-    double max30dayTurnover,
-    double max7dayDeposit,
-    double max7dayLosses,
-    double max7dayTurnover,
-    double maxBalance,
-    double maxDeposit,
-    double maxLosses,
-    int maxOpenBets,
-    double maxTurnover,
-    int sessionDurationLimit,
-    int timeoutUntil,
+    DateTime? excludeUntil,
+    double? max30dayDeposit,
+    double? max30dayLosses,
+    double? max30dayTurnover,
+    double? max7dayDeposit,
+    double? max7dayLosses,
+    double? max7dayTurnover,
+    double? maxBalance,
+    double? maxDeposit,
+    double? maxLosses,
+    int? maxOpenBets,
+    double? maxTurnover,
+    int? sessionDurationLimit,
+    int? timeoutUntil,
   }) =>
       SelfExclusion(
         excludeUntil: excludeUntil ?? this.excludeUntil,
-        max30dayDeposit: max30dayDeposit ?? this.max30dayDeposit,
+        max30dayDeposit: max30dayDeposit ?? this.max30dayDeposit as double?,
         max30dayLosses: max30dayLosses ?? this.max30dayLosses,
         max30dayTurnover: max30dayTurnover ?? this.max30dayTurnover,
-        max7dayDeposit: max7dayDeposit ?? this.max7dayDeposit,
+        max7dayDeposit: max7dayDeposit ?? this.max7dayDeposit as double?,
         max7dayLosses: max7dayLosses ?? this.max7dayLosses,
         max7dayTurnover: max7dayTurnover ?? this.max7dayTurnover,
         maxBalance: maxBalance ?? this.maxBalance,
@@ -92,7 +92,7 @@ class SelfExclusion extends SelfExclusionModel {
         maxOpenBets: maxOpenBets ?? this.maxOpenBets,
         maxTurnover: maxTurnover ?? this.maxTurnover,
         sessionDurationLimit: sessionDurationLimit ?? this.sessionDurationLimit,
-        timeoutUntil: timeoutUntil ?? this.timeoutUntil,
+        timeoutUntil: timeoutUntil as DateTime? ?? this.timeoutUntil,
       );
 
   /// Allows users to exclude themselves from the website for certain periods of time,
@@ -102,15 +102,16 @@ class SelfExclusion extends SelfExclusionModel {
   /// For parameters information refer to [GetSelfExclusionRequest].
   /// Throws a [SelfExclusionException] if API response contains an error
   static Future<SelfExclusion> fetchSelfExclusion([
-    GetSelfExclusionRequest request,
+    GetSelfExclusionRequest? request,
   ]) async {
-    final GetSelfExclusionResponse response = await _api.call(
+    final GetSelfExclusionResponse response =
+        await _api!.call<GetSelfExclusionResponse>(
       request: request ?? const GetSelfExclusionRequest(),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           SelfExclusionException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -121,12 +122,13 @@ class SelfExclusion extends SelfExclusionModel {
   ///
   /// For parameters information refer to [SetSelfExclusionRequest].
   /// Throws a [SelfExclusionException] if API response contains an error
-  static Future<bool> setSelfExclusion(SetSelfExclusionRequest request) async {
-    final SetSelfExclusionResponse response = await _api.call(request: request);
+  static Future<bool?> setSelfExclusion(SetSelfExclusionRequest request) async {
+    final SetSelfExclusionResponse response =
+        await _api!.call<SetSelfExclusionResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           SelfExclusionException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -137,29 +139,30 @@ class SelfExclusion extends SelfExclusionModel {
   ///
   /// (this call should be used in conjunction with [fetchSelfExclusion])
   /// Throws a [SelfExclusionException] if API response contains an error
-  Future<bool> exclude() async {
-    final SetSelfExclusionResponse response = await _api.call(
+  Future<bool?> exclude() async {
+    final SetSelfExclusionResponse response =
+        await _api!.call<SetSelfExclusionResponse>(
       request: SetSelfExclusionRequest(
-        excludeUntil: getStringFromDateTime(excludeUntil),
-        max30dayDeposit: max30dayDeposit,
-        max30dayLosses: max30dayLosses,
-        max30dayTurnover: max30dayTurnover,
-        max7dayDeposit: max7dayDeposit,
-        max7dayLosses: max7dayLosses,
-        max7dayTurnover: max7dayTurnover,
-        maxBalance: maxBalance,
-        maxDeposit: maxDeposit,
-        maxLosses: maxLosses,
-        maxOpenBets: maxOpenBets,
-        maxTurnover: maxTurnover,
-        sessionDurationLimit: sessionDurationLimit,
-        timeoutUntil: getSecondsSinceEpochDateTime(timeoutUntil),
+        excludeUntil: getStringFromDateTime(excludeUntil)!,
+        max30dayDeposit: max30dayDeposit!,
+        max30dayLosses: max30dayLosses!,
+        max30dayTurnover: max30dayTurnover!,
+        max7dayDeposit: max7dayDeposit!,
+        max7dayLosses: max7dayLosses!,
+        max7dayTurnover: max7dayTurnover!,
+        maxBalance: maxBalance!,
+        maxDeposit: maxDeposit!,
+        maxLosses: maxLosses!,
+        maxOpenBets: maxOpenBets!,
+        maxTurnover: maxTurnover!,
+        sessionDurationLimit: sessionDurationLimit!,
+        timeoutUntil: getSecondsSinceEpochDateTime(timeoutUntil)!,
       ),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           SelfExclusionException(baseExceptionModel: baseExceptionModel),
     );
 

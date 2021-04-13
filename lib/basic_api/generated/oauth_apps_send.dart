@@ -25,14 +25,14 @@ class OauthAppsRequest extends Request {
       );
 
   /// Must be `true`
-  final bool oauthApps;
+  final bool? oauthApps;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'oauth_apps': oauthApps == null
             ? null
-            : oauthApps
+            : oauthApps!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -42,7 +42,7 @@ class OauthAppsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   OauthAppsRequest copyWith({
-    bool oauthApps,
+    bool? oauthApps,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -54,5 +54,5 @@ class OauthAppsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -27,7 +27,7 @@ class AppDeleteRequest extends Request {
       );
 
   /// Application app_id
-  final int appDelete;
+  final int? appDelete;
 
   /// Converts this instance to JSON
   @override
@@ -40,7 +40,7 @@ class AppDeleteRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   AppDeleteRequest copyWith({
-    int appDelete,
+    int? appDelete,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -52,5 +52,5 @@ class AppDeleteRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

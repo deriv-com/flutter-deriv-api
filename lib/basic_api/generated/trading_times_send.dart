@@ -27,7 +27,7 @@ class TradingTimesRequest extends Request {
       );
 
   /// Date to receive market opening times for. (`yyyy-mm-dd` format. `today` can also be specified).
-  final String tradingTimes;
+  final String? tradingTimes;
 
   /// Converts this instance to JSON
   @override
@@ -40,7 +40,7 @@ class TradingTimesRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TradingTimesRequest copyWith({
-    String tradingTimes,
+    String? tradingTimes,
     Map<String, dynamic> passthrough,
     int reqId,
   }) =>
@@ -52,5 +52,5 @@ class TradingTimesRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

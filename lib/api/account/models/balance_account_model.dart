@@ -15,15 +15,15 @@ class BalanceAccountModel extends APIBaseModel {
       );
 
   /// Total amount of all balances of all real accounts
-  final double amount;
+  final double? amount;
 
   /// Currency code.
-  final String currency;
+  final String? currency;
 
   /// Generates a copy of instance with given parameters
   BalanceAccountModel copyWith({
-    double amount,
-    String currency,
+    double? amount,
+    String? currency,
   }) =>
       BalanceAccountModel(
         amount: amount ?? this.amount,

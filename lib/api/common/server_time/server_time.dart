@@ -10,36 +10,36 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class ServerTime extends ServerTimeModel {
   /// Initializes
   ServerTime({
-    DateTime time,
+    DateTime? time,
   }) : super(time: time);
 
   /// Creates an instance from response
   factory ServerTime.fromResponse(TimeResponse response) =>
       ServerTime(time: getDateTime(response.time));
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   ServerTime copyWith({
-    int time,
+    int? time,
   }) =>
       ServerTime(
-        time: time ?? this.time,
+        time: time as DateTime? ?? this.time,
       );
 
   /// Gets back-end server epoch time.
   ///
   /// Throws a [ServerTimeException] if API response contains an error
   static Future<ServerTime> fetchTime([
-    TimeRequest request,
+    TimeRequest? request,
   ]) async {
-    final TimeResponse response = await _api.call(
+    final TimeResponse response = await _api!.call<TimeResponse>(
       request: request ?? const TimeRequest(),
-    );
+    ) ;
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ServerTimeException(),
     );
 

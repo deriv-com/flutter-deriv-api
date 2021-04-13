@@ -30,7 +30,7 @@ class P2pOrderCancelResponse extends Response {
       );
 
   /// Cancellation details
-  final Map<String, dynamic> p2pOrderCancel;
+  final Map<String, dynamic>? p2pOrderCancel;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class P2pOrderCancelResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   P2pOrderCancelResponse copyWith({
-    Map<String, dynamic> p2pOrderCancel,
+    Map<String, dynamic>? p2pOrderCancel,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -61,5 +61,5 @@ class P2pOrderCancelResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }
