@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:    
     docker:
-      - image: cirrusci/flutter:2.0.4
+      - image: cirrusci/flutter:stable
 
     steps:
       - checkout
