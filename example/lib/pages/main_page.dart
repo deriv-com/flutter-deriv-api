@@ -14,8 +14,8 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  ActiveSymbolsBloc _activeSymbolsBloc;
-  AvailableContractsBloc _availableContractsBloc;
+  late ActiveSymbolsBloc _activeSymbolsBloc;
+  late AvailableContractsBloc _availableContractsBloc;
 
   @override
   void initState() {

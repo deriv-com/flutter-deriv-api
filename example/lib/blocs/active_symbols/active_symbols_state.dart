@@ -18,7 +18,7 @@ class ActiveSymbolsError extends ActiveSymbolsState {
   ActiveSymbolsError(this.message);
 
   /// Error message
-  final String message;
+  final String? message;
 
   @override
   String toString() => 'ActiveSymbolsError';
@@ -29,17 +29,17 @@ class ActiveSymbolsLoaded extends ActiveSymbolsState {
   /// Initializes
   ActiveSymbolsLoaded({
     this.activeSymbols,
-    ActiveSymbol selectedSymbol,
+    ActiveSymbol? selectedSymbol,
   }) : _selectedSymbol = selectedSymbol ?? activeSymbols?.first;
 
   /// List of symbols
-  final List<ActiveSymbol> activeSymbols;
+  final List<ActiveSymbol>? activeSymbols;
 
-  final ActiveSymbol _selectedSymbol;
+  final ActiveSymbol? _selectedSymbol;
 
   /// Selected symbol
-  ActiveSymbol get selectedSymbol => _selectedSymbol;
+  ActiveSymbol? get selectedSymbol => _selectedSymbol;
 
   @override
-  String toString() => 'ActiveSymbolsLoaded ${activeSymbols.length} symbols';
+  String toString() => 'ActiveSymbolsLoaded ${activeSymbols!.length} symbols';
 }

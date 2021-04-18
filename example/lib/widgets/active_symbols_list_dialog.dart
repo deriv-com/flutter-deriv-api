@@ -13,12 +13,12 @@ class ActiveSymbolsListDialog extends StatelessWidget {
           if (state is ActiveSymbolsLoaded) {
             return Material(
               child: ListView.builder(
-                itemCount: state.activeSymbols.length,
+                itemCount: state.activeSymbols!.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final ActiveSymbol activeSymbol = state.activeSymbols[index];
+                  final ActiveSymbol activeSymbol = state.activeSymbols![index];
 
                   return ListTile(
-                    title: Text(activeSymbol.displayName),
+                    title: Text(activeSymbol.displayName!),
                     onTap: () {
                       BlocProvider.of<ActiveSymbolsBloc>(context)
                           .add(SelectActiveSymbol(index));

@@ -42,11 +42,11 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
 
       await _unsubscribeTick();
 
-      _subscribeTick(event.selectedSymbol)
+      _subscribeTick(event.selectedSymbol!)
           .handleError((dynamic error) => error is TickException
               ? add(YieldError(error.message))
               : add(YieldError(error.toString())))
-          .listen((Tick tick) => add(YieldTick(tick)));
+          .listen((Tick? tick) => add(YieldTick(tick)));
     } else if (event is YieldTick) {
       yield TicksLoaded(event.tick);
     } else if (event is YieldError) {
@@ -54,7 +54,7 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
     }
   }
 
-  Stream<Tick> _subscribeTick(ActiveSymbol selectedSymbol) =>
+  Stream<Tick?> _subscribeTick(ActiveSymbol selectedSymbol) =>
       Tick.subscribeTick(
         TicksRequest(ticks: selectedSymbol.symbol),
       );

@@ -36,7 +36,7 @@ class AvailableContractsBloc
 
       try {
         final ContractsForSymbol contracts =
-            await _fetchAvailableContracts(event.activeSymbol);
+            await _fetchAvailableContracts(event.activeSymbol!);
 
         yield AvailableContractsLoaded(contracts: contracts);
       } on ContractsForSymbolException catch (error) {
@@ -44,12 +44,13 @@ class AvailableContractsBloc
       }
     } else if (event is SelectContract) {
       if (state is AvailableContractsLoaded) {
-        final AvailableContractsLoaded loadedState = state;
+        // ignore: avoid_as
+        final AvailableContractsLoaded loadedState = state as AvailableContractsLoaded;
 
         yield AvailableContractsLoaded(
           contracts: loadedState.contracts,
           selectedContract:
-              loadedState.contracts.availableContracts[event.index],
+              loadedState.contracts!.availableContracts![event.index],
         );
       } else {
         yield AvailableContractsLoading();

@@ -13,7 +13,7 @@ class ContractsTypeWidget extends StatefulWidget {
 
 class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
   // ignore: close_sinks
-  AvailableContractsBloc _availableContractsBloc;
+  AvailableContractsBloc? _availableContractsBloc;
 
   @override
   void initState() {
@@ -33,7 +33,7 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                 context: context,
                 builder: (BuildContext context) =>
                     BlocProvider<AvailableContractsBloc>.value(
-                  value: _availableContractsBloc,
+                  value: _availableContractsBloc!,
                   child: ContractsTypeListDialog(),
                 ),
               );
@@ -53,7 +53,7 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                             return Column(
                               children: <Widget>[
                                 Text(
-                                  '${state.contracts.availableContracts.length}',
+                                  '${state.contracts!.availableContracts!.length}',
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
@@ -68,14 +68,14 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                                 ),
                                 const SizedBox(height: 12),
                                 Text(
-                                  'Selected: ${state.selectedContract.contractDisplay}, ${state.selectedContract.contractType}, ${state.selectedContract.contractCategory}',
+                                  'Selected: ${state.selectedContract!.contractDisplay}, ${state.selectedContract!.contractType}, ${state.selectedContract!.contractCategory}',
                                   style: const TextStyle(fontSize: 14),
                                   textAlign: TextAlign.center,
                                 ),
                               ],
                             );
                           } else if (state is AvailableContractsError) {
-                            return Text(state.message);
+                            return Text(state.message!);
                           } else {
                             return const CircularProgressIndicator();
                           }

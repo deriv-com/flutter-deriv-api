@@ -14,10 +14,10 @@ class ActiveSymbolsWidget extends StatefulWidget {
 
 class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
   // ignore: close_sinks
-  ActiveSymbolsBloc _activeSymbolsBloc;
-  TicksBloc _ticksBloc;
+  ActiveSymbolsBloc? _activeSymbolsBloc;
+  TicksBloc? _ticksBloc;
 
-  double _lastTickValue = 0;
+  double? _lastTickValue = 0;
 
   @override
   void initState() {
@@ -25,12 +25,12 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
 
     _activeSymbolsBloc = BlocProvider.of<ActiveSymbolsBloc>(context)
       ..add(FetchActiveSymbols());
-    _ticksBloc = TicksBloc(_activeSymbolsBloc);
+    _ticksBloc = TicksBloc(_activeSymbolsBloc!);
   }
 
   @override
   void dispose() {
-    _ticksBloc.close();
+    _ticksBloc!.close();
 
     super.dispose();
   }
@@ -46,7 +46,7 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                 context: context,
                 builder: (BuildContext context) =>
                     BlocProvider<ActiveSymbolsBloc>.value(
-                  value: _activeSymbolsBloc,
+                  value: _activeSymbolsBloc!,
                   child: ActiveSymbolsListDialog(),
                 ),
               );
@@ -65,20 +65,20 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                             return Column(
                               children: <Widget>[
                                 Text(
-                                  '${state.selectedSymbol.marketDisplayName}',
+                                  '${state.selectedSymbol!.marketDisplayName}',
                                   style: const TextStyle(fontSize: 18),
                                   textAlign: TextAlign.center,
                                 ),
                                 const SizedBox(height: 12),
                                 Text(
-                                  '${state.selectedSymbol.displayName}',
+                                  '${state.selectedSymbol!.displayName}',
                                   style: const TextStyle(fontSize: 14),
                                   textAlign: TextAlign.center,
                                 ),
                               ],
                             );
                           } else if (state is ActiveSymbolsError) {
-                            return Text(state.message);
+                            return Text(state.message!);
                           } else {
                             return const Center(
                               child: CircularProgressIndicator(),
@@ -101,13 +101,13 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                                   (BuildContext context, TicksState state) {
                                 if (state is TicksLoaded) {
                                   final Color tickColor =
-                                      state.tick.ask > _lastTickValue
+                                      state.tick!.ask! > _lastTickValue!
                                           ? Colors.green
-                                          : state.tick.ask == _lastTickValue
+                                          : state.tick!.ask == _lastTickValue
                                               ? Colors.black
                                               : Colors.red;
 
-                                  _lastTickValue = state.tick.ask;
+                                  _lastTickValue = state.tick!.ask;
 
                                   return Padding(
                                     padding: const EdgeInsets.all(2),
@@ -124,7 +124,7 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
 
                                 if (state is TicksError) {
                                   return Text(
-                                    state.message,
+                                    state.message!,
                                     style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
