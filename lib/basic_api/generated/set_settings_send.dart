@@ -22,6 +22,7 @@ class SetSettingsRequest extends Request {
     this.nonPepDeclaration,
     this.phone,
     this.placeOfBirth,
+    this.preferredLanguage,
     this.requestProfessionalStatus,
     this.residence,
     this.salutation,
@@ -58,6 +59,7 @@ class SetSettingsRequest extends Request {
         nonPepDeclaration: json['non_pep_declaration'] as int?,
         phone: json['phone'] as String?,
         placeOfBirth: json['place_of_birth'] as String?,
+        preferredLanguage: json['preferred_language'] as String?,
         requestProfessionalStatus: json['request_professional_status'] as int?,
         residence: json['residence'] as String?,
         salutation: json['salutation'] as String?,
@@ -110,11 +112,14 @@ class SetSettingsRequest extends Request {
   /// [Optional] Indicates client's self-declaration of not being a PEP/RCA (Politically Exposed Person/Relatives and Close Associates). Effective for real accounts only.
   final int? nonPepDeclaration;
 
-  /// [Optional] Note: not applicable for virtual account. Required field for real money account. Starting with `+` followed by 8-35 digits, allowing hyphens or space.
+  /// [Optional] Note: not applicable for virtual account. Starting with `+` followed by 9-35 digits, hyphens or space.
   final String? phone;
 
   /// [Optional] Place of birth, 2-letter country code.
   final String? placeOfBirth;
+
+  /// [Optional] User's preferred language, ISO standard language code
+  final String? preferredLanguage;
 
   /// [Optional] Required when client wants to be treated as professional. Applicable for financial accounts only.
   final int? requestProfessionalStatus;
@@ -166,6 +171,7 @@ class SetSettingsRequest extends Request {
         'non_pep_declaration': nonPepDeclaration,
         'phone': phone,
         'place_of_birth': placeOfBirth,
+        'preferred_language': preferredLanguage,
         'request_professional_status': requestProfessionalStatus,
         'residence': residence,
         'salutation': salutation,
@@ -200,6 +206,7 @@ class SetSettingsRequest extends Request {
     int? nonPepDeclaration,
     String? phone,
     String? placeOfBirth,
+    String? preferredLanguage,
     int? requestProfessionalStatus,
     String? residence,
     String? salutation,
@@ -227,6 +234,7 @@ class SetSettingsRequest extends Request {
         nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,
         phone: phone ?? this.phone,
         placeOfBirth: placeOfBirth ?? this.placeOfBirth,
+        preferredLanguage: preferredLanguage ?? this.preferredLanguage,
         requestProfessionalStatus:
             requestProfessionalStatus ?? this.requestProfessionalStatus,
         residence: residence ?? this.residence,

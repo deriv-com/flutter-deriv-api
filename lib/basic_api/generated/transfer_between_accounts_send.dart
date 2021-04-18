@@ -42,7 +42,7 @@ class TransferBetweenAccountsRequest extends Request {
   /// [Optional] The loginid of the account to transfer funds to.
   final String? accountTo;
 
-  /// [Optional] To control the list of accounts returned when `account_from` or `account_to` is not provided. `brief` will only include financial trading accounts with account_type equal to `binary` and can be faster. `all` will include accounts with both `mt5` and `binary` account_type
+  /// [Optional] To control the list of accounts returned when `account_from` or `account_to` is not provided. `brief` (default value) means that accounts with `mt5` account_type will be excluded; it will run faster. `all` means that all accounts with any account_type (including `mt5`) will be returned.
   final String? accounts;
 
   /// [Optional] The amount to transfer.
