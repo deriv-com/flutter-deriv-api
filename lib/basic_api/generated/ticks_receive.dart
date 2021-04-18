@@ -9,10 +9,10 @@ class TicksResponse extends Response {
   const TicksResponse({
     this.subscription,
     this.tick,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,12 +22,12 @@ class TicksResponse extends Response {
 
   /// Creates an instance from JSON
   factory TicksResponse.fromJson(Map<String, dynamic> json) => TicksResponse(
-        subscription: json['subscription'] as Map<String, dynamic>,
-        tick: json['tick'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        subscription: json['subscription'] as Map<String, dynamic>?,
+        tick: json['tick'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// For subscription requests only.
@@ -52,10 +52,10 @@ class TicksResponse extends Response {
   TicksResponse copyWith({
     Map<String, dynamic>? subscription,
     Map<String, dynamic>? tick,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       TicksResponse(
         subscription: subscription ?? this.subscription,

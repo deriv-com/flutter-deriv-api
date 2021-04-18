@@ -22,11 +22,11 @@ void main() {
 
     expect(transferBetweenAccounts.transferBetweenAccounts, true);
 
-    expect(transferBetweenAccounts.accounts.length, 1);
+    expect(transferBetweenAccounts.accounts!.length, 1);
 
-    final TransferAccountModel account = transferBetweenAccounts.accounts[0];
+    final TransferAccountModel? account = transferBetweenAccounts.accounts![0];
 
-    expect(account.accountType, TransferAccountType.mt5);
+    expect(account!.accountType, TransferAccountType.mt5);
     expect(account.balance, '120.0');
     expect(account.currency, 'EUR');
     expect(account.loginId, 'MLT100');

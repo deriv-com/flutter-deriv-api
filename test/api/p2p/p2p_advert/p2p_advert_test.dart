@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
@@ -18,8 +19,8 @@ void main() {
 
       expect(advert.accountCurrency, 'USD');
 
-      expect(advert.advertiserDetails.id, '2');
-      expect(advert.advertiserDetails.name, 'za advertiser 1010');
+      expect(advert.advertiserDetails!.id, '2');
+      expect(advert.advertiserDetails!.name, 'za advertiser 1010');
 
       expect(advert.counterpartyType, TransactionType.sell);
       expect(advert.country, 'za');
@@ -44,40 +45,40 @@ void main() {
     });
 
     test('Fetch Advert List Test', () async {
-      final List<P2PAdvert> adverts = await P2PAdvert.fetchAdvertList(
+      final List<P2PAdvert?>? adverts = await P2PAdvert.fetchAdvertList(
         const P2pAdvertListRequest(counterpartyType: 'sell'),
       );
 
-      expect(adverts.length, 2);
+      expect(adverts!.length, 2);
 
-      expect(adverts.first.accountCurrency, 'USD');
+      expect(adverts.first!.accountCurrency, 'USD');
 
-      expect(adverts.first.advertiserDetails.id, '6');
+      expect(adverts.first!.advertiserDetails!.id, '6');
       expect(
-        adverts.first.advertiserDetails.name,
+        adverts.first!.advertiserDetails!.name,
         'advertiser CR90000018',
       );
 
-      expect(adverts.first.counterpartyType, TransactionType.sell);
-      expect(adverts.first.country, 'za');
-      expect(adverts.first.createdTime, getDateTime(1589270475));
+      expect(adverts.first!.counterpartyType, TransactionType.sell);
+      expect(adverts.first!.country, 'za');
+      expect(adverts.first!.createdTime, getDateTime(1589270475));
       expect(
-        adverts.first.description,
+        adverts.first!.description,
         'Please contact via whats app 1234',
       );
-      expect(adverts.first.id, '7');
-      expect(adverts.first.isActive, true);
-      expect(adverts.first.localCurrency, 'ZAR');
-      expect(adverts.first.maxOrderAmountLimit, 100);
-      expect(adverts.first.maxOrderAmountLimitDisplay, '100.00');
-      expect(adverts.first.minOrderAmountLimit, 10);
-      expect(adverts.first.minOrderAmountLimitDisplay, '10.00');
-      expect(adverts.first.paymentMethod, PaymentMethod.bankTransfer);
-      expect(adverts.first.price, 14500);
-      expect(adverts.first.priceDisplay, '14500.00');
-      expect(adverts.first.rate, 14500);
-      expect(adverts.first.rateDisplay, '14500.00');
-      expect(adverts.first.type, TransactionType.buy);
+      expect(adverts.first!.id, '7');
+      expect(adverts.first!.isActive, true);
+      expect(adverts.first!.localCurrency, 'ZAR');
+      expect(adverts.first!.maxOrderAmountLimit, 100);
+      expect(adverts.first!.maxOrderAmountLimitDisplay, '100.00');
+      expect(adverts.first!.minOrderAmountLimit, 10);
+      expect(adverts.first!.minOrderAmountLimitDisplay, '10.00');
+      expect(adverts.first!.paymentMethod, PaymentMethod.bankTransfer);
+      expect(adverts.first!.price, 14500);
+      expect(adverts.first!.priceDisplay, '14500.00');
+      expect(adverts.first!.rate, 14500);
+      expect(adverts.first!.rateDisplay, '14500.00');
+      expect(adverts.first!.type, TransactionType.buy);
     });
 
     test('Create Advert Test', () async {
@@ -95,8 +96,8 @@ void main() {
 
       expect(advert.accountCurrency, 'USD');
 
-      expect(advert.advertiserDetails.id, '3');
-      expect(advert.advertiserDetails.name, 'za advertiser 1010');
+      expect(advert.advertiserDetails!.id, '3');
+      expect(advert.advertiserDetails!.name, 'za advertiser 1010');
 
       expect(advert.amount, 100);
       expect(advert.amountDisplay, '100.00');
@@ -132,8 +133,8 @@ void main() {
 
       expect(updatedAdvert.accountCurrency, 'USD');
 
-      expect(updatedAdvert.advertiserDetails.id, '3');
-      expect(updatedAdvert.advertiserDetails.name, 'za advertiser 1010');
+      expect(updatedAdvert.advertiserDetails!.id, '3');
+      expect(updatedAdvert.advertiserDetails!.name, 'za advertiser 1010');
 
       expect(updatedAdvert.amount, 100);
       expect(updatedAdvert.amountDisplay, '100.00');
@@ -171,8 +172,8 @@ void main() {
 
       expect(activatedAdvert.accountCurrency, 'USD');
 
-      expect(activatedAdvert.advertiserDetails.id, '2');
-      expect(activatedAdvert.advertiserDetails.name, 'za advertiser 1010');
+      expect(activatedAdvert.advertiserDetails!.id, '2');
+      expect(activatedAdvert.advertiserDetails!.name, 'za advertiser 1010');
 
       expect(activatedAdvert.counterpartyType, TransactionType.sell);
       expect(activatedAdvert.country, 'za');
@@ -204,8 +205,8 @@ void main() {
 
       expect(deactivatedAdvert.accountCurrency, 'USD');
 
-      expect(deactivatedAdvert.advertiserDetails.id, '3');
-      expect(deactivatedAdvert.advertiserDetails.name, 'za advertiser 1010');
+      expect(deactivatedAdvert.advertiserDetails!.id, '3');
+      expect(deactivatedAdvert.advertiserDetails!.name, 'za advertiser 1010');
 
       expect(deactivatedAdvert.amount, 100);
       expect(deactivatedAdvert.amountDisplay, '100.00');
@@ -242,8 +243,8 @@ void main() {
 
       expect(deletedAdvert.accountCurrency, 'USD');
 
-      expect(deletedAdvert.advertiserDetails.id, '3');
-      expect(deletedAdvert.advertiserDetails.name, 'za advertiser 1010');
+      expect(deletedAdvert.advertiserDetails!.id, '3');
+      expect(deletedAdvert.advertiserDetails!.name, 'za advertiser 1010');
 
       expect(deletedAdvert.amount, 100);
       expect(deletedAdvert.amountDisplay, '100.00');
@@ -276,7 +277,7 @@ void main() {
     test('Create Order From Advert Test', () async {
       final P2PAdvert advert =
           await P2PAdvert.fetchAdvert(const P2pAdvertInfoRequest(id: '2'));
-      final P2POrder order = await advert.createOrder(amount: 50);
+      final P2POrder order = await advert.createOrder(amount: 50,paymentInfo: '',contactInfo: '');
 
       expect(order.accountCurrency, 'USD');
       expect(order.amount, 50.0);
@@ -295,9 +296,9 @@ void main() {
       expect(order.status, OrderStatusType.pending);
       expect(order.type, OrderType.buy);
 
-      final P2PAdvertiser advertiser = order.advertiserDetails;
+      final P2PAdvertiserModel? advertiser = order.advertiserDetails;
 
-      expect(advertiser.id, '2');
+      expect(advertiser!.id, '2');
       expect(advertiser.name, 'advertiser CR90000018');
     });
   });

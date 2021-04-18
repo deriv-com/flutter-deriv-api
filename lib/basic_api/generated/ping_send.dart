@@ -8,8 +8,8 @@ class PingRequest extends Request {
   /// Initialize PingRequest
   const PingRequest({
     this.ping = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'ping',
           passthrough: passthrough,
@@ -19,8 +19,8 @@ class PingRequest extends Request {
   /// Creates an instance from JSON
   factory PingRequest.fromJson(Map<String, dynamic> json) => PingRequest(
         ping: json['ping'] == null ? null : json['ping'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -42,8 +42,8 @@ class PingRequest extends Request {
   @override
   PingRequest copyWith({
     bool? ping,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       PingRequest(
         ping: ping ?? this.ping,

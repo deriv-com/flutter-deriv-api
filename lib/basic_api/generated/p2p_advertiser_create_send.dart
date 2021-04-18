@@ -15,8 +15,8 @@ class P2pAdvertiserCreateRequest extends Request {
     this.p2pAdvertiserCreate = true,
     this.paymentInfo,
     this.subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_advertiser_create',
           passthrough: passthrough,
@@ -26,16 +26,16 @@ class P2pAdvertiserCreateRequest extends Request {
   /// Creates an instance from JSON
   factory P2pAdvertiserCreateRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserCreateRequest(
-        contactInfo: json['contact_info'] as String,
-        defaultAdvertDescription: json['default_advert_description'] as String,
-        name: json['name'] as String,
+        contactInfo: json['contact_info'] as String?,
+        defaultAdvertDescription: json['default_advert_description'] as String?,
+        name: json['name'] as String?,
         p2pAdvertiserCreate: json['p2p_advertiser_create'] == null
             ? null
             : json['p2p_advertiser_create'] == 1,
-        paymentInfo: json['payment_info'] as String,
+        paymentInfo: json['payment_info'] as String?,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Advertiser's contact information, to be used as a default for new sell adverts.
@@ -86,8 +86,8 @@ class P2pAdvertiserCreateRequest extends Request {
     bool? p2pAdvertiserCreate,
     String? paymentInfo,
     bool? subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pAdvertiserCreateRequest(
         contactInfo: contactInfo ?? this.contactInfo,

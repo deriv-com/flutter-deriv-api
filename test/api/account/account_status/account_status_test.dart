@@ -11,41 +11,41 @@ void main() {
     final AccountStatus accountStatus =
         await AccountStatus.fetchAccountStatus();
 
-    expect(accountStatus.currencyConfig.length, 1);
-    expect(accountStatus.currencyConfig.first.currency, 'USD');
-    expect(accountStatus.currencyConfig.first.isDepositSuspended, false);
-    expect(accountStatus.currencyConfig.first.isWithdrawalSuspended, false);
+    expect(accountStatus.currencyConfig!.length, 1);
+    expect(accountStatus.currencyConfig!.first!.currency, 'USD');
+    expect(accountStatus.currencyConfig!.first!.isDepositSuspended, false);
+    expect(accountStatus.currencyConfig!.first!.isWithdrawalSuspended, false);
 
     expect(
-      accountStatus.status.first,
+      accountStatus.status!.first,
       AccountStatusType.financialInformationNotComplete,
     );
     expect(
-      accountStatus.status[1],
+      accountStatus.status![1],
       AccountStatusType.tradingExperienceNotComplete,
     );
     expect(accountStatus.promptClientToAuthenticate, false);
     expect(accountStatus.riskClassification, AccountRiskClassification.low);
     expect(
-      accountStatus.authentication.document.status,
+      accountStatus.authentication!.document!.status,
       AccountIdentityStatus.none,
     );
     expect(
-      accountStatus.authentication.identity.status,
+      accountStatus.authentication!.identity!.status,
       AccountIdentityStatus.none,
     );
 
     expect(
-      accountStatus.authentication.needsVerification,
-      isA<List<VerificationType>>(),
+      accountStatus.authentication!.needsVerification,
+      isA<List<VerificationType?>?>(),
     );
-    expect(accountStatus.authentication.needsVerification.length, 2);
+    expect(accountStatus.authentication!.needsVerification!.length, 2);
     expect(
-      accountStatus.authentication.needsVerification.first,
+      accountStatus.authentication!.needsVerification!.first,
       VerificationType.document,
     );
     expect(
-      accountStatus.authentication.needsVerification.last,
+      accountStatus.authentication!.needsVerification!.last,
       VerificationType.identity,
     );
   });

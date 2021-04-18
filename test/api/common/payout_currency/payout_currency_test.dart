@@ -7,10 +7,10 @@ void main() {
   setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Payout Currencies Test', () async {
-    final List<PayoutCurrency> currencies =
+    final List<PayoutCurrency?>? currencies =
         await PayoutCurrency.fetchPayoutCurrencies();
 
-    expect(currencies.length, 4);
-    expect(currencies.first.currency, 'AUD');
+    expect(currencies!.length, 4);
+    expect(currencies.first!.currency, 'AUD');
   });
 }

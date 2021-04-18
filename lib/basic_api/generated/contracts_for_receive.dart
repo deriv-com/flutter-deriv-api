@@ -8,10 +8,10 @@ class ContractsForResponse extends Response {
   /// Initialize ContractsForResponse
   const ContractsForResponse({
     this.contractsFor,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,11 +22,11 @@ class ContractsForResponse extends Response {
   /// Creates an instance from JSON
   factory ContractsForResponse.fromJson(Map<String, dynamic> json) =>
       ContractsForResponse(
-        contractsFor: json['contracts_for'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        contractsFor: json['contracts_for'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// List of available contracts. Note: if the user is authenticated, then only contracts allowed under his account will be returned.
@@ -46,10 +46,10 @@ class ContractsForResponse extends Response {
   @override
   ContractsForResponse copyWith({
     Map<String, dynamic>? contractsFor,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       ContractsForResponse(
         contractsFor: contractsFor ?? this.contractsFor,

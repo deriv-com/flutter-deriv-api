@@ -8,10 +8,10 @@ class P2pAdvertCreateResponse extends Response {
   /// Initialize P2pAdvertCreateResponse
   const P2pAdvertCreateResponse({
     this.p2pAdvertCreate,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,11 +22,11 @@ class P2pAdvertCreateResponse extends Response {
   /// Creates an instance from JSON
   factory P2pAdvertCreateResponse.fromJson(Map<String, dynamic> json) =>
       P2pAdvertCreateResponse(
-        p2pAdvertCreate: json['p2p_advert_create'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        p2pAdvertCreate: json['p2p_advert_create'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The information of the created P2P advert.
@@ -46,10 +46,10 @@ class P2pAdvertCreateResponse extends Response {
   @override
   P2pAdvertCreateResponse copyWith({
     Map<String, dynamic>? p2pAdvertCreate,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       P2pAdvertCreateResponse(
         p2pAdvertCreate: p2pAdvertCreate ?? this.p2pAdvertCreate,

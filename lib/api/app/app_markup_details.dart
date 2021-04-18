@@ -51,6 +51,6 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
           AppException(baseExceptionModel: baseExceptionModel),
     );
 
-    return AppMarkupDetails.fromJson(response.appMarkupDetails);
+    return AppMarkupDetails.fromJson(response.appMarkupDetails!);
   }
 }

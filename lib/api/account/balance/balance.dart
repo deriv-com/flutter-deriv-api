@@ -82,7 +82,7 @@ class Balance extends BalanceModel {
           BalanceException(baseExceptionModel: baseExceptionModel),
     );
 
-    return Balance.fromJson(response.balance);
+    return Balance.fromJson(response.balance!);
   }
 
   /// Instead of one call [Balance.fetchBalance] gets stream of [Balance]
@@ -103,7 +103,7 @@ class Balance extends BalanceModel {
 
         return response is BalanceResponse
             ? Balance.fromJson(
-                response.balance,
+                response.balance!,
                 subscriptionJson: response.subscription,
               )
             : null;

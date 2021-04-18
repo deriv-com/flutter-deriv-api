@@ -20,8 +20,8 @@ class P2pAdvertCreateRequest extends Request {
     @required this.paymentMethod,
     @required this.rate,
     @required this.type,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_advert_create',
           passthrough: passthrough,
@@ -31,21 +31,21 @@ class P2pAdvertCreateRequest extends Request {
   /// Creates an instance from JSON
   factory P2pAdvertCreateRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertCreateRequest(
-        amount: json['amount'] as num,
-        contactInfo: json['contact_info'] as String,
-        description: json['description'] as String,
-        localCurrency: json['local_currency'] as String,
-        maxOrderAmount: json['max_order_amount'] as num,
-        minOrderAmount: json['min_order_amount'] as num,
+        amount: json['amount'] as num?,
+        contactInfo: json['contact_info'] as String?,
+        description: json['description'] as String?,
+        localCurrency: json['local_currency'] as String?,
+        maxOrderAmount: json['max_order_amount'] as num?,
+        minOrderAmount: json['min_order_amount'] as num?,
         p2pAdvertCreate: json['p2p_advert_create'] == null
             ? null
             : json['p2p_advert_create'] == 1,
-        paymentInfo: json['payment_info'] as String,
-        paymentMethod: json['payment_method'] as String,
-        rate: json['rate'] as num,
-        type: json['type'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        paymentInfo: json['payment_info'] as String?,
+        paymentMethod: json['payment_method'] as String?,
+        rate: json['rate'] as num?,
+        type: json['type'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The total amount of the advert, in advertiser's account currency.
@@ -117,8 +117,8 @@ class P2pAdvertCreateRequest extends Request {
     String? paymentMethod,
     num? rate,
     String? type,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pAdvertCreateRequest(
         amount: amount ?? this.amount,

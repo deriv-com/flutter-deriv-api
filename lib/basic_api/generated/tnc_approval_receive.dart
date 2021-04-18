@@ -8,10 +8,10 @@ class TncApprovalResponse extends Response {
   /// Initialize TncApprovalResponse
   const TncApprovalResponse({
     this.tncApproval,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,11 +22,11 @@ class TncApprovalResponse extends Response {
   /// Creates an instance from JSON
   factory TncApprovalResponse.fromJson(Map<String, dynamic> json) =>
       TncApprovalResponse(
-        tncApproval: json['tnc_approval'] as int,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        tncApproval: json['tnc_approval'] as int?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Set terms and conditions 1: success
@@ -46,10 +46,10 @@ class TncApprovalResponse extends Response {
   @override
   TncApprovalResponse copyWith({
     int? tncApproval,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       TncApprovalResponse(
         tncApproval: tncApproval ?? this.tncApproval,

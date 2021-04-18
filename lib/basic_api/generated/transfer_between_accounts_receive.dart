@@ -12,10 +12,10 @@ class TransferBetweenAccountsResponse extends Response {
     this.clientToLoginid,
     this.transactionId,
     this.transferBetweenAccounts,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -26,20 +26,20 @@ class TransferBetweenAccountsResponse extends Response {
   /// Creates an instance from JSON
   factory TransferBetweenAccountsResponse.fromJson(Map<String, dynamic> json) =>
       TransferBetweenAccountsResponse(
-        accounts: (json['accounts'] as List<dynamic>)
+        accounts: (json['accounts'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
-            ?.toList(),
-        clientToFullName: json['client_to_full_name'] as String,
-        clientToLoginid: json['client_to_loginid'] as String,
-        transactionId: json['transaction_id'] as int,
+            .toList(),
+        clientToFullName: json['client_to_full_name'] as String?,
+        clientToLoginid: json['client_to_loginid'] as String?,
+        transactionId: json['transaction_id'] as int?,
         transferBetweenAccounts: json['transfer_between_accounts'] == null
             ? null
             : json['transfer_between_accounts'] == 1,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The available accounts to transfer, or the accounts affected by a successful transfer.
@@ -83,10 +83,10 @@ class TransferBetweenAccountsResponse extends Response {
     String? clientToLoginid,
     int? transactionId,
     bool? transferBetweenAccounts,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       TransferBetweenAccountsResponse(
         accounts: accounts ?? this.accounts,

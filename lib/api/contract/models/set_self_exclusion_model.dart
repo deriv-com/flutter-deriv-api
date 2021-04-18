@@ -22,6 +22,6 @@ class SetSelfExclusionModel extends APIBaseModel {
     int? setSelfExclusion,
   }) =>
       SetSelfExclusionModel(
-        setSelfExclusion: setSelfExclusion as bool? ?? this.setSelfExclusion,
+        setSelfExclusion: getBool(setSelfExclusion) ?? this.setSelfExclusion,
       );
 }

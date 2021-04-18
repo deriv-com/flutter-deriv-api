@@ -13,8 +13,8 @@ class BuyRequest extends Request {
     this.parameters,
     @required this.price,
     this.subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'buy',
           passthrough: passthrough,
@@ -23,12 +23,12 @@ class BuyRequest extends Request {
 
   /// Creates an instance from JSON
   factory BuyRequest.fromJson(Map<String, dynamic> json) => BuyRequest(
-        buy: json['buy'] as String,
-        parameters: json['parameters'] as Map<String, dynamic>,
-        price: json['price'] as num,
+        buy: json['buy'] as String?,
+        parameters: json['parameters'] as Map<String, dynamic>?,
+        price: json['price'] as num?,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Either the ID received from a Price Proposal (`proposal` call), or `1` if contract buy parameters are passed in the `parameters` field.
@@ -65,8 +65,8 @@ class BuyRequest extends Request {
     Map<String, dynamic>? parameters,
     num? price,
     bool? subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       BuyRequest(
         buy: buy ?? this.buy,

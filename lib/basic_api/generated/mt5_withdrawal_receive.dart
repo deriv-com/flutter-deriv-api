@@ -9,10 +9,10 @@ class Mt5WithdrawalResponse extends Response {
   const Mt5WithdrawalResponse({
     this.binaryTransactionId,
     this.mt5Withdrawal,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -23,12 +23,12 @@ class Mt5WithdrawalResponse extends Response {
   /// Creates an instance from JSON
   factory Mt5WithdrawalResponse.fromJson(Map<String, dynamic> json) =>
       Mt5WithdrawalResponse(
-        binaryTransactionId: json['binary_transaction_id'] as int,
-        mt5Withdrawal: json['mt5_withdrawal'] as int,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        binaryTransactionId: json['binary_transaction_id'] as int?,
+        mt5Withdrawal: json['mt5_withdrawal'] as int?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Deposit reference ID of Binary account.
@@ -53,10 +53,10 @@ class Mt5WithdrawalResponse extends Response {
   Mt5WithdrawalResponse copyWith({
     int? binaryTransactionId,
     int? mt5Withdrawal,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       Mt5WithdrawalResponse(
         binaryTransactionId: binaryTransactionId ?? this.binaryTransactionId,

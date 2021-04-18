@@ -16,38 +16,38 @@ void main() {
         const LandingCompanyRequest(landingCompany: 'CountryCode'),
       );
 
-      expect(landingCompany.config.taxDetailsRequired, true);
+      expect(landingCompany.config!.taxDetailsRequired, true);
       expect(landingCompany.minimumAge, 18);
       expect(landingCompany.name, 'Indonesia');
       expect(landingCompany.id, 'id');
       expect(landingCompany.virtualCompany, 'virtual');
 
       final LandingCompanyDetailModel financialCompany =
-          landingCompany.financialCompany;
+          landingCompany.financialCompany!;
 
       expect(financialCompany.hasRealityCheck, false);
-      expect(financialCompany.marketsCurrencies.length, 2);
-      expect(financialCompany.legalAllowedContractCategories.length, 12);
+      expect(financialCompany.marketsCurrencies!.length, 2);
+      expect(financialCompany.legalAllowedContractCategories!.length, 12);
       expect(financialCompany.legalDefaultCurrency, 'AUD');
       expect(financialCompany.country, 'Saint Vincent and the Grenadines');
       expect(financialCompany.legalDefaultCurrency, 'AUD');
       expect(financialCompany.shortCode, 'svg');
-      expect(financialCompany.legalAllowedMarkets.length, 2);
-      expect(financialCompany.legalAllowedMarkets.first, 'commodities');
+      expect(financialCompany.legalAllowedMarkets!.length, 2);
+      expect(financialCompany.legalAllowedMarkets!.first, 'commodities');
 
       final LandingCompanyDetailModel mtFinancialAdvanced =
-          landingCompany.mtFinancialCompany.advanced;
+          landingCompany.mtFinancialCompany!.advanced!;
 
-      expect(mtFinancialAdvanced.address.length, 4);
+      expect(mtFinancialAdvanced.address!.length, 4);
 
       expect(mtFinancialAdvanced.hasRealityCheck, false);
-      expect(mtFinancialAdvanced.marketsCurrencies.length, 1);
-      expect(mtFinancialAdvanced.legalAllowedContractCategories.length, 1);
+      expect(mtFinancialAdvanced.marketsCurrencies!.length, 1);
+      expect(mtFinancialAdvanced.legalAllowedContractCategories!.length, 1);
       expect(mtFinancialAdvanced.legalDefaultCurrency, 'AUD');
       expect(mtFinancialAdvanced.country, 'Malaysia');
       expect(mtFinancialAdvanced.shortCode, 'labuan');
-      expect(mtFinancialAdvanced.legalAllowedMarkets.length, 1);
-      expect(mtFinancialAdvanced.legalAllowedMarkets.first, 'forex');
+      expect(mtFinancialAdvanced.legalAllowedMarkets!.length, 1);
+      expect(mtFinancialAdvanced.legalAllowedMarkets!.first, 'forex');
     });
 
     test('Fetch Landing Company Details Test', () async {
@@ -56,19 +56,19 @@ void main() {
         const LandingCompanyDetailsRequest(landingCompanyDetails: 'LC Code'),
       );
 
-      expect(landingCompanyDetail.address.length, 4);
+      expect(landingCompanyDetail.address!.length, 4);
       expect(landingCompanyDetail.country, 'Sample country');
       expect(landingCompanyDetail.legalDefaultCurrency, 'BTC');
-      expect(landingCompanyDetail.legalAllowedCurrencies.length, 2);
-      expect(landingCompanyDetail.legalAllowedContractCategories.length, 4);
-      expect(landingCompanyDetail.legalAllowedMarkets.length, 2);
+      expect(landingCompanyDetail.legalAllowedCurrencies!.length, 2);
+      expect(landingCompanyDetail.legalAllowedContractCategories!.length, 4);
+      expect(landingCompanyDetail.legalAllowedMarkets!.length, 2);
 
-      final List<LandingCompanyFieldsInfoModel> changeableFields =
-          landingCompanyDetail.changeableFields;
+      final List<LandingCompanyFieldsInfoModel?> changeableFields =
+          landingCompanyDetail.changeableFields!;
 
       expect(changeableFields.length, 1);
-      expect(changeableFields.first.fields.length, 6);
-      expect(changeableFields.first.fields.first, 'salutation');
+      expect(changeableFields.first!.fields!.length, 6);
+      expect(changeableFields.first!.fields!.first, 'salutation');
     });
   });
 }

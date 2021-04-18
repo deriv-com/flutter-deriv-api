@@ -13,8 +13,8 @@ class BuyContractForMultipleAccountsRequest extends Request {
     this.parameters,
     @required this.price,
     @required this.tokens,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'buy_contract_for_multiple_accounts',
           passthrough: passthrough,
@@ -26,14 +26,14 @@ class BuyContractForMultipleAccountsRequest extends Request {
           Map<String, dynamic> json) =>
       BuyContractForMultipleAccountsRequest(
         buyContractForMultipleAccounts:
-            json['buy_contract_for_multiple_accounts'] as String,
-        parameters: json['parameters'] as Map<String, dynamic>,
-        price: json['price'] as num,
-        tokens: (json['tokens'] as List<dynamic>)
+            json['buy_contract_for_multiple_accounts'] as String?,
+        parameters: json['parameters'] as Map<String, dynamic>?,
+        price: json['price'] as num?,
+        tokens: (json['tokens'] as List<dynamic>?)
             ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+            .toList(),
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Either the ID received from a Price Proposal (`proposal` call), or `1` if contract buy parameters are passed in the `parameters` field.
@@ -66,8 +66,8 @@ class BuyContractForMultipleAccountsRequest extends Request {
     Map<String, dynamic>? parameters,
     num? price,
     List<String>? tokens,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       BuyContractForMultipleAccountsRequest(
         buyContractForMultipleAccounts: buyContractForMultipleAccounts ??

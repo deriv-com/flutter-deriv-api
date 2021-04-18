@@ -10,8 +10,8 @@ class LandingCompanyDetailsRequest extends Request {
   /// Initialize LandingCompanyDetailsRequest
   const LandingCompanyDetailsRequest({
     @required this.landingCompanyDetails,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'landing_company_details',
           passthrough: passthrough,
@@ -21,9 +21,9 @@ class LandingCompanyDetailsRequest extends Request {
   /// Creates an instance from JSON
   factory LandingCompanyDetailsRequest.fromJson(Map<String, dynamic> json) =>
       LandingCompanyDetailsRequest(
-        landingCompanyDetails: json['landing_company_details'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        landingCompanyDetails: json['landing_company_details'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Landing company shortcode.
@@ -41,8 +41,8 @@ class LandingCompanyDetailsRequest extends Request {
   @override
   LandingCompanyDetailsRequest copyWith({
     String? landingCompanyDetails,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       LandingCompanyDetailsRequest(
         landingCompanyDetails:

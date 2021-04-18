@@ -11,10 +11,10 @@ class TicksHistoryResponse extends Response {
     this.history,
     this.pipSize,
     this.subscription,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -25,17 +25,17 @@ class TicksHistoryResponse extends Response {
   /// Creates an instance from JSON
   factory TicksHistoryResponse.fromJson(Map<String, dynamic> json) =>
       TicksHistoryResponse(
-        candles: (json['candles'] as List<dynamic>)
+        candles: (json['candles'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
-            ?.toList(),
-        history: json['history'] as Map<String, dynamic>,
-        pipSize: json['pip_size'] as num,
-        subscription: json['subscription'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+            .toList(),
+        history: json['history'] as Map<String, dynamic>?,
+        pipSize: json['pip_size'] as num?,
+        subscription: json['subscription'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Array of OHLC (open/high/low/close) price values for the given time (only for style=`candles`)
@@ -70,10 +70,10 @@ class TicksHistoryResponse extends Response {
     Map<String, dynamic>? history,
     num? pipSize,
     Map<String, dynamic>? subscription,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       TicksHistoryResponse(
         candles: candles ?? this.candles,

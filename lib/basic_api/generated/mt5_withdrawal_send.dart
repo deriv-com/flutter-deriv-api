@@ -13,8 +13,8 @@ class Mt5WithdrawalRequest extends Request {
     @required this.fromMt5,
     this.mt5Withdrawal = true,
     @required this.toBinary,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'mt5_withdrawal',
           passthrough: passthrough,
@@ -24,13 +24,13 @@ class Mt5WithdrawalRequest extends Request {
   /// Creates an instance from JSON
   factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>
       Mt5WithdrawalRequest(
-        amount: json['amount'] as num,
-        fromMt5: json['from_mt5'] as String,
+        amount: json['amount'] as num?,
+        fromMt5: json['from_mt5'] as String?,
         mt5Withdrawal:
             json['mt5_withdrawal'] == null ? null : json['mt5_withdrawal'] == 1,
-        toBinary: json['to_binary'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        toBinary: json['to_binary'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Amount to withdraw (in the currency of the MT5 account); min = $1 or an equivalent amount, max = $20000 or an equivalent amount.
@@ -67,8 +67,8 @@ class Mt5WithdrawalRequest extends Request {
     String? fromMt5,
     bool? mt5Withdrawal,
     String? toBinary,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       Mt5WithdrawalRequest(
         amount: amount ?? this.amount,

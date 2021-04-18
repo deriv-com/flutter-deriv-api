@@ -8,10 +8,10 @@ class TopupVirtualResponse extends Response {
   /// Initialize TopupVirtualResponse
   const TopupVirtualResponse({
     this.topupVirtual,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,11 +22,11 @@ class TopupVirtualResponse extends Response {
   /// Creates an instance from JSON
   factory TopupVirtualResponse.fromJson(Map<String, dynamic> json) =>
       TopupVirtualResponse(
-        topupVirtual: json['topup_virtual'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        topupVirtual: json['topup_virtual'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The information regarding a successful top up for a virtual money account
@@ -46,10 +46,10 @@ class TopupVirtualResponse extends Response {
   @override
   TopupVirtualResponse copyWith({
     Map<String, dynamic>? topupVirtual,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       TopupVirtualResponse(
         topupVirtual: topupVirtual ?? this.topupVirtual,

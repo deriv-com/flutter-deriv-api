@@ -80,10 +80,10 @@ class SelfExclusion extends SelfExclusionModel {
   }) =>
       SelfExclusion(
         excludeUntil: excludeUntil ?? this.excludeUntil,
-        max30dayDeposit: max30dayDeposit ?? this.max30dayDeposit as double?,
+        max30dayDeposit: max30dayDeposit ?? getDouble(this.max30dayDeposit),
         max30dayLosses: max30dayLosses ?? this.max30dayLosses,
         max30dayTurnover: max30dayTurnover ?? this.max30dayTurnover,
-        max7dayDeposit: max7dayDeposit ?? this.max7dayDeposit as double?,
+        max7dayDeposit: max7dayDeposit ?? getDouble(this.max7dayDeposit),
         max7dayLosses: max7dayLosses ?? this.max7dayLosses,
         max7dayTurnover: max7dayTurnover ?? this.max7dayTurnover,
         maxBalance: maxBalance ?? this.maxBalance,
@@ -92,7 +92,7 @@ class SelfExclusion extends SelfExclusionModel {
         maxOpenBets: maxOpenBets ?? this.maxOpenBets,
         maxTurnover: maxTurnover ?? this.maxTurnover,
         sessionDurationLimit: sessionDurationLimit ?? this.sessionDurationLimit,
-        timeoutUntil: timeoutUntil as DateTime? ?? this.timeoutUntil,
+        timeoutUntil: getDateTime(timeoutUntil) ?? this.timeoutUntil,
       );
 
   /// Allows users to exclude themselves from the website for certain periods of time,
@@ -115,7 +115,7 @@ class SelfExclusion extends SelfExclusionModel {
           SelfExclusionException(baseExceptionModel: baseExceptionModel),
     );
 
-    return SelfExclusion.fromJson(response.getSelfExclusion);
+    return SelfExclusion.fromJson(response.getSelfExclusion!);
   }
 
   /// Sets Self-Exclusion (this call should be used in conjunction with [fetchSelfExclusion])
@@ -143,20 +143,20 @@ class SelfExclusion extends SelfExclusionModel {
     final SetSelfExclusionResponse response =
         await _api!.call<SetSelfExclusionResponse>(
       request: SetSelfExclusionRequest(
-        excludeUntil: getStringFromDateTime(excludeUntil)!,
-        max30dayDeposit: max30dayDeposit!,
-        max30dayLosses: max30dayLosses!,
-        max30dayTurnover: max30dayTurnover!,
-        max7dayDeposit: max7dayDeposit!,
-        max7dayLosses: max7dayLosses!,
-        max7dayTurnover: max7dayTurnover!,
-        maxBalance: maxBalance!,
-        maxDeposit: maxDeposit!,
-        maxLosses: maxLosses!,
-        maxOpenBets: maxOpenBets!,
-        maxTurnover: maxTurnover!,
-        sessionDurationLimit: sessionDurationLimit!,
-        timeoutUntil: getSecondsSinceEpochDateTime(timeoutUntil)!,
+        excludeUntil: getStringFromDateTime(excludeUntil),
+        max30dayDeposit: max30dayDeposit,
+        max30dayLosses: max30dayLosses,
+        max30dayTurnover: max30dayTurnover,
+        max7dayDeposit: max7dayDeposit,
+        max7dayLosses: max7dayLosses,
+        max7dayTurnover: max7dayTurnover,
+        maxBalance: maxBalance,
+        maxDeposit: maxDeposit,
+        maxLosses: maxLosses,
+        maxOpenBets: maxOpenBets,
+        maxTurnover: maxTurnover,
+        sessionDurationLimit: sessionDurationLimit,
+        timeoutUntil: getSecondsSinceEpochDateTime(timeoutUntil),
       ),
     );
 

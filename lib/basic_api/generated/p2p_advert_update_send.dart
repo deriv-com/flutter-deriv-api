@@ -13,8 +13,8 @@ class P2pAdvertUpdateRequest extends Request {
     @required this.id,
     this.isActive,
     this.p2pAdvertUpdate = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_advert_update',
           passthrough: passthrough,
@@ -25,13 +25,13 @@ class P2pAdvertUpdateRequest extends Request {
   factory P2pAdvertUpdateRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertUpdateRequest(
         delete: json['delete'] == null ? null : json['delete'] == 1,
-        id: json['id'] as String,
+        id: json['id'] as String?,
         isActive: json['is_active'] == null ? null : json['is_active'] == 1,
         p2pAdvertUpdate: json['p2p_advert_update'] == null
             ? null
             : json['p2p_advert_update'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] If set to `true`, permanently deletes the advert.
@@ -76,8 +76,8 @@ class P2pAdvertUpdateRequest extends Request {
     String? id,
     bool? isActive,
     bool? p2pAdvertUpdate,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pAdvertUpdateRequest(
         delete: delete ?? this.delete,

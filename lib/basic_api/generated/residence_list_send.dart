@@ -8,8 +8,8 @@ class ResidenceListRequest extends Request {
   /// Initialize ResidenceListRequest
   const ResidenceListRequest({
     this.residenceList = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'residence_list',
           passthrough: passthrough,
@@ -21,8 +21,8 @@ class ResidenceListRequest extends Request {
       ResidenceListRequest(
         residenceList:
             json['residence_list'] == null ? null : json['residence_list'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -44,8 +44,8 @@ class ResidenceListRequest extends Request {
   @override
   ResidenceListRequest copyWith({
     bool? residenceList,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ResidenceListRequest(
         residenceList: residenceList ?? this.residenceList,

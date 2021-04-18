@@ -62,5 +62,6 @@ class SpotPriceModel extends APIBaseModel {
       other.orderAmount == orderAmount;
 
   @override
+  // ignore: unnecessary_overrides
   int get hashCode => super.hashCode;
 }

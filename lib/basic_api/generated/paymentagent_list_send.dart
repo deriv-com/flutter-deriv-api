@@ -11,8 +11,8 @@ class PaymentagentListRequest extends Request {
   const PaymentagentListRequest({
     this.currency,
     @required this.paymentagentList,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'paymentagent_list',
           passthrough: passthrough,
@@ -22,10 +22,10 @@ class PaymentagentListRequest extends Request {
   /// Creates an instance from JSON
   factory PaymentagentListRequest.fromJson(Map<String, dynamic> json) =>
       PaymentagentListRequest(
-        currency: json['currency'] as String,
-        paymentagentList: json['paymentagent_list'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        currency: json['currency'] as String?,
+        paymentagentList: json['paymentagent_list'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] If specified, only payment agents that supports that currency will be returned (obtained from `payout_currencies` call).
@@ -48,8 +48,8 @@ class PaymentagentListRequest extends Request {
   PaymentagentListRequest copyWith({
     String? currency,
     String? paymentagentList,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       PaymentagentListRequest(
         currency: currency ?? this.currency,

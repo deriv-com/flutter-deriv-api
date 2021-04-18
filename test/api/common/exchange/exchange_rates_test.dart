@@ -17,11 +17,11 @@ void main() {
     expect(exchangeRates.baseCurrency, 'USD');
     expect(exchangeRates.date, getDateTime(1588064134));
 
-    expect(exchangeRates.rates.length, 9);
+    expect(exchangeRates.rates!.length, 9);
 
-    final List<RateModel> rates = exchangeRates.rates;
+    final List<RateModel?> rates = exchangeRates.rates!;
 
-    expect(rates[4].code, 'GBP');
-    expect(rates[4].rate, 0.8);
+    expect(rates[4]!.code, 'GBP');
+    expect(rates[4]!.rate, 0.8);
   });
 }

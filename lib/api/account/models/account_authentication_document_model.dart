@@ -44,7 +44,7 @@ class AccountAuthenticationDocumentModel extends APIBaseModel {
       AccountAuthenticationDocumentModel(
         expiryDate: expiryDate ?? this.expiryDate,
         furtherSubmissionsAllowed:
-            furtherSubmissionsAllowed as bool? ?? this.furtherSubmissionsAllowed,
+            getBool(furtherSubmissionsAllowed) ?? this.furtherSubmissionsAllowed,
         status: status ?? this.status,
       );
 }

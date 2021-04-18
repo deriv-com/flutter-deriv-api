@@ -8,10 +8,10 @@ class GetSettingsResponse extends Response {
   /// Initialize GetSettingsResponse
   const GetSettingsResponse({
     this.getSettings,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,11 +22,11 @@ class GetSettingsResponse extends Response {
   /// Creates an instance from JSON
   factory GetSettingsResponse.fromJson(Map<String, dynamic> json) =>
       GetSettingsResponse(
-        getSettings: json['get_settings'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        getSettings: json['get_settings'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// User information and settings.
@@ -46,10 +46,10 @@ class GetSettingsResponse extends Response {
   @override
   GetSettingsResponse copyWith({
     Map<String, dynamic>? getSettings,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       GetSettingsResponse(
         getSettings: getSettings ?? this.getSettings,

@@ -13,8 +13,8 @@ class Mt5PasswordCheckRequest extends Request {
     this.mt5PasswordCheck = true,
     @required this.password,
     this.passwordType,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'mt5_password_check',
           passthrough: passthrough,
@@ -24,14 +24,14 @@ class Mt5PasswordCheckRequest extends Request {
   /// Creates an instance from JSON
   factory Mt5PasswordCheckRequest.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordCheckRequest(
-        login: json['login'] as String,
+        login: json['login'] as String?,
         mt5PasswordCheck: json['mt5_password_check'] == null
             ? null
             : json['mt5_password_check'] == 1,
-        password: json['password'] as String,
-        passwordType: json['password_type'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        password: json['password'] as String?,
+        passwordType: json['password_type'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// MT5 user login
@@ -68,8 +68,8 @@ class Mt5PasswordCheckRequest extends Request {
     bool? mt5PasswordCheck,
     String? password,
     String? passwordType,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       Mt5PasswordCheckRequest(
         login: login ?? this.login,

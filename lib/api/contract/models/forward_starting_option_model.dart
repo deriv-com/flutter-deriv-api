@@ -30,8 +30,8 @@ class ForwardStartingOptionModel extends APIBaseModel {
   /// Generate a copy of instance with given parameters
   ForwardStartingOptionModel copyWith({int? close, int? date, int? open}) =>
       ForwardStartingOptionModel(
-        close: close as DateTime? ?? this.close,
-        date: date as DateTime? ?? this.date,
-        open: open as DateTime? ?? this.open,
+        close: getDateTime(close) ?? this.close,
+        date: getDateTime(date) ?? this.date,
+        open: getDateTime(open) ?? this.open,
       );
 }

@@ -28,6 +28,6 @@ class P2PAdvertiserDetailsModel extends APIBaseModel {
   }) =>
       P2PAdvertiserDetailsModel(
         id: id ?? this.id,
-        name: name as String? ?? this.name,
+        name: name.toString(),
       );
 }

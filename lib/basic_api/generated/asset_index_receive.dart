@@ -8,10 +8,10 @@ class AssetIndexResponse extends Response {
   /// Initialize AssetIndexResponse
   const AssetIndexResponse({
     this.assetIndex,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,11 +22,11 @@ class AssetIndexResponse extends Response {
   /// Creates an instance from JSON
   factory AssetIndexResponse.fromJson(Map<String, dynamic> json) =>
       AssetIndexResponse(
-        assetIndex: json['asset_index'] as List<dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        assetIndex: json['asset_index'] as List<dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// List of underlyings by their display name and symbol followed by their available contract types and duration boundaries.
@@ -46,10 +46,10 @@ class AssetIndexResponse extends Response {
   @override
   AssetIndexResponse copyWith({
     List<dynamic>? assetIndex,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       AssetIndexResponse(
         assetIndex: assetIndex ?? this.assetIndex,

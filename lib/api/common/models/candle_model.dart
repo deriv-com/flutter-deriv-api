@@ -46,7 +46,7 @@ class CandleModel extends APIBaseModel {
   }) =>
       CandleModel(
         close: close ?? this.close,
-        epoch: epoch as DateTime? ?? this.epoch,
+        epoch: getDateTime(epoch) ?? this.epoch,
         high: high ?? this.high,
         low: low ?? this.low,
         open: open ?? this.open,

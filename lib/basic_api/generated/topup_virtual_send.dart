@@ -8,8 +8,8 @@ class TopupVirtualRequest extends Request {
   /// Initialize TopupVirtualRequest
   const TopupVirtualRequest({
     this.topupVirtual = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'topup_virtual',
           passthrough: passthrough,
@@ -21,8 +21,8 @@ class TopupVirtualRequest extends Request {
       TopupVirtualRequest(
         topupVirtual:
             json['topup_virtual'] == null ? null : json['topup_virtual'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -44,8 +44,8 @@ class TopupVirtualRequest extends Request {
   @override
   TopupVirtualRequest copyWith({
     bool? topupVirtual,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TopupVirtualRequest(
         topupVirtual: topupVirtual ?? this.topupVirtual,

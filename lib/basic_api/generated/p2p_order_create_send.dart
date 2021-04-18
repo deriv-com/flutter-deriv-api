@@ -15,8 +15,8 @@ class P2pOrderCreateRequest extends Request {
     this.p2pOrderCreate = true,
     this.paymentInfo,
     this.subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_order_create',
           passthrough: passthrough,
@@ -26,16 +26,16 @@ class P2pOrderCreateRequest extends Request {
   /// Creates an instance from JSON
   factory P2pOrderCreateRequest.fromJson(Map<String, dynamic> json) =>
       P2pOrderCreateRequest(
-        advertId: json['advert_id'] as String,
-        amount: json['amount'] as num,
-        contactInfo: json['contact_info'] as String,
+        advertId: json['advert_id'] as String?,
+        amount: json['amount'] as num?,
+        contactInfo: json['contact_info'] as String?,
         p2pOrderCreate: json['p2p_order_create'] == null
             ? null
             : json['p2p_order_create'] == 1,
-        paymentInfo: json['payment_info'] as String,
+        paymentInfo: json['payment_info'] as String?,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The unique identifier for the advert to create an order against.
@@ -86,8 +86,8 @@ class P2pOrderCreateRequest extends Request {
     bool? p2pOrderCreate,
     String? paymentInfo,
     bool? subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pOrderCreateRequest(
         advertId: advertId ?? this.advertId,

@@ -13,8 +13,8 @@ class ContractsForRequest extends Request {
     this.currency,
     this.landingCompany,
     this.productType,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'contracts_for',
           passthrough: passthrough,
@@ -24,12 +24,12 @@ class ContractsForRequest extends Request {
   /// Creates an instance from JSON
   factory ContractsForRequest.fromJson(Map<String, dynamic> json) =>
       ContractsForRequest(
-        contractsFor: json['contracts_for'] as String,
-        currency: json['currency'] as String,
-        landingCompany: json['landing_company'] as String,
-        productType: json['product_type'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        contractsFor: json['contracts_for'] as String?,
+        currency: json['currency'] as String?,
+        landingCompany: json['landing_company'] as String?,
+        productType: json['product_type'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The short symbol name (obtained from `active_symbols` call).
@@ -62,8 +62,8 @@ class ContractsForRequest extends Request {
     String? currency,
     String? landingCompany,
     String? productType,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ContractsForRequest(
         contractsFor: contractsFor ?? this.contractsFor,

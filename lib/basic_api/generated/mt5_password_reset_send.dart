@@ -14,8 +14,8 @@ class Mt5PasswordResetRequest extends Request {
     @required this.newPassword,
     this.passwordType,
     @required this.verificationCode,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'mt5_password_reset',
           passthrough: passthrough,
@@ -25,15 +25,15 @@ class Mt5PasswordResetRequest extends Request {
   /// Creates an instance from JSON
   factory Mt5PasswordResetRequest.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordResetRequest(
-        login: json['login'] as String,
+        login: json['login'] as String?,
         mt5PasswordReset: json['mt5_password_reset'] == null
             ? null
             : json['mt5_password_reset'] == 1,
-        newPassword: json['new_password'] as String,
-        passwordType: json['password_type'] as String,
-        verificationCode: json['verification_code'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        newPassword: json['new_password'] as String?,
+        passwordType: json['password_type'] as String?,
+        verificationCode: json['verification_code'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// MT5 user login
@@ -75,8 +75,8 @@ class Mt5PasswordResetRequest extends Request {
     String? newPassword,
     String? passwordType,
     String? verificationCode,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       Mt5PasswordResetRequest(
         login: login ?? this.login,

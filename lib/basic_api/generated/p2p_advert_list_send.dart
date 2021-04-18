@@ -17,8 +17,8 @@ class P2pAdvertListRequest extends Request {
     this.p2pAdvertList = true,
     this.sortBy,
     this.useClientLimits,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_advert_list',
           passthrough: passthrough,
@@ -28,22 +28,22 @@ class P2pAdvertListRequest extends Request {
   /// Creates an instance from JSON
   factory P2pAdvertListRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertListRequest(
-        advertiserId: json['advertiser_id'] as String,
-        advertiserName: json['advertiser_name'] as String,
-        amount: json['amount'] as num,
-        counterpartyType: json['counterparty_type'] as String,
-        limit: json['limit'] as int,
-        localCurrency: json['local_currency'] as String,
-        offset: json['offset'] as int,
+        advertiserId: json['advertiser_id'] as String?,
+        advertiserName: json['advertiser_name'] as String?,
+        amount: json['amount'] as num?,
+        counterpartyType: json['counterparty_type'] as String?,
+        limit: json['limit'] as int?,
+        localCurrency: json['local_currency'] as String?,
+        offset: json['offset'] as int?,
         p2pAdvertList: json['p2p_advert_list'] == null
             ? null
             : json['p2p_advert_list'] == 1,
-        sortBy: json['sort_by'] as String,
+        sortBy: json['sort_by'] as String?,
         useClientLimits: json['use_client_limits'] == null
             ? null
             : json['use_client_limits'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] ID of the advertiser to list adverts for.
@@ -114,8 +114,8 @@ class P2pAdvertListRequest extends Request {
     bool? p2pAdvertList,
     String? sortBy,
     bool? useClientLimits,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pAdvertListRequest(
         advertiserId: advertiserId ?? this.advertiserId,

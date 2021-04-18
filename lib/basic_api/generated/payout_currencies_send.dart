@@ -8,8 +8,8 @@ class PayoutCurrenciesRequest extends Request {
   /// Initialize PayoutCurrenciesRequest
   const PayoutCurrenciesRequest({
     this.payoutCurrencies = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'payout_currencies',
           passthrough: passthrough,
@@ -22,8 +22,8 @@ class PayoutCurrenciesRequest extends Request {
         payoutCurrencies: json['payout_currencies'] == null
             ? null
             : json['payout_currencies'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -45,8 +45,8 @@ class PayoutCurrenciesRequest extends Request {
   @override
   PayoutCurrenciesRequest copyWith({
     bool? payoutCurrencies,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       PayoutCurrenciesRequest(
         payoutCurrencies: payoutCurrencies ?? this.payoutCurrencies,

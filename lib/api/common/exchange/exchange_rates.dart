@@ -65,6 +65,6 @@ class ExchangeRates extends ExchangeRatesModel {
           ExchangeException(baseExceptionModel: baseExceptionModel),
     );
 
-    return ExchangeRates.fromJson(response.exchangeRates);
+    return ExchangeRates.fromJson(response.exchangeRates!);
   }
 }

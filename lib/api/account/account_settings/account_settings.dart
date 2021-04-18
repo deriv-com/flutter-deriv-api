@@ -106,7 +106,7 @@ class AccountSettings extends AccountSettingsModel {
   static Future<AccountSettings> fetchAccountSetting([
     GetSettingsRequest? request,
   ]) async {
-    final GetSettingsResponse? response = await _api!.call<GetSettingsResponse>(
+    final GetSettingsResponse response = await _api!.call<GetSettingsResponse>(
       request: request ?? const GetSettingsRequest(),
     );
 
@@ -116,7 +116,7 @@ class AccountSettings extends AccountSettingsModel {
           AccountSettingsException(baseExceptionModel: baseExceptionModel),
     );
 
-    return AccountSettings.fromJson(response!.getSettings);
+    return AccountSettings.fromJson(response.getSettings!);
   }
 
   /// Changes the user's settings with parameters specified as [SetSettingsRequest]
@@ -144,27 +144,27 @@ class AccountSettings extends AccountSettingsModel {
   }) =>
       changeAccountSetting(
         SetSettingsRequest(
-          accountOpeningReason: accountOpeningReason!,
-          addressCity: addressCity!,
-          addressLine1: addressLine1!,
-          addressLine2: addressLine2!,
-          addressPostcode: addressPostcode!,
-          addressState: addressState!,
-          allowCopiers: allowCopiers!,
-          citizen: citizen!,
-          dateOfBirth: getStringFromDateTime(dateOfBirth)!,
-          emailConsent: emailConsent!,
-          firstName: firstName!,
-          lastName: lastName!,
-          phone: phone!,
-          placeOfBirth: placeOfBirth!,
-          requestProfessionalStatus: getInt(value: requestProfessionalStatus)!,
-          residence: residence!,
-          salutation: salutation!,
+          accountOpeningReason: accountOpeningReason,
+          addressCity: addressCity,
+          addressLine1: addressLine1,
+          addressLine2: addressLine2,
+          addressPostcode: addressPostcode,
+          addressState: addressState,
+          allowCopiers: allowCopiers,
+          citizen: citizen,
+          dateOfBirth: getStringFromDateTime(dateOfBirth),
+          emailConsent: emailConsent,
+          firstName: firstName,
+          lastName: lastName,
+          phone: phone,
+          placeOfBirth: placeOfBirth,
+          requestProfessionalStatus: getInt(value: requestProfessionalStatus),
+          residence: residence,
+          salutation: salutation,
           secretAnswer: secretAnswer,
           secretQuestion: secretQuestion,
-          taxIdentificationNumber: taxIdentificationNumber!,
-          taxResidence: taxResidence!,
+          taxIdentificationNumber: taxIdentificationNumber,
+          taxResidence: taxResidence,
         ),
       );
 

@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 
 /// Parses the [url] and gets the endpoint out of it
-String? parseWebSocketUrl(String url, {bool isAuthUrl = false}) {
+String? parseWebSocketUrl(String? url, {bool isAuthUrl = false}) {
   if (url == null) {
     return null;
   }
@@ -33,9 +33,9 @@ void checkException({
   if (response?.error != null) {
     throw exceptionCreator!(
       baseExceptionModel: BaseExceptionModel(
-        code: response!.error['code'],
-        message: response.error['message'],
-        details: response.error['details'],
+        code: response?.error!['code'],
+        message: response?.error!['message'],
+        details: response?.error!['details'],
       ),
     );
   }

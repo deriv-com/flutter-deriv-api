@@ -28,7 +28,7 @@ class PaymentAgentTransfer extends PaymentAgentTransferModel {
   ) =>
       PaymentAgentTransfer(
         paymentAgentTransfer:
-            PaymentResult.values[response.paymentagentTransfer],
+            PaymentResult.values[response.paymentagentTransfer!],
         clientToFullName: response.clientToFullName,
         clientToLoginId: response.clientToLoginid,
         transactionId: response.transactionId,

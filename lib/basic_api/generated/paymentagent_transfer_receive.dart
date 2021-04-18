@@ -11,10 +11,10 @@ class PaymentagentTransferResponse extends Response {
     this.clientToLoginid,
     this.paymentagentTransfer,
     this.transactionId,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -25,14 +25,14 @@ class PaymentagentTransferResponse extends Response {
   /// Creates an instance from JSON
   factory PaymentagentTransferResponse.fromJson(Map<String, dynamic> json) =>
       PaymentagentTransferResponse(
-        clientToFullName: json['client_to_full_name'] as String,
-        clientToLoginid: json['client_to_loginid'] as String,
-        paymentagentTransfer: json['paymentagent_transfer'] as int,
-        transactionId: json['transaction_id'] as int,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        clientToFullName: json['client_to_full_name'] as String?,
+        clientToLoginid: json['client_to_loginid'] as String?,
+        paymentagentTransfer: json['paymentagent_transfer'] as int?,
+        transactionId: json['transaction_id'] as int?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The `transfer_to` client full name
@@ -67,10 +67,10 @@ class PaymentagentTransferResponse extends Response {
     String? clientToLoginid,
     int? paymentagentTransfer,
     int? transactionId,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       PaymentagentTransferResponse(
         clientToFullName: clientToFullName ?? this.clientToFullName,

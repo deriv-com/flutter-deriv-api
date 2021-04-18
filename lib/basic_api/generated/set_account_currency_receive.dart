@@ -8,10 +8,10 @@ class SetAccountCurrencyResponse extends Response {
   /// Initialize SetAccountCurrencyResponse
   const SetAccountCurrencyResponse({
     this.setAccountCurrency,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -25,10 +25,10 @@ class SetAccountCurrencyResponse extends Response {
         setAccountCurrency: json['set_account_currency'] == null
             ? null
             : json['set_account_currency'] == 1,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// `true`: success, `false`: no change
@@ -52,10 +52,10 @@ class SetAccountCurrencyResponse extends Response {
   @override
   SetAccountCurrencyResponse copyWith({
     bool? setAccountCurrency,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       SetAccountCurrencyResponse(
         setAccountCurrency: setAccountCurrency ?? this.setAccountCurrency,

@@ -14,8 +14,8 @@ class Injector {
 
   static final Map<String, Injector> _injectors = <String, Injector>{};
 
-  final Map<String, TypeFactory<Object?>> _factories =
-      <String, TypeFactory<Object>>{};
+  final Map<String, TypeFactory<dynamic>> _factories =
+      <String, TypeFactory<dynamic>>{};
 
   /// The name of this injector
   final String? name;
@@ -66,7 +66,7 @@ class Injector {
     Map<String, dynamic>? additionalParameters,
   }) {
     final String objectKey = _generateKey(type: T, key: key);
-    final TypeFactory<Object?>? objectFactory = _factories[objectKey];
+    final TypeFactory<dynamic>? objectFactory = _factories[objectKey];
 
     if (objectFactory == null) {
       throw InjectorException(
@@ -74,7 +74,7 @@ class Injector {
       );
     }
 
-    return objectFactory.get(this, additionalParameters) as T?;
+    return objectFactory.get(this, additionalParameters);
   }
 
   /// Gets all the mapped instances of the given type and additional parameters
@@ -83,9 +83,9 @@ class Injector {
     final String keyForType =
         _generateKey(type: T).replaceFirst(_defaultKey, '');
 
-    _factories.forEach((String key, TypeFactory<Object?> typeFactory) {
+    _factories.forEach((String key, TypeFactory<dynamic> typeFactory) {
       if (key.contains(keyForType)) {
-        instances.add(typeFactory.get(this, additionalParameters) as T?);
+        instances.add(typeFactory.get(this, additionalParameters));
       }
     });
 

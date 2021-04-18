@@ -26,7 +26,7 @@ class PaymentAgentWithdraw extends PaymentAgentWithdrawModel {
   ) =>
       PaymentAgentWithdraw(
         paymentAgentWithdraw:
-            PaymentResult.values[response.paymentagentWithdraw],
+            PaymentResult.values[response.paymentagentWithdraw!],
         paymentAgentName: response.paymentagentName,
         transactionId: response.transactionId,
       );

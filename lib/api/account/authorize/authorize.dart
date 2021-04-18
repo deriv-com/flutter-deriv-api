@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_as
+
 import 'package:flutter_deriv_api/api/account/account.dart';
 import 'package:flutter_deriv_api/api/account/authorize/exceptions/authorize_exception.dart';
 import 'package:flutter_deriv_api/api/account/models/authorize_model.dart';
@@ -78,7 +80,7 @@ class Authorize extends AuthorizeModel {
 
   /// Generates a copy of instance with given parameters
   Authorize copyWith({
-    List<Account>? accountList,
+    List<Account?>? accountList,
     double? balance,
     String? country,
     String? currency,
@@ -127,6 +129,6 @@ class Authorize extends AuthorizeModel {
           AuthorizeException(baseExceptionModel: baseExceptionModel),
     );
 
-    return Authorize.fromJson(response.authorize);
+    return Authorize.fromJson(response.authorize!);
   }
 }

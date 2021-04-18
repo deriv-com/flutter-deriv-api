@@ -60,6 +60,6 @@ class NewAccountReal extends NewAccountRealModel {
           NewAccountException(baseExceptionModel: baseExceptionModel),
     );
 
-    return NewAccountReal.fromJson(response.newAccountReal);
+    return NewAccountReal.fromJson(response.newAccountReal!);
   }
 }

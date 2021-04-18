@@ -29,8 +29,8 @@ class Mt5NewAccountRequest extends Request {
     this.server,
     this.state,
     this.zipCode,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'mt5_new_account',
           passthrough: passthrough,
@@ -40,30 +40,30 @@ class Mt5NewAccountRequest extends Request {
   /// Creates an instance from JSON
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>
       Mt5NewAccountRequest(
-        accountType: json['account_type'] as String,
-        address: json['address'] as String,
-        city: json['city'] as String,
-        company: json['company'] as String,
-        country: json['country'] as String,
-        currency: json['currency'] as String,
+        accountType: json['account_type'] as String?,
+        address: json['address'] as String?,
+        city: json['city'] as String?,
+        company: json['company'] as String?,
+        country: json['country'] as String?,
+        currency: json['currency'] as String?,
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
-        email: json['email'] as String,
-        investPassword: json['investPassword'] as String,
-        leverage: json['leverage'] as num,
-        mainPassword: json['mainPassword'] as String,
-        mt5AccountCategory: json['mt5_account_category'] as String,
-        mt5AccountType: json['mt5_account_type'] as String,
+        email: json['email'] as String?,
+        investPassword: json['investPassword'] as String?,
+        leverage: json['leverage'] as num?,
+        mainPassword: json['mainPassword'] as String?,
+        mt5AccountCategory: json['mt5_account_category'] as String?,
+        mt5AccountType: json['mt5_account_type'] as String?,
         mt5NewAccount: json['mt5_new_account'] == null
             ? null
             : json['mt5_new_account'] == 1,
-        name: json['name'] as String,
-        phone: json['phone'] as String,
-        phonePassword: json['phonePassword'] as String,
-        server: json['server'] as String,
-        state: json['state'] as String,
-        zipCode: json['zipCode'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        name: json['name'] as String?,
+        phone: json['phone'] as String?,
+        phonePassword: json['phonePassword'] as String?,
+        server: json['server'] as String?,
+        state: json['state'] as String?,
+        zipCode: json['zipCode'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Account type. If set to 'financial', setting 'mt5_account_type' is also required.
@@ -184,8 +184,8 @@ class Mt5NewAccountRequest extends Request {
     String? server,
     String? state,
     String? zipCode,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       Mt5NewAccountRequest(
         accountType: accountType ?? this.accountType,

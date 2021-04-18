@@ -8,10 +8,10 @@ class ForgetAllResponse extends Response {
   /// Initialize ForgetAllResponse
   const ForgetAllResponse({
     this.forgetAll,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,11 +22,11 @@ class ForgetAllResponse extends Response {
   /// Creates an instance from JSON
   factory ForgetAllResponse.fromJson(Map<String, dynamic> json) =>
       ForgetAllResponse(
-        forgetAll: json['forget_all'] as List<dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        forgetAll: json['forget_all'] as List<dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// IDs of the cancelled streams
@@ -46,10 +46,10 @@ class ForgetAllResponse extends Response {
   @override
   ForgetAllResponse copyWith({
     List<dynamic>? forgetAll,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       ForgetAllResponse(
         forgetAll: forgetAll ?? this.forgetAll,

@@ -53,6 +53,6 @@ class Statement extends StatementModel {
           StatementException(baseExceptionModel: baseExceptionModel),
     );
 
-    return Statement.fromJson(response.statement);
+    return Statement.fromJson(response.statement!);
   }
 }

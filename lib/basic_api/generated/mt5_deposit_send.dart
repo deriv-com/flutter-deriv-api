@@ -13,8 +13,8 @@ class Mt5DepositRequest extends Request {
     @required this.fromBinary,
     this.mt5Deposit = true,
     @required this.toMt5,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'mt5_deposit',
           passthrough: passthrough,
@@ -24,13 +24,13 @@ class Mt5DepositRequest extends Request {
   /// Creates an instance from JSON
   factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>
       Mt5DepositRequest(
-        amount: json['amount'] as num,
-        fromBinary: json['from_binary'] as String,
+        amount: json['amount'] as num?,
+        fromBinary: json['from_binary'] as String?,
         mt5Deposit:
             json['mt5_deposit'] == null ? null : json['mt5_deposit'] == 1,
-        toMt5: json['to_mt5'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        toMt5: json['to_mt5'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Amount to deposit (in the currency of from_binary); min = $1 or an equivalent amount, max = $20000 or an equivalent amount
@@ -67,8 +67,8 @@ class Mt5DepositRequest extends Request {
     String? fromBinary,
     bool? mt5Deposit,
     String? toMt5,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       Mt5DepositRequest(
         amount: amount ?? this.amount,

@@ -9,8 +9,8 @@ class TradingDurationsRequest extends Request {
   const TradingDurationsRequest({
     this.landingCompany,
     this.tradingDurations = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'trading_durations',
           passthrough: passthrough,
@@ -20,12 +20,12 @@ class TradingDurationsRequest extends Request {
   /// Creates an instance from JSON
   factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>
       TradingDurationsRequest(
-        landingCompany: json['landing_company'] as String,
+        landingCompany: json['landing_company'] as String?,
         tradingDurations: json['trading_durations'] == null
             ? null
             : json['trading_durations'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
@@ -52,8 +52,8 @@ class TradingDurationsRequest extends Request {
   TradingDurationsRequest copyWith({
     String? landingCompany,
     bool? tradingDurations,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TradingDurationsRequest(
         landingCompany: landingCompany ?? this.landingCompany,

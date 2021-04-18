@@ -8,10 +8,10 @@ class RealityCheckResponse extends Response {
   /// Initialize RealityCheckResponse
   const RealityCheckResponse({
     this.realityCheck,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,11 +22,11 @@ class RealityCheckResponse extends Response {
   /// Creates an instance from JSON
   factory RealityCheckResponse.fromJson(Map<String, dynamic> json) =>
       RealityCheckResponse(
-        realityCheck: json['reality_check'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        realityCheck: json['reality_check'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Reality check summary of trades.
@@ -46,10 +46,10 @@ class RealityCheckResponse extends Response {
   @override
   RealityCheckResponse copyWith({
     Map<String, dynamic>? realityCheck,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       RealityCheckResponse(
         realityCheck: realityCheck ?? this.realityCheck,

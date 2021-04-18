@@ -8,8 +8,8 @@ class LogoutRequest extends Request {
   /// Initialize LogoutRequest
   const LogoutRequest({
     this.logout = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'logout',
           passthrough: passthrough,
@@ -19,8 +19,8 @@ class LogoutRequest extends Request {
   /// Creates an instance from JSON
   factory LogoutRequest.fromJson(Map<String, dynamic> json) => LogoutRequest(
         logout: json['logout'] == null ? null : json['logout'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -42,8 +42,8 @@ class LogoutRequest extends Request {
   @override
   LogoutRequest copyWith({
     bool? logout,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       LogoutRequest(
         logout: logout ?? this.logout,

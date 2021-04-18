@@ -8,8 +8,8 @@ class TimeRequest extends Request {
   /// Initialize TimeRequest
   const TimeRequest({
     this.time = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'time',
           passthrough: passthrough,
@@ -19,8 +19,8 @@ class TimeRequest extends Request {
   /// Creates an instance from JSON
   factory TimeRequest.fromJson(Map<String, dynamic> json) => TimeRequest(
         time: json['time'] == null ? null : json['time'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -42,8 +42,8 @@ class TimeRequest extends Request {
   @override
   TimeRequest copyWith({
     bool? time,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TimeRequest(
         time: time ?? this.time,

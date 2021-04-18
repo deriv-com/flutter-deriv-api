@@ -114,7 +114,7 @@ class Transaction extends TransactionModel {
 
         return response is TransactionResponse
             ? Transaction.fromJson(
-                response.transaction,
+                response.transaction!,
                 subscriptionJson: response.subscription,
               )
             : null;

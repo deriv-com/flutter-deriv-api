@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_as
+
 import 'package:flutter_deriv_api/api/app/app.dart';
 import 'package:flutter_deriv_api/api/app/exceptions/app_exception.dart';
 import 'package:flutter_deriv_api/api/app/models/app_register_model.dart';
@@ -49,6 +51,6 @@ class AppRegister extends AppRegisterModel {
           AppException(baseExceptionModel: baseExceptionModel),
     );
 
-    return AppRegister.fromJson(response.appRegister);
+    return AppRegister.fromJson(response.appRegister!);
   }
 }

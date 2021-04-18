@@ -16,17 +16,17 @@ void main() {
 
     expect(websiteStatus.clientsCountry, 'us');
     expect(websiteStatus.termsConditionsVersion, 'Version 48 2019-05-10');
-    expect(websiteStatus.currencyConfig.length, 2);
-    expect(websiteStatus.supportedLanguages.length, 4);
-    expect(websiteStatus.supportedLanguages.first, 'EN');
+    expect(websiteStatus.currencyConfig!.length, 2);
+    expect(websiteStatus.supportedLanguages!.length, 4);
+    expect(websiteStatus.supportedLanguages!.first, 'EN');
     expect(websiteStatus.siteStatus, SiteStatus.up);
 
-    final List<WebsiteStatusCurrencyConfigModel> currencyConfigs =
-        websiteStatus.currencyConfig;
+    final List<WebsiteStatusCurrencyConfigModel?> currencyConfigs =
+        websiteStatus.currencyConfig!;
 
     expect(currencyConfigs.length, 2);
 
-    final WebsiteStatusCurrencyConfigModel aud = currencyConfigs.first;
+    final WebsiteStatusCurrencyConfigModel aud = currencyConfigs.first!;
 
     expect(aud.name, 'Australian Dollar');
     expect(aud.code, 'USD');
@@ -36,18 +36,18 @@ void main() {
     expect(aud.fractionalDigits, 2);
 
     final TransferAccountLimitationModel audLimitations =
-        aud.transferBetweenAccounts;
+        aud.transferBetweenAccounts!;
 
-    expect(audLimitations.limits.min, 1.53);
-    expect(audLimitations.fees.length, 3);
-    expect(audLimitations.fees.first.code, 'BTC');
-    expect(audLimitations.fees.first.value, 2.0);
+    expect(audLimitations.limits!.min, 1.53);
+    expect(audLimitations.fees!.length, 3);
+    expect(audLimitations.fees!.first!.code, 'BTC');
+    expect(audLimitations.fees!.first!.value, 2.0);
 
-    final List<WebsiteStatusCryptoConfigModel> cryptoConfig =
-        websiteStatus.cryptoConfig;
+    final List<WebsiteStatusCryptoConfigModel?> cryptoConfig =
+        websiteStatus.cryptoConfig!;
 
     expect(cryptoConfig.length, 2);
-    expect(cryptoConfig.first.code, 'BTC');
-    expect(cryptoConfig.first.minimumWithdrawal, 0.00299415);
+    expect(cryptoConfig.first!.code, 'BTC');
+    expect(cryptoConfig.first!.minimumWithdrawal, 0.00299415);
   });
 }

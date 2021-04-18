@@ -36,9 +36,9 @@ void main() {
       P2PAdvertiser.subscribeAdvertiserInformation(
         const P2pAdvertiserInfoRequest(id: '1'),
       ).listen(
-        expectAsync1((P2PAdvertiser advertiser) {
+        expectAsync1((P2PAdvertiser? advertiser) {
           expect(
-            advertiser.chatToken,
+            advertiser!.chatToken,
             'invalid_token_for_test_2ea8d690e2e98582',
           );
           expect(advertiser.chatUserId, 'p2p_CR_1589256468');
@@ -55,7 +55,7 @@ void main() {
           expect(advertiser.paymentInfo, 'payment information');
 
           expect(
-            advertiser.subscriptionInformation.id,
+            advertiser.subscriptionInformation!.id,
             '4b0ef5f5-a3cd-7a01-01cb-871f0b504143',
           );
         }),
@@ -96,9 +96,9 @@ void main() {
           paymentInfo: 'payment information',
         ),
       ).listen(
-        expectAsync1((P2PAdvertiser advertiser) {
+        expectAsync1((P2PAdvertiser? advertiser) {
           expect(
-            advertiser.chatToken,
+            advertiser!.chatToken,
             'invalid_token_for_test_2ea8d690e2e98582',
           );
           expect(advertiser.chatUserId, 'p2p_CR_1589256468');
@@ -115,7 +115,7 @@ void main() {
           expect(advertiser.paymentInfo, 'payment information');
 
           expect(
-            advertiser.subscriptionInformation.id,
+            advertiser.subscriptionInformation!.id,
             '4b0ef5f5-a3cd-7a01-01cb-871f0b504143',
           );
         }),
@@ -148,38 +148,38 @@ void main() {
     });
 
     test('Fetch Advertiser Adverts Test', () async {
-      final List<P2PAdvert> adverts =
+      final List<P2PAdvert?>? adverts =
           await P2PAdvertiser.fetchAdvertiserAdverts(
         const P2pAdvertiserAdvertsRequest(limit: 10, offset: 0),
       );
 
-      expect(adverts.length, 2);
+      expect(adverts!.length, 2);
 
-      expect(adverts.first.accountCurrency, 'USD');
+      expect(adverts.first!.accountCurrency, 'USD');
 
-      expect(adverts.first.advertiserDetails.id, '1');
-      expect(adverts.first.advertiserDetails.name, 'John Doe');
+      expect(adverts.first!.advertiserDetails!.id, '1');
+      expect(adverts.first!.advertiserDetails!.name, 'John Doe');
 
-      expect(adverts.first.counterpartyType, TransactionType.sell);
-      expect(adverts.first.country, 'za');
-      expect(adverts.first.createdTime, getDateTime(1589258036));
-      expect(adverts.first.description, 'Please contact via 1234');
-      expect(adverts.first.id, '3');
-      expect(adverts.first.isActive, true);
-      expect(adverts.first.localCurrency, 'ZAR');
-      expect(adverts.first.maxOrderAmount, 3);
-      expect(adverts.first.maxOrderAmountDisplay, '3.00');
-      expect(adverts.first.minOrderAmount, 1);
-      expect(adverts.first.minOrderAmountDisplay, '1.00');
-      expect(adverts.first.paymentInfo, 'Transfer to account 000-1111');
-      expect(adverts.first.paymentMethod, PaymentMethod.bankTransfer);
-      expect(adverts.first.price, 1);
-      expect(adverts.first.priceDisplay, '1.00');
-      expect(adverts.first.rate, 2);
-      expect(adverts.first.rateDisplay, '2.00');
-      expect(adverts.first.remainingAmount, 15);
-      expect(adverts.first.remainingAmountDisplay, '15.00');
-      expect(adverts.first.type, TransactionType.buy);
+      expect(adverts.first!.counterpartyType, TransactionType.sell);
+      expect(adverts.first!.country, 'za');
+      expect(adverts.first!.createdTime, getDateTime(1589258036));
+      expect(adverts.first!.description, 'Please contact via 1234');
+      expect(adverts.first!.id, '3');
+      expect(adverts.first!.isActive, true);
+      expect(adverts.first!.localCurrency, 'ZAR');
+      expect(adverts.first!.maxOrderAmount, 3);
+      expect(adverts.first!.maxOrderAmountDisplay, '3.00');
+      expect(adverts.first!.minOrderAmount, 1);
+      expect(adverts.first!.minOrderAmountDisplay, '1.00');
+      expect(adverts.first!.paymentInfo, 'Transfer to account 000-1111');
+      expect(adverts.first!.paymentMethod, PaymentMethod.bankTransfer);
+      expect(adverts.first!.price, 1);
+      expect(adverts.first!.priceDisplay, '1.00');
+      expect(adverts.first!.rate, 2);
+      expect(adverts.first!.rateDisplay, '2.00');
+      expect(adverts.first!.remainingAmount, 15);
+      expect(adverts.first!.remainingAmountDisplay, '15.00');
+      expect(adverts.first!.type, TransactionType.buy);
     });
   });
 }

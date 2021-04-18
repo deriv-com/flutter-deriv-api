@@ -11,8 +11,8 @@ class P2pChatCreateRequest extends Request {
   const P2pChatCreateRequest({
     @required this.orderId,
     this.p2pChatCreate = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_chat_create',
           passthrough: passthrough,
@@ -22,12 +22,12 @@ class P2pChatCreateRequest extends Request {
   /// Creates an instance from JSON
   factory P2pChatCreateRequest.fromJson(Map<String, dynamic> json) =>
       P2pChatCreateRequest(
-        orderId: json['order_id'] as String,
+        orderId: json['order_id'] as String?,
         p2pChatCreate: json['p2p_chat_create'] == null
             ? null
             : json['p2p_chat_create'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The unique identifier for the order to create the chat for.
@@ -54,8 +54,8 @@ class P2pChatCreateRequest extends Request {
   P2pChatCreateRequest copyWith({
     String? orderId,
     bool? p2pChatCreate,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pChatCreateRequest(
         orderId: orderId ?? this.orderId,

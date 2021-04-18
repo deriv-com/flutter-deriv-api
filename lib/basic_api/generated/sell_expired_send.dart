@@ -8,8 +8,8 @@ class SellExpiredRequest extends Request {
   /// Initialize SellExpiredRequest
   const SellExpiredRequest({
     this.sellExpired = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'sell_expired',
           passthrough: passthrough,
@@ -21,8 +21,8 @@ class SellExpiredRequest extends Request {
       SellExpiredRequest(
         sellExpired:
             json['sell_expired'] == null ? null : json['sell_expired'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -44,8 +44,8 @@ class SellExpiredRequest extends Request {
   @override
   SellExpiredRequest copyWith({
     bool? sellExpired,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       SellExpiredRequest(
         sellExpired: sellExpired ?? this.sellExpired,

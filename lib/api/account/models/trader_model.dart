@@ -53,8 +53,8 @@ class TraderModel extends APIBaseModel {
       TraderModel(
         assets: assets ?? this.assets,
         loginId: loginId ?? this.loginId,
-        maxTradeStake: maxTradeStake as double? ?? this.maxTradeStake,
-        minTradeStake: minTradeStake as double? ?? this.minTradeStake,
+        maxTradeStake: getDouble(maxTradeStake) ?? this.maxTradeStake,
+        minTradeStake: getDouble(minTradeStake) ?? this.minTradeStake,
         token: token ?? this.token,
         tradeTypes: tradeTypes ?? this.tradeTypes,
       );

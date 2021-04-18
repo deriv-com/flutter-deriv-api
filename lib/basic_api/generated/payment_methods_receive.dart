@@ -8,10 +8,10 @@ class PaymentMethodsResponse extends Response {
   /// Initialize PaymentMethodsResponse
   const PaymentMethodsResponse({
     this.paymentMethods,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,14 +22,14 @@ class PaymentMethodsResponse extends Response {
   /// Creates an instance from JSON
   factory PaymentMethodsResponse.fromJson(Map<String, dynamic> json) =>
       PaymentMethodsResponse(
-        paymentMethods: (json['payment_methods'] as List<dynamic>)
+        paymentMethods: (json['payment_methods'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
-            ?.toList(),
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+            .toList(),
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Available payment methods for a given country. Note: if a user is logged in, the residence country will be considered.
@@ -49,10 +49,10 @@ class PaymentMethodsResponse extends Response {
   @override
   PaymentMethodsResponse copyWith({
     List<Map<String, dynamic>>? paymentMethods,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       PaymentMethodsResponse(
         paymentMethods: paymentMethods ?? this.paymentMethods,

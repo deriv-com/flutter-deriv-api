@@ -10,8 +10,8 @@ class BalanceRequest extends Request {
     this.account,
     this.balance = true,
     this.subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'balance',
           passthrough: passthrough,
@@ -20,11 +20,11 @@ class BalanceRequest extends Request {
 
   /// Creates an instance from JSON
   factory BalanceRequest.fromJson(Map<String, dynamic> json) => BalanceRequest(
-        account: json['account'] as String,
+        account: json['account'] as String?,
         balance: json['balance'] == null ? null : json['balance'] == 1,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] If set to `all`, return the balances of all accounts one by one; if set to `current`, return the balance of current account; if set as an account id, return the balance of that account.
@@ -60,8 +60,8 @@ class BalanceRequest extends Request {
     String? account,
     bool? balance,
     bool? subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       BalanceRequest(
         account: account ?? this.account,

@@ -43,7 +43,7 @@ class APIHelperBuilder extends Builder {
               switch (responseMap['msg_type']) {
               ${generatedResponses.map((GeneratedResponseJson response) => '''case '${response.msgType}':
                 return ${response.fullClassName}.fromJson(responseMap);
-              ''').join('')}
+              ''').join()}
 
               default:
                 return Response.fromJson(responseMap);

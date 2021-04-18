@@ -8,10 +8,10 @@ class StatesListResponse extends Response {
   /// Initialize StatesListResponse
   const StatesListResponse({
     this.statesList,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,14 +22,14 @@ class StatesListResponse extends Response {
   /// Creates an instance from JSON
   factory StatesListResponse.fromJson(Map<String, dynamic> json) =>
       StatesListResponse(
-        statesList: (json['states_list'] as List<dynamic>)
+        statesList: (json['states_list'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
-            ?.toList(),
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+            .toList(),
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// List of states.
@@ -49,10 +49,10 @@ class StatesListResponse extends Response {
   @override
   StatesListResponse copyWith({
     List<Map<String, dynamic>>? statesList,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       StatesListResponse(
         statesList: statesList ?? this.statesList,

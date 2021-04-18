@@ -10,8 +10,8 @@ class P2pAdvertiserAdvertsRequest extends Request {
     this.limit,
     this.offset,
     this.p2pAdvertiserAdverts = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_advertiser_adverts',
           passthrough: passthrough,
@@ -21,13 +21,13 @@ class P2pAdvertiserAdvertsRequest extends Request {
   /// Creates an instance from JSON
   factory P2pAdvertiserAdvertsRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserAdvertsRequest(
-        limit: json['limit'] as int,
-        offset: json['offset'] as int,
+        limit: json['limit'] as int?,
+        offset: json['offset'] as int?,
         p2pAdvertiserAdverts: json['p2p_advertiser_adverts'] == null
             ? null
             : json['p2p_advertiser_adverts'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Used for paging.
@@ -59,8 +59,8 @@ class P2pAdvertiserAdvertsRequest extends Request {
     int? limit,
     int? offset,
     bool? p2pAdvertiserAdverts,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pAdvertiserAdvertsRequest(
         limit: limit ?? this.limit,

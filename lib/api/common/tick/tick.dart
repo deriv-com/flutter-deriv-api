@@ -78,7 +78,7 @@ class Tick extends TickBase {
 
           return response is TicksResponse
               ? Tick.fromJson(
-                  response.tick,
+                  response.tick!,
                   subscriptionJson: response.subscription,
                 )
               : null;

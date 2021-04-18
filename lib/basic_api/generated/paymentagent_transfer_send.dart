@@ -15,8 +15,8 @@ class PaymentagentTransferRequest extends Request {
     this.dryRun,
     this.paymentagentTransfer = true,
     @required this.transferTo,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'paymentagent_transfer',
           passthrough: passthrough,
@@ -26,16 +26,16 @@ class PaymentagentTransferRequest extends Request {
   /// Creates an instance from JSON
   factory PaymentagentTransferRequest.fromJson(Map<String, dynamic> json) =>
       PaymentagentTransferRequest(
-        amount: json['amount'] as num,
-        currency: json['currency'] as String,
-        description: json['description'] as String,
+        amount: json['amount'] as num?,
+        currency: json['currency'] as String?,
+        description: json['description'] as String?,
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
         paymentagentTransfer: json['paymentagent_transfer'] == null
             ? null
             : json['paymentagent_transfer'] == 1,
-        transferTo: json['transfer_to'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        transferTo: json['transfer_to'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The amount to transfer.
@@ -86,8 +86,8 @@ class PaymentagentTransferRequest extends Request {
     bool? dryRun,
     bool? paymentagentTransfer,
     String? transferTo,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       PaymentagentTransferRequest(
         amount: amount ?? this.amount,

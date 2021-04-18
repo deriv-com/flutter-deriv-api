@@ -208,7 +208,7 @@ class P2PAdvert extends P2PAdvertModel {
           P2PAdvertException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2PAdvert.fromJson(response.p2pAdvertInfo);
+    return P2PAdvert.fromJson(response.p2pAdvertInfo!);
   }
 
   /// Returns available adverts.
@@ -228,7 +228,7 @@ class P2PAdvert extends P2PAdvertModel {
     );
 
     return getListFromMap(
-      response.p2pAdvertList['list'],
+      response.p2pAdvertList!['list'],
       itemToTypeCallback: (dynamic item) => P2PAdvert.fromJson(item),
     );
   }
@@ -249,7 +249,7 @@ class P2PAdvert extends P2PAdvertModel {
           P2PAdvertException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2PAdvert.fromJson(response.p2pAdvertCreate);
+    return P2PAdvert.fromJson(response.p2pAdvertCreate!);
   }
 
   /// Updates a P2P (peer to peer) advert. Can only be used by the advertiser.
@@ -268,7 +268,7 @@ class P2PAdvert extends P2PAdvertModel {
           P2PAdvertException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2PAdvert.fromJson(response.p2pAdvertUpdate);
+    return P2PAdvert.fromJson(response.p2pAdvertUpdate!);
   }
 
   /// Updates a P2P (peer to peer) advert. Can only be used by the advertiser.

@@ -11,8 +11,8 @@ class Mt5GetSettingsRequest extends Request {
   const Mt5GetSettingsRequest({
     @required this.login,
     this.mt5GetSettings = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'mt5_get_settings',
           passthrough: passthrough,
@@ -22,12 +22,12 @@ class Mt5GetSettingsRequest extends Request {
   /// Creates an instance from JSON
   factory Mt5GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       Mt5GetSettingsRequest(
-        login: json['login'] as String,
+        login: json['login'] as String?,
         mt5GetSettings: json['mt5_get_settings'] == null
             ? null
             : json['mt5_get_settings'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// MT5 user login
@@ -54,8 +54,8 @@ class Mt5GetSettingsRequest extends Request {
   Mt5GetSettingsRequest copyWith({
     String? login,
     bool? mt5GetSettings,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       Mt5GetSettingsRequest(
         login: login ?? this.login,

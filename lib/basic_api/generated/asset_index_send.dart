@@ -9,8 +9,8 @@ class AssetIndexRequest extends Request {
   const AssetIndexRequest({
     this.assetIndex = true,
     this.landingCompany,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'asset_index',
           passthrough: passthrough,
@@ -22,9 +22,9 @@ class AssetIndexRequest extends Request {
       AssetIndexRequest(
         assetIndex:
             json['asset_index'] == null ? null : json['asset_index'] == 1,
-        landingCompany: json['landing_company'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        landingCompany: json['landing_company'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -51,8 +51,8 @@ class AssetIndexRequest extends Request {
   AssetIndexRequest copyWith({
     bool? assetIndex,
     String? landingCompany,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       AssetIndexRequest(
         assetIndex: assetIndex ?? this.assetIndex,

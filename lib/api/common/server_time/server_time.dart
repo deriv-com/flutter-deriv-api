@@ -24,7 +24,7 @@ class ServerTime extends ServerTimeModel {
     int? time,
   }) =>
       ServerTime(
-        time: time as DateTime? ?? this.time,
+        time: getDateTime(time) ?? this.time,
       );
 
   /// Gets back-end server epoch time.

@@ -9,10 +9,10 @@ class WebsiteStatusResponse extends Response {
   const WebsiteStatusResponse({
     this.subscription,
     this.websiteStatus,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -23,12 +23,12 @@ class WebsiteStatusResponse extends Response {
   /// Creates an instance from JSON
   factory WebsiteStatusResponse.fromJson(Map<String, dynamic> json) =>
       WebsiteStatusResponse(
-        subscription: json['subscription'] as Map<String, dynamic>,
-        websiteStatus: json['website_status'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        subscription: json['subscription'] as Map<String, dynamic>?,
+        websiteStatus: json['website_status'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// For subscription requests only.
@@ -53,10 +53,10 @@ class WebsiteStatusResponse extends Response {
   WebsiteStatusResponse copyWith({
     Map<String, dynamic>? subscription,
     Map<String, dynamic>? websiteStatus,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       WebsiteStatusResponse(
         subscription: subscription ?? this.subscription,

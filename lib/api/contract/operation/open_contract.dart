@@ -360,7 +360,7 @@ class OpenContract extends Contract {
     );
 
     return OpenContract.fromJson(
-      response.proposalOpenContract,
+      response.proposalOpenContract!,
     );
   }
 
@@ -384,7 +384,7 @@ class OpenContract extends Contract {
 
           return response is ProposalOpenContractResponse
               ? OpenContract.fromJson(
-                  response.proposalOpenContract,
+                  response.proposalOpenContract!,
                   subscriptionJson: response.subscription,
                 )
               : null;
@@ -498,7 +498,7 @@ class OpenContract extends Contract {
         barrierCount: barrierCount ?? this.barrierCount,
         bidPrice: bidPrice ?? this.bidPrice,
         cancellation: cancellation ?? this.cancellation,
-        commission: commission as double? ?? this.commission,
+        commission: getDouble(commission) ?? this.commission,
         contractType: contractType ?? this.contractType,
         currency: currency ?? this.currency,
         currentSpot: currentSpot ?? this.currentSpot,
@@ -509,7 +509,7 @@ class OpenContract extends Contract {
         dateSettlement: dateSettlement ?? this.dateSettlement,
         displayName: displayName ?? this.displayName,
         displayValue: displayValue ?? this.displayValue,
-        entrySpot: entrySpot as double? ?? this.entrySpot,
+        entrySpot: getDouble(entrySpot) ?? this.entrySpot,
         entrySpotDisplayValue:
             entrySpotDisplayValue ?? this.entrySpotDisplayValue,
         entryTick: entryTick ?? this.entryTick,

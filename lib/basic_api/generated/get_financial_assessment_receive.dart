@@ -8,10 +8,10 @@ class GetFinancialAssessmentResponse extends Response {
   /// Initialize GetFinancialAssessmentResponse
   const GetFinancialAssessmentResponse({
     this.getFinancialAssessment,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -23,11 +23,11 @@ class GetFinancialAssessmentResponse extends Response {
   factory GetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>
       GetFinancialAssessmentResponse(
         getFinancialAssessment:
-            json['get_financial_assessment'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+            json['get_financial_assessment'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Client's financial assessment details
@@ -47,10 +47,10 @@ class GetFinancialAssessmentResponse extends Response {
   @override
   GetFinancialAssessmentResponse copyWith({
     Map<String, dynamic>? getFinancialAssessment,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       GetFinancialAssessmentResponse(
         getFinancialAssessment:

@@ -17,8 +17,8 @@ class TicksHistoryRequest extends Request {
     this.style,
     this.subscribe,
     @required this.ticksHistory,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'ticks_history',
           passthrough: passthrough,
@@ -28,16 +28,16 @@ class TicksHistoryRequest extends Request {
   /// Creates an instance from JSON
   factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>
       TicksHistoryRequest(
-        adjustStartTime: json['adjust_start_time'] as int,
-        count: json['count'] as int,
-        end: json['end'] as String,
-        granularity: json['granularity'] as int,
-        start: json['start'] as int,
-        style: json['style'] as String,
+        adjustStartTime: json['adjust_start_time'] as int?,
+        count: json['count'] as int?,
+        end: json['end'] as String?,
+        granularity: json['granularity'] as int?,
+        start: json['start'] as int?,
+        style: json['style'] as String?,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        ticksHistory: json['ticks_history'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        ticksHistory: json['ticks_history'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] 1 - if the market is closed at the end time, or license limit is before end time, adjust interval backwards to compensate.
@@ -96,8 +96,8 @@ class TicksHistoryRequest extends Request {
     String? style,
     bool? subscribe,
     String? ticksHistory,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TicksHistoryRequest(
         adjustStartTime: adjustStartTime ?? this.adjustStartTime,

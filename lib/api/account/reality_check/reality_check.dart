@@ -90,6 +90,6 @@ class RealityCheck extends RealityCheckModel {
           RealityCheckException(baseExceptionModel: baseExceptionModel),
     );
 
-    return RealityCheck.fromJson(response.realityCheck);
+    return RealityCheck.fromJson(response.realityCheck!);
   }
 }

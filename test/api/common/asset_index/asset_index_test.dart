@@ -8,18 +8,18 @@ void main() {
   setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Asset Index Test', () async {
-    final List<AssetIndex> assetIndices = await AssetIndex.fetchAssetIndices();
+    final List<AssetIndex?>? assetIndices = await AssetIndex.fetchAssetIndices();
 
-    expect(assetIndices.length, 1);
-    expect(assetIndices.first.symbolName, 'AUD/JPY');
-    expect(assetIndices.first.symbolCode, 'frxAUDJPY');
+    expect(assetIndices!.length, 1);
+    expect(assetIndices.first!.symbolName, 'AUD/JPY');
+    expect(assetIndices.first!.symbolCode, 'frxAUDJPY');
 
-    final List<IndexContractModel> contracts = assetIndices.first.contracts;
+    final List<IndexContractModel?>? contracts = assetIndices.first?.contracts;
 
-    expect(contracts.length, 6);
-    expect(contracts.first.contractTypeCode, 'callput');
-    expect(contracts.first.contractTypeName, 'Rise/Fall');
-    expect(contracts.first.minDuration, '5t');
-    expect(contracts.first.maxDuration, '365d');
+    expect(contracts!.length, 6);
+    expect(contracts.first!.contractTypeCode, 'callput');
+    expect(contracts.first!.contractTypeName, 'Rise/Fall');
+    expect(contracts.first!.minDuration, '5t');
+    expect(contracts.first!.maxDuration, '365d');
   });
 }

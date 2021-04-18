@@ -7,14 +7,14 @@ void main() {
   setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Oauth Application Test', () async {
-    final List<OauthApp> oauthApps = await OauthApp.fetchOauthApps();
+    final List<OauthApp?>? oauthApps = await OauthApp.fetchOauthApps();
 
-    expect(oauthApps.length, 2);
+    expect(oauthApps!.length, 2);
 
-    expect(oauthApps.first.name, 'Binary Static localhost for dev');
-    expect(oauthApps.first.appId, 1159);
-    expect(oauthApps.first.appMarkupPercentage, 0);
-    expect(oauthApps.first.scopes.length, 4);
-    expect(oauthApps.first.lastUsed, DateTime.tryParse('2019-10-13 07:11:29'));
+    expect(oauthApps.first!.name, 'Binary Static localhost for dev');
+    expect(oauthApps.first!.appId, 1159);
+    expect(oauthApps.first!.appMarkupPercentage, 0);
+    expect(oauthApps.first!.scopes!.length, 4);
+    expect(oauthApps.first!.lastUsed, DateTime.tryParse('2019-10-13 07:11:29'));
   });
 }

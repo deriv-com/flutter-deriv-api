@@ -9,8 +9,8 @@ class PaymentMethodsRequest extends Request {
   const PaymentMethodsRequest({
     this.country,
     this.paymentMethods = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'payment_methods',
           passthrough: passthrough,
@@ -20,12 +20,12 @@ class PaymentMethodsRequest extends Request {
   /// Creates an instance from JSON
   factory PaymentMethodsRequest.fromJson(Map<String, dynamic> json) =>
       PaymentMethodsRequest(
-        country: json['country'] as String,
+        country: json['country'] as String?,
         paymentMethods: json['payment_methods'] == null
             ? null
             : json['payment_methods'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] 2-letter country code (ISO standard).
@@ -52,8 +52,8 @@ class PaymentMethodsRequest extends Request {
   PaymentMethodsRequest copyWith({
     String? country,
     bool? paymentMethods,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       PaymentMethodsRequest(
         country: country ?? this.country,

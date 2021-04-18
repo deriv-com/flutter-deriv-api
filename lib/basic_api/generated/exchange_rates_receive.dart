@@ -8,10 +8,10 @@ class ExchangeRatesResponse extends Response {
   /// Initialize ExchangeRatesResponse
   const ExchangeRatesResponse({
     this.exchangeRates,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,11 +22,11 @@ class ExchangeRatesResponse extends Response {
   /// Creates an instance from JSON
   factory ExchangeRatesResponse.fromJson(Map<String, dynamic> json) =>
       ExchangeRatesResponse(
-        exchangeRates: json['exchange_rates'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        exchangeRates: json['exchange_rates'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Exchange rate values from base to all other currencies
@@ -46,10 +46,10 @@ class ExchangeRatesResponse extends Response {
   @override
   ExchangeRatesResponse copyWith({
     Map<String, dynamic>? exchangeRates,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       ExchangeRatesResponse(
         exchangeRates: exchangeRates ?? this.exchangeRates,

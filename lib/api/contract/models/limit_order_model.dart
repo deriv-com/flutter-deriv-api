@@ -69,5 +69,6 @@ class LimitOrderModel extends APIBaseModel {
       other.stopLoss == stopLoss;
 
   @override
+  // ignore: unnecessary_overrides
   int get hashCode => super.hashCode;
 }

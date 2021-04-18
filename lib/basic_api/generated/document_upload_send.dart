@@ -17,8 +17,8 @@ class DocumentUploadRequest extends Request {
     this.expirationDate,
     @required this.fileSize,
     this.pageType,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'document_upload',
           passthrough: passthrough,
@@ -28,18 +28,18 @@ class DocumentUploadRequest extends Request {
   /// Creates an instance from JSON
   factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>
       DocumentUploadRequest(
-        documentFormat: json['document_format'] as String,
-        documentId: json['document_id'] as String,
-        documentType: json['document_type'] as String,
+        documentFormat: json['document_format'] as String?,
+        documentId: json['document_id'] as String?,
+        documentType: json['document_type'] as String?,
         documentUpload: json['document_upload'] == null
             ? null
             : json['document_upload'] == 1,
-        expectedChecksum: json['expected_checksum'] as String,
-        expirationDate: json['expiration_date'] as String,
-        fileSize: json['file_size'] as int,
-        pageType: json['page_type'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        expectedChecksum: json['expected_checksum'] as String?,
+        expirationDate: json['expiration_date'] as String?,
+        fileSize: json['file_size'] as int?,
+        pageType: json['page_type'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Document file format
@@ -96,8 +96,8 @@ class DocumentUploadRequest extends Request {
     String? expirationDate,
     int? fileSize,
     String? pageType,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       DocumentUploadRequest(
         documentFormat: documentFormat ?? this.documentFormat,

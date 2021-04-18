@@ -12,8 +12,8 @@ class ApiTokenRequest extends Request {
     this.newToken,
     this.newTokenScopes,
     this.validForCurrentIpOnly,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'api_token',
           passthrough: passthrough,
@@ -24,16 +24,16 @@ class ApiTokenRequest extends Request {
   factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>
       ApiTokenRequest(
         apiToken: json['api_token'] == null ? null : json['api_token'] == 1,
-        deleteToken: json['delete_token'] as String,
-        newToken: json['new_token'] as String,
-        newTokenScopes: (json['new_token_scopes'] as List<dynamic>)
+        deleteToken: json['delete_token'] as String?,
+        newToken: json['new_token'] as String?,
+        newTokenScopes: (json['new_token_scopes'] as List<dynamic>?)
             ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
+            .toList(),
         validForCurrentIpOnly: json['valid_for_current_ip_only'] == null
             ? null
             : json['valid_for_current_ip_only'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -79,8 +79,8 @@ class ApiTokenRequest extends Request {
     String? newToken,
     List<String>? newTokenScopes,
     bool? validForCurrentIpOnly,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ApiTokenRequest(
         apiToken: apiToken ?? this.apiToken,

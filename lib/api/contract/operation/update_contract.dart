@@ -49,7 +49,7 @@ class UpdateContract extends UpdateContractModel {
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
-    return UpdateContract.fromJson(response.contractUpdate);
+    return UpdateContract.fromJson(response.contractUpdate!);
   }
 
   /// Gets update history for contract as List of [HistorySpotPriceModel]

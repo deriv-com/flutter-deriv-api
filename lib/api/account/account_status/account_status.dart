@@ -73,7 +73,7 @@ class AccountStatus extends AccountStatusModel {
           AccountStatusException(baseExceptionModel: baseExceptionModel),
     );
 
-    return AccountStatus.fromJson(response.getAccountStatus);
+    return AccountStatus.fromJson(response.getAccountStatus!);
   }
 
   /// Generates a copy of instance with given parameters

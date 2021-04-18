@@ -12,8 +12,8 @@ class ContractUpdateRequest extends Request {
     @required this.contractId,
     this.contractUpdate = true,
     @required this.limitOrder,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'contract_update',
           passthrough: passthrough,
@@ -23,13 +23,13 @@ class ContractUpdateRequest extends Request {
   /// Creates an instance from JSON
   factory ContractUpdateRequest.fromJson(Map<String, dynamic> json) =>
       ContractUpdateRequest(
-        contractId: json['contract_id'] as int,
+        contractId: json['contract_id'] as int?,
         contractUpdate: json['contract_update'] == null
             ? null
             : json['contract_update'] == 1,
-        limitOrder: json['limit_order'] as Map<String, dynamic>,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        limitOrder: json['limit_order'] as Map<String, dynamic>?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Internal unique contract identifier.
@@ -61,8 +61,8 @@ class ContractUpdateRequest extends Request {
     int? contractId,
     bool? contractUpdate,
     Map<String, dynamic>? limitOrder,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ContractUpdateRequest(
         contractId: contractId ?? this.contractId,

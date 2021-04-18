@@ -115,6 +115,6 @@ class MT5Settings extends MT5SettingsModel {
           MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 
-    return MT5Settings.fromJson(response.mt5GetSettings);
+    return MT5Settings.fromJson(response.mt5GetSettings!);
   }
 }

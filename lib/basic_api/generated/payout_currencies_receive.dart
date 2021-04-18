@@ -8,10 +8,10 @@ class PayoutCurrenciesResponse extends Response {
   /// Initialize PayoutCurrenciesResponse
   const PayoutCurrenciesResponse({
     this.payoutCurrencies,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,13 +22,13 @@ class PayoutCurrenciesResponse extends Response {
   /// Creates an instance from JSON
   factory PayoutCurrenciesResponse.fromJson(Map<String, dynamic> json) =>
       PayoutCurrenciesResponse(
-        payoutCurrencies: (json['payout_currencies'] as List<dynamic>)
+        payoutCurrencies: (json['payout_currencies'] as List<dynamic>?)
             ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+            .toList(),
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Available payout currencies. Note: if a user is logged in, only the currency available for the account will be returned.
@@ -48,10 +48,10 @@ class PayoutCurrenciesResponse extends Response {
   @override
   PayoutCurrenciesResponse copyWith({
     List<String>? payoutCurrencies,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       PayoutCurrenciesResponse(
         payoutCurrencies: payoutCurrencies ?? this.payoutCurrencies,

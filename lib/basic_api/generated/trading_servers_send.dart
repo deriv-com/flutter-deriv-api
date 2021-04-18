@@ -10,8 +10,8 @@ class TradingServersRequest extends Request {
     this.environment,
     this.platform,
     this.tradingServers = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'trading_servers',
           passthrough: passthrough,
@@ -21,13 +21,13 @@ class TradingServersRequest extends Request {
   /// Creates an instance from JSON
   factory TradingServersRequest.fromJson(Map<String, dynamic> json) =>
       TradingServersRequest(
-        environment: json['environment'] as String,
-        platform: json['platform'] as String,
+        environment: json['environment'] as String?,
+        platform: json['platform'] as String?,
         tradingServers: json['trading_servers'] == null
             ? null
             : json['trading_servers'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Pass the environment (installation) instance short code. Currently, there is only one environment instance. Defaults to 'env_01'.
@@ -59,8 +59,8 @@ class TradingServersRequest extends Request {
     String? environment,
     String? platform,
     bool? tradingServers,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TradingServersRequest(
         environment: environment ?? this.environment,

@@ -8,8 +8,8 @@ class GetFinancialAssessmentRequest extends Request {
   /// Initialize GetFinancialAssessmentRequest
   const GetFinancialAssessmentRequest({
     this.getFinancialAssessment = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'get_financial_assessment',
           passthrough: passthrough,
@@ -22,8 +22,8 @@ class GetFinancialAssessmentRequest extends Request {
         getFinancialAssessment: json['get_financial_assessment'] == null
             ? null
             : json['get_financial_assessment'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -45,8 +45,8 @@ class GetFinancialAssessmentRequest extends Request {
   @override
   GetFinancialAssessmentRequest copyWith({
     bool? getFinancialAssessment,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       GetFinancialAssessmentRequest(
         getFinancialAssessment:

@@ -9,10 +9,10 @@ class TransactionResponse extends Response {
   const TransactionResponse({
     this.subscription,
     this.transaction,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -23,12 +23,12 @@ class TransactionResponse extends Response {
   /// Creates an instance from JSON
   factory TransactionResponse.fromJson(Map<String, dynamic> json) =>
       TransactionResponse(
-        subscription: json['subscription'] as Map<String, dynamic>,
-        transaction: json['transaction'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        subscription: json['subscription'] as Map<String, dynamic>?,
+        transaction: json['transaction'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// For subscription requests only.
@@ -53,10 +53,10 @@ class TransactionResponse extends Response {
   TransactionResponse copyWith({
     Map<String, dynamic>? subscription,
     Map<String, dynamic>? transaction,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       TransactionResponse(
         subscription: subscription ?? this.subscription,

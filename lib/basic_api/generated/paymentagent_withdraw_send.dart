@@ -16,8 +16,8 @@ class PaymentagentWithdrawRequest extends Request {
     @required this.paymentagentLoginid,
     this.paymentagentWithdraw = true,
     @required this.verificationCode,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'paymentagent_withdraw',
           passthrough: passthrough,
@@ -27,17 +27,17 @@ class PaymentagentWithdrawRequest extends Request {
   /// Creates an instance from JSON
   factory PaymentagentWithdrawRequest.fromJson(Map<String, dynamic> json) =>
       PaymentagentWithdrawRequest(
-        amount: json['amount'] as num,
-        currency: json['currency'] as String,
-        description: json['description'] as String,
+        amount: json['amount'] as num?,
+        currency: json['currency'] as String?,
+        description: json['description'] as String?,
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
-        paymentagentLoginid: json['paymentagent_loginid'] as String,
+        paymentagentLoginid: json['paymentagent_loginid'] as String?,
         paymentagentWithdraw: json['paymentagent_withdraw'] == null
             ? null
             : json['paymentagent_withdraw'] == 1,
-        verificationCode: json['verification_code'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        verificationCode: json['verification_code'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The amount to withdraw to the payment agent.
@@ -93,8 +93,8 @@ class PaymentagentWithdrawRequest extends Request {
     String? paymentagentLoginid,
     bool? paymentagentWithdraw,
     String? verificationCode,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       PaymentagentWithdrawRequest(
         amount: amount ?? this.amount,

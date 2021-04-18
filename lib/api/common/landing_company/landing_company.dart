@@ -84,7 +84,7 @@ class LandingCompany extends LandingCompanyModel {
           LandingCompanyException(baseExceptionModel: baseExceptionModel),
     );
 
-    return LandingCompany.fromJson(response.landingCompany);
+    return LandingCompany.fromJson(response.landingCompany!);
   }
 
   /// Gets details of a landing company specified in [LandingCompanyDetailsRequest]
@@ -104,7 +104,7 @@ class LandingCompany extends LandingCompanyModel {
           LandingCompanyException(baseExceptionModel: baseExceptionModel),
     );
 
-    return LandingCompanyDetailModel.fromJson(response.landingCompanyDetails);
+    return LandingCompanyDetailModel.fromJson(response.landingCompanyDetails!);
   }
 
   /// Creates a copy of this instance

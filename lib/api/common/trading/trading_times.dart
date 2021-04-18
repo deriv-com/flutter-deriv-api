@@ -50,6 +50,6 @@ class TradingTimes extends TradingTimesModel {
           TradingException(baseExceptionModel: baseExceptionModel),
     );
 
-    return TradingTimes.fromJson(response.tradingTimes);
+    return TradingTimes.fromJson(response.tradingTimes!);
   }
 }

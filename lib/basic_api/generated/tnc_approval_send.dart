@@ -9,8 +9,8 @@ class TncApprovalRequest extends Request {
   const TncApprovalRequest({
     this.tncApproval = true,
     this.ukgcFundsProtection,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'tnc_approval',
           passthrough: passthrough,
@@ -22,9 +22,9 @@ class TncApprovalRequest extends Request {
       TncApprovalRequest(
         tncApproval:
             json['tnc_approval'] == null ? null : json['tnc_approval'] == 1,
-        ukgcFundsProtection: json['ukgc_funds_protection'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        ukgcFundsProtection: json['ukgc_funds_protection'] as int?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -51,8 +51,8 @@ class TncApprovalRequest extends Request {
   TncApprovalRequest copyWith({
     bool? tncApproval,
     int? ukgcFundsProtection,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TncApprovalRequest(
         tncApproval: tncApproval ?? this.tncApproval,

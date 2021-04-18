@@ -9,8 +9,8 @@ class TicksRequest extends Request {
   const TicksRequest({
     this.subscribe,
     this.ticks,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'ticks',
           passthrough: passthrough,
@@ -20,9 +20,9 @@ class TicksRequest extends Request {
   /// Creates an instance from JSON
   factory TicksRequest.fromJson(Map<String, dynamic> json) => TicksRequest(
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        ticks: json['ticks'] as dynamic,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        ticks: json['ticks'] as dynamic?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] If set to `true`, will send updates whenever a new tick is received.
@@ -49,8 +49,8 @@ class TicksRequest extends Request {
   TicksRequest copyWith({
     bool? subscribe,
     dynamic? ticks,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TicksRequest(
         subscribe: subscribe ?? this.subscribe,
@@ -61,5 +61,5 @@ class TicksRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => <Object>[ticks];
+  List<Object> get props => <Object>[ticks!];
 }

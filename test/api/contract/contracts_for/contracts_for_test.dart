@@ -19,17 +19,17 @@ void main() {
           productType: 'basic'),
     );
 
-    final AvailableContractModel firstContract =
-        contractsFor.availableContracts.first;
+    final AvailableContractModel? firstContract =
+        contractsFor.availableContracts!.first;
 
-    expect(firstContract.barriers, 0);
+    expect(firstContract!.barriers, 0);
     expect(firstContract.maxContractDuration, '1d');
     expect(
-      firstContract.forwardStartingOptions.first.close,
+      firstContract.forwardStartingOptions!.first!.close,
       getDateTime(1586303999),
     );
     expect(
-      firstContract.forwardStartingOptions.last.open,
+      firstContract.forwardStartingOptions!.last!.open,
       getDateTime(1586390400),
     );
   });

@@ -45,5 +45,6 @@ class CancellationInfoModel {
       other is CancellationInfoModel && other.askPrice == askPrice;
 
   @override
+  // ignore: unnecessary_overrides
   int get hashCode => super.hashCode;
 }

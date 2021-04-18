@@ -32,8 +32,8 @@ class OauthApp extends OauthAppModel {
         name: json['name'],
         scopes: getListFromMap(
           json['scopes'],
-          itemToTypeCallback: ((dynamic item) =>
-              getEnumFromString(values: TokenScope.values, name: item)!) as TokenScope Function(dynamic)?,
+          itemToTypeCallback: (dynamic item) =>
+              getEnumFromString(values: TokenScope.values, name: item)!,
         ),
       );
 

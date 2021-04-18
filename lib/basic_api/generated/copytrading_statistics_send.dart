@@ -11,8 +11,8 @@ class CopytradingStatisticsRequest extends Request {
   const CopytradingStatisticsRequest({
     this.copytradingStatistics = true,
     @required this.traderId,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'copytrading_statistics',
           passthrough: passthrough,
@@ -25,9 +25,9 @@ class CopytradingStatisticsRequest extends Request {
         copytradingStatistics: json['copytrading_statistics'] == null
             ? null
             : json['copytrading_statistics'] == 1,
-        traderId: json['trader_id'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        traderId: json['trader_id'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -54,8 +54,8 @@ class CopytradingStatisticsRequest extends Request {
   CopytradingStatisticsRequest copyWith({
     bool? copytradingStatistics,
     String? traderId,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       CopytradingStatisticsRequest(
         copytradingStatistics:

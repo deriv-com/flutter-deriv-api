@@ -10,8 +10,8 @@ class CopyStopRequest extends Request {
   /// Initialize CopyStopRequest
   const CopyStopRequest({
     @required this.copyStop,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'copy_stop',
           passthrough: passthrough,
@@ -21,9 +21,9 @@ class CopyStopRequest extends Request {
   /// Creates an instance from JSON
   factory CopyStopRequest.fromJson(Map<String, dynamic> json) =>
       CopyStopRequest(
-        copyStop: json['copy_stop'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        copyStop: json['copy_stop'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// API tokens identifying the accounts which needs not to be copied
@@ -41,8 +41,8 @@ class CopyStopRequest extends Request {
   @override
   CopyStopRequest copyWith({
     String? copyStop,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       CopyStopRequest(
         copyStop: copyStop ?? this.copyStop,

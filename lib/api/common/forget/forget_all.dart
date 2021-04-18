@@ -17,7 +17,7 @@ class ForgetAll extends ForgetAllModel {
 
   /// Creates an instance from response
   factory ForgetAll.fromResponse(ForgetAllResponse? response) => ForgetAll(
-        cancelledStreams: response?.forgetAll
+        cancelledStreams: response?.forgetAll!
             .map((dynamic item) => item.toString())
             .toList(),
       );

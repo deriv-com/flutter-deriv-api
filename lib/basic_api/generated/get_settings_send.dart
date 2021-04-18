@@ -8,8 +8,8 @@ class GetSettingsRequest extends Request {
   /// Initialize GetSettingsRequest
   const GetSettingsRequest({
     this.getSettings = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'get_settings',
           passthrough: passthrough,
@@ -21,8 +21,8 @@ class GetSettingsRequest extends Request {
       GetSettingsRequest(
         getSettings:
             json['get_settings'] == null ? null : json['get_settings'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -44,8 +44,8 @@ class GetSettingsRequest extends Request {
   @override
   GetSettingsRequest copyWith({
     bool? getSettings,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       GetSettingsRequest(
         getSettings: getSettings ?? this.getSettings,

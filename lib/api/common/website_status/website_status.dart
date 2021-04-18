@@ -89,7 +89,7 @@ class WebsiteStatus extends WebsiteStatusModel {
           WebsiteStatusException(baseExceptionModel: baseExceptionModel),
     );
 
-    return WebsiteStatus.fromJson(response.websiteStatus);
+    return WebsiteStatus.fromJson(response.websiteStatus!);
   }
 
   /// Subscribes to website status
@@ -109,7 +109,7 @@ class WebsiteStatus extends WebsiteStatusModel {
 
           return response is WebsiteStatusResponse
               ? WebsiteStatus.fromJson(
-                  response.websiteStatus,
+                  response.websiteStatus!,
                   subscriptionJson: response.subscription,
                 )
               : null;

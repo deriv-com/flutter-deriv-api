@@ -8,8 +8,8 @@ class GetAccountStatusRequest extends Request {
   /// Initialize GetAccountStatusRequest
   const GetAccountStatusRequest({
     this.getAccountStatus = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'get_account_status',
           passthrough: passthrough,
@@ -22,8 +22,8 @@ class GetAccountStatusRequest extends Request {
         getAccountStatus: json['get_account_status'] == null
             ? null
             : json['get_account_status'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -45,8 +45,8 @@ class GetAccountStatusRequest extends Request {
   @override
   GetAccountStatusRequest copyWith({
     bool? getAccountStatus,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       GetAccountStatusRequest(
         getAccountStatus: getAccountStatus ?? this.getAccountStatus,

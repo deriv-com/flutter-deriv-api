@@ -61,7 +61,7 @@ class ContractsForSymbol extends ContractsForSymbolModel {
           ContractsForSymbolException(baseExceptionModel: baseExceptionModel),
     );
 
-    return ContractsForSymbol.fromJson(response.contractsFor);
+    return ContractsForSymbol.fromJson(response.contractsFor!);
   }
 
   /// Generates a copy of instance with given parameters
@@ -75,7 +75,7 @@ class ContractsForSymbol extends ContractsForSymbolModel {
   }) =>
       ContractsForSymbol(
         availableContracts: availableContracts ?? this.availableContracts,
-        close: close as DateTime? ?? this.close,
+        close: getDateTime(close) ?? this.close,
         feedLicense: feedLicense ?? this.feedLicense,
         hitCount: hitCount ?? this.hitCount,
         open: open ?? this.open,

@@ -79,7 +79,7 @@ class Contract extends ContractModel {
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
-    return Contract.fromJson(response.buy);
+    return Contract.fromJson(response.buy!);
   }
 
   /// Buys contract with parameters specified in request and subscribes to it.
@@ -101,10 +101,10 @@ class Contract extends ContractModel {
           );
 
           return response is BuyResponse
-              ? Contract.fromJson(response.buy)
+              ? Contract.fromJson(response.buy!)
               : response is ProposalOpenContractResponse
                   ? OpenContract.fromJson(
-                      response.proposalOpenContract,
+                      response.proposalOpenContract!,
                       subscriptionJson: response.subscription,
                     )
                   : null;
@@ -116,7 +116,7 @@ class Contract extends ContractModel {
   /// Throws a [ContractOperationException] if API response contains an error
   Future<OpenContract> fetchState() => OpenContract.fetchContractState(
         ProposalOpenContractRequest(
-          contractId: contractId!,
+          contractId: contractId,
         ),
       );
 
@@ -127,7 +127,7 @@ class Contract extends ContractModel {
     RequestCompareFunction? comparePredicate,
   }) =>
       OpenContract.subscribeContractState(
-        ProposalOpenContractRequest(contractId: contractId!),
+        ProposalOpenContractRequest(contractId: contractId),
         comparePredicate: comparePredicate,
       );
 
@@ -137,13 +137,13 @@ class Contract extends ContractModel {
   /// Default be 0 for 'sell at market'.
   /// Throws a [ContractOperationException] if API response contains an error
   Future<SellContract> sell({double price = 0}) =>
-      SellContract.sellContract(SellRequest(sell: contractId!, price: price));
+      SellContract.sellContract(SellRequest(sell: contractId, price: price));
 
   /// Cancels this contract
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   Future<CancelContract> cancel() =>
-      CancelContract.cancelContract(CancelRequest(cancel: contractId!));
+      CancelContract.cancelContract(CancelRequest(cancel: contractId));
 
   /// Updates this contract
   ///
@@ -155,7 +155,7 @@ class Contract extends ContractModel {
     double? takeProfit,
   }) =>
       UpdateContract.updateContract(ContractUpdateRequest(
-        contractId: contractId!,
+        contractId: contractId,
         limitOrder: <String, dynamic>{
           'stop_loss': stopLoss,
           'take_profit': takeProfit,

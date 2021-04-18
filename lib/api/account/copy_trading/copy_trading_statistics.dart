@@ -88,7 +88,7 @@ class CopyTradingStatistics extends CopyTradingStatisticsModel {
           CopyTradingException(baseExceptionModel: baseExceptionModel),
     );
 
-    return CopyTradingStatistics.fromJson(response.copytradingStatistics);
+    return CopyTradingStatistics.fromJson(response.copytradingStatistics!);
   }
 
   /// Creates a copy of instance with given parameters

@@ -8,10 +8,10 @@ class LandingCompanyResponse extends Response {
   /// Initialize LandingCompanyResponse
   const LandingCompanyResponse({
     this.landingCompany,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,11 +22,11 @@ class LandingCompanyResponse extends Response {
   /// Creates an instance from JSON
   factory LandingCompanyResponse.fromJson(Map<String, dynamic> json) =>
       LandingCompanyResponse(
-        landingCompany: json['landing_company'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        landingCompany: json['landing_company'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Landing Company
@@ -46,10 +46,10 @@ class LandingCompanyResponse extends Response {
   @override
   LandingCompanyResponse copyWith({
     Map<String, dynamic>? landingCompany,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       LandingCompanyResponse(
         landingCompany: landingCompany ?? this.landingCompany,

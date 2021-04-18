@@ -71,7 +71,7 @@ class APIToken extends APITokenModel {
           APITokenException(baseExceptionModel: baseExceptionModel),
     );
 
-    return APIToken.fromJson(response.apiToken);
+    return APIToken.fromJson(response.apiToken!);
   }
 
   /// Deletes the [token]
@@ -90,6 +90,6 @@ class APIToken extends APITokenModel {
           APITokenException(baseExceptionModel: baseExceptionModel),
     );
 
-    return APIToken.fromJson(response.apiToken);
+    return APIToken.fromJson(response.apiToken!);
   }
 }

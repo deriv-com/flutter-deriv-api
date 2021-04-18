@@ -8,8 +8,8 @@ class GetLimitsRequest extends Request {
   /// Initialize GetLimitsRequest
   const GetLimitsRequest({
     this.getLimits = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'get_limits',
           passthrough: passthrough,
@@ -20,8 +20,8 @@ class GetLimitsRequest extends Request {
   factory GetLimitsRequest.fromJson(Map<String, dynamic> json) =>
       GetLimitsRequest(
         getLimits: json['get_limits'] == null ? null : json['get_limits'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -43,8 +43,8 @@ class GetLimitsRequest extends Request {
   @override
   GetLimitsRequest copyWith({
     bool? getLimits,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       GetLimitsRequest(
         getLimits: getLimits ?? this.getLimits,

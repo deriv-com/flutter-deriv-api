@@ -9,10 +9,10 @@ class P2pOrderCreateResponse extends Response {
   const P2pOrderCreateResponse({
     this.p2pOrderCreate,
     this.subscription,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -23,12 +23,12 @@ class P2pOrderCreateResponse extends Response {
   /// Creates an instance from JSON
   factory P2pOrderCreateResponse.fromJson(Map<String, dynamic> json) =>
       P2pOrderCreateResponse(
-        p2pOrderCreate: json['p2p_order_create'] as Map<String, dynamic>,
-        subscription: json['subscription'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        p2pOrderCreate: json['p2p_order_create'] as Map<String, dynamic>?,
+        subscription: json['subscription'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Information of the creates P2P order.
@@ -53,10 +53,10 @@ class P2pOrderCreateResponse extends Response {
   P2pOrderCreateResponse copyWith({
     Map<String, dynamic>? p2pOrderCreate,
     Map<String, dynamic>? subscription,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       P2pOrderCreateResponse(
         p2pOrderCreate: p2pOrderCreate ?? this.p2pOrderCreate,

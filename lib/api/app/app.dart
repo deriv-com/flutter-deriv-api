@@ -83,7 +83,8 @@ class App extends AppModel {
   static Future<App> fetchApplicationDetails(
     AppGetRequest request,
   ) async {
-    final AppGetResponse response = await _api!.call<AppGetResponse>(request: request) ;
+    final AppGetResponse response =
+        await _api!.call<AppGetResponse>(request: request);
 
     checkException(
       response: response,
@@ -91,7 +92,7 @@ class App extends AppModel {
           AppException(baseExceptionModel: baseExceptionModel),
     );
 
-    return App.fromJson(response.appGet);
+    return App.fromJson(response.appGet!);
   }
 
   /// Gets all of the account's OAuth applications.
@@ -101,7 +102,8 @@ class App extends AppModel {
   static Future<List<App?>?> fetchApplicationList(
     AppListRequest request,
   ) async {
-    final AppListResponse response = await _api!.call<AppListResponse>(request: request);
+    final AppListResponse response =
+        await _api!.call<AppListResponse>(request: request);
 
     checkException(
       response: response,
@@ -118,17 +120,17 @@ class App extends AppModel {
   /// Retrieves details of app markup according to criteria specified.
   Future<AppMarkupDetails> fetchApplicationMarkupDetails({
     required String clientLoginId,
-    DateTime? dateFrom,
-    DateTime? dateTo,
     required bool description,
     required int limit,
     required int offset,
     required String sort,
     required List<String> sortFields,
+    DateTime? dateFrom,
+    DateTime? dateTo,
   }) =>
       AppMarkupDetails.fetchApplicationMarkupDetails(
         AppMarkupDetailsRequest(
-          appId: appId!,
+          appId: appId,
           clientLoginid: clientLoginId,
           dateFrom: dateFrom.toString(),
           dateTo: dateTo.toString(),
@@ -149,17 +151,17 @@ class App extends AppModel {
   Future<AppRegister> registerApplication({required List<TokenScope> scopes}) =>
       AppRegister.registerApplication(
         AppRegisterRequest(
-          appMarkupPercentage: appMarkupPercentage!,
-          appstore: appstore!,
-          github: github!,
-          googleplay: googleplay!,
-          homepage: homepage!,
-          name: name!,
-          redirectUri: redirectUri!,
+          appMarkupPercentage: appMarkupPercentage,
+          appstore: appstore,
+          github: github,
+          googleplay: googleplay,
+          homepage: homepage,
+          name: name,
+          redirectUri: redirectUri,
           scopes: scopes
               .map((TokenScope scope) => getStringFromEnum(scope))
               .toList(),
-          verificationUri: verificationUri!,
+          verificationUri: verificationUri,
         ),
       );
 
@@ -167,18 +169,18 @@ class App extends AppModel {
   Future<AppUpdate> updateApplication({required List<TokenScope> scopes}) =>
       AppUpdate.updateApplication(
         AppUpdateRequest(
-          appMarkupPercentage: appMarkupPercentage!,
-          appUpdate: appId!,
-          appstore: appstore!,
-          github: github!,
-          googleplay: googleplay!,
-          homepage: homepage!,
-          name: name!,
+          appMarkupPercentage: appMarkupPercentage,
+          appUpdate: appId,
+          appstore: appstore,
+          github: github,
+          googleplay: googleplay,
+          homepage: homepage,
+          name: name,
           redirectUri: redirectUri!,
           scopes: scopes
               .map((TokenScope scope) => getStringFromEnum(scope))
               .toList(),
-          verificationUri: verificationUri!,
+          verificationUri: verificationUri,
         ),
       );
 

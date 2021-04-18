@@ -35,24 +35,24 @@ void main() {
     });
 
     test('Fetch Application List Test', () async {
-      final List<App> appList = await App.fetchApplicationList(
+      final List<App?>? appList = await App.fetchApplicationList(
         const AppListRequest(),
       );
 
-      expect(appList.length, 1);
+      expect(appList!.length, 1);
 
-      expect(appList.first.appId, 1234);
-      expect(appList.first.appMarkupPercentage, 22.0);
-      expect(appList.first.appstore, 'https://itunes.apple.com/test_app');
-      expect(appList.first.github, 'https://github.com/test_org/app');
+      expect(appList.first!.appId, 1234);
+      expect(appList.first!.appMarkupPercentage, 22.0);
+      expect(appList.first!.appstore, 'https://itunes.apple.com/test_app');
+      expect(appList.first!.github, 'https://github.com/test_org/app');
       expect(
-        appList.first.googleplay,
+        appList.first!.googleplay,
         'https://play.google.com/store/apps/details?id=test.app',
       );
-      expect(appList.first.homepage, 'https://test.example.com/');
-      expect(appList.first.name, 'Test Application');
-      expect(appList.first.redirectUri, 'https://test.example.com/redirect');
-      expect(appList.first.verificationUri, 'https://test.example.com/verify');
+      expect(appList.first!.homepage, 'https://test.example.com/');
+      expect(appList.first!.name, 'Test Application');
+      expect(appList.first!.redirectUri, 'https://test.example.com/redirect');
+      expect(appList.first!.verificationUri, 'https://test.example.com/verify');
     });
 
     test('Fetch Markup Details Test', () async {
@@ -68,19 +68,19 @@ void main() {
         sortFields: <String>['app_id'],
       );
 
-      expect(appMarkupDetails.transactions.length, 1);
+      expect(appMarkupDetails.transactions!.length, 1);
 
-      expect(appMarkupDetails.transactions.first.appId, 1234);
-      expect(appMarkupDetails.transactions.first.appMarkup, 15.0);
-      expect(appMarkupDetails.transactions.first.appMarkupUsd, 25.0);
-      expect(appMarkupDetails.transactions.first.appMarkupValue, 12.0);
-      expect(appMarkupDetails.transactions.first.clientCurrencyCode, 'USD');
-      expect(appMarkupDetails.transactions.first.clientLoginId, 'CR12345');
-      expect(appMarkupDetails.transactions.first.devCurrencyCode, 'USD');
-      expect(appMarkupDetails.transactions.first.devLoginId, 'CR45627');
-      expect(appMarkupDetails.transactions.first.transactionId, 10867502908);
+      expect(appMarkupDetails.transactions!.first!.appId, 1234);
+      expect(appMarkupDetails.transactions!.first!.appMarkup, 15.0);
+      expect(appMarkupDetails.transactions!.first!.appMarkupUsd, 25.0);
+      expect(appMarkupDetails.transactions!.first!.appMarkupValue, 12.0);
+      expect(appMarkupDetails.transactions!.first!.clientCurrencyCode, 'USD');
+      expect(appMarkupDetails.transactions!.first!.clientLoginId, 'CR12345');
+      expect(appMarkupDetails.transactions!.first!.devCurrencyCode, 'USD');
+      expect(appMarkupDetails.transactions!.first!.devLoginId, 'CR45627');
+      expect(appMarkupDetails.transactions!.first!.transactionId, 10867502908);
       expect(
-        appMarkupDetails.transactions.first.transactionTime,
+        appMarkupDetails.transactions!.first!.transactionTime,
         getDateTime(1587544006),
       );
     });
@@ -103,25 +103,25 @@ void main() {
         verificationUri: 'https://test.example.com/verify',
       ).registerApplication(scopes: <TokenScope>[TokenScope.admin]);
 
-      expect(appRegister.appDetails.appId, 1234);
-      expect(appRegister.appDetails.appMarkupPercentage, 22.0);
+      expect(appRegister.appDetails!.appId, 1234);
+      expect(appRegister.appDetails!.appMarkupPercentage, 22.0);
       expect(
-        appRegister.appDetails.appstore,
+        appRegister.appDetails!.appstore,
         'https://itunes.apple.com/test_app',
       );
-      expect(appRegister.appDetails.github, 'https://github.com/test_org/app');
+      expect(appRegister.appDetails!.github, 'https://github.com/test_org/app');
       expect(
-        appRegister.appDetails.googleplay,
+        appRegister.appDetails!.googleplay,
         'https://play.google.com/store/apps/details?id=test.app',
       );
-      expect(appRegister.appDetails.homepage, 'https://test.example.com/');
-      expect(appRegister.appDetails.name, 'Test Application');
+      expect(appRegister.appDetails!.homepage, 'https://test.example.com/');
+      expect(appRegister.appDetails!.name, 'Test Application');
       expect(
-        appRegister.appDetails.redirectUri,
+        appRegister.appDetails!.redirectUri,
         'https://test.example.com/redirect',
       );
       expect(
-        appRegister.appDetails.verificationUri,
+        appRegister.appDetails!.verificationUri,
         'https://test.example.com/verify',
       );
     });
@@ -138,25 +138,25 @@ void main() {
         verificationUri: 'https://test.example.com/verify',
       ).updateApplication(scopes: <TokenScope>[TokenScope.admin]);
 
-      expect(appRegister.appDetails.appId, 1234);
-      expect(appRegister.appDetails.appMarkupPercentage, 22.0);
+      expect(appRegister.appDetails!.appId, 1234);
+      expect(appRegister.appDetails!.appMarkupPercentage, 22.0);
       expect(
-        appRegister.appDetails.appstore,
+        appRegister.appDetails!.appstore,
         'https://itunes.apple.com/test_app',
       );
-      expect(appRegister.appDetails.github, 'https://github.com/test_org/app');
+      expect(appRegister.appDetails!.github, 'https://github.com/test_org/app');
       expect(
-        appRegister.appDetails.googleplay,
+        appRegister.appDetails!.googleplay,
         'https://play.google.com/store/apps/details?id=test.app',
       );
-      expect(appRegister.appDetails.homepage, 'https://test.example.com/');
-      expect(appRegister.appDetails.name, 'Test Application');
+      expect(appRegister.appDetails!.homepage, 'https://test.example.com/');
+      expect(appRegister.appDetails!.name, 'Test Application');
       expect(
-        appRegister.appDetails.redirectUri,
+        appRegister.appDetails!.redirectUri,
         'https://test.example.com/redirect',
       );
       expect(
-        appRegister.appDetails.verificationUri,
+        appRegister.appDetails!.verificationUri,
         'https://test.example.com/verify',
       );
     });

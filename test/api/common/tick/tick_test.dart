@@ -14,8 +14,8 @@ void main() {
     test('Tick Stream Test', () {
       Tick.subscribeTick(const TicksRequest(ticks: 'R_50')).listen(
         expectAsync1(
-          (Tick tick) {
-            expect(tick.ask, 218.1026);
+          (Tick? tick) {
+            expect(tick!.ask, 218.1026);
             expect(tick.bid, 218.0826);
             expect(tick.id, 'b4d42748-0744-c46b-f59b-cb7dd936bafa');
             expect(tick.symbol, 'R_50');
@@ -39,14 +39,14 @@ void main() {
 
       expect(history.pipSize, 4);
 
-      expect(history.history.prices.length, 6);
-      expect(history.history.prices.first, 218.6404);
-      expect(history.history.times.length, 6);
-      expect(history.history.times.first, getDateTime(1587556946));
+      expect(history.history!.prices!.length, 6);
+      expect(history.history!.prices!.first, 218.6404);
+      expect(history.history!.times!.length, 6);
+      expect(history.history!.times!.first, getDateTime(1587556946));
     });
 
     test('TickHistorySubscription Without Stream Test', () async {
-      final TickHistorySubscription tickHistory =
+      final TickHistorySubscription? tickHistory =
           await TickHistory.fetchTicksAndSubscribe(
         const TicksHistoryRequest(
           ticksHistory: 'R_50',
@@ -59,14 +59,14 @@ void main() {
         subscribe: false,
       );
 
-      final TickHistory history = tickHistory.tickHistory;
+      final TickHistory history = tickHistory!.tickHistory!;
 
       expect(history.pipSize, 4);
 
-      expect(history.history.prices.length, 6);
-      expect(history.history.prices.first, 218.6404);
-      expect(history.history.times.length, 6);
-      expect(history.history.times.first, getDateTime(1587556946));
+      expect(history.history!.prices!.length, 6);
+      expect(history.history!.prices!.first, 218.6404);
+      expect(history.history!.times!.length, 6);
+      expect(history.history!.times!.first, getDateTime(1587556946));
     });
 
     // TODO(ramin): Test for history subscription when MOCK API supports it

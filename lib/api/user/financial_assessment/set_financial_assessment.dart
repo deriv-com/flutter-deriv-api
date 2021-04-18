@@ -65,6 +65,6 @@ class SetFinancialAssessment extends SetFinancialAssessmentModel {
           FinancialAssessmentException(baseExceptionModel: baseExceptionModel),
     );
 
-    return SetFinancialAssessment.fromJson(response.setFinancialAssessment);
+    return SetFinancialAssessment.fromJson(response.setFinancialAssessment!);
   }
 }

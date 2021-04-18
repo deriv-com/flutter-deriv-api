@@ -56,8 +56,8 @@ void main() {
           contractType: 'MULTDOWN',
           currency: 'USD',
         ),
-      ).listen(expectAsync1((PriceProposal priceProposal) {
-        expect(priceProposal.askPrice, 10);
+      ).listen(expectAsync1((PriceProposal? priceProposal) {
+        expect(priceProposal!.askPrice, 10);
         expect(priceProposal.id, '042922fe-5664-09e4-c3bf-b3bbe98f31db');
         expect(priceProposal.dateStart, getDateTime(1586335719));
         expect(priceProposal.spotTime, getDateTime(1586335713));
@@ -92,9 +92,9 @@ void main() {
       expect(openContract.dateStart, getDateTime(1587533920));
       expect(openContract.contractType, ContractType.multDown);
       expect(openContract.currency, 'USD');
-      expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
+      expect(openContract.auditDetails!.contractEnd!.first!.tick, 1419.96);
       expect(
-        openContract.auditDetails.contractEnd.first.epoch,
+        openContract.auditDetails!.contractEnd!.first!.epoch,
         getDateTime(1587533976),
       );
       expect(openContract.underlying, 'frxUSDJPY');
@@ -117,8 +117,8 @@ void main() {
 
       buyContract
           .subscribeState()
-          .listen(expectAsync1((OpenContract openContract) {
-        expect(openContract.contractId, 79944933588);
+          .listen(expectAsync1((OpenContract? openContract) {
+        expect(openContract!.contractId, 79944933588);
         expect(openContract.payout, 50.0);
         expect(openContract.profit, 25.45);
         expect(openContract.profitPercentage, 103.67);
@@ -126,9 +126,9 @@ void main() {
         expect(openContract.dateStart, getDateTime(1587533920));
         expect(openContract.contractType, ContractType.multDown);
         expect(openContract.currency, 'USD');
-        expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
+        expect(openContract.auditDetails!.contractEnd!.first!.tick, 1419.96);
         expect(
-          openContract.auditDetails.contractEnd.first.epoch,
+          openContract.auditDetails!.contractEnd!.first!.epoch,
           getDateTime(1587533976),
         );
         expect(openContract.underlying, 'frxUSDJPY');
@@ -150,7 +150,7 @@ void main() {
         expect(openContract.status, ContractStatus.open);
 
         expect(
-          openContract.subscriptionInformation.id,
+          openContract.subscriptionInformation!.id,
           '042922fe-5664-09e4-c3bf-b3bbcf8f31db',
         );
       }));
@@ -179,28 +179,28 @@ void main() {
         ),
       );
 
-      expect(updateContract.stopLoss.displayName, 'localized display name');
-      expect(updateContract.stopLoss.orderAmount, 530.0);
-      expect(updateContract.stopLoss.orderDate, getDateTime(1587544006));
-      expect(updateContract.stopLoss.value, '120.0');
+      expect(updateContract.stopLoss!.displayName, 'localized display name');
+      expect(updateContract.stopLoss!.orderAmount, 530.0);
+      expect(updateContract.stopLoss!.orderDate, getDateTime(1587544006));
+      expect(updateContract.stopLoss!.value, '120.0');
 
-      expect(updateContract.takeProfit.displayName, 'localized display name');
-      expect(updateContract.takeProfit.orderAmount, 430.0);
-      expect(updateContract.takeProfit.orderDate, getDateTime(1587744006));
-      expect(updateContract.takeProfit.value, '100.0');
+      expect(updateContract.takeProfit!.displayName, 'localized display name');
+      expect(updateContract.takeProfit!.orderAmount, 430.0);
+      expect(updateContract.takeProfit!.orderDate, getDateTime(1587744006));
+      expect(updateContract.takeProfit!.value, '100.0');
     });
 
     test('Fetch Contract Update History Test', () async {
-      final List<HistorySpotPriceModel> updateHistory =
+      final List<HistorySpotPriceModel?>? updateHistory =
           await UpdateContract.fetchContractUpdateHistory(
         const ContractUpdateHistoryRequest(
           contractId: 79939279308,
         ),
       );
 
-      final HistorySpotPriceModel firstUpdate = updateHistory.first;
+      final HistorySpotPriceModel? firstUpdate = updateHistory!.first;
 
-      expect(firstUpdate.displayName, 'localized display name');
+      expect(firstUpdate!.displayName, 'localized display name');
       expect(firstUpdate.orderAmount, 430.0);
       expect(firstUpdate.orderDate, getDateTime(1587744006));
       expect(firstUpdate.orderType, 'stop loss');
@@ -256,15 +256,15 @@ void main() {
         expect(boughtContract.transactionId, 159779308968);
 
         final UpdateContract updateContract = await boughtContract.update();
-        expect(updateContract.stopLoss.displayName, 'localized display name');
-        expect(updateContract.stopLoss.orderAmount, 530.0);
-        expect(updateContract.stopLoss.orderDate, getDateTime(1587544006));
-        expect(updateContract.stopLoss.value, '120.0');
+        expect(updateContract.stopLoss!.displayName, 'localized display name');
+        expect(updateContract.stopLoss!.orderAmount, 530.0);
+        expect(updateContract.stopLoss!.orderDate, getDateTime(1587544006));
+        expect(updateContract.stopLoss!.value, '120.0');
 
-        expect(updateContract.takeProfit.displayName, 'localized display name');
-        expect(updateContract.takeProfit.orderAmount, 430.0);
-        expect(updateContract.takeProfit.orderDate, getDateTime(1587744006));
-        expect(updateContract.takeProfit.value, '100.0');
+        expect(updateContract.takeProfit!.displayName, 'localized display name');
+        expect(updateContract.takeProfit!.orderAmount, 430.0);
+        expect(updateContract.takeProfit!.orderDate, getDateTime(1587744006));
+        expect(updateContract.takeProfit!.value, '100.0');
 
         final SellContract sellContract = await boughtContract.sell();
         expect(sellContract.balanceAfter, 9706.5);
@@ -288,9 +288,9 @@ void main() {
         expect(openContract.purchaseTime, getDateTime(1587533920));
         expect(openContract.contractType, ContractType.multDown);
         expect(openContract.currency, 'USD');
-        expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
+        expect(openContract.auditDetails!.contractEnd!.first!.tick, 1419.96);
         expect(
-          openContract.auditDetails.contractEnd.first.epoch,
+          openContract.auditDetails!.contractEnd!.first!.epoch,
           getDateTime(1587533976),
         );
         expect(openContract.underlying, 'frxUSDJPY');
@@ -311,7 +311,7 @@ void main() {
         );
         expect(openContract.status, ContractStatus.open);
       } on ContractOperationException catch (e) {
-        dev.log(e.baseExceptionModel.message);
+        dev.log(e.baseExceptionModel!.message!);
       }
     });
 
@@ -319,17 +319,17 @@ void main() {
       OpenContract.subscribeContractState(
         const ProposalOpenContractRequest(contractId: 79944933588),
       ).listen(
-        expectAsync1((OpenContract openContract) {
-          expect(openContract.contractId, 79944933588);
+        expectAsync1((OpenContract? openContract) {
+          expect(openContract!.contractId, 79944933588);
           expect(openContract.payout, 50.0);
           expect(openContract.profit, 25.45);
           expect(openContract.profitPercentage, 103.67);
           expect(openContract.purchaseTime, getDateTime(1587533920));
           expect(openContract.contractType, ContractType.multDown);
           expect(openContract.currency, 'USD');
-          expect(openContract.auditDetails.contractEnd.first.tick, 1419.96);
+          expect(openContract.auditDetails!.contractEnd!.first!.tick, 1419.96);
           expect(
-            openContract.auditDetails.contractEnd.first.epoch,
+            openContract.auditDetails!.contractEnd!.first!.epoch,
             getDateTime(1587533976),
           );
           expect(openContract.underlying, 'frxUSDJPY');
@@ -351,7 +351,7 @@ void main() {
           expect(openContract.status, ContractStatus.open);
 
           expect(
-            openContract.subscriptionInformation.id,
+            openContract.subscriptionInformation!.id,
             '042922fe-5664-09e4-c3bf-b3bbcf8f31db',
           );
         }),

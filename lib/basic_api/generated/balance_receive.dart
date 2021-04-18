@@ -9,10 +9,10 @@ class BalanceResponse extends Response {
   const BalanceResponse({
     this.balance,
     this.subscription,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -23,12 +23,12 @@ class BalanceResponse extends Response {
   /// Creates an instance from JSON
   factory BalanceResponse.fromJson(Map<String, dynamic> json) =>
       BalanceResponse(
-        balance: json['balance'] as Map<String, dynamic>,
-        subscription: json['subscription'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        balance: json['balance'] as Map<String, dynamic>?,
+        subscription: json['subscription'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Current balance of one or more accounts.
@@ -53,10 +53,10 @@ class BalanceResponse extends Response {
   BalanceResponse copyWith({
     Map<String, dynamic>? balance,
     Map<String, dynamic>? subscription,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       BalanceResponse(
         balance: balance ?? this.balance,

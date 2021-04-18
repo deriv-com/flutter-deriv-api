@@ -15,8 +15,8 @@ class BalanceActiveAccountModel {
 
   /// Generate an instance from JSON
   factory BalanceActiveAccountModel.fromJson({
-    String? loginId,
     required Map<String, dynamic> json,
+    String? loginId,
   }) =>
       BalanceActiveAccountModel(
         loginId: loginId,

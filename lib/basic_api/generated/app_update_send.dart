@@ -19,8 +19,8 @@ class AppUpdateRequest extends Request {
     @required this.redirectUri,
     @required this.scopes,
     this.verificationUri,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'app_update',
           passthrough: passthrough,
@@ -30,20 +30,20 @@ class AppUpdateRequest extends Request {
   /// Creates an instance from JSON
   factory AppUpdateRequest.fromJson(Map<String, dynamic> json) =>
       AppUpdateRequest(
-        appMarkupPercentage: json['app_markup_percentage'] as num,
-        appUpdate: json['app_update'] as int,
-        appstore: json['appstore'] as String,
-        github: json['github'] as String,
-        googleplay: json['googleplay'] as String,
-        homepage: json['homepage'] as String,
-        name: json['name'] as String,
-        redirectUri: json['redirect_uri'] as String,
-        scopes: (json['scopes'] as List<dynamic>)
+        appMarkupPercentage: json['app_markup_percentage'] as num?,
+        appUpdate: json['app_update'] as int?,
+        appstore: json['appstore'] as String?,
+        github: json['github'] as String?,
+        googleplay: json['googleplay'] as String?,
+        homepage: json['homepage'] as String?,
+        name: json['name'] as String?,
+        redirectUri: json['redirect_uri'] as String?,
+        scopes: (json['scopes'] as List<dynamic>?)
             ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
-        verificationUri: json['verification_uri'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+            .toList(),
+        verificationUri: json['verification_uri'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Markup to be added to contract prices (as a percentage of contract payout).
@@ -106,8 +106,8 @@ class AppUpdateRequest extends Request {
     String? redirectUri,
     List<String>? scopes,
     String? verificationUri,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       AppUpdateRequest(
         appMarkupPercentage: appMarkupPercentage ?? this.appMarkupPercentage,

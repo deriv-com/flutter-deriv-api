@@ -22,11 +22,11 @@ class PaymentAgentList extends PaymentAgentListModel {
   /// Generates an instance from response
   factory PaymentAgentList.fromResponse(PaymentagentListResponse response) =>
       PaymentAgentList(
-        countries: response.paymentagentList['available_countries']
+        countries: response.paymentagentList!['available_countries']
             .map<CountryModel>((dynamic item) => CountryModel.fromItem(item))
             .toList(),
         paymentAgents: getListFromMap(
-          response.paymentagentList['list'],
+          response.paymentagentList!['list'],
           itemToTypeCallback: (dynamic item) =>
               PaymentAgentModel.fromJson(item),
         ),

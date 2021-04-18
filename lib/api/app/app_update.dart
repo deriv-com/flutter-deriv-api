@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_as
+
 import 'package:flutter_deriv_api/api/app/app.dart';
 import 'package:flutter_deriv_api/api/app/exceptions/app_exception.dart';
 import 'package:flutter_deriv_api/api/app/models/app_update_model.dart';
@@ -47,6 +49,6 @@ class AppUpdate extends AppUpdateModel {
           AppException(baseExceptionModel: baseExceptionModel),
     );
 
-    return AppUpdate.fromJson(response.appUpdate);
+    return AppUpdate.fromJson(response.appUpdate!);
   }
 }

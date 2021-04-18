@@ -11,8 +11,8 @@ class P2pOrderConfirmRequest extends Request {
   const P2pOrderConfirmRequest({
     @required this.id,
     this.p2pOrderConfirm = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_order_confirm',
           passthrough: passthrough,
@@ -22,12 +22,12 @@ class P2pOrderConfirmRequest extends Request {
   /// Creates an instance from JSON
   factory P2pOrderConfirmRequest.fromJson(Map<String, dynamic> json) =>
       P2pOrderConfirmRequest(
-        id: json['id'] as String,
+        id: json['id'] as String?,
         p2pOrderConfirm: json['p2p_order_confirm'] == null
             ? null
             : json['p2p_order_confirm'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The unique identifier for this order.
@@ -54,8 +54,8 @@ class P2pOrderConfirmRequest extends Request {
   P2pOrderConfirmRequest copyWith({
     String? id,
     bool? p2pOrderConfirm,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pOrderConfirmRequest(
         id: id ?? this.id,

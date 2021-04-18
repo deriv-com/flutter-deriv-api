@@ -49,7 +49,7 @@ class SellContract extends SellContractModel {
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
-    return SellContract.fromJson(response.sell);
+    return SellContract.fromJson(response.sell!);
   }
 
   /// tries to sell any expired contracts and returns the number of sold contracts as [SellExpiredContractModel].
@@ -68,7 +68,7 @@ class SellContract extends SellContractModel {
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
-    return SellExpiredContractModel.fromJson(response.sellExpired);
+    return SellExpiredContractModel.fromJson(response.sellExpired!);
   }
 
   /// Generates a copy of instance with given parameters

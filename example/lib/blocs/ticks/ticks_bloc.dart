@@ -16,7 +16,7 @@ part 'ticks_state.dart';
 class TicksBloc extends Bloc<TicksEvent, TicksState> {
   /// Initializes
   TicksBloc(ActiveSymbolsBloc activeSymbolsBloc) : super(TicksLoading()) {
-    activeSymbolsBloc.listen((ActiveSymbolsState activeSymbolsState) async {
+    activeSymbolsBloc.stream.listen((ActiveSymbolsState activeSymbolsState) async {
       if (activeSymbolsState is ActiveSymbolsLoaded) {
         add(SubscribeTicks(activeSymbolsState.selectedSymbol));
       }

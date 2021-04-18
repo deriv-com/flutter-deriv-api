@@ -30,8 +30,8 @@ class SetSettingsRequest extends Request {
     this.setSettings = true,
     this.taxIdentificationNumber,
     this.taxResidence,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'set_settings',
           passthrough: passthrough,
@@ -41,34 +41,34 @@ class SetSettingsRequest extends Request {
   /// Creates an instance from JSON
   factory SetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       SetSettingsRequest(
-        accountOpeningReason: json['account_opening_reason'] as String,
-        addressCity: json['address_city'] as String,
-        addressLine1: json['address_line_1'] as String,
-        addressLine2: json['address_line_2'] as String,
-        addressPostcode: json['address_postcode'] as String,
-        addressState: json['address_state'] as String,
+        accountOpeningReason: json['account_opening_reason'] as String?,
+        addressCity: json['address_city'] as String?,
+        addressLine1: json['address_line_1'] as String?,
+        addressLine2: json['address_line_2'] as String?,
+        addressPostcode: json['address_postcode'] as String?,
+        addressState: json['address_state'] as String?,
         allowCopiers:
             json['allow_copiers'] == null ? null : json['allow_copiers'] == 1,
-        citizen: json['citizen'] as String,
-        dateOfBirth: json['date_of_birth'] as String,
+        citizen: json['citizen'] as String?,
+        dateOfBirth: json['date_of_birth'] as String?,
         emailConsent:
             json['email_consent'] == null ? null : json['email_consent'] == 1,
-        firstName: json['first_name'] as String,
-        lastName: json['last_name'] as String,
-        nonPepDeclaration: json['non_pep_declaration'] as int,
-        phone: json['phone'] as String,
-        placeOfBirth: json['place_of_birth'] as String,
-        requestProfessionalStatus: json['request_professional_status'] as int,
-        residence: json['residence'] as String,
-        salutation: json['salutation'] as String,
-        secretAnswer: json['secret_answer'] as String,
-        secretQuestion: json['secret_question'] as String,
+        firstName: json['first_name'] as String?,
+        lastName: json['last_name'] as String?,
+        nonPepDeclaration: json['non_pep_declaration'] as int?,
+        phone: json['phone'] as String?,
+        placeOfBirth: json['place_of_birth'] as String?,
+        requestProfessionalStatus: json['request_professional_status'] as int?,
+        residence: json['residence'] as String?,
+        salutation: json['salutation'] as String?,
+        secretAnswer: json['secret_answer'] as String?,
+        secretQuestion: json['secret_question'] as String?,
         setSettings:
             json['set_settings'] == null ? null : json['set_settings'] == 1,
-        taxIdentificationNumber: json['tax_identification_number'] as String,
-        taxResidence: json['tax_residence'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        taxIdentificationNumber: json['tax_identification_number'] as String?,
+        taxResidence: json['tax_residence'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Purpose and reason for requesting the account opening. Only applicable for real money account. Required for clients that have not set it yet. Can only be set once.
@@ -208,8 +208,8 @@ class SetSettingsRequest extends Request {
     bool? setSettings,
     String? taxIdentificationNumber,
     String? taxResidence,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       SetSettingsRequest(
         accountOpeningReason: accountOpeningReason ?? this.accountOpeningReason,

@@ -51,7 +51,7 @@ class P2POrderList {
           P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2POrderList.fromJson(response.p2pOrderList['list']);
+    return P2POrderList.fromJson(response.p2pOrderList!['list']);
   }
 
   /// Subscribes to the list of [P2POrder] with parameters specified in [P2pOrderListRequest]
@@ -74,7 +74,7 @@ class P2POrderList {
 
           return response is P2pOrderListResponse
               ? P2POrderList.fromJson(
-                  response.p2pOrderList['list'],
+                  response.p2pOrderList!['list'],
                   subscriptionJson: response.subscription,
                 )
               : null;

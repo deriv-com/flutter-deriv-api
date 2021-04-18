@@ -17,7 +17,7 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
   ///Initializes
   PriceProposalBloc(AvailableContractsBloc availableContractsBloc)
       : super(PriceProposalLoading()) {
-    availableContractsBloc.listen((AvailableContractsState state) {
+    availableContractsBloc.stream.listen((AvailableContractsState state) {
       if (state is AvailableContractsLoaded) {
         add(SubscribeProposal(state.selectedContract));
       }

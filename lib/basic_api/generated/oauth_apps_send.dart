@@ -8,8 +8,8 @@ class OauthAppsRequest extends Request {
   /// Initialize OauthAppsRequest
   const OauthAppsRequest({
     this.oauthApps = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'oauth_apps',
           passthrough: passthrough,
@@ -20,8 +20,8 @@ class OauthAppsRequest extends Request {
   factory OauthAppsRequest.fromJson(Map<String, dynamic> json) =>
       OauthAppsRequest(
         oauthApps: json['oauth_apps'] == null ? null : json['oauth_apps'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -43,8 +43,8 @@ class OauthAppsRequest extends Request {
   @override
   OauthAppsRequest copyWith({
     bool? oauthApps,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       OauthAppsRequest(
         oauthApps: oauthApps ?? this.oauthApps,

@@ -9,8 +9,8 @@ class WebsiteStatusRequest extends Request {
   const WebsiteStatusRequest({
     this.subscribe,
     this.websiteStatus = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'website_status',
           passthrough: passthrough,
@@ -23,8 +23,8 @@ class WebsiteStatusRequest extends Request {
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         websiteStatus:
             json['website_status'] == null ? null : json['website_status'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] `true` to stream the server/website status updates.
@@ -55,8 +55,8 @@ class WebsiteStatusRequest extends Request {
   WebsiteStatusRequest copyWith({
     bool? subscribe,
     bool? websiteStatus,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       WebsiteStatusRequest(
         subscribe: subscribe ?? this.subscribe,

@@ -116,7 +116,7 @@ class PriceProposal extends PriceProposalModel {
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
-    return PriceProposal.fromJson(response.proposal);
+    return PriceProposal.fromJson(response.proposal!);
   }
 
   /// Gets the price proposal for contract.
@@ -140,7 +140,7 @@ class PriceProposal extends PriceProposalModel {
 
           return response is ProposalResponse
               ? PriceProposal.fromJson(
-                  response.proposal,
+                  response.proposal!,
                   subscriptionJson: response.subscription,
                 )
               : null;
@@ -219,7 +219,7 @@ class PriceProposal extends PriceProposalModel {
         askPrice: askPrice ?? this.askPrice,
         cancellation: cancellation ?? this.cancellation,
         commission: commission ?? this.commission,
-        dateStart: dateStart as DateTime? ?? this.dateStart,
+        dateStart: getDateTime(dateStart) ?? this.dateStart,
         displayValue: displayValue ?? this.displayValue,
         id: id ?? this.id,
         limitOrder: limitOrder ?? this.limitOrder,
@@ -241,5 +241,6 @@ class PriceProposal extends PriceProposalModel {
       other.limitOrder == limitOrder;
 
   @override
+  // ignore: unnecessary_overrides
   int get hashCode => super.hashCode;
 }

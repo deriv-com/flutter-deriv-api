@@ -24,7 +24,7 @@ class RevokeOauthApp extends RevokeOauthAppModel {
     int? succeeded,
   }) =>
       RevokeOauthApp(
-        succeeded: succeeded as bool? ?? this.succeeded,
+        succeeded: getBool(succeeded) ?? this.succeeded,
       );
 
   /// Revokes access of a particular app.

@@ -8,10 +8,10 @@ class TimeResponse extends Response {
   /// Initialize TimeResponse
   const TimeResponse({
     this.time,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -21,11 +21,11 @@ class TimeResponse extends Response {
 
   /// Creates an instance from JSON
   factory TimeResponse.fromJson(Map<String, dynamic> json) => TimeResponse(
-        time: json['time'] as int,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        time: json['time'] as int?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Epoch of server time.
@@ -45,10 +45,10 @@ class TimeResponse extends Response {
   @override
   TimeResponse copyWith({
     int? time,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       TimeResponse(
         time: time ?? this.time,

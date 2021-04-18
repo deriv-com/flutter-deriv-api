@@ -79,7 +79,7 @@ class BinaryAPI extends BaseAPI {
         _webSocketChannel! // .cast<String>().transform(utf8.decode)
             .stream
             .map<Map<String, dynamic>?>(
-                (Object? result) => jsonDecode(result as String))
+                (Object? result) => jsonDecode(result.toString()))
             .listen(
       (Map<String, dynamic>? message) {
         _connected = true;
@@ -117,13 +117,13 @@ class BinaryAPI extends BaseAPI {
   Future<T> call<T>({
     required Request request,
   }) async {
-    final Response resposne = await (_callManager ??= CallManager(this))(
+    final Response response = await (_callManager ??= CallManager(this))(
       request: request,
     );
 
-    if (resposne is T) {
+    if (response is T) {
       // ignore: avoid_as
-      return resposne as T;
+      return response as T;
     }
 
     throw CallManagerException(message: 'Unexpected response');

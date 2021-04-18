@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_deriv_api/api/common/active_symbols/active_symbols.dart';
 import 'package:flutter_deriv_api_example/blocs/active_symbols/active_symbols_bloc.dart';
 
+/// ActiveSymbolsListDialog
 class ActiveSymbolsListDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>

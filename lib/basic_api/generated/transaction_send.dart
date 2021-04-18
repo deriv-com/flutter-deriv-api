@@ -9,8 +9,8 @@ class TransactionRequest extends Request {
   const TransactionRequest({
     this.subscribe,
     this.transaction = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'transaction',
           passthrough: passthrough,
@@ -23,8 +23,8 @@ class TransactionRequest extends Request {
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         transaction:
             json['transaction'] == null ? null : json['transaction'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// If set to `true`, will send updates whenever there is an update to transactions. If not to `true` then it will not return any records.
@@ -55,8 +55,8 @@ class TransactionRequest extends Request {
   TransactionRequest copyWith({
     bool? subscribe,
     bool? transaction,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TransactionRequest(
         subscribe: subscribe ?? this.subscribe,

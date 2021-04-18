@@ -116,7 +116,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
       request: ForgetRequest(forget: getSubscriptionId(requestId)!),
     );
 
-    if (response.error.isEmpty) {
+    if (response.error == null) {
       await _removePendingRequest(requestId);
     }
 

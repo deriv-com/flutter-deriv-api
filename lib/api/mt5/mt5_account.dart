@@ -100,7 +100,8 @@ class MT5Account extends MT5AccountModel {
   static Future<MT5Account> createNewAccount(
     Mt5NewAccountRequest request,
   ) async {
-    final Mt5NewAccountResponse response = await _api!.call<Mt5NewAccountResponse>(request: request);
+    final Mt5NewAccountResponse response =
+        await _api!.call<Mt5NewAccountResponse>(request: request);
 
     checkException(
       response: response,
@@ -108,7 +109,7 @@ class MT5Account extends MT5AccountModel {
           MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 
-    return MT5Account.fromJson(response.mt5NewAccount);
+    return MT5Account.fromJson(response.mt5NewAccount!);
   }
 
   /// Gets the list of MT5 accounts for client.
@@ -118,7 +119,8 @@ class MT5Account extends MT5AccountModel {
   static Future<List<MT5Account?>?> fetchLoginList(
     Mt5LoginListRequest request,
   ) async {
-    final Mt5LoginListResponse response = await _api!.call<Mt5LoginListResponse>(request: request);
+    final Mt5LoginListResponse response =
+        await _api!.call<Mt5LoginListResponse>(request: request);
 
     checkException(
       response: response,
@@ -184,8 +186,8 @@ class MT5Account extends MT5AccountModel {
   /// Throws a [MT5Exception] if API response contains an error
   Future<MT5PasswordReset> resetPassword({
     required String newPassword,
-    PasswordType? passwordType,
     required String verificationCode,
+    PasswordType? passwordType,
   }) =>
       MT5PasswordReset.resetPassword(
         Mt5PasswordResetRequest(

@@ -8,8 +8,8 @@ class AppListRequest extends Request {
   /// Initialize AppListRequest
   const AppListRequest({
     this.appList = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'app_list',
           passthrough: passthrough,
@@ -19,8 +19,8 @@ class AppListRequest extends Request {
   /// Creates an instance from JSON
   factory AppListRequest.fromJson(Map<String, dynamic> json) => AppListRequest(
         appList: json['app_list'] == null ? null : json['app_list'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -42,8 +42,8 @@ class AppListRequest extends Request {
   @override
   AppListRequest copyWith({
     bool? appList,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       AppListRequest(
         appList: appList ?? this.appList,

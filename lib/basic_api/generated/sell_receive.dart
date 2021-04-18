@@ -8,10 +8,10 @@ class SellResponse extends Response {
   /// Initialize SellResponse
   const SellResponse({
     this.sell,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -21,11 +21,11 @@ class SellResponse extends Response {
 
   /// Creates an instance from JSON
   factory SellResponse.fromJson(Map<String, dynamic> json) => SellResponse(
-        sell: json['sell'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        sell: json['sell'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Receipt for the transaction
@@ -45,10 +45,10 @@ class SellResponse extends Response {
   @override
   SellResponse copyWith({
     Map<String, dynamic>? sell,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       SellResponse(
         sell: sell ?? this.sell,

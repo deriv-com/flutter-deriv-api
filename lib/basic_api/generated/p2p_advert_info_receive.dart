@@ -8,10 +8,10 @@ class P2pAdvertInfoResponse extends Response {
   /// Initialize P2pAdvertInfoResponse
   const P2pAdvertInfoResponse({
     this.p2pAdvertInfo,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,11 +22,11 @@ class P2pAdvertInfoResponse extends Response {
   /// Creates an instance from JSON
   factory P2pAdvertInfoResponse.fromJson(Map<String, dynamic> json) =>
       P2pAdvertInfoResponse(
-        p2pAdvertInfo: json['p2p_advert_info'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        p2pAdvertInfo: json['p2p_advert_info'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// P2P advert information.
@@ -46,10 +46,10 @@ class P2pAdvertInfoResponse extends Response {
   @override
   P2pAdvertInfoResponse copyWith({
     Map<String, dynamic>? p2pAdvertInfo,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       P2pAdvertInfoResponse(
         p2pAdvertInfo: p2pAdvertInfo ?? this.p2pAdvertInfo,

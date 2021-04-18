@@ -90,7 +90,7 @@ class ActiveSymbol extends ActiveSymbolModel {
           ActiveSymbolsException(baseExceptionModel: baseExceptionModel),
     );
 
-    return response.activeSymbols
+    return response.activeSymbols!
         .map<ActiveSymbol>(
             (dynamic symbolEntry) => ActiveSymbol.fromJson(symbolEntry))
         .toList();

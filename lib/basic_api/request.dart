@@ -8,7 +8,7 @@ part 'request.g.dart';
 class Request extends Equatable {
   /// Initializes
   const Request({
-    this.msgType,
+    this.msgType, 
     this.passthrough,
     this.reqId,
   });
@@ -33,8 +33,8 @@ class Request extends Equatable {
 
   /// Generate a copy of instance with given parameters
   Request copyWith({
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       Request(
         passthrough: passthrough ?? this.passthrough,
@@ -43,5 +43,5 @@ class Request extends Equatable {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -45,21 +45,21 @@ void main() {
     });
 
     test('MT5 Login List Test', () async {
-      final List<MT5Account> mt5LoginList = await MT5Account.fetchLoginList(
+      final List<MT5Account?>? mt5LoginList = await MT5Account.fetchLoginList(
         const Mt5LoginListRequest(),
       );
 
-      expect(mt5LoginList.length, 1);
+      expect(mt5LoginList!.length, 1);
 
-      expect(mt5LoginList.first.balance, 350.0);
-      expect(mt5LoginList.first.country, 'India');
-      expect(mt5LoginList.first.currency, 'USD');
-      expect(mt5LoginList.first.displayBalance, '350.0');
-      expect(mt5LoginList.first.email, 'test@example.com');
-      expect(mt5LoginList.first.group, 'svg_standard');
-      expect(mt5LoginList.first.leverage, 100);
-      expect(mt5LoginList.first.login, 'MT346525');
-      expect(mt5LoginList.first.name, 'Jon Doe');
+      expect(mt5LoginList.first!.balance, 350.0);
+      expect(mt5LoginList.first!.country, 'India');
+      expect(mt5LoginList.first!.currency, 'USD');
+      expect(mt5LoginList.first!.displayBalance, '350.0');
+      expect(mt5LoginList.first!.email, 'test@example.com');
+      expect(mt5LoginList.first!.group, 'svg_standard');
+      expect(mt5LoginList.first!.leverage, 100);
+      expect(mt5LoginList.first!.login, 'MT346525');
+      expect(mt5LoginList.first!.name, 'Jon Doe');
     });
 
     test('MT5 Deposit Test', () async {

@@ -17,8 +17,8 @@ class ProfitTableRequest extends Request {
     this.offset,
     this.profitTable = true,
     this.sort,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'profit_table',
           passthrough: passthrough,
@@ -28,20 +28,20 @@ class ProfitTableRequest extends Request {
   /// Creates an instance from JSON
   factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>
       ProfitTableRequest(
-        contractType: (json['contract_type'] as List<dynamic>)
+        contractType: (json['contract_type'] as List<dynamic>?)
             ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
-        dateFrom: json['date_from'] as String,
-        dateTo: json['date_to'] as String,
+            .toList(),
+        dateFrom: json['date_from'] as String?,
+        dateTo: json['date_to'] as String?,
         description:
             json['description'] == null ? null : json['description'] == 1,
-        limit: json['limit'] as num,
-        offset: json['offset'] as num,
+        limit: json['limit'] as num?,
+        offset: json['offset'] as num?,
         profitTable:
             json['profit_table'] == null ? null : json['profit_table'] == 1,
-        sort: json['sort'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        sort: json['sort'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Return only contracts of the specified types
@@ -102,8 +102,8 @@ class ProfitTableRequest extends Request {
     num? offset,
     bool? profitTable,
     String? sort,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ProfitTableRequest(
         contractType: contractType ?? this.contractType,

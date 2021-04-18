@@ -19,10 +19,10 @@ class TokenModel extends APIBaseModel {
         lastUsed: DateTime.tryParse(json['last_used']),
         scopes: getListFromMap(
           json['scopes'],
-          itemToTypeCallback: ((dynamic item) => getEnumFromString(
+          itemToTypeCallback: (dynamic item) => getEnumFromString(
             values: TokenScope.values,
             name: item,
-          )!) as TokenScope Function(dynamic)?,
+          )!,
         ),
         token: json['token'],
         validForIp: json['valid_for_ip'],

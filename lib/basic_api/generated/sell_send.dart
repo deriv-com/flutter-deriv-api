@@ -11,8 +11,8 @@ class SellRequest extends Request {
   const SellRequest({
     @required this.price,
     @required this.sell,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'sell',
           passthrough: passthrough,
@@ -21,10 +21,10 @@ class SellRequest extends Request {
 
   /// Creates an instance from JSON
   factory SellRequest.fromJson(Map<String, dynamic> json) => SellRequest(
-        price: json['price'] as num,
-        sell: json['sell'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        price: json['price'] as num?,
+        sell: json['sell'] as int?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
@@ -47,8 +47,8 @@ class SellRequest extends Request {
   SellRequest copyWith({
     num? price,
     int? sell,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       SellRequest(
         price: price ?? this.price,

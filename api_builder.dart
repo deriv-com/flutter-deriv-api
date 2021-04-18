@@ -23,6 +23,13 @@ class APIBuilder extends Builder {
     'object': 'Map<String, dynamic>',
     'array': 'List<String>',
     'undefined': 'dynamic',
+    'integer?': 'int?',
+    'string?': 'String?',
+    'number?': 'num?',
+    'bool?': 'bool?',
+    'object?': 'Map<String, dynamic>?',
+    'array?': 'List<String>?',
+    'undefined?': 'dynamic?',
   };
 
   static const Map<String, String> schemaTypeMap = <String, String>{
@@ -31,15 +38,15 @@ class APIBuilder extends Builder {
   };
 
   static const Map<String, String> requestCommonFields = <String, String>{
-    'passthrough': 'object',
-    'req_id': 'integer',
+    'passthrough': 'object?',
+    'req_id': 'integer?',
   };
 
   static const Map<String, String> responseCommonFields = <String, String>{
-    'echo_req': 'object',
-    'error': 'object',
-    'msg_type': 'string',
-    'req_id': 'integer',
+    'echo_req': 'object?',
+    'error': 'object?',
+    'msg_type': 'string?',
+    'req_id': 'integer?',
   };
 
   @override
@@ -272,14 +279,14 @@ class APIBuilder extends Builder {
               final String arrayType = _getArrayType(type);
 
               return arrayType == 'dynamic'
-                  ? '$name: json[\'$key\'] as $type,'
+                  ? '$name: json[\'$key\'] as $type?,'
                   : '''
-                      $name: (json['$key'] as List<dynamic>)
+                      $name: (json['$key'] as List<dynamic>?)
                         ?.map<$arrayType>((dynamic item) => item as $arrayType)
-                        ?.toList(),
+                        .toList(),
                     ''';
             } else {
-              return '$name: json[\'$key\'] as $type,';
+              return '$name: json[\'$key\'] as $type?,';
             }
           }).join(),
         )
@@ -457,12 +464,12 @@ class APIBuilder extends Builder {
   ) {
     switch (classFullName) {
       case 'TicksRequest':
-        return '<Object>[ticks]';
+        return '<Object>[ticks!]';
       case 'ProposalOpenContractRequest':
-        return '<Object>[contractId]';
+        return '<Object>[contractId!]';
       case 'P2pOrderInfoRequest':
       case 'P2pAdvertiserInfoRequest':
-        return '<Object>[id]';
+        return '<Object>[id!]';
 
       default:
         return '<Object>[]';

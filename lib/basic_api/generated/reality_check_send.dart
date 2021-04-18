@@ -8,8 +8,8 @@ class RealityCheckRequest extends Request {
   /// Initialize RealityCheckRequest
   const RealityCheckRequest({
     this.realityCheck = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'reality_check',
           passthrough: passthrough,
@@ -21,8 +21,8 @@ class RealityCheckRequest extends Request {
       RealityCheckRequest(
         realityCheck:
             json['reality_check'] == null ? null : json['reality_check'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
@@ -44,8 +44,8 @@ class RealityCheckRequest extends Request {
   @override
   RealityCheckRequest copyWith({
     bool? realityCheck,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       RealityCheckRequest(
         realityCheck: realityCheck ?? this.realityCheck,

@@ -22,8 +22,8 @@ class SetSelfExclusionRequest extends Request {
     this.sessionDurationLimit,
     this.setSelfExclusion = true,
     this.timeoutUntil,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'set_self_exclusion',
           passthrough: passthrough,
@@ -33,25 +33,25 @@ class SetSelfExclusionRequest extends Request {
   /// Creates an instance from JSON
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       SetSelfExclusionRequest(
-        excludeUntil: json['exclude_until'] as String,
-        max30dayDeposit: json['max_30day_deposit'] as num,
-        max30dayLosses: json['max_30day_losses'] as num,
-        max30dayTurnover: json['max_30day_turnover'] as num,
-        max7dayDeposit: json['max_7day_deposit'] as num,
-        max7dayLosses: json['max_7day_losses'] as num,
-        max7dayTurnover: json['max_7day_turnover'] as num,
-        maxBalance: json['max_balance'] as num,
-        maxDeposit: json['max_deposit'] as num,
-        maxLosses: json['max_losses'] as num,
-        maxOpenBets: json['max_open_bets'] as int,
-        maxTurnover: json['max_turnover'] as num,
-        sessionDurationLimit: json['session_duration_limit'] as int,
+        excludeUntil: json['exclude_until'] as String?,
+        max30dayDeposit: json['max_30day_deposit'] as num?,
+        max30dayLosses: json['max_30day_losses'] as num?,
+        max30dayTurnover: json['max_30day_turnover'] as num?,
+        max7dayDeposit: json['max_7day_deposit'] as num?,
+        max7dayLosses: json['max_7day_losses'] as num?,
+        max7dayTurnover: json['max_7day_turnover'] as num?,
+        maxBalance: json['max_balance'] as num?,
+        maxDeposit: json['max_deposit'] as num?,
+        maxLosses: json['max_losses'] as num?,
+        maxOpenBets: json['max_open_bets'] as int?,
+        maxTurnover: json['max_turnover'] as num?,
+        sessionDurationLimit: json['session_duration_limit'] as int?,
         setSelfExclusion: json['set_self_exclusion'] == null
             ? null
             : json['set_self_exclusion'] == 1,
-        timeoutUntil: json['timeout_until'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        timeoutUntil: json['timeout_until'] as int?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
@@ -143,8 +143,8 @@ class SetSelfExclusionRequest extends Request {
     int? sessionDurationLimit,
     bool? setSelfExclusion,
     int? timeoutUntil,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       SetSelfExclusionRequest(
         excludeUntil: excludeUntil ?? this.excludeUntil,

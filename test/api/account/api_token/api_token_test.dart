@@ -20,24 +20,24 @@ void main() {
 
       expect(createAPIToken.newToken, true);
 
-      expect(createAPIToken.tokens.length, 1);
+      expect(createAPIToken.tokens!.length, 1);
 
-      expect(createAPIToken.tokens.first.displayName, 'sample token');
+      expect(createAPIToken.tokens!.first!.displayName, 'sample token');
       expect(
-        createAPIToken.tokens.first.lastUsed,
+        createAPIToken.tokens!.first!.lastUsed,
         DateTime.tryParse('2020-01-11'),
       );
 
-      expect(createAPIToken.tokens.first.scopes.length, 2);
+      expect(createAPIToken.tokens!.first!.scopes!.length, 2);
 
-      expect(createAPIToken.tokens.first.scopes.first, TokenScope.read);
+      expect(createAPIToken.tokens!.first!.scopes!.first, TokenScope.read);
       expect(
-        createAPIToken.tokens.first.scopes[1],
+        createAPIToken.tokens!.first!.scopes![1],
         TokenScope.tradingInformation,
       );
 
-      expect(createAPIToken.tokens.first.token, 'thisIsASampleTOKEN123');
-      expect(createAPIToken.tokens.first.validForIp, '178.32.12.45');
+      expect(createAPIToken.tokens!.first!.token, 'thisIsASampleTOKEN123');
+      expect(createAPIToken.tokens!.first!.validForIp, '178.32.12.45');
     });
 
     test('Delete Token Test', () async {
@@ -46,24 +46,24 @@ void main() {
 
       expect(deleteAPIToken.deleteToken, true);
 
-      expect(deleteAPIToken.tokens.length, 1);
+      expect(deleteAPIToken.tokens!.length, 1);
 
-      expect(deleteAPIToken.tokens.first.displayName, 'sample token');
+      expect(deleteAPIToken.tokens!.first!.displayName, 'sample token');
       expect(
-        deleteAPIToken.tokens.first.lastUsed,
+        deleteAPIToken.tokens!.first!.lastUsed,
         DateTime.tryParse('2020-01-11'),
       );
 
-      expect(deleteAPIToken.tokens.first.scopes.length, 2);
+      expect(deleteAPIToken.tokens!.first!.scopes!.length, 2);
 
-      expect(deleteAPIToken.tokens.first.scopes.first, TokenScope.read);
+      expect(deleteAPIToken.tokens!.first!.scopes!.first, TokenScope.read);
       expect(
-        deleteAPIToken.tokens.first.scopes[1],
+        deleteAPIToken.tokens!.first!.scopes![1],
         TokenScope.tradingInformation,
       );
 
-      expect(deleteAPIToken.tokens.first.token, 'thisIsASampleTOKEN123');
-      expect(deleteAPIToken.tokens.first.validForIp, '178.32.12.45');
+      expect(deleteAPIToken.tokens!.first!.token, 'thisIsASampleTOKEN123');
+      expect(deleteAPIToken.tokens!.first!.validForIp, '178.32.12.45');
     });
   });
 }

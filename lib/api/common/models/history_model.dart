@@ -10,11 +10,11 @@ class HistoryModel extends APIBaseModel {
   factory HistoryModel.fromJson(Map<String, dynamic> json) => HistoryModel(
         prices: getListFromMap(
           json['prices'],
-          itemToTypeCallback: ((dynamic item) => item?.toDouble()) as double Function(dynamic)?,
+          itemToTypeCallback: (dynamic item) => item?.toDouble(),
         ),
         times: getListFromMap(
           json['times'],
-          itemToTypeCallback: ((dynamic item) => getDateTime(item)!) as DateTime Function(dynamic)?,
+          itemToTypeCallback: (dynamic item) => getDateTime(item)!,
         ),
       );
 

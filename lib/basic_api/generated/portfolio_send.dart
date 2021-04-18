@@ -11,8 +11,8 @@ class PortfolioRequest extends Request {
   const PortfolioRequest({
     @required this.contractType,
     this.portfolio = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'portfolio',
           passthrough: passthrough,
@@ -22,12 +22,12 @@ class PortfolioRequest extends Request {
   /// Creates an instance from JSON
   factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>
       PortfolioRequest(
-        contractType: (json['contract_type'] as List<dynamic>)
+        contractType: (json['contract_type'] as List<dynamic>?)
             ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
+            .toList(),
         portfolio: json['portfolio'] == null ? null : json['portfolio'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Return only contracts of the specified types
@@ -54,8 +54,8 @@ class PortfolioRequest extends Request {
   PortfolioRequest copyWith({
     List<String>? contractType,
     bool? portfolio,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       PortfolioRequest(
         contractType: contractType ?? this.contractType,

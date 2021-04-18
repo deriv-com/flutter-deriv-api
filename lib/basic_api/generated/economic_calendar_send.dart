@@ -11,8 +11,8 @@ class EconomicCalendarRequest extends Request {
     this.economicCalendar = true,
     this.endDate,
     this.startDate,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'economic_calendar',
           passthrough: passthrough,
@@ -22,14 +22,14 @@ class EconomicCalendarRequest extends Request {
   /// Creates an instance from JSON
   factory EconomicCalendarRequest.fromJson(Map<String, dynamic> json) =>
       EconomicCalendarRequest(
-        currency: json['currency'] as String,
+        currency: json['currency'] as String?,
         economicCalendar: json['economic_calendar'] == null
             ? null
             : json['economic_calendar'] == 1,
-        endDate: json['end_date'] as int,
-        startDate: json['start_date'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        endDate: json['end_date'] as int?,
+        startDate: json['start_date'] as int?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Currency symbol.
@@ -66,8 +66,8 @@ class EconomicCalendarRequest extends Request {
     bool? economicCalendar,
     int? endDate,
     int? startDate,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       EconomicCalendarRequest(
         currency: currency ?? this.currency,

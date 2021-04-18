@@ -8,10 +8,10 @@ class ApiTokenResponse extends Response {
   /// Initialize ApiTokenResponse
   const ApiTokenResponse({
     this.apiToken,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,11 +22,11 @@ class ApiTokenResponse extends Response {
   /// Creates an instance from JSON
   factory ApiTokenResponse.fromJson(Map<String, dynamic> json) =>
       ApiTokenResponse(
-        apiToken: json['api_token'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        apiToken: json['api_token'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Contains the result of API token according to the type of request.
@@ -46,10 +46,10 @@ class ApiTokenResponse extends Response {
   @override
   ApiTokenResponse copyWith({
     Map<String, dynamic>? apiToken,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       ApiTokenResponse(
         apiToken: apiToken ?? this.apiToken,

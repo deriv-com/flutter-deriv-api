@@ -10,8 +10,8 @@ class ProposalOpenContractRequest extends Request {
     this.contractId,
     this.proposalOpenContract = true,
     this.subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'proposal_open_contract',
           passthrough: passthrough,
@@ -21,13 +21,13 @@ class ProposalOpenContractRequest extends Request {
   /// Creates an instance from JSON
   factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>
       ProposalOpenContractRequest(
-        contractId: json['contract_id'] as int,
+        contractId: json['contract_id'] as int?,
         proposalOpenContract: json['proposal_open_contract'] == null
             ? null
             : json['proposal_open_contract'] == 1,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Contract ID received from a `portfolio` request. If not set, you will receive stream of all open contracts.
@@ -63,8 +63,8 @@ class ProposalOpenContractRequest extends Request {
     int? contractId,
     bool? proposalOpenContract,
     bool? subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ProposalOpenContractRequest(
         contractId: contractId ?? this.contractId,
@@ -76,5 +76,5 @@ class ProposalOpenContractRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => <Object>[contractId];
+  List<Object> get props => <Object>[contractId!];
 }

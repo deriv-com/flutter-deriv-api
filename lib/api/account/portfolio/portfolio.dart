@@ -42,7 +42,7 @@ class Portfolio extends PortfolioModel {
           PortfolioException(baseExceptionModel: baseExceptionModel),
     );
 
-    return Portfolio.fromJson(response.portfolio);
+    return Portfolio.fromJson(response.portfolio!);
   }
 
   /// Generates a copy of instance with given parameters

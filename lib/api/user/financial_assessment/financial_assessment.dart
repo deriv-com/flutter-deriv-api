@@ -158,6 +158,6 @@ class FinancialAssessment extends FinancialAssessmentModel {
           FinancialAssessmentException(baseExceptionModel: baseExceptionModel),
     );
 
-    return FinancialAssessment.fromJson(response.getFinancialAssessment);
+    return FinancialAssessment.fromJson(response.getFinancialAssessment!);
   }
 }

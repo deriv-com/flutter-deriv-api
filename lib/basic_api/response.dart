@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'response.g.dart';
 
 /// super class of all requests
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Response extends Equatable {
   /// Initializes
   const Response({
@@ -19,26 +19,26 @@ class Response extends Equatable {
       _$ResponseFromJson(json);
 
   /// Echo of the request made.
-  final Map<String, dynamic> echoReq;
+  final Map<String, dynamic>? echoReq;
 
   /// Error
-  final Map<String, dynamic> error;
+  final Map<String, dynamic>? error;
 
   /// Action name of the request made.
-  final String msgType;
+  final String? msgType;
 
   /// [Optional] Used to map request to response.
-  final int reqId;
+  final int? reqId;
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() => _$ResponseToJson(this);
 
   /// Generate a copy of instance with given parameters
   Response copyWith({
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       Response(
         echoReq: echoReq ?? this.echoReq,
@@ -49,5 +49,5 @@ class Response extends Equatable {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

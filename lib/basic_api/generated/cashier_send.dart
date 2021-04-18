@@ -13,8 +13,8 @@ class CashierRequest extends Request {
     this.provider,
     this.type,
     this.verificationCode,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'cashier',
           passthrough: passthrough,
@@ -23,12 +23,12 @@ class CashierRequest extends Request {
 
   /// Creates an instance from JSON
   factory CashierRequest.fromJson(Map<String, dynamic> json) => CashierRequest(
-        cashier: json['cashier'] as String,
-        provider: json['provider'] as String,
-        type: json['type'] as String,
-        verificationCode: json['verification_code'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        cashier: json['cashier'] as String?,
+        provider: json['provider'] as String?,
+        type: json['type'] as String?,
+        verificationCode: json['verification_code'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Operation which needs to be requested from cashier
@@ -61,8 +61,8 @@ class CashierRequest extends Request {
     String? provider,
     String? type,
     String? verificationCode,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       CashierRequest(
         cashier: cashier ?? this.cashier,

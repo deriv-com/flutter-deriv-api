@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_as
+
 import 'package:flutter_deriv_api/api/account/models/account_authentication_document_model.dart';
 import 'package:flutter_deriv_api/api/account/models/account_identity_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';

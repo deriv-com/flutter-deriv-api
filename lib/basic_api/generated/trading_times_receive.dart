@@ -8,10 +8,10 @@ class TradingTimesResponse extends Response {
   /// Initialize TradingTimesResponse
   const TradingTimesResponse({
     this.tradingTimes,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,11 +22,11 @@ class TradingTimesResponse extends Response {
   /// Creates an instance from JSON
   factory TradingTimesResponse.fromJson(Map<String, dynamic> json) =>
       TradingTimesResponse(
-        tradingTimes: json['trading_times'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        tradingTimes: json['trading_times'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The trading times structure is a hierarchy as follows: Market -> SubMarket -> Underlyings
@@ -46,10 +46,10 @@ class TradingTimesResponse extends Response {
   @override
   TradingTimesResponse copyWith({
     Map<String, dynamic>? tradingTimes,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       TradingTimesResponse(
         tradingTimes: tradingTimes ?? this.tradingTimes,

@@ -54,6 +54,6 @@ class ProfitTable extends ProfitTableModel {
           ProfitTableException(baseExceptionModel: baseExceptionModel),
     );
 
-    return ProfitTable.fromJson(response.profitTable);
+    return ProfitTable.fromJson(response.profitTable!);
   }
 }

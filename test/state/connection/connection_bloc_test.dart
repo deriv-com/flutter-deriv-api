@@ -6,7 +6,7 @@ import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
 
 void main() {
   group('Connection Bloc =>', () {
-    ConnectionBloc connectionBloc;
+    ConnectionBloc? connectionBloc;
 
     setUpAll(
       () => connectionBloc = ConnectionBloc(
@@ -19,27 +19,27 @@ void main() {
       ),
     );
 
-    tearDownAll(() => connectionBloc.close());
+    tearDownAll(() => connectionBloc!.close());
 
     blocTest<ConnectionBloc, ConnectionState>(
       'Emits [Connect] Test.',
-      build: () => connectionBloc,
+      build: () => connectionBloc!,
       act: (ConnectionBloc bloc) async => bloc.add(Connect()),
-      expect: <dynamic>[isA<Connected>()],
+      expect: () => <dynamic>[isA<Connected>()],
     );
 
     blocTest<ConnectionBloc, ConnectionState>(
       'Emits [Disconnect] Test.',
-      build: () => connectionBloc,
+      build: () => connectionBloc!,
       act: (ConnectionBloc bloc) async => bloc.add(Disconnect()),
-      expect: <dynamic>[],
+      expect: () => <dynamic>[],
     );
 
     blocTest<ConnectionBloc, ConnectionState>(
       'Emits [Reconnect] Test.',
-      build: () => connectionBloc,
+      build: () => connectionBloc!,
       act: (ConnectionBloc bloc) async => bloc.add(Reconnect()),
-      expect: <dynamic>[],
+      expect: () => <dynamic>[],
     );
   });
 }

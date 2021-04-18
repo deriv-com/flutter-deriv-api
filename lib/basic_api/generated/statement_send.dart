@@ -14,8 +14,8 @@ class StatementRequest extends Request {
     this.limit,
     this.offset,
     this.statement = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'statement',
           passthrough: passthrough,
@@ -25,16 +25,16 @@ class StatementRequest extends Request {
   /// Creates an instance from JSON
   factory StatementRequest.fromJson(Map<String, dynamic> json) =>
       StatementRequest(
-        actionType: json['action_type'] as String,
-        dateFrom: json['date_from'] as int,
-        dateTo: json['date_to'] as int,
+        actionType: json['action_type'] as String?,
+        dateFrom: json['date_from'] as int?,
+        dateTo: json['date_to'] as int?,
         description:
             json['description'] == null ? null : json['description'] == 1,
-        limit: json['limit'] as num,
-        offset: json['offset'] as num,
+        limit: json['limit'] as num?,
+        offset: json['offset'] as num?,
         statement: json['statement'] == null ? null : json['statement'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] To filter the statement according to the type of transaction.
@@ -90,8 +90,8 @@ class StatementRequest extends Request {
     num? limit,
     num? offset,
     bool? statement,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       StatementRequest(
         actionType: actionType ?? this.actionType,

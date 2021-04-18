@@ -48,7 +48,7 @@ class CancelContract extends CancelContractModel {
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
-    return CancelContract.fromJson(response.cancel);
+    return CancelContract.fromJson(response.cancel!);
   }
 
   /// Creates a copy of instance with given parameters

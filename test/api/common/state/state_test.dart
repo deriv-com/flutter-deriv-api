@@ -8,11 +8,11 @@ void main() {
   setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch States Test', () async {
-    final List<State> states = await State.fetchStatesList(
+    final List<State?>? states = await State.fetchStatesList(
       const StatesListRequest(statesList: 'code'),
     );
 
-    expect(states.first.text, 'Aceh');
-    expect(states.first.value, 'AC');
+    expect(states!.first!.text, 'Aceh');
+    expect(states.first!.value, 'AC');
   });
 }

@@ -8,10 +8,10 @@ class PingResponse extends Response {
   /// Initialize PingResponse
   const PingResponse({
     this.ping,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -21,11 +21,11 @@ class PingResponse extends Response {
 
   /// Creates an instance from JSON
   factory PingResponse.fromJson(Map<String, dynamic> json) => PingResponse(
-        ping: json['ping'] as String,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        ping: json['ping'] as String?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Will return 'pong'
@@ -45,10 +45,10 @@ class PingResponse extends Response {
   @override
   PingResponse copyWith({
     String? ping,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       PingResponse(
         ping: ping ?? this.ping,

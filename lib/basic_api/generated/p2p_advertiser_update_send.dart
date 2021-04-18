@@ -13,8 +13,8 @@ class P2pAdvertiserUpdateRequest extends Request {
     this.p2pAdvertiserUpdate = true,
     this.paymentInfo,
     this.showName,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_advertiser_update',
           passthrough: passthrough,
@@ -24,16 +24,16 @@ class P2pAdvertiserUpdateRequest extends Request {
   /// Creates an instance from JSON
   factory P2pAdvertiserUpdateRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserUpdateRequest(
-        contactInfo: json['contact_info'] as String,
-        defaultAdvertDescription: json['default_advert_description'] as String,
+        contactInfo: json['contact_info'] as String?,
+        defaultAdvertDescription: json['default_advert_description'] as String?,
         isListed: json['is_listed'] == null ? null : json['is_listed'] == 1,
         p2pAdvertiserUpdate: json['p2p_advertiser_update'] == null
             ? null
             : json['p2p_advertiser_update'] == 1,
-        paymentInfo: json['payment_info'] as String,
+        paymentInfo: json['payment_info'] as String?,
         showName: json['show_name'] == null ? null : json['show_name'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Advertiser's contact information, to be used as a default for new sell adverts.
@@ -88,8 +88,8 @@ class P2pAdvertiserUpdateRequest extends Request {
     bool? p2pAdvertiserUpdate,
     String? paymentInfo,
     bool? showName,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pAdvertiserUpdateRequest(
         contactInfo: contactInfo ?? this.contactInfo,

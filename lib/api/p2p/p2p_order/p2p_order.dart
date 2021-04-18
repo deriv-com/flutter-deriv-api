@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_as
+
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
@@ -115,7 +117,7 @@ class P2POrder extends P2POrderModel {
           P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2POrder.fromJson(response.p2pOrderCreate);
+    return P2POrder.fromJson(response.p2pOrderCreate!);
   }
 
   /// Creates order and subscribes to the result with parameters specified in [P2pOrderCreateRequest]
@@ -137,12 +139,12 @@ class P2POrder extends P2POrderModel {
 
           return response is P2pOrderCreateResponse
               ? P2POrder.fromJson(
-                  response.p2pOrderCreate,
+                  response.p2pOrderCreate!,
                   subscriptionJson: response.subscription,
                 )
               : response is P2pOrderInfoResponse
                   ? P2POrder.fromJson(
-                      response.p2pOrderInfo,
+                      response.p2pOrderInfo!,
                       subscriptionJson: response.subscription,
                     )
                   : null;
@@ -162,7 +164,7 @@ class P2POrder extends P2POrderModel {
           P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2POrder.fromJson(response.p2pOrderInfo);
+    return P2POrder.fromJson(response.p2pOrderInfo!);
   }
 
   /// Subscribes to this order
@@ -193,7 +195,7 @@ class P2POrder extends P2POrderModel {
 
           return response is P2pOrderInfoResponse
               ? P2POrder.fromJson(
-                  response.p2pOrderInfo,
+                  response.p2pOrderInfo!,
                   subscriptionJson: response.subscription,
                 )
               : null;
@@ -250,7 +252,7 @@ class P2POrder extends P2POrderModel {
           P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
-    return copyWith(status: P2POrder.fromJson(response.p2pOrderCancel).status);
+    return copyWith(status: P2POrder.fromJson(response.p2pOrderCancel!).status);
   }
 
   /// Confirms this order
@@ -268,7 +270,7 @@ class P2POrder extends P2POrderModel {
           P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
-    return copyWith(status: P2POrder.fromJson(response.p2pOrderConfirm).status);
+    return copyWith(status: P2POrder.fromJson(response.p2pOrderConfirm!).status);
   }
 
   /// Generates a copy of instance with given parameters

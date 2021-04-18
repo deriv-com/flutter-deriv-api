@@ -117,7 +117,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
           P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2PAdvertiser.fromJson(response.p2pAdvertiserInfo);
+    return P2PAdvertiser.fromJson(response.p2pAdvertiserInfo!);
   }
 
   /// Subscribes to information about a P2P (peer to peer) advertiser.
@@ -138,7 +138,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
 
           return response is P2pAdvertiserInfoResponse
               ? P2PAdvertiser.fromJson(
-                  response.p2pAdvertiserInfo,
+                  response.p2pAdvertiserInfo!,
                   subscriptionJson: response.subscription,
                 )
               : null;
@@ -161,7 +161,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
           P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2PAdvertiser.fromJson(response.p2pAdvertiserCreate);
+    return P2PAdvertiser.fromJson(response.p2pAdvertiserCreate!);
   }
 
   /// Registers the client as a P2P (peer to peer) advertiser.
@@ -182,12 +182,12 @@ class P2PAdvertiser extends P2PAdvertiserModel {
 
           return response is P2pAdvertiserInfoResponse
               ? P2PAdvertiser.fromJson(
-                  response.p2pAdvertiserInfo,
+                  response.p2pAdvertiserInfo!,
                   subscriptionJson: response.subscription,
                 )
               : response is P2pAdvertiserCreateResponse
                   ? P2PAdvertiser.fromJson(
-                      response.p2pAdvertiserCreate,
+                      response.p2pAdvertiserCreate!,
                       subscriptionJson: response.subscription,
                     )
                   : null;
@@ -209,7 +209,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
           P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2PAdvertiser.fromJson(response.p2pAdvertiserUpdate);
+    return P2PAdvertiser.fromJson(response.p2pAdvertiserUpdate!);
   }
 
   /// Returns all P2P (peer to peer) adverts created by the authorized client.
@@ -228,7 +228,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     );
 
     return getListFromMap(
-      response.p2pAdvertiserAdverts['list'],
+      response.p2pAdvertiserAdverts!['list'],
       itemToTypeCallback: (dynamic item) => P2PAdvert.fromJson(item),
     );
   }

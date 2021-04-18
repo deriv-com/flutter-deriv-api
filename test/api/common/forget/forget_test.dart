@@ -21,14 +21,14 @@ void main() {
       final ForgetAll forgetAll = await ForgetAll.forgetAll(
           const ForgetAllRequest(forgetAll: <String>['tick', 'p2p_order']));
 
-      expect(forgetAll.cancelledStreams.length, 2);
+      expect(forgetAll.cancelledStreams!.length, 2);
 
       expect(
-        forgetAll.cancelledStreams[0],
+        forgetAll.cancelledStreams![0],
         'ea8d3223-9922-5552-4309-6a1e97522f05',
       );
       expect(
-        forgetAll.cancelledStreams[1],
+        forgetAll.cancelledStreams![1],
         'ea8d3288-9922-5552-4309-6a1e97522f21',
       );
     });

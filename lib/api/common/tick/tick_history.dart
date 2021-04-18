@@ -42,7 +42,7 @@ class TickHistory extends TickHistoryModel {
           response.history,
           itemToTypeCallback: (dynamic item) => HistoryModel.fromJson(item),
         ),
-        pipSize: response.pipSize as int?,
+        pipSize: response.pipSize?.toInt(),
         subscriptionInformation:
             SubscriptionModel.fromJson(response.subscription),
       );
@@ -58,11 +58,12 @@ class TickHistory extends TickHistoryModel {
   static Future<TickHistory> fetchTickHistory(
     TicksHistoryRequest request,
   ) async {
-    final TicksHistoryResponse response = await _api!.call<TicksHistoryResponse>(request: request);
-    
+    final TicksHistoryResponse response =
+        await _api!.call<TicksHistoryResponse>(request: request);
+
     _checkException(response);
 
-      return TickHistory.fromResponse(response);
+    return TickHistory.fromResponse(response);
   }
 
   /// Gets ticks history and its stream
@@ -89,12 +90,12 @@ class TickHistory extends TickHistoryModel {
 
               return response is TicksResponse
                   ? Tick.fromJson(
-                      response.tick,
+                      response.tick!,
                       subscriptionJson: response.subscription,
                     )
                   : response is OHLCResponse
                       ? OHLC.fromJson(
-                          response.ohlc,
+                          response.ohlc!,
                           subscriptionJson: response.subscription,
                         )
                       : null;

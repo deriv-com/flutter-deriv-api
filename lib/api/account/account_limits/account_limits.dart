@@ -82,7 +82,7 @@ class AccountLimits extends AccountLimitsModel {
           AccountLimitsException(baseExceptionModel: baseExceptionModel),
     );
 
-    return AccountLimits.fromJson(response.getLimits);
+    return AccountLimits.fromJson(response.getLimits!);
   }
 
   /// Generates a copy of instance with given parameters

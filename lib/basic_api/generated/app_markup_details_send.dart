@@ -19,8 +19,8 @@ class AppMarkupDetailsRequest extends Request {
     this.offset,
     this.sort,
     this.sortFields,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'app_markup_details',
           passthrough: passthrough,
@@ -30,23 +30,23 @@ class AppMarkupDetailsRequest extends Request {
   /// Creates an instance from JSON
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>
       AppMarkupDetailsRequest(
-        appId: json['app_id'] as int,
+        appId: json['app_id'] as int?,
         appMarkupDetails: json['app_markup_details'] == null
             ? null
             : json['app_markup_details'] == 1,
-        clientLoginid: json['client_loginid'] as String,
-        dateFrom: json['date_from'] as String,
-        dateTo: json['date_to'] as String,
+        clientLoginid: json['client_loginid'] as String?,
+        dateFrom: json['date_from'] as String?,
+        dateTo: json['date_to'] as String?,
         description:
             json['description'] == null ? null : json['description'] == 1,
-        limit: json['limit'] as num,
-        offset: json['offset'] as num,
-        sort: json['sort'] as String,
-        sortFields: (json['sort_fields'] as List<dynamic>)
+        limit: json['limit'] as num?,
+        offset: json['offset'] as num?,
+        sort: json['sort'] as String?,
+        sortFields: (json['sort_fields'] as List<dynamic>?)
             ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+            .toList(),
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Specific application `app_id` to report on.
@@ -117,8 +117,8 @@ class AppMarkupDetailsRequest extends Request {
     num? offset,
     String? sort,
     List<String>? sortFields,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       AppMarkupDetailsRequest(
         appId: appId ?? this.appId,

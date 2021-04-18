@@ -51,7 +51,7 @@ class CopyTradingList extends CopyTradingListModel {
           CopyTradingException(baseExceptionModel: baseExceptionModel),
     );
 
-    return CopyTradingList.fromJson(response.copytradingList);
+    return CopyTradingList.fromJson(response.copytradingList!);
   }
 
   /// Generates a copy of instance with given parameters

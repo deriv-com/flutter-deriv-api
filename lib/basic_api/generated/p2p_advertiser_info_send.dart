@@ -10,8 +10,8 @@ class P2pAdvertiserInfoRequest extends Request {
     this.id,
     this.p2pAdvertiserInfo = true,
     this.subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_advertiser_info',
           passthrough: passthrough,
@@ -21,13 +21,13 @@ class P2pAdvertiserInfoRequest extends Request {
   /// Creates an instance from JSON
   factory P2pAdvertiserInfoRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserInfoRequest(
-        id: json['id'] as String,
+        id: json['id'] as String?,
         p2pAdvertiserInfo: json['p2p_advertiser_info'] == null
             ? null
             : json['p2p_advertiser_info'] == 1,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] The unique identifier for this advertiser. If not provided, returns advertiser information about the current account.
@@ -63,8 +63,8 @@ class P2pAdvertiserInfoRequest extends Request {
     String? id,
     bool? p2pAdvertiserInfo,
     bool? subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pAdvertiserInfoRequest(
         id: id ?? this.id,
@@ -76,5 +76,5 @@ class P2pAdvertiserInfoRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => <Object>[id];
+  List<Object> get props => <Object>[id!];
 }

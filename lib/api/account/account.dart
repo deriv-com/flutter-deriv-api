@@ -41,7 +41,9 @@ class Account extends AccountModel {
   }) =>
       Account(
         currency: currency ?? this.currency,
-        excludedUntil: excludedUntil as DateTime? ?? this.excludedUntil,
+        excludedUntil: excludedUntil != null
+            ? DateTime.fromMillisecondsSinceEpoch(excludedUntil)
+            : this.excludedUntil,
         isDisabled: isDisabled ?? this.isDisabled,
         isVirtual: isVirtual ?? this.isVirtual,
         landingCompanyName: landingCompanyName ?? this.landingCompanyName,

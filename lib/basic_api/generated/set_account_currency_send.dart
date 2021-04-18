@@ -10,8 +10,8 @@ class SetAccountCurrencyRequest extends Request {
   /// Initialize SetAccountCurrencyRequest
   const SetAccountCurrencyRequest({
     @required this.setAccountCurrency,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'set_account_currency',
           passthrough: passthrough,
@@ -21,9 +21,9 @@ class SetAccountCurrencyRequest extends Request {
   /// Creates an instance from JSON
   factory SetAccountCurrencyRequest.fromJson(Map<String, dynamic> json) =>
       SetAccountCurrencyRequest(
-        setAccountCurrency: json['set_account_currency'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        setAccountCurrency: json['set_account_currency'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Currency of the account. List of supported currencies can be acquired with `payout_currencies` call.
@@ -41,8 +41,8 @@ class SetAccountCurrencyRequest extends Request {
   @override
   SetAccountCurrencyRequest copyWith({
     String? setAccountCurrency,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       SetAccountCurrencyRequest(
         setAccountCurrency: setAccountCurrency ?? this.setAccountCurrency,

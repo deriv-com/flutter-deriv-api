@@ -8,10 +8,10 @@ class OauthAppsResponse extends Response {
   /// Initialize OauthAppsResponse
   const OauthAppsResponse({
     this.oauthApps,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,14 +22,14 @@ class OauthAppsResponse extends Response {
   /// Creates an instance from JSON
   factory OauthAppsResponse.fromJson(Map<String, dynamic> json) =>
       OauthAppsResponse(
-        oauthApps: (json['oauth_apps'] as List<dynamic>)
+        oauthApps: (json['oauth_apps'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
-            ?.toList(),
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+            .toList(),
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// List of OAuth applications that used for the authorized account.
@@ -49,10 +49,10 @@ class OauthAppsResponse extends Response {
   @override
   OauthAppsResponse copyWith({
     List<Map<String, dynamic>>? oauthApps,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       OauthAppsResponse(
         oauthApps: oauthApps ?? this.oauthApps,

@@ -11,32 +11,32 @@ void main() {
   setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Trading Duration Test', () async {
-    final List<TradingDuration> tradeDuration =
+    final List<TradingDuration?>? tradeDuration =
         await TradingDuration.fetchTradingDurations(
       const TradingDurationsRequest(),
     );
 
-    expect(tradeDuration.length, 2);
+    expect(tradeDuration!.length, 2);
 
-    expect(tradeDuration.first.market.displayName, 'Forex');
-    expect(tradeDuration.first.market.name, 'forex');
+    expect(tradeDuration.first!.market!.displayName, 'Forex');
+    expect(tradeDuration.first!.market!.name, 'forex');
 
-    expect(tradeDuration.first.submarket.displayName, 'Major Pairs');
-    expect(tradeDuration.first.submarket.name, 'major_pairs');
+    expect(tradeDuration.first!.submarket!.displayName, 'Major Pairs');
+    expect(tradeDuration.first!.submarket!.name, 'major_pairs');
 
-    expect(tradeDuration.first.tradingDurationData.length, 2);
+    expect(tradeDuration.first!.tradingDurationData!.length, 2);
 
-    final TradingDurationDataModel tradingDurationData =
-        tradeDuration.first.tradingDurationData[1];
+    final TradingDurationDataModel? tradingDurationData =
+        tradeDuration.first!.tradingDurationData![1];
 
-    expect(tradingDurationData.symbols.length, 1);
+    expect(tradingDurationData!.symbols!.length, 1);
 
-    final SymbolModel symbol = tradingDurationData.symbols.first;
+    final SymbolModel symbol = tradingDurationData.symbols!.first!;
 
-    expect(tradingDurationData.tradeDurations.length, 8);
+    expect(tradingDurationData.tradeDurations!.length, 8);
 
     final DurationModel duration =
-        tradingDurationData.tradeDurations[6].durations.first;
+        tradingDurationData.tradeDurations![6]!.durations!.first!;
 
     expect(symbol.displayName, 'GBP/USD');
     expect(symbol.name, 'frxGBPUSD');

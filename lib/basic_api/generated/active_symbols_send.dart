@@ -12,8 +12,8 @@ class ActiveSymbolsRequest extends Request {
     @required this.activeSymbols,
     this.landingCompany,
     this.productType,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'active_symbols',
           passthrough: passthrough,
@@ -23,11 +23,11 @@ class ActiveSymbolsRequest extends Request {
   /// Creates an instance from JSON
   factory ActiveSymbolsRequest.fromJson(Map<String, dynamic> json) =>
       ActiveSymbolsRequest(
-        activeSymbols: json['active_symbols'] as String,
-        landingCompany: json['landing_company'] as String,
-        productType: json['product_type'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        activeSymbols: json['active_symbols'] as String?,
+        landingCompany: json['landing_company'] as String?,
+        productType: json['product_type'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// If you use `brief`, only a subset of fields will be returned.
@@ -55,8 +55,8 @@ class ActiveSymbolsRequest extends Request {
     String? activeSymbols,
     String? landingCompany,
     String? productType,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ActiveSymbolsRequest(
         activeSymbols: activeSymbols ?? this.activeSymbols,

@@ -8,10 +8,10 @@ class GetSelfExclusionResponse extends Response {
   /// Initialize GetSelfExclusionResponse
   const GetSelfExclusionResponse({
     this.getSelfExclusion,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,11 +22,11 @@ class GetSelfExclusionResponse extends Response {
   /// Creates an instance from JSON
   factory GetSelfExclusionResponse.fromJson(Map<String, dynamic> json) =>
       GetSelfExclusionResponse(
-        getSelfExclusion: json['get_self_exclusion'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        getSelfExclusion: json['get_self_exclusion'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// List of values set for self exclusion.
@@ -46,10 +46,10 @@ class GetSelfExclusionResponse extends Response {
   @override
   GetSelfExclusionResponse copyWith({
     Map<String, dynamic>? getSelfExclusion,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       GetSelfExclusionResponse(
         getSelfExclusion: getSelfExclusion ?? this.getSelfExclusion,
