@@ -38,10 +38,10 @@ jobs:
           name: Run the application tests
           command: flutter test --coverage
 
-      - run:
-          name: Upload coverage
-          command: |
-              bash <(curl -s https://codecov.io/bash)
+      # - run:
+      #     name: Upload coverage
+      #     command: |
+      #         bash <(curl -s https://codecov.io/bash)
 
       - run:
           name: Code analysis
