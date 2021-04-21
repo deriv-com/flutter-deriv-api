@@ -50,7 +50,7 @@ class AvailableContractsBloc
         yield AvailableContractsLoaded(
           contracts: loadedState.contracts,
           selectedContract:
-              loadedState.contracts!.availableContracts![event.index],
+              loadedState.contracts?.availableContracts?.elementAt(event.index),
         );
       } else {
         yield AvailableContractsLoading();

@@ -57,7 +57,7 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                   child: Padding(
                     padding: const EdgeInsets.all(20),
                     // ignore: always_specify_types
-                    child: BlocBuilder<ActiveSymbolsBloc,ActiveSymbolsState>(
+                    child: BlocBuilder<ActiveSymbolsBloc, ActiveSymbolsState>(
                         bloc: _activeSymbolsBloc,
                         builder:
                             (BuildContext context, ActiveSymbolsState state) {
@@ -78,7 +78,7 @@ class _ActiveSymbolsWidgetState extends State<ActiveSymbolsWidget> {
                               ],
                             );
                           } else if (state is ActiveSymbolsError) {
-                            return Text(state.message!);
+                            return Text(state.message ?? 'An error occurred');
                           } else {
                             return const Center(
                               child: CircularProgressIndicator(),

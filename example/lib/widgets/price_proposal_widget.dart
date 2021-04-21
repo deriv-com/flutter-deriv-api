@@ -25,13 +25,6 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
     _priceProposalBloc = PriceProposalBloc(_availableContractsBloc);
   }
 
-  @override
-  void dispose() {
-    _priceProposalBloc!.close();
-
-    super.dispose();
-  }
-
   // Duration units are hardcoded in this example.
   // Available durations and Duration units can be retrieved via fetching available contracts
   static const List<String> _durationUnits = <String>['t', 's', 'm', 'h', 'd'];
@@ -163,7 +156,7 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
               ],
             );
           } else if (state is PriceProposalError) {
-            return Text(state.message!);
+            return Text(state.message ?? 'An error occurred');
           } else {
             return const CircularProgressIndicator();
           }
@@ -190,5 +183,12 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
         amount: _amount,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _priceProposalBloc?.close();
+
+    super.dispose();
   }
 }

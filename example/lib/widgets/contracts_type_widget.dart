@@ -75,7 +75,7 @@ class _ContractsTypeWidgetState extends State<ContractsTypeWidget> {
                               ],
                             );
                           } else if (state is AvailableContractsError) {
-                            return Text(state.message!);
+                            return Text(state.message ?? 'An error occurred');
                           } else {
                             return const CircularProgressIndicator();
                           }
