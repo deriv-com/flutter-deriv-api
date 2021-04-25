@@ -6,6 +6,7 @@ import 'package:flutter_deriv_api_example/blocs/ticks/ticks_bloc.dart';
 
 import 'active_symbols_list_dialog.dart';
 
+/// Active symbols widget.
 class ActiveSymbolsWidget extends StatefulWidget {
   @override
   _ActiveSymbolsWidgetState createState() => _ActiveSymbolsWidgetState();

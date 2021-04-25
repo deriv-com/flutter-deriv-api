@@ -1,4 +1,3 @@
-
 /// Defines status of a connection.
 enum ConnectionStatus {
   /// Connected status.
@@ -7,6 +6,9 @@ enum ConnectionStatus {
   /// Connecting status.
   connecting,
 
-  /// Disconnected status.
-  disconnected
+  /// Internet disconnected status.
+  internetDisconnected,
+
+  /// Websocket disconnected status.
+  websocketDisconnected
 }

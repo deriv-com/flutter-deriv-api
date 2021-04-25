@@ -24,61 +24,13 @@ class ConnectionService {
   ConnectionStatus _connectionStatus = ConnectionStatus.connecting;
 
   /// Stream of connection states
-  StreamController<bool> connectionChangeController =
-      StreamController<bool>.broadcast();
+  StreamController<ConnectionStatus> connectionChangeController =
+      StreamController<ConnectionStatus>.broadcast();
 
   final Connectivity _connectivity = Connectivity();
 
   /// Stream of bool whether we are connected or not
-  Stream<bool> get state => connectionChangeController.stream;
-
-  /// Returns true if we are connected to the Internet.
-  bool get isConnectedToInternet =>
-      _connectionStatus == ConnectionStatus.connected;
-
-  Timer _connectivityTimer;
-
-  ConnectionBloc _connectionBloc;
-
-  Future<ConnectionStatus> _checkConnection(ConnectivityResult result) async {
-    final ConnectionStatus previousConnection = _connectionStatus;
-
-    if (_connectionBloc.state is Reconnecting) {
-      return ConnectionStatus.connecting;
-    }
-
-    switch (result) {
-      case ConnectivityResult.wifi:
-      case ConnectivityResult.mobile:
-        if (_connectionBloc.state is! Connected) {
-          await _connectionBloc.connectWebSocket();
-        }
-        final bool pingResult = await _checkPingConnection();
-        _connectionStatus = pingResult
-            ? ConnectionStatus.connected
-            : ConnectionStatus.disconnected;
-        break;
-      case ConnectivityResult.none:
-        _connectionStatus = ConnectionStatus.disconnected;
-        break;
-
-      default:
-        _connectionStatus = ConnectionStatus.disconnected;
-    }
-
-    if (previousConnection != _connectionStatus) {
-      connectionChangeController
-          .add(_connectionStatus == ConnectionStatus.connected);
-    }
-
-    return _connectionStatus;
-  }
-
-  /// Closes the connection service
-  void dispose() {
-    connectionChangeController?.close();
-    _stopConnectivityTimer();
-  }
+  Stream<ConnectionStatus> get state => connectionChangeController.stream;
 
   /// Initializes
   Future<void> initialize({
@@ -90,18 +42,73 @@ class ConnectionService {
     }
 
     _connectionBloc = connectionBloc;
+
     await checkConnectivity();
+
     _connectivity.onConnectivityChanged.listen(_checkConnection);
+
     _startConnectivityTimer();
+  }
+
+  /// Returns true if we are connected to the Internet.
+  bool get isConnectedToInternet =>
+      _connectionStatus == ConnectionStatus.connected;
+
+  Timer _connectivityTimer;
+
+  ConnectionBloc _connectionBloc;
+
+  Future<ConnectionStatus> _checkConnection(
+    ConnectivityResult connectivityResult,
+  ) async {
+    final ConnectionStatus previousConnection = _connectionStatus;
+
+    if (_connectionBloc.state is ConnectionReconnectingState) {
+      return ConnectionStatus.connecting;
+    }
+
+    switch (connectivityResult) {
+      case ConnectivityResult.wifi:
+      case ConnectivityResult.mobile:
+        if (_connectionBloc.state is! ConnectionConnectedState) {
+          await _connectionBloc.connectWebSocket();
+        }
+
+        final bool pingResult = await _checkPingConnection();
+
+        _connectionStatus = pingResult
+            ? ConnectionStatus.connected
+            : ConnectionStatus.websocketDisconnected;
+
+        break;
+      case ConnectivityResult.none:
+        _connectionStatus = ConnectionStatus.internetDisconnected;
+        break;
+
+      default:
+        _connectionStatus = ConnectionStatus.internetDisconnected;
+    }
+
+    if (previousConnection != _connectionStatus) {
+      connectionChangeController.add(_connectionStatus);
+    }
+
+    return _connectionStatus;
+  }
+
+  /// Closes the connection service
+  void dispose() {
+    connectionChangeController?.close();
+    _stopConnectivityTimer();
   }
 
   /// Checks devices connectivity
   Future<bool> checkConnectivity() async {
     final ConnectivityResult connectivityResult =
         await _connectivity.checkConnectivity();
-
     final ConnectionStatus connectionResult =
         await _checkConnection(connectivityResult);
+
     return connectionResult == ConnectionStatus.connected;
   }
 
@@ -109,9 +116,9 @@ class ConnectionService {
   void _startConnectivityTimer() {
     if (_connectivityTimer == null || !_connectivityTimer.isActive) {
       _connectivityTimer = Timer.periodic(
-          Duration(seconds: _connectivityCheckInterval), (Timer timer) async {
-        await checkConnectivity();
-      });
+        Duration(seconds: _connectivityCheckInterval),
+        (Timer timer) async => checkConnectivity(),
+      );
     }
   }
 
@@ -119,31 +126,39 @@ class ConnectionService {
 
   Future<bool> _ping() async {
     try {
-      final Ping response = await Ping.ping().timeout(Duration(
-          seconds: _connectionBloc.state is InitialConnectionState
+      final Ping response = await Ping.ping().timeout(
+        Duration(
+          seconds: _connectionBloc.state is ConnectionInitialState
               ? _initialPingTimeOut
-              : _pingTimeout));
+              : _pingTimeout,
+        ),
+      );
 
       if (response == null || !response.succeeded) {
-        return Future<bool>.value(false);
+        return false;
       }
     } on Exception catch (_) {
-      return Future<bool>.value(false);
+      return false;
     }
 
-    return Future<bool>.value(true);
+    return true;
   }
 
   Future<bool> _checkPingConnection() async {
     final bool _pingSuccess = await _ping();
+
     if (!_pingSuccess) {
       _pingExceptionCount++;
+
       if (_pingExceptionCount >= _pingMaxExceptionCount) {
         return false;
       }
+
       return _connectionStatus == ConnectionStatus.connected;
     }
+
     _pingExceptionCount = 0;
+
     return true;
   }
 }

@@ -1,16 +1,23 @@
 part of 'internet_bloc.dart';
 
-/// Internet event
+/// Internet base event.
 abstract class InternetEvent {}
 
-/// Offline
-class Offline extends InternetEvent {
+/// Internet offline event.
+class InternetOfflineEvent extends InternetEvent {
+  /// Initializes internet offline state.
+  InternetOfflineEvent(this.type);
+
+  /// Offline type.
+  final OfflineType type;
+
   @override
-  String toString() => 'InternetEvent: Offline';
+  String toString() =>
+      'InternetEvent: InternetOfflineEvent, OfflineType: $type';
 }
 
-/// Online
-class Online extends InternetEvent {
+/// Internet online event.
+class InternetOnlineEvent extends InternetEvent {
   @override
-  String toString() => 'InternetEvent: Online';
+  String toString() => 'InternetEvent: InternetOnlineEvent';
 }

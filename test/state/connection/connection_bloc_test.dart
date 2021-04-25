@@ -24,21 +24,22 @@ void main() {
     blocTest<ConnectionBloc, ConnectionState>(
       'Emits [Connect] Test.',
       build: () => connectionBloc,
-      act: (ConnectionBloc bloc) async => bloc.add(Connect()),
-      expect: <dynamic>[isA<Connected>()],
+      act: (ConnectionBloc bloc) async => bloc.add(ConnectionConnectEvent()),
+      expect: <dynamic>[isA<ConnectionConnectedState>()],
     );
 
     blocTest<ConnectionBloc, ConnectionState>(
       'Emits [Disconnect] Test.',
       build: () => connectionBloc,
-      act: (ConnectionBloc bloc) async => bloc.add(Disconnect()),
+      act: (ConnectionBloc bloc) async =>
+          bloc.add(ConnectionDisconnectEvent(isWebSocketClosed: false)),
       expect: <dynamic>[],
     );
 
     blocTest<ConnectionBloc, ConnectionState>(
       'Emits [Reconnect] Test.',
       build: () => connectionBloc,
-      act: (ConnectionBloc bloc) async => bloc.add(Reconnect()),
+      act: (ConnectionBloc bloc) async => bloc.add(ConnectionReconnectEvent()),
       expect: <dynamic>[],
     );
   });

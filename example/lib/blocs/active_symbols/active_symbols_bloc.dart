@@ -8,8 +8,9 @@ import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 part 'active_symbols_event.dart';
 part 'active_symbols_state.dart';
 
-/// ActiveSymbolsBloc
+/// Active symbols bloc.
 class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
+  /// Initializes active symbols bloc.
   ActiveSymbolsBloc() : super(ActiveSymbolsLoading());
 
   @override

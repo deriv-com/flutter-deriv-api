@@ -1,49 +1,55 @@
 part of 'connection_bloc.dart';
 
-/// Connection States
+/// Connection base state.
 abstract class ConnectionState {}
 
-/// Initial state
-class InitialConnectionState extends ConnectionState {
+/// Connection initial state.
+class ConnectionInitialState extends ConnectionState {
   @override
-  String toString() => 'ConnectionState: InitialConnectionState';
+  String toString() => 'ConnectionState: ConnectionInitialState';
 }
 
-/// shows that we are in the process of connecting
-class Connecting extends ConnectionState {
-  /// Initializes
-  Connecting();
+/// Connection connecting state, shows that we are in the process of connecting.
+class ConnectionConnectingState extends ConnectionState {
+  /// Initializes connection connecting state.
+  ConnectionConnectingState();
 
   @override
-  String toString() => 'ConnectionState: Connecting...';
+  String toString() => 'ConnectionState: ConnectionConnectingState';
 }
 
-/// Connected state
-class Connected extends ConnectionState {
+/// Connection connected state.
+class ConnectionConnectedState extends ConnectionState {
   @override
-  String toString() => 'ConnectionState: Connected';
+  String toString() => 'ConnectionState: ConnectionConnectedState';
 }
 
-/// Disconnected state
-class Disconnected extends ConnectionState {
+/// Connection Disconnected state.
+class ConnectionDisconnectedState extends ConnectionState {
+  /// Initializes disconnected state.
+  ConnectionDisconnectedState({this.isWebSocketClosed = false});
+
+  /// True if webSocket is closed.
+  final bool isWebSocketClosed;
+
   @override
-  String toString() => 'ConnectionState: Disconnected';
+  String toString() => 'ConnectionState: ConnectionDisconnectedState';
 }
 
-/// Reconnecting state
-class Reconnecting extends ConnectionState {
+/// Connection reconnecting state.
+class ConnectionReconnectingState extends ConnectionState {
   @override
-  String toString() => 'ConnectionState: Reconnecting...';
+  String toString() => 'ConnectionState: ConnectionReconnectingState';
 }
 
-/// Connection error state
-class ConnectionError extends ConnectionState {
-  /// Initializes with the this [error] message
-  ConnectionError(this.error);
+/// Connection error state.
+class ConnectionErrorState extends ConnectionState {
+  /// Initializes with the this [error] message.
+  ConnectionErrorState(this.error);
 
-  /// An exception or message from the server
+  /// An exception or message from the server.
   final String error;
 
   @override
-  String toString() => 'ConnectionState: Error(error: $error)';
+  String toString() => 'ConnectionState: ConnectionErrorState(error: $error)';
 }

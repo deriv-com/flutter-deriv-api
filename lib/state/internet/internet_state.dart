@@ -1,28 +1,28 @@
 part of 'internet_bloc.dart';
 
-/// Internet state
+/// Internet base state.
 abstract class InternetState {}
 
-/// Initial Internet state
-class InitialInternetState extends InternetState {
+/// Internet initial state.
+class InternetInitialState extends InternetState {
   @override
-  String toString() => 'InternetState: InitialInternetState';
+  String toString() => 'InternetState: InternetInitialState';
 }
 
-/// Internet connected
-class Connected extends InternetState {
+/// Internet connected state.
+class InternetConnectedState extends InternetState {
   @override
-  String toString() => 'InternetState: Connected';
+  String toString() => 'InternetState: InternetConnectedState';
 }
 
-/// Internet disconnected
-class Disconnected extends InternetState {
-  /// Initializes
-  Disconnected({this.isWebSocketClosed = false});
+/// Internet disconnected state.
+class InternetDisconnectedState extends InternetState {
+  /// Initializes disconnected state.
+  InternetDisconnectedState({@required this.isWebSocketClosed});
 
-  /// True if webSocket is closed
+  /// True if webSocket is closed.
   final bool isWebSocketClosed;
 
   @override
-  String toString() => 'InternetState: Disconnected';
+  String toString() => 'InternetState: InternetDisconnectedState';
 }
