@@ -96,7 +96,9 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
             isWebSocketClosed: event.isWebSocketClosed,
           );
         } else if (state is! ConnectionDisconnectedState) {
-          yield ConnectionDisconnectedState();
+          yield ConnectionDisconnectedState(
+            isWebSocketClosed: event.isWebSocketClosed,
+          );
         }
       } else {
         // Needed to reset state after changing the endpoint from settings page
