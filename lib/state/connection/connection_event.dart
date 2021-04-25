@@ -26,6 +26,12 @@ class ConnectionDisconnectEvent extends ConnectionEvent {
 
 /// Connection reconnect event, reconnect to websocket.
 class ConnectionReconnectEvent extends ConnectionEvent {
+  /// Initializes reconnect state.
+  ConnectionReconnectEvent({this.isWebSocketClosed = false});
+
+  /// True if webSocket is closed.
+  final bool isWebSocketClosed;
+
   @override
   String toString() => 'ConnectionEvent: ConnectionReconnectEvent';
 }

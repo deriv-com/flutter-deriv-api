@@ -38,6 +38,12 @@ class ConnectionDisconnectedState extends ConnectionState {
 
 /// Connection reconnecting state.
 class ConnectionReconnectingState extends ConnectionState {
+  /// Initializes reconnecting state.
+  ConnectionReconnectingState({this.isWebSocketClosed = false});
+
+  /// True if webSocket is closed.
+  final bool isWebSocketClosed;
+
   @override
   String toString() => 'ConnectionState: ConnectionReconnectingState';
 }

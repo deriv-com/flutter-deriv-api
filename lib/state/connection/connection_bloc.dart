@@ -92,7 +92,9 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       if (event is ConnectionReconnectEvent &&
           state is! ConnectionReconnectingState) {
         if (shouldReconnect) {
-          yield ConnectionReconnectingState();
+          yield ConnectionReconnectingState(
+            isWebSocketClosed: event.isWebSocketClosed,
+          );
         } else if (state is! ConnectionDisconnectedState) {
           yield ConnectionDisconnectedState();
         }
