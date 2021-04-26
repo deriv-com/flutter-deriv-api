@@ -376,12 +376,3 @@ enum VerificationType {
   /// Identity verification
   identity,
 }
-
-/// Offline types.
-enum OfflineType {
-  /// Internet is offline.
-  internet,
-
-  /// Websocket is offline.
-  websocket,
-}

@@ -6,14 +6,14 @@ abstract class InternetEvent {}
 /// Internet offline event.
 class InternetOfflineEvent extends InternetEvent {
   /// Initializes internet offline state.
-  InternetOfflineEvent(this.type);
+  InternetOfflineEvent({this.isWebSocketClosed});
 
-  /// Offline type.
-  final OfflineType type;
+  /// True if webSocket is closed.
+  final bool isWebSocketClosed;
 
   @override
   String toString() =>
-      'InternetEvent: InternetOfflineEvent, OfflineType: $type';
+      'InternetEvent: InternetOfflineEvent, isWebSocketClosed: $isWebSocketClosed';
 }
 
 /// Internet online event.

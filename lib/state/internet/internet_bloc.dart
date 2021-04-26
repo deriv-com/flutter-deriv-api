@@ -4,7 +4,6 @@ import 'dart:developer' as dev;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/services/connection/connection_service.dart';
 import 'package:flutter_deriv_api/services/connection/connection_status.dart';
 
@@ -25,9 +24,8 @@ class InternetBloc extends Bloc<InternetEvent, InternetState> {
           if (state is! InternetDisconnectedState) {
             add(
               InternetOfflineEvent(
-                connectionState == ConnectionStatus.internetDisconnected
-                    ? OfflineType.internet
-                    : OfflineType.websocket,
+                isWebSocketClosed:
+                    connectionState != ConnectionStatus.internetDisconnected,
               ),
             );
           }
@@ -44,7 +42,7 @@ class InternetBloc extends Bloc<InternetEvent, InternetState> {
 
     if (event is InternetOfflineEvent) {
       yield InternetDisconnectedState(
-        isWebSocketClosed: event.type == OfflineType.websocket,
+        isWebSocketClosed: event.isWebSocketClosed,
       );
     } else if (event is InternetOnlineEvent) {
       yield InternetConnectedState();
