@@ -24,7 +24,9 @@ void main() {
     blocTest<ConnectionBloc, ConnectionState>(
       'Emits [Connect] Test.',
       build: () => connectionBloc,
-      act: (ConnectionBloc bloc) async => bloc.add(ConnectionConnectEvent()),
+      act: (ConnectionBloc bloc) async => bloc.add(
+        ConnectionConnectEvent(isWebSocketClosed: false),
+      ),
       expect: <dynamic>[isA<ConnectionConnectedState>()],
     );
 

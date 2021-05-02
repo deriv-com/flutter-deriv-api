@@ -86,7 +86,11 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       }
 
       if (state is! ConnectionReconnectingState) {
-        await connectWebSocket();
+        final ConnectionReconnectEvent connectionReconnectEvent = event;
+
+        await connectWebSocket(
+          isWebSocketClosed: connectionReconnectEvent.isWebSocketClosed,
+        );
       }
 
       if (event is ConnectionReconnectEvent &&
@@ -125,7 +129,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
   /// Connects to the web socket.
   /// This function MUST NOT be called outside of this package.
-  Future<void> connectWebSocket() async {
+  Future<void> connectWebSocket({@required bool isWebSocketClosed}) async {
     add(ConnectionReconnectingEvent());
 
     await _api.disconnect().timeout(_callTimeOut);
@@ -139,7 +143,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       },
       onOpen: (UniqueKey uniqueKey) {
         if (_uniqueKey == uniqueKey) {
-          add(ConnectionConnectEvent());
+          add(ConnectionConnectEvent(isWebSocketClosed: isWebSocketClosed));
         }
       },
       onError: (UniqueKey uniqueKey) {

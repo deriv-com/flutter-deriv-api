@@ -6,7 +6,10 @@ abstract class ConnectionEvent {}
 /// Connection connect event, add this event when we are connected to the websocket.
 class ConnectionConnectEvent extends ConnectionEvent {
   /// Initializes connection connect event.
-  ConnectionConnectEvent();
+  ConnectionConnectEvent({@required this.isWebSocketClosed});
+
+  /// True if webSocket is closed.
+  final bool isWebSocketClosed;
 
   @override
   String toString() => 'ConnectionEvent: ConnectionConnectEvent';

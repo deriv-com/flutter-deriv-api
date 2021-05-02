@@ -70,15 +70,18 @@ class ConnectionService {
     switch (connectivityResult) {
       case ConnectivityResult.wifi:
       case ConnectivityResult.mobile:
-        if (_connectionBloc.state is! ConnectionConnectedState) {
-          await _connectionBloc.connectWebSocket();
-        }
-
         final bool pingResult = await _checkPingConnection();
 
         _connectionStatus = pingResult
             ? ConnectionStatus.connected
             : ConnectionStatus.websocketDisconnected;
+
+        if (_connectionBloc.state is! ConnectionConnectedState) {
+          await _connectionBloc.connectWebSocket(
+            isWebSocketClosed:
+                _connectionStatus == ConnectionStatus.websocketDisconnected,
+          );
+        }
 
         break;
       case ConnectivityResult.none:
