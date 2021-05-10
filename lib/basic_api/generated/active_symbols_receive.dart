@@ -25,7 +25,7 @@ class ActiveSymbolsResponse extends Response {
         activeSymbols: (json['active_symbols'] as List<dynamic>)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
-            ?.toList(),
+            .toList(),
         echoReq: json['echo_req'] as Map<String, dynamic>,
         error: json['error'] as Map<String, dynamic>,
         msgType: json['msg_type'] as String,

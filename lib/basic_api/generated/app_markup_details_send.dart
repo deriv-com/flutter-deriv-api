@@ -1,8 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_send.json
 // ignore_for_file: avoid_as
-
 import 'package:meta/meta.dart';
-
 import '../request.dart';
 
 /// App markup details request class
@@ -44,7 +42,7 @@ class AppMarkupDetailsRequest extends Request {
         sort: json['sort'] as String,
         sortFields: (json['sort_fields'] as List<dynamic>)
             ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
+            .toList(),
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );

@@ -1,13 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/payout_currencies_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_create_receive.json
 // ignore_for_file: avoid_as
 
 import '../response.dart';
 
-/// Payout currencies response class
-class PayoutCurrenciesResponse extends Response {
-  /// Initialize PayoutCurrenciesResponse
-  const PayoutCurrenciesResponse({
-    this.payoutCurrencies,
+/// Paymentagent create response class
+class PaymentagentCreateResponse extends Response {
+  /// Initialize PaymentagentCreateResponse
+  const PaymentagentCreateResponse({
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -20,24 +19,17 @@ class PayoutCurrenciesResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory PayoutCurrenciesResponse.fromJson(Map<String, dynamic> json) =>
-      PayoutCurrenciesResponse(
-        payoutCurrencies: (json['payout_currencies'] as List<dynamic>)
-            ?.map<String>((dynamic item) => item as String)
-            .toList(),
+  factory PaymentagentCreateResponse.fromJson(Map<String, dynamic> json) =>
+      PaymentagentCreateResponse(
         echoReq: json['echo_req'] as Map<String, dynamic>,
         error: json['error'] as Map<String, dynamic>,
         msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
       );
 
-  /// Available payout currencies. Note: if a user is logged in, only the currency available for the account will be returned.
-  final List<String> payoutCurrencies;
-
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'payout_currencies': payoutCurrencies,
         'echo_req': echoReq,
         'error': error,
         'msg_type': msgType,
@@ -46,15 +38,13 @@ class PayoutCurrenciesResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  PayoutCurrenciesResponse copyWith({
-    List<String> payoutCurrencies,
+  PaymentagentCreateResponse copyWith({
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      PayoutCurrenciesResponse(
-        payoutCurrencies: payoutCurrencies ?? this.payoutCurrencies,
+      PaymentagentCreateResponse(
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
         msgType: msgType ?? this.msgType,

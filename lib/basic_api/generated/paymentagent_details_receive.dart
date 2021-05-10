@@ -1,13 +1,13 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/payout_currencies_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_details_receive.json
 // ignore_for_file: avoid_as
 
 import '../response.dart';
 
-/// Payout currencies response class
-class PayoutCurrenciesResponse extends Response {
-  /// Initialize PayoutCurrenciesResponse
-  const PayoutCurrenciesResponse({
-    this.payoutCurrencies,
+/// Paymentagent details response class
+class PaymentagentDetailsResponse extends Response {
+  /// Initialize PaymentagentDetailsResponse
+  const PaymentagentDetailsResponse({
+    this.paymentagentDetails,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
@@ -20,24 +20,23 @@ class PayoutCurrenciesResponse extends Response {
         );
 
   /// Creates an instance from JSON
-  factory PayoutCurrenciesResponse.fromJson(Map<String, dynamic> json) =>
-      PayoutCurrenciesResponse(
-        payoutCurrencies: (json['payout_currencies'] as List<dynamic>)
-            ?.map<String>((dynamic item) => item as String)
-            .toList(),
+  factory PaymentagentDetailsResponse.fromJson(Map<String, dynamic> json) =>
+      PaymentagentDetailsResponse(
+        paymentagentDetails:
+            json['paymentagent_details'] as Map<String, dynamic>,
         echoReq: json['echo_req'] as Map<String, dynamic>,
         error: json['error'] as Map<String, dynamic>,
         msgType: json['msg_type'] as String,
         reqId: json['req_id'] as int,
       );
 
-  /// Available payout currencies. Note: if a user is logged in, only the currency available for the account will be returned.
-  final List<String> payoutCurrencies;
+  /// The payment agent details.
+  final Map<String, dynamic> paymentagentDetails;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'payout_currencies': payoutCurrencies,
+        'paymentagent_details': paymentagentDetails,
         'echo_req': echoReq,
         'error': error,
         'msg_type': msgType,
@@ -46,15 +45,15 @@ class PayoutCurrenciesResponse extends Response {
 
   /// Creates a copy of instance with given parameters
   @override
-  PayoutCurrenciesResponse copyWith({
-    List<String> payoutCurrencies,
+  PaymentagentDetailsResponse copyWith({
+    Map<String, dynamic> paymentagentDetails,
     Map<String, dynamic> echoReq,
     Map<String, dynamic> error,
     String msgType,
     int reqId,
   }) =>
-      PayoutCurrenciesResponse(
-        payoutCurrencies: payoutCurrencies ?? this.payoutCurrencies,
+      PaymentagentDetailsResponse(
+        paymentagentDetails: paymentagentDetails ?? this.paymentagentDetails,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
         msgType: msgType ?? this.msgType,

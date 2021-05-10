@@ -1,8 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/profit_table_send.json
 // ignore_for_file: avoid_as
-
 import 'package:meta/meta.dart';
-
 import '../request.dart';
 
 /// Profit table request class
@@ -30,7 +28,7 @@ class ProfitTableRequest extends Request {
       ProfitTableRequest(
         contractType: (json['contract_type'] as List<dynamic>)
             ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
+            .toList(),
         dateFrom: json['date_from'] as String,
         dateTo: json['date_to'] as String,
         description:

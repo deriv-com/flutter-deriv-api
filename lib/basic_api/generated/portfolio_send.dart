@@ -1,8 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/portfolio_send.json
 // ignore_for_file: avoid_as
-
 import 'package:meta/meta.dart';
-
 import '../request.dart';
 
 /// Portfolio request class
@@ -24,7 +22,7 @@ class PortfolioRequest extends Request {
       PortfolioRequest(
         contractType: (json['contract_type'] as List<dynamic>)
             ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
+            .toList(),
         portfolio: json['portfolio'] == null ? null : json['portfolio'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,

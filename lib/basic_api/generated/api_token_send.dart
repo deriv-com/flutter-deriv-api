@@ -28,7 +28,7 @@ class ApiTokenRequest extends Request {
         newToken: json['new_token'] as String,
         newTokenScopes: (json['new_token_scopes'] as List<dynamic>)
             ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
+            .toList(),
         validForCurrentIpOnly: json['valid_for_current_ip_only'] == null
             ? null
             : json['valid_for_current_ip_only'] == 1,

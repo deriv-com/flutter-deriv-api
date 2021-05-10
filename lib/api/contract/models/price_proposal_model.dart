@@ -9,6 +9,7 @@ abstract class PriceProposalModel extends APIBaseModel {
     this.askPrice,
     this.cancellation,
     this.commission,
+    this.dateExpiry,
     this.dateStart,
     this.displayValue,
     this.id,
@@ -28,6 +29,9 @@ abstract class PriceProposalModel extends APIBaseModel {
 
   /// Commission changed in percentage (%).
   final double commission;
+
+  /// Expiry time in epoch for contract cancellation option.
+  final DateTime dateExpiry;
 
   /// The start date of the contract.
   final DateTime dateStart;

@@ -1,8 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_contract_for_multiple_accounts_send.json
 // ignore_for_file: avoid_as
-
 import 'package:meta/meta.dart';
-
 import '../request.dart';
 
 /// Buy contract for multiple accounts request class
@@ -31,7 +29,7 @@ class BuyContractForMultipleAccountsRequest extends Request {
         price: json['price'] as num,
         tokens: (json['tokens'] as List<dynamic>)
             ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
+            .toList(),
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );
