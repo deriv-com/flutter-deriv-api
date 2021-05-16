@@ -28,7 +28,7 @@ class TicksHistoryResponse extends Response {
         candles: (json['candles'] as List<dynamic>)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
-            .toList(),
+            ?.toList(),
         history: json['history'] as Map<String, dynamic>,
         pipSize: json['pip_size'] as num,
         subscription: json['subscription'] as Map<String, dynamic>,
