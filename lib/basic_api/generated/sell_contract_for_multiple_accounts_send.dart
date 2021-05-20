@@ -31,7 +31,7 @@ class SellContractForMultipleAccountsRequest extends Request {
         shortcode: json['shortcode'] as String,
         tokens: (json['tokens'] as List<dynamic>)
             ?.map<String>((dynamic item) => item as String)
-            .toList(),
+            ?.toList(),
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );

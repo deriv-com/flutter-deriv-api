@@ -33,7 +33,7 @@ class P2pAdvertUpdateRequest extends Request {
         paymentMethod: json['payment_method'] as String,
         paymentMethodIds: (json['payment_method_ids'] as List<dynamic>)
             ?.map<int>((dynamic item) => item as int)
-            .toList(),
+            ?.toList(),
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );

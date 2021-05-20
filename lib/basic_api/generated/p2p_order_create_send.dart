@@ -34,7 +34,7 @@ class P2pOrderCreateRequest extends Request {
         paymentInfo: json['payment_info'] as String,
         paymentMethodIds: (json['payment_method_ids'] as List<dynamic>)
             ?.map<int>((dynamic item) => item as int)
-            .toList(),
+            ?.toList(),
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,

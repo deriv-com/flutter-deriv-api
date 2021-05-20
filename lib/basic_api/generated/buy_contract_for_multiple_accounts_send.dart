@@ -29,7 +29,7 @@ class BuyContractForMultipleAccountsRequest extends Request {
         price: json['price'] as num,
         tokens: (json['tokens'] as List<dynamic>)
             ?.map<String>((dynamic item) => item as String)
-            .toList(),
+            ?.toList(),
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );

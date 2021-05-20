@@ -28,7 +28,7 @@ class ProfitTableRequest extends Request {
       ProfitTableRequest(
         contractType: (json['contract_type'] as List<dynamic>)
             ?.map<String>((dynamic item) => item as String)
-            .toList(),
+            ?.toList(),
         dateFrom: json['date_from'] as String,
         dateTo: json['date_to'] as String,
         description:

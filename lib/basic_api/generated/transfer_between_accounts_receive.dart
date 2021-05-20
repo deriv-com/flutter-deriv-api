@@ -29,7 +29,7 @@ class TransferBetweenAccountsResponse extends Response {
         accounts: (json['accounts'] as List<dynamic>)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
-            .toList(),
+            ?.toList(),
         clientToFullName: json['client_to_full_name'] as String,
         clientToLoginid: json['client_to_loginid'] as String,
         transactionId: json['transaction_id'] as int,

@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:build/build.dart';
+import 'package:dart_style/dart_style.dart';
 import 'package:json_schema/json_schema.dart';
 import 'package:recase/recase.dart';
-import 'package:dart_style/dart_style.dart';
 
 Builder apiBuilder(final BuilderOptions _) => APIBuilder();
 
@@ -161,6 +162,7 @@ class APIBuilder extends Builder {
         return '${_isFieldRequired(key, schemaType, property) ? '@required ' : ''} this.${ReCase(key).camelCase}';
       },
     ).join(', ');
+
     return fields.isEmpty ? result : '$result , ';
   }
 
@@ -276,7 +278,7 @@ class APIBuilder extends Builder {
                   : '''
                       $name: (json['$key'] as List<dynamic>)
                         ?.map<$arrayType>((dynamic item) => item as $arrayType)
-                        .toList(),
+                        ?.toList(),
                     ''';
             } else {
               return '$name: json[\'$key\'] as $type,';
@@ -342,6 +344,7 @@ class APIBuilder extends Builder {
     final Iterable<String> fields = properties.where((String key) =>
         !(requestCommonFields.containsKey(key) ||
             responseCommonFields.containsKey(key)));
+
     return StringBuffer(
       '''
           /// Creates a copy of instance with given parameters

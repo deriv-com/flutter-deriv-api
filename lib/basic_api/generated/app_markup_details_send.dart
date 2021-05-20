@@ -42,7 +42,7 @@ class AppMarkupDetailsRequest extends Request {
         sort: json['sort'] as String,
         sortFields: (json['sort_fields'] as List<dynamic>)
             ?.map<String>((dynamic item) => item as String)
-            .toList(),
+            ?.toList(),
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
       );

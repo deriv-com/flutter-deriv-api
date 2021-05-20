@@ -43,7 +43,7 @@ class PaymentagentCreateRequest extends Request {
         supportedPaymentMethods:
             (json['supported_payment_methods'] as List<dynamic>)
                 ?.map<String>((dynamic item) => item as String)
-                .toList(),
+                ?.toList(),
         url: json['url'] as String,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,

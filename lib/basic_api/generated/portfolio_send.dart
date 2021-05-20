@@ -22,7 +22,7 @@ class PortfolioRequest extends Request {
       PortfolioRequest(
         contractType: (json['contract_type'] as List<dynamic>)
             ?.map<String>((dynamic item) => item as String)
-            .toList(),
+            ?.toList(),
         portfolio: json['portfolio'] == null ? null : json['portfolio'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,

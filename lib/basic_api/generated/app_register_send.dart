@@ -39,7 +39,7 @@ class AppRegisterRequest extends Request {
         redirectUri: json['redirect_uri'] as String,
         scopes: (json['scopes'] as List<dynamic>)
             ?.map<String>((dynamic item) => item as String)
-            .toList(),
+            ?.toList(),
         verificationUri: json['verification_uri'] as String,
         passthrough: json['passthrough'] as Map<String, dynamic>,
         reqId: json['req_id'] as int,
