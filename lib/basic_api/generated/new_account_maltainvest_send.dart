@@ -1,8 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_maltainvest_send.json
 // ignore_for_file: avoid_as
-
 import 'package:meta/meta.dart';
-
 import '../request.dart';
 
 /// New account maltainvest request class
@@ -204,7 +202,7 @@ class NewAccountMaltainvestRequest extends Request {
   /// [Optional] Trading frequency in other financial instruments.
   final String otherInstrumentsTradingFrequency;
 
-  /// [Optional] Starting with `+` followed by 8-35 digits, allowing hyphens or space.
+  /// [Optional] Starting with `+` followed by 9-35 digits, hyphens or space.
   final String phone;
 
   /// [Optional] Place of birth, 2-letter country code.

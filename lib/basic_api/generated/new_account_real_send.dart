@@ -1,8 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_send.json
 // ignore_for_file: avoid_as
-
 import 'package:meta/meta.dart';
-
 import '../request.dart';
 
 /// New account real request class
@@ -122,7 +120,7 @@ class NewAccountRealRequest extends Request {
   /// [Optional] Indicates client's self-declaration of not being a PEP/RCA (Politically Exposed Person/Relatives and Close Associates).
   final int nonPepDeclaration;
 
-  /// [Optional] Starting with `+` followed by 8-35 digits, allowing hyphens or space.
+  /// [Optional] Starting with `+` followed by 9-35 digits, hyphens or space.
   final String phone;
 
   /// [Optional] Place of birth, 2-letter country code.

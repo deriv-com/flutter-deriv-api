@@ -26,6 +26,7 @@ class PriceProposal extends PriceProposalModel {
     double askPrice,
     CancellationInfoModel cancellation,
     double commission,
+    DateTime dateExpiry,
     DateTime dateStart,
     String displayValue,
     String id,
@@ -40,6 +41,7 @@ class PriceProposal extends PriceProposalModel {
           askPrice: askPrice,
           cancellation: cancellation,
           commission: commission,
+          dateExpiry: dateExpiry,
           dateStart: dateStart,
           displayValue: displayValue,
           id: id,
@@ -64,6 +66,7 @@ class PriceProposal extends PriceProposalModel {
               CancellationInfoModel.fromJson(item),
         ),
         commission: json['commission']?.toDouble(),
+        dateExpiry: getDateTime(json['date_expiry']),
         dateStart: getDateTime(json['date_start']),
         displayValue: json['display_value'],
         id: json['id'],
@@ -84,6 +87,7 @@ class PriceProposal extends PriceProposalModel {
         'ask_price': askPrice,
         'cancellation': cancellation.toJson(),
         'commission': commission,
+        'date_expiry': dateExpiry,
         'date_start': dateStart,
         'id': id,
         'limit_order': limitOrder.toJson(),
@@ -204,6 +208,7 @@ class PriceProposal extends PriceProposalModel {
     double askPrice,
     CancellationInfoModel cancellation,
     double commission,
+    DateTime dateExpiry,
     int dateStart,
     String displayValue,
     String id,
@@ -218,6 +223,7 @@ class PriceProposal extends PriceProposalModel {
         askPrice: askPrice ?? this.askPrice,
         cancellation: cancellation ?? this.cancellation,
         commission: commission ?? this.commission,
+        dateExpiry: dateExpiry ?? this.dateExpiry,
         dateStart: dateStart ?? this.dateStart,
         displayValue: displayValue ?? this.displayValue,
         id: id ?? this.id,
@@ -234,6 +240,7 @@ class PriceProposal extends PriceProposalModel {
       other is PriceProposal &&
       other.askPrice == askPrice &&
       other.commission == commission &&
+      other.dateExpiry == dateExpiry &&
       other.multiplier == multiplier &&
       other.cancellation == cancellation &&
       other.id == id &&

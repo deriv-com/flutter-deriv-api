@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:build/build.dart';
-import 'package:recase/recase.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:json_schema/json_schema.dart';
+import 'package:recase/recase.dart';
 
 Builder apiBuilder(final BuilderOptions _) => APIBuilder();
 
@@ -107,25 +108,20 @@ class APIBuilder extends Builder {
           '''
             /// Generated automatically from ${buildStep.inputId}
             // ignore_for_file: avoid_as
-
             ${_hasRequiredField(methodName, schema, schemaType, properties) ? 'import \'package:meta/meta.dart\';' : ''}
-
             import '../${schemaType == 'send' ? 'request' : 'response'}.dart';
-
             /// ${ReCase(classFullName).sentenceCase} class
             class $classFullName extends ${schemaType == 'send' ? 'Request' : 'Response'} {
               /// Initialize $classFullName
               const $classFullName({
-                  ${_getConstructorParameters(methodName, schema, schemaType, properties)},
+                  ${_getConstructorParameters(methodName, schema, schemaType, properties)}
                   ${_getSuperClassParameters(schemaType)},
                 }): super(${_getSuperClassCallParameters(schemaType, methodName)},);
               
               ${_getFromJsonMethod(classFullName, schemaType, schema, properties)}
               
               ${_getProperties(schema, properties)}
-
               ${_getToJsonMethod(schemaType, schema, properties)}
-
               ${_getCopyWithMethod(schema, schemaType, classFullName, properties)}
               
               /// Override equatable class
@@ -145,26 +141,30 @@ class APIBuilder extends Builder {
     JsonSchema schema,
     String schemaType,
     List<String> properties,
-  ) =>
-      properties
-          .where((String key) => !(requestCommonFields.containsKey(key) ||
-              responseCommonFields.containsKey(key)))
-          .map(
-        (String key) {
-          final JsonSchema property = schema.properties[key];
+  ) {
+    final Iterable<String> fields = properties.where((String key) =>
+        !(requestCommonFields.containsKey(key) ||
+            responseCommonFields.containsKey(key)));
 
-          if (property.typeList?.isNotEmpty ?? false) {
-            // Set method default value to `true`
-            if (schemaType == 'send' &&
-                key == methodName &&
-                _getPropertyType(key, property) == 'bool') {
-              return 'this.${ReCase(key).camelCase} = true';
-            }
+    final String result = fields.map(
+      (String key) {
+        final JsonSchema property = schema.properties[key];
+
+        if (property.typeList?.isNotEmpty ?? false) {
+          // Set method default value to `true`
+          if (schemaType == 'send' &&
+              key == methodName &&
+              _getPropertyType(key, property) == 'bool') {
+            return 'this.${ReCase(key).camelCase} = true';
           }
+        }
 
-          return '${_isFieldRequired(key, schemaType, property) ? '@required ' : ''} this.${ReCase(key).camelCase}';
-        },
-      ).join(', ');
+        return '${_isFieldRequired(key, schemaType, property) ? '@required ' : ''} this.${ReCase(key).camelCase}';
+      },
+    ).join(', ');
+
+    return fields.isEmpty ? result : '$result , ';
+  }
 
   static String _getProperties(
     JsonSchema schema,
@@ -181,7 +181,7 @@ class APIBuilder extends Builder {
 
           return '''
             /// ${_preparePropertyDescription(type == 'bool', property.description)}
-            final ${type ?? 'unknown'} ${name ?? 'unknown'};
+            final ${type ?? 'dynamic'} $name;
           ''';
         },
       ).join('\n');
@@ -230,11 +230,13 @@ class APIBuilder extends Builder {
   static String _getPropertySchemaType(String key, JsonSchema property) =>
       property.typeList?.length == 2
           ? property.typeList.first.toString() != 'null'
-              ? property.typeList.first.toString() ?? 'undefined'
-              : property.typeList.last.toString() ?? 'undefined'
+              ? property.typeList.first.toString()
+              : property.typeList.last.toString()
           : property.type?.toString() == null
               ? 'undefined'
-              : _isBoolean(key, property) ? 'bool' : property.type?.toString();
+              : _isBoolean(key, property)
+                  ? 'bool'
+                  : property.type?.toString();
 
   static bool _isBoolean(String key, JsonSchema property) =>
       key == 'subscribe' ||
@@ -338,42 +340,42 @@ class APIBuilder extends Builder {
     String schemaType,
     String classFullName,
     List<String> properties,
-  ) =>
-      StringBuffer(
-        '''
+  ) {
+    final Iterable<String> fields = properties.where((String key) =>
+        !(requestCommonFields.containsKey(key) ||
+            responseCommonFields.containsKey(key)));
+
+    return StringBuffer(
+      '''
           /// Creates a copy of instance with given parameters
             @override
             $classFullName copyWith({
         ''',
-      )
-        ..write(
-          properties
-              .where((String key) => !(requestCommonFields.containsKey(key) ||
-                  responseCommonFields.containsKey(key)))
-              .map(
-            (String key) {
-              final String name = ReCase(key).camelCase;
-              final JsonSchema property = schema.properties[key];
-              final String type = _getPropertyType(key, property);
+    )
+      ..write(
+        fields.map(
+          (String key) {
+            final String name = ReCase(key).camelCase;
+            final JsonSchema property = schema.properties[key];
+            final String type = _getPropertyType(key, property);
 
-              return '$type $name';
-            },
-          ).join(', '),
-        )
-        ..write(
-            ', ${_getSuperClassParameters(schemaType)},}) => $classFullName (')
-        ..write(
-          properties
-              .where((String key) => !(requestCommonFields.containsKey(key) ||
-                  responseCommonFields.containsKey(key)))
-              .map(
-            (String key) {
-              final String name = ReCase(key).camelCase;
-              return '$name: $name ?? this.$name';
-            },
-          ).join(', '),
-        )
-        ..write(', ${_getSupperClassAssignments(schemaType)},);');
+            return '$type $name';
+          },
+        ).join(', '),
+      )
+      ..write(fields.isEmpty ? '' : ', ')
+      ..write('${_getSuperClassParameters(schemaType)},}) => $classFullName (')
+      ..write(
+        fields.map(
+          (String key) {
+            final String name = ReCase(key).camelCase;
+            return '$name: $name ?? this.$name';
+          },
+        ).join(', '),
+      )
+      ..write(fields.isEmpty ? '' : ', ')
+      ..write('${_getSupperClassAssignments(schemaType)},);');
+  }
 
   static String _getSuperClassParameters(String schemaType) {
     final Map<String, String> superClassFields =
