@@ -31,7 +31,7 @@ abstract class PriceProposalModel extends APIBaseModel {
   final double? commission;
 
   /// Expiry time in epoch for contract cancellation option.
-  final DateTime dateExpiry;
+  final DateTime? dateExpiry;
 
   /// The start date of the contract.
   final DateTime? dateStart;
