@@ -65,7 +65,7 @@ class DocumentUploadRequest extends Request {
   final int? fileSize;
 
   /// [Optional] Boolean value that indicates whether this document is lifetime valid (only applies to POI document types, cancels out the expiration_date given if any)
-  final bool lifetimeValid;
+  final bool? lifetimeValid;
 
   /// [Optional] To determine document side
   final String? pageType;
@@ -86,7 +86,7 @@ class DocumentUploadRequest extends Request {
         'file_size': fileSize,
         'lifetime_valid': lifetimeValid == null
             ? null
-            : lifetimeValid
+            : lifetimeValid!
                 ? 1
                 : 0,
         'page_type': pageType,

@@ -31,9 +31,9 @@ class P2pAdvertUpdateRequest extends Request {
             ? null
             : json['p2p_advert_update'] == 1,
         paymentMethod: json['payment_method'] as String?,
-        paymentMethodIds: (json['payment_method_ids'] as List<dynamic>)?
-            ?.map<int>((dynamic item) => item as int)
-            ?.toList(),
+        paymentMethodIds: (json['payment_method_ids'] as List<dynamic>)
+            .map<int>((dynamic item) => item as int)
+            .toList(),
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -51,10 +51,10 @@ class P2pAdvertUpdateRequest extends Request {
   final bool? p2pAdvertUpdate;
 
   /// [Optional] Supported payment methods. Separate multiple values with a comma, maximum 3.
-  final String paymentMethod;
+  final String? paymentMethod;
 
   /// [Optional] IDs of payment methods, only applicable for sell ads. Will replace exisiting methods.
-  final List<int> paymentMethodIds;
+  final List<int>? paymentMethodIds;
 
   /// Converts this instance to JSON
   @override

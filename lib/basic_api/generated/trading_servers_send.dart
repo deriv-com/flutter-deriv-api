@@ -43,9 +43,6 @@ class TradingServersRequest extends Request {
   /// [Optional] Market type.
   final String? marketType;
 
-  /// [Optional] Market type.
-  final String marketType;
-
   /// [Optional] Pass the trading platform name, default to mt5
   final String? platform;
 

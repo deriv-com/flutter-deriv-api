@@ -39,9 +39,9 @@ class P2pAdvertListRequest extends Request {
         p2pAdvertList: json['p2p_advert_list'] == null
             ? null
             : json['p2p_advert_list'] == 1,
-        paymentMethod: (json['payment_method'] as List<dynamic>)?
-            ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
+        paymentMethod: (json['payment_method'] as List<dynamic>)
+            .map<String>((dynamic item) => item as String)
+            .toList(),
         sortBy: json['sort_by'] as String?,
         useClientLimits: json['use_client_limits'] == null
             ? null
@@ -75,7 +75,7 @@ class P2pAdvertListRequest extends Request {
   final bool? p2pAdvertList;
 
   /// [Optional] Search by supported payment methods.
-  final List<String> paymentMethod;
+  final List<String>? paymentMethod;
 
   /// [Optional] How the results are sorted: best rate, or advertiser completion rate.
   final String? sortBy;
