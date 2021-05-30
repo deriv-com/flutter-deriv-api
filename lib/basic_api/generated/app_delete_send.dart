@@ -1,8 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_delete_send.json
 // ignore_for_file: avoid_as
-
 import 'package:meta/meta.dart';
-
 import '../request.dart';
 
 /// App delete request class

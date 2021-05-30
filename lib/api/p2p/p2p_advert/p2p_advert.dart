@@ -318,6 +318,7 @@ class P2PAdvert extends P2PAdvertModel {
           amount: amount,
           contactInfo: contactInfo,
           paymentInfo: paymentInfo,
+          paymentMethodIds: const <int>[1, 2, 3],
         ),
       );
 }

@@ -1,8 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_create_send.json
 // ignore_for_file: avoid_as
-
 import 'package:meta/meta.dart';
-
 import '../request.dart';
 
 /// P2p advertiser create request class

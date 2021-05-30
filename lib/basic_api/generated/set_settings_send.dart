@@ -121,6 +121,9 @@ class SetSettingsRequest extends Request {
   /// [Optional] User's preferred language, ISO standard language code
   final String? preferredLanguage;
 
+  /// [Optional] User's preferred language, ISO standard language code
+  final String preferredLanguage;
+
   /// [Optional] Required when client wants to be treated as professional. Applicable for financial accounts only.
   final int? requestProfessionalStatus;
 

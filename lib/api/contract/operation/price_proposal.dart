@@ -26,6 +26,7 @@ class PriceProposal extends PriceProposalModel {
     double? askPrice,
     CancellationInfoModel? cancellation,
     double? commission,
+    DateTime? dateExpiry,
     DateTime? dateStart,
     String? displayValue,
     String? id,
@@ -40,6 +41,7 @@ class PriceProposal extends PriceProposalModel {
           askPrice: askPrice,
           cancellation: cancellation,
           commission: commission,
+          dateExpiry: dateExpiry,
           dateStart: dateStart,
           displayValue: displayValue,
           id: id,
@@ -64,6 +66,7 @@ class PriceProposal extends PriceProposalModel {
               CancellationInfoModel.fromJson(item),
         ),
         commission: json['commission']?.toDouble(),
+        dateExpiry: getDateTime(json['date_expiry']),
         dateStart: getDateTime(json['date_start']),
         displayValue: json['display_value'],
         id: json['id'],
@@ -84,6 +87,7 @@ class PriceProposal extends PriceProposalModel {
         'ask_price': askPrice,
         'cancellation': cancellation!.toJson(),
         'commission': commission,
+        'date_expiry': dateExpiry,
         'date_start': dateStart,
         'id': id,
         'limit_order': limitOrder!.toJson(),
@@ -206,6 +210,7 @@ class PriceProposal extends PriceProposalModel {
     CancellationInfoModel? cancellation,
     double? commission,
     int? dateStart,
+    DateTime? dateExpiry,
     String? displayValue,
     String? id,
     LimitOrderModel? limitOrder,
@@ -220,6 +225,7 @@ class PriceProposal extends PriceProposalModel {
         cancellation: cancellation ?? this.cancellation,
         commission: commission ?? this.commission,
         dateStart: getDateTime(dateStart) ?? this.dateStart,
+        dateExpiry: dateExpiry ?? this.dateExpiry,
         displayValue: displayValue ?? this.displayValue,
         id: id ?? this.id,
         limitOrder: limitOrder ?? this.limitOrder,
@@ -235,6 +241,7 @@ class PriceProposal extends PriceProposalModel {
       other is PriceProposal &&
       other.askPrice == askPrice &&
       other.commission == commission &&
+      other.dateExpiry == dateExpiry &&
       other.multiplier == multiplier &&
       other.cancellation == cancellation &&
       other.id == id &&

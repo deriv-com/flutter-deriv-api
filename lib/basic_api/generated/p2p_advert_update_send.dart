@@ -1,8 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_update_send.json
 // ignore_for_file: avoid_as
-
 import 'package:meta/meta.dart';
-
 import '../request.dart';
 
 /// P2p advert update request class
@@ -13,6 +11,8 @@ class P2pAdvertUpdateRequest extends Request {
     @required this.id,
     this.isActive,
     this.p2pAdvertUpdate = true,
+    this.paymentMethod,
+    this.paymentMethodIds,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -30,6 +30,10 @@ class P2pAdvertUpdateRequest extends Request {
         p2pAdvertUpdate: json['p2p_advert_update'] == null
             ? null
             : json['p2p_advert_update'] == 1,
+        paymentMethod: json['payment_method'] as String?,
+        paymentMethodIds: (json['payment_method_ids'] as List<dynamic>)?
+            ?.map<int>((dynamic item) => item as int)
+            ?.toList(),
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -45,6 +49,12 @@ class P2pAdvertUpdateRequest extends Request {
 
   /// Must be `true`
   final bool? p2pAdvertUpdate;
+
+  /// [Optional] Supported payment methods. Separate multiple values with a comma, maximum 3.
+  final String paymentMethod;
+
+  /// [Optional] IDs of payment methods, only applicable for sell ads. Will replace exisiting methods.
+  final List<int> paymentMethodIds;
 
   /// Converts this instance to JSON
   @override
@@ -65,6 +75,8 @@ class P2pAdvertUpdateRequest extends Request {
             : p2pAdvertUpdate!
                 ? 1
                 : 0,
+        'payment_method': paymentMethod,
+        'payment_method_ids': paymentMethodIds,
         'passthrough': passthrough,
         'req_id': reqId,
       };
@@ -76,6 +88,8 @@ class P2pAdvertUpdateRequest extends Request {
     String? id,
     bool? isActive,
     bool? p2pAdvertUpdate,
+    String? paymentMethod,
+    List<int>? paymentMethodIds,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
@@ -84,6 +98,8 @@ class P2pAdvertUpdateRequest extends Request {
         id: id ?? this.id,
         isActive: isActive ?? this.isActive,
         p2pAdvertUpdate: p2pAdvertUpdate ?? this.p2pAdvertUpdate,
+        paymentMethod: paymentMethod ?? this.paymentMethod,
+        paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );

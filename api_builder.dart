@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:build/build.dart';
 import 'package:json_schema2/json_schema2.dart';
 import 'package:recase/recase.dart';
@@ -114,11 +115,8 @@ class APIBuilder extends Builder {
           '''
             /// Generated automatically from ${buildStep.inputId}
             // ignore_for_file: avoid_as
-
             ${_hasRequiredField(methodName, schema, schemaType, properties) ? 'import \'package:meta/meta.dart\';' : ''}
-
             import '../${schemaType == 'send' ? 'request' : 'response'}.dart';
-
             /// ${ReCase(classFullName).sentenceCase} class
             class $classFullName extends ${schemaType == 'send' ? 'Request' : 'Response'} {
               /// Initialize $classFullName
@@ -130,9 +128,7 @@ class APIBuilder extends Builder {
               ${_getFromJsonMethod(classFullName, schemaType, schema, properties)}
               
               ${_getProperties(schema, properties)}
-
               ${_getToJsonMethod(schemaType, schema, properties)}
-
               ${_getCopyWithMethod(schema, schemaType, classFullName, properties)}
               
               /// Override equatable class
