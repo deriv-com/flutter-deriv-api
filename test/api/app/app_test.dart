@@ -43,20 +43,20 @@ void main() {
 
       expect(appList!.length, 1);
 
-      final App app = appList.first!;
+      final App firstApp = appList.first!;
 
-      expect(app.appId, 1234);
-      expect(app.appMarkupPercentage, 22.0);
-      expect(app.appstore, 'https://itunes.apple.com/test_app');
-      expect(app.github, 'https://github.com/test_org/app');
+      expect(firstApp.appId, 1234);
+      expect(firstApp.appMarkupPercentage, 22.0);
+      expect(firstApp.appstore, 'https://itunes.apple.com/test_app');
+      expect(firstApp.github, 'https://github.com/test_org/app');
       expect(
-        app.googleplay,
+        firstApp.googleplay,
         'https://play.google.com/store/apps/details?id=test.app',
       );
-      expect(app.homepage, 'https://test.example.com/');
-      expect(app.name, 'Test Application');
-      expect(app.redirectUri, 'https://test.example.com/redirect');
-      expect(app.verificationUri, 'https://test.example.com/verify');
+      expect(firstApp.homepage, 'https://test.example.com/');
+      expect(firstApp.name, 'Test Application');
+      expect(firstApp.redirectUri, 'https://test.example.com/redirect');
+      expect(firstApp.verificationUri, 'https://test.example.com/verify');
     });
 
     test('Fetch Markup Details Test', () async {
@@ -74,20 +74,20 @@ void main() {
 
       expect(appMarkupDetails.transactions!.length, 1);
 
-      final AppTransactionModel transaction =
+      final AppTransactionModel firstTransaction =
           appMarkupDetails.transactions!.first!;
 
-      expect(transaction.appId, 1234);
-      expect(transaction.appMarkup, 15.0);
-      expect(transaction.appMarkupUsd, 25.0);
-      expect(transaction.appMarkupValue, 12.0);
-      expect(transaction.clientCurrencyCode, 'USD');
-      expect(transaction.clientLoginId, 'CR12345');
-      expect(transaction.devCurrencyCode, 'USD');
-      expect(transaction.devLoginId, 'CR45627');
-      expect(transaction.transactionId, 10867502908);
+      expect(firstTransaction.appId, 1234);
+      expect(firstTransaction.appMarkup, 15.0);
+      expect(firstTransaction.appMarkupUsd, 25.0);
+      expect(firstTransaction.appMarkupValue, 12.0);
+      expect(firstTransaction.clientCurrencyCode, 'USD');
+      expect(firstTransaction.clientLoginId, 'CR12345');
+      expect(firstTransaction.devCurrencyCode, 'USD');
+      expect(firstTransaction.devLoginId, 'CR45627');
+      expect(firstTransaction.transactionId, 10867502908);
       expect(
-        transaction.transactionTime,
+        firstTransaction.transactionTime,
         getDateTime(1587544006),
       );
     });

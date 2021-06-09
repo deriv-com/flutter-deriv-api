@@ -11,12 +11,12 @@ void main() {
 
     expect(oauthApps!.length, 2);
 
-    final OauthApp app = oauthApps.first!;
+    final OauthApp firstOauthApp = oauthApps.first!;
 
-    expect(app.name, 'Binary Static localhost for dev');
-    expect(app.appId, 1159);
-    expect(app.appMarkupPercentage, 0);
-    expect(app.scopes!.length, 4);
-    expect(app.lastUsed, DateTime.tryParse('2019-10-13 07:11:29'));
+    expect(firstOauthApp.name, 'Binary Static localhost for dev');
+    expect(firstOauthApp.appId, 1159);
+    expect(firstOauthApp.appMarkupPercentage, 0);
+    expect(firstOauthApp.scopes!.length, 4);
+    expect(firstOauthApp.lastUsed, DateTime.tryParse('2019-10-13 07:11:29'));
   });
 }

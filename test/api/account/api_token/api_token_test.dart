@@ -18,30 +18,29 @@ void main() {
         ],
         validForCurrentIPOnly: false,
       );
+
       final List<TokenModel?> tokens = createAPIToken.tokens!;
-      final TokenModel token = tokens.first!;
-      final List<TokenScope?> scopes = token.scopes!;
+      final TokenModel firstToken = tokens.first!;
+      final List<TokenScope?> scopes = firstToken.scopes!;
 
       expect(createAPIToken.newToken, true);
-
+      
       expect(tokens.length, 1);
-
-      expect(token.displayName, 'sample token');
+      expect(firstToken.displayName, 'sample token');
       expect(
-        token.lastUsed,
+        firstToken.lastUsed,
         DateTime.tryParse('2020-01-11'),
       );
 
       expect(scopes.length, 2);
-
       expect(scopes.first, TokenScope.read);
       expect(
         scopes[1],
         TokenScope.tradingInformation,
       );
 
-      expect(token.token, 'thisIsASampleTOKEN123');
-      expect(token.validForIp, '178.32.12.45');
+      expect(firstToken.token, 'thisIsASampleTOKEN123');
+      expect(firstToken.validForIp, '178.32.12.45');
     });
 
     test('Delete Token Test', () async {

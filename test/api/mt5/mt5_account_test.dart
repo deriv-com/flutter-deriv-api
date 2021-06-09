@@ -48,19 +48,20 @@ void main() {
       final List<MT5Account?>? mt5LoginList = await MT5Account.fetchLoginList(
         const Mt5LoginListRequest(),
       );
-      final MT5Account mt5Account = mt5LoginList!.first!;
+
+      final MT5Account firstMT5Account = mt5LoginList!.first!;
 
       expect(mt5LoginList.length, 1);
 
-      expect(mt5Account.balance, 350.0);
-      expect(mt5Account.country, 'India');
-      expect(mt5Account.currency, 'USD');
-      expect(mt5Account.displayBalance, '350.0');
-      expect(mt5Account.email, 'test@example.com');
-      expect(mt5Account.group, 'svg_standard');
-      expect(mt5Account.leverage, 100);
-      expect(mt5Account.login, 'MT346525');
-      expect(mt5Account.name, 'Jon Doe');
+      expect(firstMT5Account.balance, 350.0);
+      expect(firstMT5Account.country, 'India');
+      expect(firstMT5Account.currency, 'USD');
+      expect(firstMT5Account.displayBalance, '350.0');
+      expect(firstMT5Account.email, 'test@example.com');
+      expect(firstMT5Account.group, 'svg_standard');
+      expect(firstMT5Account.leverage, 100);
+      expect(firstMT5Account.login, 'MT346525');
+      expect(firstMT5Account.name, 'Jon Doe');
     });
 
     test('MT5 Deposit Test', () async {

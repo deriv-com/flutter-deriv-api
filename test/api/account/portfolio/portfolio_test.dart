@@ -14,17 +14,18 @@ void main() {
     final Portfolio portfolio = await Portfolio.fetchPortfolio(
       const PortfolioRequest(),
     );
-    final PortfolioContractModel contract = portfolio.contracts!.first!;
 
-    expect(contract.currency, 'USD');
-    expect(contract.payout, 10.88);
-    expect(contract.symbol, '1HZ50V');
-    expect(contract.transactionId, 160058875308);
-    expect(contract.contractId, 98350591008);
-    expect(contract.contractType, ContractType.multUp);
-    expect(contract.purchaseTime, getDateTime(1587634074));
-    expect(contract.expiryTime, getDateTime(1587761700));
-    expect(contract.expiryTime, getDateTime(1587761700));
-    expect(contract.buyPrice, 10.52);
+    final PortfolioContractModel firstContract = portfolio.contracts!.first!;
+
+    expect(firstContract.currency, 'USD');
+    expect(firstContract.payout, 10.88);
+    expect(firstContract.symbol, '1HZ50V');
+    expect(firstContract.transactionId, 160058875308);
+    expect(firstContract.contractId, 98350591008);
+    expect(firstContract.contractType, ContractType.multUp);
+    expect(firstContract.purchaseTime, getDateTime(1587634074));
+    expect(firstContract.expiryTime, getDateTime(1587761700));
+    expect(firstContract.expiryTime, getDateTime(1587761700));
+    expect(firstContract.buyPrice, 10.52);
   });
 }

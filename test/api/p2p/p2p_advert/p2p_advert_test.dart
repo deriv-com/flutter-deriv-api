@@ -49,40 +49,41 @@ void main() {
       final List<P2PAdvert?>? adverts = await P2PAdvert.fetchAdvertList(
         const P2pAdvertListRequest(counterpartyType: 'sell'),
       );
-      final P2PAdvert advert = adverts!.first!;
+
+      final P2PAdvert firstAdvert = adverts!.first!;
       final P2PAdvertiserDetailsModel advertiserDetails =
-          advert.advertiserDetails!;
+          firstAdvert.advertiserDetails!;
 
       expect(adverts.length, 2);
 
-      expect(advert.accountCurrency, 'USD');
+      expect(firstAdvert.accountCurrency, 'USD');
 
-      expect(advert.advertiserDetails!.id, '6');
+      expect(firstAdvert.advertiserDetails!.id, '6');
       expect(
         advertiserDetails.name,
         'advertiser CR90000018',
       );
 
-      expect(advert.counterpartyType, TransactionType.sell);
-      expect(advert.country, 'za');
-      expect(advert.createdTime, getDateTime(1589270475));
+      expect(firstAdvert.counterpartyType, TransactionType.sell);
+      expect(firstAdvert.country, 'za');
+      expect(firstAdvert.createdTime, getDateTime(1589270475));
       expect(
-        advert.description,
+        firstAdvert.description,
         'Please contact via whats app 1234',
       );
-      expect(advert.id, '7');
-      expect(advert.isActive, true);
-      expect(advert.localCurrency, 'ZAR');
-      expect(advert.maxOrderAmountLimit, 100);
-      expect(advert.maxOrderAmountLimitDisplay, '100.00');
-      expect(advert.minOrderAmountLimit, 10);
-      expect(advert.minOrderAmountLimitDisplay, '10.00');
-      expect(advert.paymentMethod, PaymentMethod.bankTransfer);
-      expect(advert.price, 14500);
-      expect(advert.priceDisplay, '14500.00');
-      expect(advert.rate, 14500);
-      expect(advert.rateDisplay, '14500.00');
-      expect(advert.type, TransactionType.buy);
+      expect(firstAdvert.id, '7');
+      expect(firstAdvert.isActive, true);
+      expect(firstAdvert.localCurrency, 'ZAR');
+      expect(firstAdvert.maxOrderAmountLimit, 100);
+      expect(firstAdvert.maxOrderAmountLimitDisplay, '100.00');
+      expect(firstAdvert.minOrderAmountLimit, 10);
+      expect(firstAdvert.minOrderAmountLimitDisplay, '10.00');
+      expect(firstAdvert.paymentMethod, PaymentMethod.bankTransfer);
+      expect(firstAdvert.price, 14500);
+      expect(firstAdvert.priceDisplay, '14500.00');
+      expect(firstAdvert.rate, 14500);
+      expect(firstAdvert.rateDisplay, '14500.00');
+      expect(firstAdvert.type, TransactionType.buy);
     });
 
     test('Create Advert Test', () async {

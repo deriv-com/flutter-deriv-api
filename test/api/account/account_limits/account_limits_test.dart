@@ -20,12 +20,12 @@ void main() {
     expect(accountLimits.withdrawalForXDaysMonetary, 0.0);
     expect(accountLimits.withdrawalSinceInceptionMonetary, 0.0);
 
-    final MarketLimitModel commoditiesLimit =
+    final MarketLimitModel firstCommoditiesLimit =
         accountLimits.marketSpecific!.first!.marketLimits!.first!;
 
-    expect(commoditiesLimit.name, 'Commodities');
-    expect(commoditiesLimit.payoutLimit, 5000.0);
-    expect(commoditiesLimit.profileName, 'moderate_risk');
-    expect(commoditiesLimit.turnoverLimit, 50000.0);
+    expect(firstCommoditiesLimit.name, 'Commodities');
+    expect(firstCommoditiesLimit.payoutLimit, 5000.0);
+    expect(firstCommoditiesLimit.profileName, 'moderate_risk');
+    expect(firstCommoditiesLimit.turnoverLimit, 50000.0);
   });
 }

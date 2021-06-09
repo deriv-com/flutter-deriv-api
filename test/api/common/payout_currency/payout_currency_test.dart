@@ -9,6 +9,7 @@ void main() {
   test('Fetch Payout Currencies Test', () async {
     final List<PayoutCurrency?>? currencies =
         await PayoutCurrency.fetchPayoutCurrencies();
+
     final PayoutCurrency firstCurrency = currencies!.first!;
 
     expect(currencies.length, 4);

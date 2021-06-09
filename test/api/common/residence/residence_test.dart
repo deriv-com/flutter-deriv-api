@@ -9,6 +9,7 @@ void main() {
   test('Fetch Residence List Test', () async {
     final List<Residence?>? residenceList =
         await Residence.fetchResidenceList();
+
     final Residence firstResidence = residenceList!.first!;
 
     expect(firstResidence.countryName, 'SampleCountry');

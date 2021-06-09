@@ -21,16 +21,14 @@ void main() {
       final List<CountryModel?> countries = paymentAgentList.countries!;
       final List<PaymentAgentModel?> paymentAgents =
           paymentAgentList.paymentAgents!;
+      final CountryModel firstCountry = countries.first!;
+      final PaymentAgentModel firstPaymentAgent = paymentAgents.first!;
 
       expect(countries.length, 2);
-
-      final CountryModel firstCountry = countries.first!;
       expect(firstCountry.code, 'id');
       expect(firstCountry.name, 'Indonesia');
 
       expect(paymentAgents.length, 2);
-
-      final PaymentAgentModel firstPaymentAgent = paymentAgents.first!;
       expect(firstPaymentAgent.currencies, 'USD');
       expect(firstPaymentAgent.depositCommission, '2');
       expect(firstPaymentAgent.email, 'payme_a@gmail.com');

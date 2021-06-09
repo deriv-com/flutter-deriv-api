@@ -17,6 +17,7 @@ void main() {
           account: 'all',
         ),
       );
+      
       final List<BalanceActiveAccountModel> accounts = balance.accounts!;
       final BalanceTotalModel total = balance.total!;
 

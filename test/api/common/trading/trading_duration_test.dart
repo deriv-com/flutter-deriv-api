@@ -17,9 +17,15 @@ void main() {
         await TradingDuration.fetchTradingDurations(
       const TradingDurationsRequest(),
     );
+
     final TradingDuration firstTradingDuration = tradeDuration!.first!;
     final MarketModel market = firstTradingDuration.market!;
     final SubmarketModel submarket = firstTradingDuration.submarket!;
+    final TradingDurationDataModel tradingDurationData =
+        tradeDuration.first!.tradingDurationData![1]!;
+    final SymbolModel symbol = tradingDurationData.symbols!.first!;
+    final DurationModel duration =
+        tradingDurationData.tradeDurations![6]!.durations!.first!;
 
     expect(tradeDuration.length, 2);
 
@@ -31,17 +37,8 @@ void main() {
 
     expect(firstTradingDuration.tradingDurationData!.length, 2);
 
-    final TradingDurationDataModel tradingDurationData =
-        tradeDuration.first!.tradingDurationData![1]!;
-
     expect(tradingDurationData.symbols!.length, 1);
-
-    final SymbolModel symbol = tradingDurationData.symbols!.first!;
-
     expect(tradingDurationData.tradeDurations!.length, 8);
-
-    final DurationModel duration =
-        tradingDurationData.tradeDurations![6]!.durations!.first!;
 
     expect(symbol.displayName, 'GBP/USD');
     expect(symbol.name, 'frxGBPUSD');

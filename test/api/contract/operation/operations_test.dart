@@ -179,6 +179,7 @@ void main() {
           limitOrder: <String, dynamic>{'stop_loss': 120, 'take_profit': 100.0},
         ),
       );
+
       final SpotPriceModel stopLoss = updateContract.stopLoss!;
       final SpotPriceModel takeProfit = updateContract.takeProfit!;
 

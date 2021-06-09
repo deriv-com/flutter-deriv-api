@@ -27,7 +27,7 @@ void main() {
     });
 
     test('Tick History Test', () async {
-      final TickHistory historyModel = await TickHistory.fetchTickHistory(
+      final TickHistory tickHistory = await TickHistory.fetchTickHistory(
         const TicksHistoryRequest(
           ticksHistory: 'R_50',
           adjustStartTime: 1,
@@ -37,11 +37,12 @@ void main() {
           style: 'ticks',
         ),
       );
+      
+      final List<double?> prices = tickHistory.history!.prices!;
+      final List<DateTime?> times = tickHistory.history!.times!;
 
-      expect(historyModel.pipSize, 4);
+      expect(tickHistory.pipSize, 4);
 
-      final List<double?> prices = historyModel.history!.prices!;
-      final List<DateTime?> times = historyModel.history!.times!;
       expect(prices.length, 6);
       expect(prices.first, 218.6404);
       expect(times.length, 6);

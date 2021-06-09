@@ -84,18 +84,18 @@ void main() {
     test('Login History Test', () async {
       final List<LoginHistory?>? loginHistories =
           await LoginHistory.fetchHistory();
-      final LoginHistory history = loginHistories!.first!;
-          
+
+      final LoginHistory firstHistory = loginHistories!.first!;
 
       expect(loginHistories.length, 2);
 
-      expect(history.action, LoginAction.login);
+      expect(firstHistory.action, LoginAction.login);
       expect(
-        history.environment,
+        firstHistory.environment,
         '27-Apr-20 10:44:02GMT IP=x.x.x.x IP_COUNTRY=x User_AGENT=Mozilla/5.0 (Linux; Android 9; AOSP on IA Emulator Build/PSR1.180720.117) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36 LANG=EN',
       );
-      expect(history.status, true);
-      expect(history.time, getDateTime(1587984243));
+      expect(firstHistory.status, true);
+      expect(firstHistory.time, getDateTime(1587984243));
     });
   });
 }

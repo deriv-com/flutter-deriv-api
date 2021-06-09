@@ -15,16 +15,16 @@ void main() {
 
     final List<AccountStatusCurrencyConfigModel?> currencyConfigs =
         accountStatus.currencyConfig!;
-    final AccountStatusCurrencyConfigModel exampleCurrencyConfig =
+    final AccountStatusCurrencyConfigModel firstCurrencyConfig =
         currencyConfigs.first!;
     final List<AccountStatusType?> statusTypes = accountStatus.status!;
     final AccountAuthenticationStatusModel authenticationStatus =
         accountStatus.authentication!;
 
     expect(currencyConfigs.length, 1);
-    expect(exampleCurrencyConfig.currency, 'USD');
-    expect(exampleCurrencyConfig.isDepositSuspended, false);
-    expect(exampleCurrencyConfig.isWithdrawalSuspended, false);
+    expect(firstCurrencyConfig.currency, 'USD');
+    expect(firstCurrencyConfig.isDepositSuspended, false);
+    expect(firstCurrencyConfig.isWithdrawalSuspended, false);
 
     expect(
       statusTypes.first,

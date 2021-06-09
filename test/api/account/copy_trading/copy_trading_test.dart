@@ -16,11 +16,12 @@ void main() {
   group('Copy Trading Group ->', () {
     test('Fetch Copy Trading List Test', () async {
       final CopyTradingList copyTradingList = await CopyTradingList.fetchList();
+
       final List<CopierModel?> copiers = copyTradingList.copiers!;
-      final CopierModel copier = copiers.first!;
+      final CopierModel firstCopier = copiers.first!;
 
       expect(copiers.length, 2);
-      expect(copier.loginId, 'C241542');
+      expect(firstCopier.loginId, 'C241542');
 
       final List<TraderModel?> traders = copyTradingList.traders!;
       final TraderModel trader = traders.first!;
@@ -37,10 +38,15 @@ void main() {
           await CopyTradingStatistics.fetchStatistics(
         const CopytradingStatisticsRequest(traderId: 'CR12345'),
       );
-      final List<MarketTradesBreakdownModel?> tradesBreakdown = copyTradingStatistic.tradesBreakdown!;
-      final MarketTradesBreakdownModel firstTradesBreakdown = tradesBreakdown.first!;
-      final List<ProfitableTradeModel?> yearlyProfitableTrades = copyTradingStatistic.yearlyProfitableTrades!;
-      final ProfitableTradeModel firstYearlyProfitableTrades = yearlyProfitableTrades.first!;
+      
+      final List<MarketTradesBreakdownModel?> tradesBreakdown =
+          copyTradingStatistic.tradesBreakdown!;
+      final MarketTradesBreakdownModel firstTradesBreakdown =
+          tradesBreakdown.first!;
+      final List<ProfitableTradeModel?> yearlyProfitableTrades =
+          copyTradingStatistic.yearlyProfitableTrades!;
+      final ProfitableTradeModel firstYearlyProfitableTrades =
+          yearlyProfitableTrades.first!;
 
       expect(copyTradingStatistic.copiers, 913);
       expect(copyTradingStatistic.activeSince, getDateTime(1586303999));
