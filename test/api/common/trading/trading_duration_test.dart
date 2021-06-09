@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/api/common/models/market_model.dart';
+import 'package:flutter_deriv_api/api/common/models/submarket_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
@@ -15,21 +17,24 @@ void main() {
         await TradingDuration.fetchTradingDurations(
       const TradingDurationsRequest(),
     );
+    final TradingDuration firstTradingDuration = tradeDuration!.first!;
+    final MarketModel market = firstTradingDuration.market!;
+    final SubmarketModel submarket = firstTradingDuration.submarket!;
 
-    expect(tradeDuration!.length, 2);
+    expect(tradeDuration.length, 2);
 
-    expect(tradeDuration.first!.market!.displayName, 'Forex');
-    expect(tradeDuration.first!.market!.name, 'forex');
+    expect(market.displayName, 'Forex');
+    expect(market.name, 'forex');
 
-    expect(tradeDuration.first!.submarket!.displayName, 'Major Pairs');
-    expect(tradeDuration.first!.submarket!.name, 'major_pairs');
+    expect(submarket.displayName, 'Major Pairs');
+    expect(submarket.name, 'major_pairs');
 
-    expect(tradeDuration.first!.tradingDurationData!.length, 2);
+    expect(firstTradingDuration.tradingDurationData!.length, 2);
 
-    final TradingDurationDataModel? tradingDurationData =
-        tradeDuration.first!.tradingDurationData![1];
+    final TradingDurationDataModel tradingDurationData =
+        tradeDuration.first!.tradingDurationData![1]!;
 
-    expect(tradingDurationData!.symbols!.length, 1);
+    expect(tradingDurationData.symbols!.length, 1);
 
     final SymbolModel symbol = tradingDurationData.symbols!.first!;
 

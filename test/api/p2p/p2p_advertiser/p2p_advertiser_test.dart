@@ -152,34 +152,35 @@ void main() {
           await P2PAdvertiser.fetchAdvertiserAdverts(
         const P2pAdvertiserAdvertsRequest(limit: 10, offset: 0),
       );
+      final P2PAdvert advert = adverts!.first!;
 
-      expect(adverts!.length, 2);
+      expect(adverts.length, 2);
 
-      expect(adverts.first!.accountCurrency, 'USD');
+      expect(advert.accountCurrency, 'USD');
 
-      expect(adverts.first!.advertiserDetails!.id, '1');
-      expect(adverts.first!.advertiserDetails!.name, 'John Doe');
+      expect(advert.advertiserDetails!.id, '1');
+      expect(advert.advertiserDetails!.name, 'John Doe');
 
-      expect(adverts.first!.counterpartyType, TransactionType.sell);
-      expect(adverts.first!.country, 'za');
-      expect(adverts.first!.createdTime, getDateTime(1589258036));
-      expect(adverts.first!.description, 'Please contact via 1234');
-      expect(adverts.first!.id, '3');
-      expect(adverts.first!.isActive, true);
-      expect(adverts.first!.localCurrency, 'ZAR');
-      expect(adverts.first!.maxOrderAmount, 3);
-      expect(adverts.first!.maxOrderAmountDisplay, '3.00');
-      expect(adverts.first!.minOrderAmount, 1);
-      expect(adverts.first!.minOrderAmountDisplay, '1.00');
-      expect(adverts.first!.paymentInfo, 'Transfer to account 000-1111');
-      expect(adverts.first!.paymentMethod, PaymentMethod.bankTransfer);
-      expect(adverts.first!.price, 1);
-      expect(adverts.first!.priceDisplay, '1.00');
-      expect(adverts.first!.rate, 2);
-      expect(adverts.first!.rateDisplay, '2.00');
-      expect(adverts.first!.remainingAmount, 15);
-      expect(adverts.first!.remainingAmountDisplay, '15.00');
-      expect(adverts.first!.type, TransactionType.buy);
+      expect(advert.counterpartyType, TransactionType.sell);
+      expect(advert.country, 'za');
+      expect(advert.createdTime, getDateTime(1589258036));
+      expect(advert.description, 'Please contact via 1234');
+      expect(advert.id, '3');
+      expect(advert.isActive, true);
+      expect(advert.localCurrency, 'ZAR');
+      expect(advert.maxOrderAmount, 3);
+      expect(advert.maxOrderAmountDisplay, '3.00');
+      expect(advert.minOrderAmount, 1);
+      expect(advert.minOrderAmountDisplay, '1.00');
+      expect(advert.paymentInfo, 'Transfer to account 000-1111');
+      expect(advert.paymentMethod, PaymentMethod.bankTransfer);
+      expect(advert.price, 1);
+      expect(advert.priceDisplay, '1.00');
+      expect(advert.rate, 2);
+      expect(advert.rateDisplay, '2.00');
+      expect(advert.remainingAmount, 15);
+      expect(advert.remainingAmountDisplay, '15.00');
+      expect(advert.type, TransactionType.buy);
     });
   });
 }

@@ -65,10 +65,12 @@ void main() {
 
       final List<LandingCompanyFieldsInfoModel?> changeableFields =
           landingCompanyDetail.changeableFields!;
+      final LandingCompanyFieldsInfoModel firstChangeableField =
+          changeableFields.first!;
 
       expect(changeableFields.length, 1);
-      expect(changeableFields.first!.fields!.length, 6);
-      expect(changeableFields.first!.fields!.first, 'salutation');
+      expect(firstChangeableField.fields!.length, 6);
+      expect(firstChangeableField.fields!.first, 'salutation');
     });
   });
 }

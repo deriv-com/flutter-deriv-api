@@ -23,12 +23,15 @@ void main() {
 
       expect(forgetAll.cancelledStreams!.length, 2);
 
+      final String firstCancelledStream = forgetAll.cancelledStreams!.first;
+      final String secondCancelledStream = forgetAll.cancelledStreams![1];
+
       expect(
-        forgetAll.cancelledStreams![0],
+        firstCancelledStream,
         'ea8d3223-9922-5552-4309-6a1e97522f05',
       );
       expect(
-        forgetAll.cancelledStreams![1],
+        secondCancelledStream,
         'ea8d3288-9922-5552-4309-6a1e97522f21',
       );
     });

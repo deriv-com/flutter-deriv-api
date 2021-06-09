@@ -11,8 +11,9 @@ void main() {
     final List<State?>? states = await State.fetchStatesList(
       const StatesListRequest(statesList: 'code'),
     );
+    final State state = states!.first!;
 
-    expect(states!.first!.text, 'Aceh');
-    expect(states.first!.value, 'AC');
+    expect(state.text, 'Aceh');
+    expect(state.value, 'AC');
   });
 }

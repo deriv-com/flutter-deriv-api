@@ -1,4 +1,5 @@
 import 'dart:developer' as dev;
+import 'package:flutter_deriv_api/api/contract/models/spot_price_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
@@ -178,16 +179,18 @@ void main() {
           limitOrder: <String, dynamic>{'stop_loss': 120, 'take_profit': 100.0},
         ),
       );
+      final SpotPriceModel stopLoss = updateContract.stopLoss!;
+      final SpotPriceModel takeProfit = updateContract.takeProfit!;
 
-      expect(updateContract.stopLoss!.displayName, 'localized display name');
-      expect(updateContract.stopLoss!.orderAmount, 530.0);
-      expect(updateContract.stopLoss!.orderDate, getDateTime(1587544006));
-      expect(updateContract.stopLoss!.value, '120.0');
+      expect(stopLoss.displayName, 'localized display name');
+      expect(stopLoss.orderAmount, 530.0);
+      expect(stopLoss.orderDate, getDateTime(1587544006));
+      expect(stopLoss.value, '120.0');
 
-      expect(updateContract.takeProfit!.displayName, 'localized display name');
-      expect(updateContract.takeProfit!.orderAmount, 430.0);
-      expect(updateContract.takeProfit!.orderDate, getDateTime(1587744006));
-      expect(updateContract.takeProfit!.value, '100.0');
+      expect(takeProfit.displayName, 'localized display name');
+      expect(takeProfit.orderAmount, 430.0);
+      expect(takeProfit.orderDate, getDateTime(1587744006));
+      expect(takeProfit.value, '100.0');
     });
 
     test('Fetch Contract Update History Test', () async {
@@ -256,15 +259,18 @@ void main() {
         expect(boughtContract.transactionId, 159779308968);
 
         final UpdateContract updateContract = await boughtContract.update();
-        expect(updateContract.stopLoss!.displayName, 'localized display name');
-        expect(updateContract.stopLoss!.orderAmount, 530.0);
-        expect(updateContract.stopLoss!.orderDate, getDateTime(1587544006));
-        expect(updateContract.stopLoss!.value, '120.0');
+        final SpotPriceModel stopLoss = updateContract.stopLoss!;
+        final SpotPriceModel takeProfit = updateContract.takeProfit!;
 
-        expect(updateContract.takeProfit!.displayName, 'localized display name');
-        expect(updateContract.takeProfit!.orderAmount, 430.0);
-        expect(updateContract.takeProfit!.orderDate, getDateTime(1587744006));
-        expect(updateContract.takeProfit!.value, '100.0');
+        expect(stopLoss.displayName, 'localized display name');
+        expect(stopLoss.orderAmount, 530.0);
+        expect(stopLoss.orderDate, getDateTime(1587544006));
+        expect(stopLoss.value, '120.0');
+
+        expect(takeProfit.displayName, 'localized display name');
+        expect(takeProfit.orderAmount, 430.0);
+        expect(takeProfit.orderDate, getDateTime(1587744006));
+        expect(takeProfit.value, '100.0');
 
         final SellContract sellContract = await boughtContract.sell();
         expect(sellContract.balanceAfter, 9706.5);

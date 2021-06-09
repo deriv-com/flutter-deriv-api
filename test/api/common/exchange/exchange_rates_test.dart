@@ -20,8 +20,9 @@ void main() {
     expect(exchangeRates.rates!.length, 9);
 
     final List<RateModel?> rates = exchangeRates.rates!;
+    final RateModel forthRate = rates[4]!;
 
-    expect(rates[4]!.code, 'GBP');
-    expect(rates[4]!.rate, 0.8);
+    expect(forthRate.code, 'GBP');
+    expect(forthRate.rate, 0.8);
   });
 }

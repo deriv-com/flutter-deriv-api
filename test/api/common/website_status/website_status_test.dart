@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/common/models/transfer_fee_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
@@ -38,16 +39,21 @@ void main() {
     final TransferAccountLimitationModel audLimitations =
         aud.transferBetweenAccounts!;
 
+    final List<TransferFeeModel?> fees = audLimitations.fees!;
+    final TransferFeeModel firstFee = fees.first!;
+
     expect(audLimitations.limits!.min, 1.53);
-    expect(audLimitations.fees!.length, 3);
-    expect(audLimitations.fees!.first!.code, 'BTC');
-    expect(audLimitations.fees!.first!.value, 2.0);
+    expect(fees.length, 3);
+    expect(firstFee.code, 'BTC');
+    expect(firstFee.value, 2.0);
 
     final List<WebsiteStatusCryptoConfigModel?> cryptoConfig =
         websiteStatus.cryptoConfig!;
+    final WebsiteStatusCryptoConfigModel firstCryptoConfig =
+        cryptoConfig.first!;
 
     expect(cryptoConfig.length, 2);
-    expect(cryptoConfig.first!.code, 'BTC');
-    expect(cryptoConfig.first!.minimumWithdrawal, 0.00299415);
+    expect(firstCryptoConfig.code, 'BTC');
+    expect(firstCryptoConfig.minimumWithdrawal, 0.00299415);
   });
 }

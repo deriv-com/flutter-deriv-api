@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/account/models/token_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/api_token/api_token.dart';
@@ -17,53 +18,58 @@ void main() {
         ],
         validForCurrentIPOnly: false,
       );
+      final List<TokenModel?> tokens = createAPIToken.tokens!;
+      final TokenModel token = tokens.first!;
+      final List<TokenScope?> scopes = token.scopes!;
 
       expect(createAPIToken.newToken, true);
 
-      expect(createAPIToken.tokens!.length, 1);
+      expect(tokens.length, 1);
 
-      expect(createAPIToken.tokens!.first!.displayName, 'sample token');
+      expect(token.displayName, 'sample token');
       expect(
-        createAPIToken.tokens!.first!.lastUsed,
+        token.lastUsed,
         DateTime.tryParse('2020-01-11'),
       );
 
-      expect(createAPIToken.tokens!.first!.scopes!.length, 2);
+      expect(scopes.length, 2);
 
-      expect(createAPIToken.tokens!.first!.scopes!.first, TokenScope.read);
+      expect(scopes.first, TokenScope.read);
       expect(
-        createAPIToken.tokens!.first!.scopes![1],
+        scopes[1],
         TokenScope.tradingInformation,
       );
 
-      expect(createAPIToken.tokens!.first!.token, 'thisIsASampleTOKEN123');
-      expect(createAPIToken.tokens!.first!.validForIp, '178.32.12.45');
+      expect(token.token, 'thisIsASampleTOKEN123');
+      expect(token.validForIp, '178.32.12.45');
     });
 
     test('Delete Token Test', () async {
       final APIToken deleteAPIToken =
           await APIToken.delete(token: 'thisIsASampleTOKEN123');
+      final TokenModel token = deleteAPIToken.tokens!.first!;
+      final List<TokenScope?> scopes = token.scopes!;
 
       expect(deleteAPIToken.deleteToken, true);
 
       expect(deleteAPIToken.tokens!.length, 1);
 
-      expect(deleteAPIToken.tokens!.first!.displayName, 'sample token');
+      expect(token.displayName, 'sample token');
       expect(
-        deleteAPIToken.tokens!.first!.lastUsed,
+        token.lastUsed,
         DateTime.tryParse('2020-01-11'),
       );
 
-      expect(deleteAPIToken.tokens!.first!.scopes!.length, 2);
+      expect(scopes.length, 2);
 
-      expect(deleteAPIToken.tokens!.first!.scopes!.first, TokenScope.read);
+      expect(scopes.first, TokenScope.read);
       expect(
-        deleteAPIToken.tokens!.first!.scopes![1],
+        scopes[1],
         TokenScope.tradingInformation,
       );
 
-      expect(deleteAPIToken.tokens!.first!.token, 'thisIsASampleTOKEN123');
-      expect(deleteAPIToken.tokens!.first!.validForIp, '178.32.12.45');
+      expect(token.token, 'thisIsASampleTOKEN123');
+      expect(token.validForIp, '178.32.12.45');
     });
   });
 }

@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_details_model.dart';
 import 'package:flutter_deriv_api/api/p2p/models/p2p_advertiser_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -48,37 +49,40 @@ void main() {
       final List<P2PAdvert?>? adverts = await P2PAdvert.fetchAdvertList(
         const P2pAdvertListRequest(counterpartyType: 'sell'),
       );
+      final P2PAdvert advert = adverts!.first!;
+      final P2PAdvertiserDetailsModel advertiserDetails =
+          advert.advertiserDetails!;
 
-      expect(adverts!.length, 2);
+      expect(adverts.length, 2);
 
-      expect(adverts.first!.accountCurrency, 'USD');
+      expect(advert.accountCurrency, 'USD');
 
-      expect(adverts.first!.advertiserDetails!.id, '6');
+      expect(advert.advertiserDetails!.id, '6');
       expect(
-        adverts.first!.advertiserDetails!.name,
+        advertiserDetails.name,
         'advertiser CR90000018',
       );
 
-      expect(adverts.first!.counterpartyType, TransactionType.sell);
-      expect(adverts.first!.country, 'za');
-      expect(adverts.first!.createdTime, getDateTime(1589270475));
+      expect(advert.counterpartyType, TransactionType.sell);
+      expect(advert.country, 'za');
+      expect(advert.createdTime, getDateTime(1589270475));
       expect(
-        adverts.first!.description,
+        advert.description,
         'Please contact via whats app 1234',
       );
-      expect(adverts.first!.id, '7');
-      expect(adverts.first!.isActive, true);
-      expect(adverts.first!.localCurrency, 'ZAR');
-      expect(adverts.first!.maxOrderAmountLimit, 100);
-      expect(adverts.first!.maxOrderAmountLimitDisplay, '100.00');
-      expect(adverts.first!.minOrderAmountLimit, 10);
-      expect(adverts.first!.minOrderAmountLimitDisplay, '10.00');
-      expect(adverts.first!.paymentMethod, PaymentMethod.bankTransfer);
-      expect(adverts.first!.price, 14500);
-      expect(adverts.first!.priceDisplay, '14500.00');
-      expect(adverts.first!.rate, 14500);
-      expect(adverts.first!.rateDisplay, '14500.00');
-      expect(adverts.first!.type, TransactionType.buy);
+      expect(advert.id, '7');
+      expect(advert.isActive, true);
+      expect(advert.localCurrency, 'ZAR');
+      expect(advert.maxOrderAmountLimit, 100);
+      expect(advert.maxOrderAmountLimitDisplay, '100.00');
+      expect(advert.minOrderAmountLimit, 10);
+      expect(advert.minOrderAmountLimitDisplay, '10.00');
+      expect(advert.paymentMethod, PaymentMethod.bankTransfer);
+      expect(advert.price, 14500);
+      expect(advert.priceDisplay, '14500.00');
+      expect(advert.rate, 14500);
+      expect(advert.rateDisplay, '14500.00');
+      expect(advert.type, TransactionType.buy);
     });
 
     test('Create Advert Test', () async {
@@ -277,7 +281,8 @@ void main() {
     test('Create Order From Advert Test', () async {
       final P2PAdvert advert =
           await P2PAdvert.fetchAdvert(const P2pAdvertInfoRequest(id: '2'));
-      final P2POrder order = await advert.createOrder(amount: 50,paymentInfo: '',contactInfo: '');
+      final P2POrder order = await advert.createOrder(
+          amount: 50, paymentInfo: '', contactInfo: '');
 
       expect(order.accountCurrency, 'USD');
       expect(order.amount, 50.0);
