@@ -1,8 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
+import 'dart:io';
+
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'package:package_info/package_info.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
@@ -11,10 +15,10 @@ import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
-import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
-import 'package:flutter_deriv_api/services/connection/call_manager/call_history.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/call_history.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
 
 /// This class is for handling Binary API connection and calling Binary APIs
@@ -70,6 +74,8 @@ class BinaryAPI extends BaseAPI {
     );
 
     dev.log('connecting to $uri.');
+
+    await _setUserAgent();
 
     // Initialize connection to web socket server
     _webSocketChannel = IOWebSocketChannel.connect(uri.toString(),
@@ -212,5 +218,38 @@ class BinaryAPI extends BaseAPI {
     } on Exception catch (e) {
       dev.log('failed to process $response - $e', error: e);
     }
+  }
+
+  Future<void> _setUserAgent() async {
+    final String userAgent = await _getUserAgentString();
+
+    if (userAgent.isNotEmpty) {
+      return WebSocket.userAgent = userAgent;
+    }
+  }
+
+  Future<String> _getUserAgentString() async {
+    String userAgent = '';
+
+    final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+
+    if (Platform.isAndroid) {
+      final AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+
+      userAgent =
+          'Mozilla/5.0 (Linux; U; Android ${androidInfo.version.release}; ${androidInfo.model} '
+          'Build/${androidInfo.id}) '
+          '${packageInfo.appName}/${packageInfo.version}+${packageInfo.buildNumber}';
+    } else if (Platform.isIOS) {
+      final IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+
+      userAgent = 'Mozilla/5.0 (${iosInfo.utsname.machine} '
+          '${iosInfo.systemName}/${iosInfo.systemVersion} '
+          'Darwin/${iosInfo.utsname.release}) '
+          '${packageInfo.appName}/${packageInfo.version}+${packageInfo.buildNumber}';
+    }
+
+    return userAgent;
   }
 }
