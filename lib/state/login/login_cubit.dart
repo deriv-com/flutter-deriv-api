@@ -58,8 +58,12 @@ class LoginCubit extends Cubit<LoginState> {
 
     final Map<String, dynamic> jsonResponse = await _httpClient.post(
       url: url,
-      jsonBody:
-          LoginRequest(type: type, email: email, password: password).toJson(),
+      jsonBody: LoginRequest(
+        type: type,
+        email: email,
+        password: password,
+        appId: int.parse(connectionInformation.appId),
+      ).toJson(),
     );
     return LoginResponse.fromJson(jsonResponse);
   }

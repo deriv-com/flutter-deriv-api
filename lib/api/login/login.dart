@@ -8,6 +8,7 @@ class LoginRequest {
     required this.type,
     required this.email,
     required this.password,
+    required this.appId,
   });
 
   /// Type of login, it can either be `system` or `social`.
@@ -19,11 +20,15 @@ class LoginRequest {
   /// Password
   final String password;
 
+  /// application id
+  final int appId;
+
   /// Converts a instance of this class to json.
   Map<String, dynamic> toJson() => <String, dynamic>{
         'type': type,
         'email': email,
         'password': password,
+        'app_id': appId,
       };
 }
 
