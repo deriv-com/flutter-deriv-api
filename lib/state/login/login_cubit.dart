@@ -29,8 +29,8 @@ class LoginCubit extends Cubit<LoginState> {
           await _getAppAuthorizationChallnege();
       print(challenge.challenge);
 
-      final String solution = solveLoginChallenge(challenge.challenge);
-
+      final String solution = solveLoginChallenge(
+          challenge: challenge.challenge, appToken: 'DerivToken01');
       final AppAuthorizationResponse authInfo =
           await _authorizeApp(solution: solution, expire: challenge.expire);
       print(authInfo.token);
