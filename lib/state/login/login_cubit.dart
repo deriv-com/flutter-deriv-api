@@ -41,6 +41,7 @@ class LoginCubit extends Cubit<LoginState> {
         email: email,
         password: password,
         type: 'system',
+        token: authInfo.token,
       );
 
       emit(UserAuthorizedState(response));
@@ -53,6 +54,7 @@ class LoginCubit extends Cubit<LoginState> {
     required String email,
     required String password,
     required String type,
+    required String token,
   }) async {
     const String url = 'https://qa48.deriv.dev/oauth2/api/v1/login';
 
@@ -64,6 +66,7 @@ class LoginCubit extends Cubit<LoginState> {
         password: password,
         appId: int.parse(connectionInformation.appId),
       ).toJson(),
+      headers: <String, String>{'Authorization': 'Bearer $token'},
     );
     return LoginResponse.fromJson(jsonResponse);
   }
