@@ -4,6 +4,7 @@ import 'package:flutter_deriv_api/api/login/login.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/connection/http_client/http_client.dart';
 import 'package:flutter_deriv_api/helpers/login_helper.dart';
+import 'package:flutter_deriv_api/api/exceptions/api_base_exception.dart';
 
 part 'login_state.dart';
 
@@ -18,7 +19,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   final HttpClient _httpClient = HttpClient();
 
-  ///
+  /// Performs basic in-app login using `email` and `password`.
   Future<void> doSystemLogin({
     required String email,
     required String password,
@@ -26,16 +27,13 @@ class LoginCubit extends Cubit<LoginState> {
     emit(const LoginLoadingState());
     try {
       final AppAuthorizationChallengeResponse challenge =
-          await _getAppAuthorizationChallnege();
-      print(challenge.challenge);
+          await _getAppAuthorizationChallenge();
 
       final String solution = solveLoginChallenge(
           challenge: challenge.challenge, appToken: 'DerivToken01');
+
       final AppAuthorizationResponse authInfo =
           await _authorizeApp(solution: solution, expire: challenge.expire);
-      print(authInfo.token);
-
-      emit(AppAuthorizedState(authInfo));
 
       final LoginResponse response = await _doLogin(
         email: email,
@@ -45,6 +43,8 @@ class LoginCubit extends Cubit<LoginState> {
       );
 
       emit(UserAuthorizedState(response));
+    } on APIBaseException catch (e) {
+      emit(LoginErrorState(e.message ?? 'An error occurred'));
     } on Exception catch (e) {
       emit(LoginErrorState(e.toString()));
     }
@@ -56,10 +56,10 @@ class LoginCubit extends Cubit<LoginState> {
     required String type,
     required String token,
   }) async {
-    const String url = 'https://qa48.deriv.dev/oauth2/api/v1/login';
+    const String path = '/oauth2/api/v1/login';
 
     final Map<String, dynamic> jsonResponse = await _httpClient.post(
-      url: url,
+      url: 'https://qa48.deriv.dev$path',
       jsonBody: LoginRequest(
         type: type,
         email: email,
@@ -75,10 +75,11 @@ class LoginCubit extends Cubit<LoginState> {
     required String solution,
     required int expire,
   }) async {
-    const String url = 'https://qa48.deriv.dev/oauth2/api/v1/authorize';
+    const String path = '/oauth2/api/v1/authorize';
 
     final Map<String, dynamic> jsonResponse = await _httpClient.post(
-      url: url,
+      // url: 'https://${connectionInformation.endpoint}$path',
+      url: 'https://qa48.deriv.dev$path',
       jsonBody: AppAuthorizationRequest(
         solution: solution,
         expire: expire,
@@ -89,12 +90,11 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<AppAuthorizationChallengeResponse>
-      _getAppAuthorizationChallnege() async {
-    // TODO(Mohammad): change url to respect _connectionInformation.endpoint.
-    const String url = 'https://qa48.deriv.dev/oauth2/api/v1/verify';
+      _getAppAuthorizationChallenge() async {
+    const String path = '/oauth2/api/v1/verify';
 
     final Map<String, dynamic> jsonResponse = await _httpClient.post(
-      url: url,
+      url: 'https://qa48.deriv.dev$path',
       jsonBody: AppAuthorizationChallengeRequest(
         appId: int.parse(connectionInformation.appId),
       ).toJson(),

@@ -2,9 +2,11 @@ import 'dart:convert' as convert;
 
 import 'package:http/http.dart' as http;
 
+import 'package:flutter_deriv_api/services/connection/http_client/exceptions/http_client_exception.dart';
+
 /// Singleton class for http requests.
 class HttpClient {
-  /// Initializes the  singleton class.
+  /// Initializes http client.
   factory HttpClient() => _instance;
 
   HttpClient._internal();
@@ -28,8 +30,14 @@ class HttpClient {
     final Map<String, dynamic> jsonResponse = convert.jsonDecode(response.body);
 
     if (response.statusCode ~/ 100 != 2) {
-      throw Exception(jsonResponse['message']);
+      throw HTTPClientException(
+        statusCode: response.statusCode,
+        message: jsonResponse.containsKey('message')
+            ? jsonResponse['message']
+            : 'Server Error',
+      );
     }
+
     return jsonResponse;
   }
 }

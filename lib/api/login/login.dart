@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+
 part 'app_authorization_challenge.dart';
 part 'app_authorization.dart';
 
@@ -41,12 +43,14 @@ class LoginResponse {
 
   /// Converts the provided json to instance of this class.
   factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
-        tokens: List<Token>.from(
-            json['tokens'].map((Map<String, dynamic> x) => Token.fromJson(x))),
+        tokens: getListFromMap<Token>(
+          json['tokens'],
+          itemToTypeCallback: (dynamic item) => Token.fromJson(item),
+        ),
       );
 
   /// List of available tokens for logged in user.
-  final List<Token> tokens;
+  final List<Token?>? tokens;
 }
 
 /// Token Model
