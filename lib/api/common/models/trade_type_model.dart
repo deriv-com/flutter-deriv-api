@@ -15,15 +15,15 @@ class TradeTypeModel extends APIBaseModel {
       );
 
   /// Translated trade type name.
-  final String displayName;
+  final String? displayName;
 
   /// Trade type name.
-  final String name;
+  final String? name;
 
   /// Creates a copy of instance with given parameters
   TradeTypeModel copyWith({
-    String displayName,
-    String name,
+    String? displayName,
+    String? name,
   }) =>
       TradeTypeModel(
         displayName: displayName ?? this.displayName,

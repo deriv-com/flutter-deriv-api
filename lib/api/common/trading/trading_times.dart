@@ -11,7 +11,7 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class TradingTimes extends TradingTimesModel {
   /// Initializes
   TradingTimes({
-    List<MarketModel> markets,
+    List<MarketModel?>? markets,
   }) : super(
           markets: markets,
         );
@@ -24,11 +24,11 @@ class TradingTimes extends TradingTimesModel {
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   TradingTimes copyWith({
-    List<MarketModel> markets,
+    List<MarketModel>? markets,
   }) =>
       TradingTimes(
         markets: markets ?? this.markets,
@@ -41,14 +41,15 @@ class TradingTimes extends TradingTimesModel {
   static Future<TradingTimes> fetchTradingTimes(
     TradingTimesRequest request,
   ) async {
-    final TradingTimesResponse response = await _api.call(request: request);
+    final TradingTimesResponse response =
+        await _api!.call<TradingTimesResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TradingException(baseExceptionModel: baseExceptionModel),
     );
 
-    return TradingTimes.fromJson(response.tradingTimes);
+    return TradingTimes.fromJson(response.tradingTimes!);
   }
 }

@@ -8,5 +8,5 @@ abstract class SetAccountCurrencyModel extends APIBaseModel {
   });
 
   /// `true`: success, `false`: no change
-  final bool succeeded;
+  final bool? succeeded;
 }

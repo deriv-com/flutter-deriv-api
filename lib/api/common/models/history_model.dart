@@ -14,22 +14,22 @@ class HistoryModel extends APIBaseModel {
         ),
         times: getListFromMap(
           json['times'],
-          itemToTypeCallback: (dynamic item) => getDateTime(item),
+          itemToTypeCallback: (dynamic item) => getDateTime(item)!,
         ),
       );
 
   /// Containing list of tick values for the
   /// corresponding epoch values in `times` array.
-  final List<double> prices;
+  final List<double?>? prices;
 
   /// Containing list of epoch values for the
   /// corresponding tick values in `prices` array.
-  final List<DateTime> times;
+  final List<DateTime?>? times;
 
   /// Generate a copy of instance with given parameters
   HistoryModel copyWith({
-    List<double> prices,
-    List<DateTime> times,
+    List<double>? prices,
+    List<DateTime>? times,
   }) =>
       HistoryModel(
         prices: prices ?? this.prices,

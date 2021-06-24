@@ -13,8 +13,8 @@ class TransferBetweenAccountsRequest extends Request {
     this.amount,
     this.currency,
     @required this.transferBetweenAccounts,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'transfer_between_accounts',
           passthrough: passthrough,
@@ -24,33 +24,33 @@ class TransferBetweenAccountsRequest extends Request {
   /// Creates an instance from JSON
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>
       TransferBetweenAccountsRequest(
-        accountFrom: json['account_from'] as String,
-        accountTo: json['account_to'] as String,
-        accounts: json['accounts'] as String,
-        amount: json['amount'] as num,
-        currency: json['currency'] as String,
-        transferBetweenAccounts: json['transfer_between_accounts'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        accountFrom: json['account_from'] as String?,
+        accountTo: json['account_to'] as String?,
+        accounts: json['accounts'] as String?,
+        amount: json['amount'] as num?,
+        currency: json['currency'] as String?,
+        transferBetweenAccounts: json['transfer_between_accounts'] as int?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] The loginid of the account to transfer funds from.
-  final String accountFrom;
+  final String? accountFrom;
 
   /// [Optional] The loginid of the account to transfer funds to.
-  final String accountTo;
+  final String? accountTo;
 
   /// [Optional] To control the list of accounts returned when `account_from` or `account_to` is not provided. `brief` (default value) means that accounts with `mt5` account_type will be excluded; it will run faster. `all` means that all accounts with any account_type (including `mt5`) will be returned.
-  final String accounts;
+  final String? accounts;
 
   /// [Optional] The amount to transfer.
-  final num amount;
+  final num? amount;
 
   /// [Optional] Currency code.
-  final String currency;
+  final String? currency;
 
   /// If `account_from` or `account_to` is not provided, it just returns the available accounts.
-  final int transferBetweenAccounts;
+  final int? transferBetweenAccounts;
 
   /// Converts this instance to JSON
   @override
@@ -68,14 +68,14 @@ class TransferBetweenAccountsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TransferBetweenAccountsRequest copyWith({
-    String accountFrom,
-    String accountTo,
-    String accounts,
-    num amount,
-    String currency,
-    int transferBetweenAccounts,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? accountFrom,
+    String? accountTo,
+    String? accounts,
+    num? amount,
+    String? currency,
+    int? transferBetweenAccounts,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TransferBetweenAccountsRequest(
         accountFrom: accountFrom ?? this.accountFrom,
@@ -91,5 +91,5 @@ class TransferBetweenAccountsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -62,95 +62,95 @@ class AvailableContractModel extends APIBaseModel {
       );
 
   /// Array of available barriers for a predefined trading period
-  final List<int> availableBarriers;
+  final List<int>? availableBarriers;
 
   /// Barrier
-  final String barrier;
+  final String? barrier;
 
   /// Category of barrier.
-  final String barrierCategory;
+  final String? barrierCategory;
 
   /// Number of barriers.
-  final int barriers;
+  final int? barriers;
 
   /// Deal cancellation values range of the contract.
-  final List<String> cancellationRange;
+  final List<String?>? cancellationRange;
 
   /// Category of the contract.
-  final String contractCategory;
+  final String? contractCategory;
 
   /// Category of the contract Display."
-  final String contractCategoryDisplay;
+  final String? contractCategoryDisplay;
 
   /// Type of contract.
-  final String contractDisplay;
+  final String? contractDisplay;
 
   /// Type of contract.
-  final String contractType;
+  final String? contractType;
 
   /// Name of exchange
-  final String exchangeName;
+  final String? exchangeName;
 
   /// Array of barriers already expired
-  final List<String> expiredBarriers;
+  final List<String?>? expiredBarriers;
 
   /// Expiry Type.
-  final String expiryType;
+  final String? expiryType;
 
   /// Array of returned forward starting options
-  final List<ForwardStartingOptionModel> forwardStartingOptions;
+  final List<ForwardStartingOptionModel?>? forwardStartingOptions;
 
   /// Type of market.
-  final String market;
+  final String? market;
 
   /// Maximum contract duration
-  final String maxContractDuration;
+  final String? maxContractDuration;
 
   /// Minimum contract duration.
-  final String minContractDuration;
+  final String? minContractDuration;
 
   /// List of multipliers values range.
-  final List<int> multiplierRange;
+  final List<int?>? multiplierRange;
 
   /// Type of sentiment.
-  final String sentiment;
+  final String? sentiment;
 
   /// Start Type.
-  final String startType;
+  final String? startType;
 
   /// Type of submarket.
-  final String submarket;
+  final String? submarket;
 
   /// A hash of predefined trading period
-  final Map<String, dynamic> tradingPeriod;
+  final Map<String, dynamic>? tradingPeriod;
 
   /// Symbol code
-  final String underlyingSymbol;
+  final String? underlyingSymbol;
 
   /// Creates a copy of instance with given parameters
   AvailableContractModel copyWith({
-    List<int> availableBarriers,
-    String barrier,
-    String barrierCategory,
-    int barriers,
-    List<String> cancellationRange,
-    String contractCategory,
-    String contractCategoryDisplay,
-    String contractDisplay,
-    String contractType,
-    String exchangeName,
-    List<String> expiredBarriers,
-    String expiryType,
-    List<ForwardStartingOptionModel> forwardStartingOptions,
-    String market,
-    String maxContractDuration,
-    String minContractDuration,
-    List<int> multiplierRange,
-    String sentiment,
-    String startType,
-    String submarket,
-    Map<String, dynamic> tradingPeriod,
-    String underlyingSymbol,
+    List<int>? availableBarriers,
+    String? barrier,
+    String? barrierCategory,
+    int? barriers,
+    List<String>? cancellationRange,
+    String? contractCategory,
+    String? contractCategoryDisplay,
+    String? contractDisplay,
+    String? contractType,
+    String? exchangeName,
+    List<String>? expiredBarriers,
+    String? expiryType,
+    List<ForwardStartingOptionModel>? forwardStartingOptions,
+    String? market,
+    String? maxContractDuration,
+    String? minContractDuration,
+    List<int>? multiplierRange,
+    String? sentiment,
+    String? startType,
+    String? submarket,
+    Map<String, dynamic>? tradingPeriod,
+    String? underlyingSymbol,
   }) =>
       AvailableContractModel(
         availableBarriers: availableBarriers ?? this.availableBarriers,

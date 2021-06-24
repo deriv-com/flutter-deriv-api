@@ -9,8 +9,8 @@ class SellRequest extends Request {
   const SellRequest({
     @required this.price,
     @required this.sell,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'sell',
           passthrough: passthrough,
@@ -19,17 +19,17 @@ class SellRequest extends Request {
 
   /// Creates an instance from JSON
   factory SellRequest.fromJson(Map<String, dynamic> json) => SellRequest(
-        price: json['price'] as num,
-        sell: json['sell'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        price: json['price'] as num?,
+        sell: json['sell'] as int?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
-  final num price;
+  final num? price;
 
   /// Pass contract_id received from the `portfolio` call.
-  final int sell;
+  final int? sell;
 
   /// Converts this instance to JSON
   @override
@@ -43,10 +43,10 @@ class SellRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   SellRequest copyWith({
-    num price,
-    int sell,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    num? price,
+    int? sell,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       SellRequest(
         price: price ?? this.price,
@@ -57,5 +57,5 @@ class SellRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

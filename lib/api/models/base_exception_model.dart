@@ -8,11 +8,11 @@ class BaseExceptionModel {
   });
 
   /// Error code.
-  final String code;
+  final String? code;
 
   /// Error message.
-  final String message;
+  final String? message;
 
   /// Error details.
-  final Map<String, dynamic> details;
+  final Map<String, dynamic>? details;
 }

@@ -8,8 +8,8 @@ part of 'request.dart';
 
 Request _$RequestFromJson(Map<String, dynamic> json) {
   return Request(
-    passthrough: json['passthrough'] as Map<String, dynamic>,
-    reqId: json['req_id'] as int,
+    passthrough: json['passthrough'] as Map<String, dynamic>?,
+    reqId: json['req_id'] as int?,
   );
 }
 

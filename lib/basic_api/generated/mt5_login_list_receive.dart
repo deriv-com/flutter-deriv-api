@@ -8,10 +8,10 @@ class Mt5LoginListResponse extends Response {
   /// Initialize Mt5LoginListResponse
   const Mt5LoginListResponse({
     this.mt5LoginList,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,18 +22,18 @@ class Mt5LoginListResponse extends Response {
   /// Creates an instance from JSON
   factory Mt5LoginListResponse.fromJson(Map<String, dynamic> json) =>
       Mt5LoginListResponse(
-        mt5LoginList: (json['mt5_login_list'] as List<dynamic>)
+        mt5LoginList: (json['mt5_login_list'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
-            ?.toList(),
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+            .toList(),
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Array containing MT5 account objects.
-  final List<Map<String, dynamic>> mt5LoginList;
+  final List<Map<String, dynamic>>? mt5LoginList;
 
   /// Converts this instance to JSON
   @override
@@ -48,11 +48,11 @@ class Mt5LoginListResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   Mt5LoginListResponse copyWith({
-    List<Map<String, dynamic>> mt5LoginList,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    List<Map<String, dynamic>>? mt5LoginList,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       Mt5LoginListResponse(
         mt5LoginList: mt5LoginList ?? this.mt5LoginList,
@@ -64,5 +64,5 @@ class Mt5LoginListResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

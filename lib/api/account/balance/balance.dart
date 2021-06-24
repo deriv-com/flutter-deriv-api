@@ -18,12 +18,12 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class Balance extends BalanceModel {
   /// Initializes
   Balance({
-    List<BalanceActiveAccountModel> accounts,
-    double balance,
-    String currency,
-    String id,
-    String loginId,
-    BalanceTotalModel total,
+    List<BalanceActiveAccountModel>? accounts,
+    double? balance,
+    String? currency,
+    String? id,
+    String? loginId,
+    BalanceTotalModel? total,
     this.subscriptionInformation,
   }) : super(
           accounts: accounts,
@@ -37,7 +37,7 @@ class Balance extends BalanceModel {
   /// Generates an instance from JSON
   factory Balance.fromJson(
     Map<String, dynamic> json, {
-    Map<String, dynamic> subscriptionJson,
+    Map<String, dynamic>? subscriptionJson,
   }) =>
       Balance(
         accounts: getItemFromMap(
@@ -64,45 +64,46 @@ class Balance extends BalanceModel {
       );
 
   /// Subscription Information
-  final SubscriptionModel subscriptionInformation;
+  final SubscriptionModel? subscriptionInformation;
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the balance of account
   ///
   /// For parameters info refer to [BalanceRequest]
   /// Throws a [BalanceException] if API response contains an error
   static Future<Balance> fetchBalance(BalanceRequest request) async {
-    final BalanceResponse response = await _api.call(request: request);
+    final BalanceResponse response =
+        await _api!.call<BalanceResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           BalanceException(baseExceptionModel: baseExceptionModel),
     );
 
-    return Balance.fromJson(response.balance);
+    return Balance.fromJson(response.balance!);
   }
 
   /// Instead of one call [Balance.fetchBalance] gets stream of [Balance]
   ///
   /// Throws a [BalanceException] if API response contains an error
-  static Stream<Balance> subscribeBalance(
+  static Stream<Balance?> subscribeBalance(
     BalanceRequest request, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
-      _api
-          .subscribe(request: request, comparePredicate: comparePredicate)
+      _api!
+          .subscribe(request: request, comparePredicate: comparePredicate)!
           .map((Response response) {
         checkException(
           response: response,
-          exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
               BalanceException(baseExceptionModel: baseExceptionModel),
         );
 
         return response is BalanceResponse
             ? Balance.fromJson(
-                response.balance,
+                response.balance!,
                 subscriptionJson: response.subscription,
               )
             : null;
@@ -111,17 +112,17 @@ class Balance extends BalanceModel {
   /// Unsubscribes from balance subscription.
   ///
   /// Throws a [BalanceException] if API response contains an error
-  Future<Forget> unsubscribeBalance() async {
+  Future<Forget?> unsubscribeBalance() async {
     if (subscriptionInformation?.id == null) {
       return null;
     }
 
     final ForgetResponse response =
-        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+        await _api!.unsubscribe(subscriptionId: subscriptionInformation!.id);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           BalanceException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -132,12 +133,12 @@ class Balance extends BalanceModel {
   ///
   /// Throws a [BalanceException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllBalance() async {
-    final ForgetAllResponse response =
-        await _api.unsubscribeAll(method: ForgetStreamType.balance);
+    final ForgetAllResponse? response =
+        await _api!.unsubscribeAll(method: ForgetStreamType.balance);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           BalanceException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -146,13 +147,13 @@ class Balance extends BalanceModel {
 
   /// Creates a copy of instance with given parameters
   Balance copyWith({
-    List<BalanceActiveAccountModel> accounts,
-    double balance,
-    String currency,
-    String id,
-    String loginId,
-    BalanceTotalModel total,
-    SubscriptionModel subscriptionInformation,
+    List<BalanceActiveAccountModel>? accounts,
+    double? balance,
+    String? currency,
+    String? id,
+    String? loginId,
+    BalanceTotalModel? total,
+    SubscriptionModel? subscriptionInformation,
   }) =>
       Balance(
         accounts: accounts ?? this.accounts,

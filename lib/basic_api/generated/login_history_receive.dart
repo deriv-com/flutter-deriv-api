@@ -8,10 +8,10 @@ class LoginHistoryResponse extends Response {
   /// Initialize LoginHistoryResponse
   const LoginHistoryResponse({
     this.loginHistory,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,18 +22,18 @@ class LoginHistoryResponse extends Response {
   /// Creates an instance from JSON
   factory LoginHistoryResponse.fromJson(Map<String, dynamic> json) =>
       LoginHistoryResponse(
-        loginHistory: (json['login_history'] as List<dynamic>)
+        loginHistory: (json['login_history'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
-            ?.toList(),
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+            .toList(),
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Array of records of client login/logout activities
-  final List<Map<String, dynamic>> loginHistory;
+  final List<Map<String, dynamic>>? loginHistory;
 
   /// Converts this instance to JSON
   @override
@@ -48,11 +48,11 @@ class LoginHistoryResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   LoginHistoryResponse copyWith({
-    List<Map<String, dynamic>> loginHistory,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    List<Map<String, dynamic>>? loginHistory,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       LoginHistoryResponse(
         loginHistory: loginHistory ?? this.loginHistory,
@@ -64,5 +64,5 @@ class LoginHistoryResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

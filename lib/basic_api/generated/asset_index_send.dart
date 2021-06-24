@@ -9,8 +9,8 @@ class AssetIndexRequest extends Request {
   const AssetIndexRequest({
     this.assetIndex = true,
     this.landingCompany,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'asset_index',
           passthrough: passthrough,
@@ -22,23 +22,23 @@ class AssetIndexRequest extends Request {
       AssetIndexRequest(
         assetIndex:
             json['asset_index'] == null ? null : json['asset_index'] == 1,
-        landingCompany: json['landing_company'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        landingCompany: json['landing_company'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool assetIndex;
+  final bool? assetIndex;
 
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
-  final String landingCompany;
+  final String? landingCompany;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'asset_index': assetIndex == null
             ? null
-            : assetIndex
+            : assetIndex!
                 ? 1
                 : 0,
         'landing_company': landingCompany,
@@ -49,10 +49,10 @@ class AssetIndexRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   AssetIndexRequest copyWith({
-    bool assetIndex,
-    String landingCompany,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? assetIndex,
+    String? landingCompany,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       AssetIndexRequest(
         assetIndex: assetIndex ?? this.assetIndex,
@@ -63,5 +63,5 @@ class AssetIndexRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -15,11 +15,11 @@ class LandingCompanyConfigModel extends APIBaseModel {
       );
 
   /// tax details required
-  final bool taxDetailsRequired;
+  final bool? taxDetailsRequired;
 
   /// Generate a copy of instance with given parameters
   LandingCompanyConfigModel copyWith({
-    bool taxDetailsRequired,
+    bool? taxDetailsRequired,
   }) =>
       LandingCompanyConfigModel(
         taxDetailsRequired: taxDetailsRequired ?? this.taxDetailsRequired,

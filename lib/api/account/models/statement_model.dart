@@ -10,8 +10,8 @@ abstract class StatementModel extends APIBaseModel {
   });
 
   /// Number of transactions returned in this call
-  final int count;
+  final int? count;
 
   /// Array of returned transactions
-  final List<StatementTransactionModel> transactions;
+  final List<StatementTransactionModel?>? transactions;
 }

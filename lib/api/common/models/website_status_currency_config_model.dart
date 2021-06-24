@@ -18,7 +18,7 @@ class WebsiteStatusCurrencyConfigModel extends APIBaseModel {
 
   /// Generate an instance from JSON
   factory WebsiteStatusCurrencyConfigModel.fromJson(
-    String code,
+    String? code,
     Map<String, dynamic> json,
   ) =>
       WebsiteStatusCurrencyConfigModel(
@@ -39,35 +39,35 @@ class WebsiteStatusCurrencyConfigModel extends APIBaseModel {
       );
 
   /// Currency code
-  final String code;
+  final String? code;
 
   /// Number of fractional digits.
-  final int fractionalDigits;
+  final int? fractionalDigits;
 
   /// Current status for the currency
-  final bool isSuspended;
+  final bool? isSuspended;
 
   /// name
-  final String name;
+  final String? name;
 
   /// Default stake value for the currency.
-  final double stakeDefault;
+  final double? stakeDefault;
 
   /// Type of the currency.
-  final CurrencyType type;
+  final CurrencyType? type;
 
   /// Fees and range of allowed amount for transfer between accounts with different types of currencies.
-  final TransferAccountLimitationModel transferBetweenAccounts;
+  final TransferAccountLimitationModel? transferBetweenAccounts;
 
   /// Generate a copy of instance with given parameters
   WebsiteStatusCurrencyConfigModel copyWith({
-    String code,
-    int fractionalDigits,
-    bool isSuspended,
-    String name,
-    double stakeDefault,
-    CurrencyType type,
-    TransferAccountLimitationModel transferBetweenAccounts,
+    String? code,
+    int? fractionalDigits,
+    bool? isSuspended,
+    String? name,
+    double? stakeDefault,
+    CurrencyType? type,
+    TransferAccountLimitationModel? transferBetweenAccounts,
   }) =>
       WebsiteStatusCurrencyConfigModel(
         code: code ?? this.code,

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_as
+
 import 'package:flutter_deriv_api/api/account/account.dart';
 import 'package:flutter_deriv_api/api/account/authorize/exceptions/authorize_exception.dart';
 import 'package:flutter_deriv_api/api/account/models/authorize_model.dart';
@@ -12,20 +14,20 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class Authorize extends AuthorizeModel {
   /// Initializes
   Authorize({
-    List<Account> accountList,
-    double balance,
-    String country,
-    String currency,
-    String email,
-    String fullName,
-    bool isVirtual,
-    String landingCompanyFullName,
-    String landingCompanyName,
-    List<LocalCurrencyModel> localCurrencies,
-    String loginId,
-    List<String> scopes,
-    List<String> upgradeableLandingCompanies,
-    int userId,
+    List<Account?>? accountList,
+    double? balance,
+    String? country,
+    String? currency,
+    String? email,
+    String? fullName,
+    bool? isVirtual,
+    String? landingCompanyFullName,
+    String? landingCompanyName,
+    List<LocalCurrencyModel?>? localCurrencies,
+    String? loginId,
+    List<String?>? scopes,
+    List<String?>? upgradeableLandingCompanies,
+    int? userId,
   }) : super(
           accountList: accountList,
           balance: balance,
@@ -74,27 +76,27 @@ class Authorize extends AuthorizeModel {
         userId: json['user_id'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   Authorize copyWith({
-    List<Account> accountList,
-    double balance,
-    String country,
-    String currency,
-    String email,
-    String fullName,
-    bool isVirtual,
-    String landingCompanyFullName,
-    String landingCompanyName,
-    List<LocalCurrencyModel> localCurrencies,
-    String loginId,
-    List<String> scopes,
-    List<String> upgradeableLandingCompanies,
-    int userId,
+    List<Account?>? accountList,
+    double? balance,
+    String? country,
+    String? currency,
+    String? email,
+    String? fullName,
+    bool? isVirtual,
+    String? landingCompanyFullName,
+    String? landingCompanyName,
+    List<LocalCurrencyModel>? localCurrencies,
+    String? loginId,
+    List<String>? scopes,
+    List<String>? upgradeableLandingCompanies,
+    int? userId,
   }) =>
       Authorize(
-        accountList: accountList ?? this.accountList,
+        accountList: accountList ?? this.accountList as List<Account?>?,
         balance: balance ?? this.balance,
         country: country ?? this.country,
         currency: currency ?? this.currency,
@@ -117,16 +119,16 @@ class Authorize extends AuthorizeModel {
   /// For parameters information refer to [AuthorizeRequest].
   /// Throws an [AuthorizeException] if API response contains an error
   static Future<Authorize> authorize(AuthorizeRequest request) async {
-    final AuthorizeResponse response = await _api.call(
+    final AuthorizeResponse response = await _api!.call<AuthorizeResponse>(
       request: request,
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AuthorizeException(baseExceptionModel: baseExceptionModel),
     );
 
-    return Authorize.fromJson(response.authorize);
+    return Authorize.fromJson(response.authorize!);
   }
 }

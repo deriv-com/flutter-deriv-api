@@ -44,55 +44,55 @@ class PortfolioContractModel extends APIBaseModel {
       );
 
   /// ID of the application where this contract was purchased.
-  final int appId;
+  final int? appId;
 
   /// Buy price
-  final double buyPrice;
+  final double? buyPrice;
 
   /// Internal contract identifier number (to be used in a 'proposal_open_contract' API call)
-  final int contractId;
+  final int? contractId;
 
   /// Contract type
-  final ContractType contractType;
+  final ContractType? contractType;
 
   /// Contract currency
-  final String currency;
+  final String? currency;
 
   /// Epoch of start date
-  final DateTime dateStart;
+  final DateTime? dateStart;
 
   /// Epoch of expiry time
-  final DateTime expiryTime;
+  final DateTime? expiryTime;
 
   /// Contract description
-  final String longCode;
+  final String? longCode;
 
   /// Payout price
-  final double payout;
+  final double? payout;
 
   /// Epoch of purchase time
-  final DateTime purchaseTime;
+  final DateTime? purchaseTime;
 
   /// Symbol code
-  final String symbol;
+  final String? symbol;
 
   /// It is the transaction ID. Every contract (buy or sell) and every payment has a unique ID.
-  final int transactionId;
+  final int? transactionId;
 
   /// Generate a copy of instance with given parameters
   PortfolioContractModel copyWith({
-    int appId,
-    double buyPrice,
-    int contractId,
-    ContractType contractType,
-    String currency,
-    DateTime dateStart,
-    DateTime expiryTime,
-    String longCode,
-    double payout,
-    DateTime purchaseTime,
-    String symbol,
-    int transactionId,
+    int? appId,
+    double? buyPrice,
+    int? contractId,
+    ContractType? contractType,
+    String? currency,
+    DateTime? dateStart,
+    DateTime? expiryTime,
+    String? longCode,
+    double? payout,
+    DateTime? purchaseTime,
+    String? symbol,
+    int? transactionId,
   }) =>
       PortfolioContractModel(
         appId: appId ?? this.appId,

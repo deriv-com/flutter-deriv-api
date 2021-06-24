@@ -17,16 +17,16 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class P2PAdvertiser extends P2PAdvertiserModel {
   /// Initializes
   P2PAdvertiser({
-    String chatToken,
-    String chatUserId,
-    String contactInfo,
-    DateTime createdTime,
-    String defaultAdvertDescription,
-    String id,
-    bool isApproved,
-    bool isListed,
-    String name,
-    String paymentInfo,
+    String? chatToken,
+    String? chatUserId,
+    String? contactInfo,
+    DateTime? createdTime,
+    String? defaultAdvertDescription,
+    String? id,
+    bool? isApproved,
+    bool? isListed,
+    String? name,
+    String? paymentInfo,
     this.subscriptionInformation,
   }) : super(
           chatToken: chatToken,
@@ -44,7 +44,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
   /// Generates an instance from JSON
   factory P2PAdvertiser.fromJson(
     Map<String, dynamic> json, {
-    Map<String, dynamic> subscriptionJson,
+    Map<String, dynamic>? subscriptionJson,
   }) =>
       P2PAdvertiser(
         chatToken: json['chat_token'],
@@ -65,23 +65,23 @@ class P2PAdvertiser extends P2PAdvertiserModel {
       );
 
   /// Subscription information
-  final SubscriptionModel subscriptionInformation;
+  final SubscriptionModel? subscriptionInformation;
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   P2PAdvertiser copyWith({
-    String chatToken,
-    String chatUserId,
-    String contactInfo,
-    DateTime createdTime,
-    String defaultAdvertDescription,
-    String id,
-    bool isApproved,
-    bool isListed,
-    String name,
-    String paymentInfo,
-    SubscriptionModel subscriptionInformation,
+    String? chatToken,
+    String? chatUserId,
+    String? contactInfo,
+    DateTime? createdTime,
+    String? defaultAdvertDescription,
+    String? id,
+    bool? isApproved,
+    bool? isListed,
+    String? name,
+    String? paymentInfo,
+    SubscriptionModel? subscriptionInformation,
   }) =>
       P2PAdvertiser(
         chatToken: chatToken ?? this.chatToken,
@@ -106,38 +106,39 @@ class P2PAdvertiser extends P2PAdvertiserModel {
   static Future<P2PAdvertiser> fetchAdvertiserInformation(
     P2pAdvertiserInfoRequest request,
   ) async {
-    final P2pAdvertiserInfoResponse response = await _api.call(
+    final P2pAdvertiserInfoResponse response =
+        await _api!.call<P2pAdvertiserInfoResponse>(
       request: request.copyWith(subscribe: false),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2PAdvertiser.fromJson(response.p2pAdvertiserInfo);
+    return P2PAdvertiser.fromJson(response.p2pAdvertiserInfo!);
   }
 
   /// Subscribes to information about a P2P (peer to peer) advertiser.
   /// For parameters information refer to [P2pAdvertiserInfoRequest].
-  static Stream<P2PAdvertiser> subscribeAdvertiserInformation(
+  static Stream<P2PAdvertiser?> subscribeAdvertiserInformation(
     P2pAdvertiserInfoRequest request, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
-      _api
-          .subscribe(request: request, comparePredicate: comparePredicate)
-          .map<P2PAdvertiser>(
+      _api!
+          .subscribe(request: request, comparePredicate: comparePredicate)!
+          .map<P2PAdvertiser?>(
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
                 P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is P2pAdvertiserInfoResponse
               ? P2PAdvertiser.fromJson(
-                  response.p2pAdvertiserInfo,
+                  response.p2pAdvertiserInfo!,
                   subscriptionJson: response.subscription,
                 )
               : null;
@@ -149,43 +150,44 @@ class P2PAdvertiser extends P2PAdvertiserModel {
   static Future<P2PAdvertiser> createAdvertiser(
     P2pAdvertiserCreateRequest request,
   ) async {
-    final P2pAdvertiserCreateResponse response = await _api.call(
+    final P2pAdvertiserCreateResponse response =
+        await _api!.call<P2pAdvertiserCreateResponse>(
       request: request.copyWith(subscribe: false),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2PAdvertiser.fromJson(response.p2pAdvertiserCreate);
+    return P2PAdvertiser.fromJson(response.p2pAdvertiserCreate!);
   }
 
   /// Registers the client as a P2P (peer to peer) advertiser.
   /// For parameters information refer to [P2pAdvertiserCreateRequest].
-  static Stream<P2PAdvertiser> createAdvertiserAndSubscribe(
+  static Stream<P2PAdvertiser?> createAdvertiserAndSubscribe(
     P2pAdvertiserCreateRequest request, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
-      _api
-          .subscribe(request: request, comparePredicate: comparePredicate)
-          .map<P2PAdvertiser>(
+      _api!
+          .subscribe(request: request, comparePredicate: comparePredicate)!
+          .map<P2PAdvertiser?>(
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
                 P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is P2pAdvertiserInfoResponse
               ? P2PAdvertiser.fromJson(
-                  response.p2pAdvertiserInfo,
+                  response.p2pAdvertiserInfo!,
                   subscriptionJson: response.subscription,
                 )
               : response is P2pAdvertiserCreateResponse
                   ? P2PAdvertiser.fromJson(
-                      response.p2pAdvertiserCreate,
+                      response.p2pAdvertiserCreate!,
                       subscriptionJson: response.subscription,
                     )
                   : null;
@@ -199,34 +201,34 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     P2pAdvertiserUpdateRequest request,
   ) async {
     final P2pAdvertiserUpdateResponse response =
-        await _api.call(request: request);
+        await _api!.call<P2pAdvertiserUpdateResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2PAdvertiser.fromJson(response.p2pAdvertiserUpdate);
+    return P2PAdvertiser.fromJson(response.p2pAdvertiserUpdate!);
   }
 
   /// Returns all P2P (peer to peer) adverts created by the authorized client.
   /// Can only be used by a registered P2P advertiser.
   /// For parameters information refer to [P2pAdvertiserAdvertsRequest].
-  static Future<List<P2PAdvert>> fetchAdvertiserAdverts(
+  static Future<List<P2PAdvert?>?> fetchAdvertiserAdverts(
     P2pAdvertiserAdvertsRequest request,
   ) async {
     final P2pAdvertiserAdvertsResponse response =
-        await _api.call(request: request);
+        await _api!.call<P2pAdvertiserAdvertsResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
     return getListFromMap(
-      response.p2pAdvertiserAdverts['list'],
+      response.p2pAdvertiserAdverts!['list'],
       itemToTypeCallback: (dynamic item) => P2PAdvert.fromJson(item),
     );
   }
@@ -234,17 +236,17 @@ class P2PAdvertiser extends P2PAdvertiserModel {
   /// Unsubscribes from P2P (peer to peer) advertiser information.
   ///
   /// Throws a [P2PAdvertiserException] if API response contains an error
-  Future<Forget> unsubscribeAdvertiser() async {
+  Future<Forget?> unsubscribeAdvertiser() async {
     if (subscriptionInformation?.id == null) {
       return null;
     }
 
     final ForgetResponse response =
-        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+        await _api!.unsubscribe(subscriptionId: subscriptionInformation!.id);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -255,12 +257,12 @@ class P2PAdvertiser extends P2PAdvertiserModel {
   ///
   /// Throws a [P2PAdvertiserException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllAdvertiser() async {
-    final ForgetAllResponse response =
-        await _api.unsubscribeAll(method: ForgetStreamType.p2pAdvertiser);
+    final ForgetAllResponse? response =
+        await _api!.unsubscribeAll(method: ForgetStreamType.p2pAdvertiser);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 

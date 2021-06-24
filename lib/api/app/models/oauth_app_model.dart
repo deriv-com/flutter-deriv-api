@@ -13,17 +13,17 @@ abstract class OauthAppModel extends APIBaseModel {
   });
 
   /// Application ID.
-  final int appId;
+  final int? appId;
 
   /// Markup added to contract prices (as a percentage of contract payout)
-  final double appMarkupPercentage;
+  final double? appMarkupPercentage;
 
   /// The last date which the application has been used.
-  final DateTime lastUsed;
+  final DateTime? lastUsed;
 
   /// Application name
-  final String name;
+  final String? name;
 
   /// The list of permission scopes grant for each app.
-  final List<TokenScope> scopes;
+  final List<TokenScope?>? scopes;
 }

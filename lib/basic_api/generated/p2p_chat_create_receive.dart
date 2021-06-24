@@ -8,10 +8,10 @@ class P2pChatCreateResponse extends Response {
   /// Initialize P2pChatCreateResponse
   const P2pChatCreateResponse({
     this.p2pChatCreate,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,15 +22,15 @@ class P2pChatCreateResponse extends Response {
   /// Creates an instance from JSON
   factory P2pChatCreateResponse.fromJson(Map<String, dynamic> json) =>
       P2pChatCreateResponse(
-        p2pChatCreate: json['p2p_chat_create'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        p2pChatCreate: json['p2p_chat_create'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Information of the P2P chat.
-  final Map<String, dynamic> p2pChatCreate;
+  final Map<String, dynamic>? p2pChatCreate;
 
   /// Converts this instance to JSON
   @override
@@ -45,11 +45,11 @@ class P2pChatCreateResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   P2pChatCreateResponse copyWith({
-    Map<String, dynamic> p2pChatCreate,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? p2pChatCreate,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       P2pChatCreateResponse(
         p2pChatCreate: p2pChatCreate ?? this.p2pChatCreate,
@@ -61,5 +61,5 @@ class P2pChatCreateResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

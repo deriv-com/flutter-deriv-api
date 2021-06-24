@@ -28,7 +28,7 @@ class InternetBloc extends Bloc<InternetEvent, InternetState> {
     );
   }
 
-  StreamSubscription<bool> _connectivityListener;
+  StreamSubscription<bool>? _connectivityListener;
 
   @override
   Future<void> close() {

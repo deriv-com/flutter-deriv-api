@@ -10,18 +10,18 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class TNCApproval extends TNCApprovalModel {
   /// Initializes
   TNCApproval({
-    bool approved,
+    bool? approved,
   }) : super(approved: approved);
 
   /// Generates an instance from response
   factory TNCApproval.fromResponse(TncApprovalResponse response) =>
       TNCApproval(approved: getBool(response.tncApproval));
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   TNCApproval copyWith({
-    bool approved,
+    bool? approved,
   }) =>
       TNCApproval(
         approved: approved ?? this.approved,
@@ -34,11 +34,11 @@ class TNCApproval extends TNCApprovalModel {
   static Future<TNCApproval> verify(
     TncApprovalRequest request,
   ) async {
-    final TncApprovalResponse response = await _api.call(request: request);
+    final TncApprovalResponse response = await _api!.call<TncApprovalResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           UserException(baseExceptionModel: baseExceptionModel),
     );
 

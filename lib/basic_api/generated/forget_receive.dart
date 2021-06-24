@@ -8,10 +8,10 @@ class ForgetResponse extends Response {
   /// Initialize ForgetResponse
   const ForgetResponse({
     this.forget,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,21 +22,21 @@ class ForgetResponse extends Response {
   /// Creates an instance from JSON
   factory ForgetResponse.fromJson(Map<String, dynamic> json) => ForgetResponse(
         forget: json['forget'] == null ? null : json['forget'] == 1,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// If set to `true`, stream exited and stopped. If set to `false`, stream did not exist.
-  final bool forget;
+  final bool? forget;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'forget': forget == null
             ? null
-            : forget
+            : forget!
                 ? 1
                 : 0,
         'echo_req': echoReq,
@@ -48,11 +48,11 @@ class ForgetResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   ForgetResponse copyWith({
-    bool forget,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    bool? forget,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       ForgetResponse(
         forget: forget ?? this.forget,
@@ -64,5 +64,5 @@ class ForgetResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

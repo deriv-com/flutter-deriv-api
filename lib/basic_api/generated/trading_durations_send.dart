@@ -9,8 +9,8 @@ class TradingDurationsRequest extends Request {
   const TradingDurationsRequest({
     this.landingCompany,
     this.tradingDurations = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'trading_durations',
           passthrough: passthrough,
@@ -20,19 +20,19 @@ class TradingDurationsRequest extends Request {
   /// Creates an instance from JSON
   factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>
       TradingDurationsRequest(
-        landingCompany: json['landing_company'] as String,
+        landingCompany: json['landing_company'] as String?,
         tradingDurations: json['trading_durations'] == null
             ? null
             : json['trading_durations'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] If specified, will return only the underlyings for the specified landing company.
-  final String landingCompany;
+  final String? landingCompany;
 
   /// Must be `true`
-  final bool tradingDurations;
+  final bool? tradingDurations;
 
   /// Converts this instance to JSON
   @override
@@ -40,7 +40,7 @@ class TradingDurationsRequest extends Request {
         'landing_company': landingCompany,
         'trading_durations': tradingDurations == null
             ? null
-            : tradingDurations
+            : tradingDurations!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -50,10 +50,10 @@ class TradingDurationsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TradingDurationsRequest copyWith({
-    String landingCompany,
-    bool tradingDurations,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? landingCompany,
+    bool? tradingDurations,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TradingDurationsRequest(
         landingCompany: landingCompany ?? this.landingCompany,
@@ -64,5 +64,5 @@ class TradingDurationsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -8,8 +8,8 @@ class ResidenceListRequest extends Request {
   /// Initialize ResidenceListRequest
   const ResidenceListRequest({
     this.residenceList = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'residence_list',
           passthrough: passthrough,
@@ -21,19 +21,19 @@ class ResidenceListRequest extends Request {
       ResidenceListRequest(
         residenceList:
             json['residence_list'] == null ? null : json['residence_list'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool residenceList;
+  final bool? residenceList;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'residence_list': residenceList == null
             ? null
-            : residenceList
+            : residenceList!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -43,9 +43,9 @@ class ResidenceListRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ResidenceListRequest copyWith({
-    bool residenceList,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? residenceList,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ResidenceListRequest(
         residenceList: residenceList ?? this.residenceList,
@@ -55,5 +55,5 @@ class ResidenceListRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

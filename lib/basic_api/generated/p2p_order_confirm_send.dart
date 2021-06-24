@@ -9,8 +9,8 @@ class P2pOrderConfirmRequest extends Request {
   const P2pOrderConfirmRequest({
     @required this.id,
     this.p2pOrderConfirm = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_order_confirm',
           passthrough: passthrough,
@@ -20,19 +20,19 @@ class P2pOrderConfirmRequest extends Request {
   /// Creates an instance from JSON
   factory P2pOrderConfirmRequest.fromJson(Map<String, dynamic> json) =>
       P2pOrderConfirmRequest(
-        id: json['id'] as String,
+        id: json['id'] as String?,
         p2pOrderConfirm: json['p2p_order_confirm'] == null
             ? null
             : json['p2p_order_confirm'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The unique identifier for this order.
-  final String id;
+  final String? id;
 
   /// Must be `true`
-  final bool p2pOrderConfirm;
+  final bool? p2pOrderConfirm;
 
   /// Converts this instance to JSON
   @override
@@ -40,7 +40,7 @@ class P2pOrderConfirmRequest extends Request {
         'id': id,
         'p2p_order_confirm': p2pOrderConfirm == null
             ? null
-            : p2pOrderConfirm
+            : p2pOrderConfirm!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -50,10 +50,10 @@ class P2pOrderConfirmRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pOrderConfirmRequest copyWith({
-    String id,
-    bool p2pOrderConfirm,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? id,
+    bool? p2pOrderConfirm,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pOrderConfirmRequest(
         id: id ?? this.id,
@@ -64,5 +64,5 @@ class P2pOrderConfirmRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -5,6 +5,6 @@ import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 class P2PException extends APIBaseException {
   /// Initializes
   P2PException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

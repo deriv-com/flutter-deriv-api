@@ -11,10 +11,10 @@ class OHLCResponse extends Response {
   const OHLCResponse({
     this.subscription,
     this.ohlc,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -27,10 +27,10 @@ class OHLCResponse extends Response {
       _$OHLCResponseFromJson(json);
 
   /// For subscription requests only.
-  final Map<String, dynamic> subscription;
+  final Map<String, dynamic>? subscription;
 
   /// Tick by tick list of streamed ohlc data
-  final Map<String, dynamic> ohlc;
+  final Map<String, dynamic>? ohlc;
 
   /// Converts an instance to JSON
   @override
@@ -39,12 +39,12 @@ class OHLCResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   OHLCResponse copyWith({
-    Map<String, dynamic> subscription,
-    Map<String, dynamic> ohlc,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? subscription,
+    Map<String, dynamic>? ohlc,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       OHLCResponse(
         subscription: subscription ?? this.subscription,
@@ -57,5 +57,5 @@ class OHLCResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

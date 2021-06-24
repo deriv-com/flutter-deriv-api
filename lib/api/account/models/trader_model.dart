@@ -24,37 +24,37 @@ class TraderModel extends APIBaseModel {
       );
 
   /// The list of assets to copy the trades of.
-  final List<String> assets;
+  final List<String?>? assets;
 
   /// The loginId of the trader's account.
-  final String loginId;
+  final String? loginId;
 
   /// Maximum trading stake set for the trader.
-  final double maxTradeStake;
+  final double? maxTradeStake;
 
   /// Minimum trading stake set for the trader.
-  final double minTradeStake;
+  final double? minTradeStake;
 
   /// The token provided for the trader.
-  final String token;
+  final String? token;
 
   /// The type of trades set.
-  final List<String> tradeTypes;
+  final List<String?>? tradeTypes;
 
   /// Generate a copy of instance with given parameters
   TraderModel copyWith({
-    List<String> assets,
-    String loginId,
-    String maxTradeStake,
-    String minTradeStake,
-    String token,
-    List<String> tradeTypes,
+    List<String>? assets,
+    String? loginId,
+    String? maxTradeStake,
+    String? minTradeStake,
+    String? token,
+    List<String>? tradeTypes,
   }) =>
       TraderModel(
         assets: assets ?? this.assets,
         loginId: loginId ?? this.loginId,
-        maxTradeStake: maxTradeStake ?? this.maxTradeStake,
-        minTradeStake: minTradeStake ?? this.minTradeStake,
+        maxTradeStake: getDouble(maxTradeStake) ?? this.maxTradeStake,
+        minTradeStake: getDouble(minTradeStake) ?? this.minTradeStake,
         token: token ?? this.token,
         tradeTypes: tradeTypes ?? this.tradeTypes,
       );

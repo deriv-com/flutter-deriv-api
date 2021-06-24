@@ -10,18 +10,18 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class AppDelete extends AppDeleteModel {
   /// Initializes
   AppDelete({
-    bool succeeded,
+    bool? succeeded,
   }) : super(succeeded: succeeded);
 
   /// Creates an instance from response
   factory AppDelete.fromResponse(AppDeleteResponse response) =>
       AppDelete(succeeded: getBool(response.appDelete));
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   AppDelete copyWith({
-    bool succeeded,
+    bool? succeeded,
   }) =>
       AppDelete(
         succeeded: succeeded ?? this.succeeded,
@@ -32,11 +32,11 @@ class AppDelete extends AppDeleteModel {
   /// For parameters information refer to [AppDeleteRequest].
   /// Throws an [AppException] if API response contains an error
   static Future<AppDelete> deleteApplication(AppDeleteRequest request) async {
-    final AppDeleteResponse response = await _api.call(request: request);
+    final AppDeleteResponse response = await _api!.call<AppDeleteResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AppException(baseExceptionModel: baseExceptionModel),
     );
 

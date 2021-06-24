@@ -13,8 +13,8 @@ class P2pAdvertiserCreateRequest extends Request {
     this.p2pAdvertiserCreate = true,
     this.paymentInfo,
     this.subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_advertiser_create',
           passthrough: passthrough,
@@ -24,35 +24,35 @@ class P2pAdvertiserCreateRequest extends Request {
   /// Creates an instance from JSON
   factory P2pAdvertiserCreateRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserCreateRequest(
-        contactInfo: json['contact_info'] as String,
-        defaultAdvertDescription: json['default_advert_description'] as String,
-        name: json['name'] as String,
+        contactInfo: json['contact_info'] as String?,
+        defaultAdvertDescription: json['default_advert_description'] as String?,
+        name: json['name'] as String?,
         p2pAdvertiserCreate: json['p2p_advertiser_create'] == null
             ? null
             : json['p2p_advertiser_create'] == 1,
-        paymentInfo: json['payment_info'] as String,
+        paymentInfo: json['payment_info'] as String?,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Advertiser's contact information, to be used as a default for new sell adverts.
-  final String contactInfo;
+  final String? contactInfo;
 
   /// [Optional] Default description that can be used every time an advert is created.
-  final String defaultAdvertDescription;
+  final String? defaultAdvertDescription;
 
   /// The advertiser's displayed name.
-  final String name;
+  final String? name;
 
   /// Must be `true`
-  final bool p2pAdvertiserCreate;
+  final bool? p2pAdvertiserCreate;
 
   /// [Optional] Advertiser's payment information, to be used as a default for new sell adverts.
-  final String paymentInfo;
+  final String? paymentInfo;
 
   /// [Optional] If set to `true`, will send updates whenever there is an update to advertiser
-  final bool subscribe;
+  final bool? subscribe;
 
   /// Converts this instance to JSON
   @override
@@ -62,13 +62,13 @@ class P2pAdvertiserCreateRequest extends Request {
         'name': name,
         'p2p_advertiser_create': p2pAdvertiserCreate == null
             ? null
-            : p2pAdvertiserCreate
+            : p2pAdvertiserCreate!
                 ? 1
                 : 0,
         'payment_info': paymentInfo,
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -78,14 +78,14 @@ class P2pAdvertiserCreateRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertiserCreateRequest copyWith({
-    String contactInfo,
-    String defaultAdvertDescription,
-    String name,
-    bool p2pAdvertiserCreate,
-    String paymentInfo,
-    bool subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? contactInfo,
+    String? defaultAdvertDescription,
+    String? name,
+    bool? p2pAdvertiserCreate,
+    String? paymentInfo,
+    bool? subscribe,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pAdvertiserCreateRequest(
         contactInfo: contactInfo ?? this.contactInfo,
@@ -101,5 +101,5 @@ class P2pAdvertiserCreateRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

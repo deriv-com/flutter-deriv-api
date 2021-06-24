@@ -8,5 +8,5 @@ abstract class MT5PasswordChangeModel extends APIBaseModel {
   });
 
   /// `true` on success
-  final bool succeeded;
+  final bool? succeeded;
 }

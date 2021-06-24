@@ -8,8 +8,8 @@ class ForgetAllRequest extends Request {
   /// Initialize ForgetAllRequest
   const ForgetAllRequest({
     this.forgetAll,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'forget_all',
           passthrough: passthrough,
@@ -19,13 +19,13 @@ class ForgetAllRequest extends Request {
   /// Creates an instance from JSON
   factory ForgetAllRequest.fromJson(Map<String, dynamic> json) =>
       ForgetAllRequest(
-        forgetAll: json['forget_all'] as dynamic,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        forgetAll: json['forget_all'] as dynamic?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Cancel all streams by type. The value can be either a single type e.g. `"ticks"`, or an array of multiple types e.g. `["candles", "ticks"]`.
-  final dynamic forgetAll;
+  final dynamic? forgetAll;
 
   /// Converts this instance to JSON
   @override
@@ -38,9 +38,9 @@ class ForgetAllRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ForgetAllRequest copyWith({
-    dynamic forgetAll,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    dynamic? forgetAll,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ForgetAllRequest(
         forgetAll: forgetAll ?? this.forgetAll,
@@ -50,5 +50,5 @@ class ForgetAllRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

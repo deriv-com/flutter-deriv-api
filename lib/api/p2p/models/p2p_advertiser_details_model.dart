@@ -16,18 +16,18 @@ class P2PAdvertiserDetailsModel extends APIBaseModel {
       );
 
   /// The advertisers unique identifier.
-  final String id;
+  final String? id;
 
   /// The advertisers displayed name.
-  final String name;
+  final String? name;
 
   /// Generate a copy of instance with given parameters
   P2PAdvertiserDetailsModel copyWith({
-    String id,
-    double name,
+    String? id,
+    double? name,
   }) =>
       P2PAdvertiserDetailsModel(
         id: id ?? this.id,
-        name: name ?? this.name,
+        name: name.toString(),
       );
 }

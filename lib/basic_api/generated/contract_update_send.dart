@@ -10,8 +10,8 @@ class ContractUpdateRequest extends Request {
     @required this.contractId,
     this.contractUpdate = true,
     @required this.limitOrder,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'contract_update',
           passthrough: passthrough,
@@ -21,23 +21,23 @@ class ContractUpdateRequest extends Request {
   /// Creates an instance from JSON
   factory ContractUpdateRequest.fromJson(Map<String, dynamic> json) =>
       ContractUpdateRequest(
-        contractId: json['contract_id'] as int,
+        contractId: json['contract_id'] as int?,
         contractUpdate: json['contract_update'] == null
             ? null
             : json['contract_update'] == 1,
-        limitOrder: json['limit_order'] as Map<String, dynamic>,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        limitOrder: json['limit_order'] as Map<String, dynamic>?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Internal unique contract identifier.
-  final int contractId;
+  final int? contractId;
 
   /// Must be `true`
-  final bool contractUpdate;
+  final bool? contractUpdate;
 
   /// Specify limit order to update.
-  final Map<String, dynamic> limitOrder;
+  final Map<String, dynamic>? limitOrder;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class ContractUpdateRequest extends Request {
         'contract_id': contractId,
         'contract_update': contractUpdate == null
             ? null
-            : contractUpdate
+            : contractUpdate!
                 ? 1
                 : 0,
         'limit_order': limitOrder,
@@ -56,11 +56,11 @@ class ContractUpdateRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ContractUpdateRequest copyWith({
-    int contractId,
-    bool contractUpdate,
-    Map<String, dynamic> limitOrder,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    int? contractId,
+    bool? contractUpdate,
+    Map<String, dynamic>? limitOrder,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ContractUpdateRequest(
         contractId: contractId ?? this.contractId,
@@ -72,5 +72,5 @@ class ContractUpdateRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

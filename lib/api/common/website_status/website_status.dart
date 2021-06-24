@@ -19,13 +19,13 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class WebsiteStatus extends WebsiteStatusModel {
   /// Initializes
   WebsiteStatus({
-    ApiCallLimitModel apiCallLimits,
-    List<WebsiteStatusCurrencyConfigModel> currencyConfig,
-    String clientsCountry,
-    List<WebsiteStatusCryptoConfigModel> cryptoConfig,
-    SiteStatus siteStatus,
-    List<String> supportedLanguages,
-    String termsConditionsVersion,
+    ApiCallLimitModel? apiCallLimits,
+    List<WebsiteStatusCurrencyConfigModel?>? currencyConfig,
+    String? clientsCountry,
+    List<WebsiteStatusCryptoConfigModel?>? cryptoConfig,
+    SiteStatus? siteStatus,
+    List<String?>? supportedLanguages,
+    String? termsConditionsVersion,
     this.subscriptionInformation,
   }) : super(
           apiCallLimits: apiCallLimits,
@@ -40,7 +40,7 @@ class WebsiteStatus extends WebsiteStatusModel {
   /// Initializes from map
   factory WebsiteStatus.fromJson(
     Map<String, dynamic> json, {
-    Map<String, dynamic> subscriptionJson,
+    Map<String, dynamic>? subscriptionJson,
   }) =>
       WebsiteStatus(
         currencyConfig: getListFromMap(
@@ -69,47 +69,47 @@ class WebsiteStatus extends WebsiteStatusModel {
       );
 
   /// Subscription information
-  final SubscriptionModel subscriptionInformation;
+  final SubscriptionModel? subscriptionInformation;
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets Website status
   ///
   /// Throws a [WebsiteStatusException] if API response contains an error
   static Future<WebsiteStatus> fetchWebsiteStatus([
-    WebsiteStatusRequest request,
+    WebsiteStatusRequest? request,
   ]) async {
-    final WebsiteStatusResponse response = await _api.call(
+    final WebsiteStatusResponse response = await _api!.call<WebsiteStatusResponse>(
       request: request ?? const WebsiteStatusRequest(),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           WebsiteStatusException(baseExceptionModel: baseExceptionModel),
     );
 
-    return WebsiteStatus.fromJson(response.websiteStatus);
+    return WebsiteStatus.fromJson(response.websiteStatus!);
   }
 
   /// Subscribes to website status
-  static Stream<WebsiteStatus> subscribeWebsiteStatus(
+  static Stream<WebsiteStatus?> subscribeWebsiteStatus(
     WebsiteStatusRequest request, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
-      _api
-          .subscribe(request: request, comparePredicate: comparePredicate)
-          .map<WebsiteStatus>(
+      _api!
+          .subscribe(request: request, comparePredicate: comparePredicate)!
+          .map<WebsiteStatus?>(
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
                 WebsiteStatusException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is WebsiteStatusResponse
               ? WebsiteStatus.fromJson(
-                  response.websiteStatus,
+                  response.websiteStatus!,
                   subscriptionJson: response.subscription,
                 )
               : null;
@@ -119,17 +119,17 @@ class WebsiteStatus extends WebsiteStatusModel {
   /// Unsubscribes from website status
   ///
   /// Throws a [WebsiteStatusException] if API response contains an error
-  Future<Forget> unsubscribeWebsiteStatus() async {
+  Future<Forget?> unsubscribeWebsiteStatus() async {
     if (subscriptionInformation?.id == null) {
       return null;
     }
 
     final ForgetResponse response =
-        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+        await _api!.unsubscribe(subscriptionId: subscriptionInformation!.id);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           WebsiteStatusException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -140,12 +140,12 @@ class WebsiteStatus extends WebsiteStatusModel {
   ///
   /// Throws a [WebsiteStatusException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllWebsiteStatus() async {
-    final ForgetAllResponse response =
-        await _api.unsubscribeAll(method: ForgetStreamType.ticks);
+    final ForgetAllResponse? response =
+        await _api!.unsubscribeAll(method: ForgetStreamType.ticks);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           WebsiteStatusException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -154,15 +154,15 @@ class WebsiteStatus extends WebsiteStatusModel {
 
   /// Generate a copy of instance with given parameters
   WebsiteStatus copyWith({
-    ApiCallLimitModel apiCallLimits,
-    List<WebsiteStatusCurrencyConfigModel> currencyConfig,
-    String clientsCountry,
-    List<WebsiteStatusCryptoConfigModel> cryptoConfig,
-    List<WebsiteStatusCurrencyConfigModel> localCurrenciesConfig,
-    SiteStatus siteStatus,
-    List<String> supportedLanguages,
-    String termsConditionsVersion,
-    SubscriptionModel subscriptionInformation,
+    ApiCallLimitModel? apiCallLimits,
+    List<WebsiteStatusCurrencyConfigModel>? currencyConfig,
+    String? clientsCountry,
+    List<WebsiteStatusCryptoConfigModel>? cryptoConfig,
+    List<WebsiteStatusCurrencyConfigModel>? localCurrenciesConfig,
+    SiteStatus? siteStatus,
+    List<String>? supportedLanguages,
+    String? termsConditionsVersion,
+    SubscriptionModel? subscriptionInformation,
   }) =>
       WebsiteStatus(
         apiCallLimits: apiCallLimits ?? this.apiCallLimits,

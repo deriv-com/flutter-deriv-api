@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
@@ -14,22 +13,22 @@ class CallManager extends BaseCallManager<Future<Response>> {
 
   @override
   void handleResponse({
-    @required int requestId,
-    @required Map<String, dynamic> response,
+    required int requestId,
+    required Map<String, dynamic> response,
   }) {
     super.handleResponse(requestId: requestId, response: response);
 
-    final Completer<Response> responseCompleter =
+    final Completer<Response>? responseCompleter =
         pendingRequests[requestId]?.responseCompleter;
 
     if (responseCompleter?.isCompleted == false) {
-      responseCompleter.complete(getResponseByMsgType(response));
+      responseCompleter!.complete(getResponseByMsgType(response));
     }
 
     pendingRequests.remove(requestId);
   }
 
   @override
-  Future<Response> call({@required Request request}) async =>
+  Future<Response> call({required Request request}) async =>
       addToChannel(request: request);
 }

@@ -1,7 +1,6 @@
 import 'package:dart_style/dart_style.dart';
-import 'package:inflection2/inflection2.dart';
-import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
+import 'package:flutter_deriv_api/tools/singular_encoder/singular_encoder.dart';
 
 const String _objectType = 'object';
 const String _arrayType = 'array';
@@ -36,31 +35,31 @@ class JsonSchemaParser {
     'boolean': 'bool',
   };
 
-  static String _getClassName({
-    @required String name,
-    @required String type,
-    String arrayType,
+  static String? _getClassName({
+    required String name,
+    required String? type,
+    String? arrayType,
   }) =>
       type == _objectType
           ? ReCase(name).pascalCase
           : type == _arrayType
               ? arrayType != null && _typeMap.containsKey(arrayType)
                   ? _typeMap[arrayType]
-                  : convertToSingular(ReCase(name).pascalCase)
-              : _typeMap[type] ?? 'UNKNOWN_TYPE';
+                  : SingularEncoder().convert(ReCase(name).pascalCase)
+              : _typeMap[type!] ?? 'UNKNOWN_TYPE';
 
-  static String _getObjectType({
-    @required String name,
-    @required String type,
-    String arrayType,
+  static String? _getObjectType({
+    required String name,
+    required String? type,
+    String? arrayType,
   }) =>
       type == _arrayType
           ? 'List<${_getClassName(name: name, type: type, arrayType: arrayType)}>'
           : _getClassName(name: name, type: type, arrayType: arrayType);
 
   static String _generateClass({
-    @required String className,
-    @required List<_SchemaModel> models,
+    required String className,
+    required List<_SchemaModel> models,
   }) {
     final StringBuffer result = StringBuffer()
       ..write(
@@ -90,8 +89,8 @@ class JsonSchemaParser {
   }
 
   static StringBuffer _generateContractor({
-    @required String className,
-    @required List<_SchemaModel> models,
+    required String className,
+    required List<_SchemaModel> models,
     bool isSubclass = true,
   }) {
     final StringBuffer result = StringBuffer()
@@ -124,7 +123,8 @@ class JsonSchemaParser {
     return result;
   }
 
-  static StringBuffer _generateProperties({List<_SchemaModel> models}) {
+  static StringBuffer _generateProperties(
+      {required List<_SchemaModel> models}) {
     final StringBuffer result = StringBuffer();
 
     for (final _SchemaModel model in models) {
@@ -140,18 +140,18 @@ class JsonSchemaParser {
   }
 
   static StringBuffer _generateFromJson({
-    @required String className,
-    @required List<_SchemaModel> models,
+    required String className,
+    required List<_SchemaModel> models,
   }) {
     final StringBuffer result = StringBuffer(
       'factory $className.fromJson(Map<String, dynamic> json) => $className(',
     );
 
     for (final _SchemaModel model in models) {
-      final String className = model.className;
-      final String title = model.title;
-      final String schemaTitle = model.schemaTitle;
-      final String schemaType = model.schemaType;
+      final String? className = model.className;
+      final String? title = model.title;
+      final String? schemaTitle = model.schemaTitle;
+      final String? schemaType = model.schemaType;
 
       if (schemaType == _objectType) {
         result.write(
@@ -181,7 +181,7 @@ class JsonSchemaParser {
   }
 
   static StringBuffer _generateToJson({
-    @required List<_SchemaModel> models,
+    required List<_SchemaModel> models,
   }) {
     final StringBuffer result = StringBuffer()
       ..write(
@@ -193,9 +193,9 @@ class JsonSchemaParser {
       );
 
     for (final _SchemaModel model in models) {
-      final String title = model.title;
-      final String schemaTitle = model.schemaTitle;
-      final String schemaType = model.schemaType;
+      final String? title = model.title;
+      final String? schemaTitle = model.schemaTitle;
+      final String? schemaType = model.schemaType;
 
       if (schemaType == _objectType) {
         result.write(
@@ -224,8 +224,8 @@ class JsonSchemaParser {
   }
 
   static StringBuffer _copyWith({
-    @required String className,
-    @required List<_SchemaModel> models,
+    required String className,
+    required List<_SchemaModel> models,
   }) {
     final StringBuffer result = StringBuffer()
       ..write(
@@ -251,21 +251,21 @@ class JsonSchemaParser {
 
   /// Pass decoded JSON schema to this method for getting list of objects
   static List<_SchemaModel> getModels({
-    @required Map<String, dynamic> schema,
+    required Map<String, dynamic>? schema,
   }) {
     final List<_SchemaModel> parentModel = <_SchemaModel>[];
 
     if (schema != null && schema.containsKey('properties')) {
-      final Map<String, dynamic> schemaProperties = schema['properties'];
+      final Map<String, dynamic>? schemaProperties = schema['properties'];
 
       if (schemaProperties != null) {
         for (final dynamic entry in schemaProperties.entries) {
           final String name = entry.key;
-          final String type = _getType(entry);
-          final String arrayType = entry.value['type'] == 'array'
+          final String? type = _getType(entry);
+          final String? arrayType = entry.value['type'] == 'array'
               ? entry.value['items']['type']
               : null;
-          final String description = entry.value['description'];
+          final String? description = entry.value['description'];
           final bool isBoolean = _isBoolean(entry);
 
           if (_ignoredParameters.contains(name.toLowerCase())) {
@@ -309,8 +309,8 @@ class JsonSchemaParser {
 
   /// Generating main and nested classes from schema models that comes from `getModel()` method.
   List<StringBuffer> getClasses({
-    @required List<_SchemaModel> models,
-    String className = 'MainClass',
+    required List<_SchemaModel> models,
+    String? className = 'MainClass',
     bool clearResult = true,
   }) {
     if (clearResult) {
@@ -321,7 +321,7 @@ class JsonSchemaParser {
       _result.add(
         StringBuffer(
           _generateClass(
-            className: className,
+            className: className!,
             models: models,
           ),
         ),
@@ -339,7 +339,7 @@ class JsonSchemaParser {
     return _result;
   }
 
-  static String _getType(dynamic entry) => entry.value['type']?.length == 2
+  static String? _getType(dynamic entry) => entry.value['type']?.length == 2
       ? entry.value['type'][0] != 'null'
           ? entry.value['type'][0]
           : entry.value['type'][1]
@@ -353,50 +353,50 @@ class JsonSchemaParser {
       !entry.value['description'].contains('[Optional]');
 
   static String _preparePropertyDescription({
-    bool isBoolean,
-    String description,
+    required bool isBoolean,
+    String? description,
   }) =>
       isBoolean
-          ? description
+          ? description!
               .replaceAll('\n', '\n/// ')
               .replaceAllMapped(
                 RegExp(r'`1`| 1| 1 '),
                 (Match match) => match
-                    .group(0)
+                    .group(0)!
                     .replaceAllMapped(RegExp(r'`1`|1'), (_) => '`true`'),
               )
               .replaceAllMapped(
                 RegExp(r'`0`| 0| 0 '),
                 (Match match) => match
-                    .group(0)
+                    .group(0)!
                     .replaceAllMapped(RegExp(r'`0`|0'), (_) => '`false`'),
               )
-          : description.replaceAll('\n', '\n/// ');
+          : description!.replaceAll('\n', '\n/// ');
 }
 
 /// Model to store schema information
 class _SchemaModel {
   /// Class name
-  String className;
+  String? className;
 
   /// Field title
-  String title;
+  String? title;
 
   /// Object type
-  String type;
+  String? type;
 
   /// Is required field
-  bool isRequired;
+  late bool isRequired;
 
   /// Field description
-  String description;
+  String? description;
 
   /// Schema object field title
-  String schemaTitle;
+  String? schemaTitle;
 
   /// Schema object field type
-  String schemaType;
+  String? schemaType;
 
   /// List of nested classes
-  List<_SchemaModel> children;
+  late List<_SchemaModel> children;
 }

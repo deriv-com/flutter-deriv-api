@@ -15,15 +15,15 @@ class MarketTradesBreakdownModel extends APIBaseModel {
       );
 
   /// Breakdown
-  final double breakdown;
+  final double? breakdown;
 
   /// Market name
-  final String market;
+  final String? market;
 
   /// Generate a copy of instance with given parameters
   MarketTradesBreakdownModel copyWith({
-    double breakdown,
-    String market,
+    double? breakdown,
+    String? market,
   }) =>
       MarketTradesBreakdownModel(
         breakdown: breakdown ?? this.breakdown,

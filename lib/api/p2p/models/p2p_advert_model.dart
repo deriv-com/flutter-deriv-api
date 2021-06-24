@@ -38,89 +38,89 @@ abstract class P2PAdvertModel extends APIBaseModel {
   });
 
   /// Currency for this advert. This is the system currency to be transferred between advertiser and client.
-  final String accountCurrency;
+  final String? accountCurrency;
 
   /// Details of the advertiser for this advert.
-  final P2PAdvertiserDetailsModel advertiserDetails;
+  final P2PAdvertiserDetailsModel? advertiserDetails;
 
   /// The total amount specified in advert, in `account_currency`. It is only visible for advertisers.
-  final double amount;
+  final double? amount;
 
   /// The total amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible for advertisers.
-  final String amountDisplay;
+  final String? amountDisplay;
 
   /// Advertiser contact information. Only applicable for 'sell adverts'.
-  final String contactInfo;
+  final String? contactInfo;
 
   /// Type of transaction from the opposite party's perspective.
-  final TransactionType counterpartyType;
+  final TransactionType? counterpartyType;
 
   /// The target country code of the advert.
-  final String country;
+  final String? country;
 
   /// The advert creation time in epoch.
-  final DateTime createdTime;
+  final DateTime? createdTime;
 
   /// General information about the advert.
-  final String description;
+  final String? description;
 
   /// The unique identifier for this advert.
-  final String id;
+  final String? id;
 
   /// The activation status of the advert.
-  final bool isActive;
+  final bool? isActive;
 
   /// Local currency for this advert. This is the form of payment to be arranged directly between advertiser and client.
-  final String localCurrency;
+  final String? localCurrency;
 
   /// Maximum order amount specified in advert, in `account_currency`. It is only visible for advertisers.
-  final double maxOrderAmount;
+  final double? maxOrderAmount;
 
   /// Maximum order amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible for advertisers.
-  final String maxOrderAmountDisplay;
+  final String? maxOrderAmountDisplay;
 
   /// Maximum order amount at this time, in `account_currency`.
-  final double maxOrderAmountLimit;
+  final double? maxOrderAmountLimit;
 
   /// Maximum order amount at this time, in `account_currency`, formatted to appropriate decimal places.
-  final String maxOrderAmountLimitDisplay;
+  final String? maxOrderAmountLimitDisplay;
 
   /// Minimum order amount specified in advert, in `account_currency`. It is only visible for advertisers.
-  final double minOrderAmount;
+  final double? minOrderAmount;
 
   /// Minimum order amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible for advertisers.
-  final String minOrderAmountDisplay;
+  final String? minOrderAmountDisplay;
 
   /// Minimum order amount at this time, in `account_currency`.
-  final double minOrderAmountLimit;
+  final double? minOrderAmountLimit;
 
   /// Minimum order amount at this time, in `account_currency`, formatted to appropriate decimal places.
-  final String minOrderAmountLimitDisplay;
+  final String? minOrderAmountLimitDisplay;
 
   /// Payment instructions. Only applicable for 'sell adverts'.
-  final String paymentInfo;
+  final String? paymentInfo;
 
   /// The payment method.
-  final PaymentMethod paymentMethod;
+  final PaymentMethod? paymentMethod;
 
   /// Cost of the advert in local currency.
-  final double price;
+  final double? price;
 
   /// Cost of the advert in local currency, formatted to appropriate decimal places.
-  final String priceDisplay;
+  final String? priceDisplay;
 
   /// Conversion rate from account currency to local currency.
-  final double rate;
+  final double? rate;
 
   /// Conversion rate from account currency to local currency, formatted to appropriate decimal places.
-  final String rateDisplay;
+  final String? rateDisplay;
 
   /// Amount currently available for orders, in `account_currency`. It is only visible for advertisers.
-  final double remainingAmount;
+  final double? remainingAmount;
 
   /// Amount currently available for orders, in `account_currency`, formatted to appropriate decimal places. It is only visible for advertisers.
-  final String remainingAmountDisplay;
+  final String? remainingAmountDisplay;
 
   /// Whether this is a buy or a sell.
-  final TransactionType type;
+  final TransactionType? type;
 }

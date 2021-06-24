@@ -25,8 +25,8 @@ class SetFinancialAssessmentRequest extends Request {
     this.otherInstrumentsTradingFrequency,
     this.setFinancialAssessment = true,
     this.sourceOfWealth,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'set_financial_assessment',
           passthrough: passthrough,
@@ -36,87 +36,87 @@ class SetFinancialAssessmentRequest extends Request {
   /// Creates an instance from JSON
   factory SetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       SetFinancialAssessmentRequest(
-        accountTurnover: json['account_turnover'] as String,
+        accountTurnover: json['account_turnover'] as String?,
         binaryOptionsTradingExperience:
-            json['binary_options_trading_experience'] as String,
+            json['binary_options_trading_experience'] as String?,
         binaryOptionsTradingFrequency:
-            json['binary_options_trading_frequency'] as String,
-        cfdTradingExperience: json['cfd_trading_experience'] as String,
-        cfdTradingFrequency: json['cfd_trading_frequency'] as String,
-        educationLevel: json['education_level'] as String,
-        employmentIndustry: json['employment_industry'] as String,
-        employmentStatus: json['employment_status'] as String,
-        estimatedWorth: json['estimated_worth'] as String,
-        forexTradingExperience: json['forex_trading_experience'] as String,
-        forexTradingFrequency: json['forex_trading_frequency'] as String,
-        incomeSource: json['income_source'] as String,
-        netIncome: json['net_income'] as String,
-        occupation: json['occupation'] as String,
+            json['binary_options_trading_frequency'] as String?,
+        cfdTradingExperience: json['cfd_trading_experience'] as String?,
+        cfdTradingFrequency: json['cfd_trading_frequency'] as String?,
+        educationLevel: json['education_level'] as String?,
+        employmentIndustry: json['employment_industry'] as String?,
+        employmentStatus: json['employment_status'] as String?,
+        estimatedWorth: json['estimated_worth'] as String?,
+        forexTradingExperience: json['forex_trading_experience'] as String?,
+        forexTradingFrequency: json['forex_trading_frequency'] as String?,
+        incomeSource: json['income_source'] as String?,
+        netIncome: json['net_income'] as String?,
+        occupation: json['occupation'] as String?,
         otherInstrumentsTradingExperience:
-            json['other_instruments_trading_experience'] as String,
+            json['other_instruments_trading_experience'] as String?,
         otherInstrumentsTradingFrequency:
-            json['other_instruments_trading_frequency'] as String,
+            json['other_instruments_trading_frequency'] as String?,
         setFinancialAssessment: json['set_financial_assessment'] == null
             ? null
             : json['set_financial_assessment'] == 1,
-        sourceOfWealth: json['source_of_wealth'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        sourceOfWealth: json['source_of_wealth'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] The anticipated account turnover.
-  final String accountTurnover;
+  final String? accountTurnover;
 
   /// [Optional] Binary options trading experience.
-  final String binaryOptionsTradingExperience;
+  final String? binaryOptionsTradingExperience;
 
   /// [Optional] Binary options trading frequency.
-  final String binaryOptionsTradingFrequency;
+  final String? binaryOptionsTradingFrequency;
 
   /// [Optional] CFDs trading experience.
-  final String cfdTradingExperience;
+  final String? cfdTradingExperience;
 
   /// [Optional] CFDs trading frequency.
-  final String cfdTradingFrequency;
+  final String? cfdTradingFrequency;
 
   /// Level of Education.
-  final String educationLevel;
+  final String? educationLevel;
 
   /// Industry of Employment.
-  final String employmentIndustry;
+  final String? employmentIndustry;
 
   /// [Optional] Employment Status.
-  final String employmentStatus;
+  final String? employmentStatus;
 
   /// Estimated Net Worth.
-  final String estimatedWorth;
+  final String? estimatedWorth;
 
   /// [Optional] Forex trading experience.
-  final String forexTradingExperience;
+  final String? forexTradingExperience;
 
   /// [Optional] Forex trading frequency.
-  final String forexTradingFrequency;
+  final String? forexTradingFrequency;
 
   /// Income Source.
-  final String incomeSource;
+  final String? incomeSource;
 
   /// Net Annual Income.
-  final String netIncome;
+  final String? netIncome;
 
   /// Occupation.
-  final String occupation;
+  final String? occupation;
 
   /// [Optional] Trading experience in other financial instruments.
-  final String otherInstrumentsTradingExperience;
+  final String? otherInstrumentsTradingExperience;
 
   /// [Optional] Trading frequency in other financial instruments.
-  final String otherInstrumentsTradingFrequency;
+  final String? otherInstrumentsTradingFrequency;
 
   /// Must be `true`
-  final bool setFinancialAssessment;
+  final bool? setFinancialAssessment;
 
   /// [Optional] Source of wealth.
-  final String sourceOfWealth;
+  final String? sourceOfWealth;
 
   /// Converts this instance to JSON
   @override
@@ -140,7 +140,7 @@ class SetFinancialAssessmentRequest extends Request {
         'other_instruments_trading_frequency': otherInstrumentsTradingFrequency,
         'set_financial_assessment': setFinancialAssessment == null
             ? null
-            : setFinancialAssessment
+            : setFinancialAssessment!
                 ? 1
                 : 0,
         'source_of_wealth': sourceOfWealth,
@@ -151,26 +151,26 @@ class SetFinancialAssessmentRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   SetFinancialAssessmentRequest copyWith({
-    String accountTurnover,
-    String binaryOptionsTradingExperience,
-    String binaryOptionsTradingFrequency,
-    String cfdTradingExperience,
-    String cfdTradingFrequency,
-    String educationLevel,
-    String employmentIndustry,
-    String employmentStatus,
-    String estimatedWorth,
-    String forexTradingExperience,
-    String forexTradingFrequency,
-    String incomeSource,
-    String netIncome,
-    String occupation,
-    String otherInstrumentsTradingExperience,
-    String otherInstrumentsTradingFrequency,
-    bool setFinancialAssessment,
-    String sourceOfWealth,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? accountTurnover,
+    String? binaryOptionsTradingExperience,
+    String? binaryOptionsTradingFrequency,
+    String? cfdTradingExperience,
+    String? cfdTradingFrequency,
+    String? educationLevel,
+    String? employmentIndustry,
+    String? employmentStatus,
+    String? estimatedWorth,
+    String? forexTradingExperience,
+    String? forexTradingFrequency,
+    String? incomeSource,
+    String? netIncome,
+    String? occupation,
+    String? otherInstrumentsTradingExperience,
+    String? otherInstrumentsTradingFrequency,
+    bool? setFinancialAssessment,
+    String? sourceOfWealth,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       SetFinancialAssessmentRequest(
         accountTurnover: accountTurnover ?? this.accountTurnover,
@@ -204,5 +204,5 @@ class SetFinancialAssessmentRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

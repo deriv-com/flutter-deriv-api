@@ -26,15 +26,15 @@ class TradingDurationDataModel extends APIBaseModel {
       );
 
   /// List of underlying symbols.
-  final List<SymbolModel> symbols;
+  final List<SymbolModel?>? symbols;
 
   /// List of trade durations available for symbols and contract combinations.
-  final List<TradeDurationModel> tradeDurations;
+  final List<TradeDurationModel?>? tradeDurations;
 
   /// Creates a copy of instance with given parameters
   TradingDurationDataModel copyWith({
-    List<SymbolModel> symbols,
-    List<TradeDurationModel> tradeDurations,
+    List<SymbolModel>? symbols,
+    List<TradeDurationModel>? tradeDurations,
   }) =>
       TradingDurationDataModel(
         symbols: symbols ?? this.symbols,

@@ -9,5 +9,5 @@ class PortfolioModel extends APIBaseModel {
   });
 
   /// List of open positions.
-  final List<PortfolioContractModel> contracts;
+  final List<PortfolioContractModel?>? contracts;
 }

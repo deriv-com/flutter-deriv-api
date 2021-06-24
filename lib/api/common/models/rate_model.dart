@@ -15,15 +15,15 @@ class RateModel extends APIBaseModel {
       );
 
   /// Currency code
-  final String code;
+  final String? code;
 
   /// Currency rate
-  final double rate;
+  final double? rate;
 
   /// Generate a copy of instance with given parameters
   RateModel copyWith({
-    String code,
-    double rate,
+    String? code,
+    double? rate,
   }) =>
       RateModel(
         code: code ?? this.code,

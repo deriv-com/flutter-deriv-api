@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_as
+
 import 'package:flutter_deriv_api/api/common/models/submarket_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
@@ -22,23 +24,23 @@ class MarketModel extends APIBaseModel {
       );
 
   /// Translated market name.
-  final String displayName;
+  final String? displayName;
 
   /// Market name.
-  final String name;
+  final String? name;
 
   /// Submarkets
-  List<SubmarketModel> submarkets;
+  List<SubmarketModel?>? submarkets;
 
   /// Creates a copy of instance with given parameters
   MarketModel copyWith({
-    String displayName,
-    String name,
-    String submarkets,
+    String? displayName,
+    String? name,
+    String? submarkets,
   }) =>
       MarketModel(
         displayName: displayName ?? this.displayName,
         name: name ?? this.name,
-        submarkets: submarkets ?? this.submarkets,
+        submarkets: submarkets as List<SubmarketModel?>? ?? this.submarkets,
       );
 }

@@ -8,8 +8,8 @@ class CancelRequest extends Request {
   /// Initialize CancelRequest
   const CancelRequest({
     @required this.cancel,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'cancel',
           passthrough: passthrough,
@@ -18,13 +18,13 @@ class CancelRequest extends Request {
 
   /// Creates an instance from JSON
   factory CancelRequest.fromJson(Map<String, dynamic> json) => CancelRequest(
-        cancel: json['cancel'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        cancel: json['cancel'] as int?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Value should be the `contract_id` which received from the `portfolio` call.
-  final int cancel;
+  final int? cancel;
 
   /// Converts this instance to JSON
   @override
@@ -37,9 +37,9 @@ class CancelRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   CancelRequest copyWith({
-    int cancel,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    int? cancel,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       CancelRequest(
         cancel: cancel ?? this.cancel,
@@ -49,5 +49,5 @@ class CancelRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

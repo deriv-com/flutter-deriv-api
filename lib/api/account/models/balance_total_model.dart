@@ -41,23 +41,23 @@ class BalanceTotalModel extends APIBaseModel {
       );
 
   /// Total balance of all MT5 accounts
-  final BalanceAccountModel mt5;
+  final BalanceAccountModel? mt5;
 
   /// Total balance of all MT5 demo accounts.
-  final BalanceAccountModel mt5Demo;
+  final BalanceAccountModel? mt5Demo;
 
   /// Total balance of all real money Deriv accounts.
-  final BalanceAccountModel deriv;
+  final BalanceAccountModel? deriv;
 
   /// Total balance of all demo Deriv accounts.
-  final BalanceAccountModel derivDemo;
+  final BalanceAccountModel? derivDemo;
 
   /// Generate a copy of instance with given parameters
   BalanceTotalModel copyWith({
-    BalanceAccountModel mt5,
-    BalanceAccountModel mt5Demo,
-    BalanceAccountModel deriv,
-    BalanceAccountModel derivDemo,
+    BalanceAccountModel? mt5,
+    BalanceAccountModel? mt5Demo,
+    BalanceAccountModel? deriv,
+    BalanceAccountModel? derivDemo,
   }) =>
       BalanceTotalModel(
         mt5: mt5 ?? this.mt5,

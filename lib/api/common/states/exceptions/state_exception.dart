@@ -5,6 +5,6 @@ import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 class StateException extends CommonException {
   /// Initializes
   StateException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

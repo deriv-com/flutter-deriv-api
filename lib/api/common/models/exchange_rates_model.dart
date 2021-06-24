@@ -11,11 +11,11 @@ abstract class ExchangeRatesModel extends APIBaseModel {
   });
 
   /// Base currency
-  final String baseCurrency;
+  final String? baseCurrency;
 
   /// Date retrieval epoch time represented as an integer number
-  final DateTime date;
+  final DateTime? date;
 
   /// Rates of exchanging a unit of base currency into the target currencies
-  final List<RateModel> rates;
+  final List<RateModel?>? rates;
 }

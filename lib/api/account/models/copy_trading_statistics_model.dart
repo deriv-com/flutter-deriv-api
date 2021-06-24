@@ -21,38 +21,38 @@ abstract class CopyTradingStatisticsModel extends APIBaseModel {
   });
 
   /// This is the epoch the investor started trading.
-  final DateTime activeSince;
+  final DateTime? activeSince;
 
   /// Average seconds of keeping positions open.
-  final int avgDuration;
+  final int? avgDuration;
 
   /// Average loss of trades in percentage.
-  final double avgLoss;
+  final double? avgLoss;
 
   /// Average profitable trades in percentage.
-  final double avgProfit;
+  final double? avgProfit;
 
   /// Number of copiers for this trader.
-  final int copiers;
+  final int? copiers;
 
   /// Represents the net change in equity for a 12-month period.
-  final double last12monthsProfitableTrades;
+  final double? last12monthsProfitableTrades;
 
   /// Represents the net change in equity per month.
-  final List<ProfitableTradeModel> monthlyProfitableTrades;
+  final List<ProfitableTradeModel?>? monthlyProfitableTrades;
 
   /// Trader performance probability.
-  final double performanceProbability;
+  final double? performanceProbability;
 
   /// Total number of trades for all time.
-  final int totalTrades;
+  final int? totalTrades;
 
   /// Represents the portfolio distribution by markets.
-  final List<MarketTradesBreakdownModel> tradesBreakdown;
+  final List<MarketTradesBreakdownModel?>? tradesBreakdown;
 
   /// Number of profit trades in percentage.
-  final double tradesProfitable;
+  final double? tradesProfitable;
 
   /// Represents the net change in equity per year.
-  final List<ProfitableTradeModel> yearlyProfitableTrades;
+  final List<ProfitableTradeModel?>? yearlyProfitableTrades;
 }

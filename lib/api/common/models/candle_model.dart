@@ -22,31 +22,31 @@ class CandleModel extends APIBaseModel {
       );
 
   /// It is the close price value for the given time
-  final double close;
+  final double? close;
 
   /// It is an epoch value
-  final DateTime epoch;
+  final DateTime? epoch;
 
   /// It is the high price value for the given time
-  final double high;
+  final double? high;
 
   /// It is the low price value for the given time
-  final double low;
+  final double? low;
 
   /// It is the open price value for the given time
-  final double open;
+  final double? open;
 
   /// Generate a copy of instance with given parameters
   CandleModel copyWith({
-    double close,
-    int epoch,
-    double high,
-    double low,
-    double open,
+    double? close,
+    int? epoch,
+    double? high,
+    double? low,
+    double? open,
   }) =>
       CandleModel(
         close: close ?? this.close,
-        epoch: epoch ?? this.epoch,
+        epoch: getDateTime(epoch) ?? this.epoch,
         high: high ?? this.high,
         low: low ?? this.low,
         open: open ?? this.open,

@@ -8,8 +8,8 @@ class LogoutRequest extends Request {
   /// Initialize LogoutRequest
   const LogoutRequest({
     this.logout = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'logout',
           passthrough: passthrough,
@@ -19,19 +19,19 @@ class LogoutRequest extends Request {
   /// Creates an instance from JSON
   factory LogoutRequest.fromJson(Map<String, dynamic> json) => LogoutRequest(
         logout: json['logout'] == null ? null : json['logout'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool logout;
+  final bool? logout;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'logout': logout == null
             ? null
-            : logout
+            : logout!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -41,9 +41,9 @@ class LogoutRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   LogoutRequest copyWith({
-    bool logout,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? logout,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       LogoutRequest(
         logout: logout ?? this.logout,
@@ -53,5 +53,5 @@ class LogoutRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -6,10 +6,10 @@ import 'top_snack_bar.dart';
 class TopSnackBarWidget extends StatefulWidget {
   /// Initializes
   const TopSnackBarWidget({
-    @required this.child,
-    @required this.snackAnimationController,
-    @required this.contextWidth,
-    Key key,
+    required this.child,
+    required this.snackAnimationController,
+    required this.contextWidth,
+    Key? key,
     this.dismissible,
     this.duration,
   }) : super(key: key);
@@ -24,12 +24,12 @@ class TopSnackBarWidget extends StatefulWidget {
   final double contextWidth;
 
   /// Duration of snack bar being visible
-  final Duration duration;
+  final Duration? duration;
 
   ///If false, user will be able to dismiss it by dragging up
   ///If true, will remain shown until you dismiss it with [TopSnackBarManager]
   ///dismiss method.
-  final bool dismissible;
+  final bool? dismissible;
 
   @override
   _TopSnackBarWidgetState createState() => _TopSnackBarWidgetState();
@@ -38,14 +38,16 @@ class TopSnackBarWidget extends StatefulWidget {
 class _TopSnackBarWidgetState extends State<TopSnackBarWidget> {
   final GlobalKey _snackBarContentKey =
       GlobalKey(debugLabel: 'snackBarContentKey');
-  Size _widgetSize;
-  bool _dismissible;
-  Duration _duration;
+  late Size _widgetSize;
+  late bool _dismissible;
+  late Duration _duration;
 
   void _calculateSizes() {
-    final RenderBox renderBoxRed =
-        _snackBarContentKey.currentContext.findRenderObject();
-    _widgetSize = renderBoxRed.size;
+    final RenderObject? renderBoxRed =
+        _snackBarContentKey.currentContext!.findRenderObject();
+    if (renderBoxRed is RenderBox) {
+      _widgetSize = renderBoxRed.size;
+    }
   }
 
   @override
@@ -55,7 +57,7 @@ class _TopSnackBarWidgetState extends State<TopSnackBarWidget> {
     _dismissible = widget.dismissible ?? true;
     _duration = widget.duration ?? const Duration(seconds: 2);
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => _calculateSizes());
+    WidgetsBinding.instance!.addPostFrameCallback((_) => _calculateSizes());
 
     widget.snackAnimationController.addListener(() {
       setState(() {});
