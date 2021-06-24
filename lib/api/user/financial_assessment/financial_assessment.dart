@@ -10,27 +10,27 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class FinancialAssessment extends FinancialAssessmentModel {
   /// Initializes
   FinancialAssessment({
-    String accountTurnover,
-    String binaryOptionsTradingExperience,
-    String binaryOptionsTradingFrequency,
-    int cfdScore,
-    String cfdTradingExperience,
-    String cfdTradingFrequency,
-    String educationLevel,
-    String employmentIndustry,
-    String employmentStatus,
-    String estimatedWorth,
-    int financialInformationScore,
-    String forexTradingExperience,
-    String forexTradingFrequency,
-    String incomeSource,
-    String netIncome,
-    String occupation,
-    String otherInstrumentsTradingExperience,
-    String otherInstrumentsTradingFrequency,
-    String sourceOfWealth,
-    int totalScore,
-    int tradingScore,
+    String? accountTurnover,
+    String? binaryOptionsTradingExperience,
+    String? binaryOptionsTradingFrequency,
+    int? cfdScore,
+    String? cfdTradingExperience,
+    String? cfdTradingFrequency,
+    String? educationLevel,
+    String? employmentIndustry,
+    String? employmentStatus,
+    String? estimatedWorth,
+    int? financialInformationScore,
+    String? forexTradingExperience,
+    String? forexTradingFrequency,
+    String? incomeSource,
+    String? netIncome,
+    String? occupation,
+    String? otherInstrumentsTradingExperience,
+    String? otherInstrumentsTradingFrequency,
+    String? sourceOfWealth,
+    int? totalScore,
+    int? tradingScore,
   }) : super(
           accountTurnover: accountTurnover,
           binaryOptionsTradingExperience: binaryOptionsTradingExperience,
@@ -84,31 +84,31 @@ class FinancialAssessment extends FinancialAssessmentModel {
         tradingScore: json['trading_score'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   FinancialAssessment copyWith({
-    String accountTurnover,
-    String binaryOptionsTradingExperience,
-    String binaryOptionsTradingFrequency,
-    int cfdScore,
-    String cfdTradingExperience,
-    String cfdTradingFrequency,
-    String educationLevel,
-    String employmentIndustry,
-    String employmentStatus,
-    String estimatedWorth,
-    int financialInformationScore,
-    String forexTradingExperience,
-    String forexTradingFrequency,
-    String incomeSource,
-    String netIncome,
-    String occupation,
-    String otherInstrumentsTradingExperience,
-    String otherInstrumentsTradingFrequency,
-    String sourceOfWealth,
-    int totalScore,
-    int tradingScore,
+    String? accountTurnover,
+    String? binaryOptionsTradingExperience,
+    String? binaryOptionsTradingFrequency,
+    int? cfdScore,
+    String? cfdTradingExperience,
+    String? cfdTradingFrequency,
+    String? educationLevel,
+    String? employmentIndustry,
+    String? employmentStatus,
+    String? estimatedWorth,
+    int? financialInformationScore,
+    String? forexTradingExperience,
+    String? forexTradingFrequency,
+    String? incomeSource,
+    String? netIncome,
+    String? occupation,
+    String? otherInstrumentsTradingExperience,
+    String? otherInstrumentsTradingFrequency,
+    String? sourceOfWealth,
+    int? totalScore,
+    int? tradingScore,
   }) =>
       FinancialAssessment(
         accountTurnover: accountTurnover ?? this.accountTurnover,
@@ -150,14 +150,14 @@ class FinancialAssessment extends FinancialAssessmentModel {
     GetFinancialAssessmentRequest request,
   ) async {
     final GetFinancialAssessmentResponse response =
-        await _api.call(request: request);
+        await _api!.call<GetFinancialAssessmentResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           FinancialAssessmentException(baseExceptionModel: baseExceptionModel),
     );
 
-    return FinancialAssessment.fromJson(response.getFinancialAssessment);
+    return FinancialAssessment.fromJson(response.getFinancialAssessment!);
   }
 }

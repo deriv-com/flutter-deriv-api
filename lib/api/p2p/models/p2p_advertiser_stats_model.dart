@@ -13,20 +13,20 @@ abstract class P2PAdvertiserStatsModel extends APIBaseModel {
   });
 
   /// The number of buy order orders completed within the requested time period.
-  final int buyOrdersCount;
+  final int? buyOrdersCount;
 
   /// The average time taken to cancel orders as a buyer within the requested time period, in seconds.
-  final int cancelTimeAvg;
+  final int? cancelTimeAvg;
 
   /// The percentage of completed orders out of total orders as a buyer within the requested time period.
-  final double completionRate;
+  final double? completionRate;
 
   /// The average time taken to release funds as a seller within the requested time period, in seconds.
-  final int releaseTimeAvg;
+  final int? releaseTimeAvg;
 
   /// The number of buy sell order orders completed within the requested time period.
-  final int sellOrdersCount;
+  final int? sellOrdersCount;
 
   /// The total number of orders created since advertiser registration.s
-  final int totalOrdersCount;
+  final int? totalOrdersCount;
 }

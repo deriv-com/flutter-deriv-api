@@ -10,8 +10,8 @@ void main() {
   test('Transactions Subscription Test', () async {
     Transaction.subscribeTransactions().listen(
       expectAsync1(
-        (Transaction transaction) {
-          expect(transaction.symbol, 'frxAUDJPY');
+        (Transaction? transaction) {
+          expect(transaction!.symbol, 'frxAUDJPY');
           expect(transaction.balance, 9654.38);
           expect(transaction.barrier, 'S0P');
           expect(transaction.contractId, '80072336728');
@@ -20,7 +20,7 @@ void main() {
           expect(transaction.purchaseTime, getDateTime(1587626678));
 
           expect(
-            transaction.subscriptionInformation.id,
+            transaction.subscriptionInformation!.id,
             '9c3d0143-24ac-b8d9-c68b-06856b5f78d2',
           );
         },

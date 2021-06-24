@@ -12,8 +12,8 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class PaymentAgentList extends PaymentAgentListModel {
   /// Initializes
   PaymentAgentList({
-    List<CountryModel> countries,
-    List<PaymentAgentModel> paymentAgents,
+    List<CountryModel>? countries,
+    List<PaymentAgentModel?>? paymentAgents,
   }) : super(
           countries: countries,
           paymentAgents: paymentAgents,
@@ -22,22 +22,22 @@ class PaymentAgentList extends PaymentAgentListModel {
   /// Generates an instance from response
   factory PaymentAgentList.fromResponse(PaymentagentListResponse response) =>
       PaymentAgentList(
-        countries: response.paymentagentList['available_countries']
+        countries: response.paymentagentList!['available_countries']
             .map<CountryModel>((dynamic item) => CountryModel.fromItem(item))
             .toList(),
         paymentAgents: getListFromMap(
-          response.paymentagentList['list'],
+          response.paymentagentList!['list'],
           itemToTypeCallback: (dynamic item) =>
               PaymentAgentModel.fromJson(item),
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   PaymentAgentList copyWith({
-    List<CountryModel> countries,
-    List<PaymentAgentModel> paymentAgents,
+    List<CountryModel>? countries,
+    List<PaymentAgentModel>? paymentAgents,
   }) =>
       PaymentAgentList(
         countries: countries ?? this.countries,
@@ -51,11 +51,11 @@ class PaymentAgentList extends PaymentAgentListModel {
   static Future<PaymentAgentList> fetch(
     PaymentagentListRequest request,
   ) async {
-    final PaymentagentListResponse response = await _api.call(request: request);
+    final PaymentagentListResponse response = await _api!.call<PaymentagentListResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           PaymentAgentException(baseExceptionModel: baseExceptionModel),
     );
 

@@ -16,29 +16,29 @@ abstract class RealityCheckModel extends APIBaseModel {
   });
 
   /// Total amount of contract purchased.
-  final double buyAmount;
+  final double? buyAmount;
 
   /// Total count of contract purchased.
-  final int buyCount;
+  final int? buyCount;
 
   /// Currency of client account i.e currency for trading
-  final String currency;
+  final String? currency;
 
   /// Client loginid.
-  final String loginId;
+  final String? loginId;
 
   /// Total count of contracts that are not yet expired.
-  final int openContractCount;
+  final int? openContractCount;
 
   /// Indicative profit of contract as per current market price.
-  final double potentialProfit;
+  final double? potentialProfit;
 
   /// Total amount of contracts sold.
-  final double sellAmount;
+  final double? sellAmount;
 
   /// Total count of contract sold.
-  final int sellCount;
+  final int? sellCount;
 
   /// Reality check summary start time epoch
-  final DateTime startTime;
+  final DateTime? startTime;
 }

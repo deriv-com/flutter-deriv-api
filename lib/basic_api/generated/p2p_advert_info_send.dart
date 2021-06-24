@@ -10,8 +10,8 @@ class P2pAdvertInfoRequest extends Request {
     @required this.id,
     this.p2pAdvertInfo = true,
     this.useClientLimits,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_advert_info',
           passthrough: passthrough,
@@ -21,25 +21,25 @@ class P2pAdvertInfoRequest extends Request {
   /// Creates an instance from JSON
   factory P2pAdvertInfoRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertInfoRequest(
-        id: json['id'] as String,
+        id: json['id'] as String?,
         p2pAdvertInfo: json['p2p_advert_info'] == null
             ? null
             : json['p2p_advert_info'] == 1,
         useClientLimits: json['use_client_limits'] == null
             ? null
             : json['use_client_limits'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The unique identifier for this advert.
-  final String id;
+  final String? id;
 
   /// Must be `true`
-  final bool p2pAdvertInfo;
+  final bool? p2pAdvertInfo;
 
   /// [Optional] If set to `true`, the maximum order amount will be adjusted to the current balance and turnover limits of the account.
-  final bool useClientLimits;
+  final bool? useClientLimits;
 
   /// Converts this instance to JSON
   @override
@@ -47,12 +47,12 @@ class P2pAdvertInfoRequest extends Request {
         'id': id,
         'p2p_advert_info': p2pAdvertInfo == null
             ? null
-            : p2pAdvertInfo
+            : p2pAdvertInfo!
                 ? 1
                 : 0,
         'use_client_limits': useClientLimits == null
             ? null
-            : useClientLimits
+            : useClientLimits!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -62,11 +62,11 @@ class P2pAdvertInfoRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertInfoRequest copyWith({
-    String id,
-    bool p2pAdvertInfo,
-    bool useClientLimits,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? id,
+    bool? p2pAdvertInfo,
+    bool? useClientLimits,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pAdvertInfoRequest(
         id: id ?? this.id,
@@ -78,5 +78,5 @@ class P2pAdvertInfoRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

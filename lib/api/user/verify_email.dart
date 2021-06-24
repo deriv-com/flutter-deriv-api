@@ -10,18 +10,18 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class VerifyEmail extends VerifyEmailModel {
   /// Initializes
   VerifyEmail({
-    bool verified,
+    bool? verified,
   }) : super(verified: verified);
 
   /// Generates an instance from response
   factory VerifyEmail.fromResponse(VerifyEmailResponse response) =>
       VerifyEmail(verified: response.verifyEmail);
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy with given parameters
   VerifyEmail copyWith({
-    bool verified,
+    bool? verified,
   }) =>
       VerifyEmail(
         verified: verified ?? this.verified,
@@ -35,14 +35,17 @@ class VerifyEmail extends VerifyEmailModel {
   static Future<VerifyEmail> verify(
     VerifyEmailRequest request,
   ) async {
-    final VerifyEmailResponse response = await _api.call(request: request);
+    final VerifyEmailResponse? response =
+        await _api!.call<VerifyEmailResponse>(request: request);
 
+    // helper =>  final VerifyEmailResponse resposne = getResponse<VerifyEmailResponse>(response);
+    // check if "is VerifyEmailResponse".
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           UserException(baseExceptionModel: baseExceptionModel),
     );
 
-    return VerifyEmail.fromResponse(response);
+    return VerifyEmail.fromResponse(response!);
   }
 }

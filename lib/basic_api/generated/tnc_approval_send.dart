@@ -9,8 +9,8 @@ class TncApprovalRequest extends Request {
   const TncApprovalRequest({
     this.tncApproval = true,
     this.ukgcFundsProtection,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'tnc_approval',
           passthrough: passthrough,
@@ -22,23 +22,23 @@ class TncApprovalRequest extends Request {
       TncApprovalRequest(
         tncApproval:
             json['tnc_approval'] == null ? null : json['tnc_approval'] == 1,
-        ukgcFundsProtection: json['ukgc_funds_protection'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        ukgcFundsProtection: json['ukgc_funds_protection'] as int?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool tncApproval;
+  final bool? tncApproval;
 
   /// [Optional] For `ASK_UK_FUNDS_PROTECTION` in `cashier`.
-  final int ukgcFundsProtection;
+  final int? ukgcFundsProtection;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'tnc_approval': tncApproval == null
             ? null
-            : tncApproval
+            : tncApproval!
                 ? 1
                 : 0,
         'ukgc_funds_protection': ukgcFundsProtection,
@@ -49,10 +49,10 @@ class TncApprovalRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TncApprovalRequest copyWith({
-    bool tncApproval,
-    int ukgcFundsProtection,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? tncApproval,
+    int? ukgcFundsProtection,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TncApprovalRequest(
         tncApproval: tncApproval ?? this.tncApproval,
@@ -63,5 +63,5 @@ class TncApprovalRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

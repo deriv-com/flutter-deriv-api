@@ -11,8 +11,8 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class ProfitTable extends ProfitTableModel {
   /// Initializes
   ProfitTable({
-    int count,
-    List<ProfitTransactionModel> transactions,
+    int? count,
+    List<ProfitTransactionModel?>? transactions,
   }) : super(
           count: count,
           transactions: transactions,
@@ -28,12 +28,12 @@ class ProfitTable extends ProfitTableModel {
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   ProfitTable copyWith({
-    int count,
-    List<ProfitTransactionModel> transactions,
+    int? count,
+    List<ProfitTransactionModel>? transactions,
   }) =>
       ProfitTable(
         count: count ?? this.count,
@@ -45,14 +45,15 @@ class ProfitTable extends ProfitTableModel {
   /// For parameters information refer to [ProfitTableRequest].
   /// Throws a [ProfitTableException] if API response contains an error
   static Future<ProfitTable> fetch(ProfitTableRequest request) async {
-    final ProfitTableResponse response = await _api.call(request: request);
+    final ProfitTableResponse response =
+        await _api!.call<ProfitTableResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ProfitTableException(baseExceptionModel: baseExceptionModel),
     );
 
-    return ProfitTable.fromJson(response.profitTable);
+    return ProfitTable.fromJson(response.profitTable!);
   }
 }

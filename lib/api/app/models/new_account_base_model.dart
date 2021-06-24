@@ -9,8 +9,8 @@ abstract class NewAccountBaseModel extends APIBaseModel {
   });
 
   /// Client ID of the new account
-  final String clientId;
+  final String? clientId;
 
   /// Oauth token for the client's login session (so that the user may be logged in immediately)
-  final String oauthToken;
+  final String? oauthToken;
 }

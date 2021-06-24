@@ -7,7 +7,7 @@ class TransferFeeModel extends APIBaseModel {
 
   /// Generate an instance from JSON
   factory TransferFeeModel.fromJson(
-    String code,
+    String? code,
     dynamic item,
   ) =>
       TransferFeeModel(
@@ -16,15 +16,15 @@ class TransferFeeModel extends APIBaseModel {
       );
 
   /// code
-  final String code;
+  final String? code;
 
   /// value
-  final double value;
+  final double? value;
 
   /// Generate a copy of instance with given parameters
   TransferFeeModel copyWith({
-    String code,
-    double value,
+    String? code,
+    double? value,
   }) =>
       TransferFeeModel(
         code: code ?? this.code,

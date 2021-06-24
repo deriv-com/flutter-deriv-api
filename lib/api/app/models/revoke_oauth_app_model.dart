@@ -8,5 +8,5 @@ abstract class RevokeOauthAppModel extends APIBaseModel {
   });
 
   /// `true` on success
-  final bool succeeded;
+  final bool? succeeded;
 }

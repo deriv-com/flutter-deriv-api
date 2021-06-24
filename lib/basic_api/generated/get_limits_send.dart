@@ -8,8 +8,8 @@ class GetLimitsRequest extends Request {
   /// Initialize GetLimitsRequest
   const GetLimitsRequest({
     this.getLimits = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'get_limits',
           passthrough: passthrough,
@@ -20,19 +20,19 @@ class GetLimitsRequest extends Request {
   factory GetLimitsRequest.fromJson(Map<String, dynamic> json) =>
       GetLimitsRequest(
         getLimits: json['get_limits'] == null ? null : json['get_limits'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool getLimits;
+  final bool? getLimits;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'get_limits': getLimits == null
             ? null
-            : getLimits
+            : getLimits!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -42,9 +42,9 @@ class GetLimitsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   GetLimitsRequest copyWith({
-    bool getLimits,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? getLimits,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       GetLimitsRequest(
         getLimits: getLimits ?? this.getLimits,
@@ -54,5 +54,5 @@ class GetLimitsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
 
 /// Connection information class
 class ConnectionInformation {
   /// Initializes
   ConnectionInformation({
-    @required this.appId,
-    @required this.brand,
-    @required this.endpoint,
+    required this.appId,
+    required this.brand,
+    required this.endpoint,
     this.language = 'en',
   });
 

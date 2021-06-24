@@ -10,8 +10,8 @@ class P2pOrderInfoRequest extends Request {
     @required this.id,
     this.p2pOrderInfo = true,
     this.subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_order_info',
           passthrough: passthrough,
@@ -21,22 +21,22 @@ class P2pOrderInfoRequest extends Request {
   /// Creates an instance from JSON
   factory P2pOrderInfoRequest.fromJson(Map<String, dynamic> json) =>
       P2pOrderInfoRequest(
-        id: json['id'] as String,
+        id: json['id'] as String?,
         p2pOrderInfo:
             json['p2p_order_info'] == null ? null : json['p2p_order_info'] == 1,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The unique identifier for the order.
-  final String id;
+  final String? id;
 
   /// Must be `true`
-  final bool p2pOrderInfo;
+  final bool? p2pOrderInfo;
 
   /// [Optional] If set to `true`, will send updates whenever there is an update to order
-  final bool subscribe;
+  final bool? subscribe;
 
   /// Converts this instance to JSON
   @override
@@ -44,12 +44,12 @@ class P2pOrderInfoRequest extends Request {
         'id': id,
         'p2p_order_info': p2pOrderInfo == null
             ? null
-            : p2pOrderInfo
+            : p2pOrderInfo!
                 ? 1
                 : 0,
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -59,11 +59,11 @@ class P2pOrderInfoRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pOrderInfoRequest copyWith({
-    String id,
-    bool p2pOrderInfo,
-    bool subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? id,
+    bool? p2pOrderInfo,
+    bool? subscribe,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pOrderInfoRequest(
         id: id ?? this.id,
@@ -75,5 +75,5 @@ class P2pOrderInfoRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => <Object>[id];
+  List<Object> get props => <Object>[id!];
 }

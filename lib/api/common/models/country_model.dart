@@ -15,15 +15,15 @@ class CountryModel extends APIBaseModel {
       );
 
   /// Country code
-  final String code;
+  final String? code;
 
   /// Country name
-  final String name;
+  final String? name;
 
   /// Generate a copy of instance with given parameters
   CountryModel copyWith({
-    String code,
-    String name,
+    String? code,
+    String? name,
   }) =>
       CountryModel(
         code: code ?? this.code,

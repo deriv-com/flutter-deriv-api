@@ -12,8 +12,8 @@ class Mt5PasswordResetRequest extends Request {
     @required this.newPassword,
     this.passwordType,
     @required this.verificationCode,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'mt5_password_reset',
           passthrough: passthrough,
@@ -23,31 +23,31 @@ class Mt5PasswordResetRequest extends Request {
   /// Creates an instance from JSON
   factory Mt5PasswordResetRequest.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordResetRequest(
-        login: json['login'] as String,
+        login: json['login'] as String?,
         mt5PasswordReset: json['mt5_password_reset'] == null
             ? null
             : json['mt5_password_reset'] == 1,
-        newPassword: json['new_password'] as String,
-        passwordType: json['password_type'] as String,
-        verificationCode: json['verification_code'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        newPassword: json['new_password'] as String?,
+        passwordType: json['password_type'] as String?,
+        verificationCode: json['verification_code'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// MT5 user login
-  final String login;
+  final String? login;
 
   /// Must be `true`
-  final bool mt5PasswordReset;
+  final bool? mt5PasswordReset;
 
   /// New password of the account. For validation (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address).
-  final String newPassword;
+  final String? newPassword;
 
   /// [Optional] Type of the password to reset.
-  final String passwordType;
+  final String? passwordType;
 
   /// Email verification code (received from a `verify_email` call, which must be done first)
-  final String verificationCode;
+  final String? verificationCode;
 
   /// Converts this instance to JSON
   @override
@@ -55,7 +55,7 @@ class Mt5PasswordResetRequest extends Request {
         'login': login,
         'mt5_password_reset': mt5PasswordReset == null
             ? null
-            : mt5PasswordReset
+            : mt5PasswordReset!
                 ? 1
                 : 0,
         'new_password': newPassword,
@@ -68,13 +68,13 @@ class Mt5PasswordResetRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   Mt5PasswordResetRequest copyWith({
-    String login,
-    bool mt5PasswordReset,
-    String newPassword,
-    String passwordType,
-    String verificationCode,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? login,
+    bool? mt5PasswordReset,
+    String? newPassword,
+    String? passwordType,
+    String? verificationCode,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       Mt5PasswordResetRequest(
         login: login ?? this.login,
@@ -88,5 +88,5 @@ class Mt5PasswordResetRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

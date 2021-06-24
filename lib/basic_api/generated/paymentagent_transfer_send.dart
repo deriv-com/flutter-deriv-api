@@ -13,8 +13,8 @@ class PaymentagentTransferRequest extends Request {
     this.dryRun,
     this.paymentagentTransfer = true,
     @required this.transferTo,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'paymentagent_transfer',
           passthrough: passthrough,
@@ -24,35 +24,35 @@ class PaymentagentTransferRequest extends Request {
   /// Creates an instance from JSON
   factory PaymentagentTransferRequest.fromJson(Map<String, dynamic> json) =>
       PaymentagentTransferRequest(
-        amount: json['amount'] as num,
-        currency: json['currency'] as String,
-        description: json['description'] as String,
+        amount: json['amount'] as num?,
+        currency: json['currency'] as String?,
+        description: json['description'] as String?,
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
         paymentagentTransfer: json['paymentagent_transfer'] == null
             ? null
             : json['paymentagent_transfer'] == 1,
-        transferTo: json['transfer_to'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        transferTo: json['transfer_to'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The amount to transfer.
-  final num amount;
+  final num? amount;
 
   /// Currency code.
-  final String currency;
+  final String? currency;
 
   /// [Optional] Remarks about the transfer.
-  final String description;
+  final String? description;
 
   /// [Optional] If set to `true`, just do validation.
-  final bool dryRun;
+  final bool? dryRun;
 
   /// Must be `true`
-  final bool paymentagentTransfer;
+  final bool? paymentagentTransfer;
 
   /// The loginid of the recipient account.
-  final String transferTo;
+  final String? transferTo;
 
   /// Converts this instance to JSON
   @override
@@ -62,12 +62,12 @@ class PaymentagentTransferRequest extends Request {
         'description': description,
         'dry_run': dryRun == null
             ? null
-            : dryRun
+            : dryRun!
                 ? 1
                 : 0,
         'paymentagent_transfer': paymentagentTransfer == null
             ? null
-            : paymentagentTransfer
+            : paymentagentTransfer!
                 ? 1
                 : 0,
         'transfer_to': transferTo,
@@ -78,14 +78,14 @@ class PaymentagentTransferRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   PaymentagentTransferRequest copyWith({
-    num amount,
-    String currency,
-    String description,
-    bool dryRun,
-    bool paymentagentTransfer,
-    String transferTo,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    num? amount,
+    String? currency,
+    String? description,
+    bool? dryRun,
+    bool? paymentagentTransfer,
+    String? transferTo,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       PaymentagentTransferRequest(
         amount: amount ?? this.amount,
@@ -100,5 +100,5 @@ class PaymentagentTransferRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

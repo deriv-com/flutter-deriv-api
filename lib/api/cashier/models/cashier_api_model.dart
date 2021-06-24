@@ -23,10 +23,10 @@ class CashierAPIModel extends APIBaseModel {
       );
 
   /// Type of operation, which is requested.
-  final String action;
+  final String? action;
 
   /// Result for deposit operation. (if deposit requested)
-  final CashierDepositModel deposit;
+  final CashierDepositModel? deposit;
 
   /// Creates a copy with given parameters
   CashierAPIModel copyWith(
@@ -34,7 +34,7 @@ class CashierAPIModel extends APIBaseModel {
     CashierDepositModel deposit,
   ) =>
       CashierAPIModel(
-        action: action ?? this.action,
-        deposit: deposit ?? this.deposit,
+        action: action,
+        deposit: deposit,
       );
 }

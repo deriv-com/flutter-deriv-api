@@ -34,15 +34,15 @@ class LimitOrderModel extends APIBaseModel {
 
   /// Contains information where the contract will be closed automatically
   /// at the loss specified by the user.
-  final SpotPriceModel stopLoss;
+  final SpotPriceModel? stopLoss;
 
   /// Contains information where the contract will be closed automatically
   /// when the value of the contract is close to zero. This is set by the us.
-  final SpotPriceModel stopOut;
+  final SpotPriceModel? stopOut;
 
   /// Contains information where the contract will be closed automatically
   /// at the profit specified by the user.
-  final SpotPriceModel takeProfit;
+  final SpotPriceModel? takeProfit;
 
   /// Generate a copy of instance with given parameters
   LimitOrderModel copyWith(
@@ -51,9 +51,9 @@ class LimitOrderModel extends APIBaseModel {
     SpotPriceModel takeProfit,
   ) =>
       LimitOrderModel(
-        stopLoss: stopLoss ?? this.stopLoss,
-        stopOut: stopOut ?? this.stopOut,
-        takeProfit: takeProfit ?? this.takeProfit,
+        stopLoss: stopLoss,
+        stopOut: stopOut,
+        takeProfit: takeProfit,
       );
 
   /// Converts this instance to JSON
@@ -69,5 +69,6 @@ class LimitOrderModel extends APIBaseModel {
       other.stopLoss == stopLoss;
 
   @override
+  // ignore: unnecessary_overrides
   int get hashCode => super.hashCode;
 }

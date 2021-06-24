@@ -30,7 +30,7 @@ void main() {
     });
 
     test('Set Self Exclusive Test', () async {
-      final bool setSelfExclusion = await SelfExclusion.setSelfExclusion(
+      final bool? setSelfExclusion = await SelfExclusion.setSelfExclusion(
         const SetSelfExclusionRequest(
           excludeUntil: '2020-01-01',
           max30dayDeposit: 700000,
@@ -51,7 +51,7 @@ void main() {
     });
 
     test('Exclude Self Exclusion Instance Test', () async {
-      final bool setSelfExclusion = await SelfExclusion(
+      final bool? setSelfExclusion = await SelfExclusion(
         excludeUntil: DateTime.tryParse('2020-01-01'),
         max30dayDeposit: 700000,
         max30dayLosses: 100000,

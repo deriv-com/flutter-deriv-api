@@ -9,8 +9,8 @@ abstract class P2PChatCreateModel extends APIBaseModel {
   });
 
   /// The URL to be used to initialise the chat for the requested order.
-  final String channelUrl;
+  final String? channelUrl;
 
   /// The unique identifier for the order that the chat belongs to.
-  final String orderId;
+  final String? orderId;
 }

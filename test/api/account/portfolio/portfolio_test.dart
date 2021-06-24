@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/account/models/portfolio_contract_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/portfolio/portfolio.dart';
@@ -14,15 +15,17 @@ void main() {
       const PortfolioRequest(),
     );
 
-    expect(portfolio.contracts.first.currency, 'USD');
-    expect(portfolio.contracts.first.payout, 10.88);
-    expect(portfolio.contracts.first.symbol, '1HZ50V');
-    expect(portfolio.contracts.first.transactionId, 160058875308);
-    expect(portfolio.contracts.first.contractId, 98350591008);
-    expect(portfolio.contracts.first.contractType, ContractType.multUp);
-    expect(portfolio.contracts.first.purchaseTime, getDateTime(1587634074));
-    expect(portfolio.contracts.first.expiryTime, getDateTime(1587761700));
-    expect(portfolio.contracts.first.expiryTime, getDateTime(1587761700));
-    expect(portfolio.contracts.first.buyPrice, 10.52);
+    final PortfolioContractModel firstContract = portfolio.contracts!.first!;
+
+    expect(firstContract.currency, 'USD');
+    expect(firstContract.payout, 10.88);
+    expect(firstContract.symbol, '1HZ50V');
+    expect(firstContract.transactionId, 160058875308);
+    expect(firstContract.contractId, 98350591008);
+    expect(firstContract.contractType, ContractType.multUp);
+    expect(firstContract.purchaseTime, getDateTime(1587634074));
+    expect(firstContract.expiryTime, getDateTime(1587761700));
+    expect(firstContract.expiryTime, getDateTime(1587761700));
+    expect(firstContract.buyPrice, 10.52);
   });
 }

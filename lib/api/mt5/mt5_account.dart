@@ -17,17 +17,17 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class MT5Account extends MT5AccountModel {
   /// Initializes
   MT5Account({
-    AccountType accountType,
-    double balance,
-    String country,
-    String currency,
-    String displayBalance,
-    String email,
-    String group,
-    int leverage,
-    String login,
-    MT5AccountType mt5AccountType,
-    String name,
+    AccountType? accountType,
+    double? balance,
+    String? country,
+    String? currency,
+    String? displayBalance,
+    String? email,
+    String? group,
+    int? leverage,
+    String? login,
+    MT5AccountType? mt5AccountType,
+    String? name,
   }) : super(
           accountType: accountType,
           balance: balance,
@@ -63,21 +63,21 @@ class MT5Account extends MT5AccountModel {
         name: json['name'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   MT5Account copyWith({
-    AccountType accountType,
-    double balance,
-    String country,
-    String currency,
-    String displayBalance,
-    String email,
-    String group,
-    int leverage,
-    String login,
-    MT5AccountType mt5AccountType,
-    String name,
+    AccountType? accountType,
+    double? balance,
+    String? country,
+    String? currency,
+    String? displayBalance,
+    String? email,
+    String? group,
+    int? leverage,
+    String? login,
+    MT5AccountType? mt5AccountType,
+    String? name,
   }) =>
       MT5Account(
         accountType: accountType ?? this.accountType,
@@ -100,29 +100,31 @@ class MT5Account extends MT5AccountModel {
   static Future<MT5Account> createNewAccount(
     Mt5NewAccountRequest request,
   ) async {
-    final Mt5NewAccountResponse response = await _api.call(request: request);
+    final Mt5NewAccountResponse response =
+        await _api!.call<Mt5NewAccountResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 
-    return MT5Account.fromJson(response.mt5NewAccount);
+    return MT5Account.fromJson(response.mt5NewAccount!);
   }
 
   /// Gets the list of MT5 accounts for client.
   ///
   /// For parameters information refer to [Mt5LoginListRequest].
   /// Throws a [MT5Exception] if API response contains an error
-  static Future<List<MT5Account>> fetchLoginList(
+  static Future<List<MT5Account?>?> fetchLoginList(
     Mt5LoginListRequest request,
   ) async {
-    final Mt5LoginListResponse response = await _api.call(request: request);
+    final Mt5LoginListResponse response =
+        await _api!.call<Mt5LoginListResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 
@@ -136,14 +138,14 @@ class MT5Account extends MT5AccountModel {
   ///
   /// Throws a [MT5Exception] if API response contains an error
   Future<MT5Deposit> deposit({
-    double amount,
-    String fromBinary,
+    required double amount,
+    required String fromBinary,
   }) =>
       MT5Deposit.deposit(
         Mt5DepositRequest(
           amount: amount,
           fromBinary: fromBinary,
-          toMt5: login,
+          toMt5: login!,
         ),
       );
 
@@ -151,13 +153,13 @@ class MT5Account extends MT5AccountModel {
   ///
   /// Throws a [MT5Exception] if API response contains an error
   Future<MT5PasswordChange> changePassword({
-    String newPassword,
-    String oldPassword,
-    PasswordType passwordType,
+    required String newPassword,
+    required String oldPassword,
+    PasswordType? passwordType,
   }) =>
       MT5PasswordChange.changePassword(
         Mt5PasswordChangeRequest(
-          login: login,
+          login: login!,
           newPassword: newPassword,
           oldPassword: oldPassword,
           passwordType: getStringFromEnum(passwordType),
@@ -168,12 +170,12 @@ class MT5Account extends MT5AccountModel {
   ///
   /// Throws a [MT5Exception] if API response contains an error
   Future<MT5PasswordCheck> checkPassword({
-    String password,
-    PasswordType passwordType,
+    required String password,
+    PasswordType? passwordType,
   }) =>
       MT5PasswordCheck.checkPassword(
         Mt5PasswordCheckRequest(
-          login: login,
+          login: login!,
           password: password,
           passwordType: getStringFromEnum(passwordType),
         ),
@@ -183,13 +185,13 @@ class MT5Account extends MT5AccountModel {
   ///
   /// Throws a [MT5Exception] if API response contains an error
   Future<MT5PasswordReset> resetPassword({
-    String newPassword,
-    PasswordType passwordType,
-    String verificationCode,
+    required String newPassword,
+    required String verificationCode,
+    PasswordType? passwordType,
   }) =>
       MT5PasswordReset.resetPassword(
         Mt5PasswordResetRequest(
-          login: login,
+          login: login!,
           newPassword: newPassword,
           passwordType: getStringFromEnum(passwordType),
           verificationCode: verificationCode,
@@ -200,19 +202,19 @@ class MT5Account extends MT5AccountModel {
   ///
   /// Throws a [MT5Exception] if API response contains an error
   Future<MT5Settings> fetchSettings() =>
-      MT5Settings.fetchSettings(Mt5GetSettingsRequest(login: login));
+      MT5Settings.fetchSettings(Mt5GetSettingsRequest(login: login!));
 
   /// Allows withdrawal from MT5 account to Binary account.
   ///
   /// Throws a [MT5Exception] if API response contains an error
   Future<MT5Withdrawal> withdraw({
-    double amount,
-    String toBinary,
+    required double amount,
+    required String toBinary,
   }) =>
       MT5Withdrawal.withdraw(
         Mt5WithdrawalRequest(
           amount: amount,
-          fromMt5: login,
+          fromMt5: login!,
           toBinary: toBinary,
         ),
       );

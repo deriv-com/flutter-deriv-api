@@ -13,11 +13,11 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class AccountStatus extends AccountStatusModel {
   /// Initializes
   AccountStatus({
-    AccountAuthenticationStatusModel authentication,
-    List<AccountStatusCurrencyConfigModel> currencyConfig,
-    bool promptClientToAuthenticate,
-    AccountRiskClassification riskClassification,
-    List<AccountStatusType> status,
+    AccountAuthenticationStatusModel? authentication,
+    List<AccountStatusCurrencyConfigModel?>? currencyConfig,
+    bool? promptClientToAuthenticate,
+    AccountRiskClassification? riskClassification,
+    List<AccountStatusType?>? status,
   }) : super(
           authentication: authentication,
           currencyConfig: currencyConfig,
@@ -49,37 +49,40 @@ class AccountStatus extends AccountStatusModel {
         ),
         status: getListFromMap(
           json['status'],
-          itemToTypeCallback: (dynamic item) => getEnumFromString(
-            values: AccountStatusType.values,
-            name: item.toString(),
-          ),
+          itemToTypeCallback: (dynamic item) =>
+              getEnumFromString(
+                values: AccountStatusType.values,
+                name: item.toString(),
+              ) ??
+              AccountStatusType.disabled,
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the account's status
   static Future<AccountStatus> fetchAccountStatus() async {
-    final GetAccountStatusResponse response = await _api.call(
+    final GetAccountStatusResponse response =
+        await _api!.call<GetAccountStatusResponse>(
       request: const GetAccountStatusRequest(),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AccountStatusException(baseExceptionModel: baseExceptionModel),
     );
 
-    return AccountStatus.fromJson(response.getAccountStatus);
+    return AccountStatus.fromJson(response.getAccountStatus!);
   }
 
   /// Generates a copy of instance with given parameters
   AccountStatus copyWith({
-    AccountAuthenticationStatusModel authentication,
-    List<AccountStatusCurrencyConfigModel> currencyConfig,
-    bool promptClientToAuthenticate,
-    AccountRiskClassification riskClassification,
-    List<AccountStatusType> status,
+    AccountAuthenticationStatusModel? authentication,
+    List<AccountStatusCurrencyConfigModel>? currencyConfig,
+    bool? promptClientToAuthenticate,
+    AccountRiskClassification? riskClassification,
+    List<AccountStatusType>? status,
   }) =>
       AccountStatus(
         authentication: authentication ?? this.authentication,

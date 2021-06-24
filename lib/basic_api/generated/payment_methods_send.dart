@@ -9,8 +9,8 @@ class PaymentMethodsRequest extends Request {
   const PaymentMethodsRequest({
     this.country,
     this.paymentMethods = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'payment_methods',
           passthrough: passthrough,
@@ -20,19 +20,19 @@ class PaymentMethodsRequest extends Request {
   /// Creates an instance from JSON
   factory PaymentMethodsRequest.fromJson(Map<String, dynamic> json) =>
       PaymentMethodsRequest(
-        country: json['country'] as String,
+        country: json['country'] as String?,
         paymentMethods: json['payment_methods'] == null
             ? null
             : json['payment_methods'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] 2-letter country code (ISO standard).
-  final String country;
+  final String? country;
 
   /// Must be `true`
-  final bool paymentMethods;
+  final bool? paymentMethods;
 
   /// Converts this instance to JSON
   @override
@@ -40,7 +40,7 @@ class PaymentMethodsRequest extends Request {
         'country': country,
         'payment_methods': paymentMethods == null
             ? null
-            : paymentMethods
+            : paymentMethods!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -50,10 +50,10 @@ class PaymentMethodsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   PaymentMethodsRequest copyWith({
-    String country,
-    bool paymentMethods,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? country,
+    bool? paymentMethods,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       PaymentMethodsRequest(
         country: country ?? this.country,
@@ -64,5 +64,5 @@ class PaymentMethodsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

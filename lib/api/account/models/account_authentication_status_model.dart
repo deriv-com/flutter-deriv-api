@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_as
+
 import 'package:flutter_deriv_api/api/account/models/account_authentication_document_model.dart';
 import 'package:flutter_deriv_api/api/account/models/account_identity_model.dart';
 import 'package:flutter_deriv_api/api/models/api_base_model.dart';
@@ -36,23 +38,23 @@ class AccountAuthenticationStatusModel extends APIBaseModel {
       );
 
   /// The authentication status for document.
-  final AccountAuthenticationDocumentModel document;
+  final AccountAuthenticationDocumentModel? document;
 
   /// The authentication status for identity.
-  final AccountIdentityModel identity;
+  final AccountIdentityModel? identity;
 
   /// An array containing the list of required authentication.
-  final List<VerificationType> needsVerification;
+  final List<VerificationType?>? needsVerification;
 
   /// Generate a copy of instance with given parameters
   AccountAuthenticationStatusModel copyWith({
-    AccountAuthenticationDocumentModel document,
-    AccountIdentityModel identity,
-    List<String> needsVerification,
+    AccountAuthenticationDocumentModel? document,
+    AccountIdentityModel? identity,
+    List<String>? needsVerification,
   }) =>
       AccountAuthenticationStatusModel(
         document: document ?? this.document,
         identity: identity ?? this.identity,
-        needsVerification: needsVerification ?? this.needsVerification,
+        needsVerification: needsVerification as List<VerificationType?>? ?? this.needsVerification,
       );
 }

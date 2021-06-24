@@ -12,8 +12,8 @@ class CopyStartRequest extends Request {
     this.maxTradeStake,
     this.minTradeStake,
     this.tradeTypes,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'copy_start',
           passthrough: passthrough,
@@ -23,29 +23,29 @@ class CopyStartRequest extends Request {
   /// Creates an instance from JSON
   factory CopyStartRequest.fromJson(Map<String, dynamic> json) =>
       CopyStartRequest(
-        assets: json['assets'] as dynamic,
-        copyStart: json['copy_start'] as String,
-        maxTradeStake: json['max_trade_stake'] as num,
-        minTradeStake: json['min_trade_stake'] as num,
-        tradeTypes: json['trade_types'] as dynamic,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        assets: json['assets'] as dynamic?,
+        copyStart: json['copy_start'] as String?,
+        maxTradeStake: json['max_trade_stake'] as num?,
+        minTradeStake: json['min_trade_stake'] as num?,
+        tradeTypes: json['trade_types'] as dynamic?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Used to set assets to be copied. E.x ["frxUSDJPY", "R_50"]
-  final dynamic assets;
+  final dynamic? assets;
 
   /// API tokens identifying the accounts of trader which will be used to copy trades
-  final String copyStart;
+  final String? copyStart;
 
   /// [Optional] Used to set maximum trade stake to be copied.
-  final num maxTradeStake;
+  final num? maxTradeStake;
 
   /// [Optional] Used to set minimal trade stake to be copied.
-  final num minTradeStake;
+  final num? minTradeStake;
 
   /// [Optional] Used to set trade types to be copied. E.x ["CALL", "PUT"]
-  final dynamic tradeTypes;
+  final dynamic? tradeTypes;
 
   /// Converts this instance to JSON
   @override
@@ -62,13 +62,13 @@ class CopyStartRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   CopyStartRequest copyWith({
-    dynamic assets,
-    String copyStart,
-    num maxTradeStake,
-    num minTradeStake,
-    dynamic tradeTypes,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    dynamic? assets,
+    String? copyStart,
+    num? maxTradeStake,
+    num? minTradeStake,
+    dynamic? tradeTypes,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       CopyStartRequest(
         assets: assets ?? this.assets,
@@ -82,5 +82,5 @@ class CopyStartRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

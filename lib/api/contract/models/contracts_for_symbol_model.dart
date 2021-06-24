@@ -15,21 +15,21 @@ abstract class ContractsForSymbolModel extends APIBaseModel {
 
   /// List of available contracts. Note: if the user is authenticated,
   /// then only contracts allowed under his account will be returned.
-  final List<AvailableContractModel> availableContracts;
+  final List<AvailableContractModel?>? availableContracts;
 
   /// Symbol's next market-close time as an epoch value
-  final DateTime close;
+  final DateTime? close;
 
   /// Indicates the feed license for symbol,
   /// E.g. whether its realtime or delayed
-  final String feedLicense;
+  final String? feedLicense;
 
   /// Count of contracts available
-  final int hitCount;
+  final int? hitCount;
 
   /// Symbol's next market-open time as an epoch value
-  final DateTime open;
+  final DateTime? open;
 
   /// Current spot price for this underlying
-  final double spot;
+  final double? spot;
 }

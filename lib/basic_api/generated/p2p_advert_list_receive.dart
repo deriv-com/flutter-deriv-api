@@ -8,10 +8,10 @@ class P2pAdvertListResponse extends Response {
   /// Initialize P2pAdvertListResponse
   const P2pAdvertListResponse({
     this.p2pAdvertList,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,15 +22,15 @@ class P2pAdvertListResponse extends Response {
   /// Creates an instance from JSON
   factory P2pAdvertListResponse.fromJson(Map<String, dynamic> json) =>
       P2pAdvertListResponse(
-        p2pAdvertList: json['p2p_advert_list'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        p2pAdvertList: json['p2p_advert_list'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// P2P adverts list.
-  final Map<String, dynamic> p2pAdvertList;
+  final Map<String, dynamic>? p2pAdvertList;
 
   /// Converts this instance to JSON
   @override
@@ -45,11 +45,11 @@ class P2pAdvertListResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertListResponse copyWith({
-    Map<String, dynamic> p2pAdvertList,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? p2pAdvertList,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       P2pAdvertListResponse(
         p2pAdvertList: p2pAdvertList ?? this.p2pAdvertList,
@@ -61,5 +61,5 @@ class P2pAdvertListResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

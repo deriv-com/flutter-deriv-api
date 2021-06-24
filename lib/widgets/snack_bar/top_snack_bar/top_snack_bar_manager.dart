@@ -18,9 +18,9 @@ class TopSnackBarManager {
   ///[_snackBars] queue and will be shown after dismissing current TopSnackBar
   final Queue<TopSnackBar> _snackBars;
 
-  TopSnackBar _currentTopSnackBar;
+  TopSnackBar? _currentTopSnackBar;
 
-  static TopSnackBarManager _instance;
+  static TopSnackBarManager? _instance;
 
   /// Shows the given [snackBar]
   void showSnackBar(TopSnackBar snackBar, {bool dismissCurrent = false}) {
@@ -32,7 +32,7 @@ class TopSnackBarManager {
         _showSnackBar();
       }
     } else if (dismissCurrent) {
-      _currentTopSnackBar.snackController.hide();
+      _currentTopSnackBar!.snackController.hide();
     }
     _snackBars.addLast(snackBar);
   }
@@ -40,7 +40,7 @@ class TopSnackBarManager {
   /// Dismisses current [TopSnackBar] if there is any
   void dismissCurrentSnackBar() {
     if (_currentTopSnackBar != null) {
-      _currentTopSnackBar.snackController.hide();
+      _currentTopSnackBar!.snackController.hide();
     }
     _snackBars.clear();
   }
@@ -68,7 +68,7 @@ class TopSnackBarManager {
   }
 
   void _showSnackBar() {
-    _currentTopSnackBar.addToOverlay();
-    _currentTopSnackBar.snackController.show();
+    _currentTopSnackBar!.addToOverlay();
+    _currentTopSnackBar!.snackController.show();
   }
 }

@@ -8,10 +8,10 @@ class ContractUpdateHistoryResponse extends Response {
   /// Initialize ContractUpdateHistoryResponse
   const ContractUpdateHistoryResponse({
     this.contractUpdateHistory,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -23,18 +23,18 @@ class ContractUpdateHistoryResponse extends Response {
   factory ContractUpdateHistoryResponse.fromJson(Map<String, dynamic> json) =>
       ContractUpdateHistoryResponse(
         contractUpdateHistory:
-            (json['contract_update_history'] as List<dynamic>)
+            (json['contract_update_history'] as List<dynamic>?)
                 ?.map<Map<String, dynamic>>(
                     (dynamic item) => item as Map<String, dynamic>)
-                ?.toList(),
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+                .toList(),
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Contains the historical and the most recent update status of the contract
-  final List<Map<String, dynamic>> contractUpdateHistory;
+  final List<Map<String, dynamic>>? contractUpdateHistory;
 
   /// Converts this instance to JSON
   @override
@@ -49,11 +49,11 @@ class ContractUpdateHistoryResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   ContractUpdateHistoryResponse copyWith({
-    List<Map<String, dynamic>> contractUpdateHistory,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    List<Map<String, dynamic>>? contractUpdateHistory,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       ContractUpdateHistoryResponse(
         contractUpdateHistory:
@@ -66,5 +66,5 @@ class ContractUpdateHistoryResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -8,8 +8,8 @@ class AppGetRequest extends Request {
   /// Initialize AppGetRequest
   const AppGetRequest({
     @required this.appGet,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'app_get',
           passthrough: passthrough,
@@ -18,13 +18,13 @@ class AppGetRequest extends Request {
 
   /// Creates an instance from JSON
   factory AppGetRequest.fromJson(Map<String, dynamic> json) => AppGetRequest(
-        appGet: json['app_get'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        appGet: json['app_get'] as int?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Application app_id
-  final int appGet;
+  final int? appGet;
 
   /// Converts this instance to JSON
   @override
@@ -37,9 +37,9 @@ class AppGetRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   AppGetRequest copyWith({
-    int appGet,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    int? appGet,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       AppGetRequest(
         appGet: appGet ?? this.appGet,
@@ -49,5 +49,5 @@ class AppGetRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -8,8 +8,8 @@ class ForgetRequest extends Request {
   /// Initialize ForgetRequest
   const ForgetRequest({
     @required this.forget,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'forget',
           passthrough: passthrough,
@@ -18,13 +18,13 @@ class ForgetRequest extends Request {
 
   /// Creates an instance from JSON
   factory ForgetRequest.fromJson(Map<String, dynamic> json) => ForgetRequest(
-        forget: json['forget'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        forget: json['forget'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// ID of the real-time stream of messages to cancel.
-  final String forget;
+  final String? forget;
 
   /// Converts this instance to JSON
   @override
@@ -37,9 +37,9 @@ class ForgetRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ForgetRequest copyWith({
-    String forget,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? forget,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ForgetRequest(
         forget: forget ?? this.forget,
@@ -49,5 +49,5 @@ class ForgetRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

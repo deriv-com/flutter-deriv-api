@@ -14,10 +14,10 @@ class SellExpiredContractModel extends APIBaseModel {
       );
 
   /// The number of contracts that has been sold.
-  final int count;
+  final int? count;
 
   /// Generate a copy of instance with given parameters
-  SellExpiredContractModel copyWith({int count}) => SellExpiredContractModel(
+  SellExpiredContractModel copyWith({int? count}) => SellExpiredContractModel(
         count: count ?? this.count,
       );
 }

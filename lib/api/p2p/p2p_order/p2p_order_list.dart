@@ -18,8 +18,8 @@ class P2POrderList {
 
   /// Creates an instance from JSON
   factory P2POrderList.fromJson(
-    List<dynamic> json, {
-    Map<String, dynamic> subscriptionJson,
+    List<dynamic>? json, {
+    Map<String, dynamic>? subscriptionJson,
   }) =>
       P2POrderList(
         list: getListFromMap(
@@ -30,51 +30,51 @@ class P2POrderList {
       );
 
   /// List of orders
-  final List<P2POrder> list;
+  final List<P2POrder?>? list;
 
   /// Subscription information
-  final SubscriptionModel subscriptionInformation;
+  final SubscriptionModel? subscriptionInformation;
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the list of [P2POrder] with parameters specified in [P2pOrderListRequest]
   static Future<P2POrderList> fetchOrderList([
-    P2pOrderListRequest request,
+    P2pOrderListRequest? request,
   ]) async {
-    final P2pOrderListResponse response = await _api.call(
+    final P2pOrderListResponse response = await _api!.call<P2pOrderListResponse>(
       request: request ?? const P2pOrderListRequest(),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2POrderList.fromJson(response.p2pOrderList['list']);
+    return P2POrderList.fromJson(response.p2pOrderList!['list']);
   }
 
   /// Subscribes to the list of [P2POrder] with parameters specified in [P2pOrderListRequest]
-  static Stream<P2POrderList> subscribeOrderList({
-    P2pOrderListRequest request,
-    RequestCompareFunction comparePredicate,
+  static Stream<P2POrderList?> subscribeOrderList({
+    P2pOrderListRequest? request,
+    RequestCompareFunction? comparePredicate,
   }) =>
-      _api
+      _api!
           .subscribe(
         request: request ?? const P2pOrderListRequest(),
         comparePredicate: comparePredicate,
-      )
-          .map<P2POrderList>(
+      )!
+          .map<P2POrderList?>(
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
                 P2POrderException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is P2pOrderListResponse
               ? P2POrderList.fromJson(
-                  response.p2pOrderList['list'],
+                  response.p2pOrderList!['list'],
                   subscriptionJson: response.subscription,
                 )
               : null;
@@ -84,17 +84,17 @@ class P2POrderList {
   /// Unsubscribes from order list subscription.
   ///
   /// Throws a [P2POrderException] if API response contains an error
-  Future<Forget> unsubscribeOrderList() async {
+  Future<Forget?> unsubscribeOrderList() async {
     if (subscriptionInformation?.id == null) {
       return null;
     }
 
     final ForgetResponse response =
-        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+        await _api!.unsubscribe(subscriptionId: subscriptionInformation!.id);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 

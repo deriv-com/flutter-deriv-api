@@ -9,8 +9,8 @@ class P2pOrderCancelRequest extends Request {
   const P2pOrderCancelRequest({
     @required this.id,
     this.p2pOrderCancel = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_order_cancel',
           passthrough: passthrough,
@@ -20,19 +20,19 @@ class P2pOrderCancelRequest extends Request {
   /// Creates an instance from JSON
   factory P2pOrderCancelRequest.fromJson(Map<String, dynamic> json) =>
       P2pOrderCancelRequest(
-        id: json['id'] as String,
+        id: json['id'] as String?,
         p2pOrderCancel: json['p2p_order_cancel'] == null
             ? null
             : json['p2p_order_cancel'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The unique identifier for this order.
-  final String id;
+  final String? id;
 
   /// Must be `true`
-  final bool p2pOrderCancel;
+  final bool? p2pOrderCancel;
 
   /// Converts this instance to JSON
   @override
@@ -40,7 +40,7 @@ class P2pOrderCancelRequest extends Request {
         'id': id,
         'p2p_order_cancel': p2pOrderCancel == null
             ? null
-            : p2pOrderCancel
+            : p2pOrderCancel!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -50,10 +50,10 @@ class P2pOrderCancelRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pOrderCancelRequest copyWith({
-    String id,
-    bool p2pOrderCancel,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? id,
+    bool? p2pOrderCancel,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pOrderCancelRequest(
         id: id ?? this.id,
@@ -64,5 +64,5 @@ class P2pOrderCancelRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

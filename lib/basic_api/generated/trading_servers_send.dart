@@ -12,8 +12,8 @@ class TradingServersRequest extends Request {
     this.marketType,
     this.platform,
     this.tradingServers = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'trading_servers',
           passthrough: passthrough,
@@ -23,31 +23,31 @@ class TradingServersRequest extends Request {
   /// Creates an instance from JSON
   factory TradingServersRequest.fromJson(Map<String, dynamic> json) =>
       TradingServersRequest(
-        accountType: json['account_type'] as String,
-        environment: json['environment'] as String,
-        marketType: json['market_type'] as String,
-        platform: json['platform'] as String,
+        accountType: json['account_type'] as String?,
+        environment: json['environment'] as String?,
+        marketType: json['market_type'] as String?,
+        platform: json['platform'] as String?,
         tradingServers: json['trading_servers'] == null
             ? null
             : json['trading_servers'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Trading account type.
-  final String accountType;
+  final String? accountType;
 
   /// [Optional] Pass the environment (installation) instance. Currently, there are one demo and two real environments. Defaults to 'all'.
-  final String environment;
+  final String? environment;
 
   /// [Optional] Market type.
-  final String marketType;
+  final String? marketType;
 
   /// [Optional] Pass the trading platform name, default to mt5
-  final String platform;
+  final String? platform;
 
   /// Must be `true`
-  final bool tradingServers;
+  final bool? tradingServers;
 
   /// Converts this instance to JSON
   @override
@@ -58,7 +58,7 @@ class TradingServersRequest extends Request {
         'platform': platform,
         'trading_servers': tradingServers == null
             ? null
-            : tradingServers
+            : tradingServers!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -68,13 +68,13 @@ class TradingServersRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TradingServersRequest copyWith({
-    String accountType,
-    String environment,
-    String marketType,
-    String platform,
-    bool tradingServers,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? accountType,
+    String? environment,
+    String? marketType,
+    String? platform,
+    bool? tradingServers,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TradingServersRequest(
         accountType: accountType ?? this.accountType,
@@ -88,5 +88,5 @@ class TradingServersRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

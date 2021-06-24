@@ -41,23 +41,23 @@ class ApiCallLimitModel extends APIBaseModel {
       );
 
   /// Maximum subscription to proposal calls.
-  final MaxProposalSubscriptionModel maxProposalSubscription;
+  final MaxProposalSubscriptionModel? maxProposalSubscription;
 
   /// Maximum number of general requests allowed during specified period of time.
-  final MaxRequestAllowedModel maxRequestsGeneral;
+  final MaxRequestAllowedModel? maxRequestsGeneral;
 
   /// Maximum number of outcome requests allowed during specified period of time.
-  final MaxRequestAllowedModel maxRequestsOutcome;
+  final MaxRequestAllowedModel? maxRequestsOutcome;
 
   /// Maximum number of pricing requests allowed during specified period of time.
-  final MaxRequestAllowedModel maxRequestsPricing;
+  final MaxRequestAllowedModel? maxRequestsPricing;
 
   /// Generate a copy of instance with given parameters
   ApiCallLimitModel copyWith({
-    MaxProposalSubscriptionModel maxProposalSubscription,
-    MaxRequestAllowedModel maxRequestsGeneral,
-    MaxRequestAllowedModel maxRequestsOutcome,
-    MaxRequestAllowedModel maxRequestsPricing,
+    MaxProposalSubscriptionModel? maxProposalSubscription,
+    MaxRequestAllowedModel? maxRequestsGeneral,
+    MaxRequestAllowedModel? maxRequestsOutcome,
+    MaxRequestAllowedModel? maxRequestsPricing,
   }) =>
       ApiCallLimitModel(
         maxProposalSubscription:

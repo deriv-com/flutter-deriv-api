@@ -8,7 +8,7 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 /// API initializer class
 class APIInitializer {
   /// Initialize injector
-  Injector initialize({UniqueKey uniqueKey, bool isMock = false}) {
+  Injector initialize({UniqueKey? uniqueKey, bool isMock = false}) {
     final UniqueKey apiUniqueKey = uniqueKey ?? UniqueKey();
 
     return Injector.getInjector()

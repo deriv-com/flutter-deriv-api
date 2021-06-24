@@ -11,11 +11,11 @@ abstract class AssetIndexModel extends APIBaseModel {
   });
 
   /// Available contracts fot this asset index
-  final List<IndexContractModel> contracts;
+  final List<IndexContractModel?>? contracts;
 
   /// Index code
-  final String symbolCode;
+  final String? symbolCode;
 
   /// Index name
-  final String symbolName;
+  final String? symbolName;
 }

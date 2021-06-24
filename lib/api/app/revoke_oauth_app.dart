@@ -10,21 +10,21 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class RevokeOauthApp extends RevokeOauthAppModel {
   /// Initializes
   RevokeOauthApp({
-    bool succeeded,
+    bool? succeeded,
   }) : super(succeeded: succeeded);
 
   /// Creates an instance from response
   factory RevokeOauthApp.fromResponse(RevokeOauthAppResponse response) =>
       RevokeOauthApp(succeeded: getBool(response.revokeOauthApp));
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   RevokeOauthApp copyWith({
-    int succeeded,
+    int? succeeded,
   }) =>
       RevokeOauthApp(
-        succeeded: succeeded ?? this.succeeded,
+        succeeded: getBool(succeeded) ?? this.succeeded,
       );
 
   /// Revokes access of a particular app.
@@ -34,11 +34,12 @@ class RevokeOauthApp extends RevokeOauthAppModel {
   static Future<RevokeOauthApp> revokeOauthApplication(
     RevokeOauthAppRequest request,
   ) async {
-    final RevokeOauthAppResponse response = await _api.call(request: request);
+    final RevokeOauthAppResponse response =
+        await _api!.call<RevokeOauthAppResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AppException(baseExceptionModel: baseExceptionModel),
     );
 

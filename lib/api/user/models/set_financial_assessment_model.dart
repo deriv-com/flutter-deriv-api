@@ -11,14 +11,14 @@ abstract class SetFinancialAssessmentModel extends APIBaseModel {
   });
 
   /// CFD score based on answers
-  final int cfdScore;
+  final int? cfdScore;
 
   /// Financial information score based on answers
-  final int financialInformationScore;
+  final int? financialInformationScore;
 
   /// Financial Assessment score based on answers
-  final int totalScore;
+  final int? totalScore;
 
   /// Trading experience score based on answers
-  final int tradingScore;
+  final int? tradingScore;
 }

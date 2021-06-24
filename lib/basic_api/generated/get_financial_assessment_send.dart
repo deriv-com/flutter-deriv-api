@@ -8,8 +8,8 @@ class GetFinancialAssessmentRequest extends Request {
   /// Initialize GetFinancialAssessmentRequest
   const GetFinancialAssessmentRequest({
     this.getFinancialAssessment = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'get_financial_assessment',
           passthrough: passthrough,
@@ -22,19 +22,19 @@ class GetFinancialAssessmentRequest extends Request {
         getFinancialAssessment: json['get_financial_assessment'] == null
             ? null
             : json['get_financial_assessment'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool getFinancialAssessment;
+  final bool? getFinancialAssessment;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'get_financial_assessment': getFinancialAssessment == null
             ? null
-            : getFinancialAssessment
+            : getFinancialAssessment!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -44,9 +44,9 @@ class GetFinancialAssessmentRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   GetFinancialAssessmentRequest copyWith({
-    bool getFinancialAssessment,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? getFinancialAssessment,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       GetFinancialAssessmentRequest(
         getFinancialAssessment:
@@ -57,5 +57,5 @@ class GetFinancialAssessmentRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

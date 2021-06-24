@@ -10,8 +10,8 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class State extends StateModel {
   /// Initializes
   State({
-    String text,
-    String value,
+    String? text,
+    String? value,
   }) : super(
           text: text,
           value: value,
@@ -23,17 +23,19 @@ class State extends StateModel {
         value: json['value'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the list of states for the given [StatesListRequest]
   ///
   /// Throws a [StateException] if API response contains an error
-  static Future<List<State>> fetchStatesList(StatesListRequest request) async {
-    final StatesListResponse response = await _api.call(request: request);
+  static Future<List<State?>?> fetchStatesList(
+      StatesListRequest request) async {
+    final StatesListResponse response =
+        await _api!.call<StatesListResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           StateException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -45,8 +47,8 @@ class State extends StateModel {
 
   /// Generates a copy of instance with given parameters
   State copyWith({
-    String text,
-    String value,
+    String? text,
+    String? value,
   }) =>
       State(
         text: text ?? this.text,

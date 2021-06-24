@@ -8,10 +8,10 @@ class Mt5GetSettingsResponse extends Response {
   /// Initialize Mt5GetSettingsResponse
   const Mt5GetSettingsResponse({
     this.mt5GetSettings,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,15 +22,15 @@ class Mt5GetSettingsResponse extends Response {
   /// Creates an instance from JSON
   factory Mt5GetSettingsResponse.fromJson(Map<String, dynamic> json) =>
       Mt5GetSettingsResponse(
-        mt5GetSettings: json['mt5_get_settings'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        mt5GetSettings: json['mt5_get_settings'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// MT5 user account details
-  final Map<String, dynamic> mt5GetSettings;
+  final Map<String, dynamic>? mt5GetSettings;
 
   /// Converts this instance to JSON
   @override
@@ -45,11 +45,11 @@ class Mt5GetSettingsResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   Mt5GetSettingsResponse copyWith({
-    Map<String, dynamic> mt5GetSettings,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? mt5GetSettings,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       Mt5GetSettingsResponse(
         mt5GetSettings: mt5GetSettings ?? this.mt5GetSettings,
@@ -61,5 +61,5 @@ class Mt5GetSettingsResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -8,5 +8,5 @@ abstract class ForgetAllModel extends APIBaseModel {
   });
 
   /// IDs of the cancelled streams
-  final List<String> cancelledStreams;
+  final List<String>? cancelledStreams;
 }

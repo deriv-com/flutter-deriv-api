@@ -21,44 +21,44 @@ abstract class SelfExclusionModel extends APIBaseModel {
   });
 
   /// Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
-  final DateTime excludeUntil;
+  final DateTime? excludeUntil;
 
   /// 7-day limit on deposits.
-  final num max30dayDeposit;
+  final num? max30dayDeposit;
 
   /// 30-day limit on losses
-  final double max30dayLosses;
+  final double? max30dayLosses;
 
   /// 30-day turnover limit
-  final double max30dayTurnover;
+  final double? max30dayTurnover;
 
   /// 7-day limit on deposits.
-  final num max7dayDeposit;
+  final num? max7dayDeposit;
 
   /// 7-day limit on losses
-  final double max7dayLosses;
+  final double? max7dayLosses;
 
   /// 7-day turnover limit
-  final double max7dayTurnover;
+  final double? max7dayTurnover;
 
   /// Maximum account cash balance
-  final double maxBalance;
+  final double? maxBalance;
 
   /// Deposit limit.
-  final double maxDeposit;
+  final double? maxDeposit;
 
   /// Daily limit on losses
-  final double maxLosses;
+  final double? maxLosses;
 
   /// Maximum number of open positions
-  final int maxOpenBets;
+  final int? maxOpenBets;
 
   /// Daily turnover limit
-  final double maxTurnover;
+  final double? maxTurnover;
 
   /// Session duration limit, in minutes
-  final int sessionDurationLimit;
+  final int? sessionDurationLimit;
 
   /// Exclude me from the website (for up to 6 weeks). The time is in epoch format. Note: unlike `exclude_until`, this self-exclusion will be lifted automatically at the expiry of the timeout period.
-  final DateTime timeoutUntil;
+  final DateTime? timeoutUntil;
 }

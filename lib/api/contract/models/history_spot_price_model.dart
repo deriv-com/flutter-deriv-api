@@ -5,11 +5,11 @@ import 'package:flutter_deriv_api/helpers/helpers.dart';
 class HistorySpotPriceModel extends SpotPriceModel {
   /// Initializes
   HistorySpotPriceModel({
-    String displayName,
-    double orderAmount,
-    DateTime orderDate,
+    String? displayName,
+    double? orderAmount,
+    DateTime? orderDate,
     this.orderType,
-    String value,
+    String? value,
   }) : super(
           displayName: displayName,
           orderAmount: orderAmount,
@@ -28,16 +28,16 @@ class HistorySpotPriceModel extends SpotPriceModel {
       );
 
   /// The contract parameter updated.
-  final String orderType;
+  final String? orderType;
 
   /// Generate a copy of instance with given parameters with given parameters
   @override
   HistorySpotPriceModel copyWith({
-    String displayName,
-    double orderAmount,
-    DateTime orderDate,
-    String orderType,
-    String value,
+    String? displayName,
+    double? orderAmount,
+    DateTime? orderDate,
+    String? orderType,
+    String? value,
   }) =>
       HistorySpotPriceModel(
         displayName: displayName ?? this.displayName,

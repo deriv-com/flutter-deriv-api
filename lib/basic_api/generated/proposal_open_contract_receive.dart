@@ -9,10 +9,10 @@ class ProposalOpenContractResponse extends Response {
   const ProposalOpenContractResponse({
     this.proposalOpenContract,
     this.subscription,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -24,19 +24,19 @@ class ProposalOpenContractResponse extends Response {
   factory ProposalOpenContractResponse.fromJson(Map<String, dynamic> json) =>
       ProposalOpenContractResponse(
         proposalOpenContract:
-            json['proposal_open_contract'] as Map<String, dynamic>,
-        subscription: json['subscription'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+            json['proposal_open_contract'] as Map<String, dynamic>?,
+        subscription: json['subscription'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Latest price and other details for an open contract
-  final Map<String, dynamic> proposalOpenContract;
+  final Map<String, dynamic>? proposalOpenContract;
 
   /// For subscription requests only.
-  final Map<String, dynamic> subscription;
+  final Map<String, dynamic>? subscription;
 
   /// Converts this instance to JSON
   @override
@@ -52,12 +52,12 @@ class ProposalOpenContractResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   ProposalOpenContractResponse copyWith({
-    Map<String, dynamic> proposalOpenContract,
-    Map<String, dynamic> subscription,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? proposalOpenContract,
+    Map<String, dynamic>? subscription,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       ProposalOpenContractResponse(
         proposalOpenContract: proposalOpenContract ?? this.proposalOpenContract,
@@ -70,5 +70,5 @@ class ProposalOpenContractResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

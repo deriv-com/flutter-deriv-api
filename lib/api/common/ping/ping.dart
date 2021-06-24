@@ -10,18 +10,18 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class Ping extends PingModel {
   /// Initializes
   Ping({
-    bool succeeded,
+    bool? succeeded,
   }) : super(succeeded: succeeded);
 
   /// Generate an instance from response
   factory Ping.fromResponse(PingResponse response) =>
       Ping(succeeded: response.ping == 'pong');
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   Ping copyWith({
-    bool succeeded,
+    bool? succeeded,
   }) =>
       Ping(
         succeeded: succeeded ?? this.succeeded,
@@ -32,15 +32,15 @@ class Ping extends PingModel {
   /// Mostly used to test the connection or to keep it alive.
   /// Throws a [PingException] if API response contains an error
   static Future<Ping> ping([
-    PingRequest request,
+    PingRequest? request,
   ]) async {
-    final PingResponse response = await _api.call(
+    final PingResponse response = await _api!.call<PingResponse>(
       request: request ?? const PingRequest(),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           PingException(baseExceptionModel: baseExceptionModel),
     );
 

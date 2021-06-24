@@ -10,10 +10,10 @@ class PaymentagentWithdrawResponse extends Response {
     this.paymentagentName,
     this.paymentagentWithdraw,
     this.transactionId,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -24,23 +24,23 @@ class PaymentagentWithdrawResponse extends Response {
   /// Creates an instance from JSON
   factory PaymentagentWithdrawResponse.fromJson(Map<String, dynamic> json) =>
       PaymentagentWithdrawResponse(
-        paymentagentName: json['paymentagent_name'] as String,
-        paymentagentWithdraw: json['paymentagent_withdraw'] as int,
-        transactionId: json['transaction_id'] as int,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        paymentagentName: json['paymentagent_name'] as String?,
+        paymentagentWithdraw: json['paymentagent_withdraw'] as int?,
+        transactionId: json['transaction_id'] as int?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Payment agent name.
-  final String paymentagentName;
+  final String? paymentagentName;
 
   /// If set to `1`, withdrawal success. If set to `2`, dry-run success.
-  final int paymentagentWithdraw;
+  final int? paymentagentWithdraw;
 
   /// Reference ID of withdrawal performed.
-  final int transactionId;
+  final int? transactionId;
 
   /// Converts this instance to JSON
   @override
@@ -57,13 +57,13 @@ class PaymentagentWithdrawResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   PaymentagentWithdrawResponse copyWith({
-    String paymentagentName,
-    int paymentagentWithdraw,
-    int transactionId,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    String? paymentagentName,
+    int? paymentagentWithdraw,
+    int? transactionId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       PaymentagentWithdrawResponse(
         paymentagentName: paymentagentName ?? this.paymentagentName,
@@ -77,5 +77,5 @@ class PaymentagentWithdrawResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

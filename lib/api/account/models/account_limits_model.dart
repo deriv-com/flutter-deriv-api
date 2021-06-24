@@ -21,41 +21,41 @@ abstract class AccountLimitsModel extends APIBaseModel {
   });
 
   /// Maximum account cash balance
-  final double accountBalance;
+  final double? accountBalance;
 
   /// Maximum daily turnover
-  final double dailyTurnover;
+  final double? dailyTurnover;
 
   /// Lifetime withdrawal limit
-  final double lifetimeLimit;
+  final double? lifetimeLimit;
 
   /// Contains limitation information for each market.
-  final List<AccountMarketLimitsModel> marketSpecific;
+  final List<AccountMarketLimitsModel?>? marketSpecific;
 
   /// Number of days for num_of_days_limit withdrawal limit
-  final int numOfDays;
+  final int? numOfDays;
 
   /// Withdrawal limit for num_of_days days
-  final double numOfDaysLimit;
+  final double? numOfDaysLimit;
 
   /// Maximum number of open positions
-  final int openPositions;
+  final int? openPositions;
 
   /// Maximum aggregate payouts on open positions
-  final double payout;
+  final double? payout;
 
   /// Maximum payout for each symbol based on different barrier types.
-  final String payoutPerSymbol;
+  final String? payoutPerSymbol;
 
   /// Maximum aggregate payouts on open positions per symbol and contract type. This limit can be exceeded up to the overall payout limit if there is no prior open position.
-  final double payoutPerSymbolAndContractType;
+  final double? payoutPerSymbolAndContractType;
 
   /// Amount left to reach withdrawal limit
-  final double remainder;
+  final double? remainder;
 
   /// Total withdrawal for num_of_days days
-  final double withdrawalForXDaysMonetary;
+  final double? withdrawalForXDaysMonetary;
 
   /// Total withdrawal since inception
-  final double withdrawalSinceInceptionMonetary;
+  final double? withdrawalSinceInceptionMonetary;
 }

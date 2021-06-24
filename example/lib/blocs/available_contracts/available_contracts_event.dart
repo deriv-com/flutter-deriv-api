@@ -9,7 +9,7 @@ class FetchAvailableContracts extends AvailableContractsEvent {
   FetchAvailableContracts({this.activeSymbol});
 
   /// Fetch contract for this symbol
-  final ActiveSymbol activeSymbol;
+  final ActiveSymbol? activeSymbol;
 
   @override
   String toString() => 'FetchAvailableContracts';

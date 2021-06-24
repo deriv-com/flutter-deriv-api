@@ -25,15 +25,15 @@ class TransferAccountLimitationModel extends APIBaseModel {
       );
 
   /// The fee that applies for transfer between accounts with different types of currencies.
-  final List<TransferFeeModel> fees;
+  final List<TransferFeeModel?>? fees;
 
   /// Range of allowed amount for transfer between accounts.
-  final TransferAmountModel limits;
+  final TransferAmountModel? limits;
 
   /// Generate a copy of instance with given parameters
   TransferAccountLimitationModel copyWith({
-    List<TransferFeeModel> fees,
-    TransferAmountModel limits,
+    List<TransferFeeModel>? fees,
+    TransferAmountModel? limits,
   }) =>
       TransferAccountLimitationModel(
         fees: fees ?? this.fees,

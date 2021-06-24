@@ -17,15 +17,15 @@ class AccountOnfidoModel extends APIBaseModel {
       );
 
   /// This shows the list of documents types supported by Onfido
-  final List<String> documents;
+  final List<String?>? documents;
 
   /// This shows the information if the country is supported by Onfido
-  final bool isCountrySupported;
+  final bool? isCountrySupported;
 
   /// Generate a copy of instance with given parameters
   AccountOnfidoModel copyWith({
-    List<String> documents,
-    bool isCountrySupported,
+    List<String>? documents,
+    bool? isCountrySupported,
   }) =>
       AccountOnfidoModel(
         documents: documents ?? this.documents,

@@ -12,11 +12,11 @@ class CashierDepositModel extends APIBaseModel {
       CashierDepositModel(address: json['address']);
 
   /// Address for crypto deposit.
-  final String address;
+  final String? address;
 
   /// Creates a copy of instance with given parameters
   CashierDepositModel copyWith(
     String address,
   ) =>
-      CashierDepositModel(address: address ?? this.address);
+      CashierDepositModel(address: address);
 }

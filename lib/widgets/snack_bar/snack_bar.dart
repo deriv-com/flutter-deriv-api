@@ -25,25 +25,25 @@ class SnackBarNotification {
   /// To show snackBar above the FAB and other widgets in the scaffold while the
   /// position is set to [SnackBarPosition.bottom]
   /// you should use [SnackBarBehavior.floating]
-  final SnackBarBehavior snackBarBehavior;
+  final SnackBarBehavior? snackBarBehavior;
 
   /// title of snack bar
-  final String title;
+  final String? title;
 
   /// subtitle of snack bar
-  final String subtitle;
+  final String? subtitle;
 
   /// The duration that snack bar content is visible
   final Duration duration;
 
   /// [SnackBarContent] background color
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// Title text style
-  final TextStyle titleStyle;
+  final TextStyle? titleStyle;
 
   /// Subtitle text style
-  final TextStyle subtitleStyle;
+  final TextStyle? subtitleStyle;
 
   /// Snack bar position, either [SnackBarPosition.top]
   /// or [SnackBarPosition.bottom]
@@ -51,9 +51,9 @@ class SnackBarNotification {
 
   /// shows appropriate snack bar based on the [position] specified
   void show() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
       if (position == SnackBarPosition.bottom) {
-        Scaffold.of(context).showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
           _buildSnackBar(),
         );
       } else {

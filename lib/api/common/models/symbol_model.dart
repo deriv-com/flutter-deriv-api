@@ -16,8 +16,7 @@ class SymbolModel extends APIBaseModel {
   });
 
   /// Creates an instance from JSON
-  factory SymbolModel.fromJson(Map<String, dynamic> json) =>
-      SymbolModel(
+  factory SymbolModel.fromJson(Map<String, dynamic> json) => SymbolModel(
         displayName: json['display_name'],
         name: json['name'],
         events: getListFromMap(
@@ -36,31 +35,31 @@ class SymbolModel extends APIBaseModel {
       );
 
   /// Translated symbol name.
-  final String displayName;
+  final String? displayName;
 
   /// Symbol name.
-  final String name;
+  final String? name;
 
   /// Events
-  final List<TradeEventModel> events;
+  final List<TradeEventModel?>? events;
 
   /// Symbol
-  final String symbol;
+  final String? symbol;
 
   /// Trade Times
-  final TradeTimesModel times;
+  final TradeTimesModel? times;
 
   /// Trading days.
-  final List<String> tradingDays;
+  final List<String?>? tradingDays;
 
   /// Creates a copy of instance with given parameters
   SymbolModel copyWith({
-    String displayName,
-    String name,
-    List<TradeEventModel> events,
-    String symbol,
-    TradeTimesModel times,
-    List<String> tradingDays,
+    String? displayName,
+    String? name,
+    List<TradeEventModel>? events,
+    String? symbol,
+    TradeTimesModel? times,
+    List<String?>? tradingDays,
   }) =>
       SymbolModel(
         displayName: displayName ?? this.displayName,

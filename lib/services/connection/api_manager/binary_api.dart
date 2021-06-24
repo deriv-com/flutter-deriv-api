@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
@@ -29,29 +29,29 @@ class BinaryAPI extends BaseAPI {
   bool _connected = false;
 
   /// Represents the active web socket connection
-  IOWebSocketChannel _webSocketChannel;
+  IOWebSocketChannel? _webSocketChannel;
 
   /// Stream subscription to API data
-  StreamSubscription<Map<String, dynamic>> _webSocketListener;
+  StreamSubscription<Map<String, dynamic>?>? _webSocketListener;
 
   /// Call manager instance
-  CallManager _callManager;
+  CallManager? _callManager;
 
   /// Subscription manager instance
-  SubscriptionManager _subscriptionManager;
+  SubscriptionManager? _subscriptionManager;
 
   /// Gets API call history
-  CallHistory get callHistory => _callManager?.callHistory;
+  CallHistory? get callHistory => _callManager?.callHistory;
 
   /// Gets API subscription history
-  CallHistory get subscriptionHistory => _subscriptionManager?.callHistory;
+  CallHistory? get subscriptionHistory => _subscriptionManager?.callHistory;
 
   @override
   Future<void> connect(
-    ConnectionInformation connectionInformation, {
-    ConnectionCallback onDone,
-    ConnectionCallback onOpen,
-    ConnectionCallback onError,
+    ConnectionInformation? connectionInformation, {
+    ConnectionCallback? onDone,
+    ConnectionCallback? onOpen,
+    ConnectionCallback? onError,
   }) async {
     _connected = false;
 
@@ -59,7 +59,7 @@ class BinaryAPI extends BaseAPI {
 
     final Uri uri = Uri(
       scheme: 'wss',
-      host: connectionInformation.endpoint,
+      host: connectionInformation!.endpoint,
       path: '/websockets/v3',
       queryParameters: <String, dynamic>{
         // The Uri.queryParameters only accept Map<String, dynamic/*String|Iterable<String>*/>
@@ -76,14 +76,15 @@ class BinaryAPI extends BaseAPI {
         pingInterval: _wsConnectTimeOut);
 
     _webSocketListener =
-        _webSocketChannel // .cast<String>().transform(utf8.decode)
+        _webSocketChannel! // .cast<String>().transform(utf8.decode)
             .stream
-            .map<Map<String, dynamic>>((Object result) => jsonDecode(result))
+            .map<Map<String, dynamic>?>(
+                (Object? result) => jsonDecode(result.toString()))
             .listen(
-      (Map<String, dynamic> message) {
+      (Map<String, dynamic>? message) {
         _connected = true;
         onOpen?.call(uniqueKey);
-        _handleResponse(message);
+        _handleResponse(message!);
       },
       onError: (Object error) {
         dev.log('the web socket connection is closed: $error.');
@@ -109,22 +110,30 @@ class BinaryAPI extends BaseAPI {
 
   @override
   void addToChannel(Map<String, dynamic> request) {
-    _webSocketChannel?.sink?.add(utf8.encode(jsonEncode(request)));
+    _webSocketChannel?.sink.add(utf8.encode(jsonEncode(request)));
   }
 
   @override
-  Future<Response> call({
-    @required Request request,
-  }) =>
-      (_callManager ??= CallManager(this))(
-        request: request,
-      );
+  Future<T> call<T>({
+    required Request request,
+  }) async {
+    final Response response = await (_callManager ??= CallManager(this))(
+      request: request,
+    );
+
+    if (response is T) {
+      // ignore: avoid_as
+      return response as T;
+    }
+
+    throw CallManagerException(message: 'Unexpected response');
+  }
 
   @override
-  Stream<Response> subscribe({
-    @required Request request,
+  Stream<Response>? subscribe({
+    required Request request,
     int cacheSize = 0,
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this))(
         request: request,
@@ -134,7 +143,7 @@ class BinaryAPI extends BaseAPI {
 
   @override
   Future<ForgetResponse> unsubscribe({
-    @required String subscriptionId,
+    required String? subscriptionId,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this)).unsubscribe(
         subscriptionId: subscriptionId,
@@ -142,7 +151,7 @@ class BinaryAPI extends BaseAPI {
 
   @override
   Future<ForgetAllResponse> unsubscribeAll({
-    @required ForgetStreamType method,
+    required ForgetStreamType method,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this)).unsubscribeAll(
         method: method,
@@ -153,7 +162,7 @@ class BinaryAPI extends BaseAPI {
     await _webSocketListener?.cancel();
 
     if (_connected) {
-      await _webSocketChannel?.sink?.close(status.goingAway);
+      await _webSocketChannel?.sink.close(status.goingAway);
     }
 
     _webSocketListener = null;
@@ -192,12 +201,12 @@ class BinaryAPI extends BaseAPI {
         dev.log('have request id: $requestId.');
 
         if (_callManager?.contains(requestId) ?? false) {
-          _callManager.handleResponse(
+          _callManager!.handleResponse(
             requestId: requestId,
             response: message,
           );
         } else if (_subscriptionManager?.contains(requestId) ?? false) {
-          _subscriptionManager.handleResponse(
+          _subscriptionManager!.handleResponse(
             requestId: requestId,
             response: message,
           );

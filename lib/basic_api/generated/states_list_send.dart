@@ -8,8 +8,8 @@ class StatesListRequest extends Request {
   /// Initialize StatesListRequest
   const StatesListRequest({
     @required this.statesList,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'states_list',
           passthrough: passthrough,
@@ -19,13 +19,13 @@ class StatesListRequest extends Request {
   /// Creates an instance from JSON
   factory StatesListRequest.fromJson(Map<String, dynamic> json) =>
       StatesListRequest(
-        statesList: json['states_list'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        statesList: json['states_list'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Client's 2-letter country code (obtained from `residence_list` call)
-  final String statesList;
+  final String? statesList;
 
   /// Converts this instance to JSON
   @override
@@ -38,9 +38,9 @@ class StatesListRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   StatesListRequest copyWith({
-    String statesList,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? statesList,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       StatesListRequest(
         statesList: statesList ?? this.statesList,
@@ -50,5 +50,5 @@ class StatesListRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }
