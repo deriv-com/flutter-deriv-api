@@ -8,8 +8,8 @@ class CopytradingListRequest extends Request {
   /// Initialize CopytradingListRequest
   const CopytradingListRequest({
     this.copytradingList = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'copytrading_list',
           passthrough: passthrough,
@@ -22,19 +22,19 @@ class CopytradingListRequest extends Request {
         copytradingList: json['copytrading_list'] == null
             ? null
             : json['copytrading_list'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool copytradingList;
+  final bool? copytradingList;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'copytrading_list': copytradingList == null
             ? null
-            : copytradingList
+            : copytradingList!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -44,9 +44,9 @@ class CopytradingListRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   CopytradingListRequest copyWith({
-    bool copytradingList,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? copytradingList,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       CopytradingListRequest(
         copytradingList: copytradingList ?? this.copytradingList,
@@ -56,5 +56,5 @@ class CopytradingListRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -13,11 +13,11 @@ abstract class TradingDurationModel extends APIBaseModel {
   });
 
   /// The market in which the underlyings listed in `symbol` located.
-  final MarketModel market;
+  final MarketModel? market;
 
   /// The submarket in which the underlyings listed in `symbol` located.
-  final SubmarketModel submarket;
+  final SubmarketModel? submarket;
 
   /// List of trade durations available for symbols and contract combinations.
-  final List<TradingDurationDataModel> tradingDurationData;
+  final List<TradingDurationDataModel?>? tradingDurationData;
 }

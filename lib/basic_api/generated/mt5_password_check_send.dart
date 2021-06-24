@@ -11,8 +11,8 @@ class Mt5PasswordCheckRequest extends Request {
     this.mt5PasswordCheck = true,
     @required this.password,
     this.passwordType,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'mt5_password_check',
           passthrough: passthrough,
@@ -22,27 +22,27 @@ class Mt5PasswordCheckRequest extends Request {
   /// Creates an instance from JSON
   factory Mt5PasswordCheckRequest.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordCheckRequest(
-        login: json['login'] as String,
+        login: json['login'] as String?,
         mt5PasswordCheck: json['mt5_password_check'] == null
             ? null
             : json['mt5_password_check'] == 1,
-        password: json['password'] as String,
-        passwordType: json['password_type'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        password: json['password'] as String?,
+        passwordType: json['password_type'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// MT5 user login
-  final String login;
+  final String? login;
 
   /// Must be `true`
-  final bool mt5PasswordCheck;
+  final bool? mt5PasswordCheck;
 
   /// The password of the account.
-  final String password;
+  final String? password;
 
   /// [Optional] Type of the password to check.
-  final String passwordType;
+  final String? passwordType;
 
   /// Converts this instance to JSON
   @override
@@ -50,7 +50,7 @@ class Mt5PasswordCheckRequest extends Request {
         'login': login,
         'mt5_password_check': mt5PasswordCheck == null
             ? null
-            : mt5PasswordCheck
+            : mt5PasswordCheck!
                 ? 1
                 : 0,
         'password': password,
@@ -62,12 +62,12 @@ class Mt5PasswordCheckRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   Mt5PasswordCheckRequest copyWith({
-    String login,
-    bool mt5PasswordCheck,
-    String password,
-    String passwordType,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? login,
+    bool? mt5PasswordCheck,
+    String? password,
+    String? passwordType,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       Mt5PasswordCheckRequest(
         login: login ?? this.login,
@@ -80,5 +80,5 @@ class Mt5PasswordCheckRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

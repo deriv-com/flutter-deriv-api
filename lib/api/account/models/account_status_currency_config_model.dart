@@ -12,7 +12,7 @@ class AccountStatusCurrencyConfigModel extends APIBaseModel {
 
   /// Creates instance from JSON
   factory AccountStatusCurrencyConfigModel.fromJson(
-    String currency,
+    String? currency,
     Map<String, dynamic> json,
   ) =>
       AccountStatusCurrencyConfigModel(
@@ -22,19 +22,19 @@ class AccountStatusCurrencyConfigModel extends APIBaseModel {
       );
 
   /// Currency code
-  final String currency;
+  final String? currency;
 
   /// Deposit is allowed for currency or not
-  final bool isDepositSuspended;
+  final bool? isDepositSuspended;
 
   /// Withdrawal is allowed for currency or not
-  final bool isWithdrawalSuspended;
+  final bool? isWithdrawalSuspended;
 
   /// Creates a copy of instance with given parameters
   AccountStatusCurrencyConfigModel copyWith({
-    String currency,
-    bool isDepositSuspended,
-    bool isWithdrawalSuspended,
+    String? currency,
+    bool? isDepositSuspended,
+    bool? isWithdrawalSuspended,
   }) =>
       AccountStatusCurrencyConfigModel(
         currency: currency ?? this.currency,

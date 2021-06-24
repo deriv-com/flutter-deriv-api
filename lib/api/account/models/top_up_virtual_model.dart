@@ -9,8 +9,8 @@ abstract class TopUpVirtualModel extends APIBaseModel {
   });
 
   /// Top up amount
-  final double amount;
+  final double? amount;
 
   /// Top up currency string
-  final String currency;
+  final String? currency;
 }

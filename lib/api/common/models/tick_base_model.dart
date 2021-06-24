@@ -11,16 +11,16 @@ abstract class TickBaseModel extends APIBaseModel {
   });
 
   /// Epoch time of the tick
-  final DateTime epoch;
+  final DateTime? epoch;
 
   /// A stream ID that can be used to cancel this stream using
   /// the Forget request
-  final String id;
+  final String? id;
 
   /// Indicates the number of decimal points that
   /// the returned amounts must be displayed with
-  final int pipSize;
+  final int? pipSize;
 
   /// Symbol
-  final String symbol;
+  final String? symbol;
 }

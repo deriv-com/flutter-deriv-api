@@ -9,5 +9,5 @@ abstract class AppUpdateModel extends APIBaseModel {
   });
 
   /// The information of the created application.
-  final AppModel appDetails;
+  final AppModel? appDetails;
 }

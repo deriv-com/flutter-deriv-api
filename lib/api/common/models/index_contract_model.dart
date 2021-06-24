@@ -34,23 +34,23 @@ class IndexContractModel extends APIBaseModel {
       );
 
   /// Contract type code
-  final String contractTypeCode;
+  final String? contractTypeCode;
 
   /// Contract type display name
-  final String contractTypeName;
+  final String? contractTypeName;
 
   /// Max duration available for this contract
-  final String maxDuration;
+  final String? maxDuration;
 
   /// Min duration available for this contract
-  final String minDuration;
+  final String? minDuration;
 
   /// Creates a copy of this instance
   IndexContractModel copyWith({
-    String contractTypeCode,
-    String contractTypeName,
-    String maxDuration,
-    String minDuration,
+    String? contractTypeCode,
+    String? contractTypeName,
+    String? maxDuration,
+    String? minDuration,
   }) =>
       IndexContractModel(
         contractTypeCode: contractTypeCode ?? this.contractTypeCode,

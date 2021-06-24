@@ -11,8 +11,8 @@ class CashierRequest extends Request {
     this.provider,
     this.type,
     this.verificationCode,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'cashier',
           passthrough: passthrough,
@@ -21,25 +21,25 @@ class CashierRequest extends Request {
 
   /// Creates an instance from JSON
   factory CashierRequest.fromJson(Map<String, dynamic> json) => CashierRequest(
-        cashier: json['cashier'] as String,
-        provider: json['provider'] as String,
-        type: json['type'] as String,
-        verificationCode: json['verification_code'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        cashier: json['cashier'] as String?,
+        provider: json['provider'] as String?,
+        type: json['type'] as String?,
+        verificationCode: json['verification_code'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Operation which needs to be requested from cashier
-  final String cashier;
+  final String? cashier;
 
   /// [Optional] Cashier provider. `crypto` will be default option for crypto currency accounts.
-  final String provider;
+  final String? provider;
 
   /// [Optional] Data need to be returned from cashier. `api` is supported only for `crypto` provider with `deposit` operation.
-  final String type;
+  final String? type;
 
   /// [Optional] Email verification code (received from a `verify_email` call, which must be done first)
-  final String verificationCode;
+  final String? verificationCode;
 
   /// Converts this instance to JSON
   @override
@@ -55,12 +55,12 @@ class CashierRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   CashierRequest copyWith({
-    String cashier,
-    String provider,
-    String type,
-    String verificationCode,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? cashier,
+    String? provider,
+    String? type,
+    String? verificationCode,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       CashierRequest(
         cashier: cashier ?? this.cashier,
@@ -73,5 +73,5 @@ class CashierRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

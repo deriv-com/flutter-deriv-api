@@ -9,7 +9,7 @@ void main() {
   setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Injector Test', () {
-    final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+    final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
     expect(_api is MockAPI, true);
   });

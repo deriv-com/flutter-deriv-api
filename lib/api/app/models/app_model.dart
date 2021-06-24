@@ -16,29 +16,29 @@ abstract class AppModel extends APIBaseModel {
   });
 
   /// Application ID.
-  final int appId;
+  final int? appId;
 
   /// Markup added to contract prices (as a percentage of contract payout).
-  final double appMarkupPercentage;
+  final double? appMarkupPercentage;
 
   /// Application's App Store URL.
-  final String appstore;
+  final String? appstore;
 
   /// Application's GitHub page (for open-source projects).
-  final String github;
+  final String? github;
 
   /// Application's Google Play URL.
-  final String googleplay;
+  final String? googleplay;
 
   /// Application's homepage URL.
-  final String homepage;
+  final String? homepage;
 
   /// Application name.
-  final String name;
+  final String? name;
 
   /// The URL to redirect to after a successful login.
-  final String redirectUri;
+  final String? redirectUri;
 
   /// Used when `verify_email` called. If available, a URL containing the verification token will send to the client's email, otherwise only the token will be sent.
-  final String verificationUri;
+  final String? verificationUri;
 }

@@ -13,13 +13,13 @@ abstract class TickHistoryModel extends APIBaseModel {
 
   /// Array of OHLC (open/high/low/close) price values for the given time.
   /// (only for style=`candles`)
-  final List<CandleModel> candles;
+  final List<CandleModel?>? candles;
 
   /// Historic tick data for a given symbol. Note: this will always return the
   /// latest possible set of ticks with accordance to the parameters specified.
-  final HistoryModel history;
+  final HistoryModel? history;
 
   /// Indicates the number of decimal points that
   /// the returned amounts must be displayed with
-  final int pipSize;
+  final int? pipSize;
 }

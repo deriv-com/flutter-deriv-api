@@ -4,11 +4,11 @@ import 'package:json_annotation/json_annotation.dart';
 part 'request.g.dart';
 
 /// Super class of all requests
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Request extends Equatable {
   /// Initializes
   const Request({
-    this.msgType,
+    this.msgType, 
     this.passthrough,
     this.reqId,
   });
@@ -19,22 +19,22 @@ class Request extends Equatable {
 
   /// Action name of this request
   @JsonKey(ignore: true)
-  final String msgType;
+  final String? msgType;
 
   /// [Optional] Used to pass data through the websocket, which may be
   /// retrieved via the `echo_req` output field.
-  final Map<String, dynamic> passthrough;
+  final Map<String, dynamic>? passthrough;
 
   /// [Optional] Used to map request to response.
-  final int reqId;
+  final int? reqId;
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() => _$RequestToJson(this);
 
   /// Generate a copy of instance with given parameters
   Request copyWith({
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       Request(
         passthrough: passthrough ?? this.passthrough,
@@ -43,5 +43,5 @@ class Request extends Equatable {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

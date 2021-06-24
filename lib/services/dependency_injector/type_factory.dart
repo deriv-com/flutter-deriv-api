@@ -1,35 +1,37 @@
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
+/// ObjectFactoryFunction
 typedef ObjectFactoryFunction<T> = T Function(Injector injector);
 
+/// ObjectFactoryWithParametersFunction
 typedef ObjectFactoryWithParametersFunction<T> = T Function(
   Injector injector,
-  Map<String, dynamic> additionalParameters,
+  Map<String, dynamic>? additionalParameters,
 );
 
 /// Type factory class
 class TypeFactory<T> {
   /// Initializes
   TypeFactory({
-    ObjectFactoryWithParametersFunction<T> factoryFunction,
-    bool isSingleton,
+    ObjectFactoryWithParametersFunction<T>? factoryFunction,
+    bool? isSingleton,
   })  : _factoryFunction = factoryFunction,
         _isSingleton = isSingleton;
 
-  T _instance;
+  T? _instance;
 
-  final bool _isSingleton;
-  final ObjectFactoryWithParametersFunction<T> _factoryFunction;
+  final bool? _isSingleton;
+  final ObjectFactoryWithParametersFunction<T>? _factoryFunction;
 
   /// Get type instance
-  T get(Injector injector, Map<String, dynamic> additionalParameters) {
-    if (_isSingleton && _instance != null) {
+  T? get(Injector injector, Map<String, dynamic>? additionalParameters) {
+    if (_isSingleton! && _instance != null) {
       return _instance;
     }
 
-    final T instance = _factoryFunction(injector, additionalParameters);
+    final T instance = _factoryFunction!(injector, additionalParameters);
 
-    if (_isSingleton) {
+    if (_isSingleton!) {
       _instance = instance;
     }
 

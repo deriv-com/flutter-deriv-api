@@ -41,55 +41,55 @@ class StatementTransactionModel extends APIBaseModel {
       );
 
   /// It is the type of action.
-  final TransactionActionType actionType;
+  final TransactionActionType? actionType;
 
   /// It is the amount of transaction.
-  final double amount;
+  final double? amount;
 
   /// ID of the application where this contract was purchased.
-  final int appId;
+  final int? appId;
 
   /// It is the remaining balance.
-  final double balanceAfter;
+  final double? balanceAfter;
 
   /// It is the contract ID.
-  final int contractId;
+  final int? contractId;
 
   /// The description of contract purchased if description is set to `1`.
-  final String longCode;
+  final String? longCode;
 
   /// Payout price
-  final double payout;
+  final double? payout;
 
   /// Time at which contract was purchased, present only for sell transaction
-  final DateTime purchaseTime;
+  final DateTime? purchaseTime;
 
   /// Internal transaction identifier for the corresponding buy transaction ( set only for contract selling )
-  final int referenceId;
+  final int? referenceId;
 
   /// Compact description of the contract purchased if description is set to `1`.
-  final String shortCode;
+  final String? shortCode;
 
   /// It is the transaction ID. In statement every contract (buy or sell) and every payment has a unique ID.
-  final int transactionId;
+  final int? transactionId;
 
   /// It is the time of transaction.
-  final DateTime transactionTime;
+  final DateTime? transactionTime;
 
   /// Generate a copy of instance with given parameters
   StatementTransactionModel copyWith({
-    TransactionActionType actionType,
-    double amount,
-    int appId,
-    double balanceAfter,
-    int contractId,
-    String longCode,
-    double payout,
-    DateTime purchaseTime,
-    int referenceId,
-    String shortCode,
-    int transactionId,
-    DateTime transactionTime,
+    TransactionActionType? actionType,
+    double? amount,
+    int? appId,
+    double? balanceAfter,
+    int? contractId,
+    String? longCode,
+    double? payout,
+    DateTime? purchaseTime,
+    int? referenceId,
+    String? shortCode,
+    int? transactionId,
+    DateTime? transactionTime,
   }) =>
       StatementTransactionModel(
         actionType: actionType ?? this.actionType,

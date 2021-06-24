@@ -11,9 +11,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class AssetIndex extends AssetIndexModel {
   /// Initializes
   AssetIndex({
-    List<IndexContractModel> contracts,
-    String symbolCode,
-    String symbolName,
+    List<IndexContractModel?>? contracts,
+    String? symbolCode,
+    String? symbolName,
   }) : super(
           contracts: contracts,
           symbolCode: symbolCode,
@@ -40,22 +40,22 @@ class AssetIndex extends AssetIndexModel {
   static const int _symbolNameIndex = 1;
   static const int _contractsIndex = 2;
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Retrieves a list of all available underlyings and the corresponding contract types and duration boundaries.
   ///
   /// If the user is logged in, only the assets available for that user's landing company will be returned.
   /// Throws an [AssetIndexException] if API response contains an error
-  static Future<List<AssetIndex>> fetchAssetIndices([
-    AssetIndexRequest request,
+  static Future<List<AssetIndex?>?> fetchAssetIndices([
+    AssetIndexRequest? request,
   ]) async {
-    final AssetIndexResponse response = await _api.call(
+    final AssetIndexResponse response = await _api!.call<AssetIndexResponse>(
       request: request ?? const AssetIndexRequest(),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AssetIndexException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -67,9 +67,9 @@ class AssetIndex extends AssetIndexModel {
 
   /// Creates a copy of this instance with given parameters
   AssetIndex copyWith({
-    List<IndexContractModel> contracts,
-    String symbolCode,
-    String symbolName,
+    List<IndexContractModel>? contracts,
+    String? symbolCode,
+    String? symbolName,
   }) =>
       AssetIndex(
         contracts: contracts ?? this.contracts,

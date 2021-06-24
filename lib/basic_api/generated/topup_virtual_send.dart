@@ -8,8 +8,8 @@ class TopupVirtualRequest extends Request {
   /// Initialize TopupVirtualRequest
   const TopupVirtualRequest({
     this.topupVirtual = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'topup_virtual',
           passthrough: passthrough,
@@ -21,19 +21,19 @@ class TopupVirtualRequest extends Request {
       TopupVirtualRequest(
         topupVirtual:
             json['topup_virtual'] == null ? null : json['topup_virtual'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool topupVirtual;
+  final bool? topupVirtual;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'topup_virtual': topupVirtual == null
             ? null
-            : topupVirtual
+            : topupVirtual!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -43,9 +43,9 @@ class TopupVirtualRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TopupVirtualRequest copyWith({
-    bool topupVirtual,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? topupVirtual,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TopupVirtualRequest(
         topupVirtual: topupVirtual ?? this.topupVirtual,
@@ -55,5 +55,5 @@ class TopupVirtualRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

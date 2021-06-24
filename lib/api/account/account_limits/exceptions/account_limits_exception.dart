@@ -5,6 +5,6 @@ import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 class AccountLimitsException extends AccountException {
   /// Initializes
   AccountLimitsException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

@@ -16,16 +16,16 @@ class TransferAmountModel extends APIBaseModel {
 
   /// Maximum allowed amount for transfer between accounts
   /// with different types of currencies.
-  final double max;
+  final double? max;
 
   /// Minimum allowed amount for transfer between accounts
   /// with different types of currencies.
-  final double min;
+  final double? min;
 
   /// Generate a copy of instance with given parameters
   TransferAmountModel copyWith({
-    double min,
-    double max,
+    double? min,
+    double? max,
   }) =>
       TransferAmountModel(
         max: max ?? this.max,

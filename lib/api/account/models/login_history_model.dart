@@ -12,14 +12,14 @@ abstract class LoginHistoryModel extends APIBaseModel {
   });
 
   /// Type of action.
-  final LoginAction action;
+  final LoginAction? action;
 
   /// Provides details about browser, device used during login or logout
-  final String environment;
+  final String? environment;
 
   /// Status of activity: `true` - success, `false` - failure
-  final bool status;
+  final bool? status;
 
   /// Epoch time of the activity
-  final DateTime time;
+  final DateTime? time;
 }

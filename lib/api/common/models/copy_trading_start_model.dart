@@ -8,5 +8,5 @@ abstract class CopyTradingStartModel extends APIBaseModel {
   });
 
   /// Copy start confirmation. Returns `true` is success.
-  final bool succeeded;
+  final bool? succeeded;
 }

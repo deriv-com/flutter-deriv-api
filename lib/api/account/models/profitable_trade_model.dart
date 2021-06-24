@@ -13,15 +13,15 @@ class ProfitableTradeModel extends APIBaseModel {
       );
 
   /// profit
-  final double profit;
+  final double? profit;
 
   /// time year or month
-  final String time;
+  final String? time;
 
   /// Generate a copy of instance with given parameters
   ProfitableTradeModel copyWith({
-    double profit,
-    String time,
+    double? profit,
+    String? time,
   }) =>
       ProfitableTradeModel(
         profit: profit ?? this.profit,

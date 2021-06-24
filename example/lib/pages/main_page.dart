@@ -7,14 +7,15 @@ import 'package:flutter_deriv_api_example/widgets/active_symbols_widget.dart';
 import 'package:flutter_deriv_api_example/widgets/contracts_type_widget.dart';
 import 'package:flutter_deriv_api_example/widgets/price_proposal_widget.dart';
 
+/// MainPage
 class MainPage extends StatefulWidget {
   @override
   _MainPageState createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
-  ActiveSymbolsBloc _activeSymbolsBloc;
-  AvailableContractsBloc _availableContractsBloc;
+  late ActiveSymbolsBloc _activeSymbolsBloc;
+  late AvailableContractsBloc _availableContractsBloc;
 
   @override
   void initState() {

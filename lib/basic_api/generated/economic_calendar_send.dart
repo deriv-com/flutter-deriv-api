@@ -11,8 +11,8 @@ class EconomicCalendarRequest extends Request {
     this.economicCalendar = true,
     this.endDate,
     this.startDate,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'economic_calendar',
           passthrough: passthrough,
@@ -22,27 +22,27 @@ class EconomicCalendarRequest extends Request {
   /// Creates an instance from JSON
   factory EconomicCalendarRequest.fromJson(Map<String, dynamic> json) =>
       EconomicCalendarRequest(
-        currency: json['currency'] as String,
+        currency: json['currency'] as String?,
         economicCalendar: json['economic_calendar'] == null
             ? null
             : json['economic_calendar'] == 1,
-        endDate: json['end_date'] as int,
-        startDate: json['start_date'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        endDate: json['end_date'] as int?,
+        startDate: json['start_date'] as int?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Currency symbol.
-  final String currency;
+  final String? currency;
 
   /// Must be `true`
-  final bool economicCalendar;
+  final bool? economicCalendar;
 
   /// [Optional] End date.
-  final int endDate;
+  final int? endDate;
 
   /// [Optional] Start date.
-  final int startDate;
+  final int? startDate;
 
   /// Converts this instance to JSON
   @override
@@ -50,7 +50,7 @@ class EconomicCalendarRequest extends Request {
         'currency': currency,
         'economic_calendar': economicCalendar == null
             ? null
-            : economicCalendar
+            : economicCalendar!
                 ? 1
                 : 0,
         'end_date': endDate,
@@ -62,12 +62,12 @@ class EconomicCalendarRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   EconomicCalendarRequest copyWith({
-    String currency,
-    bool economicCalendar,
-    int endDate,
-    int startDate,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? currency,
+    bool? economicCalendar,
+    int? endDate,
+    int? startDate,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       EconomicCalendarRequest(
         currency: currency ?? this.currency,
@@ -80,5 +80,5 @@ class EconomicCalendarRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

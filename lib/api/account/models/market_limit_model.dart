@@ -20,23 +20,23 @@ class MarketLimitModel extends APIBaseModel {
       );
 
   /// The submarket display name.
-  final String name;
+  final String? name;
 
   /// The limit of payout for the submarket
-  final double payoutLimit;
+  final double? payoutLimit;
 
   /// The limitation profile name.
-  final String profileName;
+  final String? profileName;
 
   /// The limit of turnover for the submarket
-  final double turnoverLimit;
+  final double? turnoverLimit;
 
   /// Generate a copy of instance with given parameters
   MarketLimitModel copyWith({
-    String name,
-    double payoutLimit,
-    String profileName,
-    double turnoverLimit,
+    String? name,
+    double? payoutLimit,
+    String? profileName,
+    double? turnoverLimit,
   }) =>
       MarketLimitModel(
         name: name ?? this.name,

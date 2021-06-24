@@ -15,20 +15,20 @@ abstract class BalanceModel extends APIBaseModel {
   });
 
   /// User active accounts list
-  final List<BalanceActiveAccountModel> accounts;
+  final List<BalanceActiveAccountModel>? accounts;
 
   /// Balance amount
-  final double balance;
+  final double? balance;
 
   /// Currency code.
-  final String currency;
+  final String? currency;
 
   /// A stream ID that can be used to cancel this stream using the Forget request.
-  final String id;
+  final String? id;
 
   /// Client login id.
-  final String loginId;
+  final String? loginId;
 
   /// Total amounts of balances
-  final BalanceTotalModel total;
+  final BalanceTotalModel? total;
 }

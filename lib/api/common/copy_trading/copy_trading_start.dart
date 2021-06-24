@@ -10,18 +10,18 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class CopyTradingStart extends CopyTradingStartModel {
   /// Initializes
   CopyTradingStart({
-    bool succeeded,
+    bool? succeeded,
   }) : super(succeeded: succeeded);
 
   /// Generate an instance from response
   factory CopyTradingStart.fromResponse(CopyStartResponse response) =>
       CopyTradingStart(succeeded: getBool(response.copyStart));
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generate a copy of instance with given parameters
   CopyTradingStart copyWith({
-    bool succeeded,
+    bool? succeeded,
   }) =>
       CopyTradingStart(
         succeeded: succeeded ?? this.succeeded,
@@ -32,11 +32,12 @@ class CopyTradingStart extends CopyTradingStartModel {
   /// For parameters information refer to [CopyStartRequest].
   /// Throws a [CopyTradingException] if API response contains an error
   static Future<CopyTradingStart> start(CopyStartRequest request) async {
-    final CopyStartResponse response = await _api.call(request: request);
+    final CopyStartResponse response =
+        await _api!.call<CopyStartResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           CopyTradingException(baseExceptionModel: baseExceptionModel),
     );
 

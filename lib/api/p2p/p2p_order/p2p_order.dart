@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_as
+
 import 'package:flutter_deriv_api/api/common/forget/forget.dart';
 import 'package:flutter_deriv_api/api/common/forget/forget_all.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
@@ -18,25 +20,25 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class P2POrder extends P2POrderModel {
   /// Initializes
   P2POrder({
-    String accountCurrency,
-    P2PAdvert advertDetails,
-    P2PAdvertiser advertiserDetails,
-    double amount,
-    String amountDisplay,
-    String chatChannelUrl,
-    String contactInfo,
-    DateTime createdTime,
-    DateTime expiryTime,
-    String id,
-    bool isIncoming,
-    String localCurrency,
-    String paymentInfo,
-    double price,
-    String priceDisplay,
-    double rate,
-    String rateDisplay,
-    OrderStatusType status,
-    OrderType type,
+    String? accountCurrency,
+    P2PAdvert? advertDetails,
+    P2PAdvertiser? advertiserDetails,
+    double? amount,
+    String? amountDisplay,
+    String? chatChannelUrl,
+    String? contactInfo,
+    DateTime? createdTime,
+    DateTime? expiryTime,
+    String? id,
+    bool? isIncoming,
+    String? localCurrency,
+    String? paymentInfo,
+    double? price,
+    String? priceDisplay,
+    double? rate,
+    String? rateDisplay,
+    OrderStatusType? status,
+    OrderType? type,
     this.subscriptionInformation,
   }) : super(
           accountCurrency: accountCurrency,
@@ -63,7 +65,7 @@ class P2POrder extends P2POrderModel {
   /// Creates an instance from JSON
   factory P2POrder.fromJson(
     Map<String, dynamic> json, {
-    Map<String, dynamic> subscriptionJson,
+    Map<String, dynamic>? subscriptionJson,
   }) =>
       P2POrder(
         accountCurrency: json['account_currency'],
@@ -99,47 +101,50 @@ class P2POrder extends P2POrderModel {
         subscriptionInformation: SubscriptionModel.fromJson(subscriptionJson),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Subscription information
-  final SubscriptionModel subscriptionInformation;
+  final SubscriptionModel? subscriptionInformation;
 
   /// Creates order with parameters specified in [P2pOrderCreateRequest]
   static Future<P2POrder> create(P2pOrderCreateRequest request) async {
-    final P2pOrderCreateResponse response = await _api.call(request: request);
+    final P2pOrderCreateResponse response =
+        await _api!.call<P2pOrderCreateResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2POrder.fromJson(response.p2pOrderCreate);
+    return P2POrder.fromJson(response.p2pOrderCreate!);
   }
 
   /// Creates order and subscribes to the result with parameters specified in [P2pOrderCreateRequest]
   ///
   /// Throws a [P2POrderException] if API response contains an error
-  static Stream<P2POrder> createAndSubscribe(
+  static Stream<P2POrder?> createAndSubscribe(
     P2pOrderCreateRequest request, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
-      _api.subscribe(request: request, comparePredicate: comparePredicate).map(
+      _api!
+          .subscribe(request: request, comparePredicate: comparePredicate)!
+          .map(
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
                 P2POrderException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is P2pOrderCreateResponse
               ? P2POrder.fromJson(
-                  response.p2pOrderCreate,
+                  response.p2pOrderCreate!,
                   subscriptionJson: response.subscription,
                 )
               : response is P2pOrderInfoResponse
                   ? P2POrder.fromJson(
-                      response.p2pOrderInfo,
+                      response.p2pOrderInfo!,
                       subscriptionJson: response.subscription,
                     )
                   : null;
@@ -150,46 +155,47 @@ class P2POrder extends P2POrderModel {
   ///
   /// Throws a [P2POrderException] if API response contains an error
   static Future<P2POrder> fetchOrder(P2pOrderInfoRequest request) async {
-    final P2pOrderInfoResponse response = await _api.call(request: request);
+    final P2pOrderInfoResponse response =
+        await _api!.call<P2pOrderInfoResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2POrder.fromJson(response.p2pOrderInfo);
+    return P2POrder.fromJson(response.p2pOrderInfo!);
   }
 
   /// Subscribes to this order
-  Stream<P2POrder> subscribe({
-    RequestCompareFunction comparePredicate,
+  Stream<P2POrder?> subscribe({
+    RequestCompareFunction? comparePredicate,
   }) =>
       subscribeOrder(
-        P2pOrderInfoRequest(id: id),
+        P2pOrderInfoRequest(id: id!),
         comparePredicate: comparePredicate,
       );
 
   /// Subscribes to order with parameters specified in [P2pOrderInfoRequest]
   ///
   /// Throws a [P2POrderException] if API response contains an error
-  static Stream<P2POrder> subscribeOrder(
+  static Stream<P2POrder?> subscribeOrder(
     P2pOrderInfoRequest request, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
-      _api
-          .subscribe(request: request, comparePredicate: comparePredicate)
-          .map<P2POrder>(
+      _api!
+          .subscribe(request: request, comparePredicate: comparePredicate)!
+          .map<P2POrder?>(
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
                 P2POrderException(baseExceptionModel: baseExceptionModel),
           );
 
           return response is P2pOrderInfoResponse
               ? P2POrder.fromJson(
-                  response.p2pOrderInfo,
+                  response.p2pOrderInfo!,
                   subscriptionJson: response.subscription,
                 )
               : null;
@@ -199,17 +205,17 @@ class P2POrder extends P2POrderModel {
   /// Unsubscribes from order subscription.
   ///
   /// Throws a [P2POrderException] if API response contains an error
-  Future<Forget> unsubscribeOrder() async {
+  Future<Forget?> unsubscribeOrder() async {
     if (subscriptionInformation?.id == null) {
       return null;
     }
 
     final ForgetResponse response =
-        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+        await _api!.unsubscribe(subscriptionId: subscriptionInformation!.id);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -220,12 +226,12 @@ class P2POrder extends P2POrderModel {
   ///
   /// Throws a [P2POrderException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllOrder() async {
-    final ForgetAllResponse response =
-        await _api.unsubscribeAll(method: ForgetStreamType.p2pOrder);
+    final ForgetAllResponse? response =
+        await _api!.unsubscribeAll(method: ForgetStreamType.p2pOrder);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -237,16 +243,16 @@ class P2POrder extends P2POrderModel {
   /// Returns an order with updated status if successful.
   /// Throws a [P2POrderException] if API response contains an error
   Future<P2POrder> cancel() async {
-    final P2pOrderCancelResponse response =
-        await _api.call(request: P2pOrderCancelRequest(id: id));
+    final P2pOrderCancelResponse response = await _api!
+        .call<P2pOrderCancelResponse>(request: P2pOrderCancelRequest(id: id!));
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
-    return copyWith(status: P2POrder.fromJson(response.p2pOrderCancel).status);
+    return copyWith(status: P2POrder.fromJson(response.p2pOrderCancel!).status);
   }
 
   /// Confirms this order
@@ -254,45 +260,47 @@ class P2POrder extends P2POrderModel {
   /// Returns an order with updated status if successful.
   /// Throws a [P2POrderException] if API response contains an error
   Future<P2POrder> confirm() async {
-    final P2pOrderConfirmResponse response =
-        await _api.call(request: P2pOrderConfirmRequest(id: id));
+    final P2pOrderConfirmResponse response = await _api!
+        .call<P2pOrderConfirmResponse>(
+            request: P2pOrderConfirmRequest(id: id!));
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
-    return copyWith(status: P2POrder.fromJson(response.p2pOrderConfirm).status);
+    return copyWith(status: P2POrder.fromJson(response.p2pOrderConfirm!).status);
   }
 
   /// Generates a copy of instance with given parameters
   P2POrder copyWith({
-    String accountCurrency,
-    P2PAdvert advertDetails,
-    P2PAdvertiser advertiserDetails,
-    double amount,
-    String amountDisplay,
-    String chatChannelUrl,
-    String contactInfo,
-    DateTime createdTime,
-    DateTime expiryTime,
-    String id,
-    bool isIncoming,
-    String localCurrency,
-    String paymentInfo,
-    double price,
-    String priceDisplay,
-    double rate,
-    String rateDisplay,
-    OrderStatusType status,
-    OrderType type,
-    SubscriptionModel subscriptionInformation,
+    String? accountCurrency,
+    P2PAdvert? advertDetails,
+    P2PAdvertiser? advertiserDetails,
+    double? amount,
+    String? amountDisplay,
+    String? chatChannelUrl,
+    String? contactInfo,
+    DateTime? createdTime,
+    DateTime? expiryTime,
+    String? id,
+    bool? isIncoming,
+    String? localCurrency,
+    String? paymentInfo,
+    double? price,
+    String? priceDisplay,
+    double? rate,
+    String? rateDisplay,
+    OrderStatusType? status,
+    OrderType? type,
+    SubscriptionModel? subscriptionInformation,
   }) =>
       P2POrder(
         accountCurrency: accountCurrency ?? this.accountCurrency,
-        advertDetails: advertDetails ?? this.advertDetails,
-        advertiserDetails: advertiserDetails ?? this.advertiserDetails,
+        advertDetails: advertDetails ?? this.advertDetails as P2PAdvert?,
+        advertiserDetails:
+            advertiserDetails ?? this.advertiserDetails as P2PAdvertiser?,
         amount: amount ?? this.amount,
         amountDisplay: amountDisplay ?? this.amountDisplay,
         chatChannelUrl: chatChannelUrl ?? this.chatChannelUrl,

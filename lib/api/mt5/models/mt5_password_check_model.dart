@@ -8,5 +8,5 @@ abstract class MT5PasswordCheckModel extends APIBaseModel {
   });
 
   /// `true` on success
-  final bool succeeded;
+  final bool? succeeded;
 }

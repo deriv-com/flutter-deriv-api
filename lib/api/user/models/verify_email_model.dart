@@ -8,5 +8,5 @@ abstract class VerifyEmailModel extends APIBaseModel {
   });
 
   /// true for success (secure code has been sent to the email address)
-  final bool verified;
+  final bool? verified;
 }

@@ -22,11 +22,11 @@ class AuthenticationServicesModel extends APIBaseModel {
 
   // Properties
   /// This shows the information related to Onfido supported services
-  final AccountOnfidoModel onfido;
+  final AccountOnfidoModel? onfido;
 
   /// Generate a copy of instance with given parameters
   AuthenticationServicesModel copyWith({
-    AccountOnfidoModel onfido,
+    AccountOnfidoModel? onfido,
   }) =>
       AuthenticationServicesModel(
         onfido: onfido ?? this.onfido,

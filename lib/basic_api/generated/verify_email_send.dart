@@ -10,8 +10,8 @@ class VerifyEmailRequest extends Request {
     @required this.type,
     this.urlParameters,
     @required this.verifyEmail,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'verify_email',
           passthrough: passthrough,
@@ -21,21 +21,21 @@ class VerifyEmailRequest extends Request {
   /// Creates an instance from JSON
   factory VerifyEmailRequest.fromJson(Map<String, dynamic> json) =>
       VerifyEmailRequest(
-        type: json['type'] as String,
-        urlParameters: json['url_parameters'] as Map<String, dynamic>,
-        verifyEmail: json['verify_email'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        type: json['type'] as String?,
+        urlParameters: json['url_parameters'] as Map<String, dynamic>?,
+        verifyEmail: json['verify_email'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Purpose of the email verification call.
-  final String type;
+  final String? type;
 
   /// [Optional] Extra parameters that can be attached to the verify email link URL.
-  final Map<String, dynamic> urlParameters;
+  final Map<String, dynamic>? urlParameters;
 
   /// Email address to be verified.
-  final String verifyEmail;
+  final String? verifyEmail;
 
   /// Converts this instance to JSON
   @override
@@ -50,11 +50,11 @@ class VerifyEmailRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   VerifyEmailRequest copyWith({
-    String type,
-    Map<String, dynamic> urlParameters,
-    String verifyEmail,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? type,
+    Map<String, dynamic>? urlParameters,
+    String? verifyEmail,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       VerifyEmailRequest(
         type: type ?? this.type,
@@ -66,5 +66,5 @@ class VerifyEmailRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -23,23 +23,23 @@ class SpotPriceModel extends APIBaseModel {
       );
 
   /// Localized display name
-  final String displayName;
+  final String? displayName;
 
   /// Stop loss amount
-  final double orderAmount;
+  final double? orderAmount;
 
   /// Stop loss order epoch
-  final DateTime orderDate;
+  final DateTime? orderDate;
 
   /// Stop loss pip-sized barrier value
-  final String value;
+  final String? value;
 
   /// Generate a copy of instance with given parameters
   SpotPriceModel copyWith({
-    String displayName,
-    double orderAmount,
-    DateTime orderDate,
-    String value,
+    String? displayName,
+    double? orderAmount,
+    DateTime? orderDate,
+    String? value,
   }) =>
       SpotPriceModel(
         displayName: displayName ?? this.displayName,
@@ -62,5 +62,6 @@ class SpotPriceModel extends APIBaseModel {
       other.orderAmount == orderAmount;
 
   @override
+  // ignore: unnecessary_overrides
   int get hashCode => super.hashCode;
 }

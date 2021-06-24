@@ -22,24 +22,24 @@ class TokenModel extends APIBaseModel {
           itemToTypeCallback: (dynamic item) => getEnumFromString(
             values: TokenScope.values,
             name: item,
-          ),
+          )!,
         ),
         token: json['token'],
         validForIp: json['valid_for_ip'],
       );
 
   /// The token name specified when creating.
-  final String displayName;
+  final String? displayName;
 
   /// The last date which the token has been used.
-  final DateTime lastUsed;
+  final DateTime? lastUsed;
 
   /// List of permission scopes of the token.
-  final List<TokenScope> scopes;
+  final List<TokenScope?>? scopes;
 
   /// The token that can be used to `authorize` with.
-  final String token;
+  final String? token;
 
   /// The IP restriction for the token. No restriction if empty.
-  final String validForIp;
+  final String? validForIp;
 }

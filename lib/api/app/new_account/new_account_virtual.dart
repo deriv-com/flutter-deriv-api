@@ -10,11 +10,11 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class NewAccountVirtual extends NewAccountVirtualModel {
   /// Initializes
   NewAccountVirtual({
-    double balance,
-    String clientId,
-    String currency,
-    String email,
-    String oauthToken,
+    double? balance,
+    String? clientId,
+    String? currency,
+    String? email,
+    String? oauthToken,
   }) : super(
           balance: balance,
           clientId: clientId,
@@ -33,15 +33,15 @@ class NewAccountVirtual extends NewAccountVirtualModel {
         oauthToken: json['oauth_token'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   NewAccountVirtual copyWith({
-    double balance,
-    String clientId,
-    String currency,
-    String email,
-    String oauthToken,
+    double? balance,
+    String? clientId,
+    String? currency,
+    String? email,
+    String? oauthToken,
   }) =>
       NewAccountVirtual(
         balance: balance ?? this.balance,
@@ -59,14 +59,14 @@ class NewAccountVirtual extends NewAccountVirtualModel {
     NewAccountVirtualRequest request,
   ) async {
     final NewAccountVirtualResponse response =
-        await _api.call(request: request);
+        await _api!.call<NewAccountVirtualResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           NewAccountException(baseExceptionModel: baseExceptionModel),
     );
 
-    return NewAccountVirtual.fromJson(response.newAccountVirtual);
+    return NewAccountVirtual.fromJson(response.newAccountVirtual!);
   }
 }

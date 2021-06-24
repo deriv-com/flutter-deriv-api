@@ -9,8 +9,8 @@ class TicksRequest extends Request {
   const TicksRequest({
     this.subscribe,
     this.ticks,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'ticks',
           passthrough: passthrough,
@@ -20,23 +20,23 @@ class TicksRequest extends Request {
   /// Creates an instance from JSON
   factory TicksRequest.fromJson(Map<String, dynamic> json) => TicksRequest(
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        ticks: json['ticks'] as dynamic,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        ticks: json['ticks'] as dynamic?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] If set to `true`, will send updates whenever a new tick is received.
-  final bool subscribe;
+  final bool? subscribe;
 
   /// The short symbol name or array of symbols (obtained from `active_symbols` call).
-  final dynamic ticks;
+  final dynamic? ticks;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'ticks': ticks,
@@ -47,10 +47,10 @@ class TicksRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TicksRequest copyWith({
-    bool subscribe,
-    dynamic ticks,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? subscribe,
+    dynamic? ticks,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TicksRequest(
         subscribe: subscribe ?? this.subscribe,
@@ -61,5 +61,5 @@ class TicksRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => <Object>[ticks];
+  List<Object> get props => <Object>[ticks!];
 }

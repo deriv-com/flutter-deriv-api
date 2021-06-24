@@ -7,7 +7,7 @@ class WebsiteStatusCryptoConfigModel extends APIBaseModel {
 
   /// Initialized from map
   factory WebsiteStatusCryptoConfigModel.fromJson(
-    String code,
+    String? code,
     Map<String, dynamic> json,
   ) =>
       WebsiteStatusCryptoConfigModel(
@@ -16,15 +16,15 @@ class WebsiteStatusCryptoConfigModel extends APIBaseModel {
       );
 
   /// Crypto-currency code
-  final String code;
+  final String? code;
 
   /// Minimum withdrawal for the currency in USD.
-  final double minimumWithdrawal;
+  final double? minimumWithdrawal;
 
   /// Generate a copy of instance with given parameters
   WebsiteStatusCryptoConfigModel copyWith({
-    String code,
-    double minimumWithdrawal,
+    String? code,
+    double? minimumWithdrawal,
   }) =>
       WebsiteStatusCryptoConfigModel(
         code: code ?? this.code,

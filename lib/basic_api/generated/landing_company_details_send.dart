@@ -8,8 +8,8 @@ class LandingCompanyDetailsRequest extends Request {
   /// Initialize LandingCompanyDetailsRequest
   const LandingCompanyDetailsRequest({
     @required this.landingCompanyDetails,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'landing_company_details',
           passthrough: passthrough,
@@ -19,13 +19,13 @@ class LandingCompanyDetailsRequest extends Request {
   /// Creates an instance from JSON
   factory LandingCompanyDetailsRequest.fromJson(Map<String, dynamic> json) =>
       LandingCompanyDetailsRequest(
-        landingCompanyDetails: json['landing_company_details'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        landingCompanyDetails: json['landing_company_details'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Landing company shortcode.
-  final String landingCompanyDetails;
+  final String? landingCompanyDetails;
 
   /// Converts this instance to JSON
   @override
@@ -38,9 +38,9 @@ class LandingCompanyDetailsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   LandingCompanyDetailsRequest copyWith({
-    String landingCompanyDetails,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? landingCompanyDetails,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       LandingCompanyDetailsRequest(
         landingCompanyDetails:
@@ -51,5 +51,5 @@ class LandingCompanyDetailsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

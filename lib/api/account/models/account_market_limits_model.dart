@@ -9,8 +9,8 @@ class AccountMarketLimitsModel extends APIBaseModel {
 
   /// Creates an instance from Json
   factory AccountMarketLimitsModel.fromJson(
-    String marketName,
-    List<dynamic> jsonList,
+    String? marketName,
+    List<dynamic>? jsonList,
   ) =>
       AccountMarketLimitsModel(
         marketName: marketName,
@@ -21,15 +21,15 @@ class AccountMarketLimitsModel extends APIBaseModel {
       );
 
   /// Market name
-  final String marketName;
+  final String? marketName;
 
   /// Limitations for [marketName]
-  final List<MarketLimitModel> marketLimits;
+  final List<MarketLimitModel?>? marketLimits;
 
   /// Generate a copy of instance with given parameters
   AccountMarketLimitsModel copyWith({
-    String marketName,
-    final List<MarketLimitModel> marketLimits,
+    String? marketName,
+    final List<MarketLimitModel>? marketLimits,
   }) =>
       AccountMarketLimitsModel(
         marketName: marketName ?? this.marketName,

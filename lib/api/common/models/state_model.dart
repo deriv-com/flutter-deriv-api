@@ -9,8 +9,8 @@ abstract class StateModel extends APIBaseModel {
   });
 
   /// The state name.
-  final String text;
+  final String? text;
 
   /// The state code.
-  final String value;
+  final String? value;
 }

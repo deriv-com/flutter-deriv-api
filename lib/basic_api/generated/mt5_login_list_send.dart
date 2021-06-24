@@ -8,8 +8,8 @@ class Mt5LoginListRequest extends Request {
   /// Initialize Mt5LoginListRequest
   const Mt5LoginListRequest({
     this.mt5LoginList = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'mt5_login_list',
           passthrough: passthrough,
@@ -21,19 +21,19 @@ class Mt5LoginListRequest extends Request {
       Mt5LoginListRequest(
         mt5LoginList:
             json['mt5_login_list'] == null ? null : json['mt5_login_list'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool mt5LoginList;
+  final bool? mt5LoginList;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'mt5_login_list': mt5LoginList == null
             ? null
-            : mt5LoginList
+            : mt5LoginList!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -43,9 +43,9 @@ class Mt5LoginListRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   Mt5LoginListRequest copyWith({
-    bool mt5LoginList,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? mt5LoginList,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       Mt5LoginListRequest(
         mt5LoginList: mt5LoginList ?? this.mt5LoginList,
@@ -55,5 +55,5 @@ class Mt5LoginListRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

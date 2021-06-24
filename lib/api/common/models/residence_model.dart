@@ -13,20 +13,20 @@ class ResidenceModel extends APIBaseModel {
   });
 
   /// IDD code of country
-  final String phoneIdd;
+  final String? phoneIdd;
 
   /// Country full name
-  final String countryName;
+  final String? countryName;
 
   /// 2-letter country code
-  final String countryCode;
+  final String? countryCode;
 
   /// Country tax identifier format
-  final List<String> tinFormat;
+  final List<String?>? tinFormat;
 
   /// Is disabled
-  final String disabled;
+  final String? disabled;
 
   /// Is selected
-  final String selected;
+  final String? selected;
 }

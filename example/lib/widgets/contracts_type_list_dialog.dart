@@ -12,14 +12,14 @@ class ContractsTypeListDialog extends StatelessWidget {
       BlocBuilder<AvailableContractsBloc, AvailableContractsState>(
         builder: (BuildContext context, AvailableContractsState state) {
           if (state is AvailableContractsLoaded) {
-            final ContractsForSymbol contractsForSymbol = state.contracts;
+            final ContractsForSymbol contractsForSymbol = state.contracts!;
 
             return Material(
               child: ListView.builder(
-                  itemCount: contractsForSymbol.availableContracts.length,
+                  itemCount: contractsForSymbol.availableContracts!.length,
                   itemBuilder: (BuildContext context, int index) {
                     final AvailableContractModel contract =
-                        contractsForSymbol.availableContracts[index];
+                        contractsForSymbol.availableContracts![index]!;
                     return ListTile(
                       title: Text(
                         '${contract.contractDisplay}, ${contract.contractType}',

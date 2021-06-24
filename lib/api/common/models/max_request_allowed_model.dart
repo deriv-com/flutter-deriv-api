@@ -16,19 +16,19 @@ class MaxRequestAllowedModel extends APIBaseModel {
       );
 
   /// Describes which calls this limit applies to.
-  final String appliesTo;
+  final String? appliesTo;
 
   /// The maximum of allowed calls per hour.
-  final int hourly;
+  final int? hourly;
 
   /// The maximum of allowed calls per minute.
-  final int minutely;
+  final int? minutely;
 
   /// Generate a copy of instance with given parameters
   MaxRequestAllowedModel copyWith({
-    String appliesTo,
-    int hourly,
-    int minutely,
+    String? appliesTo,
+    int? hourly,
+    int? minutely,
   }) =>
       MaxRequestAllowedModel(
         appliesTo: appliesTo ?? this.appliesTo,

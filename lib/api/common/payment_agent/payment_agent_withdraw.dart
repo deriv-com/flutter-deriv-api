@@ -11,9 +11,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class PaymentAgentWithdraw extends PaymentAgentWithdrawModel {
   /// Initializes
   PaymentAgentWithdraw({
-    PaymentResult paymentAgentWithdraw,
-    String paymentAgentName,
-    int transactionId,
+    PaymentResult? paymentAgentWithdraw,
+    String? paymentAgentName,
+    int? transactionId,
   }) : super(
           paymentAgentWithdraw: paymentAgentWithdraw,
           paymentAgentName: paymentAgentName,
@@ -26,18 +26,18 @@ class PaymentAgentWithdraw extends PaymentAgentWithdrawModel {
   ) =>
       PaymentAgentWithdraw(
         paymentAgentWithdraw:
-            PaymentResult.values[response.paymentagentWithdraw],
+            PaymentResult.values[response.paymentagentWithdraw!],
         paymentAgentName: response.paymentagentName,
         transactionId: response.transactionId,
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   PaymentAgentWithdraw copyWith({
-    PaymentResult paymentAgentWithdraw,
-    String paymentAgentName,
-    int transactionId,
+    PaymentResult? paymentAgentWithdraw,
+    String? paymentAgentName,
+    int? transactionId,
   }) =>
       PaymentAgentWithdraw(
         paymentAgentWithdraw: paymentAgentWithdraw ?? this.paymentAgentWithdraw,
@@ -53,11 +53,11 @@ class PaymentAgentWithdraw extends PaymentAgentWithdrawModel {
     PaymentagentWithdrawRequest request,
   ) async {
     final PaymentagentWithdrawResponse response =
-        await _api.call(request: request);
+        await _api!.call<PaymentagentWithdrawResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           PaymentAgentException(baseExceptionModel: baseExceptionModel),
     );
 

@@ -15,8 +15,8 @@ class BalanceActiveAccountModel {
 
   /// Generate an instance from JSON
   factory BalanceActiveAccountModel.fromJson({
-    String loginId,
-    Map<String, dynamic> json,
+    required Map<String, dynamic> json,
+    String? loginId,
   }) =>
       BalanceActiveAccountModel(
         loginId: loginId,
@@ -31,31 +31,31 @@ class BalanceActiveAccountModel {
       );
 
   /// Client login id.
-  final String loginId;
+  final String? loginId;
 
   /// The balance amount of current account.
-  final double balance;
+  final double? balance;
 
   /// Account balance converted the total currency.
-  final double convertedAmount;
+  final double? convertedAmount;
 
   /// Account currency.
-  final String currency;
+  final String? currency;
 
   /// If set to 1, this is a demo account.
-  final bool demoAccount;
+  final bool? demoAccount;
 
   /// Type of account.
-  final UserAccountType type;
+  final UserAccountType? type;
 
   /// Generate a copy of instance with given parameters.
   BalanceActiveAccountModel copyWith({
-    String loginId,
-    double balance,
-    double convertedAmount,
-    String currency,
-    bool demoAccount,
-    UserAccountType type,
+    String? loginId,
+    double? balance,
+    double? convertedAmount,
+    String? currency,
+    bool? demoAccount,
+    UserAccountType? type,
   }) =>
       BalanceActiveAccountModel(
         loginId: loginId ?? this.loginId,

@@ -13,20 +13,20 @@ abstract class AccountModel extends APIBaseModel {
   });
 
   /// Currency of specified account.
-  final String currency;
+  final String? currency;
 
   /// Epoch of date till client has excluded him/herself from the website, only present if client is self excluded.
-  final DateTime excludedUntil;
+  final DateTime? excludedUntil;
 
   /// Boolean value: true or false, indicating whether the account is marked as disabled or not.
-  final bool isDisabled;
+  final bool? isDisabled;
 
   /// Boolean value: true or false, indicating whether the account is a virtual-money account.
-  final bool isVirtual;
+  final bool? isVirtual;
 
   /// Landing company short code the account belongs to.
-  final String landingCompanyName;
+  final String? landingCompanyName;
 
   /// The account ID of specified account.
-  final String loginId;
+  final String? loginId;
 }

@@ -8,8 +8,8 @@ class PingRequest extends Request {
   /// Initialize PingRequest
   const PingRequest({
     this.ping = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'ping',
           passthrough: passthrough,
@@ -19,19 +19,19 @@ class PingRequest extends Request {
   /// Creates an instance from JSON
   factory PingRequest.fromJson(Map<String, dynamic> json) => PingRequest(
         ping: json['ping'] == null ? null : json['ping'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool ping;
+  final bool? ping;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'ping': ping == null
             ? null
-            : ping
+            : ping!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -41,9 +41,9 @@ class PingRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   PingRequest copyWith({
-    bool ping,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? ping,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       PingRequest(
         ping: ping ?? this.ping,
@@ -53,5 +53,5 @@ class PingRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

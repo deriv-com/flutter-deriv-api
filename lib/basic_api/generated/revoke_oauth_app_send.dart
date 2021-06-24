@@ -8,8 +8,8 @@ class RevokeOauthAppRequest extends Request {
   /// Initialize RevokeOauthAppRequest
   const RevokeOauthAppRequest({
     @required this.revokeOauthApp,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'revoke_oauth_app',
           passthrough: passthrough,
@@ -19,13 +19,13 @@ class RevokeOauthAppRequest extends Request {
   /// Creates an instance from JSON
   factory RevokeOauthAppRequest.fromJson(Map<String, dynamic> json) =>
       RevokeOauthAppRequest(
-        revokeOauthApp: json['revoke_oauth_app'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        revokeOauthApp: json['revoke_oauth_app'] as int?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The application ID to revoke.
-  final int revokeOauthApp;
+  final int? revokeOauthApp;
 
   /// Converts this instance to JSON
   @override
@@ -38,9 +38,9 @@ class RevokeOauthAppRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   RevokeOauthAppRequest copyWith({
-    int revokeOauthApp,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    int? revokeOauthApp,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       RevokeOauthAppRequest(
         revokeOauthApp: revokeOauthApp ?? this.revokeOauthApp,
@@ -50,5 +50,5 @@ class RevokeOauthAppRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

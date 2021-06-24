@@ -1,3 +1,5 @@
+import 'package:flutter_deriv_api/api/account/models/account_authentication_status_model.dart';
+import 'package:flutter_deriv_api/api/account/models/account_status_currency_config_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/account/account_status/account_status.dart';
@@ -11,41 +13,49 @@ void main() {
     final AccountStatus accountStatus =
         await AccountStatus.fetchAccountStatus();
 
-    expect(accountStatus.currencyConfig.length, 1);
-    expect(accountStatus.currencyConfig.first.currency, 'USD');
-    expect(accountStatus.currencyConfig.first.isDepositSuspended, false);
-    expect(accountStatus.currencyConfig.first.isWithdrawalSuspended, false);
+    final List<AccountStatusCurrencyConfigModel?> currencyConfigs =
+        accountStatus.currencyConfig!;
+    final AccountStatusCurrencyConfigModel firstCurrencyConfig =
+        currencyConfigs.first!;
+    final List<AccountStatusType?> statusTypes = accountStatus.status!;
+    final AccountAuthenticationStatusModel authenticationStatus =
+        accountStatus.authentication!;
+
+    expect(currencyConfigs.length, 1);
+    expect(firstCurrencyConfig.currency, 'USD');
+    expect(firstCurrencyConfig.isDepositSuspended, false);
+    expect(firstCurrencyConfig.isWithdrawalSuspended, false);
 
     expect(
-      accountStatus.status.first,
+      statusTypes.first,
       AccountStatusType.financialInformationNotComplete,
     );
     expect(
-      accountStatus.status[1],
+      statusTypes[1],
       AccountStatusType.tradingExperienceNotComplete,
     );
     expect(accountStatus.promptClientToAuthenticate, false);
     expect(accountStatus.riskClassification, AccountRiskClassification.low);
     expect(
-      accountStatus.authentication.document.status,
+      authenticationStatus.document!.status,
       AccountIdentityStatus.none,
     );
     expect(
-      accountStatus.authentication.identity.status,
+      authenticationStatus.identity!.status,
       AccountIdentityStatus.none,
     );
 
     expect(
-      accountStatus.authentication.needsVerification,
-      isA<List<VerificationType>>(),
+      authenticationStatus.needsVerification,
+      isA<List<VerificationType?>?>(),
     );
-    expect(accountStatus.authentication.needsVerification.length, 2);
+    expect(authenticationStatus.needsVerification!.length, 2);
     expect(
-      accountStatus.authentication.needsVerification.first,
+      authenticationStatus.needsVerification!.first,
       VerificationType.document,
     );
     expect(
-      accountStatus.authentication.needsVerification.last,
+      authenticationStatus.needsVerification!.last,
       VerificationType.identity,
     );
   });

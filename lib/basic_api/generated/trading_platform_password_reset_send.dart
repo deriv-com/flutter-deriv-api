@@ -13,8 +13,8 @@ class TradingPlatformPasswordResetRequest extends Request {
     @required this.platform,
     this.tradingPlatformPasswordReset = true,
     @required this.verificationCode,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'trading_platform_password_reset',
           passthrough: passthrough,
@@ -25,28 +25,28 @@ class TradingPlatformPasswordResetRequest extends Request {
   factory TradingPlatformPasswordResetRequest.fromJson(
           Map<String, dynamic> json) =>
       TradingPlatformPasswordResetRequest(
-        newPassword: json['new_password'] as String,
-        platform: json['platform'] as String,
+        newPassword: json['new_password'] as String?,
+        platform: json['platform'] as String?,
         tradingPlatformPasswordReset:
             json['trading_platform_password_reset'] == null
                 ? null
                 : json['trading_platform_password_reset'] == 1,
-        verificationCode: json['verification_code'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        verificationCode: json['verification_code'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// New password of the account. For validation (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address).
-  final String newPassword;
+  final String? newPassword;
 
   /// Pass the trading platform name
-  final String platform;
+  final String? platform;
 
   /// Must be `true`
-  final bool tradingPlatformPasswordReset;
+  final bool? tradingPlatformPasswordReset;
 
   /// Email verification code (received from a `verify_email` call, which must be done first)
-  final String verificationCode;
+  final String? verificationCode;
 
   /// Converts this instance to JSON
   @override
@@ -55,7 +55,7 @@ class TradingPlatformPasswordResetRequest extends Request {
         'platform': platform,
         'trading_platform_password_reset': tradingPlatformPasswordReset == null
             ? null
-            : tradingPlatformPasswordReset
+            : tradingPlatformPasswordReset!
                 ? 1
                 : 0,
         'verification_code': verificationCode,
@@ -66,12 +66,12 @@ class TradingPlatformPasswordResetRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TradingPlatformPasswordResetRequest copyWith({
-    String newPassword,
-    String platform,
-    bool tradingPlatformPasswordReset,
-    String verificationCode,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? newPassword,
+    String? platform,
+    bool? tradingPlatformPasswordReset,
+    String? verificationCode,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TradingPlatformPasswordResetRequest(
         newPassword: newPassword ?? this.newPassword,
@@ -85,5 +85,5 @@ class TradingPlatformPasswordResetRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

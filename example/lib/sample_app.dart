@@ -13,7 +13,7 @@ class SampleApp extends StatefulWidget {
 }
 
 class _SampleAppState extends State<SampleApp> {
-  api_connection.ConnectionBloc _connectionBloc;
+  late api_connection.ConnectionBloc _connectionBloc;
 
   @override
   void initState() {

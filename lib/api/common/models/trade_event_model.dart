@@ -16,15 +16,15 @@ class TradeEventModel extends APIBaseModel {
       );
 
   /// Dates
-  final String dates;
+  final String? dates;
 
   /// Description
-  final String description;
+  final String? description;
 
   /// Creates a copy of instance with given parameters
   TradeEventModel copyWith({
-    String dates,
-    String description,
+    String? dates,
+    String? description,
   }) =>
       TradeEventModel(
         dates: dates ?? this.dates,

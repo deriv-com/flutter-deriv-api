@@ -38,59 +38,59 @@ class PaymentAgentModel extends APIBaseModel {
       );
 
   /// Currencies that are accepted by this payment agent.
-  final String currencies;
+  final String? currencies;
 
   /// Commission amount applied on deposits made through this payment agent.
-  final String depositCommission;
+  final String? depositCommission;
 
   /// Payment agent's email address.
-  final String email;
+  final String? email;
 
   /// More descriptions about this payment agent.
-  final String furtherInformation;
+  final String? furtherInformation;
 
   /// Maximum withdrawal allowed for transactions through this payment agent.
-  final String maxWithdrawal;
+  final String? maxWithdrawal;
 
   /// Minimum withdrawal allowed for transactions through this payment agent.
-  final String minWithdrawal;
+  final String? minWithdrawal;
 
   /// Payment agent's name.
-  final String name;
+  final String? name;
 
   /// Payment agent's login id.
-  final String paymentAgentLoginId;
+  final String? paymentAgentLoginId;
 
   /// A summary about payment agent.
-  final String summary;
+  final String? summary;
 
   /// Comma separated list of supported banks.
-  final String supportedBanks;
+  final String? supportedBanks;
 
   /// Payment agent's phone number.
-  final String telephone;
+  final String? telephone;
 
   /// Payment agent's website URL.
-  final String url;
+  final String? url;
 
   /// Commission amount applied on withdrawals made through this payment agent.
-  final String withdrawalCommission;
+  final String? withdrawalCommission;
 
   /// Generate a copy of instance with given parameters
   PaymentAgentModel copyWith({
-    String currencies,
-    String depositCommission,
-    String email,
-    String furtherInformation,
-    String maxWithdrawal,
-    String minWithdrawal,
-    String name,
-    String paymentAgentLoginId,
-    String summary,
-    String supportedBanks,
-    String telephone,
-    String url,
-    String withdrawalCommission,
+    String? currencies,
+    String? depositCommission,
+    String? email,
+    String? furtherInformation,
+    String? maxWithdrawal,
+    String? minWithdrawal,
+    String? name,
+    String? paymentAgentLoginId,
+    String? summary,
+    String? supportedBanks,
+    String? telephone,
+    String? url,
+    String? withdrawalCommission,
   }) =>
       PaymentAgentModel(
         currencies: currencies ?? this.currencies,

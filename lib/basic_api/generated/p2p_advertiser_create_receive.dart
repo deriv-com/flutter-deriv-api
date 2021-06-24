@@ -9,10 +9,10 @@ class P2pAdvertiserCreateResponse extends Response {
   const P2pAdvertiserCreateResponse({
     this.p2pAdvertiserCreate,
     this.subscription,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -24,19 +24,19 @@ class P2pAdvertiserCreateResponse extends Response {
   factory P2pAdvertiserCreateResponse.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserCreateResponse(
         p2pAdvertiserCreate:
-            json['p2p_advertiser_create'] as Map<String, dynamic>,
-        subscription: json['subscription'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+            json['p2p_advertiser_create'] as Map<String, dynamic>?,
+        subscription: json['subscription'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// P2P advertiser information.
-  final Map<String, dynamic> p2pAdvertiserCreate;
+  final Map<String, dynamic>? p2pAdvertiserCreate;
 
   /// For subscription requests only.
-  final Map<String, dynamic> subscription;
+  final Map<String, dynamic>? subscription;
 
   /// Converts this instance to JSON
   @override
@@ -52,12 +52,12 @@ class P2pAdvertiserCreateResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertiserCreateResponse copyWith({
-    Map<String, dynamic> p2pAdvertiserCreate,
-    Map<String, dynamic> subscription,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? p2pAdvertiserCreate,
+    Map<String, dynamic>? subscription,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       P2pAdvertiserCreateResponse(
         p2pAdvertiserCreate: p2pAdvertiserCreate ?? this.p2pAdvertiserCreate,
@@ -70,5 +70,5 @@ class P2pAdvertiserCreateResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

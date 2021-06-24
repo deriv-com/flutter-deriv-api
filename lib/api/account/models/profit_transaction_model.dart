@@ -33,47 +33,47 @@ class ProfitTransactionModel extends APIBaseModel {
       );
 
   /// ID of the application where this contract was purchased.
-  final int appId;
+  final int? appId;
 
   /// The buy price
-  final double buyPrice;
+  final double? buyPrice;
 
   /// The unique contract identifier.
-  final int contractId;
+  final int? contractId;
 
   /// The description of contract purchased if description is set to 1
-  final String longCode;
+  final String? longCode;
 
   /// Payout price
-  final double payout;
+  final double? payout;
 
   /// Epoch purchase time of the transaction
-  final DateTime purchaseTime;
+  final DateTime? purchaseTime;
 
   /// The price the contract sold for.
-  final double sellPrice;
+  final double? sellPrice;
 
   /// Epoch sell time of the transaction
-  final DateTime sellTime;
+  final DateTime? sellTime;
 
   /// Compact description of the contract purchased if description is set to 1
-  final String shortCode;
+  final String? shortCode;
 
   /// The transaction Identifier. Every contract (buy or sell) and every payment has a unique transaction identifier.
-  final int transactionId;
+  final int? transactionId;
 
   /// Generate a copy of instance with given parameters
   ProfitTransactionModel copyWith({
-    int appId,
-    double buyPrice,
-    int contractId,
-    String longCode,
-    double payout,
-    DateTime purchaseTime,
-    double sellPrice,
-    DateTime sellTime,
-    String shortCode,
-    int transactionId,
+    int? appId,
+    double? buyPrice,
+    int? contractId,
+    String? longCode,
+    double? payout,
+    DateTime? purchaseTime,
+    double? sellPrice,
+    DateTime? sellTime,
+    String? shortCode,
+    int? transactionId,
   }) =>
       ProfitTransactionModel(
         appId: appId ?? this.appId,

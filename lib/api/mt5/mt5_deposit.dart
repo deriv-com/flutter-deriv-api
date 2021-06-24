@@ -10,8 +10,8 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class MT5Deposit extends MT5DepositModel {
   /// Initializes
   MT5Deposit({
-    bool mt5Deposit,
-    int binaryTransactionId,
+    bool? mt5Deposit,
+    int? binaryTransactionId,
   }) : super(
           mt5Deposit: mt5Deposit,
           binaryTransactionId: binaryTransactionId,
@@ -19,20 +19,20 @@ class MT5Deposit extends MT5DepositModel {
 
   /// Creates an instance from response
   factory MT5Deposit.fromResponse({
-    int deposit,
-    int transactionId,
+    int? deposit,
+    int? transactionId,
   }) =>
       MT5Deposit(
         mt5Deposit: getBool(deposit),
         binaryTransactionId: transactionId,
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   MT5Deposit copyWith({
-    bool mt5Deposit,
-    int binaryTransactionId,
+    bool? mt5Deposit,
+    int? binaryTransactionId,
   }) =>
       MT5Deposit(
         mt5Deposit: mt5Deposit ?? this.mt5Deposit,
@@ -44,11 +44,11 @@ class MT5Deposit extends MT5DepositModel {
   /// For parameters information refer to [Mt5DepositRequest].
   /// Throws a [MT5Exception] if API response contains an error
   static Future<MT5Deposit> deposit(Mt5DepositRequest request) async {
-    final Mt5DepositResponse response = await _api.call(request: request);
+    final Mt5DepositResponse response = await _api!.call<Mt5DepositResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 

@@ -5,6 +5,6 @@ import 'package:flutter_deriv_api/api/user/exceptions/user_exception.dart';
 class FinancialAssessmentException extends UserException {
   /// Initializes
   FinancialAssessmentException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

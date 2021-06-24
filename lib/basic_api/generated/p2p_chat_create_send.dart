@@ -9,8 +9,8 @@ class P2pChatCreateRequest extends Request {
   const P2pChatCreateRequest({
     @required this.orderId,
     this.p2pChatCreate = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_chat_create',
           passthrough: passthrough,
@@ -20,19 +20,19 @@ class P2pChatCreateRequest extends Request {
   /// Creates an instance from JSON
   factory P2pChatCreateRequest.fromJson(Map<String, dynamic> json) =>
       P2pChatCreateRequest(
-        orderId: json['order_id'] as String,
+        orderId: json['order_id'] as String?,
         p2pChatCreate: json['p2p_chat_create'] == null
             ? null
             : json['p2p_chat_create'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The unique identifier for the order to create the chat for.
-  final String orderId;
+  final String? orderId;
 
   /// Must be `true`
-  final bool p2pChatCreate;
+  final bool? p2pChatCreate;
 
   /// Converts this instance to JSON
   @override
@@ -40,7 +40,7 @@ class P2pChatCreateRequest extends Request {
         'order_id': orderId,
         'p2p_chat_create': p2pChatCreate == null
             ? null
-            : p2pChatCreate
+            : p2pChatCreate!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -50,10 +50,10 @@ class P2pChatCreateRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pChatCreateRequest copyWith({
-    String orderId,
-    bool p2pChatCreate,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? orderId,
+    bool? p2pChatCreate,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pChatCreateRequest(
         orderId: orderId ?? this.orderId,
@@ -64,5 +64,5 @@ class P2pChatCreateRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

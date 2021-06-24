@@ -6,9 +6,9 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_deriv_api_example/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../lib/main.dart';
 
 void main() {
   testWidgets('Verify Platform version', (WidgetTester tester) async {
@@ -19,7 +19,7 @@ void main() {
     expect(
       find.byWidgetPredicate(
         (Widget widget) => widget is Text &&
-                           widget.data.startsWith('Running on:'),
+                           widget.data!.startsWith('Running on:'),
       ),
       findsOneWidget,
     );
