@@ -20,9 +20,9 @@ void main() {
 
     expect(statement.count, 1);
 
-    expect(statement.transactions.length, 1);
+    expect(statement.transactions!.length, 1);
 
-    final StatementTransactionModel transaction = statement.transactions.first;
+    final StatementTransactionModel transaction = statement.transactions!.first!;
 
     expect(transaction.actionType, TransactionActionType.deposit);
     expect(transaction.amount, -83.23);

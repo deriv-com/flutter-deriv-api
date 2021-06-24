@@ -4,18 +4,18 @@ import 'package:flutter_deriv_api/api/app/models/new_account_base_model.dart';
 abstract class NewAccountRealModel extends NewAccountBaseModel {
   /// Initializes
   NewAccountRealModel({
-    String clientId,
+    String? clientId,
     this.landingCompany,
     this.landingCompanyShort,
-    String oauthToken,
+    String? oauthToken,
   }) : super(
           clientId: clientId,
           oauthToken: oauthToken,
         );
 
   /// Landing company full name
-  final String landingCompany;
+  final String? landingCompany;
 
   /// Landing company short code
-  final String landingCompanyShort;
+  final String? landingCompanyShort;
 }

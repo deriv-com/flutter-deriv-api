@@ -10,8 +10,8 @@ class P2pAdvertiserAdvertsRequest extends Request {
     this.limit,
     this.offset,
     this.p2pAdvertiserAdverts = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_advertiser_adverts',
           passthrough: passthrough,
@@ -21,23 +21,23 @@ class P2pAdvertiserAdvertsRequest extends Request {
   /// Creates an instance from JSON
   factory P2pAdvertiserAdvertsRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserAdvertsRequest(
-        limit: json['limit'] as int,
-        offset: json['offset'] as int,
+        limit: json['limit'] as int?,
+        offset: json['offset'] as int?,
         p2pAdvertiserAdverts: json['p2p_advertiser_adverts'] == null
             ? null
             : json['p2p_advertiser_adverts'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Used for paging.
-  final int limit;
+  final int? limit;
 
   /// [Optional] Used for paging.
-  final int offset;
+  final int? offset;
 
   /// Must be `true`
-  final bool p2pAdvertiserAdverts;
+  final bool? p2pAdvertiserAdverts;
 
   /// Converts this instance to JSON
   @override
@@ -46,7 +46,7 @@ class P2pAdvertiserAdvertsRequest extends Request {
         'offset': offset,
         'p2p_advertiser_adverts': p2pAdvertiserAdverts == null
             ? null
-            : p2pAdvertiserAdverts
+            : p2pAdvertiserAdverts!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -56,11 +56,11 @@ class P2pAdvertiserAdvertsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertiserAdvertsRequest copyWith({
-    int limit,
-    int offset,
-    bool p2pAdvertiserAdverts,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    int? limit,
+    int? offset,
+    bool? p2pAdvertiserAdverts,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pAdvertiserAdvertsRequest(
         limit: limit ?? this.limit,
@@ -72,5 +72,5 @@ class P2pAdvertiserAdvertsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -72,16 +72,16 @@ class OpenContract extends Contract {
     this.transactionIds,
     this.underlying,
     this.validationError,
-    double balanceAfter,
-    double buyPrice,
-    int contractId,
-    DateTime dateStart,
-    String longCode,
-    double payout,
-    DateTime purchaseTime,
-    String shortCode,
-    int transactionId,
-    SubscriptionModel subscriptionInformation,
+    double? balanceAfter,
+    double? buyPrice,
+    int? contractId,
+    DateTime? dateStart,
+    String? longCode,
+    double? payout,
+    DateTime? purchaseTime,
+    String? shortCode,
+    int? transactionId,
+    SubscriptionModel? subscriptionInformation,
   }) : super(
           balanceAfter: balanceAfter,
           buyPrice: buyPrice,
@@ -98,7 +98,7 @@ class OpenContract extends Contract {
   /// Generates an instance from JSON
   factory OpenContract.fromJson(
     Map<String, dynamic> json, {
-    Map<String, dynamic> subscriptionJson,
+    Map<String, dynamic>? subscriptionJson,
   }) =>
       OpenContract(
         auditDetails: getItemFromMap(
@@ -191,156 +191,156 @@ class OpenContract extends Contract {
       );
 
   /// Tick details around contract start and end time.
-  final AuditDetailModel auditDetails;
+  final AuditDetailModel? auditDetails;
 
   /// Barrier of the contract (if any).
-  final String barrier;
+  final String? barrier;
 
   /// The number of barriers a contract has.
-  final double barrierCount;
+  final double? barrierCount;
 
   /// Price at which the contract could be sold back to the company.
-  final double bidPrice;
+  final double? bidPrice;
 
   /// Contains information about contract cancellation option.
-  final CancellationInfoModel cancellation;
+  final CancellationInfoModel? cancellation;
 
   /// Commission in payout currency
-  final double commission;
+  final double? commission;
 
   /// Contract type.
-  final ContractType contractType;
+  final ContractType? contractType;
 
   /// The currency code of the contract.
-  final String currency;
+  final String? currency;
 
   /// Spot value if we have license to stream this symbol.
-  final double currentSpot;
+  final double? currentSpot;
 
   /// Spot value with the correct precision if we have license to stream this symbol.
-  final String currentSpotDisplayValue;
+  final String? currentSpotDisplayValue;
 
   /// The corresponding time of the current spot.
-  final DateTime currentSpotTime;
+  final DateTime? currentSpotTime;
 
   /// Expiry date (epoch) of the Contract. Please note that it is not applicable for tick trade contracts.
-  final DateTime dateExpiry;
+  final DateTime? dateExpiry;
 
   /// Settlement date (epoch) of the contract.
-  final DateTime dateSettlement;
+  final DateTime? dateSettlement;
 
   /// Display name of underlying
-  final String displayName;
+  final String? displayName;
 
   /// The `bid_price` with the correct precision
-  final String displayValue;
+  final String? displayValue;
 
   /// Same as `entry_tick`. For backwards compatibility.
-  final double entrySpot;
+  final double? entrySpot;
 
   /// Same as `entry_tick_display_value`. For backwards compatibility.
-  final String entrySpotDisplayValue;
+  final String? entrySpotDisplayValue;
 
   /// This is the entry spot of the contract. For contracts starting immediately it is the next tick after the start time. For forward-starting contracts it is the spot at the start time.
-  final double entryTick;
+  final double? entryTick;
 
   /// This is the entry spot with the correct precision of the contract. For contracts starting immediately it is the next tick after the start time. For forward-starting contracts it is the spot at the start time.
-  final String entryTickDisplayValue;
+  final String? entryTickDisplayValue;
 
   /// This is the epoch time of the entry tick.
-  final DateTime entryTickTime;
+  final DateTime? entryTickTime;
 
   /// Exit tick can refer to the latest tick at the end time, the tick that fulfils the contract's winning or losing condition for path dependent contracts (Touch/No Touch and Stays Between/Goes Outside) or the tick at which the contract is sold before expiry.
-  final double exitTick;
+  final double? exitTick;
 
   /// Exit tick can refer to the latest tick at the end time, the tick that fulfils the contract's winning or losing condition for path dependent contracts (Touch/No Touch and Stays Between/Goes Outside) or the tick at which the contract is sold before expiry.
-  final String exitTickDisplayValue;
+  final String? exitTickDisplayValue;
 
   /// This is the epoch time of the exit tick. Note that since certain instruments don't tick every second, the exit tick time may be a few seconds before the end time.
-  final DateTime exitTickTime;
+  final DateTime? exitTickTime;
 
   /// High barrier of the contract (if any).
-  final String highBarrier;
+  final String? highBarrier;
 
   /// A stream ID that can be used to cancel this stream using the Forget request.
-  final String id;
+  final String? id;
 
   /// Whether the contract is expired or not.
-  final bool isExpired;
+  final bool? isExpired;
 
   /// Whether the contract is forward-starting or not.
-  final bool isForwardStarting;
+  final bool? isForwardStarting;
 
   /// Whether the contract is an intraday contract.
-  final bool isIntraday;
+  final bool? isIntraday;
 
   /// Whether the contract expiry price will depend on the path of the market (e.g. One Touch contract).
-  final bool isPathDependent;
+  final bool? isPathDependent;
 
   /// Whether the contract is settleable or not.
-  final bool isSettleable;
+  final bool? isSettleable;
 
   /// Whether the contract is sold or not.
-  final bool isSold;
+  final bool? isSold;
 
   /// Whether the contract can be cancelled.
-  final bool isValidToCancel;
+  final bool? isValidToCancel;
 
   /// Whether the contract can be sold back to the company.
-  final bool isValidToSell;
+  final bool? isValidToSell;
 
   /// Orders are applicable to `MULTUP` and `MULTDOWN` only.
-  final LimitOrderModel limitOrder;
+  final LimitOrderModel? limitOrder;
 
   /// Low barrier of the contract (if any).
-  final String lowBarrier;
+  final String? lowBarrier;
 
   /// [Only for look back trades] Multiplier applies when calculating the final payoff for each type of look back. e.g. (Exit spot - Lowest historical price) * multiplier = Payout
-  final double multiplier;
+  final double? multiplier;
 
   /// The latest bid price minus buy price.
-  final double profit;
+  final double? profit;
 
   /// Profit in percentage.
-  final double profitPercentage;
+  final double? profitPercentage;
 
   /// [Only for reset trades] The epoch time of a barrier reset.
-  final DateTime resetTime;
+  final DateTime? resetTime;
 
   /// Price at which contract was sold, only available when contract has been sold.
-  final double sellPrice;
+  final double? sellPrice;
 
   /// Latest spot value at the sell time. (only present for contracts already sold). Will no longer be supported in the next API release.
-  final double sellSpot;
+  final double? sellSpot;
 
   /// Latest spot value with the correct precision at the sell time. (only present for contracts already sold). Will no longer be supported in the next API release.
-  final String sellSpotDisplayValue;
+  final String? sellSpotDisplayValue;
 
   /// Epoch time of the sell spot. Note that since certain underlyings don't tick every second, the sell spot time may be a few seconds before the sell time. (only present for contracts already sold). Will no longer be supported in the next API release.
-  final DateTime sellSpotTime;
+  final DateTime? sellSpotTime;
 
   /// Epoch time of when the contract was sold (only present for contracts already sold)
-  final DateTime sellTime;
+  final DateTime? sellTime;
 
   /// Contract status. Will be `sold` if the contract was sold back before expiry, `won` if won and `lost` if lost at expiry. Otherwise will be `open`
-  final ContractStatus status;
+  final ContractStatus? status;
 
   /// Only for tick trades, number of ticks
-  final int tickCount;
+  final int? tickCount;
 
   /// Tick stream from entry to end time.
-  final List<ContractTickModel> tickStream;
+  final List<ContractTickModel?>? tickStream;
 
   /// Every contract has buy and sell transaction ids, i.e. when you purchase a contract we associate it with buy transaction id, and if contract is already sold we associate that with sell transaction id.
-  final TransactionIdsModel transactionIds;
+  final TransactionIdsModel? transactionIds;
 
   /// The underlying symbol code.
-  final String underlying;
+  final String? underlying;
 
   /// Error message if validation fails
-  final String validationError;
+  final String? validationError;
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Gets the current spot of the the bought contract specified in [ProposalOpenContractRequest]
   ///
@@ -348,42 +348,43 @@ class OpenContract extends Contract {
   static Future<OpenContract> fetchContractState(
     ProposalOpenContractRequest request,
   ) async {
-    final ProposalOpenContractResponse response = await _api.call(
+    final ProposalOpenContractResponse response =
+        await _api!.call<ProposalOpenContractResponse>(
       request: request,
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
     return OpenContract.fromJson(
-      response.proposalOpenContract,
+      response.proposalOpenContract!,
     );
   }
 
   /// Subscribes to the bought contract state specified in [ProposalOpenContractRequest]
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  static Stream<OpenContract> subscribeContractState(
+  static Stream<OpenContract?> subscribeContractState(
     ProposalOpenContractRequest request, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
-      _api
-          .subscribe(request: request, comparePredicate: comparePredicate)
-          .map<OpenContract>(
+      _api!
+          .subscribe(request: request, comparePredicate: comparePredicate)!
+          .map<OpenContract?>(
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
                 ContractOperationException(
                     baseExceptionModel: baseExceptionModel),
           );
 
           return response is ProposalOpenContractResponse
               ? OpenContract.fromJson(
-                  response.proposalOpenContract,
+                  response.proposalOpenContract!,
                   subscriptionJson: response.subscription,
                 )
               : null;
@@ -393,17 +394,17 @@ class OpenContract extends Contract {
   /// Unsubscribes from open contract subscription.
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Future<Forget> unsubscribeOpenContract() async {
+  Future<Forget?> unsubscribeOpenContract() async {
     if (subscriptionInformation?.id == null) {
       return null;
     }
 
     final ForgetResponse response =
-        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+        await _api!.unsubscribe(subscriptionId: subscriptionInformation!.id);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -414,13 +415,13 @@ class OpenContract extends Contract {
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllOpenContract() async {
-    final ForgetAllResponse response = await _api.unsubscribeAll(
+    final ForgetAllResponse? response = await _api!.unsubscribeAll(
       method: ForgetStreamType.proposalOpenContract,
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -430,66 +431,66 @@ class OpenContract extends Contract {
   /// Generates a copy of instance with given parameters
   @override
   OpenContract copyWith({
-    AuditDetailModel auditDetails,
-    String barrier,
-    double barrierCount,
-    double bidPrice,
-    CancellationInfoModel cancellation,
-    String commission,
-    ContractType contractType,
-    String currency,
-    double currentSpot,
-    String currentSpotDisplayValue,
-    DateTime currentSpotTime,
-    DateTime dateExpiry,
-    DateTime dateSettlement,
-    String displayName,
-    String displayValue,
-    String entrySpot,
-    String entrySpotDisplayValue,
-    double entryTick,
-    String entryTickDisplayValue,
-    DateTime entryTickTime,
-    double exitTick,
-    String exitTickDisplayValue,
-    DateTime exitTickTime,
-    String highBarrier,
-    String id,
-    bool isExpired,
-    bool isForwardStarting,
-    bool isIntraday,
-    bool isPathDependent,
-    bool isSettleable,
-    bool isSold,
-    bool isValidToSell,
-    bool isValidToCancel,
-    LimitOrderModel limitOrder,
-    String lowBarrier,
-    double multiplier,
-    double profit,
-    double profitPercentage,
-    DateTime resetTime,
-    double sellPrice,
-    double sellSpot,
-    String sellSpotDisplayValue,
-    DateTime sellSpotTime,
-    DateTime sellTime,
-    ContractStatus status,
-    int tickCount,
-    List<ContractTickModel> tickStream,
-    TransactionIdsModel transactionIds,
-    String underlying,
-    String validationError,
-    double balanceAfter,
-    double buyPrice,
-    int contractId,
-    DateTime dateStart,
-    String longCode,
-    double payout,
-    DateTime purchaseTime,
-    String shortCode,
-    int transactionId,
-    SubscriptionModel subscriptionInformation,
+    AuditDetailModel? auditDetails,
+    String? barrier,
+    double? barrierCount,
+    double? bidPrice,
+    CancellationInfoModel? cancellation,
+    String? commission,
+    ContractType? contractType,
+    String? currency,
+    double? currentSpot,
+    String? currentSpotDisplayValue,
+    DateTime? currentSpotTime,
+    DateTime? dateExpiry,
+    DateTime? dateSettlement,
+    String? displayName,
+    String? displayValue,
+    String? entrySpot,
+    String? entrySpotDisplayValue,
+    double? entryTick,
+    String? entryTickDisplayValue,
+    DateTime? entryTickTime,
+    double? exitTick,
+    String? exitTickDisplayValue,
+    DateTime? exitTickTime,
+    String? highBarrier,
+    String? id,
+    bool? isExpired,
+    bool? isForwardStarting,
+    bool? isIntraday,
+    bool? isPathDependent,
+    bool? isSettleable,
+    bool? isSold,
+    bool? isValidToSell,
+    bool? isValidToCancel,
+    LimitOrderModel? limitOrder,
+    String? lowBarrier,
+    double? multiplier,
+    double? profit,
+    double? profitPercentage,
+    DateTime? resetTime,
+    double? sellPrice,
+    double? sellSpot,
+    String? sellSpotDisplayValue,
+    DateTime? sellSpotTime,
+    DateTime? sellTime,
+    ContractStatus? status,
+    int? tickCount,
+    List<ContractTickModel>? tickStream,
+    TransactionIdsModel? transactionIds,
+    String? underlying,
+    String? validationError,
+    double? balanceAfter,
+    double? buyPrice,
+    int? contractId,
+    DateTime? dateStart,
+    String? longCode,
+    double? payout,
+    DateTime? purchaseTime,
+    String? shortCode,
+    int? transactionId,
+    SubscriptionModel? subscriptionInformation,
   }) =>
       OpenContract(
         auditDetails: auditDetails ?? this.auditDetails,
@@ -497,7 +498,7 @@ class OpenContract extends Contract {
         barrierCount: barrierCount ?? this.barrierCount,
         bidPrice: bidPrice ?? this.bidPrice,
         cancellation: cancellation ?? this.cancellation,
-        commission: commission ?? this.commission,
+        commission: getDouble(commission) ?? this.commission,
         contractType: contractType ?? this.contractType,
         currency: currency ?? this.currency,
         currentSpot: currentSpot ?? this.currentSpot,
@@ -508,7 +509,7 @@ class OpenContract extends Contract {
         dateSettlement: dateSettlement ?? this.dateSettlement,
         displayName: displayName ?? this.displayName,
         displayValue: displayValue ?? this.displayValue,
-        entrySpot: entrySpot ?? this.entrySpot,
+        entrySpot: getDouble(entrySpot) ?? this.entrySpot,
         entrySpotDisplayValue:
             entrySpotDisplayValue ?? this.entrySpotDisplayValue,
         entryTick: entryTick ?? this.entryTick,

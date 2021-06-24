@@ -11,8 +11,8 @@ class SellContractForMultipleAccountsRequest extends Request {
     this.sellContractForMultipleAccounts = true,
     @required this.shortcode,
     @required this.tokens,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'sell_contract_for_multiple_accounts',
           passthrough: passthrough,
@@ -23,30 +23,30 @@ class SellContractForMultipleAccountsRequest extends Request {
   factory SellContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       SellContractForMultipleAccountsRequest(
-        price: json['price'] as num,
+        price: json['price'] as num?,
         sellContractForMultipleAccounts:
             json['sell_contract_for_multiple_accounts'] == null
                 ? null
                 : json['sell_contract_for_multiple_accounts'] == 1,
-        shortcode: json['shortcode'] as String,
-        tokens: (json['tokens'] as List<dynamic>)
+        shortcode: json['shortcode'] as String?,
+        tokens: (json['tokens'] as List<dynamic>?)
             ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+            .toList(),
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
-  final num price;
+  final num? price;
 
   /// Must be `true`
-  final bool sellContractForMultipleAccounts;
+  final bool? sellContractForMultipleAccounts;
 
   /// An internal ID used to identify the contract which was originally bought. This is returned from the `buy` and `buy_contract_for_multiple_accounts` calls.
-  final String shortcode;
+  final String? shortcode;
 
   /// Authorisation tokens which select the accounts to sell use for the affected accounts.
-  final List<String> tokens;
+  final List<String>? tokens;
 
   /// Converts this instance to JSON
   @override
@@ -55,7 +55,7 @@ class SellContractForMultipleAccountsRequest extends Request {
         'sell_contract_for_multiple_accounts':
             sellContractForMultipleAccounts == null
                 ? null
-                : sellContractForMultipleAccounts
+                : sellContractForMultipleAccounts!
                     ? 1
                     : 0,
         'shortcode': shortcode,
@@ -67,12 +67,12 @@ class SellContractForMultipleAccountsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   SellContractForMultipleAccountsRequest copyWith({
-    num price,
-    bool sellContractForMultipleAccounts,
-    String shortcode,
-    List<String> tokens,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    num? price,
+    bool? sellContractForMultipleAccounts,
+    String? shortcode,
+    List<String>? tokens,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       SellContractForMultipleAccountsRequest(
         price: price ?? this.price,
@@ -86,5 +86,5 @@ class SellContractForMultipleAccountsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

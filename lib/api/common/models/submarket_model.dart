@@ -22,19 +22,19 @@ class SubmarketModel extends APIBaseModel {
       );
 
   /// Translated submarket name.
-  final String displayName;
+  final String? displayName;
 
   /// Submarket name.
-  final String name;
+  final String? name;
 
   /// Submarket name.
-  final List<SymbolModel> symbols;
+  final List<SymbolModel?>? symbols;
 
   /// Creates a copy of instance with given parameters
   SubmarketModel copyWith({
-    String displayName,
-    String name,
-    List<SymbolModel> symbols,
+    String? displayName,
+    String? name,
+    List<SymbolModel>? symbols,
   }) =>
       SubmarketModel(
         displayName: displayName ?? this.displayName,

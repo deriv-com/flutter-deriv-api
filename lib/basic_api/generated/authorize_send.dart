@@ -9,8 +9,8 @@ class AuthorizeRequest extends Request {
   const AuthorizeRequest({
     this.addToLoginHistory,
     @required this.authorize,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'authorize',
           passthrough: passthrough,
@@ -20,17 +20,17 @@ class AuthorizeRequest extends Request {
   /// Creates an instance from JSON
   factory AuthorizeRequest.fromJson(Map<String, dynamic> json) =>
       AuthorizeRequest(
-        addToLoginHistory: json['add_to_login_history'] as int,
-        authorize: json['authorize'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        addToLoginHistory: json['add_to_login_history'] as int?,
+        authorize: json['authorize'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Send this when you use api tokens for authorization and want to track activity using `login_history` call.
-  final int addToLoginHistory;
+  final int? addToLoginHistory;
 
   /// Authentication token. May be retrieved from https://www.binary.com/en/user/security/api_tokenws.html
-  final String authorize;
+  final String? authorize;
 
   /// Converts this instance to JSON
   @override
@@ -44,10 +44,10 @@ class AuthorizeRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   AuthorizeRequest copyWith({
-    int addToLoginHistory,
-    String authorize,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    int? addToLoginHistory,
+    String? authorize,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       AuthorizeRequest(
         addToLoginHistory: addToLoginHistory ?? this.addToLoginHistory,
@@ -58,5 +58,5 @@ class AuthorizeRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

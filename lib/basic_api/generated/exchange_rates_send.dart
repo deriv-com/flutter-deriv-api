@@ -9,8 +9,8 @@ class ExchangeRatesRequest extends Request {
   const ExchangeRatesRequest({
     @required this.baseCurrency,
     this.exchangeRates = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'exchange_rates',
           passthrough: passthrough,
@@ -20,18 +20,18 @@ class ExchangeRatesRequest extends Request {
   /// Creates an instance from JSON
   factory ExchangeRatesRequest.fromJson(Map<String, dynamic> json) =>
       ExchangeRatesRequest(
-        baseCurrency: json['base_currency'] as String,
+        baseCurrency: json['base_currency'] as String?,
         exchangeRates:
             json['exchange_rates'] == null ? null : json['exchange_rates'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Base currency (can be obtained from `payout_currencies` call)
-  final String baseCurrency;
+  final String? baseCurrency;
 
   /// Must be `true`
-  final bool exchangeRates;
+  final bool? exchangeRates;
 
   /// Converts this instance to JSON
   @override
@@ -39,7 +39,7 @@ class ExchangeRatesRequest extends Request {
         'base_currency': baseCurrency,
         'exchange_rates': exchangeRates == null
             ? null
-            : exchangeRates
+            : exchangeRates!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -49,10 +49,10 @@ class ExchangeRatesRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ExchangeRatesRequest copyWith({
-    String baseCurrency,
-    bool exchangeRates,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? baseCurrency,
+    bool? exchangeRates,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ExchangeRatesRequest(
         baseCurrency: baseCurrency ?? this.baseCurrency,
@@ -63,5 +63,5 @@ class ExchangeRatesRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

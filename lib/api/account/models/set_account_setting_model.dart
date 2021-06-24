@@ -15,11 +15,11 @@ class SetAccountSettingModel extends APIBaseModel {
       );
 
   /// true on success
-  final bool succeeded;
+  final bool? succeeded;
 
   /// Generate a copy of instance with given parameters
   SetAccountSettingModel copyWith({
-    bool succeeded,
+    bool? succeeded,
   }) =>
       SetAccountSettingModel(
         succeeded: succeeded ?? this.succeeded,

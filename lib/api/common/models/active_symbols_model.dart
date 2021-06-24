@@ -26,61 +26,61 @@ abstract class ActiveSymbolModel extends APIBaseModel {
 
   /// `true` if the symbol is tradable in a forward starting contract,
   /// `false` if not.
-  final bool allowForwardStarting;
+  final bool? allowForwardStarting;
 
   /// Amount the data feed is delayed (in minutes) due to Exchange
   /// licensing requirements. Only returned on `full` active symbols call.
-  final int delayAmount;
+  final int? delayAmount;
 
   /// Display name.
-  final String displayName;
+  final String? displayName;
 
   /// `true` if market is currently open, `false` if closed.
-  final bool exchangeIsOpen;
+  final bool? exchangeIsOpen;
 
   /// Exchange name (for underlyings listed on a Stock Exchange).
   /// Only returned on `full` active symbols call.
-  final String exchangeName;
+  final String? exchangeName;
 
   /// Intraday interval minutes. Only returned on `full` active symbols call.
-  final int intradayIntervalMinutes;
+  final int? intradayIntervalMinutes;
 
   /// `true` indicates that trading is currently suspended, `false` if not.
-  final bool isTradingSuspended;
+  final bool? isTradingSuspended;
 
   /// Market category (forex, indices, etc).
-  final String market;
+  final String? market;
 
   /// Translated market name.
-  final String marketDisplayName;
+  final String? marketDisplayName;
 
   /// Pip size (i.e. minimum fluctuation amount).
-  final double pip;
+  final double? pip;
 
   /// For stock indices, the underlying currency for that instrument.
   /// Only returned on `full` active symbols call.
-  final String quotedCurrencySymbol;
+  final String? quotedCurrencySymbol;
 
   /// Latest spot price of the underlying.
   /// Only returned on `full` active symbols call.
-  final double spot;
+  final double? spot;
 
   /// Number of seconds elapsed since the last spot price.
   /// Only returned on `full` active symbols call.
-  final String spotAge;
+  final String? spotAge;
 
   /// Latest spot epoch time. Only returned on `full` active symbols call.
-  final DateTime spotTime;
+  final DateTime? spotTime;
 
   /// Submarket name.
-  final String submarket;
+  final String? submarket;
 
   /// Translated submarket name.
-  final String submarketDisplayName;
+  final String? submarketDisplayName;
 
   /// The symbol code for this underlying.
-  final String symbol;
+  final String? symbol;
 
   /// Symbol type (forex, commodities, etc).
-  final String symbolType;
+  final String? symbolType;
 }

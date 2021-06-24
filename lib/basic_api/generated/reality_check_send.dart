@@ -8,8 +8,8 @@ class RealityCheckRequest extends Request {
   /// Initialize RealityCheckRequest
   const RealityCheckRequest({
     this.realityCheck = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'reality_check',
           passthrough: passthrough,
@@ -21,19 +21,19 @@ class RealityCheckRequest extends Request {
       RealityCheckRequest(
         realityCheck:
             json['reality_check'] == null ? null : json['reality_check'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool realityCheck;
+  final bool? realityCheck;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'reality_check': realityCheck == null
             ? null
-            : realityCheck
+            : realityCheck!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -43,9 +43,9 @@ class RealityCheckRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   RealityCheckRequest copyWith({
-    bool realityCheck,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? realityCheck,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       RealityCheckRequest(
         realityCheck: realityCheck ?? this.realityCheck,
@@ -55,5 +55,5 @@ class RealityCheckRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

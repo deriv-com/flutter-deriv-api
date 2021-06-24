@@ -8,8 +8,8 @@ class AppDeleteRequest extends Request {
   /// Initialize AppDeleteRequest
   const AppDeleteRequest({
     @required this.appDelete,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'app_delete',
           passthrough: passthrough,
@@ -19,13 +19,13 @@ class AppDeleteRequest extends Request {
   /// Creates an instance from JSON
   factory AppDeleteRequest.fromJson(Map<String, dynamic> json) =>
       AppDeleteRequest(
-        appDelete: json['app_delete'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        appDelete: json['app_delete'] as int?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Application app_id
-  final int appDelete;
+  final int? appDelete;
 
   /// Converts this instance to JSON
   @override
@@ -38,9 +38,9 @@ class AppDeleteRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   AppDeleteRequest copyWith({
-    int appDelete,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    int? appDelete,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       AppDeleteRequest(
         appDelete: appDelete ?? this.appDelete,
@@ -50,5 +50,5 @@ class AppDeleteRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

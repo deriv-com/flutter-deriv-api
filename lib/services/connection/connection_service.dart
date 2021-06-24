@@ -36,22 +36,22 @@ class ConnectionService {
   bool get isConnectedToInternet =>
       _connectionStatus == ConnectionStatus.connected;
 
-  Timer _connectivityTimer;
+  Timer? _connectivityTimer;
 
-  ConnectionBloc _connectionBloc;
+  ConnectionBloc? _connectionBloc;
 
   Future<ConnectionStatus> _checkConnection(ConnectivityResult result) async {
     final ConnectionStatus previousConnection = _connectionStatus;
 
-    if (_connectionBloc.state is Reconnecting) {
+    if (_connectionBloc!.state is Reconnecting) {
       return ConnectionStatus.connecting;
     }
 
     switch (result) {
       case ConnectivityResult.wifi:
       case ConnectivityResult.mobile:
-        if (_connectionBloc.state is! Connected) {
-          await _connectionBloc.connectWebSocket();
+        if (_connectionBloc!.state is! Connected) {
+          await _connectionBloc!.connectWebSocket();
         }
         final bool pingResult = await _checkPingConnection();
         _connectionStatus = pingResult
@@ -76,13 +76,13 @@ class ConnectionService {
 
   /// Closes the connection service
   void dispose() {
-    connectionChangeController?.close();
+    connectionChangeController.close();
     _stopConnectivityTimer();
   }
 
   /// Initializes
   Future<void> initialize({
-    ConnectionBloc connectionBloc,
+    ConnectionBloc? connectionBloc,
     bool isMock = false,
   }) async {
     if (isMock) {
@@ -107,7 +107,7 @@ class ConnectionService {
 
   // Checks for change to connectivity to internet every [_connectivityCheckInterval] seconds
   void _startConnectivityTimer() {
-    if (_connectivityTimer == null || !_connectivityTimer.isActive) {
+    if (_connectivityTimer == null || !_connectivityTimer!.isActive) {
       _connectivityTimer = Timer.periodic(
           Duration(seconds: _connectivityCheckInterval), (Timer timer) async {
         await checkConnectivity();
@@ -120,11 +120,11 @@ class ConnectionService {
   Future<bool> _ping() async {
     try {
       final Ping response = await Ping.ping().timeout(Duration(
-          seconds: _connectionBloc.state is InitialConnectionState
+          seconds: _connectionBloc!.state is InitialConnectionState
               ? _initialPingTimeOut
               : _pingTimeout));
 
-      if (response == null || !response.succeeded) {
+      if (!response.succeeded!) {
         return Future<bool>.value(false);
       }
     } on Exception catch (_) {

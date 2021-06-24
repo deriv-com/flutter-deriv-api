@@ -18,8 +18,8 @@ class PaymentagentCreateRequest extends Request {
     @required this.phone,
     @required this.supportedPaymentMethods,
     @required this.url,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'paymentagent_create',
           passthrough: passthrough,
@@ -29,58 +29,58 @@ class PaymentagentCreateRequest extends Request {
   /// Creates an instance from JSON
   factory PaymentagentCreateRequest.fromJson(Map<String, dynamic> json) =>
       PaymentagentCreateRequest(
-        affiliateId: json['affiliate_id'] as String,
-        codeOfConductApproval: json['code_of_conduct_approval'] as int,
-        commissionDeposit: json['commission_deposit'] as num,
-        commissionWithdrawal: json['commission_withdrawal'] as num,
-        email: json['email'] as String,
-        information: json['information'] as String,
-        paymentAgentName: json['payment_agent_name'] as String,
+        affiliateId: json['affiliate_id'] as String?,
+        codeOfConductApproval: json['code_of_conduct_approval'] as int?,
+        commissionDeposit: json['commission_deposit'] as num?,
+        commissionWithdrawal: json['commission_withdrawal'] as num?,
+        email: json['email'] as String?,
+        information: json['information'] as String?,
+        paymentAgentName: json['payment_agent_name'] as String?,
         paymentagentCreate: json['paymentagent_create'] == null
             ? null
             : json['paymentagent_create'] == 1,
-        phone: json['phone'] as String,
+        phone: json['phone'] as String?,
         supportedPaymentMethods:
-            (json['supported_payment_methods'] as List<dynamic>)
+            (json['supported_payment_methods'] as List<dynamic>?)
                 ?.map<String>((dynamic item) => item as String)
-                ?.toList(),
-        url: json['url'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+                .toList(),
+        url: json['url'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Client's My Affiliate id, if exists.
-  final String affiliateId;
+  final String? affiliateId;
 
   /// Indicates client's agreement with the Code of Conduct.
-  final int codeOfConductApproval;
+  final int? codeOfConductApproval;
 
   /// Commission  (%) the agent wants to take on deposits
-  final num commissionDeposit;
+  final num? commissionDeposit;
 
   /// Commission  (%) the agent wants to take on withdrawals
-  final num commissionWithdrawal;
+  final num? commissionWithdrawal;
 
   /// Payment agent's email address.
-  final String email;
+  final String? email;
 
   /// [Optional] Information about payment agent and their proposed service.
-  final String information;
+  final String? information;
 
   /// The name with which the payment agent is going to be identified.
-  final String paymentAgentName;
+  final String? paymentAgentName;
 
   /// Must be `true`
-  final bool paymentagentCreate;
+  final bool? paymentagentCreate;
 
   /// Payment agent's phone number with coutry code.
-  final String phone;
+  final String? phone;
 
   /// A list of supported payment methods.
-  final List<String> supportedPaymentMethods;
+  final List<String>? supportedPaymentMethods;
 
   /// The URL of payment agent's website.
-  final String url;
+  final String? url;
 
   /// Converts this instance to JSON
   @override
@@ -94,7 +94,7 @@ class PaymentagentCreateRequest extends Request {
         'payment_agent_name': paymentAgentName,
         'paymentagent_create': paymentagentCreate == null
             ? null
-            : paymentagentCreate
+            : paymentagentCreate!
                 ? 1
                 : 0,
         'phone': phone,
@@ -107,19 +107,19 @@ class PaymentagentCreateRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   PaymentagentCreateRequest copyWith({
-    String affiliateId,
-    int codeOfConductApproval,
-    num commissionDeposit,
-    num commissionWithdrawal,
-    String email,
-    String information,
-    String paymentAgentName,
-    bool paymentagentCreate,
-    String phone,
-    List<String> supportedPaymentMethods,
-    String url,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? affiliateId,
+    int? codeOfConductApproval,
+    num? commissionDeposit,
+    num? commissionWithdrawal,
+    String? email,
+    String? information,
+    String? paymentAgentName,
+    bool? paymentagentCreate,
+    String? phone,
+    List<String>? supportedPaymentMethods,
+    String? url,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       PaymentagentCreateRequest(
         affiliateId: affiliateId ?? this.affiliateId,
@@ -141,5 +141,5 @@ class PaymentagentCreateRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

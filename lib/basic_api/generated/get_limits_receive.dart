@@ -8,10 +8,10 @@ class GetLimitsResponse extends Response {
   /// Initialize GetLimitsResponse
   const GetLimitsResponse({
     this.getLimits,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,15 +22,15 @@ class GetLimitsResponse extends Response {
   /// Creates an instance from JSON
   factory GetLimitsResponse.fromJson(Map<String, dynamic> json) =>
       GetLimitsResponse(
-        getLimits: json['get_limits'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        getLimits: json['get_limits'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Trading limits of real account user
-  final Map<String, dynamic> getLimits;
+  final Map<String, dynamic>? getLimits;
 
   /// Converts this instance to JSON
   @override
@@ -45,11 +45,11 @@ class GetLimitsResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   GetLimitsResponse copyWith({
-    Map<String, dynamic> getLimits,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? getLimits,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       GetLimitsResponse(
         getLimits: getLimits ?? this.getLimits,
@@ -61,5 +61,5 @@ class GetLimitsResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -23,44 +23,44 @@ abstract class AuthorizeModel extends APIBaseModel {
   });
 
   /// List of accounts for current user.
-  final List<AccountModel> accountList;
+  final List<AccountModel?>? accountList;
 
   /// Cash balance of the account.
-  final double balance;
+  final double? balance;
 
   /// 2-letter country code (ISO standard).
-  final String country;
+  final String? country;
 
   /// Currency of the account.
-  final String currency;
+  final String? currency;
 
   /// User email.
-  final String email;
+  final String? email;
 
   /// User's full name. Will be empty for virtual accounts.
-  final String fullName;
+  final String? fullName;
 
   /// Boolean value: 1 or 0, indicating whether the account is a virtual-money account.
-  final bool isVirtual;
+  final bool? isVirtual;
 
   /// Landing company name the account belongs to.
-  final String landingCompanyFullName;
+  final String? landingCompanyFullName;
 
   /// Landing company short code the account belongs to.
-  final String landingCompanyName;
+  final String? landingCompanyName;
 
   /// Currencies in client's residence country
-  final List<LocalCurrencyModel> localCurrencies;
+  final List<LocalCurrencyModel?>? localCurrencies;
 
   /// The account ID that the token was issued for.
-  final String loginId;
+  final String? loginId;
 
   /// Scopes available to the token.
-  final List<String> scopes;
+  final List<String?>? scopes;
 
   /// List of landing company short codes the account can upgrade to.
-  final List<String> upgradeableLandingCompanies;
+  final List<String?>? upgradeableLandingCompanies;
 
   /// The internal user ID for this account.
-  final int userId;
+  final int? userId;
 }

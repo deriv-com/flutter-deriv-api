@@ -10,18 +10,18 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class MT5PasswordReset extends MT5PasswordResetModel {
   /// Initializes
   MT5PasswordReset({
-    bool succeeded,
+    bool? succeeded,
   }) : super(succeeded: succeeded);
 
   /// Creates an instance from response
   factory MT5PasswordReset.fromResponse(Mt5PasswordResetResponse response) =>
       MT5PasswordReset(succeeded: getBool(response.mt5PasswordReset));
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   MT5PasswordReset copyWith({
-    bool succeeded,
+    bool? succeeded,
   }) =>
       MT5PasswordReset(
         succeeded: succeeded ?? this.succeeded,
@@ -34,11 +34,11 @@ class MT5PasswordReset extends MT5PasswordResetModel {
   static Future<MT5PasswordReset> resetPassword(
     Mt5PasswordResetRequest request,
   ) async {
-    final Mt5PasswordResetResponse response = await _api.call(request: request);
+    final Mt5PasswordResetResponse response = await _api!.call<Mt5PasswordResetResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 

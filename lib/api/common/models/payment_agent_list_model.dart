@@ -11,8 +11,8 @@ abstract class PaymentAgentListModel extends APIBaseModel {
   });
 
   /// Countries.
-  final List<CountryModel> countries;
+  final List<CountryModel>? countries;
 
   /// Payment agent.
-  final List<PaymentAgentModel> paymentAgents;
+  final List<PaymentAgentModel?>? paymentAgents;
 }

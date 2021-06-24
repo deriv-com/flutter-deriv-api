@@ -19,19 +19,19 @@ class TradeTimesModel extends APIBaseModel {
       );
 
   /// Close time
-  final List<String> close;
+  final List<String?>? close;
 
   /// Open time
-  final List<String> open;
+  final List<String?>? open;
 
   /// Settlement time
-  final String settlement;
+  final String? settlement;
 
   /// Creates a copy of instance with given parameters
   TradeTimesModel copyWith({
-    List<String> close,
-    List<String> open,
-    String settlement,
+    List<String>? close,
+    List<String>? open,
+    String? settlement,
   }) =>
       TradeTimesModel(
         close: close ?? this.close,

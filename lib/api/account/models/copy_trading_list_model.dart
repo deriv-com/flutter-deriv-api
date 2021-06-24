@@ -11,8 +11,8 @@ abstract class CopyTradingListModel extends APIBaseModel {
   });
 
   /// List of users who are currently copy trading the authenticated user
-  final List<CopierModel> copiers;
+  final List<CopierModel?>? copiers;
 
   /// List of traders being followed by the authenticated user
-  final List<TraderModel> traders;
+  final List<TraderModel?>? traders;
 }

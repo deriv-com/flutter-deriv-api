@@ -6,7 +6,7 @@ class APIManagerException implements Exception {
   });
 
   /// Exception message
-  String message;
+  String? message;
 
   @override
   String toString() => '$runtimeType: $message';

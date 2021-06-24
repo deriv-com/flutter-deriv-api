@@ -11,25 +11,25 @@ import '../models/payout_currency_model.dart';
 class PayoutCurrency extends PayoutCurrencyModel {
   /// Initializes
   PayoutCurrency({
-    String currency,
+    String? currency,
   }) : super(currency: currency);
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Retrieves a list of available option payout currencies.
   ///
   /// If a user is logged in, only the currencies available for the account will be returned.
   /// Throws a [PayoutCurrencyException] if API response contains a error
-  static Future<List<PayoutCurrency>> fetchPayoutCurrencies([
-    PayoutCurrenciesRequest request,
+  static Future<List<PayoutCurrency?>?> fetchPayoutCurrencies([
+    PayoutCurrenciesRequest? request,
   ]) async {
-    final PayoutCurrenciesResponse response = await _api.call(
+    final PayoutCurrenciesResponse response = await _api!.call<PayoutCurrenciesResponse>(
       request: request ?? const PayoutCurrenciesRequest(),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           PayoutCurrencyException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -44,5 +44,5 @@ class PayoutCurrency extends PayoutCurrencyModel {
   PayoutCurrency copyWith(
     String currency,
   ) =>
-      PayoutCurrency(currency: currency ?? this.currency);
+      PayoutCurrency(currency: currency);
 }

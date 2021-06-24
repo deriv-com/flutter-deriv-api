@@ -9,8 +9,8 @@ abstract class MT5DepositModel extends APIBaseModel {
   });
 
   /// `true` on success
-  final bool mt5Deposit;
+  final bool? mt5Deposit;
 
   /// Withdrawal reference ID of Binary account
-  final int binaryTransactionId;
+  final int? binaryTransactionId;
 }

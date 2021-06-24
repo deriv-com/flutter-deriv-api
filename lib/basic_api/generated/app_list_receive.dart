@@ -8,10 +8,10 @@ class AppListResponse extends Response {
   /// Initialize AppListResponse
   const AppListResponse({
     this.appList,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -22,18 +22,18 @@ class AppListResponse extends Response {
   /// Creates an instance from JSON
   factory AppListResponse.fromJson(Map<String, dynamic> json) =>
       AppListResponse(
-        appList: (json['app_list'] as List<dynamic>)
+        appList: (json['app_list'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
-            ?.toList(),
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+            .toList(),
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// List of created applications for the authorized account.
-  final List<Map<String, dynamic>> appList;
+  final List<Map<String, dynamic>>? appList;
 
   /// Converts this instance to JSON
   @override
@@ -48,11 +48,11 @@ class AppListResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   AppListResponse copyWith({
-    List<Map<String, dynamic>> appList,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    List<Map<String, dynamic>>? appList,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       AppListResponse(
         appList: appList ?? this.appList,
@@ -64,5 +64,5 @@ class AppListResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

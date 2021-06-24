@@ -16,32 +16,32 @@ void main() {
       const TradingTimesRequest(tradingTimes: '2015-09-14'),
     );
 
-    expect(tradingTimes.markets.length, 1);
+    expect(tradingTimes.markets!.length, 1);
 
-    final MarketModel market = tradingTimes.markets.first;
+    final MarketModel market = tradingTimes.markets!.first!;
+    final SubmarketModel submarket = market.submarkets!.first!;
+    final List<TradeEventModel?> events = submarket.symbols!.first!.events!;
+    final TradeEventModel firstEvent = submarket.symbols!.first!.events!.first!;
+    final TradeTimesModel times = submarket.symbols!.first!.times!;
+    final List<String?> openTimes = submarket.symbols!.first!.times!.open!;
+    final List<String?> closeTimes = submarket.symbols!.first!.times!.close!;
 
     expect(market.name, 'Forex');
-    expect(market.submarkets.length, 1);
-
-    final SubmarketModel submarket = market.submarkets.first;
+    expect(market.submarkets!.length, 1);
 
     expect(submarket.name, 'Major Pairs');
-    expect(submarket.symbols.length, 1);
-
-    final List<TradeEventModel> events = submarket.symbols.first.events;
+    expect(submarket.symbols!.length, 1);
 
     expect(events.length, 1);
 
-    expect(events.first.dates, 'Fridays');
-    expect(events.first.description, 'Closes early (at 20:55)');
+    expect(firstEvent.dates, 'Fridays');
+    expect(firstEvent.description, 'Closes early (at 20:55)');
 
-    final TradeTimesModel times = submarket.symbols.first.times;
+    expect(openTimes.length, 1);
+    expect(openTimes.first, '00:00:00');
 
-    expect(times.close.length, 1);
-    expect(times.open.length, 1);
-
-    expect(times.open.first, '00:00:00');
-    expect(times.close.first, '23:59:59');
+    expect(closeTimes.length, 1);
+    expect(closeTimes.first, '23:59:59');
 
     expect(times.settlement, '23:59:59');
   });

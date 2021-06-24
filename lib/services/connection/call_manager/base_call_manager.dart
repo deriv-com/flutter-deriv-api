@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
@@ -11,9 +10,9 @@ import 'package:flutter_deriv_api/services/connection/call_manager/subscription_
 /// A predicate function to compare [request] and [pendingRequest]s
 /// [equatableResult] indicates request and pending request are equal or not (by equatable package result)
 typedef RequestCompareFunction = bool Function({
-  Request request,
-  PendingRequest<Response> pendingRequest,
-  bool equatableResult,
+  Request? request,
+  PendingRequest<Response>? pendingRequest,
+  bool? equatableResult,
 });
 
 /// Api call manager abstract class
@@ -25,8 +24,8 @@ abstract class BaseCallManager<T> {
   final BaseAPI api;
 
   /// Pending requests queue
-  final Map<int, PendingRequest<Response>> _pendingRequests =
-      <int, PendingRequest<Response>>{};
+  final Map<int, PendingRequest<Response>?> _pendingRequests =
+      <int, PendingRequest<Response>?>{};
 
   /// All requests and responses
   final CallHistory _callHistory = CallHistory();
@@ -35,21 +34,21 @@ abstract class BaseCallManager<T> {
   static int _requestId = 0;
 
   /// Get pending requests queue
-  Map<int, PendingRequest<Response>> get pendingRequests => _pendingRequests;
+  Map<int, PendingRequest<Response>?> get pendingRequests => _pendingRequests;
 
   /// Get API calls history
   CallHistory get callHistory => _callHistory;
 
   /// Indicates that pending request queue contain a request with [requestId] or not
-  bool contains(int requestId) => _pendingRequests.containsKey(requestId);
+  bool contains(int? requestId) => _pendingRequests.containsKey(requestId);
 
   /// Calls a API method by [request]
-  T call({@required Request request});
+  T call({required Request request});
 
   /// Handle call [response] that comes from server
   void handleResponse({
-    @required int requestId,
-    @required Map<String, dynamic> response,
+    required int requestId,
+    required Map<String, dynamic> response,
   }) {
     _callHistory.pushIncoming(
       timestamp: DateTime.now().millisecondsSinceEpoch,
@@ -61,8 +60,8 @@ abstract class BaseCallManager<T> {
 
   /// Add [request] to pending requests queue, API history and web socket channel
   Future<Response> addToChannel({
-    @required Request request,
-    SubscriptionStream<Response> subscriptionStream,
+    required Request request,
+    SubscriptionStream<Response>? subscriptionStream,
   }) {
     final Completer<Response> responseCompleter = Completer<Response>();
     final Request requestWithId = request.copyWith(reqId: _getRequestId());
@@ -90,11 +89,11 @@ abstract class BaseCallManager<T> {
 
   /// Add [request] to pending requests queue
   void _addPendingRequest({
-    @required Request request,
-    @required Completer<Response> responseCompleter,
-    SubscriptionStream<Response> subscriptionStream,
+    required Request request,
+    required Completer<Response> responseCompleter,
+    SubscriptionStream<Response>? subscriptionStream,
   }) =>
-      _pendingRequests[request.reqId] = PendingRequest<Response>(
+      _pendingRequests[request.reqId!] = PendingRequest<Response>(
         request: request,
         responseCompleter: responseCompleter,
         subscriptionStream: subscriptionStream,
@@ -103,8 +102,8 @@ abstract class BaseCallManager<T> {
   int _getRequestId() => _requestId++;
 
   Map<String, dynamic> _prepareRequest({
-    Request request,
-    bool isSubscription,
+    required Request request,
+    required bool isSubscription,
   }) {
     final Map<String, dynamic> result = request.toJson()
       ..removeWhere((String key, dynamic value) => value == null);

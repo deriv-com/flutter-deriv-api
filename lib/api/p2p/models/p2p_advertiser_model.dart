@@ -17,32 +17,32 @@ abstract class P2PAdvertiserModel extends APIBaseModel {
   });
 
   /// The token to be used for authenticating the client for chat.
-  final String chatToken;
+  final String? chatToken;
 
   /// The unique identifier for the chat user.
-  final String chatUserId;
+  final String? chatUserId;
 
   /// Advertiser's contact information.
-  final String contactInfo;
+  final String? contactInfo;
 
   /// The epoch time that the client became an advertiser.
-  final DateTime createdTime;
+  final DateTime? createdTime;
 
   /// Default description that can be used every time an advert is created.
-  final String defaultAdvertDescription;
+  final String? defaultAdvertDescription;
 
   /// The advertiser's identification number.
-  final String id;
+  final String? id;
 
   /// The approval status of the advertiser.
-  final bool isApproved;
+  final bool? isApproved;
 
   /// Indicates if the advertiser's active adverts are listed. When `0`, adverts won't be listed regardless of they are active or not.
-  final bool isListed;
+  final bool? isListed;
 
   /// The advertiser's displayed name.
-  final String name;
+  final String? name;
 
   /// Advertiser's payment information.
-  final String paymentInfo;
+  final String? paymentInfo;
 }

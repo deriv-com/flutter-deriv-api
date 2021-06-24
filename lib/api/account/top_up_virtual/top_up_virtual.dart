@@ -10,8 +10,8 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class TopUpVirtual extends TopUpVirtualModel {
   /// Initializes
   TopUpVirtual({
-    double amount,
-    String currency,
+    double? amount,
+    String? currency,
   }) : super(
           amount: amount,
           currency: currency,
@@ -23,12 +23,12 @@ class TopUpVirtual extends TopUpVirtualModel {
         currency: json['currency'],
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   TopUpVirtual copyWith({
-    double amount,
-    String currency,
+    double? amount,
+    String? currency,
   }) =>
       TopUpVirtual(
         amount: amount ?? this.amount,
@@ -40,18 +40,19 @@ class TopUpVirtual extends TopUpVirtualModel {
   /// For parameters information refer to [TopupVirtualRequest].
   /// Throws a [TopUpVirtualException] if API response contains an error
   static Future<TopUpVirtual> topUp([
-    TopupVirtualRequest request,
+    TopupVirtualRequest? request,
   ]) async {
-    final TopupVirtualResponse response = await _api.call(
+    final TopupVirtualResponse response =
+        await _api!.call<TopupVirtualResponse>(
       request: request ?? const TopupVirtualRequest(),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TopUpVirtualException(baseExceptionModel: baseExceptionModel),
     );
 
-    return TopUpVirtual.fromJson(response.topupVirtual);
+    return TopUpVirtual.fromJson(response.topupVirtual!);
   }
 }

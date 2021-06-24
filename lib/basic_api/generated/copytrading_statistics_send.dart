@@ -9,8 +9,8 @@ class CopytradingStatisticsRequest extends Request {
   const CopytradingStatisticsRequest({
     this.copytradingStatistics = true,
     @required this.traderId,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'copytrading_statistics',
           passthrough: passthrough,
@@ -23,23 +23,23 @@ class CopytradingStatisticsRequest extends Request {
         copytradingStatistics: json['copytrading_statistics'] == null
             ? null
             : json['copytrading_statistics'] == 1,
-        traderId: json['trader_id'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        traderId: json['trader_id'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool copytradingStatistics;
+  final bool? copytradingStatistics;
 
   /// The ID of the target trader.
-  final String traderId;
+  final String? traderId;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'copytrading_statistics': copytradingStatistics == null
             ? null
-            : copytradingStatistics
+            : copytradingStatistics!
                 ? 1
                 : 0,
         'trader_id': traderId,
@@ -50,10 +50,10 @@ class CopytradingStatisticsRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   CopytradingStatisticsRequest copyWith({
-    bool copytradingStatistics,
-    String traderId,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? copytradingStatistics,
+    String? traderId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       CopytradingStatisticsRequest(
         copytradingStatistics:
@@ -65,5 +65,5 @@ class CopytradingStatisticsRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -8,11 +8,11 @@ class CallHistoryEntry {
   });
 
   /// Time stamp when is created
-  final int timeStamp;
+  final int? timeStamp;
 
   /// API call method
-  final String method;
+  final String? method;
 
   /// Content of sent or received message
-  final Object message;
+  final Object? message;
 }

@@ -29,7 +29,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
     ConnectionService().initialize(connectionBloc: this, isMock: isMock);
 
     _internetBloc = internet_bloc.InternetBloc();
-    _internetListener = _internetBloc.listen(
+    _internetListener = _internetBloc.stream.listen(
       (internet_bloc.InternetState internetState) {
         if (internetState is internet_bloc.Disconnected) {
           add(Disconnect());
@@ -43,17 +43,17 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
   static const Duration _callTimeOut = Duration(seconds: 10);
 
-  BaseAPI _api;
+  BaseAPI? _api;
 
-  StreamSubscription<internet_bloc.InternetState> _internetListener;
+  StreamSubscription<internet_bloc.InternetState>? _internetListener;
 
-  internet_bloc.InternetBloc _internetBloc;
+  late internet_bloc.InternetBloc _internetBloc;
 
   final UniqueKey _uniqueKey = UniqueKey();
 
   /// Connection information of WebSocket (endpoint, brand, appId)
-  ConnectionInformation get connectionInformation => _connectionInformation;
-  ConnectionInformation _connectionInformation;
+  ConnectionInformation? get connectionInformation => _connectionInformation;
+  ConnectionInformation? _connectionInformation;
 
   @override
   Stream<ConnectionState> mapEventToState(ConnectionEvent event) async* {
@@ -69,7 +69,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
 
       try {
         shouldReconnect = false;
-        await _api.disconnect().timeout(_callTimeOut);
+        await _api!.disconnect().timeout(_callTimeOut);
       } on Exception catch (e) {
         shouldReconnect = true;
         dev.log(e.toString(), error: e);
@@ -91,7 +91,7 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
       }
     } else if (event is Disconnect) {
       if (state is Connected) {
-        await _api.disconnect();
+        await _api!.disconnect();
       }
 
       if (state is! Disconnected) {
@@ -110,11 +110,11 @@ class ConnectionBloc extends Bloc<ConnectionEvent, ConnectionState> {
   /// This function MUST NOT be called outside of this package.
   Future<void> connectWebSocket() async {
     add(ReconnectingEvent());
-    await _api.disconnect().timeout(_callTimeOut);
-    await _api.connect(connectionInformation,
+    await _api!.disconnect().timeout(_callTimeOut);
+    await _api!.connect(connectionInformation,
         onDone: (UniqueKey uniqueKey) async {
       if (_uniqueKey == uniqueKey) {
-        await _api.disconnect();
+        await _api!.disconnect();
       }
     }, onOpen: (UniqueKey uniqueKey) {
       if (_uniqueKey == uniqueKey) {

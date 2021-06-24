@@ -19,30 +19,30 @@ abstract class LandingCompanyModel extends APIBaseModel {
   });
 
   /// Landing companies configs
-  final LandingCompanyConfigModel config;
+  final LandingCompanyConfigModel? config;
 
   /// Landing Company for financial contracts (all except Synthetic Indices)
-  final LandingCompanyDetailModel financialCompany;
+  final LandingCompanyDetailModel? financialCompany;
 
   /// Landing Company for gaming contracts (Synthetic Indices)
-  final LandingCompanyDetailModel gamingCompany;
+  final LandingCompanyDetailModel? gamingCompany;
 
   /// Country code
-  final String id;
+  final String? id;
 
   /// Minimum age
-  final int minimumAge;
+  final int? minimumAge;
 
   /// Landing Company for MT5 financial contracts (all except Synthetic Indices),
   /// currently divided into advanced and standard as subtypes.
-  final MTLandingCompanyModel mtFinancialCompany;
+  final MTLandingCompanyModel? mtFinancialCompany;
 
   /// Landing Company for MT5 gaming contracts (Synthetic Indices)
-  final MTLandingCompanyModel mtGamingCompany;
+  final MTLandingCompanyModel? mtGamingCompany;
 
   /// Country name
-  final String name;
+  final String? name;
 
   /// Virtual company
-  final String virtualCompany;
+  final String? virtualCompany;
 }

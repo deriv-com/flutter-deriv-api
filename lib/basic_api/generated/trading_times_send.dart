@@ -8,8 +8,8 @@ class TradingTimesRequest extends Request {
   /// Initialize TradingTimesRequest
   const TradingTimesRequest({
     @required this.tradingTimes,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'trading_times',
           passthrough: passthrough,
@@ -19,13 +19,13 @@ class TradingTimesRequest extends Request {
   /// Creates an instance from JSON
   factory TradingTimesRequest.fromJson(Map<String, dynamic> json) =>
       TradingTimesRequest(
-        tradingTimes: json['trading_times'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        tradingTimes: json['trading_times'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Date to receive market opening times for. (`yyyy-mm-dd` format. `today` can also be specified).
-  final String tradingTimes;
+  final String? tradingTimes;
 
   /// Converts this instance to JSON
   @override
@@ -38,9 +38,9 @@ class TradingTimesRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TradingTimesRequest copyWith({
-    String tradingTimes,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? tradingTimes,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TradingTimesRequest(
         tradingTimes: tradingTimes ?? this.tradingTimes,
@@ -50,5 +50,5 @@ class TradingTimesRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

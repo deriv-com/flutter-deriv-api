@@ -9,8 +9,8 @@ class LoginHistoryRequest extends Request {
   const LoginHistoryRequest({
     this.limit,
     this.loginHistory = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'login_history',
           passthrough: passthrough,
@@ -20,18 +20,18 @@ class LoginHistoryRequest extends Request {
   /// Creates an instance from JSON
   factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>
       LoginHistoryRequest(
-        limit: json['limit'] as int,
+        limit: json['limit'] as int?,
         loginHistory:
             json['login_history'] == null ? null : json['login_history'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Apply limit to count of login history records.
-  final int limit;
+  final int? limit;
 
   /// Must be `true`
-  final bool loginHistory;
+  final bool? loginHistory;
 
   /// Converts this instance to JSON
   @override
@@ -39,7 +39,7 @@ class LoginHistoryRequest extends Request {
         'limit': limit,
         'login_history': loginHistory == null
             ? null
-            : loginHistory
+            : loginHistory!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -49,10 +49,10 @@ class LoginHistoryRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   LoginHistoryRequest copyWith({
-    int limit,
-    bool loginHistory,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    int? limit,
+    bool? loginHistory,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       LoginHistoryRequest(
         limit: limit ?? this.limit,
@@ -63,5 +63,5 @@ class LoginHistoryRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

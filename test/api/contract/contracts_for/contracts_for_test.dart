@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/api/contract/models/forward_starting_option_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
@@ -19,17 +20,21 @@ void main() {
           productType: 'basic'),
     );
 
-    final AvailableContractModel firstContract =
-        contractsFor.availableContracts.first;
+    final AvailableContractModel? firstContract =
+        contractsFor.availableContracts!.first;
+    final ForwardStartingOptionModel first =
+        firstContract!.forwardStartingOptions!.first!;
+    final ForwardStartingOptionModel last =
+        firstContract.forwardStartingOptions!.last!;
 
     expect(firstContract.barriers, 0);
     expect(firstContract.maxContractDuration, '1d');
     expect(
-      firstContract.forwardStartingOptions.first.close,
+      first.close,
       getDateTime(1586303999),
     );
     expect(
-      firstContract.forwardStartingOptions.last.open,
+      last.open,
       getDateTime(1586390400),
     );
   });

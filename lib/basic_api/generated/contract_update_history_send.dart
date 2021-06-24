@@ -10,8 +10,8 @@ class ContractUpdateHistoryRequest extends Request {
     @required this.contractId,
     this.contractUpdateHistory = true,
     this.limit,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'contract_update_history',
           passthrough: passthrough,
@@ -21,23 +21,23 @@ class ContractUpdateHistoryRequest extends Request {
   /// Creates an instance from JSON
   factory ContractUpdateHistoryRequest.fromJson(Map<String, dynamic> json) =>
       ContractUpdateHistoryRequest(
-        contractId: json['contract_id'] as int,
+        contractId: json['contract_id'] as int?,
         contractUpdateHistory: json['contract_update_history'] == null
             ? null
             : json['contract_update_history'] == 1,
-        limit: json['limit'] as num,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        limit: json['limit'] as num?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Internal unique contract identifier.
-  final int contractId;
+  final int? contractId;
 
   /// Must be `true`
-  final bool contractUpdateHistory;
+  final bool? contractUpdateHistory;
 
   /// [Optional] Maximum number of historical updates to receive.
-  final num limit;
+  final num? limit;
 
   /// Converts this instance to JSON
   @override
@@ -45,7 +45,7 @@ class ContractUpdateHistoryRequest extends Request {
         'contract_id': contractId,
         'contract_update_history': contractUpdateHistory == null
             ? null
-            : contractUpdateHistory
+            : contractUpdateHistory!
                 ? 1
                 : 0,
         'limit': limit,
@@ -56,11 +56,11 @@ class ContractUpdateHistoryRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ContractUpdateHistoryRequest copyWith({
-    int contractId,
-    bool contractUpdateHistory,
-    num limit,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    int? contractId,
+    bool? contractUpdateHistory,
+    num? limit,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ContractUpdateHistoryRequest(
         contractId: contractId ?? this.contractId,
@@ -73,5 +73,5 @@ class ContractUpdateHistoryRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

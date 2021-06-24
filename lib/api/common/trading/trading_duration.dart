@@ -13,9 +13,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class TradingDuration extends TradingDurationModel {
   /// Initializes
   TradingDuration({
-    MarketModel market,
-    SubmarketModel submarket,
-    List<TradingDurationDataModel> tradingDurationData,
+    MarketModel? market,
+    SubmarketModel? submarket,
+    List<TradingDurationDataModel?>? tradingDurationData,
   }) : super(
           market: market,
           submarket: submarket,
@@ -40,13 +40,13 @@ class TradingDuration extends TradingDurationModel {
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   TradingDuration copyWith({
-    MarketModel market,
-    SubmarketModel submarket,
-    List<TradingDurationDataModel> tradingDurationData,
+    MarketModel? market,
+    SubmarketModel? submarket,
+    List<TradingDurationDataModel>? tradingDurationData,
   }) =>
       TradingDuration(
         market: market ?? this.market,
@@ -59,14 +59,15 @@ class TradingDuration extends TradingDurationModel {
   /// If the user is logged in, only the assets available for that user's landing company will be returned.
   /// For parameters information refer to [TradingDurationsRequest].
   /// Throws a [TradingException] if API response contains an error
-  static Future<List<TradingDuration>> fetchTradingDurations(
+  static Future<List<TradingDuration?>?> fetchTradingDurations(
     TradingDurationsRequest request,
   ) async {
-    final TradingDurationsResponse response = await _api.call(request: request);
+    final TradingDurationsResponse response =
+        await _api!.call<TradingDurationsResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TradingException(baseExceptionModel: baseExceptionModel),
     );
 

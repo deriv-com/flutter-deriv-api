@@ -11,8 +11,8 @@ class Mt5DepositRequest extends Request {
     @required this.fromBinary,
     this.mt5Deposit = true,
     @required this.toMt5,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'mt5_deposit',
           passthrough: passthrough,
@@ -22,26 +22,26 @@ class Mt5DepositRequest extends Request {
   /// Creates an instance from JSON
   factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>
       Mt5DepositRequest(
-        amount: json['amount'] as num,
-        fromBinary: json['from_binary'] as String,
+        amount: json['amount'] as num?,
+        fromBinary: json['from_binary'] as String?,
         mt5Deposit:
             json['mt5_deposit'] == null ? null : json['mt5_deposit'] == 1,
-        toMt5: json['to_mt5'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        toMt5: json['to_mt5'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Amount to deposit (in the currency of from_binary); min = $1 or an equivalent amount, max = $20000 or an equivalent amount
-  final num amount;
+  final num? amount;
 
   /// Binary account loginid to transfer money from
-  final String fromBinary;
+  final String? fromBinary;
 
   /// Must be `true`
-  final bool mt5Deposit;
+  final bool? mt5Deposit;
 
   /// MT5 account login to deposit money to
-  final String toMt5;
+  final String? toMt5;
 
   /// Converts this instance to JSON
   @override
@@ -50,7 +50,7 @@ class Mt5DepositRequest extends Request {
         'from_binary': fromBinary,
         'mt5_deposit': mt5Deposit == null
             ? null
-            : mt5Deposit
+            : mt5Deposit!
                 ? 1
                 : 0,
         'to_mt5': toMt5,
@@ -61,12 +61,12 @@ class Mt5DepositRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   Mt5DepositRequest copyWith({
-    num amount,
-    String fromBinary,
-    bool mt5Deposit,
-    String toMt5,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    num? amount,
+    String? fromBinary,
+    bool? mt5Deposit,
+    String? toMt5,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       Mt5DepositRequest(
         amount: amount ?? this.amount,
@@ -79,5 +79,5 @@ class Mt5DepositRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

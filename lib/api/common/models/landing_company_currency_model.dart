@@ -11,7 +11,7 @@ class LandingCompanyCurrencyModel extends APIBaseModel {
 
   /// Creates an instance from JSON
   factory LandingCompanyCurrencyModel.fromJson(
-    String marketName,
+    String? marketName,
     Map<String, dynamic> currenciesMap,
   ) =>
       LandingCompanyCurrencyModel(
@@ -27,14 +27,14 @@ class LandingCompanyCurrencyModel extends APIBaseModel {
       );
 
   /// Currencies for this market
-  final List<LandingCompanyCurrencyConfigModel> currencies;
+  final List<LandingCompanyCurrencyConfigModel>? currencies;
 
   /// Name of the market.
-  final String market;
+  final String? market;
 
   /// Creates a copy of instance with given parameters
   LandingCompanyCurrencyModel copyWith({
-    String market,
+    String? market,
   }) =>
       LandingCompanyCurrencyModel(
         market: market ?? this.market,

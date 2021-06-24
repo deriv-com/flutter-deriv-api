@@ -17,17 +17,17 @@ abstract class AccountStatusModel extends APIBaseModel {
 
   /// This represents the authentication status of the user and it includes what
   /// authentication is needed.
-  final AccountAuthenticationStatusModel authentication;
+  final AccountAuthenticationStatusModel? authentication;
 
   /// Provides cashier details for client currency.
-  final List<AccountStatusCurrencyConfigModel> currencyConfig;
+  final List<AccountStatusCurrencyConfigModel?>? currencyConfig;
 
   /// Indicates whether the client should be prompted to
   /// authenticate their account.
-  final bool promptClientToAuthenticate;
+  final bool? promptClientToAuthenticate;
 
   /// Client risk classification: `low`, `standard`, `high`.
-  final AccountRiskClassification riskClassification;
+  final AccountRiskClassification? riskClassification;
 
   /// Account status. Possible status:
   /// - `age_verification`: client is age-verified.
@@ -42,5 +42,5 @@ abstract class AccountStatusModel extends APIBaseModel {
   /// - `ukgc_funds_protection`: client has acknowledged UKGC funds protection notice.
   /// - `unwelcome`: client cannot deposit or buy contracts, but can withdraw or sell contracts.
   /// - `withdrawal_locked`: deposits allowed but withdrawals locked.
-  final List<AccountStatusType> status;
+  final List<AccountStatusType?>? status;
 }

@@ -25,15 +25,15 @@ class TradeDurationModel extends APIBaseModel {
       );
 
   /// List of trade durations available for the symbols.
-  final List<DurationModel> durations;
+  final List<DurationModel?>? durations;
 
   /// List of trade types available for the symbols.
-  final TradeTypeModel tradeType;
+  final TradeTypeModel? tradeType;
 
   /// Creates a copy of instance with given parameters
   TradeDurationModel copyWith({
-    List<DurationModel> durations,
-    TradeTypeModel tradeType,
+    List<DurationModel>? durations,
+    TradeTypeModel? tradeType,
   }) =>
       TradeDurationModel(
         durations: durations ?? this.durations,

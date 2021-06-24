@@ -34,11 +34,11 @@ class AuditDetailModel extends APIBaseModel {
       );
 
   /// Ticks for tick expiry contract from start time till expiry.
-  final List<ContractTickInfoModel> allTicks;
+  final List<ContractTickInfoModel?>? allTicks;
 
   /// Ticks around contract end time.
-  final List<ContractTickInfoModel> contractEnd;
+  final List<ContractTickInfoModel?>? contractEnd;
 
   ///Ticks around contract start time.
-  final List<ContractTickInfoModel> contractStart;
+  final List<ContractTickInfoModel?>? contractStart;
 }

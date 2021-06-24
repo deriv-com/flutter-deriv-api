@@ -10,18 +10,18 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class MT5PasswordCheck extends MT5PasswordCheckModel {
   /// Initializes
   MT5PasswordCheck({
-    bool succeeded,
+    bool? succeeded,
   }) : super(succeeded: succeeded);
 
   /// Creates an instance from response
   factory MT5PasswordCheck.fromResponse(Mt5PasswordCheckResponse response) =>
       MT5PasswordCheck(succeeded: getBool(response.mt5PasswordCheck));
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   MT5PasswordCheck copyWith({
-    bool succeeded,
+    bool? succeeded,
   }) =>
       MT5PasswordCheck(
         succeeded: succeeded ?? this.succeeded,
@@ -34,11 +34,11 @@ class MT5PasswordCheck extends MT5PasswordCheckModel {
   static Future<MT5PasswordCheck> checkPassword(
     Mt5PasswordCheckRequest request,
   ) async {
-    final Mt5PasswordCheckResponse response = await _api.call(request: request);
+    final Mt5PasswordCheckResponse response = await _api!.call<Mt5PasswordCheckResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 

@@ -8,10 +8,10 @@ class VerifyEmailResponse extends Response {
   /// Initialize VerifyEmailResponse
   const VerifyEmailResponse({
     this.verifyEmail,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -24,21 +24,21 @@ class VerifyEmailResponse extends Response {
       VerifyEmailResponse(
         verifyEmail:
             json['verify_email'] == null ? null : json['verify_email'] == 1,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// 1 for success (secure code has been sent to the email address)
-  final bool verifyEmail;
+  final bool? verifyEmail;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'verify_email': verifyEmail == null
             ? null
-            : verifyEmail
+            : verifyEmail!
                 ? 1
                 : 0,
         'echo_req': echoReq,
@@ -50,11 +50,11 @@ class VerifyEmailResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   VerifyEmailResponse copyWith({
-    bool verifyEmail,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    bool? verifyEmail,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       VerifyEmailResponse(
         verifyEmail: verifyEmail ?? this.verifyEmail,
@@ -66,5 +66,5 @@ class VerifyEmailResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

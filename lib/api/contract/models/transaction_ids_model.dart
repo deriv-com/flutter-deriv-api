@@ -18,10 +18,10 @@ class TransactionIdsModel extends APIBaseModel {
       );
 
   /// Buy ID
-  final int buyId;
+  final int? buyId;
 
   /// Sell ID
-  final int sellId;
+  final int? sellId;
 
   /// Generate a copy of instance with given parameters
   TransactionIdsModel copyWith(
@@ -29,7 +29,7 @@ class TransactionIdsModel extends APIBaseModel {
     int sellId,
   ) =>
       TransactionIdsModel(
-        buyId: buyId ?? this.buyId,
-        sellId: sellId ?? this.sellId,
+        buyId: buyId,
+        sellId: sellId,
       );
 }

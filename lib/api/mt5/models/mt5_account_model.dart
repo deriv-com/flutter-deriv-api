@@ -19,35 +19,35 @@ abstract class MT5AccountModel extends APIBaseModel {
   });
 
   /// Account type.
-  final AccountType accountType;
+  final AccountType? accountType;
 
   /// Account balance.
-  final double balance;
+  final double? balance;
 
   /// Residence of the MT5 account.
-  final String country;
+  final String? country;
 
   /// MT5 account currency (`USD` or `EUR`) that depends on the MT5 company (`vanuatu`, `svg`, `malta`).
-  final String currency;
+  final String? currency;
 
   /// Account balance, formatted to appropriate decimal places.
-  final String displayBalance;
+  final String? displayBalance;
 
   /// Email address of the MT5 account.
-  final String email;
+  final String? email;
 
   /// Group type of the MT5 account, e.g. `demo\svg_standard`
-  final String group;
+  final String? group;
 
   /// Leverage of the MT5 account (1 to 1000).
-  final int leverage;
+  final int? leverage;
 
   /// Login ID of the user's new MT5 account. Login could have 2 types of prefixes: MTD, MTR. MTD - for demo accounts and MTR for real money accounts.
-  final String login;
+  final String? login;
 
   /// Sub account type, present only when account type is either `demo` or `financial`.
-  final MT5AccountType mt5AccountType;
+  final MT5AccountType? mt5AccountType;
 
   /// Name of the owner of the MT5 account.
-  final String name;
+  final String? name;
 }

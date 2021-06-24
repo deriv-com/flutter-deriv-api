@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import 'package:flutter_deriv_api/api/account/api_token/exceptions/api_token_exception.dart';
 import 'package:flutter_deriv_api/api/account/models/api_token_model.dart';
 import 'package:flutter_deriv_api/api/account/models/token_model.dart';
@@ -14,9 +12,9 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class APIToken extends APITokenModel {
   /// Initializes
   APIToken({
-    bool deleteToken,
-    bool newToken,
-    List<TokenModel> tokens,
+    bool? deleteToken,
+    bool? newToken,
+    List<TokenModel?>? tokens,
   }) : super(
           deleteToken: deleteToken,
           newToken: newToken,
@@ -33,13 +31,13 @@ class APIToken extends APITokenModel {
         ),
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   APIToken copyWith({
-    bool deleteToken,
-    bool newToken,
-    List<TokenModel> tokens,
+    bool? deleteToken,
+    bool? newToken,
+    List<TokenModel>? tokens,
   }) =>
       APIToken(
         deleteToken: deleteToken ?? this.deleteToken,
@@ -55,11 +53,11 @@ class APIToken extends APITokenModel {
   /// then the token created will only work for the IP address that was used to create the token
   /// Throws an [APITokenException] if API response contains an error.
   static Future<APIToken> create({
-    @required String name,
-    @required List<TokenScope> scopes,
-    bool validForCurrentIPOnly,
+    required String name,
+    required List<TokenScope> scopes,
+    required bool validForCurrentIPOnly,
   }) async {
-    final ApiTokenResponse response = await _api.call(
+    final ApiTokenResponse response = await _api!.call<ApiTokenResponse>(
       request: ApiTokenRequest(
         newToken: name,
         newTokenScopes: getStringListFromEnums(scopes),
@@ -69,29 +67,29 @@ class APIToken extends APITokenModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           APITokenException(baseExceptionModel: baseExceptionModel),
     );
 
-    return APIToken.fromJson(response.apiToken);
+    return APIToken.fromJson(response.apiToken!);
   }
 
   /// Deletes the [token]
   ///
   /// Throws an [APITokenException] if API response contains an error
   static Future<APIToken> delete({
-    @required String token,
+    required String token,
   }) async {
-    final ApiTokenResponse response = await _api.call(
+    final ApiTokenResponse response = await _api!.call<ApiTokenResponse>(
       request: ApiTokenRequest(deleteToken: token),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           APITokenException(baseExceptionModel: baseExceptionModel),
     );
 
-    return APIToken.fromJson(response.apiToken);
+    return APIToken.fromJson(response.apiToken!);
   }
 }

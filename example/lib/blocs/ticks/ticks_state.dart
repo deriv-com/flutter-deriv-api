@@ -18,7 +18,7 @@ class TicksError extends TicksState {
   TicksError(this.message);
 
   /// Error message
-  final String message;
+  final String? message;
 
   @override
   String toString() => 'TicksError';
@@ -30,7 +30,7 @@ class TicksLoaded extends TicksState {
   TicksLoaded(this.tick);
 
   /// Loaded tick
-  final Tick tick;
+  final Tick? tick;
 
   @override
   String toString() => 'Tick $tick loaded';

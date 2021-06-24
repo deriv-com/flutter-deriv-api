@@ -14,8 +14,8 @@ class PriceProposalWidget extends StatefulWidget {
 
 class _PriceProposalWidgetState extends State<PriceProposalWidget> {
   // ignore: close_sinks
-  AvailableContractsBloc _availableContractsBloc;
-  PriceProposalBloc _priceProposalBloc;
+  late AvailableContractsBloc _availableContractsBloc;
+  PriceProposalBloc? _priceProposalBloc;
 
   @override
   void initState() {
@@ -23,13 +23,6 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
 
     _availableContractsBloc = BlocProvider.of<AvailableContractsBloc>(context);
     _priceProposalBloc = PriceProposalBloc(_availableContractsBloc);
-  }
-
-  @override
-  void dispose() {
-    _priceProposalBloc.close();
-
-    super.dispose();
   }
 
   // Duration units are hardcoded in this example.
@@ -142,7 +135,7 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
 
   BlocBuilder<PriceProposalBloc, PriceProposalState> _buildProposalResult() =>
       BlocBuilder<PriceProposalBloc, PriceProposalState>(
-        cubit: _priceProposalBloc,
+        bloc: _priceProposalBloc,
         builder: (BuildContext context, PriceProposalState state) {
           if (state is PriceProposalLoaded) {
             return Row(
@@ -150,20 +143,20 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
               children: <Widget>[
                 _buildEntry(
                   'payout',
-                  '${state.proposal.payout}',
+                  '${state.proposal!.payout}',
                 ),
                 _buildEntry(
                   'askPrice',
-                  '${state.proposal.askPrice}',
+                  '${state.proposal!.askPrice}',
                 ),
                 _buildEntry(
                   'spot',
-                  '${state.proposal.spot}',
+                  '${state.proposal!.spot}',
                 ),
               ],
             );
           } else if (state is PriceProposalError) {
-            return Text(state.message);
+            return Text(state.message ?? 'An error occurred');
           } else {
             return const CircularProgressIndicator();
           }
@@ -180,8 +173,8 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
         ],
       );
 
-  void _subscribeToPriceWithCurrentConfig(AvailableContractModel contract) {
-    _priceProposalBloc.add(
+  void _subscribeToPriceWithCurrentConfig(AvailableContractModel? contract) {
+    _priceProposalBloc!.add(
       SubscribeProposal(
         contract,
         durationUnit: _durationUnit,
@@ -190,5 +183,12 @@ class _PriceProposalWidgetState extends State<PriceProposalWidget> {
         amount: _amount,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _priceProposalBloc?.close();
+
+    super.dispose();
   }
 }

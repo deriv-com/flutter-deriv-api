@@ -22,9 +22,9 @@ class CallHistory {
 
   /// Record a message that was received from the remote endpoint
   void pushIncoming({
-    int timestamp,
-    String method,
-    Object message,
+    int? timestamp,
+    String? method,
+    Object? message,
   }) {
     incoming.add(
       CallHistoryEntry(
@@ -39,9 +39,9 @@ class CallHistory {
 
   /// Record a message being sent to the remote endpoint
   void pushOutgoing({
-    int timestamp,
-    String method,
-    Object message,
+    int? timestamp,
+    String? method,
+    Object? message,
   }) {
     outgoing.add(
       CallHistoryEntry(

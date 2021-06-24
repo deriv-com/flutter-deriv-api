@@ -10,18 +10,18 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class Logout extends LogoutModel {
   /// Initializes
   Logout({
-    bool succeeded,
+    bool? succeeded,
   }) : super(succeeded: succeeded);
 
   /// Generates an instance from [LogoutResponse]
   factory Logout.fromResponse(LogoutResponse response) =>
       Logout(succeeded: getBool(response.logout));
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Generates a copy of instance with given parameters
   Logout copyWith({
-    bool succeeded,
+    bool? succeeded,
   }) =>
       Logout(
         succeeded: succeeded ?? this.succeeded,
@@ -32,15 +32,15 @@ class Logout extends LogoutModel {
   /// For parameters information refer to [LogoutRequest].
   /// Throws an [AuthorizeException] if API response contains an error
   static Future<Logout> logout([
-    LogoutRequest request,
+    LogoutRequest? request,
   ]) async {
-    final LogoutResponse response = await _api.call(
+    final LogoutResponse response = await _api!.call<LogoutResponse>(
       request: request ?? const LogoutRequest(),
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AuthorizeException(baseExceptionModel: baseExceptionModel),
     );
 

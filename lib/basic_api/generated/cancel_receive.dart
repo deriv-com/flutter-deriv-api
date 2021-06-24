@@ -8,10 +8,10 @@ class CancelResponse extends Response {
   /// Initialize CancelResponse
   const CancelResponse({
     this.cancel,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -21,15 +21,15 @@ class CancelResponse extends Response {
 
   /// Creates an instance from JSON
   factory CancelResponse.fromJson(Map<String, dynamic> json) => CancelResponse(
-        cancel: json['cancel'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        cancel: json['cancel'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Receipt for the transaction
-  final Map<String, dynamic> cancel;
+  final Map<String, dynamic>? cancel;
 
   /// Converts this instance to JSON
   @override
@@ -44,11 +44,11 @@ class CancelResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   CancelResponse copyWith({
-    Map<String, dynamic> cancel,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? cancel,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       CancelResponse(
         cancel: cancel ?? this.cancel,
@@ -60,5 +60,5 @@ class CancelResponse extends Response {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

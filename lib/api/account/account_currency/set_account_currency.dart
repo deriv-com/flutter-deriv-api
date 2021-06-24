@@ -10,7 +10,7 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class SetAccountCurrency extends SetAccountCurrencyModel {
   /// Initializes
   SetAccountCurrency({
-    bool succeeded,
+    bool? succeeded,
   }) : super(succeeded: succeeded);
 
   /// Creates an instance from response
@@ -19,11 +19,11 @@ class SetAccountCurrency extends SetAccountCurrencyModel {
   ) =>
       SetAccountCurrency(succeeded: response.setAccountCurrency);
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   SetAccountCurrency copyWith({
-    bool succeeded,
+    bool? succeeded,
   }) =>
       SetAccountCurrency(
         succeeded: succeeded ?? this.succeeded,
@@ -37,15 +37,14 @@ class SetAccountCurrency extends SetAccountCurrencyModel {
   static Future<SetAccountCurrency> setCurrency(
     SetAccountCurrencyRequest request,
   ) async {
-    final SetAccountCurrencyResponse response =
-        await _api.call(request: request);
+    final SetAccountCurrencyResponse response = await _api!.call<SetAccountCurrencyResponse>(request: request);
 
     checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
-          AccountCurrencyException(baseExceptionModel: baseExceptionModel),
-    );
+        response: response,
+        exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+            AccountCurrencyException(baseExceptionModel: baseExceptionModel),
+      );
 
-    return SetAccountCurrency.fromResponse(response);
+      return SetAccountCurrency.fromResponse(response);
   }
 }

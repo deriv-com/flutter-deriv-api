@@ -8,8 +8,8 @@ class TimeRequest extends Request {
   /// Initialize TimeRequest
   const TimeRequest({
     this.time = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'time',
           passthrough: passthrough,
@@ -19,19 +19,19 @@ class TimeRequest extends Request {
   /// Creates an instance from JSON
   factory TimeRequest.fromJson(Map<String, dynamic> json) => TimeRequest(
         time: json['time'] == null ? null : json['time'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool time;
+  final bool? time;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'time': time == null
             ? null
-            : time
+            : time!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -41,9 +41,9 @@ class TimeRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TimeRequest copyWith({
-    bool time,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? time,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TimeRequest(
         time: time ?? this.time,
@@ -53,5 +53,5 @@ class TimeRequest extends Request {
 
   /// Override equatable class
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

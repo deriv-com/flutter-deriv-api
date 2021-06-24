@@ -6,5 +6,5 @@ abstract class PayoutCurrencyModel extends APIBaseModel {
   PayoutCurrencyModel({this.currency});
 
   /// Currency symbol
-  final String currency;
+  final String? currency;
 }

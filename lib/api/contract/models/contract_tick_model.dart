@@ -19,19 +19,19 @@ class ContractTickModel extends APIBaseModel {
       );
 
   /// Epoch time of a tick or the contract start or end time.
-  final DateTime epoch;
+  final DateTime? epoch;
 
   /// The spot value at the given epoch.
-  final double tick;
+  final double? tick;
 
   /// The spot value with the correct precision at the given epoch.
-  final String tickDisplayValue;
+  final String? tickDisplayValue;
 
   /// Generates a copy of instance with given parameters
   ContractTickModel copyWith({
-    DateTime epoch,
-    double tick,
-    String tickDisplayValue,
+    DateTime? epoch,
+    double? tick,
+    String? tickDisplayValue,
   }) =>
       ContractTickModel(
         epoch: epoch ?? this.epoch,

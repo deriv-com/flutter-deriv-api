@@ -8,5 +8,5 @@ abstract class PingModel extends APIBaseModel {
   });
 
   /// Will return 'pong'
-  final bool succeeded;
+  final bool? succeeded;
 }

@@ -10,8 +10,8 @@ import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 class MT5Withdrawal extends MT5WithdrawalModel {
   /// Initializes
   MT5Withdrawal({
-    bool mt5Withdrawal,
-    int binaryTransactionId,
+    bool? mt5Withdrawal,
+    int? binaryTransactionId,
   }) : super(
           mt5Withdrawal: mt5Withdrawal,
           binaryTransactionId: binaryTransactionId,
@@ -19,20 +19,20 @@ class MT5Withdrawal extends MT5WithdrawalModel {
 
   /// Creates an instance from response
   factory MT5Withdrawal.fromResponse({
-    int mt5Withdrawal,
-    int binaryTransactionId,
+    int? mt5Withdrawal,
+    int? binaryTransactionId,
   }) =>
       MT5Withdrawal(
         mt5Withdrawal: getBool(mt5Withdrawal),
         binaryTransactionId: binaryTransactionId,
       );
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
 
   /// Creates a copy of instance with given parameters
   MT5Withdrawal copyWith({
-    bool mt5Withdrawal,
-    int binaryTransactionId,
+    bool? mt5Withdrawal,
+    int? binaryTransactionId,
   }) =>
       MT5Withdrawal(
         mt5Withdrawal: mt5Withdrawal ?? this.mt5Withdrawal,
@@ -46,11 +46,11 @@ class MT5Withdrawal extends MT5WithdrawalModel {
   static Future<MT5Withdrawal> withdraw(
     Mt5WithdrawalRequest request,
   ) async {
-    final Mt5WithdrawalResponse response = await _api.call(request: request);
+    final Mt5WithdrawalResponse response = await _api!.call<Mt5WithdrawalResponse>(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 
