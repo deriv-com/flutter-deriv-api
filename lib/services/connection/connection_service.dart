@@ -33,8 +33,13 @@ class ConnectionService {
   Stream<bool> get state => connectionChangeController.stream;
 
   /// Returns true if we are connected to the Internet.
-  bool get isConnectedToInternet =>
-      _connectionStatus == ConnectionStatus.connected;
+  Future<bool> get isConnectedToInternet async {
+    final ConnectivityResult connectivityResult =
+        await _connectivity.checkConnectivity();
+
+    return connectivityResult == ConnectivityResult.wifi ||
+        connectivityResult == ConnectivityResult.mobile;
+  }
 
   Timer? _connectivityTimer;
 
@@ -53,10 +58,13 @@ class ConnectionService {
         if (_connectionBloc!.state is! Connected) {
           await _connectionBloc!.connectWebSocket();
         }
+
         final bool pingResult = await _checkPingConnection();
+
         _connectionStatus = pingResult
             ? ConnectionStatus.connected
             : ConnectionStatus.disconnected;
+
         break;
       case ConnectivityResult.none:
         _connectionStatus = ConnectionStatus.disconnected;
@@ -77,6 +85,7 @@ class ConnectionService {
   /// Closes the connection service
   void dispose() {
     connectionChangeController.close();
+
     _stopConnectivityTimer();
   }
 
@@ -99,9 +108,9 @@ class ConnectionService {
   Future<bool> checkConnectivity() async {
     final ConnectivityResult connectivityResult =
         await _connectivity.checkConnectivity();
-
     final ConnectionStatus connectionResult =
         await _checkConnection(connectivityResult);
+
     return connectionResult == ConnectionStatus.connected;
   }
 
@@ -109,9 +118,9 @@ class ConnectionService {
   void _startConnectivityTimer() {
     if (_connectivityTimer == null || !_connectivityTimer!.isActive) {
       _connectivityTimer = Timer.periodic(
-          Duration(seconds: _connectivityCheckInterval), (Timer timer) async {
-        await checkConnectivity();
-      });
+        Duration(seconds: _connectivityCheckInterval),
+        (Timer timer) async => checkConnectivity(),
+      );
     }
   }
 
@@ -119,10 +128,13 @@ class ConnectionService {
 
   Future<bool> _ping() async {
     try {
-      final Ping response = await Ping.ping().timeout(Duration(
+      final Ping response = await Ping.ping().timeout(
+        Duration(
           seconds: _connectionBloc!.state is InitialConnectionState
               ? _initialPingTimeOut
-              : _pingTimeout));
+              : _pingTimeout,
+        ),
+      );
 
       if (!response.succeeded!) {
         return Future<bool>.value(false);
@@ -136,14 +148,17 @@ class ConnectionService {
 
   Future<bool> _checkPingConnection() async {
     final bool _pingSuccess = await _ping();
+
     if (!_pingSuccess) {
-      _pingExceptionCount++;
-      if (_pingExceptionCount >= _pingMaxExceptionCount) {
+      if (_pingExceptionCount++ > _pingMaxExceptionCount) {
         return false;
       }
+
       return _connectionStatus == ConnectionStatus.connected;
     }
+
     _pingExceptionCount = 0;
+
     return true;
   }
 }
