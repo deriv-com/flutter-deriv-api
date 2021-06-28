@@ -3,8 +3,10 @@ analyzer:
     - lib/basic_api/**
     - lib/generated/**
     - test/**
+
   strong-mode:
     implicit-dynamic: false
+
   errors:
     todo: ignore
     missing_required_param: warning
