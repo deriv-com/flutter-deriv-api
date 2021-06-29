@@ -1,13 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_chat_create_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// P2p chat create request class
 class P2pChatCreateRequest extends Request {
   /// Initialize P2pChatCreateRequest
   const P2pChatCreateRequest({
-    @required this.orderId,
+    required this.orderId,
     this.p2pChatCreate = true,
     Map<String, dynamic>? passthrough,
     int? reqId,

@@ -1,6 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_start_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Copy start request class
@@ -8,7 +8,7 @@ class CopyStartRequest extends Request {
   /// Initialize CopyStartRequest
   const CopyStartRequest({
     this.assets,
-    @required this.copyStart,
+    required this.copyStart,
     this.maxTradeStake,
     this.minTradeStake,
     this.tradeTypes,

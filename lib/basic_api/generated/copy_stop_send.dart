@@ -1,13 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_stop_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Copy stop request class
 class CopyStopRequest extends Request {
   /// Initialize CopyStopRequest
   const CopyStopRequest({
-    @required this.copyStop,
+    required this.copyStop,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(

@@ -1,6 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_create_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// P2p advertiser create request class
@@ -9,7 +9,7 @@ class P2pAdvertiserCreateRequest extends Request {
   const P2pAdvertiserCreateRequest({
     this.contactInfo,
     this.defaultAdvertDescription,
-    @required this.name,
+    required this.name,
     this.p2pAdvertiserCreate = true,
     this.paymentInfo,
     this.subscribe,

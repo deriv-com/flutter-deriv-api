@@ -1,13 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_get_settings_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Mt5 get settings request class
 class Mt5GetSettingsRequest extends Request {
   /// Initialize Mt5GetSettingsRequest
   const Mt5GetSettingsRequest({
-    @required this.login,
+    required this.login,
     this.mt5GetSettings = true,
     Map<String, dynamic>? passthrough,
     int? reqId,

@@ -1,15 +1,15 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/verify_email_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Verify email request class
 class VerifyEmailRequest extends Request {
   /// Initialize VerifyEmailRequest
   const VerifyEmailRequest({
-    @required this.type,
+    required this.type,
     this.urlParameters,
-    @required this.verifyEmail,
+    required this.verifyEmail,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(

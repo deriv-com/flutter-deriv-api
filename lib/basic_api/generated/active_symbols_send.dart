@@ -1,13 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Active symbols request class
 class ActiveSymbolsRequest extends Request {
   /// Initialize ActiveSymbolsRequest
   const ActiveSymbolsRequest({
-    @required this.activeSymbols,
+    required this.activeSymbols,
     this.landingCompany,
     this.productType,
     Map<String, dynamic>? passthrough,

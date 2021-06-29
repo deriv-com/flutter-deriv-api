@@ -1,6 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// New account real request class
@@ -10,7 +10,7 @@ class NewAccountRealRequest extends Request {
     this.accountOpeningReason,
     this.accountTurnover,
     this.addressCity,
-    @required this.addressLine1,
+    required this.addressLine1,
     this.addressLine2,
     this.addressPostcode,
     this.addressState,
@@ -18,14 +18,14 @@ class NewAccountRealRequest extends Request {
     this.citizen,
     this.clientType,
     this.currency,
-    @required this.dateOfBirth,
-    @required this.firstName,
-    @required this.lastName,
+    required this.dateOfBirth,
+    required this.firstName,
+    required this.lastName,
     this.newAccountReal = true,
     this.nonPepDeclaration,
     this.phone,
     this.placeOfBirth,
-    @required this.residence,
+    required this.residence,
     this.salutation,
     this.secretAnswer,
     this.secretQuestion,

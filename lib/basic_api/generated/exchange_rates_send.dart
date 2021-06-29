@@ -1,13 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/exchange_rates_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Exchange rates request class
 class ExchangeRatesRequest extends Request {
   /// Initialize ExchangeRatesRequest
   const ExchangeRatesRequest({
-    @required this.baseCurrency,
+    required this.baseCurrency,
     this.exchangeRates = true,
     Map<String, dynamic>? passthrough,
     int? reqId,

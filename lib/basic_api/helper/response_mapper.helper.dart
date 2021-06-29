@@ -35,6 +35,7 @@ import '../generated/get_financial_assessment_receive.dart';
 import '../generated/get_limits_receive.dart';
 import '../generated/get_self_exclusion_receive.dart';
 import '../generated/get_settings_receive.dart';
+import '../generated/identity_verification_document_add_receive.dart';
 import '../generated/landing_company_details_receive.dart';
 import '../generated/landing_company_receive.dart';
 import '../generated/login_history_receive.dart';
@@ -95,6 +96,7 @@ import '../generated/time_receive.dart';
 import '../generated/tnc_approval_receive.dart';
 import '../generated/topup_virtual_receive.dart';
 import '../generated/trading_durations_receive.dart';
+import '../generated/trading_platform_investor_password_reset_receive.dart';
 import '../generated/trading_platform_password_reset_receive.dart';
 import '../generated/trading_servers_receive.dart';
 import '../generated/trading_times_receive.dart';
@@ -172,6 +174,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return GetSelfExclusionResponse.fromJson(responseMap);
     case 'get_settings':
       return GetSettingsResponse.fromJson(responseMap);
+    case 'identity_verification_document_add':
+      return IdentityVerificationDocumentAddResponse.fromJson(responseMap);
     case 'landing_company_details':
       return LandingCompanyDetailsResponse.fromJson(responseMap);
     case 'landing_company':
@@ -292,6 +296,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return TopupVirtualResponse.fromJson(responseMap);
     case 'trading_durations':
       return TradingDurationsResponse.fromJson(responseMap);
+    case 'trading_platform_investor_password_reset':
+      return TradingPlatformInvestorPasswordResetResponse.fromJson(responseMap);
     case 'trading_platform_password_reset':
       return TradingPlatformPasswordResetResponse.fromJson(responseMap);
     case 'trading_servers':

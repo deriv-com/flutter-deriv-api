@@ -1,13 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_times_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Trading times request class
 class TradingTimesRequest extends Request {
   /// Initialize TradingTimesRequest
   const TradingTimesRequest({
-    @required this.tradingTimes,
+    required this.tradingTimes,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(

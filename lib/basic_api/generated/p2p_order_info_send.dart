@@ -1,13 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_info_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// P2p order info request class
 class P2pOrderInfoRequest extends Request {
   /// Initialize P2pOrderInfoRequest
   const P2pOrderInfoRequest({
-    @required this.id,
+    required this.id,
     this.p2pOrderInfo = true,
     this.subscribe,
     Map<String, dynamic>? passthrough,

@@ -1,13 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cashier_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Cashier request class
 class CashierRequest extends Request {
   /// Initialize CashierRequest
   const CashierRequest({
-    @required this.cashier,
+    required this.cashier,
     this.provider,
     this.type,
     this.verificationCode,

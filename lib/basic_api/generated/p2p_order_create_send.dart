@@ -1,18 +1,18 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_create_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// P2p order create request class
 class P2pOrderCreateRequest extends Request {
   /// Initialize P2pOrderCreateRequest
   const P2pOrderCreateRequest({
-    @required this.advertId,
-    @required this.amount,
+    required this.advertId,
+    required this.amount,
     this.contactInfo,
     this.p2pOrderCreate = true,
     this.paymentInfo,
-    @required this.paymentMethodIds,
+    required this.paymentMethodIds,
     this.subscribe,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -32,8 +32,8 @@ class P2pOrderCreateRequest extends Request {
             ? null
             : json['p2p_order_create'] == 1,
         paymentInfo: json['payment_info'] as String?,
-        paymentMethodIds: (json['payment_method_ids'] as List<dynamic>)
-            .map<int>((dynamic item) => item as int)
+        paymentMethodIds: (json['payment_method_ids'] as List<dynamic>?)
+            ?.map<int>((dynamic item) => item as int)
             .toList(),
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -52,7 +52,7 @@ class P2pOrderCreateRequest extends Request {
   /// Must be `true`
   final bool? p2pOrderCreate;
 
-  /// [Optional] Payment instructions. Only applicable for 'sell orders'.
+  /// [Optional] Payment instructions, only applicable for sell orders.
   final String? paymentInfo;
 
   /// IDs of payment methods, only applicable for sell orders.

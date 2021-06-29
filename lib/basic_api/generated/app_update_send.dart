@@ -1,6 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_update_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// App update request class
@@ -8,14 +8,14 @@ class AppUpdateRequest extends Request {
   /// Initialize AppUpdateRequest
   const AppUpdateRequest({
     this.appMarkupPercentage,
-    @required this.appUpdate,
+    required this.appUpdate,
     this.appstore,
     this.github,
     this.googleplay,
     this.homepage,
-    @required this.name,
-    @required this.redirectUri,
-    @required this.scopes,
+    required this.name,
+    required this.redirectUri,
+    required this.scopes,
     this.verificationUri,
     Map<String, dynamic>? passthrough,
     int? reqId,

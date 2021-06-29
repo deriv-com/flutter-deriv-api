@@ -1,16 +1,16 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_change_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Mt5 password change request class
 class Mt5PasswordChangeRequest extends Request {
   /// Initialize Mt5PasswordChangeRequest
   const Mt5PasswordChangeRequest({
-    @required this.login,
+    required this.login,
     this.mt5PasswordChange = true,
-    @required this.newPassword,
-    @required this.oldPassword,
+    required this.newPassword,
+    required this.oldPassword,
     this.passwordType,
     Map<String, dynamic>? passthrough,
     int? reqId,

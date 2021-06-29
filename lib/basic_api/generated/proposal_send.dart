@@ -1,6 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Proposal request class
@@ -11,20 +11,20 @@ class ProposalRequest extends Request {
     this.barrier,
     this.barrier2,
     this.basis,
-    @required this.cancellation,
-    @required this.contractType,
-    @required this.currency,
+    required this.cancellation,
+    required this.contractType,
+    required this.currency,
     this.dateExpiry,
     this.dateStart,
     this.duration,
     this.durationUnit,
-    @required this.limitOrder,
+    required this.limitOrder,
     this.multiplier,
     this.productType,
     this.proposal = true,
     this.selectedTick,
     this.subscribe,
-    @required this.symbol,
+    required this.symbol,
     this.tradingPeriodStart,
     Map<String, dynamic>? passthrough,
     int? reqId,

@@ -1,18 +1,18 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_transfer_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Paymentagent transfer request class
 class PaymentagentTransferRequest extends Request {
   /// Initialize PaymentagentTransferRequest
   const PaymentagentTransferRequest({
-    @required this.amount,
-    @required this.currency,
+    required this.amount,
+    required this.currency,
     this.description,
     this.dryRun,
     this.paymentagentTransfer = true,
-    @required this.transferTo,
+    required this.transferTo,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(

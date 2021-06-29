@@ -1,6 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_list_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Paymentagent list request class
@@ -8,7 +8,7 @@ class PaymentagentListRequest extends Request {
   /// Initialize PaymentagentListRequest
   const PaymentagentListRequest({
     this.currency,
-    @required this.paymentagentList,
+    required this.paymentagentList,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(

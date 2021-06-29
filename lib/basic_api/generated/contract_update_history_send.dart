@@ -1,13 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_history_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Contract update history request class
 class ContractUpdateHistoryRequest extends Request {
   /// Initialize ContractUpdateHistoryRequest
   const ContractUpdateHistoryRequest({
-    @required this.contractId,
+    required this.contractId,
     this.contractUpdateHistory = true,
     this.limit,
     Map<String, dynamic>? passthrough,

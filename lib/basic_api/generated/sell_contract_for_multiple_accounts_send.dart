@@ -1,16 +1,16 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_contract_for_multiple_accounts_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Sell contract for multiple accounts request class
 class SellContractForMultipleAccountsRequest extends Request {
   /// Initialize SellContractForMultipleAccountsRequest
   const SellContractForMultipleAccountsRequest({
-    @required this.price,
+    required this.price,
     this.sellContractForMultipleAccounts = true,
-    @required this.shortcode,
-    @required this.tokens,
+    required this.shortcode,
+    required this.tokens,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(

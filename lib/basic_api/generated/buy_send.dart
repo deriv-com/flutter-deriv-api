@@ -1,15 +1,15 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Buy request class
 class BuyRequest extends Request {
   /// Initialize BuyRequest
   const BuyRequest({
-    @required this.buy,
+    required this.buy,
     this.parameters,
-    @required this.price,
+    required this.price,
     this.subscribe,
     Map<String, dynamic>? passthrough,
     int? reqId,

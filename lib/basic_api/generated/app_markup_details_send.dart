@@ -1,6 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// App markup details request class
@@ -10,8 +10,8 @@ class AppMarkupDetailsRequest extends Request {
     this.appId,
     this.appMarkupDetails = true,
     this.clientLoginid,
-    @required this.dateFrom,
-    @required this.dateTo,
+    required this.dateFrom,
+    required this.dateTo,
     this.description,
     this.limit,
     this.offset,

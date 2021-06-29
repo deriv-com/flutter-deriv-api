@@ -1,16 +1,16 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Mt5 deposit request class
 class Mt5DepositRequest extends Request {
   /// Initialize Mt5DepositRequest
   const Mt5DepositRequest({
-    @required this.amount,
-    @required this.fromBinary,
+    required this.amount,
+    required this.fromBinary,
     this.mt5Deposit = true,
-    @required this.toMt5,
+    required this.toMt5,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(

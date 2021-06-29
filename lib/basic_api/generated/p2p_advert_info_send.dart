@@ -1,13 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_info_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// P2p advert info request class
 class P2pAdvertInfoRequest extends Request {
   /// Initialize P2pAdvertInfoRequest
   const P2pAdvertInfoRequest({
-    @required this.id,
+    required this.id,
     this.p2pAdvertInfo = true,
     this.useClientLimits,
     Map<String, dynamic>? passthrough,

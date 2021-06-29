@@ -65,6 +65,8 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
           duration: event.duration,
           basis: event.basis,
           currency: 'USD',
+          cancellation: null,
+          limitOrder: null,
           contractType: event.contract?.contractType,
           symbol: event.contract?.underlyingSymbol,
         ),

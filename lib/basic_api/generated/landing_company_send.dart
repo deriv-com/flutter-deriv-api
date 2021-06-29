@@ -1,13 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/landing_company_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Landing company request class
 class LandingCompanyRequest extends Request {
   /// Initialize LandingCompanyRequest
   const LandingCompanyRequest({
-    @required this.landingCompany,
+    required this.landingCompany,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(

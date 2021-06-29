@@ -1,24 +1,24 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_create_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// P2p advert create request class
 class P2pAdvertCreateRequest extends Request {
   /// Initialize P2pAdvertCreateRequest
   const P2pAdvertCreateRequest({
-    @required this.amount,
+    required this.amount,
     this.contactInfo,
     this.description,
     this.localCurrency,
-    @required this.maxOrderAmount,
-    @required this.minOrderAmount,
+    required this.maxOrderAmount,
+    required this.minOrderAmount,
     this.p2pAdvertCreate = true,
     this.paymentInfo,
-    @required this.paymentMethod,
-    @required this.paymentMethodIds,
-    @required this.rate,
-    @required this.type,
+    required this.paymentMethod,
+    required this.paymentMethodIds,
+    required this.rate,
+    required this.type,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -40,9 +40,9 @@ class P2pAdvertCreateRequest extends Request {
             ? null
             : json['p2p_advert_create'] == 1,
         paymentInfo: json['payment_info'] as String?,
-        paymentMethod: json['payment_method'] as String,
-        paymentMethodIds: (json['payment_method_ids'] as List<dynamic>)
-            .map<int>((dynamic item) => item as int)
+        paymentMethod: json['payment_method'] as String?,
+        paymentMethodIds: (json['payment_method_ids'] as List<dynamic>?)
+            ?.map<int>((dynamic item) => item as int)
             .toList(),
         rate: json['rate'] as num?,
         type: json['type'] as String?,

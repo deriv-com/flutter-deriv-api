@@ -39,8 +39,8 @@ class P2pAdvertListRequest extends Request {
         p2pAdvertList: json['p2p_advert_list'] == null
             ? null
             : json['p2p_advert_list'] == 1,
-        paymentMethod: (json['payment_method'] as List<dynamic>)
-            .map<String>((dynamic item) => item as String)
+        paymentMethod: (json['payment_method'] as List<dynamic>?)
+            ?.map<String>((dynamic item) => item as String)
             .toList(),
         sortBy: json['sort_by'] as String?,
         useClientLimits: json['use_client_limits'] == null

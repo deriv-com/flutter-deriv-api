@@ -115,7 +115,7 @@ class APIBuilder extends Builder {
           '''
             /// Generated automatically from ${buildStep.inputId}
             // ignore_for_file: avoid_as
-            ${_hasRequiredField(methodName, schema, schemaType, properties) ? 'import \'package:meta/meta.dart\';' : ''}
+            
             import '../${schemaType == 'send' ? 'request' : 'response'}.dart';
             /// ${ReCase(classFullName).sentenceCase} class
             class $classFullName extends ${schemaType == 'send' ? 'Request' : 'Response'} {
@@ -166,7 +166,7 @@ class APIBuilder extends Builder {
           }
         }
 
-        return '${_isFieldRequired(key, schemaType, property) ? '@required ' : ''} this.${ReCase(key).camelCase}';
+        return '${_isFieldRequired(key, schemaType, property) ? 'required ' : ''} this.${ReCase(key).camelCase}';
       },
     ).join(', ');
     return fields.isEmpty ? result : '$result , ';
@@ -218,6 +218,8 @@ class APIBuilder extends Builder {
     JsonSchema property,
   ) {
     if (property.oneOf.isNotEmpty) {
+      return 'dynamic';
+    } else if (property.anyOf.isNotEmpty) {
       return 'dynamic';
     } else {
       final String? propertySchemaType = _getPropertySchemaType(key, property);
@@ -432,31 +434,6 @@ class APIBuilder extends Builder {
       key != 'subscribe' &&
       property.typeList?.length == 1 &&
       !property.description!.contains('[Optional]');
-
-  static bool _hasRequiredField(
-    String methodName,
-    JsonSchema schema,
-    String? schemaType,
-    List<String> properties,
-  ) {
-    if (schemaType == 'send') {
-      for (final String key in properties) {
-        final JsonSchema property = schema.properties[key]!;
-
-        if (property.typeList?.isNotEmpty ?? false) {
-          if (key == methodName && _getPropertyType(key, property) == 'bool') {
-            continue;
-          }
-        }
-
-        if (_isFieldRequired(key, schemaType, property)) {
-          return true;
-        }
-      }
-    }
-
-    return false;
-  }
 
   static String _getEquatableFields(
     String classFullName,

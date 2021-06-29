@@ -1,16 +1,16 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_withdrawal_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Mt5 withdrawal request class
 class Mt5WithdrawalRequest extends Request {
   /// Initialize Mt5WithdrawalRequest
   const Mt5WithdrawalRequest({
-    @required this.amount,
-    @required this.fromMt5,
+    required this.amount,
+    required this.fromMt5,
     this.mt5Withdrawal = true,
-    @required this.toBinary,
+    required this.toBinary,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(

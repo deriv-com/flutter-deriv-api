@@ -1,6 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_create_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Paymentagent create request class
@@ -8,16 +8,16 @@ class PaymentagentCreateRequest extends Request {
   /// Initialize PaymentagentCreateRequest
   const PaymentagentCreateRequest({
     this.affiliateId,
-    @required this.codeOfConductApproval,
-    @required this.commissionDeposit,
-    @required this.commissionWithdrawal,
-    @required this.email,
+    required this.codeOfConductApproval,
+    required this.commissionDeposit,
+    required this.commissionWithdrawal,
+    required this.email,
     this.information,
-    @required this.paymentAgentName,
+    required this.paymentAgentName,
     this.paymentagentCreate = true,
-    @required this.phone,
-    @required this.supportedPaymentMethods,
-    @required this.url,
+    required this.phone,
+    required this.supportedPaymentMethods,
+    required this.url,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(

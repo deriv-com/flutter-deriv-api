@@ -1,13 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_get_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// App get request class
 class AppGetRequest extends Request {
   /// Initialize AppGetRequest
   const AppGetRequest({
-    @required this.appGet,
+    required this.appGet,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(

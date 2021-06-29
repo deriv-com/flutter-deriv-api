@@ -1,6 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/authorize_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Authorize request class
@@ -8,7 +8,7 @@ class AuthorizeRequest extends Request {
   /// Initialize AuthorizeRequest
   const AuthorizeRequest({
     this.addToLoginHistory,
-    @required this.authorize,
+    required this.authorize,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(

@@ -1,13 +1,13 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_cancel_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// P2p order cancel request class
 class P2pOrderCancelRequest extends Request {
   /// Initialize P2pOrderCancelRequest
   const P2pOrderCancelRequest({
-    @required this.id,
+    required this.id,
     this.p2pOrderCancel = true,
     Map<String, dynamic>? passthrough,
     int? reqId,

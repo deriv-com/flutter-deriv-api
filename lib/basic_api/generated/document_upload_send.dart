@@ -1,19 +1,19 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/document_upload_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Document upload request class
 class DocumentUploadRequest extends Request {
   /// Initialize DocumentUploadRequest
   const DocumentUploadRequest({
-    @required this.documentFormat,
+    required this.documentFormat,
     this.documentId,
-    @required this.documentType,
+    required this.documentType,
     this.documentUpload = true,
-    @required this.expectedChecksum,
+    required this.expectedChecksum,
     this.expirationDate,
-    @required this.fileSize,
+    required this.fileSize,
     this.lifetimeValid,
     this.pageType,
     Map<String, dynamic>? passthrough,

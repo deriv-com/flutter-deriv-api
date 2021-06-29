@@ -1,6 +1,6 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Transfer between accounts request class
@@ -12,7 +12,7 @@ class TransferBetweenAccountsRequest extends Request {
     this.accounts,
     this.amount,
     this.currency,
-    @required this.transferBetweenAccounts,
+    required this.transferBetweenAccounts,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(

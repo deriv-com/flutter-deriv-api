@@ -1,15 +1,15 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_send.json
 // ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Contract update request class
 class ContractUpdateRequest extends Request {
   /// Initialize ContractUpdateRequest
   const ContractUpdateRequest({
-    @required this.contractId,
+    required this.contractId,
     this.contractUpdate = true,
-    @required this.limitOrder,
+    required this.limitOrder,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
