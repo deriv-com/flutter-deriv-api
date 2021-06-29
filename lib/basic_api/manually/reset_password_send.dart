@@ -3,16 +3,16 @@
 import '../request.dart';
 
 /// Reset password request class.
-class PasswordResetRequest extends Request {
+class ResetPasswordRequest extends Request {
   /// Initialize PasswordResetRequest.
-  const PasswordResetRequest({
+  const ResetPasswordRequest({
     required this.newPassword,
     required this.verificationCode,
     this.resetPassword = 1,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
-          msgType: 'password_reset',
+          msgType: 'reset_password',
           passthrough: passthrough,
           reqId: reqId,
         );

@@ -3,9 +3,9 @@
 import '../response.dart';
 
 /// Password reset response class.
-class PasswordResetResponse extends Response {
+class ResetPasswordResponse extends Response {
   /// Initialize PasswordResetResponse.
-  const PasswordResetResponse({
+  const ResetPasswordResponse({
     this.resetPassword,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -19,8 +19,8 @@ class PasswordResetResponse extends Response {
         );
 
   /// Creates an instance from JSON.
-  factory PasswordResetResponse.fromJson(Map<String, dynamic> json) =>
-      PasswordResetResponse(
+  factory ResetPasswordResponse.fromJson(Map<String, dynamic> json) =>
+      ResetPasswordResponse(
         resetPassword:
             json['reset_password'] == null ? null : json['reset_password'] == 1,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
