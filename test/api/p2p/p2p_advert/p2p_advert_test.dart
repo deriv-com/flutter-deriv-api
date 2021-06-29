@@ -89,6 +89,7 @@ void main() {
     test('Create Advert Test', () async {
       final P2PAdvert advert = await P2PAdvert.createAdvert(
         const P2pAdvertCreateRequest(
+          paymentMethodIds: [],
           description: 'Please transfer to account number 1234',
           type: 'buy',
           amount: 100,

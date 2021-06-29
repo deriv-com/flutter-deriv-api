@@ -25,6 +25,8 @@ void main() {
           await PriceProposal.fetchPriceForContract(
         // ignore: missing_required_param
         const ProposalRequest(
+          limitOrder: null,
+          cancellation: null,
           symbol: 'frxUSDJPY',
           durationUnit: 'm',
           duration: 2,
@@ -48,6 +50,8 @@ void main() {
       PriceProposal.subscribePriceForContract(
         // ignore: missing_required_param
         const ProposalRequest(
+          cancellation: null,
+          limitOrder: null,
           symbol: 'frxUSDJPY',
           durationUnit: 'm',
           duration: 2,
@@ -231,6 +235,7 @@ void main() {
             await PriceProposal.fetchPriceForContract(
           // ignore: missing_required_param
           const ProposalRequest(
+            limitOrder: null,
             symbol: 'frxUSDJPY',
             durationUnit: 'm',
             duration: 2,

@@ -12,7 +12,7 @@ void main() {
 
   test('Fetch Portfolio Test', () async {
     final Portfolio portfolio = await Portfolio.fetchPortfolio(
-      const PortfolioRequest(),
+      const PortfolioRequest(contractType: []),
     );
 
     final PortfolioContractModel firstContract = portfolio.contracts!.first!;

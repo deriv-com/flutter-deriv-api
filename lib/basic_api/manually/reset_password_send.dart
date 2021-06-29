@@ -8,6 +8,7 @@ class ResetPasswordRequest extends Request {
   const ResetPasswordRequest({
     required this.newPassword,
     required this.verificationCode,
+    this.dateOfBirth,
     this.resetPassword = 1,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -25,6 +26,9 @@ class ResetPasswordRequest extends Request {
 
   /// Email verification code (received from a `verify_email` call, which must be done first).
   final String? verificationCode;
+  
+  /// [Optional] Date of birth format: `yyyy-mm-dd`. Only required for clients with real-money accounts..
+  final String? dateOfBirth;
 
   /// Converts this instance to JSON.
   @override
@@ -32,6 +36,7 @@ class ResetPasswordRequest extends Request {
         'new_password': newPassword,
         'reset_password': resetPassword,
         'verification_code': verificationCode,
+        'date_of_birth': dateOfBirth,
         'passthrough': passthrough,
         'req_id': reqId,
       };

@@ -46,6 +46,7 @@ void main() {
       final NewAccountVirtual newAccountVirtual =
           await NewAccountVirtual.openNewVirtualAccount(
         const NewAccountVirtualRequest(
+          type: null,
           newAccountVirtual: true,
           clientPassword: 'Abc123de',
           residence: 'id',

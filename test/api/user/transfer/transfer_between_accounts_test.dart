@@ -13,6 +13,7 @@ void main() {
     final TransferBetweenAccounts transferBetweenAccounts =
         await TransferBetweenAccounts.transfer(
       const TransferBetweenAccountsRequest(
+        transferBetweenAccounts: null,
         accountFrom: 'MLT100',
         accountTo: 'MF100',
         amount: 100,
