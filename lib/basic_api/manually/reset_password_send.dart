@@ -26,7 +26,7 @@ class ResetPasswordRequest extends Request {
 
   /// Email verification code (received from a `verify_email` call, which must be done first).
   final String? verificationCode;
-  
+
   /// [Optional] Date of birth format: `yyyy-mm-dd`. Only required for clients with real-money accounts..
   final String? dateOfBirth;
 
@@ -40,6 +40,22 @@ class ResetPasswordRequest extends Request {
         'passthrough': passthrough,
         'req_id': reqId,
       };
+
+  @override
+  ResetPasswordRequest copyWith({
+    String? newPassword,
+    String? dateOfBirth,
+    String? verificationCode,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
+  }) =>
+      ResetPasswordRequest(
+        newPassword: newPassword ?? this.newPassword,
+        dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+        verificationCode: verificationCode ?? this.verificationCode,
+        passthrough: passthrough ?? this.passthrough,
+        reqId: reqId ?? this.reqId,
+      );
 
   /// Override equatable class.
   @override

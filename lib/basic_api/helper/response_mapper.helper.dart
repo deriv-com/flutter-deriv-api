@@ -104,6 +104,8 @@ import '../generated/transaction_receive.dart';
 import '../generated/transfer_between_accounts_receive.dart';
 import '../generated/verify_email_receive.dart';
 import '../generated/website_status_receive.dart';
+import '../manually/reset_password_receive.dart';
+
 import '../response.dart';
 
 /// A function that create a sub-type of [Response] based on
@@ -312,6 +314,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return VerifyEmailResponse.fromJson(responseMap);
     case 'website_status':
       return WebsiteStatusResponse.fromJson(responseMap);
+    case 'reset_password':
+      return ResetPasswordResponse.fromJson(responseMap);
 
     default:
       return Response.fromJson(responseMap);
