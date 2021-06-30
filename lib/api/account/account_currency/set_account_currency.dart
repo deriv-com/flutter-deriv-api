@@ -19,7 +19,7 @@ class SetAccountCurrency extends SetAccountCurrencyModel {
   ) =>
       SetAccountCurrency(succeeded: response.setAccountCurrency);
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   SetAccountCurrency copyWith({
@@ -37,14 +37,15 @@ class SetAccountCurrency extends SetAccountCurrencyModel {
   static Future<SetAccountCurrency> setCurrency(
     SetAccountCurrencyRequest request,
   ) async {
-    final SetAccountCurrencyResponse response = await _api!.call<SetAccountCurrencyResponse>(request: request);
+    final SetAccountCurrencyResponse response =
+        await _api.call<SetAccountCurrencyResponse>(request: request);
 
     checkException(
-        response: response,
-        exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-            AccountCurrencyException(baseExceptionModel: baseExceptionModel),
-      );
+      response: response,
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
+          AccountCurrencyException(baseExceptionModel: baseExceptionModel),
+    );
 
-      return SetAccountCurrency.fromResponse(response);
+    return SetAccountCurrency.fromResponse(response);
   }
 }

@@ -24,7 +24,7 @@ class TradingTimes extends TradingTimesModel {
         ),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   TradingTimes copyWith({
@@ -42,7 +42,7 @@ class TradingTimes extends TradingTimesModel {
     TradingTimesRequest request,
   ) async {
     final TradingTimesResponse response =
-        await _api!.call<TradingTimesResponse>(request: request);
+        await _api.call<TradingTimesResponse>(request: request);
 
     checkException(
       response: response,

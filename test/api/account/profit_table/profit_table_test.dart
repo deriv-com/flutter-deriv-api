@@ -12,6 +12,7 @@ void main() {
   test('Fetch Profit Table Test', () async {
     final ProfitTable profitTable = await ProfitTable.fetch(
       const ProfitTableRequest(
+        contractType: <String>['MULTUP'],
         description: true,
         limit: 25,
         offset: 25,

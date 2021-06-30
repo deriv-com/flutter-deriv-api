@@ -1,6 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// App markup details request class

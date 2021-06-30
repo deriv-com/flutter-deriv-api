@@ -30,7 +30,7 @@ class SetFinancialAssessment extends SetFinancialAssessmentModel {
         tradingScore: json['trading_score'],
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   SetFinancialAssessment copyWith({
@@ -57,7 +57,7 @@ class SetFinancialAssessment extends SetFinancialAssessmentModel {
     SetFinancialAssessmentRequest request,
   ) async {
     final SetFinancialAssessmentResponse response =
-        await _api!.call<SetFinancialAssessmentResponse>(request: request);
+        await _api.call<SetFinancialAssessmentResponse>(request: request);
 
     checkException(
       response: response,

@@ -1,5 +1,4 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_list_send.json
-// ignore_for_file: avoid_as
 
 import '../request.dart';
 
@@ -15,7 +14,6 @@ class P2pAdvertListRequest extends Request {
     this.localCurrency,
     this.offset,
     this.p2pAdvertList = true,
-    this.paymentMethod,
     this.sortBy,
     this.useClientLimits,
     Map<String, dynamic>? passthrough,
@@ -39,9 +37,6 @@ class P2pAdvertListRequest extends Request {
         p2pAdvertList: json['p2p_advert_list'] == null
             ? null
             : json['p2p_advert_list'] == 1,
-        paymentMethod: (json['payment_method'] as List<dynamic>)
-            .map<String>((dynamic item) => item as String)
-            .toList(),
         sortBy: json['sort_by'] as String?,
         useClientLimits: json['use_client_limits'] == null
             ? null
@@ -74,9 +69,6 @@ class P2pAdvertListRequest extends Request {
   /// Must be `true`
   final bool? p2pAdvertList;
 
-  /// [Optional] Search by supported payment methods.
-  final List<String>? paymentMethod;
-
   /// [Optional] How the results are sorted: best rate, or advertiser completion rate.
   final String? sortBy;
 
@@ -98,7 +90,6 @@ class P2pAdvertListRequest extends Request {
             : p2pAdvertList!
                 ? 1
                 : 0,
-        'payment_method': paymentMethod,
         'sort_by': sortBy,
         'use_client_limits': useClientLimits == null
             ? null
@@ -120,7 +111,6 @@ class P2pAdvertListRequest extends Request {
     String? localCurrency,
     int? offset,
     bool? p2pAdvertList,
-    List<String>? paymentMethod,
     String? sortBy,
     bool? useClientLimits,
     Map<String, dynamic>? passthrough,
@@ -135,7 +125,6 @@ class P2pAdvertListRequest extends Request {
         localCurrency: localCurrency ?? this.localCurrency,
         offset: offset ?? this.offset,
         p2pAdvertList: p2pAdvertList ?? this.p2pAdvertList,
-        paymentMethod: paymentMethod ?? this.paymentMethod,
         sortBy: sortBy ?? this.sortBy,
         useClientLimits: useClientLimits ?? this.useClientLimits,
         passthrough: passthrough ?? this.passthrough,

@@ -28,7 +28,7 @@ class Statement extends StatementModel {
         ),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generates a copy of instance with given parameters
   Statement copyWith({
@@ -45,7 +45,8 @@ class Statement extends StatementModel {
   /// For parameters information refer to [StatementRequest].
   /// Throws a [StatementException] if API response contains an error
   static Future<Statement> fetch(StatementRequest request) async {
-    final StatementResponse response = await _api!.call<StatementResponse>(request: request);
+    final StatementResponse response =
+        await _api.call<StatementResponse>(request: request);
 
     checkException(
       response: response,

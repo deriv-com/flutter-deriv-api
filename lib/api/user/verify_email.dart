@@ -17,7 +17,7 @@ class VerifyEmail extends VerifyEmailModel {
   factory VerifyEmail.fromResponse(VerifyEmailResponse response) =>
       VerifyEmail(verified: response.verifyEmail);
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy with given parameters
   VerifyEmail copyWith({
@@ -36,7 +36,7 @@ class VerifyEmail extends VerifyEmailModel {
     VerifyEmailRequest request,
   ) async {
     final VerifyEmailResponse? response =
-        await _api!.call<VerifyEmailResponse>(request: request);
+        await _api.call<VerifyEmailResponse>(request: request);
 
     // helper =>  final VerifyEmailResponse resposne = getResponse<VerifyEmailResponse>(response);
     // check if "is VerifyEmailResponse".

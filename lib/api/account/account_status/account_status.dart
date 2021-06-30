@@ -58,12 +58,12 @@ class AccountStatus extends AccountStatusModel {
         ),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the account's status
   static Future<AccountStatus> fetchAccountStatus() async {
     final GetAccountStatusResponse response =
-        await _api!.call<GetAccountStatusResponse>(
+        await _api.call<GetAccountStatusResponse>(
       request: const GetAccountStatusRequest(),
     );
 

@@ -1,5 +1,4 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contracts_for_receive.json
-// ignore_for_file: avoid_as
 
 import '../response.dart';
 

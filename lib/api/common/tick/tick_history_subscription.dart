@@ -20,7 +20,7 @@ class TickHistorySubscription {
   /// The stream of the tick
   final Stream<TickBase?>? tickStream;
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Unsubscribes from tick history stream
   ///
@@ -30,7 +30,7 @@ class TickHistorySubscription {
       return null;
     }
 
-    final ForgetResponse response = await _api!.unsubscribe(
+    final ForgetResponse response = await _api.unsubscribe(
       subscriptionId: tickHistory!.subscriptionInformation!.id,
     );
 

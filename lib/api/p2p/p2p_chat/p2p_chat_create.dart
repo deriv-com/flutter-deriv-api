@@ -23,7 +23,7 @@ class P2PChatCreate extends P2PChatCreateModel {
         orderId: json['order_id'],
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generates a copy of instance with given parameters
   P2PChatCreate copyWith({
@@ -42,7 +42,8 @@ class P2PChatCreate extends P2PChatCreateModel {
   static Future<P2PChatCreate> createChat(
     P2pChatCreateRequest request,
   ) async {
-    final P2pChatCreateResponse response = await _api!.call<P2pChatCreateResponse>(request: request);
+    final P2pChatCreateResponse response =
+        await _api.call<P2pChatCreateResponse>(request: request);
 
     checkException(
       response: response,

@@ -22,7 +22,7 @@ class ForgetAll extends ForgetAllModel {
             .toList(),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   ForgetAll copyWith({
@@ -40,7 +40,7 @@ class ForgetAll extends ForgetAllModel {
     ForgetAllRequest request,
   ) async {
     final ForgetAllResponse response =
-        await _api!.call<ForgetAllResponse>(request: request);
+        await _api.call<ForgetAllResponse>(request: request);
 
     checkException(
       response: response,

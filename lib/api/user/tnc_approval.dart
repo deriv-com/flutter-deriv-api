@@ -17,7 +17,7 @@ class TNCApproval extends TNCApprovalModel {
   factory TNCApproval.fromResponse(TncApprovalResponse response) =>
       TNCApproval(approved: getBool(response.tncApproval));
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   TNCApproval copyWith({
@@ -34,7 +34,8 @@ class TNCApproval extends TNCApprovalModel {
   static Future<TNCApproval> verify(
     TncApprovalRequest request,
   ) async {
-    final TncApprovalResponse response = await _api!.call<TncApprovalResponse>(request: request);
+    final TncApprovalResponse response =
+        await _api.call<TncApprovalResponse>(request: request);
 
     checkException(
       response: response,

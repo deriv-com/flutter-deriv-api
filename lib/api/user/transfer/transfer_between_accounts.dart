@@ -40,7 +40,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
         transactionId: response.transactionId,
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generates a copy of instance with given parameters
   TransferBetweenAccounts copyWith({
@@ -69,7 +69,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
     TransferBetweenAccountsRequest request,
   ) async {
     final TransferBetweenAccountsResponse response =
-        await _api!.call<TransferBetweenAccountsResponse>(request: request);
+        await _api.call<TransferBetweenAccountsResponse>(request: request);
 
     checkException(
       response: response,

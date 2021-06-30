@@ -33,14 +33,14 @@ class CancelContract extends CancelContractModel {
         transactionId: json['transaction_id'],
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Cancels a contract with parameters specified in [CancelRequest].
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   static Future<CancelContract> cancelContract(CancelRequest request) async {
     final CancelResponse response =
-        await _api!.call<CancelResponse>(request: request);
+        await _api.call<CancelResponse>(request: request);
 
     checkException(
       response: response,

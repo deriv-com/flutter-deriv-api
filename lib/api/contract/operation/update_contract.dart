@@ -32,7 +32,7 @@ class UpdateContract extends UpdateContractModel {
         ),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// updates a contract with parameters specified in [ContractUpdateRequest].
   ///
@@ -41,7 +41,7 @@ class UpdateContract extends UpdateContractModel {
     ContractUpdateRequest request,
   ) async {
     final ContractUpdateResponse response =
-        await _api!.call<ContractUpdateResponse>(request: request);
+        await _api.call<ContractUpdateResponse>(request: request);
 
     checkException(
       response: response,
@@ -59,7 +59,7 @@ class UpdateContract extends UpdateContractModel {
     ContractUpdateHistoryRequest request,
   ) async {
     final ContractUpdateHistoryResponse response =
-        await _api!.call<ContractUpdateHistoryResponse>(request: request);
+        await _api.call<ContractUpdateHistoryResponse>(request: request);
 
     checkException(
       response: response,

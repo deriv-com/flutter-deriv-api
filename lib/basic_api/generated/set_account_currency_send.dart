@@ -1,6 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_account_currency_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Set account currency request class

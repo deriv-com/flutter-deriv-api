@@ -17,7 +17,7 @@ class ServerTime extends ServerTimeModel {
   factory ServerTime.fromResponse(TimeResponse response) =>
       ServerTime(time: getDateTime(response.time));
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   ServerTime copyWith({
@@ -33,9 +33,9 @@ class ServerTime extends ServerTimeModel {
   static Future<ServerTime> fetchTime([
     TimeRequest? request,
   ]) async {
-    final TimeResponse response = await _api!.call<TimeResponse>(
+    final TimeResponse response = await _api.call<TimeResponse>(
       request: request ?? const TimeRequest(),
-    ) ;
+    );
 
     checkException(
       response: response,

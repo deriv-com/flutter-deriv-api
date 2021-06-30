@@ -17,7 +17,7 @@ class CopyTradingStart extends CopyTradingStartModel {
   factory CopyTradingStart.fromResponse(CopyStartResponse response) =>
       CopyTradingStart(succeeded: getBool(response.copyStart));
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generate a copy of instance with given parameters
   CopyTradingStart copyWith({
@@ -33,7 +33,7 @@ class CopyTradingStart extends CopyTradingStartModel {
   /// Throws a [CopyTradingException] if API response contains an error
   static Future<CopyTradingStart> start(CopyStartRequest request) async {
     final CopyStartResponse response =
-        await _api!.call<CopyStartResponse>(request: request);
+        await _api.call<CopyStartResponse>(request: request);
 
     checkException(
       response: response,

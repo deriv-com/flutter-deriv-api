@@ -44,7 +44,7 @@ class RealityCheck extends RealityCheckModel {
         startTime: getDateTime(json['start_time']),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generates a copy of instance with given parameters
   RealityCheck copyWith({
@@ -79,8 +79,7 @@ class RealityCheck extends RealityCheckModel {
   static Future<RealityCheck> check([
     RealityCheckRequest? request,
   ]) async {
-    final RealityCheckResponse response =
-        await _api!.call<RealityCheckResponse>(
+    final RealityCheckResponse response = await _api.call<RealityCheckResponse>(
       request: request ?? const RealityCheckRequest(),
     );
 

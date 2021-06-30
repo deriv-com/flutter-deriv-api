@@ -47,7 +47,7 @@ class TickHistory extends TickHistoryModel {
             SubscriptionModel.fromJson(response.subscription),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Subscription information
   final SubscriptionModel? subscriptionInformation;
@@ -59,7 +59,7 @@ class TickHistory extends TickHistoryModel {
     TicksHistoryRequest request,
   ) async {
     final TicksHistoryResponse response =
-        await _api!.call<TicksHistoryResponse>(request: request);
+        await _api.call<TicksHistoryResponse>(request: request);
 
     _checkException(response);
 
@@ -75,8 +75,8 @@ class TickHistory extends TickHistoryModel {
     bool subscribe = true,
   }) async {
     if (subscribe) {
-      final Stream<Response> responseStream = _api!
-          .subscribe(request: request, comparePredicate: comparePredicate)!;
+      final Stream<Response> responseStream =
+          _api.subscribe(request: request, comparePredicate: comparePredicate)!;
       final Response firstResponse = await responseStream.first;
 
       _checkException(firstResponse);

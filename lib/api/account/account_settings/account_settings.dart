@@ -98,7 +98,7 @@ class AccountSettings extends AccountSettingsModel {
         userHash: json['user_hash'],
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets user's settings (email, date of birth, address etc)
   ///
@@ -106,7 +106,7 @@ class AccountSettings extends AccountSettingsModel {
   static Future<AccountSettings> fetchAccountSetting([
     GetSettingsRequest? request,
   ]) async {
-    final GetSettingsResponse response = await _api!.call<GetSettingsResponse>(
+    final GetSettingsResponse response = await _api.call<GetSettingsResponse>(
       request: request ?? const GetSettingsRequest(),
     );
 
@@ -126,7 +126,7 @@ class AccountSettings extends AccountSettingsModel {
     SetSettingsRequest request,
   ) async {
     final SetSettingsResponse response =
-        await _api!.call<SetSettingsResponse>(request: request);
+        await _api.call<SetSettingsResponse>(request: request);
 
     checkException(
       response: response,

@@ -29,7 +29,7 @@ class NewAccountReal extends NewAccountRealModel {
         oauthToken: json['oauth_token'],
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generates a copy of instance with given parameters
   NewAccountReal copyWith({
@@ -52,7 +52,8 @@ class NewAccountReal extends NewAccountRealModel {
   static Future<NewAccountReal> openNewRealAccount(
     NewAccountRealRequest request,
   ) async {
-    final NewAccountRealResponse response = await _api!.call<NewAccountRealResponse>(request: request);
+    final NewAccountRealResponse response =
+        await _api.call<NewAccountRealResponse>(request: request);
 
     checkException(
       response: response,

@@ -17,7 +17,7 @@ class RevokeOauthApp extends RevokeOauthAppModel {
   factory RevokeOauthApp.fromResponse(RevokeOauthAppResponse response) =>
       RevokeOauthApp(succeeded: getBool(response.revokeOauthApp));
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   RevokeOauthApp copyWith({
@@ -35,7 +35,7 @@ class RevokeOauthApp extends RevokeOauthAppModel {
     RevokeOauthAppRequest request,
   ) async {
     final RevokeOauthAppResponse response =
-        await _api!.call<RevokeOauthAppResponse>(request: request);
+        await _api.call<RevokeOauthAppResponse>(request: request);
 
     checkException(
       response: response,

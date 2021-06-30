@@ -66,7 +66,7 @@ class Balance extends BalanceModel {
   /// Subscription Information
   final SubscriptionModel? subscriptionInformation;
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the balance of account
   ///
@@ -74,7 +74,7 @@ class Balance extends BalanceModel {
   /// Throws a [BalanceException] if API response contains an error
   static Future<Balance> fetchBalance(BalanceRequest request) async {
     final BalanceResponse response =
-        await _api!.call<BalanceResponse>(request: request);
+        await _api.call<BalanceResponse>(request: request);
 
     checkException(
       response: response,
@@ -92,7 +92,7 @@ class Balance extends BalanceModel {
     BalanceRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
-      _api!
+      _api
           .subscribe(request: request, comparePredicate: comparePredicate)!
           .map((Response response) {
         checkException(
@@ -118,7 +118,7 @@ class Balance extends BalanceModel {
     }
 
     final ForgetResponse response =
-        await _api!.unsubscribe(subscriptionId: subscriptionInformation!.id);
+        await _api.unsubscribe(subscriptionId: subscriptionInformation!.id);
 
     checkException(
       response: response,
@@ -134,7 +134,7 @@ class Balance extends BalanceModel {
   /// Throws a [BalanceException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllBalance() async {
     final ForgetAllResponse? response =
-        await _api!.unsubscribeAll(method: ForgetStreamType.balance);
+        await _api.unsubscribeAll(method: ForgetStreamType.balance);
 
     checkException(
       response: response,

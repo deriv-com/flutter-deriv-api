@@ -1,6 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contracts_for_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Contracts for request class

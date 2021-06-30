@@ -32,7 +32,7 @@ class CopyTradingList extends CopyTradingListModel {
         ),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the list of active copiers and/or traders for Copy Trading
   ///
@@ -41,7 +41,7 @@ class CopyTradingList extends CopyTradingListModel {
     CopytradingListRequest? request,
   ]) async {
     final CopytradingListResponse response =
-        await _api!.call<CopytradingListResponse>(
+        await _api.call<CopytradingListResponse>(
       request: request ?? const CopytradingListRequest(),
     );
 

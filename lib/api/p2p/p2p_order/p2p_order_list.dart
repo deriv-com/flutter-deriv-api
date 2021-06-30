@@ -35,13 +35,13 @@ class P2POrderList {
   /// Subscription information
   final SubscriptionModel? subscriptionInformation;
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the list of [P2POrder] with parameters specified in [P2pOrderListRequest]
   static Future<P2POrderList> fetchOrderList([
     P2pOrderListRequest? request,
   ]) async {
-    final P2pOrderListResponse response = await _api!.call<P2pOrderListResponse>(
+    final P2pOrderListResponse response = await _api.call<P2pOrderListResponse>(
       request: request ?? const P2pOrderListRequest(),
     );
 
@@ -59,7 +59,7 @@ class P2POrderList {
     P2pOrderListRequest? request,
     RequestCompareFunction? comparePredicate,
   }) =>
-      _api!
+      _api
           .subscribe(
         request: request ?? const P2pOrderListRequest(),
         comparePredicate: comparePredicate,
@@ -90,7 +90,7 @@ class P2POrderList {
     }
 
     final ForgetResponse response =
-        await _api!.unsubscribe(subscriptionId: subscriptionInformation!.id);
+        await _api.unsubscribe(subscriptionId: subscriptionInformation!.id);
 
     checkException(
       response: response,

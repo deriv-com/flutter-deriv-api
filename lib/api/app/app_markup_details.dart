@@ -26,7 +26,7 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
         ),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   AppMarkupDetails copyWith({
@@ -43,7 +43,8 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
   static Future<AppMarkupDetails> fetchApplicationMarkupDetails(
     AppMarkupDetailsRequest request,
   ) async {
-    final AppMarkupDetailsResponse response = await _api!.call<AppMarkupDetailsResponse>(request: request);
+    final AppMarkupDetailsResponse response =
+        await _api.call<AppMarkupDetailsResponse>(request: request);
 
     checkException(
       response: response,

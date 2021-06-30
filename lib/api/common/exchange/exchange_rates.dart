@@ -35,7 +35,7 @@ class ExchangeRates extends ExchangeRatesModel {
         ),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generates a copy of instance with given parameters
   ExchangeRates copyWith({
@@ -57,7 +57,7 @@ class ExchangeRates extends ExchangeRatesModel {
     ExchangeRatesRequest request,
   ) async {
     final ExchangeRatesResponse response =
-        await _api!.call<ExchangeRatesResponse>(request: request);
+        await _api.call<ExchangeRatesResponse>(request: request);
 
     checkException(
       response: response,

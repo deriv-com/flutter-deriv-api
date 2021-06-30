@@ -17,7 +17,7 @@ class MT5PasswordCheck extends MT5PasswordCheckModel {
   factory MT5PasswordCheck.fromResponse(Mt5PasswordCheckResponse response) =>
       MT5PasswordCheck(succeeded: getBool(response.mt5PasswordCheck));
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   MT5PasswordCheck copyWith({
@@ -34,7 +34,8 @@ class MT5PasswordCheck extends MT5PasswordCheckModel {
   static Future<MT5PasswordCheck> checkPassword(
     Mt5PasswordCheckRequest request,
   ) async {
-    final Mt5PasswordCheckResponse response = await _api!.call<Mt5PasswordCheckResponse>(request: request);
+    final Mt5PasswordCheckResponse response =
+        await _api.call<Mt5PasswordCheckResponse>(request: request);
 
     checkException(
       response: response,

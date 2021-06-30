@@ -102,9 +102,11 @@ class JsonSchemaParser {
 
     for (final _SchemaModel model in models) {
       result
-        ..write('${model.isRequired ? '@required' : ''} ')
+        ..write('${model.isRequired ? 'required' : ''} ')
         ..write(
-          isSubclass ? '${model.type} ${model.title},' : 'this.${model.title},',
+          isSubclass
+              ? '${model.type}${model.isRequired ? '' : '?'} ${model.title},'
+              : 'this.${model.title},',
         );
     }
 
@@ -235,7 +237,7 @@ class JsonSchemaParser {
       );
 
     for (final _SchemaModel model in models) {
-      result.write('${model.type} ${model.title},');
+      result.write('${model.type}? ${model.title},');
     }
 
     result.write('}) => $className(');

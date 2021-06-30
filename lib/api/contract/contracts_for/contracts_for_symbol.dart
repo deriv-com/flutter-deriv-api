@@ -43,7 +43,7 @@ class ContractsForSymbol extends ContractsForSymbolModel {
         spot: json['spot']?.toDouble(),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets available contracts for given symbol in [ContractsForRequest]
   ///
@@ -51,7 +51,7 @@ class ContractsForSymbol extends ContractsForSymbolModel {
   static Future<ContractsForSymbol> fetchContractsForSymbol(
     ContractsForRequest request,
   ) async {
-    final ContractsForResponse response = await _api!.call<ContractsForResponse>(
+    final ContractsForResponse response = await _api.call<ContractsForResponse>(
       request: request,
     );
 

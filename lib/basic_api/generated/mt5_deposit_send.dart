@@ -1,6 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+
 import '../request.dart';
 
 /// Mt5 deposit request class
