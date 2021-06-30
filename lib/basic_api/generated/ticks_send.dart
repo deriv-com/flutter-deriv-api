@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_send.json.
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
@@ -19,7 +20,7 @@ class TicksRequest extends Request {
   /// Creates an instance from JSON.
   factory TicksRequest.fromJson(Map<String, dynamic> json) => TicksRequest(
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        ticks: json['ticks'] as dynamic?,
+        ticks: json['ticks'] as dynamic,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -28,7 +29,7 @@ class TicksRequest extends Request {
   final bool? subscribe;
 
   /// The short symbol name or array of symbols (obtained from `active_symbols` call).
-  final dynamic? ticks;
+  final dynamic ticks;
 
   /// Converts this instance to JSON
   @override
@@ -47,7 +48,7 @@ class TicksRequest extends Request {
   @override
   TicksRequest copyWith({
     bool? subscribe,
-    dynamic? ticks,
+    dynamic ticks,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>

@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cashier_receive.json.
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
@@ -21,7 +22,7 @@ class CashierResponse extends Response {
   /// Creates an instance from JSON.
   factory CashierResponse.fromJson(Map<String, dynamic> json) =>
       CashierResponse(
-        cashier: json['cashier'] as dynamic?,
+        cashier: json['cashier'] as dynamic,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
         msgType: json['msg_type'] as String?,
@@ -35,7 +36,7 @@ class CashierResponse extends Response {
   /// - `ASK_CURRENCY`: API call `set_account_currency`
   /// - `ASK_EMAIL_VERIFY`: API call `verify_email`
   /// - `ASK_FIX_DETAILS`: API call `set_settings`
-  final dynamic? cashier;
+  final dynamic cashier;
 
   /// Converts this instance to JSON
   @override
@@ -50,7 +51,7 @@ class CashierResponse extends Response {
   /// Creates a copy of instance with given parameters
   @override
   CashierResponse copyWith({
-    dynamic? cashier,
+    dynamic cashier,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,

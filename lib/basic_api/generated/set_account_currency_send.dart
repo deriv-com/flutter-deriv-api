@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_account_currency_send.json.
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 

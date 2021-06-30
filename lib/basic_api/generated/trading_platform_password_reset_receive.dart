@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_platform_password_reset_receive.json.
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 

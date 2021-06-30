@@ -114,6 +114,7 @@ class APIBuilder extends Builder {
         DartFormatter().format(
           '''
             /// Generated automatically from ${buildStep.inputId}.
+            // ignore_for_file: always_put_required_named_parameters_first
 
             import '../${schemaType == 'send' ? 'request' : 'response'}.dart';
             /// ${ReCase(classFullName).sentenceCase} class.
@@ -126,8 +127,8 @@ class APIBuilder extends Builder {
               
               ${_getFromJsonMethod(classFullName, schemaType, schema, properties)}
               
-              ${_getProperties(schema, properties)}
-              ${_getToJsonMethod(schemaType, schema, properties)}
+              ${_getProperties(schema, schemaType, properties)}
+              ${_getToJsonMethod(schema, schemaType, properties)}
               ${_getCopyWithMethod(schema, schemaType, classFullName, properties)}
               
               /// Override equatable class.
@@ -173,6 +174,7 @@ class APIBuilder extends Builder {
 
   static String _getProperties(
     JsonSchema schema,
+    String schemaType,
     List<String> properties,
   ) =>
       properties
@@ -182,11 +184,12 @@ class APIBuilder extends Builder {
         (String key) {
           final String name = ReCase(key).camelCase;
           final JsonSchema property = schema.properties[key]!;
-          final String? type = _getPropertyType(key, property);
+          final String type = _getPropertyType(key, property);
+          final bool isDynamic = type == 'dynamic';
 
           return '''
             /// ${_preparePropertyDescription(type == 'bool', property.description)}
-            final ${type ?? 'dynamic'}? $name;
+            final $type${isDynamic ? '' : '?'} $name;
           ''';
         },
       ).join('\n');
@@ -212,7 +215,7 @@ class APIBuilder extends Builder {
               )
           : description!.replaceAll('\n', '\n/// ');
 
-  static String? _getPropertyType(
+  static String _getPropertyType(
     String key,
     JsonSchema property,
   ) {
@@ -227,7 +230,7 @@ class APIBuilder extends Builder {
 
         return 'List<${typeMap[itemType]}>';
       } else {
-        return typeMap[propertySchemaType!];
+        return typeMap[propertySchemaType!] ?? 'dynamic';
       }
     }
   }
@@ -271,30 +274,31 @@ class APIBuilder extends Builder {
               .map((String key) {
             final String name = ReCase(key).camelCase;
             final JsonSchema property = schema.properties[key]!;
-            final String? type = _getPropertyType(key, property);
+            final String type = _getPropertyType(key, property);
+            final bool isDynamic = type == 'dynamic';
 
             if (type == 'bool') {
               return '$name: json[\'$key\'] == null ? null : json[\'$key\'] == 1,';
-            } else if (type!.contains('List')) {
+            } else if (type.contains('List')) {
               final String arrayType = _getArrayType(type);
 
               return arrayType == 'dynamic'
-                  ? '$name: json[\'$key\'] as $type?,'
+                  ? '$name: json[\'$key\'] as $type${isDynamic ? '' : '?'},'
                   : '''
                       $name: (json['$key'] as List<dynamic>?)
                         ?.map<$arrayType>((dynamic item) => item as $arrayType)
                         .toList(),
                     ''';
             } else {
-              return '$name: json[\'$key\'] as $type?,';
+              return '$name: json[\'$key\'] as $type${isDynamic ? '' : '?'},';
             }
           }).join(),
         )
         ..write('${_getFromJsonMethodCommonFields(schemaType == 'send')});');
 
   static StringBuffer _getToJsonMethod(
-    String? schemaType,
     JsonSchema schema,
+    String schemaType,
     List<String> properties,
   ) =>
       StringBuffer(
@@ -311,7 +315,7 @@ class APIBuilder extends Builder {
               .map((String key) {
             final String name = ReCase(key).camelCase;
             final JsonSchema property = schema.properties[key]!;
-            final String? type = _getPropertyType(key, property);
+            final String type = _getPropertyType(key, property);
 
             return '\'$key\': $name${type == 'bool' ? ' == null ? null : $name! ? 1 : 0' : ''},';
           }).join(),
@@ -361,9 +365,10 @@ class APIBuilder extends Builder {
           (String key) {
             final String name = ReCase(key).camelCase;
             final JsonSchema property = schema.properties[key]!;
-            final String? type = _getPropertyType(key, property);
+            final String type = _getPropertyType(key, property);
+            final bool isDynamic = type == 'dynamic';
 
-            return '$type? $name';
+            return '$type${isDynamic ? '' : '?'} $name';
           },
         ).join(', '),
       )

@@ -1,4 +1,5 @@
 /// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_all_send.json.
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
@@ -18,13 +19,13 @@ class ForgetAllRequest extends Request {
   /// Creates an instance from JSON.
   factory ForgetAllRequest.fromJson(Map<String, dynamic> json) =>
       ForgetAllRequest(
-        forgetAll: json['forget_all'] as dynamic?,
+        forgetAll: json['forget_all'] as dynamic,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
 
   /// Cancel all streams by type. The value can be either a single type e.g. `"ticks"`, or an array of multiple types e.g. `["candles", "ticks"]`.
-  final dynamic? forgetAll;
+  final dynamic forgetAll;
 
   /// Converts this instance to JSON
   @override
@@ -37,7 +38,7 @@ class ForgetAllRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ForgetAllRequest copyWith({
-    dynamic? forgetAll,
+    dynamic forgetAll,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
