@@ -31,6 +31,7 @@ class HttpClient {
 
     if (response.statusCode ~/ 100 != 2) {
       throw HTTPClientException(
+        errorCode: jsonResponse['error_code'],
         statusCode: response.statusCode,
         message: jsonResponse.containsKey('message')
             ? jsonResponse['message']

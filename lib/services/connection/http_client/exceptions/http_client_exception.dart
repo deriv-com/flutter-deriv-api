@@ -4,6 +4,7 @@ class HTTPClientException implements Exception {
   HTTPClientException({
     required this.statusCode,
     required this.message,
+    required this.errorCode,
   });
 
   /// Exception message.
@@ -11,6 +12,9 @@ class HTTPClientException implements Exception {
 
   /// Http status code.
   final int statusCode;
+
+  /// Http error code.
+  final String? errorCode;
 
   @override
   String toString() => '$statusCode HTTP Error Ocurred: $message';
