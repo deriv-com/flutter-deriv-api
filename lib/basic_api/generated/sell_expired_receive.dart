@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_expired_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_expired_receive.json.
 
 import '../response.dart';
 
-/// Sell expired response class
+/// Sell expired response class.
 class SellExpiredResponse extends Response {
-  /// Initialize SellExpiredResponse
+  /// Initialize SellExpiredResponse.
   const SellExpiredResponse({
     this.sellExpired,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class SellExpiredResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SellExpiredResponse.fromJson(Map<String, dynamic> json) =>
       SellExpiredResponse(
         sellExpired: json['sell_expired'] as Map<String, dynamic>?,
@@ -58,7 +58,7 @@ class SellExpiredResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

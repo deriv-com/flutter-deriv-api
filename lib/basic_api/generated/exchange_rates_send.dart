@@ -1,12 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/exchange_rates_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/exchange_rates_send.json.
 
 import '../request.dart';
 
-/// Exchange rates request class
+/// Exchange rates request class.
 class ExchangeRatesRequest extends Request {
-  /// Initialize ExchangeRatesRequest
+  /// Initialize ExchangeRatesRequest.
   const ExchangeRatesRequest({
-    @required this.baseCurrency,
+    required this.baseCurrency,
     this.exchangeRates = true,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -16,7 +16,7 @@ class ExchangeRatesRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ExchangeRatesRequest.fromJson(Map<String, dynamic> json) =>
       ExchangeRatesRequest(
         baseCurrency: json['base_currency'] as String?,
@@ -60,7 +60,7 @@ class ExchangeRatesRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/reality_check_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/reality_check_send.json.
 
 import '../request.dart';
 
-/// Reality check request class
+/// Reality check request class.
 class RealityCheckRequest extends Request {
-  /// Initialize RealityCheckRequest
+  /// Initialize RealityCheckRequest.
   const RealityCheckRequest({
     this.realityCheck = true,
     Map<String, dynamic>? passthrough,
@@ -15,7 +15,7 @@ class RealityCheckRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory RealityCheckRequest.fromJson(Map<String, dynamic> json) =>
       RealityCheckRequest(
         realityCheck:
@@ -52,7 +52,7 @@ class RealityCheckRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

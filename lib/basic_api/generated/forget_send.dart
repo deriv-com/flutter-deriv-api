@@ -1,12 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_send.json.
 
 import '../request.dart';
 
-/// Forget request class
+/// Forget request class.
 class ForgetRequest extends Request {
-  /// Initialize ForgetRequest
+  /// Initialize ForgetRequest.
   const ForgetRequest({
-    @required this.forget,
+    required this.forget,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -15,7 +15,7 @@ class ForgetRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ForgetRequest.fromJson(Map<String, dynamic> json) => ForgetRequest(
         forget: json['forget'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -46,7 +46,7 @@ class ForgetRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

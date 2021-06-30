@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_update_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_update_send.json.
 
 import '../request.dart';
 
-/// P2p advertiser update request class
+/// P2p advertiser update request class.
 class P2pAdvertiserUpdateRequest extends Request {
-  /// Initialize P2pAdvertiserUpdateRequest
+  /// Initialize P2pAdvertiserUpdateRequest.
   const P2pAdvertiserUpdateRequest({
     this.contactInfo,
     this.defaultAdvertDescription,
@@ -20,7 +20,7 @@ class P2pAdvertiserUpdateRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertiserUpdateRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserUpdateRequest(
         contactInfo: json['contact_info'] as String?,
@@ -102,7 +102,7 @@ class P2pAdvertiserUpdateRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/balance_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/balance_send.json.
 
 import '../request.dart';
 
-/// Balance request class
+/// Balance request class.
 class BalanceRequest extends Request {
-  /// Initialize BalanceRequest
+  /// Initialize BalanceRequest.
   const BalanceRequest({
     this.account,
     this.balance = true,
@@ -17,7 +17,7 @@ class BalanceRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory BalanceRequest.fromJson(Map<String, dynamic> json) => BalanceRequest(
         account: json['account'] as String?,
         balance: json['balance'] == null ? null : json['balance'] == 1,
@@ -70,7 +70,7 @@ class BalanceRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

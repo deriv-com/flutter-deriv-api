@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/login_history_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/login_history_receive.json.
 
 import '../response.dart';
 
-/// Login history response class
+/// Login history response class.
 class LoginHistoryResponse extends Response {
-  /// Initialize LoginHistoryResponse
+  /// Initialize LoginHistoryResponse.
   const LoginHistoryResponse({
     this.loginHistory,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class LoginHistoryResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LoginHistoryResponse.fromJson(Map<String, dynamic> json) =>
       LoginHistoryResponse(
         loginHistory: (json['login_history'] as List<dynamic>?)
@@ -61,7 +61,7 @@ class LoginHistoryResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

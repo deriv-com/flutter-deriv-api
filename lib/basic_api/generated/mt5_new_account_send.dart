@@ -1,26 +1,26 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_new_account_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_new_account_send.json.
 
 import '../request.dart';
 
-/// Mt5 new account request class
+/// Mt5 new account request class.
 class Mt5NewAccountRequest extends Request {
-  /// Initialize Mt5NewAccountRequest
+  /// Initialize Mt5NewAccountRequest.
   const Mt5NewAccountRequest({
-    @required this.accountType,
+    required this.accountType,
     this.address,
     this.city,
     this.company,
     this.country,
     this.currency,
     this.dryRun,
-    @required this.email,
+    required this.email,
     this.investPassword,
-    @required this.leverage,
-    @required this.mainPassword,
+    required this.leverage,
+    required this.mainPassword,
     this.mt5AccountCategory,
     this.mt5AccountType,
     this.mt5NewAccount = true,
-    @required this.name,
+    required this.name,
     this.phone,
     this.phonePassword,
     this.server,
@@ -34,7 +34,7 @@ class Mt5NewAccountRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>
       Mt5NewAccountRequest(
         accountType: json['account_type'] as String?,
@@ -209,7 +209,7 @@ class Mt5NewAccountRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

@@ -1,12 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_stop_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_stop_send.json.
 
 import '../request.dart';
 
-/// Copy stop request class
+/// Copy stop request class.
 class CopyStopRequest extends Request {
-  /// Initialize CopyStopRequest
+  /// Initialize CopyStopRequest.
   const CopyStopRequest({
-    @required this.copyStop,
+    required this.copyStop,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -15,7 +15,7 @@ class CopyStopRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CopyStopRequest.fromJson(Map<String, dynamic> json) =>
       CopyStopRequest(
         copyStop: json['copy_stop'] as String?,
@@ -47,7 +47,7 @@ class CopyStopRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

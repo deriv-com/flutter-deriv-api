@@ -1,12 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_account_currency_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_account_currency_send.json.
 
 import '../request.dart';
 
-/// Set account currency request class
+/// Set account currency request class.
 class SetAccountCurrencyRequest extends Request {
-  /// Initialize SetAccountCurrencyRequest
+  /// Initialize SetAccountCurrencyRequest.
   const SetAccountCurrencyRequest({
-    @required this.setAccountCurrency,
+    required this.setAccountCurrency,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -15,7 +15,7 @@ class SetAccountCurrencyRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SetAccountCurrencyRequest.fromJson(Map<String, dynamic> json) =>
       SetAccountCurrencyRequest(
         setAccountCurrency: json['set_account_currency'] as String?,
@@ -47,7 +47,7 @@ class SetAccountCurrencyRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

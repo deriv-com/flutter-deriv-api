@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/verify_email_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/verify_email_receive.json.
 
 import '../response.dart';
 
-/// Verify email response class
+/// Verify email response class.
 class VerifyEmailResponse extends Response {
-  /// Initialize VerifyEmailResponse
+  /// Initialize VerifyEmailResponse.
   const VerifyEmailResponse({
     this.verifyEmail,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class VerifyEmailResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory VerifyEmailResponse.fromJson(Map<String, dynamic> json) =>
       VerifyEmailResponse(
         verifyEmail:
@@ -63,7 +63,7 @@ class VerifyEmailResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

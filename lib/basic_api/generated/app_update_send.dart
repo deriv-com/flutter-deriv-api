@@ -1,20 +1,20 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_update_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_update_send.json.
 
 import '../request.dart';
 
-/// App update request class
+/// App update request class.
 class AppUpdateRequest extends Request {
-  /// Initialize AppUpdateRequest
+  /// Initialize AppUpdateRequest.
   const AppUpdateRequest({
     this.appMarkupPercentage,
-    @required this.appUpdate,
+    required this.appUpdate,
     this.appstore,
     this.github,
     this.googleplay,
     this.homepage,
-    @required this.name,
-    @required this.redirectUri,
-    @required this.scopes,
+    required this.name,
+    required this.redirectUri,
+    required this.scopes,
     this.verificationUri,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -24,7 +24,7 @@ class AppUpdateRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppUpdateRequest.fromJson(Map<String, dynamic> json) =>
       AppUpdateRequest(
         appMarkupPercentage: json['app_markup_percentage'] as num?,
@@ -121,7 +121,7 @@ class AppUpdateRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

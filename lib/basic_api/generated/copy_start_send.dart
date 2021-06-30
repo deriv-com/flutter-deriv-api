@@ -1,13 +1,13 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_start_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_start_send.json.
 
 import '../request.dart';
 
-/// Copy start request class
+/// Copy start request class.
 class CopyStartRequest extends Request {
-  /// Initialize CopyStartRequest
+  /// Initialize CopyStartRequest.
   const CopyStartRequest({
     this.assets,
-    @required this.copyStart,
+    required this.copyStart,
     this.maxTradeStake,
     this.minTradeStake,
     this.tradeTypes,
@@ -19,7 +19,7 @@ class CopyStartRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CopyStartRequest.fromJson(Map<String, dynamic> json) =>
       CopyStartRequest(
         assets: json['assets'] as dynamic?,
@@ -79,7 +79,7 @@ class CopyStartRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

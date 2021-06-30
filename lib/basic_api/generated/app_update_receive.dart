@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_update_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_update_receive.json.
 
 import '../response.dart';
 
-/// App update response class
+/// App update response class.
 class AppUpdateResponse extends Response {
-  /// Initialize AppUpdateResponse
+  /// Initialize AppUpdateResponse.
   const AppUpdateResponse({
     this.appUpdate,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class AppUpdateResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppUpdateResponse.fromJson(Map<String, dynamic> json) =>
       AppUpdateResponse(
         appUpdate: json['app_update'] as Map<String, dynamic>?,
@@ -58,7 +58,7 @@ class AppUpdateResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

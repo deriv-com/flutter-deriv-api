@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/states_list_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/states_list_receive.json.
 
 import '../response.dart';
 
-/// States list response class
+/// States list response class.
 class StatesListResponse extends Response {
-  /// Initialize StatesListResponse
+  /// Initialize StatesListResponse.
   const StatesListResponse({
     this.statesList,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class StatesListResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory StatesListResponse.fromJson(Map<String, dynamic> json) =>
       StatesListResponse(
         statesList: (json['states_list'] as List<dynamic>?)
@@ -61,7 +61,7 @@ class StatesListResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

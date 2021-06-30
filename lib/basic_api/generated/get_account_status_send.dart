@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_account_status_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_account_status_send.json.
 
 import '../request.dart';
 
-/// Get account status request class
+/// Get account status request class.
 class GetAccountStatusRequest extends Request {
-  /// Initialize GetAccountStatusRequest
+  /// Initialize GetAccountStatusRequest.
   const GetAccountStatusRequest({
     this.getAccountStatus = true,
     Map<String, dynamic>? passthrough,
@@ -15,7 +15,7 @@ class GetAccountStatusRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetAccountStatusRequest.fromJson(Map<String, dynamic> json) =>
       GetAccountStatusRequest(
         getAccountStatus: json['get_account_status'] == null
@@ -53,7 +53,7 @@ class GetAccountStatusRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

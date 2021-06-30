@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/portfolio_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/portfolio_receive.json.
 
 import '../response.dart';
 
-/// Portfolio response class
+/// Portfolio response class.
 class PortfolioResponse extends Response {
-  /// Initialize PortfolioResponse
+  /// Initialize PortfolioResponse.
   const PortfolioResponse({
     this.portfolio,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class PortfolioResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PortfolioResponse.fromJson(Map<String, dynamic> json) =>
       PortfolioResponse(
         portfolio: json['portfolio'] as Map<String, dynamic>?,
@@ -58,7 +58,7 @@ class PortfolioResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

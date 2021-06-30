@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/authorize_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/authorize_receive.json.
 
 import '../response.dart';
 
-/// Authorize response class
+/// Authorize response class.
 class AuthorizeResponse extends Response {
-  /// Initialize AuthorizeResponse
+  /// Initialize AuthorizeResponse.
   const AuthorizeResponse({
     this.authorize,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class AuthorizeResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AuthorizeResponse.fromJson(Map<String, dynamic> json) =>
       AuthorizeResponse(
         authorize: json['authorize'] as Map<String, dynamic>?,
@@ -58,7 +58,7 @@ class AuthorizeResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

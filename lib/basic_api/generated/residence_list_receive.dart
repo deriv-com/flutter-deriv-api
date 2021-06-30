@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/residence_list_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/residence_list_receive.json.
 
 import '../response.dart';
 
-/// Residence list response class
+/// Residence list response class.
 class ResidenceListResponse extends Response {
-  /// Initialize ResidenceListResponse
+  /// Initialize ResidenceListResponse.
   const ResidenceListResponse({
     this.residenceList,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class ResidenceListResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ResidenceListResponse.fromJson(Map<String, dynamic> json) =>
       ResidenceListResponse(
         residenceList: (json['residence_list'] as List<dynamic>?)
@@ -61,7 +61,7 @@ class ResidenceListResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

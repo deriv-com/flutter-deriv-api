@@ -1,12 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_confirm_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_confirm_send.json.
 
 import '../request.dart';
 
-/// P2p order confirm request class
+/// P2p order confirm request class.
 class P2pOrderConfirmRequest extends Request {
-  /// Initialize P2pOrderConfirmRequest
+  /// Initialize P2pOrderConfirmRequest.
   const P2pOrderConfirmRequest({
-    @required this.id,
+    required this.id,
     this.p2pOrderConfirm = true,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -16,7 +16,7 @@ class P2pOrderConfirmRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pOrderConfirmRequest.fromJson(Map<String, dynamic> json) =>
       P2pOrderConfirmRequest(
         id: json['id'] as String?,
@@ -61,7 +61,7 @@ class P2pOrderConfirmRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

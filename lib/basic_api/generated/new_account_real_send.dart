@@ -1,15 +1,15 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_send.json.
 
 import '../request.dart';
 
-/// New account real request class
+/// New account real request class.
 class NewAccountRealRequest extends Request {
-  /// Initialize NewAccountRealRequest
+  /// Initialize NewAccountRealRequest.
   const NewAccountRealRequest({
     this.accountOpeningReason,
     this.accountTurnover,
     this.addressCity,
-    @required this.addressLine1,
+    required this.addressLine1,
     this.addressLine2,
     this.addressPostcode,
     this.addressState,
@@ -17,14 +17,14 @@ class NewAccountRealRequest extends Request {
     this.citizen,
     this.clientType,
     this.currency,
-    @required this.dateOfBirth,
-    @required this.firstName,
-    @required this.lastName,
+    required this.dateOfBirth,
+    required this.firstName,
+    required this.lastName,
     this.newAccountReal = true,
     this.nonPepDeclaration,
     this.phone,
     this.placeOfBirth,
-    @required this.residence,
+    required this.residence,
     this.salutation,
     this.secretAnswer,
     this.secretQuestion,
@@ -38,7 +38,7 @@ class NewAccountRealRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory NewAccountRealRequest.fromJson(Map<String, dynamic> json) =>
       NewAccountRealRequest(
         accountOpeningReason: json['account_opening_reason'] as String?,
@@ -238,7 +238,7 @@ class NewAccountRealRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

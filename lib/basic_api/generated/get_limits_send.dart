@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_send.json.
 
 import '../request.dart';
 
-/// Get limits request class
+/// Get limits request class.
 class GetLimitsRequest extends Request {
-  /// Initialize GetLimitsRequest
+  /// Initialize GetLimitsRequest.
   const GetLimitsRequest({
     this.getLimits = true,
     Map<String, dynamic>? passthrough,
@@ -15,7 +15,7 @@ class GetLimitsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetLimitsRequest.fromJson(Map<String, dynamic> json) =>
       GetLimitsRequest(
         getLimits: json['get_limits'] == null ? null : json['get_limits'] == 1,
@@ -51,7 +51,7 @@ class GetLimitsRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

@@ -1,13 +1,13 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_send.json.
 
 import '../request.dart';
 
-/// Sell request class
+/// Sell request class.
 class SellRequest extends Request {
-  /// Initialize SellRequest
+  /// Initialize SellRequest.
   const SellRequest({
-    @required this.price,
-    @required this.sell,
+    required this.price,
+    required this.sell,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -16,7 +16,7 @@ class SellRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SellRequest.fromJson(Map<String, dynamic> json) => SellRequest(
         price: json['price'] as num?,
         sell: json['sell'] as int?,
@@ -54,7 +54,7 @@ class SellRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

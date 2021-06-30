@@ -1,12 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/landing_company_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/landing_company_send.json.
 
 import '../request.dart';
 
-/// Landing company request class
+/// Landing company request class.
 class LandingCompanyRequest extends Request {
-  /// Initialize LandingCompanyRequest
+  /// Initialize LandingCompanyRequest.
   const LandingCompanyRequest({
-    @required this.landingCompany,
+    required this.landingCompany,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -15,7 +15,7 @@ class LandingCompanyRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LandingCompanyRequest.fromJson(Map<String, dynamic> json) =>
       LandingCompanyRequest(
         landingCompany: json['landing_company'] as String?,
@@ -47,7 +47,7 @@ class LandingCompanyRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

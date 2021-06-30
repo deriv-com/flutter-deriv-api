@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_history_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_history_receive.json.
 
 import '../response.dart';
 
-/// Contract update history response class
+/// Contract update history response class.
 class ContractUpdateHistoryResponse extends Response {
-  /// Initialize ContractUpdateHistoryResponse
+  /// Initialize ContractUpdateHistoryResponse.
   const ContractUpdateHistoryResponse({
     this.contractUpdateHistory,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class ContractUpdateHistoryResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ContractUpdateHistoryResponse.fromJson(Map<String, dynamic> json) =>
       ContractUpdateHistoryResponse(
         contractUpdateHistory:
@@ -63,7 +63,7 @@ class ContractUpdateHistoryResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

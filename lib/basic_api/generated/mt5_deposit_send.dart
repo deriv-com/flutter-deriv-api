@@ -1,15 +1,15 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_send.json.
 
 import '../request.dart';
 
-/// Mt5 deposit request class
+/// Mt5 deposit request class.
 class Mt5DepositRequest extends Request {
-  /// Initialize Mt5DepositRequest
+  /// Initialize Mt5DepositRequest.
   const Mt5DepositRequest({
-    @required this.amount,
-    @required this.fromBinary,
+    required this.amount,
+    required this.fromBinary,
     this.mt5Deposit = true,
-    @required this.toMt5,
+    required this.toMt5,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -18,7 +18,7 @@ class Mt5DepositRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>
       Mt5DepositRequest(
         amount: json['amount'] as num?,
@@ -76,7 +76,7 @@ class Mt5DepositRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

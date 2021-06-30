@@ -1,12 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_info_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_info_send.json.
 
 import '../request.dart';
 
-/// P2p advert info request class
+/// P2p advert info request class.
 class P2pAdvertInfoRequest extends Request {
-  /// Initialize P2pAdvertInfoRequest
+  /// Initialize P2pAdvertInfoRequest.
   const P2pAdvertInfoRequest({
-    @required this.id,
+    required this.id,
     this.p2pAdvertInfo = true,
     this.useClientLimits,
     Map<String, dynamic>? passthrough,
@@ -17,7 +17,7 @@ class P2pAdvertInfoRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertInfoRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertInfoRequest(
         id: json['id'] as String?,
@@ -75,7 +75,7 @@ class P2pAdvertInfoRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

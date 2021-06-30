@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_chat_create_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_chat_create_receive.json.
 
 import '../response.dart';
 
-/// P2p chat create response class
+/// P2p chat create response class.
 class P2pChatCreateResponse extends Response {
-  /// Initialize P2pChatCreateResponse
+  /// Initialize P2pChatCreateResponse.
   const P2pChatCreateResponse({
     this.p2pChatCreate,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class P2pChatCreateResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pChatCreateResponse.fromJson(Map<String, dynamic> json) =>
       P2pChatCreateResponse(
         p2pChatCreate: json['p2p_chat_create'] as Map<String, dynamic>?,
@@ -58,7 +58,7 @@ class P2pChatCreateResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

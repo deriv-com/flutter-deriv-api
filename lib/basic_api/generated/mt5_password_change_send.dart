@@ -1,15 +1,15 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_change_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_change_send.json.
 
 import '../request.dart';
 
-/// Mt5 password change request class
+/// Mt5 password change request class.
 class Mt5PasswordChangeRequest extends Request {
-  /// Initialize Mt5PasswordChangeRequest
+  /// Initialize Mt5PasswordChangeRequest.
   const Mt5PasswordChangeRequest({
-    @required this.login,
+    required this.login,
     this.mt5PasswordChange = true,
-    @required this.newPassword,
-    @required this.oldPassword,
+    required this.newPassword,
+    required this.oldPassword,
     this.passwordType,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -19,7 +19,7 @@ class Mt5PasswordChangeRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5PasswordChangeRequest.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordChangeRequest(
         login: json['login'] as String?,
@@ -85,7 +85,7 @@ class Mt5PasswordChangeRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

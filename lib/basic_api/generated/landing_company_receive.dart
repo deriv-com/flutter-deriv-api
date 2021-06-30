@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/landing_company_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/landing_company_receive.json.
 
 import '../response.dart';
 
-/// Landing company response class
+/// Landing company response class.
 class LandingCompanyResponse extends Response {
-  /// Initialize LandingCompanyResponse
+  /// Initialize LandingCompanyResponse.
   const LandingCompanyResponse({
     this.landingCompany,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class LandingCompanyResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LandingCompanyResponse.fromJson(Map<String, dynamic> json) =>
       LandingCompanyResponse(
         landingCompany: json['landing_company'] as Map<String, dynamic>?,
@@ -58,7 +58,7 @@ class LandingCompanyResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

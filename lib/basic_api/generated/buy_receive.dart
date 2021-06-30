@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_receive.json.
 
 import '../response.dart';
 
-/// Buy response class
+/// Buy response class.
 class BuyResponse extends Response {
-  /// Initialize BuyResponse
+  /// Initialize BuyResponse.
   const BuyResponse({
     this.buy,
     this.subscription,
@@ -19,7 +19,7 @@ class BuyResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory BuyResponse.fromJson(Map<String, dynamic> json) => BuyResponse(
         buy: json['buy'] as Map<String, dynamic>?,
         subscription: json['subscription'] as Map<String, dynamic>?,
@@ -65,7 +65,7 @@ class BuyResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

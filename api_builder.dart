@@ -113,12 +113,12 @@ class APIBuilder extends Builder {
         buildStep.inputId.changeExtension('.dart'),
         DartFormatter().format(
           '''
-            /// Generated automatically from ${buildStep.inputId}
+            /// Generated automatically from ${buildStep.inputId}.
 
             import '../${schemaType == 'send' ? 'request' : 'response'}.dart';
-            /// ${ReCase(classFullName).sentenceCase} class
+            /// ${ReCase(classFullName).sentenceCase} class.
             class $classFullName extends ${schemaType == 'send' ? 'Request' : 'Response'} {
-              /// Initialize $classFullName
+              /// Initialize $classFullName.
               const $classFullName({
                   ${_getConstructorParameters(methodName, schema, schemaType, properties)}
                   ${_getSuperClassParameters(schemaType)},
@@ -130,7 +130,7 @@ class APIBuilder extends Builder {
               ${_getToJsonMethod(schemaType, schema, properties)}
               ${_getCopyWithMethod(schema, schemaType, classFullName, properties)}
               
-              /// Override equatable class
+              /// Override equatable class.
               @override
               List<Object> get props => ${_getEquatableFields(classFullName, properties)};
             }
@@ -165,7 +165,7 @@ class APIBuilder extends Builder {
           }
         }
 
-        return '${_isFieldRequired(key, schemaType, property) ? '@required ' : ''} this.${ReCase(key).camelCase}';
+        return '${_isFieldRequired(key, schemaType, property) ? 'required ' : ''} this.${ReCase(key).camelCase}';
       },
     ).join(', ');
     return fields.isEmpty ? result : '$result , ';
@@ -260,7 +260,7 @@ class APIBuilder extends Builder {
   ) =>
       StringBuffer(
         '''
-          /// Creates an instance from JSON
+          /// Creates an instance from JSON.
           factory $classFullName.fromJson(Map<String, dynamic> json) => $classFullName(
         ''',
       )

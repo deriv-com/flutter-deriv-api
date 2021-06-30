@@ -1,18 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_send.json.
 
 import '../request.dart';
 
-/// Paymentagent withdraw request class
+/// Paymentagent withdraw request class.
 class PaymentagentWithdrawRequest extends Request {
-  /// Initialize PaymentagentWithdrawRequest
+  /// Initialize PaymentagentWithdrawRequest.
   const PaymentagentWithdrawRequest({
-    @required this.amount,
-    @required this.currency,
+    required this.amount,
+    required this.currency,
     this.description,
     this.dryRun,
-    @required this.paymentagentLoginid,
+    required this.paymentagentLoginid,
     this.paymentagentWithdraw = true,
-    @required this.verificationCode,
+    required this.verificationCode,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -21,7 +21,7 @@ class PaymentagentWithdrawRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentagentWithdrawRequest.fromJson(Map<String, dynamic> json) =>
       PaymentagentWithdrawRequest(
         amount: json['amount'] as num?,
@@ -105,7 +105,7 @@ class PaymentagentWithdrawRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

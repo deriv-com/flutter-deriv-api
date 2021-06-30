@@ -1,13 +1,13 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/authorize_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/authorize_send.json.
 
 import '../request.dart';
 
-/// Authorize request class
+/// Authorize request class.
 class AuthorizeRequest extends Request {
-  /// Initialize AuthorizeRequest
+  /// Initialize AuthorizeRequest.
   const AuthorizeRequest({
     this.addToLoginHistory,
-    @required this.authorize,
+    required this.authorize,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -16,7 +16,7 @@ class AuthorizeRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AuthorizeRequest.fromJson(Map<String, dynamic> json) =>
       AuthorizeRequest(
         addToLoginHistory: json['add_to_login_history'] as int?,
@@ -55,7 +55,7 @@ class AuthorizeRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

@@ -1,12 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/states_list_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/states_list_send.json.
 
 import '../request.dart';
 
-/// States list request class
+/// States list request class.
 class StatesListRequest extends Request {
-  /// Initialize StatesListRequest
+  /// Initialize StatesListRequest.
   const StatesListRequest({
-    @required this.statesList,
+    required this.statesList,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -15,7 +15,7 @@ class StatesListRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory StatesListRequest.fromJson(Map<String, dynamic> json) =>
       StatesListRequest(
         statesList: json['states_list'] as String?,
@@ -47,7 +47,7 @@ class StatesListRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_self_exclusion_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_self_exclusion_send.json.
 
 import '../request.dart';
 
-/// Get self exclusion request class
+/// Get self exclusion request class.
 class GetSelfExclusionRequest extends Request {
-  /// Initialize GetSelfExclusionRequest
+  /// Initialize GetSelfExclusionRequest.
   const GetSelfExclusionRequest({
     this.getSelfExclusion = true,
     Map<String, dynamic>? passthrough,
@@ -15,7 +15,7 @@ class GetSelfExclusionRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       GetSelfExclusionRequest(
         getSelfExclusion: json['get_self_exclusion'] == null
@@ -53,7 +53,7 @@ class GetSelfExclusionRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

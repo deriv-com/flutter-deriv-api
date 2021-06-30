@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_new_account_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_new_account_receive.json.
 
 import '../response.dart';
 
-/// Mt5 new account response class
+/// Mt5 new account response class.
 class Mt5NewAccountResponse extends Response {
-  /// Initialize Mt5NewAccountResponse
+  /// Initialize Mt5NewAccountResponse.
   const Mt5NewAccountResponse({
     this.mt5NewAccount,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class Mt5NewAccountResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5NewAccountResponse.fromJson(Map<String, dynamic> json) =>
       Mt5NewAccountResponse(
         mt5NewAccount: json['mt5_new_account'] as Map<String, dynamic>?,
@@ -58,7 +58,7 @@ class Mt5NewAccountResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

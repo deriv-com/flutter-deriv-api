@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/logout_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/logout_receive.json.
 
 import '../response.dart';
 
-/// Logout response class
+/// Logout response class.
 class LogoutResponse extends Response {
-  /// Initialize LogoutResponse
+  /// Initialize LogoutResponse.
   const LogoutResponse({
     this.logout,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class LogoutResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LogoutResponse.fromJson(Map<String, dynamic> json) => LogoutResponse(
         logout: json['logout'] as int?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -57,7 +57,7 @@ class LogoutResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

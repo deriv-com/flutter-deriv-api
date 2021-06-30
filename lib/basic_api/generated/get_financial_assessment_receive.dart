@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_financial_assessment_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_financial_assessment_receive.json.
 
 import '../response.dart';
 
-/// Get financial assessment response class
+/// Get financial assessment response class.
 class GetFinancialAssessmentResponse extends Response {
-  /// Initialize GetFinancialAssessmentResponse
+  /// Initialize GetFinancialAssessmentResponse.
   const GetFinancialAssessmentResponse({
     this.getFinancialAssessment,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class GetFinancialAssessmentResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetFinancialAssessmentResponse.fromJson(Map<String, dynamic> json) =>
       GetFinancialAssessmentResponse(
         getFinancialAssessment:
@@ -60,7 +60,7 @@ class GetFinancialAssessmentResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

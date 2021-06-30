@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_transfer_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_transfer_receive.json.
 
 import '../response.dart';
 
-/// Paymentagent transfer response class
+/// Paymentagent transfer response class.
 class PaymentagentTransferResponse extends Response {
-  /// Initialize PaymentagentTransferResponse
+  /// Initialize PaymentagentTransferResponse.
   const PaymentagentTransferResponse({
     this.clientToFullName,
     this.clientToLoginid,
@@ -21,7 +21,7 @@ class PaymentagentTransferResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentagentTransferResponse.fromJson(Map<String, dynamic> json) =>
       PaymentagentTransferResponse(
         clientToFullName: json['client_to_full_name'] as String?,
@@ -82,7 +82,7 @@ class PaymentagentTransferResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

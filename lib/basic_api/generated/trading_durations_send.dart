@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_durations_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_durations_send.json.
 
 import '../request.dart';
 
-/// Trading durations request class
+/// Trading durations request class.
 class TradingDurationsRequest extends Request {
-  /// Initialize TradingDurationsRequest
+  /// Initialize TradingDurationsRequest.
   const TradingDurationsRequest({
     this.landingCompany,
     this.tradingDurations = true,
@@ -16,7 +16,7 @@ class TradingDurationsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>
       TradingDurationsRequest(
         landingCompany: json['landing_company'] as String?,
@@ -61,7 +61,7 @@ class TradingDurationsRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/oauth_apps_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/oauth_apps_send.json.
 
 import '../request.dart';
 
-/// Oauth apps request class
+/// Oauth apps request class.
 class OauthAppsRequest extends Request {
-  /// Initialize OauthAppsRequest
+  /// Initialize OauthAppsRequest.
   const OauthAppsRequest({
     this.oauthApps = true,
     Map<String, dynamic>? passthrough,
@@ -15,7 +15,7 @@ class OauthAppsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory OauthAppsRequest.fromJson(Map<String, dynamic> json) =>
       OauthAppsRequest(
         oauthApps: json['oauth_apps'] == null ? null : json['oauth_apps'] == 1,
@@ -51,7 +51,7 @@ class OauthAppsRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

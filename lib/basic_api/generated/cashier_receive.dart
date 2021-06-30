@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cashier_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cashier_receive.json.
 
 import '../response.dart';
 
-/// Cashier response class
+/// Cashier response class.
 class CashierResponse extends Response {
-  /// Initialize CashierResponse
+  /// Initialize CashierResponse.
   const CashierResponse({
     this.cashier,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class CashierResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CashierResponse.fromJson(Map<String, dynamic> json) =>
       CashierResponse(
         cashier: json['cashier'] as dynamic?,
@@ -64,7 +64,7 @@ class CashierResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

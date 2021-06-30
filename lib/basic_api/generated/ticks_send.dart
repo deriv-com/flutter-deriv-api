@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_send.json.
 
 import '../request.dart';
 
-/// Ticks request class
+/// Ticks request class.
 class TicksRequest extends Request {
-  /// Initialize TicksRequest
+  /// Initialize TicksRequest.
   const TicksRequest({
     this.subscribe,
     this.ticks,
@@ -16,7 +16,7 @@ class TicksRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TicksRequest.fromJson(Map<String, dynamic> json) => TicksRequest(
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         ticks: json['ticks'] as dynamic?,
@@ -58,7 +58,7 @@ class TicksRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[ticks!];
 }

@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_login_list_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_login_list_receive.json.
 
 import '../response.dart';
 
-/// Mt5 login list response class
+/// Mt5 login list response class.
 class Mt5LoginListResponse extends Response {
-  /// Initialize Mt5LoginListResponse
+  /// Initialize Mt5LoginListResponse.
   const Mt5LoginListResponse({
     this.mt5LoginList,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class Mt5LoginListResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5LoginListResponse.fromJson(Map<String, dynamic> json) =>
       Mt5LoginListResponse(
         mt5LoginList: (json['mt5_login_list'] as List<dynamic>?)
@@ -61,7 +61,7 @@ class Mt5LoginListResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

@@ -1,13 +1,13 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_create_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_create_send.json.
 
 import '../request.dart';
 
-/// P2p order create request class
+/// P2p order create request class.
 class P2pOrderCreateRequest extends Request {
-  /// Initialize P2pOrderCreateRequest
+  /// Initialize P2pOrderCreateRequest.
   const P2pOrderCreateRequest({
-    @required this.advertId,
-    @required this.amount,
+    required this.advertId,
+    required this.amount,
     this.contactInfo,
     this.p2pOrderCreate = true,
     this.paymentInfo,
@@ -20,7 +20,7 @@ class P2pOrderCreateRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pOrderCreateRequest.fromJson(Map<String, dynamic> json) =>
       P2pOrderCreateRequest(
         advertId: json['advert_id'] as String?,
@@ -97,7 +97,7 @@ class P2pOrderCreateRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

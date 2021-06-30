@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_servers_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_servers_send.json.
 
 import '../request.dart';
 
-/// Trading servers request class
+/// Trading servers request class.
 class TradingServersRequest extends Request {
-  /// Initialize TradingServersRequest
+  /// Initialize TradingServersRequest.
   const TradingServersRequest({
     this.accountType,
     this.environment,
@@ -19,7 +19,7 @@ class TradingServersRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradingServersRequest.fromJson(Map<String, dynamic> json) =>
       TradingServersRequest(
         accountType: json['account_type'] as String?,
@@ -85,7 +85,7 @@ class TradingServersRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

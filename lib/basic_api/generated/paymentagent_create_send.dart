@@ -1,22 +1,22 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_create_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_create_send.json.
 
 import '../request.dart';
 
-/// Paymentagent create request class
+/// Paymentagent create request class.
 class PaymentagentCreateRequest extends Request {
-  /// Initialize PaymentagentCreateRequest
+  /// Initialize PaymentagentCreateRequest.
   const PaymentagentCreateRequest({
     this.affiliateId,
-    @required this.codeOfConductApproval,
-    @required this.commissionDeposit,
-    @required this.commissionWithdrawal,
-    @required this.email,
+    required this.codeOfConductApproval,
+    required this.commissionDeposit,
+    required this.commissionWithdrawal,
+    required this.email,
     this.information,
-    @required this.paymentAgentName,
+    required this.paymentAgentName,
     this.paymentagentCreate = true,
-    @required this.phone,
-    @required this.supportedPaymentMethods,
-    @required this.url,
+    required this.phone,
+    required this.supportedPaymentMethods,
+    required this.url,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -25,7 +25,7 @@ class PaymentagentCreateRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentagentCreateRequest.fromJson(Map<String, dynamic> json) =>
       PaymentagentCreateRequest(
         affiliateId: json['affiliate_id'] as String?,
@@ -138,7 +138,7 @@ class PaymentagentCreateRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

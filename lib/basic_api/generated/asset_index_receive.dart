@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/asset_index_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/asset_index_receive.json.
 
 import '../response.dart';
 
-/// Asset index response class
+/// Asset index response class.
 class AssetIndexResponse extends Response {
-  /// Initialize AssetIndexResponse
+  /// Initialize AssetIndexResponse.
   const AssetIndexResponse({
     this.assetIndex,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class AssetIndexResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AssetIndexResponse.fromJson(Map<String, dynamic> json) =>
       AssetIndexResponse(
         assetIndex: json['asset_index'] as List<dynamic>?,
@@ -58,7 +58,7 @@ class AssetIndexResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

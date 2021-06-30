@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/api_token_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/api_token_send.json.
 
 import '../request.dart';
 
-/// Api token request class
+/// Api token request class.
 class ApiTokenRequest extends Request {
-  /// Initialize ApiTokenRequest
+  /// Initialize ApiTokenRequest.
   const ApiTokenRequest({
     this.apiToken = true,
     this.deleteToken,
@@ -19,7 +19,7 @@ class ApiTokenRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ApiTokenRequest.fromJson(Map<String, dynamic> json) =>
       ApiTokenRequest(
         apiToken: json['api_token'] == null ? null : json['api_token'] == 1,
@@ -92,7 +92,7 @@ class ApiTokenRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

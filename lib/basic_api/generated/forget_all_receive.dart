@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_all_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_all_receive.json.
 
 import '../response.dart';
 
-/// Forget all response class
+/// Forget all response class.
 class ForgetAllResponse extends Response {
-  /// Initialize ForgetAllResponse
+  /// Initialize ForgetAllResponse.
   const ForgetAllResponse({
     this.forgetAll,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class ForgetAllResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ForgetAllResponse.fromJson(Map<String, dynamic> json) =>
       ForgetAllResponse(
         forgetAll: json['forget_all'] as List<dynamic>?,
@@ -58,7 +58,7 @@ class ForgetAllResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

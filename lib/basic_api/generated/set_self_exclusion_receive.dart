@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_self_exclusion_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_self_exclusion_receive.json.
 
 import '../response.dart';
 
-/// Set self exclusion response class
+/// Set self exclusion response class.
 class SetSelfExclusionResponse extends Response {
-  /// Initialize SetSelfExclusionResponse
+  /// Initialize SetSelfExclusionResponse.
   const SetSelfExclusionResponse({
     this.setSelfExclusion,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class SetSelfExclusionResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SetSelfExclusionResponse.fromJson(Map<String, dynamic> json) =>
       SetSelfExclusionResponse(
         setSelfExclusion: json['set_self_exclusion'] as int?,
@@ -58,7 +58,7 @@ class SetSelfExclusionResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

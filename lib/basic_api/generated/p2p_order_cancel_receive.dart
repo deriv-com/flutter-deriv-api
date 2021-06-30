@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_cancel_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_cancel_receive.json.
 
 import '../response.dart';
 
-/// P2p order cancel response class
+/// P2p order cancel response class.
 class P2pOrderCancelResponse extends Response {
-  /// Initialize P2pOrderCancelResponse
+  /// Initialize P2pOrderCancelResponse.
   const P2pOrderCancelResponse({
     this.p2pOrderCancel,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class P2pOrderCancelResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pOrderCancelResponse.fromJson(Map<String, dynamic> json) =>
       P2pOrderCancelResponse(
         p2pOrderCancel: json['p2p_order_cancel'] as Map<String, dynamic>?,
@@ -58,7 +58,7 @@ class P2pOrderCancelResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

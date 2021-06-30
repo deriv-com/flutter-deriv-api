@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_login_list_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_login_list_send.json.
 
 import '../request.dart';
 
-/// Mt5 login list request class
+/// Mt5 login list request class.
 class Mt5LoginListRequest extends Request {
-  /// Initialize Mt5LoginListRequest
+  /// Initialize Mt5LoginListRequest.
   const Mt5LoginListRequest({
     this.mt5LoginList = true,
     Map<String, dynamic>? passthrough,
@@ -15,7 +15,7 @@ class Mt5LoginListRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5LoginListRequest.fromJson(Map<String, dynamic> json) =>
       Mt5LoginListRequest(
         mt5LoginList:
@@ -52,7 +52,7 @@ class Mt5LoginListRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

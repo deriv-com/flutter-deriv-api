@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/website_status_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/website_status_receive.json.
 
 import '../response.dart';
 
-/// Website status response class
+/// Website status response class.
 class WebsiteStatusResponse extends Response {
-  /// Initialize WebsiteStatusResponse
+  /// Initialize WebsiteStatusResponse.
   const WebsiteStatusResponse({
     this.subscription,
     this.websiteStatus,
@@ -19,7 +19,7 @@ class WebsiteStatusResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory WebsiteStatusResponse.fromJson(Map<String, dynamic> json) =>
       WebsiteStatusResponse(
         subscription: json['subscription'] as Map<String, dynamic>?,
@@ -66,7 +66,7 @@ class WebsiteStatusResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

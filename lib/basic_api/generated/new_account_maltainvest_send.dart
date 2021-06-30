@@ -1,16 +1,16 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_maltainvest_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_maltainvest_send.json.
 
 import '../request.dart';
 
-/// New account maltainvest request class
+/// New account maltainvest request class.
 class NewAccountMaltainvestRequest extends Request {
-  /// Initialize NewAccountMaltainvestRequest
+  /// Initialize NewAccountMaltainvestRequest.
   const NewAccountMaltainvestRequest({
-    @required this.acceptRisk,
+    required this.acceptRisk,
     this.accountOpeningReason,
     this.accountTurnover,
-    @required this.addressCity,
-    @required this.addressLine1,
+    required this.addressCity,
+    required this.addressLine1,
     this.addressLine2,
     this.addressPostcode,
     this.addressState,
@@ -21,31 +21,31 @@ class NewAccountMaltainvestRequest extends Request {
     this.cfdTradingFrequency,
     this.citizen,
     this.clientType,
-    @required this.dateOfBirth,
-    @required this.educationLevel,
-    @required this.employmentIndustry,
+    required this.dateOfBirth,
+    required this.educationLevel,
+    required this.employmentIndustry,
     this.employmentStatus,
-    @required this.estimatedWorth,
-    @required this.firstName,
+    required this.estimatedWorth,
+    required this.firstName,
     this.forexTradingExperience,
     this.forexTradingFrequency,
-    @required this.incomeSource,
-    @required this.lastName,
-    @required this.netIncome,
+    required this.incomeSource,
+    required this.lastName,
+    required this.netIncome,
     this.newAccountMaltainvest = true,
     this.nonPepDeclaration,
-    @required this.occupation,
+    required this.occupation,
     this.otherInstrumentsTradingExperience,
     this.otherInstrumentsTradingFrequency,
     this.phone,
     this.placeOfBirth,
-    @required this.residence,
-    @required this.salutation,
+    required this.residence,
+    required this.salutation,
     this.secretAnswer,
     this.secretQuestion,
     this.sourceOfWealth,
-    @required this.taxIdentificationNumber,
-    @required this.taxResidence,
+    required this.taxIdentificationNumber,
+    required this.taxResidence,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -54,7 +54,7 @@ class NewAccountMaltainvestRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory NewAccountMaltainvestRequest.fromJson(Map<String, dynamic> json) =>
       NewAccountMaltainvestRequest(
         acceptRisk:
@@ -383,7 +383,7 @@ class NewAccountMaltainvestRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

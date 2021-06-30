@@ -23,7 +23,6 @@ void main() {
     test('Fetch Price Proposal Test', () async {
       final PriceProposal priceProposal =
           await PriceProposal.fetchPriceForContract(
-        // ignore: missing_required_param
         const ProposalRequest(
           symbol: 'frxUSDJPY',
           durationUnit: 'm',
@@ -33,6 +32,8 @@ void main() {
           basis: 'payout',
           contractType: 'MULTDOWN',
           currency: 'USD',
+          limitOrder: null,
+          cancellation: null,
         ),
       );
 
@@ -46,7 +47,6 @@ void main() {
 
     test('Price Proposal Subscription Test', () async {
       PriceProposal.subscribePriceForContract(
-        // ignore: missing_required_param
         const ProposalRequest(
           symbol: 'frxUSDJPY',
           durationUnit: 'm',
@@ -56,6 +56,8 @@ void main() {
           basis: 'payout',
           contractType: 'MULTDOWN',
           currency: 'USD',
+          limitOrder: null,
+          cancellation: null,
         ),
       ).listen(expectAsync1((PriceProposal? priceProposal) {
         expect(priceProposal!.askPrice, 10);
@@ -229,7 +231,6 @@ void main() {
       try {
         final PriceProposal priceProposal =
             await PriceProposal.fetchPriceForContract(
-          // ignore: missing_required_param
           const ProposalRequest(
             symbol: 'frxUSDJPY',
             durationUnit: 'm',
@@ -240,6 +241,7 @@ void main() {
             contractType: 'MULTDOWM',
             currency: 'USD',
             cancellation: 'MULTUP',
+            limitOrder: null,
           ),
         );
         expect(priceProposal.askPrice, 10);

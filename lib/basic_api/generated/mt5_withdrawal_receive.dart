@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_withdrawal_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_withdrawal_receive.json.
 
 import '../response.dart';
 
-/// Mt5 withdrawal response class
+/// Mt5 withdrawal response class.
 class Mt5WithdrawalResponse extends Response {
-  /// Initialize Mt5WithdrawalResponse
+  /// Initialize Mt5WithdrawalResponse.
   const Mt5WithdrawalResponse({
     this.binaryTransactionId,
     this.mt5Withdrawal,
@@ -19,7 +19,7 @@ class Mt5WithdrawalResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5WithdrawalResponse.fromJson(Map<String, dynamic> json) =>
       Mt5WithdrawalResponse(
         binaryTransactionId: json['binary_transaction_id'] as int?,
@@ -66,7 +66,7 @@ class Mt5WithdrawalResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

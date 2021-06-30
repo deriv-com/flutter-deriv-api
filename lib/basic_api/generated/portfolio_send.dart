@@ -1,12 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/portfolio_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/portfolio_send.json.
 
 import '../request.dart';
 
-/// Portfolio request class
+/// Portfolio request class.
 class PortfolioRequest extends Request {
-  /// Initialize PortfolioRequest
+  /// Initialize PortfolioRequest.
   const PortfolioRequest({
-    @required this.contractType,
+    required this.contractType,
     this.portfolio = true,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -16,7 +16,7 @@ class PortfolioRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PortfolioRequest.fromJson(Map<String, dynamic> json) =>
       PortfolioRequest(
         contractType: (json['contract_type'] as List<dynamic>?)
@@ -61,7 +61,7 @@ class PortfolioRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

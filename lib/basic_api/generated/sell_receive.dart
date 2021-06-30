@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_receive.json.
 
 import '../response.dart';
 
-/// Sell response class
+/// Sell response class.
 class SellResponse extends Response {
-  /// Initialize SellResponse
+  /// Initialize SellResponse.
   const SellResponse({
     this.sell,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class SellResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SellResponse.fromJson(Map<String, dynamic> json) => SellResponse(
         sell: json['sell'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -57,7 +57,7 @@ class SellResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

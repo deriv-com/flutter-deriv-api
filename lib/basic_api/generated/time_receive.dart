@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/time_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/time_receive.json.
 
 import '../response.dart';
 
-/// Time response class
+/// Time response class.
 class TimeResponse extends Response {
-  /// Initialize TimeResponse
+  /// Initialize TimeResponse.
   const TimeResponse({
     this.time,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class TimeResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TimeResponse.fromJson(Map<String, dynamic> json) => TimeResponse(
         time: json['time'] as int?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -57,7 +57,7 @@ class TimeResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

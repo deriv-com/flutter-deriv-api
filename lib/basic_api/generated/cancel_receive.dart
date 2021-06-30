@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cancel_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cancel_receive.json.
 
 import '../response.dart';
 
-/// Cancel response class
+/// Cancel response class.
 class CancelResponse extends Response {
-  /// Initialize CancelResponse
+  /// Initialize CancelResponse.
   const CancelResponse({
     this.cancel,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class CancelResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CancelResponse.fromJson(Map<String, dynamic> json) => CancelResponse(
         cancel: json['cancel'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -57,7 +57,7 @@ class CancelResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

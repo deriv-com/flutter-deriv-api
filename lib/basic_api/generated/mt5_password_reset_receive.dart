@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_reset_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_reset_receive.json.
 
 import '../response.dart';
 
-/// Mt5 password reset response class
+/// Mt5 password reset response class.
 class Mt5PasswordResetResponse extends Response {
-  /// Initialize Mt5PasswordResetResponse
+  /// Initialize Mt5PasswordResetResponse.
   const Mt5PasswordResetResponse({
     this.mt5PasswordReset,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class Mt5PasswordResetResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5PasswordResetResponse.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordResetResponse(
         mt5PasswordReset: json['mt5_password_reset'] as int?,
@@ -58,7 +58,7 @@ class Mt5PasswordResetResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

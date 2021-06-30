@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/time_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/time_send.json.
 
 import '../request.dart';
 
-/// Time request class
+/// Time request class.
 class TimeRequest extends Request {
-  /// Initialize TimeRequest
+  /// Initialize TimeRequest.
   const TimeRequest({
     this.time = true,
     Map<String, dynamic>? passthrough,
@@ -15,7 +15,7 @@ class TimeRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TimeRequest.fromJson(Map<String, dynamic> json) => TimeRequest(
         time: json['time'] == null ? null : json['time'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -50,7 +50,7 @@ class TimeRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

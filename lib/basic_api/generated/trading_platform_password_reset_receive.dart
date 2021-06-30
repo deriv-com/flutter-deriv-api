@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_platform_password_reset_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_platform_password_reset_receive.json.
 
 import '../response.dart';
 
-/// Trading platform password reset response class
+/// Trading platform password reset response class.
 class TradingPlatformPasswordResetResponse extends Response {
-  /// Initialize TradingPlatformPasswordResetResponse
+  /// Initialize TradingPlatformPasswordResetResponse.
   const TradingPlatformPasswordResetResponse({
     this.tradingPlatformPasswordReset,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class TradingPlatformPasswordResetResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradingPlatformPasswordResetResponse.fromJson(
           Map<String, dynamic> json) =>
       TradingPlatformPasswordResetResponse(
@@ -67,7 +67,7 @@ class TradingPlatformPasswordResetResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

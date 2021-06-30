@@ -1,15 +1,15 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_contract_for_multiple_accounts_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_contract_for_multiple_accounts_send.json.
 
 import '../request.dart';
 
-/// Buy contract for multiple accounts request class
+/// Buy contract for multiple accounts request class.
 class BuyContractForMultipleAccountsRequest extends Request {
-  /// Initialize BuyContractForMultipleAccountsRequest
+  /// Initialize BuyContractForMultipleAccountsRequest.
   const BuyContractForMultipleAccountsRequest({
-    @required this.buyContractForMultipleAccounts,
+    required this.buyContractForMultipleAccounts,
     this.parameters,
-    @required this.price,
-    @required this.tokens,
+    required this.price,
+    required this.tokens,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -18,7 +18,7 @@ class BuyContractForMultipleAccountsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory BuyContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
       BuyContractForMultipleAccountsRequest(
@@ -76,7 +76,7 @@ class BuyContractForMultipleAccountsRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

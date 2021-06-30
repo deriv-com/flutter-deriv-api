@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_settings_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_settings_receive.json.
 
 import '../response.dart';
 
-/// Get settings response class
+/// Get settings response class.
 class GetSettingsResponse extends Response {
-  /// Initialize GetSettingsResponse
+  /// Initialize GetSettingsResponse.
   const GetSettingsResponse({
     this.getSettings,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class GetSettingsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetSettingsResponse.fromJson(Map<String, dynamic> json) =>
       GetSettingsResponse(
         getSettings: json['get_settings'] as Map<String, dynamic>?,
@@ -58,7 +58,7 @@ class GetSettingsResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

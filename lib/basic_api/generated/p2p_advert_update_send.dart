@@ -1,13 +1,13 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_update_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_update_send.json.
 
 import '../request.dart';
 
-/// P2p advert update request class
+/// P2p advert update request class.
 class P2pAdvertUpdateRequest extends Request {
-  /// Initialize P2pAdvertUpdateRequest
+  /// Initialize P2pAdvertUpdateRequest.
   const P2pAdvertUpdateRequest({
     this.delete,
-    @required this.id,
+    required this.id,
     this.isActive,
     this.p2pAdvertUpdate = true,
     Map<String, dynamic>? passthrough,
@@ -18,7 +18,7 @@ class P2pAdvertUpdateRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertUpdateRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertUpdateRequest(
         delete: json['delete'] == null ? null : json['delete'] == 1,
@@ -85,7 +85,7 @@ class P2pAdvertUpdateRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

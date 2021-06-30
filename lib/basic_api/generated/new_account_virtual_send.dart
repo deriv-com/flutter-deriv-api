@@ -1,18 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_virtual_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_virtual_send.json.
 
 import '../request.dart';
 
-/// New account virtual request class
+/// New account virtual request class.
 class NewAccountVirtualRequest extends Request {
-  /// Initialize NewAccountVirtualRequest
+  /// Initialize NewAccountVirtualRequest.
   const NewAccountVirtualRequest({
     this.affiliateToken,
-    @required this.clientPassword,
+    required this.clientPassword,
     this.dateFirstContact,
     this.emailConsent,
     this.gclidUrl,
     this.newAccountVirtual = true,
-    @required this.residence,
+    required this.residence,
     this.signupDevice,
     this.utmAdId,
     this.utmAdgroupId,
@@ -26,7 +26,7 @@ class NewAccountVirtualRequest extends Request {
     this.utmMsclkId,
     this.utmSource,
     this.utmTerm,
-    @required this.verificationCode,
+    required this.verificationCode,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -35,7 +35,7 @@ class NewAccountVirtualRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>
       NewAccountVirtualRequest(
         affiliateToken: json['affiliate_token'] as String?,
@@ -213,7 +213,7 @@ class NewAccountVirtualRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

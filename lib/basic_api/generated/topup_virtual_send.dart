@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/topup_virtual_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/topup_virtual_send.json.
 
 import '../request.dart';
 
-/// Topup virtual request class
+/// Topup virtual request class.
 class TopupVirtualRequest extends Request {
-  /// Initialize TopupVirtualRequest
+  /// Initialize TopupVirtualRequest.
   const TopupVirtualRequest({
     this.topupVirtual = true,
     Map<String, dynamic>? passthrough,
@@ -15,7 +15,7 @@ class TopupVirtualRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TopupVirtualRequest.fromJson(Map<String, dynamic> json) =>
       TopupVirtualRequest(
         topupVirtual:
@@ -52,7 +52,7 @@ class TopupVirtualRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

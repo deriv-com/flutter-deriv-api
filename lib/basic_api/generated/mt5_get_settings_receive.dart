@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_get_settings_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_get_settings_receive.json.
 
 import '../response.dart';
 
-/// Mt5 get settings response class
+/// Mt5 get settings response class.
 class Mt5GetSettingsResponse extends Response {
-  /// Initialize Mt5GetSettingsResponse
+  /// Initialize Mt5GetSettingsResponse.
   const Mt5GetSettingsResponse({
     this.mt5GetSettings,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class Mt5GetSettingsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5GetSettingsResponse.fromJson(Map<String, dynamic> json) =>
       Mt5GetSettingsResponse(
         mt5GetSettings: json['mt5_get_settings'] as Map<String, dynamic>?,
@@ -58,7 +58,7 @@ class Mt5GetSettingsResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

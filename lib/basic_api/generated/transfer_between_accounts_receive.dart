@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_receive.json.
 
 import '../response.dart';
 
-/// Transfer between accounts response class
+/// Transfer between accounts response class.
 class TransferBetweenAccountsResponse extends Response {
-  /// Initialize TransferBetweenAccountsResponse
+  /// Initialize TransferBetweenAccountsResponse.
   const TransferBetweenAccountsResponse({
     this.accounts,
     this.clientToFullName,
@@ -22,7 +22,7 @@ class TransferBetweenAccountsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TransferBetweenAccountsResponse.fromJson(Map<String, dynamic> json) =>
       TransferBetweenAccountsResponse(
         accounts: (json['accounts'] as List<dynamic>?)
@@ -100,7 +100,7 @@ class TransferBetweenAccountsResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

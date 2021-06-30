@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_times_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_times_receive.json.
 
 import '../response.dart';
 
-/// Trading times response class
+/// Trading times response class.
 class TradingTimesResponse extends Response {
-  /// Initialize TradingTimesResponse
+  /// Initialize TradingTimesResponse.
   const TradingTimesResponse({
     this.tradingTimes,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class TradingTimesResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradingTimesResponse.fromJson(Map<String, dynamic> json) =>
       TradingTimesResponse(
         tradingTimes: json['trading_times'] as Map<String, dynamic>?,
@@ -58,7 +58,7 @@ class TradingTimesResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

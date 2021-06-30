@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_list_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_list_send.json.
 
 import '../request.dart';
 
-/// Copytrading list request class
+/// Copytrading list request class.
 class CopytradingListRequest extends Request {
-  /// Initialize CopytradingListRequest
+  /// Initialize CopytradingListRequest.
   const CopytradingListRequest({
     this.copytradingList = true,
     Map<String, dynamic>? passthrough,
@@ -15,7 +15,7 @@ class CopytradingListRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CopytradingListRequest.fromJson(Map<String, dynamic> json) =>
       CopytradingListRequest(
         copytradingList: json['copytrading_list'] == null
@@ -53,7 +53,7 @@ class CopytradingListRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

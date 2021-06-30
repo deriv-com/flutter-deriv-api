@@ -1,12 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_delete_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_delete_send.json.
 
 import '../request.dart';
 
-/// App delete request class
+/// App delete request class.
 class AppDeleteRequest extends Request {
-  /// Initialize AppDeleteRequest
+  /// Initialize AppDeleteRequest.
   const AppDeleteRequest({
-    @required this.appDelete,
+    required this.appDelete,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -15,7 +15,7 @@ class AppDeleteRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppDeleteRequest.fromJson(Map<String, dynamic> json) =>
       AppDeleteRequest(
         appDelete: json['app_delete'] as int?,
@@ -47,7 +47,7 @@ class AppDeleteRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

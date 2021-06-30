@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/economic_calendar_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/economic_calendar_receive.json.
 
 import '../response.dart';
 
-/// Economic calendar response class
+/// Economic calendar response class.
 class EconomicCalendarResponse extends Response {
-  /// Initialize EconomicCalendarResponse
+  /// Initialize EconomicCalendarResponse.
   const EconomicCalendarResponse({
     this.economicCalendar,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class EconomicCalendarResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory EconomicCalendarResponse.fromJson(Map<String, dynamic> json) =>
       EconomicCalendarResponse(
         economicCalendar: json['economic_calendar'] as Map<String, dynamic>?,
@@ -58,7 +58,7 @@ class EconomicCalendarResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

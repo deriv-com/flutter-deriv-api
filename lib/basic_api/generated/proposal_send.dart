@@ -1,29 +1,29 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_send.json.
 
 import '../request.dart';
 
-/// Proposal request class
+/// Proposal request class.
 class ProposalRequest extends Request {
-  /// Initialize ProposalRequest
+  /// Initialize ProposalRequest.
   const ProposalRequest({
     this.amount,
     this.barrier,
     this.barrier2,
     this.basis,
-    @required this.cancellation,
-    @required this.contractType,
-    @required this.currency,
+    required this.cancellation,
+    required this.contractType,
+    required this.currency,
     this.dateExpiry,
     this.dateStart,
     this.duration,
     this.durationUnit,
-    @required this.limitOrder,
+    required this.limitOrder,
     this.multiplier,
     this.productType,
     this.proposal = true,
     this.selectedTick,
     this.subscribe,
-    @required this.symbol,
+    required this.symbol,
     this.tradingPeriodStart,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -33,7 +33,7 @@ class ProposalRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ProposalRequest.fromJson(Map<String, dynamic> json) =>
       ProposalRequest(
         amount: json['amount'] as num?,
@@ -199,7 +199,7 @@ class ProposalRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

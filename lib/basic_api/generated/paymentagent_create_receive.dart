@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_create_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_create_receive.json.
 
 import '../response.dart';
 
-/// Paymentagent create response class
+/// Paymentagent create response class.
 class PaymentagentCreateResponse extends Response {
-  /// Initialize PaymentagentCreateResponse
+  /// Initialize PaymentagentCreateResponse.
   const PaymentagentCreateResponse({
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
@@ -17,7 +17,7 @@ class PaymentagentCreateResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentagentCreateResponse.fromJson(Map<String, dynamic> json) =>
       PaymentagentCreateResponse(
         echoReq: json['echo_req'] as Map<String, dynamic>?,
@@ -50,7 +50,7 @@ class PaymentagentCreateResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

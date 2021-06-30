@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_start_receive.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_start_receive.json.
 
 import '../response.dart';
 
-/// Copy start response class
+/// Copy start response class.
 class CopyStartResponse extends Response {
-  /// Initialize CopyStartResponse
+  /// Initialize CopyStartResponse.
   const CopyStartResponse({
     this.copyStart,
     Map<String, dynamic>? echoReq,
@@ -18,7 +18,7 @@ class CopyStartResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CopyStartResponse.fromJson(Map<String, dynamic> json) =>
       CopyStartResponse(
         copyStart: json['copy_start'] as int?,
@@ -58,7 +58,7 @@ class CopyStartResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

@@ -1,17 +1,17 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_send.json.
 
 import '../request.dart';
 
-/// Transfer between accounts request class
+/// Transfer between accounts request class.
 class TransferBetweenAccountsRequest extends Request {
-  /// Initialize TransferBetweenAccountsRequest
+  /// Initialize TransferBetweenAccountsRequest.
   const TransferBetweenAccountsRequest({
     this.accountFrom,
     this.accountTo,
     this.accounts,
     this.amount,
     this.currency,
-    @required this.transferBetweenAccounts,
+    required this.transferBetweenAccounts,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -20,7 +20,7 @@ class TransferBetweenAccountsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TransferBetweenAccountsRequest.fromJson(Map<String, dynamic> json) =>
       TransferBetweenAccountsRequest(
         accountFrom: json['account_from'] as String?,
@@ -88,7 +88,7 @@ class TransferBetweenAccountsRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

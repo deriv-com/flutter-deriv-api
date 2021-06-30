@@ -1,10 +1,10 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_adverts_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_adverts_send.json.
 
 import '../request.dart';
 
-/// P2p advertiser adverts request class
+/// P2p advertiser adverts request class.
 class P2pAdvertiserAdvertsRequest extends Request {
-  /// Initialize P2pAdvertiserAdvertsRequest
+  /// Initialize P2pAdvertiserAdvertsRequest.
   const P2pAdvertiserAdvertsRequest({
     this.limit,
     this.offset,
@@ -17,7 +17,7 @@ class P2pAdvertiserAdvertsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertiserAdvertsRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserAdvertsRequest(
         limit: json['limit'] as int?,
@@ -69,7 +69,7 @@ class P2pAdvertiserAdvertsRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

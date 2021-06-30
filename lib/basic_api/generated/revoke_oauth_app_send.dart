@@ -1,12 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/revoke_oauth_app_send.json
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/revoke_oauth_app_send.json.
 
 import '../request.dart';
 
-/// Revoke oauth app request class
+/// Revoke oauth app request class.
 class RevokeOauthAppRequest extends Request {
-  /// Initialize RevokeOauthAppRequest
+  /// Initialize RevokeOauthAppRequest.
   const RevokeOauthAppRequest({
-    @required this.revokeOauthApp,
+    required this.revokeOauthApp,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -15,7 +15,7 @@ class RevokeOauthAppRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory RevokeOauthAppRequest.fromJson(Map<String, dynamic> json) =>
       RevokeOauthAppRequest(
         revokeOauthApp: json['revoke_oauth_app'] as int?,
@@ -47,7 +47,7 @@ class RevokeOauthAppRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }
