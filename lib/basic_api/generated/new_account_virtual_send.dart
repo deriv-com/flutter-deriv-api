@@ -138,7 +138,7 @@ class NewAccountVirtualRequest extends Request {
         'gclid_url': gclidUrl,
         'new_account_virtual': newAccountVirtual == null
             ? null
-            : newAccountVirtual!
+            : newAccountVirtual
                 ? 1
                 : 0,
         'residence': residence,
