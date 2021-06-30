@@ -94,7 +94,7 @@ class APIBuilder extends Builder {
           if (messageType.containsKey('enum')) {
             generatedResponses.add(
               GeneratedResponseJson(
-                msgType: messageType['enum'][0],
+                msgType: messageType['enum'].first,
                 fileName: fileName,
                 fullClassName: classFullName,
               ),
@@ -114,6 +114,7 @@ class APIBuilder extends Builder {
         DartFormatter().format(
           '''
             /// Generated automatically from ${buildStep.inputId}.
+
             // ignore_for_file: always_put_required_named_parameters_first
 
             import '../${schemaType == 'send' ? 'request' : 'response'}.dart';
@@ -127,7 +128,7 @@ class APIBuilder extends Builder {
               
               ${_getFromJsonMethod(classFullName, schema, schemaType, properties)}
               
-              ${_getProperties(schema, schemaType, properties)}
+              ${_getProperties(schema, properties)}
               ${_getToJsonMethod(schema, schemaType, properties)}
               ${_getCopyWithMethod(schema, schemaType, classFullName, properties)}
               
@@ -146,7 +147,7 @@ class APIBuilder extends Builder {
   static String _getConstructorParameters(
     String methodName,
     JsonSchema schema,
-    String? schemaType,
+    String schemaType,
     List<String> properties,
   ) {
     final Iterable<String> fields = properties.where((String key) =>
@@ -174,7 +175,6 @@ class APIBuilder extends Builder {
 
   static String _getProperties(
     JsonSchema schema,
-    String schemaType,
     List<String> properties,
   ) =>
       properties
@@ -254,8 +254,8 @@ class APIBuilder extends Builder {
       property.description!.contains('Must be 1') ||
       property.type?.toString() == 'integer' &&
           property.enumValues?.length == 2 &&
-          property.enumValues![0] == 0 &&
-          property.enumValues![1] == 1;
+          property.enumValues!.first == 0 &&
+          property.enumValues!.last == 1;
 
   static StringBuffer _getFromJsonMethod(
     String classFullName,
@@ -399,7 +399,7 @@ class APIBuilder extends Builder {
   }
 
   static String _getSuperClassCallParameters(
-    String? schemaType,
+    String schemaType,
     String methodName,
   ) {
     final StringBuffer superCallParameters = StringBuffer();
@@ -431,7 +431,7 @@ class APIBuilder extends Builder {
 
   static bool _isFieldRequired(
     String key,
-    String? schemaType,
+    String schemaType,
     JsonSchema property,
   ) =>
       schemaType == 'send' &&
