@@ -14,6 +14,7 @@ class DocumentUploadRequest extends Request {
     required this.expectedChecksum,
     this.expirationDate,
     required this.fileSize,
+    this.lifetimeValid,
     this.pageType,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -35,6 +36,8 @@ class DocumentUploadRequest extends Request {
         expectedChecksum: json['expected_checksum'] as String?,
         expirationDate: json['expiration_date'] as String?,
         fileSize: json['file_size'] as int?,
+        lifetimeValid:
+            json['lifetime_valid'] == null ? null : json['lifetime_valid'] == 1,
         pageType: json['page_type'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -61,6 +64,9 @@ class DocumentUploadRequest extends Request {
   /// Document size (should be less than 10MB)
   final int? fileSize;
 
+  /// [Optional] Boolean value that indicates whether this document is lifetime valid (only applies to POI document types, cancels out the expiration_date given if any)
+  final bool? lifetimeValid;
+
   /// [Optional] To determine document side
   final String? pageType;
 
@@ -78,6 +84,11 @@ class DocumentUploadRequest extends Request {
         'expected_checksum': expectedChecksum,
         'expiration_date': expirationDate,
         'file_size': fileSize,
+        'lifetime_valid': lifetimeValid == null
+            ? null
+            : lifetimeValid!
+                ? 1
+                : 0,
         'page_type': pageType,
         'passthrough': passthrough,
         'req_id': reqId,
@@ -93,6 +104,7 @@ class DocumentUploadRequest extends Request {
     String? expectedChecksum,
     String? expirationDate,
     int? fileSize,
+    bool? lifetimeValid,
     String? pageType,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -105,6 +117,7 @@ class DocumentUploadRequest extends Request {
         expectedChecksum: expectedChecksum ?? this.expectedChecksum,
         expirationDate: expirationDate ?? this.expirationDate,
         fileSize: fileSize ?? this.fileSize,
+        lifetimeValid: lifetimeValid ?? this.lifetimeValid,
         pageType: pageType ?? this.pageType,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

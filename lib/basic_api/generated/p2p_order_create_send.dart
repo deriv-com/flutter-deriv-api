@@ -12,6 +12,7 @@ class P2pOrderCreateRequest extends Request {
     this.contactInfo,
     this.p2pOrderCreate = true,
     this.paymentInfo,
+    required this.paymentMethodIds,
     this.subscribe,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -31,6 +32,9 @@ class P2pOrderCreateRequest extends Request {
             ? null
             : json['p2p_order_create'] == 1,
         paymentInfo: json['payment_info'] as String?,
+        paymentMethodIds: (json['payment_method_ids'] as List<dynamic>?)
+            ?.map<int>((dynamic item) => item as int)
+            .toList(),
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -48,8 +52,11 @@ class P2pOrderCreateRequest extends Request {
   /// Must be `true`
   final bool? p2pOrderCreate;
 
-  /// [Optional] Payment instructions. Only applicable for 'sell orders'.
+  /// [Optional] Payment instructions, only applicable for sell orders.
   final String? paymentInfo;
+
+  /// IDs of payment methods, only applicable for sell orders.
+  final List<int>? paymentMethodIds;
 
   /// [Optional] If set to `true`, will send updates whenever there is an update to the order.
   final bool? subscribe;
@@ -66,6 +73,7 @@ class P2pOrderCreateRequest extends Request {
                 ? 1
                 : 0,
         'payment_info': paymentInfo,
+        'payment_method_ids': paymentMethodIds,
         'subscribe': subscribe == null
             ? null
             : subscribe!
@@ -83,6 +91,7 @@ class P2pOrderCreateRequest extends Request {
     String? contactInfo,
     bool? p2pOrderCreate,
     String? paymentInfo,
+    List<int>? paymentMethodIds,
     bool? subscribe,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -93,6 +102,7 @@ class P2pOrderCreateRequest extends Request {
         contactInfo: contactInfo ?? this.contactInfo,
         p2pOrderCreate: p2pOrderCreate ?? this.p2pOrderCreate,
         paymentInfo: paymentInfo ?? this.paymentInfo,
+        paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
         subscribe: subscribe ?? this.subscribe,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

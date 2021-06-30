@@ -17,6 +17,7 @@ class SetSettingsRequest extends Request {
     this.citizen,
     this.dateOfBirth,
     this.emailConsent,
+    this.featureFlag,
     this.firstName,
     this.lastName,
     this.nonPepDeclaration,
@@ -54,6 +55,7 @@ class SetSettingsRequest extends Request {
         dateOfBirth: json['date_of_birth'] as String?,
         emailConsent:
             json['email_consent'] == null ? null : json['email_consent'] == 1,
+        featureFlag: json['feature_flag'] as Map<String, dynamic>?,
         firstName: json['first_name'] as String?,
         lastName: json['last_name'] as String?,
         nonPepDeclaration: json['non_pep_declaration'] as int?,
@@ -102,6 +104,9 @@ class SetSettingsRequest extends Request {
 
   /// [Optional] Boolean value `true` or `false`, indicating permission to use email address for any contact which may include marketing
   final bool? emailConsent;
+
+  /// [Optional] Enable or disable one or multiple features.
+  final Map<String, dynamic>? featureFlag;
 
   /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
   final String? firstName;
@@ -166,6 +171,7 @@ class SetSettingsRequest extends Request {
             : emailConsent!
                 ? 1
                 : 0,
+        'feature_flag': featureFlag,
         'first_name': firstName,
         'last_name': lastName,
         'non_pep_declaration': nonPepDeclaration,
@@ -201,6 +207,7 @@ class SetSettingsRequest extends Request {
     String? citizen,
     String? dateOfBirth,
     bool? emailConsent,
+    Map<String, dynamic>? featureFlag,
     String? firstName,
     String? lastName,
     int? nonPepDeclaration,
@@ -229,6 +236,7 @@ class SetSettingsRequest extends Request {
         citizen: citizen ?? this.citizen,
         dateOfBirth: dateOfBirth ?? this.dateOfBirth,
         emailConsent: emailConsent ?? this.emailConsent,
+        featureFlag: featureFlag ?? this.featureFlag,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,

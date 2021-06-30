@@ -47,6 +47,7 @@ void main() {
         const NewAccountVirtualRequest(
           clientPassword: 'Abc123de',
           residence: 'id',
+          type: 'trading',
           verificationCode: 'uoJvVuQ6',
         ),
       );

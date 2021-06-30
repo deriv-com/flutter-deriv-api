@@ -1,8 +1,10 @@
+// ignore_for_file: always_put_required_named_parameters_first
+
 import 'package:equatable/equatable.dart';
 
-/// super class of all requests.
+/// super class of all responses.
 class Response extends Equatable {
-  /// Initializes
+  /// Initializes.
   const Response({
     this.echoReq,
     this.error,

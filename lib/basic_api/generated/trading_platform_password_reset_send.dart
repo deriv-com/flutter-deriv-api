@@ -8,7 +8,6 @@ class TradingPlatformPasswordResetRequest extends Request {
   /// Initialize TradingPlatformPasswordResetRequest.
   const TradingPlatformPasswordResetRequest({
     required this.newPassword,
-    required this.platform,
     this.tradingPlatformPasswordReset = true,
     required this.verificationCode,
     Map<String, dynamic>? passthrough,
@@ -24,7 +23,6 @@ class TradingPlatformPasswordResetRequest extends Request {
           Map<String, dynamic> json) =>
       TradingPlatformPasswordResetRequest(
         newPassword: json['new_password'] as String?,
-        platform: json['platform'] as String?,
         tradingPlatformPasswordReset:
             json['trading_platform_password_reset'] == null
                 ? null
@@ -37,9 +35,6 @@ class TradingPlatformPasswordResetRequest extends Request {
   /// New password of the account. For validation (Accepts any printable ASCII character. Must be within 8-25 characters, and include numbers, lowercase and uppercase letters. Must not be the same as the user's email address).
   final String? newPassword;
 
-  /// Pass the trading platform name
-  final String? platform;
-
   /// Must be `true`
   final bool? tradingPlatformPasswordReset;
 
@@ -50,7 +45,6 @@ class TradingPlatformPasswordResetRequest extends Request {
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'new_password': newPassword,
-        'platform': platform,
         'trading_platform_password_reset': tradingPlatformPasswordReset == null
             ? null
             : tradingPlatformPasswordReset!
@@ -65,7 +59,6 @@ class TradingPlatformPasswordResetRequest extends Request {
   @override
   TradingPlatformPasswordResetRequest copyWith({
     String? newPassword,
-    String? platform,
     bool? tradingPlatformPasswordReset,
     String? verificationCode,
     Map<String, dynamic>? passthrough,
@@ -73,7 +66,6 @@ class TradingPlatformPasswordResetRequest extends Request {
   }) =>
       TradingPlatformPasswordResetRequest(
         newPassword: newPassword ?? this.newPassword,
-        platform: platform ?? this.platform,
         tradingPlatformPasswordReset:
             tradingPlatformPasswordReset ?? this.tradingPlatformPasswordReset,
         verificationCode: verificationCode ?? this.verificationCode,

@@ -95,6 +95,7 @@ void main() {
           minOrderAmount: 3,
           paymentMethod: 'bank_transfer',
           rate: 4.25,
+          paymentMethodIds: <int>[],
         ),
       );
 
@@ -282,7 +283,11 @@ void main() {
       final P2PAdvert advert =
           await P2PAdvert.fetchAdvert(const P2pAdvertInfoRequest(id: '2'));
       final P2POrder order = await advert.createOrder(
-          amount: 50, paymentInfo: '', contactInfo: '');
+        amount: 50,
+        paymentInfo: '',
+        contactInfo: '',
+        paymentMethodIds: <int>[],
+      );
 
       expect(order.accountCurrency, 'USD');
       expect(order.amount, 50.0);

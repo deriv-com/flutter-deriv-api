@@ -30,7 +30,7 @@ class APIBuilder extends Builder {
     'bool?': 'bool?',
     'object?': 'Map<String, dynamic>?',
     'array?': 'List<String>?',
-    'undefined?': 'dynamic?',
+    'undefined?': 'dynamic',
   };
 
   static const Map<String, String> schemaTypeMap = <String, String>{
@@ -125,7 +125,7 @@ class APIBuilder extends Builder {
                   ${_getSuperClassParameters(schemaType)},
                 }): super(${_getSuperClassCallParameters(schemaType, methodName)},);
               
-              ${_getFromJsonMethod(classFullName, schemaType, schema, properties)}
+              ${_getFromJsonMethod(classFullName, schema, schemaType, properties)}
               
               ${_getProperties(schema, schemaType, properties)}
               ${_getToJsonMethod(schema, schemaType, properties)}
@@ -198,28 +198,30 @@ class APIBuilder extends Builder {
     bool isBoolean,
     String? description,
   ) =>
-      isBoolean
-          ? description!
-              .replaceAll('\n', '\n/// ')
-              .replaceAllMapped(
-                RegExp(r'`1`| 1| 1 '),
-                (Match match) => match
-                    .group(0)!
-                    .replaceAllMapped(RegExp(r'`1`|1'), (_) => '`true`'),
-              )
-              .replaceAllMapped(
-                RegExp(r'`0`| 0| 0 '),
-                (Match match) => match
-                    .group(0)!
-                    .replaceAllMapped(RegExp(r'`0`|0'), (_) => '`false`'),
-              )
-          : description!.replaceAll('\n', '\n/// ');
+      description == null
+          ? ''
+          : isBoolean
+              ? description
+                  .replaceAll('\n', '\n/// ')
+                  .replaceAllMapped(
+                    RegExp(r'`1`| 1| 1 '),
+                    (Match match) => match
+                        .group(0)!
+                        .replaceAllMapped(RegExp(r'`1`|1'), (_) => '`true`'),
+                  )
+                  .replaceAllMapped(
+                    RegExp(r'`0`| 0| 0 '),
+                    (Match match) => match
+                        .group(0)!
+                        .replaceAllMapped(RegExp(r'`0`|0'), (_) => '`false`'),
+                  )
+              : description.replaceAll('\n', '\n/// ');
 
   static String _getPropertyType(
     String key,
     JsonSchema property,
   ) {
-    if (property.oneOf.isNotEmpty) {
+    if (property.oneOf.isNotEmpty || property.anyOf.isNotEmpty) {
       return 'dynamic';
     } else {
       final String? propertySchemaType = _getPropertySchemaType(key, property);
@@ -230,7 +232,7 @@ class APIBuilder extends Builder {
 
         return 'List<${typeMap[itemType]}>';
       } else {
-        return typeMap[propertySchemaType!] ?? 'dynamic';
+        return typeMap[propertySchemaType] ?? 'dynamic';
       }
     }
   }
@@ -257,8 +259,8 @@ class APIBuilder extends Builder {
 
   static StringBuffer _getFromJsonMethod(
     String classFullName,
-    String? schemaType,
     JsonSchema schema,
+    String schemaType,
     List<String> properties,
   ) =>
       StringBuffer(

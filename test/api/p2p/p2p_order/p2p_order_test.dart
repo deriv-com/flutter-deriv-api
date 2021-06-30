@@ -15,7 +15,11 @@ void main() {
   group('P2P Order Group ->', () {
     test('Create Order Test', () async {
       final P2POrder order = await P2POrder.create(
-        const P2pOrderCreateRequest(advertId: '8', amount: 50.0),
+        const P2pOrderCreateRequest(
+          advertId: '8',
+          amount: 50.0,
+          paymentMethodIds: <int>[],
+        ),
       );
 
       expect(order.accountCurrency, 'USD');
@@ -135,6 +139,7 @@ void main() {
       P2POrder.createAndSubscribe(const P2pOrderCreateRequest(
         advertId: '8',
         amount: 50.0,
+        paymentMethodIds: <int>[],
       )).listen(expectAsync1(
         (P2POrder? order) {
           expect(order!.accountCurrency, 'USD');

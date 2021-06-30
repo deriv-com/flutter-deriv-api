@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 /// Super class of all requests.
 class Request extends Equatable {
-  /// Initializes
+  /// Initializes.
   const Request({
     this.msgType,
     this.passthrough,

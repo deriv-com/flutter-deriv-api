@@ -311,6 +311,7 @@ class P2PAdvert extends P2PAdvertModel {
     required double amount,
     required String contactInfo,
     required String paymentInfo,
+    required List<int> paymentMethodIds,
   }) =>
       P2POrder.create(
         P2pOrderCreateRequest(
@@ -318,6 +319,7 @@ class P2PAdvert extends P2PAdvertModel {
           amount: amount,
           contactInfo: contactInfo,
           paymentInfo: paymentInfo,
+          paymentMethodIds: paymentMethodIds,
         ),
       );
 }
