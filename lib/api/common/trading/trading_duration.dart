@@ -40,7 +40,7 @@ class TradingDuration extends TradingDurationModel {
         ),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   TradingDuration copyWith({
@@ -63,7 +63,7 @@ class TradingDuration extends TradingDurationModel {
     TradingDurationsRequest request,
   ) async {
     final TradingDurationsResponse response =
-        await _api!.call<TradingDurationsResponse>(request: request);
+        await _api.call<TradingDurationsResponse>(request: request);
 
     checkException(
       response: response,

@@ -27,7 +27,7 @@ class MT5Deposit extends MT5DepositModel {
         binaryTransactionId: transactionId,
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   MT5Deposit copyWith({
@@ -44,7 +44,8 @@ class MT5Deposit extends MT5DepositModel {
   /// For parameters information refer to [Mt5DepositRequest].
   /// Throws a [MT5Exception] if API response contains an error
   static Future<MT5Deposit> deposit(Mt5DepositRequest request) async {
-    final Mt5DepositResponse response = await _api!.call<Mt5DepositResponse>(request: request);
+    final Mt5DepositResponse response =
+        await _api.call<Mt5DepositResponse>(request: request);
 
     checkException(
       response: response,

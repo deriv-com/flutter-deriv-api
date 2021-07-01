@@ -1,13 +1,14 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cashier_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cashier_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// Cashier request class
+/// Cashier request class.
 class CashierRequest extends Request {
-  /// Initialize CashierRequest
+  /// Initialize CashierRequest.
   const CashierRequest({
-    @required this.cashier,
+    required this.cashier,
     this.provider,
     this.type,
     this.verificationCode,
@@ -19,7 +20,7 @@ class CashierRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CashierRequest.fromJson(Map<String, dynamic> json) => CashierRequest(
         cashier: json['cashier'] as String?,
         provider: json['provider'] as String?,
@@ -71,7 +72,7 @@ class CashierRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

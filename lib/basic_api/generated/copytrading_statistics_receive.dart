@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_statistics_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_statistics_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Copytrading statistics response class
+/// Copytrading statistics response class.
 class CopytradingStatisticsResponse extends Response {
-  /// Initialize CopytradingStatisticsResponse
+  /// Initialize CopytradingStatisticsResponse.
   const CopytradingStatisticsResponse({
     this.copytradingStatistics,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class CopytradingStatisticsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CopytradingStatisticsResponse.fromJson(Map<String, dynamic> json) =>
       CopytradingStatisticsResponse(
         copytradingStatistics:
@@ -61,7 +62,7 @@ class CopytradingStatisticsResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

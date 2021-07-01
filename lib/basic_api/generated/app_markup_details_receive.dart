@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// App markup details response class
+/// App markup details response class.
 class AppMarkupDetailsResponse extends Response {
-  /// Initialize AppMarkupDetailsResponse
+  /// Initialize AppMarkupDetailsResponse.
   const AppMarkupDetailsResponse({
     this.appMarkupDetails,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class AppMarkupDetailsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppMarkupDetailsResponse.fromJson(Map<String, dynamic> json) =>
       AppMarkupDetailsResponse(
         appMarkupDetails: json['app_markup_details'] as Map<String, dynamic>?,
@@ -59,7 +60,7 @@ class AppMarkupDetailsResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

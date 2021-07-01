@@ -1,13 +1,14 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/profit_table_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/profit_table_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// Profit table request class
+/// Profit table request class.
 class ProfitTableRequest extends Request {
-  /// Initialize ProfitTableRequest
+  /// Initialize ProfitTableRequest.
   const ProfitTableRequest({
-    @required this.contractType,
+    required this.contractType,
     this.dateFrom,
     this.dateTo,
     this.description,
@@ -23,7 +24,7 @@ class ProfitTableRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ProfitTableRequest.fromJson(Map<String, dynamic> json) =>
       ProfitTableRequest(
         contractType: (json['contract_type'] as List<dynamic>?)
@@ -116,7 +117,7 @@ class ProfitTableRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

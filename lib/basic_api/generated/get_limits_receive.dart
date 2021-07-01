@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Get limits response class
+/// Get limits response class.
 class GetLimitsResponse extends Response {
-  /// Initialize GetLimitsResponse
+  /// Initialize GetLimitsResponse.
   const GetLimitsResponse({
     this.getLimits,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class GetLimitsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetLimitsResponse.fromJson(Map<String, dynamic> json) =>
       GetLimitsResponse(
         getLimits: json['get_limits'] as Map<String, dynamic>?,
@@ -59,7 +60,7 @@ class GetLimitsResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

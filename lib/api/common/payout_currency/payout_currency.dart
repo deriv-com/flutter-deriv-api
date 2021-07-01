@@ -14,7 +14,7 @@ class PayoutCurrency extends PayoutCurrencyModel {
     String? currency,
   }) : super(currency: currency);
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Retrieves a list of available option payout currencies.
   ///
@@ -23,7 +23,8 @@ class PayoutCurrency extends PayoutCurrencyModel {
   static Future<List<PayoutCurrency?>?> fetchPayoutCurrencies([
     PayoutCurrenciesRequest? request,
   ]) async {
-    final PayoutCurrenciesResponse response = await _api!.call<PayoutCurrenciesResponse>(
+    final PayoutCurrenciesResponse response =
+        await _api.call<PayoutCurrenciesResponse>(
       request: request ?? const PayoutCurrenciesRequest(),
     );
 

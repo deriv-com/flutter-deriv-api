@@ -37,7 +37,7 @@ class OauthApp extends OauthAppModel {
         ),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generates a copy of instance with given parameters
   OauthApp copyWith({
@@ -61,7 +61,7 @@ class OauthApp extends OauthAppModel {
   static Future<List<OauthApp?>?> fetchOauthApps([
     OauthAppsRequest? request,
   ]) async {
-    final OauthAppsResponse response = await _api!.call<OauthAppsResponse>(
+    final OauthAppsResponse response = await _api.call<OauthAppsResponse>(
       request: request ?? const OauthAppsRequest(),
     );
 

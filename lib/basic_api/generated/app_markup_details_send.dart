@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// App markup details request class
+/// App markup details request class.
 class AppMarkupDetailsRequest extends Request {
-  /// Initialize AppMarkupDetailsRequest
+  /// Initialize AppMarkupDetailsRequest.
   const AppMarkupDetailsRequest({
     this.appId,
     this.appMarkupDetails = true,
     this.clientLoginid,
-    @required this.dateFrom,
-    @required this.dateTo,
+    required this.dateFrom,
+    required this.dateTo,
     this.description,
     this.limit,
     this.offset,
@@ -25,7 +26,7 @@ class AppMarkupDetailsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppMarkupDetailsRequest.fromJson(Map<String, dynamic> json) =>
       AppMarkupDetailsRequest(
         appId: json['app_id'] as int?,
@@ -133,7 +134,7 @@ class AppMarkupDetailsRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

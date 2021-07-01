@@ -1,13 +1,14 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_history_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_history_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// Contract update history request class
+/// Contract update history request class.
 class ContractUpdateHistoryRequest extends Request {
-  /// Initialize ContractUpdateHistoryRequest
+  /// Initialize ContractUpdateHistoryRequest.
   const ContractUpdateHistoryRequest({
-    @required this.contractId,
+    required this.contractId,
     this.contractUpdateHistory = true,
     this.limit,
     Map<String, dynamic>? passthrough,
@@ -18,7 +19,7 @@ class ContractUpdateHistoryRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ContractUpdateHistoryRequest.fromJson(Map<String, dynamic> json) =>
       ContractUpdateHistoryRequest(
         contractId: json['contract_id'] as int?,
@@ -71,7 +72,7 @@ class ContractUpdateHistoryRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

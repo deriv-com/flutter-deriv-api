@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/document_upload_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/document_upload_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Document upload response class
+/// Document upload response class.
 class DocumentUploadResponse extends Response {
-  /// Initialize DocumentUploadResponse
+  /// Initialize DocumentUploadResponse.
   const DocumentUploadResponse({
     this.documentUpload,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class DocumentUploadResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory DocumentUploadResponse.fromJson(Map<String, dynamic> json) =>
       DocumentUploadResponse(
         documentUpload: json['document_upload'] as Map<String, dynamic>?,
@@ -59,7 +60,7 @@ class DocumentUploadResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

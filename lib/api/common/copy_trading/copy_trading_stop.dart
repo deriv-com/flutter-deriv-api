@@ -17,7 +17,7 @@ class CopyTradingStop extends CopyTradingStopModel {
   factory CopyTradingStop.fromResponse(CopyStopResponse response) =>
       CopyTradingStop(succeeded: getBool(response.copyStop));
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generate a copy of instance with given parameters
   CopyTradingStop copyWith({
@@ -32,7 +32,8 @@ class CopyTradingStop extends CopyTradingStopModel {
   /// For parameters information refer to [CopyStopRequest].
   /// Throws a [CopyTradingException] if API response contains an error
   static Future<CopyTradingStop> stop(CopyStopRequest request) async {
-    final CopyStopResponse response = await _api!.call<CopyStopResponse>(request: request);
+    final CopyStopResponse response =
+        await _api.call<CopyStopResponse>(request: request);
 
     checkException(
       response: response,

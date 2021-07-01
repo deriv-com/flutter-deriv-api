@@ -1,15 +1,16 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// Contract update request class
+/// Contract update request class.
 class ContractUpdateRequest extends Request {
-  /// Initialize ContractUpdateRequest
+  /// Initialize ContractUpdateRequest.
   const ContractUpdateRequest({
-    @required this.contractId,
+    required this.contractId,
     this.contractUpdate = true,
-    @required this.limitOrder,
+    required this.limitOrder,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -18,7 +19,7 @@ class ContractUpdateRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ContractUpdateRequest.fromJson(Map<String, dynamic> json) =>
       ContractUpdateRequest(
         contractId: json['contract_id'] as int?,
@@ -70,7 +71,7 @@ class ContractUpdateRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/reality_check_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/reality_check_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Reality check response class
+/// Reality check response class.
 class RealityCheckResponse extends Response {
-  /// Initialize RealityCheckResponse
+  /// Initialize RealityCheckResponse.
   const RealityCheckResponse({
     this.realityCheck,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class RealityCheckResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory RealityCheckResponse.fromJson(Map<String, dynamic> json) =>
       RealityCheckResponse(
         realityCheck: json['reality_check'] as Map<String, dynamic>?,
@@ -59,7 +60,7 @@ class RealityCheckResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

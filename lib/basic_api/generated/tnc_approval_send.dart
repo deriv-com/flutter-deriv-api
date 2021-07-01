@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/tnc_approval_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/tnc_approval_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Tnc approval request class
+/// Tnc approval request class.
 class TncApprovalRequest extends Request {
-  /// Initialize TncApprovalRequest
+  /// Initialize TncApprovalRequest.
   const TncApprovalRequest({
     this.tncApproval = true,
     this.ukgcFundsProtection,
@@ -17,7 +18,7 @@ class TncApprovalRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TncApprovalRequest.fromJson(Map<String, dynamic> json) =>
       TncApprovalRequest(
         tncApproval:
@@ -61,7 +62,7 @@ class TncApprovalRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

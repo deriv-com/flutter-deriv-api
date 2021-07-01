@@ -67,7 +67,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
   /// Subscription information
   final SubscriptionModel? subscriptionInformation;
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generates a copy of instance with given parameters
   P2PAdvertiser copyWith({
@@ -107,7 +107,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     P2pAdvertiserInfoRequest request,
   ) async {
     final P2pAdvertiserInfoResponse response =
-        await _api!.call<P2pAdvertiserInfoResponse>(
+        await _api.call<P2pAdvertiserInfoResponse>(
       request: request.copyWith(subscribe: false),
     );
 
@@ -126,7 +126,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     P2pAdvertiserInfoRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
-      _api!
+      _api
           .subscribe(request: request, comparePredicate: comparePredicate)!
           .map<P2PAdvertiser?>(
         (Response response) {
@@ -151,7 +151,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     P2pAdvertiserCreateRequest request,
   ) async {
     final P2pAdvertiserCreateResponse response =
-        await _api!.call<P2pAdvertiserCreateResponse>(
+        await _api.call<P2pAdvertiserCreateResponse>(
       request: request.copyWith(subscribe: false),
     );
 
@@ -170,7 +170,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     P2pAdvertiserCreateRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
-      _api!
+      _api
           .subscribe(request: request, comparePredicate: comparePredicate)!
           .map<P2PAdvertiser?>(
         (Response response) {
@@ -201,7 +201,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     P2pAdvertiserUpdateRequest request,
   ) async {
     final P2pAdvertiserUpdateResponse response =
-        await _api!.call<P2pAdvertiserUpdateResponse>(request: request);
+        await _api.call<P2pAdvertiserUpdateResponse>(request: request);
 
     checkException(
       response: response,
@@ -219,7 +219,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     P2pAdvertiserAdvertsRequest request,
   ) async {
     final P2pAdvertiserAdvertsResponse response =
-        await _api!.call<P2pAdvertiserAdvertsResponse>(request: request);
+        await _api.call<P2pAdvertiserAdvertsResponse>(request: request);
 
     checkException(
       response: response,
@@ -242,7 +242,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
     }
 
     final ForgetResponse response =
-        await _api!.unsubscribe(subscriptionId: subscriptionInformation!.id);
+        await _api.unsubscribe(subscriptionId: subscriptionInformation!.id);
 
     checkException(
       response: response,
@@ -258,7 +258,7 @@ class P2PAdvertiser extends P2PAdvertiserModel {
   /// Throws a [P2PAdvertiserException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllAdvertiser() async {
     final ForgetAllResponse? response =
-        await _api!.unsubscribeAll(method: ForgetStreamType.p2pAdvertiser);
+        await _api.unsubscribeAll(method: ForgetStreamType.p2pAdvertiser);
 
     checkException(
       response: response,

@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_as
-
 import 'package:flutter_deriv_api/api/app/app.dart';
 import 'package:flutter_deriv_api/api/app/exceptions/app_exception.dart';
 import 'package:flutter_deriv_api/api/app/models/app_update_model.dart';
@@ -26,7 +24,7 @@ class AppUpdate extends AppUpdateModel {
         ),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   AppUpdate copyWith({
@@ -41,7 +39,8 @@ class AppUpdate extends AppUpdateModel {
   /// For parameters information refer to [AppUpdateRequest].
   /// Throws an [AppException] if API response contains an error
   static Future<AppUpdate> updateApplication(AppUpdateRequest request) async {
-    final AppUpdateResponse response = await _api!.call<AppUpdateResponse>(request: request);
+    final AppUpdateResponse response =
+        await _api.call<AppUpdateResponse>(request: request);
 
     checkException(
       response: response,

@@ -1,15 +1,16 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_check_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_check_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// Mt5 password check request class
+/// Mt5 password check request class.
 class Mt5PasswordCheckRequest extends Request {
-  /// Initialize Mt5PasswordCheckRequest
+  /// Initialize Mt5PasswordCheckRequest.
   const Mt5PasswordCheckRequest({
-    @required this.login,
+    required this.login,
     this.mt5PasswordCheck = true,
-    @required this.password,
+    required this.password,
     this.passwordType,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -19,7 +20,7 @@ class Mt5PasswordCheckRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5PasswordCheckRequest.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordCheckRequest(
         login: json['login'] as String?,
@@ -78,7 +79,7 @@ class Mt5PasswordCheckRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

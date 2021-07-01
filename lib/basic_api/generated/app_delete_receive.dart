@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_delete_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_delete_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// App delete response class
+/// App delete response class.
 class AppDeleteResponse extends Response {
-  /// Initialize AppDeleteResponse
+  /// Initialize AppDeleteResponse.
   const AppDeleteResponse({
     this.appDelete,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class AppDeleteResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppDeleteResponse.fromJson(Map<String, dynamic> json) =>
       AppDeleteResponse(
         appDelete: json['app_delete'] as int?,
@@ -59,7 +60,7 @@ class AppDeleteResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

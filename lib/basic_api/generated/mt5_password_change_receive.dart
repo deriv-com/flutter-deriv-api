@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_change_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_change_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Mt5 password change response class
+/// Mt5 password change response class.
 class Mt5PasswordChangeResponse extends Response {
-  /// Initialize Mt5PasswordChangeResponse
+  /// Initialize Mt5PasswordChangeResponse.
   const Mt5PasswordChangeResponse({
     this.mt5PasswordChange,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class Mt5PasswordChangeResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5PasswordChangeResponse.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordChangeResponse(
         mt5PasswordChange: json['mt5_password_change'] as int?,
@@ -59,7 +60,7 @@ class Mt5PasswordChangeResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

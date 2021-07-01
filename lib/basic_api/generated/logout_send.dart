@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/logout_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/logout_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Logout request class
+/// Logout request class.
 class LogoutRequest extends Request {
-  /// Initialize LogoutRequest
+  /// Initialize LogoutRequest.
   const LogoutRequest({
     this.logout = true,
     Map<String, dynamic>? passthrough,
@@ -16,7 +17,7 @@ class LogoutRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LogoutRequest.fromJson(Map<String, dynamic> json) => LogoutRequest(
         logout: json['logout'] == null ? null : json['logout'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -51,7 +52,7 @@ class LogoutRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

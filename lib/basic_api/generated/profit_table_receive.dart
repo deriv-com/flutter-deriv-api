@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/profit_table_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/profit_table_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Profit table response class
+/// Profit table response class.
 class ProfitTableResponse extends Response {
-  /// Initialize ProfitTableResponse
+  /// Initialize ProfitTableResponse.
   const ProfitTableResponse({
     this.profitTable,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class ProfitTableResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ProfitTableResponse.fromJson(Map<String, dynamic> json) =>
       ProfitTableResponse(
         profitTable: json['profit_table'] as Map<String, dynamic>?,
@@ -59,7 +60,7 @@ class ProfitTableResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

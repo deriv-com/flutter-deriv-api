@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transaction_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transaction_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Transaction request class
+/// Transaction request class.
 class TransactionRequest extends Request {
-  /// Initialize TransactionRequest
+  /// Initialize TransactionRequest.
   const TransactionRequest({
     this.subscribe,
     this.transaction = true,
@@ -17,7 +18,7 @@ class TransactionRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TransactionRequest.fromJson(Map<String, dynamic> json) =>
       TransactionRequest(
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
@@ -65,7 +66,7 @@ class TransactionRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

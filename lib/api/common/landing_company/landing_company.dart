@@ -67,7 +67,7 @@ class LandingCompany extends LandingCompanyModel {
         virtualCompany: json['virtual_company'],
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets landing companies for given [LandingCompanyRequest]
   ///
@@ -76,7 +76,7 @@ class LandingCompany extends LandingCompanyModel {
     LandingCompanyRequest request,
   ) async {
     final LandingCompanyResponse response =
-        await _api!.call<LandingCompanyResponse>(request: request);
+        await _api.call<LandingCompanyResponse>(request: request);
 
     checkException(
       response: response,
@@ -94,7 +94,7 @@ class LandingCompany extends LandingCompanyModel {
     LandingCompanyDetailsRequest request,
   ) async {
     final LandingCompanyDetailsResponse response =
-        await _api!.call<LandingCompanyDetailsResponse>(
+        await _api.call<LandingCompanyDetailsResponse>(
       request: request,
     );
 

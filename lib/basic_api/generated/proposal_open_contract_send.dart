@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_open_contract_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_open_contract_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Proposal open contract request class
+/// Proposal open contract request class.
 class ProposalOpenContractRequest extends Request {
-  /// Initialize ProposalOpenContractRequest
+  /// Initialize ProposalOpenContractRequest.
   const ProposalOpenContractRequest({
     this.contractId,
     this.proposalOpenContract = true,
@@ -18,7 +19,7 @@ class ProposalOpenContractRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>
       ProposalOpenContractRequest(
         contractId: json['contract_id'] as int?,
@@ -74,7 +75,7 @@ class ProposalOpenContractRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[contractId!];
 }

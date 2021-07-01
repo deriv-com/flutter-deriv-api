@@ -31,7 +31,7 @@ class PaymentAgentWithdraw extends PaymentAgentWithdrawModel {
         transactionId: response.transactionId,
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   PaymentAgentWithdraw copyWith({
@@ -53,7 +53,7 @@ class PaymentAgentWithdraw extends PaymentAgentWithdrawModel {
     PaymentagentWithdrawRequest request,
   ) async {
     final PaymentagentWithdrawResponse response =
-        await _api!.call<PaymentagentWithdrawResponse>(request: request);
+        await _api.call<PaymentagentWithdrawResponse>(request: request);
 
     checkException(
       response: response,

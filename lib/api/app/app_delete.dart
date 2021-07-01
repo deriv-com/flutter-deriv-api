@@ -17,7 +17,7 @@ class AppDelete extends AppDeleteModel {
   factory AppDelete.fromResponse(AppDeleteResponse response) =>
       AppDelete(succeeded: getBool(response.appDelete));
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   AppDelete copyWith({
@@ -32,7 +32,8 @@ class AppDelete extends AppDeleteModel {
   /// For parameters information refer to [AppDeleteRequest].
   /// Throws an [AppException] if API response contains an error
   static Future<AppDelete> deleteApplication(AppDeleteRequest request) async {
-    final AppDeleteResponse response = await _api!.call<AppDeleteResponse>(request: request);
+    final AppDeleteResponse response =
+        await _api.call<AppDeleteResponse>(request: request);
 
     checkException(
       response: response,

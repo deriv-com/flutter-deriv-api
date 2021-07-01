@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ping_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ping_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Ping request class
+/// Ping request class.
 class PingRequest extends Request {
-  /// Initialize PingRequest
+  /// Initialize PingRequest.
   const PingRequest({
     this.ping = true,
     Map<String, dynamic>? passthrough,
@@ -16,7 +17,7 @@ class PingRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PingRequest.fromJson(Map<String, dynamic> json) => PingRequest(
         ping: json['ping'] == null ? null : json['ping'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -51,7 +52,7 @@ class PingRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_check_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_check_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Mt5 password check response class
+/// Mt5 password check response class.
 class Mt5PasswordCheckResponse extends Response {
-  /// Initialize Mt5PasswordCheckResponse
+  /// Initialize Mt5PasswordCheckResponse.
   const Mt5PasswordCheckResponse({
     this.mt5PasswordCheck,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class Mt5PasswordCheckResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5PasswordCheckResponse.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordCheckResponse(
         mt5PasswordCheck: json['mt5_password_check'] as int?,
@@ -59,7 +60,7 @@ class Mt5PasswordCheckResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

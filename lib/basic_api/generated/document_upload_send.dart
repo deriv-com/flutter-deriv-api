@@ -1,19 +1,20 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/document_upload_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/document_upload_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// Document upload request class
+/// Document upload request class.
 class DocumentUploadRequest extends Request {
-  /// Initialize DocumentUploadRequest
+  /// Initialize DocumentUploadRequest.
   const DocumentUploadRequest({
-    @required this.documentFormat,
+    required this.documentFormat,
     this.documentId,
-    @required this.documentType,
+    required this.documentType,
     this.documentUpload = true,
-    @required this.expectedChecksum,
+    required this.expectedChecksum,
     this.expirationDate,
-    @required this.fileSize,
+    required this.fileSize,
     this.lifetimeValid,
     this.pageType,
     Map<String, dynamic>? passthrough,
@@ -24,7 +25,7 @@ class DocumentUploadRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory DocumentUploadRequest.fromJson(Map<String, dynamic> json) =>
       DocumentUploadRequest(
         documentFormat: json['document_format'] as String?,
@@ -123,7 +124,7 @@ class DocumentUploadRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

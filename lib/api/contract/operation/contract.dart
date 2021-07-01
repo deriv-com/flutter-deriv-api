@@ -60,7 +60,7 @@ class Contract extends ContractModel {
         subscriptionInformation: SubscriptionModel.fromJson(subscriptionJson),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Subscription information
   final SubscriptionModel? subscriptionInformation;
@@ -69,7 +69,7 @@ class Contract extends ContractModel {
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   static Future<Contract> buy(BuyRequest request) async {
-    final BuyResponse response = await _api!.call<BuyResponse>(
+    final BuyResponse response = await _api.call<BuyResponse>(
       request: request,
     );
 
@@ -89,7 +89,7 @@ class Contract extends ContractModel {
     BuyRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
-      _api!
+      _api
           .subscribe(request: request, comparePredicate: comparePredicate)!
           .map<Contract?>(
         (Response response) {

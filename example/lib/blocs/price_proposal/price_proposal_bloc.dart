@@ -58,7 +58,6 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
 
   Stream<PriceProposal?> _subscribeProposal(SubscribeProposal event) =>
       PriceProposal.subscribePriceForContract(
-        // ignore: missing_required_param
         ProposalRequest(
           amount: event.amount,
           durationUnit: event.durationUnit,
@@ -67,6 +66,8 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
           currency: 'USD',
           contractType: event.contract?.contractType,
           symbol: event.contract?.underlyingSymbol,
+          limitOrder: null,
+          cancellation: null,
         ),
       );
 

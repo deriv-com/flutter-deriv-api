@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/balance_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/balance_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Balance response class
+/// Balance response class.
 class BalanceResponse extends Response {
-  /// Initialize BalanceResponse
+  /// Initialize BalanceResponse.
   const BalanceResponse({
     this.balance,
     this.subscription,
@@ -20,7 +21,7 @@ class BalanceResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory BalanceResponse.fromJson(Map<String, dynamic> json) =>
       BalanceResponse(
         balance: json['balance'] as Map<String, dynamic>?,
@@ -67,7 +68,7 @@ class BalanceResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

@@ -17,6 +17,7 @@ void main() {
         accountTo: 'MF100',
         amount: 100,
         currency: 'EUR',
+        transferBetweenAccounts: null,
       ),
     );
 

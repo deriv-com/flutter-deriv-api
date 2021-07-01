@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_as
-
 import 'package:flutter_deriv_api/api/account/account.dart';
 import 'package:flutter_deriv_api/api/account/authorize/exceptions/authorize_exception.dart';
 import 'package:flutter_deriv_api/api/account/models/authorize_model.dart';
@@ -76,7 +74,7 @@ class Authorize extends AuthorizeModel {
         userId: json['user_id'],
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generates a copy of instance with given parameters
   Authorize copyWith({
@@ -119,7 +117,7 @@ class Authorize extends AuthorizeModel {
   /// For parameters information refer to [AuthorizeRequest].
   /// Throws an [AuthorizeException] if API response contains an error
   static Future<Authorize> authorize(AuthorizeRequest request) async {
-    final AuthorizeResponse response = await _api!.call<AuthorizeResponse>(
+    final AuthorizeResponse response = await _api.call<AuthorizeResponse>(
       request: request,
     );
 

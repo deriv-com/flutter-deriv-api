@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_virtual_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_virtual_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// New account virtual response class
+/// New account virtual response class.
 class NewAccountVirtualResponse extends Response {
-  /// Initialize NewAccountVirtualResponse
+  /// Initialize NewAccountVirtualResponse.
   const NewAccountVirtualResponse({
     this.newAccountVirtual,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class NewAccountVirtualResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory NewAccountVirtualResponse.fromJson(Map<String, dynamic> json) =>
       NewAccountVirtualResponse(
         newAccountVirtual: json['new_account_virtual'] as Map<String, dynamic>?,
@@ -59,7 +60,7 @@ class NewAccountVirtualResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

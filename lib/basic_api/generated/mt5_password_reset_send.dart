@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_reset_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_reset_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// Mt5 password reset request class
+/// Mt5 password reset request class.
 class Mt5PasswordResetRequest extends Request {
-  /// Initialize Mt5PasswordResetRequest
+  /// Initialize Mt5PasswordResetRequest.
   const Mt5PasswordResetRequest({
-    @required this.login,
+    required this.login,
     this.mt5PasswordReset = true,
-    @required this.newPassword,
+    required this.newPassword,
     this.passwordType,
-    @required this.verificationCode,
+    required this.verificationCode,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -20,7 +21,7 @@ class Mt5PasswordResetRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5PasswordResetRequest.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordResetRequest(
         login: json['login'] as String?,
@@ -86,7 +87,7 @@ class Mt5PasswordResetRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

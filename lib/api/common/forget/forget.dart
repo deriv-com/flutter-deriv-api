@@ -17,7 +17,7 @@ class Forget extends ForgetModel {
   factory Forget.fromResponse(ForgetResponse response) =>
       Forget(succeeded: response.forget);
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   Forget copyWith({
@@ -34,7 +34,8 @@ class Forget extends ForgetModel {
   static Future<Forget> forget(
     ForgetRequest request,
   ) async {
-    final ForgetResponse response = await _api!.call<ForgetResponse>(request: request);
+    final ForgetResponse response =
+        await _api.call<ForgetResponse>(request: request);
 
     checkException(
       response: response,

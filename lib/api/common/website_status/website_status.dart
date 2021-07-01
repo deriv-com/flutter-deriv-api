@@ -71,7 +71,7 @@ class WebsiteStatus extends WebsiteStatusModel {
   /// Subscription information
   final SubscriptionModel? subscriptionInformation;
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets Website status
   ///
@@ -79,7 +79,8 @@ class WebsiteStatus extends WebsiteStatusModel {
   static Future<WebsiteStatus> fetchWebsiteStatus([
     WebsiteStatusRequest? request,
   ]) async {
-    final WebsiteStatusResponse response = await _api!.call<WebsiteStatusResponse>(
+    final WebsiteStatusResponse response =
+        await _api.call<WebsiteStatusResponse>(
       request: request ?? const WebsiteStatusRequest(),
     );
 
@@ -97,7 +98,7 @@ class WebsiteStatus extends WebsiteStatusModel {
     WebsiteStatusRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
-      _api!
+      _api
           .subscribe(request: request, comparePredicate: comparePredicate)!
           .map<WebsiteStatus?>(
         (Response response) {
@@ -125,7 +126,7 @@ class WebsiteStatus extends WebsiteStatusModel {
     }
 
     final ForgetResponse response =
-        await _api!.unsubscribe(subscriptionId: subscriptionInformation!.id);
+        await _api.unsubscribe(subscriptionId: subscriptionInformation!.id);
 
     checkException(
       response: response,
@@ -141,7 +142,7 @@ class WebsiteStatus extends WebsiteStatusModel {
   /// Throws a [WebsiteStatusException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllWebsiteStatus() async {
     final ForgetAllResponse? response =
-        await _api!.unsubscribeAll(method: ForgetStreamType.ticks);
+        await _api.unsubscribeAll(method: ForgetStreamType.ticks);
 
     checkException(
       response: response,

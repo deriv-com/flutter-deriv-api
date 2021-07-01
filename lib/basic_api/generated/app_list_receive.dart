@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_list_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_list_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// App list response class
+/// App list response class.
 class AppListResponse extends Response {
-  /// Initialize AppListResponse
+  /// Initialize AppListResponse.
   const AppListResponse({
     this.appList,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class AppListResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppListResponse.fromJson(Map<String, dynamic> json) =>
       AppListResponse(
         appList: (json['app_list'] as List<dynamic>?)
@@ -62,7 +63,7 @@ class AppListResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

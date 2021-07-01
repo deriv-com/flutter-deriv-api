@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_account_status_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_account_status_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Get account status response class
+/// Get account status response class.
 class GetAccountStatusResponse extends Response {
-  /// Initialize GetAccountStatusResponse
+  /// Initialize GetAccountStatusResponse.
   const GetAccountStatusResponse({
     this.getAccountStatus,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class GetAccountStatusResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetAccountStatusResponse.fromJson(Map<String, dynamic> json) =>
       GetAccountStatusResponse(
         getAccountStatus: json['get_account_status'] as Map<String, dynamic>?,
@@ -59,7 +60,7 @@ class GetAccountStatusResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

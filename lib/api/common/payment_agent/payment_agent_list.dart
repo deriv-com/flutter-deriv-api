@@ -32,7 +32,7 @@ class PaymentAgentList extends PaymentAgentListModel {
         ),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generates a copy of instance with given parameters
   PaymentAgentList copyWith({
@@ -51,7 +51,8 @@ class PaymentAgentList extends PaymentAgentListModel {
   static Future<PaymentAgentList> fetch(
     PaymentagentListRequest request,
   ) async {
-    final PaymentagentListResponse response = await _api!.call<PaymentagentListResponse>(request: request);
+    final PaymentagentListResponse response =
+        await _api.call<PaymentagentListResponse>(request: request);
 
     checkException(
       response: response,

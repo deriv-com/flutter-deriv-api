@@ -62,7 +62,7 @@ class MT5Settings extends MT5SettingsModel {
         zipCode: json['zipCode'],
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   MT5Settings copyWith({
@@ -107,7 +107,8 @@ class MT5Settings extends MT5SettingsModel {
   static Future<MT5Settings> fetchSettings(
     Mt5GetSettingsRequest request,
   ) async {
-    final Mt5GetSettingsResponse response = await _api!.call<Mt5GetSettingsResponse>(request: request);
+    final Mt5GetSettingsResponse response =
+        await _api.call<Mt5GetSettingsResponse>(request: request);
 
     checkException(
       response: response,

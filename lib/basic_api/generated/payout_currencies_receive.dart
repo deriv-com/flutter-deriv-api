@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/payout_currencies_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/payout_currencies_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Payout currencies response class
+/// Payout currencies response class.
 class PayoutCurrenciesResponse extends Response {
-  /// Initialize PayoutCurrenciesResponse
+  /// Initialize PayoutCurrenciesResponse.
   const PayoutCurrenciesResponse({
     this.payoutCurrencies,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class PayoutCurrenciesResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PayoutCurrenciesResponse.fromJson(Map<String, dynamic> json) =>
       PayoutCurrenciesResponse(
         payoutCurrencies: (json['payout_currencies'] as List<dynamic>?)
@@ -61,7 +62,7 @@ class PayoutCurrenciesResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

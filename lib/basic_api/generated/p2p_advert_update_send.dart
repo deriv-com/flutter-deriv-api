@@ -1,14 +1,15 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_update_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_update_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// P2p advert update request class
+/// P2p advert update request class.
 class P2pAdvertUpdateRequest extends Request {
-  /// Initialize P2pAdvertUpdateRequest
+  /// Initialize P2pAdvertUpdateRequest.
   const P2pAdvertUpdateRequest({
     this.delete,
-    @required this.id,
+    required this.id,
     this.isActive,
     this.p2pAdvertUpdate = true,
     this.paymentMethod,
@@ -21,7 +22,7 @@ class P2pAdvertUpdateRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertUpdateRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertUpdateRequest(
         delete: json['delete'] == null ? null : json['delete'] == 1,
@@ -31,8 +32,8 @@ class P2pAdvertUpdateRequest extends Request {
             ? null
             : json['p2p_advert_update'] == 1,
         paymentMethod: json['payment_method'] as String?,
-        paymentMethodIds: (json['payment_method_ids'] as List<dynamic>)
-            .map<int>((dynamic item) => item as int)
+        paymentMethodIds: (json['payment_method_ids'] as List<dynamic>?)
+            ?.map<int>((dynamic item) => item as int)
             .toList(),
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -104,7 +105,7 @@ class P2pAdvertUpdateRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

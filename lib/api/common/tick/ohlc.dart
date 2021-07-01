@@ -78,14 +78,14 @@ class OHLC extends TickBase {
   /// Open time
   final DateTime? openTime;
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Unsubscribes all OHLC.
   ///
   /// Throws a [TickException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllOHLC() async {
     final ForgetAllResponse? response =
-        await _api!.unsubscribeAll(method: ForgetStreamType.candles);
+        await _api.unsubscribeAll(method: ForgetStreamType.candles);
 
     checkException(
       response: response,

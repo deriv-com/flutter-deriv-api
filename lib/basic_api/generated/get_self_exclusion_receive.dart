@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_self_exclusion_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_self_exclusion_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Get self exclusion response class
+/// Get self exclusion response class.
 class GetSelfExclusionResponse extends Response {
-  /// Initialize GetSelfExclusionResponse
+  /// Initialize GetSelfExclusionResponse.
   const GetSelfExclusionResponse({
     this.getSelfExclusion,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class GetSelfExclusionResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetSelfExclusionResponse.fromJson(Map<String, dynamic> json) =>
       GetSelfExclusionResponse(
         getSelfExclusion: json['get_self_exclusion'] as Map<String, dynamic>?,
@@ -59,7 +60,7 @@ class GetSelfExclusionResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

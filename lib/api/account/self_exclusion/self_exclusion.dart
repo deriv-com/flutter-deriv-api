@@ -59,7 +59,7 @@ class SelfExclusion extends SelfExclusionModel {
         timeoutUntil: getDateTime(json['timeout_until']),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   SelfExclusion copyWith({
@@ -105,7 +105,7 @@ class SelfExclusion extends SelfExclusionModel {
     GetSelfExclusionRequest? request,
   ]) async {
     final GetSelfExclusionResponse response =
-        await _api!.call<GetSelfExclusionResponse>(
+        await _api.call<GetSelfExclusionResponse>(
       request: request ?? const GetSelfExclusionRequest(),
     );
 
@@ -124,7 +124,7 @@ class SelfExclusion extends SelfExclusionModel {
   /// Throws a [SelfExclusionException] if API response contains an error
   static Future<bool?> setSelfExclusion(SetSelfExclusionRequest request) async {
     final SetSelfExclusionResponse response =
-        await _api!.call<SetSelfExclusionResponse>(request: request);
+        await _api.call<SetSelfExclusionResponse>(request: request);
 
     checkException(
       response: response,
@@ -141,7 +141,7 @@ class SelfExclusion extends SelfExclusionModel {
   /// Throws a [SelfExclusionException] if API response contains an error
   Future<bool?> exclude() async {
     final SetSelfExclusionResponse response =
-        await _api!.call<SetSelfExclusionResponse>(
+        await _api.call<SetSelfExclusionResponse>(
       request: SetSelfExclusionRequest(
         excludeUntil: getStringFromDateTime(excludeUntil),
         max30dayDeposit: max30dayDeposit,

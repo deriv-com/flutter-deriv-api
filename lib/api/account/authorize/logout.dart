@@ -17,7 +17,7 @@ class Logout extends LogoutModel {
   factory Logout.fromResponse(LogoutResponse response) =>
       Logout(succeeded: getBool(response.logout));
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generates a copy of instance with given parameters
   Logout copyWith({
@@ -34,7 +34,7 @@ class Logout extends LogoutModel {
   static Future<Logout> logout([
     LogoutRequest? request,
   ]) async {
-    final LogoutResponse response = await _api!.call<LogoutResponse>(
+    final LogoutResponse response = await _api.call<LogoutResponse>(
       request: request ?? const LogoutRequest(),
     );
 

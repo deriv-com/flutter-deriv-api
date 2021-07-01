@@ -1,15 +1,16 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_create_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_create_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// P2p advertiser create request class
+/// P2p advertiser create request class.
 class P2pAdvertiserCreateRequest extends Request {
-  /// Initialize P2pAdvertiserCreateRequest
+  /// Initialize P2pAdvertiserCreateRequest.
   const P2pAdvertiserCreateRequest({
     this.contactInfo,
     this.defaultAdvertDescription,
-    @required this.name,
+    required this.name,
     this.p2pAdvertiserCreate = true,
     this.paymentInfo,
     this.subscribe,
@@ -21,7 +22,7 @@ class P2pAdvertiserCreateRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertiserCreateRequest.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserCreateRequest(
         contactInfo: json['contact_info'] as String?,
@@ -99,7 +100,7 @@ class P2pAdvertiserCreateRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

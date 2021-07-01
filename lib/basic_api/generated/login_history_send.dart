@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/login_history_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/login_history_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Login history request class
+/// Login history request class.
 class LoginHistoryRequest extends Request {
-  /// Initialize LoginHistoryRequest
+  /// Initialize LoginHistoryRequest.
   const LoginHistoryRequest({
     this.limit,
     this.loginHistory = true,
@@ -17,7 +18,7 @@ class LoginHistoryRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LoginHistoryRequest.fromJson(Map<String, dynamic> json) =>
       LoginHistoryRequest(
         limit: json['limit'] as int?,
@@ -61,7 +62,7 @@ class LoginHistoryRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

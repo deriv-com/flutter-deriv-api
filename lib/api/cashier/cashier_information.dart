@@ -31,14 +31,14 @@ class CashierInformation extends CashierInformationModel {
             : null,
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the cashier URL for given [CashierRequest]
   static Future<CashierInformation> fetchInformation(
     CashierRequest request,
   ) async {
     final CashierResponse response =
-        await _api!.call<CashierResponse>(request: request);
+        await _api.call<CashierResponse>(request: request);
 
     checkException(
       response: response,

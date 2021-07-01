@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/statement_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/statement_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Statement response class
+/// Statement response class.
 class StatementResponse extends Response {
-  /// Initialize StatementResponse
+  /// Initialize StatementResponse.
   const StatementResponse({
     this.statement,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class StatementResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory StatementResponse.fromJson(Map<String, dynamic> json) =>
       StatementResponse(
         statement: json['statement'] as Map<String, dynamic>?,
@@ -59,7 +60,7 @@ class StatementResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

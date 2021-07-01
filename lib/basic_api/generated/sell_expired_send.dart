@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_expired_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_expired_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Sell expired request class
+/// Sell expired request class.
 class SellExpiredRequest extends Request {
-  /// Initialize SellExpiredRequest
+  /// Initialize SellExpiredRequest.
   const SellExpiredRequest({
     this.sellExpired = true,
     Map<String, dynamic>? passthrough,
@@ -16,7 +17,7 @@ class SellExpiredRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SellExpiredRequest.fromJson(Map<String, dynamic> json) =>
       SellExpiredRequest(
         sellExpired:
@@ -53,7 +54,7 @@ class SellExpiredRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

@@ -63,7 +63,7 @@ class MT5Account extends MT5AccountModel {
         name: json['name'],
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   MT5Account copyWith({
@@ -101,7 +101,7 @@ class MT5Account extends MT5AccountModel {
     Mt5NewAccountRequest request,
   ) async {
     final Mt5NewAccountResponse response =
-        await _api!.call<Mt5NewAccountResponse>(request: request);
+        await _api.call<Mt5NewAccountResponse>(request: request);
 
     checkException(
       response: response,
@@ -120,7 +120,7 @@ class MT5Account extends MT5AccountModel {
     Mt5LoginListRequest request,
   ) async {
     final Mt5LoginListResponse response =
-        await _api!.call<Mt5LoginListResponse>(request: request);
+        await _api.call<Mt5LoginListResponse>(request: request);
 
     checkException(
       response: response,

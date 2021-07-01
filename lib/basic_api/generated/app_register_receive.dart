@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_register_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_register_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// App register response class
+/// App register response class.
 class AppRegisterResponse extends Response {
-  /// Initialize AppRegisterResponse
+  /// Initialize AppRegisterResponse.
   const AppRegisterResponse({
     this.appRegister,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class AppRegisterResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppRegisterResponse.fromJson(Map<String, dynamic> json) =>
       AppRegisterResponse(
         appRegister: json['app_register'] as Map<String, dynamic>?,
@@ -59,7 +60,7 @@ class AppRegisterResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

@@ -1,20 +1,21 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_history_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_history_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// Ticks history request class
+/// Ticks history request class.
 class TicksHistoryRequest extends Request {
-  /// Initialize TicksHistoryRequest
+  /// Initialize TicksHistoryRequest.
   const TicksHistoryRequest({
     this.adjustStartTime,
     this.count,
-    @required this.end,
+    required this.end,
     this.granularity,
     this.start,
     this.style,
     this.subscribe,
-    @required this.ticksHistory,
+    required this.ticksHistory,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -23,7 +24,7 @@ class TicksHistoryRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TicksHistoryRequest.fromJson(Map<String, dynamic> json) =>
       TicksHistoryRequest(
         adjustStartTime: json['adjust_start_time'] as int?,
@@ -110,7 +111,7 @@ class TicksHistoryRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }
