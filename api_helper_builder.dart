@@ -17,9 +17,9 @@ class APIHelperBuilder extends Builder {
 
   @override
   Future<void> build(BuildStep buildStep) async {
-    _addManualClasses();
     try {
       generatedResponses.sort();
+      _addManualClasses();
 
       await buildStep.writeAsString(
         buildStep.inputId.changeExtension('.helper.dart'),
