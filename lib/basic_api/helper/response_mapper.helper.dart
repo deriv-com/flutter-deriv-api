@@ -59,7 +59,6 @@ import '../generated/p2p_advert_update_receive.dart';
 import '../generated/p2p_advertiser_adverts_receive.dart';
 import '../generated/p2p_advertiser_create_receive.dart';
 import '../generated/p2p_advertiser_info_receive.dart';
-import '../generated/p2p_advertiser_relations_receive.dart';
 import '../generated/p2p_advertiser_update_receive.dart';
 import '../generated/p2p_chat_create_receive.dart';
 import '../generated/p2p_order_cancel_receive.dart';
@@ -80,6 +79,7 @@ import '../generated/profit_table_receive.dart';
 import '../generated/proposal_open_contract_receive.dart';
 import '../generated/proposal_receive.dart';
 import '../generated/reality_check_receive.dart';
+import '../manually/reset_password_receive.dart';
 import '../generated/residence_list_receive.dart';
 import '../generated/revoke_oauth_app_receive.dart';
 import '../generated/sell_contract_for_multiple_accounts_receive.dart';
@@ -223,8 +223,6 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return P2pAdvertiserCreateResponse.fromJson(responseMap);
     case 'p2p_advertiser_info':
       return P2pAdvertiserInfoResponse.fromJson(responseMap);
-    case 'p2p_advertiser_relations':
-      return P2pAdvertiserRelationsResponse.fromJson(responseMap);
     case 'p2p_advertiser_update':
       return P2pAdvertiserUpdateResponse.fromJson(responseMap);
     case 'p2p_chat_create':
@@ -265,6 +263,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return ProposalResponse.fromJson(responseMap);
     case 'reality_check':
       return RealityCheckResponse.fromJson(responseMap);
+    case 'reset_password':
+      return ResetPasswordResponse.fromJson(responseMap);
     case 'residence_list':
       return ResidenceListResponse.fromJson(responseMap);
     case 'revoke_oauth_app':
