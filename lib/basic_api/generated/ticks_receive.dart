@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Ticks response class
+/// Ticks response class.
 class TicksResponse extends Response {
-  /// Initialize TicksResponse
+  /// Initialize TicksResponse.
   const TicksResponse({
     this.subscription,
     this.tick,
@@ -20,7 +21,7 @@ class TicksResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TicksResponse.fromJson(Map<String, dynamic> json) => TicksResponse(
         subscription: json['subscription'] as Map<String, dynamic>?,
         tick: json['tick'] as Map<String, dynamic>?,
@@ -66,7 +67,7 @@ class TicksResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

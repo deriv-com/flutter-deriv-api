@@ -41,7 +41,7 @@ class TickBase extends TickBaseModel {
   /// Subscription information
   final SubscriptionModel? subscriptionInformation;
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Unsubscribes from tick stream
   ///
@@ -52,7 +52,7 @@ class TickBase extends TickBaseModel {
     }
 
     final ForgetResponse response =
-        await _api!.unsubscribe(subscriptionId: subscriptionInformation!.id);
+        await _api.unsubscribe(subscriptionId: subscriptionInformation!.id);
 
     checkException(
       response: response,

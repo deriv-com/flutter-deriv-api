@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_list_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_list_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// P2p order list response class
+/// P2p order list response class.
 class P2pOrderListResponse extends Response {
-  /// Initialize P2pOrderListResponse
+  /// Initialize P2pOrderListResponse.
   const P2pOrderListResponse({
     this.p2pOrderList,
     this.subscription,
@@ -20,7 +21,7 @@ class P2pOrderListResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pOrderListResponse.fromJson(Map<String, dynamic> json) =>
       P2pOrderListResponse(
         p2pOrderList: json['p2p_order_list'] as Map<String, dynamic>?,
@@ -67,7 +68,7 @@ class P2pOrderListResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

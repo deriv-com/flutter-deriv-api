@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_details_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_details_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Paymentagent details request class
+/// Paymentagent details request class.
 class PaymentagentDetailsRequest extends Request {
-  /// Initialize PaymentagentDetailsRequest
+  /// Initialize PaymentagentDetailsRequest.
   const PaymentagentDetailsRequest({
     this.paymentagentDetails = true,
     Map<String, dynamic>? passthrough,
@@ -16,7 +17,7 @@ class PaymentagentDetailsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentagentDetailsRequest.fromJson(Map<String, dynamic> json) =>
       PaymentagentDetailsRequest(
         paymentagentDetails: json['paymentagent_details'] == null
@@ -54,7 +55,7 @@ class PaymentagentDetailsRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_stop_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_stop_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Copy stop response class
+/// Copy stop response class.
 class CopyStopResponse extends Response {
-  /// Initialize CopyStopResponse
+  /// Initialize CopyStopResponse.
   const CopyStopResponse({
     this.copyStop,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class CopyStopResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CopyStopResponse.fromJson(Map<String, dynamic> json) =>
       CopyStopResponse(
         copyStop: json['copy_stop'] as int?,
@@ -59,7 +60,7 @@ class CopyStopResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

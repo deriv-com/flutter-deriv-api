@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_confirm_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_confirm_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// P2p order confirm response class
+/// P2p order confirm response class.
 class P2pOrderConfirmResponse extends Response {
-  /// Initialize P2pOrderConfirmResponse
+  /// Initialize P2pOrderConfirmResponse.
   const P2pOrderConfirmResponse({
     this.p2pOrderConfirm,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class P2pOrderConfirmResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pOrderConfirmResponse.fromJson(Map<String, dynamic> json) =>
       P2pOrderConfirmResponse(
         p2pOrderConfirm: json['p2p_order_confirm'] as Map<String, dynamic>?,
@@ -59,7 +60,7 @@ class P2pOrderConfirmResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

@@ -1,13 +1,14 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_get_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_get_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// App get request class
+/// App get request class.
 class AppGetRequest extends Request {
-  /// Initialize AppGetRequest
+  /// Initialize AppGetRequest.
   const AppGetRequest({
-    @required this.appGet,
+    required this.appGet,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -16,7 +17,7 @@ class AppGetRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppGetRequest.fromJson(Map<String, dynamic> json) => AppGetRequest(
         appGet: json['app_get'] as int?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -47,7 +48,7 @@ class AppGetRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

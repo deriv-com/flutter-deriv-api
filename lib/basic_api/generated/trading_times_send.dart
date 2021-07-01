@@ -1,13 +1,14 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_times_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_times_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// Trading times request class
+/// Trading times request class.
 class TradingTimesRequest extends Request {
-  /// Initialize TradingTimesRequest
+  /// Initialize TradingTimesRequest.
   const TradingTimesRequest({
-    @required this.tradingTimes,
+    required this.tradingTimes,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -16,7 +17,7 @@ class TradingTimesRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradingTimesRequest.fromJson(Map<String, dynamic> json) =>
       TradingTimesRequest(
         tradingTimes: json['trading_times'] as String?,
@@ -48,7 +49,7 @@ class TradingTimesRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

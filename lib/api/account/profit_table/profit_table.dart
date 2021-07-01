@@ -28,7 +28,7 @@ class ProfitTable extends ProfitTableModel {
         ),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generates a copy of instance with given parameters
   ProfitTable copyWith({
@@ -46,7 +46,7 @@ class ProfitTable extends ProfitTableModel {
   /// Throws a [ProfitTableException] if API response contains an error
   static Future<ProfitTable> fetch(ProfitTableRequest request) async {
     final ProfitTableResponse response =
-        await _api!.call<ProfitTableResponse>(request: request);
+        await _api.call<ProfitTableResponse>(request: request);
 
     checkException(
       response: response,

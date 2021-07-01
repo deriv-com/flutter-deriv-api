@@ -340,7 +340,7 @@ class OpenContract extends Contract {
   /// Error message if validation fails
   final String? validationError;
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the current spot of the the bought contract specified in [ProposalOpenContractRequest]
   ///
@@ -349,7 +349,7 @@ class OpenContract extends Contract {
     ProposalOpenContractRequest request,
   ) async {
     final ProposalOpenContractResponse response =
-        await _api!.call<ProposalOpenContractResponse>(
+        await _api.call<ProposalOpenContractResponse>(
       request: request,
     );
 
@@ -371,7 +371,7 @@ class OpenContract extends Contract {
     ProposalOpenContractRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
-      _api!
+      _api
           .subscribe(request: request, comparePredicate: comparePredicate)!
           .map<OpenContract?>(
         (Response response) {
@@ -400,7 +400,7 @@ class OpenContract extends Contract {
     }
 
     final ForgetResponse response =
-        await _api!.unsubscribe(subscriptionId: subscriptionInformation!.id);
+        await _api.unsubscribe(subscriptionId: subscriptionInformation!.id);
 
     checkException(
       response: response,
@@ -415,7 +415,7 @@ class OpenContract extends Contract {
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllOpenContract() async {
-    final ForgetAllResponse? response = await _api!.unsubscribeAll(
+    final ForgetAllResponse? response = await _api.unsubscribeAll(
       method: ForgetStreamType.proposalOpenContract,
     );
 

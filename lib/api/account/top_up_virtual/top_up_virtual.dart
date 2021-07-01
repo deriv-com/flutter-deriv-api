@@ -23,7 +23,7 @@ class TopUpVirtual extends TopUpVirtualModel {
         currency: json['currency'],
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generates a copy of instance with given parameters
   TopUpVirtual copyWith({
@@ -42,8 +42,7 @@ class TopUpVirtual extends TopUpVirtualModel {
   static Future<TopUpVirtual> topUp([
     TopupVirtualRequest? request,
   ]) async {
-    final TopupVirtualResponse response =
-        await _api!.call<TopupVirtualResponse>(
+    final TopupVirtualResponse response = await _api.call<TopupVirtualResponse>(
       request: request ?? const TopupVirtualRequest(),
     );
 

@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_history_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_history_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Ticks history response class
+/// Ticks history response class.
 class TicksHistoryResponse extends Response {
-  /// Initialize TicksHistoryResponse
+  /// Initialize TicksHistoryResponse.
   const TicksHistoryResponse({
     this.candles,
     this.history,
@@ -22,7 +23,7 @@ class TicksHistoryResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TicksHistoryResponse.fromJson(Map<String, dynamic> json) =>
       TicksHistoryResponse(
         candles: (json['candles'] as List<dynamic>?)
@@ -86,7 +87,7 @@ class TicksHistoryResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

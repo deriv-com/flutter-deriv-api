@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Proposal response class
+/// Proposal response class.
 class ProposalResponse extends Response {
-  /// Initialize ProposalResponse
+  /// Initialize ProposalResponse.
   const ProposalResponse({
     this.proposal,
     this.subscription,
@@ -20,7 +21,7 @@ class ProposalResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ProposalResponse.fromJson(Map<String, dynamic> json) =>
       ProposalResponse(
         proposal: json['proposal'] as Map<String, dynamic>?,
@@ -67,7 +68,7 @@ class ProposalResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

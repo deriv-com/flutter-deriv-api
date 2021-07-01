@@ -38,7 +38,7 @@ class Residence extends ResidenceModel {
         selected: json['selected'],
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// 'true' if disabled
   bool get isDisabled => disabled?.toLowerCase() == 'disabled';
@@ -53,7 +53,7 @@ class Residence extends ResidenceModel {
     ResidenceListRequest? request,
   ]) async {
     final ResidenceListResponse response =
-        await _api!.call<ResidenceListResponse>(
+        await _api.call<ResidenceListResponse>(
       request: request ?? const ResidenceListRequest(),
     );
 

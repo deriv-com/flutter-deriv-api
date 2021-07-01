@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_servers_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_servers_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Trading servers response class
+/// Trading servers response class.
 class TradingServersResponse extends Response {
-  /// Initialize TradingServersResponse
+  /// Initialize TradingServersResponse.
   const TradingServersResponse({
     this.tradingServers,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class TradingServersResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradingServersResponse.fromJson(Map<String, dynamic> json) =>
       TradingServersResponse(
         tradingServers: (json['trading_servers'] as List<dynamic>?)
@@ -62,7 +63,7 @@ class TradingServersResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

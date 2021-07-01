@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Ticks request class
+/// Ticks request class.
 class TicksRequest extends Request {
-  /// Initialize TicksRequest
+  /// Initialize TicksRequest.
   const TicksRequest({
     this.subscribe,
     this.ticks,
@@ -17,10 +18,10 @@ class TicksRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TicksRequest.fromJson(Map<String, dynamic> json) => TicksRequest(
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        ticks: json['ticks'] as dynamic?,
+        ticks: json['ticks'] as dynamic,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
@@ -29,7 +30,7 @@ class TicksRequest extends Request {
   final bool? subscribe;
 
   /// The short symbol name or array of symbols (obtained from `active_symbols` call).
-  final dynamic? ticks;
+  final dynamic ticks;
 
   /// Converts this instance to JSON
   @override
@@ -48,7 +49,7 @@ class TicksRequest extends Request {
   @override
   TicksRequest copyWith({
     bool? subscribe,
-    dynamic? ticks,
+    dynamic ticks,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
@@ -59,7 +60,7 @@ class TicksRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[ticks!];
 }

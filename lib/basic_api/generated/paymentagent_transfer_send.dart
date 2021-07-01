@@ -1,18 +1,19 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_transfer_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_transfer_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// Paymentagent transfer request class
+/// Paymentagent transfer request class.
 class PaymentagentTransferRequest extends Request {
-  /// Initialize PaymentagentTransferRequest
+  /// Initialize PaymentagentTransferRequest.
   const PaymentagentTransferRequest({
-    @required this.amount,
-    @required this.currency,
+    required this.amount,
+    required this.currency,
     this.description,
     this.dryRun,
     this.paymentagentTransfer = true,
-    @required this.transferTo,
+    required this.transferTo,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -21,7 +22,7 @@ class PaymentagentTransferRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentagentTransferRequest.fromJson(Map<String, dynamic> json) =>
       PaymentagentTransferRequest(
         amount: json['amount'] as num?,
@@ -98,7 +99,7 @@ class PaymentagentTransferRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

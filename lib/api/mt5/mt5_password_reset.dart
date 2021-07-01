@@ -17,7 +17,7 @@ class MT5PasswordReset extends MT5PasswordResetModel {
   factory MT5PasswordReset.fromResponse(Mt5PasswordResetResponse response) =>
       MT5PasswordReset(succeeded: getBool(response.mt5PasswordReset));
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   MT5PasswordReset copyWith({
@@ -34,7 +34,8 @@ class MT5PasswordReset extends MT5PasswordResetModel {
   static Future<MT5PasswordReset> resetPassword(
     Mt5PasswordResetRequest request,
   ) async {
-    final Mt5PasswordResetResponse response = await _api!.call<Mt5PasswordResetResponse>(request: request);
+    final Mt5PasswordResetResponse response =
+        await _api.call<Mt5PasswordResetResponse>(request: request);
 
     checkException(
       response: response,

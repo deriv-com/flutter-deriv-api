@@ -34,14 +34,14 @@ class SellContract extends SellContractModel {
         transactionId: json['transaction_id'],
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Sells a contract with parameters specified in [SellRequest].
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   static Future<SellContract> sellContract(SellRequest request) async {
     final SellResponse response =
-        await _api!.call<SellResponse>(request: request);
+        await _api.call<SellResponse>(request: request);
 
     checkException(
       response: response,
@@ -58,7 +58,7 @@ class SellContract extends SellContractModel {
   static Future<SellExpiredContractModel> sellExpiredContracts([
     SellExpiredRequest? request,
   ]) async {
-    final SellExpiredResponse response = await _api!.call<SellExpiredResponse>(
+    final SellExpiredResponse response = await _api.call<SellExpiredResponse>(
       request: request ?? const SellExpiredRequest(),
     );
 

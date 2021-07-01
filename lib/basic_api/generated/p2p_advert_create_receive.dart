@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_create_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_create_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// P2p advert create response class
+/// P2p advert create response class.
 class P2pAdvertCreateResponse extends Response {
-  /// Initialize P2pAdvertCreateResponse
+  /// Initialize P2pAdvertCreateResponse.
   const P2pAdvertCreateResponse({
     this.p2pAdvertCreate,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class P2pAdvertCreateResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertCreateResponse.fromJson(Map<String, dynamic> json) =>
       P2pAdvertCreateResponse(
         p2pAdvertCreate: json['p2p_advert_create'] as Map<String, dynamic>?,
@@ -59,7 +60,7 @@ class P2pAdvertCreateResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

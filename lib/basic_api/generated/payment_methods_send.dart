@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/payment_methods_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/payment_methods_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Payment methods request class
+/// Payment methods request class.
 class PaymentMethodsRequest extends Request {
-  /// Initialize PaymentMethodsRequest
+  /// Initialize PaymentMethodsRequest.
   const PaymentMethodsRequest({
     this.country,
     this.paymentMethods = true,
@@ -17,7 +18,7 @@ class PaymentMethodsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentMethodsRequest.fromJson(Map<String, dynamic> json) =>
       PaymentMethodsRequest(
         country: json['country'] as String?,
@@ -62,7 +63,7 @@ class PaymentMethodsRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

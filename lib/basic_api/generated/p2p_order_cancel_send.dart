@@ -1,13 +1,14 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_cancel_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_cancel_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// P2p order cancel request class
+/// P2p order cancel request class.
 class P2pOrderCancelRequest extends Request {
-  /// Initialize P2pOrderCancelRequest
+  /// Initialize P2pOrderCancelRequest.
   const P2pOrderCancelRequest({
-    @required this.id,
+    required this.id,
     this.p2pOrderCancel = true,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -17,7 +18,7 @@ class P2pOrderCancelRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pOrderCancelRequest.fromJson(Map<String, dynamic> json) =>
       P2pOrderCancelRequest(
         id: json['id'] as String?,
@@ -62,7 +63,7 @@ class P2pOrderCancelRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

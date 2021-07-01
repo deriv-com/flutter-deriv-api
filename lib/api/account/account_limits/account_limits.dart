@@ -64,7 +64,7 @@ class AccountLimits extends AccountLimitsModel {
             json['withdrawal_since_inception_monetary']?.toDouble(),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the trading and withdrawal limits for logged in account
   ///
@@ -72,7 +72,7 @@ class AccountLimits extends AccountLimitsModel {
   static Future<AccountLimits> fetchAccountLimits([
     GetLimitsRequest? request,
   ]) async {
-    final GetLimitsResponse response = await _api!.call<GetLimitsResponse>(
+    final GetLimitsResponse response = await _api.call<GetLimitsResponse>(
       request: request ?? const GetLimitsRequest(),
     );
 

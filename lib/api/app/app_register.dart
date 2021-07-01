@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_as
-
 import 'package:flutter_deriv_api/api/app/app.dart';
 import 'package:flutter_deriv_api/api/app/exceptions/app_exception.dart';
 import 'package:flutter_deriv_api/api/app/models/app_register_model.dart';
@@ -26,7 +24,7 @@ class AppRegister extends AppRegisterModel {
         ),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   AppRegister copyWith({
@@ -43,7 +41,8 @@ class AppRegister extends AppRegisterModel {
   static Future<AppRegister> registerApplication(
     AppRegisterRequest request,
   ) async {
-    final AppRegisterResponse response = await _api!.call<AppRegisterResponse>(request: request);
+    final AppRegisterResponse response =
+        await _api.call<AppRegisterResponse>(request: request);
 
     checkException(
       response: response,

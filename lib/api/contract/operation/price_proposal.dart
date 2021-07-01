@@ -102,7 +102,7 @@ class PriceProposal extends PriceProposalModel {
   /// Subscription Information
   final SubscriptionModel? subscriptionInformation;
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the price proposal for contract
   ///
@@ -112,7 +112,7 @@ class PriceProposal extends PriceProposalModel {
     ProposalRequest request,
   ) async {
     final ProposalResponse response =
-        await _api!.call<ProposalResponse>(request: request);
+        await _api.call<ProposalResponse>(request: request);
 
     checkException(
       response: response,
@@ -131,7 +131,7 @@ class PriceProposal extends PriceProposalModel {
     ProposalRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
-      _api!
+      _api
           .subscribe(request: request, comparePredicate: comparePredicate)!
           .map<PriceProposal?>(
         (Response response) {
@@ -160,7 +160,7 @@ class PriceProposal extends PriceProposalModel {
     }
 
     final ForgetResponse response =
-        await _api!.unsubscribe(subscriptionId: subscriptionInformation!.id);
+        await _api.unsubscribe(subscriptionId: subscriptionInformation!.id);
 
     checkException(
       response: response,
@@ -176,7 +176,7 @@ class PriceProposal extends PriceProposalModel {
   /// Throws a [ContractOperationException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllProposal() async {
     final ForgetAllResponse? response =
-        await _api!.unsubscribeAll(method: ForgetStreamType.proposal);
+        await _api.unsubscribeAll(method: ForgetStreamType.proposal);
 
     checkException(
       response: response,

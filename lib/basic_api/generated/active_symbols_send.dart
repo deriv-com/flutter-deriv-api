@@ -1,13 +1,14 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// Active symbols request class
+/// Active symbols request class.
 class ActiveSymbolsRequest extends Request {
-  /// Initialize ActiveSymbolsRequest
+  /// Initialize ActiveSymbolsRequest.
   const ActiveSymbolsRequest({
-    @required this.activeSymbols,
+    required this.activeSymbols,
     this.landingCompany,
     this.productType,
     Map<String, dynamic>? passthrough,
@@ -18,7 +19,7 @@ class ActiveSymbolsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ActiveSymbolsRequest.fromJson(Map<String, dynamic> json) =>
       ActiveSymbolsRequest(
         activeSymbols: json['active_symbols'] as String?,
@@ -64,7 +65,7 @@ class ActiveSymbolsRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

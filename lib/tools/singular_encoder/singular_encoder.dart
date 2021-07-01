@@ -1,5 +1,4 @@
 // ignore_for_file: always_specify_types
-// ignore_for_file: avoid_as
 
 import 'dart:convert';
 

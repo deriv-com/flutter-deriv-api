@@ -50,7 +50,7 @@ class App extends AppModel {
         verificationUri: json['verification_uri'],
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   App copyWith({
@@ -84,7 +84,7 @@ class App extends AppModel {
     AppGetRequest request,
   ) async {
     final AppGetResponse response =
-        await _api!.call<AppGetResponse>(request: request);
+        await _api.call<AppGetResponse>(request: request);
 
     checkException(
       response: response,
@@ -103,7 +103,7 @@ class App extends AppModel {
     AppListRequest request,
   ) async {
     final AppListResponse response =
-        await _api!.call<AppListResponse>(request: request);
+        await _api.call<AppListResponse>(request: request);
 
     checkException(
       response: response,

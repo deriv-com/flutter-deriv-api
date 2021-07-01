@@ -5,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_advert/p2p_advert.dart';
-import 'package:flutter_deriv_api/api/p2p/p2p_advertiser/p2p_advertiser.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_order/p2p_order.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
@@ -96,6 +95,7 @@ void main() {
           minOrderAmount: 3,
           paymentMethod: 'bank_transfer',
           rate: 4.25,
+          paymentMethodIds: <int>[],
         ),
       );
 
@@ -283,7 +283,11 @@ void main() {
       final P2PAdvert advert =
           await P2PAdvert.fetchAdvert(const P2pAdvertInfoRequest(id: '2'));
       final P2POrder order = await advert.createOrder(
-          amount: 50, paymentInfo: '', contactInfo: '');
+        amount: 50,
+        paymentInfo: '',
+        contactInfo: '',
+        paymentMethodIds: <int>[],
+      );
 
       expect(order.accountCurrency, 'USD');
       expect(order.amount, 50.0);

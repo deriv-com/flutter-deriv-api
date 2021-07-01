@@ -57,7 +57,7 @@ class Tick extends TickBase {
   /// Market value at the epoch
   final double? quote;
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Subscribes to a tick for given [TickRequest]
   ///
@@ -66,7 +66,7 @@ class Tick extends TickBase {
     TicksRequest tickRequest, {
     RequestCompareFunction? comparePredicate,
   }) =>
-      _api!
+      _api
           .subscribe(request: tickRequest, comparePredicate: comparePredicate)!
           .map<Tick?>(
         (Response response) {
@@ -90,7 +90,7 @@ class Tick extends TickBase {
   /// Throws a [TickException] if API response contains an error
   static Future<ForgetAll> unsubscribeAllTicks() async {
     final ForgetAllResponse? response =
-        await _api!.unsubscribeAll(method: ForgetStreamType.ticks);
+        await _api.unsubscribeAll(method: ForgetStreamType.ticks);
 
     checkException(
       response: response,

@@ -1,15 +1,16 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// Buy request class
+/// Buy request class.
 class BuyRequest extends Request {
-  /// Initialize BuyRequest
+  /// Initialize BuyRequest.
   const BuyRequest({
-    @required this.buy,
+    required this.buy,
     this.parameters,
-    @required this.price,
+    required this.price,
     this.subscribe,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -19,7 +20,7 @@ class BuyRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory BuyRequest.fromJson(Map<String, dynamic> json) => BuyRequest(
         buy: json['buy'] as String?,
         parameters: json['parameters'] as Map<String, dynamic>?,
@@ -75,7 +76,7 @@ class BuyRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

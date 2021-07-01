@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_contract_for_multiple_accounts_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_contract_for_multiple_accounts_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Sell contract for multiple accounts response class
+/// Sell contract for multiple accounts response class.
 class SellContractForMultipleAccountsResponse extends Response {
-  /// Initialize SellContractForMultipleAccountsResponse
+  /// Initialize SellContractForMultipleAccountsResponse.
   const SellContractForMultipleAccountsResponse({
     this.sellContractForMultipleAccounts,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class SellContractForMultipleAccountsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SellContractForMultipleAccountsResponse.fromJson(
           Map<String, dynamic> json) =>
       SellContractForMultipleAccountsResponse(
@@ -63,7 +64,7 @@ class SellContractForMultipleAccountsResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

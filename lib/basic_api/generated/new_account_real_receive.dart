@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// New account real response class
+/// New account real response class.
 class NewAccountRealResponse extends Response {
-  /// Initialize NewAccountRealResponse
+  /// Initialize NewAccountRealResponse.
   const NewAccountRealResponse({
     this.newAccountReal,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class NewAccountRealResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory NewAccountRealResponse.fromJson(Map<String, dynamic> json) =>
       NewAccountRealResponse(
         newAccountReal: json['new_account_real'] as Map<String, dynamic>?,
@@ -59,7 +60,7 @@ class NewAccountRealResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

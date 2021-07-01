@@ -70,7 +70,7 @@ class ActiveSymbol extends ActiveSymbolModel {
         symbolType: json['symbol_type'],
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the list of active symbols.
   ///
@@ -80,7 +80,7 @@ class ActiveSymbol extends ActiveSymbolModel {
     ActiveSymbolsRequest request,
   ) async {
     final ActiveSymbolsResponse response =
-        await _api!.call<ActiveSymbolsResponse>(
+        await _api.call<ActiveSymbolsResponse>(
       request: request,
     );
 

@@ -1,7 +1,6 @@
 import 'package:flutter_deriv_api/api/account/models/account_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_deriv_api/api/account/account.dart';
 import 'package:flutter_deriv_api/api/account/authorize/authorize.dart';
 import 'package:flutter_deriv_api/api/account/authorize/login_history.dart';
 import 'package:flutter_deriv_api/api/account/authorize/logout.dart';

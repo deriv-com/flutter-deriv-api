@@ -1,13 +1,14 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cancel_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/cancel_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// Cancel request class
+/// Cancel request class.
 class CancelRequest extends Request {
-  /// Initialize CancelRequest
+  /// Initialize CancelRequest.
   const CancelRequest({
-    @required this.cancel,
+    required this.cancel,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -16,7 +17,7 @@ class CancelRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CancelRequest.fromJson(Map<String, dynamic> json) => CancelRequest(
         cancel: json['cancel'] as int?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -47,7 +48,7 @@ class CancelRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

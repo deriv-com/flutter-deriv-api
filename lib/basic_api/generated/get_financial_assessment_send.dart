@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_financial_assessment_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_financial_assessment_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Get financial assessment request class
+/// Get financial assessment request class.
 class GetFinancialAssessmentRequest extends Request {
-  /// Initialize GetFinancialAssessmentRequest
+  /// Initialize GetFinancialAssessmentRequest.
   const GetFinancialAssessmentRequest({
     this.getFinancialAssessment = true,
     Map<String, dynamic>? passthrough,
@@ -16,7 +17,7 @@ class GetFinancialAssessmentRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       GetFinancialAssessmentRequest(
         getFinancialAssessment: json['get_financial_assessment'] == null
@@ -55,7 +56,7 @@ class GetFinancialAssessmentRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

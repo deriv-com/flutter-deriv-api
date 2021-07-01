@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/economic_calendar_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/economic_calendar_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Economic calendar request class
+/// Economic calendar request class.
 class EconomicCalendarRequest extends Request {
-  /// Initialize EconomicCalendarRequest
+  /// Initialize EconomicCalendarRequest.
   const EconomicCalendarRequest({
     this.currency,
     this.economicCalendar = true,
@@ -19,7 +20,7 @@ class EconomicCalendarRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory EconomicCalendarRequest.fromJson(Map<String, dynamic> json) =>
       EconomicCalendarRequest(
         currency: json['currency'] as String?,
@@ -78,7 +79,7 @@ class EconomicCalendarRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

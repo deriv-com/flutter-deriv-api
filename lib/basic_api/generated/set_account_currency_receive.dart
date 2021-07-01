@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_account_currency_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_account_currency_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Set account currency response class
+/// Set account currency response class.
 class SetAccountCurrencyResponse extends Response {
-  /// Initialize SetAccountCurrencyResponse
+  /// Initialize SetAccountCurrencyResponse.
   const SetAccountCurrencyResponse({
     this.setAccountCurrency,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class SetAccountCurrencyResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SetAccountCurrencyResponse.fromJson(Map<String, dynamic> json) =>
       SetAccountCurrencyResponse(
         setAccountCurrency: json['set_account_currency'] == null
@@ -65,7 +66,7 @@ class SetAccountCurrencyResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

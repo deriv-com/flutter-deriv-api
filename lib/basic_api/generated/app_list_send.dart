@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_list_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_list_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// App list request class
+/// App list request class.
 class AppListRequest extends Request {
-  /// Initialize AppListRequest
+  /// Initialize AppListRequest.
   const AppListRequest({
     this.appList = true,
     Map<String, dynamic>? passthrough,
@@ -16,7 +17,7 @@ class AppListRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppListRequest.fromJson(Map<String, dynamic> json) => AppListRequest(
         appList: json['app_list'] == null ? null : json['app_list'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -51,7 +52,7 @@ class AppListRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

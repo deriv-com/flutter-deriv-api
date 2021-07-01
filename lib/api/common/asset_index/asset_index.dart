@@ -40,7 +40,7 @@ class AssetIndex extends AssetIndexModel {
   static const int _symbolNameIndex = 1;
   static const int _contractsIndex = 2;
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Retrieves a list of all available underlyings and the corresponding contract types and duration boundaries.
   ///
@@ -49,7 +49,7 @@ class AssetIndex extends AssetIndexModel {
   static Future<List<AssetIndex?>?> fetchAssetIndices([
     AssetIndexRequest? request,
   ]) async {
-    final AssetIndexResponse response = await _api!.call<AssetIndexResponse>(
+    final AssetIndexResponse response = await _api.call<AssetIndexResponse>(
       request: request ?? const AssetIndexRequest(),
     );
 

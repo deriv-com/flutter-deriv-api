@@ -1,13 +1,14 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/landing_company_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/landing_company_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// Landing company request class
+/// Landing company request class.
 class LandingCompanyRequest extends Request {
-  /// Initialize LandingCompanyRequest
+  /// Initialize LandingCompanyRequest.
   const LandingCompanyRequest({
-    @required this.landingCompany,
+    required this.landingCompany,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) : super(
@@ -16,7 +17,7 @@ class LandingCompanyRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LandingCompanyRequest.fromJson(Map<String, dynamic> json) =>
       LandingCompanyRequest(
         landingCompany: json['landing_company'] as String?,
@@ -48,7 +49,7 @@ class LandingCompanyRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

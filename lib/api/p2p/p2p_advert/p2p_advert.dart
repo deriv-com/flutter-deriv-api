@@ -121,7 +121,7 @@ class P2PAdvert extends P2PAdvertModel {
         ),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generates a copy of instance with given parameters
   P2PAdvert copyWith({
@@ -200,7 +200,7 @@ class P2PAdvert extends P2PAdvertModel {
     P2pAdvertInfoRequest request,
   ) async {
     final P2pAdvertInfoResponse response =
-        await _api!.call<P2pAdvertInfoResponse>(request: request);
+        await _api.call<P2pAdvertInfoResponse>(request: request);
 
     checkException(
       response: response,
@@ -219,7 +219,7 @@ class P2PAdvert extends P2PAdvertModel {
     P2pAdvertListRequest request,
   ) async {
     final P2pAdvertListResponse response =
-        await _api!.call<P2pAdvertListResponse>(request: request);
+        await _api.call<P2pAdvertListResponse>(request: request);
 
     checkException(
       response: response,
@@ -241,7 +241,7 @@ class P2PAdvert extends P2PAdvertModel {
     P2pAdvertCreateRequest request,
   ) async {
     final P2pAdvertCreateResponse response =
-        await _api!.call<P2pAdvertCreateResponse>(request: request);
+        await _api.call<P2pAdvertCreateResponse>(request: request);
 
     checkException(
       response: response,
@@ -260,7 +260,7 @@ class P2PAdvert extends P2PAdvertModel {
     P2pAdvertUpdateRequest request,
   ) async {
     final P2pAdvertUpdateResponse response =
-        await _api!.call<P2pAdvertUpdateResponse>(request: request);
+        await _api.call<P2pAdvertUpdateResponse>(request: request);
 
     checkException(
       response: response,
@@ -311,6 +311,7 @@ class P2PAdvert extends P2PAdvertModel {
     required double amount,
     required String contactInfo,
     required String paymentInfo,
+    required List<int> paymentMethodIds,
   }) =>
       P2POrder.create(
         P2pOrderCreateRequest(
@@ -318,7 +319,7 @@ class P2PAdvert extends P2PAdvertModel {
           amount: amount,
           contactInfo: contactInfo,
           paymentInfo: paymentInfo,
-          paymentMethodIds: const <int>[1, 2, 3],
+          paymentMethodIds: paymentMethodIds,
         ),
       );
 }

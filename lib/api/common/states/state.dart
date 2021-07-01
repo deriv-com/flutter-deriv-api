@@ -23,7 +23,7 @@ class State extends StateModel {
         value: json['value'],
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the list of states for the given [StatesListRequest]
   ///
@@ -31,7 +31,7 @@ class State extends StateModel {
   static Future<List<State?>?> fetchStatesList(
       StatesListRequest request) async {
     final StatesListResponse response =
-        await _api!.call<StatesListResponse>(request: request);
+        await _api.call<StatesListResponse>(request: request);
 
     checkException(
       response: response,

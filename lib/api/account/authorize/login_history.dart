@@ -33,7 +33,7 @@ class LoginHistory extends LoginHistoryModel {
         time: getDateTime(json['time']),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generates a copy of instance with given parameters
   LoginHistory copyWith({
@@ -56,7 +56,7 @@ class LoginHistory extends LoginHistoryModel {
   static Future<List<LoginHistory?>?> fetchHistory([
     LoginHistoryRequest? request,
   ]) async {
-    final LoginHistoryResponse response = await _api!.call<LoginHistoryResponse>(
+    final LoginHistoryResponse response = await _api.call<LoginHistoryResponse>(
       request: request ?? const LoginHistoryRequest(limit: 10),
     );
 

@@ -31,7 +31,7 @@ class APIToken extends APITokenModel {
         ),
       );
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a copy of instance with given parameters
   APIToken copyWith({
@@ -57,7 +57,7 @@ class APIToken extends APITokenModel {
     required List<TokenScope> scopes,
     required bool validForCurrentIPOnly,
   }) async {
-    final ApiTokenResponse response = await _api!.call<ApiTokenResponse>(
+    final ApiTokenResponse response = await _api.call<ApiTokenResponse>(
       request: ApiTokenRequest(
         newToken: name,
         newTokenScopes: getStringListFromEnums(scopes),
@@ -80,7 +80,7 @@ class APIToken extends APITokenModel {
   static Future<APIToken> delete({
     required String token,
   }) async {
-    final ApiTokenResponse response = await _api!.call<ApiTokenResponse>(
+    final ApiTokenResponse response = await _api.call<ApiTokenResponse>(
       request: ApiTokenRequest(deleteToken: token),
     );
 

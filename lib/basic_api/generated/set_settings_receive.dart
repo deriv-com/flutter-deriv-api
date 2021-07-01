@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_settings_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_settings_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Set settings response class
+/// Set settings response class.
 class SetSettingsResponse extends Response {
-  /// Initialize SetSettingsResponse
+  /// Initialize SetSettingsResponse.
   const SetSettingsResponse({
     this.setSettings,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class SetSettingsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SetSettingsResponse.fromJson(Map<String, dynamic> json) =>
       SetSettingsResponse(
         setSettings: json['set_settings'] as int?,
@@ -59,7 +60,7 @@ class SetSettingsResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

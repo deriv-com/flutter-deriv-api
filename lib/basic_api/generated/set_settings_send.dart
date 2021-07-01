@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_settings_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_settings_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Set settings request class
+/// Set settings request class.
 class SetSettingsRequest extends Request {
-  /// Initialize SetSettingsRequest
+  /// Initialize SetSettingsRequest.
   const SetSettingsRequest({
     this.accountOpeningReason,
     this.addressCity,
@@ -17,6 +18,7 @@ class SetSettingsRequest extends Request {
     this.citizen,
     this.dateOfBirth,
     this.emailConsent,
+    this.featureFlag,
     this.firstName,
     this.lastName,
     this.nonPepDeclaration,
@@ -39,7 +41,7 @@ class SetSettingsRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SetSettingsRequest.fromJson(Map<String, dynamic> json) =>
       SetSettingsRequest(
         accountOpeningReason: json['account_opening_reason'] as String?,
@@ -54,6 +56,7 @@ class SetSettingsRequest extends Request {
         dateOfBirth: json['date_of_birth'] as String?,
         emailConsent:
             json['email_consent'] == null ? null : json['email_consent'] == 1,
+        featureFlag: json['feature_flag'] as Map<String, dynamic>?,
         firstName: json['first_name'] as String?,
         lastName: json['last_name'] as String?,
         nonPepDeclaration: json['non_pep_declaration'] as int?,
@@ -102,6 +105,9 @@ class SetSettingsRequest extends Request {
 
   /// [Optional] Boolean value `true` or `false`, indicating permission to use email address for any contact which may include marketing
   final bool? emailConsent;
+
+  /// [Optional] Enable or disable one or multiple features.
+  final Map<String, dynamic>? featureFlag;
 
   /// [Optional] Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes (can only be changed on unauthenticated svg accounts).
   final String? firstName;
@@ -166,6 +172,7 @@ class SetSettingsRequest extends Request {
             : emailConsent!
                 ? 1
                 : 0,
+        'feature_flag': featureFlag,
         'first_name': firstName,
         'last_name': lastName,
         'non_pep_declaration': nonPepDeclaration,
@@ -201,6 +208,7 @@ class SetSettingsRequest extends Request {
     String? citizen,
     String? dateOfBirth,
     bool? emailConsent,
+    Map<String, dynamic>? featureFlag,
     String? firstName,
     String? lastName,
     int? nonPepDeclaration,
@@ -229,6 +237,7 @@ class SetSettingsRequest extends Request {
         citizen: citizen ?? this.citizen,
         dateOfBirth: dateOfBirth ?? this.dateOfBirth,
         emailConsent: emailConsent ?? this.emailConsent,
+        featureFlag: featureFlag ?? this.featureFlag,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         nonPepDeclaration: nonPepDeclaration ?? this.nonPepDeclaration,
@@ -249,7 +258,7 @@ class SetSettingsRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

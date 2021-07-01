@@ -1,13 +1,14 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contracts_for_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contracts_for_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// Contracts for request class
+/// Contracts for request class.
 class ContractsForRequest extends Request {
-  /// Initialize ContractsForRequest
+  /// Initialize ContractsForRequest.
   const ContractsForRequest({
-    @required this.contractsFor,
+    required this.contractsFor,
     this.currency,
     this.landingCompany,
     this.productType,
@@ -19,7 +20,7 @@ class ContractsForRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ContractsForRequest.fromJson(Map<String, dynamic> json) =>
       ContractsForRequest(
         contractsFor: json['contracts_for'] as String?,
@@ -72,7 +73,7 @@ class ContractsForRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

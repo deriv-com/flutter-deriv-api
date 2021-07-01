@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/api_token_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/api_token_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Api token response class
+/// Api token response class.
 class ApiTokenResponse extends Response {
-  /// Initialize ApiTokenResponse
+  /// Initialize ApiTokenResponse.
   const ApiTokenResponse({
     this.apiToken,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class ApiTokenResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ApiTokenResponse.fromJson(Map<String, dynamic> json) =>
       ApiTokenResponse(
         apiToken: json['api_token'] as Map<String, dynamic>?,
@@ -59,7 +60,7 @@ class ApiTokenResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

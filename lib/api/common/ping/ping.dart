@@ -17,7 +17,7 @@ class Ping extends PingModel {
   factory Ping.fromResponse(PingResponse response) =>
       Ping(succeeded: response.ping == 'pong');
 
-  static final BaseAPI? _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Generates a copy of instance with given parameters
   Ping copyWith({
@@ -34,7 +34,7 @@ class Ping extends PingModel {
   static Future<Ping> ping([
     PingRequest? request,
   ]) async {
-    final PingResponse response = await _api!.call<PingResponse>(
+    final PingResponse response = await _api.call<PingResponse>(
       request: request ?? const PingRequest(),
     );
 

@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_self_exclusion_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_self_exclusion_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Set self exclusion request class
+/// Set self exclusion request class.
 class SetSelfExclusionRequest extends Request {
-  /// Initialize SetSelfExclusionRequest
+  /// Initialize SetSelfExclusionRequest.
   const SetSelfExclusionRequest({
     this.excludeUntil,
     this.max30dayDeposit,
@@ -30,7 +31,7 @@ class SetSelfExclusionRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SetSelfExclusionRequest.fromJson(Map<String, dynamic> json) =>
       SetSelfExclusionRequest(
         excludeUntil: json['exclude_until'] as String?,
@@ -166,7 +167,7 @@ class SetSelfExclusionRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

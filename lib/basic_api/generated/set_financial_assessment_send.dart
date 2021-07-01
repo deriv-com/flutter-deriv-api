@@ -1,26 +1,27 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_financial_assessment_send.json
-// ignore_for_file: avoid_as
-import 'package:meta/meta.dart';
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_financial_assessment_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
+
 import '../request.dart';
 
-/// Set financial assessment request class
+/// Set financial assessment request class.
 class SetFinancialAssessmentRequest extends Request {
-  /// Initialize SetFinancialAssessmentRequest
+  /// Initialize SetFinancialAssessmentRequest.
   const SetFinancialAssessmentRequest({
     this.accountTurnover,
     this.binaryOptionsTradingExperience,
     this.binaryOptionsTradingFrequency,
     this.cfdTradingExperience,
     this.cfdTradingFrequency,
-    @required this.educationLevel,
-    @required this.employmentIndustry,
+    required this.educationLevel,
+    required this.employmentIndustry,
     this.employmentStatus,
-    @required this.estimatedWorth,
+    required this.estimatedWorth,
     this.forexTradingExperience,
     this.forexTradingFrequency,
-    @required this.incomeSource,
-    @required this.netIncome,
-    @required this.occupation,
+    required this.incomeSource,
+    required this.netIncome,
+    required this.occupation,
     this.otherInstrumentsTradingExperience,
     this.otherInstrumentsTradingFrequency,
     this.setFinancialAssessment = true,
@@ -33,7 +34,7 @@ class SetFinancialAssessmentRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
       SetFinancialAssessmentRequest(
         accountTurnover: json['account_turnover'] as String?,
@@ -202,7 +203,7 @@ class SetFinancialAssessmentRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

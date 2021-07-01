@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/tnc_approval_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/tnc_approval_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Tnc approval response class
+/// Tnc approval response class.
 class TncApprovalResponse extends Response {
-  /// Initialize TncApprovalResponse
+  /// Initialize TncApprovalResponse.
   const TncApprovalResponse({
     this.tncApproval,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class TncApprovalResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TncApprovalResponse.fromJson(Map<String, dynamic> json) =>
       TncApprovalResponse(
         tncApproval: json['tnc_approval'] as int?,
@@ -59,7 +60,7 @@ class TncApprovalResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

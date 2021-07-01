@@ -1,4 +1,3 @@
-import 'package:flutter_deriv_api/api/common/models/history_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';

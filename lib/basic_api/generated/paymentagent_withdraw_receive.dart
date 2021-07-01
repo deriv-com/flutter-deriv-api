@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Paymentagent withdraw response class
+/// Paymentagent withdraw response class.
 class PaymentagentWithdrawResponse extends Response {
-  /// Initialize PaymentagentWithdrawResponse
+  /// Initialize PaymentagentWithdrawResponse.
   const PaymentagentWithdrawResponse({
     this.paymentagentName,
     this.paymentagentWithdraw,
@@ -21,7 +22,7 @@ class PaymentagentWithdrawResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentagentWithdrawResponse.fromJson(Map<String, dynamic> json) =>
       PaymentagentWithdrawResponse(
         paymentagentName: json['paymentagent_name'] as String?,
@@ -75,7 +76,7 @@ class PaymentagentWithdrawResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

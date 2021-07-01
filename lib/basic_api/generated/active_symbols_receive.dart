@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Active symbols response class
+/// Active symbols response class.
 class ActiveSymbolsResponse extends Response {
-  /// Initialize ActiveSymbolsResponse
+  /// Initialize ActiveSymbolsResponse.
   const ActiveSymbolsResponse({
     this.activeSymbols,
     Map<String, dynamic>? echoReq,
@@ -19,7 +20,7 @@ class ActiveSymbolsResponse extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ActiveSymbolsResponse.fromJson(Map<String, dynamic> json) =>
       ActiveSymbolsResponse(
         activeSymbols: (json['active_symbols'] as List<dynamic>?)
@@ -62,7 +63,7 @@ class ActiveSymbolsResponse extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

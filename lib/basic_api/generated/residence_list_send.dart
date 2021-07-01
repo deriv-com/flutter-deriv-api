@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/residence_list_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/residence_list_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Residence list request class
+/// Residence list request class.
 class ResidenceListRequest extends Request {
-  /// Initialize ResidenceListRequest
+  /// Initialize ResidenceListRequest.
   const ResidenceListRequest({
     this.residenceList = true,
     Map<String, dynamic>? passthrough,
@@ -16,7 +17,7 @@ class ResidenceListRequest extends Request {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ResidenceListRequest.fromJson(Map<String, dynamic> json) =>
       ResidenceListRequest(
         residenceList:
@@ -53,7 +54,7 @@ class ResidenceListRequest extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
   List<Object> get props => <Object>[];
 }

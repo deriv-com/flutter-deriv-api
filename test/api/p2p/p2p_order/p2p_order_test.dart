@@ -4,8 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/p2p/p2p_advert/p2p_advert.dart';
-import 'package:flutter_deriv_api/api/p2p/p2p_advertiser/p2p_advertiser.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_order/p2p_order.dart';
 import 'package:flutter_deriv_api/api/p2p/p2p_order/p2p_order_list.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
@@ -17,7 +15,11 @@ void main() {
   group('P2P Order Group ->', () {
     test('Create Order Test', () async {
       final P2POrder order = await P2POrder.create(
-        const P2pOrderCreateRequest(advertId: '8', amount: 50.0),
+        const P2pOrderCreateRequest(
+          advertId: '8',
+          amount: 50.0,
+          paymentMethodIds: <int>[],
+        ),
       );
 
       expect(order.accountCurrency, 'USD');
@@ -137,6 +139,7 @@ void main() {
       P2POrder.createAndSubscribe(const P2pOrderCreateRequest(
         advertId: '8',
         amount: 50.0,
+        paymentMethodIds: <int>[],
       )).listen(expectAsync1(
         (P2POrder? order) {
           expect(order!.accountCurrency, 'USD');
