@@ -62,8 +62,7 @@ class ApiTokenResponse extends ApiTokenResponseModel {
     final ApiTokenReceive response = await _api.call(
       request: ApiTokenSend(
         newToken: name,
-        newTokenScopes: getStringListFromEnums(
-            scopes), // TODO(mohammad) enum to string fnuction should work properly
+        newTokenScopes: getStringListFromEnums(scopes),
         validForCurrentIpOnly: validForCurrentIPOnly,
       ),
     );
@@ -132,6 +131,7 @@ enum ScopesItemEnum {
   /// admin.
   admin,
 }
+
 /// Api token model class
 abstract class ApiTokenModel {
   /// Initializes
@@ -206,6 +206,7 @@ class ApiToken extends ApiTokenModel {
         tokens: tokens ?? this.tokens,
       );
 }
+
 /// Tokens item model class
 abstract class TokensItemModel {
   /// Initializes
