@@ -10,7 +10,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 
-import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/api/response/app_update_receive_result.dart';
 import 'package:flutter_deriv_api/api/response/app_get_receive_result.dart';
 import 'package:flutter_deriv_api/api/response/app_markup_details_receive_result.dart';

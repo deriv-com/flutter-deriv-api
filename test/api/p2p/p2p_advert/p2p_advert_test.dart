@@ -238,7 +238,7 @@ void main() {
           await advert_info.P2pAdvertInfoResponse.fetchAdvert(
               const P2pAdvertInfoSend(id: '25'));
 
-      advert_update.P2pAdvertUpdateResponse advertResponse =
+      final advert_update.P2pAdvertUpdateResponse advertResponse =
           await advert.deactivate();
 
       // advertResponse = advert_update.P2pAdvertUpdateResponse(
