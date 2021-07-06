@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/mt5_password_reset_receive.dart';
 import '../../basic_api/generated/mt5_password_reset_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class Mt5PasswordResetResponseModel {
   /// Initializes
   Mt5PasswordResetResponseModel({
-    @required this.mt5PasswordReset,
+    this.mt5PasswordReset,
   });
 
   /// `1` on success
-  final int mt5PasswordReset;
+  final int? mt5PasswordReset;
 }
 
 /// Mt5 password reset response class
 class Mt5PasswordResetResponse extends Mt5PasswordResetResponseModel {
   /// Initializes
   Mt5PasswordResetResponse({
-    @required int mt5PasswordReset,
+    int? mt5PasswordReset,
   }) : super(
           mt5PasswordReset: mt5PasswordReset,
         );
@@ -45,7 +43,7 @@ class Mt5PasswordResetResponse extends Mt5PasswordResetResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Resets the password of MT5 account.
   ///
@@ -58,7 +56,7 @@ class Mt5PasswordResetResponse extends Mt5PasswordResetResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 
@@ -67,7 +65,7 @@ class Mt5PasswordResetResponse extends Mt5PasswordResetResponseModel {
 
   /// Creates a copy of instance with given parameters
   Mt5PasswordResetResponse copyWith({
-    int mt5PasswordReset,
+    int? mt5PasswordReset,
   }) =>
       Mt5PasswordResetResponse(
         mt5PasswordReset: mt5PasswordReset ?? this.mt5PasswordReset,

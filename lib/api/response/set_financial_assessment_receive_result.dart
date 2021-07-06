@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/set_financial_assessment_receive.dart';
 import '../../basic_api/generated/set_financial_assessment_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,11 +10,11 @@ import '../models/base_exception_model.dart';
 abstract class SetFinancialAssessmentResponseModel {
   /// Initializes
   SetFinancialAssessmentResponseModel({
-    @required this.setFinancialAssessment,
+    this.setFinancialAssessment,
   });
 
   /// The financial assessment score assigned to the submitted financial assessment
-  final SetFinancialAssessment setFinancialAssessment;
+  final SetFinancialAssessment? setFinancialAssessment;
 }
 
 /// Set financial assessment response class
@@ -24,7 +22,7 @@ class SetFinancialAssessmentResponse
     extends SetFinancialAssessmentResponseModel {
   /// Initializes
   SetFinancialAssessmentResponse({
-    @required SetFinancialAssessment setFinancialAssessment,
+    SetFinancialAssessment? setFinancialAssessment,
   }) : super(
           setFinancialAssessment: setFinancialAssessment,
         );
@@ -44,13 +42,13 @@ class SetFinancialAssessmentResponse
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (setFinancialAssessment != null) {
-      resultMap['set_financial_assessment'] = setFinancialAssessment.toJson();
+      resultMap['set_financial_assessment'] = setFinancialAssessment!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Sets the financial assessment details based on the client's answers to
   /// analyze whether they possess the experience and knowledge to
@@ -66,7 +64,7 @@ class SetFinancialAssessmentResponse
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           FinancialAssessmentException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -76,7 +74,7 @@ class SetFinancialAssessmentResponse
 
   /// Creates a copy of instance with given parameters
   SetFinancialAssessmentResponse copyWith({
-    SetFinancialAssessment setFinancialAssessment,
+    SetFinancialAssessment? setFinancialAssessment,
   }) =>
       SetFinancialAssessmentResponse(
         setFinancialAssessment:
@@ -87,33 +85,33 @@ class SetFinancialAssessmentResponse
 abstract class SetFinancialAssessmentModel {
   /// Initializes
   SetFinancialAssessmentModel({
-    @required this.tradingScore,
-    @required this.totalScore,
-    @required this.financialInformationScore,
-    @required this.cfdScore,
+    this.cfdScore,
+    this.financialInformationScore,
+    this.totalScore,
+    this.tradingScore,
   });
 
-  /// Trading experience score based on answers
-  final int tradingScore;
-
-  /// Financial Assessment score based on answers
-  final int totalScore;
+  /// CFD score based on answers
+  final int? cfdScore;
 
   /// Financial information score based on answers
-  final int financialInformationScore;
+  final int? financialInformationScore;
 
-  /// CFD score based on answers
-  final int cfdScore;
+  /// Financial Assessment score based on answers
+  final int? totalScore;
+
+  /// Trading experience score based on answers
+  final int? tradingScore;
 }
 
 /// Set financial assessment class
 class SetFinancialAssessment extends SetFinancialAssessmentModel {
   /// Initializes
   SetFinancialAssessment({
-    @required int cfdScore,
-    @required int financialInformationScore,
-    @required int totalScore,
-    @required int tradingScore,
+    int? cfdScore,
+    int? financialInformationScore,
+    int? totalScore,
+    int? tradingScore,
   }) : super(
           cfdScore: cfdScore,
           financialInformationScore: financialInformationScore,
@@ -144,10 +142,10 @@ class SetFinancialAssessment extends SetFinancialAssessmentModel {
 
   /// Creates a copy of instance with given parameters
   SetFinancialAssessment copyWith({
-    int cfdScore,
-    int financialInformationScore,
-    int totalScore,
-    int tradingScore,
+    int? cfdScore,
+    int? financialInformationScore,
+    int? totalScore,
+    int? tradingScore,
   }) =>
       SetFinancialAssessment(
         cfdScore: cfdScore ?? this.cfdScore,

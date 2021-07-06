@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/logout_receive.dart';
 import '../../basic_api/generated/logout_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class LogoutResponseModel {
   /// Initializes
   LogoutResponseModel({
-    @required this.logout,
+    this.logout,
   });
 
   /// The result of logout request which is 1
-  final int logout;
+  final int? logout;
 }
 
 /// Logout response class
 class LogoutResponse extends LogoutResponseModel {
   /// Initializes
   LogoutResponse({
-    @required int logout,
+    int? logout,
   }) : super(
           logout: logout,
         );
@@ -45,14 +43,14 @@ class LogoutResponse extends LogoutResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Logs out from the web-socket's session.
   ///
   /// For parameters information refer to [LogoutRequest].
   /// Throws an [AuthorizeException] if API response contains an error
   static Future<LogoutResponse> logoutMethod([
-    LogoutSend request,
+    LogoutSend? request,
   ]) async {
     final LogoutReceive response = await _api.call(
       request: request ?? const LogoutSend(),
@@ -60,7 +58,7 @@ class LogoutResponse extends LogoutResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AuthorizeException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -69,7 +67,7 @@ class LogoutResponse extends LogoutResponseModel {
 
   /// Creates a copy of instance with given parameters
   LogoutResponse copyWith({
-    int logout,
+    int? logout,
   }) =>
       LogoutResponse(
         logout: logout ?? this.logout,

@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/get_financial_assessment_receive.dart';
 import '../../basic_api/generated/get_financial_assessment_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,11 +10,11 @@ import '../models/base_exception_model.dart';
 abstract class GetFinancialAssessmentResponseModel {
   /// Initializes
   GetFinancialAssessmentResponseModel({
-    @required this.getFinancialAssessment,
+    this.getFinancialAssessment,
   });
 
   /// Client's financial assessment details
-  final GetFinancialAssessment getFinancialAssessment;
+  final GetFinancialAssessment? getFinancialAssessment;
 }
 
 /// Get financial assessment response class
@@ -24,7 +22,7 @@ class GetFinancialAssessmentResponse
     extends GetFinancialAssessmentResponseModel {
   /// Initializes
   GetFinancialAssessmentResponse({
-    @required GetFinancialAssessment getFinancialAssessment,
+    GetFinancialAssessment? getFinancialAssessment,
   }) : super(
           getFinancialAssessment: getFinancialAssessment,
         );
@@ -44,13 +42,13 @@ class GetFinancialAssessmentResponse
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (getFinancialAssessment != null) {
-      resultMap['get_financial_assessment'] = getFinancialAssessment.toJson();
+      resultMap['get_financial_assessment'] = getFinancialAssessment!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the financial assessment details.
   ///
@@ -65,7 +63,7 @@ class GetFinancialAssessmentResponse
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           FinancialAssessmentException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -75,7 +73,7 @@ class GetFinancialAssessmentResponse
 
   /// Creates a copy of instance with given parameters
   GetFinancialAssessmentResponse copyWith({
-    GetFinancialAssessment getFinancialAssessment,
+    GetFinancialAssessment? getFinancialAssessment,
   }) =>
       GetFinancialAssessmentResponse(
         getFinancialAssessment:
@@ -86,118 +84,118 @@ class GetFinancialAssessmentResponse
 abstract class GetFinancialAssessmentModel {
   /// Initializes
   GetFinancialAssessmentModel({
-    @required this.tradingScore,
-    @required this.totalScore,
-    @required this.sourceOfWealth,
-    @required this.otherInstrumentsTradingFrequency,
-    @required this.otherInstrumentsTradingExperience,
-    @required this.occupation,
-    @required this.netIncome,
-    @required this.incomeSource,
-    @required this.forexTradingFrequency,
-    @required this.forexTradingExperience,
-    @required this.financialInformationScore,
-    @required this.estimatedWorth,
-    @required this.employmentStatus,
-    @required this.employmentIndustry,
-    @required this.educationLevel,
-    @required this.cfdTradingFrequency,
-    @required this.cfdTradingExperience,
-    @required this.cfdScore,
-    @required this.binaryOptionsTradingFrequency,
-    @required this.binaryOptionsTradingExperience,
-    @required this.accountTurnover,
+    this.accountTurnover,
+    this.binaryOptionsTradingExperience,
+    this.binaryOptionsTradingFrequency,
+    this.cfdScore,
+    this.cfdTradingExperience,
+    this.cfdTradingFrequency,
+    this.educationLevel,
+    this.employmentIndustry,
+    this.employmentStatus,
+    this.estimatedWorth,
+    this.financialInformationScore,
+    this.forexTradingExperience,
+    this.forexTradingFrequency,
+    this.incomeSource,
+    this.netIncome,
+    this.occupation,
+    this.otherInstrumentsTradingExperience,
+    this.otherInstrumentsTradingFrequency,
+    this.sourceOfWealth,
+    this.totalScore,
+    this.tradingScore,
   });
 
-  /// Trading Experience Score
-  final int tradingScore;
-
-  /// Total Score
-  final int totalScore;
-
-  /// Source of wealth
-  final String sourceOfWealth;
-
-  /// Trading frequency in other financial instruments
-  final String otherInstrumentsTradingFrequency;
-
-  /// Trading experience in other financial instruments
-  final String otherInstrumentsTradingExperience;
-
-  /// Occupation
-  final String occupation;
-
-  /// Net Annual Income
-  final String netIncome;
-
-  /// Income Source
-  final String incomeSource;
-
-  /// Forex trading frequency
-  final String forexTradingFrequency;
-
-  /// Forex trading experience
-  final String forexTradingExperience;
-
-  /// Financial Information Score
-  final int financialInformationScore;
-
-  /// Estimated Net Worth
-  final String estimatedWorth;
-
-  /// Employment Status
-  final String employmentStatus;
-
-  /// Industry of Employment
-  final String employmentIndustry;
-
-  /// Level of Education
-  final String educationLevel;
-
-  /// CFDs trading frequency
-  final String cfdTradingFrequency;
-
-  /// CFDs trading experience
-  final String cfdTradingExperience;
-
-  /// CFD Score
-  final int cfdScore;
-
-  /// Binary options trading frequency
-  final String binaryOptionsTradingFrequency;
+  /// The anticipated account turnover
+  final String? accountTurnover;
 
   /// Binary options trading experience
-  final String binaryOptionsTradingExperience;
+  final String? binaryOptionsTradingExperience;
 
-  /// The anticipated account turnover
-  final String accountTurnover;
+  /// Binary options trading frequency
+  final String? binaryOptionsTradingFrequency;
+
+  /// CFD Score
+  final int? cfdScore;
+
+  /// CFDs trading experience
+  final String? cfdTradingExperience;
+
+  /// CFDs trading frequency
+  final String? cfdTradingFrequency;
+
+  /// Level of Education
+  final String? educationLevel;
+
+  /// Industry of Employment
+  final String? employmentIndustry;
+
+  /// Employment Status
+  final String? employmentStatus;
+
+  /// Estimated Net Worth
+  final String? estimatedWorth;
+
+  /// Financial Information Score
+  final int? financialInformationScore;
+
+  /// Forex trading experience
+  final String? forexTradingExperience;
+
+  /// Forex trading frequency
+  final String? forexTradingFrequency;
+
+  /// Income Source
+  final String? incomeSource;
+
+  /// Net Annual Income
+  final String? netIncome;
+
+  /// Occupation
+  final String? occupation;
+
+  /// Trading experience in other financial instruments
+  final String? otherInstrumentsTradingExperience;
+
+  /// Trading frequency in other financial instruments
+  final String? otherInstrumentsTradingFrequency;
+
+  /// Source of wealth
+  final String? sourceOfWealth;
+
+  /// Total Score
+  final int? totalScore;
+
+  /// Trading Experience Score
+  final int? tradingScore;
 }
 
 /// Get financial assessment class
 class GetFinancialAssessment extends GetFinancialAssessmentModel {
   /// Initializes
   GetFinancialAssessment({
-    @required String accountTurnover,
-    @required String binaryOptionsTradingExperience,
-    @required String binaryOptionsTradingFrequency,
-    @required int cfdScore,
-    @required String cfdTradingExperience,
-    @required String cfdTradingFrequency,
-    @required String educationLevel,
-    @required String employmentIndustry,
-    @required String employmentStatus,
-    @required String estimatedWorth,
-    @required int financialInformationScore,
-    @required String forexTradingExperience,
-    @required String forexTradingFrequency,
-    @required String incomeSource,
-    @required String netIncome,
-    @required String occupation,
-    @required String otherInstrumentsTradingExperience,
-    @required String otherInstrumentsTradingFrequency,
-    @required String sourceOfWealth,
-    @required int totalScore,
-    @required int tradingScore,
+    String? accountTurnover,
+    String? binaryOptionsTradingExperience,
+    String? binaryOptionsTradingFrequency,
+    int? cfdScore,
+    String? cfdTradingExperience,
+    String? cfdTradingFrequency,
+    String? educationLevel,
+    String? employmentIndustry,
+    String? employmentStatus,
+    String? estimatedWorth,
+    int? financialInformationScore,
+    String? forexTradingExperience,
+    String? forexTradingFrequency,
+    String? incomeSource,
+    String? netIncome,
+    String? occupation,
+    String? otherInstrumentsTradingExperience,
+    String? otherInstrumentsTradingFrequency,
+    String? sourceOfWealth,
+    int? totalScore,
+    int? tradingScore,
   }) : super(
           accountTurnover: accountTurnover,
           binaryOptionsTradingExperience: binaryOptionsTradingExperience,
@@ -286,27 +284,27 @@ class GetFinancialAssessment extends GetFinancialAssessmentModel {
 
   /// Creates a copy of instance with given parameters
   GetFinancialAssessment copyWith({
-    String accountTurnover,
-    String binaryOptionsTradingExperience,
-    String binaryOptionsTradingFrequency,
-    int cfdScore,
-    String cfdTradingExperience,
-    String cfdTradingFrequency,
-    String educationLevel,
-    String employmentIndustry,
-    String employmentStatus,
-    String estimatedWorth,
-    int financialInformationScore,
-    String forexTradingExperience,
-    String forexTradingFrequency,
-    String incomeSource,
-    String netIncome,
-    String occupation,
-    String otherInstrumentsTradingExperience,
-    String otherInstrumentsTradingFrequency,
-    String sourceOfWealth,
-    int totalScore,
-    int tradingScore,
+    String? accountTurnover,
+    String? binaryOptionsTradingExperience,
+    String? binaryOptionsTradingFrequency,
+    int? cfdScore,
+    String? cfdTradingExperience,
+    String? cfdTradingFrequency,
+    String? educationLevel,
+    String? employmentIndustry,
+    String? employmentStatus,
+    String? estimatedWorth,
+    int? financialInformationScore,
+    String? forexTradingExperience,
+    String? forexTradingFrequency,
+    String? incomeSource,
+    String? netIncome,
+    String? occupation,
+    String? otherInstrumentsTradingExperience,
+    String? otherInstrumentsTradingFrequency,
+    String? sourceOfWealth,
+    int? totalScore,
+    int? tradingScore,
   }) =>
       GetFinancialAssessment(
         accountTurnover: accountTurnover ?? this.accountTurnover,

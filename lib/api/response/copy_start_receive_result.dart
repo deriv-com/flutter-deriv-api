@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/copy_start_receive.dart';
 import '../../basic_api/generated/copy_start_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class CopyStartResponseModel {
   /// Initializes
   CopyStartResponseModel({
-    @required this.copyStart,
+    this.copyStart,
   });
 
   /// Copy start confirmation. Returns 1 is success.
-  final int copyStart;
+  final int? copyStart;
 }
 
 /// Copy start response class
 class CopyStartResponse extends CopyStartResponseModel {
   /// Initializes
   CopyStartResponse({
-    @required int copyStart,
+    int? copyStart,
   }) : super(
           copyStart: copyStart,
         );
@@ -45,7 +43,7 @@ class CopyStartResponse extends CopyStartResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Starts copy trader bets.
   ///
@@ -56,7 +54,7 @@ class CopyStartResponse extends CopyStartResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           CopyTradingException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -65,7 +63,7 @@ class CopyStartResponse extends CopyStartResponseModel {
 
   /// Creates a copy of instance with given parameters
   CopyStartResponse copyWith({
-    int copyStart,
+    int? copyStart,
   }) =>
       CopyStartResponse(
         copyStart: copyStart ?? this.copyStart,

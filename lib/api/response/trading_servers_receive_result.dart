@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/trading_servers_receive.dart';
 import '../../basic_api/generated/trading_servers_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class TradingServersResponseModel {
   /// Initializes
   TradingServersResponseModel({
-    @required this.tradingServers,
+    this.tradingServers,
   });
 
   /// Array containing platform server objects.
-  final List<TradingServersItem> tradingServers;
+  final List<TradingServersItem>? tradingServers;
 }
 
 /// Trading servers response class
 class TradingServersResponse extends TradingServersResponseModel {
   /// Initializes
   TradingServersResponse({
-    @required List<TradingServersItem> tradingServers,
+    List<TradingServersItem>? tradingServers,
   }) : super(
           tradingServers: tradingServers,
         );
@@ -35,8 +33,11 @@ class TradingServersResponse extends TradingServersResponseModel {
       TradingServersResponse(
         tradingServers: tradingServersJson == null
             ? null
-            : List<TradingServersItem>.from(tradingServersJson
-                .map((dynamic item) => TradingServersItem.fromJson(item))),
+            : List<TradingServersItem>.from(
+                tradingServersJson?.map(
+                  (dynamic item) => TradingServersItem.fromJson(item),
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -44,15 +45,17 @@ class TradingServersResponse extends TradingServersResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (tradingServers != null) {
-      resultMap['trading_servers'] = tradingServers
-          .map<dynamic>((TradingServersItem item) => item.toJson())
+      resultMap['trading_servers'] = tradingServers!
+          .map<dynamic>(
+            (TradingServersItem item) => item.toJson(),
+          )
           .toList();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Get the list of servers for platform. Currently, only mt5 is supported
   ///
@@ -65,7 +68,7 @@ class TradingServersResponse extends TradingServersResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TradingException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -74,83 +77,111 @@ class TradingServersResponse extends TradingServersResponseModel {
 
   /// Creates a copy of instance with given parameters
   TradingServersResponse copyWith({
-    List<TradingServersItem> tradingServers,
+    List<TradingServersItem>? tradingServers,
   }) =>
       TradingServersResponse(
         tradingServers: tradingServers ?? this.tradingServers,
       );
 }
 
+/// EnvironmentEnum mapper.
 final Map<String, EnvironmentEnum> environmentEnumMapper =
     <String, EnvironmentEnum>{
-  "env_01": EnvironmentEnum.env01,
+  "Deriv-Demo": EnvironmentEnum.derivDemo,
+  "Deriv-Server": EnvironmentEnum.derivServer,
+  "Deriv-Server-02": EnvironmentEnum.derivServer02,
 };
 
-/// environment Enum
+/// Environment Enum.
 enum EnvironmentEnum {
-  env01,
+  /// Deriv-Demo.
+  derivDemo,
+
+  /// Deriv-Server.
+  derivServer,
+
+  /// Deriv-Server-02.
+  derivServer02,
 }
 
+/// IdEnum mapper.
 final Map<String, IdEnum> idEnumMapper = <String, IdEnum>{
-  "real01": IdEnum.real01,
-  "real02": IdEnum.real02,
-  "real03": IdEnum.real03,
-  "real04": IdEnum.real04,
+  "p01_ts01": IdEnum.p01Ts01,
+  "p01_ts02": IdEnum.p01Ts02,
+  "p01_ts03": IdEnum.p01Ts03,
+  "p01_ts04": IdEnum.p01Ts04,
+  "p02_ts02": IdEnum.p02Ts02,
 };
 
-/// id Enum
+/// Id Enum.
 enum IdEnum {
-  real01,
-  real02,
-  real03,
-  real04,
+  /// p01_ts01.
+  p01Ts01,
+
+  /// p01_ts02.
+  p01Ts02,
+
+  /// p01_ts03.
+  p01Ts03,
+
+  /// p01_ts04.
+  p01Ts04,
+
+  /// p02_ts02.
+  p02Ts02,
 }
 /// Trading servers item model class
 abstract class TradingServersItemModel {
   /// Initializes
   TradingServersItemModel({
-    @required this.supportedAccounts,
-    @required this.recommended,
-    @required this.id,
-    @required this.geolocation,
-    @required this.environment,
-    @required this.disabled,
+    this.disabled,
+    this.environment,
+    this.geolocation,
+    this.id,
+    this.messageToClient,
+    this.recommended,
+    this.supportedAccounts,
   });
 
-  /// Account type supported by the server.
-  final List<String> supportedAccounts;
+  /// Flag to represent if this server is currently disabled or not
+  final bool? disabled;
 
-  /// Flag to represent if this is server is recommended based on client's country of residence.
-  final bool recommended;
-
-  /// Server unique id.
-  final IdEnum id;
+  /// Current environment (installation instance) where servers are deployed. Currently, there are one demo and two real environments.
+  final EnvironmentEnum? environment;
 
   /// Object containing geolocation information of the server.
-  final Geolocation geolocation;
+  final Geolocation? geolocation;
 
-  /// Current environment (installation instance) where servers are deployed. Currently, there is only one environment instance.
-  final EnvironmentEnum environment;
+  /// Server unique id.
+  final IdEnum? id;
 
-  /// Flag to represent if this server is currently disabled or not
-  final bool disabled;
+  /// Error message to client when server is disabled
+  final String? messageToClient;
+
+  /// Flag to represent if this is server is recommended based on client's country of residence.
+  final bool? recommended;
+
+  /// Account type supported by the server.
+  final List<String>? supportedAccounts;
 }
 
 /// Trading servers item class
 class TradingServersItem extends TradingServersItemModel {
   /// Initializes
   TradingServersItem({
-    @required bool disabled,
-    @required EnvironmentEnum environment,
-    @required Geolocation geolocation,
-    @required IdEnum id,
-    @required bool recommended,
-    @required List<String> supportedAccounts,
+    bool? disabled,
+    EnvironmentEnum? environment,
+    Geolocation? geolocation,
+    IdEnum? id,
+    String? messageToClient,
+    bool? recommended,
+    List<String>? supportedAccounts,
   }) : super(
           disabled: disabled,
           environment: environment,
           geolocation: geolocation,
           id: id,
+          messageToClient: messageToClient,
           recommended: recommended,
           supportedAccounts: supportedAccounts,
         );
@@ -159,16 +190,22 @@ class TradingServersItem extends TradingServersItemModel {
   factory TradingServersItem.fromJson(Map<String, dynamic> json) =>
       TradingServersItem(
         disabled: getBool(json['disabled']),
-        environment: environmentEnumMapper[json['environment']],
+        environment: json['environment'] == null
+            ? null
+            : environmentEnumMapper[json['environment']]!,
         geolocation: json['geolocation'] == null
             ? null
             : Geolocation.fromJson(json['geolocation']),
-        id: idEnumMapper[json['id']],
+        id: json['id'] == null ? null : idEnumMapper[json['id']]!,
+        messageToClient: json['message_to_client'],
         recommended: getBool(json['recommended']),
         supportedAccounts: json['supported_accounts'] == null
             ? null
             : List<String>.from(
-                json['supported_accounts'].map((dynamic item) => item)),
+                json['supported_accounts']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -177,18 +214,23 @@ class TradingServersItem extends TradingServersItemModel {
 
     resultMap['disabled'] = disabled;
     resultMap['environment'] = environmentEnumMapper.entries
-        .firstWhere((entry) => entry.value == environment, orElse: () => null)
-        ?.key;
+        .firstWhere((MapEntry<String, EnvironmentEnum> entry) =>
+            entry.value == environment)
+        .key;
     if (geolocation != null) {
-      resultMap['geolocation'] = geolocation.toJson();
+      resultMap['geolocation'] = geolocation!.toJson();
     }
     resultMap['id'] = idEnumMapper.entries
-        .firstWhere((entry) => entry.value == id, orElse: () => null)
-        ?.key;
+        .firstWhere((MapEntry<String, IdEnum> entry) => entry.value == id)
+        .key;
+    resultMap['message_to_client'] = messageToClient;
     resultMap['recommended'] = recommended;
     if (supportedAccounts != null) {
-      resultMap['supported_accounts'] =
-          supportedAccounts.map<dynamic>((String item) => item).toList();
+      resultMap['supported_accounts'] = supportedAccounts!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
     }
 
     return resultMap;
@@ -196,18 +238,20 @@ class TradingServersItem extends TradingServersItemModel {
 
   /// Creates a copy of instance with given parameters
   TradingServersItem copyWith({
-    bool disabled,
-    EnvironmentEnum environment,
-    Geolocation geolocation,
-    IdEnum id,
-    bool recommended,
-    List<String> supportedAccounts,
+    bool? disabled,
+    EnvironmentEnum? environment,
+    Geolocation? geolocation,
+    IdEnum? id,
+    String? messageToClient,
+    bool? recommended,
+    List<String>? supportedAccounts,
   }) =>
       TradingServersItem(
         disabled: disabled ?? this.disabled,
         environment: environment ?? this.environment,
         geolocation: geolocation ?? this.geolocation,
         id: id ?? this.id,
+        messageToClient: messageToClient ?? this.messageToClient,
         recommended: recommended ?? this.recommended,
         supportedAccounts: supportedAccounts ?? this.supportedAccounts,
       );
@@ -216,28 +260,28 @@ class TradingServersItem extends TradingServersItemModel {
 abstract class GeolocationModel {
   /// Initializes
   GeolocationModel({
-    @required this.sequence,
-    @required this.region,
-    @required this.location,
+    this.location,
+    this.region,
+    this.sequence,
   });
 
-  /// Sequence number of the server in that region.
-  final int sequence;
+  /// Geolocation country or place where server is located.
+  final String? location;
 
   /// Geolocation region where server is located.
-  final String region;
+  final String? region;
 
-  /// Geolocation country or place where server is located.
-  final String location;
+  /// Sequence number of the server in that region.
+  final int? sequence;
 }
 
 /// Geolocation class
 class Geolocation extends GeolocationModel {
   /// Initializes
   Geolocation({
-    @required String location,
-    @required String region,
-    @required int sequence,
+    String? location,
+    String? region,
+    int? sequence,
   }) : super(
           location: location,
           region: region,
@@ -264,9 +308,9 @@ class Geolocation extends GeolocationModel {
 
   /// Creates a copy of instance with given parameters
   Geolocation copyWith({
-    String location,
-    String region,
-    int sequence,
+    String? location,
+    String? region,
+    int? sequence,
   }) =>
       Geolocation(
         location: location ?? this.location,

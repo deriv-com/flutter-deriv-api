@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/buy_send.dart';
 import '../../basic_api/generated/forget_all_receive.dart';
 import '../../basic_api/generated/forget_receive.dart';
@@ -22,23 +20,23 @@ import 'proposal_open_contract_receive_result.dart';
 abstract class ProposalResponseModel {
   /// Initializes
   ProposalResponseModel({
-    @required this.subscription,
-    @required this.proposal,
+    this.proposal,
+    this.subscription,
   });
 
-  /// For subscription requests only.
-  final Subscription subscription;
-
   /// Latest price and other details for a given contract
-  final Proposal proposal;
+  final Proposal? proposal;
+
+  /// For subscription requests only.
+  final Subscription? subscription;
 }
 
 /// Proposal response class
 class ProposalResponse extends ProposalResponseModel {
   /// Initializes
   ProposalResponse({
-    @required Proposal proposal,
-    @required Subscription subscription,
+    Proposal? proposal,
+    Subscription? subscription,
   }) : super(
           proposal: proposal,
           subscription: subscription,
@@ -61,16 +59,16 @@ class ProposalResponse extends ProposalResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (proposal != null) {
-      resultMap['proposal'] = proposal.toJson();
+      resultMap['proposal'] = proposal!.toJson();
     }
     if (subscription != null) {
-      resultMap['subscription'] = subscription.toJson();
+      resultMap['subscription'] = subscription!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the price proposal for contract
   ///
@@ -83,7 +81,7 @@ class ProposalResponse extends ProposalResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -94,17 +92,17 @@ class ProposalResponse extends ProposalResponseModel {
   ///
   /// For parameters information refer to [ProposalRequest]
   /// Throws a [ContractOperationException] if API response contains an error
-  static Stream<ProposalResponse> subscribePriceForContract(
+  static Stream<ProposalResponse?> subscribePriceForContract(
     ProposalSend request, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
       _api
-          .subscribe(request: request, comparePredicate: comparePredicate)
-          .map<ProposalResponse>(
+          .subscribe(request: request, comparePredicate: comparePredicate)!
+          .map<ProposalResponse?>(
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
                 ContractOperationException(
                     baseExceptionModel: baseExceptionModel),
           );
@@ -121,17 +119,17 @@ class ProposalResponse extends ProposalResponseModel {
   /// Unsubscribes from price proposal subscription.
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Future<ForgetResponse> unsubscribeProposal() async {
-    if (subscription?.id == null) {
+  Future<ForgetResponse?> unsubscribeProposal() async {
+    if (subscription == null) {
       return null;
     }
 
     final ForgetReceive response =
-        await _api.unsubscribe(subscriptionId: subscription.id);
+        await _api.unsubscribe(subscriptionId: subscription!.id);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -147,7 +145,7 @@ class ProposalResponse extends ProposalResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -157,26 +155,24 @@ class ProposalResponse extends ProposalResponseModel {
   /// Buys this proposal contract with [price] specified.
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Future<BuyResponse> buy({@required double price}) =>
-      BuyResponse.buyMethod(BuySend(
-        buy: proposal.id,
-        price: price ?? proposal.askPrice,
+  Future<BuyResponse> buy({double? price}) => BuyResponse.buyMethod(BuySend(
+        buy: proposal?.id,
+        price: price ?? proposal?.askPrice,
       ));
 
   /// Buys this proposal contract with [price] specified and subscribes to it.
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Stream<ProposalOpenContractResponse> buyAndSubscribe(
-          {@required double price}) =>
+  Stream<ProposalOpenContractResponse?> buyAndSubscribe({double? price}) =>
       BuyResponse.buyAndSubscribe(BuySend(
-        buy: proposal.id,
-        price: price ?? proposal.askPrice,
+        buy: proposal?.id,
+        price: price ?? proposal?.askPrice,
       ));
 
   /// Creates a copy of instance with given parameters
   ProposalResponse copyWith({
-    Proposal proposal,
-    Subscription subscription,
+    Proposal? proposal,
+    Subscription? subscription,
   }) =>
       ProposalResponse(
         proposal: proposal ?? this.proposal,
@@ -187,18 +183,19 @@ class ProposalResponse extends ProposalResponseModel {
 abstract class ProposalModel {
   /// Initializes
   ProposalModel({
-    @required this.spotTime,
-    @required this.spot,
-    @required this.payout,
-    @required this.multiplier,
-    @required this.longcode,
-    @required this.limitOrder,
-    @required this.id,
-    @required this.displayValue,
-    @required this.dateStart,
-    @required this.cancellation,
-    @required this.askPrice,
+    required this.spotTime,
+    required this.spot,
+    required this.payout,
+    required this.longcode,
+    required this.id,
+    required this.displayValue,
+    required this.dateStart,
+    required this.askPrice,
+    this.cancellation,
     this.commission,
+    this.dateExpiry,
+    this.limitOrder,
+    this.multiplier,
   });
 
   /// The corresponding time of the spot value.
@@ -210,14 +207,8 @@ abstract class ProposalModel {
   /// The payout amount of the contract.
   final double payout;
 
-  /// [Only for lookback trades] Multiplier applies when calculating the final payoff for each type of lookback. e.g. (Exit spot - Lowest historical price) * multiplier = Payout
-  final double multiplier;
-
   /// Example: Win payout if Random 100 Index is strictly higher than entry spot at 15 minutes after contract start time.
   final String longcode;
-
-  /// Contains limit order information. (Only applicable for contract with limit order).
-  final LimitOrder limitOrder;
 
   /// A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
   final String id;
@@ -228,65 +219,77 @@ abstract class ProposalModel {
   /// The start date of the contract.
   final DateTime dateStart;
 
-  /// Contains information about contract cancellation option.
-  final Cancellation cancellation;
-
   /// The ask price.
   final double askPrice;
 
+  /// Contains information about contract cancellation option.
+  final Cancellation? cancellation;
+
   /// Commission changed in percentage (%).
-  final double commission;
+  final double? commission;
+
+  /// The end date of the contract.
+  final DateTime? dateExpiry;
+
+  /// Contains limit order information. (Only applicable for contract with limit order).
+  final LimitOrder? limitOrder;
+
+  /// [Only for lookback trades] Multiplier applies when calculating the final payoff for each type of lookback. e.g. (Exit spot - Lowest historical price) * multiplier = Payout
+  final double? multiplier;
 }
 
 /// Proposal class
 class Proposal extends ProposalModel {
   /// Initializes
   Proposal({
-    @required double askPrice,
-    @required Cancellation cancellation,
-    @required DateTime dateStart,
-    @required String displayValue,
-    @required String id,
-    @required LimitOrder limitOrder,
-    @required String longcode,
-    @required double multiplier,
-    @required double payout,
-    @required double spot,
-    @required DateTime spotTime,
-    double commission,
+    required double askPrice,
+    required DateTime dateStart,
+    required String displayValue,
+    required String id,
+    required String longcode,
+    required double payout,
+    required double spot,
+    required DateTime spotTime,
+    Cancellation? cancellation,
+    double? commission,
+    DateTime? dateExpiry,
+    LimitOrder? limitOrder,
+    double? multiplier,
   }) : super(
           askPrice: askPrice,
-          cancellation: cancellation,
           dateStart: dateStart,
           displayValue: displayValue,
           id: id,
-          limitOrder: limitOrder,
           longcode: longcode,
-          multiplier: multiplier,
           payout: payout,
           spot: spot,
           spotTime: spotTime,
+          cancellation: cancellation,
           commission: commission,
+          dateExpiry: dateExpiry,
+          limitOrder: limitOrder,
+          multiplier: multiplier,
         );
 
   /// Creates an instance from JSON
   factory Proposal.fromJson(Map<String, dynamic> json) => Proposal(
-        askPrice: getDouble(json['ask_price']),
+        askPrice: getDouble(json['ask_price'])!,
+        dateStart: getDateTime(json['date_start'])!,
+        displayValue: json['display_value'],
+        id: json['id'],
+        longcode: json['longcode'],
+        payout: getDouble(json['payout'])!,
+        spot: getDouble(json['spot'])!,
+        spotTime: getDateTime(json['spot_time'])!,
         cancellation: json['cancellation'] == null
             ? null
             : Cancellation.fromJson(json['cancellation']),
-        dateStart: getDateTime(json['date_start']),
-        displayValue: json['display_value'],
-        id: json['id'],
+        commission: getDouble(json['commission']),
+        dateExpiry: getDateTime(json['date_expiry']),
         limitOrder: json['limit_order'] == null
             ? null
             : LimitOrder.fromJson(json['limit_order']),
-        longcode: json['longcode'],
         multiplier: getDouble(json['multiplier']),
-        payout: getDouble(json['payout']),
-        spot: getDouble(json['spot']),
-        spotTime: getDateTime(json['spot_time']),
-        commission: getDouble(json['commission']),
       );
 
   /// Converts an instance to JSON
@@ -294,76 +297,79 @@ class Proposal extends ProposalModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['ask_price'] = askPrice;
-    if (cancellation != null) {
-      resultMap['cancellation'] = cancellation.toJson();
-    }
     resultMap['date_start'] = getSecondsSinceEpochDateTime(dateStart);
     resultMap['display_value'] = displayValue;
     resultMap['id'] = id;
-    if (limitOrder != null) {
-      resultMap['limit_order'] = limitOrder.toJson();
-    }
     resultMap['longcode'] = longcode;
-    resultMap['multiplier'] = multiplier;
     resultMap['payout'] = payout;
     resultMap['spot'] = spot;
     resultMap['spot_time'] = getSecondsSinceEpochDateTime(spotTime);
+    if (cancellation != null) {
+      resultMap['cancellation'] = cancellation!.toJson();
+    }
     resultMap['commission'] = commission;
+    resultMap['date_expiry'] = getSecondsSinceEpochDateTime(dateExpiry);
+    if (limitOrder != null) {
+      resultMap['limit_order'] = limitOrder!.toJson();
+    }
+    resultMap['multiplier'] = multiplier;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   Proposal copyWith({
-    double askPrice,
-    Cancellation cancellation,
-    DateTime dateStart,
-    String displayValue,
-    String id,
-    LimitOrder limitOrder,
-    String longcode,
-    double multiplier,
-    double payout,
-    double spot,
-    DateTime spotTime,
-    double commission,
+    required double askPrice,
+    required DateTime dateStart,
+    required String displayValue,
+    required String id,
+    required String longcode,
+    required double payout,
+    required double spot,
+    required DateTime spotTime,
+    Cancellation? cancellation,
+    double? commission,
+    DateTime? dateExpiry,
+    LimitOrder? limitOrder,
+    double? multiplier,
   }) =>
       Proposal(
-        askPrice: askPrice ?? this.askPrice,
+        askPrice: askPrice,
+        dateStart: dateStart,
+        displayValue: displayValue,
+        id: id,
+        longcode: longcode,
+        payout: payout,
+        spot: spot,
+        spotTime: spotTime,
         cancellation: cancellation ?? this.cancellation,
-        dateStart: dateStart ?? this.dateStart,
-        displayValue: displayValue ?? this.displayValue,
-        id: id ?? this.id,
-        limitOrder: limitOrder ?? this.limitOrder,
-        longcode: longcode ?? this.longcode,
-        multiplier: multiplier ?? this.multiplier,
-        payout: payout ?? this.payout,
-        spot: spot ?? this.spot,
-        spotTime: spotTime ?? this.spotTime,
         commission: commission ?? this.commission,
+        dateExpiry: dateExpiry ?? this.dateExpiry,
+        limitOrder: limitOrder ?? this.limitOrder,
+        multiplier: multiplier ?? this.multiplier,
       );
 }
 /// Cancellation model class
 abstract class CancellationModel {
   /// Initializes
   CancellationModel({
-    @required this.dateExpiry,
-    @required this.askPrice,
+    this.askPrice,
+    this.dateExpiry,
   });
 
-  /// Expiry time in epoch for contract cancellation option.
-  final DateTime dateExpiry;
-
   /// Ask price of contract cancellation option.
-  final double askPrice;
+  final double? askPrice;
+
+  /// Expiry time in epoch for contract cancellation option.
+  final DateTime? dateExpiry;
 }
 
 /// Cancellation class
 class Cancellation extends CancellationModel {
   /// Initializes
   Cancellation({
-    @required double askPrice,
-    @required DateTime dateExpiry,
+    double? askPrice,
+    DateTime? dateExpiry,
   }) : super(
           askPrice: askPrice,
           dateExpiry: dateExpiry,
@@ -387,8 +393,8 @@ class Cancellation extends CancellationModel {
 
   /// Creates a copy of instance with given parameters
   Cancellation copyWith({
-    double askPrice,
-    DateTime dateExpiry,
+    double? askPrice,
+    DateTime? dateExpiry,
   }) =>
       Cancellation(
         askPrice: askPrice ?? this.askPrice,
@@ -399,28 +405,28 @@ class Cancellation extends CancellationModel {
 abstract class LimitOrderModel {
   /// Initializes
   LimitOrderModel({
-    @required this.takeProfit,
-    @required this.stopOut,
-    @required this.stopLoss,
+    this.stopLoss,
+    this.stopOut,
+    this.takeProfit,
   });
 
-  /// Contains information where the contract will be closed automatically at the profit specified by the user.
-  final LimitOrderTakeProfit takeProfit;
+  /// Contains information where the contract will be closed automatically at the loss specified by the user.
+  final StopLoss? stopLoss;
 
   /// Contains information where the contract will be closed automatically when the value of the contract is close to zero. This is set by the us.
-  final StopOut stopOut;
+  final StopOut? stopOut;
 
-  /// Contains information where the contract will be closed automatically at the loss specified by the user.
-  final LimitOrderStopLoss stopLoss;
+  /// Contains information where the contract will be closed automatically at the profit specified by the user.
+  final TakeProfit? takeProfit;
 }
 
 /// Limit order class
 class LimitOrder extends LimitOrderModel {
   /// Initializes
   LimitOrder({
-    @required LimitOrderStopLoss stopLoss,
-    @required StopOut stopOut,
-    @required LimitOrderTakeProfit takeProfit,
+    StopLoss? stopLoss,
+    StopOut? stopOut,
+    TakeProfit? takeProfit,
   }) : super(
           stopLoss: stopLoss,
           stopOut: stopOut,
@@ -431,13 +437,13 @@ class LimitOrder extends LimitOrderModel {
   factory LimitOrder.fromJson(Map<String, dynamic> json) => LimitOrder(
         stopLoss: json['stop_loss'] == null
             ? null
-            : LimitOrderStopLoss.fromJson(json['stop_loss']),
+            : StopLoss.fromJson(json['stop_loss']),
         stopOut: json['stop_out'] == null
             ? null
             : StopOut.fromJson(json['stop_out']),
         takeProfit: json['take_profit'] == null
             ? null
-            : LimitOrderTakeProfit.fromJson(json['take_profit']),
+            : TakeProfit.fromJson(json['take_profit']),
       );
 
   /// Converts an instance to JSON
@@ -445,13 +451,13 @@ class LimitOrder extends LimitOrderModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (stopLoss != null) {
-      resultMap['stop_loss'] = stopLoss.toJson();
+      resultMap['stop_loss'] = stopLoss!.toJson();
     }
     if (stopOut != null) {
-      resultMap['stop_out'] = stopOut.toJson();
+      resultMap['stop_out'] = stopOut!.toJson();
     }
     if (takeProfit != null) {
-      resultMap['take_profit'] = takeProfit.toJson();
+      resultMap['take_profit'] = takeProfit!.toJson();
     }
 
     return resultMap;
@@ -459,9 +465,9 @@ class LimitOrder extends LimitOrderModel {
 
   /// Creates a copy of instance with given parameters
   LimitOrder copyWith({
-    LimitOrderStopLoss stopLoss,
-    StopOut stopOut,
-    LimitOrderTakeProfit takeProfit,
+    StopLoss? stopLoss,
+    StopOut? stopOut,
+    TakeProfit? takeProfit,
   }) =>
       LimitOrder(
         stopLoss: stopLoss ?? this.stopLoss,
@@ -469,50 +475,49 @@ class LimitOrder extends LimitOrderModel {
         takeProfit: takeProfit ?? this.takeProfit,
       );
 }
-/// Limit order stop loss model class
-abstract class LimitOrderStopLossModel {
+/// Stop loss model class
+abstract class StopLossModel {
   /// Initializes
-  LimitOrderStopLossModel({
-    @required this.orderDate,
-    @required this.displayName,
+  StopLossModel({
+    this.displayName,
     this.orderAmount,
+    this.orderDate,
     this.value,
   });
 
-  /// Stop loss order epoch
-  final DateTime orderDate;
-
   /// Localized display name
-  final String displayName;
+  final String? displayName;
 
   /// Stop loss amount
-  final double orderAmount;
+  final double? orderAmount;
+
+  /// Stop loss order epoch
+  final DateTime? orderDate;
 
   /// Pip-sized barrier value
-  final String value;
+  final String? value;
 }
 
-/// Limit order stop loss class
-class LimitOrderStopLoss extends LimitOrderStopLossModel {
+/// Stop loss class
+class StopLoss extends StopLossModel {
   /// Initializes
-  LimitOrderStopLoss({
-    @required String displayName,
-    @required DateTime orderDate,
-    double orderAmount,
-    String value,
+  StopLoss({
+    String? displayName,
+    double? orderAmount,
+    DateTime? orderDate,
+    String? value,
   }) : super(
           displayName: displayName,
-          orderDate: orderDate,
           orderAmount: orderAmount,
+          orderDate: orderDate,
           value: value,
         );
 
   /// Creates an instance from JSON
-  factory LimitOrderStopLoss.fromJson(Map<String, dynamic> json) =>
-      LimitOrderStopLoss(
+  factory StopLoss.fromJson(Map<String, dynamic> json) => StopLoss(
         displayName: json['display_name'],
-        orderDate: getDateTime(json['order_date']),
         orderAmount: getDouble(json['order_amount']),
+        orderDate: getDateTime(json['order_date']),
         value: json['value'],
       );
 
@@ -521,24 +526,24 @@ class LimitOrderStopLoss extends LimitOrderStopLossModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['display_name'] = displayName;
-    resultMap['order_date'] = getSecondsSinceEpochDateTime(orderDate);
     resultMap['order_amount'] = orderAmount;
+    resultMap['order_date'] = getSecondsSinceEpochDateTime(orderDate);
     resultMap['value'] = value;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
-  LimitOrderStopLoss copyWith({
-    String displayName,
-    DateTime orderDate,
-    double orderAmount,
-    String value,
+  StopLoss copyWith({
+    String? displayName,
+    double? orderAmount,
+    DateTime? orderDate,
+    String? value,
   }) =>
-      LimitOrderStopLoss(
+      StopLoss(
         displayName: displayName ?? this.displayName,
-        orderDate: orderDate ?? this.orderDate,
         orderAmount: orderAmount ?? this.orderAmount,
+        orderDate: orderDate ?? this.orderDate,
         value: value ?? this.value,
       );
 }
@@ -546,33 +551,33 @@ class LimitOrderStopLoss extends LimitOrderStopLossModel {
 abstract class StopOutModel {
   /// Initializes
   StopOutModel({
-    @required this.value,
-    @required this.orderDate,
-    @required this.orderAmount,
-    @required this.displayName,
+    this.displayName,
+    this.orderAmount,
+    this.orderDate,
+    this.value,
   });
 
-  /// Pip-sized barrier value
-  final String value;
-
-  /// Stop out order epoch
-  final DateTime orderDate;
+  /// Localized display name
+  final String? displayName;
 
   /// Stop out amount
-  final double orderAmount;
+  final double? orderAmount;
 
-  /// Localized display name
-  final String displayName;
+  /// Stop out order epoch
+  final DateTime? orderDate;
+
+  /// Pip-sized barrier value
+  final String? value;
 }
 
 /// Stop out class
 class StopOut extends StopOutModel {
   /// Initializes
   StopOut({
-    @required String displayName,
-    @required double orderAmount,
-    @required DateTime orderDate,
-    @required String value,
+    String? displayName,
+    double? orderAmount,
+    DateTime? orderDate,
+    String? value,
   }) : super(
           displayName: displayName,
           orderAmount: orderAmount,
@@ -602,10 +607,10 @@ class StopOut extends StopOutModel {
 
   /// Creates a copy of instance with given parameters
   StopOut copyWith({
-    String displayName,
-    double orderAmount,
-    DateTime orderDate,
-    String value,
+    String? displayName,
+    double? orderAmount,
+    DateTime? orderDate,
+    String? value,
   }) =>
       StopOut(
         displayName: displayName ?? this.displayName,
@@ -614,50 +619,49 @@ class StopOut extends StopOutModel {
         value: value ?? this.value,
       );
 }
-/// Limit order take profit model class
-abstract class LimitOrderTakeProfitModel {
+/// Take profit model class
+abstract class TakeProfitModel {
   /// Initializes
-  LimitOrderTakeProfitModel({
-    @required this.orderDate,
-    @required this.displayName,
+  TakeProfitModel({
+    this.displayName,
     this.orderAmount,
+    this.orderDate,
     this.value,
   });
 
-  /// Take profit order epoch
-  final DateTime orderDate;
-
   /// Localized display name
-  final String displayName;
+  final String? displayName;
 
   /// Take profit amount
-  final double orderAmount;
+  final double? orderAmount;
+
+  /// Take profit order epoch
+  final DateTime? orderDate;
 
   /// Pip-sized barrier value
-  final String value;
+  final String? value;
 }
 
-/// Limit order take profit class
-class LimitOrderTakeProfit extends LimitOrderTakeProfitModel {
+/// Take profit class
+class TakeProfit extends TakeProfitModel {
   /// Initializes
-  LimitOrderTakeProfit({
-    @required String displayName,
-    @required DateTime orderDate,
-    double orderAmount,
-    String value,
+  TakeProfit({
+    String? displayName,
+    double? orderAmount,
+    DateTime? orderDate,
+    String? value,
   }) : super(
           displayName: displayName,
-          orderDate: orderDate,
           orderAmount: orderAmount,
+          orderDate: orderDate,
           value: value,
         );
 
   /// Creates an instance from JSON
-  factory LimitOrderTakeProfit.fromJson(Map<String, dynamic> json) =>
-      LimitOrderTakeProfit(
+  factory TakeProfit.fromJson(Map<String, dynamic> json) => TakeProfit(
         displayName: json['display_name'],
-        orderDate: getDateTime(json['order_date']),
         orderAmount: getDouble(json['order_amount']),
+        orderDate: getDateTime(json['order_date']),
         value: json['value'],
       );
 
@@ -666,24 +670,24 @@ class LimitOrderTakeProfit extends LimitOrderTakeProfitModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['display_name'] = displayName;
-    resultMap['order_date'] = getSecondsSinceEpochDateTime(orderDate);
     resultMap['order_amount'] = orderAmount;
+    resultMap['order_date'] = getSecondsSinceEpochDateTime(orderDate);
     resultMap['value'] = value;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
-  LimitOrderTakeProfit copyWith({
-    String displayName,
-    DateTime orderDate,
-    double orderAmount,
-    String value,
+  TakeProfit copyWith({
+    String? displayName,
+    double? orderAmount,
+    DateTime? orderDate,
+    String? value,
   }) =>
-      LimitOrderTakeProfit(
+      TakeProfit(
         displayName: displayName ?? this.displayName,
-        orderDate: orderDate ?? this.orderDate,
         orderAmount: orderAmount ?? this.orderAmount,
+        orderDate: orderDate ?? this.orderDate,
         value: value ?? this.value,
       );
 }
@@ -691,7 +695,7 @@ class LimitOrderTakeProfit extends LimitOrderTakeProfitModel {
 abstract class SubscriptionModel {
   /// Initializes
   SubscriptionModel({
-    @required this.id,
+    required this.id,
   });
 
   /// A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
@@ -702,7 +706,7 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
-    @required String id,
+    required String id,
   }) : super(
           id: id,
         );
@@ -723,9 +727,9 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters
   Subscription copyWith({
-    String id,
+    required String id,
   }) =>
       Subscription(
-        id: id ?? this.id,
+        id: id,
       );
 }

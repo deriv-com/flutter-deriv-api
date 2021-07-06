@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/contract_update_history_receive.dart';
 import '../../basic_api/generated/contract_update_history_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class ContractUpdateHistoryResponseModel {
   /// Initializes
   ContractUpdateHistoryResponseModel({
-    @required this.contractUpdateHistory,
+    this.contractUpdateHistory,
   });
 
   /// Contains the historical and the most recent update status of the contract
-  final List<ContractUpdateHistoryItem> contractUpdateHistory;
+  final List<ContractUpdateHistoryItem>? contractUpdateHistory;
 }
 
 /// Contract update history response class
 class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
   /// Initializes
   ContractUpdateHistoryResponse({
-    @required List<ContractUpdateHistoryItem> contractUpdateHistory,
+    List<ContractUpdateHistoryItem>? contractUpdateHistory,
   }) : super(
           contractUpdateHistory: contractUpdateHistory,
         );
@@ -36,8 +34,10 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
         contractUpdateHistory: contractUpdateHistoryJson == null
             ? null
             : List<ContractUpdateHistoryItem>.from(
-                contractUpdateHistoryJson.map((dynamic item) =>
-                    ContractUpdateHistoryItem.fromJson(item))),
+                contractUpdateHistoryJson?.map(
+                  (dynamic item) => ContractUpdateHistoryItem.fromJson(item),
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -45,15 +45,17 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (contractUpdateHistory != null) {
-      resultMap['contract_update_history'] = contractUpdateHistory
-          .map<dynamic>((ContractUpdateHistoryItem item) => item.toJson())
+      resultMap['contract_update_history'] = contractUpdateHistory!
+          .map<dynamic>(
+            (ContractUpdateHistoryItem item) => item.toJson(),
+          )
           .toList();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets update history for contract as List of [HistorySpotPriceModel]
   ///
@@ -66,7 +68,7 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -76,7 +78,7 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
 
   /// Creates a copy of instance with given parameters
   ContractUpdateHistoryResponse copyWith({
-    List<ContractUpdateHistoryItem> contractUpdateHistory,
+    List<ContractUpdateHistoryItem>? contractUpdateHistory,
   }) =>
       ContractUpdateHistoryResponse(
         contractUpdateHistory:
@@ -87,38 +89,38 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
 abstract class ContractUpdateHistoryItemModel {
   /// Initializes
   ContractUpdateHistoryItemModel({
-    @required this.orderType,
-    @required this.orderDate,
-    @required this.orderAmount,
-    @required this.displayName,
+    this.displayName,
+    this.orderAmount,
+    this.orderDate,
+    this.orderType,
     this.value,
   });
 
-  /// The contract parameter updated.
-  final String orderType;
-
-  /// The epoch when the changed was done.
-  final DateTime orderDate;
+  /// Display name of the changed parameter.
+  final String? displayName;
 
   /// The amount.
-  final String orderAmount;
+  final String? orderAmount;
 
-  /// Display name of the changed parameter.
-  final String displayName;
+  /// The epoch when the changed was done.
+  final DateTime? orderDate;
+
+  /// The contract parameter updated.
+  final String? orderType;
 
   /// The pip-sized barrier value.
-  final String value;
+  final String? value;
 }
 
 /// Contract update history item class
 class ContractUpdateHistoryItem extends ContractUpdateHistoryItemModel {
   /// Initializes
   ContractUpdateHistoryItem({
-    @required String displayName,
-    @required String orderAmount,
-    @required DateTime orderDate,
-    @required String orderType,
-    String value,
+    String? displayName,
+    String? orderAmount,
+    DateTime? orderDate,
+    String? orderType,
+    String? value,
   }) : super(
           displayName: displayName,
           orderAmount: orderAmount,
@@ -152,11 +154,11 @@ class ContractUpdateHistoryItem extends ContractUpdateHistoryItemModel {
 
   /// Creates a copy of instance with given parameters
   ContractUpdateHistoryItem copyWith({
-    String displayName,
-    String orderAmount,
-    DateTime orderDate,
-    String orderType,
-    String value,
+    String? displayName,
+    String? orderAmount,
+    DateTime? orderDate,
+    String? orderType,
+    String? value,
   }) =>
       ContractUpdateHistoryItem(
         displayName: displayName ?? this.displayName,

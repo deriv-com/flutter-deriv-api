@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/states_list_receive.dart';
 import '../../basic_api/generated/states_list_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class StatesListResponseModel {
   /// Initializes
   StatesListResponseModel({
-    @required this.statesList,
+    this.statesList,
   });
 
   /// List of states.
-  final List<StatesListItem> statesList;
+  final List<StatesListItem>? statesList;
 }
 
 /// States list response class
 class StatesListResponse extends StatesListResponseModel {
   /// Initializes
   StatesListResponse({
-    @required List<StatesListItem> statesList,
+    List<StatesListItem>? statesList,
   }) : super(
           statesList: statesList,
         );
@@ -35,8 +33,11 @@ class StatesListResponse extends StatesListResponseModel {
       StatesListResponse(
         statesList: statesListJson == null
             ? null
-            : List<StatesListItem>.from(statesListJson
-                .map((dynamic item) => StatesListItem.fromJson(item))),
+            : List<StatesListItem>.from(
+                statesListJson?.map(
+                  (dynamic item) => StatesListItem.fromJson(item),
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -44,15 +45,17 @@ class StatesListResponse extends StatesListResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (statesList != null) {
-      resultMap['states_list'] = statesList
-          .map<dynamic>((StatesListItem item) => item.toJson())
+      resultMap['states_list'] = statesList!
+          .map<dynamic>(
+            (StatesListItem item) => item.toJson(),
+          )
           .toList();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the list of states for the given [StatesListRequest]
   ///
@@ -63,7 +66,7 @@ class StatesListResponse extends StatesListResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           StateException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -72,7 +75,7 @@ class StatesListResponse extends StatesListResponseModel {
 
   /// Creates a copy of instance with given parameters
   StatesListResponse copyWith({
-    List<StatesListItem> statesList,
+    List<StatesListItem>? statesList,
   }) =>
       StatesListResponse(
         statesList: statesList ?? this.statesList,
@@ -82,23 +85,23 @@ class StatesListResponse extends StatesListResponseModel {
 abstract class StatesListItemModel {
   /// Initializes
   StatesListItemModel({
-    @required this.value,
-    @required this.text,
+    this.text,
+    this.value,
   });
 
-  /// The state code.
-  final String value;
-
   /// The state name.
-  final String text;
+  final String? text;
+
+  /// The state code.
+  final String? value;
 }
 
 /// States list item class
 class StatesListItem extends StatesListItemModel {
   /// Initializes
   StatesListItem({
-    @required String text,
-    @required String value,
+    String? text,
+    String? value,
   }) : super(
           text: text,
           value: value,
@@ -122,8 +125,8 @@ class StatesListItem extends StatesListItemModel {
 
   /// Creates a copy of instance with given parameters
   StatesListItem copyWith({
-    String text,
-    String value,
+    String? text,
+    String? value,
   }) =>
       StatesListItem(
         text: text ?? this.text,

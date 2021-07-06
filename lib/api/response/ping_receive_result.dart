@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/ping_receive.dart';
 import '../../basic_api/generated/ping_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class PingResponseModel {
   /// Initializes
   PingResponseModel({
-    @required this.ping,
+    this.ping,
   });
 
   /// Will return 'pong'
-  final PingEnum ping;
+  final PingEnum? ping;
 }
 
 /// Ping response class
 class PingResponse extends PingResponseModel {
   /// Initializes
   PingResponse({
-    @required PingEnum ping,
+    PingEnum? ping,
   }) : super(
           ping: ping,
         );
@@ -33,7 +31,7 @@ class PingResponse extends PingResponseModel {
     dynamic pingJson,
   ) =>
       PingResponse(
-        ping: pingEnumMapper[pingJson],
+        ping: pingJson == null ? null : pingEnumMapper[pingJson]!,
       );
 
   /// Converts an instance to JSON
@@ -41,20 +39,20 @@ class PingResponse extends PingResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['ping'] = pingEnumMapper.entries
-        .firstWhere((entry) => entry.value == ping, orElse: () => null)
-        ?.key;
+        .firstWhere((MapEntry<String, PingEnum> entry) => entry.value == ping)
+        .key;
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Sends the ping request to the server.
   ///
   /// Mostly used to test the connection or to keep it alive.
   /// Throws a [PingException] if API response contains an error
   static Future<PingResponse> pingMethod([
-    PingSend request,
+    PingSend? request,
   ]) async {
     final PingReceive response = await _api.call(
       request: request ?? const PingSend(),
@@ -62,7 +60,7 @@ class PingResponse extends PingResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           PingException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -71,18 +69,20 @@ class PingResponse extends PingResponseModel {
 
   /// Creates a copy of instance with given parameters
   PingResponse copyWith({
-    PingEnum ping,
+    PingEnum? ping,
   }) =>
       PingResponse(
         ping: ping ?? this.ping,
       );
 }
 
+/// PingEnum mapper.
 final Map<String, PingEnum> pingEnumMapper = <String, PingEnum>{
   "pong": PingEnum.pong,
 };
 
-/// ping Enum
+/// Ping Enum.
 enum PingEnum {
+  /// pong.
   pong,
 }

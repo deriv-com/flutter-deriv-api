@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/app_delete_send.dart';
 import '../../basic_api/generated/app_get_receive.dart';
 import '../../basic_api/generated/app_get_send.dart';
@@ -24,18 +22,18 @@ import 'revoke_oauth_app_receive_result.dart';
 abstract class AppGetResponseModel {
   /// Initializes
   AppGetResponseModel({
-    @required this.appGet,
+    this.appGet,
   });
 
   /// The information of the requested application.
-  final AppGet appGet;
+  final AppGet? appGet;
 }
 
 /// App get response class
 class AppGetResponse extends AppGetResponseModel {
   /// Initializes
   AppGetResponse({
-    @required AppGet appGet,
+    AppGet? appGet,
   }) : super(
           appGet: appGet,
         );
@@ -53,13 +51,13 @@ class AppGetResponse extends AppGetResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (appGet != null) {
-      resultMap['app_get'] = appGet.toJson();
+      resultMap['app_get'] = appGet!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the information of the OAuth application specified by [appId] in [request]
   ///
@@ -72,7 +70,7 @@ class AppGetResponse extends AppGetResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AppException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -83,14 +81,14 @@ class AppGetResponse extends AppGetResponseModel {
   ///
   /// For parameters information refer to [AppListRequest].
   /// Throws an [AppException] if API response contains an error
-  static Future<List<AppGetResponse>> fetchApplicationList(
+  static Future<List<AppGetResponse?>?> fetchApplicationList(
     AppListSend request,
   ) async {
     final AppListReceive response = await _api.call(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AppException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -102,18 +100,18 @@ class AppGetResponse extends AppGetResponseModel {
 
   /// Retrieves details of app markup according to criteria specified.
   Future<AppMarkupDetailsResponse> fetchApplicationMarkupDetails({
-    String clientLoginId,
-    DateTime dateFrom,
-    DateTime dateTo,
-    bool description,
-    int limit,
-    int offset,
-    String sort,
-    List<String> sortFields,
+    String? clientLoginId,
+    required DateTime dateFrom,
+    required DateTime dateTo,
+    bool? description,
+    int? limit,
+    int? offset,
+    String? sort,
+    List<String>? sortFields,
   }) =>
       AppMarkupDetailsResponse.fetchApplicationMarkupDetails(
         AppMarkupDetailsSend(
-          appId: appGet.appId,
+          appId: appGet?.appId,
           clientLoginid: clientLoginId,
           dateFrom: dateFrom.toString(),
           dateTo: dateTo.toString(),
@@ -128,55 +126,57 @@ class AppGetResponse extends AppGetResponseModel {
   /// The request for deleting an application.
   Future<AppDeleteResponse> deleteApplication() =>
       AppDeleteResponse.deleteApplication(
-        AppDeleteSend(appDelete: appGet.appId),
+        AppDeleteSend(appDelete: appGet?.appId),
       );
 
   /// Register a new Oauth application.
-  Future<AppRegisterResponse> registerApplication({List<TokenScope> scopes}) =>
+  Future<AppRegisterResponse> registerApplication(
+          {required List<TokenScope> scopes}) =>
       AppRegisterResponse.registerApplication(
         AppRegisterSend(
-          appMarkupPercentage: appGet.appMarkupPercentage,
-          appstore: appGet.appstore,
-          github: appGet.github,
-          googleplay: appGet.googleplay,
-          homepage: appGet.homepage,
-          name: appGet.name,
-          redirectUri: appGet.redirectUri,
+          appMarkupPercentage: appGet?.appMarkupPercentage,
+          appstore: appGet?.appstore,
+          github: appGet?.github,
+          googleplay: appGet?.googleplay,
+          homepage: appGet?.homepage,
+          name: appGet?.name,
+          redirectUri: appGet?.redirectUri,
           scopes: scopes
               .map((TokenScope scope) => getStringFromEnum(scope))
               .toList(),
-          verificationUri: appGet.verificationUri,
+          verificationUri: appGet?.verificationUri,
         ),
       );
 
   /// Update application.
-  Future<AppUpdateResponse> updateApplication({List<TokenScope> scopes}) =>
+  Future<AppUpdateResponse> updateApplication(
+          {required List<TokenScope> scopes}) =>
       AppUpdateResponse.updateApplication(
         AppUpdateSend(
-          appMarkupPercentage: appGet.appMarkupPercentage,
-          appUpdate: appGet.appId,
-          appstore: appGet.appstore,
-          github: appGet.github,
-          googleplay: appGet.googleplay,
-          homepage: appGet.homepage,
-          name: appGet.name,
-          redirectUri: appGet.redirectUri,
+          appMarkupPercentage: appGet?.appMarkupPercentage,
+          appUpdate: appGet?.appId,
+          appstore: appGet?.appstore,
+          github: appGet?.github,
+          googleplay: appGet?.googleplay,
+          homepage: appGet?.homepage,
+          name: appGet?.name,
+          redirectUri: appGet?.redirectUri,
           scopes: scopes
               .map((TokenScope scope) => getStringFromEnum(scope))
               .toList(),
-          verificationUri: appGet.verificationUri,
+          verificationUri: appGet?.verificationUri,
         ),
       );
 
   /// Revoke access of particular app.
   Future<RevokeOauthAppResponse> revokeOauthApplication() =>
       RevokeOauthAppResponse.revokeOauthApplication(
-        RevokeOauthAppSend(revokeOauthApp: appGet.appId),
+        RevokeOauthAppSend(revokeOauthApp: appGet?.appId),
       );
 
   /// Creates a copy of instance with given parameters
   AppGetResponse copyWith({
-    AppGet appGet,
+    AppGet? appGet,
   }) =>
       AppGetResponse(
         appGet: appGet ?? this.appGet,
@@ -186,15 +186,15 @@ class AppGetResponse extends AppGetResponseModel {
 abstract class AppGetModel {
   /// Initializes
   AppGetModel({
-    @required this.verificationUri,
-    @required this.redirectUri,
-    @required this.name,
-    @required this.homepage,
-    @required this.googleplay,
-    @required this.github,
-    @required this.appstore,
-    @required this.appMarkupPercentage,
-    @required this.appId,
+    required this.verificationUri,
+    required this.redirectUri,
+    required this.name,
+    required this.homepage,
+    required this.googleplay,
+    required this.github,
+    required this.appstore,
+    required this.appMarkupPercentage,
+    required this.appId,
   });
 
   /// Used when `verify_email` called. If available, a URL containing the verification token will send to the client's email, otherwise only the token will be sent.
@@ -229,15 +229,15 @@ abstract class AppGetModel {
 class AppGet extends AppGetModel {
   /// Initializes
   AppGet({
-    @required int appId,
-    @required double appMarkupPercentage,
-    @required String appstore,
-    @required String github,
-    @required String googleplay,
-    @required String homepage,
-    @required String name,
-    @required String redirectUri,
-    @required String verificationUri,
+    required int appId,
+    required double appMarkupPercentage,
+    required String appstore,
+    required String github,
+    required String googleplay,
+    required String homepage,
+    required String name,
+    required String redirectUri,
+    required String verificationUri,
   }) : super(
           appId: appId,
           appMarkupPercentage: appMarkupPercentage,
@@ -253,7 +253,7 @@ class AppGet extends AppGetModel {
   /// Creates an instance from JSON
   factory AppGet.fromJson(Map<String, dynamic> json) => AppGet(
         appId: json['app_id'],
-        appMarkupPercentage: getDouble(json['app_markup_percentage']),
+        appMarkupPercentage: getDouble(json['app_markup_percentage'])!,
         appstore: json['appstore'],
         github: json['github'],
         googleplay: json['googleplay'],
@@ -282,25 +282,25 @@ class AppGet extends AppGetModel {
 
   /// Creates a copy of instance with given parameters
   AppGet copyWith({
-    int appId,
-    double appMarkupPercentage,
-    String appstore,
-    String github,
-    String googleplay,
-    String homepage,
-    String name,
-    String redirectUri,
-    String verificationUri,
+    required int appId,
+    required double appMarkupPercentage,
+    required String appstore,
+    required String github,
+    required String googleplay,
+    required String homepage,
+    required String name,
+    required String redirectUri,
+    required String verificationUri,
   }) =>
       AppGet(
-        appId: appId ?? this.appId,
-        appMarkupPercentage: appMarkupPercentage ?? this.appMarkupPercentage,
-        appstore: appstore ?? this.appstore,
-        github: github ?? this.github,
-        googleplay: googleplay ?? this.googleplay,
-        homepage: homepage ?? this.homepage,
-        name: name ?? this.name,
-        redirectUri: redirectUri ?? this.redirectUri,
-        verificationUri: verificationUri ?? this.verificationUri,
+        appId: appId,
+        appMarkupPercentage: appMarkupPercentage,
+        appstore: appstore,
+        github: github,
+        googleplay: googleplay,
+        homepage: homepage,
+        name: name,
+        redirectUri: redirectUri,
+        verificationUri: verificationUri,
       );
 }

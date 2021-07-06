@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/cancel_receive.dart';
 import '../../basic_api/generated/cancel_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class CancelResponseModel {
   /// Initializes
   CancelResponseModel({
-    @required this.cancel,
+    this.cancel,
   });
 
   /// Receipt for the transaction
-  final Cancel cancel;
+  final Cancel? cancel;
 }
 
 /// Cancel response class
 class CancelResponse extends CancelResponseModel {
   /// Initializes
   CancelResponse({
-    @required Cancel cancel,
+    Cancel? cancel,
   }) : super(
           cancel: cancel,
         );
@@ -41,13 +39,13 @@ class CancelResponse extends CancelResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (cancel != null) {
-      resultMap['cancel'] = cancel.toJson();
+      resultMap['cancel'] = cancel!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Cancels a contract with parameters specified in [CancelRequest].
   ///
@@ -57,7 +55,7 @@ class CancelResponse extends CancelResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -66,7 +64,7 @@ class CancelResponse extends CancelResponseModel {
 
   /// Creates a copy of instance with given parameters
   CancelResponse copyWith({
-    Cancel cancel,
+    Cancel? cancel,
   }) =>
       CancelResponse(
         cancel: cancel ?? this.cancel,
@@ -76,38 +74,38 @@ class CancelResponse extends CancelResponseModel {
 abstract class CancelModel {
   /// Initializes
   CancelModel({
-    @required this.transactionId,
-    @required this.soldFor,
-    @required this.referenceId,
-    @required this.contractId,
-    @required this.balanceAfter,
+    this.balanceAfter,
+    this.contractId,
+    this.referenceId,
+    this.soldFor,
+    this.transactionId,
   });
 
-  /// Internal transaction identifier for the sale transaction
-  final int transactionId;
-
-  /// Actual effected sale price
-  final double soldFor;
-
-  /// Internal transaction identifier for the corresponding buy transaction
-  final int referenceId;
+  /// New account balance after completion of the sale
+  final double? balanceAfter;
 
   /// Internal contract identifier for the sold contract
-  final int contractId;
+  final int? contractId;
 
-  /// New account balance after completion of the sale
-  final double balanceAfter;
+  /// Internal transaction identifier for the corresponding buy transaction
+  final int? referenceId;
+
+  /// Actual effected sale price
+  final double? soldFor;
+
+  /// Internal transaction identifier for the sale transaction
+  final int? transactionId;
 }
 
 /// Cancel class
 class Cancel extends CancelModel {
   /// Initializes
   Cancel({
-    @required double balanceAfter,
-    @required int contractId,
-    @required int referenceId,
-    @required double soldFor,
-    @required int transactionId,
+    double? balanceAfter,
+    int? contractId,
+    int? referenceId,
+    double? soldFor,
+    int? transactionId,
   }) : super(
           balanceAfter: balanceAfter,
           contractId: contractId,
@@ -140,11 +138,11 @@ class Cancel extends CancelModel {
 
   /// Creates a copy of instance with given parameters
   Cancel copyWith({
-    double balanceAfter,
-    int contractId,
-    int referenceId,
-    double soldFor,
-    int transactionId,
+    double? balanceAfter,
+    int? contractId,
+    int? referenceId,
+    double? soldFor,
+    int? transactionId,
   }) =>
       Cancel(
         balanceAfter: balanceAfter ?? this.balanceAfter,

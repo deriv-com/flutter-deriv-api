@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../helpers/helpers.dart';
 import '../exceptions/exceptions.dart';
 import '../../basic_api/generated/payment_methods_receive.dart';
@@ -7,36 +5,38 @@ import '../../basic_api/generated/payment_methods_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
 
-
 /// Payment methods response model class
 abstract class PaymentMethodsResponseModel {
   /// Initializes
   PaymentMethodsResponseModel({
-    @required this.paymentMethods,
+    this.paymentMethods,
   });
 
   /// Available payment methods for a given country. Note: if a user is logged in, the residence country will be considered.
-  final List<PaymentMethodsItem> paymentMethods;
+  final List<PaymentMethodsItem>? paymentMethods;
 }
 
 /// Payment methods response class
 class PaymentMethodsResponse extends PaymentMethodsResponseModel {
   /// Initializes
   PaymentMethodsResponse({
-    @required List<PaymentMethodsItem> paymentMethods,
+    List<PaymentMethodsItem>? paymentMethods,
   }) : super(
           paymentMethods: paymentMethods,
         );
 
   /// Creates an instance from JSON
   factory PaymentMethodsResponse.fromJson(
-    dynamic paymentmethodsJSON,
+    dynamic paymentMethodsJson,
   ) =>
       PaymentMethodsResponse(
-        paymentMethods: paymentmethodsJSON == null
+        paymentMethods: paymentMethodsJson == null
             ? null
-            : List<PaymentMethodsItem>.from(paymentmethodsJSON
-                .map((dynamic item) => PaymentMethodsItem.fromJson(item))),
+            : List<PaymentMethodsItem>.from(
+                paymentMethodsJson?.map(
+                  (dynamic item) => PaymentMethodsItem.fromJson(item),
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -44,27 +44,29 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (paymentMethods != null) {
-      resultMap['payment_methods'] = paymentMethods
-          .map<dynamic>((PaymentMethodsItem item) => item.toJson())
+      resultMap['payment_methods'] = paymentMethods!
+          .map<dynamic>(
+            (PaymentMethodsItem item) => item.toJson(),
+          )
           .toList();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Get List of available payment methods for a given country.
   ///
   /// For parameters information refer to [PaymentMethodsSend].
   /// Throws an [PaymentException] if API response contains an error
-  static Future<PaymentMethodsResponse> fetchList(
+  static Future<PaymentMethodsResponse> updateApplication(
       PaymentMethodsSend request) async {
     final PaymentMethodsReceive response = await _api.call(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           PaymentException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -73,30 +75,29 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
 
   /// Creates a copy of instance with given parameters
   PaymentMethodsResponse copyWith({
-    List<PaymentMethodsItem> paymentMethods,
+    List<PaymentMethodsItem>? paymentMethods,
   }) =>
       PaymentMethodsResponse(
         paymentMethods: paymentMethods ?? this.paymentMethods,
       );
 }
-
 /// Payment methods item model class
 abstract class PaymentMethodsItemModel {
   /// Initializes
   PaymentMethodsItemModel({
-    @required this.withdrawalTime,
-    @required this.withdrawLimits,
-    @required this.typeDisplayName,
-    @required this.type,
-    @required this.supportedCurrencies,
-    @required this.signupLink,
-    @required this.predefinedAmounts,
-    @required this.paymentProcessor,
-    @required this.id,
-    @required this.displayName,
-    @required this.description,
-    @required this.depositTime,
-    @required this.depositLimits,
+    required this.withdrawalTime,
+    required this.withdrawLimits,
+    required this.typeDisplayName,
+    required this.type,
+    required this.supportedCurrencies,
+    required this.signupLink,
+    required this.predefinedAmounts,
+    required this.paymentProcessor,
+    required this.id,
+    required this.displayName,
+    required this.description,
+    required this.depositTime,
+    required this.depositLimits,
   });
 
   /// How much time takes a withdrawal to be processed.
@@ -143,19 +144,19 @@ abstract class PaymentMethodsItemModel {
 class PaymentMethodsItem extends PaymentMethodsItemModel {
   /// Initializes
   PaymentMethodsItem({
-    @required Map<String, DepositLimitsProperty> depositLimits,
-    @required String depositTime,
-    @required String description,
-    @required String displayName,
-    @required String id,
-    @required String paymentProcessor,
-    @required List<int> predefinedAmounts,
-    @required String signupLink,
-    @required List<String> supportedCurrencies,
-    @required String type,
-    @required String typeDisplayName,
-    @required Map<String, WithdrawLimitsProperty> withdrawLimits,
-    @required String withdrawalTime,
+    required Map<String, DepositLimitsProperty> depositLimits,
+    required String depositTime,
+    required String description,
+    required String displayName,
+    required String id,
+    required String paymentProcessor,
+    required List<int> predefinedAmounts,
+    required String signupLink,
+    required List<String> supportedCurrencies,
+    required String type,
+    required String typeDisplayName,
+    required Map<String, WithdrawLimitsProperty> withdrawLimits,
+    required String withdrawalTime,
   }) : super(
           depositLimits: depositLimits,
           depositTime: depositTime,
@@ -175,48 +176,38 @@ class PaymentMethodsItem extends PaymentMethodsItemModel {
   /// Creates an instance from JSON
   factory PaymentMethodsItem.fromJson(Map<String, dynamic> json) =>
       PaymentMethodsItem(
-        depositLimits: json['deposit_limits'] == null
-            ? null
-            : Map<String, DepositLimitsProperty>.fromEntries(
-                json['deposit_limits']
-                    .entries
-                    .map<MapEntry<String, DepositLimitsProperty>>(
-                        (MapEntry<String, dynamic> entry) =>
-                            MapEntry<String, DepositLimitsProperty>(
-                                entry.key,
-                                entry.value == null
-                                    ? null
-                                    : DepositLimitsProperty.fromJson(
-                                        entry.value)))),
+        depositLimits: Map<String, DepositLimitsProperty>.fromEntries(
+            json['deposit_limits']
+                .entries
+                .map<MapEntry<String, DepositLimitsProperty>>(
+                    (MapEntry<String, dynamic> entry) =>
+                        MapEntry<String, DepositLimitsProperty>(entry.key,
+                            DepositLimitsProperty.fromJson(entry.value)))),
         depositTime: json['deposit_time'],
         description: json['description'],
         displayName: json['display_name'],
         id: json['id'],
         paymentProcessor: json['payment_processor'],
-        predefinedAmounts: json['predefined_amounts'] == null
-            ? null
-            : List<int>.from(
-                json['predefined_amounts'].map((dynamic item) => item)),
+        predefinedAmounts: List<int>.from(
+          json['predefined_amounts'].map(
+            (dynamic item) => item,
+          ),
+        ),
         signupLink: json['signup_link'],
-        supportedCurrencies: json['supported_currencies'] == null
-            ? null
-            : List<String>.from(
-                json['supported_currencies'].map((dynamic item) => item)),
+        supportedCurrencies: List<String>.from(
+          json['supported_currencies'].map(
+            (dynamic item) => item,
+          ),
+        ),
         type: json['type'],
         typeDisplayName: json['type_display_name'],
-        withdrawLimits: json['withdraw_limits'] == null
-            ? null
-            : Map<String, WithdrawLimitsProperty>.fromEntries(
-                json['withdraw_limits']
-                    .entries
-                    .map<MapEntry<String, WithdrawLimitsProperty>>(
-                        (MapEntry<String, dynamic> entry) =>
-                            MapEntry<String, WithdrawLimitsProperty>(
-                                entry.key,
-                                entry.value == null
-                                    ? null
-                                    : WithdrawLimitsProperty.fromJson(
-                                        entry.value)))),
+        withdrawLimits: Map<String, WithdrawLimitsProperty>.fromEntries(
+            json['withdraw_limits']
+                .entries
+                .map<MapEntry<String, WithdrawLimitsProperty>>(
+                    (MapEntry<String, dynamic> entry) =>
+                        MapEntry<String, WithdrawLimitsProperty>(entry.key,
+                            WithdrawLimitsProperty.fromJson(entry.value)))),
         withdrawalTime: json['withdrawal_time'],
       );
 
@@ -230,15 +221,19 @@ class PaymentMethodsItem extends PaymentMethodsItemModel {
     resultMap['display_name'] = displayName;
     resultMap['id'] = id;
     resultMap['payment_processor'] = paymentProcessor;
-    if (predefinedAmounts != null) {
-      resultMap['predefined_amounts'] =
-          predefinedAmounts.map<dynamic>((int item) => item).toList();
-    }
+    resultMap['predefined_amounts'] = predefinedAmounts
+        .map<dynamic>(
+          (int item) => item,
+        )
+        .toList();
+
     resultMap['signup_link'] = signupLink;
-    if (supportedCurrencies != null) {
-      resultMap['supported_currencies'] =
-          supportedCurrencies.map<dynamic>((String item) => item).toList();
-    }
+    resultMap['supported_currencies'] = supportedCurrencies
+        .map<dynamic>(
+          (String item) => item,
+        )
+        .toList();
+
     resultMap['type'] = type;
     resultMap['type_display_name'] = typeDisplayName;
     resultMap['withdraw_limits'] = withdrawLimits;
@@ -249,43 +244,42 @@ class PaymentMethodsItem extends PaymentMethodsItemModel {
 
   /// Creates a copy of instance with given parameters
   PaymentMethodsItem copyWith({
-    Map<String, DepositLimitsProperty> depositLimits,
-    String depositTime,
-    String description,
-    String displayName,
-    String id,
-    String paymentProcessor,
-    List<int> predefinedAmounts,
-    String signupLink,
-    List<String> supportedCurrencies,
-    String type,
-    String typeDisplayName,
-    Map<String, WithdrawLimitsProperty> withdrawLimits,
-    String withdrawalTime,
+    required Map<String, DepositLimitsProperty> depositLimits,
+    required String depositTime,
+    required String description,
+    required String displayName,
+    required String id,
+    required String paymentProcessor,
+    required List<int> predefinedAmounts,
+    required String signupLink,
+    required List<String> supportedCurrencies,
+    required String type,
+    required String typeDisplayName,
+    required Map<String, WithdrawLimitsProperty> withdrawLimits,
+    required String withdrawalTime,
   }) =>
       PaymentMethodsItem(
-        depositLimits: depositLimits ?? this.depositLimits,
-        depositTime: depositTime ?? this.depositTime,
-        description: description ?? this.description,
-        displayName: displayName ?? this.displayName,
-        id: id ?? this.id,
-        paymentProcessor: paymentProcessor ?? this.paymentProcessor,
-        predefinedAmounts: predefinedAmounts ?? this.predefinedAmounts,
-        signupLink: signupLink ?? this.signupLink,
-        supportedCurrencies: supportedCurrencies ?? this.supportedCurrencies,
-        type: type ?? this.type,
-        typeDisplayName: typeDisplayName ?? this.typeDisplayName,
-        withdrawLimits: withdrawLimits ?? this.withdrawLimits,
-        withdrawalTime: withdrawalTime ?? this.withdrawalTime,
+        depositLimits: depositLimits,
+        depositTime: depositTime,
+        description: description,
+        displayName: displayName,
+        id: id,
+        paymentProcessor: paymentProcessor,
+        predefinedAmounts: predefinedAmounts,
+        signupLink: signupLink,
+        supportedCurrencies: supportedCurrencies,
+        type: type,
+        typeDisplayName: typeDisplayName,
+        withdrawLimits: withdrawLimits,
+        withdrawalTime: withdrawalTime,
       );
 }
-
 /// Deposit limits property model class
 abstract class DepositLimitsPropertyModel {
   /// Initializes
   DepositLimitsPropertyModel({
-    @required this.min,
-    @required this.max,
+    required this.min,
+    required this.max,
   });
 
   /// Minimum amount for deposit for this currency.
@@ -299,8 +293,8 @@ abstract class DepositLimitsPropertyModel {
 class DepositLimitsProperty extends DepositLimitsPropertyModel {
   /// Initializes
   DepositLimitsProperty({
-    @required int max,
-    @required int min,
+    required int max,
+    required int min,
   }) : super(
           max: max,
           min: min,
@@ -325,21 +319,20 @@ class DepositLimitsProperty extends DepositLimitsPropertyModel {
 
   /// Creates a copy of instance with given parameters
   DepositLimitsProperty copyWith({
-    int max,
-    int min,
+    required int max,
+    required int min,
   }) =>
       DepositLimitsProperty(
-        max: max ?? this.max,
-        min: min ?? this.min,
+        max: max,
+        min: min,
       );
 }
-
 /// Withdraw limits property model class
 abstract class WithdrawLimitsPropertyModel {
   /// Initializes
   WithdrawLimitsPropertyModel({
-    @required this.min,
-    @required this.max,
+    required this.min,
+    required this.max,
   });
 
   /// Minimum amount for withdrawals in this currency.
@@ -353,8 +346,8 @@ abstract class WithdrawLimitsPropertyModel {
 class WithdrawLimitsProperty extends WithdrawLimitsPropertyModel {
   /// Initializes
   WithdrawLimitsProperty({
-    @required int max,
-    @required int min,
+    required int max,
+    required int min,
   }) : super(
           max: max,
           min: min,
@@ -379,11 +372,11 @@ class WithdrawLimitsProperty extends WithdrawLimitsPropertyModel {
 
   /// Creates a copy of instance with given parameters
   WithdrawLimitsProperty copyWith({
-    int max,
-    int min,
+    required int max,
+    required int min,
   }) =>
       WithdrawLimitsProperty(
-        max: max ?? this.max,
-        min: min ?? this.min,
+        max: max,
+        min: min,
       );
 }

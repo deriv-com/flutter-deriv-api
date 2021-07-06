@@ -9,16 +9,16 @@ void main() {
 
   test('Payment Methods Test', () async {
     final PaymentMethodsResponse methodsResponse =
-        await PaymentMethodsResponse.fetchList(
+        await PaymentMethodsResponse.updateApplication(
             const PaymentMethodsSend(country: 'id'));
 
-    expect(methodsResponse.paymentMethods.length, 44);
+    expect(methodsResponse.paymentMethods?.length, 44);
 
     final PaymentMethodsItem paymentMethodsItem =
-        methodsResponse.paymentMethods.first;
+        methodsResponse.paymentMethods!.first;
 
     expect(paymentMethodsItem.predefinedAmounts.first, 5);
-    expect(paymentMethodsItem.withdrawLimits['USD'].min, 5);
+    expect(paymentMethodsItem.withdrawLimits['USD']?.min, 5);
     expect(paymentMethodsItem.supportedCurrencies.first, 'USD');
     expect(paymentMethodsItem.displayName, 'AirTM');
   });

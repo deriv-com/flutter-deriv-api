@@ -4,18 +4,18 @@ import 'package:meta/meta.dart';
 abstract class NewAccountMaltainvestResponseModel {
   /// Initializes
   NewAccountMaltainvestResponseModel({
-    @required this.newAccountMaltainvest,
+    this.newAccountMaltainvest,
   });
 
   /// New `maltainvest` account details
-  final NewAccountMaltainvest newAccountMaltainvest;
+  final NewAccountMaltainvest? newAccountMaltainvest;
 }
 
 /// New account maltainvest response class
 class NewAccountMaltainvestResponse extends NewAccountMaltainvestResponseModel {
   /// Initializes
   NewAccountMaltainvestResponse({
-    @required NewAccountMaltainvest newAccountMaltainvest,
+    NewAccountMaltainvest? newAccountMaltainvest,
   }) : super(
           newAccountMaltainvest: newAccountMaltainvest,
         );
@@ -35,7 +35,7 @@ class NewAccountMaltainvestResponse extends NewAccountMaltainvestResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (newAccountMaltainvest != null) {
-      resultMap['new_account_maltainvest'] = newAccountMaltainvest.toJson();
+      resultMap['new_account_maltainvest'] = newAccountMaltainvest!.toJson();
     }
 
     return resultMap;
@@ -43,7 +43,7 @@ class NewAccountMaltainvestResponse extends NewAccountMaltainvestResponseModel {
 
   /// Creates a copy of instance with given parameters
   NewAccountMaltainvestResponse copyWith({
-    NewAccountMaltainvest newAccountMaltainvest,
+    NewAccountMaltainvest? newAccountMaltainvest,
   }) =>
       NewAccountMaltainvestResponse(
         newAccountMaltainvest:
@@ -54,38 +54,38 @@ class NewAccountMaltainvestResponse extends NewAccountMaltainvestResponseModel {
 abstract class NewAccountMaltainvestModel {
   /// Initializes
   NewAccountMaltainvestModel({
-    @required this.oauthToken,
-    @required this.landingCompanyShort,
-    @required this.landingCompany,
-    @required this.clientId,
+    required this.oauthToken,
+    required this.landingCompany,
+    required this.clientId,
+    this.landingCompanyShort,
   });
 
   /// OAuth token for client's login session
   final String oauthToken;
-
-  /// Landing company shortcode
-  final String landingCompanyShort;
 
   /// Landing company full name
   final String landingCompany;
 
   /// Client ID of new `maltainvest` account
   final String clientId;
+
+  /// Landing company shortcode
+  final String? landingCompanyShort;
 }
 
 /// New account maltainvest class
 class NewAccountMaltainvest extends NewAccountMaltainvestModel {
   /// Initializes
   NewAccountMaltainvest({
-    @required String clientId,
-    @required String landingCompany,
-    @required String landingCompanyShort,
-    @required String oauthToken,
+    required String clientId,
+    required String landingCompany,
+    required String oauthToken,
+    String? landingCompanyShort,
   }) : super(
           clientId: clientId,
           landingCompany: landingCompany,
-          landingCompanyShort: landingCompanyShort,
           oauthToken: oauthToken,
+          landingCompanyShort: landingCompanyShort,
         );
 
   /// Creates an instance from JSON
@@ -93,8 +93,8 @@ class NewAccountMaltainvest extends NewAccountMaltainvestModel {
       NewAccountMaltainvest(
         clientId: json['client_id'],
         landingCompany: json['landing_company'],
-        landingCompanyShort: json['landing_company_short'],
         oauthToken: json['oauth_token'],
+        landingCompanyShort: json['landing_company_short'],
       );
 
   /// Converts an instance to JSON
@@ -103,23 +103,23 @@ class NewAccountMaltainvest extends NewAccountMaltainvestModel {
 
     resultMap['client_id'] = clientId;
     resultMap['landing_company'] = landingCompany;
-    resultMap['landing_company_short'] = landingCompanyShort;
     resultMap['oauth_token'] = oauthToken;
+    resultMap['landing_company_short'] = landingCompanyShort;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   NewAccountMaltainvest copyWith({
-    String clientId,
-    String landingCompany,
-    String landingCompanyShort,
-    String oauthToken,
+    required String clientId,
+    required String landingCompany,
+    required String oauthToken,
+    String? landingCompanyShort,
   }) =>
       NewAccountMaltainvest(
-        clientId: clientId ?? this.clientId,
-        landingCompany: landingCompany ?? this.landingCompany,
+        clientId: clientId,
+        landingCompany: landingCompany,
+        oauthToken: oauthToken,
         landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
-        oauthToken: oauthToken ?? this.oauthToken,
       );
 }

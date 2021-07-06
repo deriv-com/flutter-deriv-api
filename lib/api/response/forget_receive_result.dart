@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/forget_receive.dart';
 import '../../basic_api/generated/forget_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
@@ -13,18 +11,18 @@ import '../models/base_exception_model.dart';
 abstract class ForgetResponseModel {
   /// Initializes
   ForgetResponseModel({
-    @required this.forget,
+    this.forget,
   });
 
   /// If set to `true`, stream exited and stopped. If set to `false`, stream did not exist.
-  final bool forget;
+  final bool? forget;
 }
 
 /// Forget response class
 class ForgetResponse extends ForgetResponseModel {
   /// Initializes
   ForgetResponse({
-    @required bool forget,
+    bool? forget,
   }) : super(
           forget: forget,
         );
@@ -46,7 +44,7 @@ class ForgetResponse extends ForgetResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Immediately cancels the real-time stream of messages with a specific id.
   ///
@@ -59,7 +57,7 @@ class ForgetResponse extends ForgetResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ForgetException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -68,7 +66,7 @@ class ForgetResponse extends ForgetResponseModel {
 
   /// Creates a copy of instance with given parameters
   ForgetResponse copyWith({
-    bool forget,
+    bool? forget,
   }) =>
       ForgetResponse(
         forget: forget ?? this.forget,

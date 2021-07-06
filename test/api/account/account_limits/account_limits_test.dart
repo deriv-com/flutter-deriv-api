@@ -10,21 +10,21 @@ void main() {
     final GetLimitsResponse accountLimits =
         await GetLimitsResponse.fetchAccountLimits();
 
-    expect(accountLimits.getLimits.accountBalance, 300000.0);
-    expect(accountLimits.getLimits.lifetimeLimit, 10000.0);
-    expect(accountLimits.getLimits.numOfDays, 30);
-    expect(accountLimits.getLimits.numOfDaysLimit, 10000.0);
-    expect(accountLimits.getLimits.openPositions, 100);
-    expect(accountLimits.getLimits.payout, 50000.0);
-    expect(accountLimits.getLimits.withdrawalForXDaysMonetary, 0.0);
-    expect(accountLimits.getLimits.withdrawalSinceInceptionMonetary, 0.0);
+    expect(accountLimits.getLimits?.accountBalance, 300000.0);
+    expect(accountLimits.getLimits?.lifetimeLimit, 10000.0);
+    expect(accountLimits.getLimits?.numOfDays, 30);
+    expect(accountLimits.getLimits?.numOfDaysLimit, 10000.0);
+    expect(accountLimits.getLimits?.openPositions, 100);
+    expect(accountLimits.getLimits?.payout, 50000.0);
+    expect(accountLimits.getLimits?.withdrawalForXDaysMonetary, 0.0);
+    expect(accountLimits.getLimits?.withdrawalSinceInceptionMonetary, 0.0);
 
-    final MarketSpecificPropertyItem firstCommoditiesLimit =
-        accountLimits.getLimits.marketSpecific.entries.first.value.first;
+    final MarketSpecificPropertyItem? firstCommoditiesLimit =
+        accountLimits.getLimits?.marketSpecific?.entries.first.value.first;
 
-    expect(firstCommoditiesLimit.name, 'Commodities');
-    expect(firstCommoditiesLimit.payoutLimit, 5000.0);
-    expect(firstCommoditiesLimit.profileName, 'moderate_risk');
-    expect(firstCommoditiesLimit.turnoverLimit, 50000.0);
+    expect(firstCommoditiesLimit?.name, 'Commodities');
+    expect(firstCommoditiesLimit?.payoutLimit, 5000.0);
+    expect(firstCommoditiesLimit?.profileName, 'moderate_risk');
+    expect(firstCommoditiesLimit?.turnoverLimit, 50000.0);
   });
 }

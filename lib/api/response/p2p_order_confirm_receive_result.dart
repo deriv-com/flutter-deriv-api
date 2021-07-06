@@ -5,18 +5,18 @@ import 'package:meta/meta.dart';
 abstract class P2pOrderConfirmResponseModel {
   /// Initializes
   P2pOrderConfirmResponseModel({
-    @required this.p2pOrderConfirm,
+    this.p2pOrderConfirm,
   });
 
   /// Confirmation details
-  final P2pOrderConfirm p2pOrderConfirm;
+  final P2pOrderConfirm? p2pOrderConfirm;
 }
 
 /// P2p order confirm response class
 class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
   /// Initializes
   P2pOrderConfirmResponse({
-    @required P2pOrderConfirm p2pOrderConfirm,
+    P2pOrderConfirm? p2pOrderConfirm,
   }) : super(
           p2pOrderConfirm: p2pOrderConfirm,
         );
@@ -36,7 +36,7 @@ class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (p2pOrderConfirm != null) {
-      resultMap['p2p_order_confirm'] = p2pOrderConfirm.toJson();
+      resultMap['p2p_order_confirm'] = p2pOrderConfirm!.toJson();
     }
 
     return resultMap;
@@ -44,29 +44,33 @@ class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
 
   /// Creates a copy of instance with given parameters
   P2pOrderConfirmResponse copyWith({
-    P2pOrderConfirm p2pOrderConfirm,
+    P2pOrderConfirm? p2pOrderConfirm,
   }) =>
       P2pOrderConfirmResponse(
         p2pOrderConfirm: p2pOrderConfirm ?? this.p2pOrderConfirm,
       );
 }
 
+/// StatusEnum mapper.
 final Map<String, StatusEnum> statusEnumMapper = <String, StatusEnum>{
   "buyer-confirmed": StatusEnum.buyerConfirmed,
   "completed": StatusEnum.completed,
 };
 
-/// status Enum
+/// Status Enum.
 enum StatusEnum {
+  /// buyer-confirmed.
   buyerConfirmed,
+
+  /// completed.
   completed,
 }
 /// P2p order confirm model class
 abstract class P2pOrderConfirmModel {
   /// Initializes
   P2pOrderConfirmModel({
-    @required this.status,
-    @required this.id,
+    required this.status,
+    required this.id,
   });
 
   /// The new status of the order.
@@ -80,8 +84,8 @@ abstract class P2pOrderConfirmModel {
 class P2pOrderConfirm extends P2pOrderConfirmModel {
   /// Initializes
   P2pOrderConfirm({
-    @required String id,
-    @required StatusEnum status,
+    required String id,
+    required StatusEnum status,
   }) : super(
           id: id,
           status: status,
@@ -91,7 +95,7 @@ class P2pOrderConfirm extends P2pOrderConfirmModel {
   factory P2pOrderConfirm.fromJson(Map<String, dynamic> json) =>
       P2pOrderConfirm(
         id: json['id'],
-        status: statusEnumMapper[json['status']],
+        status: statusEnumMapper[json['status']]!,
       );
 
   /// Converts an instance to JSON
@@ -100,19 +104,20 @@ class P2pOrderConfirm extends P2pOrderConfirmModel {
 
     resultMap['id'] = id;
     resultMap['status'] = statusEnumMapper.entries
-        .firstWhere((entry) => entry.value == status, orElse: () => null)
-        ?.key;
+        .firstWhere(
+            (MapEntry<String, StatusEnum> entry) => entry.value == status)
+        .key;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   P2pOrderConfirm copyWith({
-    String id,
-    StatusEnum status,
+    required String id,
+    required StatusEnum status,
   }) =>
       P2pOrderConfirm(
-        id: id ?? this.id,
-        status: status ?? this.status,
+        id: id,
+        status: status,
       );
 }

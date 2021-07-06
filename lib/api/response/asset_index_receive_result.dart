@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../api/exceptions/exceptions.dart';
 import '../../api/models/base_exception_model.dart';
 import '../../basic_api/generated/asset_index_receive.dart';
@@ -12,18 +10,18 @@ import '../../services/dependency_injector/injector.dart';
 abstract class AssetIndexResponseModel {
   /// Initializes
   AssetIndexResponseModel({
-    @required this.assetIndex,
+    this.assetIndex,
   });
 
   /// List of underlyings by their display name and symbol followed by their available contract types and duration boundaries.
-  final List<dynamic> assetIndex;
+  final List<dynamic>? assetIndex;
 }
 
 /// Asset index response class
 class AssetIndexResponse extends AssetIndexResponseModel {
   /// Initializes
   AssetIndexResponse({
-    @required List<dynamic> assetIndex,
+    List<dynamic>? assetIndex,
   }) : super(
           assetIndex: assetIndex,
         );
@@ -35,7 +33,11 @@ class AssetIndexResponse extends AssetIndexResponseModel {
       AssetIndexResponse(
         assetIndex: assetIndexJson == null
             ? null
-            : List<dynamic>.from(assetIndexJson.map((dynamic item) => item)),
+            : List<dynamic>.from(
+                assetIndexJson?.map(
+                  (dynamic item) => item,
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -43,29 +45,32 @@ class AssetIndexResponse extends AssetIndexResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (assetIndex != null) {
-      resultMap['asset_index'] =
-          assetIndex.map<dynamic>((dynamic item) => item).toList();
+      resultMap['asset_index'] = assetIndex!
+          .map<dynamic>(
+            (dynamic item) => item,
+          )
+          .toList();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Retrieves a list of all available underlyings and the corresponding contract types and duration boundaries.
   ///
   /// If the user is logged in, only the assets available for that user's landing company will be returned.
   /// Throws an [AssetIndexException] if API response contains an error
-  static Future<AssetIndexResponse> fetchAssetIndices([
+  static Future<AssetIndexResponse> fetchAssetIndices(
     AssetIndexSend request,
-  ]) async {
+  ) async {
     final AssetIndexReceive response = await _api.call(
-      request: request ?? const AssetIndexSend(),
+      request: request,
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AssetIndexException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -74,7 +79,7 @@ class AssetIndexResponse extends AssetIndexResponseModel {
 
   /// Creates a copy of instance with given parameters
   AssetIndexResponse copyWith({
-    List<dynamic> assetIndex,
+    List<dynamic>? assetIndex,
   }) =>
       AssetIndexResponse(
         assetIndex: assetIndex ?? this.assetIndex,

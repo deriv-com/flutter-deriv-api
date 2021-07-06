@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Trading platform password reset request class.
-class TradingPlatformPasswordResetRequest extends Request {
-  /// Initialize TradingPlatformPasswordResetRequest.
-  const TradingPlatformPasswordResetRequest({
+/// Trading platform password reset send class.
+class TradingPlatformPasswordResetSend extends Request {
+  /// Initialize TradingPlatformPasswordResetSend.
+  const TradingPlatformPasswordResetSend({
     required this.newPassword,
     this.tradingPlatformPasswordReset = true,
     required this.verificationCode,
@@ -20,9 +20,9 @@ class TradingPlatformPasswordResetRequest extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory TradingPlatformPasswordResetRequest.fromJson(
+  factory TradingPlatformPasswordResetSend.fromJson(
           Map<String, dynamic> json) =>
-      TradingPlatformPasswordResetRequest(
+      TradingPlatformPasswordResetSend(
         newPassword: json['new_password'] as String?,
         tradingPlatformPasswordReset:
             json['trading_platform_password_reset'] == null
@@ -58,14 +58,14 @@ class TradingPlatformPasswordResetRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  TradingPlatformPasswordResetRequest copyWith({
+  TradingPlatformPasswordResetSend copyWith({
     String? newPassword,
     bool? tradingPlatformPasswordReset,
     String? verificationCode,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      TradingPlatformPasswordResetRequest(
+      TradingPlatformPasswordResetSend(
         newPassword: newPassword ?? this.newPassword,
         tradingPlatformPasswordReset:
             tradingPlatformPasswordReset ?? this.tradingPlatformPasswordReset,

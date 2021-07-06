@@ -150,7 +150,7 @@ class BinaryAPI extends BaseAPI {
 
   @override
   Future<ForgetReceive> unsubscribe({
-    required String? subscriptionId,
+    required String subscriptionId,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this)).unsubscribe(
         subscriptionId: subscriptionId,

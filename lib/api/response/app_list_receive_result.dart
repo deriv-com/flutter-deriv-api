@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/app_list_receive.dart';
 import '../../basic_api/generated/app_list_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class AppListResponseModel {
   /// Initializes
   AppListResponseModel({
-    @required this.appList,
+    this.appList,
   });
 
   /// List of created applications for the authorized account.
-  final List<AppListItem> appList;
+  final List<AppListItem>? appList;
 }
 
 /// App list response class
 class AppListResponse extends AppListResponseModel {
   /// Initializes
   AppListResponse({
-    @required List<AppListItem> appList,
+    List<AppListItem>? appList,
   }) : super(
           appList: appList,
         );
@@ -36,7 +34,10 @@ class AppListResponse extends AppListResponseModel {
         appList: appListJson == null
             ? null
             : List<AppListItem>.from(
-                appListJson.map((dynamic item) => AppListItem.fromJson(item))),
+                appListJson?.map(
+                  (dynamic item) => AppListItem.fromJson(item),
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -44,14 +45,17 @@ class AppListResponse extends AppListResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (appList != null) {
-      resultMap['app_list'] =
-          appList.map<dynamic>((AppListItem item) => item.toJson()).toList();
+      resultMap['app_list'] = appList!
+          .map<dynamic>(
+            (AppListItem item) => item.toJson(),
+          )
+          .toList();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets all of the account's OAuth applications.
   ///
@@ -64,7 +68,7 @@ class AppListResponse extends AppListResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AppException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -73,7 +77,7 @@ class AppListResponse extends AppListResponseModel {
 
   /// Creates a copy of instance with given parameters
   AppListResponse copyWith({
-    List<AppListItem> appList,
+    List<AppListItem>? appList,
   }) =>
       AppListResponse(
         appList: appList ?? this.appList,
@@ -83,10 +87,10 @@ class AppListResponse extends AppListResponseModel {
 abstract class AppListItemModel {
   /// Initializes
   AppListItemModel({
-    @required this.redirectUri,
-    @required this.name,
-    @required this.appMarkupPercentage,
-    @required this.appId,
+    required this.redirectUri,
+    required this.name,
+    required this.appMarkupPercentage,
+    required this.appId,
     this.appstore,
     this.github,
     this.googleplay,
@@ -107,34 +111,34 @@ abstract class AppListItemModel {
   final int appId;
 
   /// Application's App Store URL.
-  final String appstore;
+  final String? appstore;
 
   /// Application's GitHub page. (for open-source projects)
-  final String github;
+  final String? github;
 
   /// Application's Google Play URL.
-  final String googleplay;
+  final String? googleplay;
 
   /// Application's homepage URL.
-  final String homepage;
+  final String? homepage;
 
   /// Used when `verify_email` called. If available, a URL containing the verification token will send to the client's email, otherwise only the token will be sent.
-  final String verificationUri;
+  final String? verificationUri;
 }
 
 /// App list item class
 class AppListItem extends AppListItemModel {
   /// Initializes
   AppListItem({
-    @required int appId,
-    @required double appMarkupPercentage,
-    @required String name,
-    @required String redirectUri,
-    String appstore,
-    String github,
-    String googleplay,
-    String homepage,
-    String verificationUri,
+    required int appId,
+    required double appMarkupPercentage,
+    required String name,
+    required String redirectUri,
+    String? appstore,
+    String? github,
+    String? googleplay,
+    String? homepage,
+    String? verificationUri,
   }) : super(
           appId: appId,
           appMarkupPercentage: appMarkupPercentage,
@@ -150,7 +154,7 @@ class AppListItem extends AppListItemModel {
   /// Creates an instance from JSON
   factory AppListItem.fromJson(Map<String, dynamic> json) => AppListItem(
         appId: json['app_id'],
-        appMarkupPercentage: getDouble(json['app_markup_percentage']),
+        appMarkupPercentage: getDouble(json['app_markup_percentage'])!,
         name: json['name'],
         redirectUri: json['redirect_uri'],
         appstore: json['appstore'],
@@ -179,21 +183,21 @@ class AppListItem extends AppListItemModel {
 
   /// Creates a copy of instance with given parameters
   AppListItem copyWith({
-    int appId,
-    double appMarkupPercentage,
-    String name,
-    String redirectUri,
-    String appstore,
-    String github,
-    String googleplay,
-    String homepage,
-    String verificationUri,
+    required int appId,
+    required double appMarkupPercentage,
+    required String name,
+    required String redirectUri,
+    String? appstore,
+    String? github,
+    String? googleplay,
+    String? homepage,
+    String? verificationUri,
   }) =>
       AppListItem(
-        appId: appId ?? this.appId,
-        appMarkupPercentage: appMarkupPercentage ?? this.appMarkupPercentage,
-        name: name ?? this.name,
-        redirectUri: redirectUri ?? this.redirectUri,
+        appId: appId,
+        appMarkupPercentage: appMarkupPercentage,
+        name: name,
+        redirectUri: redirectUri,
         appstore: appstore ?? this.appstore,
         github: github ?? this.github,
         googleplay: googleplay ?? this.googleplay,

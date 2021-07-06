@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/app_register_receive.dart';
 import '../../basic_api/generated/app_register_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class AppRegisterResponseModel {
   /// Initializes
   AppRegisterResponseModel({
-    @required this.appRegister,
+    this.appRegister,
   });
 
   /// The information of the created application.
-  final AppRegister appRegister;
+  final AppRegister? appRegister;
 }
 
 /// App register response class
 class AppRegisterResponse extends AppRegisterResponseModel {
   /// Initializes
   AppRegisterResponse({
-    @required AppRegister appRegister,
+    AppRegister? appRegister,
   }) : super(
           appRegister: appRegister,
         );
@@ -43,13 +41,13 @@ class AppRegisterResponse extends AppRegisterResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (appRegister != null) {
-      resultMap['app_register'] = appRegister.toJson();
+      resultMap['app_register'] = appRegister!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Registers a new OAuth application.
   ///
@@ -62,7 +60,7 @@ class AppRegisterResponse extends AppRegisterResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AppException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -71,7 +69,7 @@ class AppRegisterResponse extends AppRegisterResponseModel {
 
   /// Creates a copy of instance with given parameters
   AppRegisterResponse copyWith({
-    AppRegister appRegister,
+    AppRegister? appRegister,
   }) =>
       AppRegisterResponse(
         appRegister: appRegister ?? this.appRegister,
@@ -81,15 +79,15 @@ class AppRegisterResponse extends AppRegisterResponseModel {
 abstract class AppRegisterModel {
   /// Initializes
   AppRegisterModel({
-    @required this.verificationUri,
-    @required this.redirectUri,
-    @required this.name,
-    @required this.homepage,
-    @required this.googleplay,
-    @required this.github,
-    @required this.appstore,
-    @required this.appMarkupPercentage,
-    @required this.appId,
+    required this.verificationUri,
+    required this.redirectUri,
+    required this.name,
+    required this.homepage,
+    required this.googleplay,
+    required this.github,
+    required this.appstore,
+    required this.appMarkupPercentage,
+    required this.appId,
   });
 
   /// Used when `verify_email` called. If available, a URL containing the verification token will send to the client's email, otherwise only the token will be sent.
@@ -124,15 +122,15 @@ abstract class AppRegisterModel {
 class AppRegister extends AppRegisterModel {
   /// Initializes
   AppRegister({
-    @required int appId,
-    @required double appMarkupPercentage,
-    @required String appstore,
-    @required String github,
-    @required String googleplay,
-    @required String homepage,
-    @required String name,
-    @required String redirectUri,
-    @required String verificationUri,
+    required int appId,
+    required double appMarkupPercentage,
+    required String appstore,
+    required String github,
+    required String googleplay,
+    required String homepage,
+    required String name,
+    required String redirectUri,
+    required String verificationUri,
   }) : super(
           appId: appId,
           appMarkupPercentage: appMarkupPercentage,
@@ -148,7 +146,7 @@ class AppRegister extends AppRegisterModel {
   /// Creates an instance from JSON
   factory AppRegister.fromJson(Map<String, dynamic> json) => AppRegister(
         appId: json['app_id'],
-        appMarkupPercentage: getDouble(json['app_markup_percentage']),
+        appMarkupPercentage: getDouble(json['app_markup_percentage'])!,
         appstore: json['appstore'],
         github: json['github'],
         googleplay: json['googleplay'],
@@ -177,25 +175,25 @@ class AppRegister extends AppRegisterModel {
 
   /// Creates a copy of instance with given parameters
   AppRegister copyWith({
-    int appId,
-    double appMarkupPercentage,
-    String appstore,
-    String github,
-    String googleplay,
-    String homepage,
-    String name,
-    String redirectUri,
-    String verificationUri,
+    required int appId,
+    required double appMarkupPercentage,
+    required String appstore,
+    required String github,
+    required String googleplay,
+    required String homepage,
+    required String name,
+    required String redirectUri,
+    required String verificationUri,
   }) =>
       AppRegister(
-        appId: appId ?? this.appId,
-        appMarkupPercentage: appMarkupPercentage ?? this.appMarkupPercentage,
-        appstore: appstore ?? this.appstore,
-        github: github ?? this.github,
-        googleplay: googleplay ?? this.googleplay,
-        homepage: homepage ?? this.homepage,
-        name: name ?? this.name,
-        redirectUri: redirectUri ?? this.redirectUri,
-        verificationUri: verificationUri ?? this.verificationUri,
+        appId: appId,
+        appMarkupPercentage: appMarkupPercentage,
+        appstore: appstore,
+        github: github,
+        googleplay: googleplay,
+        homepage: homepage,
+        name: name,
+        redirectUri: redirectUri,
+        verificationUri: verificationUri,
       );
 }

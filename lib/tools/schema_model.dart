@@ -1,83 +1,85 @@
-import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
 
 /// Represents dynamic type. mostly used for unknown types.
 const String dynamicType = 'dynamic';
 
-/// Model to store schema information
+/// Model to store schema information.
 class SchemaModel extends Object {
   /// Default constructor
   SchemaModel();
 
-  /// constructor for dynamic models
+  /// constructor for dynamic models.
   factory SchemaModel.dynamicModel() => SchemaModel()
     ..classType = dynamicType
     ..schemaType = dynamicType;
 
-  /// Create new `SchemaModel` parrent for given children
+  /// Create new `SchemaModel` parent for given children.
   factory SchemaModel.newModelWithChildren(
-      {@required List<SchemaModel> children, @required String className}) {
+      {required List<SchemaModel> children, required String className}) {
     final SchemaModel rootModel = SchemaModel()
       ..className = className
       ..children = children;
 
     for (final SchemaModel model in children) {
-      model.parrent = rootModel;
+      model.parent = rootModel;
     }
     return rootModel;
   }
 
-  /// Object type
-  String classType;
+  /// Object type.
+  String? classType;
 
-  /// Is required field
-  bool isRequired;
+  /// Is required field.
+  bool isRequired = false;
 
-  /// Field description
-  String description;
+  /// Field description.
+  String? description;
 
-  /// Schema object field title
-  String schemaTitle;
+  /// Schema object field title.
+  late String schemaTitle;
 
-  /// Schema object field type
-  String schemaType;
+  /// Schema object field type.
+  String? schemaType;
 
-  /// Holding all possible types of this schema when it cloud be one of them
+  /// Holding all possible types of this schema when it cloud be one of them.
   List<SchemaModel> multiTypes = <SchemaModel>[];
 
-  /// Schema array type (for Arrays)
-  SchemaModel schemaArrType;
+  /// Schema array type (for Arrays).
+  SchemaModel? schemaArrType;
 
-  /// List of nested classes (for Objs)
+  /// List of nested classes (for Objects).
   List<SchemaModel> children = <SchemaModel>[];
 
-  /// Parrent Model
-  SchemaModel parrent;
+  /// Parent Model.
+  SchemaModel? parent;
 
-  /// Values of enum model (for now it only supports String type)
-  List<String> enumValues;
+  /// Values of enum model (for now it only supports String type).
+  List<String>? enumValues;
 
-  /// Field title
+  /// Required fields.
+  List<dynamic>? requiredFields = <String>[];
+
+  /// Field title.
   String get fieldName => ReCase(schemaTitle).camelCase;
 
-  /// Class name
-  String _className;
+  /// Class name.
+  String? _className;
 
-  /// Class name
+  /// Set class name.
   set className(String className) {
     _className = className;
   }
 
-  /// True if this model is an Enum
+  /// True if this model is an Enum.
   bool get isEnum => enumValues != null;
 
-  /// Class name
+  /// Get class name.
   String get className => _className ?? ReCase(schemaTitle).pascalCase;
 
-  /// Returns enum name format of this model
+  /// Returns enum name format of this model.
   String get enumName => '${ReCase(schemaTitle).pascalCase}Enum';
 
-  /// True if this model type is array
+  /// True if this model type is array.
   bool get isArray => schemaType == 'array';
 
   @override

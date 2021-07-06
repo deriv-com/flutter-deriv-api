@@ -1,6 +1,6 @@
 
 #!/bin/bash
-FILES=lib/basic_api/generated/*
+FILES=lib/basic_api/testtt/*
 for file in $FILES;
 do
 filename=$(basename -- "$file")

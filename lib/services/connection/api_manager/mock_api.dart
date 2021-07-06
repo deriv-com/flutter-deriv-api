@@ -1,11 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_deriv_api/api/response/forget_receive_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
-import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/helper/response_mapper.dart';

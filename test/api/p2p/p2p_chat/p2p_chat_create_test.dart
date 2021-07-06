@@ -13,7 +13,7 @@ void main() {
       const P2pChatCreateSend(orderId: '1234'),
     );
 
-    expect(createChat.p2pChatCreate.channelUrl, 'channel_url');
-    expect(createChat.p2pChatCreate.orderId, '1234');
+    expect(createChat.p2pChatCreate?.channelUrl, 'channel_url');
+    expect(createChat.p2pChatCreate?.orderId, '1234');
   });
 }

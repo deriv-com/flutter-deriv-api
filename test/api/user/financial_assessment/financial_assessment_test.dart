@@ -16,7 +16,7 @@ void main() {
       );
 
       final GetFinancialAssessment financialAssessment =
-          financialAssessmentResponse.getFinancialAssessment;
+          financialAssessmentResponse.getFinancialAssessment!;
 
       expect(financialAssessment.accountTurnover, '120.0');
       expect(financialAssessment.binaryOptionsTradingExperience, '0-1 year');
@@ -66,13 +66,13 @@ void main() {
         ),
       );
 
-      expect(financialAssessmentModel.setFinancialAssessment.cfdScore, 926);
+      expect(financialAssessmentModel.setFinancialAssessment?.cfdScore, 926);
       expect(
           financialAssessmentModel
-              .setFinancialAssessment.financialInformationScore,
+              .setFinancialAssessment?.financialInformationScore,
           751);
-      expect(financialAssessmentModel.setFinancialAssessment.totalScore, 921);
-      expect(financialAssessmentModel.setFinancialAssessment.tradingScore, 460);
+      expect(financialAssessmentModel.setFinancialAssessment?.totalScore, 921);
+      expect(financialAssessmentModel.setFinancialAssessment?.tradingScore, 460);
     });
   });
 }

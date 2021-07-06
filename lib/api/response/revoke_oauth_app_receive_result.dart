@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/revoke_oauth_app_receive.dart';
 import '../../basic_api/generated/revoke_oauth_app_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class RevokeOauthAppResponseModel {
   /// Initializes
   RevokeOauthAppResponseModel({
-    @required this.revokeOauthApp,
+    this.revokeOauthApp,
   });
 
   /// `1` on success
-  final int revokeOauthApp;
+  final int? revokeOauthApp;
 }
 
 /// Revoke oauth app response class
 class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
   /// Initializes
   RevokeOauthAppResponse({
-    @required int revokeOauthApp,
+    int? revokeOauthApp,
   }) : super(
           revokeOauthApp: revokeOauthApp,
         );
@@ -45,7 +43,7 @@ class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Revokes access of a particular app.
   ///
@@ -58,7 +56,7 @@ class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AppException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -67,7 +65,7 @@ class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
 
   /// Creates a copy of instance with given parameters
   RevokeOauthAppResponse copyWith({
-    int revokeOauthApp,
+    int? revokeOauthApp,
   }) =>
       RevokeOauthAppResponse(
         revokeOauthApp: revokeOauthApp ?? this.revokeOauthApp,

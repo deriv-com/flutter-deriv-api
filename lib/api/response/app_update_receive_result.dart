@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/app_update_receive.dart';
 import '../../basic_api/generated/app_update_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class AppUpdateResponseModel {
   /// Initializes
   AppUpdateResponseModel({
-    @required this.appUpdate,
+    this.appUpdate,
   });
 
   /// Information of the updated application.
-  final AppUpdate appUpdate;
+  final AppUpdate? appUpdate;
 }
 
 /// App update response class
 class AppUpdateResponse extends AppUpdateResponseModel {
   /// Initializes
   AppUpdateResponse({
-    @required AppUpdate appUpdate,
+    AppUpdate? appUpdate,
   }) : super(
           appUpdate: appUpdate,
         );
@@ -42,13 +40,13 @@ class AppUpdateResponse extends AppUpdateResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (appUpdate != null) {
-      resultMap['app_update'] = appUpdate.toJson();
+      resultMap['app_update'] = appUpdate!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Updates the application specified in [request].
   ///
@@ -60,7 +58,7 @@ class AppUpdateResponse extends AppUpdateResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AppException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -69,7 +67,7 @@ class AppUpdateResponse extends AppUpdateResponseModel {
 
   /// Creates a copy of instance with given parameters
   AppUpdateResponse copyWith({
-    AppUpdate appUpdate,
+    AppUpdate? appUpdate,
   }) =>
       AppUpdateResponse(
         appUpdate: appUpdate ?? this.appUpdate,
@@ -79,58 +77,58 @@ class AppUpdateResponse extends AppUpdateResponseModel {
 abstract class AppUpdateModel {
   /// Initializes
   AppUpdateModel({
-    @required this.verificationUri,
-    @required this.redirectUri,
-    @required this.name,
-    @required this.homepage,
-    @required this.googleplay,
-    @required this.github,
-    @required this.appstore,
-    @required this.appMarkupPercentage,
-    @required this.appId,
+    this.appId,
+    this.appMarkupPercentage,
+    this.appstore,
+    this.github,
+    this.googleplay,
+    this.homepage,
+    this.name,
+    this.redirectUri,
+    this.verificationUri,
   });
 
-  /// Used when `verify_email` called. If available, a URL containing the verification token will be sent to the client's email, otherwise only the token will be sent.
-  final String verificationUri;
-
-  /// The URL to redirect to after a successful login.
-  final String redirectUri;
-
-  /// Application name.
-  final String name;
-
-  /// Application's homepage URL.
-  final String homepage;
-
-  /// Application's Google Play URL.
-  final String googleplay;
-
-  /// Application's GitHub page (for open-source projects).
-  final String github;
-
-  /// Application's App Store URL.
-  final String appstore;
+  /// Application ID.
+  final int? appId;
 
   /// Markup added to contract prices (as a percentage of contract payout).
-  final double appMarkupPercentage;
+  final double? appMarkupPercentage;
 
-  /// Application ID.
-  final int appId;
+  /// Application's App Store URL.
+  final String? appstore;
+
+  /// Application's GitHub page (for open-source projects).
+  final String? github;
+
+  /// Application's Google Play URL.
+  final String? googleplay;
+
+  /// Application's homepage URL.
+  final String? homepage;
+
+  /// Application name.
+  final String? name;
+
+  /// The URL to redirect to after a successful login.
+  final String? redirectUri;
+
+  /// Used when `verify_email` called. If available, a URL containing the verification token will be sent to the client's email, otherwise only the token will be sent.
+  final String? verificationUri;
 }
 
 /// App update class
 class AppUpdate extends AppUpdateModel {
   /// Initializes
   AppUpdate({
-    @required int appId,
-    @required double appMarkupPercentage,
-    @required String appstore,
-    @required String github,
-    @required String googleplay,
-    @required String homepage,
-    @required String name,
-    @required String redirectUri,
-    @required String verificationUri,
+    int? appId,
+    double? appMarkupPercentage,
+    String? appstore,
+    String? github,
+    String? googleplay,
+    String? homepage,
+    String? name,
+    String? redirectUri,
+    String? verificationUri,
   }) : super(
           appId: appId,
           appMarkupPercentage: appMarkupPercentage,
@@ -175,15 +173,15 @@ class AppUpdate extends AppUpdateModel {
 
   /// Creates a copy of instance with given parameters
   AppUpdate copyWith({
-    int appId,
-    double appMarkupPercentage,
-    String appstore,
-    String github,
-    String googleplay,
-    String homepage,
-    String name,
-    String redirectUri,
-    String verificationUri,
+    int? appId,
+    double? appMarkupPercentage,
+    String? appstore,
+    String? github,
+    String? googleplay,
+    String? homepage,
+    String? name,
+    String? redirectUri,
+    String? verificationUri,
   }) =>
       AppUpdate(
         appId: appId ?? this.appId,

@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/set_self_exclusion_receive.dart';
 import '../../basic_api/generated/set_self_exclusion_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class SetSelfExclusionResponseModel {
   /// Initializes
   SetSelfExclusionResponseModel({
-    @required this.setSelfExclusion,
+    this.setSelfExclusion,
   });
 
   /// `1` on success
-  final int setSelfExclusion;
+  final int? setSelfExclusion;
 }
 
 /// Set self exclusion response class
 class SetSelfExclusionResponse extends SetSelfExclusionResponseModel {
   /// Initializes
   SetSelfExclusionResponse({
-    @required int setSelfExclusion,
+    int? setSelfExclusion,
   }) : super(
           setSelfExclusion: setSelfExclusion,
         );
@@ -45,7 +43,7 @@ class SetSelfExclusionResponse extends SetSelfExclusionResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Sets Self-Exclusion (this call should be used in conjunction with [fetchSelfExclusion])
   ///
@@ -57,7 +55,7 @@ class SetSelfExclusionResponse extends SetSelfExclusionResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           SelfExclusionException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -66,7 +64,7 @@ class SetSelfExclusionResponse extends SetSelfExclusionResponseModel {
 
   /// Creates a copy of instance with given parameters
   SetSelfExclusionResponse copyWith({
-    int setSelfExclusion,
+    int? setSelfExclusion,
   }) =>
       SetSelfExclusionResponse(
         setSelfExclusion: setSelfExclusion ?? this.setSelfExclusion,

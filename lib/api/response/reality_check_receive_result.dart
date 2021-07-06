@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/reality_check_receive.dart';
 import '../../basic_api/generated/reality_check_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class RealityCheckResponseModel {
   /// Initializes
   RealityCheckResponseModel({
-    @required this.realityCheck,
+    this.realityCheck,
   });
 
   /// Reality check summary of trades.
-  final RealityCheck realityCheck;
+  final RealityCheck? realityCheck;
 }
 
 /// Reality check response class
 class RealityCheckResponse extends RealityCheckResponseModel {
   /// Initializes
   RealityCheckResponse({
-    @required RealityCheck realityCheck,
+    RealityCheck? realityCheck,
   }) : super(
           realityCheck: realityCheck,
         );
@@ -43,13 +41,13 @@ class RealityCheckResponse extends RealityCheckResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (realityCheck != null) {
-      resultMap['reality_check'] = realityCheck.toJson();
+      resultMap['reality_check'] = realityCheck!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Retrieves summary of client's trades and account for the reality check facility.
   ///
@@ -58,7 +56,7 @@ class RealityCheckResponse extends RealityCheckResponseModel {
   /// For parameters information refer to [RealityCheckRequest].
   /// Throws a [RealityCheckException] if API response contains an error
   static Future<RealityCheckResponse> check([
-    RealityCheckSend request,
+    RealityCheckSend? request,
   ]) async {
     final RealityCheckReceive response = await _api.call(
       request: request ?? const RealityCheckSend(),
@@ -66,7 +64,7 @@ class RealityCheckResponse extends RealityCheckResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           RealityCheckException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -75,7 +73,7 @@ class RealityCheckResponse extends RealityCheckResponseModel {
 
   /// Creates a copy of instance with given parameters
   RealityCheckResponse copyWith({
-    RealityCheck realityCheck,
+    RealityCheck? realityCheck,
   }) =>
       RealityCheckResponse(
         realityCheck: realityCheck ?? this.realityCheck,
@@ -85,58 +83,58 @@ class RealityCheckResponse extends RealityCheckResponseModel {
 abstract class RealityCheckModel {
   /// Initializes
   RealityCheckModel({
-    @required this.startTime,
-    @required this.sellCount,
-    @required this.sellAmount,
-    @required this.potentialProfit,
-    @required this.openContractCount,
-    @required this.loginid,
-    @required this.currency,
-    @required this.buyCount,
-    @required this.buyAmount,
+    this.buyAmount,
+    this.buyCount,
+    this.currency,
+    this.loginid,
+    this.openContractCount,
+    this.potentialProfit,
+    this.sellAmount,
+    this.sellCount,
+    this.startTime,
   });
 
-  /// Reality check summary start time epoch
-  final DateTime startTime;
-
-  /// Total count of contract sold.
-  final int sellCount;
-
-  /// Total amount of contracts sold.
-  final double sellAmount;
-
-  /// Indicative profit of contract as per current market price.
-  final double potentialProfit;
-
-  /// Total count of contracts that are not yet expired.
-  final int openContractCount;
-
-  /// Client loginid.
-  final String loginid;
-
-  /// Currency of client account i.e currency for trading
-  final String currency;
+  /// Total amount of contract purchased.
+  final double? buyAmount;
 
   /// Total count of contract purchased.
-  final int buyCount;
+  final int? buyCount;
 
-  /// Total amount of contract purchased.
-  final double buyAmount;
+  /// Currency of client account i.e currency for trading
+  final String? currency;
+
+  /// Client loginid.
+  final String? loginid;
+
+  /// Total count of contracts that are not yet expired.
+  final int? openContractCount;
+
+  /// Indicative profit of contract as per current market price.
+  final double? potentialProfit;
+
+  /// Total amount of contracts sold.
+  final double? sellAmount;
+
+  /// Total count of contract sold.
+  final int? sellCount;
+
+  /// Reality check summary start time epoch
+  final DateTime? startTime;
 }
 
 /// Reality check class
 class RealityCheck extends RealityCheckModel {
   /// Initializes
   RealityCheck({
-    @required double buyAmount,
-    @required int buyCount,
-    @required String currency,
-    @required String loginid,
-    @required int openContractCount,
-    @required double potentialProfit,
-    @required double sellAmount,
-    @required int sellCount,
-    @required DateTime startTime,
+    double? buyAmount,
+    int? buyCount,
+    String? currency,
+    String? loginid,
+    int? openContractCount,
+    double? potentialProfit,
+    double? sellAmount,
+    int? sellCount,
+    DateTime? startTime,
   }) : super(
           buyAmount: buyAmount,
           buyCount: buyCount,
@@ -181,15 +179,15 @@ class RealityCheck extends RealityCheckModel {
 
   /// Creates a copy of instance with given parameters
   RealityCheck copyWith({
-    double buyAmount,
-    int buyCount,
-    String currency,
-    String loginid,
-    int openContractCount,
-    double potentialProfit,
-    double sellAmount,
-    int sellCount,
-    DateTime startTime,
+    double? buyAmount,
+    int? buyCount,
+    String? currency,
+    String? loginid,
+    int? openContractCount,
+    double? potentialProfit,
+    double? sellAmount,
+    int? sellCount,
+    DateTime? startTime,
   }) =>
       RealityCheck(
         buyAmount: buyAmount ?? this.buyAmount,

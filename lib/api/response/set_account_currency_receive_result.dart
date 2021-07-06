@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/set_account_currency_receive.dart';
 import '../../basic_api/generated/set_account_currency_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class SetAccountCurrencyResponseModel {
   /// Initializes
   SetAccountCurrencyResponseModel({
-    @required this.setAccountCurrency,
+    this.setAccountCurrency,
   });
 
   /// `true`: success, `false`: no change
-  final bool setAccountCurrency;
+  final bool? setAccountCurrency;
 }
 
 /// Set account currency response class
 class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
   /// Initializes
   SetAccountCurrencyResponse({
-    @required bool setAccountCurrency,
+    bool? setAccountCurrency,
   }) : super(
           setAccountCurrency: setAccountCurrency,
         );
@@ -45,7 +43,7 @@ class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Sets the currency of the account, this will be default currency for your account i.e currency for trading, deposit.
   ///
@@ -60,7 +58,7 @@ class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AccountCurrencyException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -69,7 +67,7 @@ class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
 
   /// Creates a copy of instance with given parameters
   SetAccountCurrencyResponse copyWith({
-    bool setAccountCurrency,
+    bool? setAccountCurrency,
   }) =>
       SetAccountCurrencyResponse(
         setAccountCurrency: setAccountCurrency ?? this.setAccountCurrency,

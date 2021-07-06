@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/new_account_real_receive.dart';
 import '../../basic_api/generated/new_account_real_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class NewAccountRealResponseModel {
   /// Initializes
   NewAccountRealResponseModel({
-    @required this.newAccountReal,
+    this.newAccountReal,
   });
 
   /// New real money account details
-  final NewAccountReal newAccountReal;
+  final NewAccountReal? newAccountReal;
 }
 
 /// New account real response class
 class NewAccountRealResponse extends NewAccountRealResponseModel {
   /// Initializes
   NewAccountRealResponse({
-    @required NewAccountReal newAccountReal,
+    NewAccountReal? newAccountReal,
   }) : super(
           newAccountReal: newAccountReal,
         );
@@ -43,13 +41,13 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (newAccountReal != null) {
-      resultMap['new_account_real'] = newAccountReal.toJson();
+      resultMap['new_account_real'] = newAccountReal!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Opens a new real account.
   ///
@@ -62,7 +60,7 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           NewAccountException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -71,7 +69,7 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
 
   /// Creates a copy of instance with given parameters
   NewAccountRealResponse copyWith({
-    NewAccountReal newAccountReal,
+    NewAccountReal? newAccountReal,
   }) =>
       NewAccountRealResponse(
         newAccountReal: newAccountReal ?? this.newAccountReal,
@@ -81,46 +79,46 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
 abstract class NewAccountRealModel {
   /// Initializes
   NewAccountRealModel({
-    @required this.oauthToken,
-    @required this.landingCompanyShort,
-    @required this.landingCompany,
-    @required this.clientId,
+    required this.oauthToken,
+    required this.landingCompany,
+    required this.clientId,
+    this.landingCompanyShort,
   });
 
   /// OAuth token for client's login session
   final String oauthToken;
-
-  /// Landing company shortcode
-  final String landingCompanyShort;
 
   /// Landing company full name
   final String landingCompany;
 
   /// Client ID of new real money account
   final String clientId;
+
+  /// Landing company shortcode
+  final String? landingCompanyShort;
 }
 
 /// New account real class
 class NewAccountReal extends NewAccountRealModel {
   /// Initializes
   NewAccountReal({
-    @required String clientId,
-    @required String landingCompany,
-    @required String landingCompanyShort,
-    @required String oauthToken,
+    required String clientId,
+    required String landingCompany,
+    required String oauthToken,
+    String? landingCompanyShort,
   }) : super(
           clientId: clientId,
           landingCompany: landingCompany,
-          landingCompanyShort: landingCompanyShort,
           oauthToken: oauthToken,
+          landingCompanyShort: landingCompanyShort,
         );
 
   /// Creates an instance from JSON
   factory NewAccountReal.fromJson(Map<String, dynamic> json) => NewAccountReal(
         clientId: json['client_id'],
         landingCompany: json['landing_company'],
-        landingCompanyShort: json['landing_company_short'],
         oauthToken: json['oauth_token'],
+        landingCompanyShort: json['landing_company_short'],
       );
 
   /// Converts an instance to JSON
@@ -129,23 +127,23 @@ class NewAccountReal extends NewAccountRealModel {
 
     resultMap['client_id'] = clientId;
     resultMap['landing_company'] = landingCompany;
-    resultMap['landing_company_short'] = landingCompanyShort;
     resultMap['oauth_token'] = oauthToken;
+    resultMap['landing_company_short'] = landingCompanyShort;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   NewAccountReal copyWith({
-    String clientId,
-    String landingCompany,
-    String landingCompanyShort,
-    String oauthToken,
+    required String clientId,
+    required String landingCompany,
+    required String oauthToken,
+    String? landingCompanyShort,
   }) =>
       NewAccountReal(
-        clientId: clientId ?? this.clientId,
-        landingCompany: landingCompany ?? this.landingCompany,
+        clientId: clientId,
+        landingCompany: landingCompany,
+        oauthToken: oauthToken,
         landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
-        oauthToken: oauthToken ?? this.oauthToken,
       );
 }

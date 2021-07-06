@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/time_receive.dart';
 import '../../basic_api/generated/time_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class TimeResponseModel {
   /// Initializes
   TimeResponseModel({
-    @required this.time,
+    this.time,
   });
 
   /// Epoch of server time.
-  final DateTime time;
+  final DateTime? time;
 }
 
 /// Time response class
 class TimeResponse extends TimeResponseModel {
   /// Initializes
   TimeResponse({
-    @required DateTime time,
+    DateTime? time,
   }) : super(
           time: time,
         );
@@ -45,13 +43,13 @@ class TimeResponse extends TimeResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets back-end server epoch time.
   ///
   /// Throws a [ServerTimeException] if API response contains an error
   static Future<TimeResponse> fetchTime([
-    TimeSend request,
+    TimeSend? request,
   ]) async {
     final TimeReceive response = await _api.call(
       request: request ?? const TimeSend(),
@@ -59,7 +57,7 @@ class TimeResponse extends TimeResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ServerTimeException(),
     );
 
@@ -68,7 +66,7 @@ class TimeResponse extends TimeResponseModel {
 
   /// Creates a copy of instance with given parameters
   TimeResponse copyWith({
-    DateTime time,
+    DateTime? time,
   }) =>
       TimeResponse(
         time: time ?? this.time,

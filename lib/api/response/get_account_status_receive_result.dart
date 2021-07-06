@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/get_account_status_receive.dart';
 import '../../basic_api/generated/get_account_status_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class GetAccountStatusResponseModel {
   /// Initializes
   GetAccountStatusResponseModel({
-    @required this.getAccountStatus,
+    this.getAccountStatus,
   });
 
   /// Account status details
-  final GetAccountStatus getAccountStatus;
+  final GetAccountStatus? getAccountStatus;
 }
 
 /// Get account status response class
 class GetAccountStatusResponse extends GetAccountStatusResponseModel {
   /// Initializes
   GetAccountStatusResponse({
-    @required GetAccountStatus getAccountStatus,
+    GetAccountStatus? getAccountStatus,
   }) : super(
           getAccountStatus: getAccountStatus,
         );
@@ -43,13 +41,13 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (getAccountStatus != null) {
-      resultMap['get_account_status'] = getAccountStatus.toJson();
+      resultMap['get_account_status'] = getAccountStatus!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the account's status
   static Future<GetAccountStatusResponse> fetchAccountStatus() async {
@@ -59,7 +57,7 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AccountStatusException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -68,13 +66,14 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
 
   /// Creates a copy of instance with given parameters
   GetAccountStatusResponse copyWith({
-    GetAccountStatus getAccountStatus,
+    GetAccountStatus? getAccountStatus,
   }) =>
       GetAccountStatusResponse(
         getAccountStatus: getAccountStatus ?? this.getAccountStatus,
       );
 }
 
+/// StatusEnum mapper.
 final Map<String, StatusEnum> statusEnumMapper = <String, StatusEnum>{
   "none": StatusEnum.none,
   "pending": StatusEnum.pending,
@@ -84,24 +83,58 @@ final Map<String, StatusEnum> statusEnumMapper = <String, StatusEnum>{
   "suspected": StatusEnum.suspected,
 };
 
-/// status Enum
+/// Status Enum.
 enum StatusEnum {
+  /// none.
   none,
+
+  /// pending.
   pending,
+
+  /// rejected.
   rejected,
+
+  /// verified.
   verified,
+
+  /// expired.
   expired,
+
+  /// suspected.
   suspected,
+}
+
+/// SocialIdentityProviderEnum mapper.
+final Map<String, SocialIdentityProviderEnum> socialIdentityProviderEnumMapper =
+    <String, SocialIdentityProviderEnum>{
+  "google": SocialIdentityProviderEnum.google,
+  "facebook": SocialIdentityProviderEnum.facebook,
+  "apple": SocialIdentityProviderEnum.apple,
+};
+
+/// SocialIdentityProvider Enum.
+enum SocialIdentityProviderEnum {
+  /// google.
+  google,
+
+  /// facebook.
+  facebook,
+
+  /// apple.
+  apple,
 }
 /// Get account status model class
 abstract class GetAccountStatusModel {
   /// Initializes
   GetAccountStatusModel({
-    @required this.status,
-    @required this.riskClassification,
-    @required this.promptClientToAuthenticate,
-    @required this.currencyConfig,
-    @required this.authentication,
+    required this.status,
+    required this.riskClassification,
+    required this.promptClientToAuthenticate,
+    required this.currencyConfig,
+    this.authentication,
+    this.cashierMissingFields,
+    this.cashierValidation,
+    this.socialIdentityProvider,
   });
 
   /// Account status. Possible status:
@@ -112,6 +145,7 @@ abstract class GetAccountStatusModel {
   /// - `cashier_locked`: cashier is locked.
   /// - `closed`: client has closed the account.
   /// - `crs_tin_information`: client has updated tax related information.
+  /// - `deposit_locked`: deposit is not allowed.
   /// - `disabled`: account is disabled.
   /// - `document_expired`: client's submitted proof-of-identity documents have expired.
   /// - `document_expiring_soon`: client's submitted proof-of-identity documents are expiring within a month.
@@ -147,442 +181,164 @@ abstract class GetAccountStatusModel {
   final Map<String, CurrencyConfigProperty> currencyConfig;
 
   /// This represents the authentication status of the user and it includes what authentication is needed.
-  final Authentication authentication;
+  final Authentication? authentication;
+
+  /// Contains missing profile fields required for cashier access.
+  final List<String>? cashierMissingFields;
+
+  /// If the cashier is unavailble, this array contains one or more error codes for each reason.
+  final List<String>? cashierValidation;
+
+  /// Social identity provider a user signed up with.
+  final SocialIdentityProviderEnum? socialIdentityProvider;
 }
 
 /// Get account status class
 class GetAccountStatus extends GetAccountStatusModel {
   /// Initializes
   GetAccountStatus({
-    @required Authentication authentication,
-    @required Map<String, CurrencyConfigProperty> currencyConfig,
-    @required int promptClientToAuthenticate,
-    @required String riskClassification,
-    @required List<String> status,
+    required Map<String, CurrencyConfigProperty> currencyConfig,
+    required int promptClientToAuthenticate,
+    required String riskClassification,
+    required List<String> status,
+    Authentication? authentication,
+    List<String>? cashierMissingFields,
+    List<String>? cashierValidation,
+    SocialIdentityProviderEnum? socialIdentityProvider,
   }) : super(
-          authentication: authentication,
           currencyConfig: currencyConfig,
           promptClientToAuthenticate: promptClientToAuthenticate,
           riskClassification: riskClassification,
           status: status,
+          authentication: authentication,
+          cashierMissingFields: cashierMissingFields,
+          cashierValidation: cashierValidation,
+          socialIdentityProvider: socialIdentityProvider,
         );
 
   /// Creates an instance from JSON
   factory GetAccountStatus.fromJson(Map<String, dynamic> json) =>
       GetAccountStatus(
+        currencyConfig: Map<String, CurrencyConfigProperty>.fromEntries(
+            json['currency_config']
+                .entries
+                .map<MapEntry<String, CurrencyConfigProperty>>(
+                    (MapEntry<String, dynamic> entry) =>
+                        MapEntry<String, CurrencyConfigProperty>(entry.key,
+                            CurrencyConfigProperty.fromJson(entry.value)))),
+        promptClientToAuthenticate: json['prompt_client_to_authenticate'],
+        riskClassification: json['risk_classification'],
+        status: List<String>.from(
+          json['status'].map(
+            (dynamic item) => item,
+          ),
+        ),
         authentication: json['authentication'] == null
             ? null
             : Authentication.fromJson(json['authentication']),
-        currencyConfig: json['currency_config'] == null
+        cashierMissingFields: json['cashier_missing_fields'] == null
             ? null
-            : Map<String, CurrencyConfigProperty>.fromEntries(
-                json['currency_config']
-                    .entries
-                    .map<MapEntry<String, CurrencyConfigProperty>>(
-                        (MapEntry<String, dynamic> entry) =>
-                            MapEntry<String, CurrencyConfigProperty>(
-                                entry.key,
-                                entry.value == null
-                                    ? null
-                                    : CurrencyConfigProperty.fromJson(
-                                        entry.value)))),
-        promptClientToAuthenticate: json['prompt_client_to_authenticate'],
-        riskClassification: json['risk_classification'],
-        status: json['status'] == null
+            : List<String>.from(
+                json['cashier_missing_fields']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        cashierValidation: json['cashier_validation'] == null
             ? null
-            : List<String>.from(json['status'].map((dynamic item) => item)),
+            : List<String>.from(
+                json['cashier_validation']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        socialIdentityProvider: json['social_identity_provider'] == null
+            ? null
+            : socialIdentityProviderEnumMapper[
+                json['social_identity_provider']]!,
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    if (authentication != null) {
-      resultMap['authentication'] = authentication.toJson();
-    }
     resultMap['currency_config'] = currencyConfig;
     resultMap['prompt_client_to_authenticate'] = promptClientToAuthenticate;
     resultMap['risk_classification'] = riskClassification;
-    if (status != null) {
-      resultMap['status'] = status.map<dynamic>((String item) => item).toList();
+    resultMap['status'] = status
+        .map<dynamic>(
+          (String item) => item,
+        )
+        .toList();
+
+    if (authentication != null) {
+      resultMap['authentication'] = authentication!.toJson();
     }
+    if (cashierMissingFields != null) {
+      resultMap['cashier_missing_fields'] = cashierMissingFields!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    if (cashierValidation != null) {
+      resultMap['cashier_validation'] = cashierValidation!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    resultMap['social_identity_provider'] = socialIdentityProviderEnumMapper
+        .entries
+        .firstWhere((MapEntry<String, SocialIdentityProviderEnum> entry) =>
+            entry.value == socialIdentityProvider)
+        .key;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   GetAccountStatus copyWith({
-    Authentication authentication,
-    Map<String, CurrencyConfigProperty> currencyConfig,
-    int promptClientToAuthenticate,
-    String riskClassification,
-    List<String> status,
+    required Map<String, CurrencyConfigProperty> currencyConfig,
+    required int promptClientToAuthenticate,
+    required String riskClassification,
+    required List<String> status,
+    Authentication? authentication,
+    List<String>? cashierMissingFields,
+    List<String>? cashierValidation,
+    SocialIdentityProviderEnum? socialIdentityProvider,
   }) =>
       GetAccountStatus(
+        currencyConfig: currencyConfig,
+        promptClientToAuthenticate: promptClientToAuthenticate,
+        riskClassification: riskClassification,
+        status: status,
         authentication: authentication ?? this.authentication,
-        currencyConfig: currencyConfig ?? this.currencyConfig,
-        promptClientToAuthenticate:
-            promptClientToAuthenticate ?? this.promptClientToAuthenticate,
-        riskClassification: riskClassification ?? this.riskClassification,
-        status: status ?? this.status,
-      );
-}
-/// Authentication model class
-abstract class AuthenticationModel {
-  /// Initializes
-  AuthenticationModel({
-    @required this.needsVerification,
-    @required this.identity,
-    @required this.document,
-  });
-
-  /// An array containing the list of required authentication.
-  final List<String> needsVerification;
-
-  /// The authentication status for identity.
-  final Identity identity;
-
-  /// The authentication status for document.
-  final Document document;
-}
-
-/// Authentication class
-class Authentication extends AuthenticationModel {
-  /// Initializes
-  Authentication({
-    @required Document document,
-    @required Identity identity,
-    @required List<String> needsVerification,
-  }) : super(
-          document: document,
-          identity: identity,
-          needsVerification: needsVerification,
-        );
-
-  /// Creates an instance from JSON
-  factory Authentication.fromJson(Map<String, dynamic> json) => Authentication(
-        document: json['document'] == null
-            ? null
-            : Document.fromJson(json['document']),
-        identity: json['identity'] == null
-            ? null
-            : Identity.fromJson(json['identity']),
-        needsVerification: json['needs_verification'] == null
-            ? null
-            : List<String>.from(
-                json['needs_verification'].map((dynamic item) => item)),
-      );
-
-  /// Converts an instance to JSON
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    if (document != null) {
-      resultMap['document'] = document.toJson();
-    }
-    if (identity != null) {
-      resultMap['identity'] = identity.toJson();
-    }
-    if (needsVerification != null) {
-      resultMap['needs_verification'] =
-          needsVerification.map<dynamic>((String item) => item).toList();
-    }
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters
-  Authentication copyWith({
-    Document document,
-    Identity identity,
-    List<String> needsVerification,
-  }) =>
-      Authentication(
-        document: document ?? this.document,
-        identity: identity ?? this.identity,
-        needsVerification: needsVerification ?? this.needsVerification,
-      );
-}
-/// Document model class
-abstract class DocumentModel {
-  /// Initializes
-  DocumentModel({
-    @required this.status,
-    @required this.expiryDate,
-  });
-
-  /// This represents the current status of the proof of address document submitted for authentication.
-  final StatusEnum status;
-
-  /// This is the epoch of the document expiry date.
-  final DateTime expiryDate;
-}
-
-/// Document class
-class Document extends DocumentModel {
-  /// Initializes
-  Document({
-    @required DateTime expiryDate,
-    @required StatusEnum status,
-  }) : super(
-          expiryDate: expiryDate,
-          status: status,
-        );
-
-  /// Creates an instance from JSON
-  factory Document.fromJson(Map<String, dynamic> json) => Document(
-        expiryDate: getDateTime(json['expiry_date']),
-        status: statusEnumMapper[json['status']],
-      );
-
-  /// Converts an instance to JSON
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    resultMap['expiry_date'] = getSecondsSinceEpochDateTime(expiryDate);
-    resultMap['status'] = statusEnumMapper.entries
-        .firstWhere((entry) => entry.value == status, orElse: () => null)
-        ?.key;
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters
-  Document copyWith({
-    DateTime expiryDate,
-    StatusEnum status,
-  }) =>
-      Document(
-        expiryDate: expiryDate ?? this.expiryDate,
-        status: status ?? this.status,
-      );
-}
-/// Identity model class
-abstract class IdentityModel {
-  /// Initializes
-  IdentityModel({
-    @required this.status,
-    @required this.services,
-    @required this.expiryDate,
-  });
-
-  /// This represent the current status for proof of identity document submitted for authentication.
-  final StatusEnum status;
-
-  /// This shows the information about the authentication services implemented
-  final Services services;
-
-  /// This is the epoch of the document expiry date.
-  final DateTime expiryDate;
-}
-
-/// Identity class
-class Identity extends IdentityModel {
-  /// Initializes
-  Identity({
-    @required DateTime expiryDate,
-    @required Services services,
-    @required StatusEnum status,
-  }) : super(
-          expiryDate: expiryDate,
-          services: services,
-          status: status,
-        );
-
-  /// Creates an instance from JSON
-  factory Identity.fromJson(Map<String, dynamic> json) => Identity(
-        expiryDate: getDateTime(json['expiry_date']),
-        services: json['services'] == null
-            ? null
-            : Services.fromJson(json['services']),
-        status: statusEnumMapper[json['status']],
-      );
-
-  /// Converts an instance to JSON
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    resultMap['expiry_date'] = getSecondsSinceEpochDateTime(expiryDate);
-    if (services != null) {
-      resultMap['services'] = services.toJson();
-    }
-    resultMap['status'] = statusEnumMapper.entries
-        .firstWhere((entry) => entry.value == status, orElse: () => null)
-        ?.key;
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters
-  Identity copyWith({
-    DateTime expiryDate,
-    Services services,
-    StatusEnum status,
-  }) =>
-      Identity(
-        expiryDate: expiryDate ?? this.expiryDate,
-        services: services ?? this.services,
-        status: status ?? this.status,
-      );
-}
-/// Services model class
-abstract class ServicesModel {
-  /// Initializes
-  ServicesModel({
-    @required this.onfido,
-  });
-
-  /// This shows the information related to Onfido supported services
-  final Onfido onfido;
-}
-
-/// Services class
-class Services extends ServicesModel {
-  /// Initializes
-  Services({
-    @required Onfido onfido,
-  }) : super(
-          onfido: onfido,
-        );
-
-  /// Creates an instance from JSON
-  factory Services.fromJson(Map<String, dynamic> json) => Services(
-        onfido: json['onfido'] == null ? null : Onfido.fromJson(json['onfido']),
-      );
-
-  /// Converts an instance to JSON
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    if (onfido != null) {
-      resultMap['onfido'] = onfido.toJson();
-    }
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters
-  Services copyWith({
-    Onfido onfido,
-  }) =>
-      Services(
-        onfido: onfido ?? this.onfido,
-      );
-}
-/// Onfido model class
-abstract class OnfidoModel {
-  /// Initializes
-  OnfidoModel({
-    @required this.submissionsLeft,
-    @required this.lastRejected,
-    @required this.isCountrySupported,
-    @required this.documents,
-    @required this.countryCode,
-  });
-
-  /// This shows the number of Onfido submissions left for the client
-  final int submissionsLeft;
-
-  /// Show the last Onfido reported reasons for the rejected cases
-  final List<String> lastRejected;
-
-  /// This shows the information if the country is supported by Onfido
-  final int isCountrySupported;
-
-  /// This shows the list of documents types supported by Onfido
-  final List<String> documents;
-
-  /// 3 letter country code for Onfide SDK
-  final String countryCode;
-}
-
-/// Onfido class
-class Onfido extends OnfidoModel {
-  /// Initializes
-  Onfido({
-    @required String countryCode,
-    @required List<String> documents,
-    @required int isCountrySupported,
-    @required List<String> lastRejected,
-    @required int submissionsLeft,
-  }) : super(
-          countryCode: countryCode,
-          documents: documents,
-          isCountrySupported: isCountrySupported,
-          lastRejected: lastRejected,
-          submissionsLeft: submissionsLeft,
-        );
-
-  /// Creates an instance from JSON
-  factory Onfido.fromJson(Map<String, dynamic> json) => Onfido(
-        countryCode: json['country_code'],
-        documents: json['documents'] == null
-            ? null
-            : List<String>.from(json['documents'].map((dynamic item) => item)),
-        isCountrySupported: json['is_country_supported'],
-        lastRejected: json['last_rejected'] == null
-            ? null
-            : List<String>.from(
-                json['last_rejected'].map((dynamic item) => item)),
-        submissionsLeft: json['submissions_left'],
-      );
-
-  /// Converts an instance to JSON
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    resultMap['country_code'] = countryCode;
-    if (documents != null) {
-      resultMap['documents'] =
-          documents.map<dynamic>((String item) => item).toList();
-    }
-    resultMap['is_country_supported'] = isCountrySupported;
-    if (lastRejected != null) {
-      resultMap['last_rejected'] =
-          lastRejected.map<dynamic>((String item) => item).toList();
-    }
-    resultMap['submissions_left'] = submissionsLeft;
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters
-  Onfido copyWith({
-    String countryCode,
-    List<String> documents,
-    int isCountrySupported,
-    List<String> lastRejected,
-    int submissionsLeft,
-  }) =>
-      Onfido(
-        countryCode: countryCode ?? this.countryCode,
-        documents: documents ?? this.documents,
-        isCountrySupported: isCountrySupported ?? this.isCountrySupported,
-        lastRejected: lastRejected ?? this.lastRejected,
-        submissionsLeft: submissionsLeft ?? this.submissionsLeft,
+        cashierMissingFields: cashierMissingFields ?? this.cashierMissingFields,
+        cashierValidation: cashierValidation ?? this.cashierValidation,
+        socialIdentityProvider:
+            socialIdentityProvider ?? this.socialIdentityProvider,
       );
 }
 /// Currency config property model class
 abstract class CurrencyConfigPropertyModel {
   /// Initializes
   CurrencyConfigPropertyModel({
-    @required this.isWithdrawalSuspended,
-    @required this.isDepositSuspended,
+    this.isDepositSuspended,
+    this.isWithdrawalSuspended,
   });
 
-  /// Withdrawal is allowed for currency or not
-  final bool isWithdrawalSuspended;
-
   /// Deposit is allowed for currency or not
-  final bool isDepositSuspended;
+  final bool? isDepositSuspended;
+
+  /// Withdrawal is allowed for currency or not
+  final bool? isWithdrawalSuspended;
 }
 
 /// Currency config property class
 class CurrencyConfigProperty extends CurrencyConfigPropertyModel {
   /// Initializes
   CurrencyConfigProperty({
-    @required bool isDepositSuspended,
-    @required bool isWithdrawalSuspended,
+    bool? isDepositSuspended,
+    bool? isWithdrawalSuspended,
   }) : super(
           isDepositSuspended: isDepositSuspended,
           isWithdrawalSuspended: isWithdrawalSuspended,
@@ -607,12 +363,549 @@ class CurrencyConfigProperty extends CurrencyConfigPropertyModel {
 
   /// Creates a copy of instance with given parameters
   CurrencyConfigProperty copyWith({
-    bool isDepositSuspended,
-    bool isWithdrawalSuspended,
+    bool? isDepositSuspended,
+    bool? isWithdrawalSuspended,
   }) =>
       CurrencyConfigProperty(
         isDepositSuspended: isDepositSuspended ?? this.isDepositSuspended,
         isWithdrawalSuspended:
             isWithdrawalSuspended ?? this.isWithdrawalSuspended,
+      );
+}
+/// Authentication model class
+abstract class AuthenticationModel {
+  /// Initializes
+  AuthenticationModel({
+    required this.needsVerification,
+    this.document,
+    this.identity,
+  });
+
+  /// An array containing the list of required authentication.
+  final List<String> needsVerification;
+
+  /// The authentication status for document.
+  final Document? document;
+
+  /// The authentication status for identity.
+  final Identity? identity;
+}
+
+/// Authentication class
+class Authentication extends AuthenticationModel {
+  /// Initializes
+  Authentication({
+    required List<String> needsVerification,
+    Document? document,
+    Identity? identity,
+  }) : super(
+          needsVerification: needsVerification,
+          document: document,
+          identity: identity,
+        );
+
+  /// Creates an instance from JSON
+  factory Authentication.fromJson(Map<String, dynamic> json) => Authentication(
+        needsVerification: List<String>.from(
+          json['needs_verification'].map(
+            (dynamic item) => item,
+          ),
+        ),
+        document: json['document'] == null
+            ? null
+            : Document.fromJson(json['document']),
+        identity: json['identity'] == null
+            ? null
+            : Identity.fromJson(json['identity']),
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['needs_verification'] = needsVerification
+        .map<dynamic>(
+          (String item) => item,
+        )
+        .toList();
+
+    if (document != null) {
+      resultMap['document'] = document!.toJson();
+    }
+    if (identity != null) {
+      resultMap['identity'] = identity!.toJson();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  Authentication copyWith({
+    required List<String> needsVerification,
+    Document? document,
+    Identity? identity,
+  }) =>
+      Authentication(
+        needsVerification: needsVerification,
+        document: document ?? this.document,
+        identity: identity ?? this.identity,
+      );
+}
+/// Document model class
+abstract class DocumentModel {
+  /// Initializes
+  DocumentModel({
+    this.expiryDate,
+    this.status,
+  });
+
+  /// This is the epoch of the document expiry date.
+  final DateTime? expiryDate;
+
+  /// This represents the current status of the proof of address document submitted for authentication.
+  final StatusEnum? status;
+}
+
+/// Document class
+class Document extends DocumentModel {
+  /// Initializes
+  Document({
+    DateTime? expiryDate,
+    StatusEnum? status,
+  }) : super(
+          expiryDate: expiryDate,
+          status: status,
+        );
+
+  /// Creates an instance from JSON
+  factory Document.fromJson(Map<String, dynamic> json) => Document(
+        expiryDate: getDateTime(json['expiry_date']),
+        status:
+            json['status'] == null ? null : statusEnumMapper[json['status']]!,
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['expiry_date'] = getSecondsSinceEpochDateTime(expiryDate);
+    resultMap['status'] = statusEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, StatusEnum> entry) => entry.value == status)
+        .key;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  Document copyWith({
+    DateTime? expiryDate,
+    StatusEnum? status,
+  }) =>
+      Document(
+        expiryDate: expiryDate ?? this.expiryDate,
+        status: status ?? this.status,
+      );
+}
+/// Identity model class
+abstract class IdentityModel {
+  /// Initializes
+  IdentityModel({
+    this.expiryDate,
+    this.services,
+    this.status,
+  });
+
+  /// This is the epoch of the document expiry date.
+  final DateTime? expiryDate;
+
+  /// This shows the information about the authentication services implemented
+  final Services? services;
+
+  /// This represent the current status for proof of identity document submitted for authentication.
+  final StatusEnum? status;
+}
+
+/// Identity class
+class Identity extends IdentityModel {
+  /// Initializes
+  Identity({
+    DateTime? expiryDate,
+    Services? services,
+    StatusEnum? status,
+  }) : super(
+          expiryDate: expiryDate,
+          services: services,
+          status: status,
+        );
+
+  /// Creates an instance from JSON
+  factory Identity.fromJson(Map<String, dynamic> json) => Identity(
+        expiryDate: getDateTime(json['expiry_date']),
+        services: json['services'] == null
+            ? null
+            : Services.fromJson(json['services']),
+        status:
+            json['status'] == null ? null : statusEnumMapper[json['status']]!,
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['expiry_date'] = getSecondsSinceEpochDateTime(expiryDate);
+    if (services != null) {
+      resultMap['services'] = services!.toJson();
+    }
+    resultMap['status'] = statusEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, StatusEnum> entry) => entry.value == status)
+        .key;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  Identity copyWith({
+    DateTime? expiryDate,
+    Services? services,
+    StatusEnum? status,
+  }) =>
+      Identity(
+        expiryDate: expiryDate ?? this.expiryDate,
+        services: services ?? this.services,
+        status: status ?? this.status,
+      );
+}
+/// Services model class
+abstract class ServicesModel {
+  /// Initializes
+  ServicesModel({
+    this.idv,
+    this.manual,
+    this.onfido,
+  });
+
+  /// This shows the information related to IDV supported services
+  final Idv? idv;
+
+  /// This shows the information related to the manual POI checks
+  final Manual? manual;
+
+  /// This shows the information related to Onfido supported services
+  final Onfido? onfido;
+}
+
+/// Services class
+class Services extends ServicesModel {
+  /// Initializes
+  Services({
+    Idv? idv,
+    Manual? manual,
+    Onfido? onfido,
+  }) : super(
+          idv: idv,
+          manual: manual,
+          onfido: onfido,
+        );
+
+  /// Creates an instance from JSON
+  factory Services.fromJson(Map<String, dynamic> json) => Services(
+        idv: json['idv'] == null ? null : Idv.fromJson(json['idv']),
+        manual: json['manual'] == null ? null : Manual.fromJson(json['manual']),
+        onfido: json['onfido'] == null ? null : Onfido.fromJson(json['onfido']),
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (idv != null) {
+      resultMap['idv'] = idv!.toJson();
+    }
+    if (manual != null) {
+      resultMap['manual'] = manual!.toJson();
+    }
+    if (onfido != null) {
+      resultMap['onfido'] = onfido!.toJson();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  Services copyWith({
+    Idv? idv,
+    Manual? manual,
+    Onfido? onfido,
+  }) =>
+      Services(
+        idv: idv ?? this.idv,
+        manual: manual ?? this.manual,
+        onfido: onfido ?? this.onfido,
+      );
+}
+/// Idv model class
+abstract class IdvModel {
+  /// Initializes
+  IdvModel({
+    this.lastRejected,
+    this.reportedProperties,
+    this.status,
+    this.submissionsLeft,
+  });
+
+  /// Show the last IDV reported reasons for the rejected cases
+  final List<String>? lastRejected;
+
+  /// Shows the latest document properties detected and reported by IDVS
+  final Map<String, dynamic>? reportedProperties;
+
+  /// This represents the status of the latest IDV check.
+  final StatusEnum? status;
+
+  /// This shows the number of IDV submissions left for the client
+  final int? submissionsLeft;
+}
+
+/// Idv class
+class Idv extends IdvModel {
+  /// Initializes
+  Idv({
+    List<String>? lastRejected,
+    Map<String, dynamic>? reportedProperties,
+    StatusEnum? status,
+    int? submissionsLeft,
+  }) : super(
+          lastRejected: lastRejected,
+          reportedProperties: reportedProperties,
+          status: status,
+          submissionsLeft: submissionsLeft,
+        );
+
+  /// Creates an instance from JSON
+  factory Idv.fromJson(Map<String, dynamic> json) => Idv(
+        lastRejected: json['last_rejected'] == null
+            ? null
+            : List<String>.from(
+                json['last_rejected']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        reportedProperties: json['reported_properties'],
+        status:
+            json['status'] == null ? null : statusEnumMapper[json['status']]!,
+        submissionsLeft: json['submissions_left'],
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (lastRejected != null) {
+      resultMap['last_rejected'] = lastRejected!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    resultMap['reported_properties'] = reportedProperties;
+    resultMap['status'] = statusEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, StatusEnum> entry) => entry.value == status)
+        .key;
+    resultMap['submissions_left'] = submissionsLeft;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  Idv copyWith({
+    List<String>? lastRejected,
+    Map<String, dynamic>? reportedProperties,
+    StatusEnum? status,
+    int? submissionsLeft,
+  }) =>
+      Idv(
+        lastRejected: lastRejected ?? this.lastRejected,
+        reportedProperties: reportedProperties ?? this.reportedProperties,
+        status: status ?? this.status,
+        submissionsLeft: submissionsLeft ?? this.submissionsLeft,
+      );
+}
+/// Manual model class
+abstract class ManualModel {
+  /// Initializes
+  ManualModel({
+    this.status,
+  });
+
+  /// This represents the status of the current manual POI check.
+  final StatusEnum? status;
+}
+
+/// Manual class
+class Manual extends ManualModel {
+  /// Initializes
+  Manual({
+    StatusEnum? status,
+  }) : super(
+          status: status,
+        );
+
+  /// Creates an instance from JSON
+  factory Manual.fromJson(Map<String, dynamic> json) => Manual(
+        status:
+            json['status'] == null ? null : statusEnumMapper[json['status']]!,
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['status'] = statusEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, StatusEnum> entry) => entry.value == status)
+        .key;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  Manual copyWith({
+    StatusEnum? status,
+  }) =>
+      Manual(
+        status: status ?? this.status,
+      );
+}
+/// Onfido model class
+abstract class OnfidoModel {
+  /// Initializes
+  OnfidoModel({
+    this.countryCode,
+    this.documents,
+    this.isCountrySupported,
+    this.lastRejected,
+    this.reportedProperties,
+    this.status,
+    this.submissionsLeft,
+  });
+
+  /// 3 letter country code for Onfide SDK
+  final String? countryCode;
+
+  /// This shows the list of documents types supported by Onfido
+  final List<String>? documents;
+
+  /// This shows the information if the country is supported by Onfido
+  final int? isCountrySupported;
+
+  /// Show the last Onfido reported reasons for the rejected cases
+  final List<String>? lastRejected;
+
+  /// Shows the latest document properties detected and reported by Onfido
+  final Map<String, dynamic>? reportedProperties;
+
+  /// This represents the status of the latest Onfido check.
+  final StatusEnum? status;
+
+  /// This shows the number of Onfido submissions left for the client
+  final int? submissionsLeft;
+}
+
+/// Onfido class
+class Onfido extends OnfidoModel {
+  /// Initializes
+  Onfido({
+    String? countryCode,
+    List<String>? documents,
+    int? isCountrySupported,
+    List<String>? lastRejected,
+    Map<String, dynamic>? reportedProperties,
+    StatusEnum? status,
+    int? submissionsLeft,
+  }) : super(
+          countryCode: countryCode,
+          documents: documents,
+          isCountrySupported: isCountrySupported,
+          lastRejected: lastRejected,
+          reportedProperties: reportedProperties,
+          status: status,
+          submissionsLeft: submissionsLeft,
+        );
+
+  /// Creates an instance from JSON
+  factory Onfido.fromJson(Map<String, dynamic> json) => Onfido(
+        countryCode: json['country_code'],
+        documents: json['documents'] == null
+            ? null
+            : List<String>.from(
+                json['documents']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        isCountrySupported: json['is_country_supported'],
+        lastRejected: json['last_rejected'] == null
+            ? null
+            : List<String>.from(
+                json['last_rejected']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        reportedProperties: json['reported_properties'],
+        status:
+            json['status'] == null ? null : statusEnumMapper[json['status']]!,
+        submissionsLeft: json['submissions_left'],
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['country_code'] = countryCode;
+    if (documents != null) {
+      resultMap['documents'] = documents!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    resultMap['is_country_supported'] = isCountrySupported;
+    if (lastRejected != null) {
+      resultMap['last_rejected'] = lastRejected!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    resultMap['reported_properties'] = reportedProperties;
+    resultMap['status'] = statusEnumMapper.entries
+        .firstWhere(
+            (MapEntry<String, StatusEnum> entry) => entry.value == status)
+        .key;
+    resultMap['submissions_left'] = submissionsLeft;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  Onfido copyWith({
+    String? countryCode,
+    List<String>? documents,
+    int? isCountrySupported,
+    List<String>? lastRejected,
+    Map<String, dynamic>? reportedProperties,
+    StatusEnum? status,
+    int? submissionsLeft,
+  }) =>
+      Onfido(
+        countryCode: countryCode ?? this.countryCode,
+        documents: documents ?? this.documents,
+        isCountrySupported: isCountrySupported ?? this.isCountrySupported,
+        lastRejected: lastRejected ?? this.lastRejected,
+        reportedProperties: reportedProperties ?? this.reportedProperties,
+        status: status ?? this.status,
+        submissionsLeft: submissionsLeft ?? this.submissionsLeft,
       );
 }

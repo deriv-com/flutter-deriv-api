@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/p2p_advertiser_adverts_receive.dart';
 import '../../basic_api/generated/p2p_advertiser_adverts_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class P2pAdvertiserAdvertsResponseModel {
   /// Initializes
   P2pAdvertiserAdvertsResponseModel({
-    @required this.p2pAdvertiserAdverts,
+    this.p2pAdvertiserAdverts,
   });
 
   /// List of the P2P advertiser adverts.
-  final P2pAdvertiserAdverts p2pAdvertiserAdverts;
+  final P2pAdvertiserAdverts? p2pAdvertiserAdverts;
 }
 
 /// P2p advertiser adverts response class
 class P2pAdvertiserAdvertsResponse extends P2pAdvertiserAdvertsResponseModel {
   /// Initializes
   P2pAdvertiserAdvertsResponse({
-    @required P2pAdvertiserAdverts p2pAdvertiserAdverts,
+    P2pAdvertiserAdverts? p2pAdvertiserAdverts,
   }) : super(
           p2pAdvertiserAdverts: p2pAdvertiserAdverts,
         );
@@ -43,13 +41,13 @@ class P2pAdvertiserAdvertsResponse extends P2pAdvertiserAdvertsResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (p2pAdvertiserAdverts != null) {
-      resultMap['p2p_advertiser_adverts'] = p2pAdvertiserAdverts.toJson();
+      resultMap['p2p_advertiser_adverts'] = p2pAdvertiserAdverts!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Returns all P2P (peer to peer) adverts created by the authorized client.
   /// Can only be used by a registered P2P advertiser.
@@ -62,7 +60,7 @@ class P2pAdvertiserAdvertsResponse extends P2pAdvertiserAdvertsResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2PAdvertiserException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -71,50 +69,48 @@ class P2pAdvertiserAdvertsResponse extends P2pAdvertiserAdvertsResponseModel {
 
   /// Creates a copy of instance with given parameters
   P2pAdvertiserAdvertsResponse copyWith({
-    P2pAdvertiserAdverts p2pAdvertiserAdverts,
+    P2pAdvertiserAdverts? p2pAdvertiserAdverts,
   }) =>
       P2pAdvertiserAdvertsResponse(
         p2pAdvertiserAdverts: p2pAdvertiserAdverts ?? this.p2pAdvertiserAdverts,
       );
 }
 
+/// CounterpartyTypeEnum mapper.
 final Map<String, CounterpartyTypeEnum> counterpartyTypeEnumMapper =
     <String, CounterpartyTypeEnum>{
   "buy": CounterpartyTypeEnum.buy,
   "sell": CounterpartyTypeEnum.sell,
 };
 
-/// counterparty_type Enum
+/// CounterpartyType Enum.
 enum CounterpartyTypeEnum {
+  /// buy.
   buy,
+
+  /// sell.
   sell,
 }
 
-final Map<String, PaymentMethodEnum> paymentMethodEnumMapper =
-    <String, PaymentMethodEnum>{
-  "bank_transfer": PaymentMethodEnum.bankTransfer,
-};
-
-/// payment_method Enum
-enum PaymentMethodEnum {
-  bankTransfer,
-}
-
+/// TypeEnum mapper.
 final Map<String, TypeEnum> typeEnumMapper = <String, TypeEnum>{
   "buy": TypeEnum.buy,
   "sell": TypeEnum.sell,
 };
 
-/// type Enum
+/// Type Enum.
 enum TypeEnum {
+  /// buy.
   buy,
+
+  /// sell.
   sell,
 }
 /// P2p advertiser adverts model class
 abstract class P2pAdvertiserAdvertsModel {
   /// Initializes
   P2pAdvertiserAdvertsModel({
-    @required this.list,
+    required this.list,
   });
 
   /// List of advertiser adverts.
@@ -125,7 +121,7 @@ abstract class P2pAdvertiserAdvertsModel {
 class P2pAdvertiserAdverts extends P2pAdvertiserAdvertsModel {
   /// Initializes
   P2pAdvertiserAdverts({
-    @required List<ListItem> list,
+    required List<ListItem> list,
   }) : super(
           list: list,
         );
@@ -133,61 +129,65 @@ class P2pAdvertiserAdverts extends P2pAdvertiserAdvertsModel {
   /// Creates an instance from JSON
   factory P2pAdvertiserAdverts.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserAdverts(
-        list: json['list'] == null
-            ? null
-            : List<ListItem>.from(
-                json['list'].map((dynamic item) => ListItem.fromJson(item))),
+        list: List<ListItem>.from(
+          json['list'].map(
+            (dynamic item) => ListItem.fromJson(item),
+          ),
+        ),
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    if (list != null) {
-      resultMap['list'] =
-          list.map<dynamic>((ListItem item) => item.toJson()).toList();
-    }
+    resultMap['list'] = list
+        .map<dynamic>(
+          (ListItem item) => item.toJson(),
+        )
+        .toList();
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   P2pAdvertiserAdverts copyWith({
-    List<ListItem> list,
+    required List<ListItem> list,
   }) =>
       P2pAdvertiserAdverts(
-        list: list ?? this.list,
+        list: list,
       );
 }
 /// List item model class
 abstract class ListItemModel {
   /// Initializes
   ListItemModel({
-    @required this.type,
-    @required this.remainingAmountDisplay,
-    @required this.remainingAmount,
-    @required this.rateDisplay,
-    @required this.rate,
-    @required this.priceDisplay,
-    @required this.price,
-    @required this.paymentMethod,
-    @required this.paymentInfo,
-    @required this.minOrderAmountDisplay,
-    @required this.minOrderAmount,
-    @required this.maxOrderAmountDisplay,
-    @required this.maxOrderAmount,
-    @required this.localCurrency,
-    @required this.isActive,
-    @required this.id,
-    @required this.description,
-    @required this.createdTime,
-    @required this.country,
-    @required this.counterpartyType,
-    @required this.contactInfo,
-    @required this.amountDisplay,
-    @required this.amount,
-    @required this.advertiserDetails,
-    @required this.accountCurrency,
+    required this.type,
+    required this.remainingAmountDisplay,
+    required this.remainingAmount,
+    required this.rateDisplay,
+    required this.rate,
+    required this.priceDisplay,
+    required this.price,
+    required this.paymentInfo,
+    required this.minOrderAmountDisplay,
+    required this.minOrderAmount,
+    required this.maxOrderAmountDisplay,
+    required this.maxOrderAmount,
+    required this.localCurrency,
+    required this.isActive,
+    required this.id,
+    required this.description,
+    required this.createdTime,
+    required this.country,
+    required this.counterpartyType,
+    required this.contactInfo,
+    required this.amountDisplay,
+    required this.amount,
+    required this.advertiserDetails,
+    required this.accountCurrency,
+    this.daysUntilArchive,
+    this.paymentMethod,
+    this.paymentMethodIds,
   });
 
   /// Whether this is a buy or a sell.
@@ -210,9 +210,6 @@ abstract class ListItemModel {
 
   /// Cost of the advert in local currency.
   final double price;
-
-  /// The payment method.
-  final PaymentMethodEnum paymentMethod;
 
   /// Payment instructions. Only applicable for 'sell adverts'.
   final String paymentInfo;
@@ -260,41 +257,52 @@ abstract class ListItemModel {
   final double amount;
 
   /// Details of the advertiser for this advert.
-  final ListItemAdvertiserDetails advertiserDetails;
+  final AdvertiserDetails advertiserDetails;
 
   /// Currency for this advert. This is the system currency to be transferred between advertiser and client.
   final String accountCurrency;
+
+  /// Days until automatic inactivation of this ad, if no activity occurs.
+  final int? daysUntilArchive;
+
+  /// Supported payment methods. Comma separated list.
+  final String? paymentMethod;
+
+  /// IDs of payment methods.
+  final List<int>? paymentMethodIds;
 }
 
 /// List item class
 class ListItem extends ListItemModel {
   /// Initializes
   ListItem({
-    @required String accountCurrency,
-    @required ListItemAdvertiserDetails advertiserDetails,
-    @required double amount,
-    @required String amountDisplay,
-    @required String contactInfo,
-    @required CounterpartyTypeEnum counterpartyType,
-    @required String country,
-    @required DateTime createdTime,
-    @required String description,
-    @required String id,
-    @required bool isActive,
-    @required String localCurrency,
-    @required double maxOrderAmount,
-    @required String maxOrderAmountDisplay,
-    @required double minOrderAmount,
-    @required String minOrderAmountDisplay,
-    @required String paymentInfo,
-    @required PaymentMethodEnum paymentMethod,
-    @required double price,
-    @required String priceDisplay,
-    @required double rate,
-    @required String rateDisplay,
-    @required double remainingAmount,
-    @required String remainingAmountDisplay,
-    @required TypeEnum type,
+    required String accountCurrency,
+    required AdvertiserDetails advertiserDetails,
+    required double amount,
+    required String amountDisplay,
+    required String contactInfo,
+    required CounterpartyTypeEnum counterpartyType,
+    required String country,
+    required DateTime createdTime,
+    required String description,
+    required String id,
+    required bool isActive,
+    required String localCurrency,
+    required double maxOrderAmount,
+    required String maxOrderAmountDisplay,
+    required double minOrderAmount,
+    required String minOrderAmountDisplay,
+    required String paymentInfo,
+    required double price,
+    required String priceDisplay,
+    required double rate,
+    required String rateDisplay,
+    required double remainingAmount,
+    required String remainingAmountDisplay,
+    required TypeEnum type,
+    int? daysUntilArchive,
+    String? paymentMethod,
+    List<int>? paymentMethodIds,
   }) : super(
           accountCurrency: accountCurrency,
           advertiserDetails: advertiserDetails,
@@ -313,7 +321,6 @@ class ListItem extends ListItemModel {
           minOrderAmount: minOrderAmount,
           minOrderAmountDisplay: minOrderAmountDisplay,
           paymentInfo: paymentInfo,
-          paymentMethod: paymentMethod,
           price: price,
           priceDisplay: priceDisplay,
           rate: rate,
@@ -321,37 +328,48 @@ class ListItem extends ListItemModel {
           remainingAmount: remainingAmount,
           remainingAmountDisplay: remainingAmountDisplay,
           type: type,
+          daysUntilArchive: daysUntilArchive,
+          paymentMethod: paymentMethod,
+          paymentMethodIds: paymentMethodIds,
         );
 
   /// Creates an instance from JSON
   factory ListItem.fromJson(Map<String, dynamic> json) => ListItem(
         accountCurrency: json['account_currency'],
-        advertiserDetails: json['advertiser_details'] == null
-            ? null
-            : ListItemAdvertiserDetails.fromJson(json['advertiser_details']),
-        amount: getDouble(json['amount']),
+        advertiserDetails:
+            AdvertiserDetails.fromJson(json['advertiser_details']),
+        amount: getDouble(json['amount'])!,
         amountDisplay: json['amount_display'],
         contactInfo: json['contact_info'],
-        counterpartyType: counterpartyTypeEnumMapper[json['counterparty_type']],
+        counterpartyType:
+            counterpartyTypeEnumMapper[json['counterparty_type']]!,
         country: json['country'],
-        createdTime: getDateTime(json['created_time']),
+        createdTime: getDateTime(json['created_time'])!,
         description: json['description'],
         id: json['id'],
-        isActive: getBool(json['is_active']),
+        isActive: getBool(json['is_active'])!,
         localCurrency: json['local_currency'],
-        maxOrderAmount: getDouble(json['max_order_amount']),
+        maxOrderAmount: getDouble(json['max_order_amount'])!,
         maxOrderAmountDisplay: json['max_order_amount_display'],
-        minOrderAmount: getDouble(json['min_order_amount']),
+        minOrderAmount: getDouble(json['min_order_amount'])!,
         minOrderAmountDisplay: json['min_order_amount_display'],
         paymentInfo: json['payment_info'],
-        paymentMethod: paymentMethodEnumMapper[json['payment_method']],
-        price: getDouble(json['price']),
+        price: getDouble(json['price'])!,
         priceDisplay: json['price_display'],
-        rate: getDouble(json['rate']),
+        rate: getDouble(json['rate'])!,
         rateDisplay: json['rate_display'],
-        remainingAmount: getDouble(json['remaining_amount']),
+        remainingAmount: getDouble(json['remaining_amount'])!,
         remainingAmountDisplay: json['remaining_amount_display'],
-        type: typeEnumMapper[json['type']],
+        type: typeEnumMapper[json['type']]!,
+        daysUntilArchive: json['days_until_archive'],
+        paymentMethod: json['payment_method'],
+        paymentMethodIds: json['payment_method_ids'] == null
+            ? null
+            : List<int>.from(
+                json['payment_method_ids']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -359,16 +377,15 @@ class ListItem extends ListItemModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['account_currency'] = accountCurrency;
-    if (advertiserDetails != null) {
-      resultMap['advertiser_details'] = advertiserDetails.toJson();
-    }
+    resultMap['advertiser_details'] = advertiserDetails.toJson();
+
     resultMap['amount'] = amount;
     resultMap['amount_display'] = amountDisplay;
     resultMap['contact_info'] = contactInfo;
     resultMap['counterparty_type'] = counterpartyTypeEnumMapper.entries
-        .firstWhere((entry) => entry.value == counterpartyType,
-            orElse: () => null)
-        ?.key;
+        .firstWhere((MapEntry<String, CounterpartyTypeEnum> entry) =>
+            entry.value == counterpartyType)
+        .key;
     resultMap['country'] = country;
     resultMap['created_time'] = getSecondsSinceEpochDateTime(createdTime);
     resultMap['description'] = description;
@@ -380,9 +397,6 @@ class ListItem extends ListItemModel {
     resultMap['min_order_amount'] = minOrderAmount;
     resultMap['min_order_amount_display'] = minOrderAmountDisplay;
     resultMap['payment_info'] = paymentInfo;
-    resultMap['payment_method'] = paymentMethodEnumMapper.entries
-        .firstWhere((entry) => entry.value == paymentMethod, orElse: () => null)
-        ?.key;
     resultMap['price'] = price;
     resultMap['price_display'] = priceDisplay;
     resultMap['rate'] = rate;
@@ -390,151 +404,161 @@ class ListItem extends ListItemModel {
     resultMap['remaining_amount'] = remainingAmount;
     resultMap['remaining_amount_display'] = remainingAmountDisplay;
     resultMap['type'] = typeEnumMapper.entries
-        .firstWhere((entry) => entry.value == type, orElse: () => null)
-        ?.key;
+        .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
+        .key;
+    resultMap['days_until_archive'] = daysUntilArchive;
+    resultMap['payment_method'] = paymentMethod;
+    if (paymentMethodIds != null) {
+      resultMap['payment_method_ids'] = paymentMethodIds!
+          .map<dynamic>(
+            (int item) => item,
+          )
+          .toList();
+    }
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   ListItem copyWith({
-    String accountCurrency,
-    ListItemAdvertiserDetails advertiserDetails,
-    double amount,
-    String amountDisplay,
-    String contactInfo,
-    CounterpartyTypeEnum counterpartyType,
-    String country,
-    DateTime createdTime,
-    String description,
-    String id,
-    bool isActive,
-    String localCurrency,
-    double maxOrderAmount,
-    String maxOrderAmountDisplay,
-    double minOrderAmount,
-    String minOrderAmountDisplay,
-    String paymentInfo,
-    PaymentMethodEnum paymentMethod,
-    double price,
-    String priceDisplay,
-    double rate,
-    String rateDisplay,
-    double remainingAmount,
-    String remainingAmountDisplay,
-    TypeEnum type,
+    required String accountCurrency,
+    required AdvertiserDetails advertiserDetails,
+    required double amount,
+    required String amountDisplay,
+    required String contactInfo,
+    required CounterpartyTypeEnum counterpartyType,
+    required String country,
+    required DateTime createdTime,
+    required String description,
+    required String id,
+    required bool isActive,
+    required String localCurrency,
+    required double maxOrderAmount,
+    required String maxOrderAmountDisplay,
+    required double minOrderAmount,
+    required String minOrderAmountDisplay,
+    required String paymentInfo,
+    required double price,
+    required String priceDisplay,
+    required double rate,
+    required String rateDisplay,
+    required double remainingAmount,
+    required String remainingAmountDisplay,
+    required TypeEnum type,
+    int? daysUntilArchive,
+    String? paymentMethod,
+    List<int>? paymentMethodIds,
   }) =>
       ListItem(
-        accountCurrency: accountCurrency ?? this.accountCurrency,
-        advertiserDetails: advertiserDetails ?? this.advertiserDetails,
-        amount: amount ?? this.amount,
-        amountDisplay: amountDisplay ?? this.amountDisplay,
-        contactInfo: contactInfo ?? this.contactInfo,
-        counterpartyType: counterpartyType ?? this.counterpartyType,
-        country: country ?? this.country,
-        createdTime: createdTime ?? this.createdTime,
-        description: description ?? this.description,
-        id: id ?? this.id,
-        isActive: isActive ?? this.isActive,
-        localCurrency: localCurrency ?? this.localCurrency,
-        maxOrderAmount: maxOrderAmount ?? this.maxOrderAmount,
-        maxOrderAmountDisplay:
-            maxOrderAmountDisplay ?? this.maxOrderAmountDisplay,
-        minOrderAmount: minOrderAmount ?? this.minOrderAmount,
-        minOrderAmountDisplay:
-            minOrderAmountDisplay ?? this.minOrderAmountDisplay,
-        paymentInfo: paymentInfo ?? this.paymentInfo,
+        accountCurrency: accountCurrency,
+        advertiserDetails: advertiserDetails,
+        amount: amount,
+        amountDisplay: amountDisplay,
+        contactInfo: contactInfo,
+        counterpartyType: counterpartyType,
+        country: country,
+        createdTime: createdTime,
+        description: description,
+        id: id,
+        isActive: isActive,
+        localCurrency: localCurrency,
+        maxOrderAmount: maxOrderAmount,
+        maxOrderAmountDisplay: maxOrderAmountDisplay,
+        minOrderAmount: minOrderAmount,
+        minOrderAmountDisplay: minOrderAmountDisplay,
+        paymentInfo: paymentInfo,
+        price: price,
+        priceDisplay: priceDisplay,
+        rate: rate,
+        rateDisplay: rateDisplay,
+        remainingAmount: remainingAmount,
+        remainingAmountDisplay: remainingAmountDisplay,
+        type: type,
+        daysUntilArchive: daysUntilArchive ?? this.daysUntilArchive,
         paymentMethod: paymentMethod ?? this.paymentMethod,
-        price: price ?? this.price,
-        priceDisplay: priceDisplay ?? this.priceDisplay,
-        rate: rate ?? this.rate,
-        rateDisplay: rateDisplay ?? this.rateDisplay,
-        remainingAmount: remainingAmount ?? this.remainingAmount,
-        remainingAmountDisplay:
-            remainingAmountDisplay ?? this.remainingAmountDisplay,
-        type: type ?? this.type,
+        paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
       );
 }
-/// List item advertiser details model class
-abstract class ListItemAdvertiserDetailsModel {
+/// Advertiser details model class
+abstract class AdvertiserDetailsModel {
   /// Initializes
-  ListItemAdvertiserDetailsModel({
-    @required this.name,
-    @required this.lastName,
-    @required this.id,
-    @required this.firstName,
-    this.completionRate,
+  AdvertiserDetailsModel({
+    required this.name,
+    required this.id,
+    this.firstName,
+    this.lastName,
+    this.totalCompletionRate,
   });
 
   /// The advertiser's displayed name.
   final String name;
 
-  /// The advertiser's last name.
-  final String lastName;
-
   /// The advertiser's unique identifier.
   final String id;
 
   /// The advertiser's first name.
-  final String firstName;
+  final String? firstName;
+
+  /// The advertiser's last name.
+  final String? lastName;
 
   /// The percentage of successfully completed orders made by or placed against the advertiser within the past 30 days.
-  final double completionRate;
+  final double? totalCompletionRate;
 }
 
-/// List item advertiser details class
-class ListItemAdvertiserDetails extends ListItemAdvertiserDetailsModel {
+/// Advertiser details class
+class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes
-  ListItemAdvertiserDetails({
-    @required String firstName,
-    @required String id,
-    @required String lastName,
-    @required String name,
-    double completionRate,
+  AdvertiserDetails({
+    required String id,
+    required String name,
+    String? firstName,
+    String? lastName,
+    double? totalCompletionRate,
   }) : super(
-          firstName: firstName,
           id: id,
-          lastName: lastName,
           name: name,
-          completionRate: completionRate,
+          firstName: firstName,
+          lastName: lastName,
+          totalCompletionRate: totalCompletionRate,
         );
 
   /// Creates an instance from JSON
-  factory ListItemAdvertiserDetails.fromJson(Map<String, dynamic> json) =>
-      ListItemAdvertiserDetails(
-        firstName: json['first_name'],
+  factory AdvertiserDetails.fromJson(Map<String, dynamic> json) =>
+      AdvertiserDetails(
         id: json['id'],
-        lastName: json['last_name'],
         name: json['name'],
-        completionRate: getDouble(json['completion_rate']),
+        firstName: json['first_name'],
+        lastName: json['last_name'],
+        totalCompletionRate: getDouble(json['total_completion_rate']),
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    resultMap['first_name'] = firstName;
     resultMap['id'] = id;
-    resultMap['last_name'] = lastName;
     resultMap['name'] = name;
-    resultMap['completion_rate'] = completionRate;
+    resultMap['first_name'] = firstName;
+    resultMap['last_name'] = lastName;
+    resultMap['total_completion_rate'] = totalCompletionRate;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
-  ListItemAdvertiserDetails copyWith({
-    String firstName,
-    String id,
-    String lastName,
-    String name,
-    double completionRate,
+  AdvertiserDetails copyWith({
+    required String id,
+    required String name,
+    String? firstName,
+    String? lastName,
+    double? totalCompletionRate,
   }) =>
-      ListItemAdvertiserDetails(
+      AdvertiserDetails(
+        id: id,
+        name: name,
         firstName: firstName ?? this.firstName,
-        id: id ?? this.id,
         lastName: lastName ?? this.lastName,
-        name: name ?? this.name,
-        completionRate: completionRate ?? this.completionRate,
+        totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
 }

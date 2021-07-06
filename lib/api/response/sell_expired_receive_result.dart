@@ -4,18 +4,18 @@ import 'package:meta/meta.dart';
 abstract class SellExpiredResponseModel {
   /// Initializes
   SellExpiredResponseModel({
-    @required this.sellExpired,
+    this.sellExpired,
   });
 
   /// Sell expired contract object containing count of contracts sold
-  final SellExpired sellExpired;
+  final SellExpired? sellExpired;
 }
 
 /// Sell expired response class
 class SellExpiredResponse extends SellExpiredResponseModel {
   /// Initializes
   SellExpiredResponse({
-    @required SellExpired sellExpired,
+    SellExpired? sellExpired,
   }) : super(
           sellExpired: sellExpired,
         );
@@ -35,7 +35,7 @@ class SellExpiredResponse extends SellExpiredResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (sellExpired != null) {
-      resultMap['sell_expired'] = sellExpired.toJson();
+      resultMap['sell_expired'] = sellExpired!.toJson();
     }
 
     return resultMap;
@@ -43,7 +43,7 @@ class SellExpiredResponse extends SellExpiredResponseModel {
 
   /// Creates a copy of instance with given parameters
   SellExpiredResponse copyWith({
-    SellExpired sellExpired,
+    SellExpired? sellExpired,
   }) =>
       SellExpiredResponse(
         sellExpired: sellExpired ?? this.sellExpired,
@@ -53,18 +53,18 @@ class SellExpiredResponse extends SellExpiredResponseModel {
 abstract class SellExpiredModel {
   /// Initializes
   SellExpiredModel({
-    @required this.count,
+    this.count,
   });
 
   /// The number of contracts that has been sold.
-  final int count;
+  final int? count;
 }
 
 /// Sell expired class
 class SellExpired extends SellExpiredModel {
   /// Initializes
   SellExpired({
-    @required int count,
+    int? count,
   }) : super(
           count: count,
         );
@@ -85,7 +85,7 @@ class SellExpired extends SellExpiredModel {
 
   /// Creates a copy of instance with given parameters
   SellExpired copyWith({
-    int count,
+    int? count,
   }) =>
       SellExpired(
         count: count ?? this.count,

@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/copytrading_statistics_receive.dart';
 import '../../basic_api/generated/copytrading_statistics_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class CopytradingStatisticsResponseModel {
   /// Initializes
   CopytradingStatisticsResponseModel({
-    @required this.copytradingStatistics,
+    this.copytradingStatistics,
   });
 
   /// Statistics of the trader
-  final CopytradingStatistics copytradingStatistics;
+  final CopytradingStatistics? copytradingStatistics;
 }
 
 /// Copytrading statistics response class
 class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
   /// Initializes
   CopytradingStatisticsResponse({
-    @required CopytradingStatistics copytradingStatistics,
+    CopytradingStatistics? copytradingStatistics,
   }) : super(
           copytradingStatistics: copytradingStatistics,
         );
@@ -43,13 +41,13 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (copytradingStatistics != null) {
-      resultMap['copytrading_statistics'] = copytradingStatistics.toJson();
+      resultMap['copytrading_statistics'] = copytradingStatistics!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the copy trading statistics for given `traderId` in [request]
   ///
@@ -63,7 +61,7 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           CopyTradingException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -73,7 +71,7 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
 
   /// Creates a copy of instance with given parameters
   CopytradingStatisticsResponse copyWith({
-    CopytradingStatistics copytradingStatistics,
+    CopytradingStatistics? copytradingStatistics,
   }) =>
       CopytradingStatisticsResponse(
         copytradingStatistics:
@@ -84,22 +82,19 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
 abstract class CopytradingStatisticsModel {
   /// Initializes
   CopytradingStatisticsModel({
-    @required this.yearlyProfitableTrades,
-    @required this.tradesProfitable,
-    @required this.tradesBreakdown,
-    @required this.totalTrades,
-    @required this.performanceProbability,
-    @required this.monthlyProfitableTrades,
-    @required this.last12monthsProfitableTrades,
-    @required this.copiers,
-    @required this.avgProfit,
-    @required this.avgLoss,
-    @required this.avgDuration,
-    @required this.activeSince,
+    required this.tradesProfitable,
+    required this.tradesBreakdown,
+    required this.totalTrades,
+    required this.performanceProbability,
+    required this.monthlyProfitableTrades,
+    required this.last12monthsProfitableTrades,
+    required this.copiers,
+    required this.avgProfit,
+    required this.avgLoss,
+    required this.avgDuration,
+    required this.activeSince,
+    this.yearlyProfitableTrades,
   });
-
-  /// Represents the net change in equity per year.
-  final Map<String, double> yearlyProfitableTrades;
 
   /// Number of profit trades in percentage.
   final double tradesProfitable;
@@ -133,24 +128,27 @@ abstract class CopytradingStatisticsModel {
 
   /// This is the epoch the investor started trading.
   final DateTime activeSince;
+
+  /// Represents the net change in equity per year.
+  final Map<String, double>? yearlyProfitableTrades;
 }
 
 /// Copytrading statistics class
 class CopytradingStatistics extends CopytradingStatisticsModel {
   /// Initializes
   CopytradingStatistics({
-    @required DateTime activeSince,
-    @required int avgDuration,
-    @required double avgLoss,
-    @required double avgProfit,
-    @required double copiers,
-    @required double last12monthsProfitableTrades,
-    @required Map<String, double> monthlyProfitableTrades,
-    @required double performanceProbability,
-    @required int totalTrades,
-    @required Map<String, double> tradesBreakdown,
-    @required double tradesProfitable,
-    @required Map<String, double> yearlyProfitableTrades,
+    required DateTime activeSince,
+    required int avgDuration,
+    required double avgLoss,
+    required double avgProfit,
+    required double copiers,
+    required double last12monthsProfitableTrades,
+    required Map<String, double> monthlyProfitableTrades,
+    required double performanceProbability,
+    required int totalTrades,
+    required Map<String, double> tradesBreakdown,
+    required double tradesProfitable,
+    Map<String, double>? yearlyProfitableTrades,
   }) : super(
           activeSince: activeSince,
           avgDuration: avgDuration,
@@ -169,32 +167,25 @@ class CopytradingStatistics extends CopytradingStatisticsModel {
   /// Creates an instance from JSON
   factory CopytradingStatistics.fromJson(Map<String, dynamic> json) =>
       CopytradingStatistics(
-        activeSince: getDateTime(json['active_since']),
+        activeSince: getDateTime(json['active_since'])!,
         avgDuration: json['avg_duration'],
-        avgLoss: getDouble(json['avg_loss']),
-        avgProfit: getDouble(json['avg_profit']),
-        copiers: getDouble(json['copiers']),
+        avgLoss: getDouble(json['avg_loss'])!,
+        avgProfit: getDouble(json['avg_profit'])!,
+        copiers: getDouble(json['copiers'])!,
         last12monthsProfitableTrades:
-            getDouble(json['last_12months_profitable_trades']),
-        monthlyProfitableTrades: json['monthly_profitable_trades'] == null
-            ? null
-            : Map<String, double>.fromEntries(json['monthly_profitable_trades']
-                .entries
-                .map<MapEntry<String, double>>(
-                    (MapEntry<String, dynamic> entry) =>
-                        MapEntry<String, double>(
-                            entry.key, getDouble(entry.value)))),
-        performanceProbability: getDouble(json['performance_probability']),
+            getDouble(json['last_12months_profitable_trades'])!,
+        monthlyProfitableTrades: Map<String, double>.fromEntries(json[
+                'monthly_profitable_trades']
+            .entries
+            .map<MapEntry<String, double>>((MapEntry<String, dynamic> entry) =>
+                MapEntry<String, double>(entry.key, getDouble(entry.value)!))),
+        performanceProbability: getDouble(json['performance_probability'])!,
         totalTrades: json['total_trades'],
-        tradesBreakdown: json['trades_breakdown'] == null
-            ? null
-            : Map<String, double>.fromEntries(json['trades_breakdown']
-                .entries
-                .map<MapEntry<String, double>>(
-                    (MapEntry<String, dynamic> entry) =>
-                        MapEntry<String, double>(
-                            entry.key, getDouble(entry.value)))),
-        tradesProfitable: getDouble(json['trades_profitable']),
+        tradesBreakdown: Map<String, double>.fromEntries(
+            json['trades_breakdown'].entries.map<MapEntry<String, double>>(
+                (MapEntry<String, dynamic> entry) => MapEntry<String, double>(
+                    entry.key, getDouble(entry.value)!))),
+        tradesProfitable: getDouble(json['trades_profitable'])!,
         yearlyProfitableTrades: json['yearly_profitable_trades'] == null
             ? null
             : Map<String, double>.fromEntries(json['yearly_profitable_trades']
@@ -202,7 +193,7 @@ class CopytradingStatistics extends CopytradingStatisticsModel {
                 .map<MapEntry<String, double>>(
                     (MapEntry<String, dynamic> entry) =>
                         MapEntry<String, double>(
-                            entry.key, getDouble(entry.value)))),
+                            entry.key, getDouble(entry.value)!))),
       );
 
   /// Converts an instance to JSON
@@ -227,34 +218,31 @@ class CopytradingStatistics extends CopytradingStatisticsModel {
 
   /// Creates a copy of instance with given parameters
   CopytradingStatistics copyWith({
-    DateTime activeSince,
-    int avgDuration,
-    double avgLoss,
-    double avgProfit,
-    double copiers,
-    double last12monthsProfitableTrades,
-    Map<String, double> monthlyProfitableTrades,
-    double performanceProbability,
-    int totalTrades,
-    Map<String, double> tradesBreakdown,
-    double tradesProfitable,
-    Map<String, double> yearlyProfitableTrades,
+    required DateTime activeSince,
+    required int avgDuration,
+    required double avgLoss,
+    required double avgProfit,
+    required double copiers,
+    required double last12monthsProfitableTrades,
+    required Map<String, double> monthlyProfitableTrades,
+    required double performanceProbability,
+    required int totalTrades,
+    required Map<String, double> tradesBreakdown,
+    required double tradesProfitable,
+    Map<String, double>? yearlyProfitableTrades,
   }) =>
       CopytradingStatistics(
-        activeSince: activeSince ?? this.activeSince,
-        avgDuration: avgDuration ?? this.avgDuration,
-        avgLoss: avgLoss ?? this.avgLoss,
-        avgProfit: avgProfit ?? this.avgProfit,
-        copiers: copiers ?? this.copiers,
-        last12monthsProfitableTrades:
-            last12monthsProfitableTrades ?? this.last12monthsProfitableTrades,
-        monthlyProfitableTrades:
-            monthlyProfitableTrades ?? this.monthlyProfitableTrades,
-        performanceProbability:
-            performanceProbability ?? this.performanceProbability,
-        totalTrades: totalTrades ?? this.totalTrades,
-        tradesBreakdown: tradesBreakdown ?? this.tradesBreakdown,
-        tradesProfitable: tradesProfitable ?? this.tradesProfitable,
+        activeSince: activeSince,
+        avgDuration: avgDuration,
+        avgLoss: avgLoss,
+        avgProfit: avgProfit,
+        copiers: copiers,
+        last12monthsProfitableTrades: last12monthsProfitableTrades,
+        monthlyProfitableTrades: monthlyProfitableTrades,
+        performanceProbability: performanceProbability,
+        totalTrades: totalTrades,
+        tradesBreakdown: tradesBreakdown,
+        tradesProfitable: tradesProfitable,
         yearlyProfitableTrades:
             yearlyProfitableTrades ?? this.yearlyProfitableTrades,
       );

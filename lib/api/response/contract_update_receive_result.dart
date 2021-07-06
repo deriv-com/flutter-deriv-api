@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/contract_update_receive.dart';
 import '../../basic_api/generated/contract_update_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class ContractUpdateResponseModel {
   /// Initializes
   ContractUpdateResponseModel({
-    @required this.contractUpdate,
+    this.contractUpdate,
   });
 
   /// Contains the update status of the request
-  final ContractUpdate contractUpdate;
+  final ContractUpdate? contractUpdate;
 }
 
 /// Contract update response class
 class ContractUpdateResponse extends ContractUpdateResponseModel {
   /// Initializes
   ContractUpdateResponse({
-    @required ContractUpdate contractUpdate,
+    ContractUpdate? contractUpdate,
   }) : super(
           contractUpdate: contractUpdate,
         );
@@ -43,13 +41,13 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (contractUpdate != null) {
-      resultMap['contract_update'] = contractUpdate.toJson();
+      resultMap['contract_update'] = contractUpdate!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// updates a contract with parameters specified in [ContractUpdateRequest].
   ///
@@ -61,7 +59,7 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -70,7 +68,7 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
 
   /// Creates a copy of instance with given parameters
   ContractUpdateResponse copyWith({
-    ContractUpdate contractUpdate,
+    ContractUpdate? contractUpdate,
   }) =>
       ContractUpdateResponse(
         contractUpdate: contractUpdate ?? this.contractUpdate,
@@ -80,23 +78,23 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
 abstract class ContractUpdateModel {
   /// Initializes
   ContractUpdateModel({
-    @required this.takeProfit,
-    @required this.stopLoss,
+    this.stopLoss,
+    this.takeProfit,
   });
 
-  /// The target spot price where the contract will be closed automatically at the profit specified by the user.
-  final TakeProfit takeProfit;
-
   /// The target spot price where the contract will be closed automatically at the loss specified by the user.
-  final StopLoss stopLoss;
+  final StopLoss? stopLoss;
+
+  /// The target spot price where the contract will be closed automatically at the profit specified by the user.
+  final TakeProfit? takeProfit;
 }
 
 /// Contract update class
 class ContractUpdate extends ContractUpdateModel {
   /// Initializes
   ContractUpdate({
-    @required StopLoss stopLoss,
-    @required TakeProfit takeProfit,
+    StopLoss? stopLoss,
+    TakeProfit? takeProfit,
   }) : super(
           stopLoss: stopLoss,
           takeProfit: takeProfit,
@@ -117,10 +115,10 @@ class ContractUpdate extends ContractUpdateModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (stopLoss != null) {
-      resultMap['stop_loss'] = stopLoss.toJson();
+      resultMap['stop_loss'] = stopLoss!.toJson();
     }
     if (takeProfit != null) {
-      resultMap['take_profit'] = takeProfit.toJson();
+      resultMap['take_profit'] = takeProfit!.toJson();
     }
 
     return resultMap;
@@ -128,8 +126,8 @@ class ContractUpdate extends ContractUpdateModel {
 
   /// Creates a copy of instance with given parameters
   ContractUpdate copyWith({
-    StopLoss stopLoss,
-    TakeProfit takeProfit,
+    StopLoss? stopLoss,
+    TakeProfit? takeProfit,
   }) =>
       ContractUpdate(
         stopLoss: stopLoss ?? this.stopLoss,
@@ -140,45 +138,45 @@ class ContractUpdate extends ContractUpdateModel {
 abstract class StopLossModel {
   /// Initializes
   StopLossModel({
-    @required this.orderDate,
-    @required this.displayName,
+    this.displayName,
     this.orderAmount,
+    this.orderDate,
     this.value,
   });
 
-  /// Stop loss order epoch
-  final DateTime orderDate;
-
   /// Localized display name
-  final String displayName;
+  final String? displayName;
 
   /// Stop loss amount
-  final double orderAmount;
+  final double? orderAmount;
+
+  /// Stop loss order epoch
+  final DateTime? orderDate;
 
   /// Stop loss pip-sized barrier value
-  final String value;
+  final String? value;
 }
 
 /// Stop loss class
 class StopLoss extends StopLossModel {
   /// Initializes
   StopLoss({
-    @required String displayName,
-    @required DateTime orderDate,
-    double orderAmount,
-    String value,
+    String? displayName,
+    double? orderAmount,
+    DateTime? orderDate,
+    String? value,
   }) : super(
           displayName: displayName,
-          orderDate: orderDate,
           orderAmount: orderAmount,
+          orderDate: orderDate,
           value: value,
         );
 
   /// Creates an instance from JSON
   factory StopLoss.fromJson(Map<String, dynamic> json) => StopLoss(
         displayName: json['display_name'],
-        orderDate: getDateTime(json['order_date']),
         orderAmount: getDouble(json['order_amount']),
+        orderDate: getDateTime(json['order_date']),
         value: json['value'],
       );
 
@@ -187,8 +185,8 @@ class StopLoss extends StopLossModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['display_name'] = displayName;
-    resultMap['order_date'] = getSecondsSinceEpochDateTime(orderDate);
     resultMap['order_amount'] = orderAmount;
+    resultMap['order_date'] = getSecondsSinceEpochDateTime(orderDate);
     resultMap['value'] = value;
 
     return resultMap;
@@ -196,15 +194,15 @@ class StopLoss extends StopLossModel {
 
   /// Creates a copy of instance with given parameters
   StopLoss copyWith({
-    String displayName,
-    DateTime orderDate,
-    double orderAmount,
-    String value,
+    String? displayName,
+    double? orderAmount,
+    DateTime? orderDate,
+    String? value,
   }) =>
       StopLoss(
         displayName: displayName ?? this.displayName,
-        orderDate: orderDate ?? this.orderDate,
         orderAmount: orderAmount ?? this.orderAmount,
+        orderDate: orderDate ?? this.orderDate,
         value: value ?? this.value,
       );
 }
@@ -212,45 +210,45 @@ class StopLoss extends StopLossModel {
 abstract class TakeProfitModel {
   /// Initializes
   TakeProfitModel({
-    @required this.orderDate,
-    @required this.displayName,
+    this.displayName,
     this.orderAmount,
+    this.orderDate,
     this.value,
   });
 
-  /// Take profit order epoch
-  final DateTime orderDate;
-
   /// Localized display name
-  final String displayName;
+  final String? displayName;
 
   /// Take profit amount
-  final double orderAmount;
+  final double? orderAmount;
+
+  /// Take profit order epoch
+  final DateTime? orderDate;
 
   /// Take profit pip-sized barrier value
-  final String value;
+  final String? value;
 }
 
 /// Take profit class
 class TakeProfit extends TakeProfitModel {
   /// Initializes
   TakeProfit({
-    @required String displayName,
-    @required DateTime orderDate,
-    double orderAmount,
-    String value,
+    String? displayName,
+    double? orderAmount,
+    DateTime? orderDate,
+    String? value,
   }) : super(
           displayName: displayName,
-          orderDate: orderDate,
           orderAmount: orderAmount,
+          orderDate: orderDate,
           value: value,
         );
 
   /// Creates an instance from JSON
   factory TakeProfit.fromJson(Map<String, dynamic> json) => TakeProfit(
         displayName: json['display_name'],
-        orderDate: getDateTime(json['order_date']),
         orderAmount: getDouble(json['order_amount']),
+        orderDate: getDateTime(json['order_date']),
         value: json['value'],
       );
 
@@ -259,8 +257,8 @@ class TakeProfit extends TakeProfitModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['display_name'] = displayName;
-    resultMap['order_date'] = getSecondsSinceEpochDateTime(orderDate);
     resultMap['order_amount'] = orderAmount;
+    resultMap['order_date'] = getSecondsSinceEpochDateTime(orderDate);
     resultMap['value'] = value;
 
     return resultMap;
@@ -268,15 +266,15 @@ class TakeProfit extends TakeProfitModel {
 
   /// Creates a copy of instance with given parameters
   TakeProfit copyWith({
-    String displayName,
-    DateTime orderDate,
-    double orderAmount,
-    String value,
+    String? displayName,
+    double? orderAmount,
+    DateTime? orderDate,
+    String? value,
   }) =>
       TakeProfit(
         displayName: displayName ?? this.displayName,
-        orderDate: orderDate ?? this.orderDate,
         orderAmount: orderAmount ?? this.orderAmount,
+        orderDate: orderDate ?? this.orderDate,
         value: value ?? this.value,
       );
 }

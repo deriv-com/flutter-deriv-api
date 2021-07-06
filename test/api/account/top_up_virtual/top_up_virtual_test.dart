@@ -9,7 +9,7 @@ void main() {
   test('Top Up Virtual Test', () async {
     final TopupVirtualResponse topUpVirtual = await TopupVirtualResponse.topUp();
 
-    expect(topUpVirtual.topupVirtual.amount, 30.0);
-    expect(topUpVirtual.topupVirtual.currency, 'USD');
+    expect(topUpVirtual.topupVirtual?.amount, 30.0);
+    expect(topUpVirtual.topupVirtual?.currency, 'USD');
   });
 }

@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/topup_virtual_receive.dart';
 import '../../basic_api/generated/topup_virtual_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class TopupVirtualResponseModel {
   /// Initializes
   TopupVirtualResponseModel({
-    @required this.topupVirtual,
+    this.topupVirtual,
   });
 
   /// The information regarding a successful top up for a virtual money account
-  final TopupVirtual topupVirtual;
+  final TopupVirtual? topupVirtual;
 }
 
 /// Topup virtual response class
 class TopupVirtualResponse extends TopupVirtualResponseModel {
   /// Initializes
   TopupVirtualResponse({
-    @required TopupVirtual topupVirtual,
+    TopupVirtual? topupVirtual,
   }) : super(
           topupVirtual: topupVirtual,
         );
@@ -43,20 +41,20 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (topupVirtual != null) {
-      resultMap['topup_virtual'] = topupVirtual.toJson();
+      resultMap['topup_virtual'] = topupVirtual!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Topes up the virtual-money's account balance becomes when it becomes low.
   ///
   /// For parameters information refer to [TopupVirtualRequest].
   /// Throws a [TopUpVirtualException] if API response contains an error
   static Future<TopupVirtualResponse> topUp([
-    TopupVirtualSend request,
+    TopupVirtualSend? request,
   ]) async {
     final TopupVirtualReceive response = await _api.call(
       request: request ?? const TopupVirtualSend(),
@@ -64,7 +62,7 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TopUpVirtualException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -73,7 +71,7 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
 
   /// Creates a copy of instance with given parameters
   TopupVirtualResponse copyWith({
-    TopupVirtual topupVirtual,
+    TopupVirtual? topupVirtual,
   }) =>
       TopupVirtualResponse(
         topupVirtual: topupVirtual ?? this.topupVirtual,
@@ -83,23 +81,23 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
 abstract class TopupVirtualModel {
   /// Initializes
   TopupVirtualModel({
-    @required this.currency,
-    @required this.amount,
+    this.amount,
+    this.currency,
   });
 
-  /// Top up currency string
-  final String currency;
-
   /// Top up amount
-  final double amount;
+  final double? amount;
+
+  /// Top up currency string
+  final String? currency;
 }
 
 /// Topup virtual class
 class TopupVirtual extends TopupVirtualModel {
   /// Initializes
   TopupVirtual({
-    @required double amount,
-    @required String currency,
+    double? amount,
+    String? currency,
   }) : super(
           amount: amount,
           currency: currency,
@@ -123,8 +121,8 @@ class TopupVirtual extends TopupVirtualModel {
 
   /// Creates a copy of instance with given parameters
   TopupVirtual copyWith({
-    double amount,
-    String currency,
+    double? amount,
+    String? currency,
   }) =>
       TopupVirtual(
         amount: amount ?? this.amount,

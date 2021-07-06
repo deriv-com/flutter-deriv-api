@@ -15,7 +15,7 @@ class SubscribeProposal extends PriceProposalEvent {
   });
 
   /// Contract
-  AvailableItem contract;
+  AvailableItem? contract;
 
   /// Basis
   final String basis;

@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/forget_all_receive.dart';
 import '../../basic_api/generated/forget_receive.dart';
 import '../../basic_api/generated/website_status_receive.dart';
@@ -19,23 +17,23 @@ import 'forget_receive_result.dart';
 abstract class WebsiteStatusResponseModel {
   /// Initializes
   WebsiteStatusResponseModel({
-    @required this.subscription,
-    @required this.websiteStatus,
+    this.websiteStatus,
+    this.subscription,
   });
 
-  /// For subscription requests only.
-  final Subscription subscription;
-
   /// Server status and other information regarding general settings
-  final WebsiteStatus websiteStatus;
+  final WebsiteStatus? websiteStatus;
+
+  /// For subscription requests only.
+  final Subscription? subscription;
 }
 
 /// Website status response class
 class WebsiteStatusResponse extends WebsiteStatusResponseModel {
   /// Initializes
   WebsiteStatusResponse({
-    @required WebsiteStatus websiteStatus,
-    @required Subscription subscription,
+    WebsiteStatus? websiteStatus,
+    Subscription? subscription,
   }) : super(
           websiteStatus: websiteStatus,
           subscription: subscription,
@@ -60,22 +58,22 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (websiteStatus != null) {
-      resultMap['website_status'] = websiteStatus.toJson();
+      resultMap['website_status'] = websiteStatus!.toJson();
     }
     if (subscription != null) {
-      resultMap['subscription'] = subscription.toJson();
+      resultMap['subscription'] = subscription!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets Website status
   ///
   /// Throws a [WebsiteStatusException] if API response contains an error
   static Future<WebsiteStatusResponse> fetchWebsiteStatus([
-    WebsiteStatusSend request,
+    WebsiteStatusSend? request,
   ]) async {
     final WebsiteStatusReceive response = await _api.call(
       request: request ?? const WebsiteStatusSend(),
@@ -83,7 +81,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           WebsiteStatusException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -92,17 +90,17 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
   }
 
   /// Subscribes to website status
-  static Stream<WebsiteStatusResponse> subscribeWebsiteStatus(
+  static Stream<WebsiteStatusResponse?> subscribeWebsiteStatus(
     WebsiteStatusSend request, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
       _api
-          .subscribe(request: request, comparePredicate: comparePredicate)
-          .map<WebsiteStatusResponse>(
+          .subscribe(request: request, comparePredicate: comparePredicate)!
+          .map<WebsiteStatusResponse?>(
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
                 WebsiteStatusException(baseExceptionModel: baseExceptionModel),
           );
 
@@ -118,17 +116,17 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
   /// Unsubscribes from website status
   ///
   /// Throws a [WebsiteStatusException] if API response contains an error
-  Future<ForgetResponse> unsubscribeWebsiteStatus() async {
-    if (subscription?.id == null) {
+  Future<ForgetResponse?> unsubscribeWebsiteStatus() async {
+    if (subscription == null) {
       return null;
     }
 
     final ForgetReceive response =
-        await _api.unsubscribe(subscriptionId: subscription.id);
+        await _api.unsubscribe(subscriptionId: subscription!.id);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           WebsiteStatusException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -144,7 +142,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           WebsiteStatusException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -153,8 +151,8 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
 
   /// Creates a copy of instance with given parameters
   WebsiteStatusResponse copyWith({
-    WebsiteStatus websiteStatus,
-    Subscription subscription,
+    WebsiteStatus? websiteStatus,
+    Subscription? subscription,
   }) =>
       WebsiteStatusResponse(
         websiteStatus: websiteStatus ?? this.websiteStatus,
@@ -162,17 +160,22 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
       );
 }
 
+/// TypeEnum mapper.
 final Map<String, TypeEnum> typeEnumMapper = <String, TypeEnum>{
   "fiat": TypeEnum.fiat,
   "crypto": TypeEnum.crypto,
 };
 
-/// type Enum
+/// Type Enum.
 enum TypeEnum {
+  /// fiat.
   fiat,
+
+  /// crypto.
   crypto,
 }
 
+/// SiteStatusEnum mapper.
 final Map<String, SiteStatusEnum> siteStatusEnumMapper =
     <String, SiteStatusEnum>{
   "up": SiteStatusEnum.up,
@@ -180,37 +183,34 @@ final Map<String, SiteStatusEnum> siteStatusEnumMapper =
   "updating": SiteStatusEnum.updating,
 };
 
-/// site_status Enum
+/// SiteStatus Enum.
 enum SiteStatusEnum {
+  /// up.
   up,
+
+  /// down.
   down,
+
+  /// updating.
   updating,
 }
 /// Website status model class
 abstract class WebsiteStatusModel {
   /// Initializes
   WebsiteStatusModel({
-    @required this.termsConditionsVersion,
-    @required this.supportedLanguages,
-    @required this.siteStatus,
-    @required this.message,
-    @required this.currenciesConfig,
-    @required this.cryptoConfig,
-    @required this.clientsCountry,
-    @required this.apiCallLimits,
+    required this.p2pConfig,
+    required this.currenciesConfig,
+    required this.cryptoConfig,
+    required this.apiCallLimits,
+    this.clientsCountry,
+    this.message,
+    this.siteStatus,
+    this.supportedLanguages,
+    this.termsConditionsVersion,
   });
 
-  /// Latest terms and conditions version.
-  final String termsConditionsVersion;
-
-  /// Provides codes for languages supported.
-  final List<String> supportedLanguages;
-
-  /// The current status of the website.
-  final SiteStatusEnum siteStatus;
-
-  /// Text for site status banner, contains problem description. shown only if set by the system.
-  final String message;
+  /// Peer-to-peer payment system settings.
+  final P2pConfig p2pConfig;
 
   /// Available currencies and their information
   final Map<String, CurrenciesConfigProperty> currenciesConfig;
@@ -218,30 +218,44 @@ abstract class WebsiteStatusModel {
   /// Provides minimum withdrawal for all crypto currency in USD
   final Map<String, CryptoConfigProperty> cryptoConfig;
 
-  /// Country code of connected IP
-  final String clientsCountry;
-
   /// Maximum number of API calls during specified period of time.
   final ApiCallLimits apiCallLimits;
+
+  /// Country code of connected IP
+  final String? clientsCountry;
+
+  /// Text for site status banner, contains problem description. shown only if set by the system.
+  final String? message;
+
+  /// The current status of the website.
+  final SiteStatusEnum? siteStatus;
+
+  /// Provides codes for languages supported.
+  final List<String>? supportedLanguages;
+
+  /// Latest terms and conditions version.
+  final String? termsConditionsVersion;
 }
 
 /// Website status class
 class WebsiteStatus extends WebsiteStatusModel {
   /// Initializes
   WebsiteStatus({
-    @required ApiCallLimits apiCallLimits,
-    @required String clientsCountry,
-    @required Map<String, CryptoConfigProperty> cryptoConfig,
-    @required Map<String, CurrenciesConfigProperty> currenciesConfig,
-    @required String message,
-    @required SiteStatusEnum siteStatus,
-    @required List<String> supportedLanguages,
-    @required String termsConditionsVersion,
+    required ApiCallLimits apiCallLimits,
+    required Map<String, CryptoConfigProperty> cryptoConfig,
+    required Map<String, CurrenciesConfigProperty> currenciesConfig,
+    required P2pConfig p2pConfig,
+    String? clientsCountry,
+    String? message,
+    SiteStatusEnum? siteStatus,
+    List<String>? supportedLanguages,
+    String? termsConditionsVersion,
   }) : super(
           apiCallLimits: apiCallLimits,
-          clientsCountry: clientsCountry,
           cryptoConfig: cryptoConfig,
           currenciesConfig: currenciesConfig,
+          p2pConfig: p2pConfig,
+          clientsCountry: clientsCountry,
           message: message,
           siteStatus: siteStatus,
           supportedLanguages: supportedLanguages,
@@ -250,41 +264,34 @@ class WebsiteStatus extends WebsiteStatusModel {
 
   /// Creates an instance from JSON
   factory WebsiteStatus.fromJson(Map<String, dynamic> json) => WebsiteStatus(
-        apiCallLimits: json['api_call_limits'] == null
-            ? null
-            : ApiCallLimits.fromJson(json['api_call_limits']),
-        clientsCountry: json['clients_country'],
-        cryptoConfig: json['crypto_config'] == null
-            ? null
-            : Map<String, CryptoConfigProperty>.fromEntries(json[
-                    'crypto_config']
+        apiCallLimits: ApiCallLimits.fromJson(json['api_call_limits']),
+        cryptoConfig: Map<String, CryptoConfigProperty>.fromEntries(
+            json['crypto_config']
                 .entries
                 .map<MapEntry<String, CryptoConfigProperty>>(
                     (MapEntry<String, dynamic> entry) =>
-                        MapEntry<String, CryptoConfigProperty>(
-                            entry.key,
-                            entry.value == null
-                                ? null
-                                : CryptoConfigProperty.fromJson(entry.value)))),
-        currenciesConfig: json['currencies_config'] == null
-            ? null
-            : Map<String, CurrenciesConfigProperty>.fromEntries(
-                json['currencies_config']
-                    .entries
-                    .map<MapEntry<String, CurrenciesConfigProperty>>(
-                        (MapEntry<String, dynamic> entry) =>
-                            MapEntry<String, CurrenciesConfigProperty>(
-                                entry.key,
-                                entry.value == null
-                                    ? null
-                                    : CurrenciesConfigProperty.fromJson(
-                                        entry.value)))),
+                        MapEntry<String, CryptoConfigProperty>(entry.key,
+                            CryptoConfigProperty.fromJson(entry.value)))),
+        currenciesConfig: Map<String, CurrenciesConfigProperty>.fromEntries(
+            json['currencies_config']
+                .entries
+                .map<MapEntry<String, CurrenciesConfigProperty>>(
+                    (MapEntry<String, dynamic> entry) =>
+                        MapEntry<String, CurrenciesConfigProperty>(entry.key,
+                            CurrenciesConfigProperty.fromJson(entry.value)))),
+        p2pConfig: P2pConfig.fromJson(json['p2p_config']),
+        clientsCountry: json['clients_country'],
         message: json['message'],
-        siteStatus: siteStatusEnumMapper[json['site_status']],
+        siteStatus: json['site_status'] == null
+            ? null
+            : siteStatusEnumMapper[json['site_status']]!,
         supportedLanguages: json['supported_languages'] == null
             ? null
             : List<String>.from(
-                json['supported_languages'].map((dynamic item) => item)),
+                json['supported_languages']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
         termsConditionsVersion: json['terms_conditions_version'],
       );
 
@@ -292,19 +299,24 @@ class WebsiteStatus extends WebsiteStatusModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    if (apiCallLimits != null) {
-      resultMap['api_call_limits'] = apiCallLimits.toJson();
-    }
-    resultMap['clients_country'] = clientsCountry;
+    resultMap['api_call_limits'] = apiCallLimits.toJson();
+
     resultMap['crypto_config'] = cryptoConfig;
     resultMap['currencies_config'] = currenciesConfig;
+    resultMap['p2p_config'] = p2pConfig.toJson();
+
+    resultMap['clients_country'] = clientsCountry;
     resultMap['message'] = message;
     resultMap['site_status'] = siteStatusEnumMapper.entries
-        .firstWhere((entry) => entry.value == siteStatus, orElse: () => null)
-        ?.key;
+        .firstWhere((MapEntry<String, SiteStatusEnum> entry) =>
+            entry.value == siteStatus)
+        .key;
     if (supportedLanguages != null) {
-      resultMap['supported_languages'] =
-          supportedLanguages.map<dynamic>((String item) => item).toList();
+      resultMap['supported_languages'] = supportedLanguages!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
     }
     resultMap['terms_conditions_version'] = termsConditionsVersion;
 
@@ -313,20 +325,22 @@ class WebsiteStatus extends WebsiteStatusModel {
 
   /// Creates a copy of instance with given parameters
   WebsiteStatus copyWith({
-    ApiCallLimits apiCallLimits,
-    String clientsCountry,
-    Map<String, CryptoConfigProperty> cryptoConfig,
-    Map<String, CurrenciesConfigProperty> currenciesConfig,
-    String message,
-    SiteStatusEnum siteStatus,
-    List<String> supportedLanguages,
-    String termsConditionsVersion,
+    required ApiCallLimits apiCallLimits,
+    required Map<String, CryptoConfigProperty> cryptoConfig,
+    required Map<String, CurrenciesConfigProperty> currenciesConfig,
+    required P2pConfig p2pConfig,
+    String? clientsCountry,
+    String? message,
+    SiteStatusEnum? siteStatus,
+    List<String>? supportedLanguages,
+    String? termsConditionsVersion,
   }) =>
       WebsiteStatus(
-        apiCallLimits: apiCallLimits ?? this.apiCallLimits,
+        apiCallLimits: apiCallLimits,
+        cryptoConfig: cryptoConfig,
+        currenciesConfig: currenciesConfig,
+        p2pConfig: p2pConfig,
         clientsCountry: clientsCountry ?? this.clientsCountry,
-        cryptoConfig: cryptoConfig ?? this.cryptoConfig,
-        currenciesConfig: currenciesConfig ?? this.currenciesConfig,
         message: message ?? this.message,
         siteStatus: siteStatus ?? this.siteStatus,
         supportedLanguages: supportedLanguages ?? this.supportedLanguages,
@@ -338,10 +352,10 @@ class WebsiteStatus extends WebsiteStatusModel {
 abstract class ApiCallLimitsModel {
   /// Initializes
   ApiCallLimitsModel({
-    @required this.maxRequestsPricing,
-    @required this.maxRequestsOutcome,
-    @required this.maxRequestesGeneral,
-    @required this.maxProposalSubscription,
+    required this.maxRequestsPricing,
+    required this.maxRequestsOutcome,
+    required this.maxRequestesGeneral,
+    required this.maxProposalSubscription,
   });
 
   /// Maximum number of pricing requests allowed during specified period of time.
@@ -361,10 +375,10 @@ abstract class ApiCallLimitsModel {
 class ApiCallLimits extends ApiCallLimitsModel {
   /// Initializes
   ApiCallLimits({
-    @required MaxProposalSubscription maxProposalSubscription,
-    @required MaxRequestesGeneral maxRequestesGeneral,
-    @required MaxRequestsOutcome maxRequestsOutcome,
-    @required MaxRequestsPricing maxRequestsPricing,
+    required MaxProposalSubscription maxProposalSubscription,
+    required MaxRequestesGeneral maxRequestesGeneral,
+    required MaxRequestsOutcome maxRequestsOutcome,
+    required MaxRequestsPricing maxRequestsPricing,
   }) : super(
           maxProposalSubscription: maxProposalSubscription,
           maxRequestesGeneral: maxRequestesGeneral,
@@ -374,62 +388,51 @@ class ApiCallLimits extends ApiCallLimitsModel {
 
   /// Creates an instance from JSON
   factory ApiCallLimits.fromJson(Map<String, dynamic> json) => ApiCallLimits(
-        maxProposalSubscription: json['max_proposal_subscription'] == null
-            ? null
-            : MaxProposalSubscription.fromJson(
-                json['max_proposal_subscription']),
-        maxRequestesGeneral: json['max_requestes_general'] == null
-            ? null
-            : MaxRequestesGeneral.fromJson(json['max_requestes_general']),
-        maxRequestsOutcome: json['max_requests_outcome'] == null
-            ? null
-            : MaxRequestsOutcome.fromJson(json['max_requests_outcome']),
-        maxRequestsPricing: json['max_requests_pricing'] == null
-            ? null
-            : MaxRequestsPricing.fromJson(json['max_requests_pricing']),
+        maxProposalSubscription:
+            MaxProposalSubscription.fromJson(json['max_proposal_subscription']),
+        maxRequestesGeneral:
+            MaxRequestesGeneral.fromJson(json['max_requestes_general']),
+        maxRequestsOutcome:
+            MaxRequestsOutcome.fromJson(json['max_requests_outcome']),
+        maxRequestsPricing:
+            MaxRequestsPricing.fromJson(json['max_requests_pricing']),
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    if (maxProposalSubscription != null) {
-      resultMap['max_proposal_subscription'] = maxProposalSubscription.toJson();
-    }
-    if (maxRequestesGeneral != null) {
-      resultMap['max_requestes_general'] = maxRequestesGeneral.toJson();
-    }
-    if (maxRequestsOutcome != null) {
-      resultMap['max_requests_outcome'] = maxRequestsOutcome.toJson();
-    }
-    if (maxRequestsPricing != null) {
-      resultMap['max_requests_pricing'] = maxRequestsPricing.toJson();
-    }
+    resultMap['max_proposal_subscription'] = maxProposalSubscription.toJson();
+
+    resultMap['max_requestes_general'] = maxRequestesGeneral.toJson();
+
+    resultMap['max_requests_outcome'] = maxRequestsOutcome.toJson();
+
+    resultMap['max_requests_pricing'] = maxRequestsPricing.toJson();
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   ApiCallLimits copyWith({
-    MaxProposalSubscription maxProposalSubscription,
-    MaxRequestesGeneral maxRequestesGeneral,
-    MaxRequestsOutcome maxRequestsOutcome,
-    MaxRequestsPricing maxRequestsPricing,
+    required MaxProposalSubscription maxProposalSubscription,
+    required MaxRequestesGeneral maxRequestesGeneral,
+    required MaxRequestsOutcome maxRequestsOutcome,
+    required MaxRequestsPricing maxRequestsPricing,
   }) =>
       ApiCallLimits(
-        maxProposalSubscription:
-            maxProposalSubscription ?? this.maxProposalSubscription,
-        maxRequestesGeneral: maxRequestesGeneral ?? this.maxRequestesGeneral,
-        maxRequestsOutcome: maxRequestsOutcome ?? this.maxRequestsOutcome,
-        maxRequestsPricing: maxRequestsPricing ?? this.maxRequestsPricing,
+        maxProposalSubscription: maxProposalSubscription,
+        maxRequestesGeneral: maxRequestesGeneral,
+        maxRequestsOutcome: maxRequestsOutcome,
+        maxRequestsPricing: maxRequestsPricing,
       );
 }
 /// Max proposal subscription model class
 abstract class MaxProposalSubscriptionModel {
   /// Initializes
   MaxProposalSubscriptionModel({
-    @required this.max,
-    @required this.appliesTo,
+    required this.max,
+    required this.appliesTo,
   });
 
   /// Maximum number of allowed calls.
@@ -443,8 +446,8 @@ abstract class MaxProposalSubscriptionModel {
 class MaxProposalSubscription extends MaxProposalSubscriptionModel {
   /// Initializes
   MaxProposalSubscription({
-    @required String appliesTo,
-    @required double max,
+    required String appliesTo,
+    required double max,
   }) : super(
           appliesTo: appliesTo,
           max: max,
@@ -454,7 +457,7 @@ class MaxProposalSubscription extends MaxProposalSubscriptionModel {
   factory MaxProposalSubscription.fromJson(Map<String, dynamic> json) =>
       MaxProposalSubscription(
         appliesTo: json['applies_to'],
-        max: getDouble(json['max']),
+        max: getDouble(json['max'])!,
       );
 
   /// Converts an instance to JSON
@@ -469,21 +472,21 @@ class MaxProposalSubscription extends MaxProposalSubscriptionModel {
 
   /// Creates a copy of instance with given parameters
   MaxProposalSubscription copyWith({
-    String appliesTo,
-    double max,
+    required String appliesTo,
+    required double max,
   }) =>
       MaxProposalSubscription(
-        appliesTo: appliesTo ?? this.appliesTo,
-        max: max ?? this.max,
+        appliesTo: appliesTo,
+        max: max,
       );
 }
 /// Max requestes general model class
 abstract class MaxRequestesGeneralModel {
   /// Initializes
   MaxRequestesGeneralModel({
-    @required this.minutely,
-    @required this.hourly,
-    @required this.appliesTo,
+    required this.minutely,
+    required this.hourly,
+    required this.appliesTo,
   });
 
   /// The maximum of allowed calls per minute.
@@ -500,9 +503,9 @@ abstract class MaxRequestesGeneralModel {
 class MaxRequestesGeneral extends MaxRequestesGeneralModel {
   /// Initializes
   MaxRequestesGeneral({
-    @required String appliesTo,
-    @required double hourly,
-    @required double minutely,
+    required String appliesTo,
+    required double hourly,
+    required double minutely,
   }) : super(
           appliesTo: appliesTo,
           hourly: hourly,
@@ -513,8 +516,8 @@ class MaxRequestesGeneral extends MaxRequestesGeneralModel {
   factory MaxRequestesGeneral.fromJson(Map<String, dynamic> json) =>
       MaxRequestesGeneral(
         appliesTo: json['applies_to'],
-        hourly: getDouble(json['hourly']),
-        minutely: getDouble(json['minutely']),
+        hourly: getDouble(json['hourly'])!,
+        minutely: getDouble(json['minutely'])!,
       );
 
   /// Converts an instance to JSON
@@ -530,23 +533,23 @@ class MaxRequestesGeneral extends MaxRequestesGeneralModel {
 
   /// Creates a copy of instance with given parameters
   MaxRequestesGeneral copyWith({
-    String appliesTo,
-    double hourly,
-    double minutely,
+    required String appliesTo,
+    required double hourly,
+    required double minutely,
   }) =>
       MaxRequestesGeneral(
-        appliesTo: appliesTo ?? this.appliesTo,
-        hourly: hourly ?? this.hourly,
-        minutely: minutely ?? this.minutely,
+        appliesTo: appliesTo,
+        hourly: hourly,
+        minutely: minutely,
       );
 }
 /// Max requests outcome model class
 abstract class MaxRequestsOutcomeModel {
   /// Initializes
   MaxRequestsOutcomeModel({
-    @required this.minutely,
-    @required this.hourly,
-    @required this.appliesTo,
+    required this.minutely,
+    required this.hourly,
+    required this.appliesTo,
   });
 
   /// The maximum of allowed calls per minute.
@@ -563,9 +566,9 @@ abstract class MaxRequestsOutcomeModel {
 class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
   /// Initializes
   MaxRequestsOutcome({
-    @required String appliesTo,
-    @required double hourly,
-    @required double minutely,
+    required String appliesTo,
+    required double hourly,
+    required double minutely,
   }) : super(
           appliesTo: appliesTo,
           hourly: hourly,
@@ -576,8 +579,8 @@ class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
   factory MaxRequestsOutcome.fromJson(Map<String, dynamic> json) =>
       MaxRequestsOutcome(
         appliesTo: json['applies_to'],
-        hourly: getDouble(json['hourly']),
-        minutely: getDouble(json['minutely']),
+        hourly: getDouble(json['hourly'])!,
+        minutely: getDouble(json['minutely'])!,
       );
 
   /// Converts an instance to JSON
@@ -593,23 +596,23 @@ class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
 
   /// Creates a copy of instance with given parameters
   MaxRequestsOutcome copyWith({
-    String appliesTo,
-    double hourly,
-    double minutely,
+    required String appliesTo,
+    required double hourly,
+    required double minutely,
   }) =>
       MaxRequestsOutcome(
-        appliesTo: appliesTo ?? this.appliesTo,
-        hourly: hourly ?? this.hourly,
-        minutely: minutely ?? this.minutely,
+        appliesTo: appliesTo,
+        hourly: hourly,
+        minutely: minutely,
       );
 }
 /// Max requests pricing model class
 abstract class MaxRequestsPricingModel {
   /// Initializes
   MaxRequestsPricingModel({
-    @required this.minutely,
-    @required this.hourly,
-    @required this.appliesTo,
+    required this.minutely,
+    required this.hourly,
+    required this.appliesTo,
   });
 
   /// The maximum of allowed calls per minute.
@@ -626,9 +629,9 @@ abstract class MaxRequestsPricingModel {
 class MaxRequestsPricing extends MaxRequestsPricingModel {
   /// Initializes
   MaxRequestsPricing({
-    @required String appliesTo,
-    @required double hourly,
-    @required double minutely,
+    required String appliesTo,
+    required double hourly,
+    required double minutely,
   }) : super(
           appliesTo: appliesTo,
           hourly: hourly,
@@ -639,8 +642,8 @@ class MaxRequestsPricing extends MaxRequestsPricingModel {
   factory MaxRequestsPricing.fromJson(Map<String, dynamic> json) =>
       MaxRequestsPricing(
         appliesTo: json['applies_to'],
-        hourly: getDouble(json['hourly']),
-        minutely: getDouble(json['minutely']),
+        hourly: getDouble(json['hourly'])!,
+        minutely: getDouble(json['minutely'])!,
       );
 
   /// Converts an instance to JSON
@@ -656,21 +659,21 @@ class MaxRequestsPricing extends MaxRequestsPricingModel {
 
   /// Creates a copy of instance with given parameters
   MaxRequestsPricing copyWith({
-    String appliesTo,
-    double hourly,
-    double minutely,
+    required String appliesTo,
+    required double hourly,
+    required double minutely,
   }) =>
       MaxRequestsPricing(
-        appliesTo: appliesTo ?? this.appliesTo,
-        hourly: hourly ?? this.hourly,
-        minutely: minutely ?? this.minutely,
+        appliesTo: appliesTo,
+        hourly: hourly,
+        minutely: minutely,
       );
 }
 /// Crypto config property model class
 abstract class CryptoConfigPropertyModel {
   /// Initializes
   CryptoConfigPropertyModel({
-    @required this.minimumWithdrawal,
+    required this.minimumWithdrawal,
   });
 
   /// Minimum withdrawal for the currency in USD.
@@ -681,7 +684,7 @@ abstract class CryptoConfigPropertyModel {
 class CryptoConfigProperty extends CryptoConfigPropertyModel {
   /// Initializes
   CryptoConfigProperty({
-    @required double minimumWithdrawal,
+    required double minimumWithdrawal,
   }) : super(
           minimumWithdrawal: minimumWithdrawal,
         );
@@ -689,7 +692,7 @@ class CryptoConfigProperty extends CryptoConfigPropertyModel {
   /// Creates an instance from JSON
   factory CryptoConfigProperty.fromJson(Map<String, dynamic> json) =>
       CryptoConfigProperty(
-        minimumWithdrawal: getDouble(json['minimum_withdrawal']),
+        minimumWithdrawal: getDouble(json['minimum_withdrawal'])!,
       );
 
   /// Converts an instance to JSON
@@ -703,23 +706,23 @@ class CryptoConfigProperty extends CryptoConfigPropertyModel {
 
   /// Creates a copy of instance with given parameters
   CryptoConfigProperty copyWith({
-    double minimumWithdrawal,
+    required double minimumWithdrawal,
   }) =>
       CryptoConfigProperty(
-        minimumWithdrawal: minimumWithdrawal ?? this.minimumWithdrawal,
+        minimumWithdrawal: minimumWithdrawal,
       );
 }
 /// Currencies config property model class
 abstract class CurrenciesConfigPropertyModel {
   /// Initializes
   CurrenciesConfigPropertyModel({
-    @required this.type,
-    @required this.transferBetweenAccounts,
-    @required this.stakeDefault,
-    @required this.isWithdrawalSuspended,
-    @required this.isSuspended,
-    @required this.isDepositSuspended,
-    @required this.fractionalDigits,
+    required this.type,
+    required this.transferBetweenAccounts,
+    required this.stakeDefault,
+    required this.isWithdrawalSuspended,
+    required this.isSuspended,
+    required this.isDepositSuspended,
+    required this.fractionalDigits,
   });
 
   /// Type of the currency.
@@ -748,13 +751,13 @@ abstract class CurrenciesConfigPropertyModel {
 class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
   /// Initializes
   CurrenciesConfigProperty({
-    @required double fractionalDigits,
-    @required double isDepositSuspended,
-    @required double isSuspended,
-    @required double isWithdrawalSuspended,
-    @required double stakeDefault,
-    @required TransferBetweenAccounts transferBetweenAccounts,
-    @required TypeEnum type,
+    required double fractionalDigits,
+    required double isDepositSuspended,
+    required double isSuspended,
+    required double isWithdrawalSuspended,
+    required double stakeDefault,
+    required TransferBetweenAccounts transferBetweenAccounts,
+    required TypeEnum type,
   }) : super(
           fractionalDigits: fractionalDigits,
           isDepositSuspended: isDepositSuspended,
@@ -768,16 +771,14 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
   /// Creates an instance from JSON
   factory CurrenciesConfigProperty.fromJson(Map<String, dynamic> json) =>
       CurrenciesConfigProperty(
-        fractionalDigits: getDouble(json['fractional_digits']),
-        isDepositSuspended: getDouble(json['is_deposit_suspended']),
-        isSuspended: getDouble(json['is_suspended']),
-        isWithdrawalSuspended: getDouble(json['is_withdrawal_suspended']),
-        stakeDefault: getDouble(json['stake_default']),
-        transferBetweenAccounts: json['transfer_between_accounts'] == null
-            ? null
-            : TransferBetweenAccounts.fromJson(
-                json['transfer_between_accounts']),
-        type: typeEnumMapper[json['type']],
+        fractionalDigits: getDouble(json['fractional_digits'])!,
+        isDepositSuspended: getDouble(json['is_deposit_suspended'])!,
+        isSuspended: getDouble(json['is_suspended'])!,
+        isWithdrawalSuspended: getDouble(json['is_withdrawal_suspended'])!,
+        stakeDefault: getDouble(json['stake_default'])!,
+        transferBetweenAccounts:
+            TransferBetweenAccounts.fromJson(json['transfer_between_accounts']),
+        type: typeEnumMapper[json['type']]!,
       );
 
   /// Converts an instance to JSON
@@ -789,44 +790,41 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
     resultMap['is_suspended'] = isSuspended;
     resultMap['is_withdrawal_suspended'] = isWithdrawalSuspended;
     resultMap['stake_default'] = stakeDefault;
-    if (transferBetweenAccounts != null) {
-      resultMap['transfer_between_accounts'] = transferBetweenAccounts.toJson();
-    }
+    resultMap['transfer_between_accounts'] = transferBetweenAccounts.toJson();
+
     resultMap['type'] = typeEnumMapper.entries
-        .firstWhere((entry) => entry.value == type, orElse: () => null)
-        ?.key;
+        .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
+        .key;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   CurrenciesConfigProperty copyWith({
-    double fractionalDigits,
-    double isDepositSuspended,
-    double isSuspended,
-    double isWithdrawalSuspended,
-    double stakeDefault,
-    TransferBetweenAccounts transferBetweenAccounts,
-    TypeEnum type,
+    required double fractionalDigits,
+    required double isDepositSuspended,
+    required double isSuspended,
+    required double isWithdrawalSuspended,
+    required double stakeDefault,
+    required TransferBetweenAccounts transferBetweenAccounts,
+    required TypeEnum type,
   }) =>
       CurrenciesConfigProperty(
-        fractionalDigits: fractionalDigits ?? this.fractionalDigits,
-        isDepositSuspended: isDepositSuspended ?? this.isDepositSuspended,
-        isSuspended: isSuspended ?? this.isSuspended,
-        isWithdrawalSuspended:
-            isWithdrawalSuspended ?? this.isWithdrawalSuspended,
-        stakeDefault: stakeDefault ?? this.stakeDefault,
-        transferBetweenAccounts:
-            transferBetweenAccounts ?? this.transferBetweenAccounts,
-        type: type ?? this.type,
+        fractionalDigits: fractionalDigits,
+        isDepositSuspended: isDepositSuspended,
+        isSuspended: isSuspended,
+        isWithdrawalSuspended: isWithdrawalSuspended,
+        stakeDefault: stakeDefault,
+        transferBetweenAccounts: transferBetweenAccounts,
+        type: type,
       );
 }
 /// Transfer between accounts model class
 abstract class TransferBetweenAccountsModel {
   /// Initializes
   TransferBetweenAccountsModel({
-    @required this.limits,
-    @required this.fees,
+    required this.limits,
+    required this.fees,
   });
 
   ///
@@ -840,8 +838,8 @@ abstract class TransferBetweenAccountsModel {
 class TransferBetweenAccounts extends TransferBetweenAccountsModel {
   /// Initializes
   TransferBetweenAccounts({
-    @required Map<String, double> fees,
-    @required Limits limits,
+    required Map<String, double> fees,
+    required Limits limits,
   }) : super(
           fees: fees,
           limits: limits,
@@ -850,15 +848,11 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
   /// Creates an instance from JSON
   factory TransferBetweenAccounts.fromJson(Map<String, dynamic> json) =>
       TransferBetweenAccounts(
-        fees: json['fees'] == null
-            ? null
-            : Map<String, double>.fromEntries(json['fees']
-                .entries
-                .map<MapEntry<String, double>>(
-                    (MapEntry<String, dynamic> entry) =>
-                        MapEntry<String, double>(
-                            entry.key, getDouble(entry.value)))),
-        limits: json['limits'] == null ? null : Limits.fromJson(json['limits']),
+        fees: Map<String, double>.fromEntries(json['fees']
+            .entries
+            .map<MapEntry<String, double>>((MapEntry<String, dynamic> entry) =>
+                MapEntry<String, double>(entry.key, getDouble(entry.value)!))),
+        limits: Limits.fromJson(json['limits']),
       );
 
   /// Converts an instance to JSON
@@ -866,80 +860,210 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['fees'] = fees;
-    if (limits != null) {
-      resultMap['limits'] = limits.toJson();
-    }
+    resultMap['limits'] = limits.toJson();
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   TransferBetweenAccounts copyWith({
-    Map<String, double> fees,
-    Limits limits,
+    required Map<String, double> fees,
+    required Limits limits,
   }) =>
       TransferBetweenAccounts(
-        fees: fees ?? this.fees,
-        limits: limits ?? this.limits,
+        fees: fees,
+        limits: limits,
       );
 }
 /// Limits model class
 abstract class LimitsModel {
   /// Initializes
   LimitsModel({
-    @required this.min,
-    @required this.max,
+    required this.min,
+    this.max,
   });
 
   /// Minimum allowed amount for transfer between accounts with different types of currencies.
   final double min;
 
   /// Maximum allowed amount for transfer between accounts with different types of currencies.
-  final double max;
+  final double? max;
 }
 
 /// Limits class
 class Limits extends LimitsModel {
   /// Initializes
   Limits({
-    @required double max,
-    @required double min,
+    required double min,
+    double? max,
   }) : super(
-          max: max,
           min: min,
+          max: max,
         );
 
   /// Creates an instance from JSON
   factory Limits.fromJson(Map<String, dynamic> json) => Limits(
+        min: getDouble(json['min'])!,
         max: getDouble(json['max']),
-        min: getDouble(json['min']),
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    resultMap['max'] = max;
     resultMap['min'] = min;
+    resultMap['max'] = max;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   Limits copyWith({
-    double max,
-    double min,
+    required double min,
+    double? max,
   }) =>
       Limits(
+        min: min,
         max: max ?? this.max,
-        min: min ?? this.min,
+      );
+}
+/// P2p config model class
+abstract class P2pConfigModel {
+  /// Initializes
+  P2pConfigModel({
+    required this.orderPaymentPeriod,
+    required this.orderDailyLimit,
+    required this.maximumOrderAmount,
+    required this.maximumAdvertAmount,
+    required this.cancellationLimit,
+    required this.cancellationGracePeriod,
+    required this.cancellationCountPeriod,
+    required this.cancellationBlockDuration,
+    required this.advertsActiveLimit,
+    this.advertsArchivePeriod,
+  });
+
+  /// Time allowed for order payment, in minutes after order creation.
+  final int orderPaymentPeriod;
+
+  /// Maximum number of orders a user may create per day.
+  final int orderDailyLimit;
+
+  /// Maximum amount of an order, in USD.
+  final double maximumOrderAmount;
+
+  /// Maximum amount of an advert, in USD.
+  final double maximumAdvertAmount;
+
+  /// A buyer will be temporarily barred after marking this number of cancellations within cancellation_period.
+  final int cancellationLimit;
+
+  /// A buyer may cancel an order within this period without negative consequences, in minutes after order creation.
+  final int cancellationGracePeriod;
+
+  /// The period within which to count buyer cancellations, in hours.
+  final int cancellationCountPeriod;
+
+  /// A buyer will be blocked for this duration after exceeding the cancellation limit, in hours.
+  final int cancellationBlockDuration;
+
+  /// Maximum number of active ads allowed by an advertiser per currency pair and advert type (buy or sell).
+  final int advertsActiveLimit;
+
+  /// Adverts will be deactivated if no activity occurs within this period, in days.
+  final int? advertsArchivePeriod;
+}
+
+/// P2p config class
+class P2pConfig extends P2pConfigModel {
+  /// Initializes
+  P2pConfig({
+    required int advertsActiveLimit,
+    required int cancellationBlockDuration,
+    required int cancellationCountPeriod,
+    required int cancellationGracePeriod,
+    required int cancellationLimit,
+    required double maximumAdvertAmount,
+    required double maximumOrderAmount,
+    required int orderDailyLimit,
+    required int orderPaymentPeriod,
+    int? advertsArchivePeriod,
+  }) : super(
+          advertsActiveLimit: advertsActiveLimit,
+          cancellationBlockDuration: cancellationBlockDuration,
+          cancellationCountPeriod: cancellationCountPeriod,
+          cancellationGracePeriod: cancellationGracePeriod,
+          cancellationLimit: cancellationLimit,
+          maximumAdvertAmount: maximumAdvertAmount,
+          maximumOrderAmount: maximumOrderAmount,
+          orderDailyLimit: orderDailyLimit,
+          orderPaymentPeriod: orderPaymentPeriod,
+          advertsArchivePeriod: advertsArchivePeriod,
+        );
+
+  /// Creates an instance from JSON
+  factory P2pConfig.fromJson(Map<String, dynamic> json) => P2pConfig(
+        advertsActiveLimit: json['adverts_active_limit'],
+        cancellationBlockDuration: json['cancellation_block_duration'],
+        cancellationCountPeriod: json['cancellation_count_period'],
+        cancellationGracePeriod: json['cancellation_grace_period'],
+        cancellationLimit: json['cancellation_limit'],
+        maximumAdvertAmount: getDouble(json['maximum_advert_amount'])!,
+        maximumOrderAmount: getDouble(json['maximum_order_amount'])!,
+        orderDailyLimit: json['order_daily_limit'],
+        orderPaymentPeriod: json['order_payment_period'],
+        advertsArchivePeriod: json['adverts_archive_period'],
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['adverts_active_limit'] = advertsActiveLimit;
+    resultMap['cancellation_block_duration'] = cancellationBlockDuration;
+    resultMap['cancellation_count_period'] = cancellationCountPeriod;
+    resultMap['cancellation_grace_period'] = cancellationGracePeriod;
+    resultMap['cancellation_limit'] = cancellationLimit;
+    resultMap['maximum_advert_amount'] = maximumAdvertAmount;
+    resultMap['maximum_order_amount'] = maximumOrderAmount;
+    resultMap['order_daily_limit'] = orderDailyLimit;
+    resultMap['order_payment_period'] = orderPaymentPeriod;
+    resultMap['adverts_archive_period'] = advertsArchivePeriod;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  P2pConfig copyWith({
+    required int advertsActiveLimit,
+    required int cancellationBlockDuration,
+    required int cancellationCountPeriod,
+    required int cancellationGracePeriod,
+    required int cancellationLimit,
+    required double maximumAdvertAmount,
+    required double maximumOrderAmount,
+    required int orderDailyLimit,
+    required int orderPaymentPeriod,
+    int? advertsArchivePeriod,
+  }) =>
+      P2pConfig(
+        advertsActiveLimit: advertsActiveLimit,
+        cancellationBlockDuration: cancellationBlockDuration,
+        cancellationCountPeriod: cancellationCountPeriod,
+        cancellationGracePeriod: cancellationGracePeriod,
+        cancellationLimit: cancellationLimit,
+        maximumAdvertAmount: maximumAdvertAmount,
+        maximumOrderAmount: maximumOrderAmount,
+        orderDailyLimit: orderDailyLimit,
+        orderPaymentPeriod: orderPaymentPeriod,
+        advertsArchivePeriod: advertsArchivePeriod ?? this.advertsArchivePeriod,
       );
 }
 /// Subscription model class
 abstract class SubscriptionModel {
   /// Initializes
   SubscriptionModel({
-    @required this.id,
+    required this.id,
   });
 
   /// A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
@@ -950,7 +1074,7 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
-    @required String id,
+    required String id,
   }) : super(
           id: id,
         );
@@ -971,9 +1095,9 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters
   Subscription copyWith({
-    String id,
+    required String id,
   }) =>
       Subscription(
-        id: id ?? this.id,
+        id: id,
       );
 }

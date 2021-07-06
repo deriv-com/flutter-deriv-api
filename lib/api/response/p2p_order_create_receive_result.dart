@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/p2p_order_create_receive.dart';
 import '../../basic_api/generated/p2p_order_create_send.dart';
 import '../../basic_api/response.dart';
@@ -14,23 +12,23 @@ import '../models/base_exception_model.dart';
 abstract class P2pOrderCreateResponseModel {
   /// Initializes
   P2pOrderCreateResponseModel({
-    @required this.subscription,
-    @required this.p2pOrderCreate,
+    this.p2pOrderCreate,
+    this.subscription,
   });
 
-  /// For subscription requests only.
-  final Subscription subscription;
-
   /// Information of the creates P2P order.
-  final P2pOrderCreate p2pOrderCreate;
+  final P2pOrderCreate? p2pOrderCreate;
+
+  /// For subscription requests only.
+  final Subscription? subscription;
 }
 
 /// P2p order create response class
 class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
   /// Initializes
   P2pOrderCreateResponse({
-    @required P2pOrderCreate p2pOrderCreate,
-    @required Subscription subscription,
+    P2pOrderCreate? p2pOrderCreate,
+    Subscription? subscription,
   }) : super(
           p2pOrderCreate: p2pOrderCreate,
           subscription: subscription,
@@ -55,16 +53,16 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (p2pOrderCreate != null) {
-      resultMap['p2p_order_create'] = p2pOrderCreate.toJson();
+      resultMap['p2p_order_create'] = p2pOrderCreate!.toJson();
     }
     if (subscription != null) {
-      resultMap['subscription'] = subscription.toJson();
+      resultMap['subscription'] = subscription!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates order with parameters specified in [P2pOrderCreateRequest]
   static Future<P2pOrderCreateResponse> create(
@@ -73,7 +71,7 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -84,15 +82,15 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
   /// Creates order and subscribes to the result with parameters specified in [P2pOrderCreateRequest]
   ///
   /// Throws a [P2POrderException] if API response contains an error
-  static Stream<P2pOrderCreateResponse> createAndSubscribe(
+  static Stream<P2pOrderCreateResponse?> createAndSubscribe(
     P2pOrderCreateSend request, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
-      _api.subscribe(request: request, comparePredicate: comparePredicate).map(
+      _api.subscribe(request: request, comparePredicate: comparePredicate)!.map(
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
                 P2POrderException(baseExceptionModel: baseExceptionModel),
           );
 
@@ -107,8 +105,8 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
 
   /// Creates a copy of instance with given parameters
   P2pOrderCreateResponse copyWith({
-    P2pOrderCreate p2pOrderCreate,
-    Subscription subscription,
+    P2pOrderCreate? p2pOrderCreate,
+    Subscription? subscription,
   }) =>
       P2pOrderCreateResponse(
         p2pOrderCreate: p2pOrderCreate ?? this.p2pOrderCreate,
@@ -116,50 +114,59 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
       );
 }
 
+/// TypeEnum mapper.
 final Map<String, TypeEnum> typeEnumMapper = <String, TypeEnum>{
   "buy": TypeEnum.buy,
   "sell": TypeEnum.sell,
 };
 
-/// type Enum
+/// Type Enum.
 enum TypeEnum {
+  /// buy.
   buy,
+
+  /// sell.
   sell,
 }
 
+/// StatusEnum mapper.
 final Map<String, StatusEnum> statusEnumMapper = <String, StatusEnum>{
   "pending": StatusEnum.pending,
 };
 
-/// status Enum
+/// Status Enum.
 enum StatusEnum {
+  /// pending.
   pending,
 }
 /// P2p order create model class
 abstract class P2pOrderCreateModel {
   /// Initializes
   P2pOrderCreateModel({
-    @required this.type,
-    @required this.status,
-    @required this.rateDisplay,
-    @required this.rate,
-    @required this.priceDisplay,
-    @required this.price,
-    @required this.paymentInfo,
-    @required this.localCurrency,
-    @required this.isIncoming,
-    @required this.id,
-    @required this.expiryTime,
-    @required this.disputeDetails,
-    @required this.createdTime,
-    @required this.contactInfo,
-    @required this.clientDetails,
-    @required this.chatChannelUrl,
-    @required this.amountDisplay,
-    @required this.amount,
-    @required this.advertiserDetails,
-    @required this.advertDetails,
-    @required this.accountCurrency,
+    required this.type,
+    required this.status,
+    required this.rateDisplay,
+    required this.rate,
+    required this.priceDisplay,
+    required this.price,
+    required this.paymentInfo,
+    required this.localCurrency,
+    required this.isIncoming,
+    required this.id,
+    required this.expiryTime,
+    required this.disputeDetails,
+    required this.createdTime,
+    required this.contactInfo,
+    required this.clientDetails,
+    required this.chatChannelUrl,
+    required this.amountDisplay,
+    required this.amount,
+    required this.advertiserDetails,
+    required this.advertDetails,
+    required this.accountCurrency,
+    this.paymentMethod,
+    this.paymentMethodDetails,
+    this.paymentMethodIds,
   });
 
   /// Type of the order.
@@ -196,7 +203,7 @@ abstract class P2pOrderCreateModel {
   final DateTime expiryTime;
 
   /// Details of the order dispute.
-  final P2pOrderCreateDisputeDetails disputeDetails;
+  final DisputeDetails disputeDetails;
 
   /// The epoch time of the order creation.
   final DateTime createdTime;
@@ -205,7 +212,7 @@ abstract class P2pOrderCreateModel {
   final String contactInfo;
 
   /// Details of the client who created the order.
-  final P2pOrderCreateClientDetails clientDetails;
+  final ClientDetails clientDetails;
 
   /// The URL to be used to initialise the chat for this order.
   final String chatChannelUrl;
@@ -217,40 +224,52 @@ abstract class P2pOrderCreateModel {
   final double amount;
 
   /// Details of the advertiser for this order.
-  final P2pOrderCreateAdvertiserDetails advertiserDetails;
+  final AdvertiserDetails advertiserDetails;
 
   /// Details of the advert for this order.
-  final P2pOrderCreateAdvertDetails advertDetails;
+  final AdvertDetails advertDetails;
 
   /// The currency of order.
   final String accountCurrency;
+
+  /// Supported payment methods. Comma separated list.
+  final String? paymentMethod;
+
+  /// Details of available payment methods.
+  final List<PaymentMethodDetailsItem>? paymentMethodDetails;
+
+  /// IDs of payment methods.
+  final List<int>? paymentMethodIds;
 }
 
 /// P2p order create class
 class P2pOrderCreate extends P2pOrderCreateModel {
   /// Initializes
   P2pOrderCreate({
-    @required String accountCurrency,
-    @required P2pOrderCreateAdvertDetails advertDetails,
-    @required P2pOrderCreateAdvertiserDetails advertiserDetails,
-    @required double amount,
-    @required String amountDisplay,
-    @required String chatChannelUrl,
-    @required P2pOrderCreateClientDetails clientDetails,
-    @required String contactInfo,
-    @required DateTime createdTime,
-    @required P2pOrderCreateDisputeDetails disputeDetails,
-    @required DateTime expiryTime,
-    @required String id,
-    @required bool isIncoming,
-    @required String localCurrency,
-    @required String paymentInfo,
-    @required double price,
-    @required String priceDisplay,
-    @required double rate,
-    @required String rateDisplay,
-    @required StatusEnum status,
-    @required TypeEnum type,
+    required String accountCurrency,
+    required AdvertDetails advertDetails,
+    required AdvertiserDetails advertiserDetails,
+    required double amount,
+    required String amountDisplay,
+    required String chatChannelUrl,
+    required ClientDetails clientDetails,
+    required String contactInfo,
+    required DateTime createdTime,
+    required DisputeDetails disputeDetails,
+    required DateTime expiryTime,
+    required String id,
+    required bool isIncoming,
+    required String localCurrency,
+    required String paymentInfo,
+    required double price,
+    required String priceDisplay,
+    required double rate,
+    required String rateDisplay,
+    required StatusEnum status,
+    required TypeEnum type,
+    String? paymentMethod,
+    List<PaymentMethodDetailsItem>? paymentMethodDetails,
+    List<int>? paymentMethodIds,
   }) : super(
           accountCurrency: accountCurrency,
           advertDetails: advertDetails,
@@ -273,40 +292,50 @@ class P2pOrderCreate extends P2pOrderCreateModel {
           rateDisplay: rateDisplay,
           status: status,
           type: type,
+          paymentMethod: paymentMethod,
+          paymentMethodDetails: paymentMethodDetails,
+          paymentMethodIds: paymentMethodIds,
         );
 
   /// Creates an instance from JSON
   factory P2pOrderCreate.fromJson(Map<String, dynamic> json) => P2pOrderCreate(
         accountCurrency: json['account_currency'],
-        advertDetails: json['advert_details'] == null
-            ? null
-            : P2pOrderCreateAdvertDetails.fromJson(json['advert_details']),
-        advertiserDetails: json['advertiser_details'] == null
-            ? null
-            : P2pOrderCreateAdvertiserDetails.fromJson(
-                json['advertiser_details']),
-        amount: getDouble(json['amount']),
+        advertDetails: AdvertDetails.fromJson(json['advert_details']),
+        advertiserDetails:
+            AdvertiserDetails.fromJson(json['advertiser_details']),
+        amount: getDouble(json['amount'])!,
         amountDisplay: json['amount_display'],
         chatChannelUrl: json['chat_channel_url'],
-        clientDetails: json['client_details'] == null
-            ? null
-            : P2pOrderCreateClientDetails.fromJson(json['client_details']),
+        clientDetails: ClientDetails.fromJson(json['client_details']),
         contactInfo: json['contact_info'],
-        createdTime: getDateTime(json['created_time']),
-        disputeDetails: json['dispute_details'] == null
-            ? null
-            : P2pOrderCreateDisputeDetails.fromJson(json['dispute_details']),
-        expiryTime: getDateTime(json['expiry_time']),
+        createdTime: getDateTime(json['created_time'])!,
+        disputeDetails: DisputeDetails.fromJson(json['dispute_details']),
+        expiryTime: getDateTime(json['expiry_time'])!,
         id: json['id'],
-        isIncoming: getBool(json['is_incoming']),
+        isIncoming: getBool(json['is_incoming'])!,
         localCurrency: json['local_currency'],
         paymentInfo: json['payment_info'],
-        price: getDouble(json['price']),
+        price: getDouble(json['price'])!,
         priceDisplay: json['price_display'],
-        rate: getDouble(json['rate']),
+        rate: getDouble(json['rate'])!,
         rateDisplay: json['rate_display'],
-        status: statusEnumMapper[json['status']],
-        type: typeEnumMapper[json['type']],
+        status: statusEnumMapper[json['status']]!,
+        type: typeEnumMapper[json['type']]!,
+        paymentMethod: json['payment_method'],
+        paymentMethodDetails: json['payment_method_details'] == null
+            ? null
+            : List<PaymentMethodDetailsItem>.from(
+                json['payment_method_details']?.map(
+                  (dynamic item) => PaymentMethodDetailsItem.fromJson(item),
+                ),
+              ),
+        paymentMethodIds: json['payment_method_ids'] == null
+            ? null
+            : List<int>.from(
+                json['payment_method_ids']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -314,23 +343,19 @@ class P2pOrderCreate extends P2pOrderCreateModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['account_currency'] = accountCurrency;
-    if (advertDetails != null) {
-      resultMap['advert_details'] = advertDetails.toJson();
-    }
-    if (advertiserDetails != null) {
-      resultMap['advertiser_details'] = advertiserDetails.toJson();
-    }
+    resultMap['advert_details'] = advertDetails.toJson();
+
+    resultMap['advertiser_details'] = advertiserDetails.toJson();
+
     resultMap['amount'] = amount;
     resultMap['amount_display'] = amountDisplay;
     resultMap['chat_channel_url'] = chatChannelUrl;
-    if (clientDetails != null) {
-      resultMap['client_details'] = clientDetails.toJson();
-    }
+    resultMap['client_details'] = clientDetails.toJson();
+
     resultMap['contact_info'] = contactInfo;
     resultMap['created_time'] = getSecondsSinceEpochDateTime(createdTime);
-    if (disputeDetails != null) {
-      resultMap['dispute_details'] = disputeDetails.toJson();
-    }
+    resultMap['dispute_details'] = disputeDetails.toJson();
+
     resultMap['expiry_time'] = getSecondsSinceEpochDateTime(expiryTime);
     resultMap['id'] = id;
     resultMap['is_incoming'] = isIncoming;
@@ -341,108 +366,129 @@ class P2pOrderCreate extends P2pOrderCreateModel {
     resultMap['rate'] = rate;
     resultMap['rate_display'] = rateDisplay;
     resultMap['status'] = statusEnumMapper.entries
-        .firstWhere((entry) => entry.value == status, orElse: () => null)
-        ?.key;
+        .firstWhere(
+            (MapEntry<String, StatusEnum> entry) => entry.value == status)
+        .key;
     resultMap['type'] = typeEnumMapper.entries
-        .firstWhere((entry) => entry.value == type, orElse: () => null)
-        ?.key;
+        .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
+        .key;
+    resultMap['payment_method'] = paymentMethod;
+    if (paymentMethodDetails != null) {
+      resultMap['payment_method_details'] = paymentMethodDetails!
+          .map<dynamic>(
+            (PaymentMethodDetailsItem item) => item.toJson(),
+          )
+          .toList();
+    }
+    if (paymentMethodIds != null) {
+      resultMap['payment_method_ids'] = paymentMethodIds!
+          .map<dynamic>(
+            (int item) => item,
+          )
+          .toList();
+    }
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   P2pOrderCreate copyWith({
-    String accountCurrency,
-    P2pOrderCreateAdvertDetails advertDetails,
-    P2pOrderCreateAdvertiserDetails advertiserDetails,
-    double amount,
-    String amountDisplay,
-    String chatChannelUrl,
-    P2pOrderCreateClientDetails clientDetails,
-    String contactInfo,
-    DateTime createdTime,
-    P2pOrderCreateDisputeDetails disputeDetails,
-    DateTime expiryTime,
-    String id,
-    bool isIncoming,
-    String localCurrency,
-    String paymentInfo,
-    double price,
-    String priceDisplay,
-    double rate,
-    String rateDisplay,
-    StatusEnum status,
-    TypeEnum type,
+    required String accountCurrency,
+    required AdvertDetails advertDetails,
+    required AdvertiserDetails advertiserDetails,
+    required double amount,
+    required String amountDisplay,
+    required String chatChannelUrl,
+    required ClientDetails clientDetails,
+    required String contactInfo,
+    required DateTime createdTime,
+    required DisputeDetails disputeDetails,
+    required DateTime expiryTime,
+    required String id,
+    required bool isIncoming,
+    required String localCurrency,
+    required String paymentInfo,
+    required double price,
+    required String priceDisplay,
+    required double rate,
+    required String rateDisplay,
+    required StatusEnum status,
+    required TypeEnum type,
+    String? paymentMethod,
+    List<PaymentMethodDetailsItem>? paymentMethodDetails,
+    List<int>? paymentMethodIds,
   }) =>
       P2pOrderCreate(
-        accountCurrency: accountCurrency ?? this.accountCurrency,
-        advertDetails: advertDetails ?? this.advertDetails,
-        advertiserDetails: advertiserDetails ?? this.advertiserDetails,
-        amount: amount ?? this.amount,
-        amountDisplay: amountDisplay ?? this.amountDisplay,
-        chatChannelUrl: chatChannelUrl ?? this.chatChannelUrl,
-        clientDetails: clientDetails ?? this.clientDetails,
-        contactInfo: contactInfo ?? this.contactInfo,
-        createdTime: createdTime ?? this.createdTime,
-        disputeDetails: disputeDetails ?? this.disputeDetails,
-        expiryTime: expiryTime ?? this.expiryTime,
-        id: id ?? this.id,
-        isIncoming: isIncoming ?? this.isIncoming,
-        localCurrency: localCurrency ?? this.localCurrency,
-        paymentInfo: paymentInfo ?? this.paymentInfo,
-        price: price ?? this.price,
-        priceDisplay: priceDisplay ?? this.priceDisplay,
-        rate: rate ?? this.rate,
-        rateDisplay: rateDisplay ?? this.rateDisplay,
-        status: status ?? this.status,
-        type: type ?? this.type,
+        accountCurrency: accountCurrency,
+        advertDetails: advertDetails,
+        advertiserDetails: advertiserDetails,
+        amount: amount,
+        amountDisplay: amountDisplay,
+        chatChannelUrl: chatChannelUrl,
+        clientDetails: clientDetails,
+        contactInfo: contactInfo,
+        createdTime: createdTime,
+        disputeDetails: disputeDetails,
+        expiryTime: expiryTime,
+        id: id,
+        isIncoming: isIncoming,
+        localCurrency: localCurrency,
+        paymentInfo: paymentInfo,
+        price: price,
+        priceDisplay: priceDisplay,
+        rate: rate,
+        rateDisplay: rateDisplay,
+        status: status,
+        type: type,
+        paymentMethod: paymentMethod ?? this.paymentMethod,
+        paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,
+        paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
       );
 }
-/// P2p order create advert details model class
-abstract class P2pOrderCreateAdvertDetailsModel {
+/// Advert details model class
+abstract class AdvertDetailsModel {
   /// Initializes
-  P2pOrderCreateAdvertDetailsModel({
-    @required this.type,
-    @required this.paymentMethod,
-    @required this.id,
-    @required this.description,
+  AdvertDetailsModel({
+    required this.type,
+    required this.id,
+    required this.description,
+    this.paymentMethod,
   });
 
   /// Type of the advert.
   final TypeEnum type;
-
-  /// The payment method.
-  final String paymentMethod;
 
   /// The unique identifier for the advert.
   final String id;
 
   /// General information about the advert.
   final String description;
+
+  /// The payment method.
+  final String? paymentMethod;
 }
 
-/// P2p order create advert details class
-class P2pOrderCreateAdvertDetails extends P2pOrderCreateAdvertDetailsModel {
+/// Advert details class
+class AdvertDetails extends AdvertDetailsModel {
   /// Initializes
-  P2pOrderCreateAdvertDetails({
-    @required String description,
-    @required String id,
-    @required String paymentMethod,
-    @required TypeEnum type,
+  AdvertDetails({
+    required String description,
+    required String id,
+    required TypeEnum type,
+    String? paymentMethod,
   }) : super(
           description: description,
           id: id,
-          paymentMethod: paymentMethod,
           type: type,
+          paymentMethod: paymentMethod,
         );
 
   /// Creates an instance from JSON
-  factory P2pOrderCreateAdvertDetails.fromJson(Map<String, dynamic> json) =>
-      P2pOrderCreateAdvertDetails(
+  factory AdvertDetails.fromJson(Map<String, dynamic> json) => AdvertDetails(
         description: json['description'],
         id: json['id'],
+        type: typeEnumMapper[json['type']]!,
         paymentMethod: json['payment_method'],
-        type: typeEnumMapper[json['type']],
       );
 
   /// Converts an instance to JSON
@@ -451,37 +497,37 @@ class P2pOrderCreateAdvertDetails extends P2pOrderCreateAdvertDetailsModel {
 
     resultMap['description'] = description;
     resultMap['id'] = id;
-    resultMap['payment_method'] = paymentMethod;
     resultMap['type'] = typeEnumMapper.entries
-        .firstWhere((entry) => entry.value == type, orElse: () => null)
-        ?.key;
+        .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
+        .key;
+    resultMap['payment_method'] = paymentMethod;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
-  P2pOrderCreateAdvertDetails copyWith({
-    String description,
-    String id,
-    String paymentMethod,
-    TypeEnum type,
+  AdvertDetails copyWith({
+    required String description,
+    required String id,
+    required TypeEnum type,
+    String? paymentMethod,
   }) =>
-      P2pOrderCreateAdvertDetails(
-        description: description ?? this.description,
-        id: id ?? this.id,
+      AdvertDetails(
+        description: description,
+        id: id,
+        type: type,
         paymentMethod: paymentMethod ?? this.paymentMethod,
-        type: type ?? this.type,
       );
 }
-/// P2p order create advertiser details model class
-abstract class P2pOrderCreateAdvertiserDetailsModel {
+/// Advertiser details model class
+abstract class AdvertiserDetailsModel {
   /// Initializes
-  P2pOrderCreateAdvertiserDetailsModel({
-    @required this.name,
-    @required this.loginid,
-    @required this.lastName,
-    @required this.id,
-    @required this.firstName,
+  AdvertiserDetailsModel({
+    required this.name,
+    required this.loginid,
+    required this.id,
+    this.firstName,
+    this.lastName,
   });
 
   /// The advertiser's displayed name.
@@ -490,82 +536,81 @@ abstract class P2pOrderCreateAdvertiserDetailsModel {
   /// The advertiser's account identifier.
   final String loginid;
 
-  /// The advertiser's last name.
-  final String lastName;
-
   /// The advertiser's unique identifier.
   final String id;
 
   /// The advertiser's first name.
-  final String firstName;
+  final String? firstName;
+
+  /// The advertiser's last name.
+  final String? lastName;
 }
 
-/// P2p order create advertiser details class
-class P2pOrderCreateAdvertiserDetails
-    extends P2pOrderCreateAdvertiserDetailsModel {
+/// Advertiser details class
+class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes
-  P2pOrderCreateAdvertiserDetails({
-    @required String firstName,
-    @required String id,
-    @required String lastName,
-    @required String loginid,
-    @required String name,
+  AdvertiserDetails({
+    required String id,
+    required String loginid,
+    required String name,
+    String? firstName,
+    String? lastName,
   }) : super(
-          firstName: firstName,
           id: id,
-          lastName: lastName,
           loginid: loginid,
           name: name,
+          firstName: firstName,
+          lastName: lastName,
         );
 
   /// Creates an instance from JSON
-  factory P2pOrderCreateAdvertiserDetails.fromJson(Map<String, dynamic> json) =>
-      P2pOrderCreateAdvertiserDetails(
-        firstName: json['first_name'],
+  factory AdvertiserDetails.fromJson(Map<String, dynamic> json) =>
+      AdvertiserDetails(
         id: json['id'],
-        lastName: json['last_name'],
         loginid: json['loginid'],
         name: json['name'],
+        firstName: json['first_name'],
+        lastName: json['last_name'],
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    resultMap['first_name'] = firstName;
     resultMap['id'] = id;
-    resultMap['last_name'] = lastName;
     resultMap['loginid'] = loginid;
     resultMap['name'] = name;
+    resultMap['first_name'] = firstName;
+    resultMap['last_name'] = lastName;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
-  P2pOrderCreateAdvertiserDetails copyWith({
-    String firstName,
-    String id,
-    String lastName,
-    String loginid,
-    String name,
+  AdvertiserDetails copyWith({
+    required String id,
+    required String loginid,
+    required String name,
+    String? firstName,
+    String? lastName,
   }) =>
-      P2pOrderCreateAdvertiserDetails(
+      AdvertiserDetails(
+        id: id,
+        loginid: loginid,
+        name: name,
         firstName: firstName ?? this.firstName,
-        id: id ?? this.id,
         lastName: lastName ?? this.lastName,
-        loginid: loginid ?? this.loginid,
-        name: name ?? this.name,
       );
 }
-/// P2p order create client details model class
-abstract class P2pOrderCreateClientDetailsModel {
+/// Client details model class
+abstract class ClientDetailsModel {
   /// Initializes
-  P2pOrderCreateClientDetailsModel({
-    @required this.name,
-    @required this.loginid,
-    @required this.lastName,
-    @required this.id,
-    @required this.firstName,
+  ClientDetailsModel({
+    required this.name,
+    required this.loginid,
+    required this.id,
+    this.firstName,
+    this.lastName,
   });
 
   /// The client's displayed name.
@@ -574,101 +619,99 @@ abstract class P2pOrderCreateClientDetailsModel {
   /// The client's account identifier.
   final String loginid;
 
-  /// The client's last name.
-  final String lastName;
-
   /// The client's unique P2P identifier.
   final String id;
 
   /// The client's first name.
-  final String firstName;
+  final String? firstName;
+
+  /// The client's last name.
+  final String? lastName;
 }
 
-/// P2p order create client details class
-class P2pOrderCreateClientDetails extends P2pOrderCreateClientDetailsModel {
+/// Client details class
+class ClientDetails extends ClientDetailsModel {
   /// Initializes
-  P2pOrderCreateClientDetails({
-    @required String firstName,
-    @required String id,
-    @required String lastName,
-    @required String loginid,
-    @required String name,
+  ClientDetails({
+    required String id,
+    required String loginid,
+    required String name,
+    String? firstName,
+    String? lastName,
   }) : super(
-          firstName: firstName,
           id: id,
-          lastName: lastName,
           loginid: loginid,
           name: name,
+          firstName: firstName,
+          lastName: lastName,
         );
 
   /// Creates an instance from JSON
-  factory P2pOrderCreateClientDetails.fromJson(Map<String, dynamic> json) =>
-      P2pOrderCreateClientDetails(
-        firstName: json['first_name'],
+  factory ClientDetails.fromJson(Map<String, dynamic> json) => ClientDetails(
         id: json['id'],
-        lastName: json['last_name'],
         loginid: json['loginid'],
         name: json['name'],
+        firstName: json['first_name'],
+        lastName: json['last_name'],
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    resultMap['first_name'] = firstName;
     resultMap['id'] = id;
-    resultMap['last_name'] = lastName;
     resultMap['loginid'] = loginid;
     resultMap['name'] = name;
+    resultMap['first_name'] = firstName;
+    resultMap['last_name'] = lastName;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
-  P2pOrderCreateClientDetails copyWith({
-    String firstName,
-    String id,
-    String lastName,
-    String loginid,
-    String name,
+  ClientDetails copyWith({
+    required String id,
+    required String loginid,
+    required String name,
+    String? firstName,
+    String? lastName,
   }) =>
-      P2pOrderCreateClientDetails(
+      ClientDetails(
+        id: id,
+        loginid: loginid,
+        name: name,
         firstName: firstName ?? this.firstName,
-        id: id ?? this.id,
         lastName: lastName ?? this.lastName,
-        loginid: loginid ?? this.loginid,
-        name: name ?? this.name,
       );
 }
-/// P2p order create dispute details model class
-abstract class P2pOrderCreateDisputeDetailsModel {
+/// Dispute details model class
+abstract class DisputeDetailsModel {
   /// Initializes
-  P2pOrderCreateDisputeDetailsModel({
+  DisputeDetailsModel({
     this.disputeReason,
     this.disputerLoginid,
   });
 
   /// The dispute reason
-  final String disputeReason;
+  final String? disputeReason;
 
   /// The loginid of the client who's raising the dispute
-  final String disputerLoginid;
+  final String? disputerLoginid;
 }
 
-/// P2p order create dispute details class
-class P2pOrderCreateDisputeDetails extends P2pOrderCreateDisputeDetailsModel {
+/// Dispute details class
+class DisputeDetails extends DisputeDetailsModel {
   /// Initializes
-  P2pOrderCreateDisputeDetails({
-    String disputeReason,
-    String disputerLoginid,
+  DisputeDetails({
+    String? disputeReason,
+    String? disputerLoginid,
   }) : super(
           disputeReason: disputeReason,
           disputerLoginid: disputerLoginid,
         );
 
   /// Creates an instance from JSON
-  factory P2pOrderCreateDisputeDetails.fromJson(Map<String, dynamic> json) =>
-      P2pOrderCreateDisputeDetails(
+  factory DisputeDetails.fromJson(Map<String, dynamic> json) => DisputeDetails(
         disputeReason: json['dispute_reason'],
         disputerLoginid: json['disputer_loginid'],
       );
@@ -684,20 +727,63 @@ class P2pOrderCreateDisputeDetails extends P2pOrderCreateDisputeDetailsModel {
   }
 
   /// Creates a copy of instance with given parameters
-  P2pOrderCreateDisputeDetails copyWith({
-    String disputeReason,
-    String disputerLoginid,
+  DisputeDetails copyWith({
+    String? disputeReason,
+    String? disputerLoginid,
   }) =>
-      P2pOrderCreateDisputeDetails(
+      DisputeDetails(
         disputeReason: disputeReason ?? this.disputeReason,
         disputerLoginid: disputerLoginid ?? this.disputerLoginid,
+      );
+}
+/// Payment method details item model class
+abstract class PaymentMethodDetailsItemModel {
+  /// Initializes
+  PaymentMethodDetailsItemModel({
+    this.method,
+  });
+
+  /// Payment method identifier.
+  final String? method;
+}
+
+/// Payment method details item class
+class PaymentMethodDetailsItem extends PaymentMethodDetailsItemModel {
+  /// Initializes
+  PaymentMethodDetailsItem({
+    String? method,
+  }) : super(
+          method: method,
+        );
+
+  /// Creates an instance from JSON
+  factory PaymentMethodDetailsItem.fromJson(Map<String, dynamic> json) =>
+      PaymentMethodDetailsItem(
+        method: json['method'],
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['method'] = method;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  PaymentMethodDetailsItem copyWith({
+    String? method,
+  }) =>
+      PaymentMethodDetailsItem(
+        method: method ?? this.method,
       );
 }
 /// Subscription model class
 abstract class SubscriptionModel {
   /// Initializes
   SubscriptionModel({
-    @required this.id,
+    required this.id,
   });
 
   /// A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
@@ -708,7 +794,7 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
-    @required String id,
+    required String id,
   }) : super(
           id: id,
         );
@@ -729,9 +815,9 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters
   Subscription copyWith({
-    String id,
+    required String id,
   }) =>
       Subscription(
-        id: id ?? this.id,
+        id: id,
       );
 }

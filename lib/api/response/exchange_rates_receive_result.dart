@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/exchange_rates_receive.dart';
 import '../../basic_api/generated/exchange_rates_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class ExchangeRatesResponseModel {
   /// Initializes
   ExchangeRatesResponseModel({
-    @required this.exchangeRates,
+    this.exchangeRates,
   });
 
   /// Exchange rate values from base to all other currencies
-  final ExchangeRates exchangeRates;
+  final ExchangeRates? exchangeRates;
 }
 
 /// Exchange rates response class
 class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   /// Initializes
   ExchangeRatesResponse({
-    @required ExchangeRates exchangeRates,
+    ExchangeRates? exchangeRates,
   }) : super(
           exchangeRates: exchangeRates,
         );
@@ -43,35 +41,37 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (exchangeRates != null) {
-      resultMap['exchange_rates'] = exchangeRates.toJson();
+      resultMap['exchange_rates'] = exchangeRates!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Retrieves the exchange rates from a base currency to all currencies supported by the system.
   ///
   /// For parameters information refer to [ExchangeRatesRequest].
   /// Throws an [ExchangeException] if API response contains an error
-  static Future<ExchangeRates> fetchExchangeRates(
+  static Future<ExchangeRates?> fetchExchangeRates(
     ExchangeRatesSend request,
   ) async {
     final ExchangeRatesReceive response = await _api.call(request: request);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ExchangeException(baseExceptionModel: baseExceptionModel),
     );
 
-    return ExchangeRates.fromJson(response.exchangeRates);
+    return response.exchangeRates == null
+        ? null
+        : ExchangeRates.fromJson(response.exchangeRates!);
   }
 
   /// Creates a copy of instance with given parameters
   ExchangeRatesResponse copyWith({
-    ExchangeRates exchangeRates,
+    ExchangeRates? exchangeRates,
   }) =>
       ExchangeRatesResponse(
         exchangeRates: exchangeRates ?? this.exchangeRates,
@@ -81,28 +81,28 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
 abstract class ExchangeRatesModel {
   /// Initializes
   ExchangeRatesModel({
-    @required this.rates,
-    @required this.date,
-    @required this.baseCurrency,
+    this.baseCurrency,
+    this.date,
+    this.rates,
   });
 
-  /// Rates of exchanging a unit of base currency into the target currencies
-  final Map<String, double> rates;
+  /// Base currency
+  final String? baseCurrency;
 
   /// Date retrieval epoch time represented as an integer number
-  final DateTime date;
+  final DateTime? date;
 
-  /// Base currency
-  final String baseCurrency;
+  /// Rates of exchanging a unit of base currency into the target currencies
+  final Map<String, double>? rates;
 }
 
 /// Exchange rates class
 class ExchangeRates extends ExchangeRatesModel {
   /// Initializes
   ExchangeRates({
-    @required String baseCurrency,
-    @required DateTime date,
-    @required Map<String, double> rates,
+    String? baseCurrency,
+    DateTime? date,
+    Map<String, double>? rates,
   }) : super(
           baseCurrency: baseCurrency,
           date: date,
@@ -120,7 +120,7 @@ class ExchangeRates extends ExchangeRatesModel {
                 .map<MapEntry<String, double>>(
                     (MapEntry<String, dynamic> entry) =>
                         MapEntry<String, double>(
-                            entry.key, getDouble(entry.value)))),
+                            entry.key, getDouble(entry.value)!))),
       );
 
   /// Converts an instance to JSON
@@ -136,9 +136,9 @@ class ExchangeRates extends ExchangeRatesModel {
 
   /// Creates a copy of instance with given parameters
   ExchangeRates copyWith({
-    String baseCurrency,
-    DateTime date,
-    Map<String, double> rates,
+    String? baseCurrency,
+    DateTime? date,
+    Map<String, double>? rates,
   }) =>
       ExchangeRates(
         baseCurrency: baseCurrency ?? this.baseCurrency,

@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/paymentagent_transfer_receive.dart';
 import '../../basic_api/generated/paymentagent_transfer_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,33 +10,33 @@ import '../models/base_exception_model.dart';
 abstract class PaymentagentTransferResponseModel {
   /// Initializes
   PaymentagentTransferResponseModel({
-    @required this.transactionId,
-    @required this.clientToLoginid,
-    @required this.clientToFullName,
-    @required this.paymentagentTransfer,
+    this.paymentagentTransfer,
+    this.clientToFullName,
+    this.clientToLoginid,
+    this.transactionId,
   });
 
-  /// Reference ID of transfer performed
-  final int transactionId;
-
-  /// The `transfer_to` client loginid
-  final String clientToLoginid;
+  /// If set to `1`, transfer success. If set to `2`, dry-run success.
+  final int? paymentagentTransfer;
 
   /// The `transfer_to` client full name
-  final String clientToFullName;
+  final String? clientToFullName;
 
-  /// If set to `1`, transfer success. If set to `2`, dry-run success.
-  final int paymentagentTransfer;
+  /// The `transfer_to` client loginid
+  final String? clientToLoginid;
+
+  /// Reference ID of transfer performed
+  final int? transactionId;
 }
 
 /// Paymentagent transfer response class
 class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
   /// Initializes
   PaymentagentTransferResponse({
-    @required int paymentagentTransfer,
-    @required String clientToFullName,
-    @required String clientToLoginid,
-    @required int transactionId,
+    int? paymentagentTransfer,
+    String? clientToFullName,
+    String? clientToLoginid,
+    int? transactionId,
   }) : super(
           paymentagentTransfer: paymentagentTransfer,
           clientToFullName: clientToFullName,
@@ -72,7 +70,7 @@ class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Payment Agent Transfer.
   ///
@@ -87,7 +85,7 @@ class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           PaymentAgentException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -100,10 +98,10 @@ class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
 
   /// Creates a copy of instance with given parameters
   PaymentagentTransferResponse copyWith({
-    int paymentagentTransfer,
-    String clientToFullName,
-    String clientToLoginid,
-    int transactionId,
+    int? paymentagentTransfer,
+    String? clientToFullName,
+    String? clientToLoginid,
+    int? transactionId,
   }) =>
       PaymentagentTransferResponse(
         paymentagentTransfer: paymentagentTransfer ?? this.paymentagentTransfer,

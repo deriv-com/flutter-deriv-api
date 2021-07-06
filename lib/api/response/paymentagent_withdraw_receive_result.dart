@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/paymentagent_withdraw_receive.dart';
 import '../../basic_api/generated/paymentagent_withdraw_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,28 +10,28 @@ import '../models/base_exception_model.dart';
 abstract class PaymentagentWithdrawResponseModel {
   /// Initializes
   PaymentagentWithdrawResponseModel({
-    @required this.transactionId,
-    @required this.paymentagentName,
-    @required this.paymentagentWithdraw,
+    this.paymentagentWithdraw,
+    this.paymentagentName,
+    this.transactionId,
   });
 
-  /// Reference ID of withdrawal performed.
-  final int transactionId;
+  /// If set to `1`, withdrawal success. If set to `2`, dry-run success.
+  final int? paymentagentWithdraw;
 
   /// Payment agent name.
-  final String paymentagentName;
+  final String? paymentagentName;
 
-  /// If set to `1`, withdrawal success. If set to `2`, dry-run success.
-  final int paymentagentWithdraw;
+  /// Reference ID of withdrawal performed.
+  final int? transactionId;
 }
 
 /// Paymentagent withdraw response class
 class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
   /// Initializes
   PaymentagentWithdrawResponse({
-    @required int paymentagentWithdraw,
-    @required String paymentagentName,
-    @required int transactionId,
+    int? paymentagentWithdraw,
+    String? paymentagentName,
+    int? transactionId,
   }) : super(
           paymentagentWithdraw: paymentagentWithdraw,
           paymentagentName: paymentagentName,
@@ -63,7 +61,7 @@ class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Initiates a withdrawal to an approved payment agent.
   ///
@@ -77,7 +75,7 @@ class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           PaymentAgentException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -87,9 +85,9 @@ class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
 
   /// Creates a copy of instance with given parameters
   PaymentagentWithdrawResponse copyWith({
-    int paymentagentWithdraw,
-    String paymentagentName,
-    int transactionId,
+    int? paymentagentWithdraw,
+    String? paymentagentName,
+    int? transactionId,
   }) =>
       PaymentagentWithdrawResponse(
         paymentagentWithdraw: paymentagentWithdraw ?? this.paymentagentWithdraw,

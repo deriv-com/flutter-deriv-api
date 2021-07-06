@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/tnc_approval_receive.dart';
 import '../../basic_api/generated/tnc_approval_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class TncApprovalResponseModel {
   /// Initializes
   TncApprovalResponseModel({
-    @required this.tncApproval,
+    this.tncApproval,
   });
 
   /// Set terms and conditions 1: success
-  final int tncApproval;
+  final int? tncApproval;
 }
 
 /// Tnc approval response class
 class TncApprovalResponse extends TncApprovalResponseModel {
   /// Initializes
   TncApprovalResponse({
-    @required int tncApproval,
+    int? tncApproval,
   }) : super(
           tncApproval: tncApproval,
         );
@@ -45,7 +43,7 @@ class TncApprovalResponse extends TncApprovalResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Approve the latest version of terms and conditions.
   ///
@@ -58,7 +56,7 @@ class TncApprovalResponse extends TncApprovalResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           UserException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -67,7 +65,7 @@ class TncApprovalResponse extends TncApprovalResponseModel {
 
   /// Creates a copy of instance with given parameters
   TncApprovalResponse copyWith({
-    int tncApproval,
+    int? tncApproval,
   }) =>
       TncApprovalResponse(
         tncApproval: tncApproval ?? this.tncApproval,

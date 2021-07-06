@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/paymentagent_list_receive.dart';
 import '../../basic_api/generated/paymentagent_list_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class PaymentagentListResponseModel {
   /// Initializes
   PaymentagentListResponseModel({
-    @required this.paymentagentList,
+    this.paymentagentList,
   });
 
   /// Payment Agent List
-  final PaymentagentList paymentagentList;
+  final PaymentagentList? paymentagentList;
 }
 
 /// Paymentagent list response class
 class PaymentagentListResponse extends PaymentagentListResponseModel {
   /// Initializes
   PaymentagentListResponse({
-    @required PaymentagentList paymentagentList,
+    PaymentagentList? paymentagentList,
   }) : super(
           paymentagentList: paymentagentList,
         );
@@ -43,13 +41,13 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (paymentagentList != null) {
-      resultMap['paymentagent_list'] = paymentagentList.toJson();
+      resultMap['paymentagent_list'] = paymentagentList!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Returns a list of Payment Agents for a given country for a given currency.
   ///
@@ -62,7 +60,7 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           PaymentAgentException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -71,7 +69,7 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
 
   /// Creates a copy of instance with given parameters
   PaymentagentListResponse copyWith({
-    PaymentagentList paymentagentList,
+    PaymentagentList? paymentagentList,
   }) =>
       PaymentagentListResponse(
         paymentagentList: paymentagentList ?? this.paymentagentList,
@@ -81,55 +79,69 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
 abstract class PaymentagentListModel {
   /// Initializes
   PaymentagentListModel({
-    @required this.list,
-    @required this.availableCountries,
+    required this.list,
+    this.availableCountries,
   });
 
   /// List of payment agents available in the requested country.
   final List<ListItem> list;
 
   /// The list of countries in which payment agent is available.
-  final List<List<String>> availableCountries;
+  final List<List<String>>? availableCountries;
 }
 
 /// Paymentagent list class
 class PaymentagentList extends PaymentagentListModel {
   /// Initializes
   PaymentagentList({
-    @required List<List<String>> availableCountries,
-    @required List<ListItem> list,
+    required List<ListItem> list,
+    List<List<String>>? availableCountries,
   }) : super(
-          availableCountries: availableCountries,
           list: list,
+          availableCountries: availableCountries,
         );
 
   /// Creates an instance from JSON
   factory PaymentagentList.fromJson(Map<String, dynamic> json) =>
       PaymentagentList(
+        list: List<ListItem>.from(
+          json['list'].map(
+            (dynamic item) => ListItem.fromJson(item),
+          ),
+        ),
         availableCountries: json['available_countries'] == null
             ? null
-            : List<List<String>>.from(json['available_countries'].map(
-                (dynamic item) =>
-                    List<String>.from(item.map((dynamic item) => item)))),
-        list: json['list'] == null
-            ? null
-            : List<ListItem>.from(
-                json['list'].map((dynamic item) => ListItem.fromJson(item))),
+            : List<List<String>>.from(
+                json['available_countries']?.map(
+                  (dynamic item) => List<String>.from(
+                    item?.map(
+                      (dynamic item) => item,
+                    ),
+                  ),
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['list'] = list
+        .map<dynamic>(
+          (ListItem item) => item.toJson(),
+        )
+        .toList();
+
     if (availableCountries != null) {
-      resultMap['available_countries'] = availableCountries
+      resultMap['available_countries'] = availableCountries!
           .map<dynamic>(
-              (List<String> item) => item.map((item) => item).toList())
+            (List<String> item) => item
+                .map(
+                  (item) => item,
+                )
+                .toList(),
+          )
           .toList();
-    }
-    if (list != null) {
-      resultMap['list'] =
-          list.map<dynamic>((ListItem item) => item.toJson()).toList();
     }
 
     return resultMap;
@@ -137,104 +149,104 @@ class PaymentagentList extends PaymentagentListModel {
 
   /// Creates a copy of instance with given parameters
   PaymentagentList copyWith({
-    List<List<String>> availableCountries,
-    List<ListItem> list,
+    required List<ListItem> list,
+    List<List<String>>? availableCountries,
   }) =>
       PaymentagentList(
+        list: list,
         availableCountries: availableCountries ?? this.availableCountries,
-        list: list ?? this.list,
       );
 }
 /// List item model class
 abstract class ListItemModel {
   /// Initializes
   ListItemModel({
-    @required this.withdrawalCommission,
-    @required this.url,
-    @required this.telephone,
-    @required this.summary,
-    @required this.paymentagentLoginid,
-    @required this.name,
-    @required this.furtherInformation,
-    @required this.email,
-    @required this.depositCommission,
-    @required this.currencies,
+    this.currencies,
+    this.depositCommission,
+    this.email,
+    this.furtherInformation,
     this.maxWithdrawal,
     this.minWithdrawal,
+    this.name,
+    this.paymentagentLoginid,
+    this.summary,
     this.supportedBanks,
+    this.telephone,
+    this.url,
+    this.withdrawalCommission,
   });
 
-  /// Commission amount applied on withdrawals made through this payment agent.
-  final String withdrawalCommission;
-
-  /// Payment agent's website URL.
-  final String url;
-
-  /// Payment agent's phone number.
-  final String telephone;
-
-  /// A summary about payment agent.
-  final String summary;
-
-  /// Payment agent's loginid.
-  final String paymentagentLoginid;
-
-  /// Payment agent's name.
-  final String name;
-
-  /// More descriptions about this payment agent.
-  final String furtherInformation;
-
-  /// Payment agent's email address.
-  final String email;
+  /// Currencies that are accepted by this payment agent.
+  final String? currencies;
 
   /// Commission amount applied on deposits made through this payment agent.
-  final String depositCommission;
+  final String? depositCommission;
 
-  /// Currencies that are accepted by this payment agent.
-  final String currencies;
+  /// Payment agent's email address.
+  final String? email;
+
+  /// More descriptions about this payment agent.
+  final String? furtherInformation;
 
   /// Maximum withdrawal allowed for transactions through this payment agent.
-  final String maxWithdrawal;
+  final String? maxWithdrawal;
 
   /// Minimum withdrawal allowed for transactions through this payment agent.
-  final String minWithdrawal;
+  final String? minWithdrawal;
+
+  /// Payment agent's name.
+  final String? name;
+
+  /// Payment agent's loginid.
+  final String? paymentagentLoginid;
+
+  /// A summary about payment agent.
+  final String? summary;
 
   /// Comma separated list of supported banks.
-  final String supportedBanks;
+  final String? supportedBanks;
+
+  /// Payment agent's phone number.
+  final String? telephone;
+
+  /// Payment agent's website URL.
+  final String? url;
+
+  /// Commission amount applied on withdrawals made through this payment agent.
+  final String? withdrawalCommission;
 }
 
 /// List item class
 class ListItem extends ListItemModel {
   /// Initializes
   ListItem({
-    @required String currencies,
-    @required String depositCommission,
-    @required String email,
-    @required String furtherInformation,
-    @required String name,
-    @required String paymentagentLoginid,
-    @required String summary,
-    @required String telephone,
-    @required String url,
-    @required String withdrawalCommission,
-    String maxWithdrawal,
-    String minWithdrawal,
-    String supportedBanks,
+    String? currencies,
+    String? depositCommission,
+    String? email,
+    String? furtherInformation,
+    String? maxWithdrawal,
+    String? minWithdrawal,
+    String? name,
+    String? paymentagentLoginid,
+    String? summary,
+    String? supportedBanks,
+    String? telephone,
+    String? url,
+    String? withdrawalCommission,
   }) : super(
           currencies: currencies,
           depositCommission: depositCommission,
           email: email,
           furtherInformation: furtherInformation,
+          maxWithdrawal: maxWithdrawal,
+          minWithdrawal: minWithdrawal,
           name: name,
           paymentagentLoginid: paymentagentLoginid,
           summary: summary,
+          supportedBanks: supportedBanks,
           telephone: telephone,
           url: url,
           withdrawalCommission: withdrawalCommission,
-          maxWithdrawal: maxWithdrawal,
-          minWithdrawal: minWithdrawal,
-          supportedBanks: supportedBanks,
         );
 
   /// Creates an instance from JSON
@@ -243,15 +255,15 @@ class ListItem extends ListItemModel {
         depositCommission: json['deposit_commission'],
         email: json['email'],
         furtherInformation: json['further_information'],
+        maxWithdrawal: json['max_withdrawal'],
+        minWithdrawal: json['min_withdrawal'],
         name: json['name'],
         paymentagentLoginid: json['paymentagent_loginid'],
         summary: json['summary'],
+        supportedBanks: json['supported_banks'],
         telephone: json['telephone'],
         url: json['url'],
         withdrawalCommission: json['withdrawal_commission'],
-        maxWithdrawal: json['max_withdrawal'],
-        minWithdrawal: json['min_withdrawal'],
-        supportedBanks: json['supported_banks'],
       );
 
   /// Converts an instance to JSON
@@ -262,48 +274,48 @@ class ListItem extends ListItemModel {
     resultMap['deposit_commission'] = depositCommission;
     resultMap['email'] = email;
     resultMap['further_information'] = furtherInformation;
+    resultMap['max_withdrawal'] = maxWithdrawal;
+    resultMap['min_withdrawal'] = minWithdrawal;
     resultMap['name'] = name;
     resultMap['paymentagent_loginid'] = paymentagentLoginid;
     resultMap['summary'] = summary;
+    resultMap['supported_banks'] = supportedBanks;
     resultMap['telephone'] = telephone;
     resultMap['url'] = url;
     resultMap['withdrawal_commission'] = withdrawalCommission;
-    resultMap['max_withdrawal'] = maxWithdrawal;
-    resultMap['min_withdrawal'] = minWithdrawal;
-    resultMap['supported_banks'] = supportedBanks;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   ListItem copyWith({
-    String currencies,
-    String depositCommission,
-    String email,
-    String furtherInformation,
-    String name,
-    String paymentagentLoginid,
-    String summary,
-    String telephone,
-    String url,
-    String withdrawalCommission,
-    String maxWithdrawal,
-    String minWithdrawal,
-    String supportedBanks,
+    String? currencies,
+    String? depositCommission,
+    String? email,
+    String? furtherInformation,
+    String? maxWithdrawal,
+    String? minWithdrawal,
+    String? name,
+    String? paymentagentLoginid,
+    String? summary,
+    String? supportedBanks,
+    String? telephone,
+    String? url,
+    String? withdrawalCommission,
   }) =>
       ListItem(
         currencies: currencies ?? this.currencies,
         depositCommission: depositCommission ?? this.depositCommission,
         email: email ?? this.email,
         furtherInformation: furtherInformation ?? this.furtherInformation,
+        maxWithdrawal: maxWithdrawal ?? this.maxWithdrawal,
+        minWithdrawal: minWithdrawal ?? this.minWithdrawal,
         name: name ?? this.name,
         paymentagentLoginid: paymentagentLoginid ?? this.paymentagentLoginid,
         summary: summary ?? this.summary,
+        supportedBanks: supportedBanks ?? this.supportedBanks,
         telephone: telephone ?? this.telephone,
         url: url ?? this.url,
         withdrawalCommission: withdrawalCommission ?? this.withdrawalCommission,
-        maxWithdrawal: maxWithdrawal ?? this.maxWithdrawal,
-        minWithdrawal: minWithdrawal ?? this.minWithdrawal,
-        supportedBanks: supportedBanks ?? this.supportedBanks,
       );
 }

@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/mt5_password_check_receive.dart';
 import '../../basic_api/generated/mt5_password_check_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class Mt5PasswordCheckResponseModel {
   /// Initializes
   Mt5PasswordCheckResponseModel({
-    @required this.mt5PasswordCheck,
+    this.mt5PasswordCheck,
   });
 
   /// `1` on success
-  final int mt5PasswordCheck;
+  final int? mt5PasswordCheck;
 }
 
 /// Mt5 password check response class
 class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
   /// Initializes
   Mt5PasswordCheckResponse({
-    @required int mt5PasswordCheck,
+    int? mt5PasswordCheck,
   }) : super(
           mt5PasswordCheck: mt5PasswordCheck,
         );
@@ -45,7 +43,7 @@ class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Validates the main password for the MT5 user.
   ///
@@ -57,7 +55,7 @@ class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 
@@ -66,7 +64,7 @@ class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
 
   /// Creates a copy of instance with given parameters
   Mt5PasswordCheckResponse copyWith({
-    int mt5PasswordCheck,
+    int? mt5PasswordCheck,
   }) =>
       Mt5PasswordCheckResponse(
         mt5PasswordCheck: mt5PasswordCheck ?? this.mt5PasswordCheck,

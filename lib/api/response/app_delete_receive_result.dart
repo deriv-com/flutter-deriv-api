@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/app_delete_receive.dart';
 import '../../basic_api/generated/app_delete_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class AppDeleteResponseModel {
   /// Initializes
   AppDeleteResponseModel({
-    @required this.appDelete,
+    this.appDelete,
   });
 
   /// 1 on success
-  final int appDelete;
+  final int? appDelete;
 }
 
 /// App delete response class
 class AppDeleteResponse extends AppDeleteResponseModel {
   /// Initializes
   AppDeleteResponse({
-    @required int appDelete,
+    int? appDelete,
   }) : super(
           appDelete: appDelete,
         );
@@ -45,7 +43,7 @@ class AppDeleteResponse extends AppDeleteResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Deletes the application by appId specified in [AppDeleteRequest.appDelete].
   ///
@@ -57,7 +55,7 @@ class AppDeleteResponse extends AppDeleteResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AppException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -66,7 +64,7 @@ class AppDeleteResponse extends AppDeleteResponseModel {
 
   /// Creates a copy of instance with given parameters
   AppDeleteResponse copyWith({
-    int appDelete,
+    int? appDelete,
   }) =>
       AppDeleteResponse(
         appDelete: appDelete ?? this.appDelete,

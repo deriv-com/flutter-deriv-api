@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/copy_stop_receive.dart';
 import '../../basic_api/generated/copy_stop_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class CopyStopResponseModel {
   /// Initializes
   CopyStopResponseModel({
-    @required this.copyStop,
+    this.copyStop,
   });
 
   /// Copy stopping confirmation. Returns 1 is success.
-  final int copyStop;
+  final int? copyStop;
 }
 
 /// Copy stop response class
 class CopyStopResponse extends CopyStopResponseModel {
   /// Initializes
   CopyStopResponse({
-    @required int copyStop,
+    int? copyStop,
   }) : super(
           copyStop: copyStop,
         );
@@ -45,7 +43,7 @@ class CopyStopResponse extends CopyStopResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Stops copy trader bets.
   ///
@@ -56,7 +54,7 @@ class CopyStopResponse extends CopyStopResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           CopyTradingException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -65,7 +63,7 @@ class CopyStopResponse extends CopyStopResponseModel {
 
   /// Creates a copy of instance with given parameters
   CopyStopResponse copyWith({
-    int copyStop,
+    int? copyStop,
   }) =>
       CopyStopResponse(
         copyStop: copyStop ?? this.copyStop,

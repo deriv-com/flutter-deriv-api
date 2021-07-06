@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/forget_all_receive.dart';
 import '../../basic_api/generated/forget_receive.dart';
 import '../../basic_api/generated/transaction_receive.dart';
@@ -19,23 +17,23 @@ import 'forget_receive_result.dart';
 abstract class TransactionResponseModel {
   /// Initializes
   TransactionResponseModel({
-    @required this.subscription,
-    @required this.transaction,
+    this.transaction,
+    this.subscription,
   });
 
-  /// For subscription requests only.
-  final Subscription subscription;
-
   /// Realtime stream of user transaction updates.
-  final Transaction transaction;
+  final Transaction? transaction;
+
+  /// For subscription requests only.
+  final Subscription? subscription;
 }
 
 /// Transaction response class
 class TransactionResponse extends TransactionResponseModel {
   /// Initializes
   TransactionResponse({
-    @required Transaction transaction,
-    @required Subscription subscription,
+    Transaction? transaction,
+    Subscription? subscription,
   }) : super(
           transaction: transaction,
           subscription: subscription,
@@ -60,32 +58,32 @@ class TransactionResponse extends TransactionResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (transaction != null) {
-      resultMap['transaction'] = transaction.toJson();
+      resultMap['transaction'] = transaction!.toJson();
     }
     if (subscription != null) {
-      resultMap['subscription'] = subscription.toJson();
+      resultMap['subscription'] = subscription!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Subscribes to account's transactions
   ///
   /// Throws a [TransactionsException] if API response contains an error
-  static Stream<TransactionResponse> subscribeTransactions({
-    RequestCompareFunction comparePredicate,
+  static Stream<TransactionResponse?> subscribeTransactions({
+    RequestCompareFunction? comparePredicate,
   }) =>
       _api
           .subscribe(
         request: const TransactionSend(),
         comparePredicate: comparePredicate,
-      )
-          .map<TransactionResponse>((Response response) {
+      )!
+          .map<TransactionResponse?>((Response response) {
         checkException(
           response: response,
-          exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
               TransactionsException(baseExceptionModel: baseExceptionModel),
         );
 
@@ -100,17 +98,17 @@ class TransactionResponse extends TransactionResponseModel {
   /// Unsubscribes from transaction subscription.
   ///
   /// Throws a [TransactionsException] if API response contains an error
-  Future<ForgetResponse> unsubscribeTransaction() async {
-    if (subscription?.id == null) {
+  Future<ForgetResponse?> unsubscribeTransaction() async {
+    if (subscription == null) {
       return null;
     }
 
     final ForgetReceive response =
-        await _api.unsubscribe(subscriptionId: subscription.id);
+        await _api.unsubscribe(subscriptionId: subscription!.id);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TransactionsException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -126,7 +124,7 @@ class TransactionResponse extends TransactionResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TransactionsException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -135,8 +133,8 @@ class TransactionResponse extends TransactionResponseModel {
 
   /// Creates a copy of instance with given parameters
   TransactionResponse copyWith({
-    Transaction transaction,
-    Subscription subscription,
+    Transaction? transaction,
+    Subscription? subscription,
   }) =>
       TransactionResponse(
         transaction: transaction ?? this.transaction,
@@ -144,6 +142,7 @@ class TransactionResponse extends TransactionResponseModel {
       );
 }
 
+/// ActionEnum mapper.
 final Map<String, ActionEnum> actionEnumMapper = <String, ActionEnum>{
   "buy": ActionEnum.buy,
   "sell": ActionEnum.sell,
@@ -152,167 +151,185 @@ final Map<String, ActionEnum> actionEnumMapper = <String, ActionEnum>{
   "escrow": ActionEnum.escrow,
   "adjustment": ActionEnum.adjustment,
   "virtual_credit": ActionEnum.virtualCredit,
+  "transfer": ActionEnum.transfer,
 };
 
-/// action Enum
+/// Action Enum.
 enum ActionEnum {
+  /// buy.
   buy,
+
+  /// sell.
   sell,
+
+  /// deposit.
   deposit,
+
+  /// withdrawal.
   withdrawal,
+
+  /// escrow.
   escrow,
+
+  /// adjustment.
   adjustment,
+
+  /// virtual_credit.
   virtualCredit,
+
+  /// transfer.
+  transfer,
 }
 /// Transaction model class
 abstract class TransactionModel {
   /// Initializes
   TransactionModel({
-    @required this.transactionTime,
-    @required this.transactionId,
-    @required this.symbol,
-    @required this.purchaseTime,
-    @required this.lowBarrier,
-    @required this.longcode,
-    @required this.id,
-    @required this.displayName,
-    @required this.dateExpiry,
-    @required this.currency,
-    @required this.barrier,
-    @required this.balance,
-    @required this.amount,
-    @required this.action,
+    this.action,
+    this.amount,
+    this.balance,
+    this.barrier,
     this.contractId,
+    this.currency,
+    this.dateExpiry,
+    this.displayName,
     this.highBarrier,
+    this.id,
+    this.longcode,
+    this.lowBarrier,
+    this.purchaseTime,
     this.stopLoss,
     this.stopOut,
+    this.symbol,
     this.takeProfit,
+    this.transactionId,
+    this.transactionTime,
   });
 
-  /// Time at which transaction was performed: for buy it is purchase time, for sell it is sell time.
-  final DateTime transactionTime;
-
-  /// It is the transaction ID. Every contract (buy or sell) or payment has a unique ID.
-  final int transactionId;
-
-  /// Symbol code
-  final String symbol;
-
-  /// Time at which contract was purchased, present only for sell transaction
-  final DateTime purchaseTime;
-
-  /// The low barrier of a contract. Only applicable to double barrier contracts.
-  final String lowBarrier;
-
-  /// Description of contract purchased
-  final String longcode;
-
-  /// A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
-  final String id;
-
-  /// Display name of symbol
-  final String displayName;
-
-  /// Epoch value of the expiry time of the contract. Please note that in case of buy transaction this is approximate value not exact one.
-  final DateTime dateExpiry;
-
-  /// Transaction currency
-  final String currency;
-
-  /// Barrier of the contract. Only applicable to single barrier contracts. Could be undefined if a contract does not have a barrier.
-  final dynamic barrier;
-
-  /// Balance amount
-  final double balance;
+  /// The transaction type.
+  final ActionEnum? action;
 
   /// It is the amount of transaction performed.
-  final double amount;
+  final double? amount;
 
-  /// The transaction type.
-  final ActionEnum action;
+  /// Balance amount
+  final double? balance;
+
+  /// Barrier of the contract. Only applicable to single barrier contracts. Could be undefined if a contract does not have a barrier.
+  final dynamic? barrier;
 
   /// It is the contract ID.
-  final int contractId;
+  final int? contractId;
+
+  /// Transaction currency
+  final String? currency;
+
+  /// Epoch value of the expiry time of the contract. Please note that in case of buy transaction this is approximate value not exact one.
+  final DateTime? dateExpiry;
+
+  /// Display name of symbol
+  final String? displayName;
 
   /// The high barrier of a contract. Only applicable to double barrier contracts.
-  final dynamic highBarrier;
+  final dynamic? highBarrier;
+
+  /// A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
+  final String? id;
+
+  /// Description of contract purchased
+  final String? longcode;
+
+  /// The low barrier of a contract. Only applicable to double barrier contracts.
+  final String? lowBarrier;
+
+  /// Time at which contract was purchased, present only for sell transaction
+  final DateTime? purchaseTime;
 
   /// The pip-sized target spot price where the contract will be closed automatically at the loss specified by the user.
-  final String stopLoss;
+  final String? stopLoss;
 
   /// The pip-sized target spot price where the contract will be closed automatically when the value of the contract is close to zero. This is set by the us.
-  final String stopOut;
+  final String? stopOut;
+
+  /// Symbol code
+  final String? symbol;
 
   /// The pip-sized target spot price where the contract will be closed automatically at the profit specified by the user.
-  final String takeProfit;
+  final String? takeProfit;
+
+  /// It is the transaction ID. Every contract (buy or sell) or payment has a unique ID.
+  final int? transactionId;
+
+  /// Time at which transaction was performed: for buy it is purchase time, for sell it is sell time.
+  final DateTime? transactionTime;
 }
 
 /// Transaction class
 class Transaction extends TransactionModel {
   /// Initializes
   Transaction({
-    @required ActionEnum action,
-    @required double amount,
-    @required double balance,
-    @required dynamic barrier,
-    @required String currency,
-    @required DateTime dateExpiry,
-    @required String displayName,
-    @required String id,
-    @required String longcode,
-    @required String lowBarrier,
-    @required DateTime purchaseTime,
-    @required String symbol,
-    @required int transactionId,
-    @required DateTime transactionTime,
-    int contractId,
-    dynamic highBarrier,
-    String stopLoss,
-    String stopOut,
-    String takeProfit,
+    ActionEnum? action,
+    double? amount,
+    double? balance,
+    dynamic? barrier,
+    int? contractId,
+    String? currency,
+    DateTime? dateExpiry,
+    String? displayName,
+    dynamic? highBarrier,
+    String? id,
+    String? longcode,
+    String? lowBarrier,
+    DateTime? purchaseTime,
+    String? stopLoss,
+    String? stopOut,
+    String? symbol,
+    String? takeProfit,
+    int? transactionId,
+    DateTime? transactionTime,
   }) : super(
           action: action,
           amount: amount,
           balance: balance,
           barrier: barrier,
+          contractId: contractId,
           currency: currency,
           dateExpiry: dateExpiry,
           displayName: displayName,
+          highBarrier: highBarrier,
           id: id,
           longcode: longcode,
           lowBarrier: lowBarrier,
           purchaseTime: purchaseTime,
-          symbol: symbol,
-          transactionId: transactionId,
-          transactionTime: transactionTime,
-          contractId: contractId,
-          highBarrier: highBarrier,
           stopLoss: stopLoss,
           stopOut: stopOut,
+          symbol: symbol,
           takeProfit: takeProfit,
+          transactionId: transactionId,
+          transactionTime: transactionTime,
         );
 
   /// Creates an instance from JSON
   factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
-        action: actionEnumMapper[json['action']],
+        action:
+            json['action'] == null ? null : actionEnumMapper[json['action']]!,
         amount: getDouble(json['amount']),
         balance: getDouble(json['balance']),
         barrier: json['barrier'],
+        contractId: json['contract_id'],
         currency: json['currency'],
         dateExpiry: getDateTime(json['date_expiry']),
         displayName: json['display_name'],
+        highBarrier: json['high_barrier'],
         id: json['id'],
         longcode: json['longcode'],
         lowBarrier: json['low_barrier'],
         purchaseTime: getDateTime(json['purchase_time']),
-        symbol: json['symbol'],
-        transactionId: json['transaction_id'],
-        transactionTime: getDateTime(json['transaction_time']),
-        contractId: json['contract_id'],
-        highBarrier: json['high_barrier'],
         stopLoss: json['stop_loss'],
         stopOut: json['stop_out'],
+        symbol: json['symbol'],
         takeProfit: json['take_profit'],
+        transactionId: json['transaction_id'],
+        transactionTime: getDateTime(json['transaction_time']),
       );
 
   /// Converts an instance to JSON
@@ -320,80 +337,81 @@ class Transaction extends TransactionModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['action'] = actionEnumMapper.entries
-        .firstWhere((entry) => entry.value == action, orElse: () => null)
-        ?.key;
+        .firstWhere(
+            (MapEntry<String, ActionEnum> entry) => entry.value == action)
+        .key;
     resultMap['amount'] = amount;
     resultMap['balance'] = balance;
     resultMap['barrier'] = barrier;
+    resultMap['contract_id'] = contractId;
     resultMap['currency'] = currency;
     resultMap['date_expiry'] = getSecondsSinceEpochDateTime(dateExpiry);
     resultMap['display_name'] = displayName;
+    resultMap['high_barrier'] = highBarrier;
     resultMap['id'] = id;
     resultMap['longcode'] = longcode;
     resultMap['low_barrier'] = lowBarrier;
     resultMap['purchase_time'] = getSecondsSinceEpochDateTime(purchaseTime);
+    resultMap['stop_loss'] = stopLoss;
+    resultMap['stop_out'] = stopOut;
     resultMap['symbol'] = symbol;
+    resultMap['take_profit'] = takeProfit;
     resultMap['transaction_id'] = transactionId;
     resultMap['transaction_time'] =
         getSecondsSinceEpochDateTime(transactionTime);
-    resultMap['contract_id'] = contractId;
-    resultMap['high_barrier'] = highBarrier;
-    resultMap['stop_loss'] = stopLoss;
-    resultMap['stop_out'] = stopOut;
-    resultMap['take_profit'] = takeProfit;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   Transaction copyWith({
-    ActionEnum action,
-    double amount,
-    double balance,
-    dynamic barrier,
-    String currency,
-    DateTime dateExpiry,
-    String displayName,
-    String id,
-    String longcode,
-    String lowBarrier,
-    DateTime purchaseTime,
-    String symbol,
-    int transactionId,
-    DateTime transactionTime,
-    int contractId,
-    dynamic highBarrier,
-    String stopLoss,
-    String stopOut,
-    String takeProfit,
+    ActionEnum? action,
+    double? amount,
+    double? balance,
+    dynamic? barrier,
+    int? contractId,
+    String? currency,
+    DateTime? dateExpiry,
+    String? displayName,
+    dynamic? highBarrier,
+    String? id,
+    String? longcode,
+    String? lowBarrier,
+    DateTime? purchaseTime,
+    String? stopLoss,
+    String? stopOut,
+    String? symbol,
+    String? takeProfit,
+    int? transactionId,
+    DateTime? transactionTime,
   }) =>
       Transaction(
         action: action ?? this.action,
         amount: amount ?? this.amount,
         balance: balance ?? this.balance,
         barrier: barrier ?? this.barrier,
+        contractId: contractId ?? this.contractId,
         currency: currency ?? this.currency,
         dateExpiry: dateExpiry ?? this.dateExpiry,
         displayName: displayName ?? this.displayName,
+        highBarrier: highBarrier ?? this.highBarrier,
         id: id ?? this.id,
         longcode: longcode ?? this.longcode,
         lowBarrier: lowBarrier ?? this.lowBarrier,
         purchaseTime: purchaseTime ?? this.purchaseTime,
-        symbol: symbol ?? this.symbol,
-        transactionId: transactionId ?? this.transactionId,
-        transactionTime: transactionTime ?? this.transactionTime,
-        contractId: contractId ?? this.contractId,
-        highBarrier: highBarrier ?? this.highBarrier,
         stopLoss: stopLoss ?? this.stopLoss,
         stopOut: stopOut ?? this.stopOut,
+        symbol: symbol ?? this.symbol,
         takeProfit: takeProfit ?? this.takeProfit,
+        transactionId: transactionId ?? this.transactionId,
+        transactionTime: transactionTime ?? this.transactionTime,
       );
 }
 /// Subscription model class
 abstract class SubscriptionModel {
   /// Initializes
   SubscriptionModel({
-    @required this.id,
+    required this.id,
   });
 
   /// A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
@@ -404,7 +422,7 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
-    @required String id,
+    required String id,
   }) : super(
           id: id,
         );
@@ -425,9 +443,9 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters
   Subscription copyWith({
-    String id,
+    required String id,
   }) =>
       Subscription(
-        id: id ?? this.id,
+        id: id,
       );
 }

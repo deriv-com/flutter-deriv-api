@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../api/exceptions/exceptions.dart';
 import '../../api/models/base_exception_model.dart';
 import '../../basic_api/generated/oauth_apps_receive.dart';
@@ -12,18 +10,18 @@ import '../../services/dependency_injector/injector.dart';
 abstract class OauthAppsResponseModel {
   /// Initializes
   OauthAppsResponseModel({
-    @required this.oauthApps,
+    this.oauthApps,
   });
 
   /// List of OAuth applications that used for the authorized account.
-  final List<OauthAppsItem> oauthApps;
+  final List<OauthAppsItem>? oauthApps;
 }
 
 /// Oauth apps response class
 class OauthAppsResponse extends OauthAppsResponseModel {
   /// Initializes
   OauthAppsResponse({
-    @required List<OauthAppsItem> oauthApps,
+    List<OauthAppsItem>? oauthApps,
   }) : super(
           oauthApps: oauthApps,
         );
@@ -35,8 +33,11 @@ class OauthAppsResponse extends OauthAppsResponseModel {
       OauthAppsResponse(
         oauthApps: oauthAppsJson == null
             ? null
-            : List<OauthAppsItem>.from(oauthAppsJson
-                .map((dynamic item) => OauthAppsItem.fromJson(item))),
+            : List<OauthAppsItem>.from(
+                oauthAppsJson?.map(
+                  (dynamic item) => OauthAppsItem.fromJson(item),
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -44,21 +45,23 @@ class OauthAppsResponse extends OauthAppsResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (oauthApps != null) {
-      resultMap['oauth_apps'] = oauthApps
-          .map<dynamic>((OauthAppsItem item) => item.toJson())
+      resultMap['oauth_apps'] = oauthApps!
+          .map<dynamic>(
+            (OauthAppsItem item) => item.toJson(),
+          )
           .toList();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets oauth application that used for the authorized account.
   ///
   /// Throws an [AppException] if API response contains an error
   static Future<OauthAppsResponse> fetchOauthApps([
-    OauthAppsSend request,
+    OauthAppsSend? request,
   ]) async {
     final OauthAppsReceive response = await _api.call(
       request: request ?? const OauthAppsSend(),
@@ -66,7 +69,7 @@ class OauthAppsResponse extends OauthAppsResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AppException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -75,7 +78,7 @@ class OauthAppsResponse extends OauthAppsResponseModel {
 
   /// Creates a copy of instance with given parameters
   OauthAppsResponse copyWith({
-    List<OauthAppsItem> oauthApps,
+    List<OauthAppsItem>? oauthApps,
   }) =>
       OauthAppsResponse(
         oauthApps: oauthApps ?? this.oauthApps,
@@ -85,10 +88,10 @@ class OauthAppsResponse extends OauthAppsResponseModel {
 abstract class OauthAppsItemModel {
   /// Initializes
   OauthAppsItemModel({
-    @required this.scopes,
-    @required this.name,
-    @required this.appMarkupPercentage,
-    @required this.appId,
+    required this.scopes,
+    required this.name,
+    required this.appMarkupPercentage,
+    required this.appId,
     this.lastUsed,
   });
 
@@ -105,18 +108,18 @@ abstract class OauthAppsItemModel {
   final int appId;
 
   /// The last date which the application has been used.
-  final String lastUsed;
+  final String? lastUsed;
 }
 
 /// Oauth apps item class
 class OauthAppsItem extends OauthAppsItemModel {
   /// Initializes
   OauthAppsItem({
-    @required int appId,
-    @required double appMarkupPercentage,
-    @required String name,
-    @required List<String> scopes,
-    String lastUsed,
+    required int appId,
+    required double appMarkupPercentage,
+    required String name,
+    required List<String> scopes,
+    String? lastUsed,
   }) : super(
           appId: appId,
           appMarkupPercentage: appMarkupPercentage,
@@ -128,11 +131,13 @@ class OauthAppsItem extends OauthAppsItemModel {
   /// Creates an instance from JSON
   factory OauthAppsItem.fromJson(Map<String, dynamic> json) => OauthAppsItem(
         appId: json['app_id'],
-        appMarkupPercentage: getDouble(json['app_markup_percentage']),
+        appMarkupPercentage: getDouble(json['app_markup_percentage'])!,
         name: json['name'],
-        scopes: json['scopes'] == null
-            ? null
-            : List<String>.from(json['scopes'].map((dynamic item) => item)),
+        scopes: List<String>.from(
+          json['scopes'].map(
+            (dynamic item) => item,
+          ),
+        ),
         lastUsed: json['last_used'],
       );
 
@@ -143,9 +148,12 @@ class OauthAppsItem extends OauthAppsItemModel {
     resultMap['app_id'] = appId;
     resultMap['app_markup_percentage'] = appMarkupPercentage;
     resultMap['name'] = name;
-    if (scopes != null) {
-      resultMap['scopes'] = scopes.map<dynamic>((String item) => item).toList();
-    }
+    resultMap['scopes'] = scopes
+        .map<dynamic>(
+          (String item) => item,
+        )
+        .toList();
+
     resultMap['last_used'] = lastUsed;
 
     return resultMap;
@@ -153,17 +161,17 @@ class OauthAppsItem extends OauthAppsItemModel {
 
   /// Creates a copy of instance with given parameters
   OauthAppsItem copyWith({
-    int appId,
-    double appMarkupPercentage,
-    String name,
-    List<String> scopes,
-    String lastUsed,
+    required int appId,
+    required double appMarkupPercentage,
+    required String name,
+    required List<String> scopes,
+    String? lastUsed,
   }) =>
       OauthAppsItem(
-        appId: appId ?? this.appId,
-        appMarkupPercentage: appMarkupPercentage ?? this.appMarkupPercentage,
-        name: name ?? this.name,
-        scopes: scopes ?? this.scopes,
+        appId: appId,
+        appMarkupPercentage: appMarkupPercentage,
+        name: name,
+        scopes: scopes,
         lastUsed: lastUsed ?? this.lastUsed,
       );
 }

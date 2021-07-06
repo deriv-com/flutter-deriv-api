@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/balance_receive.dart';
 import '../../basic_api/generated/balance_send.dart';
 import '../../basic_api/generated/forget_all_receive.dart';
@@ -19,23 +17,23 @@ import 'forget_receive_result.dart';
 abstract class BalanceResponseModel {
   /// Initializes
   BalanceResponseModel({
-    @required this.subscription,
-    @required this.balance,
+    this.balance,
+    this.subscription,
   });
 
-  /// For subscription requests only.
-  final Subscription subscription;
-
   /// Current balance of one or more accounts.
-  final Balance balance;
+  final Balance? balance;
+
+  /// For subscription requests only.
+  final Subscription? subscription;
 }
 
 /// Balance response class
 class BalanceResponse extends BalanceResponseModel {
   /// Initializes
   BalanceResponse({
-    @required Balance balance,
-    @required Subscription subscription,
+    Balance? balance,
+    Subscription? subscription,
   }) : super(
           balance: balance,
           subscription: subscription,
@@ -58,16 +56,16 @@ class BalanceResponse extends BalanceResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (balance != null) {
-      resultMap['balance'] = balance.toJson();
+      resultMap['balance'] = balance!.toJson();
     }
     if (subscription != null) {
-      resultMap['subscription'] = subscription.toJson();
+      resultMap['subscription'] = subscription!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the balance of account
   ///
@@ -78,7 +76,7 @@ class BalanceResponse extends BalanceResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           BalanceException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -88,16 +86,16 @@ class BalanceResponse extends BalanceResponseModel {
   /// Instead of one call [Balance.fetchBalance] gets stream of [Balance]
   ///
   /// Throws a [BalanceException] if API response contains an error
-  static Stream<BalanceResponse> subscribeBalance(
+  static Stream<BalanceResponse?> subscribeBalance(
     BalanceSend request, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
       _api
-          .subscribe(request: request, comparePredicate: comparePredicate)
+          .subscribe(request: request, comparePredicate: comparePredicate)!
           .map((Response response) {
         checkException(
           response: response,
-          exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+          exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
               BalanceException(baseExceptionModel: baseExceptionModel),
         );
 
@@ -112,17 +110,17 @@ class BalanceResponse extends BalanceResponseModel {
   /// Unsubscribes from balance subscription.
   ///
   /// Throws a [BalanceException] if API response contains an error
-  Future<ForgetResponse> unsubscribeBalance() async {
-    if (subscription?.id == null) {
+  Future<ForgetResponse?> unsubscribeBalance() async {
+    if (subscription == null) {
       return null;
     }
 
     final ForgetReceive response =
-        await _api.unsubscribe(subscriptionId: subscription.id);
+        await _api.unsubscribe(subscriptionId: subscription!.id);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           BalanceException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -138,7 +136,7 @@ class BalanceResponse extends BalanceResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           BalanceException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -147,8 +145,8 @@ class BalanceResponse extends BalanceResponseModel {
 
   /// Creates a copy of instance with given parameters
   BalanceResponse copyWith({
-    Balance balance,
-    Subscription subscription,
+    Balance? balance,
+    Subscription? subscription,
   }) =>
       BalanceResponse(
         balance: balance ?? this.balance,
@@ -156,83 +154,84 @@ class BalanceResponse extends BalanceResponseModel {
       );
 }
 
+/// TypeEnum mapper.
 final Map<String, TypeEnum> typeEnumMapper = <String, TypeEnum>{
   "mt5": TypeEnum.mt5,
   "deriv": TypeEnum.deriv,
 };
 
-/// type Enum
+/// Type Enum.
 enum TypeEnum {
+  /// mt5.
   mt5,
+
+  /// deriv.
   deriv,
 }
 /// Balance model class
 abstract class BalanceModel {
   /// Initializes
   BalanceModel({
-    @required this.total,
-    @required this.loginid,
-    @required this.id,
-    @required this.currency,
-    @required this.accounts,
-    @required this.balance,
+    required this.loginid,
+    required this.currency,
+    required this.balance,
+    this.accounts,
+    this.id,
+    this.total,
   });
-
-  /// Summary totals of accounts by type.
-  final Total total;
 
   /// Client loginid.
   final String loginid;
 
-  /// A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
-  final String id;
-
   /// Currency of current account.
   final String currency;
 
-  /// List of active accounts.
-  final Map<String, AccountsProperty> accounts;
-
   /// Balance of current account.
   final double balance;
+
+  /// List of active accounts.
+  final Map<String, AccountsProperty>? accounts;
+
+  /// A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
+  final String? id;
+
+  /// Summary totals of accounts by type.
+  final Total? total;
 }
 
 /// Balance class
 class Balance extends BalanceModel {
   /// Initializes
   Balance({
-    @required double balance,
-    @required Map<String, AccountsProperty> accounts,
-    @required String currency,
-    @required String id,
-    @required String loginid,
-    @required Total total,
+    required double balance,
+    required String currency,
+    required String loginid,
+    Map<String, AccountsProperty>? accounts,
+    String? id,
+    Total? total,
   }) : super(
           balance: balance,
-          accounts: accounts,
           currency: currency,
-          id: id,
           loginid: loginid,
+          accounts: accounts,
+          id: id,
           total: total,
         );
 
   /// Creates an instance from JSON
   factory Balance.fromJson(Map<String, dynamic> json) => Balance(
-        balance: getDouble(json['balance']),
+        balance: getDouble(json['balance'])!,
+        currency: json['currency'],
+        loginid: json['loginid'],
         accounts: json['accounts'] == null
             ? null
             : Map<String, AccountsProperty>.fromEntries(json['accounts']
                 .entries
                 .map<MapEntry<String, AccountsProperty>>(
                     (MapEntry<String, dynamic> entry) =>
-                        MapEntry<String, AccountsProperty>(
-                            entry.key,
-                            entry.value == null
-                                ? null
-                                : AccountsProperty.fromJson(entry.value)))),
-        currency: json['currency'],
+                        MapEntry<String, AccountsProperty>(entry.key,
+                            AccountsProperty.fromJson(entry.value)))),
         id: json['id'],
-        loginid: json['loginid'],
         total: json['total'] == null ? null : Total.fromJson(json['total']),
       );
 
@@ -241,12 +240,12 @@ class Balance extends BalanceModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['balance'] = balance;
-    resultMap['accounts'] = accounts;
     resultMap['currency'] = currency;
-    resultMap['id'] = id;
     resultMap['loginid'] = loginid;
+    resultMap['accounts'] = accounts;
+    resultMap['id'] = id;
     if (total != null) {
-      resultMap['total'] = total.toJson();
+      resultMap['total'] = total!.toJson();
     }
 
     return resultMap;
@@ -254,19 +253,19 @@ class Balance extends BalanceModel {
 
   /// Creates a copy of instance with given parameters
   Balance copyWith({
-    double balance,
-    Map<String, AccountsProperty> accounts,
-    String currency,
-    String id,
-    String loginid,
-    Total total,
+    required double balance,
+    required String currency,
+    required String loginid,
+    Map<String, AccountsProperty>? accounts,
+    String? id,
+    Total? total,
   }) =>
       Balance(
-        balance: balance ?? this.balance,
+        balance: balance,
+        currency: currency,
+        loginid: loginid,
         accounts: accounts ?? this.accounts,
-        currency: currency ?? this.currency,
         id: id ?? this.id,
-        loginid: loginid ?? this.loginid,
         total: total ?? this.total,
       );
 }
@@ -274,12 +273,12 @@ class Balance extends BalanceModel {
 abstract class AccountsPropertyModel {
   /// Initializes
   AccountsPropertyModel({
-    @required this.type,
-    @required this.status,
-    @required this.demoAccount,
-    @required this.currency,
-    @required this.convertedAmount,
-    @required this.balance,
+    required this.type,
+    required this.status,
+    required this.demoAccount,
+    required this.currency,
+    required this.convertedAmount,
+    required this.balance,
   });
 
   /// Type of account.
@@ -305,12 +304,12 @@ abstract class AccountsPropertyModel {
 class AccountsProperty extends AccountsPropertyModel {
   /// Initializes
   AccountsProperty({
-    @required double balance,
-    @required double convertedAmount,
-    @required String currency,
-    @required bool demoAccount,
-    @required int status,
-    @required TypeEnum type,
+    required double balance,
+    required double convertedAmount,
+    required String currency,
+    required bool demoAccount,
+    required int status,
+    required TypeEnum type,
   }) : super(
           balance: balance,
           convertedAmount: convertedAmount,
@@ -323,12 +322,12 @@ class AccountsProperty extends AccountsPropertyModel {
   /// Creates an instance from JSON
   factory AccountsProperty.fromJson(Map<String, dynamic> json) =>
       AccountsProperty(
-        balance: getDouble(json['balance']),
-        convertedAmount: getDouble(json['converted_amount']),
+        balance: getDouble(json['balance'])!,
+        convertedAmount: getDouble(json['converted_amount'])!,
         currency: json['currency'],
-        demoAccount: getBool(json['demo_account']),
+        demoAccount: getBool(json['demo_account'])!,
         status: json['status'],
-        type: typeEnumMapper[json['type']],
+        type: typeEnumMapper[json['type']]!,
       );
 
   /// Converts an instance to JSON
@@ -341,61 +340,61 @@ class AccountsProperty extends AccountsPropertyModel {
     resultMap['demo_account'] = demoAccount;
     resultMap['status'] = status;
     resultMap['type'] = typeEnumMapper.entries
-        .firstWhere((entry) => entry.value == type, orElse: () => null)
-        ?.key;
+        .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
+        .key;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   AccountsProperty copyWith({
-    double balance,
-    double convertedAmount,
-    String currency,
-    bool demoAccount,
-    int status,
-    TypeEnum type,
+    required double balance,
+    required double convertedAmount,
+    required String currency,
+    required bool demoAccount,
+    required int status,
+    required TypeEnum type,
   }) =>
       AccountsProperty(
-        balance: balance ?? this.balance,
-        convertedAmount: convertedAmount ?? this.convertedAmount,
-        currency: currency ?? this.currency,
-        demoAccount: demoAccount ?? this.demoAccount,
-        status: status ?? this.status,
-        type: type ?? this.type,
+        balance: balance,
+        convertedAmount: convertedAmount,
+        currency: currency,
+        demoAccount: demoAccount,
+        status: status,
+        type: type,
       );
 }
 /// Total model class
 abstract class TotalModel {
   /// Initializes
   TotalModel({
-    @required this.mt5Demo,
-    @required this.mt5,
-    @required this.derivDemo,
-    @required this.deriv,
+    this.deriv,
+    this.derivDemo,
+    this.mt5,
+    this.mt5Demo,
   });
 
-  /// Total balance of all MT5 demo accounts.
-  final Mt5Demo mt5Demo;
-
-  /// Total balance of all MT5 real money accounts.
-  final Mt5 mt5;
+  /// Total balance of all real money Deriv accounts.
+  final Deriv? deriv;
 
   /// Total balance of all demo Deriv accounts.
-  final DerivDemo derivDemo;
+  final DerivDemo? derivDemo;
 
-  /// Total balance of all real money Deriv accounts.
-  final Deriv deriv;
+  /// Total balance of all MT5 real money accounts.
+  final Mt5? mt5;
+
+  /// Total balance of all MT5 demo accounts.
+  final Mt5Demo? mt5Demo;
 }
 
 /// Total class
 class Total extends TotalModel {
   /// Initializes
   Total({
-    @required Deriv deriv,
-    @required DerivDemo derivDemo,
-    @required Mt5 mt5,
-    @required Mt5Demo mt5Demo,
+    Deriv? deriv,
+    DerivDemo? derivDemo,
+    Mt5? mt5,
+    Mt5Demo? mt5Demo,
   }) : super(
           deriv: deriv,
           derivDemo: derivDemo,
@@ -420,16 +419,16 @@ class Total extends TotalModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (deriv != null) {
-      resultMap['deriv'] = deriv.toJson();
+      resultMap['deriv'] = deriv!.toJson();
     }
     if (derivDemo != null) {
-      resultMap['deriv_demo'] = derivDemo.toJson();
+      resultMap['deriv_demo'] = derivDemo!.toJson();
     }
     if (mt5 != null) {
-      resultMap['mt5'] = mt5.toJson();
+      resultMap['mt5'] = mt5!.toJson();
     }
     if (mt5Demo != null) {
-      resultMap['mt5_demo'] = mt5Demo.toJson();
+      resultMap['mt5_demo'] = mt5Demo!.toJson();
     }
 
     return resultMap;
@@ -437,10 +436,10 @@ class Total extends TotalModel {
 
   /// Creates a copy of instance with given parameters
   Total copyWith({
-    Deriv deriv,
-    DerivDemo derivDemo,
-    Mt5 mt5,
-    Mt5Demo mt5Demo,
+    Deriv? deriv,
+    DerivDemo? derivDemo,
+    Mt5? mt5,
+    Mt5Demo? mt5Demo,
   }) =>
       Total(
         deriv: deriv ?? this.deriv,
@@ -453,8 +452,8 @@ class Total extends TotalModel {
 abstract class DerivModel {
   /// Initializes
   DerivModel({
-    @required this.currency,
-    @required this.amount,
+    required this.currency,
+    required this.amount,
   });
 
   /// Currency of total.
@@ -468,8 +467,8 @@ abstract class DerivModel {
 class Deriv extends DerivModel {
   /// Initializes
   Deriv({
-    @required double amount,
-    @required String currency,
+    required double amount,
+    required String currency,
   }) : super(
           amount: amount,
           currency: currency,
@@ -477,7 +476,7 @@ class Deriv extends DerivModel {
 
   /// Creates an instance from JSON
   factory Deriv.fromJson(Map<String, dynamic> json) => Deriv(
-        amount: getDouble(json['amount']),
+        amount: getDouble(json['amount'])!,
         currency: json['currency'],
       );
 
@@ -493,20 +492,20 @@ class Deriv extends DerivModel {
 
   /// Creates a copy of instance with given parameters
   Deriv copyWith({
-    double amount,
-    String currency,
+    required double amount,
+    required String currency,
   }) =>
       Deriv(
-        amount: amount ?? this.amount,
-        currency: currency ?? this.currency,
+        amount: amount,
+        currency: currency,
       );
 }
 /// Deriv demo model class
 abstract class DerivDemoModel {
   /// Initializes
   DerivDemoModel({
-    @required this.currency,
-    @required this.amount,
+    required this.currency,
+    required this.amount,
   });
 
   /// Currency of total.
@@ -520,8 +519,8 @@ abstract class DerivDemoModel {
 class DerivDemo extends DerivDemoModel {
   /// Initializes
   DerivDemo({
-    @required double amount,
-    @required String currency,
+    required double amount,
+    required String currency,
   }) : super(
           amount: amount,
           currency: currency,
@@ -529,7 +528,7 @@ class DerivDemo extends DerivDemoModel {
 
   /// Creates an instance from JSON
   factory DerivDemo.fromJson(Map<String, dynamic> json) => DerivDemo(
-        amount: getDouble(json['amount']),
+        amount: getDouble(json['amount'])!,
         currency: json['currency'],
       );
 
@@ -545,20 +544,20 @@ class DerivDemo extends DerivDemoModel {
 
   /// Creates a copy of instance with given parameters
   DerivDemo copyWith({
-    double amount,
-    String currency,
+    required double amount,
+    required String currency,
   }) =>
       DerivDemo(
-        amount: amount ?? this.amount,
-        currency: currency ?? this.currency,
+        amount: amount,
+        currency: currency,
       );
 }
 /// Mt5 model class
 abstract class Mt5Model {
   /// Initializes
   Mt5Model({
-    @required this.currency,
-    @required this.amount,
+    required this.currency,
+    required this.amount,
   });
 
   /// Currency of total.
@@ -572,8 +571,8 @@ abstract class Mt5Model {
 class Mt5 extends Mt5Model {
   /// Initializes
   Mt5({
-    @required double amount,
-    @required String currency,
+    required double amount,
+    required String currency,
   }) : super(
           amount: amount,
           currency: currency,
@@ -581,7 +580,7 @@ class Mt5 extends Mt5Model {
 
   /// Creates an instance from JSON
   factory Mt5.fromJson(Map<String, dynamic> json) => Mt5(
-        amount: getDouble(json['amount']),
+        amount: getDouble(json['amount'])!,
         currency: json['currency'],
       );
 
@@ -597,20 +596,20 @@ class Mt5 extends Mt5Model {
 
   /// Creates a copy of instance with given parameters
   Mt5 copyWith({
-    double amount,
-    String currency,
+    required double amount,
+    required String currency,
   }) =>
       Mt5(
-        amount: amount ?? this.amount,
-        currency: currency ?? this.currency,
+        amount: amount,
+        currency: currency,
       );
 }
 /// Mt5 demo model class
 abstract class Mt5DemoModel {
   /// Initializes
   Mt5DemoModel({
-    @required this.currency,
-    @required this.amount,
+    required this.currency,
+    required this.amount,
   });
 
   /// Currency of total.
@@ -624,8 +623,8 @@ abstract class Mt5DemoModel {
 class Mt5Demo extends Mt5DemoModel {
   /// Initializes
   Mt5Demo({
-    @required double amount,
-    @required String currency,
+    required double amount,
+    required String currency,
   }) : super(
           amount: amount,
           currency: currency,
@@ -633,7 +632,7 @@ class Mt5Demo extends Mt5DemoModel {
 
   /// Creates an instance from JSON
   factory Mt5Demo.fromJson(Map<String, dynamic> json) => Mt5Demo(
-        amount: getDouble(json['amount']),
+        amount: getDouble(json['amount'])!,
         currency: json['currency'],
       );
 
@@ -649,19 +648,19 @@ class Mt5Demo extends Mt5DemoModel {
 
   /// Creates a copy of instance with given parameters
   Mt5Demo copyWith({
-    double amount,
-    String currency,
+    required double amount,
+    required String currency,
   }) =>
       Mt5Demo(
-        amount: amount ?? this.amount,
-        currency: currency ?? this.currency,
+        amount: amount,
+        currency: currency,
       );
 }
 /// Subscription model class
 abstract class SubscriptionModel {
   /// Initializes
   SubscriptionModel({
-    @required this.id,
+    required this.id,
   });
 
   /// A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
@@ -672,7 +671,7 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
-    @required String id,
+    required String id,
   }) : super(
           id: id,
         );
@@ -693,9 +692,9 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters
   Subscription copyWith({
-    String id,
+    required String id,
   }) =>
       Subscription(
-        id: id ?? this.id,
+        id: id,
       );
 }

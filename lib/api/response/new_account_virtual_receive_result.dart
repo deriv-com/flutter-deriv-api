@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../api/exceptions/exceptions.dart';
 import '../../api/models/base_exception_model.dart';
 import '../../basic_api/generated/new_account_virtual_receive.dart';
@@ -12,18 +10,18 @@ import '../../services/dependency_injector/injector.dart';
 abstract class NewAccountVirtualResponseModel {
   /// Initializes
   NewAccountVirtualResponseModel({
-    @required this.newAccountVirtual,
+    this.newAccountVirtual,
   });
 
   /// New virtual-money account details
-  final NewAccountVirtual newAccountVirtual;
+  final NewAccountVirtual? newAccountVirtual;
 }
 
 /// New account virtual response class
 class NewAccountVirtualResponse extends NewAccountVirtualResponseModel {
   /// Initializes
   NewAccountVirtualResponse({
-    @required NewAccountVirtual newAccountVirtual,
+    NewAccountVirtual? newAccountVirtual,
   }) : super(
           newAccountVirtual: newAccountVirtual,
         );
@@ -43,13 +41,13 @@ class NewAccountVirtualResponse extends NewAccountVirtualResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (newAccountVirtual != null) {
-      resultMap['new_account_virtual'] = newAccountVirtual.toJson();
+      resultMap['new_account_virtual'] = newAccountVirtual!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Opens a new virtual account.
   ///
@@ -62,7 +60,7 @@ class NewAccountVirtualResponse extends NewAccountVirtualResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           NewAccountException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -71,21 +69,37 @@ class NewAccountVirtualResponse extends NewAccountVirtualResponseModel {
 
   /// Creates a copy of instance with given parameters
   NewAccountVirtualResponse copyWith({
-    NewAccountVirtual newAccountVirtual,
+    NewAccountVirtual? newAccountVirtual,
   }) =>
       NewAccountVirtualResponse(
         newAccountVirtual: newAccountVirtual ?? this.newAccountVirtual,
       );
 }
+
+/// TypeEnum mapper.
+final Map<String, TypeEnum> typeEnumMapper = <String, TypeEnum>{
+  "trading": TypeEnum.trading,
+  "wallet": TypeEnum.wallet,
+};
+
+/// Type Enum.
+enum TypeEnum {
+  /// trading.
+  trading,
+
+  /// wallet.
+  wallet,
+}
 /// New account virtual model class
 abstract class NewAccountVirtualModel {
   /// Initializes
   NewAccountVirtualModel({
-    @required this.oauthToken,
-    @required this.email,
-    @required this.currency,
-    @required this.clientId,
-    @required this.balance,
+    required this.oauthToken,
+    required this.email,
+    required this.currency,
+    required this.clientId,
+    required this.balance,
+    this.type,
   });
 
   /// Oauth token for the client's login session (so that the user may be logged in immediately)
@@ -97,38 +111,44 @@ abstract class NewAccountVirtualModel {
   /// Account currency
   final String currency;
 
-  /// Client ID of the new virtual-money account
+  /// ID of the new virtual-money account
   final String clientId;
 
   /// Account balance
   final double balance;
+
+  /// Account type
+  final TypeEnum? type;
 }
 
 /// New account virtual class
 class NewAccountVirtual extends NewAccountVirtualModel {
   /// Initializes
   NewAccountVirtual({
-    @required double balance,
-    @required String clientId,
-    @required String currency,
-    @required String email,
-    @required String oauthToken,
+    required double balance,
+    required String clientId,
+    required String currency,
+    required String email,
+    required String oauthToken,
+    TypeEnum? type,
   }) : super(
           balance: balance,
           clientId: clientId,
           currency: currency,
           email: email,
           oauthToken: oauthToken,
+          type: type,
         );
 
   /// Creates an instance from JSON
   factory NewAccountVirtual.fromJson(Map<String, dynamic> json) =>
       NewAccountVirtual(
-        balance: getDouble(json['balance']),
+        balance: getDouble(json['balance'])!,
         clientId: json['client_id'],
         currency: json['currency'],
         email: json['email'],
         oauthToken: json['oauth_token'],
+        type: json['type'] == null ? null : typeEnumMapper[json['type']]!,
       );
 
   /// Converts an instance to JSON
@@ -140,23 +160,28 @@ class NewAccountVirtual extends NewAccountVirtualModel {
     resultMap['currency'] = currency;
     resultMap['email'] = email;
     resultMap['oauth_token'] = oauthToken;
+    resultMap['type'] = typeEnumMapper.entries
+        .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
+        .key;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   NewAccountVirtual copyWith({
-    double balance,
-    String clientId,
-    String currency,
-    String email,
-    String oauthToken,
+    required double balance,
+    required String clientId,
+    required String currency,
+    required String email,
+    required String oauthToken,
+    TypeEnum? type,
   }) =>
       NewAccountVirtual(
-        balance: balance ?? this.balance,
-        clientId: clientId ?? this.clientId,
-        currency: currency ?? this.currency,
-        email: email ?? this.email,
-        oauthToken: oauthToken ?? this.oauthToken,
+        balance: balance,
+        clientId: clientId,
+        currency: currency,
+        email: email,
+        oauthToken: oauthToken,
+        type: type ?? this.type,
       );
 }

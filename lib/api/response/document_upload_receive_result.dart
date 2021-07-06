@@ -1,23 +1,21 @@
-import 'package:meta/meta.dart';
-
 import '../../helpers/helpers.dart';
 
 /// Document upload response model class
 abstract class DocumentUploadResponseModel {
   /// Initializes
   DocumentUploadResponseModel({
-    @required this.documentUpload,
+    this.documentUpload,
   });
 
   /// Details of the uploaded documents.
-  final DocumentUpload documentUpload;
+  final DocumentUpload? documentUpload;
 }
 
 /// Document upload response class
 class DocumentUploadResponse extends DocumentUploadResponseModel {
   /// Initializes
   DocumentUploadResponse({
-    @required DocumentUpload documentUpload,
+    DocumentUpload? documentUpload,
   }) : super(
           documentUpload: documentUpload,
         );
@@ -37,7 +35,7 @@ class DocumentUploadResponse extends DocumentUploadResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (documentUpload != null) {
-      resultMap['document_upload'] = documentUpload.toJson();
+      resultMap['document_upload'] = documentUpload!.toJson();
     }
 
     return resultMap;
@@ -45,7 +43,7 @@ class DocumentUploadResponse extends DocumentUploadResponseModel {
 
   /// Creates a copy of instance with given parameters
   DocumentUploadResponse copyWith({
-    DocumentUpload documentUpload,
+    DocumentUpload? documentUpload,
   }) =>
       DocumentUploadResponse(
         documentUpload: documentUpload ?? this.documentUpload,
@@ -55,53 +53,53 @@ class DocumentUploadResponse extends DocumentUploadResponseModel {
 abstract class DocumentUploadModel {
   /// Initializes
   DocumentUploadModel({
-    @required this.uploadId,
-    @required this.status,
-    @required this.size,
-    @required this.checksum,
-    @required this.callType,
+    required this.uploadId,
+    required this.callType,
+    this.checksum,
+    this.size,
+    this.status,
   });
 
   /// Current upload ID, add this to your binary payload metadata
   final double uploadId;
 
-  /// Upload status (`success` or `failure`)
-  final String status;
-
-  /// File size
-  final double size;
-
-  /// Hex encoded SHA-1 checksum of the file
-  final String checksum;
-
   /// Current call type, add this to your binary payload metadata
   final double callType;
+
+  /// Hex encoded SHA-1 checksum of the file
+  final String? checksum;
+
+  /// File size
+  final double? size;
+
+  /// Upload status (`success` or `failure`)
+  final String? status;
 }
 
 /// Document upload class
 class DocumentUpload extends DocumentUploadModel {
   /// Initializes
   DocumentUpload({
-    @required double callType,
-    @required String checksum,
-    @required double size,
-    @required String status,
-    @required double uploadId,
+    required double callType,
+    required double uploadId,
+    String? checksum,
+    double? size,
+    String? status,
   }) : super(
           callType: callType,
+          uploadId: uploadId,
           checksum: checksum,
           size: size,
           status: status,
-          uploadId: uploadId,
         );
 
   /// Creates an instance from JSON
   factory DocumentUpload.fromJson(Map<String, dynamic> json) => DocumentUpload(
-        callType: getDouble(json['call_type']),
+        callType: getDouble(json['call_type'])!,
+        uploadId: getDouble(json['upload_id'])!,
         checksum: json['checksum'],
         size: getDouble(json['size']),
         status: json['status'],
-        uploadId: getDouble(json['upload_id']),
       );
 
   /// Converts an instance to JSON
@@ -109,27 +107,27 @@ class DocumentUpload extends DocumentUploadModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['call_type'] = callType;
+    resultMap['upload_id'] = uploadId;
     resultMap['checksum'] = checksum;
     resultMap['size'] = size;
     resultMap['status'] = status;
-    resultMap['upload_id'] = uploadId;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   DocumentUpload copyWith({
-    double callType,
-    String checksum,
-    double size,
-    String status,
-    double uploadId,
+    required double callType,
+    required double uploadId,
+    String? checksum,
+    double? size,
+    String? status,
   }) =>
       DocumentUpload(
-        callType: callType ?? this.callType,
+        callType: callType,
+        uploadId: uploadId,
         checksum: checksum ?? this.checksum,
         size: size ?? this.size,
         status: status ?? this.status,
-        uploadId: uploadId ?? this.uploadId,
       );
 }

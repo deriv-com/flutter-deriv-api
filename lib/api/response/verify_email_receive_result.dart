@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/verify_email_receive.dart';
 import '../../basic_api/generated/verify_email_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class VerifyEmailResponseModel {
   /// Initializes
   VerifyEmailResponseModel({
-    @required this.verifyEmail,
+    this.verifyEmail,
   });
 
   /// 1 for success (secure code has been sent to the email address)
-  final bool verifyEmail;
+  final bool? verifyEmail;
 }
 
 /// Verify email response class
 class VerifyEmailResponse extends VerifyEmailResponseModel {
   /// Initializes
   VerifyEmailResponse({
-    @required bool verifyEmail,
+    bool? verifyEmail,
   }) : super(
           verifyEmail: verifyEmail,
         );
@@ -45,7 +43,7 @@ class VerifyEmailResponse extends VerifyEmailResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Verifies an email address for various purposes.
   ///
@@ -59,7 +57,7 @@ class VerifyEmailResponse extends VerifyEmailResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           UserException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -68,7 +66,7 @@ class VerifyEmailResponse extends VerifyEmailResponseModel {
 
   /// Creates a copy of instance with given parameters
   VerifyEmailResponse copyWith({
-    bool verifyEmail,
+    bool? verifyEmail,
   }) =>
       VerifyEmailResponse(
         verifyEmail: verifyEmail ?? this.verifyEmail,

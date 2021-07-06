@@ -1,6 +1,8 @@
 analyzer:
   exclude:
     - lib/basic_api/generated/api.dart
+    - lib/api/manually/ohlc_receive.g.dart
+    - lib/api/response/**
 
   strong-mode:
     implicit-dynamic: false

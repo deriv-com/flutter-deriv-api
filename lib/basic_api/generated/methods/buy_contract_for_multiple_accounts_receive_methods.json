@@ -1,4 +1,4 @@
 {
   "methods": "",
-  "imports": "import 'package:meta/meta.dart';\n\nimport '../../helpers/helpers.dart';"
+  "imports": "import '../../helpers/helpers.dart';"
 }

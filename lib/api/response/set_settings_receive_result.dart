@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/set_settings_receive.dart';
 import '../../basic_api/generated/set_settings_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class SetSettingsResponseModel {
   /// Initializes
   SetSettingsResponseModel({
-    @required this.setSettings,
+    this.setSettings,
   });
 
   /// 1 on success
-  final int setSettings;
+  final int? setSettings;
 }
 
 /// Set settings response class
 class SetSettingsResponse extends SetSettingsResponseModel {
   /// Initializes
   SetSettingsResponse({
-    @required int setSettings,
+    int? setSettings,
   }) : super(
           setSettings: setSettings,
         );
@@ -45,7 +43,7 @@ class SetSettingsResponse extends SetSettingsResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Changes the user's settings with parameters specified as [SetSettingsRequest]
   ///
@@ -57,16 +55,16 @@ class SetSettingsResponse extends SetSettingsResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AccountSettingsException(baseExceptionModel: baseExceptionModel),
     );
 
-    return SetSettingsResponse(setSettings: response.setSettings);
+    return SetSettingsResponse(setSettings: response.setSettings ?? 0);
   }
 
   /// Creates a copy of instance with given parameters
   SetSettingsResponse copyWith({
-    int setSettings,
+    int? setSettings,
   }) =>
       SetSettingsResponse(
         setSettings: setSettings ?? this.setSettings,

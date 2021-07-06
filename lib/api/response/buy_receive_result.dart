@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/buy_receive.dart';
 import '../../basic_api/generated/buy_send.dart';
 import '../../basic_api/generated/cancel_send.dart';
@@ -23,23 +21,23 @@ import 'sell_receive_result.dart';
 abstract class BuyResponseModel {
   /// Initializes
   BuyResponseModel({
-    @required this.subscription,
-    @required this.buy,
+    this.buy,
+    this.subscription,
   });
 
-  /// For subscription requests only.
-  final Subscription subscription;
-
   /// Receipt confirmation for the purchase
-  final Buy buy;
+  final Buy? buy;
+
+  /// For subscription requests only.
+  final Subscription? subscription;
 }
 
 /// Buy response class
 class BuyResponse extends BuyResponseModel {
   /// Initializes
   BuyResponse({
-    @required Buy buy,
-    @required Subscription subscription,
+    Buy? buy,
+    Subscription? subscription,
   }) : super(
           buy: buy,
           subscription: subscription,
@@ -62,16 +60,16 @@ class BuyResponse extends BuyResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (buy != null) {
-      resultMap['buy'] = buy.toJson();
+      resultMap['buy'] = buy!.toJson();
     }
     if (subscription != null) {
-      resultMap['subscription'] = subscription.toJson();
+      resultMap['subscription'] = subscription!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Buys a contract with parameters specified in given [BuyRequest]
   ///
@@ -83,7 +81,7 @@ class BuyResponse extends BuyResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -93,17 +91,17 @@ class BuyResponse extends BuyResponseModel {
   /// Buys contract with parameters specified in request and subscribes to it.
   ///
   /// Throws a [ContractOperationException] is API response contains an error
-  static Stream<ProposalOpenContractResponse> buyAndSubscribe(
+  static Stream<ProposalOpenContractResponse?> buyAndSubscribe(
     BuySend request, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
       _api
-          .subscribe(request: request, comparePredicate: comparePredicate)
-          .map<ProposalOpenContractResponse>(
+          .subscribe(request: request, comparePredicate: comparePredicate)!
+          .map<ProposalOpenContractResponse?>(
         (Response response) {
           checkException(
             response: response,
-            exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+            exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
                 ContractOperationException(
                     baseExceptionModel: baseExceptionModel),
           );
@@ -122,18 +120,18 @@ class BuyResponse extends BuyResponseModel {
   Future<ProposalOpenContractResponse> fetchState() =>
       ProposalOpenContractResponse.fetchContractState(
         ProposalOpenContractSend(
-          contractId: buy.contractId,
+          contractId: buy?.contractId,
         ),
       );
 
   /// Subscribes to this bought contract spot and returns its spot update as [ContractBaseModel].
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Stream<ProposalOpenContractResponse> subscribeState({
-    RequestCompareFunction comparePredicate,
+  Stream<ProposalOpenContractResponse?> subscribeState({
+    RequestCompareFunction? comparePredicate,
   }) =>
       ProposalOpenContractResponse.subscribeContractState(
-        ProposalOpenContractSend(contractId: buy.contractId),
+        ProposalOpenContractSend(contractId: buy?.contractId),
         comparePredicate: comparePredicate,
       );
 
@@ -143,13 +141,13 @@ class BuyResponse extends BuyResponseModel {
   /// Default be 0 for 'sell at market'.
   /// Throws a [ContractOperationException] if API response contains an error
   Future<SellResponse> sell({double price = 0}) =>
-      SellResponse.sellContract(SellSend(sell: buy.contractId, price: price));
+      SellResponse.sellContract(SellSend(sell: buy?.contractId, price: price));
 
   /// Cancels this contract
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   Future<CancelResponse> cancel() =>
-      CancelResponse.cancelContract(CancelSend(cancel: buy.contractId));
+      CancelResponse.cancelContract(CancelSend(cancel: buy?.contractId));
 
   /// Updates this contract
   ///
@@ -157,11 +155,11 @@ class BuyResponse extends BuyResponseModel {
   /// New [takeProfit] value for a contract. To cancel, pass null.
   /// Throws a [ContractOperationException] if API response contains an error
   Future<ContractUpdateResponse> update({
-    double stopLoss,
-    double takeProfit,
+    double? stopLoss,
+    double? takeProfit,
   }) =>
       ContractUpdateResponse.updateContract(ContractUpdateSend(
-        contractId: buy.contractId,
+        contractId: buy?.contractId,
         limitOrder: <String, dynamic>{
           'stop_loss': stopLoss,
           'take_profit': takeProfit,
@@ -170,8 +168,8 @@ class BuyResponse extends BuyResponseModel {
 
   /// Creates a copy of instance with given parameters
   BuyResponse copyWith({
-    Buy buy,
-    Subscription subscription,
+    Buy? buy,
+    Subscription? subscription,
   }) =>
       BuyResponse(
         buy: buy ?? this.buy,
@@ -182,15 +180,15 @@ class BuyResponse extends BuyResponseModel {
 abstract class BuyModel {
   /// Initializes
   BuyModel({
-    @required this.transactionId,
-    @required this.startTime,
-    @required this.shortcode,
-    @required this.purchaseTime,
-    @required this.payout,
-    @required this.longcode,
-    @required this.contractId,
-    @required this.buyPrice,
-    @required this.balanceAfter,
+    required this.transactionId,
+    required this.startTime,
+    required this.shortcode,
+    required this.purchaseTime,
+    required this.payout,
+    required this.longcode,
+    required this.contractId,
+    required this.buyPrice,
+    required this.balanceAfter,
   });
 
   /// Internal transaction identifier
@@ -225,15 +223,15 @@ abstract class BuyModel {
 class Buy extends BuyModel {
   /// Initializes
   Buy({
-    @required double balanceAfter,
-    @required double buyPrice,
-    @required int contractId,
-    @required String longcode,
-    @required double payout,
-    @required DateTime purchaseTime,
-    @required String shortcode,
-    @required DateTime startTime,
-    @required int transactionId,
+    required double balanceAfter,
+    required double buyPrice,
+    required int contractId,
+    required String longcode,
+    required double payout,
+    required DateTime purchaseTime,
+    required String shortcode,
+    required DateTime startTime,
+    required int transactionId,
   }) : super(
           balanceAfter: balanceAfter,
           buyPrice: buyPrice,
@@ -248,14 +246,14 @@ class Buy extends BuyModel {
 
   /// Creates an instance from JSON
   factory Buy.fromJson(Map<String, dynamic> json) => Buy(
-        balanceAfter: getDouble(json['balance_after']),
-        buyPrice: getDouble(json['buy_price']),
+        balanceAfter: getDouble(json['balance_after'])!,
+        buyPrice: getDouble(json['buy_price'])!,
         contractId: json['contract_id'],
         longcode: json['longcode'],
-        payout: getDouble(json['payout']),
-        purchaseTime: getDateTime(json['purchase_time']),
+        payout: getDouble(json['payout'])!,
+        purchaseTime: getDateTime(json['purchase_time'])!,
         shortcode: json['shortcode'],
-        startTime: getDateTime(json['start_time']),
+        startTime: getDateTime(json['start_time'])!,
         transactionId: json['transaction_id'],
       );
 
@@ -278,33 +276,33 @@ class Buy extends BuyModel {
 
   /// Creates a copy of instance with given parameters
   Buy copyWith({
-    double balanceAfter,
-    double buyPrice,
-    int contractId,
-    String longcode,
-    double payout,
-    DateTime purchaseTime,
-    String shortcode,
-    DateTime startTime,
-    int transactionId,
+    required double balanceAfter,
+    required double buyPrice,
+    required int contractId,
+    required String longcode,
+    required double payout,
+    required DateTime purchaseTime,
+    required String shortcode,
+    required DateTime startTime,
+    required int transactionId,
   }) =>
       Buy(
-        balanceAfter: balanceAfter ?? this.balanceAfter,
-        buyPrice: buyPrice ?? this.buyPrice,
-        contractId: contractId ?? this.contractId,
-        longcode: longcode ?? this.longcode,
-        payout: payout ?? this.payout,
-        purchaseTime: purchaseTime ?? this.purchaseTime,
-        shortcode: shortcode ?? this.shortcode,
-        startTime: startTime ?? this.startTime,
-        transactionId: transactionId ?? this.transactionId,
+        balanceAfter: balanceAfter,
+        buyPrice: buyPrice,
+        contractId: contractId,
+        longcode: longcode,
+        payout: payout,
+        purchaseTime: purchaseTime,
+        shortcode: shortcode,
+        startTime: startTime,
+        transactionId: transactionId,
       );
 }
 /// Subscription model class
 abstract class SubscriptionModel {
   /// Initializes
   SubscriptionModel({
-    @required this.id,
+    required this.id,
   });
 
   /// A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
@@ -315,7 +313,7 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
-    @required String id,
+    required String id,
   }) : super(
           id: id,
         );
@@ -336,9 +334,9 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters
   Subscription copyWith({
-    String id,
+    required String id,
   }) =>
       Subscription(
-        id: id ?? this.id,
+        id: id,
       );
 }

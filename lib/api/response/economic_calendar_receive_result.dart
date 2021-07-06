@@ -1,23 +1,21 @@
-import 'package:meta/meta.dart';
-
 import '../../helpers/helpers.dart';
 
 /// Economic calendar response model class
 abstract class EconomicCalendarResponseModel {
   /// Initializes
   EconomicCalendarResponseModel({
-    @required this.economicCalendar,
+    this.economicCalendar,
   });
 
   /// Economic calendar.
-  final EconomicCalendar economicCalendar;
+  final EconomicCalendar? economicCalendar;
 }
 
 /// Economic calendar response class
 class EconomicCalendarResponse extends EconomicCalendarResponseModel {
   /// Initializes
   EconomicCalendarResponse({
-    @required EconomicCalendar economicCalendar,
+    EconomicCalendar? economicCalendar,
   }) : super(
           economicCalendar: economicCalendar,
         );
@@ -37,7 +35,7 @@ class EconomicCalendarResponse extends EconomicCalendarResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (economicCalendar != null) {
-      resultMap['economic_calendar'] = economicCalendar.toJson();
+      resultMap['economic_calendar'] = economicCalendar!.toJson();
     }
 
     return resultMap;
@@ -45,7 +43,7 @@ class EconomicCalendarResponse extends EconomicCalendarResponseModel {
 
   /// Creates a copy of instance with given parameters
   EconomicCalendarResponse copyWith({
-    EconomicCalendar economicCalendar,
+    EconomicCalendar? economicCalendar,
   }) =>
       EconomicCalendarResponse(
         economicCalendar: economicCalendar ?? this.economicCalendar,
@@ -55,18 +53,18 @@ class EconomicCalendarResponse extends EconomicCalendarResponseModel {
 abstract class EconomicCalendarModel {
   /// Initializes
   EconomicCalendarModel({
-    @required this.events,
+    this.events,
   });
 
   /// Array of economic events
-  final List<EventsItem> events;
+  final List<EventsItem>? events;
 }
 
 /// Economic calendar class
 class EconomicCalendar extends EconomicCalendarModel {
   /// Initializes
   EconomicCalendar({
-    @required List<EventsItem> events,
+    List<EventsItem>? events,
   }) : super(
           events: events,
         );
@@ -76,8 +74,11 @@ class EconomicCalendar extends EconomicCalendarModel {
       EconomicCalendar(
         events: json['events'] == null
             ? null
-            : List<EventsItem>.from(json['events']
-                .map((dynamic item) => EventsItem.fromJson(item))),
+            : List<EventsItem>.from(
+                json['events']?.map(
+                  (dynamic item) => EventsItem.fromJson(item),
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -85,8 +86,11 @@ class EconomicCalendar extends EconomicCalendarModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (events != null) {
-      resultMap['events'] =
-          events.map<dynamic>((EventsItem item) => item.toJson()).toList();
+      resultMap['events'] = events!
+          .map<dynamic>(
+            (EventsItem item) => item.toJson(),
+          )
+          .toList();
     }
 
     return resultMap;
@@ -94,7 +98,7 @@ class EconomicCalendar extends EconomicCalendarModel {
 
   /// Creates a copy of instance with given parameters
   EconomicCalendar copyWith({
-    List<EventsItem> events,
+    List<EventsItem>? events,
   }) =>
       EconomicCalendar(
         events: events ?? this.events,
@@ -104,48 +108,48 @@ class EconomicCalendar extends EconomicCalendarModel {
 abstract class EventsItemModel {
   /// Initializes
   EventsItemModel({
-    @required this.releaseDate,
-    @required this.previous,
-    @required this.impact,
-    @required this.forecast,
-    @required this.eventName,
-    @required this.currency,
-    @required this.actual,
+    this.actual,
+    this.currency,
+    this.eventName,
+    this.forecast,
+    this.impact,
+    this.previous,
+    this.releaseDate,
   });
 
-  /// Release date.
-  final DateTime releaseDate;
-
-  /// Previous value.
-  final Previous previous;
-
-  /// Impact.
-  final int impact;
-
-  /// Forecasted value.
-  final Forecast forecast;
-
-  /// Event name.
-  final String eventName;
+  /// Actual value.
+  final Actual? actual;
 
   /// Currency symbol.
-  final String currency;
+  final String? currency;
 
-  /// Actual value.
-  final Actual actual;
+  /// Event name.
+  final String? eventName;
+
+  /// Forecasted value.
+  final Forecast? forecast;
+
+  /// Impact.
+  final int? impact;
+
+  /// Previous value.
+  final Previous? previous;
+
+  /// Release date.
+  final DateTime? releaseDate;
 }
 
 /// Events item class
 class EventsItem extends EventsItemModel {
   /// Initializes
   EventsItem({
-    @required Actual actual,
-    @required String currency,
-    @required String eventName,
-    @required Forecast forecast,
-    @required int impact,
-    @required Previous previous,
-    @required DateTime releaseDate,
+    Actual? actual,
+    String? currency,
+    String? eventName,
+    Forecast? forecast,
+    int? impact,
+    Previous? previous,
+    DateTime? releaseDate,
   }) : super(
           actual: actual,
           currency: currency,
@@ -176,16 +180,16 @@ class EventsItem extends EventsItemModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (actual != null) {
-      resultMap['actual'] = actual.toJson();
+      resultMap['actual'] = actual!.toJson();
     }
     resultMap['currency'] = currency;
     resultMap['event_name'] = eventName;
     if (forecast != null) {
-      resultMap['forecast'] = forecast.toJson();
+      resultMap['forecast'] = forecast!.toJson();
     }
     resultMap['impact'] = impact;
     if (previous != null) {
-      resultMap['previous'] = previous.toJson();
+      resultMap['previous'] = previous!.toJson();
     }
     resultMap['release_date'] = getSecondsSinceEpochDateTime(releaseDate);
 
@@ -194,13 +198,13 @@ class EventsItem extends EventsItemModel {
 
   /// Creates a copy of instance with given parameters
   EventsItem copyWith({
-    Actual actual,
-    String currency,
-    String eventName,
-    Forecast forecast,
-    int impact,
-    Previous previous,
-    DateTime releaseDate,
+    Actual? actual,
+    String? currency,
+    String? eventName,
+    Forecast? forecast,
+    int? impact,
+    Previous? previous,
+    DateTime? releaseDate,
   }) =>
       EventsItem(
         actual: actual ?? this.actual,
@@ -216,18 +220,18 @@ class EventsItem extends EventsItemModel {
 abstract class ActualModel {
   /// Initializes
   ActualModel({
-    @required this.displayValue,
+    this.displayValue,
   });
 
   /// Actual value.
-  final String displayValue;
+  final String? displayValue;
 }
 
 /// Actual class
 class Actual extends ActualModel {
   /// Initializes
   Actual({
-    @required String displayValue,
+    String? displayValue,
   }) : super(
           displayValue: displayValue,
         );
@@ -248,7 +252,7 @@ class Actual extends ActualModel {
 
   /// Creates a copy of instance with given parameters
   Actual copyWith({
-    String displayValue,
+    String? displayValue,
   }) =>
       Actual(
         displayValue: displayValue ?? this.displayValue,
@@ -258,18 +262,18 @@ class Actual extends ActualModel {
 abstract class ForecastModel {
   /// Initializes
   ForecastModel({
-    @required this.displayValue,
+    this.displayValue,
   });
 
   /// Forecasted value.
-  final String displayValue;
+  final String? displayValue;
 }
 
 /// Forecast class
 class Forecast extends ForecastModel {
   /// Initializes
   Forecast({
-    @required String displayValue,
+    String? displayValue,
   }) : super(
           displayValue: displayValue,
         );
@@ -290,7 +294,7 @@ class Forecast extends ForecastModel {
 
   /// Creates a copy of instance with given parameters
   Forecast copyWith({
-    String displayValue,
+    String? displayValue,
   }) =>
       Forecast(
         displayValue: displayValue ?? this.displayValue,
@@ -300,18 +304,18 @@ class Forecast extends ForecastModel {
 abstract class PreviousModel {
   /// Initializes
   PreviousModel({
-    @required this.displayValue,
+    this.displayValue,
   });
 
   /// Previous value.
-  final String displayValue;
+  final String? displayValue;
 }
 
 /// Previous class
 class Previous extends PreviousModel {
   /// Initializes
   Previous({
-    @required String displayValue,
+    String? displayValue,
   }) : super(
           displayValue: displayValue,
         );
@@ -332,7 +336,7 @@ class Previous extends PreviousModel {
 
   /// Creates a copy of instance with given parameters
   Previous copyWith({
-    String displayValue,
+    String? displayValue,
   }) =>
       Previous(
         displayValue: displayValue ?? this.displayValue,

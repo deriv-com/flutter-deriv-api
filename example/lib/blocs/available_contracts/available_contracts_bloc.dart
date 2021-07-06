@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 import 'package:flutter_deriv_api/api/response/contracts_for_receive_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/response/active_symbols_receive_result.dart';
-
 
 import '../active_symbols/active_symbols_bloc.dart';
 
@@ -39,19 +37,19 @@ class AvailableContractsBloc
         final ContractsForResponse contracts =
             await _fetchAvailableContracts(event.activeSymbol);
 
-        yield AvailableContractsLoaded(contracts: contracts.contractsFor);
+        yield AvailableContractsLoaded(contracts: contracts.contractsFor!);
       } on ContractsForSymbolException catch (error) {
         yield AvailableContractsError(error.message);
       }
     } else if (event is SelectContract) {
       if (state is AvailableContractsLoaded) {
         // ignore: avoid_as
-        final AvailableContractsLoaded loadedState = state as AvailableContractsLoaded;
+        final AvailableContractsLoaded loadedState =
+            state as AvailableContractsLoaded;
 
         yield AvailableContractsLoaded(
           contracts: loadedState.contracts,
-          selectedContract:
-              loadedState.contracts.available[event.index],
+          selectedContract: loadedState.contracts.available[event.index],
         );
       } else {
         yield AvailableContractsLoading();
@@ -61,9 +59,9 @@ class AvailableContractsBloc
   }
 
   Future<ContractsForResponse> _fetchAvailableContracts(
-    ActiveSymbolsItem selectedSymbol,
+    ActiveSymbolsItem? selectedSymbol,
   ) async =>
       ContractsForResponse.fetchContractsForSymbol(ContractsForSend(
-        contractsFor: selectedSymbol.symbol,
+        contractsFor: selectedSymbol?.symbol,
       ));
 }

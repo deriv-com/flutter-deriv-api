@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/copytrading_list_receive.dart';
 import '../../basic_api/generated/copytrading_list_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class CopytradingListResponseModel {
   /// Initializes
   CopytradingListResponseModel({
-    @required this.copytradingList,
+    this.copytradingList,
   });
 
   /// The trading information of copiers or traders.
-  final CopytradingList copytradingList;
+  final CopytradingList? copytradingList;
 }
 
 /// Copytrading list response class
 class CopytradingListResponse extends CopytradingListResponseModel {
   /// Initializes
   CopytradingListResponse({
-    @required CopytradingList copytradingList,
+    CopytradingList? copytradingList,
   }) : super(
           copytradingList: copytradingList,
         );
@@ -43,19 +41,19 @@ class CopytradingListResponse extends CopytradingListResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (copytradingList != null) {
-      resultMap['copytrading_list'] = copytradingList.toJson();
+      resultMap['copytrading_list'] = copytradingList!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the list of active copiers and/or traders for Copy Trading
   ///
   /// Throws a [CopyTradingException] if API response contains an error
   static Future<CopytradingListResponse> fetchList([
-    CopytradingListSend request,
+    CopytradingListSend? request,
   ]) async {
     final CopytradingListReceive response = await _api.call(
       request: request ?? const CopytradingListSend(),
@@ -63,7 +61,7 @@ class CopytradingListResponse extends CopytradingListResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           CopyTradingException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -72,7 +70,7 @@ class CopytradingListResponse extends CopytradingListResponseModel {
 
   /// Creates a copy of instance with given parameters
   CopytradingListResponse copyWith({
-    CopytradingList copytradingList,
+    CopytradingList? copytradingList,
   }) =>
       CopytradingListResponse(
         copytradingList: copytradingList ?? this.copytradingList,
@@ -82,8 +80,8 @@ class CopytradingListResponse extends CopytradingListResponseModel {
 abstract class CopytradingListModel {
   /// Initializes
   CopytradingListModel({
-    @required this.traders,
-    @required this.copiers,
+    required this.traders,
+    required this.copiers,
   });
 
   /// List of traders being followed by the authenticated user
@@ -97,8 +95,8 @@ abstract class CopytradingListModel {
 class CopytradingList extends CopytradingListModel {
   /// Initializes
   CopytradingList({
-    @required List<CopiersItem> copiers,
-    @required List<TradersItem> traders,
+    required List<CopiersItem> copiers,
+    required List<TradersItem> traders,
   }) : super(
           copiers: copiers,
           traders: traders,
@@ -107,47 +105,52 @@ class CopytradingList extends CopytradingListModel {
   /// Creates an instance from JSON
   factory CopytradingList.fromJson(Map<String, dynamic> json) =>
       CopytradingList(
-        copiers: json['copiers'] == null
-            ? null
-            : List<CopiersItem>.from(json['copiers']
-                .map((dynamic item) => CopiersItem.fromJson(item))),
-        traders: json['traders'] == null
-            ? null
-            : List<TradersItem>.from(json['traders']
-                .map((dynamic item) => TradersItem.fromJson(item))),
+        copiers: List<CopiersItem>.from(
+          json['copiers'].map(
+            (dynamic item) => CopiersItem.fromJson(item),
+          ),
+        ),
+        traders: List<TradersItem>.from(
+          json['traders'].map(
+            (dynamic item) => TradersItem.fromJson(item),
+          ),
+        ),
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    if (copiers != null) {
-      resultMap['copiers'] =
-          copiers.map<dynamic>((CopiersItem item) => item.toJson()).toList();
-    }
-    if (traders != null) {
-      resultMap['traders'] =
-          traders.map<dynamic>((TradersItem item) => item.toJson()).toList();
-    }
+    resultMap['copiers'] = copiers
+        .map<dynamic>(
+          (CopiersItem item) => item.toJson(),
+        )
+        .toList();
+
+    resultMap['traders'] = traders
+        .map<dynamic>(
+          (TradersItem item) => item.toJson(),
+        )
+        .toList();
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   CopytradingList copyWith({
-    List<CopiersItem> copiers,
-    List<TradersItem> traders,
+    required List<CopiersItem> copiers,
+    required List<TradersItem> traders,
   }) =>
       CopytradingList(
-        copiers: copiers ?? this.copiers,
-        traders: traders ?? this.traders,
+        copiers: copiers,
+        traders: traders,
       );
 }
 /// Copiers item model class
 abstract class CopiersItemModel {
   /// Initializes
   CopiersItemModel({
-    @required this.loginid,
+    required this.loginid,
   });
 
   /// The loginid of the copier's account.
@@ -158,7 +161,7 @@ abstract class CopiersItemModel {
 class CopiersItem extends CopiersItemModel {
   /// Initializes
   CopiersItem({
-    @required String loginid,
+    required String loginid,
   }) : super(
           loginid: loginid,
         );
@@ -179,75 +182,82 @@ class CopiersItem extends CopiersItemModel {
 
   /// Creates a copy of instance with given parameters
   CopiersItem copyWith({
-    String loginid,
+    required String loginid,
   }) =>
       CopiersItem(
-        loginid: loginid ?? this.loginid,
+        loginid: loginid,
       );
 }
 /// Traders item model class
 abstract class TradersItemModel {
   /// Initializes
   TradersItemModel({
-    @required this.tradeTypes,
-    @required this.token,
-    @required this.loginid,
-    @required this.assets,
+    this.assets,
+    this.loginid,
     this.maxTradeStake,
     this.minTradeStake,
+    this.token,
+    this.tradeTypes,
   });
 
-  /// The type of trades set.
-  final List<String> tradeTypes;
-
-  /// The token provided for the trader.
-  final String token;
+  /// The list of assets to copy the trades of.
+  final List<String>? assets;
 
   /// The loginid of the trader's account.
-  final String loginid;
-
-  /// The list of assets to copy the trades of.
-  final List<String> assets;
+  final String? loginid;
 
   /// Maximum trading stake set for the trader.
-  final double maxTradeStake;
+  final double? maxTradeStake;
 
   /// Minimum trading stake set for the trader.
-  final double minTradeStake;
+  final double? minTradeStake;
+
+  /// The token provided for the trader.
+  final String? token;
+
+  /// The type of trades set.
+  final List<String>? tradeTypes;
 }
 
 /// Traders item class
 class TradersItem extends TradersItemModel {
   /// Initializes
   TradersItem({
-    @required List<String> assets,
-    @required String loginid,
-    @required String token,
-    @required List<String> tradeTypes,
-    double maxTradeStake,
-    double minTradeStake,
+    List<String>? assets,
+    String? loginid,
+    double? maxTradeStake,
+    double? minTradeStake,
+    String? token,
+    List<String>? tradeTypes,
   }) : super(
           assets: assets,
           loginid: loginid,
-          token: token,
-          tradeTypes: tradeTypes,
           maxTradeStake: maxTradeStake,
           minTradeStake: minTradeStake,
+          token: token,
+          tradeTypes: tradeTypes,
         );
 
   /// Creates an instance from JSON
   factory TradersItem.fromJson(Map<String, dynamic> json) => TradersItem(
         assets: json['assets'] == null
             ? null
-            : List<String>.from(json['assets'].map((dynamic item) => item)),
+            : List<String>.from(
+                json['assets']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
         loginid: json['loginid'],
+        maxTradeStake: getDouble(json['max_trade_stake']),
+        minTradeStake: getDouble(json['min_trade_stake']),
         token: json['token'],
         tradeTypes: json['trade_types'] == null
             ? null
             : List<String>.from(
-                json['trade_types'].map((dynamic item) => item)),
-        maxTradeStake: getDouble(json['max_trade_stake']),
-        minTradeStake: getDouble(json['min_trade_stake']),
+                json['trade_types']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -255,35 +265,42 @@ class TradersItem extends TradersItemModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (assets != null) {
-      resultMap['assets'] = assets.map<dynamic>((String item) => item).toList();
+      resultMap['assets'] = assets!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
     }
     resultMap['loginid'] = loginid;
-    resultMap['token'] = token;
-    if (tradeTypes != null) {
-      resultMap['trade_types'] =
-          tradeTypes.map<dynamic>((String item) => item).toList();
-    }
     resultMap['max_trade_stake'] = maxTradeStake;
     resultMap['min_trade_stake'] = minTradeStake;
+    resultMap['token'] = token;
+    if (tradeTypes != null) {
+      resultMap['trade_types'] = tradeTypes!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   TradersItem copyWith({
-    List<String> assets,
-    String loginid,
-    String token,
-    List<String> tradeTypes,
-    double maxTradeStake,
-    double minTradeStake,
+    List<String>? assets,
+    String? loginid,
+    double? maxTradeStake,
+    double? minTradeStake,
+    String? token,
+    List<String>? tradeTypes,
   }) =>
       TradersItem(
         assets: assets ?? this.assets,
         loginid: loginid ?? this.loginid,
-        token: token ?? this.token,
-        tradeTypes: tradeTypes ?? this.tradeTypes,
         maxTradeStake: maxTradeStake ?? this.maxTradeStake,
         minTradeStake: minTradeStake ?? this.minTradeStake,
+        token: token ?? this.token,
+        tradeTypes: tradeTypes ?? this.tradeTypes,
       );
 }

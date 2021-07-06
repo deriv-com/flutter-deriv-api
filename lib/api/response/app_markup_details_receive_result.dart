@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../api/exceptions/exceptions.dart';
 import '../../api/models/base_exception_model.dart';
 import '../../basic_api/generated/app_markup_details_receive.dart';
@@ -12,18 +10,18 @@ import '../../helpers/helpers.dart';
 abstract class AppMarkupDetailsResponseModel {
   /// Initializes
   AppMarkupDetailsResponseModel({
-    @required this.appMarkupDetails,
+    this.appMarkupDetails,
   });
 
   /// App Markup transaction details
-  final AppMarkupDetails appMarkupDetails;
+  final AppMarkupDetails? appMarkupDetails;
 }
 
 /// App markup details response class
 class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
   /// Initializes
   AppMarkupDetailsResponse({
-    @required AppMarkupDetails appMarkupDetails,
+    AppMarkupDetails? appMarkupDetails,
   }) : super(
           appMarkupDetails: appMarkupDetails,
         );
@@ -43,13 +41,13 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (appMarkupDetails != null) {
-      resultMap['app_markup_details'] = appMarkupDetails.toJson();
+      resultMap['app_markup_details'] = appMarkupDetails!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Retrieve details of app markup according to criteria specified.
   ///
@@ -62,7 +60,7 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           AppException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -71,7 +69,7 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
 
   /// Creates a copy of instance with given parameters
   AppMarkupDetailsResponse copyWith({
-    AppMarkupDetails appMarkupDetails,
+    AppMarkupDetails? appMarkupDetails,
   }) =>
       AppMarkupDetailsResponse(
         appMarkupDetails: appMarkupDetails ?? this.appMarkupDetails,
@@ -81,18 +79,18 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
 abstract class AppMarkupDetailsModel {
   /// Initializes
   AppMarkupDetailsModel({
-    @required this.transactions,
+    this.transactions,
   });
 
   /// Array of returned transactions
-  final List<TransactionsItem> transactions;
+  final List<TransactionsItem>? transactions;
 }
 
 /// App markup details class
 class AppMarkupDetails extends AppMarkupDetailsModel {
   /// Initializes
   AppMarkupDetails({
-    @required List<TransactionsItem> transactions,
+    List<TransactionsItem>? transactions,
   }) : super(
           transactions: transactions,
         );
@@ -102,8 +100,11 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
       AppMarkupDetails(
         transactions: json['transactions'] == null
             ? null
-            : List<TransactionsItem>.from(json['transactions']
-                .map((dynamic item) => TransactionsItem.fromJson(item))),
+            : List<TransactionsItem>.from(
+                json['transactions']?.map(
+                  (dynamic item) => TransactionsItem.fromJson(item),
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -111,8 +112,10 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (transactions != null) {
-      resultMap['transactions'] = transactions
-          .map<dynamic>((TransactionsItem item) => item.toJson())
+      resultMap['transactions'] = transactions!
+          .map<dynamic>(
+            (TransactionsItem item) => item.toJson(),
+          )
           .toList();
     }
 
@@ -121,7 +124,7 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
 
   /// Creates a copy of instance with given parameters
   AppMarkupDetails copyWith({
-    List<TransactionsItem> transactions,
+    List<TransactionsItem>? transactions,
   }) =>
       AppMarkupDetails(
         transactions: transactions ?? this.transactions,
@@ -131,63 +134,63 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
 abstract class TransactionsItemModel {
   /// Initializes
   TransactionsItemModel({
-    @required this.transactionTime,
-    @required this.transactionId,
-    @required this.devLoginid,
-    @required this.devCurrcode,
-    @required this.clientLoginid,
-    @required this.clientCurrcode,
-    @required this.appMarkupValue,
-    @required this.appMarkupUsd,
-    @required this.appMarkup,
-    @required this.appId,
+    this.appId,
+    this.appMarkup,
+    this.appMarkupUsd,
+    this.appMarkupValue,
+    this.clientCurrcode,
+    this.clientLoginid,
+    this.devCurrcode,
+    this.devLoginid,
+    this.transactionId,
+    this.transactionTime,
   });
 
-  /// The epoch value of purchase time of transaction
-  final String transactionTime;
-
-  /// The transaction ID. Every contract (buy or sell) and every payment has a unique ID.
-  final int transactionId;
-
-  /// Login ID of the app developer
-  final String devLoginid;
-
-  /// Currency code of the app developer
-  final String devCurrcode;
-
-  /// Login ID of the client
-  final String clientLoginid;
-
-  /// Currency code of the client
-  final String clientCurrcode;
-
-  /// The markup the client paid in the app developer's currency
-  final double appMarkupValue;
-
-  /// The markup the client paid in USD
-  final double appMarkupUsd;
+  /// ID of the application where this contract was purchased.
+  final int? appId;
 
   /// The markup the client paid in their currency
-  final double appMarkup;
+  final double? appMarkup;
 
-  /// ID of the application where this contract was purchased.
-  final int appId;
+  /// The markup the client paid in USD
+  final double? appMarkupUsd;
+
+  /// The markup the client paid in the app developer's currency
+  final double? appMarkupValue;
+
+  /// Currency code of the client
+  final String? clientCurrcode;
+
+  /// Login ID of the client
+  final String? clientLoginid;
+
+  /// Currency code of the app developer
+  final String? devCurrcode;
+
+  /// Login ID of the app developer
+  final String? devLoginid;
+
+  /// The transaction ID. Every contract (buy or sell) and every payment has a unique ID.
+  final int? transactionId;
+
+  /// The epoch value of purchase time of transaction
+  final String? transactionTime;
 }
 
 /// Transactions item class
 class TransactionsItem extends TransactionsItemModel {
   /// Initializes
   TransactionsItem({
-    @required int appId,
-    @required double appMarkup,
-    @required double appMarkupUsd,
-    @required double appMarkupValue,
-    @required String clientCurrcode,
-    @required String clientLoginid,
-    @required String devCurrcode,
-    @required String devLoginid,
-    @required int transactionId,
-    @required String transactionTime,
+    int? appId,
+    double? appMarkup,
+    double? appMarkupUsd,
+    double? appMarkupValue,
+    String? clientCurrcode,
+    String? clientLoginid,
+    String? devCurrcode,
+    String? devLoginid,
+    int? transactionId,
+    String? transactionTime,
   }) : super(
           appId: appId,
           appMarkup: appMarkup,
@@ -236,16 +239,16 @@ class TransactionsItem extends TransactionsItemModel {
 
   /// Creates a copy of instance with given parameters
   TransactionsItem copyWith({
-    int appId,
-    double appMarkup,
-    double appMarkupUsd,
-    double appMarkupValue,
-    String clientCurrcode,
-    String clientLoginid,
-    String devCurrcode,
-    String devLoginid,
-    int transactionId,
-    String transactionTime,
+    int? appId,
+    double? appMarkup,
+    double? appMarkupUsd,
+    double? appMarkupValue,
+    String? clientCurrcode,
+    String? clientLoginid,
+    String? devCurrcode,
+    String? devLoginid,
+    int? transactionId,
+    String? transactionTime,
   }) =>
       TransactionsItem(
         appId: appId ?? this.appId,

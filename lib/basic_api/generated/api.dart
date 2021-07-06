@@ -110,8 +110,6 @@ export "p2p_advertiser_create_receive.dart";
 export "p2p_advertiser_create_send.dart";
 export "p2p_advertiser_info_receive.dart";
 export "p2p_advertiser_info_send.dart";
-export "p2p_advertiser_relations_receive.dart";
-export "p2p_advertiser_relations_send.dart";
 export "p2p_advertiser_update_receive.dart";
 export "p2p_advertiser_update_send.dart";
 export "p2p_chat_create_receive.dart";

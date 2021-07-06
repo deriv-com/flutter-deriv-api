@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/contracts_for_receive.dart';
 import '../../basic_api/generated/contracts_for_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class ContractsForResponseModel {
   /// Initializes
   ContractsForResponseModel({
-    @required this.contractsFor,
+    this.contractsFor,
   });
 
   /// List of available contracts. Note: if the user is authenticated, then only contracts allowed under his account will be returned.
-  final ContractsFor contractsFor;
+  final ContractsFor? contractsFor;
 }
 
 /// Contracts for response class
 class ContractsForResponse extends ContractsForResponseModel {
   /// Initializes
   ContractsForResponse({
-    @required ContractsFor contractsFor,
+    ContractsFor? contractsFor,
   }) : super(
           contractsFor: contractsFor,
         );
@@ -43,13 +41,13 @@ class ContractsForResponse extends ContractsForResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (contractsFor != null) {
-      resultMap['contracts_for'] = contractsFor.toJson();
+      resultMap['contracts_for'] = contractsFor!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets available contracts for given symbol in [ContractsForRequest]
   ///
@@ -63,7 +61,7 @@ class ContractsForResponse extends ContractsForResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractsForSymbolException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -72,7 +70,7 @@ class ContractsForResponse extends ContractsForResponseModel {
 
   /// Creates a copy of instance with given parameters
   ContractsForResponse copyWith({
-    ContractsFor contractsFor,
+    ContractsFor? contractsFor,
   }) =>
       ContractsForResponse(
         contractsFor: contractsFor ?? this.contractsFor,
@@ -82,61 +80,62 @@ class ContractsForResponse extends ContractsForResponseModel {
 abstract class ContractsForModel {
   /// Initializes
   ContractsForModel({
-    @required this.hitCount,
-    @required this.feedLicense,
-    @required this.available,
+    required this.available,
     this.close,
+    this.feedLicense,
+    this.hitCount,
     this.open,
     this.spot,
   });
-
-  /// Count of contracts available
-  final double hitCount;
-
-  /// Indicates the feed license for symbol, for example whether its realtime or delayed
-  final String feedLicense;
 
   /// Array of available contracts details
   final List<AvailableItem> available;
 
   /// Symbol's next market-close time as an epoch value
-  final DateTime close;
+  final DateTime? close;
+
+  /// Indicates the feed license for symbol, for example whether its realtime or delayed
+  final String? feedLicense;
+
+  /// Count of contracts available
+  final double? hitCount;
 
   /// Symbol's next market-open time as an epoch value
-  final DateTime open;
+  final DateTime? open;
 
   /// Current spot price for this underlying
-  final double spot;
+  final double? spot;
 }
 
 /// Contracts for class
 class ContractsFor extends ContractsForModel {
   /// Initializes
   ContractsFor({
-    @required List<AvailableItem> available,
-    @required String feedLicense,
-    @required double hitCount,
-    DateTime close,
-    DateTime open,
-    double spot,
+    required List<AvailableItem> available,
+    DateTime? close,
+    String? feedLicense,
+    double? hitCount,
+    DateTime? open,
+    double? spot,
   }) : super(
           available: available,
+          close: close,
           feedLicense: feedLicense,
           hitCount: hitCount,
-          close: close,
           open: open,
           spot: spot,
         );
 
   /// Creates an instance from JSON
   factory ContractsFor.fromJson(Map<String, dynamic> json) => ContractsFor(
-        available: json['available'] == null
-            ? null
-            : List<AvailableItem>.from(json['available']
-                .map((dynamic item) => AvailableItem.fromJson(item))),
+        available: List<AvailableItem>.from(
+          json['available'].map(
+            (dynamic item) => AvailableItem.fromJson(item),
+          ),
+        ),
+        close: getDateTime(json['close']),
         feedLicense: json['feed_license'],
         hitCount: getDouble(json['hit_count']),
-        close: getDateTime(json['close']),
         open: getDateTime(json['open']),
         spot: getDouble(json['spot']),
       );
@@ -145,14 +144,15 @@ class ContractsFor extends ContractsForModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    if (available != null) {
-      resultMap['available'] = available
-          .map<dynamic>((AvailableItem item) => item.toJson())
-          .toList();
-    }
+    resultMap['available'] = available
+        .map<dynamic>(
+          (AvailableItem item) => item.toJson(),
+        )
+        .toList();
+
+    resultMap['close'] = getSecondsSinceEpochDateTime(close);
     resultMap['feed_license'] = feedLicense;
     resultMap['hit_count'] = hitCount;
-    resultMap['close'] = getSecondsSinceEpochDateTime(close);
     resultMap['open'] = getSecondsSinceEpochDateTime(open);
     resultMap['spot'] = spot;
 
@@ -161,18 +161,18 @@ class ContractsFor extends ContractsForModel {
 
   /// Creates a copy of instance with given parameters
   ContractsFor copyWith({
-    List<AvailableItem> available,
-    String feedLicense,
-    double hitCount,
-    DateTime close,
-    DateTime open,
-    double spot,
+    required List<AvailableItem> available,
+    DateTime? close,
+    String? feedLicense,
+    double? hitCount,
+    DateTime? open,
+    double? spot,
   }) =>
       ContractsFor(
-        available: available ?? this.available,
+        available: available,
+        close: close ?? this.close,
         feedLicense: feedLicense ?? this.feedLicense,
         hitCount: hitCount ?? this.hitCount,
-        close: close ?? this.close,
         open: open ?? this.open,
         spot: spot ?? this.spot,
       );
@@ -181,33 +181,30 @@ class ContractsFor extends ContractsForModel {
 abstract class AvailableItemModel {
   /// Initializes
   AvailableItemModel({
-    @required this.underlyingSymbol,
-    @required this.tradingPeriod,
-    @required this.submarket,
-    @required this.startType,
-    @required this.sentiment,
-    @required this.payoutLimit,
-    @required this.minContractDuration,
-    @required this.maxContractDuration,
-    @required this.market,
-    @required this.forwardStartingOptions,
-    @required this.expiryType,
-    @required this.expiredBarriers,
-    @required this.exchangeName,
-    @required this.contractsDisplay,
-    @required this.contractType,
-    @required this.contractCategoryDisplay,
-    @required this.contractCategory,
-    @required this.barriers,
-    @required this.barrierCategory,
-    @required this.availableBarriers,
+    required this.underlyingSymbol,
+    required this.submarket,
+    required this.startType,
+    required this.sentiment,
+    required this.minContractDuration,
+    required this.maxContractDuration,
+    required this.market,
+    required this.expiryType,
+    required this.exchangeName,
+    required this.contractType,
+    required this.contractCategoryDisplay,
+    required this.contractCategory,
+    required this.barriers,
+    required this.barrierCategory,
+    this.availableBarriers,
+    this.contractDisplay,
+    this.expiredBarriers,
+    this.forwardStartingOptions,
+    this.payoutLimit,
+    this.tradingPeriod,
   });
 
   /// Symbol code
   final String underlyingSymbol;
-
-  /// A hash of predefined trading period
-  final Map<String, dynamic> tradingPeriod;
 
   /// Type of submarket.
   final String submarket;
@@ -218,9 +215,6 @@ abstract class AvailableItemModel {
   /// Type of sentiment.
   final String sentiment;
 
-  /// Maximum payout.
-  final double payoutLimit;
-
   /// Minimum contract duration.
   final String minContractDuration;
 
@@ -230,20 +224,11 @@ abstract class AvailableItemModel {
   /// Type of market.
   final String market;
 
-  /// Array of returned forward starting options
-  final List<ForwardStartingOptionsItem> forwardStartingOptions;
-
   /// Expiry Type.
   final String expiryType;
 
-  /// Array of barriers already expired
-  final List<dynamic> expiredBarriers;
-
   /// Name of exchange
   final String exchangeName;
-
-  /// Type of contract.
-  final String contractsDisplay;
 
   /// Type of contract.
   final String contractType;
@@ -261,202 +246,232 @@ abstract class AvailableItemModel {
   final String barrierCategory;
 
   /// Array of available barriers for a predefined trading period
-  final List<dynamic> availableBarriers;
+  final List<dynamic>? availableBarriers;
+
+  /// Display name for the type of contract.
+  final String? contractDisplay;
+
+  /// Array of barriers already expired
+  final List<dynamic>? expiredBarriers;
+
+  /// Array of returned forward starting options
+  final List<ForwardStartingOptionsItem>? forwardStartingOptions;
+
+  /// Maximum payout.
+  final double? payoutLimit;
+
+  /// A hash of predefined trading period
+  final Map<String, dynamic>? tradingPeriod;
 }
 
 /// Available item class
 class AvailableItem extends AvailableItemModel {
   /// Initializes
   AvailableItem({
-    @required List<dynamic> availableBarriers,
-    @required String barrierCategory,
-    @required double barriers,
-    @required String contractCategory,
-    @required String contractCategoryDisplay,
-    @required String contractType,
-    @required String contractsDisplay,
-    @required String exchangeName,
-    @required List<dynamic> expiredBarriers,
-    @required String expiryType,
-    @required List<ForwardStartingOptionsItem> forwardStartingOptions,
-    @required String market,
-    @required String maxContractDuration,
-    @required String minContractDuration,
-    @required double payoutLimit,
-    @required String sentiment,
-    @required String startType,
-    @required String submarket,
-    @required Map<String, dynamic> tradingPeriod,
-    @required String underlyingSymbol,
+    required String barrierCategory,
+    required double barriers,
+    required String contractCategory,
+    required String contractCategoryDisplay,
+    required String contractType,
+    required String exchangeName,
+    required String expiryType,
+    required String market,
+    required String maxContractDuration,
+    required String minContractDuration,
+    required String sentiment,
+    required String startType,
+    required String submarket,
+    required String underlyingSymbol,
+    List<dynamic>? availableBarriers,
+    String? contractDisplay,
+    List<dynamic>? expiredBarriers,
+    List<ForwardStartingOptionsItem>? forwardStartingOptions,
+    double? payoutLimit,
+    Map<String, dynamic>? tradingPeriod,
   }) : super(
-          availableBarriers: availableBarriers,
           barrierCategory: barrierCategory,
           barriers: barriers,
           contractCategory: contractCategory,
           contractCategoryDisplay: contractCategoryDisplay,
           contractType: contractType,
-          contractsDisplay: contractsDisplay,
           exchangeName: exchangeName,
-          expiredBarriers: expiredBarriers,
           expiryType: expiryType,
-          forwardStartingOptions: forwardStartingOptions,
           market: market,
           maxContractDuration: maxContractDuration,
           minContractDuration: minContractDuration,
-          payoutLimit: payoutLimit,
           sentiment: sentiment,
           startType: startType,
           submarket: submarket,
-          tradingPeriod: tradingPeriod,
           underlyingSymbol: underlyingSymbol,
+          availableBarriers: availableBarriers,
+          contractDisplay: contractDisplay,
+          expiredBarriers: expiredBarriers,
+          forwardStartingOptions: forwardStartingOptions,
+          payoutLimit: payoutLimit,
+          tradingPeriod: tradingPeriod,
         );
 
   /// Creates an instance from JSON
   factory AvailableItem.fromJson(Map<String, dynamic> json) => AvailableItem(
-        availableBarriers: json['available_barriers'] == null
-            ? null
-            : List<dynamic>.from(
-                json['available_barriers'].map((dynamic item) => item)),
         barrierCategory: json['barrier_category'],
-        barriers: getDouble(json['barriers']),
+        barriers: getDouble(json['barriers'])!,
         contractCategory: json['contract_category'],
         contractCategoryDisplay: json['contract_category_display'],
         contractType: json['contract_type'],
-        contractsDisplay: json['contracts_display'],
         exchangeName: json['exchange_name'],
-        expiredBarriers: json['expired_barriers'] == null
-            ? null
-            : List<dynamic>.from(
-                json['expired_barriers'].map((dynamic item) => item)),
         expiryType: json['expiry_type'],
-        forwardStartingOptions: json['forward_starting_options'] == null
-            ? null
-            : List<ForwardStartingOptionsItem>.from(
-                json['forward_starting_options'].map((dynamic item) =>
-                    ForwardStartingOptionsItem.fromJson(item))),
         market: json['market'],
         maxContractDuration: json['max_contract_duration'],
         minContractDuration: json['min_contract_duration'],
-        payoutLimit: getDouble(json['payout_limit']),
         sentiment: json['sentiment'],
         startType: json['start_type'],
         submarket: json['submarket'],
-        tradingPeriod: json['trading_period'],
         underlyingSymbol: json['underlying_symbol'],
+        availableBarriers: json['available_barriers'] == null
+            ? null
+            : List<dynamic>.from(
+                json['available_barriers']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        contractDisplay: json['contract_display'],
+        expiredBarriers: json['expired_barriers'] == null
+            ? null
+            : List<dynamic>.from(
+                json['expired_barriers']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        forwardStartingOptions: json['forward_starting_options'] == null
+            ? null
+            : List<ForwardStartingOptionsItem>.from(
+                json['forward_starting_options']?.map(
+                  (dynamic item) => ForwardStartingOptionsItem.fromJson(item),
+                ),
+              ),
+        payoutLimit: getDouble(json['payout_limit']),
+        tradingPeriod: json['trading_period'],
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    if (availableBarriers != null) {
-      resultMap['available_barriers'] =
-          availableBarriers.map<dynamic>((dynamic item) => item).toList();
-    }
     resultMap['barrier_category'] = barrierCategory;
     resultMap['barriers'] = barriers;
     resultMap['contract_category'] = contractCategory;
     resultMap['contract_category_display'] = contractCategoryDisplay;
     resultMap['contract_type'] = contractType;
-    resultMap['contracts_display'] = contractsDisplay;
     resultMap['exchange_name'] = exchangeName;
-    if (expiredBarriers != null) {
-      resultMap['expired_barriers'] =
-          expiredBarriers.map<dynamic>((dynamic item) => item).toList();
-    }
     resultMap['expiry_type'] = expiryType;
-    if (forwardStartingOptions != null) {
-      resultMap['forward_starting_options'] = forwardStartingOptions
-          .map<dynamic>((ForwardStartingOptionsItem item) => item.toJson())
-          .toList();
-    }
     resultMap['market'] = market;
     resultMap['max_contract_duration'] = maxContractDuration;
     resultMap['min_contract_duration'] = minContractDuration;
-    resultMap['payout_limit'] = payoutLimit;
     resultMap['sentiment'] = sentiment;
     resultMap['start_type'] = startType;
     resultMap['submarket'] = submarket;
-    resultMap['trading_period'] = tradingPeriod;
     resultMap['underlying_symbol'] = underlyingSymbol;
+    if (availableBarriers != null) {
+      resultMap['available_barriers'] = availableBarriers!
+          .map<dynamic>(
+            (dynamic item) => item,
+          )
+          .toList();
+    }
+    resultMap['contract_display'] = contractDisplay;
+    if (expiredBarriers != null) {
+      resultMap['expired_barriers'] = expiredBarriers!
+          .map<dynamic>(
+            (dynamic item) => item,
+          )
+          .toList();
+    }
+    if (forwardStartingOptions != null) {
+      resultMap['forward_starting_options'] = forwardStartingOptions!
+          .map<dynamic>(
+            (ForwardStartingOptionsItem item) => item.toJson(),
+          )
+          .toList();
+    }
+    resultMap['payout_limit'] = payoutLimit;
+    resultMap['trading_period'] = tradingPeriod;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   AvailableItem copyWith({
-    List<dynamic> availableBarriers,
-    String barrierCategory,
-    double barriers,
-    String contractCategory,
-    String contractCategoryDisplay,
-    String contractType,
-    String contractsDisplay,
-    String exchangeName,
-    List<dynamic> expiredBarriers,
-    String expiryType,
-    List<ForwardStartingOptionsItem> forwardStartingOptions,
-    String market,
-    String maxContractDuration,
-    String minContractDuration,
-    double payoutLimit,
-    String sentiment,
-    String startType,
-    String submarket,
-    Map<String, dynamic> tradingPeriod,
-    String underlyingSymbol,
+    required String barrierCategory,
+    required double barriers,
+    required String contractCategory,
+    required String contractCategoryDisplay,
+    required String contractType,
+    required String exchangeName,
+    required String expiryType,
+    required String market,
+    required String maxContractDuration,
+    required String minContractDuration,
+    required String sentiment,
+    required String startType,
+    required String submarket,
+    required String underlyingSymbol,
+    List<dynamic>? availableBarriers,
+    String? contractDisplay,
+    List<dynamic>? expiredBarriers,
+    List<ForwardStartingOptionsItem>? forwardStartingOptions,
+    double? payoutLimit,
+    Map<String, dynamic>? tradingPeriod,
   }) =>
       AvailableItem(
+        barrierCategory: barrierCategory,
+        barriers: barriers,
+        contractCategory: contractCategory,
+        contractCategoryDisplay: contractCategoryDisplay,
+        contractType: contractType,
+        exchangeName: exchangeName,
+        expiryType: expiryType,
+        market: market,
+        maxContractDuration: maxContractDuration,
+        minContractDuration: minContractDuration,
+        sentiment: sentiment,
+        startType: startType,
+        submarket: submarket,
+        underlyingSymbol: underlyingSymbol,
         availableBarriers: availableBarriers ?? this.availableBarriers,
-        barrierCategory: barrierCategory ?? this.barrierCategory,
-        barriers: barriers ?? this.barriers,
-        contractCategory: contractCategory ?? this.contractCategory,
-        contractCategoryDisplay:
-            contractCategoryDisplay ?? this.contractCategoryDisplay,
-        contractType: contractType ?? this.contractType,
-        contractsDisplay: contractsDisplay ?? this.contractsDisplay,
-        exchangeName: exchangeName ?? this.exchangeName,
+        contractDisplay: contractDisplay ?? this.contractDisplay,
         expiredBarriers: expiredBarriers ?? this.expiredBarriers,
-        expiryType: expiryType ?? this.expiryType,
         forwardStartingOptions:
             forwardStartingOptions ?? this.forwardStartingOptions,
-        market: market ?? this.market,
-        maxContractDuration: maxContractDuration ?? this.maxContractDuration,
-        minContractDuration: minContractDuration ?? this.minContractDuration,
         payoutLimit: payoutLimit ?? this.payoutLimit,
-        sentiment: sentiment ?? this.sentiment,
-        startType: startType ?? this.startType,
-        submarket: submarket ?? this.submarket,
         tradingPeriod: tradingPeriod ?? this.tradingPeriod,
-        underlyingSymbol: underlyingSymbol ?? this.underlyingSymbol,
       );
 }
 /// Forward starting options item model class
 abstract class ForwardStartingOptionsItemModel {
   /// Initializes
   ForwardStartingOptionsItemModel({
-    @required this.open,
-    @required this.date,
-    @required this.close,
+    this.close,
+    this.date,
+    this.open,
   });
 
-  /// The epoch value for the opening date of forward starting session.
-  final String open;
+  /// The epoch value for the closing date of forward starting session.
+  final String? close;
 
   /// The epoch value for the date of forward starting session.
-  final String date;
+  final String? date;
 
-  /// The epoch value for the closing date of forward starting session.
-  final String close;
+  /// The epoch value for the opening date of forward starting session.
+  final String? open;
 }
 
 /// Forward starting options item class
 class ForwardStartingOptionsItem extends ForwardStartingOptionsItemModel {
   /// Initializes
   ForwardStartingOptionsItem({
-    @required String close,
-    @required String date,
-    @required String open,
+    String? close,
+    String? date,
+    String? open,
   }) : super(
           close: close,
           date: date,
@@ -484,9 +499,9 @@ class ForwardStartingOptionsItem extends ForwardStartingOptionsItemModel {
 
   /// Creates a copy of instance with given parameters
   ForwardStartingOptionsItem copyWith({
-    String close,
-    String date,
-    String open,
+    String? close,
+    String? date,
+    String? open,
   }) =>
       ForwardStartingOptionsItem(
         close: close ?? this.close,

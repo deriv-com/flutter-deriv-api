@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 
 import '../../basic_api/generated/ticks_history_receive.dart';
 import '../../basic_api/generated/ticks_history_send.dart';
@@ -11,7 +10,7 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../manually/ohlc_receive.dart';
 import '../manually/ohlc_receive_result.dart';
-import '..//manually/tick.dart';
+import '../manually/tick.dart';
 import '../manually/tick_base.dart';
 import '../manually/tick_history_subscription.dart';
 import '../models/base_exception_model.dart';
@@ -20,33 +19,33 @@ import '../models/base_exception_model.dart';
 abstract class TicksHistoryResponseModel {
   /// Initializes
   TicksHistoryResponseModel({
-    @required this.subscription,
-    @required this.pipSize,
-    @required this.history,
-    @required this.candles,
+    this.candles,
+    this.history,
+    this.pipSize,
+    this.subscription,
   });
 
-  /// For subscription requests only.
-  final Subscription subscription;
-
-  /// Indicates the number of decimal points that the returned amounts must be displayed with
-  final double pipSize;
+  /// Array of OHLC (open/high/low/close) price values for the given time (only for style=`candles`)
+  final List<CandlesItem>? candles;
 
   /// Historic tick data for a given symbol. Note: this will always return the latest possible set of ticks with accordance to the parameters specified.
-  final History history;
+  final History? history;
 
-  /// Array of OHLC (open/high/low/close) price values for the given time (only for style=`candles`)
-  final List<CandlesItem> candles;
+  /// Indicates the number of decimal points that the returned amounts must be displayed with
+  final double? pipSize;
+
+  /// For subscription requests only.
+  final Subscription? subscription;
 }
 
 /// Ticks history response class
 class TicksHistoryResponse extends TicksHistoryResponseModel {
   /// Initializes
   TicksHistoryResponse({
-    @required List<CandlesItem> candles,
-    @required History history,
-    @required double pipSize,
-    @required Subscription subscription,
+    List<CandlesItem>? candles,
+    History? history,
+    double? pipSize,
+    Subscription? subscription,
   }) : super(
           candles: candles,
           history: history,
@@ -65,7 +64,10 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
         candles: candlesJson == null
             ? null
             : List<CandlesItem>.from(
-                candlesJson.map((dynamic item) => CandlesItem.fromJson(item))),
+                candlesJson?.map(
+                  (dynamic item) => CandlesItem.fromJson(item),
+                ),
+              ),
         history: historyJson == null ? null : History.fromJson(historyJson),
         pipSize: getDouble(pipSizeJson),
         subscription: subscriptionJson == null
@@ -78,21 +80,24 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (candles != null) {
-      resultMap['candles'] =
-          candles.map<dynamic>((CandlesItem item) => item.toJson()).toList();
+      resultMap['candles'] = candles!
+          .map<dynamic>(
+            (CandlesItem item) => item.toJson(),
+          )
+          .toList();
     }
     if (history != null) {
-      resultMap['history'] = history.toJson();
+      resultMap['history'] = history!.toJson();
     }
     resultMap['pip_size'] = pipSize;
     if (subscription != null) {
-      resultMap['subscription'] = subscription.toJson();
+      resultMap['subscription'] = subscription!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the [TickHistory] for the given [symbol] in [request]
   ///
@@ -104,7 +109,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TickException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -115,19 +120,19 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
   /// Gets ticks history and its stream
   ///
   /// Throws [TickException] if API response contains an error
-  static Future<TickHistorySubscription> fetchTicksAndSubscribe(
+  static Future<TickHistorySubscription?> fetchTicksAndSubscribe(
     TicksHistorySend request, {
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
     bool subscribe = true,
   }) async {
     if (subscribe) {
-      final Stream<Response> responseStream =
+      final Stream<Response>? responseStream =
           _api.subscribe(request: request, comparePredicate: comparePredicate);
-      final Response firstResponse = await responseStream.first;
+      final Response? firstResponse = await responseStream?.first;
 
       checkException(
         response: firstResponse,
-        exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+        exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
             TickException(baseExceptionModel: baseExceptionModel),
       );
       if (firstResponse is TicksHistoryReceive) {
@@ -137,22 +142,22 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
               firstResponse.history,
               firstResponse.pipSize,
               firstResponse.subscription),
-          tickStream: responseStream.map<TickBase>(
+          tickStream: responseStream?.map<TickBase?>(
             (Response response) {
               checkException(
                 response: response,
-                exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+                exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
                     TickException(baseExceptionModel: baseExceptionModel),
               );
 
               return response is TicksReceive
                   ? Tick.fromJson(
-                      response.tick,
+                      response.tick!,
                       subscriptionJson: response.subscription,
                     )
                   : response is OHLCResponse
                       ? OHLC.fromJson(
-                          response.ohlc,
+                          response.ohlc!,
                           subscriptionJson: response.subscription,
                         )
                       : null;
@@ -170,10 +175,10 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
 
   /// Creates a copy of instance with given parameters
   TicksHistoryResponse copyWith({
-    List<CandlesItem> candles,
-    History history,
-    double pipSize,
-    Subscription subscription,
+    List<CandlesItem>? candles,
+    History? history,
+    double? pipSize,
+    Subscription? subscription,
   }) =>
       TicksHistoryResponse(
         candles: candles ?? this.candles,
@@ -182,43 +187,42 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-
 /// Candles item model class
 abstract class CandlesItemModel {
   /// Initializes
   CandlesItemModel({
-    @required this.open,
-    @required this.low,
-    @required this.high,
-    @required this.epoch,
-    @required this.close,
+    this.close,
+    this.epoch,
+    this.high,
+    this.low,
+    this.open,
   });
 
-  /// It is the open price value for the given time
-  final double open;
-
-  /// It is the low price value for the given time
-  final double low;
-
-  /// It is the high price value for the given time
-  final double high;
+  /// It is the close price value for the given time
+  final double? close;
 
   /// It is an epoch value
-  final DateTime epoch;
+  final DateTime? epoch;
 
-  /// It is the close price value for the given time
-  final double close;
+  /// It is the high price value for the given time
+  final double? high;
+
+  /// It is the low price value for the given time
+  final double? low;
+
+  /// It is the open price value for the given time
+  final double? open;
 }
 
 /// Candles item class
 class CandlesItem extends CandlesItemModel {
   /// Initializes
   CandlesItem({
-    @required double close,
-    @required DateTime epoch,
-    @required double high,
-    @required double low,
-    @required double open,
+    double? close,
+    DateTime? epoch,
+    double? high,
+    double? low,
+    double? open,
   }) : super(
           close: close,
           epoch: epoch,
@@ -251,11 +255,11 @@ class CandlesItem extends CandlesItemModel {
 
   /// Creates a copy of instance with given parameters
   CandlesItem copyWith({
-    double close,
-    DateTime epoch,
-    double high,
-    double low,
-    double open,
+    double? close,
+    DateTime? epoch,
+    double? high,
+    double? low,
+    double? open,
   }) =>
       CandlesItem(
         close: close ?? this.close,
@@ -265,28 +269,27 @@ class CandlesItem extends CandlesItemModel {
         open: open ?? this.open,
       );
 }
-
 /// History model class
 abstract class HistoryModel {
   /// Initializes
   HistoryModel({
-    @required this.times,
-    @required this.prices,
+    this.prices,
+    this.times,
   });
 
-  /// An array containing list of epoch values for the corresponding tick values in `prices` array.
-  final List<DateTime> times;
-
   /// An array containing list of tick values for the corresponding epoch values in `times` array.
-  final List<double> prices;
+  final List<double>? prices;
+
+  /// An array containing list of epoch values for the corresponding tick values in `prices` array.
+  final List<DateTime>? times;
 }
 
 /// History class
 class History extends HistoryModel {
   /// Initializes
   History({
-    @required List<double> prices,
-    @required List<DateTime> times,
+    List<double>? prices,
+    List<DateTime>? times,
   }) : super(
           prices: prices,
           times: times,
@@ -296,11 +299,18 @@ class History extends HistoryModel {
   factory History.fromJson(Map<String, dynamic> json) => History(
         prices: json['prices'] == null
             ? null
-            : List<double>.from(json['prices'].map((dynamic item) => item)),
+            : List<double>.from(
+                json['prices']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
         times: json['times'] == null
             ? null
             : List<DateTime>.from(
-                json['times'].map((dynamic item) => getDateTime(item))),
+                json['times']?.map(
+                  (dynamic item) => getDateTime(item),
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -308,11 +318,17 @@ class History extends HistoryModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (prices != null) {
-      resultMap['prices'] = prices.map<dynamic>((double item) => item).toList();
+      resultMap['prices'] = prices!
+          .map<dynamic>(
+            (double item) => item,
+          )
+          .toList();
     }
     if (times != null) {
-      resultMap['times'] = times
-          .map<dynamic>((DateTime item) => getSecondsSinceEpochDateTime(item))
+      resultMap['times'] = times!
+          .map<dynamic>(
+            (DateTime item) => getSecondsSinceEpochDateTime(item),
+          )
           .toList();
     }
 
@@ -321,20 +337,19 @@ class History extends HistoryModel {
 
   /// Creates a copy of instance with given parameters
   History copyWith({
-    List<double> prices,
-    List<DateTime> times,
+    List<double>? prices,
+    List<DateTime>? times,
   }) =>
       History(
         prices: prices ?? this.prices,
         times: times ?? this.times,
       );
 }
-
 /// Subscription model class
 abstract class SubscriptionModel {
   /// Initializes
   SubscriptionModel({
-    @required this.id,
+    required this.id,
   });
 
   /// A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
@@ -345,7 +360,7 @@ abstract class SubscriptionModel {
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
-    @required String id,
+    required String id,
   }) : super(
           id: id,
         );
@@ -366,9 +381,9 @@ class Subscription extends SubscriptionModel {
 
   /// Creates a copy of instance with given parameters
   Subscription copyWith({
-    String id,
+    required String id,
   }) =>
       Subscription(
-        id: id ?? this.id,
+        id: id,
       );
 }

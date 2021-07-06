@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/payout_currencies_receive.dart';
 import '../../basic_api/generated/payout_currencies_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class PayoutCurrenciesResponseModel {
   /// Initializes
   PayoutCurrenciesResponseModel({
-    @required this.payoutCurrencies,
+    this.payoutCurrencies,
   });
 
   /// Available payout currencies. Note: if a user is logged in, only the currency available for the account will be returned.
-  final List<String> payoutCurrencies;
+  final List<String>? payoutCurrencies;
 }
 
 /// Payout currencies response class
 class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
   /// Initializes
   PayoutCurrenciesResponse({
-    @required List<String> payoutCurrencies,
+    List<String>? payoutCurrencies,
   }) : super(
           payoutCurrencies: payoutCurrencies,
         );
@@ -36,7 +34,10 @@ class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
         payoutCurrencies: payoutCurrenciesJson == null
             ? null
             : List<String>.from(
-                payoutCurrenciesJson.map((dynamic item) => item)),
+                payoutCurrenciesJson?.map(
+                  (dynamic item) => item,
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -44,21 +45,24 @@ class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (payoutCurrencies != null) {
-      resultMap['payout_currencies'] =
-          payoutCurrencies.map<dynamic>((String item) => item).toList();
+      resultMap['payout_currencies'] = payoutCurrencies!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Retrieves a list of available option payout currencies.
   ///
   /// If a user is logged in, only the currencies available for the account will be returned.
   /// Throws a [PayoutCurrencyException] if API response contains a error
   static Future<PayoutCurrenciesResponse> fetchPayoutCurrencies([
-    PayoutCurrenciesSend request,
+    PayoutCurrenciesSend? request,
   ]) async {
     final PayoutCurrenciesReceive response = await _api.call(
       request: request ?? const PayoutCurrenciesSend(),
@@ -66,7 +70,7 @@ class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           PayoutCurrencyException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -75,7 +79,7 @@ class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
 
   /// Creates a copy of instance with given parameters
   PayoutCurrenciesResponse copyWith({
-    List<String> payoutCurrencies,
+    List<String>? payoutCurrencies,
   }) =>
       PayoutCurrenciesResponse(
         payoutCurrencies: payoutCurrencies ?? this.payoutCurrencies,

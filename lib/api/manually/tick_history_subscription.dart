@@ -23,9 +23,13 @@ class TickHistorySubscription {
   /// Unsubscribes from tick history stream
   ///
   /// Throws a [TickException] if API response contains an error
-  Future<ForgetResponse> unsubscribe() async {
+  Future<ForgetResponse?> unsubscribe() async {
+    if (tickHistory?.subscription == null) {
+      return null;
+    }
+
     final ForgetReceive response = await _api.unsubscribe(
-      subscriptionId: tickHistory!.subscription.id,
+      subscriptionId: tickHistory!.subscription!.id,
     );
 
     checkException(

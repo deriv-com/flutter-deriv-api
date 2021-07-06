@@ -16,10 +16,10 @@ void main() {
       ),
     );
 
-    expect(activeSymbols.activeSymbols.first.pip, 0.001);
-    expect(activeSymbols.activeSymbols.first.symbolType, 'smart_fx');
-    expect(activeSymbols.activeSymbols.first.isTradingSuspended, false);
-    expect(activeSymbols.activeSymbols.first.symbol, 'WLDAUD');
-    expect(activeSymbols.activeSymbols.first.exchangeIsOpen, true);
+    expect(activeSymbols.activeSymbols?.first.pip, 0.001);
+    expect(activeSymbols.activeSymbols?.first.symbolType, 'smart_fx');
+    expect(activeSymbols.activeSymbols?.first.isTradingSuspended, false);
+    expect(activeSymbols.activeSymbols?.first.symbol, 'WLDAUD');
+    expect(activeSymbols.activeSymbols?.first.exchangeIsOpen, true);
   });
 }

@@ -12,12 +12,12 @@ void main() {
       final GetSettingsResponse accountSettings =
           await GetSettingsResponse.fetchAccountSetting();
 
-      expect(accountSettings.getSettings.country, 'SampleCountry');
-      expect(accountSettings.getSettings.countryCode, 'sc');
-      expect(accountSettings.getSettings.hasSecretAnswer, false);
-      expect(accountSettings.getSettings.emailConsent, true);
-      expect(accountSettings.getSettings.email, 'first.last@example.com');
-      expect(accountSettings.getSettings.userHash, 'samplehash71627162jlj');
+      expect(accountSettings.getSettings?.country, 'SampleCountry');
+      expect(accountSettings.getSettings?.countryCode, 'sc');
+      expect(accountSettings.getSettings?.hasSecretAnswer, false);
+      expect(accountSettings.getSettings?.emailConsent, true);
+      expect(accountSettings.getSettings?.email, 'first.last@example.com');
+      expect(accountSettings.getSettings?.userHash, 'samplehash71627162jlj');
     });
 
     test('Set Account Setting Test', () async {

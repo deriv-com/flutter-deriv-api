@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/transfer_between_accounts_receive.dart';
 import '../../basic_api/generated/transfer_between_accounts_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,27 +10,27 @@ import '../models/base_exception_model.dart';
 abstract class TransferBetweenAccountsResponseModel {
   /// Initializes
   TransferBetweenAccountsResponseModel({
-    @required this.transactionId,
-    @required this.clientToLoginid,
-    @required this.clientToFullName,
-    @required this.accounts,
-    @required this.transferBetweenAccounts,
+    this.transferBetweenAccounts,
+    this.accounts,
+    this.clientToFullName,
+    this.clientToLoginid,
+    this.transactionId,
   });
 
-  /// Reference ID of transfer performed
-  final int transactionId;
-
-  /// The account to client loginid
-  final String clientToLoginid;
-
-  /// The account to client full name
-  final String clientToFullName;
+  /// If set to `true`, transfer succeeded.
+  final bool? transferBetweenAccounts;
 
   /// The available accounts to transfer, or the accounts affected by a successful transfer.
-  final List<AccountsItem> accounts;
+  final List<AccountsItem>? accounts;
 
-  /// If set to `true`, transfer succeeded.
-  final bool transferBetweenAccounts;
+  /// The account to client full name
+  final String? clientToFullName;
+
+  /// The account to client loginid
+  final String? clientToLoginid;
+
+  /// Reference ID of transfer performed
+  final int? transactionId;
 }
 
 /// Transfer between accounts response class
@@ -40,11 +38,11 @@ class TransferBetweenAccountsResponse
     extends TransferBetweenAccountsResponseModel {
   /// Initializes
   TransferBetweenAccountsResponse({
-    @required bool transferBetweenAccounts,
-    @required List<AccountsItem> accounts,
-    @required String clientToFullName,
-    @required String clientToLoginid,
-    @required int transactionId,
+    bool? transferBetweenAccounts,
+    List<AccountsItem>? accounts,
+    String? clientToFullName,
+    String? clientToLoginid,
+    int? transactionId,
   }) : super(
           transferBetweenAccounts: transferBetweenAccounts,
           accounts: accounts,
@@ -65,8 +63,11 @@ class TransferBetweenAccountsResponse
         transferBetweenAccounts: getBool(transferBetweenAccountsJson),
         accounts: accountsJson == null
             ? null
-            : List<AccountsItem>.from(accountsJson
-                .map((dynamic item) => AccountsItem.fromJson(item))),
+            : List<AccountsItem>.from(
+                accountsJson?.map(
+                  (dynamic item) => AccountsItem.fromJson(item),
+                ),
+              ),
         clientToFullName: clientToFullNameJson,
         clientToLoginid: clientToLoginidJson,
         transactionId: transactionIdJson,
@@ -78,8 +79,11 @@ class TransferBetweenAccountsResponse
 
     resultMap['transfer_between_accounts'] = transferBetweenAccounts;
     if (accounts != null) {
-      resultMap['accounts'] =
-          accounts.map<dynamic>((AccountsItem item) => item.toJson()).toList();
+      resultMap['accounts'] = accounts!
+          .map<dynamic>(
+            (AccountsItem item) => item.toJson(),
+          )
+          .toList();
     }
     resultMap['client_to_full_name'] = clientToFullName;
     resultMap['client_to_loginid'] = clientToLoginid;
@@ -88,7 +92,7 @@ class TransferBetweenAccountsResponse
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// This call allows transfers between accounts held by a given user.
   ///
@@ -104,7 +108,7 @@ class TransferBetweenAccountsResponse
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TransferException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -118,11 +122,11 @@ class TransferBetweenAccountsResponse
 
   /// Creates a copy of instance with given parameters
   TransferBetweenAccountsResponse copyWith({
-    bool transferBetweenAccounts,
-    List<AccountsItem> accounts,
-    String clientToFullName,
-    String clientToLoginid,
-    int transactionId,
+    bool? transferBetweenAccounts,
+    List<AccountsItem>? accounts,
+    String? clientToFullName,
+    String? clientToLoginid,
+    int? transactionId,
   }) =>
       TransferBetweenAccountsResponse(
         transferBetweenAccounts:
@@ -134,67 +138,117 @@ class TransferBetweenAccountsResponse
       );
 }
 
+/// AccountTypeEnum mapper.
 final Map<String, AccountTypeEnum> accountTypeEnumMapper =
     <String, AccountTypeEnum>{
-  "binary": AccountTypeEnum.binary,
+  "trading": AccountTypeEnum.trading,
   "mt5": AccountTypeEnum.mt5,
+  "wallet": AccountTypeEnum.wallet,
+  "dxtrade": AccountTypeEnum.dxtrade,
+  "binary": AccountTypeEnum.binary,
 };
 
-/// account_type Enum
+/// AccountType Enum.
 enum AccountTypeEnum {
-  binary,
+  /// trading.
+  trading,
+
+  /// mt5.
   mt5,
+
+  /// wallet.
+  wallet,
+
+  /// dxtrade.
+  dxtrade,
+
+  /// binary.
+  binary,
+}
+
+/// MarketTypeEnum mapper.
+final Map<String, MarketTypeEnum> marketTypeEnumMapper =
+    <String, MarketTypeEnum>{
+  "financial": MarketTypeEnum.financial,
+  "synthetic": MarketTypeEnum.synthetic,
+};
+
+/// MarketType Enum.
+enum MarketTypeEnum {
+  /// financial.
+  financial,
+
+  /// synthetic.
+  synthetic,
 }
 /// Accounts item model class
 abstract class AccountsItemModel {
   /// Initializes
   AccountsItemModel({
-    @required this.mt5Group,
-    @required this.loginid,
-    @required this.currency,
-    @required this.balance,
-    @required this.accountType,
+    this.accountType,
+    this.balance,
+    this.currency,
+    this.demoAccount,
+    this.loginid,
+    this.marketType,
+    this.mt5Group,
   });
 
-  /// The group of mt5 account.
-  final String mt5Group;
-
-  /// Client loginid.
-  final String loginid;
-
-  /// Default account currency.
-  final String currency;
+  /// Type of the account. Please note that `binary` is deprecated and replaced by `trading`
+  final AccountTypeEnum? accountType;
 
   /// Account balance.
-  final String balance;
+  final String? balance;
 
-  /// Type of the account.
-  final AccountTypeEnum accountType;
+  /// Default account currency.
+  final String? currency;
+
+  /// 0 for real accounts; `true` for virtual/demo accounts.
+  final bool? demoAccount;
+
+  /// Account identifier used for system transfers.
+  final String? loginid;
+
+  /// Market type of account.
+  final MarketTypeEnum? marketType;
+
+  /// The group of mt5 account.
+  final String? mt5Group;
 }
 
 /// Accounts item class
 class AccountsItem extends AccountsItemModel {
   /// Initializes
   AccountsItem({
-    @required AccountTypeEnum accountType,
-    @required String balance,
-    @required String currency,
-    @required String loginid,
-    @required String mt5Group,
+    AccountTypeEnum? accountType,
+    String? balance,
+    String? currency,
+    bool? demoAccount,
+    String? loginid,
+    MarketTypeEnum? marketType,
+    String? mt5Group,
   }) : super(
           accountType: accountType,
           balance: balance,
           currency: currency,
+          demoAccount: demoAccount,
           loginid: loginid,
+          marketType: marketType,
           mt5Group: mt5Group,
         );
 
   /// Creates an instance from JSON
   factory AccountsItem.fromJson(Map<String, dynamic> json) => AccountsItem(
-        accountType: accountTypeEnumMapper[json['account_type']],
+        accountType: json['account_type'] == null
+            ? null
+            : accountTypeEnumMapper[json['account_type']]!,
         balance: json['balance'],
         currency: json['currency'],
+        demoAccount: getBool(json['demo_account']),
         loginid: json['loginid'],
+        marketType: json['market_type'] == null
+            ? null
+            : marketTypeEnumMapper[json['market_type']]!,
         mt5Group: json['mt5_group'],
       );
 
@@ -203,11 +257,17 @@ class AccountsItem extends AccountsItemModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['account_type'] = accountTypeEnumMapper.entries
-        .firstWhere((entry) => entry.value == accountType, orElse: () => null)
-        ?.key;
+        .firstWhere((MapEntry<String, AccountTypeEnum> entry) =>
+            entry.value == accountType)
+        .key;
     resultMap['balance'] = balance;
     resultMap['currency'] = currency;
+    resultMap['demo_account'] = demoAccount;
     resultMap['loginid'] = loginid;
+    resultMap['market_type'] = marketTypeEnumMapper.entries
+        .firstWhere((MapEntry<String, MarketTypeEnum> entry) =>
+            entry.value == marketType)
+        .key;
     resultMap['mt5_group'] = mt5Group;
 
     return resultMap;
@@ -215,17 +275,21 @@ class AccountsItem extends AccountsItemModel {
 
   /// Creates a copy of instance with given parameters
   AccountsItem copyWith({
-    AccountTypeEnum accountType,
-    String balance,
-    String currency,
-    String loginid,
-    String mt5Group,
+    AccountTypeEnum? accountType,
+    String? balance,
+    String? currency,
+    bool? demoAccount,
+    String? loginid,
+    MarketTypeEnum? marketType,
+    String? mt5Group,
   }) =>
       AccountsItem(
         accountType: accountType ?? this.accountType,
         balance: balance ?? this.balance,
         currency: currency ?? this.currency,
+        demoAccount: demoAccount ?? this.demoAccount,
         loginid: loginid ?? this.loginid,
+        marketType: marketType ?? this.marketType,
         mt5Group: mt5Group ?? this.mt5Group,
       );
 }

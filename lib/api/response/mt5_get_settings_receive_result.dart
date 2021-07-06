@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/mt5_get_settings_receive.dart';
 import '../../basic_api/generated/mt5_get_settings_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class Mt5GetSettingsResponseModel {
   /// Initializes
   Mt5GetSettingsResponseModel({
-    @required this.mt5GetSettings,
+    this.mt5GetSettings,
   });
 
   /// MT5 user account details
-  final Mt5GetSettings mt5GetSettings;
+  final Mt5GetSettings? mt5GetSettings;
 }
 
 /// Mt5 get settings response class
 class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
   /// Initializes
   Mt5GetSettingsResponse({
-    @required Mt5GetSettings mt5GetSettings,
+    Mt5GetSettings? mt5GetSettings,
   }) : super(
           mt5GetSettings: mt5GetSettings,
         );
@@ -43,13 +41,13 @@ class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (mt5GetSettings != null) {
-      resultMap['mt5_get_settings'] = mt5GetSettings.toJson();
+      resultMap['mt5_get_settings'] = mt5GetSettings!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets MT5 user account settings.
   ///
@@ -62,7 +60,7 @@ class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 
@@ -71,25 +69,30 @@ class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
 
   /// Creates a copy of instance with given parameters
   Mt5GetSettingsResponse copyWith({
-    Mt5GetSettings mt5GetSettings,
+    Mt5GetSettings? mt5GetSettings,
   }) =>
       Mt5GetSettingsResponse(
         mt5GetSettings: mt5GetSettings ?? this.mt5GetSettings,
       );
 }
 
+/// AccountTypeEnum mapper.
 final Map<String, AccountTypeEnum> accountTypeEnumMapper =
     <String, AccountTypeEnum>{
   "demo": AccountTypeEnum.demo,
   "real": AccountTypeEnum.real,
 };
 
-/// account_type Enum
+/// AccountType Enum.
 enum AccountTypeEnum {
+  /// demo.
   demo,
+
+  /// real.
   real,
 }
 
+/// LandingCompanyShortEnum mapper.
 final Map<String, LandingCompanyShortEnum> landingCompanyShortEnumMapper =
     <String, LandingCompanyShortEnum>{
   "bvi": LandingCompanyShortEnum.bvi,
@@ -101,29 +104,47 @@ final Map<String, LandingCompanyShortEnum> landingCompanyShortEnumMapper =
   "vanuatu": LandingCompanyShortEnum.vanuatu,
 };
 
-/// landing_company_short Enum
+/// LandingCompanyShort Enum.
 enum LandingCompanyShortEnum {
+  /// bvi.
   bvi,
+
+  /// labuan.
   labuan,
+
+  /// malta.
   malta,
+
+  /// maltainvest.
   maltainvest,
+
+  /// samoa.
   samoa,
+
+  /// svg.
   svg,
+
+  /// vanuatu.
   vanuatu,
 }
 
+/// MarketTypeEnum mapper.
 final Map<String, MarketTypeEnum> marketTypeEnumMapper =
     <String, MarketTypeEnum>{
   "financial": MarketTypeEnum.financial,
-  "gaming": MarketTypeEnum.gaming,
+  "synthetic": MarketTypeEnum.synthetic,
 };
 
-/// market_type Enum
+/// MarketType Enum.
 enum MarketTypeEnum {
+  /// financial.
   financial,
-  gaming,
+
+  /// synthetic.
+  synthetic,
 }
 
+/// SubAccountTypeEnum mapper.
 final Map<String, SubAccountTypeEnum> subAccountTypeEnumMapper =
     <String, SubAccountTypeEnum>{
   "financial": SubAccountTypeEnum.financial,
@@ -131,118 +152,123 @@ final Map<String, SubAccountTypeEnum> subAccountTypeEnumMapper =
   "swap_free": SubAccountTypeEnum.swapFree,
 };
 
-/// sub_account_type Enum
+/// SubAccountType Enum.
 enum SubAccountTypeEnum {
+  /// financial.
   financial,
+
+  /// financial_stp.
   financialStp,
+
+  /// swap_free.
   swapFree,
 }
 /// Mt5 get settings model class
 abstract class Mt5GetSettingsModel {
   /// Initializes
   Mt5GetSettingsModel({
-    @required this.zipCode,
-    @required this.subAccountType,
-    @required this.state,
-    @required this.phonePassword,
-    @required this.phone,
-    @required this.name,
-    @required this.marketType,
-    @required this.login,
-    @required this.leverage,
-    @required this.landingCompanyShort,
-    @required this.group,
-    @required this.email,
-    @required this.currency,
-    @required this.country,
-    @required this.company,
-    @required this.city,
-    @required this.balance,
-    @required this.address,
-    @required this.accountType,
+    this.accountType,
+    this.address,
+    this.balance,
+    this.city,
+    this.company,
+    this.country,
+    this.currency,
+    this.email,
+    this.group,
+    this.landingCompanyShort,
+    this.leverage,
+    this.login,
+    this.marketType,
+    this.name,
+    this.phone,
+    this.phonePassword,
+    this.state,
+    this.subAccountType,
+    this.zipCode,
   });
 
-  /// User's zip code.
-  final String zipCode;
-
-  /// Sub account type
-  final SubAccountTypeEnum subAccountType;
-
-  /// User's state (region) of residence.
-  final String state;
-
-  /// The user's phone password.
-  final String phonePassword;
-
-  /// User's phone number.
-  final String phone;
-
-  /// Client's name. The maximum length of a client's symbol name is 128 characters.
-  final String name;
-
-  /// Market type
-  final MarketTypeEnum marketType;
-
-  /// Login ID of the user's MT5 account.
-  final String login;
-
-  /// Client leverage (from 1 to 1000).
-  final double leverage;
-
-  /// Landing company shortcode of the MT5 account.
-  final LandingCompanyShortEnum landingCompanyShort;
-
-  /// The group where account belongs to.
-  final String group;
-
-  /// Email address.
-  final String email;
-
-  /// MT5 account currency (`USD` or `EUR`) that depends on the MT5 company (`vanuatu`, `svg`, `malta`).
-  final String currency;
-
-  /// 2-letter country code.
-  final String country;
-
-  /// Name of the client's company. The maximum length of the company name is 64 characters.
-  final String company;
-
-  /// User's city of residence.
-  final String city;
-
-  /// Account balance.
-  final String balance;
+  /// Account type.
+  final AccountTypeEnum? accountType;
 
   /// The address of the user. The maximum length of the address is 128 characters.
-  final String address;
+  final String? address;
 
-  /// Account type.
-  final AccountTypeEnum accountType;
+  /// Account balance.
+  final String? balance;
+
+  /// User's city of residence.
+  final String? city;
+
+  /// Name of the client's company. The maximum length of the company name is 64 characters.
+  final String? company;
+
+  /// 2-letter country code.
+  final String? country;
+
+  /// MT5 account currency (`USD` or `EUR`) that depends on the MT5 company (`vanuatu`, `svg`, `malta`).
+  final String? currency;
+
+  /// Email address.
+  final String? email;
+
+  /// The group where account belongs to.
+  final String? group;
+
+  /// Landing company shortcode of the MT5 account.
+  final LandingCompanyShortEnum? landingCompanyShort;
+
+  /// Client leverage (from 1 to 1000).
+  final double? leverage;
+
+  /// Login ID of the user's MT5 account.
+  final String? login;
+
+  /// Market type
+  final MarketTypeEnum? marketType;
+
+  /// Client's name. The maximum length of a client's symbol name is 128 characters.
+  final String? name;
+
+  /// User's phone number.
+  final String? phone;
+
+  /// The user's phone password.
+  final String? phonePassword;
+
+  /// User's state (region) of residence.
+  final String? state;
+
+  /// Sub account type
+  final SubAccountTypeEnum? subAccountType;
+
+  /// User's zip code.
+  final String? zipCode;
 }
 
 /// Mt5 get settings class
 class Mt5GetSettings extends Mt5GetSettingsModel {
   /// Initializes
   Mt5GetSettings({
-    @required AccountTypeEnum accountType,
-    @required String address,
-    @required String balance,
-    @required String city,
-    @required String company,
-    @required String country,
-    @required String currency,
-    @required String email,
-    @required String group,
-    @required LandingCompanyShortEnum landingCompanyShort,
-    @required double leverage,
-    @required String login,
-    @required MarketTypeEnum marketType,
-    @required String name,
-    @required String phone,
-    @required String phonePassword,
-    @required String state,
-    @required SubAccountTypeEnum subAccountType,
-    @required String zipCode,
+    AccountTypeEnum? accountType,
+    String? address,
+    String? balance,
+    String? city,
+    String? company,
+    String? country,
+    String? currency,
+    String? email,
+    String? group,
+    LandingCompanyShortEnum? landingCompanyShort,
+    double? leverage,
+    String? login,
+    MarketTypeEnum? marketType,
+    String? name,
+    String? phone,
+    String? phonePassword,
+    String? state,
+    SubAccountTypeEnum? subAccountType,
+    String? zipCode,
   }) : super(
           accountType: accountType,
           address: address,
@@ -267,7 +293,9 @@ class Mt5GetSettings extends Mt5GetSettingsModel {
 
   /// Creates an instance from JSON
   factory Mt5GetSettings.fromJson(Map<String, dynamic> json) => Mt5GetSettings(
-        accountType: accountTypeEnumMapper[json['account_type']],
+        accountType: json['account_type'] == null
+            ? null
+            : accountTypeEnumMapper[json['account_type']]!,
         address: json['address'],
         balance: json['balance'],
         city: json['city'],
@@ -276,16 +304,21 @@ class Mt5GetSettings extends Mt5GetSettingsModel {
         currency: json['currency'],
         email: json['email'],
         group: json['group'],
-        landingCompanyShort:
-            landingCompanyShortEnumMapper[json['landing_company_short']],
+        landingCompanyShort: json['landing_company_short'] == null
+            ? null
+            : landingCompanyShortEnumMapper[json['landing_company_short']]!,
         leverage: getDouble(json['leverage']),
         login: json['login'],
-        marketType: marketTypeEnumMapper[json['market_type']],
+        marketType: json['market_type'] == null
+            ? null
+            : marketTypeEnumMapper[json['market_type']]!,
         name: json['name'],
         phone: json['phone'],
         phonePassword: json['phonePassword'],
         state: json['state'],
-        subAccountType: subAccountTypeEnumMapper[json['sub_account_type']],
+        subAccountType: json['sub_account_type'] == null
+            ? null
+            : subAccountTypeEnumMapper[json['sub_account_type']]!,
         zipCode: json['zipCode'],
       );
 
@@ -294,8 +327,9 @@ class Mt5GetSettings extends Mt5GetSettingsModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['account_type'] = accountTypeEnumMapper.entries
-        .firstWhere((entry) => entry.value == accountType, orElse: () => null)
-        ?.key;
+        .firstWhere((MapEntry<String, AccountTypeEnum> entry) =>
+            entry.value == accountType)
+        .key;
     resultMap['address'] = address;
     resultMap['balance'] = balance;
     resultMap['city'] = city;
@@ -305,22 +339,23 @@ class Mt5GetSettings extends Mt5GetSettingsModel {
     resultMap['email'] = email;
     resultMap['group'] = group;
     resultMap['landing_company_short'] = landingCompanyShortEnumMapper.entries
-        .firstWhere((entry) => entry.value == landingCompanyShort,
-            orElse: () => null)
-        ?.key;
+        .firstWhere((MapEntry<String, LandingCompanyShortEnum> entry) =>
+            entry.value == landingCompanyShort)
+        .key;
     resultMap['leverage'] = leverage;
     resultMap['login'] = login;
     resultMap['market_type'] = marketTypeEnumMapper.entries
-        .firstWhere((entry) => entry.value == marketType, orElse: () => null)
-        ?.key;
+        .firstWhere((MapEntry<String, MarketTypeEnum> entry) =>
+            entry.value == marketType)
+        .key;
     resultMap['name'] = name;
     resultMap['phone'] = phone;
     resultMap['phonePassword'] = phonePassword;
     resultMap['state'] = state;
     resultMap['sub_account_type'] = subAccountTypeEnumMapper.entries
-        .firstWhere((entry) => entry.value == subAccountType,
-            orElse: () => null)
-        ?.key;
+        .firstWhere((MapEntry<String, SubAccountTypeEnum> entry) =>
+            entry.value == subAccountType)
+        .key;
     resultMap['zipCode'] = zipCode;
 
     return resultMap;
@@ -328,25 +363,25 @@ class Mt5GetSettings extends Mt5GetSettingsModel {
 
   /// Creates a copy of instance with given parameters
   Mt5GetSettings copyWith({
-    AccountTypeEnum accountType,
-    String address,
-    String balance,
-    String city,
-    String company,
-    String country,
-    String currency,
-    String email,
-    String group,
-    LandingCompanyShortEnum landingCompanyShort,
-    double leverage,
-    String login,
-    MarketTypeEnum marketType,
-    String name,
-    String phone,
-    String phonePassword,
-    String state,
-    SubAccountTypeEnum subAccountType,
-    String zipCode,
+    AccountTypeEnum? accountType,
+    String? address,
+    String? balance,
+    String? city,
+    String? company,
+    String? country,
+    String? currency,
+    String? email,
+    String? group,
+    LandingCompanyShortEnum? landingCompanyShort,
+    double? leverage,
+    String? login,
+    MarketTypeEnum? marketType,
+    String? name,
+    String? phone,
+    String? phonePassword,
+    String? state,
+    SubAccountTypeEnum? subAccountType,
+    String? zipCode,
   }) =>
       Mt5GetSettings(
         accountType: accountType ?? this.accountType,

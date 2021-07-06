@@ -21,7 +21,7 @@ class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
 
       try {
         final ActiveSymbolsResponse symbols = await _fetchActiveSymbols();
-        yield ActiveSymbolsLoaded(activeSymbols: symbols.activeSymbols);
+        yield ActiveSymbolsLoaded(activeSymbols: symbols.activeSymbols!);
       } on ActiveSymbolsException catch (error) {
         yield ActiveSymbolsError(error.message);
       }
@@ -32,7 +32,7 @@ class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
 
         yield ActiveSymbolsLoaded(
           activeSymbols: loadedState.activeSymbols,
-          selectedSymbol: loadedState.activeSymbols![event.index],
+          selectedSymbol: loadedState.activeSymbols[event.index],
         );
       } else {
         yield ActiveSymbolsLoading();

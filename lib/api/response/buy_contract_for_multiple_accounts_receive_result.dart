@@ -1,16 +1,14 @@
-import 'package:meta/meta.dart';
-
 import '../../helpers/helpers.dart';
 
 /// Buy contract for multiple accounts response model class
 abstract class BuyContractForMultipleAccountsResponseModel {
   /// Initializes
   BuyContractForMultipleAccountsResponseModel({
-    @required this.buyContractForMultipleAccounts,
+    this.buyContractForMultipleAccounts,
   });
 
   /// Receipt confirmation for the purchase
-  final BuyContractForMultipleAccounts buyContractForMultipleAccounts;
+  final BuyContractForMultipleAccounts? buyContractForMultipleAccounts;
 }
 
 /// Buy contract for multiple accounts response class
@@ -18,7 +16,7 @@ class BuyContractForMultipleAccountsResponse
     extends BuyContractForMultipleAccountsResponseModel {
   /// Initializes
   BuyContractForMultipleAccountsResponse({
-    @required BuyContractForMultipleAccounts buyContractForMultipleAccounts,
+    BuyContractForMultipleAccounts? buyContractForMultipleAccounts,
   }) : super(
           buyContractForMultipleAccounts: buyContractForMultipleAccounts,
         );
@@ -41,7 +39,7 @@ class BuyContractForMultipleAccountsResponse
 
     if (buyContractForMultipleAccounts != null) {
       resultMap['buy_contract_for_multiple_accounts'] =
-          buyContractForMultipleAccounts.toJson();
+          buyContractForMultipleAccounts!.toJson();
     }
 
     return resultMap;
@@ -49,7 +47,7 @@ class BuyContractForMultipleAccountsResponse
 
   /// Creates a copy of instance with given parameters
   BuyContractForMultipleAccountsResponse copyWith({
-    BuyContractForMultipleAccounts buyContractForMultipleAccounts,
+    BuyContractForMultipleAccounts? buyContractForMultipleAccounts,
   }) =>
       BuyContractForMultipleAccountsResponse(
         buyContractForMultipleAccounts: buyContractForMultipleAccounts ??
@@ -60,11 +58,11 @@ class BuyContractForMultipleAccountsResponse
 abstract class BuyContractForMultipleAccountsModel {
   /// Initializes
   BuyContractForMultipleAccountsModel({
-    @required this.result,
+    required this.result,
   });
 
   /// List of results containing transactions and/or errors for the bought contracts.
-  final List<dynamic> result;
+  final List<Map<String, dynamic>> result;
 }
 
 /// Buy contract for multiple accounts class
@@ -72,7 +70,7 @@ class BuyContractForMultipleAccounts
     extends BuyContractForMultipleAccountsModel {
   /// Initializes
   BuyContractForMultipleAccounts({
-    @required List<dynamic> result,
+    required List<Map<String, dynamic>> result,
   }) : super(
           result: result,
         );
@@ -80,28 +78,31 @@ class BuyContractForMultipleAccounts
   /// Creates an instance from JSON
   factory BuyContractForMultipleAccounts.fromJson(Map<String, dynamic> json) =>
       BuyContractForMultipleAccounts(
-        result: json['result'] == null
-            ? null
-            : List<dynamic>.from(json['result'].map((dynamic item) => item)),
+        result: List<Map<String, dynamic>>.from(
+          json['result'].map(
+            (dynamic item) => item,
+          ),
+        ),
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    if (result != null) {
-      resultMap['result'] =
-          result.map<dynamic>((dynamic item) => item).toList();
-    }
+    resultMap['result'] = result
+        .map<dynamic>(
+          (Map<String, dynamic> item) => item,
+        )
+        .toList();
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   BuyContractForMultipleAccounts copyWith({
-    List<dynamic> result,
+    required List<Map<String, dynamic>> result,
   }) =>
       BuyContractForMultipleAccounts(
-        result: result ?? this.result,
+        result: result,
       );
 }

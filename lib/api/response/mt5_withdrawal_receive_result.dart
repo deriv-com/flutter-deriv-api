@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/mt5_withdrawal_receive.dart';
 import '../../basic_api/generated/mt5_withdrawal_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,23 +10,23 @@ import '../models/base_exception_model.dart';
 abstract class Mt5WithdrawalResponseModel {
   /// Initializes
   Mt5WithdrawalResponseModel({
-    @required this.binaryTransactionId,
-    @required this.mt5Withdrawal,
+    this.mt5Withdrawal,
+    this.binaryTransactionId,
   });
 
-  /// Deposit reference ID of Binary account.
-  final int binaryTransactionId;
-
   /// `1` on success
-  final int mt5Withdrawal;
+  final int? mt5Withdrawal;
+
+  /// Deposit reference ID of Binary account.
+  final int? binaryTransactionId;
 }
 
 /// Mt5 withdrawal response class
 class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
   /// Initializes
   Mt5WithdrawalResponse({
-    @required int mt5Withdrawal,
-    @required int binaryTransactionId,
+    int? mt5Withdrawal,
+    int? binaryTransactionId,
   }) : super(
           mt5Withdrawal: mt5Withdrawal,
           binaryTransactionId: binaryTransactionId,
@@ -54,7 +52,7 @@ class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Allows withdrawal from MT5 account to Binary account.
   ///
@@ -67,7 +65,7 @@ class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 
@@ -79,8 +77,8 @@ class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
 
   /// Creates a copy of instance with given parameters
   Mt5WithdrawalResponse copyWith({
-    int mt5Withdrawal,
-    int binaryTransactionId,
+    int? mt5Withdrawal,
+    int? binaryTransactionId,
   }) =>
       Mt5WithdrawalResponse(
         mt5Withdrawal: mt5Withdrawal ?? this.mt5Withdrawal,

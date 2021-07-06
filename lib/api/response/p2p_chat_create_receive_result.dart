@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/p2p_chat_create_receive.dart';
 import '../../basic_api/generated/p2p_chat_create_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class P2pChatCreateResponseModel {
   /// Initializes
   P2pChatCreateResponseModel({
-    @required this.p2pChatCreate,
+    this.p2pChatCreate,
   });
 
   /// Information of the P2P chat.
-  final P2pChatCreate p2pChatCreate;
+  final P2pChatCreate? p2pChatCreate;
 }
 
 /// P2p chat create response class
 class P2pChatCreateResponse extends P2pChatCreateResponseModel {
   /// Initializes
   P2pChatCreateResponse({
-    @required P2pChatCreate p2pChatCreate,
+    P2pChatCreate? p2pChatCreate,
   }) : super(
           p2pChatCreate: p2pChatCreate,
         );
@@ -43,13 +41,13 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (p2pChatCreate != null) {
-      resultMap['p2p_chat_create'] = p2pChatCreate.toJson();
+      resultMap['p2p_chat_create'] = p2pChatCreate!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Creates a P2P (peer to peer) chat for the specified order.
   ///
@@ -62,7 +60,7 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           P2PChatException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -71,7 +69,7 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
 
   /// Creates a copy of instance with given parameters
   P2pChatCreateResponse copyWith({
-    P2pChatCreate p2pChatCreate,
+    P2pChatCreate? p2pChatCreate,
   }) =>
       P2pChatCreateResponse(
         p2pChatCreate: p2pChatCreate ?? this.p2pChatCreate,
@@ -81,8 +79,8 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
 abstract class P2pChatCreateModel {
   /// Initializes
   P2pChatCreateModel({
-    @required this.orderId,
-    @required this.channelUrl,
+    required this.orderId,
+    required this.channelUrl,
   });
 
   /// The unique identifier for the order that the chat belongs to.
@@ -96,8 +94,8 @@ abstract class P2pChatCreateModel {
 class P2pChatCreate extends P2pChatCreateModel {
   /// Initializes
   P2pChatCreate({
-    @required String channelUrl,
-    @required String orderId,
+    required String channelUrl,
+    required String orderId,
   }) : super(
           channelUrl: channelUrl,
           orderId: orderId,
@@ -121,11 +119,11 @@ class P2pChatCreate extends P2pChatCreateModel {
 
   /// Creates a copy of instance with given parameters
   P2pChatCreate copyWith({
-    String channelUrl,
-    String orderId,
+    required String channelUrl,
+    required String orderId,
   }) =>
       P2pChatCreate(
-        channelUrl: channelUrl ?? this.channelUrl,
-        orderId: orderId ?? this.orderId,
+        channelUrl: channelUrl,
+        orderId: orderId,
       );
 }

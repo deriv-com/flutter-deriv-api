@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Identity verification document add request class.
-class IdentityVerificationDocumentAddRequest extends Request {
-  /// Initialize IdentityVerificationDocumentAddRequest.
-  const IdentityVerificationDocumentAddRequest({
+/// Identity verification document add send class.
+class IdentityVerificationDocumentAddSend extends Request {
+  /// Initialize IdentityVerificationDocumentAddSend.
+  const IdentityVerificationDocumentAddSend({
     required this.documentNumber,
     required this.documentType,
     this.identityVerificationDocumentAdd = true,
@@ -21,9 +21,9 @@ class IdentityVerificationDocumentAddRequest extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory IdentityVerificationDocumentAddRequest.fromJson(
+  factory IdentityVerificationDocumentAddSend.fromJson(
           Map<String, dynamic> json) =>
-      IdentityVerificationDocumentAddRequest(
+      IdentityVerificationDocumentAddSend(
         documentNumber: json['document_number'] as String?,
         documentType: json['document_type'] as String?,
         identityVerificationDocumentAdd:
@@ -65,7 +65,7 @@ class IdentityVerificationDocumentAddRequest extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  IdentityVerificationDocumentAddRequest copyWith({
+  IdentityVerificationDocumentAddSend copyWith({
     String? documentNumber,
     String? documentType,
     bool? identityVerificationDocumentAdd,
@@ -73,7 +73,7 @@ class IdentityVerificationDocumentAddRequest extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      IdentityVerificationDocumentAddRequest(
+      IdentityVerificationDocumentAddSend(
         documentNumber: documentNumber ?? this.documentNumber,
         documentType: documentType ?? this.documentType,
         identityVerificationDocumentAdd: identityVerificationDocumentAdd ??

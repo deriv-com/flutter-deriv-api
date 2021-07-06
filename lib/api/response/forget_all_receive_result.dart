@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/forget_all_receive.dart';
 import '../../basic_api/generated/forget_all_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class ForgetAllResponseModel {
   /// Initializes
   ForgetAllResponseModel({
-    @required this.forgetAll,
+    this.forgetAll,
   });
 
   /// IDs of the cancelled streams
-  final List<dynamic> forgetAll;
+  final List<dynamic>? forgetAll;
 }
 
 /// Forget all response class
 class ForgetAllResponse extends ForgetAllResponseModel {
   /// Initializes
   ForgetAllResponse({
-    @required List<dynamic> forgetAll,
+    List<dynamic>? forgetAll,
   }) : super(
           forgetAll: forgetAll,
         );
@@ -35,7 +33,11 @@ class ForgetAllResponse extends ForgetAllResponseModel {
       ForgetAllResponse(
         forgetAll: forgetAllJson == null
             ? null
-            : List<dynamic>.from(forgetAllJson.map((dynamic item) => item)),
+            : List<dynamic>.from(
+                forgetAllJson?.map(
+                  (dynamic item) => item,
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -43,14 +45,17 @@ class ForgetAllResponse extends ForgetAllResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (forgetAll != null) {
-      resultMap['forget_all'] =
-          forgetAll.map<dynamic>((dynamic item) => item).toList();
+      resultMap['forget_all'] = forgetAll!
+          .map<dynamic>(
+            (dynamic item) => item,
+          )
+          .toList();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Immediately cancels the real-time streams of messages of given type.
   ///
@@ -63,7 +68,7 @@ class ForgetAllResponse extends ForgetAllResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ForgetException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -72,7 +77,7 @@ class ForgetAllResponse extends ForgetAllResponseModel {
 
   /// Creates a copy of instance with given parameters
   ForgetAllResponse copyWith({
-    List<dynamic> forgetAll,
+    List<dynamic>? forgetAll,
   }) =>
       ForgetAllResponse(
         forgetAll: forgetAll ?? this.forgetAll,

@@ -1,6 +1,4 @@
 
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/sell_expired_receive.dart';
 import '../../basic_api/generated/sell_expired_send.dart';
 import '../../basic_api/generated/sell_receive.dart';
@@ -16,18 +14,18 @@ import 'sell_expired_receive_result.dart';
 abstract class SellResponseModel {
   /// Initializes
   SellResponseModel({
-    @required this.sell,
+    this.sell,
   });
 
   /// Receipt for the transaction
-  final Sell sell;
+  final Sell? sell;
 }
 
 /// Sell response class
 class SellResponse extends SellResponseModel {
   /// Initializes
   SellResponse({
-    @required Sell sell,
+    Sell? sell,
   }) : super(
           sell: sell,
         );
@@ -45,13 +43,13 @@ class SellResponse extends SellResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (sell != null) {
-      resultMap['sell'] = sell.toJson();
+      resultMap['sell'] = sell!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Sells a contract with parameters specified in [SellRequest].
   ///
@@ -61,7 +59,7 @@ class SellResponse extends SellResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -72,7 +70,7 @@ class SellResponse extends SellResponseModel {
   ///
   /// Throws [ContractOperationException] if API response contains an error
   static Future<SellExpiredResponse> sellExpiredContracts([
-    SellExpiredSend request,
+    SellExpiredSend? request,
   ]) async {
     final SellExpiredReceive response = await _api.call(
       request: request ?? const SellExpiredSend(),
@@ -80,7 +78,7 @@ class SellResponse extends SellResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           ContractOperationException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -89,7 +87,7 @@ class SellResponse extends SellResponseModel {
 
   /// Creates a copy of instance with given parameters
   SellResponse copyWith({
-    Sell sell,
+    Sell? sell,
   }) =>
       SellResponse(
         sell: sell ?? this.sell,
@@ -99,38 +97,38 @@ class SellResponse extends SellResponseModel {
 abstract class SellModel {
   /// Initializes
   SellModel({
-    @required this.transactionId,
-    @required this.soldFor,
-    @required this.referenceId,
-    @required this.contractId,
-    @required this.balanceAfter,
+    this.balanceAfter,
+    this.contractId,
+    this.referenceId,
+    this.soldFor,
+    this.transactionId,
   });
 
-  /// Internal transaction identifier for the sale transaction
-  final int transactionId;
-
-  /// Actual effected sale price
-  final double soldFor;
-
-  /// Internal transaction identifier for the corresponding buy transaction
-  final int referenceId;
+  /// New account balance after completion of the sale
+  final double? balanceAfter;
 
   /// Internal contract identifier for the sold contract
-  final int contractId;
+  final int? contractId;
 
-  /// New account balance after completion of the sale
-  final double balanceAfter;
+  /// Internal transaction identifier for the corresponding buy transaction
+  final int? referenceId;
+
+  /// Actual effected sale price
+  final double? soldFor;
+
+  /// Internal transaction identifier for the sale transaction
+  final int? transactionId;
 }
 
 /// Sell class
 class Sell extends SellModel {
   /// Initializes
   Sell({
-    @required double balanceAfter,
-    @required int contractId,
-    @required int referenceId,
-    @required double soldFor,
-    @required int transactionId,
+    double? balanceAfter,
+    int? contractId,
+    int? referenceId,
+    double? soldFor,
+    int? transactionId,
   }) : super(
           balanceAfter: balanceAfter,
           contractId: contractId,
@@ -163,11 +161,11 @@ class Sell extends SellModel {
 
   /// Creates a copy of instance with given parameters
   Sell copyWith({
-    double balanceAfter,
-    int contractId,
-    int referenceId,
-    double soldFor,
-    int transactionId,
+    double? balanceAfter,
+    int? contractId,
+    int? referenceId,
+    double? soldFor,
+    int? transactionId,
   }) =>
       Sell(
         balanceAfter: balanceAfter ?? this.balanceAfter,

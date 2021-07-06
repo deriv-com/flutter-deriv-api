@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/mt5_deposit_receive.dart';
 import '../../basic_api/generated/mt5_deposit_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,23 +10,23 @@ import '../models/base_exception_model.dart';
 abstract class Mt5DepositResponseModel {
   /// Initializes
   Mt5DepositResponseModel({
-    @required this.binaryTransactionId,
-    @required this.mt5Deposit,
+    this.mt5Deposit,
+    this.binaryTransactionId,
   });
 
-  /// Withdrawal reference ID of Binary account
-  final int binaryTransactionId;
-
   /// 1 on success
-  final int mt5Deposit;
+  final int? mt5Deposit;
+
+  /// Withdrawal reference ID of Binary account
+  final int? binaryTransactionId;
 }
 
 /// Mt5 deposit response class
 class Mt5DepositResponse extends Mt5DepositResponseModel {
   /// Initializes
   Mt5DepositResponse({
-    @required int mt5Deposit,
-    @required int binaryTransactionId,
+    int? mt5Deposit,
+    int? binaryTransactionId,
   }) : super(
           mt5Deposit: mt5Deposit,
           binaryTransactionId: binaryTransactionId,
@@ -54,7 +52,7 @@ class Mt5DepositResponse extends Mt5DepositResponseModel {
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Allows deposit into MT5 account from binary account.
   ///
@@ -65,7 +63,7 @@ class Mt5DepositResponse extends Mt5DepositResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           MT5Exception(baseExceptionModel: baseExceptionModel),
     );
 
@@ -77,8 +75,8 @@ class Mt5DepositResponse extends Mt5DepositResponseModel {
 
   /// Creates a copy of instance with given parameters
   Mt5DepositResponse copyWith({
-    int mt5Deposit,
-    int binaryTransactionId,
+    int? mt5Deposit,
+    int? binaryTransactionId,
   }) =>
       Mt5DepositResponse(
         mt5Deposit: mt5Deposit ?? this.mt5Deposit,

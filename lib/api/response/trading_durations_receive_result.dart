@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/trading_durations_receive.dart';
 import '../../basic_api/generated/trading_durations_send.dart';
 import '../../helpers/helpers.dart';
@@ -12,18 +10,18 @@ import '../models/base_exception_model.dart';
 abstract class TradingDurationsResponseModel {
   /// Initializes
   TradingDurationsResponseModel({
-    @required this.tradingDurations,
+    this.tradingDurations,
   });
 
   /// List of underlyings by their display name and symbol followed by their available contract types and trading duration boundaries.
-  final List<TradingDurationsItem> tradingDurations;
+  final List<TradingDurationsItem>? tradingDurations;
 }
 
 /// Trading durations response class
 class TradingDurationsResponse extends TradingDurationsResponseModel {
   /// Initializes
   TradingDurationsResponse({
-    @required List<TradingDurationsItem> tradingDurations,
+    List<TradingDurationsItem>? tradingDurations,
   }) : super(
           tradingDurations: tradingDurations,
         );
@@ -35,8 +33,11 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
       TradingDurationsResponse(
         tradingDurations: tradingDurationsJson == null
             ? null
-            : List<TradingDurationsItem>.from(tradingDurationsJson
-                .map((dynamic item) => TradingDurationsItem.fromJson(item))),
+            : List<TradingDurationsItem>.from(
+                tradingDurationsJson?.map(
+                  (dynamic item) => TradingDurationsItem.fromJson(item),
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
@@ -44,15 +45,17 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (tradingDurations != null) {
-      resultMap['trading_durations'] = tradingDurations
-          .map<dynamic>((TradingDurationsItem item) => item.toJson())
+      resultMap['trading_durations'] = tradingDurations!
+          .map<dynamic>(
+            (TradingDurationsItem item) => item.toJson(),
+          )
           .toList();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Retrieves a list of all available underlyings and the corresponding contract types and trading duration boundaries.
   ///
@@ -66,7 +69,7 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TradingException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -75,7 +78,7 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
 
   /// Creates a copy of instance with given parameters
   TradingDurationsResponse copyWith({
-    List<TradingDurationsItem> tradingDurations,
+    List<TradingDurationsItem>? tradingDurations,
   }) =>
       TradingDurationsResponse(
         tradingDurations: tradingDurations ?? this.tradingDurations,
@@ -85,76 +88,43 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
 abstract class TradingDurationsItemModel {
   /// Initializes
   TradingDurationsItemModel({
-    @required this.tradeDurations,
-    @required this.symbol,
-    @required this.submarket,
-    @required this.market,
+    this.data,
   });
 
-  /// List of trade durations available for symbols and contract combinations.
-  final List<TradeDurationsItem> tradeDurations;
-
-  /// List of underlying symbols.
-  final List<SymbolItem> symbol;
-
-  /// The submarket in which the underlyings listed in `symbol` located.
-  final Submarket submarket;
-
-  /// The market in which the underlyings listed in `symbol` located.
-  final TradingDurationsItemMarket market;
+  /// Available contract types and trading duration boundaries
+  final List<DataItem>? data;
 }
 
 /// Trading durations item class
 class TradingDurationsItem extends TradingDurationsItemModel {
   /// Initializes
   TradingDurationsItem({
-    @required TradingDurationsItemMarket market,
-    @required Submarket submarket,
-    @required List<SymbolItem> symbol,
-    @required List<TradeDurationsItem> tradeDurations,
+    List<DataItem>? data,
   }) : super(
-          market: market,
-          submarket: submarket,
-          symbol: symbol,
-          tradeDurations: tradeDurations,
+          data: data,
         );
 
   /// Creates an instance from JSON
   factory TradingDurationsItem.fromJson(Map<String, dynamic> json) =>
       TradingDurationsItem(
-        market: json['market'] == null
+        data: json['data'] == null
             ? null
-            : TradingDurationsItemMarket.fromJson(json['market']),
-        submarket: json['submarket'] == null
-            ? null
-            : Submarket.fromJson(json['submarket']),
-        symbol: json['symbol'] == null
-            ? null
-            : List<SymbolItem>.from(json['symbol']
-                .map((dynamic item) => SymbolItem.fromJson(item))),
-        tradeDurations: json['trade_durations'] == null
-            ? null
-            : List<TradeDurationsItem>.from(json['trade_durations']
-                .map((dynamic item) => TradeDurationsItem.fromJson(item))),
+            : List<DataItem>.from(
+                json['data']?.map(
+                  (dynamic item) => DataItem.fromJson(item),
+                ),
+              ),
       );
 
   /// Converts an instance to JSON
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    if (market != null) {
-      resultMap['market'] = market.toJson();
-    }
-    if (submarket != null) {
-      resultMap['submarket'] = submarket.toJson();
-    }
-    if (symbol != null) {
-      resultMap['symbol'] =
-          symbol.map<dynamic>((SymbolItem item) => item.toJson()).toList();
-    }
-    if (tradeDurations != null) {
-      resultMap['trade_durations'] = tradeDurations
-          .map<dynamic>((TradeDurationsItem item) => item.toJson())
+    if (data != null) {
+      resultMap['data'] = data!
+          .map<dynamic>(
+            (DataItem item) => item.toJson(),
+          )
           .toList();
     }
 
@@ -163,47 +133,142 @@ class TradingDurationsItem extends TradingDurationsItemModel {
 
   /// Creates a copy of instance with given parameters
   TradingDurationsItem copyWith({
-    TradingDurationsItemMarket market,
-    Submarket submarket,
-    List<SymbolItem> symbol,
-    List<TradeDurationsItem> tradeDurations,
+    List<DataItem>? data,
   }) =>
       TradingDurationsItem(
+        data: data ?? this.data,
+      );
+}
+/// Data item model class
+abstract class DataItemModel {
+  /// Initializes
+  DataItemModel({
+    this.market,
+    this.submarket,
+    this.symbol,
+    this.tradeDurations,
+  });
+
+  /// The market in which the underlyings listed in `symbol` located.
+  final Market? market;
+
+  /// The submarket in which the underlyings listed in `symbol` located.
+  final Submarket? submarket;
+
+  /// List of underlying symbols.
+  final List<SymbolItem>? symbol;
+
+  /// List of trade durations available for symbols and contract combinations.
+  final List<TradeDurationsItem>? tradeDurations;
+}
+
+/// Data item class
+class DataItem extends DataItemModel {
+  /// Initializes
+  DataItem({
+    Market? market,
+    Submarket? submarket,
+    List<SymbolItem>? symbol,
+    List<TradeDurationsItem>? tradeDurations,
+  }) : super(
+          market: market,
+          submarket: submarket,
+          symbol: symbol,
+          tradeDurations: tradeDurations,
+        );
+
+  /// Creates an instance from JSON
+  factory DataItem.fromJson(Map<String, dynamic> json) => DataItem(
+        market: json['market'] == null ? null : Market.fromJson(json['market']),
+        submarket: json['submarket'] == null
+            ? null
+            : Submarket.fromJson(json['submarket']),
+        symbol: json['symbol'] == null
+            ? null
+            : List<SymbolItem>.from(
+                json['symbol']?.map(
+                  (dynamic item) => SymbolItem.fromJson(item),
+                ),
+              ),
+        tradeDurations: json['trade_durations'] == null
+            ? null
+            : List<TradeDurationsItem>.from(
+                json['trade_durations']?.map(
+                  (dynamic item) => TradeDurationsItem.fromJson(item),
+                ),
+              ),
+      );
+
+  /// Converts an instance to JSON
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    if (market != null) {
+      resultMap['market'] = market!.toJson();
+    }
+    if (submarket != null) {
+      resultMap['submarket'] = submarket!.toJson();
+    }
+    if (symbol != null) {
+      resultMap['symbol'] = symbol!
+          .map<dynamic>(
+            (SymbolItem item) => item.toJson(),
+          )
+          .toList();
+    }
+    if (tradeDurations != null) {
+      resultMap['trade_durations'] = tradeDurations!
+          .map<dynamic>(
+            (TradeDurationsItem item) => item.toJson(),
+          )
+          .toList();
+    }
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters
+  DataItem copyWith({
+    Market? market,
+    Submarket? submarket,
+    List<SymbolItem>? symbol,
+    List<TradeDurationsItem>? tradeDurations,
+  }) =>
+      DataItem(
         market: market ?? this.market,
         submarket: submarket ?? this.submarket,
         symbol: symbol ?? this.symbol,
         tradeDurations: tradeDurations ?? this.tradeDurations,
       );
 }
-/// Trading durations item market model class
-abstract class TradingDurationsItemMarketModel {
+/// Market model class
+abstract class MarketModel {
   /// Initializes
-  TradingDurationsItemMarketModel({
-    @required this.name,
-    @required this.displayName,
+  MarketModel({
+    this.displayName,
+    this.name,
   });
 
-  /// Market name.
-  final String name;
-
   /// Translated market name.
-  final String displayName;
+  final String? displayName;
+
+  /// Market name.
+  final String? name;
 }
 
-/// Trading durations item market class
-class TradingDurationsItemMarket extends TradingDurationsItemMarketModel {
+/// Market class
+class Market extends MarketModel {
   /// Initializes
-  TradingDurationsItemMarket({
-    @required String displayName,
-    @required String name,
+  Market({
+    String? displayName,
+    String? name,
   }) : super(
           displayName: displayName,
           name: name,
         );
 
   /// Creates an instance from JSON
-  factory TradingDurationsItemMarket.fromJson(Map<String, dynamic> json) =>
-      TradingDurationsItemMarket(
+  factory Market.fromJson(Map<String, dynamic> json) => Market(
         displayName: json['display_name'],
         name: json['name'],
       );
@@ -219,11 +284,11 @@ class TradingDurationsItemMarket extends TradingDurationsItemMarketModel {
   }
 
   /// Creates a copy of instance with given parameters
-  TradingDurationsItemMarket copyWith({
-    String displayName,
-    String name,
+  Market copyWith({
+    String? displayName,
+    String? name,
   }) =>
-      TradingDurationsItemMarket(
+      Market(
         displayName: displayName ?? this.displayName,
         name: name ?? this.name,
       );
@@ -232,23 +297,23 @@ class TradingDurationsItemMarket extends TradingDurationsItemMarketModel {
 abstract class SubmarketModel {
   /// Initializes
   SubmarketModel({
-    @required this.name,
-    @required this.displayName,
+    this.displayName,
+    this.name,
   });
 
-  /// Submarket name.
-  final String name;
-
   /// Translated submarket name.
-  final String displayName;
+  final String? displayName;
+
+  /// Submarket name.
+  final String? name;
 }
 
 /// Submarket class
 class Submarket extends SubmarketModel {
   /// Initializes
   Submarket({
-    @required String displayName,
-    @required String name,
+    String? displayName,
+    String? name,
   }) : super(
           displayName: displayName,
           name: name,
@@ -272,8 +337,8 @@ class Submarket extends SubmarketModel {
 
   /// Creates a copy of instance with given parameters
   Submarket copyWith({
-    String displayName,
-    String name,
+    String? displayName,
+    String? name,
   }) =>
       Submarket(
         displayName: displayName ?? this.displayName,
@@ -284,23 +349,23 @@ class Submarket extends SubmarketModel {
 abstract class SymbolItemModel {
   /// Initializes
   SymbolItemModel({
-    @required this.name,
-    @required this.displayName,
+    this.displayName,
+    this.name,
   });
 
-  /// Symbol name.
-  final String name;
-
   /// Translated symbol name.
-  final String displayName;
+  final String? displayName;
+
+  /// Symbol name.
+  final String? name;
 }
 
 /// Symbol item class
 class SymbolItem extends SymbolItemModel {
   /// Initializes
   SymbolItem({
-    @required String displayName,
-    @required String name,
+    String? displayName,
+    String? name,
   }) : super(
           displayName: displayName,
           name: name,
@@ -324,8 +389,8 @@ class SymbolItem extends SymbolItemModel {
 
   /// Creates a copy of instance with given parameters
   SymbolItem copyWith({
-    String displayName,
-    String name,
+    String? displayName,
+    String? name,
   }) =>
       SymbolItem(
         displayName: displayName ?? this.displayName,
@@ -336,23 +401,23 @@ class SymbolItem extends SymbolItemModel {
 abstract class TradeDurationsItemModel {
   /// Initializes
   TradeDurationsItemModel({
-    @required this.tradeType,
-    @required this.durations,
+    this.durations,
+    this.tradeType,
   });
 
-  /// List of trade types available for the symbols.
-  final TradeType tradeType;
-
   /// List of trade durations available for the symbols.
-  final List<DurationsItem> durations;
+  final List<DurationsItem>? durations;
+
+  /// List of trade types available for the symbols.
+  final TradeType? tradeType;
 }
 
 /// Trade durations item class
 class TradeDurationsItem extends TradeDurationsItemModel {
   /// Initializes
   TradeDurationsItem({
-    @required List<DurationsItem> durations,
-    @required TradeType tradeType,
+    List<DurationsItem>? durations,
+    TradeType? tradeType,
   }) : super(
           durations: durations,
           tradeType: tradeType,
@@ -363,8 +428,11 @@ class TradeDurationsItem extends TradeDurationsItemModel {
       TradeDurationsItem(
         durations: json['durations'] == null
             ? null
-            : List<DurationsItem>.from(json['durations']
-                .map((dynamic item) => DurationsItem.fromJson(item))),
+            : List<DurationsItem>.from(
+                json['durations']?.map(
+                  (dynamic item) => DurationsItem.fromJson(item),
+                ),
+              ),
         tradeType: json['trade_type'] == null
             ? null
             : TradeType.fromJson(json['trade_type']),
@@ -375,12 +443,14 @@ class TradeDurationsItem extends TradeDurationsItemModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (durations != null) {
-      resultMap['durations'] = durations
-          .map<dynamic>((DurationsItem item) => item.toJson())
+      resultMap['durations'] = durations!
+          .map<dynamic>(
+            (DurationsItem item) => item.toJson(),
+          )
           .toList();
     }
     if (tradeType != null) {
-      resultMap['trade_type'] = tradeType.toJson();
+      resultMap['trade_type'] = tradeType!.toJson();
     }
 
     return resultMap;
@@ -388,8 +458,8 @@ class TradeDurationsItem extends TradeDurationsItemModel {
 
   /// Creates a copy of instance with given parameters
   TradeDurationsItem copyWith({
-    List<DurationsItem> durations,
-    TradeType tradeType,
+    List<DurationsItem>? durations,
+    TradeType? tradeType,
   }) =>
       TradeDurationsItem(
         durations: durations ?? this.durations,
@@ -400,33 +470,33 @@ class TradeDurationsItem extends TradeDurationsItemModel {
 abstract class DurationsItemModel {
   /// Initializes
   DurationsItemModel({
-    @required this.name,
-    @required this.min,
-    @required this.max,
-    @required this.displayName,
+    this.displayName,
+    this.max,
+    this.min,
+    this.name,
   });
 
-  /// Duration type name.
-  final String name;
-
-  /// Minimum allowed duration for this type.
-  final int min;
+  /// Translated duration type name.
+  final String? displayName;
 
   /// Maximum allowed duration for this type.
-  final int max;
+  final int? max;
 
-  /// Translated duration type name.
-  final String displayName;
+  /// Minimum allowed duration for this type.
+  final int? min;
+
+  /// Duration type name.
+  final String? name;
 }
 
 /// Durations item class
 class DurationsItem extends DurationsItemModel {
   /// Initializes
   DurationsItem({
-    @required String displayName,
-    @required int max,
-    @required int min,
-    @required String name,
+    String? displayName,
+    int? max,
+    int? min,
+    String? name,
   }) : super(
           displayName: displayName,
           max: max,
@@ -456,10 +526,10 @@ class DurationsItem extends DurationsItemModel {
 
   /// Creates a copy of instance with given parameters
   DurationsItem copyWith({
-    String displayName,
-    int max,
-    int min,
-    String name,
+    String? displayName,
+    int? max,
+    int? min,
+    String? name,
   }) =>
       DurationsItem(
         displayName: displayName ?? this.displayName,
@@ -472,23 +542,23 @@ class DurationsItem extends DurationsItemModel {
 abstract class TradeTypeModel {
   /// Initializes
   TradeTypeModel({
-    @required this.name,
-    @required this.displayName,
+    this.displayName,
+    this.name,
   });
 
-  /// Trade type name.
-  final String name;
-
   /// Translated trade type name.
-  final String displayName;
+  final String? displayName;
+
+  /// Trade type name.
+  final String? name;
 }
 
 /// Trade type class
 class TradeType extends TradeTypeModel {
   /// Initializes
   TradeType({
-    @required String displayName,
-    @required String name,
+    String? displayName,
+    String? name,
   }) : super(
           displayName: displayName,
           name: name,
@@ -512,8 +582,8 @@ class TradeType extends TradeTypeModel {
 
   /// Creates a copy of instance with given parameters
   TradeType copyWith({
-    String displayName,
-    String name,
+    String? displayName,
+    String? name,
   }) =>
       TradeType(
         displayName: displayName ?? this.displayName,

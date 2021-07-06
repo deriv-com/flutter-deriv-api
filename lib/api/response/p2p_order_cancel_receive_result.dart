@@ -5,18 +5,18 @@ import 'package:meta/meta.dart';
 abstract class P2pOrderCancelResponseModel {
   /// Initializes
   P2pOrderCancelResponseModel({
-    @required this.p2pOrderCancel,
+    this.p2pOrderCancel,
   });
 
   /// Cancellation details
-  final P2pOrderCancel p2pOrderCancel;
+  final P2pOrderCancel? p2pOrderCancel;
 }
 
 /// P2p order cancel response class
 class P2pOrderCancelResponse extends P2pOrderCancelResponseModel {
   /// Initializes
   P2pOrderCancelResponse({
-    @required P2pOrderCancel p2pOrderCancel,
+    P2pOrderCancel? p2pOrderCancel,
   }) : super(
           p2pOrderCancel: p2pOrderCancel,
         );
@@ -36,7 +36,7 @@ class P2pOrderCancelResponse extends P2pOrderCancelResponseModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     if (p2pOrderCancel != null) {
-      resultMap['p2p_order_cancel'] = p2pOrderCancel.toJson();
+      resultMap['p2p_order_cancel'] = p2pOrderCancel!.toJson();
     }
 
     return resultMap;
@@ -44,27 +44,29 @@ class P2pOrderCancelResponse extends P2pOrderCancelResponseModel {
 
   /// Creates a copy of instance with given parameters
   P2pOrderCancelResponse copyWith({
-    P2pOrderCancel p2pOrderCancel,
+    P2pOrderCancel? p2pOrderCancel,
   }) =>
       P2pOrderCancelResponse(
         p2pOrderCancel: p2pOrderCancel ?? this.p2pOrderCancel,
       );
 }
 
+/// StatusEnum mapper.
 final Map<String, StatusEnum> statusEnumMapper = <String, StatusEnum>{
   "cancelled": StatusEnum.cancelled,
 };
 
-/// status Enum
+/// Status Enum.
 enum StatusEnum {
+  /// cancelled.
   cancelled,
 }
 /// P2p order cancel model class
 abstract class P2pOrderCancelModel {
   /// Initializes
   P2pOrderCancelModel({
-    @required this.status,
-    @required this.id,
+    required this.status,
+    required this.id,
   });
 
   /// The new status of the order.
@@ -78,8 +80,8 @@ abstract class P2pOrderCancelModel {
 class P2pOrderCancel extends P2pOrderCancelModel {
   /// Initializes
   P2pOrderCancel({
-    @required String id,
-    @required StatusEnum status,
+    required String id,
+    required StatusEnum status,
   }) : super(
           id: id,
           status: status,
@@ -88,7 +90,7 @@ class P2pOrderCancel extends P2pOrderCancelModel {
   /// Creates an instance from JSON
   factory P2pOrderCancel.fromJson(Map<String, dynamic> json) => P2pOrderCancel(
         id: json['id'],
-        status: statusEnumMapper[json['status']],
+        status: statusEnumMapper[json['status']]!,
       );
 
   /// Converts an instance to JSON
@@ -97,19 +99,20 @@ class P2pOrderCancel extends P2pOrderCancelModel {
 
     resultMap['id'] = id;
     resultMap['status'] = statusEnumMapper.entries
-        .firstWhere((entry) => entry.value == status, orElse: () => null)
-        ?.key;
+        .firstWhere(
+            (MapEntry<String, StatusEnum> entry) => entry.value == status)
+        .key;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters
   P2pOrderCancel copyWith({
-    String id,
-    StatusEnum status,
+    required String id,
+    required StatusEnum status,
   }) =>
       P2pOrderCancel(
-        id: id ?? this.id,
-        status: status ?? this.status,
+        id: id,
+        status: status,
       );
 }

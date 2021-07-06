@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../../basic_api/generated/cashier_receive.dart';
 import '../../basic_api/generated/cashier_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
@@ -12,23 +10,23 @@ import '../models/base_exception_model.dart';
 abstract class CashierResponseModel {
   /// Initializes
   CashierResponseModel({
-    @required this.cashierObject,
-    @required this.cashierString,
+    this.cashierString,
+    this.cashierObject,
   });
 
-  /// Response for type `api'.
-  final CashierObject cashierObject;
-
   /// Response for type `url`, It will return url to cashier service.
-  final String cashierString;
+  final String? cashierString;
+
+  /// Response for type `api'.
+  final CashierObject? cashierObject;
 }
 
 /// Cashier response class
 class CashierResponse extends CashierResponseModel {
   /// Initializes
   CashierResponse({
-    @required String cashierString,
-    @required CashierObject cashierObject,
+    String? cashierString,
+    CashierObject? cashierObject,
   }) : super(
           cashierString: cashierString,
           cashierObject: cashierObject,
@@ -54,13 +52,13 @@ class CashierResponse extends CashierResponseModel {
 
     resultMap['cashier_string'] = cashierString;
     if (cashierObject != null) {
-      resultMap['cashier_object'] = cashierObject.toJson();
+      resultMap['cashier_object'] = cashierObject!.toJson();
     }
 
     return resultMap;
   }
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Gets the cashier URL for given [CashierRequest]
   static Future<CashierResponse> fetchInformation(
@@ -70,7 +68,7 @@ class CashierResponse extends CashierResponseModel {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           CashierException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -79,8 +77,8 @@ class CashierResponse extends CashierResponseModel {
 
   /// Creates a copy of instance with given parameters
   CashierResponse copyWith({
-    String cashierString,
-    CashierObject cashierObject,
+    String? cashierString,
+    CashierObject? cashierObject,
   }) =>
       CashierResponse(
         cashierString: cashierString ?? this.cashierString,
@@ -88,35 +86,37 @@ class CashierResponse extends CashierResponseModel {
       );
 }
 
+/// ActionEnum mapper.
 final Map<String, ActionEnum> actionEnumMapper = <String, ActionEnum>{
   "deposit": ActionEnum.deposit,
 };
 
-/// action Enum
+/// Action Enum.
 enum ActionEnum {
+  /// deposit.
   deposit,
 }
 /// Cashier object model class
 abstract class CashierObjectModel {
   /// Initializes
   CashierObjectModel({
-    @required this.action,
+    this.action,
     this.deposit,
   });
 
   /// Type of operation, which is requested.
-  final ActionEnum action;
+  final ActionEnum? action;
 
   /// [Optional] Result for deposit operation.
-  final Deposit deposit;
+  final Deposit? deposit;
 }
 
 /// Cashier object class
 class CashierObject extends CashierObjectModel {
   /// Initializes
   CashierObject({
-    @required ActionEnum action,
-    Deposit deposit,
+    ActionEnum? action,
+    Deposit? deposit,
   }) : super(
           action: action,
           deposit: deposit,
@@ -124,7 +124,8 @@ class CashierObject extends CashierObjectModel {
 
   /// Creates an instance from JSON
   factory CashierObject.fromJson(Map<String, dynamic> json) => CashierObject(
-        action: actionEnumMapper[json['action']],
+        action:
+            json['action'] == null ? null : actionEnumMapper[json['action']]!,
         deposit:
             json['deposit'] == null ? null : Deposit.fromJson(json['deposit']),
       );
@@ -134,10 +135,11 @@ class CashierObject extends CashierObjectModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['action'] = actionEnumMapper.entries
-        .firstWhere((entry) => entry.value == action, orElse: () => null)
-        ?.key;
+        .firstWhere(
+            (MapEntry<String, ActionEnum> entry) => entry.value == action)
+        .key;
     if (deposit != null) {
-      resultMap['deposit'] = deposit.toJson();
+      resultMap['deposit'] = deposit!.toJson();
     }
 
     return resultMap;
@@ -145,8 +147,8 @@ class CashierObject extends CashierObjectModel {
 
   /// Creates a copy of instance with given parameters
   CashierObject copyWith({
-    ActionEnum action,
-    Deposit deposit,
+    ActionEnum? action,
+    Deposit? deposit,
   }) =>
       CashierObject(
         action: action ?? this.action,
@@ -157,18 +159,18 @@ class CashierObject extends CashierObjectModel {
 abstract class DepositModel {
   /// Initializes
   DepositModel({
-    @required this.address,
+    this.address,
   });
 
   /// Address for crypto deposit.
-  final String address;
+  final String? address;
 }
 
 /// Deposit class
 class Deposit extends DepositModel {
   /// Initializes
   Deposit({
-    @required String address,
+    String? address,
   }) : super(
           address: address,
         );
@@ -189,7 +191,7 @@ class Deposit extends DepositModel {
 
   /// Creates a copy of instance with given parameters
   Deposit copyWith({
-    String address,
+    String? address,
   }) =>
       Deposit(
         address: address ?? this.address,

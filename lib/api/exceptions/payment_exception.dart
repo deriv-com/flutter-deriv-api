@@ -6,6 +6,6 @@ import 'common_exception.dart';
 class PaymentException extends CommonException {
   /// Initializes
   PaymentException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }
