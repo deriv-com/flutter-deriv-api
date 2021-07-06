@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Get limits receive class
+/// Get limits receive class.
 class GetLimitsReceive extends Response {
-  /// Initialize GetLimitsReceive
+  /// Initialize GetLimitsReceive.
   const GetLimitsReceive({
     this.getLimits,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -19,18 +20,18 @@ class GetLimitsReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetLimitsReceive.fromJson(Map<String, dynamic> json) =>
       GetLimitsReceive(
-        getLimits: json['get_limits'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        getLimits: json['get_limits'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Trading limits of real account user
-  final Map<String, dynamic> getLimits;
+  final Map<String, dynamic>? getLimits;
 
   /// Converts this instance to JSON
   @override
@@ -45,11 +46,11 @@ class GetLimitsReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   GetLimitsReceive copyWith({
-    Map<String, dynamic> getLimits,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? getLimits,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       GetLimitsReceive(
         getLimits: getLimits ?? this.getLimits,
@@ -59,7 +60,7 @@ class GetLimitsReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -6,6 +6,6 @@ import 'common_exception.dart';
 class TradingException extends CommonException {
   /// Initializes
   TradingException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

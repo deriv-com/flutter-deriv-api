@@ -1,40 +1,39 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_get_settings_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_get_settings_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Mt5 get settings send class
+/// Mt5 get settings send class.
 class Mt5GetSettingsSend extends Request {
-  /// Initialize Mt5GetSettingsSend
+  /// Initialize Mt5GetSettingsSend.
   const Mt5GetSettingsSend({
-    @required this.login,
+    required this.login,
     this.mt5GetSettings = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'mt5_get_settings',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5GetSettingsSend.fromJson(Map<String, dynamic> json) =>
       Mt5GetSettingsSend(
-        login: json['login'] as String,
+        login: json['login'] as String?,
         mt5GetSettings: json['mt5_get_settings'] == null
             ? null
             : json['mt5_get_settings'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// MT5 user login
-  final String login;
+  final String? login;
 
   /// Must be `true`
-  final bool mt5GetSettings;
+  final bool? mt5GetSettings;
 
   /// Converts this instance to JSON
   @override
@@ -42,7 +41,7 @@ class Mt5GetSettingsSend extends Request {
         'login': login,
         'mt5_get_settings': mt5GetSettings == null
             ? null
-            : mt5GetSettings
+            : mt5GetSettings!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -52,10 +51,10 @@ class Mt5GetSettingsSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   Mt5GetSettingsSend copyWith({
-    String login,
-    bool mt5GetSettings,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? login,
+    bool? mt5GetSettings,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       Mt5GetSettingsSend(
         login: login ?? this.login,
@@ -64,7 +63,7 @@ class Mt5GetSettingsSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -19,17 +19,17 @@ void main() {
     );
 
     final AvailableItem firstContract =
-        contractsFor.contractsFor.available.first;
+        contractsFor.contractsFor!.available.first;
 
     expect(firstContract.barriers, 0);
     expect(firstContract.maxContractDuration, '1d');
     expect(
-      firstContract.forwardStartingOptions.first.close,
+      firstContract.forwardStartingOptions?.first.close,
       //getDateTime(1586303999),
       '1586303999'
     );
     expect(
-      firstContract.forwardStartingOptions.last.open,
+      firstContract.forwardStartingOptions?.last.open,
       '1586390400'
      // getDateTime(1586390400),
     );

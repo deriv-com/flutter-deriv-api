@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/document_upload_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/document_upload_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Document upload receive class
+/// Document upload receive class.
 class DocumentUploadReceive extends Response {
-  /// Initialize DocumentUploadReceive
+  /// Initialize DocumentUploadReceive.
   const DocumentUploadReceive({
     this.documentUpload,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -19,18 +20,18 @@ class DocumentUploadReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory DocumentUploadReceive.fromJson(Map<String, dynamic> json) =>
       DocumentUploadReceive(
-        documentUpload: json['document_upload'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        documentUpload: json['document_upload'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Details of the uploaded documents.
-  final Map<String, dynamic> documentUpload;
+  final Map<String, dynamic>? documentUpload;
 
   /// Converts this instance to JSON
   @override
@@ -45,11 +46,11 @@ class DocumentUploadReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   DocumentUploadReceive copyWith({
-    Map<String, dynamic> documentUpload,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? documentUpload,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       DocumentUploadReceive(
         documentUpload: documentUpload ?? this.documentUpload,
@@ -59,7 +60,7 @@ class DocumentUploadReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

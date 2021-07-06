@@ -1,39 +1,40 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/residence_list_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/residence_list_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Residence list send class
+/// Residence list send class.
 class ResidenceListSend extends Request {
-  /// Initialize ResidenceListSend
+  /// Initialize ResidenceListSend.
   const ResidenceListSend({
     this.residenceList = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'residence_list',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ResidenceListSend.fromJson(Map<String, dynamic> json) =>
       ResidenceListSend(
         residenceList:
             json['residence_list'] == null ? null : json['residence_list'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool residenceList;
+  final bool? residenceList;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'residence_list': residenceList == null
             ? null
-            : residenceList
+            : residenceList!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -43,9 +44,9 @@ class ResidenceListSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ResidenceListSend copyWith({
-    bool residenceList,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? residenceList,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ResidenceListSend(
         residenceList: residenceList ?? this.residenceList,
@@ -53,7 +54,7 @@ class ResidenceListSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

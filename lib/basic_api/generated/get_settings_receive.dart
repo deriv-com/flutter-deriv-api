@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_settings_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_settings_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Get settings receive class
+/// Get settings receive class.
 class GetSettingsReceive extends Response {
-  /// Initialize GetSettingsReceive
+  /// Initialize GetSettingsReceive.
   const GetSettingsReceive({
     this.getSettings,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -19,18 +20,18 @@ class GetSettingsReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetSettingsReceive.fromJson(Map<String, dynamic> json) =>
       GetSettingsReceive(
-        getSettings: json['get_settings'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        getSettings: json['get_settings'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// User information and settings.
-  final Map<String, dynamic> getSettings;
+  final Map<String, dynamic>? getSettings;
 
   /// Converts this instance to JSON
   @override
@@ -45,11 +46,11 @@ class GetSettingsReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   GetSettingsReceive copyWith({
-    Map<String, dynamic> getSettings,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? getSettings,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       GetSettingsReceive(
         getSettings: getSettings ?? this.getSettings,
@@ -59,7 +60,7 @@ class GetSettingsReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

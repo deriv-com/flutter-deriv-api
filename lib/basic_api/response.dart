@@ -1,12 +1,10 @@
+// ignore_for_file: always_put_required_named_parameters_first
+
 import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'response.g.dart';
-
-/// super class of all requests
-@JsonSerializable(nullable: true, fieldRename: FieldRename.snake)
+/// super class of all responses.
 class Response extends Equatable {
-  /// Initializes
+  /// Initializes.
   const Response({
     this.echoReq,
     this.error,
@@ -14,31 +12,40 @@ class Response extends Equatable {
     this.reqId,
   });
 
-  /// Creates an instance from JSON
-  factory Response.fromJson(Map<String, dynamic> json) =>
-      _$ResponseFromJson(json);
+  /// Creates an instance from JSON.
+  factory Response.fromJson(Map<String, dynamic> json) => Response(
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
+      );
 
   /// Echo of the request made.
-  final Map<String, dynamic> echoReq;
+  final Map<String, dynamic>? echoReq;
 
   /// Error
-  final Map<String, dynamic> error;
+  final Map<String, dynamic>? error;
 
   /// Action name of the request made.
-  final String msgType;
+  final String? msgType;
 
   /// [Optional] Used to map request to response.
-  final int reqId;
+  final int? reqId;
 
-  /// Converts an instance to JSON
-  Map<String, dynamic> toJson() => _$ResponseToJson(this);
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'echo_req': echoReq,
+        'error': error,
+        'msg_type': msgType,
+        'req_id': reqId,
+      };
 
-  /// Generate a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters.
   Response copyWith({
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       Response(
         echoReq: echoReq ?? this.echoReq,
@@ -47,7 +54,7 @@ class Response extends Equatable {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -1,39 +1,40 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_settings_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_settings_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Get settings send class
+/// Get settings send class.
 class GetSettingsSend extends Request {
-  /// Initialize GetSettingsSend
+  /// Initialize GetSettingsSend.
   const GetSettingsSend({
     this.getSettings = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'get_settings',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetSettingsSend.fromJson(Map<String, dynamic> json) =>
       GetSettingsSend(
         getSettings:
             json['get_settings'] == null ? null : json['get_settings'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool getSettings;
+  final bool? getSettings;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'get_settings': getSettings == null
             ? null
-            : getSettings
+            : getSettings!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -43,9 +44,9 @@ class GetSettingsSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   GetSettingsSend copyWith({
-    bool getSettings,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? getSettings,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       GetSettingsSend(
         getSettings: getSettings ?? this.getSettings,
@@ -53,7 +54,7 @@ class GetSettingsSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

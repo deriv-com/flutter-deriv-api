@@ -6,6 +6,6 @@ import 'account_exception.dart';
 class AccountStatusException extends AccountException {
   /// Initializes
   AccountStatusException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

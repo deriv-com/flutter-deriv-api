@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
-import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/api/response/time_receive_result.dart';
@@ -15,7 +14,8 @@ part 'server_time_state.dart';
 class ServerTimeBloc extends Bloc<ServerTimeEvent, ServerTimeState> {
   /// Initializes
   ServerTimeBloc(this._connectionBloc) : super(InitialServerTime()) {
-    _connectionSubscription = _connectionBloc.listen((ConnectionState state) {
+    _connectionSubscription =
+        _connectionBloc.stream.listen((ConnectionState state) {
       if (state is Connected) {
         add(FetchServerTime());
 
@@ -29,9 +29,9 @@ class ServerTimeBloc extends Bloc<ServerTimeEvent, ServerTimeState> {
 
   final ConnectionBloc _connectionBloc;
 
-  StreamSubscription<ConnectionState> _connectionSubscription;
+  StreamSubscription<ConnectionState>? _connectionSubscription;
 
-  Timer _serverTimeInterval;
+  Timer? _serverTimeInterval;
 
   @override
   Stream<ServerTimeState> mapEventToState(ServerTimeEvent event) async* {
@@ -40,13 +40,6 @@ class ServerTimeBloc extends Bloc<ServerTimeEvent, ServerTimeState> {
         try {
           final TimeResponse serverTime = await TimeResponse.fetchTime()
               .timeout(const Duration(seconds: 30));
-
-          if (serverTime == null) {
-            throw ServerTimeException(
-              baseExceptionModel:
-                  BaseExceptionModel(message: 'Server time is null.'),
-            );
-          }
 
           yield ServerTimeFetched(serverTime: serverTime.time);
         } on ServerTimeException catch (e) {

@@ -1,5 +1,4 @@
 import 'package:dart_style/dart_style.dart';
-import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
 
 import '../helpers/enum_helper.dart';
@@ -27,7 +26,7 @@ const List<String> _ignoredParameters = <String>[
 /// for using this utility first you should call `preProcessModels()` method and pass decoded JSON schema to it,
 /// then pass the result as `models` parameter to `getClassTypesFor()` method.
 /// result is a `List<SchemaModel>` where contains main properties(level 1) of the schema.
-/// `getClasses()` method accepts parrent model of generated schemaModels.
+/// `getClasses()` method accepts parent model of generated schemaModels.
 /// result is a string that contains main class and all related classes of that schema file include:
 /// model classes, constructor, properties, enums, toJson, fromJson, and copyWith methods.
 class JsonSchemaParser {
@@ -48,10 +47,10 @@ class JsonSchemaParser {
   };
 
   static String _generateClass({
-    @required String className,
-    @required List<SchemaModel> models,
+    required String className,
+    required List<SchemaModel> models,
     String methodsString = '',
-    bool isRoot,
+    bool isRoot = false,
   }) {
     final StringBuffer result = StringBuffer()
       ..write(
@@ -86,8 +85,8 @@ class JsonSchemaParser {
   }
 
   static StringBuffer _generateConstructor({
-    @required String className,
-    @required List<SchemaModel> models,
+    required String className,
+    required List<SchemaModel> models,
     bool isSubclass = true,
   }) {
     final StringBuffer result = StringBuffer()
@@ -108,7 +107,7 @@ class JsonSchemaParser {
 
     for (final SchemaModel model in models) {
       result
-        ..write('${model.isRequired ? '@required' : ''} ')
+        ..write('${model.isRequired ? 'required' : ''} ')
         ..write(
           isSubclass
               ? '${model.classType} ${model.fieldName},'
@@ -178,8 +177,8 @@ class JsonSchemaParser {
   }
 
   static StringBuffer _generateFromJson({
-    @required String className,
-    @required List<SchemaModel> models,
+    required String className,
+    required List<SchemaModel> models,
     bool isRoot = false,
   }) {
     final String rootInput = models
@@ -210,15 +209,15 @@ class JsonSchemaParser {
   }
 
   static String _getFromJsonFor({
-    @required SchemaModel model,
+    required SchemaModel model,
     bool isRoot = false,
-    String forceSrouceFieldName,
+    String? forceSourceFieldName,
   }) {
     String fromJsonStr;
     final String className = model.className;
     final String title = model.fieldName;
     final String schemaTitle = model.schemaTitle;
-    final String sourceFieldName = forceSrouceFieldName ??
+    final String sourceFieldName = forceSourceFieldName ??
         (isRoot ? '${title}Json' : 'json[\'$schemaTitle\']');
 
     switch (model.schemaType) {
@@ -234,14 +233,14 @@ class JsonSchemaParser {
                 .map<MapEntry<String, ${childrenModel.classType}>>(
                     (MapEntry<String, dynamic> entry) =>
                         MapEntry<String, ${childrenModel.classType}>(
-                            entry.key, ${_getFromJsonFor(forceSrouceFieldName: 'entry.value', model: childrenModel)})))
+                            entry.key, ${_getFromJsonFor(forceSourceFieldName: 'entry.value', model: childrenModel)})))
           ''';
         break;
       case _arrayType:
         fromJsonStr = '''
            $sourceFieldName == null
               ? null
-              : ${_getFromJsonFromArray(model, isParrent: true, sourceFieldName: sourceFieldName)}
+              : ${_getFromJsonFromArray(model, isParent: true, sourceFieldName: sourceFieldName)}
           ''';
         break;
       case _objectType:
@@ -272,7 +271,7 @@ class JsonSchemaParser {
 
   // TODO(mohammad): use same pattern as fromJson (create _getToJsonFor function)
   static StringBuffer _generateToJson({
-    @required List<SchemaModel> models,
+    required List<SchemaModel> models,
   }) {
     final StringBuffer result = StringBuffer()
       ..write(
@@ -302,7 +301,7 @@ class JsonSchemaParser {
           result.write(
             '''
             if ($title != null) {
-              resultMap['$schemaTitle'] = ${_getToJsonFromArray(model, isParrent: true)};
+              resultMap['$schemaTitle'] = ${_getToJsonFromArray(model, isParent: true)};
             }
           ''',
           );
@@ -325,10 +324,10 @@ class JsonSchemaParser {
     return result;
   }
 
-  /// Hanlde ToJson function for a property that is an array(recursive function)
+  /// Handle ToJson function for a property that is an array(recursive function)
   static String _getToJsonFromArray(
     SchemaModel model, {
-    bool isParrent = false,
+    bool isParent = false,
   }) {
     if (model.schemaType != _arrayType) {
       if (model.schemaType == _objectType) {
@@ -344,16 +343,16 @@ class JsonSchemaParser {
           : 'item';
     }
 
-    return isParrent
+    return isParent
         ? '${model.fieldName}.map<dynamic>((${model.schemaArrType.classType} item) => ${_getToJsonFromArray(model.schemaArrType)}).toList()'
         : 'item.map((item) => ${_getToJsonFromArray(model.schemaArrType)}).toList()';
   }
 
-  /// Hanlde FromJson function for a property that is an array(recursive function)
+  /// Handle FromJson function for a property that is an array(recursive function)
   static String _getFromJsonFromArray(
     SchemaModel model, {
-    bool isParrent = false,
-    String sourceFieldName,
+    bool isParent = false,
+    String? sourceFieldName,
   }) {
     if (model.schemaType != _arrayType) {
       if (model.schemaType == _objectType) {
@@ -369,14 +368,14 @@ class JsonSchemaParser {
       return model.isEnum ? '${model.enumName.camelCase}Mapper[item]' : 'item';
     }
 
-    return isParrent
+    return isParent
         ? '${model.classType}.from($sourceFieldName.map((dynamic item) => ${_getFromJsonFromArray(model.schemaArrType)}))'
         : '${model.classType}.from(item.map((dynamic item) => ${_getFromJsonFromArray(model.schemaArrType)}))';
   }
 
   static StringBuffer _generateCopyWith({
-    @required String className,
-    @required List<SchemaModel> models,
+    required String className,
+    required List<SchemaModel> models,
   }) {
     final StringBuffer result = StringBuffer()
       ..write(
@@ -403,17 +402,17 @@ class JsonSchemaParser {
 
   /// Pass decoded JSON schema to this method for getting list of objects
   static List<SchemaModel> preProcessModels(
-    Map<String, dynamic> schema,
+    Map<String, dynamic>? schema,
   ) {
     final List<SchemaModel> parentModel = <SchemaModel>[];
 
     if (schema != null) {
-      final Map<String, dynamic> schemaProperties = schema['properties'];
+      final Map<String, dynamic>? schemaProperties = schema['properties'];
 
       if (schemaProperties != null) {
         for (final MapEntry<String, dynamic> entry
             in schemaProperties.entries) {
-          final SchemaModel processed = _processEntry(entry);
+          final SchemaModel? processed = _processEntry(entry);
           if (processed != null) {
             if (processed.schemaType == _cashierMultiType) {
               parentModel.addAll(processed.multiTypes);
@@ -427,7 +426,7 @@ class JsonSchemaParser {
     return parentModel;
   }
 
-  static SchemaModel _processEntry(MapEntry<String, dynamic> entry) {
+  static SchemaModel? _processEntry(MapEntry<String, dynamic> entry) {
     final String schemaTitle = entry.key;
     final String type = _getSchemaType(entry);
     final String description = entry.value['description'];
@@ -460,29 +459,34 @@ class JsonSchemaParser {
           theModel.schemaTitle, entry.value['oneOf'][0]));
     } else if (theModel.schemaType == _cashierMultiType) {
       for (final Map<String, dynamic> item in entry.value['oneOf']) {
-        theModel.multiTypes.add(_processEntry(
-            MapEntry<String, dynamic>('${schemaTitle}_${item['type']}', item)));
+        final SchemaModel? entry = _processEntry(
+            MapEntry<String, dynamic>('${schemaTitle}_${item['type']}', item));
+        if (entry != null) {
+          theModel.multiTypes.add(entry);
+        }
       }
     }
 
     if (theModel.schemaType == _objectType) {
       final List<SchemaModel> children = preProcessModels(entry.value);
       for (final SchemaModel child in children) {
-        child.parrent = theModel;
+        child.parent = theModel;
       }
       theModel.children.addAll(children);
     } else if (theModel.schemaType == _patternObjectType) {
       final Map<String, dynamic> typeMap = entry.value['patternProperties'];
-      final MapEntry<String, dynamic> typeEnty = MapEntry<String, dynamic>(
+      final MapEntry<String, dynamic> typeEntry = MapEntry<String, dynamic>(
           '${entry.key}_property', typeMap.entries.first.value);
-      final SchemaModel childrenType = _processEntry(typeEnty)
-        ..parrent = theModel;
-      theModel.children.add(childrenType);
+      final SchemaModel? childrenType = _processEntry(typeEntry);
+      if (childrenType != null) {
+        childrenType.parent = theModel;
+        theModel.children.add(childrenType);
+      }
     } else if (theModel.schemaType == _arrayType) {
-      final Map<String, dynamic> arrChildEntry = entry.value['items'];
+      final Map<String, dynamic>? arrChildEntry = entry.value['items'];
       theModel.schemaArrType = arrChildEntry != null
           ? _processEntry(
-              MapEntry<String, dynamic>('${schemaTitle}Item', arrChildEntry))
+              MapEntry<String, dynamic>('${schemaTitle}Item', arrChildEntry))!
           : SchemaModel.dynamicModel();
     }
 
@@ -500,7 +504,7 @@ class JsonSchemaParser {
   // Returns the dart class type for provided model
   static String _getClassTypeString(SchemaModel model) {
     if (model.classType != null) {
-      return model.classType;
+      return model.classType!;
     }
 
     if (model.isEnum) {
@@ -545,7 +549,7 @@ class JsonSchemaParser {
           model.schemaType = _dateTimeType;
           return 'DateTime';
         }
-        return _typeMap[model.schemaType];
+        return _typeMap[model.schemaType]!;
 
       default:
         return _typeMap[model.schemaType] ?? dynamicType;
@@ -586,13 +590,13 @@ class JsonSchemaParser {
 
   static void _assignClassName(SchemaModel model) {
     model.className = classNamesArray.contains(model.className)
-        ? '${model.parrent?.className ?? ''}${ReCase(model.schemaTitle).pascalCase}'
+        ? '${model.parent?.className ?? ''}${ReCase(model.schemaTitle).pascalCase}'
         : ReCase(model.schemaTitle).pascalCase;
     classNamesArray.add(model.className);
   }
 
   static String _getSchemaType(MapEntry<String, dynamic> entry) {
-    String type;
+    String? type;
     // Check if there are multiple types for this entry
     if (entry.value['type'] is List) {
       final List<dynamic> types = entry.value['type'];
@@ -604,7 +608,7 @@ class JsonSchemaParser {
           orElse: () => 'string',
         );
       } else {
-        // Check if povided types are more than 2
+        // Check if provided types are more than 2
         // if provided types are both number and integer , we apply number for the type of entity
         // else case, type is dynamic
         if (types
@@ -628,7 +632,7 @@ class JsonSchemaParser {
 
       // Check if its Multi Type
       if (type == null && entry.value['oneOf'] != null) {
-        // hardcode
+        // hard code
         if (entry.key == 'limits') {
           return _limitsMultiType;
         } else if (entry.key == 'cashier') {
@@ -641,7 +645,7 @@ class JsonSchemaParser {
         type = _objectUnknownType;
       }
     }
-    return type;
+    return type ?? _objectUnknownType;
   }
 
   static bool _isBoolean(dynamic entry) {
@@ -653,7 +657,7 @@ class JsonSchemaParser {
   }
 
   static bool _isRequired(dynamic entry) {
-    final String description = entry.value['description'];
+    final String? description = entry.value['description'];
     if (description == null) {
       return true;
     }
@@ -663,8 +667,8 @@ class JsonSchemaParser {
   }
 
   static String _preparePropertyDescription({
-    bool isBoolean,
-    String description,
+    required bool isBoolean,
+    String? description,
   }) =>
       description == null
           ? ''
@@ -674,13 +678,13 @@ class JsonSchemaParser {
                   .replaceAllMapped(
                     RegExp(r'`1`| 1| 1 '),
                     (Match match) => match
-                        .group(0)
+                        .group(0)!
                         .replaceAllMapped(RegExp(r'`1`|1'), (_) => '`true`'),
                   )
                   .replaceAllMapped(
                     RegExp(r'`0`| 0| 0 '),
                     (Match match) => match
-                        .group(0)
+                        .group(0)!
                         .replaceAllMapped(RegExp(r'`0`|0'), (_) => '`false`'),
                   )
               : description.replaceAll('\n', '\n/// ');

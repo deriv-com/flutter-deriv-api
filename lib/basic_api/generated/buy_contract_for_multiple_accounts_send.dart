@@ -1,52 +1,51 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_contract_for_multiple_accounts_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/buy_contract_for_multiple_accounts_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Buy contract for multiple accounts send class
+/// Buy contract for multiple accounts send class.
 class BuyContractForMultipleAccountsSend extends Request {
-  /// Initialize BuyContractForMultipleAccountsSend
+  /// Initialize BuyContractForMultipleAccountsSend.
   const BuyContractForMultipleAccountsSend({
-    @required this.buyContractForMultipleAccounts,
+    required this.buyContractForMultipleAccounts,
     this.parameters,
-    @required this.price,
-    @required this.tokens,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    required this.price,
+    required this.tokens,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'buy_contract_for_multiple_accounts',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory BuyContractForMultipleAccountsSend.fromJson(
           Map<String, dynamic> json) =>
       BuyContractForMultipleAccountsSend(
         buyContractForMultipleAccounts:
-            json['buy_contract_for_multiple_accounts'] as String,
-        parameters: json['parameters'] as Map<String, dynamic>,
-        price: json['price'] as num,
-        tokens: (json['tokens'] as List<dynamic>)
+            json['buy_contract_for_multiple_accounts'] as String?,
+        parameters: json['parameters'] as Map<String, dynamic>?,
+        price: json['price'] as num?,
+        tokens: (json['tokens'] as List<dynamic>?)
             ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+            .toList(),
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Either the ID received from a Price Proposal (`proposal` call), or `1` if contract buy parameters are passed in the `parameters` field.
-  final String buyContractForMultipleAccounts;
+  final String? buyContractForMultipleAccounts;
 
   /// [Optional] Used to pass the parameters for contract buy.
-  final Map<String, dynamic> parameters;
+  final Map<String, dynamic>? parameters;
 
   /// Maximum price at which to purchase the contract.
-  final num price;
+  final num? price;
 
   /// List of API tokens identifying the accounts for which the contract is bought. Note: If the same token appears multiple times or if multiple tokens designate the same account, the contract is bought multiple times for this account.
-  final List<String> tokens;
+  final List<String>? tokens;
 
   /// Converts this instance to JSON
   @override
@@ -62,12 +61,12 @@ class BuyContractForMultipleAccountsSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   BuyContractForMultipleAccountsSend copyWith({
-    String buyContractForMultipleAccounts,
-    Map<String, dynamic> parameters,
-    num price,
-    List<String> tokens,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? buyContractForMultipleAccounts,
+    Map<String, dynamic>? parameters,
+    num? price,
+    List<String>? tokens,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       BuyContractForMultipleAccountsSend(
         buyContractForMultipleAccounts: buyContractForMultipleAccounts ??
@@ -79,7 +78,7 @@ class BuyContractForMultipleAccountsSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -6,6 +6,6 @@ import 'common_exception.dart';
 class ForgetException extends CommonException {
   /// Initializes
   ForgetException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

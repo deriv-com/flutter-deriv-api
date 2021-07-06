@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_virtual_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_virtual_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// New account virtual receive class
+/// New account virtual receive class.
 class NewAccountVirtualReceive extends Response {
-  /// Initialize NewAccountVirtualReceive
+  /// Initialize NewAccountVirtualReceive.
   const NewAccountVirtualReceive({
     this.newAccountVirtual,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -19,18 +20,18 @@ class NewAccountVirtualReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory NewAccountVirtualReceive.fromJson(Map<String, dynamic> json) =>
       NewAccountVirtualReceive(
-        newAccountVirtual: json['new_account_virtual'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        newAccountVirtual: json['new_account_virtual'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// New virtual-money account details
-  final Map<String, dynamic> newAccountVirtual;
+  final Map<String, dynamic>? newAccountVirtual;
 
   /// Converts this instance to JSON
   @override
@@ -45,11 +46,11 @@ class NewAccountVirtualReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   NewAccountVirtualReceive copyWith({
-    Map<String, dynamic> newAccountVirtual,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? newAccountVirtual,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       NewAccountVirtualReceive(
         newAccountVirtual: newAccountVirtual ?? this.newAccountVirtual,
@@ -59,7 +60,7 @@ class NewAccountVirtualReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

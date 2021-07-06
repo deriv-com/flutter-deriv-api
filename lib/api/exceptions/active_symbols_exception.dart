@@ -6,6 +6,6 @@ import 'common_exception.dart';
 class ActiveSymbolsException extends CommonException {
   /// Initializes
   ActiveSymbolsException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

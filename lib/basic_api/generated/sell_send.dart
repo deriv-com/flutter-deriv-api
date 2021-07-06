@@ -1,37 +1,36 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Sell send class
+/// Sell send class.
 class SellSend extends Request {
-  /// Initialize SellSend
+  /// Initialize SellSend.
   const SellSend({
-    @required this.price,
-    @required this.sell,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    required this.price,
+    required this.sell,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'sell',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SellSend.fromJson(Map<String, dynamic> json) => SellSend(
-        price: json['price'] as num,
-        sell: json['sell'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        price: json['price'] as num?,
+        sell: json['sell'] as int?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Minimum price at which to sell the contract, or `0` for 'sell at market'.
-  final num price;
+  final num? price;
 
   /// Pass contract_id received from the `portfolio` call.
-  final int sell;
+  final int? sell;
 
   /// Converts this instance to JSON
   @override
@@ -45,10 +44,10 @@ class SellSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   SellSend copyWith({
-    num price,
-    int sell,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    num? price,
+    int? sell,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       SellSend(
         price: price ?? this.price,
@@ -57,7 +56,7 @@ class SellSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

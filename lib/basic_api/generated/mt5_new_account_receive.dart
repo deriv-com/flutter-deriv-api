@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_new_account_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_new_account_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Mt5 new account receive class
+/// Mt5 new account receive class.
 class Mt5NewAccountReceive extends Response {
-  /// Initialize Mt5NewAccountReceive
+  /// Initialize Mt5NewAccountReceive.
   const Mt5NewAccountReceive({
     this.mt5NewAccount,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -19,18 +20,18 @@ class Mt5NewAccountReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5NewAccountReceive.fromJson(Map<String, dynamic> json) =>
       Mt5NewAccountReceive(
-        mt5NewAccount: json['mt5_new_account'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        mt5NewAccount: json['mt5_new_account'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// New MT5 account details
-  final Map<String, dynamic> mt5NewAccount;
+  final Map<String, dynamic>? mt5NewAccount;
 
   /// Converts this instance to JSON
   @override
@@ -45,11 +46,11 @@ class Mt5NewAccountReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   Mt5NewAccountReceive copyWith({
-    Map<String, dynamic> mt5NewAccount,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? mt5NewAccount,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       Mt5NewAccountReceive(
         mt5NewAccount: mt5NewAccount ?? this.mt5NewAccount,
@@ -59,7 +60,7 @@ class Mt5NewAccountReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

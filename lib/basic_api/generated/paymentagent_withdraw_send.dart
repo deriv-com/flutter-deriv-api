@@ -1,65 +1,64 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Paymentagent withdraw send class
+/// Paymentagent withdraw send class.
 class PaymentagentWithdrawSend extends Request {
-  /// Initialize PaymentagentWithdrawSend
+  /// Initialize PaymentagentWithdrawSend.
   const PaymentagentWithdrawSend({
-    @required this.amount,
-    @required this.currency,
+    required this.amount,
+    required this.currency,
     this.description,
     this.dryRun,
-    @required this.paymentagentLoginid,
+    required this.paymentagentLoginid,
     this.paymentagentWithdraw = true,
-    @required this.verificationCode,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    required this.verificationCode,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'paymentagent_withdraw',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentagentWithdrawSend.fromJson(Map<String, dynamic> json) =>
       PaymentagentWithdrawSend(
-        amount: json['amount'] as num,
-        currency: json['currency'] as String,
-        description: json['description'] as String,
+        amount: json['amount'] as num?,
+        currency: json['currency'] as String?,
+        description: json['description'] as String?,
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
-        paymentagentLoginid: json['paymentagent_loginid'] as String,
+        paymentagentLoginid: json['paymentagent_loginid'] as String?,
         paymentagentWithdraw: json['paymentagent_withdraw'] == null
             ? null
             : json['paymentagent_withdraw'] == 1,
-        verificationCode: json['verification_code'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        verificationCode: json['verification_code'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The amount to withdraw to the payment agent.
-  final num amount;
+  final num? amount;
 
   /// The currency code.
-  final String currency;
+  final String? currency;
 
   /// [Optional] Remarks about the withdraw. Only letters, numbers, space, period, comma, - ' are allowed.
-  final String description;
+  final String? description;
 
   /// [Optional] If set to `true`, just do validation.
-  final bool dryRun;
+  final bool? dryRun;
 
   /// The payment agent loginid received from the `paymentagent_list` call.
-  final String paymentagentLoginid;
+  final String? paymentagentLoginid;
 
   /// Must be `true`
-  final bool paymentagentWithdraw;
+  final bool? paymentagentWithdraw;
 
   /// Email verification code (received from a `verify_email` call, which must be done first)
-  final String verificationCode;
+  final String? verificationCode;
 
   /// Converts this instance to JSON
   @override
@@ -69,13 +68,13 @@ class PaymentagentWithdrawSend extends Request {
         'description': description,
         'dry_run': dryRun == null
             ? null
-            : dryRun
+            : dryRun!
                 ? 1
                 : 0,
         'paymentagent_loginid': paymentagentLoginid,
         'paymentagent_withdraw': paymentagentWithdraw == null
             ? null
-            : paymentagentWithdraw
+            : paymentagentWithdraw!
                 ? 1
                 : 0,
         'verification_code': verificationCode,
@@ -86,15 +85,15 @@ class PaymentagentWithdrawSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   PaymentagentWithdrawSend copyWith({
-    num amount,
-    String currency,
-    String description,
-    bool dryRun,
-    String paymentagentLoginid,
-    bool paymentagentWithdraw,
-    String verificationCode,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    num? amount,
+    String? currency,
+    String? description,
+    bool? dryRun,
+    String? paymentagentLoginid,
+    bool? paymentagentWithdraw,
+    String? verificationCode,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       PaymentagentWithdrawSend(
         amount: amount ?? this.amount,
@@ -108,7 +107,7 @@ class PaymentagentWithdrawSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

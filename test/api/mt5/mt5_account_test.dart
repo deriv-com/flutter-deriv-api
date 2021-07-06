@@ -1,6 +1,7 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/api/response/mt5_login_list_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/mt5_new_account_receive_result.dart' as new_account;
+import 'package:flutter_deriv_api/api/response/mt5_new_account_receive_result.dart'
+    as new_account;
 import 'package:flutter_deriv_api/basic_api/generated/mt5_login_list_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/mt5_new_account_send.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -21,7 +22,7 @@ void main() {
       final new_account.Mt5NewAccountResponse mt5Account =
           await new_account.Mt5NewAccountResponse.createNewAccount(
         const Mt5NewAccountSend(
-          accountType: 'gaming',
+          accountType: 'demo',
           address: 'Dummy address',
           city: 'Valletta',
           company: 'Binary Limited',
@@ -39,12 +40,13 @@ void main() {
         ),
       );
 
-      expect(mt5Account.mt5NewAccount.accountType, new_account.AccountTypeEnum.gaming);
-      expect(mt5Account.mt5NewAccount.balance, 350.0);
-      expect(mt5Account.mt5NewAccount.currency, 'USD');
-      expect(mt5Account.mt5NewAccount.displayBalance, '350.0');
-      expect(mt5Account.mt5NewAccount.login, 'MT346525');
-      expect(mt5Account.mt5NewAccount.mt5AccountType,
+      expect(mt5Account.mt5NewAccount?.accountType,
+          new_account.AccountTypeEnum.demo);
+      expect(mt5Account.mt5NewAccount?.balance, 350.0);
+      expect(mt5Account.mt5NewAccount?.currency, 'USD');
+      expect(mt5Account.mt5NewAccount?.displayBalance, '350.0');
+      expect(mt5Account.mt5NewAccount?.login, 'MT346525');
+      expect(mt5Account.mt5NewAccount?.mt5AccountType,
           new_account.Mt5AccountTypeEnum.financial);
     });
 
@@ -54,22 +56,23 @@ void main() {
         const Mt5LoginListSend(),
       );
 
-      expect(mt5LoginList.mt5LoginList.length, 1);
+      expect(mt5LoginList.mt5LoginList?.length, 1);
 
-      expect(mt5LoginList.mt5LoginList.first.balance, 350.0);
-      expect(mt5LoginList.mt5LoginList.first.country, 'India');
-      expect(mt5LoginList.mt5LoginList.first.currency, 'USD');
-      expect(mt5LoginList.mt5LoginList.first.displayBalance, '350.0');
-      expect(mt5LoginList.mt5LoginList.first.email, 'test@example.com');
-      expect(mt5LoginList.mt5LoginList.first.group, 'svg_standard');
-      expect(mt5LoginList.mt5LoginList.first.leverage, 100);
-      expect(mt5LoginList.mt5LoginList.first.login, 'MT346525');
-      expect(mt5LoginList.mt5LoginList.first.name, 'Jon Doe');
+      expect(mt5LoginList.mt5LoginList?.first.balance, 350.0);
+      expect(mt5LoginList.mt5LoginList?.first.country, 'India');
+      expect(mt5LoginList.mt5LoginList?.first.currency, 'USD');
+      expect(mt5LoginList.mt5LoginList?.first.displayBalance, '350.0');
+      expect(mt5LoginList.mt5LoginList?.first.email, 'test@example.com');
+      expect(mt5LoginList.mt5LoginList?.first.group, 'svg_standard');
+      expect(mt5LoginList.mt5LoginList?.first.leverage, 100);
+      expect(mt5LoginList.mt5LoginList?.first.login, 'MT346525');
+      expect(mt5LoginList.mt5LoginList?.first.name, 'Jon Doe');
     });
 
     test('MT5 Deposit Test', () async {
       // ignore: missing_required_param
-      final Mt5DepositResponse mt5Deposit = await new_account.Mt5NewAccountResponse(
+      final Mt5DepositResponse mt5Deposit =
+          await new_account.Mt5NewAccountResponse(
         mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).deposit(
         amount: 1000,
@@ -81,7 +84,8 @@ void main() {
     });
 
     test('MT5 Change Password Test', () async {
-      final Mt5PasswordChangeResponse result = await new_account.Mt5NewAccountResponse(
+      final Mt5PasswordChangeResponse result =
+          await new_account.Mt5NewAccountResponse(
         mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).changePassword(
         newPassword: 'abcd1234',
@@ -93,7 +97,8 @@ void main() {
     });
 
     test('MT5 Check Password Test', () async {
-      final Mt5PasswordCheckResponse result = await new_account.Mt5NewAccountResponse(
+      final Mt5PasswordCheckResponse result =
+          await new_account.Mt5NewAccountResponse(
         mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).checkPassword(
         password: 'abcd1234',
@@ -104,7 +109,8 @@ void main() {
     });
 
     test('MT5 Reset Password Test', () async {
-      final Mt5PasswordResetResponse result = await new_account.Mt5NewAccountResponse(
+      final Mt5PasswordResetResponse result =
+          await new_account.Mt5NewAccountResponse(
         mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).resetPassword(
         newPassword: 'abcd1234',
@@ -116,29 +122,31 @@ void main() {
     });
 
     test('Fetch MT5 Settings Test', () async {
-      final Mt5GetSettingsResponse mt5Settings = await new_account.Mt5NewAccountResponse(
+      final Mt5GetSettingsResponse mt5Settings =
+          await new_account.Mt5NewAccountResponse(
         mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).fetchSettings();
 
-      expect(mt5Settings.mt5GetSettings.address, 'sample address');
-      expect(mt5Settings.mt5GetSettings.balance, '250.0');
-      expect(mt5Settings.mt5GetSettings.city, 'London');
-      expect(mt5Settings.mt5GetSettings.company, 'sample company');
-      expect(mt5Settings.mt5GetSettings.country, 'England');
-      expect(mt5Settings.mt5GetSettings.currency, 'USD');
-      expect(mt5Settings.mt5GetSettings.email, 'test@email.com');
-      expect(mt5Settings.mt5GetSettings.group, 'sample_group');
-      expect(mt5Settings.mt5GetSettings.leverage, 20);
-      expect(mt5Settings.mt5GetSettings.login, 'MT23432');
-      expect(mt5Settings.mt5GetSettings.name, 'Jon Doe');
-      expect(mt5Settings.mt5GetSettings.phone, '+00134522345');
-      expect(mt5Settings.mt5GetSettings.phonePassword, 'dummy_password');
-      expect(mt5Settings.mt5GetSettings.state, 'dummy_state');
-      expect(mt5Settings.mt5GetSettings.zipCode, '3425367');
+      expect(mt5Settings.mt5GetSettings?.address, 'sample address');
+      expect(mt5Settings.mt5GetSettings?.balance, '250.0');
+      expect(mt5Settings.mt5GetSettings?.city, 'London');
+      expect(mt5Settings.mt5GetSettings?.company, 'sample company');
+      expect(mt5Settings.mt5GetSettings?.country, 'England');
+      expect(mt5Settings.mt5GetSettings?.currency, 'USD');
+      expect(mt5Settings.mt5GetSettings?.email, 'test@email.com');
+      expect(mt5Settings.mt5GetSettings?.group, 'sample_group');
+      expect(mt5Settings.mt5GetSettings?.leverage, 20);
+      expect(mt5Settings.mt5GetSettings?.login, 'MT23432');
+      expect(mt5Settings.mt5GetSettings?.name, 'Jon Doe');
+      expect(mt5Settings.mt5GetSettings?.phone, '+00134522345');
+      expect(mt5Settings.mt5GetSettings?.phonePassword, 'dummy_password');
+      expect(mt5Settings.mt5GetSettings?.state, 'dummy_state');
+      expect(mt5Settings.mt5GetSettings?.zipCode, '3425367');
     });
 
     test('MT5 Withdrawal Test', () async {
-      final Mt5WithdrawalResponse mt5Withdrawal = await new_account.Mt5NewAccountResponse(
+      final Mt5WithdrawalResponse mt5Withdrawal =
+          await new_account.Mt5NewAccountResponse(
         mt5NewAccount: new_account.Mt5NewAccount(login: 'MTR1000'),
       ).withdraw(
         amount: 1000,

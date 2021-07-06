@@ -1,32 +1,31 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_get_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_get_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// App get send class
+/// App get send class.
 class AppGetSend extends Request {
-  /// Initialize AppGetSend
+  /// Initialize AppGetSend.
   const AppGetSend({
-    @required this.appGet,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    required this.appGet,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'app_get',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppGetSend.fromJson(Map<String, dynamic> json) => AppGetSend(
-        appGet: json['app_get'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        appGet: json['app_get'] as int?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Application app_id
-  final int appGet;
+  final int? appGet;
 
   /// Converts this instance to JSON
   @override
@@ -39,9 +38,9 @@ class AppGetSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   AppGetSend copyWith({
-    int appGet,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    int? appGet,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       AppGetSend(
         appGet: appGet ?? this.appGet,
@@ -49,7 +48,7 @@ class AppGetSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

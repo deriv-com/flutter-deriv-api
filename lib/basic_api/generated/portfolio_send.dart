@@ -1,39 +1,38 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/portfolio_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/portfolio_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Portfolio send class
+/// Portfolio send class.
 class PortfolioSend extends Request {
-  /// Initialize PortfolioSend
+  /// Initialize PortfolioSend.
   const PortfolioSend({
-    @required this.contractType,
+    required this.contractType,
     this.portfolio = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'portfolio',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PortfolioSend.fromJson(Map<String, dynamic> json) => PortfolioSend(
-        contractType: (json['contract_type'] as List<dynamic>)
+        contractType: (json['contract_type'] as List<dynamic>?)
             ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
+            .toList(),
         portfolio: json['portfolio'] == null ? null : json['portfolio'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Return only contracts of the specified types
-  final List<String> contractType;
+  final List<String>? contractType;
 
   /// Must be `true`
-  final bool portfolio;
+  final bool? portfolio;
 
   /// Converts this instance to JSON
   @override
@@ -41,7 +40,7 @@ class PortfolioSend extends Request {
         'contract_type': contractType,
         'portfolio': portfolio == null
             ? null
-            : portfolio
+            : portfolio!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -51,10 +50,10 @@ class PortfolioSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   PortfolioSend copyWith({
-    List<String> contractType,
-    bool portfolio,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    List<String>? contractType,
+    bool? portfolio,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       PortfolioSend(
         contractType: contractType ?? this.contractType,
@@ -63,7 +62,7 @@ class PortfolioSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

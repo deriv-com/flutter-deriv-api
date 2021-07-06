@@ -1,37 +1,38 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/login_history_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/login_history_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Login history send class
+/// Login history send class.
 class LoginHistorySend extends Request {
-  /// Initialize LoginHistorySend
+  /// Initialize LoginHistorySend.
   const LoginHistorySend({
     this.limit,
     this.loginHistory = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'login_history',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LoginHistorySend.fromJson(Map<String, dynamic> json) =>
       LoginHistorySend(
-        limit: json['limit'] as int,
+        limit: json['limit'] as int?,
         loginHistory:
             json['login_history'] == null ? null : json['login_history'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Apply limit to count of login history records.
-  final int limit;
+  final int? limit;
 
   /// Must be `true`
-  final bool loginHistory;
+  final bool? loginHistory;
 
   /// Converts this instance to JSON
   @override
@@ -39,7 +40,7 @@ class LoginHistorySend extends Request {
         'limit': limit,
         'login_history': loginHistory == null
             ? null
-            : loginHistory
+            : loginHistory!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -49,10 +50,10 @@ class LoginHistorySend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   LoginHistorySend copyWith({
-    int limit,
-    bool loginHistory,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    int? limit,
+    bool? loginHistory,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       LoginHistorySend(
         limit: limit ?? this.limit,
@@ -61,7 +62,7 @@ class LoginHistorySend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

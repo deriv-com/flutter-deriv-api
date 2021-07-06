@@ -6,6 +6,6 @@ import 'common_exception.dart';
 class PingException extends CommonException {
   /// Initializes
   PingException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

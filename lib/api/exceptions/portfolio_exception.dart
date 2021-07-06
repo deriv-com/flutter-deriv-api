@@ -6,6 +6,6 @@ import 'account_exception.dart';
 class PortfolioException extends AccountException {
   /// Initializes
   PortfolioException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

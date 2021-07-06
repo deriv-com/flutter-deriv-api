@@ -4,9 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_deriv_api/api/response/forget_all_receive_result.dart';
 import 'package:flutter_deriv_api/api/response/forget_receive_result.dart';
 
-
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));
@@ -21,17 +19,18 @@ void main() {
     });
 
     test('Forget All Test', () async {
-      final ForgetAllResponse forgetAll = await ForgetAllResponse.forgetAllMethod(
-          const ForgetAllSend(forgetAll: <String>['tick', 'p2p_order']));
+      final ForgetAllResponse forgetAll =
+          await ForgetAllResponse.forgetAllMethod(
+              const ForgetAllSend(forgetAll: <String>['tick', 'p2p_order']));
 
-      expect(forgetAll.forgetAll.length, 2);
+      expect(forgetAll.forgetAll?.length, 2);
 
       expect(
-        forgetAll.forgetAll[0],
+        forgetAll.forgetAll?.first,
         'ea8d3223-9922-5552-4309-6a1e97522f05',
       );
       expect(
-        forgetAll.forgetAll[1],
+        forgetAll.forgetAll?[1],
         'ea8d3288-9922-5552-4309-6a1e97522f21',
       );
     });

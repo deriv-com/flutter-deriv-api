@@ -1,40 +1,41 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_list_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_list_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Copytrading list send class
+/// Copytrading list send class.
 class CopytradingListSend extends Request {
-  /// Initialize CopytradingListSend
+  /// Initialize CopytradingListSend.
   const CopytradingListSend({
     this.copytradingList = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'copytrading_list',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CopytradingListSend.fromJson(Map<String, dynamic> json) =>
       CopytradingListSend(
         copytradingList: json['copytrading_list'] == null
             ? null
             : json['copytrading_list'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool copytradingList;
+  final bool? copytradingList;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'copytrading_list': copytradingList == null
             ? null
-            : copytradingList
+            : copytradingList!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -44,9 +45,9 @@ class CopytradingListSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   CopytradingListSend copyWith({
-    bool copytradingList,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? copytradingList,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       CopytradingListSend(
         copytradingList: copytradingList ?? this.copytradingList,
@@ -54,7 +55,7 @@ class CopytradingListSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

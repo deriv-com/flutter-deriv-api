@@ -6,6 +6,6 @@ import 'p2p_exception.dart';
 class P2PChatException extends P2PException {
   /// Initializes
   P2PChatException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

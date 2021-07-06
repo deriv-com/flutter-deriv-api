@@ -11,7 +11,7 @@ class SubscriptionStream<T> {
   }) : _streamController = ReplaySubject<T>(maxSize: maxSize);
 
   /// Stream cache size
-  final int maxSize;
+  final int? maxSize;
 
   final ReplaySubject<T> _streamController;
 

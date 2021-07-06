@@ -1,49 +1,48 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_start_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copy_start_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Copy start send class
+/// Copy start send class.
 class CopyStartSend extends Request {
-  /// Initialize CopyStartSend
+  /// Initialize CopyStartSend.
   const CopyStartSend({
     this.assets,
-    @required this.copyStart,
+    required this.copyStart,
     this.maxTradeStake,
     this.minTradeStake,
     this.tradeTypes,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'copy_start',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CopyStartSend.fromJson(Map<String, dynamic> json) => CopyStartSend(
         assets: json['assets'] as dynamic,
-        copyStart: json['copy_start'] as String,
-        maxTradeStake: json['max_trade_stake'] as num,
-        minTradeStake: json['min_trade_stake'] as num,
+        copyStart: json['copy_start'] as String?,
+        maxTradeStake: json['max_trade_stake'] as num?,
+        minTradeStake: json['min_trade_stake'] as num?,
         tradeTypes: json['trade_types'] as dynamic,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Used to set assets to be copied. E.x ["frxUSDJPY", "R_50"]
   final dynamic assets;
 
   /// API tokens identifying the accounts of trader which will be used to copy trades
-  final String copyStart;
+  final String? copyStart;
 
   /// [Optional] Used to set maximum trade stake to be copied.
-  final num maxTradeStake;
+  final num? maxTradeStake;
 
   /// [Optional] Used to set minimal trade stake to be copied.
-  final num minTradeStake;
+  final num? minTradeStake;
 
   /// [Optional] Used to set trade types to be copied. E.x ["CALL", "PUT"]
   final dynamic tradeTypes;
@@ -64,12 +63,12 @@ class CopyStartSend extends Request {
   @override
   CopyStartSend copyWith({
     dynamic assets,
-    String copyStart,
-    num maxTradeStake,
-    num minTradeStake,
+    String? copyStart,
+    num? maxTradeStake,
+    num? minTradeStake,
     dynamic tradeTypes,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       CopyStartSend(
         assets: assets ?? this.assets,
@@ -81,7 +80,7 @@ class CopyStartSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

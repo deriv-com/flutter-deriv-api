@@ -6,6 +6,6 @@ import 'user_exception.dart';
 class TransferException extends UserException {
   /// Initializes
   TransferException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

@@ -1,19 +1,20 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_withdraw_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Paymentagent withdraw receive class
+/// Paymentagent withdraw receive class.
 class PaymentagentWithdrawReceive extends Response {
-  /// Initialize PaymentagentWithdrawReceive
+  /// Initialize PaymentagentWithdrawReceive.
   const PaymentagentWithdrawReceive({
     this.paymentagentName,
     this.paymentagentWithdraw,
     this.transactionId,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -21,26 +22,26 @@ class PaymentagentWithdrawReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentagentWithdrawReceive.fromJson(Map<String, dynamic> json) =>
       PaymentagentWithdrawReceive(
-        paymentagentName: json['paymentagent_name'] as String,
-        paymentagentWithdraw: json['paymentagent_withdraw'] as int,
-        transactionId: json['transaction_id'] as int,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        paymentagentName: json['paymentagent_name'] as String?,
+        paymentagentWithdraw: json['paymentagent_withdraw'] as int?,
+        transactionId: json['transaction_id'] as int?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Payment agent name.
-  final String paymentagentName;
+  final String? paymentagentName;
 
   /// If set to `1`, withdrawal success. If set to `2`, dry-run success.
-  final int paymentagentWithdraw;
+  final int? paymentagentWithdraw;
 
   /// Reference ID of withdrawal performed.
-  final int transactionId;
+  final int? transactionId;
 
   /// Converts this instance to JSON
   @override
@@ -57,13 +58,13 @@ class PaymentagentWithdrawReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   PaymentagentWithdrawReceive copyWith({
-    String paymentagentName,
-    int paymentagentWithdraw,
-    int transactionId,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    String? paymentagentName,
+    int? paymentagentWithdraw,
+    int? transactionId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       PaymentagentWithdrawReceive(
         paymentagentName: paymentagentName ?? this.paymentagentName,
@@ -75,7 +76,7 @@ class PaymentagentWithdrawReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

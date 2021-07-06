@@ -1,44 +1,43 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_info_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_info_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// P2p order info send class
+/// P2p order info send class.
 class P2pOrderInfoSend extends Request {
-  /// Initialize P2pOrderInfoSend
+  /// Initialize P2pOrderInfoSend.
   const P2pOrderInfoSend({
-    @required this.id,
+    required this.id,
     this.p2pOrderInfo = true,
     this.subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_order_info',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pOrderInfoSend.fromJson(Map<String, dynamic> json) =>
       P2pOrderInfoSend(
-        id: json['id'] as String,
+        id: json['id'] as String?,
         p2pOrderInfo:
             json['p2p_order_info'] == null ? null : json['p2p_order_info'] == 1,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The unique identifier for the order.
-  final String id;
+  final String? id;
 
   /// Must be `true`
-  final bool p2pOrderInfo;
+  final bool? p2pOrderInfo;
 
   /// [Optional] If set to `true`, will send updates whenever there is an update to order
-  final bool subscribe;
+  final bool? subscribe;
 
   /// Converts this instance to JSON
   @override
@@ -46,12 +45,12 @@ class P2pOrderInfoSend extends Request {
         'id': id,
         'p2p_order_info': p2pOrderInfo == null
             ? null
-            : p2pOrderInfo
+            : p2pOrderInfo!
                 ? 1
                 : 0,
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -61,11 +60,11 @@ class P2pOrderInfoSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pOrderInfoSend copyWith({
-    String id,
-    bool p2pOrderInfo,
-    bool subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? id,
+    bool? p2pOrderInfo,
+    bool? subscribe,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pOrderInfoSend(
         id: id ?? this.id,
@@ -75,7 +74,7 @@ class P2pOrderInfoSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

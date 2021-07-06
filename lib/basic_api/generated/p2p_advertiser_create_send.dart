@@ -1,60 +1,59 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_create_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advertiser_create_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// P2p advertiser create send class
+/// P2p advertiser create send class.
 class P2pAdvertiserCreateSend extends Request {
-  /// Initialize P2pAdvertiserCreateSend
+  /// Initialize P2pAdvertiserCreateSend.
   const P2pAdvertiserCreateSend({
     this.contactInfo,
     this.defaultAdvertDescription,
-    @required this.name,
+    required this.name,
     this.p2pAdvertiserCreate = true,
     this.paymentInfo,
     this.subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_advertiser_create',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertiserCreateSend.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserCreateSend(
-        contactInfo: json['contact_info'] as String,
-        defaultAdvertDescription: json['default_advert_description'] as String,
-        name: json['name'] as String,
+        contactInfo: json['contact_info'] as String?,
+        defaultAdvertDescription: json['default_advert_description'] as String?,
+        name: json['name'] as String?,
         p2pAdvertiserCreate: json['p2p_advertiser_create'] == null
             ? null
             : json['p2p_advertiser_create'] == 1,
-        paymentInfo: json['payment_info'] as String,
+        paymentInfo: json['payment_info'] as String?,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Advertiser's contact information, to be used as a default for new sell adverts.
-  final String contactInfo;
+  final String? contactInfo;
 
   /// [Optional] Default description that can be used every time an advert is created.
-  final String defaultAdvertDescription;
+  final String? defaultAdvertDescription;
 
   /// The advertiser's displayed name.
-  final String name;
+  final String? name;
 
   /// Must be `true`
-  final bool p2pAdvertiserCreate;
+  final bool? p2pAdvertiserCreate;
 
   /// [Optional] Advertiser's payment information, to be used as a default for new sell adverts.
-  final String paymentInfo;
+  final String? paymentInfo;
 
   /// [Optional] If set to `true`, will send updates whenever there is an update to advertiser
-  final bool subscribe;
+  final bool? subscribe;
 
   /// Converts this instance to JSON
   @override
@@ -64,13 +63,13 @@ class P2pAdvertiserCreateSend extends Request {
         'name': name,
         'p2p_advertiser_create': p2pAdvertiserCreate == null
             ? null
-            : p2pAdvertiserCreate
+            : p2pAdvertiserCreate!
                 ? 1
                 : 0,
         'payment_info': paymentInfo,
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -80,14 +79,14 @@ class P2pAdvertiserCreateSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertiserCreateSend copyWith({
-    String contactInfo,
-    String defaultAdvertDescription,
-    String name,
-    bool p2pAdvertiserCreate,
-    String paymentInfo,
-    bool subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? contactInfo,
+    String? defaultAdvertDescription,
+    String? name,
+    bool? p2pAdvertiserCreate,
+    String? paymentInfo,
+    bool? subscribe,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pAdvertiserCreateSend(
         contactInfo: contactInfo ?? this.contactInfo,
@@ -101,7 +100,7 @@ class P2pAdvertiserCreateSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

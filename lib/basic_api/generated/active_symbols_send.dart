@@ -1,43 +1,42 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/active_symbols_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Active symbols send class
+/// Active symbols send class.
 class ActiveSymbolsSend extends Request {
-  /// Initialize ActiveSymbolsSend
+  /// Initialize ActiveSymbolsSend.
   const ActiveSymbolsSend({
-    @required this.activeSymbols,
+    required this.activeSymbols,
     this.landingCompany,
     this.productType,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'active_symbols',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ActiveSymbolsSend.fromJson(Map<String, dynamic> json) =>
       ActiveSymbolsSend(
-        activeSymbols: json['active_symbols'] as String,
-        landingCompany: json['landing_company'] as String,
-        productType: json['product_type'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        activeSymbols: json['active_symbols'] as String?,
+        landingCompany: json['landing_company'] as String?,
+        productType: json['product_type'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// If you use `brief`, only a subset of fields will be returned.
-  final String activeSymbols;
+  final String? activeSymbols;
 
   /// [Optional] If you specify this field, only symbols available for trading by that landing company will be returned. If you are logged in, only symbols available for trading by your landing company will be returned regardless of what you specify in this field.
-  final String landingCompany;
+  final String? landingCompany;
 
   /// [Optional] If you specify this field, only symbols that can be traded through that product type will be returned.
-  final String productType;
+  final String? productType;
 
   /// Converts this instance to JSON
   @override
@@ -52,11 +51,11 @@ class ActiveSymbolsSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ActiveSymbolsSend copyWith({
-    String activeSymbols,
-    String landingCompany,
-    String productType,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? activeSymbols,
+    String? landingCompany,
+    String? productType,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ActiveSymbolsSend(
         activeSymbols: activeSymbols ?? this.activeSymbols,
@@ -66,7 +65,7 @@ class ActiveSymbolsSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

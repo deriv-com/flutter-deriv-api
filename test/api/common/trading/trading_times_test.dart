@@ -8,30 +8,31 @@ void main() {
   setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Trading Times Test', () async {
-    final TradingTimesResponse tradingTimes = await TradingTimesResponse.fetchTradingTimes(
+    final TradingTimesResponse tradingTimes =
+        await TradingTimesResponse.fetchTradingTimes(
       const TradingTimesSend(tradingTimes: '2015-09-14'),
     );
 
-    expect(tradingTimes.tradingTimes.markets.length, 1);
+    expect(tradingTimes.tradingTimes?.markets.length, 1);
 
-    final MarketsItem market = tradingTimes.tradingTimes.markets.first;
+    final MarketsItem market = tradingTimes.tradingTimes!.markets.first;
 
     expect(market.name, 'Forex');
-    expect(market.submarkets.length, 1);
+    expect(market.submarkets?.length, 1);
 
-    final SubmarketsItem submarket = market.submarkets.first;
+    final SubmarketsItem submarket = market.submarkets!.first;
 
     expect(submarket.name, 'Major Pairs');
-    expect(submarket.symbols.length, 1);
+    expect(submarket.symbols?.length, 1);
 
-    // final List<TradeEventModel> events = submarket.symbols.first.events;
+    // final List<TradeEventModel>? events = submarket.symbols!.first.events;
 
     // expect(events.length, 1);
 
     // expect(events.first.dates, 'Fridays');
     // expect(events.first.description, 'Closes early (at 20:55)');
 
-    // final TradeTimesModel times = submarket.symbols.first.times;
+    // final TradeTimesModel? times = submarket.symbols?.first.times;
 
     // expect(times.close.length, 1);
     // expect(times.open.length, 1);

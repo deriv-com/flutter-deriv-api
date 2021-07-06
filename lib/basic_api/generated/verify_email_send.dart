@@ -1,43 +1,42 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/verify_email_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/verify_email_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Verify email send class
+/// Verify email send class.
 class VerifyEmailSend extends Request {
-  /// Initialize VerifyEmailSend
+  /// Initialize VerifyEmailSend.
   const VerifyEmailSend({
-    @required this.type,
+    required this.type,
     this.urlParameters,
-    @required this.verifyEmail,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    required this.verifyEmail,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'verify_email',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory VerifyEmailSend.fromJson(Map<String, dynamic> json) =>
       VerifyEmailSend(
-        type: json['type'] as String,
-        urlParameters: json['url_parameters'] as Map<String, dynamic>,
-        verifyEmail: json['verify_email'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        type: json['type'] as String?,
+        urlParameters: json['url_parameters'] as Map<String, dynamic>?,
+        verifyEmail: json['verify_email'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Purpose of the email verification call.
-  final String type;
+  final String? type;
 
   /// [Optional] Extra parameters that can be attached to the verify email link URL.
-  final Map<String, dynamic> urlParameters;
+  final Map<String, dynamic>? urlParameters;
 
   /// Email address to be verified.
-  final String verifyEmail;
+  final String? verifyEmail;
 
   /// Converts this instance to JSON
   @override
@@ -52,11 +51,11 @@ class VerifyEmailSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   VerifyEmailSend copyWith({
-    String type,
-    Map<String, dynamic> urlParameters,
-    String verifyEmail,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? type,
+    Map<String, dynamic>? urlParameters,
+    String? verifyEmail,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       VerifyEmailSend(
         type: type ?? this.type,
@@ -66,7 +65,7 @@ class VerifyEmailSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

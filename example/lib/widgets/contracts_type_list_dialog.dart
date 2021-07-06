@@ -21,7 +21,7 @@ class ContractsTypeListDialog extends StatelessWidget {
                         contractsForSymbol.available[index];
                     return ListTile(
                       title: Text(
-                        '${contract.contractsDisplay}, ${contract.contractType}',
+                        '${contract.contractCategoryDisplay}, ${contract.contractType}',
                       ),
                       subtitle: Text('${contract.contractCategory}'),
                       onTap: () {

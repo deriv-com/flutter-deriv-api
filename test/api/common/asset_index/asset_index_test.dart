@@ -1,3 +1,4 @@
+import 'package:flutter_deriv_api/basic_api/generated/asset_index_send.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
@@ -7,10 +8,11 @@ void main() {
   setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Asset Index Test', () async {
-    final AssetIndexResponse assetIndices = await AssetIndexResponse.fetchAssetIndices();
+    final AssetIndexResponse assetIndices =
+        await AssetIndexResponse.fetchAssetIndices(const AssetIndexSend());
 
-    expect(assetIndices.assetIndex.length, 1);
-   // expect(assetIndices.assetIndex.first['symbol_code'], 'frxAUDJPY');
+    expect(assetIndices.assetIndex?.length, 1);
+    // expect(assetIndices.assetIndex.first['symbol_code'], 'frxAUDJPY');
 
     // final List<IndexContractModel> contracts = assetIndices.assetIndex.first['contracts'];
 

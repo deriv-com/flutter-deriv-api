@@ -6,6 +6,6 @@ import 'common_exception.dart';
 class AssetIndexException extends CommonException {
   /// Initializes
   AssetIndexException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

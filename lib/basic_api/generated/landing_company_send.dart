@@ -1,33 +1,32 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/landing_company_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/landing_company_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Landing company send class
+/// Landing company send class.
 class LandingCompanySend extends Request {
-  /// Initialize LandingCompanySend
+  /// Initialize LandingCompanySend.
   const LandingCompanySend({
-    @required this.landingCompany,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    required this.landingCompany,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'landing_company',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LandingCompanySend.fromJson(Map<String, dynamic> json) =>
       LandingCompanySend(
-        landingCompany: json['landing_company'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        landingCompany: json['landing_company'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Client's 2-letter country code (obtained from `residence_list` call).
-  final String landingCompany;
+  final String? landingCompany;
 
   /// Converts this instance to JSON
   @override
@@ -40,9 +39,9 @@ class LandingCompanySend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   LandingCompanySend copyWith({
-    String landingCompany,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? landingCompany,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       LandingCompanySend(
         landingCompany: landingCompany ?? this.landingCompany,
@@ -50,7 +49,7 @@ class LandingCompanySend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

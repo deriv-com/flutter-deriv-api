@@ -9,7 +9,7 @@ class SubscribeTicks extends TicksEvent {
   SubscribeTicks(this.selectedSymbol);
 
   /// Selected symbol
-  final ActiveSymbolsItem selectedSymbol;
+  final ActiveSymbolsItem? selectedSymbol;
 
   @override
   String toString() => 'SubscribeTicks';
@@ -21,7 +21,7 @@ class YieldTick extends TicksEvent {
   YieldTick(this.tick);
 
   /// Loaded tick
-  final TicksResponse tick;
+  final TicksResponse? tick;
 
   @override
   String toString() => 'YieldTicks $tick';
@@ -33,7 +33,7 @@ class YieldError extends TicksEvent {
   YieldError(this.message);
 
   /// Error message
-  final String message;
+  final String? message;
 
   @override
   String toString() => 'YieldError $message';

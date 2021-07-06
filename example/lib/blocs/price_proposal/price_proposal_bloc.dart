@@ -17,7 +17,7 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
   ///Initializes
   PriceProposalBloc(AvailableContractsBloc availableContractsBloc)
       : super(PriceProposalLoading()) {
-    availableContractsBloc.listen((AvailableContractsState state) {
+    availableContractsBloc.stream.listen((AvailableContractsState state) {
       if (state is AvailableContractsLoaded) {
         add(SubscribeProposal(state.selectedContract));
       }
@@ -47,8 +47,8 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
           .handleError((dynamic error) => error is ContractOperationException
               ? add(YieldError(error.message))
               : add(YieldError(error.toString())))
-          .listen((ProposalResponse proposal) =>
-              add(YieldProposalLoaded(proposal)));
+          .listen((ProposalResponse? proposal) =>
+              add(YieldProposalLoaded(proposal!)));
     } else if (event is YieldProposalLoaded) {
       yield PriceProposalLoaded(event.proposal.proposal);
     } else if (event is YieldError) {
@@ -56,17 +56,19 @@ class PriceProposalBloc extends Bloc<PriceProposalEvent, PriceProposalState> {
     }
   }
 
-  Stream<ProposalResponse> _subscribeProposal(SubscribeProposal event) =>
+  Stream<ProposalResponse?> _subscribeProposal(SubscribeProposal event) =>
       ProposalResponse.subscribePriceForContract(
         // ignore: missing_required_param
         ProposalSend(
-          amount: event?.amount,
-          durationUnit: event?.durationUnit,
-          duration: event?.duration,
-          basis: event?.basis,
+          amount: event.amount,
+          durationUnit: event.durationUnit,
+          duration: event.duration,
+          basis: event.basis,
           currency: 'USD',
-          contractType: event?.contract?.contractType,
-          symbol: event?.contract?.underlyingSymbol,
+          contractType: event.contract.contractType,
+          symbol: event.contract.underlyingSymbol,
+          limitOrder: null,
+          cancellation: null,
         ),
       );
 

@@ -8,19 +8,20 @@ import 'package:flutter_deriv_api/api/response/paymentagent_withdraw_receive_res
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 
-
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));
 
   group('Payment Agent Group ->', () {
     test('Fetch Payment Agent List Test', () async {
-      final PaymentagentListResponse paymentAgentList = await PaymentagentListResponse.fetch(
+      final PaymentagentListResponse paymentAgentList =
+          await PaymentagentListResponse.fetch(
         const PaymentagentListSend(paymentagentList: 'id'),
       );
 
-      final List<List<String>> countries = paymentAgentList.paymentagentList.availableCountries;
+      final List<List<String>> countries =
+          paymentAgentList.paymentagentList!.availableCountries!;
       final List<ListItem> paymentAgents =
-          paymentAgentList.paymentagentList.list;
+          paymentAgentList.paymentagentList!.list;
 
       expect(countries.length, 2);
 

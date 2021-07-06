@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/economic_calendar_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/economic_calendar_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Economic calendar receive class
+/// Economic calendar receive class.
 class EconomicCalendarReceive extends Response {
-  /// Initialize EconomicCalendarReceive
+  /// Initialize EconomicCalendarReceive.
   const EconomicCalendarReceive({
     this.economicCalendar,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -19,18 +20,18 @@ class EconomicCalendarReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory EconomicCalendarReceive.fromJson(Map<String, dynamic> json) =>
       EconomicCalendarReceive(
-        economicCalendar: json['economic_calendar'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        economicCalendar: json['economic_calendar'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Economic calendar.
-  final Map<String, dynamic> economicCalendar;
+  final Map<String, dynamic>? economicCalendar;
 
   /// Converts this instance to JSON
   @override
@@ -45,11 +46,11 @@ class EconomicCalendarReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   EconomicCalendarReceive copyWith({
-    Map<String, dynamic> economicCalendar,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? economicCalendar,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       EconomicCalendarReceive(
         economicCalendar: economicCalendar ?? this.economicCalendar,
@@ -59,7 +60,7 @@ class EconomicCalendarReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

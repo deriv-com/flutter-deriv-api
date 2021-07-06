@@ -1,32 +1,31 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Forget send class
+/// Forget send class.
 class ForgetSend extends Request {
-  /// Initialize ForgetSend
+  /// Initialize ForgetSend.
   const ForgetSend({
-    @required this.forget,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    required this.forget,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'forget',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ForgetSend.fromJson(Map<String, dynamic> json) => ForgetSend(
-        forget: json['forget'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        forget: json['forget'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// ID of the real-time stream of messages to cancel.
-  final String forget;
+  final String? forget;
 
   /// Converts this instance to JSON
   @override
@@ -39,9 +38,9 @@ class ForgetSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ForgetSend copyWith({
-    String forget,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? forget,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ForgetSend(
         forget: forget ?? this.forget,
@@ -49,7 +48,7 @@ class ForgetSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

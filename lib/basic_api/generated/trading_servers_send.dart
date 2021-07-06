@@ -1,52 +1,65 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_servers_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_servers_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Trading servers send class
+/// Trading servers send class.
 class TradingServersSend extends Request {
-  /// Initialize TradingServersSend
+  /// Initialize TradingServersSend.
   const TradingServersSend({
+    this.accountType,
     this.environment,
+    this.marketType,
     this.platform,
     this.tradingServers = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'trading_servers',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradingServersSend.fromJson(Map<String, dynamic> json) =>
       TradingServersSend(
-        environment: json['environment'] as String,
-        platform: json['platform'] as String,
+        accountType: json['account_type'] as String?,
+        environment: json['environment'] as String?,
+        marketType: json['market_type'] as String?,
+        platform: json['platform'] as String?,
         tradingServers: json['trading_servers'] == null
             ? null
             : json['trading_servers'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
-  /// [Optional] Pass the environment (installation) instance short code. Currently, there is only one environment instance. Defaults to 'env_01'.
-  final String environment;
+  /// [Optional] Trading account type.
+  final String? accountType;
+
+  /// [Optional] Pass the environment (installation) instance. Currently, there are one demo and two real environments. Defaults to 'all'.
+  final String? environment;
+
+  /// [Optional] Market type.
+  final String? marketType;
 
   /// [Optional] Pass the trading platform name, default to mt5
-  final String platform;
+  final String? platform;
 
   /// Must be `true`
-  final bool tradingServers;
+  final bool? tradingServers;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'account_type': accountType,
         'environment': environment,
+        'market_type': marketType,
         'platform': platform,
         'trading_servers': tradingServers == null
             ? null
-            : tradingServers
+            : tradingServers!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -56,21 +69,25 @@ class TradingServersSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TradingServersSend copyWith({
-    String environment,
-    String platform,
-    bool tradingServers,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? accountType,
+    String? environment,
+    String? marketType,
+    String? platform,
+    bool? tradingServers,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TradingServersSend(
+        accountType: accountType ?? this.accountType,
         environment: environment ?? this.environment,
+        marketType: marketType ?? this.marketType,
         platform: platform ?? this.platform,
         tradingServers: tradingServers ?? this.tradingServers,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -6,6 +6,6 @@ import 'account_exception.dart';
 class AuthorizeException extends AccountException {
   /// Initializes
   AuthorizeException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

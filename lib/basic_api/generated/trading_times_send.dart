@@ -1,33 +1,32 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_times_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/trading_times_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Trading times send class
+/// Trading times send class.
 class TradingTimesSend extends Request {
-  /// Initialize TradingTimesSend
+  /// Initialize TradingTimesSend.
   const TradingTimesSend({
-    @required this.tradingTimes,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    required this.tradingTimes,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'trading_times',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradingTimesSend.fromJson(Map<String, dynamic> json) =>
       TradingTimesSend(
-        tradingTimes: json['trading_times'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        tradingTimes: json['trading_times'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Date to receive market opening times for. (`yyyy-mm-dd` format. `today` can also be specified).
-  final String tradingTimes;
+  final String? tradingTimes;
 
   /// Converts this instance to JSON
   @override
@@ -40,9 +39,9 @@ class TradingTimesSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TradingTimesSend copyWith({
-    String tradingTimes,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? tradingTimes,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TradingTimesSend(
         tradingTimes: tradingTimes ?? this.tradingTimes,
@@ -50,7 +49,7 @@ class TradingTimesSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

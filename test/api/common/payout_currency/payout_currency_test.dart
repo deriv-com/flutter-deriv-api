@@ -10,7 +10,7 @@ void main() {
     final PayoutCurrenciesResponse currencies =
         await PayoutCurrenciesResponse.fetchPayoutCurrencies();
 
-    expect(currencies.payoutCurrencies.length, 4);
-    expect(currencies.payoutCurrencies.first, 'AUD');
+    expect(currencies.payoutCurrencies?.length, 4);
+    expect(currencies.payoutCurrencies?.first, 'AUD');
   });
 }

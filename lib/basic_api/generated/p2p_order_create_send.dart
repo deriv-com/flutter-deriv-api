@@ -1,60 +1,66 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_create_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_create_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// P2p order create send class
+/// P2p order create send class.
 class P2pOrderCreateSend extends Request {
-  /// Initialize P2pOrderCreateSend
+  /// Initialize P2pOrderCreateSend.
   const P2pOrderCreateSend({
-    @required this.advertId,
-    @required this.amount,
+    required this.advertId,
+    required this.amount,
     this.contactInfo,
     this.p2pOrderCreate = true,
     this.paymentInfo,
+    required this.paymentMethodIds,
     this.subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_order_create',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pOrderCreateSend.fromJson(Map<String, dynamic> json) =>
       P2pOrderCreateSend(
-        advertId: json['advert_id'] as String,
-        amount: json['amount'] as num,
-        contactInfo: json['contact_info'] as String,
+        advertId: json['advert_id'] as String?,
+        amount: json['amount'] as num?,
+        contactInfo: json['contact_info'] as String?,
         p2pOrderCreate: json['p2p_order_create'] == null
             ? null
             : json['p2p_order_create'] == 1,
-        paymentInfo: json['payment_info'] as String,
+        paymentInfo: json['payment_info'] as String?,
+        paymentMethodIds: (json['payment_method_ids'] as List<dynamic>?)
+            ?.map<int>((dynamic item) => item as int)
+            .toList(),
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The unique identifier for the advert to create an order against.
-  final String advertId;
+  final String? advertId;
 
   /// The amount of currency to be bought or sold.
-  final num amount;
+  final num? amount;
 
   /// [Optional] Seller contact information. Only applicable for 'sell orders'.
-  final String contactInfo;
+  final String? contactInfo;
 
   /// Must be `true`
-  final bool p2pOrderCreate;
+  final bool? p2pOrderCreate;
 
-  /// [Optional] Payment instructions. Only applicable for 'sell orders'.
-  final String paymentInfo;
+  /// [Optional] Payment instructions, only applicable for sell orders.
+  final String? paymentInfo;
+
+  /// IDs of payment methods, only applicable for sell orders.
+  final List<int>? paymentMethodIds;
 
   /// [Optional] If set to `true`, will send updates whenever there is an update to the order.
-  final bool subscribe;
+  final bool? subscribe;
 
   /// Converts this instance to JSON
   @override
@@ -64,13 +70,14 @@ class P2pOrderCreateSend extends Request {
         'contact_info': contactInfo,
         'p2p_order_create': p2pOrderCreate == null
             ? null
-            : p2pOrderCreate
+            : p2pOrderCreate!
                 ? 1
                 : 0,
         'payment_info': paymentInfo,
+        'payment_method_ids': paymentMethodIds,
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -80,14 +87,15 @@ class P2pOrderCreateSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pOrderCreateSend copyWith({
-    String advertId,
-    num amount,
-    String contactInfo,
-    bool p2pOrderCreate,
-    String paymentInfo,
-    bool subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? advertId,
+    num? amount,
+    String? contactInfo,
+    bool? p2pOrderCreate,
+    String? paymentInfo,
+    List<int>? paymentMethodIds,
+    bool? subscribe,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pOrderCreateSend(
         advertId: advertId ?? this.advertId,
@@ -95,12 +103,13 @@ class P2pOrderCreateSend extends Request {
         contactInfo: contactInfo ?? this.contactInfo,
         p2pOrderCreate: p2pOrderCreate ?? this.p2pOrderCreate,
         paymentInfo: paymentInfo ?? this.paymentInfo,
+        paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
         subscribe: subscribe ?? this.subscribe,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

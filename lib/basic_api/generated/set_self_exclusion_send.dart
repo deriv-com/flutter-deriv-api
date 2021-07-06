@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_self_exclusion_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_self_exclusion_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Set self exclusion send class
+/// Set self exclusion send class.
 class SetSelfExclusionSend extends Request {
-  /// Initialize SetSelfExclusionSend
+  /// Initialize SetSelfExclusionSend.
   const SetSelfExclusionSend({
     this.excludeUntil,
     this.max30dayDeposit,
@@ -22,82 +23,82 @@ class SetSelfExclusionSend extends Request {
     this.sessionDurationLimit,
     this.setSelfExclusion = true,
     this.timeoutUntil,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'set_self_exclusion',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SetSelfExclusionSend.fromJson(Map<String, dynamic> json) =>
       SetSelfExclusionSend(
-        excludeUntil: json['exclude_until'] as String,
-        max30dayDeposit: json['max_30day_deposit'] as num,
-        max30dayLosses: json['max_30day_losses'] as num,
-        max30dayTurnover: json['max_30day_turnover'] as num,
-        max7dayDeposit: json['max_7day_deposit'] as num,
-        max7dayLosses: json['max_7day_losses'] as num,
-        max7dayTurnover: json['max_7day_turnover'] as num,
-        maxBalance: json['max_balance'] as num,
-        maxDeposit: json['max_deposit'] as num,
-        maxLosses: json['max_losses'] as num,
-        maxOpenBets: json['max_open_bets'] as int,
-        maxTurnover: json['max_turnover'] as num,
-        sessionDurationLimit: json['session_duration_limit'] as int,
+        excludeUntil: json['exclude_until'] as String?,
+        max30dayDeposit: json['max_30day_deposit'] as num?,
+        max30dayLosses: json['max_30day_losses'] as num?,
+        max30dayTurnover: json['max_30day_turnover'] as num?,
+        max7dayDeposit: json['max_7day_deposit'] as num?,
+        max7dayLosses: json['max_7day_losses'] as num?,
+        max7dayTurnover: json['max_7day_turnover'] as num?,
+        maxBalance: json['max_balance'] as num?,
+        maxDeposit: json['max_deposit'] as num?,
+        maxLosses: json['max_losses'] as num?,
+        maxOpenBets: json['max_open_bets'] as int?,
+        maxTurnover: json['max_turnover'] as num?,
+        sessionDurationLimit: json['session_duration_limit'] as int?,
         setSelfExclusion: json['set_self_exclusion'] == null
             ? null
             : json['set_self_exclusion'] == 1,
-        timeoutUntil: json['timeout_until'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        timeoutUntil: json['timeout_until'] as int?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Exclude me from the website (for a minimum of 6 months, up to a maximum of 5 years). Note: uplifting this self-exclusion may require contacting the company.
-  final String excludeUntil;
+  final String? excludeUntil;
 
   /// [Optional] 7-day limit on deposits.
-  final num max30dayDeposit;
+  final num? max30dayDeposit;
 
   /// [Optional] 30-day limit on losses.
-  final num max30dayLosses;
+  final num? max30dayLosses;
 
   /// [Optional] 30-day turnover limit.
-  final num max30dayTurnover;
+  final num? max30dayTurnover;
 
   /// [Optional] 7-day limit on deposits.
-  final num max7dayDeposit;
+  final num? max7dayDeposit;
 
   /// [Optional] 7-day limit on losses.
-  final num max7dayLosses;
+  final num? max7dayLosses;
 
   /// [Optional] 7-day turnover limit.
-  final num max7dayTurnover;
+  final num? max7dayTurnover;
 
   /// [Optional] Maximum account cash balance.
-  final num maxBalance;
+  final num? maxBalance;
 
   /// [Optional] Daily deposit limit.
-  final num maxDeposit;
+  final num? maxDeposit;
 
   /// [Optional] Daily limit on losses.
-  final num maxLosses;
+  final num? maxLosses;
 
   /// [Optional] Maximum number of open positions.
-  final int maxOpenBets;
+  final int? maxOpenBets;
 
   /// [Optional] Daily turnover limit.
-  final num maxTurnover;
+  final num? maxTurnover;
 
   /// [Optional] Session duration limit, in minutes.
-  final int sessionDurationLimit;
+  final int? sessionDurationLimit;
 
   /// Must be `true`
-  final bool setSelfExclusion;
+  final bool? setSelfExclusion;
 
   /// [Optional] Exclude me from the website (for up to 6 weeks). Requires time in epoch format. Note: unlike `exclude_until`, this self-exclusion will be lifted automatically at the expiry of the timeout period.
-  final int timeoutUntil;
+  final int? timeoutUntil;
 
   /// Converts this instance to JSON
   @override
@@ -117,7 +118,7 @@ class SetSelfExclusionSend extends Request {
         'session_duration_limit': sessionDurationLimit,
         'set_self_exclusion': setSelfExclusion == null
             ? null
-            : setSelfExclusion
+            : setSelfExclusion!
                 ? 1
                 : 0,
         'timeout_until': timeoutUntil,
@@ -128,23 +129,23 @@ class SetSelfExclusionSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   SetSelfExclusionSend copyWith({
-    String excludeUntil,
-    num max30dayDeposit,
-    num max30dayLosses,
-    num max30dayTurnover,
-    num max7dayDeposit,
-    num max7dayLosses,
-    num max7dayTurnover,
-    num maxBalance,
-    num maxDeposit,
-    num maxLosses,
-    int maxOpenBets,
-    num maxTurnover,
-    int sessionDurationLimit,
-    bool setSelfExclusion,
-    int timeoutUntil,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? excludeUntil,
+    num? max30dayDeposit,
+    num? max30dayLosses,
+    num? max30dayTurnover,
+    num? max7dayDeposit,
+    num? max7dayLosses,
+    num? max7dayTurnover,
+    num? maxBalance,
+    num? maxDeposit,
+    num? maxLosses,
+    int? maxOpenBets,
+    num? maxTurnover,
+    int? sessionDurationLimit,
+    bool? setSelfExclusion,
+    int? timeoutUntil,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       SetSelfExclusionSend(
         excludeUntil: excludeUntil ?? this.excludeUntil,
@@ -166,7 +167,7 @@ class SetSelfExclusionSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -20,28 +20,28 @@ abstract class TickBaseModel extends APIBaseModel {
   });
 
   /// Epoch time of the tick
-  final DateTime epoch;
+  final DateTime? epoch;
 
   /// A stream ID that can be used to cancel this stream using
   /// the Forget request
-  final String id;
+  final String? id;
 
   /// Indicates the number of decimal points that
   /// the returned amounts must be displayed with
-  final int pipSize;
+  final int? pipSize;
 
   /// Symbol
-  final String symbol;
+  final String? symbol;
 }
 
 /// Spot price updates for a given symbol
 class TickBase extends TickBaseModel {
   /// Initializes
   TickBase({
-    DateTime epoch,
-    String id,
-    int pipSize,
-    String symbol,
+    DateTime? epoch,
+    String? id,
+    int? pipSize,
+    String? symbol,
     this.subscriptionInformation,
   }) : super(
           epoch: epoch,
@@ -53,7 +53,7 @@ class TickBase extends TickBaseModel {
   /// Generates an instance from JSON
   factory TickBase.fromJson(
     Map<String, dynamic> json, {
-    Map<String, dynamic> subscriptionJson,
+    Map<String, dynamic>? subscriptionJson,
   }) =>
       TickBase(
         epoch: getDateTime(json['epoch']),
@@ -64,24 +64,24 @@ class TickBase extends TickBaseModel {
       );
 
   /// Subscription information
-  final SubscriptionModel subscriptionInformation;
+  final SubscriptionModel? subscriptionInformation;
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Unsubscribes from tick stream
   ///
   /// Throws a [TickException] if API response contains an error
-  Future<ForgetResponse> unsubscribe() async {
+  Future<ForgetResponse?> unsubscribe() async {
     if (subscriptionInformation?.id == null) {
       return null;
     }
 
     final ForgetReceive response =
-        await _api.unsubscribe(subscriptionId: subscriptionInformation.id);
+        await _api.unsubscribe(subscriptionId: subscriptionInformation!.id!);
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TickException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -90,11 +90,11 @@ class TickBase extends TickBaseModel {
 
   /// Generates a copy of instance with given parameters
   TickBase copyWith({
-    DateTime epoch,
-    String id,
-    int pipSize,
-    String symbol,
-    SubscriptionModel subscriptionInformation,
+    DateTime? epoch,
+    String? id,
+    int? pipSize,
+    String? symbol,
+    SubscriptionModel? subscriptionInformation,
   }) =>
       TickBase(
         epoch: epoch ?? this.epoch,

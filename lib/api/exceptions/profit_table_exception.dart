@@ -6,6 +6,6 @@ import 'account_exception.dart';
 class ProfitTableException extends AccountException {
   /// Initializes
   ProfitTableException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

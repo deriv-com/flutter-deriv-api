@@ -1,11 +1,12 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/statement_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/statement_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Statement send class
+/// Statement send class.
 class StatementSend extends Request {
-  /// Initialize StatementSend
+  /// Initialize StatementSend.
   const StatementSend({
     this.actionType,
     this.dateFrom,
@@ -14,48 +15,48 @@ class StatementSend extends Request {
     this.limit,
     this.offset,
     this.statement = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'statement',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory StatementSend.fromJson(Map<String, dynamic> json) => StatementSend(
-        actionType: json['action_type'] as String,
-        dateFrom: json['date_from'] as int,
-        dateTo: json['date_to'] as int,
+        actionType: json['action_type'] as String?,
+        dateFrom: json['date_from'] as int?,
+        dateTo: json['date_to'] as int?,
         description:
             json['description'] == null ? null : json['description'] == 1,
-        limit: json['limit'] as num,
-        offset: json['offset'] as num,
+        limit: json['limit'] as num?,
+        offset: json['offset'] as num?,
         statement: json['statement'] == null ? null : json['statement'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] To filter the statement according to the type of transaction.
-  final String actionType;
+  final String? actionType;
 
   /// [Optional] Start date (epoch)
-  final int dateFrom;
+  final int? dateFrom;
 
   /// [Optional] End date (epoch)
-  final int dateTo;
+  final int? dateTo;
 
   /// [Optional] If set to `true`, will return full contracts description.
-  final bool description;
+  final bool? description;
 
   /// [Optional] Maximum number of transactions to receive.
-  final num limit;
+  final num? limit;
 
   /// [Optional] Number of transactions to skip.
-  final num offset;
+  final num? offset;
 
   /// Must be `true`
-  final bool statement;
+  final bool? statement;
 
   /// Converts this instance to JSON
   @override
@@ -65,14 +66,14 @@ class StatementSend extends Request {
         'date_to': dateTo,
         'description': description == null
             ? null
-            : description
+            : description!
                 ? 1
                 : 0,
         'limit': limit,
         'offset': offset,
         'statement': statement == null
             ? null
-            : statement
+            : statement!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -82,15 +83,15 @@ class StatementSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   StatementSend copyWith({
-    String actionType,
-    int dateFrom,
-    int dateTo,
-    bool description,
-    num limit,
-    num offset,
-    bool statement,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? actionType,
+    int? dateFrom,
+    int? dateTo,
+    bool? description,
+    num? limit,
+    num? offset,
+    bool? statement,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       StatementSend(
         actionType: actionType ?? this.actionType,
@@ -104,7 +105,7 @@ class StatementSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

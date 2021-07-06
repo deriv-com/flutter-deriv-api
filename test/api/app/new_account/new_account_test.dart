@@ -36,11 +36,11 @@ void main() {
         ),
       );
 
-      expect(newAccountReal.newAccountReal.clientId, 'CR0000');
-      expect(newAccountReal.newAccountReal.landingCompany, 'landing_company');
-      expect(newAccountReal.newAccountReal.landingCompanyShort,
+      expect(newAccountReal.newAccountReal?.clientId, 'CR0000');
+      expect(newAccountReal.newAccountReal?.landingCompany, 'landing_company');
+      expect(newAccountReal.newAccountReal?.landingCompanyShort,
           'landing_company_short');
-      expect(newAccountReal.newAccountReal.oauthToken, 'sample_token');
+      expect(newAccountReal.newAccountReal?.oauthToken, 'sample_token');
     });
 
     test('Open New Account Virtual Test', () async {
@@ -49,15 +49,16 @@ void main() {
         const NewAccountVirtualSend(
           clientPassword: 'Abc123de',
           residence: 'id',
+          type: 'trading',
           verificationCode: 'uoJvVuQ6',
         ),
       );
 
-      expect(newAccountVirtual.newAccountVirtual.balance, 250.0);
-      expect(newAccountVirtual.newAccountVirtual.clientId, 'VRTC0000');
-      expect(newAccountVirtual.newAccountVirtual.currency, 'USD');
-      expect(newAccountVirtual.newAccountVirtual.email, 'test@email.com');
-      expect(newAccountVirtual.newAccountVirtual.oauthToken, 'sample_token');
+      expect(newAccountVirtual.newAccountVirtual?.balance, 250.0);
+      expect(newAccountVirtual.newAccountVirtual?.clientId, 'VRTC0000');
+      expect(newAccountVirtual.newAccountVirtual?.currency, 'USD');
+      expect(newAccountVirtual.newAccountVirtual?.email, 'test@email.com');
+      expect(newAccountVirtual.newAccountVirtual?.oauthToken, 'sample_token');
     });
   });
 }

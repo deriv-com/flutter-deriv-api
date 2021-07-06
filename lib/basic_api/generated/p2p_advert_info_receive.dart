@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_info_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_advert_info_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// P2p advert info receive class
+/// P2p advert info receive class.
 class P2pAdvertInfoReceive extends Response {
-  /// Initialize P2pAdvertInfoReceive
+  /// Initialize P2pAdvertInfoReceive.
   const P2pAdvertInfoReceive({
     this.p2pAdvertInfo,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -19,18 +20,18 @@ class P2pAdvertInfoReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertInfoReceive.fromJson(Map<String, dynamic> json) =>
       P2pAdvertInfoReceive(
-        p2pAdvertInfo: json['p2p_advert_info'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        p2pAdvertInfo: json['p2p_advert_info'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// P2P advert information.
-  final Map<String, dynamic> p2pAdvertInfo;
+  final Map<String, dynamic>? p2pAdvertInfo;
 
   /// Converts this instance to JSON
   @override
@@ -45,11 +46,11 @@ class P2pAdvertInfoReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   P2pAdvertInfoReceive copyWith({
-    Map<String, dynamic> p2pAdvertInfo,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? p2pAdvertInfo,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       P2pAdvertInfoReceive(
         p2pAdvertInfo: p2pAdvertInfo ?? this.p2pAdvertInfo,
@@ -59,7 +60,7 @@ class P2pAdvertInfoReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

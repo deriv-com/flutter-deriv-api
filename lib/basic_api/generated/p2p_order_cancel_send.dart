@@ -1,40 +1,39 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_cancel_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_cancel_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// P2p order cancel send class
+/// P2p order cancel send class.
 class P2pOrderCancelSend extends Request {
-  /// Initialize P2pOrderCancelSend
+  /// Initialize P2pOrderCancelSend.
   const P2pOrderCancelSend({
-    @required this.id,
+    required this.id,
     this.p2pOrderCancel = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'p2p_order_cancel',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pOrderCancelSend.fromJson(Map<String, dynamic> json) =>
       P2pOrderCancelSend(
-        id: json['id'] as String,
+        id: json['id'] as String?,
         p2pOrderCancel: json['p2p_order_cancel'] == null
             ? null
             : json['p2p_order_cancel'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The unique identifier for this order.
-  final String id;
+  final String? id;
 
   /// Must be `true`
-  final bool p2pOrderCancel;
+  final bool? p2pOrderCancel;
 
   /// Converts this instance to JSON
   @override
@@ -42,7 +41,7 @@ class P2pOrderCancelSend extends Request {
         'id': id,
         'p2p_order_cancel': p2pOrderCancel == null
             ? null
-            : p2pOrderCancel
+            : p2pOrderCancel!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -52,10 +51,10 @@ class P2pOrderCancelSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   P2pOrderCancelSend copyWith({
-    String id,
-    bool p2pOrderCancel,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? id,
+    bool? p2pOrderCancel,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       P2pOrderCancelSend(
         id: id ?? this.id,
@@ -64,7 +63,7 @@ class P2pOrderCancelSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

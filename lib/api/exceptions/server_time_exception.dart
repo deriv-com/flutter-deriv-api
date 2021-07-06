@@ -6,6 +6,6 @@ import 'common_exception.dart';
 class ServerTimeException extends CommonException {
   /// Initializes
   ServerTimeException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

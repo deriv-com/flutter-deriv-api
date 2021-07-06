@@ -1,37 +1,38 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ping_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ping_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Ping send class
+/// Ping send class.
 class PingSend extends Request {
-  /// Initialize PingSend
+  /// Initialize PingSend.
   const PingSend({
     this.ping = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'ping',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PingSend.fromJson(Map<String, dynamic> json) => PingSend(
         ping: json['ping'] == null ? null : json['ping'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool ping;
+  final bool? ping;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'ping': ping == null
             ? null
-            : ping
+            : ping!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -41,9 +42,9 @@ class PingSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   PingSend copyWith({
-    bool ping,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? ping,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       PingSend(
         ping: ping ?? this.ping,
@@ -51,7 +52,7 @@ class PingSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

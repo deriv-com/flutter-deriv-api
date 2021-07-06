@@ -14,32 +14,33 @@ void main() {
           account: 'all',
         ),
       );
+     
 
-      expect(balance.balance.balance, 9650.74);
-      expect(balance.balance.currency, 'USD');
-      expect(balance.balance.id, '811e7ac4-1454-b909-6adb-904a2e9cb374');
-      expect(balance.balance.loginid, 'VRTC2351953');
-      expect(balance.balance.accounts.length, 1);
-      expect(balance.balance.accounts.entries.first.value.type, TypeEnum.deriv);
-      expect(balance.balance.accounts.entries.first.key, 'VRTC2351953');
-      expect(balance.balance.accounts.entries.first.value.convertedAmount, 10006.86);
-      expect(balance.balance.accounts.entries.first.value.demoAccount, isTrue);
-      expect(balance.balance.accounts.entries.first.value.currency, 'USD');
-      expect(balance.balance.total.derivDemo.amount, 9650.74);
-      expect(balance.balance.total.deriv.amount, 0);
+      expect(balance.balance?.balance, 9650.74);
+      expect(balance.balance?.currency, 'USD');
+      expect(balance.balance?.id, '811e7ac4-1454-b909-6adb-904a2e9cb374');
+      expect(balance.balance?.loginid, 'VRTC2351953');
+      expect(balance.balance?.accounts?.length, 1);
+      expect(balance.balance?.accounts?.entries.first.value.type, TypeEnum.deriv);
+      expect(balance.balance?.accounts?.entries.first.key, 'VRTC2351953');
+      expect(balance.balance?.accounts?.entries.first.value.convertedAmount, 10006.86);
+      expect(balance.balance?.accounts?.entries.first.value.demoAccount, isTrue);
+      expect(balance.balance?.accounts?.entries.first.value.currency, 'USD');
+      expect(balance.balance?.total?.derivDemo?.amount, 9650.74);
+      expect(balance.balance?.total?.deriv?.amount, 0);
     });
 
     test('Subscribe Balance Test', () {
       BalanceResponse.subscribeBalance(const BalanceSend(account: 'current'))
           .listen(
         expectAsync1(
-          (BalanceResponse balance) {
-            expect(balance.balance.balance, 9650.74);
-            expect(balance.balance.currency, 'USD');
-            expect(balance.balance.id, '811e7ac4-1454-b909-6adb-904a2e9cb374');
-            expect(balance.balance.loginid, 'VRTC2351953');
+          (BalanceResponse? balance) {
+            expect(balance?.balance?.balance, 9650.74);
+            expect(balance?.balance?.currency, 'USD');
+            expect(balance?.balance?.id, '811e7ac4-1454-b909-6adb-904a2e9cb374');
+            expect(balance?.balance?.loginid, 'VRTC2351953');
             expect(
-              balance.balance.id,
+              balance?.balance?.id,
               '811e7ac4-1454-b909-6adb-904a2e9cb374',
             );
           },

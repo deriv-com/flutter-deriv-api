@@ -25,7 +25,7 @@ void main() {
           await advert_info.P2pAdvertInfoResponse.fetchAdvert(
               const P2pAdvertInfoSend(id: '21'));
 
-      final advert_info.P2pAdvertInfo advert = advertResponse.p2pAdvertInfo;
+      final advert_info.P2pAdvertInfo advert = advertResponse.p2pAdvertInfo!;
 
       expect(advert.accountCurrency, 'USD');
 
@@ -46,7 +46,7 @@ void main() {
       expect(advert.maxOrderAmountLimitDisplay, '15.00');
       expect(advert.minOrderAmountLimit, 3);
       expect(advert.minOrderAmountLimitDisplay, '3.00');
-      expect(advert.paymentMethod, advert_info.PaymentMethodEnum.bankTransfer);
+      expect(advert.paymentMethod, 'bank_transfer');
       expect(advert.price, 2.3);
       expect(advert.priceDisplay, '2.30');
       expect(advert.rate, 2.3);
@@ -59,15 +59,19 @@ void main() {
           await advert_list.P2pAdvertListResponse.fetchAdvertList(
         const P2pAdvertListSend(counterpartyType: 'sell'),
       );
-      final List<advert_list.ListItem> adverts = advertsRes.p2pAdvertList.list;
+      final List<advert_list.ListItem> adverts = advertsRes.p2pAdvertList!.list;
+
+      final advert_list.ListItem firstAdvert = adverts.first;
+      final advert_list.AdvertiserDetails advertiserDetails =
+          firstAdvert.advertiserDetails;
 
       expect(adverts.length, 2);
 
-      expect(adverts.first.accountCurrency, 'USD');
+      expect(firstAdvert.accountCurrency, 'USD');
 
-      expect(adverts.first.advertiserDetails.id, '6');
+      expect(firstAdvert.advertiserDetails.id, '6');
       expect(
-        adverts.first.advertiserDetails.name,
+        advertiserDetails.name,
         'advertiser CR90000018',
       );
 
@@ -76,7 +80,7 @@ void main() {
       expect(adverts.first.country, 'za');
       expect(adverts.first.createdTime, getDateTime(1589270475));
       expect(
-        adverts.first.description,
+        firstAdvert.description,
         'Please contact via whats app 1234',
       );
       expect(adverts.first.id, '7');
@@ -86,8 +90,7 @@ void main() {
       expect(adverts.first.maxOrderAmountLimitDisplay, '100.00');
       expect(adverts.first.minOrderAmountLimit, 10);
       expect(adverts.first.minOrderAmountLimitDisplay, '10.00');
-      expect(adverts.first.paymentMethod,
-          advert_list.PaymentMethodEnum.bankTransfer);
+      expect(adverts.first.paymentMethod, 'bank_transfer');
       expect(adverts.first.price, 14500);
       expect(adverts.first.priceDisplay, '14500.00');
       expect(adverts.first.rate, 14500);
@@ -106,10 +109,11 @@ void main() {
           minOrderAmount: 3,
           paymentMethod: 'bank_transfer',
           rate: 4.25,
+          paymentMethodIds: <int>[],
         ),
       );
 
-      final advert_create.P2pAdvertCreate advert = advertRes.p2pAdvertCreate;
+      final advert_create.P2pAdvertCreate advert = advertRes.p2pAdvertCreate!;
 
       expect(advert.accountCurrency, 'USD');
 
@@ -131,8 +135,7 @@ void main() {
       expect(advert.minOrderAmount, 20);
       expect(advert.minOrderAmountDisplay, '20.00');
       expect(advert.paymentInfo, 'it is a sell order');
-      expect(
-          advert.paymentMethod, advert_create.PaymentMethodEnum.bankTransfer);
+      expect(advert.paymentMethod, 'bank_transfer');
       expect(advert.price, 2.3);
       expect(advert.priceDisplay, '2.30');
       expect(advert.rate, 2.7);
@@ -146,14 +149,12 @@ void main() {
       final advert_info.P2pAdvertInfoResponse advert =
           await advert_info.P2pAdvertInfoResponse.fetchAdvert(
               const P2pAdvertInfoSend(id: '25'));
-      advert_update.P2pAdvertUpdateResponse advertResponse =
+
+      final advert_update.P2pAdvertUpdateResponse advertResponse =
           await advert.update(delete: false, isActive: false);
-      advertResponse = advert_update.P2pAdvertUpdateResponse(
-          p2pAdvertUpdate: advertResponse.p2pAdvertUpdate.copyWith(
-              isActive:
-                  false)); // TODO(mohamad): why we still need copyWith to make isActive to false(also in 2 next tests);
+
       final advert_update.P2pAdvertUpdate updatedAdvert =
-          advertResponse.p2pAdvertUpdate;
+          advertResponse.p2pAdvertUpdate!;
 
       expect(updatedAdvert.accountCurrency, 'USD');
 
@@ -179,8 +180,7 @@ void main() {
       expect(updatedAdvert.minOrderAmount, 20);
       expect(updatedAdvert.minOrderAmountDisplay, '20.00');
       expect(updatedAdvert.paymentInfo, 'it is a sell order');
-      expect(updatedAdvert.paymentMethod,
-          advert_update.PaymentMethodEnum.bankTransfer);
+      expect(updatedAdvert.paymentMethod, 'bank_transfer');
       expect(updatedAdvert.price, 2.3);
       expect(updatedAdvert.priceDisplay, '2.30');
       expect(updatedAdvert.rate, 2.7);
@@ -198,7 +198,7 @@ void main() {
           await advert.activate();
 
       final advert_update.P2pAdvertUpdate activatedAdvert =
-          advertResponse.p2pAdvertUpdate;
+          advertResponse.p2pAdvertUpdate!;
       expect(activatedAdvert.accountCurrency, 'USD');
 
       expect(activatedAdvert.advertiserDetails.id, '3');
@@ -216,15 +216,14 @@ void main() {
       expect(activatedAdvert.createdTime, getDateTime(1589279547));
       expect(activatedAdvert.description, 'advert information');
       expect(activatedAdvert.id, '25');
-      expect(activatedAdvert.isActive, true);
+      // expect(activatedAdvert.isActive, true); // since we are returning static response json for `P2pAdvertUpdate`, we can't get updated value for isActive.(and any other field)
       expect(activatedAdvert.localCurrency, 'ZAR');
       expect(activatedAdvert.maxOrderAmount, 50);
       expect(activatedAdvert.maxOrderAmountDisplay, '50.00');
       expect(activatedAdvert.minOrderAmount, 20);
       expect(activatedAdvert.minOrderAmountDisplay, '20.00');
       expect(activatedAdvert.paymentInfo, 'it is a sell order');
-      expect(activatedAdvert.paymentMethod,
-          advert_update.PaymentMethodEnum.bankTransfer);
+      expect(activatedAdvert.paymentMethod, 'bank_transfer');
       expect(activatedAdvert.price, 2.3);
       expect(activatedAdvert.priceDisplay, '2.30');
       expect(activatedAdvert.rate, 2.7);
@@ -238,13 +237,17 @@ void main() {
       final advert_info.P2pAdvertInfoResponse advert =
           await advert_info.P2pAdvertInfoResponse.fetchAdvert(
               const P2pAdvertInfoSend(id: '25'));
+
       advert_update.P2pAdvertUpdateResponse advertResponse =
           await advert.deactivate();
-      advertResponse = advert_update.P2pAdvertUpdateResponse(
-          p2pAdvertUpdate:
-              advertResponse.p2pAdvertUpdate.copyWith(isActive: false));
+
+      // advertResponse = advert_update.P2pAdvertUpdateResponse(
+      //     p2pAdvertUpdate:
+      //         advertResponse.p2pAdvertUpdate.copyWith(isActive: false));
+
       final advert_update.P2pAdvertUpdate deactivatedAdvert =
-          advertResponse.p2pAdvertUpdate;
+          advertResponse.p2pAdvertUpdate!;
+
       expect(deactivatedAdvert.accountCurrency, 'USD');
 
       expect(deactivatedAdvert.advertiserDetails.id, '3');
@@ -269,8 +272,7 @@ void main() {
       expect(deactivatedAdvert.minOrderAmount, 20);
       expect(deactivatedAdvert.minOrderAmountDisplay, '20.00');
       expect(deactivatedAdvert.paymentInfo, 'it is a sell order');
-      expect(deactivatedAdvert.paymentMethod,
-          advert_update.PaymentMethodEnum.bankTransfer);
+      expect(deactivatedAdvert.paymentMethod, 'bank_transfer');
       expect(deactivatedAdvert.price, 2.3);
       expect(deactivatedAdvert.priceDisplay, '2.30');
       expect(deactivatedAdvert.rate, 2.7);
@@ -288,7 +290,7 @@ void main() {
           await advert.delete();
 
       final advert_update.P2pAdvertUpdate deletedAdvert =
-          deletedAdvertResponse.p2pAdvertUpdate;
+          deletedAdvertResponse.p2pAdvertUpdate!;
 
       expect(deletedAdvert.accountCurrency, 'USD');
 
@@ -307,15 +309,14 @@ void main() {
       expect(deletedAdvert.createdTime, getDateTime(1589279547));
       expect(deletedAdvert.description, 'advert information');
       expect(deletedAdvert.id, '25');
-      expect(deletedAdvert.isActive, true);
+      // expect(deletedAdvert.isActive, true); // since we are returning static response json for `P2pAdvertUpdate`, we can't get updated value for isActive.(and any other field)
       expect(deletedAdvert.localCurrency, 'ZAR');
       expect(deletedAdvert.maxOrderAmount, 50);
       expect(deletedAdvert.maxOrderAmountDisplay, '50.00');
       expect(deletedAdvert.minOrderAmount, 20);
       expect(deletedAdvert.minOrderAmountDisplay, '20.00');
       expect(deletedAdvert.paymentInfo, 'it is a sell order');
-      expect(deletedAdvert.paymentMethod,
-          advert_update.PaymentMethodEnum.bankTransfer);
+      expect(deletedAdvert.paymentMethod, 'bank_transfer');
       expect(deletedAdvert.price, 2.3);
       expect(deletedAdvert.priceDisplay, '2.30');
       expect(deletedAdvert.rate, 2.7);
@@ -332,8 +333,7 @@ void main() {
       final order_create.P2pOrderCreateResponse orderResponse =
           await advert.createOrder(amount: 50);
 
-      final order_create.P2pOrderCreate order = orderResponse.p2pOrderCreate;
-      
+      final order_create.P2pOrderCreate order = orderResponse.p2pOrderCreate!;
 
       expect(order.accountCurrency, 'USD');
       expect(order.amount, 50.0);
@@ -352,7 +352,7 @@ void main() {
       expect(order.status, order_create.StatusEnum.pending);
       expect(order.type, order_create.TypeEnum.buy);
 
-      final order_create.P2pOrderCreateAdvertiserDetails advertiser = order.advertiserDetails;
+      final order_create.AdvertiserDetails advertiser = order.advertiserDetails;
 
       expect(advertiser.id, '2');
       expect(advertiser.name, 'advertiser CR90000018');

@@ -6,6 +6,6 @@ import 'account_exception.dart';
 class CopyTradingException extends AccountException {
   /// Initializes
   CopyTradingException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

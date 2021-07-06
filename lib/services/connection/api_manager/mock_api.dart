@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_deriv_api/api/response/forget_receive_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
@@ -113,10 +115,10 @@ class MockAPI extends BaseAPI {
 
   @override
   Future<void> connect(
-    ConnectionInformation connectionInformation, {
-    ConnectionCallback onDone,
-    ConnectionCallback onOpen,
-    ConnectionCallback onError,
+    ConnectionInformation? connectionInformation, {
+    ConnectionCallback? onDone,
+    ConnectionCallback? onOpen,
+    ConnectionCallback? onError,
   }) async =>
       true;
 
@@ -124,46 +126,54 @@ class MockAPI extends BaseAPI {
   void addToChannel(Map<String, dynamic> request) {}
 
   @override
-  Future<Response> call({
-    @required Request request,
+  Future<T> call<T>({
+    required Request request,
   }) =>
-      _getFutureResponse(request);
+      _getFutureResponse<T>(request);
 
   @override
   Stream<Response> subscribe({
-    @required Request request,
-    RequestCompareFunction comparePredicate,
+    required Request request,
+    RequestCompareFunction? comparePredicate,
   }) =>
       _getStreamResponse(request);
 
   @override
   Future<ForgetReceive> unsubscribe({
-    @required String subscriptionId,
+    required String subscriptionId,
   }) async =>
       const ForgetReceive(forget: true);
 
   @override
   Future<ForgetAllReceive> unsubscribeAll({
-    @required ForgetStreamType method,
+    required ForgetStreamType method,
   }) async =>
-      null;
+      const ForgetAllReceive();
 
   @override
   Future<void> disconnect() async => true;
 
-  Future<Response> _getFutureResponse(Request request) async =>
-      Future<Response>.delayed(
+  Future<T> _getFutureResponse<T>(Request request) async => Future<T>.delayed(
         const Duration(),
-        () => getResponseByMsgType(
-          jsonDecode(_getResponse(request.msgType)),
-        ),
+        () async {
+          final Response response = getResponseByMsgType(
+            jsonDecode(_getResponse(request.msgType!)),
+          );
+
+          if (response is T) {
+            // ignore: avoid_as
+            return response as T;
+          }
+
+          throw CallManagerException(message: 'Unexpected response');
+        },
       );
 
   Stream<Response> _getStreamResponse(Request request) =>
       Stream<Response>.periodic(
         const Duration(),
         (int computationCount) => getResponseByMsgType(
-          jsonDecode(_getResponse(request.msgType)),
+          jsonDecode(_getResponse(request.msgType!)),
         ),
       ).take(1);
 

@@ -16,7 +16,8 @@ part 'ticks_state.dart';
 class TicksBloc extends Bloc<TicksEvent, TicksState> {
   /// Initializes
   TicksBloc(ActiveSymbolsBloc activeSymbolsBloc) : super(TicksLoading()) {
-    activeSymbolsBloc.listen((ActiveSymbolsState activeSymbolsState) async {
+    activeSymbolsBloc.stream
+        .listen((ActiveSymbolsState activeSymbolsState) async {
       if (activeSymbolsState is ActiveSymbolsLoaded) {
         add(SubscribeTicks(activeSymbolsState.selectedSymbol));
       }
@@ -42,19 +43,19 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
 
       await _unsubscribeTick();
 
-      _subscribeTick(event.selectedSymbol)
+      _subscribeTick(event.selectedSymbol!)
           .handleError((dynamic error) => error is TickException
               ? add(YieldError(error.message))
               : add(YieldError(error.toString())))
-          .listen((TicksResponse tick) => add(YieldTick(tick)));
+          .listen((TicksResponse? tick) => add(YieldTick(tick)));
     } else if (event is YieldTick) {
-      yield TicksLoaded(event.tick.tick);
+      yield TicksLoaded(event.tick?.tick);
     } else if (event is YieldError) {
       yield TicksError(event.message);
     }
   }
 
-  Stream<TicksResponse> _subscribeTick(ActiveSymbolsItem selectedSymbol) =>
+  Stream<TicksResponse?> _subscribeTick(ActiveSymbolsItem selectedSymbol) =>
       TicksResponse.subscribeTick(
         TicksSend(ticks: selectedSymbol.symbol),
       );

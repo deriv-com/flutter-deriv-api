@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/states_list_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/states_list_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// States list receive class
+/// States list receive class.
 class StatesListReceive extends Response {
-  /// Initialize StatesListReceive
+  /// Initialize StatesListReceive.
   const StatesListReceive({
     this.statesList,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -19,21 +20,21 @@ class StatesListReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory StatesListReceive.fromJson(Map<String, dynamic> json) =>
       StatesListReceive(
-        statesList: (json['states_list'] as List<dynamic>)
+        statesList: (json['states_list'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
-            ?.toList(),
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+            .toList(),
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// List of states.
-  final List<Map<String, dynamic>> statesList;
+  final List<Map<String, dynamic>>? statesList;
 
   /// Converts this instance to JSON
   @override
@@ -48,11 +49,11 @@ class StatesListReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   StatesListReceive copyWith({
-    List<Map<String, dynamic>> statesList,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    List<Map<String, dynamic>>? statesList,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       StatesListReceive(
         statesList: statesList ?? this.statesList,
@@ -62,7 +63,7 @@ class StatesListReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

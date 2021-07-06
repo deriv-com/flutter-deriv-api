@@ -6,6 +6,6 @@ import 'common_exception.dart';
 class TickException extends CommonException {
   /// Initializes
   TickException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

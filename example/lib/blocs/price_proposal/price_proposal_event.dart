@@ -51,7 +51,7 @@ class YieldError extends PriceProposalEvent {
   YieldError(this.message);
 
   /// Error message
-  final String message;
+  final String? message;
 
   @override
   String toString() => 'Proposal $message';

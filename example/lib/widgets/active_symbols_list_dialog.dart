@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_deriv_api/api/response/active_symbols_receive_result.dart';
 import 'package:flutter_deriv_api_example/blocs/active_symbols/active_symbols_bloc.dart';
 
+/// ActiveSymbolsListDialog
 class ActiveSymbolsListDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
@@ -14,7 +15,8 @@ class ActiveSymbolsListDialog extends StatelessWidget {
               child: ListView.builder(
                 itemCount: state.activeSymbols.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final ActiveSymbolsItem activeSymbol = state.activeSymbols[index];
+                  final ActiveSymbolsItem activeSymbol =
+                      state.activeSymbols[index];
 
                   return ListTile(
                     title: Text(activeSymbol.displayName),

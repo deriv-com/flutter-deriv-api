@@ -1,45 +1,44 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/contract_update_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Contract update send class
+/// Contract update send class.
 class ContractUpdateSend extends Request {
-  /// Initialize ContractUpdateSend
+  /// Initialize ContractUpdateSend.
   const ContractUpdateSend({
-    @required this.contractId,
+    required this.contractId,
     this.contractUpdate = true,
-    @required this.limitOrder,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    required this.limitOrder,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'contract_update',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ContractUpdateSend.fromJson(Map<String, dynamic> json) =>
       ContractUpdateSend(
-        contractId: json['contract_id'] as int,
+        contractId: json['contract_id'] as int?,
         contractUpdate: json['contract_update'] == null
             ? null
             : json['contract_update'] == 1,
-        limitOrder: json['limit_order'] as Map<String, dynamic>,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        limitOrder: json['limit_order'] as Map<String, dynamic>?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Internal unique contract identifier.
-  final int contractId;
+  final int? contractId;
 
   /// Must be `true`
-  final bool contractUpdate;
+  final bool? contractUpdate;
 
   /// Specify limit order to update.
-  final Map<String, dynamic> limitOrder;
+  final Map<String, dynamic>? limitOrder;
 
   /// Converts this instance to JSON
   @override
@@ -47,7 +46,7 @@ class ContractUpdateSend extends Request {
         'contract_id': contractId,
         'contract_update': contractUpdate == null
             ? null
-            : contractUpdate
+            : contractUpdate!
                 ? 1
                 : 0,
         'limit_order': limitOrder,
@@ -58,11 +57,11 @@ class ContractUpdateSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ContractUpdateSend copyWith({
-    int contractId,
-    bool contractUpdate,
-    Map<String, dynamic> limitOrder,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    int? contractId,
+    bool? contractUpdate,
+    Map<String, dynamic>? limitOrder,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ContractUpdateSend(
         contractId: contractId ?? this.contractId,
@@ -72,7 +71,7 @@ class ContractUpdateSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

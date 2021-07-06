@@ -6,6 +6,6 @@ import 'common_exception.dart';
 class StateException extends CommonException {
   /// Initializes
   StateException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

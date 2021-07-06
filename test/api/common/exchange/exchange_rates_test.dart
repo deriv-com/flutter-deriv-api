@@ -10,18 +10,19 @@ void main() {
   setUp(() => APIInitializer().initialize(isMock: true));
 
   test('Fetch Exchange Rates', () async {
-    final ExchangeRates exchangeRates = await ExchangeRatesResponse.fetchExchangeRates(
+    final ExchangeRates? exchangeRates =
+        await ExchangeRatesResponse.fetchExchangeRates(
       const ExchangeRatesSend(baseCurrency: 'USD'),
     );
 
-    expect(exchangeRates.baseCurrency, 'USD');
-    expect(exchangeRates.date, getDateTime(1588064134));
+    expect(exchangeRates?.baseCurrency, 'USD');
+    expect(exchangeRates?.date, getDateTime(1588064134));
 
-    expect(exchangeRates.rates.length, 9);
+    expect(exchangeRates?.rates!.length, 9);
 
-    // final List<RateModel> rates = exchangeRates.rates;
+    final Map<String, double>? rates = exchangeRates?.rates;
 
-    // expect(rates[4].code, 'GBP');
-    // expect(rates[4].rate, 0.8);
+    expect(rates?.entries.toList()[4].key, 'GBP');
+    expect(rates?.entries.toList()[4].value, 0.8);
   });
 }

@@ -6,6 +6,6 @@ import 'app_exception.dart';
 class NewAccountException extends AppException {
   /// Initializes
   NewAccountException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

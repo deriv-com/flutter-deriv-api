@@ -6,6 +6,6 @@ import 'p2p_exception.dart';
 class P2PAdvertiserStatsException extends P2PException {
   /// Initializes
   P2PAdvertiserStatsException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

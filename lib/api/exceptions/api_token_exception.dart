@@ -6,6 +6,6 @@ import 'account_exception.dart';
 class APITokenException extends AccountException {
   /// Initializes
   APITokenException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

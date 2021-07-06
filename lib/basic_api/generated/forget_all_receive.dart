@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_all_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/forget_all_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Forget all receive class
+/// Forget all receive class.
 class ForgetAllReceive extends Response {
-  /// Initialize ForgetAllReceive
+  /// Initialize ForgetAllReceive.
   const ForgetAllReceive({
     this.forgetAll,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -19,18 +20,18 @@ class ForgetAllReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ForgetAllReceive.fromJson(Map<String, dynamic> json) =>
       ForgetAllReceive(
-        forgetAll: json['forget_all'] as List<dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        forgetAll: json['forget_all'] as List<dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// IDs of the cancelled streams
-  final List<dynamic> forgetAll;
+  final List<dynamic>? forgetAll;
 
   /// Converts this instance to JSON
   @override
@@ -45,11 +46,11 @@ class ForgetAllReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   ForgetAllReceive copyWith({
-    List<dynamic> forgetAll,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    List<dynamic>? forgetAll,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       ForgetAllReceive(
         forgetAll: forgetAll ?? this.forgetAll,
@@ -59,7 +60,7 @@ class ForgetAllReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

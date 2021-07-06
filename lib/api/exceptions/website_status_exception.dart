@@ -6,6 +6,6 @@ import 'common_exception.dart';
 class WebsiteStatusException extends CommonException {
   /// Initializes
   WebsiteStatusException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:meta/meta.dart';
 
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
@@ -21,17 +20,17 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
   SubscriptionManager(BaseAPI api) : super(api);
 
   /// Gets [subscriptionId] by [requestId]
-  String getSubscriptionId(int requestId) =>
+  String? getSubscriptionId(int? requestId) =>
       pendingRequests[requestId]?.subscriptionId;
 
   /// Gets [subscriptionStream] by [requestId]
-  SubscriptionStream<Response> getSubscriptionStream(int requestId) =>
+  SubscriptionStream<Response>? getSubscriptionStream(int? requestId) =>
       pendingRequests[requestId]?.subscriptionStream;
 
   @override
   void handleResponse({
-    @required int requestId,
-    @required Map<String, dynamic> response,
+    required int requestId,
+    required Map<String, dynamic> response,
   }) {
     super.handleResponse(requestId: requestId, response: response);
 
@@ -53,23 +52,23 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
 
   @override
   Stream<Response> call({
-    @required Request request,
+    required Request request,
     int cacheSize = 0,
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) {
-    assert(cacheSize == null || cacheSize >= 0);
+    assert(cacheSize >= 0);
 
-    final PendingRequest<Response> pendingRequest = _getPendingRequest(
+    final PendingRequest<Response>? pendingRequest = _getPendingRequest(
       request: request,
       pendingRequests: pendingRequests,
       comparePredicate: comparePredicate,
     );
 
     if (pendingRequest != null) {
-      pendingRequests[pendingRequest.request.reqId] =
+      pendingRequests[pendingRequest.request!.reqId!] =
           _increaseListenersCount(pendingRequest);
 
-      return pendingRequest.subscriptionStream.stream
+      return pendingRequest.subscriptionStream!.stream
           .skip(cacheSize == 0 ? 1 : 0);
     }
 
@@ -86,11 +85,11 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
 
   /// Unsubscribe with a specific [subscriptionId]
   Future<ForgetReceive> unsubscribe({
-    @required String subscriptionId,
+    required String subscriptionId,
     bool onlyCurrentListener = true,
   }) async {
     final int requestId = pendingRequests.keys.singleWhere(
-      (int id) => getSubscriptionId(id) == subscriptionId,
+      (int? id) => getSubscriptionId(id) == subscriptionId,
       orElse: () => -1,
     );
 
@@ -104,9 +103,9 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
         },
       );
     } else if (onlyCurrentListener &&
-        pendingRequests[requestId].listenersCount > 1) {
+        pendingRequests[requestId]!.listenersCount > 1) {
       pendingRequests[requestId] = _decreaseListenersCount(
-        pendingRequests[requestId],
+        pendingRequests[requestId]!,
       );
 
       return const ForgetReceive(forget: true, msgType: 'forget');
@@ -121,20 +120,20 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
       await _removePendingRequest(requestId);
     }
 
-    return response;
+    return response as ForgetReceive;
   }
 
   /// Unsubscribe to multiple [method]s all at once
   Future<ForgetAllReceive> unsubscribeAll({
-    @required ForgetStreamType method,
+    required ForgetStreamType method,
   }) async {
-    final String methodName = getStringFromEnum(method);
+    final String? methodName = getStringFromEnum(method);
 
     final List<int> requestIds = pendingRequests.keys.where(
-      (int id) {
-        final PendingRequest<Response> pendingRequest = pendingRequests[id];
+      (int? id) {
+        final PendingRequest<Response> pendingRequest = pendingRequests[id]!;
 
-        return pendingRequest.request.msgType == methodName &&
+        return pendingRequest.request!.msgType == methodName &&
             pendingRequest.isSubscribed;
       },
     ).toList();
@@ -152,27 +151,27 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     return response;
   }
 
-  Future<void> _removePendingRequest(int requestId) async {
+  Future<void> _removePendingRequest(int? requestId) async {
     await getSubscriptionStream(requestId)?.closeStream();
 
     pendingRequests.remove(requestId);
   }
 
   void _setSubscriptionId({
-    @required int requestId,
-    @required String subscriptionId,
+    required int requestId,
+    required String? subscriptionId,
   }) =>
       pendingRequests[requestId] =
           pendingRequests[requestId]?.copyWith(subscriptionId: subscriptionId);
 
-  PendingRequest<Response> _getPendingRequest({
-    @required Request request,
-    @required Map<int, PendingRequest<Response>> pendingRequests,
-    RequestCompareFunction comparePredicate,
+  PendingRequest<Response>? _getPendingRequest({
+    required Request request,
+    required Map<int?, PendingRequest<Response>?> pendingRequests,
+    RequestCompareFunction? comparePredicate,
   }) =>
       pendingRequests.values.firstWhere(
-        (PendingRequest<Response> pendingRequest) {
-          final bool equatableResult = request == pendingRequest.request;
+        (PendingRequest<Response>? pendingRequest) {
+          final bool equatableResult = request == pendingRequest!.request;
 
           return comparePredicate == null
               ? equatableResult

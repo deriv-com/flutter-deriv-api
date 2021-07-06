@@ -6,15 +6,11 @@ import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';
 
 void main() {
   group('Connection Bloc =>', () {
-    ConnectionBloc connectionBloc;
+    late final ConnectionBloc connectionBloc;
 
     setUpAll(
       () => connectionBloc = ConnectionBloc(
-        ConnectionInformation(
-          appId: '1089',
-          brand: 'deriv',
-          endpoint: 'frontend.binaryws.com',
-        ),
+        ConnectionInformation(appId: '', brand: '', endpoint: ''),
         isMock: true,
       ),
     );
@@ -25,21 +21,21 @@ void main() {
       'Emits [Connect] Test.',
       build: () => connectionBloc,
       act: (ConnectionBloc bloc) async => bloc.add(Connect()),
-      expect: <dynamic>[isA<Connected>()],
+      expect: () => <dynamic>[isA<Connected>()],
     );
 
     blocTest<ConnectionBloc, ConnectionState>(
       'Emits [Disconnect] Test.',
       build: () => connectionBloc,
       act: (ConnectionBloc bloc) async => bloc.add(Disconnect()),
-      expect: <dynamic>[],
+      expect: () => <dynamic>[],
     );
 
     blocTest<ConnectionBloc, ConnectionState>(
       'Emits [Reconnect] Test.',
       build: () => connectionBloc,
       act: (ConnectionBloc bloc) async => bloc.add(Reconnect()),
-      expect: <dynamic>[],
+      expect: () => <dynamic>[],
     );
   });
 }

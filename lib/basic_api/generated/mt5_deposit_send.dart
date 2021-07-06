@@ -1,48 +1,47 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Mt5 deposit send class
+/// Mt5 deposit send class.
 class Mt5DepositSend extends Request {
-  /// Initialize Mt5DepositSend
+  /// Initialize Mt5DepositSend.
   const Mt5DepositSend({
-    @required this.amount,
-    @required this.fromBinary,
+    required this.amount,
+    required this.fromBinary,
     this.mt5Deposit = true,
-    @required this.toMt5,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    required this.toMt5,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'mt5_deposit',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5DepositSend.fromJson(Map<String, dynamic> json) => Mt5DepositSend(
-        amount: json['amount'] as num,
-        fromBinary: json['from_binary'] as String,
+        amount: json['amount'] as num?,
+        fromBinary: json['from_binary'] as String?,
         mt5Deposit:
             json['mt5_deposit'] == null ? null : json['mt5_deposit'] == 1,
-        toMt5: json['to_mt5'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        toMt5: json['to_mt5'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Amount to deposit (in the currency of from_binary); min = $1 or an equivalent amount, max = $20000 or an equivalent amount
-  final num amount;
+  final num? amount;
 
   /// Binary account loginid to transfer money from
-  final String fromBinary;
+  final String? fromBinary;
 
   /// Must be `true`
-  final bool mt5Deposit;
+  final bool? mt5Deposit;
 
   /// MT5 account login to deposit money to
-  final String toMt5;
+  final String? toMt5;
 
   /// Converts this instance to JSON
   @override
@@ -51,7 +50,7 @@ class Mt5DepositSend extends Request {
         'from_binary': fromBinary,
         'mt5_deposit': mt5Deposit == null
             ? null
-            : mt5Deposit
+            : mt5Deposit!
                 ? 1
                 : 0,
         'to_mt5': toMt5,
@@ -62,12 +61,12 @@ class Mt5DepositSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   Mt5DepositSend copyWith({
-    num amount,
-    String fromBinary,
-    bool mt5Deposit,
-    String toMt5,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    num? amount,
+    String? fromBinary,
+    bool? mt5Deposit,
+    String? toMt5,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       Mt5DepositSend(
         amount: amount ?? this.amount,
@@ -78,7 +77,7 @@ class Mt5DepositSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

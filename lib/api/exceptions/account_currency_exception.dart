@@ -6,6 +6,6 @@ import 'account_exception.dart';
 class AccountCurrencyException extends AccountException {
   /// Initializes
   AccountCurrencyException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

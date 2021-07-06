@@ -25,54 +25,64 @@ void main() {
         const AppGetSend(appGet: 1234),
       );
 
-      expect(appDetails.appGet.appId, 1234);
-      expect(appDetails.appGet.appMarkupPercentage, 22.0);
-      expect(appDetails.appGet.appstore, 'https://itunes.apple.com/test_app');
-      expect(appDetails.appGet.github, 'https://github.com/test_org/app');
+      expect(appDetails.appGet?.appId, 1234);
+      expect(appDetails.appGet?.appMarkupPercentage, 22.0);
+      expect(appDetails.appGet?.appstore, 'https://itunes.apple.com/test_app');
+      expect(appDetails.appGet?.github, 'https://github.com/test_org/app');
       expect(
-        appDetails.appGet.googleplay,
+        appDetails.appGet?.googleplay,
         'https://play.google.com/store/apps/details?id=test.app',
       );
-      expect(appDetails.appGet.homepage, 'https://test.example.com/');
-      expect(appDetails.appGet.name, 'Test Application');
+      expect(appDetails.appGet?.homepage, 'https://test.example.com/');
+      expect(appDetails.appGet?.name, 'Test Application');
       expect(
-          appDetails.appGet.redirectUri, 'https://test.example.com/redirect');
-      expect(
-          appDetails.appGet.verificationUri, 'https://test.example.com/verify');
+          appDetails.appGet?.redirectUri, 'https://test.example.com/redirect');
+      expect(appDetails.appGet?.verificationUri,
+          'https://test.example.com/verify');
     });
 
     test('Fetch Application List Test', () async {
-      final List<AppGetResponse> appList =
+      final List<AppGetResponse?>? appList =
           await AppGetResponse.fetchApplicationList(
         const AppListSend(),
       );
 
-      expect(appList.length, 1);
+      expect(appList!.length, 1);
 
-      expect(appList.first.appGet.appId, 1234);
-      expect(appList.first.appGet.appMarkupPercentage, 22.0);
+      expect(appList.first?.appGet?.appId, 1234);
+      expect(appList.first?.appGet?.appMarkupPercentage, 22.0);
       expect(
-          appList.first.appGet.appstore, 'https://itunes.apple.com/test_app');
-      expect(appList.first.appGet.github, 'https://github.com/test_org/app');
+          appList.first?.appGet?.appstore, 'https://itunes.apple.com/test_app');
+      expect(appList.first?.appGet?.github, 'https://github.com/test_org/app');
       expect(
-        appList.first.appGet.googleplay,
+        appList.first?.appGet?.googleplay,
         'https://play.google.com/store/apps/details?id=test.app',
       );
-      expect(appList.first.appGet.homepage, 'https://test.example.com/');
-      expect(appList.first.appGet.name, 'Test Application');
-      expect(appList.first.appGet.redirectUri,
+      expect(appList.first?.appGet?.homepage, 'https://test.example.com/');
+      expect(appList.first?.appGet?.name, 'Test Application');
+      expect(appList.first?.appGet?.redirectUri,
           'https://test.example.com/redirect');
-      expect(appList.first.appGet.verificationUri,
+      expect(appList.first?.appGet?.verificationUri,
           'https://test.example.com/verify');
     });
 
     test('Fetch Markup Details Test', () async {
       final AppMarkupDetailsResponse appMarkupDetails = await AppGetResponse(
-        appGet: AppGet(appId: 1234),
+        appGet: AppGet(
+          appId: 1234,
+          appstore: '',
+          googleplay: '',
+          github: '',
+          homepage: '',
+          verificationUri: '',
+          redirectUri: '',
+          appMarkupPercentage: 0,
+          name: '',
+        ),
       ).fetchApplicationMarkupDetails(
         clientLoginId: 'CR12345',
-        dateFrom: DateTime.tryParse('2017-08-01 00:00:00'),
-        dateTo: DateTime.tryParse('2017-08-31 23:59:59'),
+        dateFrom: DateTime.tryParse('2017-08-01 00:00:00')!,
+        dateTo: DateTime.tryParse('2017-08-31 23:59:59')!,
         description: true,
         limit: 100,
         offset: 0,
@@ -80,26 +90,30 @@ void main() {
         sortFields: <String>['app_id'],
       );
 
-      expect(appMarkupDetails.appMarkupDetails.transactions.length, 1);
+      expect(appMarkupDetails.appMarkupDetails?.transactions?.length, 1);
 
-      expect(appMarkupDetails.appMarkupDetails.transactions.first.appId, 1234);
       expect(
-          appMarkupDetails.appMarkupDetails.transactions.first.appMarkup, 15.0);
-      expect(appMarkupDetails.appMarkupDetails.transactions.first.appMarkupUsd,
+          appMarkupDetails.appMarkupDetails?.transactions?.first.appId, 1234);
+      expect(appMarkupDetails.appMarkupDetails?.transactions?.first.appMarkup,
+          15.0);
+      expect(
+          appMarkupDetails.appMarkupDetails?.transactions?.first.appMarkupUsd,
           25.0);
       expect(
-          appMarkupDetails.appMarkupDetails.transactions.first.appMarkupValue,
+          appMarkupDetails.appMarkupDetails?.transactions?.first.appMarkupValue,
           12.0);
       expect(
-          appMarkupDetails.appMarkupDetails.transactions.first.clientCurrcode,
+          appMarkupDetails.appMarkupDetails?.transactions?.first.clientCurrcode,
           'USD');
-      expect(appMarkupDetails.appMarkupDetails.transactions.first.clientLoginid,
+      expect(
+          appMarkupDetails.appMarkupDetails?.transactions?.first.clientLoginid,
           'CR12345');
-      expect(appMarkupDetails.appMarkupDetails.transactions.first.devCurrcode,
+      expect(appMarkupDetails.appMarkupDetails?.transactions?.first.devCurrcode,
           'USD');
-      expect(appMarkupDetails.appMarkupDetails.transactions.first.devLoginid,
+      expect(appMarkupDetails.appMarkupDetails?.transactions?.first.devLoginid,
           'CR45627');
-      expect(appMarkupDetails.appMarkupDetails.transactions.first.transactionId,
+      expect(
+          appMarkupDetails.appMarkupDetails?.transactions?.first.transactionId,
           10867502908);
       // expect(
       //   appMarkupDetails.appMarkupDetails.transactions.first.transactionTime,
@@ -109,7 +123,17 @@ void main() {
 
     test('Application Delete Test', () async {
       final AppDeleteResponse appDelete = await AppGetResponse(
-        appGet: AppGet(appId: 1234),
+        appGet: AppGet(
+          appId: 1234,
+          appstore: '',
+          googleplay: '',
+          github: '',
+          homepage: '',
+          verificationUri: '',
+          redirectUri: '',
+          appMarkupPercentage: 0,
+          name: '',
+        ),
       ).deleteApplication();
 
       expect(appDelete.appDelete, 1);
@@ -118,36 +142,38 @@ void main() {
     test('Application Register Test', () async {
       final AppRegisterResponse appRegister = await AppGetResponse(
         appGet: AppGet(
-          appId: 1234,
-          appstore: 'https://itunes.apple.com/test_app',
-          github: 'https://github.com/test_org/app',
-          googleplay: 'https://play.google.com/store/apps/details?id=test.app',
-          homepage: 'https://test.example.com/',
-          name: 'Test Application',
-          redirectUri: 'https://test.example.com/redirect',
-          verificationUri: 'https://test.example.com/verify',
-        ),
+            appId: 1234,
+            appstore: 'https://itunes.apple.com/test_app',
+            github: 'https://github.com/test_org/app',
+            googleplay:
+                'https://play.google.com/store/apps/details?id=test.app',
+            homepage: 'https://test.example.com/',
+            name: 'Test Application',
+            redirectUri: 'https://test.example.com/redirect',
+            verificationUri: 'https://test.example.com/verify',
+            appMarkupPercentage: 0),
       ).registerApplication(scopes: <TokenScope>[TokenScope.admin]);
 
-      expect(appRegister.appRegister.appId, 1234);
-      expect(appRegister.appRegister.appMarkupPercentage, 22.0);
+      expect(appRegister.appRegister?.appId, 1234);
+      expect(appRegister.appRegister?.appMarkupPercentage, 22.0);
       expect(
-        appRegister.appRegister.appstore,
+        appRegister.appRegister?.appstore,
         'https://itunes.apple.com/test_app',
       );
-      expect(appRegister.appRegister.github, 'https://github.com/test_org/app');
       expect(
-        appRegister.appRegister.googleplay,
+          appRegister.appRegister?.github, 'https://github.com/test_org/app');
+      expect(
+        appRegister.appRegister?.googleplay,
         'https://play.google.com/store/apps/details?id=test.app',
       );
-      expect(appRegister.appRegister.homepage, 'https://test.example.com/');
-      expect(appRegister.appRegister.name, 'Test Application');
+      expect(appRegister.appRegister?.homepage, 'https://test.example.com/');
+      expect(appRegister.appRegister?.name, 'Test Application');
       expect(
-        appRegister.appRegister.redirectUri,
+        appRegister.appRegister?.redirectUri,
         'https://test.example.com/redirect',
       );
       expect(
-        appRegister.appRegister.verificationUri,
+        appRegister.appRegister?.verificationUri,
         'https://test.example.com/verify',
       );
     });
@@ -155,36 +181,36 @@ void main() {
     test('Application Update Test', () async {
       final AppUpdateResponse appRegister =
           await AppUpdateResponse.updateApplication(const AppUpdateSend(
-        appUpdate: 1234,
-        appstore: 'https://itunes.apple.com/test_app',
-        github: 'https://github.com/test_org/app',
-        googleplay: 'https://play.google.com/store/apps/details?id=test.app',
-        homepage: 'https://test.example.com/',
-        name: 'Test Application',
-        redirectUri: 'https://test.example.com/redirect',
-        verificationUri: 'https://test.example.com/verify',
-        scopes: <String>['admin']
-      ));
+              appUpdate: 1234,
+              appstore: 'https://itunes.apple.com/test_app',
+              github: 'https://github.com/test_org/app',
+              googleplay:
+                  'https://play.google.com/store/apps/details?id=test.app',
+              homepage: 'https://test.example.com/',
+              name: 'Test Application',
+              redirectUri: 'https://test.example.com/redirect',
+              verificationUri: 'https://test.example.com/verify',
+              scopes: <String>['admin']));
 
-      expect(appRegister.appUpdate.appId, 1234);
-      expect(appRegister.appUpdate.appMarkupPercentage, 22.0);
+      expect(appRegister.appUpdate?.appId, 1234);
+      expect(appRegister.appUpdate?.appMarkupPercentage, 22.0);
       expect(
-        appRegister.appUpdate.appstore,
+        appRegister.appUpdate?.appstore,
         'https://itunes.apple.com/test_app',
       );
-      expect(appRegister.appUpdate.github, 'https://github.com/test_org/app');
+      expect(appRegister.appUpdate?.github, 'https://github.com/test_org/app');
       expect(
-        appRegister.appUpdate.googleplay,
+        appRegister.appUpdate?.googleplay,
         'https://play.google.com/store/apps/details?id=test.app',
       );
-      expect(appRegister.appUpdate.homepage, 'https://test.example.com/');
-      expect(appRegister.appUpdate.name, 'Test Application');
+      expect(appRegister.appUpdate?.homepage, 'https://test.example.com/');
+      expect(appRegister.appUpdate?.name, 'Test Application');
       expect(
-        appRegister.appUpdate.redirectUri,
+        appRegister.appUpdate?.redirectUri,
         'https://test.example.com/redirect',
       );
       expect(
-        appRegister.appUpdate.verificationUri,
+        appRegister.appUpdate?.verificationUri,
         'https://test.example.com/verify',
       );
     });

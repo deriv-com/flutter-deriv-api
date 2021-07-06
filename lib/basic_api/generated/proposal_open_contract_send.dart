@@ -1,43 +1,44 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_open_contract_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/proposal_open_contract_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Proposal open contract send class
+/// Proposal open contract send class.
 class ProposalOpenContractSend extends Request {
-  /// Initialize ProposalOpenContractSend
+  /// Initialize ProposalOpenContractSend.
   const ProposalOpenContractSend({
     this.contractId,
     this.proposalOpenContract = true,
     this.subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'proposal_open_contract',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ProposalOpenContractSend.fromJson(Map<String, dynamic> json) =>
       ProposalOpenContractSend(
-        contractId: json['contract_id'] as int,
+        contractId: json['contract_id'] as int?,
         proposalOpenContract: json['proposal_open_contract'] == null
             ? null
             : json['proposal_open_contract'] == 1,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Contract ID received from a `portfolio` request. If not set, you will receive stream of all open contracts.
-  final int contractId;
+  final int? contractId;
 
   /// Must be `true`
-  final bool proposalOpenContract;
+  final bool? proposalOpenContract;
 
   /// [Optional] `true` to stream.
-  final bool subscribe;
+  final bool? subscribe;
 
   /// Converts this instance to JSON
   @override
@@ -45,12 +46,12 @@ class ProposalOpenContractSend extends Request {
         'contract_id': contractId,
         'proposal_open_contract': proposalOpenContract == null
             ? null
-            : proposalOpenContract
+            : proposalOpenContract!
                 ? 1
                 : 0,
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -60,11 +61,11 @@ class ProposalOpenContractSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ProposalOpenContractSend copyWith({
-    int contractId,
-    bool proposalOpenContract,
-    bool subscribe,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    int? contractId,
+    bool? proposalOpenContract,
+    bool? subscribe,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ProposalOpenContractSend(
         contractId: contractId ?? this.contractId,
@@ -74,7 +75,7 @@ class ProposalOpenContractSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

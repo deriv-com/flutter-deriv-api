@@ -1,38 +1,39 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/payment_methods_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/payment_methods_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Payment methods send class
+/// Payment methods send class.
 class PaymentMethodsSend extends Request {
-  /// Initialize PaymentMethodsSend
+  /// Initialize PaymentMethodsSend.
   const PaymentMethodsSend({
     this.country,
     this.paymentMethods = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'payment_methods',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentMethodsSend.fromJson(Map<String, dynamic> json) =>
       PaymentMethodsSend(
-        country: json['country'] as String,
+        country: json['country'] as String?,
         paymentMethods: json['payment_methods'] == null
             ? null
             : json['payment_methods'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] 2-letter country code (ISO standard).
-  final String country;
+  final String? country;
 
   /// Must be `true`
-  final bool paymentMethods;
+  final bool? paymentMethods;
 
   /// Converts this instance to JSON
   @override
@@ -40,7 +41,7 @@ class PaymentMethodsSend extends Request {
         'country': country,
         'payment_methods': paymentMethods == null
             ? null
-            : paymentMethods
+            : paymentMethods!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -50,10 +51,10 @@ class PaymentMethodsSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   PaymentMethodsSend copyWith({
-    String country,
-    bool paymentMethods,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? country,
+    bool? paymentMethods,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       PaymentMethodsSend(
         country: country ?? this.country,
@@ -62,7 +63,7 @@ class PaymentMethodsSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

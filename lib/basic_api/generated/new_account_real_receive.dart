@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_real_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// New account real receive class
+/// New account real receive class.
 class NewAccountRealReceive extends Response {
-  /// Initialize NewAccountRealReceive
+  /// Initialize NewAccountRealReceive.
   const NewAccountRealReceive({
     this.newAccountReal,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -19,18 +20,18 @@ class NewAccountRealReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory NewAccountRealReceive.fromJson(Map<String, dynamic> json) =>
       NewAccountRealReceive(
-        newAccountReal: json['new_account_real'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        newAccountReal: json['new_account_real'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// New real money account details
-  final Map<String, dynamic> newAccountReal;
+  final Map<String, dynamic>? newAccountReal;
 
   /// Converts this instance to JSON
   @override
@@ -45,11 +46,11 @@ class NewAccountRealReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   NewAccountRealReceive copyWith({
-    Map<String, dynamic> newAccountReal,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? newAccountReal,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       NewAccountRealReceive(
         newAccountReal: newAccountReal ?? this.newAccountReal,
@@ -59,7 +60,7 @@ class NewAccountRealReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

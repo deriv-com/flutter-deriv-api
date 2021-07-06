@@ -10,18 +10,18 @@ void main() {
 
   test('Fetch Portfolio Test', () async {
     final PortfolioResponse portfolio = await PortfolioResponse.fetchPortfolio(
-      const PortfolioSend(),
+      const PortfolioSend(contractType: <String>[]),
     );
 
-    expect(portfolio.portfolio.contracts.first.currency, 'USD');
-    expect(portfolio.portfolio.contracts.first.payout, 10.88);
-    expect(portfolio.portfolio.contracts.first.symbol, '1HZ50V');
-    expect(portfolio.portfolio.contracts.first.transactionId, 160058875308);
-    expect(portfolio.portfolio.contracts.first.contractId, 98350591008);
-    expect(portfolio.portfolio.contracts.first.contractType, 'MULTUP');
-    expect(portfolio.portfolio.contracts.first.purchaseTime, getDateTime(1587634074));
-    expect(portfolio.portfolio.contracts.first.expiryTime, getDateTime(1587761700));
-    expect(portfolio.portfolio.contracts.first.expiryTime, getDateTime(1587761700));
-    expect(portfolio.portfolio.contracts.first.buyPrice, 10.52);
+    expect(portfolio.portfolio?.contracts.first.currency, 'USD');
+    expect(portfolio.portfolio?.contracts.first.payout, 10.88);
+    expect(portfolio.portfolio?.contracts.first.symbol, '1HZ50V');
+    expect(portfolio.portfolio?.contracts.first.transactionId, 160058875308);
+    expect(portfolio.portfolio?.contracts.first.contractId, 98350591008);
+    expect(portfolio.portfolio?.contracts.first.contractType, 'MULTUP');
+    expect(portfolio.portfolio?.contracts.first.purchaseTime, getDateTime(1587634074));
+    expect(portfolio.portfolio?.contracts.first.expiryTime, getDateTime(1587761700));
+    expect(portfolio.portfolio?.contracts.first.expiryTime, getDateTime(1587761700));
+    expect(portfolio.portfolio?.contracts.first.buyPrice, 10.52);
   });
 }

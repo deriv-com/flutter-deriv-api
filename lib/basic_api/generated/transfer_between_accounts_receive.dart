@@ -1,21 +1,22 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transfer_between_accounts_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Transfer between accounts receive class
+/// Transfer between accounts receive class.
 class TransferBetweenAccountsReceive extends Response {
-  /// Initialize TransferBetweenAccountsReceive
+  /// Initialize TransferBetweenAccountsReceive.
   const TransferBetweenAccountsReceive({
     this.accounts,
     this.clientToFullName,
     this.clientToLoginid,
     this.transactionId,
     this.transferBetweenAccounts,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -23,39 +24,39 @@ class TransferBetweenAccountsReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TransferBetweenAccountsReceive.fromJson(Map<String, dynamic> json) =>
       TransferBetweenAccountsReceive(
-        accounts: (json['accounts'] as List<dynamic>)
+        accounts: (json['accounts'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
-            ?.toList(),
-        clientToFullName: json['client_to_full_name'] as String,
-        clientToLoginid: json['client_to_loginid'] as String,
-        transactionId: json['transaction_id'] as int,
+            .toList(),
+        clientToFullName: json['client_to_full_name'] as String?,
+        clientToLoginid: json['client_to_loginid'] as String?,
+        transactionId: json['transaction_id'] as int?,
         transferBetweenAccounts: json['transfer_between_accounts'] == null
             ? null
             : json['transfer_between_accounts'] == 1,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The available accounts to transfer, or the accounts affected by a successful transfer.
-  final List<Map<String, dynamic>> accounts;
+  final List<Map<String, dynamic>>? accounts;
 
   /// The account to client full name
-  final String clientToFullName;
+  final String? clientToFullName;
 
   /// The account to client loginid
-  final String clientToLoginid;
+  final String? clientToLoginid;
 
   /// Reference ID of transfer performed
-  final int transactionId;
+  final int? transactionId;
 
   /// If set to `true`, transfer succeeded.
-  final bool transferBetweenAccounts;
+  final bool? transferBetweenAccounts;
 
   /// Converts this instance to JSON
   @override
@@ -66,7 +67,7 @@ class TransferBetweenAccountsReceive extends Response {
         'transaction_id': transactionId,
         'transfer_between_accounts': transferBetweenAccounts == null
             ? null
-            : transferBetweenAccounts
+            : transferBetweenAccounts!
                 ? 1
                 : 0,
         'echo_req': echoReq,
@@ -78,15 +79,15 @@ class TransferBetweenAccountsReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   TransferBetweenAccountsReceive copyWith({
-    List<Map<String, dynamic>> accounts,
-    String clientToFullName,
-    String clientToLoginid,
-    int transactionId,
-    bool transferBetweenAccounts,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    List<Map<String, dynamic>>? accounts,
+    String? clientToFullName,
+    String? clientToLoginid,
+    int? transactionId,
+    bool? transferBetweenAccounts,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       TransferBetweenAccountsReceive(
         accounts: accounts ?? this.accounts,
@@ -101,7 +102,7 @@ class TransferBetweenAccountsReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

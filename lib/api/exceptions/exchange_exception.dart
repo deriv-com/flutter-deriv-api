@@ -6,6 +6,6 @@ import 'common_exception.dart';
 class ExchangeException extends CommonException {
   /// Initializes
   ExchangeException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

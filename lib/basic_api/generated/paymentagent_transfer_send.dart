@@ -1,60 +1,59 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_transfer_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/paymentagent_transfer_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Paymentagent transfer send class
+/// Paymentagent transfer send class.
 class PaymentagentTransferSend extends Request {
-  /// Initialize PaymentagentTransferSend
+  /// Initialize PaymentagentTransferSend.
   const PaymentagentTransferSend({
-    @required this.amount,
-    @required this.currency,
+    required this.amount,
+    required this.currency,
     this.description,
     this.dryRun,
     this.paymentagentTransfer = true,
-    @required this.transferTo,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    required this.transferTo,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'paymentagent_transfer',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentagentTransferSend.fromJson(Map<String, dynamic> json) =>
       PaymentagentTransferSend(
-        amount: json['amount'] as num,
-        currency: json['currency'] as String,
-        description: json['description'] as String,
+        amount: json['amount'] as num?,
+        currency: json['currency'] as String?,
+        description: json['description'] as String?,
         dryRun: json['dry_run'] == null ? null : json['dry_run'] == 1,
         paymentagentTransfer: json['paymentagent_transfer'] == null
             ? null
             : json['paymentagent_transfer'] == 1,
-        transferTo: json['transfer_to'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        transferTo: json['transfer_to'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The amount to transfer.
-  final num amount;
+  final num? amount;
 
   /// Currency code.
-  final String currency;
+  final String? currency;
 
   /// [Optional] Remarks about the transfer.
-  final String description;
+  final String? description;
 
   /// [Optional] If set to `true`, just do validation.
-  final bool dryRun;
+  final bool? dryRun;
 
   /// Must be `true`
-  final bool paymentagentTransfer;
+  final bool? paymentagentTransfer;
 
   /// The loginid of the recipient account.
-  final String transferTo;
+  final String? transferTo;
 
   /// Converts this instance to JSON
   @override
@@ -64,12 +63,12 @@ class PaymentagentTransferSend extends Request {
         'description': description,
         'dry_run': dryRun == null
             ? null
-            : dryRun
+            : dryRun!
                 ? 1
                 : 0,
         'paymentagent_transfer': paymentagentTransfer == null
             ? null
-            : paymentagentTransfer
+            : paymentagentTransfer!
                 ? 1
                 : 0,
         'transfer_to': transferTo,
@@ -80,14 +79,14 @@ class PaymentagentTransferSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   PaymentagentTransferSend copyWith({
-    num amount,
-    String currency,
-    String description,
-    bool dryRun,
-    bool paymentagentTransfer,
-    String transferTo,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    num? amount,
+    String? currency,
+    String? description,
+    bool? dryRun,
+    bool? paymentagentTransfer,
+    String? transferTo,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       PaymentagentTransferSend(
         amount: amount ?? this.amount,
@@ -100,7 +99,7 @@ class PaymentagentTransferSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

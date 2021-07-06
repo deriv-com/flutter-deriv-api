@@ -3,7 +3,6 @@ import 'package:flutter_deriv_api/basic_api/generated/transfer_between_accounts_
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/models/enums.dart';
 
 
 void main() {
@@ -17,14 +16,15 @@ void main() {
         accountTo: 'MF100',
         amount: 100,
         currency: 'EUR',
+        transferBetweenAccounts: null,
       ),
     );
 
     expect(transferBetweenAccounts.transferBetweenAccounts, true);
 
-    expect(transferBetweenAccounts.accounts.length, 1);
+    expect(transferBetweenAccounts.accounts!.length, 1);
 
-    final AccountsItem account = transferBetweenAccounts.accounts.first;
+    final AccountsItem account = transferBetweenAccounts.accounts!.first;
 
     expect(account.accountType, AccountTypeEnum.mt5);
     expect(account.balance, '120.0');

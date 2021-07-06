@@ -9,13 +9,13 @@ void main() {
   test('Fetch Residence List Test', () async {
     final ResidenceListResponse residenceList =
         await ResidenceListResponse.fetchResidenceList();
-    final ResidenceListItem residence = residenceList.residenceList.first;
+    final ResidenceListItem residence = residenceList.residenceList!.first;
      expect(residence.phoneIdd, '00');
     // expect(residence.countryName, 'SampleCountry');
     // expect(residence.countryCode, 'sc');
     // expect(residence.disabled, 'DISABLED');
     // expect(residence.isDisabled, true);
     // expect(residence.isSelected, false);
-    expect(residenceList.residenceList.length, 1);
+    expect(residenceList.residenceList?.length, 1);
   });
 }

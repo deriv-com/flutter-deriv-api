@@ -1,50 +1,49 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_check_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_password_check_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Mt5 password check send class
+/// Mt5 password check send class.
 class Mt5PasswordCheckSend extends Request {
-  /// Initialize Mt5PasswordCheckSend
+  /// Initialize Mt5PasswordCheckSend.
   const Mt5PasswordCheckSend({
-    @required this.login,
+    required this.login,
     this.mt5PasswordCheck = true,
-    @required this.password,
+    required this.password,
     this.passwordType,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'mt5_password_check',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5PasswordCheckSend.fromJson(Map<String, dynamic> json) =>
       Mt5PasswordCheckSend(
-        login: json['login'] as String,
+        login: json['login'] as String?,
         mt5PasswordCheck: json['mt5_password_check'] == null
             ? null
             : json['mt5_password_check'] == 1,
-        password: json['password'] as String,
-        passwordType: json['password_type'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        password: json['password'] as String?,
+        passwordType: json['password_type'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// MT5 user login
-  final String login;
+  final String? login;
 
   /// Must be `true`
-  final bool mt5PasswordCheck;
+  final bool? mt5PasswordCheck;
 
   /// The password of the account.
-  final String password;
+  final String? password;
 
   /// [Optional] Type of the password to check.
-  final String passwordType;
+  final String? passwordType;
 
   /// Converts this instance to JSON
   @override
@@ -52,7 +51,7 @@ class Mt5PasswordCheckSend extends Request {
         'login': login,
         'mt5_password_check': mt5PasswordCheck == null
             ? null
-            : mt5PasswordCheck
+            : mt5PasswordCheck!
                 ? 1
                 : 0,
         'password': password,
@@ -64,12 +63,12 @@ class Mt5PasswordCheckSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   Mt5PasswordCheckSend copyWith({
-    String login,
-    bool mt5PasswordCheck,
-    String password,
-    String passwordType,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? login,
+    bool? mt5PasswordCheck,
+    String? password,
+    String? passwordType,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       Mt5PasswordCheckSend(
         login: login ?? this.login,
@@ -80,7 +79,7 @@ class Mt5PasswordCheckSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

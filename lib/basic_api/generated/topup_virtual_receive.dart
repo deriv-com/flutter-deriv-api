@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/topup_virtual_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/topup_virtual_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Topup virtual receive class
+/// Topup virtual receive class.
 class TopupVirtualReceive extends Response {
-  /// Initialize TopupVirtualReceive
+  /// Initialize TopupVirtualReceive.
   const TopupVirtualReceive({
     this.topupVirtual,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -19,18 +20,18 @@ class TopupVirtualReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TopupVirtualReceive.fromJson(Map<String, dynamic> json) =>
       TopupVirtualReceive(
-        topupVirtual: json['topup_virtual'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        topupVirtual: json['topup_virtual'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// The information regarding a successful top up for a virtual money account
-  final Map<String, dynamic> topupVirtual;
+  final Map<String, dynamic>? topupVirtual;
 
   /// Converts this instance to JSON
   @override
@@ -45,11 +46,11 @@ class TopupVirtualReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   TopupVirtualReceive copyWith({
-    Map<String, dynamic> topupVirtual,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? topupVirtual,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       TopupVirtualReceive(
         topupVirtual: topupVirtual ?? this.topupVirtual,
@@ -59,7 +60,7 @@ class TopupVirtualReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

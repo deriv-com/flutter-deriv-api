@@ -19,11 +19,11 @@ class OHLC extends TickBase {
     this.low,
     this.open,
     this.openTime,
-    DateTime epoch,
-    String id,
-    int pipeSize,
-    String symbol,
-    SubscriptionModel subscriptionInformation,
+    DateTime? epoch,
+    String? id,
+    int? pipeSize,
+    String? symbol,
+    SubscriptionModel? subscriptionInformation,
   }) : super(
           epoch: epoch,
           id: id,
@@ -35,7 +35,7 @@ class OHLC extends TickBase {
   /// Creates an instance from JSON
   factory OHLC.fromJson(
     Map<String, dynamic> json, {
-    Map<String, dynamic> subscriptionJson,
+    Map<String, dynamic>? subscriptionJson,
   }) =>
       OHLC(
         close: json['close'] is String
@@ -60,24 +60,24 @@ class OHLC extends TickBase {
       );
 
   /// Close
-  final double close;
+  final double? close;
 
   /// Granularity
-  final int granularity;
+  final int? granularity;
 
   /// High
-  final double high;
+  final double? high;
 
   /// Low
-  final double low;
+  final double? low;
 
   /// Open
-  final double open;
+  final double? open;
 
   /// Open time
-  final DateTime openTime;
+  final DateTime? openTime;
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Unsubscribes all OHLC.
   ///
@@ -88,7 +88,7 @@ class OHLC extends TickBase {
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TickException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -98,17 +98,17 @@ class OHLC extends TickBase {
   /// Creates a copy of instance with given parameters
   @override
   OHLC copyWith({
-    double close,
-    int granularity,
-    double high,
-    double low,
-    double open,
-    DateTime openTime,
-    DateTime epoch,
-    String id,
-    int pipSize,
-    String symbol,
-    SubscriptionModel subscriptionInformation,
+    double? close,
+    int? granularity,
+    double? high,
+    double? low,
+    double? open,
+    DateTime? openTime,
+    DateTime? epoch,
+    String? id,
+    int? pipSize,
+    String? symbol,
+    SubscriptionModel? subscriptionInformation,
   }) =>
       OHLC(
         close: close ?? this.close,

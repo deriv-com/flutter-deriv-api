@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/payment_methods_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/payment_methods_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Payment methods receive class
+/// Payment methods receive class.
 class PaymentMethodsReceive extends Response {
-  /// Initialize PaymentMethodsReceive
+  /// Initialize PaymentMethodsReceive.
   const PaymentMethodsReceive({
     this.paymentMethods,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -19,21 +20,21 @@ class PaymentMethodsReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentMethodsReceive.fromJson(Map<String, dynamic> json) =>
       PaymentMethodsReceive(
-        paymentMethods: (json['payment_methods'] as List<dynamic>)
+        paymentMethods: (json['payment_methods'] as List<dynamic>?)
             ?.map<Map<String, dynamic>>(
                 (dynamic item) => item as Map<String, dynamic>)
-            ?.toList(),
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+            .toList(),
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Available payment methods for a given country. Note: if a user is logged in, the residence country will be considered.
-  final List<Map<String, dynamic>> paymentMethods;
+  final List<Map<String, dynamic>>? paymentMethods;
 
   /// Converts this instance to JSON
   @override
@@ -48,11 +49,11 @@ class PaymentMethodsReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   PaymentMethodsReceive copyWith({
-    List<Map<String, dynamic>> paymentMethods,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    List<Map<String, dynamic>>? paymentMethods,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       PaymentMethodsReceive(
         paymentMethods: paymentMethods ?? this.paymentMethods,
@@ -62,7 +63,7 @@ class PaymentMethodsReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -6,6 +6,6 @@ import 'account_exception.dart';
 class SelfExclusionException extends AccountException {
   /// Initializes
   SelfExclusionException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

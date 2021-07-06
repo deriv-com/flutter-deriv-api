@@ -16,11 +16,12 @@ void main() {
       ),
     );
 
-    expect(statement.statement.count, 1);
+    expect(statement.statement?.count, 1);
 
-    expect(statement.statement.transactions.length, 1);
+    expect(statement.statement?.transactions?.length, 1);
 
-    final TransactionsItem transaction = statement.statement.transactions.first;
+    final TransactionsItem transaction =
+        statement.statement!.transactions!.first;
 
     expect(transaction.actionType, ActionTypeEnum.deposit);
     expect(transaction.amount, -83.23);

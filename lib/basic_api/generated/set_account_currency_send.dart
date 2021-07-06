@@ -1,33 +1,32 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_account_currency_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/set_account_currency_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Set account currency send class
+/// Set account currency send class.
 class SetAccountCurrencySend extends Request {
-  /// Initialize SetAccountCurrencySend
+  /// Initialize SetAccountCurrencySend.
   const SetAccountCurrencySend({
-    @required this.setAccountCurrency,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    required this.setAccountCurrency,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'set_account_currency',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SetAccountCurrencySend.fromJson(Map<String, dynamic> json) =>
       SetAccountCurrencySend(
-        setAccountCurrency: json['set_account_currency'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        setAccountCurrency: json['set_account_currency'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Currency of the account. List of supported currencies can be acquired with `payout_currencies` call.
-  final String setAccountCurrency;
+  final String? setAccountCurrency;
 
   /// Converts this instance to JSON
   @override
@@ -40,9 +39,9 @@ class SetAccountCurrencySend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   SetAccountCurrencySend copyWith({
-    String setAccountCurrency,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? setAccountCurrency,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       SetAccountCurrencySend(
         setAccountCurrency: setAccountCurrency ?? this.setAccountCurrency,
@@ -50,7 +49,7 @@ class SetAccountCurrencySend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

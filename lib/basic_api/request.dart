@@ -1,47 +1,47 @@
 import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'request.g.dart';
-
-/// Super class of all requests
-@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
+/// Super class of all requests.
 class Request extends Equatable {
-  /// Initializes
+  /// Initializes.
   const Request({
     this.msgType,
     this.passthrough,
     this.reqId,
   });
 
-  /// Generate an instance from JSON
-  factory Request.fromJson(Map<String, dynamic> json) =>
-      _$RequestFromJson(json);
+  /// Generate an instance from JSON.
+  factory Request.fromJson(Map<String, dynamic> json) => Request(
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
+      );
 
-  /// Action name of this request
-  @JsonKey(ignore: true)
-  final String msgType;
+  /// Action name of this request.
+  final String? msgType;
 
   /// [Optional] Used to pass data through the websocket, which may be
   /// retrieved via the `echo_req` output field.
-  final Map<String, dynamic> passthrough;
+  final Map<String, dynamic>? passthrough;
 
   /// [Optional] Used to map request to response.
-  final int reqId;
+  final int? reqId;
 
-  /// Converts an instance to JSON
-  Map<String, dynamic> toJson() => _$RequestToJson(this);
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'passthrough': passthrough,
+        'req_id': reqId,
+      };
 
-  /// Generate a copy of instance with given parameters
+  /// Generate a copy of instance with given parameters.
   Request copyWith({
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       Request(
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

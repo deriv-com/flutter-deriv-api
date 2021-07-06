@@ -6,6 +6,6 @@ import 'account_exception.dart';
 class RealityCheckException extends AccountException {
   /// Initializes
   RealityCheckException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

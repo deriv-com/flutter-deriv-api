@@ -1,18 +1,19 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transaction_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/transaction_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Transaction receive class
+/// Transaction receive class.
 class TransactionReceive extends Response {
-  /// Initialize TransactionReceive
+  /// Initialize TransactionReceive.
   const TransactionReceive({
     this.subscription,
     this.transaction,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -20,22 +21,22 @@ class TransactionReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TransactionReceive.fromJson(Map<String, dynamic> json) =>
       TransactionReceive(
-        subscription: json['subscription'] as Map<String, dynamic>,
-        transaction: json['transaction'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        subscription: json['subscription'] as Map<String, dynamic>?,
+        transaction: json['transaction'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// For subscription requests only.
-  final Map<String, dynamic> subscription;
+  final Map<String, dynamic>? subscription;
 
   /// Realtime stream of user transaction updates.
-  final Map<String, dynamic> transaction;
+  final Map<String, dynamic>? transaction;
 
   /// Converts this instance to JSON
   @override
@@ -51,12 +52,12 @@ class TransactionReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   TransactionReceive copyWith({
-    Map<String, dynamic> subscription,
-    Map<String, dynamic> transaction,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? subscription,
+    Map<String, dynamic>? transaction,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       TransactionReceive(
         subscription: subscription ?? this.subscription,
@@ -67,7 +68,7 @@ class TransactionReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

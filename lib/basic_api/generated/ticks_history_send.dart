@@ -1,70 +1,69 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_history_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/ticks_history_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Ticks history send class
+/// Ticks history send class.
 class TicksHistorySend extends Request {
-  /// Initialize TicksHistorySend
+  /// Initialize TicksHistorySend.
   const TicksHistorySend({
     this.adjustStartTime,
     this.count,
-    @required this.end,
+    required this.end,
     this.granularity,
     this.start,
     this.style,
     this.subscribe,
-    @required this.ticksHistory,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    required this.ticksHistory,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'ticks_history',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TicksHistorySend.fromJson(Map<String, dynamic> json) =>
       TicksHistorySend(
-        adjustStartTime: json['adjust_start_time'] as int,
-        count: json['count'] as int,
-        end: json['end'] as String,
-        granularity: json['granularity'] as int,
-        start: json['start'] as int,
-        style: json['style'] as String,
+        adjustStartTime: json['adjust_start_time'] as int?,
+        count: json['count'] as int?,
+        end: json['end'] as String?,
+        granularity: json['granularity'] as int?,
+        start: json['start'] as int?,
+        style: json['style'] as String?,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
-        ticksHistory: json['ticks_history'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        ticksHistory: json['ticks_history'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] 1 - if the market is closed at the end time, or license limit is before end time, adjust interval backwards to compensate.
-  final int adjustStartTime;
+  final int? adjustStartTime;
 
   /// [Optional] An upper limit on ticks to receive.
-  final int count;
+  final int? count;
 
   /// Epoch value representing the latest boundary of the returned ticks. If `latest` is specified, this will be the latest available timestamp.
-  final String end;
+  final String? end;
 
   /// [Optional] Only applicable for style: `candles`. Candle time-dimension width setting. (default: `60`).
-  final int granularity;
+  final int? granularity;
 
   /// [Optional] Epoch value representing the earliest boundary of the returned ticks.
   /// - For `"style": "ticks"`: this will default to 1 day ago.
   /// - For `"style": "candles"`: it will default to 1 day ago if count or granularity is undefined.
-  final int start;
+  final int? start;
 
   /// [Optional] The tick-output style.
-  final String style;
+  final String? style;
 
   /// [Optional] `true` - to send updates whenever a new tick is received.
-  final bool subscribe;
+  final bool? subscribe;
 
   /// Short symbol name (obtained from the `active_symbols` call).
-  final String ticksHistory;
+  final String? ticksHistory;
 
   /// Converts this instance to JSON
   @override
@@ -77,7 +76,7 @@ class TicksHistorySend extends Request {
         'style': style,
         'subscribe': subscribe == null
             ? null
-            : subscribe
+            : subscribe!
                 ? 1
                 : 0,
         'ticks_history': ticksHistory,
@@ -88,16 +87,16 @@ class TicksHistorySend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   TicksHistorySend copyWith({
-    int adjustStartTime,
-    int count,
-    String end,
-    int granularity,
-    int start,
-    String style,
-    bool subscribe,
-    String ticksHistory,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    int? adjustStartTime,
+    int? count,
+    String? end,
+    int? granularity,
+    int? start,
+    String? style,
+    bool? subscribe,
+    String? ticksHistory,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       TicksHistorySend(
         adjustStartTime: adjustStartTime ?? this.adjustStartTime,
@@ -112,7 +111,7 @@ class TicksHistorySend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 /// A [DropdownButton] with items of type [T]
 class DropDownMenu<T> extends StatefulWidget {
+  /// DropDownMenu Initializer
   const DropDownMenu({
-    @required this.items,
-    @required this.initialItem,
+    required this.items,
+    required this.initialItem,
     this.title = '',
     this.onItemSelected,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   /// Title of a widget to show before DropDown menu
@@ -20,14 +21,14 @@ class DropDownMenu<T> extends StatefulWidget {
   final T initialItem;
 
   /// Will be called whenever a new item is selected
-  final void Function<T>(T item) onItemSelected;
+  final void Function<T>(T item)? onItemSelected;
 
   @override
   _DropDownMenuState<T> createState() => _DropDownMenuState<T>();
 }
 
 class _DropDownMenuState<T> extends State<DropDownMenu<T>> {
-  T _item;
+  T? _item;
 
   @override
   void initState() {
@@ -48,8 +49,8 @@ class _DropDownMenuState<T> extends State<DropDownMenu<T>> {
             value: _item,
             icon: const Icon(Icons.keyboard_arrow_down),
             underline: Container(height: 2, color: Colors.grey),
-            onChanged: (T newValue) {
-              widget.onItemSelected(newValue);
+            onChanged: (T? newValue) {
+              widget.onItemSelected!(newValue);
               setState(() {
                 _item = newValue;
               });

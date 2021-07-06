@@ -6,6 +6,6 @@ import 'common_exception.dart';
 class LandingCompanyException extends CommonException {
   /// Initializes
   LandingCompanyException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

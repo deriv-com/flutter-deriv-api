@@ -1,39 +1,38 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/exchange_rates_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/exchange_rates_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Exchange rates send class
+/// Exchange rates send class.
 class ExchangeRatesSend extends Request {
-  /// Initialize ExchangeRatesSend
+  /// Initialize ExchangeRatesSend.
   const ExchangeRatesSend({
-    @required this.baseCurrency,
+    required this.baseCurrency,
     this.exchangeRates = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'exchange_rates',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ExchangeRatesSend.fromJson(Map<String, dynamic> json) =>
       ExchangeRatesSend(
-        baseCurrency: json['base_currency'] as String,
+        baseCurrency: json['base_currency'] as String?,
         exchangeRates:
             json['exchange_rates'] == null ? null : json['exchange_rates'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Base currency (can be obtained from `payout_currencies` call)
-  final String baseCurrency;
+  final String? baseCurrency;
 
   /// Must be `true`
-  final bool exchangeRates;
+  final bool? exchangeRates;
 
   /// Converts this instance to JSON
   @override
@@ -41,7 +40,7 @@ class ExchangeRatesSend extends Request {
         'base_currency': baseCurrency,
         'exchange_rates': exchangeRates == null
             ? null
-            : exchangeRates
+            : exchangeRates!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -51,10 +50,10 @@ class ExchangeRatesSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   ExchangeRatesSend copyWith({
-    String baseCurrency,
-    bool exchangeRates,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? baseCurrency,
+    bool? exchangeRates,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       ExchangeRatesSend(
         baseCurrency: baseCurrency ?? this.baseCurrency,
@@ -63,7 +62,7 @@ class ExchangeRatesSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

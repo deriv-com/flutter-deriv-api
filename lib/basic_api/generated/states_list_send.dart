@@ -1,32 +1,31 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/states_list_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/states_list_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// States list send class
+/// States list send class.
 class StatesListSend extends Request {
-  /// Initialize StatesListSend
+  /// Initialize StatesListSend.
   const StatesListSend({
-    @required this.statesList,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    required this.statesList,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'states_list',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory StatesListSend.fromJson(Map<String, dynamic> json) => StatesListSend(
-        statesList: json['states_list'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        statesList: json['states_list'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Client's 2-letter country code (obtained from `residence_list` call)
-  final String statesList;
+  final String? statesList;
 
   /// Converts this instance to JSON
   @override
@@ -39,9 +38,9 @@ class StatesListSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   StatesListSend copyWith({
-    String statesList,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? statesList,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       StatesListSend(
         statesList: statesList ?? this.statesList,
@@ -49,7 +48,7 @@ class StatesListSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

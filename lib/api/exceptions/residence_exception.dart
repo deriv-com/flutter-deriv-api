@@ -6,6 +6,6 @@ import 'common_exception.dart';
 class ResidenceException extends CommonException {
   /// Initializes
   ResidenceException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

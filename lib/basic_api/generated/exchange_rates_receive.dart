@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/exchange_rates_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/exchange_rates_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Exchange rates receive class
+/// Exchange rates receive class.
 class ExchangeRatesReceive extends Response {
-  /// Initialize ExchangeRatesReceive
+  /// Initialize ExchangeRatesReceive.
   const ExchangeRatesReceive({
     this.exchangeRates,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -19,18 +20,18 @@ class ExchangeRatesReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ExchangeRatesReceive.fromJson(Map<String, dynamic> json) =>
       ExchangeRatesReceive(
-        exchangeRates: json['exchange_rates'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        exchangeRates: json['exchange_rates'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Exchange rate values from base to all other currencies
-  final Map<String, dynamic> exchangeRates;
+  final Map<String, dynamic>? exchangeRates;
 
   /// Converts this instance to JSON
   @override
@@ -45,11 +46,11 @@ class ExchangeRatesReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   ExchangeRatesReceive copyWith({
-    Map<String, dynamic> exchangeRates,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? exchangeRates,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       ExchangeRatesReceive(
         exchangeRates: exchangeRates ?? this.exchangeRates,
@@ -59,7 +60,7 @@ class ExchangeRatesReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

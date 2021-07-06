@@ -13,28 +13,24 @@ class TickHistorySubscription {
   TickHistorySubscription({this.tickHistory, this.tickStream});
 
   /// The history of tick
-  final TicksHistoryResponse tickHistory;
+  final TicksHistoryResponse? tickHistory;
 
   /// The stream of the tick
-  final Stream<TickBase> tickStream;
+  final Stream<TickBase?>? tickStream;
 
-  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>();
+  static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
   /// Unsubscribes from tick history stream
   ///
   /// Throws a [TickException] if API response contains an error
   Future<ForgetResponse> unsubscribe() async {
-    if (tickHistory.subscription?.id == null) {
-      return null;
-    }
-
     final ForgetReceive response = await _api.unsubscribe(
-      subscriptionId: tickHistory.subscription.id,
+      subscriptionId: tickHistory!.subscription.id,
     );
 
     checkException(
       response: response,
-      exceptionCreator: ({BaseExceptionModel baseExceptionModel}) =>
+      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
           TickException(baseExceptionModel: baseExceptionModel),
     );
 
@@ -47,7 +43,7 @@ class TickHistorySubscription {
     Stream<TickBase> tickStream,
   ) =>
       TickHistorySubscription(
-        tickHistory: tickHistory ?? this.tickHistory,
-        tickStream: tickStream ?? this.tickStream,
+        tickHistory: tickHistory,
+        tickStream: tickStream,
       );
 }

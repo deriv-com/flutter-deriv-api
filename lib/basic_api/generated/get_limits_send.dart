@@ -1,37 +1,38 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/get_limits_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Get limits send class
+/// Get limits send class.
 class GetLimitsSend extends Request {
-  /// Initialize GetLimitsSend
+  /// Initialize GetLimitsSend.
   const GetLimitsSend({
     this.getLimits = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'get_limits',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetLimitsSend.fromJson(Map<String, dynamic> json) => GetLimitsSend(
         getLimits: json['get_limits'] == null ? null : json['get_limits'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool getLimits;
+  final bool? getLimits;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'get_limits': getLimits == null
             ? null
-            : getLimits
+            : getLimits!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -41,9 +42,9 @@ class GetLimitsSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   GetLimitsSend copyWith({
-    bool getLimits,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? getLimits,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       GetLimitsSend(
         getLimits: getLimits ?? this.getLimits,
@@ -51,7 +52,7 @@ class GetLimitsSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

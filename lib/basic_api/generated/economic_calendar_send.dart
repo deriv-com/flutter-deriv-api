@@ -1,48 +1,49 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/economic_calendar_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/economic_calendar_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Economic calendar send class
+/// Economic calendar send class.
 class EconomicCalendarSend extends Request {
-  /// Initialize EconomicCalendarSend
+  /// Initialize EconomicCalendarSend.
   const EconomicCalendarSend({
     this.currency,
     this.economicCalendar = true,
     this.endDate,
     this.startDate,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'economic_calendar',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory EconomicCalendarSend.fromJson(Map<String, dynamic> json) =>
       EconomicCalendarSend(
-        currency: json['currency'] as String,
+        currency: json['currency'] as String?,
         economicCalendar: json['economic_calendar'] == null
             ? null
             : json['economic_calendar'] == 1,
-        endDate: json['end_date'] as int,
-        startDate: json['start_date'] as int,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        endDate: json['end_date'] as int?,
+        startDate: json['start_date'] as int?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Currency symbol.
-  final String currency;
+  final String? currency;
 
   /// Must be `true`
-  final bool economicCalendar;
+  final bool? economicCalendar;
 
   /// [Optional] End date.
-  final int endDate;
+  final int? endDate;
 
   /// [Optional] Start date.
-  final int startDate;
+  final int? startDate;
 
   /// Converts this instance to JSON
   @override
@@ -50,7 +51,7 @@ class EconomicCalendarSend extends Request {
         'currency': currency,
         'economic_calendar': economicCalendar == null
             ? null
-            : economicCalendar
+            : economicCalendar!
                 ? 1
                 : 0,
         'end_date': endDate,
@@ -62,12 +63,12 @@ class EconomicCalendarSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   EconomicCalendarSend copyWith({
-    String currency,
-    bool economicCalendar,
-    int endDate,
-    int startDate,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    String? currency,
+    bool? economicCalendar,
+    int? endDate,
+    int? startDate,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       EconomicCalendarSend(
         currency: currency ?? this.currency,
@@ -78,7 +79,7 @@ class EconomicCalendarSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

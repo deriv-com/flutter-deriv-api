@@ -18,7 +18,7 @@ class PriceProposalError extends PriceProposalState {
   PriceProposalError(this.message);
 
   /// Error message
-  final String message;
+  final String? message;
 
   @override
   String toString() => 'PriceProposalError $message';
@@ -30,7 +30,7 @@ class PriceProposalLoaded extends PriceProposalState {
   PriceProposalLoaded(this.proposal);
 
   /// Loaded proposal
-  final Proposal proposal;
+  final Proposal? proposal;
 
   @override
   String toString() => 'PriceProposal $proposal loaded';

@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_statistics_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/copytrading_statistics_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Copytrading statistics receive class
+/// Copytrading statistics receive class.
 class CopytradingStatisticsReceive extends Response {
-  /// Initialize CopytradingStatisticsReceive
+  /// Initialize CopytradingStatisticsReceive.
   const CopytradingStatisticsReceive({
     this.copytradingStatistics,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -19,19 +20,19 @@ class CopytradingStatisticsReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CopytradingStatisticsReceive.fromJson(Map<String, dynamic> json) =>
       CopytradingStatisticsReceive(
         copytradingStatistics:
-            json['copytrading_statistics'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+            json['copytrading_statistics'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Statistics of the trader
-  final Map<String, dynamic> copytradingStatistics;
+  final Map<String, dynamic>? copytradingStatistics;
 
   /// Converts this instance to JSON
   @override
@@ -46,11 +47,11 @@ class CopytradingStatisticsReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   CopytradingStatisticsReceive copyWith({
-    Map<String, dynamic> copytradingStatistics,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? copytradingStatistics,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       CopytradingStatisticsReceive(
         copytradingStatistics:
@@ -61,7 +62,7 @@ class CopytradingStatisticsReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

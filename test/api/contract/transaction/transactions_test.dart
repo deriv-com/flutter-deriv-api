@@ -10,17 +10,19 @@ void main() {
   test('Transactions Subscription Test', () async {
     TransactionResponse.subscribeTransactions().listen(
       expectAsync1(
-        (TransactionResponse transaction) {
-          expect(transaction.transaction.symbol, 'frxAUDJPY');
-          expect(transaction.transaction.balance, 9654.38);
-          expect(transaction.transaction.barrier, 'S0P');
-          expect(transaction.transaction.contractId, 80072336728);
-          expect(transaction.transaction.currency, 'USD');
-          expect(transaction.transaction.id, '9c3d0143-24ac-b8d9-c68b-06856b5f78d2');
-          expect(transaction.transaction.purchaseTime, getDateTime(1587626678));
+        (TransactionResponse? transaction) {
+          expect(transaction?.transaction?.symbol, 'frxAUDJPY');
+          expect(transaction?.transaction?.balance, 9654.38);
+          expect(transaction?.transaction?.barrier, 'S0P');
+          expect(transaction?.transaction?.contractId, 80072336728);
+          expect(transaction?.transaction?.currency, 'USD');
+          expect(transaction?.transaction?.id,
+              '9c3d0143-24ac-b8d9-c68b-06856b5f78d2');
+          expect(
+              transaction?.transaction?.purchaseTime, getDateTime(1587626678));
 
           expect(
-            transaction.subscription.id,
+            transaction?.subscription?.id,
             '9c3d0143-24ac-b8d9-c68b-06856b5f78d2',
           );
         },

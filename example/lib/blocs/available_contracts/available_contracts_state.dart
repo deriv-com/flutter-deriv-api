@@ -18,7 +18,7 @@ class AvailableContractsError extends AvailableContractsState {
   AvailableContractsError(this.message);
 
   /// Error message
-  final String message;
+  final String? message;
 
   @override
   String toString() => 'AvailableContractsError';
@@ -28,10 +28,9 @@ class AvailableContractsError extends AvailableContractsState {
 class AvailableContractsLoaded extends AvailableContractsState {
   ///Initializes
   AvailableContractsLoaded({
-    this.contracts,
-    AvailableItem selectedContract,
-  }) : _selectedContract =
-            selectedContract ?? contracts?.available?.first;
+    required this.contracts,
+    AvailableItem? selectedContract,
+  }) : _selectedContract = selectedContract ?? contracts.available.first;
 
   /// Contracts
   final ContractsFor contracts;

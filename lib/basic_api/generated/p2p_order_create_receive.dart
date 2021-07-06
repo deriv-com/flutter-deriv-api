@@ -1,18 +1,19 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_create_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/p2p_order_create_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// P2p order create receive class
+/// P2p order create receive class.
 class P2pOrderCreateReceive extends Response {
-  /// Initialize P2pOrderCreateReceive
+  /// Initialize P2pOrderCreateReceive.
   const P2pOrderCreateReceive({
     this.p2pOrderCreate,
     this.subscription,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -20,22 +21,22 @@ class P2pOrderCreateReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pOrderCreateReceive.fromJson(Map<String, dynamic> json) =>
       P2pOrderCreateReceive(
-        p2pOrderCreate: json['p2p_order_create'] as Map<String, dynamic>,
-        subscription: json['subscription'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        p2pOrderCreate: json['p2p_order_create'] as Map<String, dynamic>?,
+        subscription: json['subscription'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Information of the creates P2P order.
-  final Map<String, dynamic> p2pOrderCreate;
+  final Map<String, dynamic>? p2pOrderCreate;
 
   /// For subscription requests only.
-  final Map<String, dynamic> subscription;
+  final Map<String, dynamic>? subscription;
 
   /// Converts this instance to JSON
   @override
@@ -51,12 +52,12 @@ class P2pOrderCreateReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   P2pOrderCreateReceive copyWith({
-    Map<String, dynamic> p2pOrderCreate,
-    Map<String, dynamic> subscription,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? p2pOrderCreate,
+    Map<String, dynamic>? subscription,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       P2pOrderCreateReceive(
         p2pOrderCreate: p2pOrderCreate ?? this.p2pOrderCreate,
@@ -67,7 +68,7 @@ class P2pOrderCreateReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

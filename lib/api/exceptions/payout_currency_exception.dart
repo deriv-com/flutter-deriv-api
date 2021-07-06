@@ -7,6 +7,6 @@ import 'common_exception.dart';
 class PayoutCurrencyException extends CommonException {
   /// Initializes
   PayoutCurrencyException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

@@ -1,83 +1,82 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/app_markup_details_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// App markup details send class
+/// App markup details send class.
 class AppMarkupDetailsSend extends Request {
-  /// Initialize AppMarkupDetailsSend
+  /// Initialize AppMarkupDetailsSend.
   const AppMarkupDetailsSend({
     this.appId,
     this.appMarkupDetails = true,
     this.clientLoginid,
-    @required this.dateFrom,
-    @required this.dateTo,
+    required this.dateFrom,
+    required this.dateTo,
     this.description,
     this.limit,
     this.offset,
     this.sort,
     this.sortFields,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'app_markup_details',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppMarkupDetailsSend.fromJson(Map<String, dynamic> json) =>
       AppMarkupDetailsSend(
-        appId: json['app_id'] as int,
+        appId: json['app_id'] as int?,
         appMarkupDetails: json['app_markup_details'] == null
             ? null
             : json['app_markup_details'] == 1,
-        clientLoginid: json['client_loginid'] as String,
-        dateFrom: json['date_from'] as String,
-        dateTo: json['date_to'] as String,
+        clientLoginid: json['client_loginid'] as String?,
+        dateFrom: json['date_from'] as String?,
+        dateTo: json['date_to'] as String?,
         description:
             json['description'] == null ? null : json['description'] == 1,
-        limit: json['limit'] as num,
-        offset: json['offset'] as num,
-        sort: json['sort'] as String,
-        sortFields: (json['sort_fields'] as List<dynamic>)
+        limit: json['limit'] as num?,
+        offset: json['offset'] as num?,
+        sort: json['sort'] as String?,
+        sortFields: (json['sort_fields'] as List<dynamic>?)
             ?.map<String>((dynamic item) => item as String)
-            ?.toList(),
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+            .toList(),
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Specific application `app_id` to report on.
-  final int appId;
+  final int? appId;
 
   /// Must be `true`
-  final bool appMarkupDetails;
+  final bool? appMarkupDetails;
 
   /// [Optional] Specific client loginid to report on, like CR12345
-  final String clientLoginid;
+  final String? clientLoginid;
 
   /// Start date (epoch or YYYY-MM-DD HH:MM:SS). Results are inclusive of this time.
-  final String dateFrom;
+  final String? dateFrom;
 
   /// End date (epoch or YYYY-MM-DD HH::MM::SS). Results are inclusive of this time.
-  final String dateTo;
+  final String? dateTo;
 
   /// [Optional] If set to `true`, will return `app_markup` transaction details.
-  final bool description;
+  final bool? description;
 
   /// [Optional] Apply upper limit to count of transactions received.
-  final num limit;
+  final num? limit;
 
   /// [Optional] Number of transactions to skip.
-  final num offset;
+  final num? offset;
 
   /// [Optional] Sort direction on `transaction_time`. Other fields sort order is ASC.
-  final String sort;
+  final String? sort;
 
   /// [Optional] One or more of the specified fields to sort on. Default sort field is by `transaction_time`.
-  final List<String> sortFields;
+  final List<String>? sortFields;
 
   /// Converts this instance to JSON
   @override
@@ -85,7 +84,7 @@ class AppMarkupDetailsSend extends Request {
         'app_id': appId,
         'app_markup_details': appMarkupDetails == null
             ? null
-            : appMarkupDetails
+            : appMarkupDetails!
                 ? 1
                 : 0,
         'client_loginid': clientLoginid,
@@ -93,7 +92,7 @@ class AppMarkupDetailsSend extends Request {
         'date_to': dateTo,
         'description': description == null
             ? null
-            : description
+            : description!
                 ? 1
                 : 0,
         'limit': limit,
@@ -107,18 +106,18 @@ class AppMarkupDetailsSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   AppMarkupDetailsSend copyWith({
-    int appId,
-    bool appMarkupDetails,
-    String clientLoginid,
-    String dateFrom,
-    String dateTo,
-    bool description,
-    num limit,
-    num offset,
-    String sort,
-    List<String> sortFields,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    int? appId,
+    bool? appMarkupDetails,
+    String? clientLoginid,
+    String? dateFrom,
+    String? dateTo,
+    bool? description,
+    num? limit,
+    num? offset,
+    String? sort,
+    List<String>? sortFields,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       AppMarkupDetailsSend(
         appId: appId ?? this.appId,
@@ -135,7 +134,7 @@ class AppMarkupDetailsSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

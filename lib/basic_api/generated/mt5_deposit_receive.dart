@@ -1,18 +1,19 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/mt5_deposit_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Mt5 deposit receive class
+/// Mt5 deposit receive class.
 class Mt5DepositReceive extends Response {
-  /// Initialize Mt5DepositReceive
+  /// Initialize Mt5DepositReceive.
   const Mt5DepositReceive({
     this.binaryTransactionId,
     this.mt5Deposit,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -20,22 +21,22 @@ class Mt5DepositReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5DepositReceive.fromJson(Map<String, dynamic> json) =>
       Mt5DepositReceive(
-        binaryTransactionId: json['binary_transaction_id'] as int,
-        mt5Deposit: json['mt5_deposit'] as int,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        binaryTransactionId: json['binary_transaction_id'] as int?,
+        mt5Deposit: json['mt5_deposit'] as int?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Withdrawal reference ID of Binary account
-  final int binaryTransactionId;
+  final int? binaryTransactionId;
 
   /// 1 on success
-  final int mt5Deposit;
+  final int? mt5Deposit;
 
   /// Converts this instance to JSON
   @override
@@ -51,12 +52,12 @@ class Mt5DepositReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   Mt5DepositReceive copyWith({
-    int binaryTransactionId,
-    int mt5Deposit,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    int? binaryTransactionId,
+    int? mt5Deposit,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       Mt5DepositReceive(
         binaryTransactionId: binaryTransactionId ?? this.binaryTransactionId,
@@ -67,7 +68,7 @@ class Mt5DepositReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

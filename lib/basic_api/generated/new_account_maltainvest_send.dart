@@ -1,19 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_maltainvest_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/new_account_maltainvest_send.json.
 
-import 'package:meta/meta.dart';
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// New account maltainvest send class
+/// New account maltainvest send class.
 class NewAccountMaltainvestSend extends Request {
-  /// Initialize NewAccountMaltainvestSend
+  /// Initialize NewAccountMaltainvestSend.
   const NewAccountMaltainvestSend({
-    @required this.acceptRisk,
+    required this.acceptRisk,
     this.accountOpeningReason,
     this.accountTurnover,
-    @required this.addressCity,
-    @required this.addressLine1,
+    required this.addressCity,
+    required this.addressLine1,
     this.addressLine2,
     this.addressPostcode,
     this.addressState,
@@ -24,219 +23,219 @@ class NewAccountMaltainvestSend extends Request {
     this.cfdTradingFrequency,
     this.citizen,
     this.clientType,
-    @required this.dateOfBirth,
-    @required this.educationLevel,
-    @required this.employmentIndustry,
+    required this.dateOfBirth,
+    required this.educationLevel,
+    required this.employmentIndustry,
     this.employmentStatus,
-    @required this.estimatedWorth,
-    @required this.firstName,
+    required this.estimatedWorth,
+    required this.firstName,
     this.forexTradingExperience,
     this.forexTradingFrequency,
-    @required this.incomeSource,
-    @required this.lastName,
-    @required this.netIncome,
+    required this.incomeSource,
+    required this.lastName,
+    required this.netIncome,
     this.newAccountMaltainvest = true,
     this.nonPepDeclaration,
-    @required this.occupation,
+    required this.occupation,
     this.otherInstrumentsTradingExperience,
     this.otherInstrumentsTradingFrequency,
     this.phone,
     this.placeOfBirth,
-    @required this.residence,
-    @required this.salutation,
+    required this.residence,
+    required this.salutation,
     this.secretAnswer,
     this.secretQuestion,
     this.sourceOfWealth,
-    @required this.taxIdentificationNumber,
-    @required this.taxResidence,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    required this.taxIdentificationNumber,
+    required this.taxResidence,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'new_account_maltainvest',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory NewAccountMaltainvestSend.fromJson(Map<String, dynamic> json) =>
       NewAccountMaltainvestSend(
         acceptRisk:
             json['accept_risk'] == null ? null : json['accept_risk'] == 1,
-        accountOpeningReason: json['account_opening_reason'] as String,
-        accountTurnover: json['account_turnover'] as String,
-        addressCity: json['address_city'] as String,
-        addressLine1: json['address_line_1'] as String,
-        addressLine2: json['address_line_2'] as String,
-        addressPostcode: json['address_postcode'] as String,
-        addressState: json['address_state'] as String,
-        affiliateToken: json['affiliate_token'] as String,
+        accountOpeningReason: json['account_opening_reason'] as String?,
+        accountTurnover: json['account_turnover'] as String?,
+        addressCity: json['address_city'] as String?,
+        addressLine1: json['address_line_1'] as String?,
+        addressLine2: json['address_line_2'] as String?,
+        addressPostcode: json['address_postcode'] as String?,
+        addressState: json['address_state'] as String?,
+        affiliateToken: json['affiliate_token'] as String?,
         binaryOptionsTradingExperience:
-            json['binary_options_trading_experience'] as String,
+            json['binary_options_trading_experience'] as String?,
         binaryOptionsTradingFrequency:
-            json['binary_options_trading_frequency'] as String,
-        cfdTradingExperience: json['cfd_trading_experience'] as String,
-        cfdTradingFrequency: json['cfd_trading_frequency'] as String,
-        citizen: json['citizen'] as String,
-        clientType: json['client_type'] as String,
-        dateOfBirth: json['date_of_birth'] as String,
-        educationLevel: json['education_level'] as String,
-        employmentIndustry: json['employment_industry'] as String,
-        employmentStatus: json['employment_status'] as String,
-        estimatedWorth: json['estimated_worth'] as String,
-        firstName: json['first_name'] as String,
-        forexTradingExperience: json['forex_trading_experience'] as String,
-        forexTradingFrequency: json['forex_trading_frequency'] as String,
-        incomeSource: json['income_source'] as String,
-        lastName: json['last_name'] as String,
-        netIncome: json['net_income'] as String,
+            json['binary_options_trading_frequency'] as String?,
+        cfdTradingExperience: json['cfd_trading_experience'] as String?,
+        cfdTradingFrequency: json['cfd_trading_frequency'] as String?,
+        citizen: json['citizen'] as String?,
+        clientType: json['client_type'] as String?,
+        dateOfBirth: json['date_of_birth'] as String?,
+        educationLevel: json['education_level'] as String?,
+        employmentIndustry: json['employment_industry'] as String?,
+        employmentStatus: json['employment_status'] as String?,
+        estimatedWorth: json['estimated_worth'] as String?,
+        firstName: json['first_name'] as String?,
+        forexTradingExperience: json['forex_trading_experience'] as String?,
+        forexTradingFrequency: json['forex_trading_frequency'] as String?,
+        incomeSource: json['income_source'] as String?,
+        lastName: json['last_name'] as String?,
+        netIncome: json['net_income'] as String?,
         newAccountMaltainvest: json['new_account_maltainvest'] == null
             ? null
             : json['new_account_maltainvest'] == 1,
-        nonPepDeclaration: json['non_pep_declaration'] as int,
-        occupation: json['occupation'] as String,
+        nonPepDeclaration: json['non_pep_declaration'] as int?,
+        occupation: json['occupation'] as String?,
         otherInstrumentsTradingExperience:
-            json['other_instruments_trading_experience'] as String,
+            json['other_instruments_trading_experience'] as String?,
         otherInstrumentsTradingFrequency:
-            json['other_instruments_trading_frequency'] as String,
-        phone: json['phone'] as String,
-        placeOfBirth: json['place_of_birth'] as String,
-        residence: json['residence'] as String,
-        salutation: json['salutation'] as String,
-        secretAnswer: json['secret_answer'] as String,
-        secretQuestion: json['secret_question'] as String,
-        sourceOfWealth: json['source_of_wealth'] as String,
-        taxIdentificationNumber: json['tax_identification_number'] as String,
-        taxResidence: json['tax_residence'] as String,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+            json['other_instruments_trading_frequency'] as String?,
+        phone: json['phone'] as String?,
+        placeOfBirth: json['place_of_birth'] as String?,
+        residence: json['residence'] as String?,
+        salutation: json['salutation'] as String?,
+        secretAnswer: json['secret_answer'] as String?,
+        secretQuestion: json['secret_question'] as String?,
+        sourceOfWealth: json['source_of_wealth'] as String?,
+        taxIdentificationNumber: json['tax_identification_number'] as String?,
+        taxResidence: json['tax_residence'] as String?,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Show whether client has accepted risk disclaimer.
-  final bool acceptRisk;
+  final bool? acceptRisk;
 
   /// [Optional] Purpose and reason for requesting the account opening.
-  final String accountOpeningReason;
+  final String? accountOpeningReason;
 
   /// [Optional] The anticipated account turnover.
-  final String accountTurnover;
+  final String? accountTurnover;
 
   /// Within 100 characters
-  final String addressCity;
+  final String? addressCity;
 
   /// Within 70 characters, with no leading whitespaces and may contain letters/numbers and/or any of following characters '.,:;()@#/-
-  final String addressLine1;
+  final String? addressLine1;
 
   /// [Optional] Within 70 characters.
-  final String addressLine2;
+  final String? addressLine2;
 
   /// [Optional] Within 20 characters and may not contain '+'.
-  final String addressPostcode;
+  final String? addressPostcode;
 
   /// [Optional] Possible value receive from `states_list` call.
-  final String addressState;
+  final String? addressState;
 
   /// [Optional] Affiliate token, within 32 characters.
-  final String affiliateToken;
+  final String? affiliateToken;
 
   /// [Optional] Binary options trading experience.
-  final String binaryOptionsTradingExperience;
+  final String? binaryOptionsTradingExperience;
 
   /// [Optional] Binary options trading frequency.
-  final String binaryOptionsTradingFrequency;
+  final String? binaryOptionsTradingFrequency;
 
   /// [Optional] CFDs trading experience.
-  final String cfdTradingExperience;
+  final String? cfdTradingExperience;
 
   /// [Optional] CFDs trading frequency.
-  final String cfdTradingFrequency;
+  final String? cfdTradingFrequency;
 
   /// [Optional] Country of legal citizenship, 2-letter country code. Possible value receive from `residence_list` call.
-  final String citizen;
+  final String? citizen;
 
   /// [Optional] Indicates whether this is for a client requesting an account with professional status.
-  final String clientType;
+  final String? clientType;
 
   /// Date of birth format: yyyy-mm-dd.
-  final String dateOfBirth;
+  final String? dateOfBirth;
 
   /// Level of Education
-  final String educationLevel;
+  final String? educationLevel;
 
   /// Industry of Employment.
-  final String employmentIndustry;
+  final String? employmentIndustry;
 
   /// [Optional] Employment Status.
-  final String employmentStatus;
+  final String? employmentStatus;
 
   /// Estimated Net Worth.
-  final String estimatedWorth;
+  final String? estimatedWorth;
 
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
-  final String firstName;
+  final String? firstName;
 
   /// [Optional] Forex trading experience.
-  final String forexTradingExperience;
+  final String? forexTradingExperience;
 
   /// [Optional] Forex trading frequency.
-  final String forexTradingFrequency;
+  final String? forexTradingFrequency;
 
   /// Income Source.
-  final String incomeSource;
+  final String? incomeSource;
 
   /// Within 2-50 characters, use only letters, spaces, hyphens, full-stops or apostrophes.
-  final String lastName;
+  final String? lastName;
 
   /// Net Annual Income.
-  final String netIncome;
+  final String? netIncome;
 
   /// Must be `true`
-  final bool newAccountMaltainvest;
+  final bool? newAccountMaltainvest;
 
   /// [Optional] Indicates client's self-declaration of not being a PEP/RCA.
-  final int nonPepDeclaration;
+  final int? nonPepDeclaration;
 
   /// Occupation.
-  final String occupation;
+  final String? occupation;
 
   /// [Optional] Trading experience in other financial instruments.
-  final String otherInstrumentsTradingExperience;
+  final String? otherInstrumentsTradingExperience;
 
   /// [Optional] Trading frequency in other financial instruments.
-  final String otherInstrumentsTradingFrequency;
+  final String? otherInstrumentsTradingFrequency;
 
-  /// [Optional] Starting with `+` followed by 8-35 digits, allowing hyphens or space.
-  final String phone;
+  /// [Optional] Starting with `+` followed by 9-35 digits, hyphens or space.
+  final String? phone;
 
   /// [Optional] Place of birth, 2-letter country code.
-  final String placeOfBirth;
+  final String? placeOfBirth;
 
   /// 2-letter country code, possible value receive from `residence_list` call.
-  final String residence;
+  final String? residence;
 
   /// Accept any value in enum list.
-  final String salutation;
+  final String? salutation;
 
   /// [Optional] Answer to secret question, within 4-50 characters.
-  final String secretAnswer;
+  final String? secretAnswer;
 
   /// [Optional] Accept any value in enum list.
-  final String secretQuestion;
+  final String? secretQuestion;
 
   /// [Optional] Source of wealth.
-  final String sourceOfWealth;
+  final String? sourceOfWealth;
 
   /// Tax identification number. Only applicable for real money account. Required for `maltainvest` landing company.
-  final String taxIdentificationNumber;
+  final String? taxIdentificationNumber;
 
   /// Residence for tax purpose. Comma separated iso country code if multiple jurisdictions. Only applicable for real money account. Required for `maltainvest` landing company.
-  final String taxResidence;
+  final String? taxResidence;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'accept_risk': acceptRisk == null
             ? null
-            : acceptRisk
+            : acceptRisk!
                 ? 1
                 : 0,
         'account_opening_reason': accountOpeningReason,
@@ -266,7 +265,7 @@ class NewAccountMaltainvestSend extends Request {
         'net_income': netIncome,
         'new_account_maltainvest': newAccountMaltainvest == null
             ? null
-            : newAccountMaltainvest
+            : newAccountMaltainvest!
                 ? 1
                 : 0,
         'non_pep_declaration': nonPepDeclaration,
@@ -290,48 +289,48 @@ class NewAccountMaltainvestSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   NewAccountMaltainvestSend copyWith({
-    bool acceptRisk,
-    String accountOpeningReason,
-    String accountTurnover,
-    String addressCity,
-    String addressLine1,
-    String addressLine2,
-    String addressPostcode,
-    String addressState,
-    String affiliateToken,
-    String binaryOptionsTradingExperience,
-    String binaryOptionsTradingFrequency,
-    String cfdTradingExperience,
-    String cfdTradingFrequency,
-    String citizen,
-    String clientType,
-    String dateOfBirth,
-    String educationLevel,
-    String employmentIndustry,
-    String employmentStatus,
-    String estimatedWorth,
-    String firstName,
-    String forexTradingExperience,
-    String forexTradingFrequency,
-    String incomeSource,
-    String lastName,
-    String netIncome,
-    bool newAccountMaltainvest,
-    int nonPepDeclaration,
-    String occupation,
-    String otherInstrumentsTradingExperience,
-    String otherInstrumentsTradingFrequency,
-    String phone,
-    String placeOfBirth,
-    String residence,
-    String salutation,
-    String secretAnswer,
-    String secretQuestion,
-    String sourceOfWealth,
-    String taxIdentificationNumber,
-    String taxResidence,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? acceptRisk,
+    String? accountOpeningReason,
+    String? accountTurnover,
+    String? addressCity,
+    String? addressLine1,
+    String? addressLine2,
+    String? addressPostcode,
+    String? addressState,
+    String? affiliateToken,
+    String? binaryOptionsTradingExperience,
+    String? binaryOptionsTradingFrequency,
+    String? cfdTradingExperience,
+    String? cfdTradingFrequency,
+    String? citizen,
+    String? clientType,
+    String? dateOfBirth,
+    String? educationLevel,
+    String? employmentIndustry,
+    String? employmentStatus,
+    String? estimatedWorth,
+    String? firstName,
+    String? forexTradingExperience,
+    String? forexTradingFrequency,
+    String? incomeSource,
+    String? lastName,
+    String? netIncome,
+    bool? newAccountMaltainvest,
+    int? nonPepDeclaration,
+    String? occupation,
+    String? otherInstrumentsTradingExperience,
+    String? otherInstrumentsTradingFrequency,
+    String? phone,
+    String? placeOfBirth,
+    String? residence,
+    String? salutation,
+    String? secretAnswer,
+    String? secretQuestion,
+    String? sourceOfWealth,
+    String? taxIdentificationNumber,
+    String? taxResidence,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       NewAccountMaltainvestSend(
         acceptRisk: acceptRisk ?? this.acceptRisk,
@@ -386,7 +385,7 @@ class NewAccountMaltainvestSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

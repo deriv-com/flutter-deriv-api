@@ -17,54 +17,58 @@ void main() {
         validForCurrentIPOnly: false,
       );
 
-      expect(createAPIToken.apiToken.newToken, 1);
+      expect(createAPIToken.apiToken?.newToken, 1);
 
-      expect(createAPIToken.apiToken.tokens.length, 1);
+      expect(createAPIToken.apiToken?.tokens?.length, 1);
 
-      expect(createAPIToken.apiToken.tokens.first.displayName, 'sample token');
       expect(
-        createAPIToken.apiToken.tokens.first.lastUsed,
-       // DateTime.tryParse('2020-01-11'),
-       '2020-01-11'
-      );
-
-      expect(createAPIToken.apiToken.tokens.first.scopes.length, 2);
-
-      expect(createAPIToken.apiToken.tokens.first.scopes.first, ScopesItemEnum.read);
+          createAPIToken.apiToken?.tokens?.first.displayName, 'sample token');
       expect(
-        createAPIToken.apiToken.tokens.first.scopes[1],
+          createAPIToken.apiToken?.tokens?.first.lastUsed,
+          // DateTime.tryParse('2020-01-11'),
+          '2020-01-11');
+
+      expect(createAPIToken.apiToken?.tokens?.first.scopes?.length, 2);
+
+      expect(createAPIToken.apiToken?.tokens?.first.scopes?.first,
+          ScopesItemEnum.read);
+      expect(
+        createAPIToken.apiToken?.tokens?.first.scopes?[1],
         ScopesItemEnum.tradingInformation,
       );
 
-      expect(createAPIToken.apiToken.tokens.first.token, 'thisIsASampleTOKEN123');
-      expect(createAPIToken.apiToken.tokens.first.validForIp, '178.32.12.45');
+      expect(createAPIToken.apiToken?.tokens?.first.token,
+          'thisIsASampleTOKEN123');
+      expect(createAPIToken.apiToken?.tokens?.first.validForIp, '178.32.12.45');
     });
 
     test('Delete Token Test', () async {
       final ApiTokenResponse deleteAPIToken =
           await ApiTokenResponse.delete(token: 'thisIsASampleTOKEN123');
 
-      expect(deleteAPIToken.apiToken.deleteToken, 1);
+      expect(deleteAPIToken.apiToken?.deleteToken, 1);
 
-      expect(deleteAPIToken.apiToken.tokens.length, 1);
+      expect(deleteAPIToken.apiToken?.tokens?.length, 1);
 
-      expect(deleteAPIToken.apiToken.tokens.first.displayName, 'sample token');
       expect(
-        deleteAPIToken.apiToken.tokens.first.lastUsed,
-        //DateTime.tryParse('2020-01-11'),
-        '2020-01-11'
-      );
-
-      expect(deleteAPIToken.apiToken.tokens.first.scopes.length, 2);
-
-      expect(deleteAPIToken.apiToken.tokens.first.scopes.first, ScopesItemEnum.read);
+          deleteAPIToken.apiToken?.tokens?.first.displayName, 'sample token');
       expect(
-        deleteAPIToken.apiToken.tokens.first.scopes[1],
+          deleteAPIToken.apiToken?.tokens?.first.lastUsed,
+          //DateTime.tryParse('2020-01-11'),
+          '2020-01-11');
+
+      expect(deleteAPIToken.apiToken?.tokens?.first.scopes?.length, 2);
+
+      expect(deleteAPIToken.apiToken?.tokens?.first.scopes?.first,
+          ScopesItemEnum.read);
+      expect(
+        deleteAPIToken.apiToken?.tokens?.first.scopes?[1],
         ScopesItemEnum.tradingInformation,
       );
 
-      expect(deleteAPIToken.apiToken.tokens.first.token, 'thisIsASampleTOKEN123');
-      expect(deleteAPIToken.apiToken.tokens.first.validForIp, '178.32.12.45');
+      expect(deleteAPIToken.apiToken?.tokens?.first.token,
+          'thisIsASampleTOKEN123');
+      expect(deleteAPIToken.apiToken?.tokens?.first.validForIp, '178.32.12.45');
     });
   });
 }

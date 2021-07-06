@@ -1,17 +1,18 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/profit_table_receive.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/profit_table_receive.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../response.dart';
 
-/// Profit table receive class
+/// Profit table receive class.
 class ProfitTableReceive extends Response {
-  /// Initialize ProfitTableReceive
+  /// Initialize ProfitTableReceive.
   const ProfitTableReceive({
     this.profitTable,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) : super(
           echoReq: echoReq,
           error: error,
@@ -19,18 +20,18 @@ class ProfitTableReceive extends Response {
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ProfitTableReceive.fromJson(Map<String, dynamic> json) =>
       ProfitTableReceive(
-        profitTable: json['profit_table'] as Map<String, dynamic>,
-        echoReq: json['echo_req'] as Map<String, dynamic>,
-        error: json['error'] as Map<String, dynamic>,
-        msgType: json['msg_type'] as String,
-        reqId: json['req_id'] as int,
+        profitTable: json['profit_table'] as Map<String, dynamic>?,
+        echoReq: json['echo_req'] as Map<String, dynamic>?,
+        error: json['error'] as Map<String, dynamic>?,
+        msgType: json['msg_type'] as String?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Account Profit Table.
-  final Map<String, dynamic> profitTable;
+  final Map<String, dynamic>? profitTable;
 
   /// Converts this instance to JSON
   @override
@@ -45,11 +46,11 @@ class ProfitTableReceive extends Response {
   /// Creates a copy of instance with given parameters
   @override
   ProfitTableReceive copyWith({
-    Map<String, dynamic> profitTable,
-    Map<String, dynamic> echoReq,
-    Map<String, dynamic> error,
-    String msgType,
-    int reqId,
+    Map<String, dynamic>? profitTable,
+    Map<String, dynamic>? echoReq,
+    Map<String, dynamic>? error,
+    String? msgType,
+    int? reqId,
   }) =>
       ProfitTableReceive(
         profitTable: profitTable ?? this.profitTable,
@@ -59,7 +60,7 @@ class ProfitTableReceive extends Response {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

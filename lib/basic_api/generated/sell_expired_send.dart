@@ -1,39 +1,40 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_expired_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/sell_expired_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Sell expired send class
+/// Sell expired send class.
 class SellExpiredSend extends Request {
-  /// Initialize SellExpiredSend
+  /// Initialize SellExpiredSend.
   const SellExpiredSend({
     this.sellExpired = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'sell_expired',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SellExpiredSend.fromJson(Map<String, dynamic> json) =>
       SellExpiredSend(
         sellExpired:
             json['sell_expired'] == null ? null : json['sell_expired'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool sellExpired;
+  final bool? sellExpired;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'sell_expired': sellExpired == null
             ? null
-            : sellExpired
+            : sellExpired!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -43,9 +44,9 @@ class SellExpiredSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   SellExpiredSend copyWith({
-    bool sellExpired,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? sellExpired,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       SellExpiredSend(
         sellExpired: sellExpired ?? this.sellExpired,
@@ -53,7 +54,7 @@ class SellExpiredSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }

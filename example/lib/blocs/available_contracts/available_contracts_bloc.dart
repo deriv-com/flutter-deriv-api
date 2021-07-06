@@ -19,7 +19,7 @@ class AvailableContractsBloc
   /// Initializes
   AvailableContractsBloc(ActiveSymbolsBloc activeSymbolsBloc)
       : super(AvailableContractsLoading()) {
-    activeSymbolsBloc.listen((ActiveSymbolsState activeSymbolsState) {
+    activeSymbolsBloc.stream.listen((ActiveSymbolsState activeSymbolsState) {
       if (activeSymbolsState is ActiveSymbolsLoaded) {
         add(FetchAvailableContracts(
           activeSymbol: activeSymbolsState.selectedSymbol,
@@ -45,7 +45,8 @@ class AvailableContractsBloc
       }
     } else if (event is SelectContract) {
       if (state is AvailableContractsLoaded) {
-        final AvailableContractsLoaded loadedState = state;
+        // ignore: avoid_as
+        final AvailableContractsLoaded loadedState = state as AvailableContractsLoaded;
 
         yield AvailableContractsLoaded(
           contracts: loadedState.contracts,

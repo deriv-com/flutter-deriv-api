@@ -35,6 +35,7 @@ import '../generated/get_financial_assessment_receive.dart';
 import '../generated/get_limits_receive.dart';
 import '../generated/get_self_exclusion_receive.dart';
 import '../generated/get_settings_receive.dart';
+import '../generated/identity_verification_document_add_receive.dart';
 import '../generated/landing_company_details_receive.dart';
 import '../generated/landing_company_receive.dart';
 import '../generated/login_history_receive.dart';
@@ -66,6 +67,8 @@ import '../generated/p2p_order_create_receive.dart';
 import '../generated/p2p_order_info_receive.dart';
 import '../generated/p2p_order_list_receive.dart';
 import '../generated/payment_methods_receive.dart';
+import '../generated/paymentagent_create_receive.dart';
+import '../generated/paymentagent_details_receive.dart';
 import '../generated/paymentagent_list_receive.dart';
 import '../generated/paymentagent_transfer_receive.dart';
 import '../generated/paymentagent_withdraw_receive.dart';
@@ -93,6 +96,8 @@ import '../generated/time_receive.dart';
 import '../generated/tnc_approval_receive.dart';
 import '../generated/topup_virtual_receive.dart';
 import '../generated/trading_durations_receive.dart';
+import '../generated/trading_platform_investor_password_reset_receive.dart';
+import '../generated/trading_platform_password_reset_receive.dart';
 import '../generated/trading_servers_receive.dart';
 import '../generated/trading_times_receive.dart';
 import '../generated/transaction_receive.dart';
@@ -169,6 +174,8 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return GetSelfExclusionReceive.fromJson(responseMap);
     case 'get_settings':
       return GetSettingsReceive.fromJson(responseMap);
+    case 'identity_verification_document_add':
+      return IdentityVerificationDocumentAddReceive.fromJson(responseMap);
     case 'landing_company_details':
       return LandingCompanyDetailsReceive.fromJson(responseMap);
     case 'landing_company':
@@ -231,6 +238,10 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return P2pOrderListReceive.fromJson(responseMap);
     case 'payment_methods':
       return PaymentMethodsReceive.fromJson(responseMap);
+    case 'paymentagent_create':
+      return PaymentagentCreateReceive.fromJson(responseMap);
+    case 'paymentagent_details':
+      return PaymentagentDetailsReceive.fromJson(responseMap);
     case 'paymentagent_list':
       return PaymentagentListReceive.fromJson(responseMap);
     case 'paymentagent_transfer':
@@ -285,6 +296,10 @@ Response getGeneratedResponse(Map<String, dynamic> responseMap) {
       return TopupVirtualReceive.fromJson(responseMap);
     case 'trading_durations':
       return TradingDurationsReceive.fromJson(responseMap);
+    case 'trading_platform_investor_password_reset':
+      return TradingPlatformInvestorPasswordResetReceive.fromJson(responseMap);
+    case 'trading_platform_password_reset':
+      return TradingPlatformPasswordResetReceive.fromJson(responseMap);
     case 'trading_servers':
       return TradingServersReceive.fromJson(responseMap);
     case 'trading_times':

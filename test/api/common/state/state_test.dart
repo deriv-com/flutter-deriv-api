@@ -12,7 +12,7 @@ void main() {
       const StatesListSend(statesList: 'code'),
     );
 
-    expect(states.statesList.first.text, 'Aceh');
-    expect(states.statesList.first.value, 'AC');
+    expect(states.statesList!.first.text, 'Aceh');
+    expect(states.statesList!.first.value, 'AC');
   });
 }

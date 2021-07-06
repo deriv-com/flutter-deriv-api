@@ -33,30 +33,38 @@ class ConnectionService {
   Stream<bool> get state => connectionChangeController.stream;
 
   /// Returns true if we are connected to the Internet.
-  bool get isConnectedToInternet =>
-      _connectionStatus == ConnectionStatus.connected;
+  Future<bool> get isConnectedToInternet async {
+    final ConnectivityResult connectivityResult =
+        await _connectivity.checkConnectivity();
 
-  Timer _connectivityTimer;
+    return connectivityResult == ConnectivityResult.wifi ||
+        connectivityResult == ConnectivityResult.mobile;
+  }
 
-  ConnectionBloc _connectionBloc;
+  Timer? _connectivityTimer;
+
+  ConnectionBloc? _connectionBloc;
 
   Future<ConnectionStatus> _checkConnection(ConnectivityResult result) async {
     final ConnectionStatus previousConnection = _connectionStatus;
 
-    if (_connectionBloc.state is Reconnecting) {
+    if (_connectionBloc!.state is Reconnecting) {
       return ConnectionStatus.connecting;
     }
 
     switch (result) {
       case ConnectivityResult.wifi:
       case ConnectivityResult.mobile:
-        if (_connectionBloc.state is! Connected) {
-          await _connectionBloc.connectWebSocket();
+        if (_connectionBloc!.state is! Connected) {
+          await _connectionBloc!.connectWebSocket();
         }
+
         final bool pingResult = await _checkPingConnection();
+
         _connectionStatus = pingResult
             ? ConnectionStatus.connected
             : ConnectionStatus.disconnected;
+
         break;
       case ConnectivityResult.none:
         _connectionStatus = ConnectionStatus.disconnected;
@@ -76,13 +84,14 @@ class ConnectionService {
 
   /// Closes the connection service
   void dispose() {
-    connectionChangeController?.close();
+    connectionChangeController.close();
+
     _stopConnectivityTimer();
   }
 
   /// Initializes
   Future<void> initialize({
-    ConnectionBloc connectionBloc,
+    ConnectionBloc? connectionBloc,
     bool isMock = false,
   }) async {
     if (isMock) {
@@ -99,19 +108,19 @@ class ConnectionService {
   Future<bool> checkConnectivity() async {
     final ConnectivityResult connectivityResult =
         await _connectivity.checkConnectivity();
-
     final ConnectionStatus connectionResult =
         await _checkConnection(connectivityResult);
+
     return connectionResult == ConnectionStatus.connected;
   }
 
   // Checks for change to connectivity to internet every [_connectivityCheckInterval] seconds
   void _startConnectivityTimer() {
-    if (_connectivityTimer == null || !_connectivityTimer.isActive) {
+    if (_connectivityTimer == null || !_connectivityTimer!.isActive) {
       _connectivityTimer = Timer.periodic(
-          Duration(seconds: _connectivityCheckInterval), (Timer timer) async {
-        await checkConnectivity();
-      });
+        Duration(seconds: _connectivityCheckInterval),
+        (Timer timer) async => checkConnectivity(),
+      );
     }
   }
 
@@ -119,31 +128,33 @@ class ConnectionService {
 
   Future<bool> _ping() async {
     try {
-      final PingResponse response = await PingResponse.pingMethod().timeout(Duration(
-          seconds: _connectionBloc.state is InitialConnectionState
+      await PingResponse.pingMethod().timeout(
+        Duration(
+          seconds: _connectionBloc!.state is InitialConnectionState
               ? _initialPingTimeOut
-              : _pingTimeout));
+              : _pingTimeout,
+        ),
+      );
 
-      if (response == null || response.ping != PingEnum.pong) {
-        return Future<bool>.value(false);
-      }
+      return Future<bool>.value(true);
     } on Exception catch (_) {
       return Future<bool>.value(false);
     }
-
-    return Future<bool>.value(true);
   }
 
   Future<bool> _checkPingConnection() async {
     final bool _pingSuccess = await _ping();
+
     if (!_pingSuccess) {
-      _pingExceptionCount++;
-      if (_pingExceptionCount >= _pingMaxExceptionCount) {
+      if (_pingExceptionCount++ > _pingMaxExceptionCount) {
         return false;
       }
+
       return _connectionStatus == ConnectionStatus.connected;
     }
+
     _pingExceptionCount = 0;
+
     return true;
   }
 }

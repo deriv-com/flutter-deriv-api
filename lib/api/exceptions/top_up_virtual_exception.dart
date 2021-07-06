@@ -6,6 +6,6 @@ import 'account_exception.dart';
 class TopUpVirtualException extends AccountException {
   /// Initializes
   TopUpVirtualException({
-    BaseExceptionModel baseExceptionModel,
+    BaseExceptionModel? baseExceptionModel,
   }) : super(baseExceptionModel: baseExceptionModel);
 }

@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as dev;
+import 'dart:io';
+
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
-import 'package:meta/meta.dart';
+import 'package:package_info/package_info.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
@@ -12,10 +15,11 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
-import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
-import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
-import 'package:flutter_deriv_api/services/connection/call_manager/call_history.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/call_history.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
 
 /// This class is for handling Binary API connection and calling Binary APIs
@@ -30,29 +34,29 @@ class BinaryAPI extends BaseAPI {
   bool _connected = false;
 
   /// Represents the active web socket connection
-  IOWebSocketChannel _webSocketChannel;
+  IOWebSocketChannel? _webSocketChannel;
 
   /// Stream subscription to API data
-  StreamSubscription<Map<String, dynamic>> _webSocketListener;
+  StreamSubscription<Map<String, dynamic>?>? _webSocketListener;
 
   /// Call manager instance
-  CallManager _callManager;
+  CallManager? _callManager;
 
   /// Subscription manager instance
-  SubscriptionManager _subscriptionManager;
+  SubscriptionManager? _subscriptionManager;
 
   /// Gets API call history
-  CallHistory get callHistory => _callManager?.callHistory;
+  CallHistory? get callHistory => _callManager?.callHistory;
 
   /// Gets API subscription history
-  CallHistory get subscriptionHistory => _subscriptionManager?.callHistory;
+  CallHistory? get subscriptionHistory => _subscriptionManager?.callHistory;
 
   @override
   Future<void> connect(
-    ConnectionInformation connectionInformation, {
-    ConnectionCallback onDone,
-    ConnectionCallback onOpen,
-    ConnectionCallback onError,
+    ConnectionInformation? connectionInformation, {
+    ConnectionCallback? onDone,
+    ConnectionCallback? onOpen,
+    ConnectionCallback? onError,
   }) async {
     _connected = false;
 
@@ -60,7 +64,7 @@ class BinaryAPI extends BaseAPI {
 
     final Uri uri = Uri(
       scheme: 'wss',
-      host: connectionInformation.endpoint,
+      host: connectionInformation!.endpoint,
       path: '/websockets/v3',
       queryParameters: <String, dynamic>{
         // The Uri.queryParameters only accept Map<String, dynamic/*String|Iterable<String>*/>
@@ -72,19 +76,22 @@ class BinaryAPI extends BaseAPI {
 
     dev.log('connecting to $uri.');
 
+    await _setUserAgent();
+
     // Initialize connection to web socket server
     _webSocketChannel = IOWebSocketChannel.connect(uri.toString(),
         pingInterval: _wsConnectTimeOut);
 
     _webSocketListener =
-        _webSocketChannel // .cast<String>().transform(utf8.decode)
+        _webSocketChannel! // .cast<String>().transform(utf8.decode)
             .stream
-            .map<Map<String, dynamic>>((Object result) => jsonDecode(result))
+            .map<Map<String, dynamic>?>(
+                (Object? result) => jsonDecode(result.toString()))
             .listen(
-      (Map<String, dynamic> message) {
+      (Map<String, dynamic>? message) {
         _connected = true;
         onOpen?.call(uniqueKey);
-        _handleResponse(message);
+        _handleResponse(message!);
       },
       onError: (Object error) {
         dev.log('the web socket connection is closed: $error.');
@@ -110,22 +117,30 @@ class BinaryAPI extends BaseAPI {
 
   @override
   void addToChannel(Map<String, dynamic> request) {
-    _webSocketChannel?.sink?.add(utf8.encode(jsonEncode(request)));
+    _webSocketChannel?.sink.add(utf8.encode(jsonEncode(request)));
   }
 
   @override
-  Future<Response> call({
-    @required Request request,
-  }) =>
-      (_callManager ??= CallManager(this))(
-        request: request,
-      );
+  Future<T> call<T>({
+    required Request request,
+  }) async {
+    final Response response = await (_callManager ??= CallManager(this))(
+      request: request,
+    );
+
+    if (response is T) {
+      // ignore: avoid_as
+      return response as T;
+    }
+
+    throw CallManagerException(message: 'Unexpected response');
+  }
 
   @override
-  Stream<Response> subscribe({
-    @required Request request,
+  Stream<Response>? subscribe({
+    required Request request,
     int cacheSize = 0,
-    RequestCompareFunction comparePredicate,
+    RequestCompareFunction? comparePredicate,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this))(
         request: request,
@@ -135,7 +150,7 @@ class BinaryAPI extends BaseAPI {
 
   @override
   Future<ForgetReceive> unsubscribe({
-    @required String subscriptionId,
+    required String? subscriptionId,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this)).unsubscribe(
         subscriptionId: subscriptionId,
@@ -143,7 +158,7 @@ class BinaryAPI extends BaseAPI {
 
   @override
   Future<ForgetAllReceive> unsubscribeAll({
-    @required ForgetStreamType method,
+    required ForgetStreamType method,
   }) =>
       (_subscriptionManager ??= SubscriptionManager(this)).unsubscribeAll(
         method: method,
@@ -154,7 +169,7 @@ class BinaryAPI extends BaseAPI {
     await _webSocketListener?.cancel();
 
     if (_connected) {
-      await _webSocketChannel?.sink?.close(status.goingAway);
+      await _webSocketChannel?.sink.close(status.goingAway);
     }
 
     _webSocketListener = null;
@@ -193,12 +208,12 @@ class BinaryAPI extends BaseAPI {
         dev.log('have request id: $requestId.');
 
         if (_callManager?.contains(requestId) ?? false) {
-          _callManager.handleResponse(
+          _callManager!.handleResponse(
             requestId: requestId,
             response: message,
           );
         } else if (_subscriptionManager?.contains(requestId) ?? false) {
-          _subscriptionManager.handleResponse(
+          _subscriptionManager!.handleResponse(
             requestId: requestId,
             response: message,
           );
@@ -213,5 +228,38 @@ class BinaryAPI extends BaseAPI {
     } on Exception catch (e) {
       dev.log('failed to process $response - $e', error: e);
     }
+  }
+
+  Future<void> _setUserAgent() async {
+    final String userAgent = await _getUserAgentString();
+
+    if (userAgent.isNotEmpty) {
+      WebSocket.userAgent = userAgent;
+    }
+  }
+
+  Future<String> _getUserAgentString() async {
+    String userAgent = '';
+
+    final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+
+    if (Platform.isAndroid) {
+      final AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+
+      userAgent =
+          'Mozilla/5.0 (Linux; U; Android ${androidInfo.version.release}; ${androidInfo.model} '
+          'Build/${androidInfo.id}) '
+          '${packageInfo.appName}/${packageInfo.version}+${packageInfo.buildNumber}';
+    } else if (Platform.isIOS) {
+      final IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+
+      userAgent = 'Mozilla/5.0 (${iosInfo.utsname.machine} '
+          '${iosInfo.systemName}/${iosInfo.systemVersion} '
+          'Darwin/${iosInfo.utsname.release}) '
+          '${packageInfo.appName}/${packageInfo.version}+${packageInfo.buildNumber}';
+    }
+
+    return userAgent;
   }
 }

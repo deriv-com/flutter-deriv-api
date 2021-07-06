@@ -1,37 +1,38 @@
-/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/oauth_apps_send.json
-// ignore_for_file: avoid_as
+/// Generated automatically from flutter_deriv_api|lib/basic_api/generated/oauth_apps_send.json.
+
+// ignore_for_file: always_put_required_named_parameters_first
 
 import '../request.dart';
 
-/// Oauth apps send class
+/// Oauth apps send class.
 class OauthAppsSend extends Request {
-  /// Initialize OauthAppsSend
+  /// Initialize OauthAppsSend.
   const OauthAppsSend({
     this.oauthApps = true,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) : super(
           msgType: 'oauth_apps',
           passthrough: passthrough,
           reqId: reqId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory OauthAppsSend.fromJson(Map<String, dynamic> json) => OauthAppsSend(
         oauthApps: json['oauth_apps'] == null ? null : json['oauth_apps'] == 1,
-        passthrough: json['passthrough'] as Map<String, dynamic>,
-        reqId: json['req_id'] as int,
+        passthrough: json['passthrough'] as Map<String, dynamic>?,
+        reqId: json['req_id'] as int?,
       );
 
   /// Must be `true`
-  final bool oauthApps;
+  final bool? oauthApps;
 
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'oauth_apps': oauthApps == null
             ? null
-            : oauthApps
+            : oauthApps!
                 ? 1
                 : 0,
         'passthrough': passthrough,
@@ -41,9 +42,9 @@ class OauthAppsSend extends Request {
   /// Creates a copy of instance with given parameters
   @override
   OauthAppsSend copyWith({
-    bool oauthApps,
-    Map<String, dynamic> passthrough,
-    int reqId,
+    bool? oauthApps,
+    Map<String, dynamic>? passthrough,
+    int? reqId,
   }) =>
       OauthAppsSend(
         oauthApps: oauthApps ?? this.oauthApps,
@@ -51,7 +52,7 @@ class OauthAppsSend extends Request {
         reqId: reqId ?? this.reqId,
       );
 
-  /// Override equatable class
+  /// Override equatable class.
   @override
-  List<Object> get props => null;
+  List<Object> get props => <Object>[];
 }
