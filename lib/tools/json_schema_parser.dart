@@ -4,24 +4,6 @@ import 'package:recase/recase.dart';
 import '../helpers/enum_helper.dart';
 import 'schema_model.dart';
 
-const String _objectType = 'object';
-const String _patternObjectType = 'patternObject';
-const String _objectUnknownType = 'objectEmpty';
-const String _arrayType = 'array';
-const String _arrayUnknownType = 'arrayEmpty';
-const String _dateTimeType = 'dateTime';
-const String _limitsMultiType = 'limitsMultiType';
-const String _cashierMultiType = 'cashierMultiType';
-
-const List<String> _ignoredParameters = <String>[
-  'req_id',
-  'passthrough',
-  'echo_req',
-  'error',
-  'msg_type',
-  'error',
-];
-
 /// [JsonSchemaParser] is a utility class for extracting main and nested classes from JSON schema contents.
 /// for using this utility first you should call `preProcessModels()` method and pass decoded JSON schema to it,
 /// then pass the result as `models` parameter to `getClassTypesFor()` method.
@@ -46,6 +28,40 @@ class JsonSchemaParser {
     'null': 'null'
   };
 
+  static const List<String> _ignoredParameters = <String>[
+    'req_id',
+    'passthrough',
+    'echo_req',
+    'error',
+    'msg_type',
+    'error',
+  ];
+
+// TODO(mohammad): REFACTOR - make these types enum.
+  /// Object Type.
+  static const String objectType = 'object';
+
+  /// PatternObject Type.
+  static const String patternObjectType = 'patternObject';
+
+  /// Unknown object Type.
+  static const String objectUnknownType = 'objectEmpty';
+
+  /// object Type.
+  static const String arrayType = 'array';
+
+  /// Unknown array Type.
+  static const String arrayUnknownType = 'arrayEmpty';
+
+  /// DateTime Type.
+  static const String dateTimeType = 'dateTime';
+
+  /// Multi Type - limits.
+  static const String limitsMultiType = 'limitsMultiType';
+
+  /// Multi Type - cashier.
+  static const String cashierMultiType = 'cashierMultiType';
+
   static String _generateClass({
     required String className,
     required List<SchemaModel> models,
@@ -54,6 +70,7 @@ class JsonSchemaParser {
   }) {
     final StringBuffer result = StringBuffer()
       ..write(
+        // TODO(mohammad): REFACTOR - move all schema model functions to some helper.
         '''
           /// ${ReCase(className).sentenceCase} model class
           abstract class ${className}Model {
@@ -223,7 +240,7 @@ class JsonSchemaParser {
         model.isRequired ? '' : '$sourceFieldName == null ? null :';
 
     switch (model.schemaType) {
-      case _patternObjectType:
+      case patternObjectType:
         final SchemaModel childrenModel = model.children.first;
 
         fromJsonStr = '''
@@ -236,12 +253,12 @@ class JsonSchemaParser {
                             entry.key, ${_getFromJsonForModel(forceSourceFieldName: 'entry.value', model: childrenModel)})))
           ''';
         break;
-      case _arrayType:
+      case arrayType:
         fromJsonStr = '''
          $nullCheck ${_getFromJsonFromArray(model, isParent: true, sourceFieldName: sourceFieldName)}
           ''';
         break;
-      case _objectType:
+      case objectType:
         fromJsonStr = '''
           $nullCheck $className.fromJson($sourceFieldName)
           ''';
@@ -254,7 +271,7 @@ class JsonSchemaParser {
         fromJsonStr =
             '''getBool($sourceFieldName)${model.isRequired ? '!' : ''}''';
         break;
-      case _dateTimeType:
+      case dateTimeType:
         fromJsonStr =
             '''getDateTime($sourceFieldName)${model.isRequired ? '!' : ''}''';
         break;
@@ -288,7 +305,7 @@ class JsonSchemaParser {
       final bool isRequired = model.isRequired;
 
       switch (schemaType) {
-        case _objectType:
+        case objectType:
           result.write(
             '''
             ${isRequired ? '' : 'if ($title != null) {'}
@@ -297,7 +314,7 @@ class JsonSchemaParser {
           ''',
           );
           break;
-        case _arrayType:
+        case arrayType:
           result.write(
             '''
            ${isRequired ? '' : 'if ($title != null) {'}
@@ -307,7 +324,7 @@ class JsonSchemaParser {
           );
           break;
 
-        case _dateTimeType:
+        case dateTimeType:
           result.write(
               '''resultMap['$schemaTitle'] = getSecondsSinceEpochDateTime($title);''');
           break;
@@ -329,12 +346,12 @@ class JsonSchemaParser {
     SchemaModel model, {
     bool isParent = false,
   }) {
-    if (model.schemaType != _arrayType) {
-      if (model.schemaType == _objectType) {
+    if (model.schemaType != arrayType) {
+      if (model.schemaType == objectType) {
         return 'item.toJson()';
       }
 
-      if (model.schemaType == _dateTimeType) {
+      if (model.schemaType == dateTimeType) {
         return 'getSecondsSinceEpochDateTime(item)';
       }
 
@@ -356,14 +373,14 @@ class JsonSchemaParser {
   }) {
     final String nullCheck = model.isRequired ? '' : 'item == null ? null :';
 
-    if (model.schemaType != _arrayType) {
-      if (model.schemaType == _objectType) {
+    if (model.schemaType != arrayType) {
+      if (model.schemaType == objectType) {
         return '''
        ${model.className}.fromJson(item)
         ''';
       }
 
-      if (model.schemaType == _dateTimeType) {
+      if (model.schemaType == dateTimeType) {
         return 'getDateTime(item)';
       }
 
@@ -425,7 +442,7 @@ class JsonSchemaParser {
             isRequired: requiredFields?.contains(entry.key) ?? false,
           );
           if (processed != null) {
-            if (processed.schemaType == _cashierMultiType) {
+            if (processed.schemaType == cashierMultiType) {
               models.addAll(processed.multiTypes);
               continue;
             }
@@ -474,12 +491,12 @@ class JsonSchemaParser {
       }
     }
 
-    if (theModel.schemaType == _limitsMultiType) {
+    if (theModel.schemaType == limitsMultiType) {
       return _processEntry(
           MapEntry<String, dynamic>(
               theModel.schemaTitle, entry.value['oneOf'][0]),
           isRequired: true);
-    } else if (theModel.schemaType == _cashierMultiType) {
+    } else if (theModel.schemaType == cashierMultiType) {
       for (final Map<String, dynamic> item in entry.value['oneOf']) {
         final SchemaModel? entry = _processEntry(
             MapEntry<String, dynamic>('${schemaTitle}_${item['type']}', item),
@@ -490,14 +507,14 @@ class JsonSchemaParser {
       }
     }
 
-    if (theModel.schemaType == _objectType) {
+    if (theModel.schemaType == objectType) {
       final List<SchemaModel> children =
           preProcessModels(entry.value, parentModel: theModel);
       for (final SchemaModel child in children) {
         child.parent = theModel;
       }
       theModel.children.addAll(children);
-    } else if (theModel.schemaType == _patternObjectType) {
+    } else if (theModel.schemaType == patternObjectType) {
       final Map<String, dynamic> typeMap = entry.value['patternProperties'];
       final MapEntry<String, dynamic> typeEntry = MapEntry<String, dynamic>(
           '${entry.key}_property', typeMap.entries.first.value);
@@ -507,7 +524,7 @@ class JsonSchemaParser {
         childrenType.parent = theModel;
         theModel.children.add(childrenType);
       }
-    } else if (theModel.schemaType == _arrayType) {
+    } else if (theModel.schemaType == arrayType) {
       final Map<String, dynamic>? arrChildEntry = entry.value['items'];
       theModel.schemaArrType = arrChildEntry != null
           ? _processEntry(
@@ -545,24 +562,24 @@ class JsonSchemaParser {
     }
 
     switch (model.schemaType) {
-      case _patternObjectType:
+      case patternObjectType:
         getClassTypesFor(model.children);
         final SchemaModel childrenModel = model.children.first;
         return 'Map<String,${_getClassTypeString(childrenModel)}>';
-      case _cashierMultiType:
+      case cashierMultiType:
         getClassTypesFor(model.multiTypes);
         // For now we only support multiType for Cashier model(hardcoded)
-        return _cashierMultiType;
-      case _objectType:
+        return cashierMultiType;
+      case objectType:
         getClassTypesFor(model.children);
         _assignClassName(model);
         return model.className;
-      case _objectUnknownType:
+      case objectUnknownType:
         return 'Map<String,dynamic>';
-      case _arrayType:
+      case arrayType:
         getClassTypesFor(<SchemaModel>[model.schemaArrType!]);
         return 'List<${_getClassTypeString(model.schemaArrType!)}>';
-      case _arrayUnknownType:
+      case arrayUnknownType:
         return 'List<dynamic>';
       case 'integer':
         final bool descriptionHasEpoch =
@@ -574,7 +591,7 @@ class JsonSchemaParser {
 
         if ((descriptionHasEpoch || titleHasDate || titleHasTime) &&
             !descriptionHasInSeconds) {
-          model.schemaType = _dateTimeType;
+          model.schemaType = dateTimeType;
           return 'DateTime';
         }
         return _typeMap[model.schemaType]!;
@@ -591,7 +608,7 @@ class JsonSchemaParser {
     bool isRoot = false,
   }) {
     // Check if its Object
-    if (model.children.isNotEmpty && model.schemaType != _patternObjectType) {
+    if (model.children.isNotEmpty && model.schemaType != patternObjectType) {
       _result.add(
         StringBuffer(
           _generateClass(
@@ -667,26 +684,26 @@ class JsonSchemaParser {
     } else {
       type = entry.value['type'];
       // Check if it has patternProperties
-      if (type == _objectType && entry.value['patternProperties'] != null) {
-        type = _patternObjectType;
+      if (type == objectType && entry.value['patternProperties'] != null) {
+        type = patternObjectType;
       }
 
       // Check if its Multi Type
       if (type == null && entry.value['oneOf'] != null) {
         // hard code
         if (entry.key == 'limits') {
-          return _limitsMultiType;
+          return limitsMultiType;
         } else if (entry.key == 'cashier') {
-          return _cashierMultiType;
+          return cashierMultiType;
         }
       }
-      if (type == _objectType && entry.value['properties'] == null) {
+      if (type == objectType && entry.value['properties'] == null) {
         // This is where the provided entry is [object] but doesn't have [properties],
         // Assume this case as Map<String,dynamic> at the end.
-        type = _objectUnknownType;
+        type = objectUnknownType;
       }
     }
-    return type ?? _objectUnknownType;
+    return type ?? objectUnknownType;
   }
 
   static bool _isBoolean(dynamic entry) {
@@ -696,16 +713,6 @@ class JsonSchemaParser {
         entry.value['enum'][1] == 1;
     return entry.value['type'] == 'integer' && isSuccessType;
   }
-
-  // static bool _isRequired(dynamic entry) {
-  //   final String? description = entry.value['description'];
-  //   if (description == null) {
-  //     return true;
-  //   }
-
-  //   return entry.value['type']?.length != 2 &&
-  //       !description.contains('[Optional]');
-  // }
 
   static String _preparePropertyDescription({
     required bool isBoolean,
