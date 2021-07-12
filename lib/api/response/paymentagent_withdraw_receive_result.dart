@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Paymentagent withdraw response model class
+/// Paymentagent withdraw response model class.
 abstract class PaymentagentWithdrawResponseModel {
-  /// Initializes
+  /// Initializes.
   PaymentagentWithdrawResponseModel({
     this.paymentagentWithdraw,
     this.paymentagentName,
@@ -25,7 +25,7 @@ abstract class PaymentagentWithdrawResponseModel {
   final int? transactionId;
 }
 
-/// Paymentagent withdraw response class
+/// Paymentagent withdraw response class.
 class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
   /// Initializes
   PaymentagentWithdrawResponse({
@@ -83,7 +83,7 @@ class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
         response.paymentagentName, response.transactionId);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   PaymentagentWithdrawResponse copyWith({
     int? paymentagentWithdraw,
     String? paymentagentName,

@@ -6,9 +6,9 @@ import '../../helpers/helpers.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// App delete response model class
+/// App delete response model class.
 abstract class AppDeleteResponseModel {
-  /// Initializes
+  /// Initializes.
   AppDeleteResponseModel({
     this.appDelete,
   });
@@ -17,7 +17,7 @@ abstract class AppDeleteResponseModel {
   final int? appDelete;
 }
 
-/// App delete response class
+/// App delete response class.
 class AppDeleteResponse extends AppDeleteResponseModel {
   /// Initializes
   AppDeleteResponse({
@@ -62,7 +62,7 @@ class AppDeleteResponse extends AppDeleteResponseModel {
     return AppDeleteResponse.fromJson(response.appDelete);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AppDeleteResponse copyWith({
     int? appDelete,
   }) =>

@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Login history response model class
+/// Login history response model class.
 abstract class LoginHistoryResponseModel {
-  /// Initializes
+  /// Initializes.
   LoginHistoryResponseModel({
     this.loginHistory,
   });
@@ -17,7 +17,7 @@ abstract class LoginHistoryResponseModel {
   final List<LoginHistoryItem>? loginHistory;
 }
 
-/// Login history response class
+/// Login history response class.
 class LoginHistoryResponse extends LoginHistoryResponseModel {
   /// Initializes
   LoginHistoryResponse({
@@ -77,7 +77,7 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
     return LoginHistoryResponse.fromJson(response.loginHistory);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   LoginHistoryResponse copyWith({
     List<LoginHistoryItem>? loginHistory,
   }) =>
@@ -85,9 +85,9 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
         loginHistory: loginHistory ?? this.loginHistory,
       );
 }
-/// Login history item model class
+/// Login history item model class.
 abstract class LoginHistoryItemModel {
-  /// Initializes
+  /// Initializes.
   LoginHistoryItemModel({
     required this.time,
     required this.status,
@@ -108,7 +108,7 @@ abstract class LoginHistoryItemModel {
   final String action;
 }
 
-/// Login history item class
+/// Login history item class.
 class LoginHistoryItem extends LoginHistoryItemModel {
   /// Initializes
   LoginHistoryItem({
@@ -144,7 +144,7 @@ class LoginHistoryItem extends LoginHistoryItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   LoginHistoryItem copyWith({
     required String action,
     required String environment,

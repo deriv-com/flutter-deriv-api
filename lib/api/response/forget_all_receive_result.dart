@@ -6,9 +6,9 @@ import '../../helpers/helpers.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Forget all response model class
+/// Forget all response model class.
 abstract class ForgetAllResponseModel {
-  /// Initializes
+  /// Initializes.
   ForgetAllResponseModel({
     this.forgetAll,
   });
@@ -17,7 +17,7 @@ abstract class ForgetAllResponseModel {
   final List<dynamic>? forgetAll;
 }
 
-/// Forget all response class
+/// Forget all response class.
 class ForgetAllResponse extends ForgetAllResponseModel {
   /// Initializes
   ForgetAllResponse({
@@ -75,7 +75,7 @@ class ForgetAllResponse extends ForgetAllResponseModel {
     return ForgetAllResponse.fromJson(response.forgetAll);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ForgetAllResponse copyWith({
     List<dynamic>? forgetAll,
   }) =>

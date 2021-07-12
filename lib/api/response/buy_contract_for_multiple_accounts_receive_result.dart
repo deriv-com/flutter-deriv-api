@@ -1,8 +1,8 @@
 import '../../helpers/helpers.dart';
 
-/// Buy contract for multiple accounts response model class
+/// Buy contract for multiple accounts response model class.
 abstract class BuyContractForMultipleAccountsResponseModel {
-  /// Initializes
+  /// Initializes.
   BuyContractForMultipleAccountsResponseModel({
     this.buyContractForMultipleAccounts,
   });
@@ -11,7 +11,7 @@ abstract class BuyContractForMultipleAccountsResponseModel {
   final BuyContractForMultipleAccounts? buyContractForMultipleAccounts;
 }
 
-/// Buy contract for multiple accounts response class
+/// Buy contract for multiple accounts response class.
 class BuyContractForMultipleAccountsResponse
     extends BuyContractForMultipleAccountsResponseModel {
   /// Initializes
@@ -45,7 +45,7 @@ class BuyContractForMultipleAccountsResponse
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   BuyContractForMultipleAccountsResponse copyWith({
     BuyContractForMultipleAccounts? buyContractForMultipleAccounts,
   }) =>
@@ -54,9 +54,9 @@ class BuyContractForMultipleAccountsResponse
             this.buyContractForMultipleAccounts,
       );
 }
-/// Buy contract for multiple accounts model class
+/// Buy contract for multiple accounts model class.
 abstract class BuyContractForMultipleAccountsModel {
-  /// Initializes
+  /// Initializes.
   BuyContractForMultipleAccountsModel({
     required this.result,
   });
@@ -65,7 +65,7 @@ abstract class BuyContractForMultipleAccountsModel {
   final List<Map<String, dynamic>> result;
 }
 
-/// Buy contract for multiple accounts class
+/// Buy contract for multiple accounts class.
 class BuyContractForMultipleAccounts
     extends BuyContractForMultipleAccountsModel {
   /// Initializes
@@ -98,7 +98,7 @@ class BuyContractForMultipleAccounts
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   BuyContractForMultipleAccounts copyWith({
     required List<Map<String, dynamic>> result,
   }) =>

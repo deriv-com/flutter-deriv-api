@@ -6,9 +6,9 @@ import '../../helpers/helpers.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Api token response model class
+/// Api token response model class.
 abstract class ApiTokenResponseModel {
-  /// Initializes
+  /// Initializes.
   ApiTokenResponseModel({
     this.apiToken,
   });
@@ -17,7 +17,7 @@ abstract class ApiTokenResponseModel {
   final ApiToken? apiToken;
 }
 
-/// Api token response class
+/// Api token response class.
 class ApiTokenResponse extends ApiTokenResponseModel {
   /// Initializes
   ApiTokenResponse({
@@ -95,7 +95,7 @@ class ApiTokenResponse extends ApiTokenResponseModel {
     return ApiTokenResponse.fromJson(response.apiToken);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ApiTokenResponse copyWith({
     ApiToken? apiToken,
   }) =>
@@ -131,10 +131,9 @@ enum ScopesItemEnum {
   /// admin.
   admin,
 }
-
-/// Api token model class
+/// Api token model class.
 abstract class ApiTokenModel {
-  /// Initializes
+  /// Initializes.
   ApiTokenModel({
     this.deleteToken,
     this.newToken,
@@ -151,7 +150,7 @@ abstract class ApiTokenModel {
   final List<TokensItem>? tokens;
 }
 
-/// Api token class
+/// Api token class.
 class ApiToken extends ApiTokenModel {
   /// Initializes
   ApiToken({
@@ -194,7 +193,7 @@ class ApiToken extends ApiTokenModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ApiToken copyWith({
     int? deleteToken,
     int? newToken,
@@ -206,10 +205,9 @@ class ApiToken extends ApiTokenModel {
         tokens: tokens ?? this.tokens,
       );
 }
-
-/// Tokens item model class
+/// Tokens item model class.
 abstract class TokensItemModel {
-  /// Initializes
+  /// Initializes.
   TokensItemModel({
     this.displayName,
     this.lastUsed,
@@ -234,7 +232,7 @@ abstract class TokensItemModel {
   final String? validForIp;
 }
 
-/// Tokens item class
+/// Tokens item class.
 class TokensItem extends TokensItemModel {
   /// Initializes
   TokensItem({
@@ -289,7 +287,7 @@ class TokensItem extends TokensItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TokensItem copyWith({
     String? displayName,
     String? lastUsed,

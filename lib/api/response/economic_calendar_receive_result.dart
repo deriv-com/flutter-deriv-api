@@ -1,8 +1,8 @@
 import '../../helpers/helpers.dart';
 
-/// Economic calendar response model class
+/// Economic calendar response model class.
 abstract class EconomicCalendarResponseModel {
-  /// Initializes
+  /// Initializes.
   EconomicCalendarResponseModel({
     this.economicCalendar,
   });
@@ -11,7 +11,7 @@ abstract class EconomicCalendarResponseModel {
   final EconomicCalendar? economicCalendar;
 }
 
-/// Economic calendar response class
+/// Economic calendar response class.
 class EconomicCalendarResponse extends EconomicCalendarResponseModel {
   /// Initializes
   EconomicCalendarResponse({
@@ -41,7 +41,7 @@ class EconomicCalendarResponse extends EconomicCalendarResponseModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   EconomicCalendarResponse copyWith({
     EconomicCalendar? economicCalendar,
   }) =>
@@ -49,9 +49,9 @@ class EconomicCalendarResponse extends EconomicCalendarResponseModel {
         economicCalendar: economicCalendar ?? this.economicCalendar,
       );
 }
-/// Economic calendar model class
+/// Economic calendar model class.
 abstract class EconomicCalendarModel {
-  /// Initializes
+  /// Initializes.
   EconomicCalendarModel({
     this.events,
   });
@@ -60,7 +60,7 @@ abstract class EconomicCalendarModel {
   final List<EventsItem>? events;
 }
 
-/// Economic calendar class
+/// Economic calendar class.
 class EconomicCalendar extends EconomicCalendarModel {
   /// Initializes
   EconomicCalendar({
@@ -96,7 +96,7 @@ class EconomicCalendar extends EconomicCalendarModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   EconomicCalendar copyWith({
     List<EventsItem>? events,
   }) =>
@@ -104,9 +104,9 @@ class EconomicCalendar extends EconomicCalendarModel {
         events: events ?? this.events,
       );
 }
-/// Events item model class
+/// Events item model class.
 abstract class EventsItemModel {
-  /// Initializes
+  /// Initializes.
   EventsItemModel({
     this.actual,
     this.currency,
@@ -139,7 +139,7 @@ abstract class EventsItemModel {
   final DateTime? releaseDate;
 }
 
-/// Events item class
+/// Events item class.
 class EventsItem extends EventsItemModel {
   /// Initializes
   EventsItem({
@@ -196,7 +196,7 @@ class EventsItem extends EventsItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   EventsItem copyWith({
     Actual? actual,
     String? currency,
@@ -216,9 +216,9 @@ class EventsItem extends EventsItemModel {
         releaseDate: releaseDate ?? this.releaseDate,
       );
 }
-/// Actual model class
+/// Actual model class.
 abstract class ActualModel {
-  /// Initializes
+  /// Initializes.
   ActualModel({
     this.displayValue,
   });
@@ -227,7 +227,7 @@ abstract class ActualModel {
   final String? displayValue;
 }
 
-/// Actual class
+/// Actual class.
 class Actual extends ActualModel {
   /// Initializes
   Actual({
@@ -250,7 +250,7 @@ class Actual extends ActualModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Actual copyWith({
     String? displayValue,
   }) =>
@@ -258,9 +258,9 @@ class Actual extends ActualModel {
         displayValue: displayValue ?? this.displayValue,
       );
 }
-/// Forecast model class
+/// Forecast model class.
 abstract class ForecastModel {
-  /// Initializes
+  /// Initializes.
   ForecastModel({
     this.displayValue,
   });
@@ -269,7 +269,7 @@ abstract class ForecastModel {
   final String? displayValue;
 }
 
-/// Forecast class
+/// Forecast class.
 class Forecast extends ForecastModel {
   /// Initializes
   Forecast({
@@ -292,7 +292,7 @@ class Forecast extends ForecastModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Forecast copyWith({
     String? displayValue,
   }) =>
@@ -300,9 +300,9 @@ class Forecast extends ForecastModel {
         displayValue: displayValue ?? this.displayValue,
       );
 }
-/// Previous model class
+/// Previous model class.
 abstract class PreviousModel {
-  /// Initializes
+  /// Initializes.
   PreviousModel({
     this.displayValue,
   });
@@ -311,7 +311,7 @@ abstract class PreviousModel {
   final String? displayValue;
 }
 
-/// Previous class
+/// Previous class.
 class Previous extends PreviousModel {
   /// Initializes
   Previous({
@@ -334,7 +334,7 @@ class Previous extends PreviousModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Previous copyWith({
     String? displayValue,
   }) =>

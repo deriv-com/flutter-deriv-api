@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Contract update response model class
+/// Contract update response model class.
 abstract class ContractUpdateResponseModel {
-  /// Initializes
+  /// Initializes.
   ContractUpdateResponseModel({
     this.contractUpdate,
   });
@@ -17,7 +17,7 @@ abstract class ContractUpdateResponseModel {
   final ContractUpdate? contractUpdate;
 }
 
-/// Contract update response class
+/// Contract update response class.
 class ContractUpdateResponse extends ContractUpdateResponseModel {
   /// Initializes
   ContractUpdateResponse({
@@ -66,7 +66,7 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
     return ContractUpdateResponse.fromJson(response.contractUpdate);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ContractUpdateResponse copyWith({
     ContractUpdate? contractUpdate,
   }) =>
@@ -74,9 +74,9 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
         contractUpdate: contractUpdate ?? this.contractUpdate,
       );
 }
-/// Contract update model class
+/// Contract update model class.
 abstract class ContractUpdateModel {
-  /// Initializes
+  /// Initializes.
   ContractUpdateModel({
     this.stopLoss,
     this.takeProfit,
@@ -89,7 +89,7 @@ abstract class ContractUpdateModel {
   final TakeProfit? takeProfit;
 }
 
-/// Contract update class
+/// Contract update class.
 class ContractUpdate extends ContractUpdateModel {
   /// Initializes
   ContractUpdate({
@@ -124,7 +124,7 @@ class ContractUpdate extends ContractUpdateModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ContractUpdate copyWith({
     StopLoss? stopLoss,
     TakeProfit? takeProfit,
@@ -134,9 +134,9 @@ class ContractUpdate extends ContractUpdateModel {
         takeProfit: takeProfit ?? this.takeProfit,
       );
 }
-/// Stop loss model class
+/// Stop loss model class.
 abstract class StopLossModel {
-  /// Initializes
+  /// Initializes.
   StopLossModel({
     this.displayName,
     this.orderAmount,
@@ -157,7 +157,7 @@ abstract class StopLossModel {
   final String? value;
 }
 
-/// Stop loss class
+/// Stop loss class.
 class StopLoss extends StopLossModel {
   /// Initializes
   StopLoss({
@@ -192,7 +192,7 @@ class StopLoss extends StopLossModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   StopLoss copyWith({
     String? displayName,
     double? orderAmount,
@@ -206,9 +206,9 @@ class StopLoss extends StopLossModel {
         value: value ?? this.value,
       );
 }
-/// Take profit model class
+/// Take profit model class.
 abstract class TakeProfitModel {
-  /// Initializes
+  /// Initializes.
   TakeProfitModel({
     this.displayName,
     this.orderAmount,
@@ -229,7 +229,7 @@ abstract class TakeProfitModel {
   final String? value;
 }
 
-/// Take profit class
+/// Take profit class.
 class TakeProfit extends TakeProfitModel {
   /// Initializes
   TakeProfit({
@@ -264,7 +264,7 @@ class TakeProfit extends TakeProfitModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TakeProfit copyWith({
     String? displayName,
     double? orderAmount,

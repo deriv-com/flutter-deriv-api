@@ -9,9 +9,9 @@ import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 import 'set_settings_receive_result.dart';
 
-/// Get settings response model class
+/// Get settings response model class.
 abstract class GetSettingsResponseModel {
-  /// Initializes
+  /// Initializes.
   GetSettingsResponseModel({
     this.getSettings,
   });
@@ -20,7 +20,7 @@ abstract class GetSettingsResponseModel {
   final GetSettings? getSettings;
 }
 
-/// Get settings response class
+/// Get settings response class.
 class GetSettingsResponse extends GetSettingsResponseModel {
   /// Initializes
   GetSettingsResponse({
@@ -120,7 +120,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
         ),
       );
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   GetSettingsResponse copyWith({
     GetSettings? getSettings,
   }) =>
@@ -128,9 +128,9 @@ class GetSettingsResponse extends GetSettingsResponseModel {
         getSettings: getSettings ?? this.getSettings,
       );
 }
-/// Get settings model class
+/// Get settings model class.
 abstract class GetSettingsModel {
-  /// Initializes
+  /// Initializes.
   GetSettingsModel({
     this.accountOpeningReason,
     this.addressCity,
@@ -255,7 +255,7 @@ abstract class GetSettingsModel {
   final String? userHash;
 }
 
-/// Get settings class
+/// Get settings class.
 class GetSettings extends GetSettingsModel {
   /// Initializes
   GetSettings({
@@ -411,7 +411,7 @@ class GetSettings extends GetSettingsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   GetSettings copyWith({
     String? accountOpeningReason,
     String? addressCity,
@@ -480,9 +480,9 @@ class GetSettings extends GetSettingsModel {
         userHash: userHash ?? this.userHash,
       );
 }
-/// Feature flag model class
+/// Feature flag model class.
 abstract class FeatureFlagModel {
-  /// Initializes
+  /// Initializes.
   FeatureFlagModel({
     this.wallet,
   });
@@ -491,7 +491,7 @@ abstract class FeatureFlagModel {
   final bool? wallet;
 }
 
-/// Feature flag class
+/// Feature flag class.
 class FeatureFlag extends FeatureFlagModel {
   /// Initializes
   FeatureFlag({
@@ -514,7 +514,7 @@ class FeatureFlag extends FeatureFlagModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   FeatureFlag copyWith({
     bool? wallet,
   }) =>

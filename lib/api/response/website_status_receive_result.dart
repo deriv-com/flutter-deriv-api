@@ -13,9 +13,9 @@ import '../models/enums.dart';
 import 'forget_all_receive_result.dart';
 import 'forget_receive_result.dart';
 
-/// Website status response model class
+/// Website status response model class.
 abstract class WebsiteStatusResponseModel {
-  /// Initializes
+  /// Initializes.
   WebsiteStatusResponseModel({
     this.websiteStatus,
     this.subscription,
@@ -28,7 +28,7 @@ abstract class WebsiteStatusResponseModel {
   final Subscription? subscription;
 }
 
-/// Website status response class
+/// Website status response class.
 class WebsiteStatusResponse extends WebsiteStatusResponseModel {
   /// Initializes
   WebsiteStatusResponse({
@@ -149,7 +149,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
     return ForgetAllResponse.fromJson(response.forgetAll);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   WebsiteStatusResponse copyWith({
     WebsiteStatus? websiteStatus,
     Subscription? subscription,
@@ -194,9 +194,9 @@ enum SiteStatusEnum {
   /// updating.
   updating,
 }
-/// Website status model class
+/// Website status model class.
 abstract class WebsiteStatusModel {
-  /// Initializes
+  /// Initializes.
   WebsiteStatusModel({
     required this.p2pConfig,
     required this.currenciesConfig,
@@ -237,7 +237,7 @@ abstract class WebsiteStatusModel {
   final String? termsConditionsVersion;
 }
 
-/// Website status class
+/// Website status class.
 class WebsiteStatus extends WebsiteStatusModel {
   /// Initializes
   WebsiteStatus({
@@ -323,7 +323,7 @@ class WebsiteStatus extends WebsiteStatusModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   WebsiteStatus copyWith({
     required ApiCallLimits apiCallLimits,
     required Map<String, CryptoConfigProperty> cryptoConfig,
@@ -348,9 +348,9 @@ class WebsiteStatus extends WebsiteStatusModel {
             termsConditionsVersion ?? this.termsConditionsVersion,
       );
 }
-/// Api call limits model class
+/// Api call limits model class.
 abstract class ApiCallLimitsModel {
-  /// Initializes
+  /// Initializes.
   ApiCallLimitsModel({
     required this.maxRequestsPricing,
     required this.maxRequestsOutcome,
@@ -371,7 +371,7 @@ abstract class ApiCallLimitsModel {
   final MaxProposalSubscription maxProposalSubscription;
 }
 
-/// Api call limits class
+/// Api call limits class.
 class ApiCallLimits extends ApiCallLimitsModel {
   /// Initializes
   ApiCallLimits({
@@ -413,7 +413,7 @@ class ApiCallLimits extends ApiCallLimitsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ApiCallLimits copyWith({
     required MaxProposalSubscription maxProposalSubscription,
     required MaxRequestesGeneral maxRequestesGeneral,
@@ -427,9 +427,9 @@ class ApiCallLimits extends ApiCallLimitsModel {
         maxRequestsPricing: maxRequestsPricing,
       );
 }
-/// Max proposal subscription model class
+/// Max proposal subscription model class.
 abstract class MaxProposalSubscriptionModel {
-  /// Initializes
+  /// Initializes.
   MaxProposalSubscriptionModel({
     required this.max,
     required this.appliesTo,
@@ -442,7 +442,7 @@ abstract class MaxProposalSubscriptionModel {
   final String appliesTo;
 }
 
-/// Max proposal subscription class
+/// Max proposal subscription class.
 class MaxProposalSubscription extends MaxProposalSubscriptionModel {
   /// Initializes
   MaxProposalSubscription({
@@ -470,7 +470,7 @@ class MaxProposalSubscription extends MaxProposalSubscriptionModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   MaxProposalSubscription copyWith({
     required String appliesTo,
     required double max,
@@ -480,9 +480,9 @@ class MaxProposalSubscription extends MaxProposalSubscriptionModel {
         max: max,
       );
 }
-/// Max requestes general model class
+/// Max requestes general model class.
 abstract class MaxRequestesGeneralModel {
-  /// Initializes
+  /// Initializes.
   MaxRequestesGeneralModel({
     required this.minutely,
     required this.hourly,
@@ -499,7 +499,7 @@ abstract class MaxRequestesGeneralModel {
   final String appliesTo;
 }
 
-/// Max requestes general class
+/// Max requestes general class.
 class MaxRequestesGeneral extends MaxRequestesGeneralModel {
   /// Initializes
   MaxRequestesGeneral({
@@ -531,7 +531,7 @@ class MaxRequestesGeneral extends MaxRequestesGeneralModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   MaxRequestesGeneral copyWith({
     required String appliesTo,
     required double hourly,
@@ -543,9 +543,9 @@ class MaxRequestesGeneral extends MaxRequestesGeneralModel {
         minutely: minutely,
       );
 }
-/// Max requests outcome model class
+/// Max requests outcome model class.
 abstract class MaxRequestsOutcomeModel {
-  /// Initializes
+  /// Initializes.
   MaxRequestsOutcomeModel({
     required this.minutely,
     required this.hourly,
@@ -562,7 +562,7 @@ abstract class MaxRequestsOutcomeModel {
   final String appliesTo;
 }
 
-/// Max requests outcome class
+/// Max requests outcome class.
 class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
   /// Initializes
   MaxRequestsOutcome({
@@ -594,7 +594,7 @@ class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   MaxRequestsOutcome copyWith({
     required String appliesTo,
     required double hourly,
@@ -606,9 +606,9 @@ class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
         minutely: minutely,
       );
 }
-/// Max requests pricing model class
+/// Max requests pricing model class.
 abstract class MaxRequestsPricingModel {
-  /// Initializes
+  /// Initializes.
   MaxRequestsPricingModel({
     required this.minutely,
     required this.hourly,
@@ -625,7 +625,7 @@ abstract class MaxRequestsPricingModel {
   final String appliesTo;
 }
 
-/// Max requests pricing class
+/// Max requests pricing class.
 class MaxRequestsPricing extends MaxRequestsPricingModel {
   /// Initializes
   MaxRequestsPricing({
@@ -657,7 +657,7 @@ class MaxRequestsPricing extends MaxRequestsPricingModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   MaxRequestsPricing copyWith({
     required String appliesTo,
     required double hourly,
@@ -669,9 +669,9 @@ class MaxRequestsPricing extends MaxRequestsPricingModel {
         minutely: minutely,
       );
 }
-/// Crypto config property model class
+/// Crypto config property model class.
 abstract class CryptoConfigPropertyModel {
-  /// Initializes
+  /// Initializes.
   CryptoConfigPropertyModel({
     required this.minimumWithdrawal,
   });
@@ -680,7 +680,7 @@ abstract class CryptoConfigPropertyModel {
   final double minimumWithdrawal;
 }
 
-/// Crypto config property class
+/// Crypto config property class.
 class CryptoConfigProperty extends CryptoConfigPropertyModel {
   /// Initializes
   CryptoConfigProperty({
@@ -704,7 +704,7 @@ class CryptoConfigProperty extends CryptoConfigPropertyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   CryptoConfigProperty copyWith({
     required double minimumWithdrawal,
   }) =>
@@ -712,9 +712,9 @@ class CryptoConfigProperty extends CryptoConfigPropertyModel {
         minimumWithdrawal: minimumWithdrawal,
       );
 }
-/// Currencies config property model class
+/// Currencies config property model class.
 abstract class CurrenciesConfigPropertyModel {
-  /// Initializes
+  /// Initializes.
   CurrenciesConfigPropertyModel({
     required this.type,
     required this.transferBetweenAccounts,
@@ -747,7 +747,7 @@ abstract class CurrenciesConfigPropertyModel {
   final double fractionalDigits;
 }
 
-/// Currencies config property class
+/// Currencies config property class.
 class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
   /// Initializes
   CurrenciesConfigProperty({
@@ -799,7 +799,7 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   CurrenciesConfigProperty copyWith({
     required double fractionalDigits,
     required double isDepositSuspended,
@@ -819,9 +819,9 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
         type: type,
       );
 }
-/// Transfer between accounts model class
+/// Transfer between accounts model class.
 abstract class TransferBetweenAccountsModel {
-  /// Initializes
+  /// Initializes.
   TransferBetweenAccountsModel({
     required this.limits,
     required this.fees,
@@ -834,7 +834,7 @@ abstract class TransferBetweenAccountsModel {
   final Map<String, double> fees;
 }
 
-/// Transfer between accounts class
+/// Transfer between accounts class.
 class TransferBetweenAccounts extends TransferBetweenAccountsModel {
   /// Initializes
   TransferBetweenAccounts({
@@ -865,7 +865,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TransferBetweenAccounts copyWith({
     required Map<String, double> fees,
     required Limits limits,
@@ -875,9 +875,9 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
         limits: limits,
       );
 }
-/// Limits model class
+/// Limits model class.
 abstract class LimitsModel {
-  /// Initializes
+  /// Initializes.
   LimitsModel({
     required this.min,
     this.max,
@@ -890,7 +890,7 @@ abstract class LimitsModel {
   final double? max;
 }
 
-/// Limits class
+/// Limits class.
 class Limits extends LimitsModel {
   /// Initializes
   Limits({
@@ -917,7 +917,7 @@ class Limits extends LimitsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Limits copyWith({
     required double min,
     double? max,
@@ -927,9 +927,9 @@ class Limits extends LimitsModel {
         max: max ?? this.max,
       );
 }
-/// P2p config model class
+/// P2p config model class.
 abstract class P2pConfigModel {
-  /// Initializes
+  /// Initializes.
   P2pConfigModel({
     required this.orderPaymentPeriod,
     required this.orderDailyLimit,
@@ -974,7 +974,7 @@ abstract class P2pConfigModel {
   final int? advertsArchivePeriod;
 }
 
-/// P2p config class
+/// P2p config class.
 class P2pConfig extends P2pConfigModel {
   /// Initializes
   P2pConfig({
@@ -1033,7 +1033,7 @@ class P2pConfig extends P2pConfigModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pConfig copyWith({
     required int advertsActiveLimit,
     required int cancellationBlockDuration,
@@ -1059,9 +1059,9 @@ class P2pConfig extends P2pConfigModel {
         advertsArchivePeriod: advertsArchivePeriod ?? this.advertsArchivePeriod,
       );
 }
-/// Subscription model class
+/// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes
+  /// Initializes.
   SubscriptionModel({
     required this.id,
   });
@@ -1070,7 +1070,7 @@ abstract class SubscriptionModel {
   final String id;
 }
 
-/// Subscription class
+/// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
@@ -1093,7 +1093,7 @@ class Subscription extends SubscriptionModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Subscription copyWith({
     required String id,
   }) =>

@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Profit table response model class
+/// Profit table response model class.
 abstract class ProfitTableResponseModel {
-  /// Initializes
+  /// Initializes.
   ProfitTableResponseModel({
     this.profitTable,
   });
@@ -17,7 +17,7 @@ abstract class ProfitTableResponseModel {
   final ProfitTable? profitTable;
 }
 
-/// Profit table response class
+/// Profit table response class.
 class ProfitTableResponse extends ProfitTableResponseModel {
   /// Initializes
   ProfitTableResponse({
@@ -65,7 +65,7 @@ class ProfitTableResponse extends ProfitTableResponseModel {
     return ProfitTableResponse.fromJson(response.profitTable);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ProfitTableResponse copyWith({
     ProfitTable? profitTable,
   }) =>
@@ -73,9 +73,9 @@ class ProfitTableResponse extends ProfitTableResponseModel {
         profitTable: profitTable ?? this.profitTable,
       );
 }
-/// Profit table model class
+/// Profit table model class.
 abstract class ProfitTableModel {
-  /// Initializes
+  /// Initializes.
   ProfitTableModel({
     this.count,
     this.transactions,
@@ -88,7 +88,7 @@ abstract class ProfitTableModel {
   final List<TransactionsItem>? transactions;
 }
 
-/// Profit table class
+/// Profit table class.
 class ProfitTable extends ProfitTableModel {
   /// Initializes
   ProfitTable({
@@ -127,7 +127,7 @@ class ProfitTable extends ProfitTableModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ProfitTable copyWith({
     double? count,
     List<TransactionsItem>? transactions,
@@ -137,9 +137,9 @@ class ProfitTable extends ProfitTableModel {
         transactions: transactions ?? this.transactions,
       );
 }
-/// Transactions item model class
+/// Transactions item model class.
 abstract class TransactionsItemModel {
-  /// Initializes
+  /// Initializes.
   TransactionsItemModel({
     this.appId,
     this.buyPrice,
@@ -184,7 +184,7 @@ abstract class TransactionsItemModel {
   final int? transactionId;
 }
 
-/// Transactions item class
+/// Transactions item class.
 class TransactionsItem extends TransactionsItemModel {
   /// Initializes
   TransactionsItem({
@@ -244,7 +244,7 @@ class TransactionsItem extends TransactionsItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TransactionsItem copyWith({
     int? appId,
     double? buyPrice,

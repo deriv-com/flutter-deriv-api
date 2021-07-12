@@ -11,9 +11,9 @@ import '../models/base_exception_model.dart';
 import '../models/enums.dart';
 import 'forget_all_receive_result.dart';
 
-/// Ticks response model class
+/// Ticks response model class.
 abstract class TicksResponseModel {
-  /// Initializes
+  /// Initializes.
   TicksResponseModel({
     this.tick,
     this.subscription,
@@ -26,7 +26,7 @@ abstract class TicksResponseModel {
   final Subscription? subscription;
 }
 
-/// Ticks response class
+/// Ticks response class.
 class TicksResponse extends TicksResponseModel {
   /// Initializes
   TicksResponse({
@@ -107,7 +107,7 @@ class TicksResponse extends TicksResponseModel {
     return ForgetAllResponse.fromJson(response.forgetAll);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TicksResponse copyWith({
     Tick? tick,
     Subscription? subscription,
@@ -117,9 +117,9 @@ class TicksResponse extends TicksResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-/// Tick model class
+/// Tick model class.
 abstract class TickModel {
-  /// Initializes
+  /// Initializes.
   TickModel({
     required this.pipSize,
     this.ask,
@@ -152,7 +152,7 @@ abstract class TickModel {
   final String? symbol;
 }
 
-/// Tick class
+/// Tick class.
 class Tick extends TickModel {
   /// Initializes
   Tick({
@@ -199,7 +199,7 @@ class Tick extends TickModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Tick copyWith({
     required double pipSize,
     double? ask,
@@ -219,9 +219,9 @@ class Tick extends TickModel {
         symbol: symbol ?? this.symbol,
       );
 }
-/// Subscription model class
+/// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes
+  /// Initializes.
   SubscriptionModel({
     required this.id,
   });
@@ -230,7 +230,7 @@ abstract class SubscriptionModel {
   final String id;
 }
 
-/// Subscription class
+/// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
@@ -253,7 +253,7 @@ class Subscription extends SubscriptionModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Subscription copyWith({
     required String id,
   }) =>

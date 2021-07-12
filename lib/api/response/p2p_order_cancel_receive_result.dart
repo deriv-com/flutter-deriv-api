@@ -1,9 +1,9 @@
 import 'package:meta/meta.dart';
 
 
-/// P2p order cancel response model class
+/// P2p order cancel response model class.
 abstract class P2pOrderCancelResponseModel {
-  /// Initializes
+  /// Initializes.
   P2pOrderCancelResponseModel({
     this.p2pOrderCancel,
   });
@@ -12,7 +12,7 @@ abstract class P2pOrderCancelResponseModel {
   final P2pOrderCancel? p2pOrderCancel;
 }
 
-/// P2p order cancel response class
+/// P2p order cancel response class.
 class P2pOrderCancelResponse extends P2pOrderCancelResponseModel {
   /// Initializes
   P2pOrderCancelResponse({
@@ -42,7 +42,7 @@ class P2pOrderCancelResponse extends P2pOrderCancelResponseModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pOrderCancelResponse copyWith({
     P2pOrderCancel? p2pOrderCancel,
   }) =>
@@ -61,9 +61,9 @@ enum StatusEnum {
   /// cancelled.
   cancelled,
 }
-/// P2p order cancel model class
+/// P2p order cancel model class.
 abstract class P2pOrderCancelModel {
-  /// Initializes
+  /// Initializes.
   P2pOrderCancelModel({
     required this.status,
     required this.id,
@@ -76,7 +76,7 @@ abstract class P2pOrderCancelModel {
   final String id;
 }
 
-/// P2p order cancel class
+/// P2p order cancel class.
 class P2pOrderCancel extends P2pOrderCancelModel {
   /// Initializes
   P2pOrderCancel({
@@ -106,7 +106,7 @@ class P2pOrderCancel extends P2pOrderCancelModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pOrderCancel copyWith({
     required String id,
     required StatusEnum status,

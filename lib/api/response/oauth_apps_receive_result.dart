@@ -6,9 +6,9 @@ import '../../helpers/helpers.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
 
-/// Oauth apps response model class
+/// Oauth apps response model class.
 abstract class OauthAppsResponseModel {
-  /// Initializes
+  /// Initializes.
   OauthAppsResponseModel({
     this.oauthApps,
   });
@@ -17,7 +17,7 @@ abstract class OauthAppsResponseModel {
   final List<OauthAppsItem>? oauthApps;
 }
 
-/// Oauth apps response class
+/// Oauth apps response class.
 class OauthAppsResponse extends OauthAppsResponseModel {
   /// Initializes
   OauthAppsResponse({
@@ -76,7 +76,7 @@ class OauthAppsResponse extends OauthAppsResponseModel {
     return OauthAppsResponse.fromJson(response.oauthApps);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   OauthAppsResponse copyWith({
     List<OauthAppsItem>? oauthApps,
   }) =>
@@ -84,9 +84,9 @@ class OauthAppsResponse extends OauthAppsResponseModel {
         oauthApps: oauthApps ?? this.oauthApps,
       );
 }
-/// Oauth apps item model class
+/// Oauth apps item model class.
 abstract class OauthAppsItemModel {
-  /// Initializes
+  /// Initializes.
   OauthAppsItemModel({
     required this.scopes,
     required this.name,
@@ -111,7 +111,7 @@ abstract class OauthAppsItemModel {
   final String? lastUsed;
 }
 
-/// Oauth apps item class
+/// Oauth apps item class.
 class OauthAppsItem extends OauthAppsItemModel {
   /// Initializes
   OauthAppsItem({
@@ -159,7 +159,7 @@ class OauthAppsItem extends OauthAppsItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   OauthAppsItem copyWith({
     required int appId,
     required double appMarkupPercentage,

@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Tnc approval response model class
+/// Tnc approval response model class.
 abstract class TncApprovalResponseModel {
-  /// Initializes
+  /// Initializes.
   TncApprovalResponseModel({
     this.tncApproval,
   });
@@ -17,7 +17,7 @@ abstract class TncApprovalResponseModel {
   final int? tncApproval;
 }
 
-/// Tnc approval response class
+/// Tnc approval response class.
 class TncApprovalResponse extends TncApprovalResponseModel {
   /// Initializes
   TncApprovalResponse({
@@ -63,7 +63,7 @@ class TncApprovalResponse extends TncApprovalResponseModel {
     return TncApprovalResponse.fromJson(response.tncApproval);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TncApprovalResponse copyWith({
     int? tncApproval,
   }) =>

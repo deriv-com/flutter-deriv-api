@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// P2p chat create response model class
+/// P2p chat create response model class.
 abstract class P2pChatCreateResponseModel {
-  /// Initializes
+  /// Initializes.
   P2pChatCreateResponseModel({
     this.p2pChatCreate,
   });
@@ -17,7 +17,7 @@ abstract class P2pChatCreateResponseModel {
   final P2pChatCreate? p2pChatCreate;
 }
 
-/// P2p chat create response class
+/// P2p chat create response class.
 class P2pChatCreateResponse extends P2pChatCreateResponseModel {
   /// Initializes
   P2pChatCreateResponse({
@@ -67,7 +67,7 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
     return P2pChatCreateResponse.fromJson(response.p2pChatCreate);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pChatCreateResponse copyWith({
     P2pChatCreate? p2pChatCreate,
   }) =>
@@ -75,9 +75,9 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
         p2pChatCreate: p2pChatCreate ?? this.p2pChatCreate,
       );
 }
-/// P2p chat create model class
+/// P2p chat create model class.
 abstract class P2pChatCreateModel {
-  /// Initializes
+  /// Initializes.
   P2pChatCreateModel({
     required this.orderId,
     required this.channelUrl,
@@ -90,7 +90,7 @@ abstract class P2pChatCreateModel {
   final String channelUrl;
 }
 
-/// P2p chat create class
+/// P2p chat create class.
 class P2pChatCreate extends P2pChatCreateModel {
   /// Initializes
   P2pChatCreate({
@@ -117,7 +117,7 @@ class P2pChatCreate extends P2pChatCreateModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pChatCreate copyWith({
     required String channelUrl,
     required String orderId,

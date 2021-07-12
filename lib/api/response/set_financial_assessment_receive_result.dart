@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Set financial assessment response model class
+/// Set financial assessment response model class.
 abstract class SetFinancialAssessmentResponseModel {
-  /// Initializes
+  /// Initializes.
   SetFinancialAssessmentResponseModel({
     this.setFinancialAssessment,
   });
@@ -17,7 +17,7 @@ abstract class SetFinancialAssessmentResponseModel {
   final SetFinancialAssessment? setFinancialAssessment;
 }
 
-/// Set financial assessment response class
+/// Set financial assessment response class.
 class SetFinancialAssessmentResponse
     extends SetFinancialAssessmentResponseModel {
   /// Initializes
@@ -72,7 +72,7 @@ class SetFinancialAssessmentResponse
         response.setFinancialAssessment);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   SetFinancialAssessmentResponse copyWith({
     SetFinancialAssessment? setFinancialAssessment,
   }) =>
@@ -81,9 +81,9 @@ class SetFinancialAssessmentResponse
             setFinancialAssessment ?? this.setFinancialAssessment,
       );
 }
-/// Set financial assessment model class
+/// Set financial assessment model class.
 abstract class SetFinancialAssessmentModel {
-  /// Initializes
+  /// Initializes.
   SetFinancialAssessmentModel({
     this.cfdScore,
     this.financialInformationScore,
@@ -104,7 +104,7 @@ abstract class SetFinancialAssessmentModel {
   final int? tradingScore;
 }
 
-/// Set financial assessment class
+/// Set financial assessment class.
 class SetFinancialAssessment extends SetFinancialAssessmentModel {
   /// Initializes
   SetFinancialAssessment({
@@ -140,7 +140,7 @@ class SetFinancialAssessment extends SetFinancialAssessmentModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   SetFinancialAssessment copyWith({
     int? cfdScore,
     int? financialInformationScore,

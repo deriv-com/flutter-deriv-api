@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Copy start response model class
+/// Copy start response model class.
 abstract class CopyStartResponseModel {
-  /// Initializes
+  /// Initializes.
   CopyStartResponseModel({
     this.copyStart,
   });
@@ -17,7 +17,7 @@ abstract class CopyStartResponseModel {
   final int? copyStart;
 }
 
-/// Copy start response class
+/// Copy start response class.
 class CopyStartResponse extends CopyStartResponseModel {
   /// Initializes
   CopyStartResponse({
@@ -61,7 +61,7 @@ class CopyStartResponse extends CopyStartResponseModel {
     return CopyStartResponse.fromJson(response.copyStart);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   CopyStartResponse copyWith({
     int? copyStart,
   }) =>

@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Set settings response model class
+/// Set settings response model class.
 abstract class SetSettingsResponseModel {
-  /// Initializes
+  /// Initializes.
   SetSettingsResponseModel({
     this.setSettings,
   });
@@ -17,7 +17,7 @@ abstract class SetSettingsResponseModel {
   final int? setSettings;
 }
 
-/// Set settings response class
+/// Set settings response class.
 class SetSettingsResponse extends SetSettingsResponseModel {
   /// Initializes
   SetSettingsResponse({
@@ -62,7 +62,7 @@ class SetSettingsResponse extends SetSettingsResponseModel {
     return SetSettingsResponse(setSettings: response.setSettings ?? 0);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   SetSettingsResponse copyWith({
     int? setSettings,
   }) =>

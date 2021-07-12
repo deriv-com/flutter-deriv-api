@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// States list response model class
+/// States list response model class.
 abstract class StatesListResponseModel {
-  /// Initializes
+  /// Initializes.
   StatesListResponseModel({
     this.statesList,
   });
@@ -17,7 +17,7 @@ abstract class StatesListResponseModel {
   final List<StatesListItem>? statesList;
 }
 
-/// States list response class
+/// States list response class.
 class StatesListResponse extends StatesListResponseModel {
   /// Initializes
   StatesListResponse({
@@ -73,7 +73,7 @@ class StatesListResponse extends StatesListResponseModel {
     return StatesListResponse.fromJson(response.statesList);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   StatesListResponse copyWith({
     List<StatesListItem>? statesList,
   }) =>
@@ -81,9 +81,9 @@ class StatesListResponse extends StatesListResponseModel {
         statesList: statesList ?? this.statesList,
       );
 }
-/// States list item model class
+/// States list item model class.
 abstract class StatesListItemModel {
-  /// Initializes
+  /// Initializes.
   StatesListItemModel({
     this.text,
     this.value,
@@ -96,7 +96,7 @@ abstract class StatesListItemModel {
   final String? value;
 }
 
-/// States list item class
+/// States list item class.
 class StatesListItem extends StatesListItemModel {
   /// Initializes
   StatesListItem({
@@ -123,7 +123,7 @@ class StatesListItem extends StatesListItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   StatesListItem copyWith({
     String? text,
     String? value,

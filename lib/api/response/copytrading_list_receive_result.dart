@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Copytrading list response model class
+/// Copytrading list response model class.
 abstract class CopytradingListResponseModel {
-  /// Initializes
+  /// Initializes.
   CopytradingListResponseModel({
     this.copytradingList,
   });
@@ -17,7 +17,7 @@ abstract class CopytradingListResponseModel {
   final CopytradingList? copytradingList;
 }
 
-/// Copytrading list response class
+/// Copytrading list response class.
 class CopytradingListResponse extends CopytradingListResponseModel {
   /// Initializes
   CopytradingListResponse({
@@ -68,7 +68,7 @@ class CopytradingListResponse extends CopytradingListResponseModel {
     return CopytradingListResponse.fromJson(response.copytradingList);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   CopytradingListResponse copyWith({
     CopytradingList? copytradingList,
   }) =>
@@ -76,9 +76,9 @@ class CopytradingListResponse extends CopytradingListResponseModel {
         copytradingList: copytradingList ?? this.copytradingList,
       );
 }
-/// Copytrading list model class
+/// Copytrading list model class.
 abstract class CopytradingListModel {
-  /// Initializes
+  /// Initializes.
   CopytradingListModel({
     required this.traders,
     required this.copiers,
@@ -91,7 +91,7 @@ abstract class CopytradingListModel {
   final List<CopiersItem> copiers;
 }
 
-/// Copytrading list class
+/// Copytrading list class.
 class CopytradingList extends CopytradingListModel {
   /// Initializes
   CopytradingList({
@@ -136,7 +136,7 @@ class CopytradingList extends CopytradingListModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   CopytradingList copyWith({
     required List<CopiersItem> copiers,
     required List<TradersItem> traders,
@@ -146,9 +146,9 @@ class CopytradingList extends CopytradingListModel {
         traders: traders,
       );
 }
-/// Copiers item model class
+/// Copiers item model class.
 abstract class CopiersItemModel {
-  /// Initializes
+  /// Initializes.
   CopiersItemModel({
     required this.loginid,
   });
@@ -157,7 +157,7 @@ abstract class CopiersItemModel {
   final String loginid;
 }
 
-/// Copiers item class
+/// Copiers item class.
 class CopiersItem extends CopiersItemModel {
   /// Initializes
   CopiersItem({
@@ -180,7 +180,7 @@ class CopiersItem extends CopiersItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   CopiersItem copyWith({
     required String loginid,
   }) =>
@@ -188,9 +188,9 @@ class CopiersItem extends CopiersItemModel {
         loginid: loginid,
       );
 }
-/// Traders item model class
+/// Traders item model class.
 abstract class TradersItemModel {
-  /// Initializes
+  /// Initializes.
   TradersItemModel({
     this.assets,
     this.loginid,
@@ -219,7 +219,7 @@ abstract class TradersItemModel {
   final List<String>? tradeTypes;
 }
 
-/// Traders item class
+/// Traders item class.
 class TradersItem extends TradersItemModel {
   /// Initializes
   TradersItem({
@@ -286,7 +286,7 @@ class TradersItem extends TradersItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TradersItem copyWith({
     List<String>? assets,
     String? loginid,

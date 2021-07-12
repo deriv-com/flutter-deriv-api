@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/p2p_advert_exception.dart';
 import '../models/base_exception_model.dart';
 
-/// P2p advert create response model class
+/// P2p advert create response model class.
 abstract class P2pAdvertCreateResponseModel {
-  /// Initializes
+  /// Initializes.
   P2pAdvertCreateResponseModel({
     this.p2pAdvertCreate,
   });
@@ -17,7 +17,7 @@ abstract class P2pAdvertCreateResponseModel {
   final P2pAdvertCreate? p2pAdvertCreate;
 }
 
-/// P2p advert create response class
+/// P2p advert create response class.
 class P2pAdvertCreateResponse extends P2pAdvertCreateResponseModel {
   /// Initializes
   P2pAdvertCreateResponse({
@@ -67,7 +67,7 @@ class P2pAdvertCreateResponse extends P2pAdvertCreateResponseModel {
     return P2pAdvertCreateResponse.fromJson(response.p2pAdvertCreate);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pAdvertCreateResponse copyWith({
     P2pAdvertCreate? p2pAdvertCreate,
   }) =>
@@ -106,9 +106,9 @@ enum TypeEnum {
   /// sell.
   sell,
 }
-/// P2p advert create model class
+/// P2p advert create model class.
 abstract class P2pAdvertCreateModel {
-  /// Initializes
+  /// Initializes.
   P2pAdvertCreateModel({
     required this.type,
     required this.remainingAmountDisplay,
@@ -217,7 +217,7 @@ abstract class P2pAdvertCreateModel {
   final List<int>? paymentMethodIds;
 }
 
-/// P2p advert create class
+/// P2p advert create class.
 class P2pAdvertCreate extends P2pAdvertCreateModel {
   /// Initializes
   P2pAdvertCreate({
@@ -361,7 +361,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pAdvertCreate copyWith({
     required String accountCurrency,
     required AdvertiserDetails advertiserDetails,
@@ -419,9 +419,9 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
         paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
       );
 }
-/// Advertiser details model class
+/// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
-  /// Initializes
+  /// Initializes.
   AdvertiserDetailsModel({
     required this.name,
     required this.id,
@@ -446,7 +446,7 @@ abstract class AdvertiserDetailsModel {
   final double? totalCompletionRate;
 }
 
-/// Advertiser details class
+/// Advertiser details class.
 class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes
   AdvertiserDetails({
@@ -486,7 +486,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AdvertiserDetails copyWith({
     required String id,
     required String name,

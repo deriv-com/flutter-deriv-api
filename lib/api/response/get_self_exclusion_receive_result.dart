@@ -8,9 +8,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Get self exclusion response model class
+/// Get self exclusion response model class.
 abstract class GetSelfExclusionResponseModel {
-  /// Initializes
+  /// Initializes.
   GetSelfExclusionResponseModel({
     this.getSelfExclusion,
   });
@@ -19,7 +19,7 @@ abstract class GetSelfExclusionResponseModel {
   final GetSelfExclusion? getSelfExclusion;
 }
 
-/// Get self exclusion response class
+/// Get self exclusion response class.
 class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
   /// Initializes
   GetSelfExclusionResponse({
@@ -123,7 +123,7 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
     return getBool(response.setSelfExclusion);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   GetSelfExclusionResponse copyWith({
     GetSelfExclusion? getSelfExclusion,
   }) =>
@@ -131,9 +131,9 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
         getSelfExclusion: getSelfExclusion ?? this.getSelfExclusion,
       );
 }
-/// Get self exclusion model class
+/// Get self exclusion model class.
 abstract class GetSelfExclusionModel {
-  /// Initializes
+  /// Initializes.
   GetSelfExclusionModel({
     this.excludeUntil,
     this.max30dayDeposit,
@@ -194,7 +194,7 @@ abstract class GetSelfExclusionModel {
   final DateTime? timeoutUntil;
 }
 
-/// Get self exclusion class
+/// Get self exclusion class.
 class GetSelfExclusion extends GetSelfExclusionModel {
   /// Initializes
   GetSelfExclusion({
@@ -270,7 +270,7 @@ class GetSelfExclusion extends GetSelfExclusionModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   GetSelfExclusion copyWith({
     String? excludeUntil,
     double? max30dayDeposit,

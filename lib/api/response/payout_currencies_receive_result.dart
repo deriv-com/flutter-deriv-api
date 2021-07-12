@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Payout currencies response model class
+/// Payout currencies response model class.
 abstract class PayoutCurrenciesResponseModel {
-  /// Initializes
+  /// Initializes.
   PayoutCurrenciesResponseModel({
     this.payoutCurrencies,
   });
@@ -17,7 +17,7 @@ abstract class PayoutCurrenciesResponseModel {
   final List<String>? payoutCurrencies;
 }
 
-/// Payout currencies response class
+/// Payout currencies response class.
 class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
   /// Initializes
   PayoutCurrenciesResponse({
@@ -77,7 +77,7 @@ class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
     return PayoutCurrenciesResponse.fromJson(response.payoutCurrencies);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   PayoutCurrenciesResponse copyWith({
     List<String>? payoutCurrencies,
   }) =>

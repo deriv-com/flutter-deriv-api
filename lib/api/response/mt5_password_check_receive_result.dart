@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Mt5 password check response model class
+/// Mt5 password check response model class.
 abstract class Mt5PasswordCheckResponseModel {
-  /// Initializes
+  /// Initializes.
   Mt5PasswordCheckResponseModel({
     this.mt5PasswordCheck,
   });
@@ -17,7 +17,7 @@ abstract class Mt5PasswordCheckResponseModel {
   final int? mt5PasswordCheck;
 }
 
-/// Mt5 password check response class
+/// Mt5 password check response class.
 class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
   /// Initializes
   Mt5PasswordCheckResponse({
@@ -62,7 +62,7 @@ class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
     return Mt5PasswordCheckResponse.fromJson(response.mt5PasswordCheck);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Mt5PasswordCheckResponse copyWith({
     int? mt5PasswordCheck,
   }) =>

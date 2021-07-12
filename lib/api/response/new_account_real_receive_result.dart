@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// New account real response model class
+/// New account real response model class.
 abstract class NewAccountRealResponseModel {
-  /// Initializes
+  /// Initializes.
   NewAccountRealResponseModel({
     this.newAccountReal,
   });
@@ -17,7 +17,7 @@ abstract class NewAccountRealResponseModel {
   final NewAccountReal? newAccountReal;
 }
 
-/// New account real response class
+/// New account real response class.
 class NewAccountRealResponse extends NewAccountRealResponseModel {
   /// Initializes
   NewAccountRealResponse({
@@ -67,7 +67,7 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
     return NewAccountRealResponse.fromJson(response.newAccountReal);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   NewAccountRealResponse copyWith({
     NewAccountReal? newAccountReal,
   }) =>
@@ -75,9 +75,9 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
         newAccountReal: newAccountReal ?? this.newAccountReal,
       );
 }
-/// New account real model class
+/// New account real model class.
 abstract class NewAccountRealModel {
-  /// Initializes
+  /// Initializes.
   NewAccountRealModel({
     required this.oauthToken,
     required this.landingCompany,
@@ -98,7 +98,7 @@ abstract class NewAccountRealModel {
   final String? landingCompanyShort;
 }
 
-/// New account real class
+/// New account real class.
 class NewAccountReal extends NewAccountRealModel {
   /// Initializes
   NewAccountReal({
@@ -133,7 +133,7 @@ class NewAccountReal extends NewAccountRealModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   NewAccountReal copyWith({
     required String clientId,
     required String landingCompany,

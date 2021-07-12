@@ -3,10 +3,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:build/build.dart';
+
 import 'package:recase/recase.dart';
 
-import 'lib/tools/json_schema_parser.dart';
-import 'lib/tools/schema_model.dart';
+import 'package:flutter_deriv_api/tools/schema_parser/json_schema_parser.dart';
+import 'package:flutter_deriv_api/tools/schema_parser/schema_model.dart';
 
 Builder apiParser(final BuilderOptions _) => APIParser();
 
@@ -54,11 +55,15 @@ class APIParser extends Builder {
 
       final File output =
           File('lib/api/response/${fileBaseName}_receive_result.dart');
+
       if (!output.existsSync()) {
         output.createSync(recursive: true);
-        for (final StringBuffer item in result) {
-          output.writeAsStringSync('${item.toString()}', mode: FileMode.append);
-        }
+      } else {
+        output.writeAsStringSync('');
+      }
+
+      for (final StringBuffer item in result) {
+        output.writeAsStringSync('${item.toString()}', mode: FileMode.append);
       }
 
       JsonSchemaParser.classNamesArray.clear();

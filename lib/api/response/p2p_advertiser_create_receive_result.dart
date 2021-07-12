@@ -9,9 +9,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// P2p advertiser create response model class
+/// P2p advertiser create response model class.
 abstract class P2pAdvertiserCreateResponseModel {
-  /// Initializes
+  /// Initializes.
   P2pAdvertiserCreateResponseModel({
     this.p2pAdvertiserCreate,
     this.subscription,
@@ -24,7 +24,7 @@ abstract class P2pAdvertiserCreateResponseModel {
   final Subscription? subscription;
 }
 
-/// P2p advertiser create response class
+/// P2p advertiser create response class.
 class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
   /// Initializes
   P2pAdvertiserCreateResponse({
@@ -109,7 +109,7 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
         },
       );
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pAdvertiserCreateResponse copyWith({
     P2pAdvertiserCreate? p2pAdvertiserCreate,
     Subscription? subscription,
@@ -119,9 +119,9 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-/// P2p advertiser create model class
+/// P2p advertiser create model class.
 abstract class P2pAdvertiserCreateModel {
-  /// Initializes
+  /// Initializes.
   P2pAdvertiserCreateModel({
     required this.totalOrdersCount,
     required this.sellOrdersCount,
@@ -234,7 +234,7 @@ abstract class P2pAdvertiserCreateModel {
   final double? totalCompletionRate;
 }
 
-/// P2p advertiser create class
+/// P2p advertiser create class.
 class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
   /// Initializes
   P2pAdvertiserCreate({
@@ -362,7 +362,7 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pAdvertiserCreate copyWith({
     required int buyOrdersCount,
     required int cancelsRemaining,
@@ -423,9 +423,9 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
 }
-/// Subscription model class
+/// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes
+  /// Initializes.
   SubscriptionModel({
     required this.id,
   });
@@ -434,7 +434,7 @@ abstract class SubscriptionModel {
   final String id;
 }
 
-/// Subscription class
+/// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
@@ -457,7 +457,7 @@ class Subscription extends SubscriptionModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Subscription copyWith({
     required String id,
   }) =>

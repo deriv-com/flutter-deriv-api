@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Statement response model class
+/// Statement response model class.
 abstract class StatementResponseModel {
-  /// Initializes
+  /// Initializes.
   StatementResponseModel({
     this.statement,
   });
@@ -17,7 +17,7 @@ abstract class StatementResponseModel {
   final Statement? statement;
 }
 
-/// Statement response class
+/// Statement response class.
 class StatementResponse extends StatementResponseModel {
   /// Initializes
   StatementResponse({
@@ -64,7 +64,7 @@ class StatementResponse extends StatementResponseModel {
     return StatementResponse.fromJson(response.statement);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   StatementResponse copyWith({
     Statement? statement,
   }) =>
@@ -116,9 +116,9 @@ enum ActionTypeEnum {
   /// transfer.
   transfer,
 }
-/// Statement model class
+/// Statement model class.
 abstract class StatementModel {
-  /// Initializes
+  /// Initializes.
   StatementModel({
     this.count,
     this.transactions,
@@ -131,7 +131,7 @@ abstract class StatementModel {
   final List<TransactionsItem>? transactions;
 }
 
-/// Statement class
+/// Statement class.
 class Statement extends StatementModel {
   /// Initializes
   Statement({
@@ -170,7 +170,7 @@ class Statement extends StatementModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Statement copyWith({
     double? count,
     List<TransactionsItem>? transactions,
@@ -180,9 +180,9 @@ class Statement extends StatementModel {
         transactions: transactions ?? this.transactions,
       );
 }
-/// Transactions item model class
+/// Transactions item model class.
 abstract class TransactionsItemModel {
-  /// Initializes
+  /// Initializes.
   TransactionsItemModel({
     this.actionType,
     this.amount,
@@ -251,7 +251,7 @@ abstract class TransactionsItemModel {
   final String? withdrawalDetails;
 }
 
-/// Transactions item class
+/// Transactions item class.
 class TransactionsItem extends TransactionsItemModel {
   /// Initializes
   TransactionsItem({
@@ -347,7 +347,7 @@ class TransactionsItem extends TransactionsItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TransactionsItem copyWith({
     ActionTypeEnum? actionType,
     double? amount,
@@ -385,9 +385,9 @@ class TransactionsItem extends TransactionsItemModel {
         withdrawalDetails: withdrawalDetails ?? this.withdrawalDetails,
       );
 }
-/// Fees model class
+/// Fees model class.
 abstract class FeesModel {
-  /// Initializes
+  /// Initializes.
   FeesModel({
     this.amount,
     this.currency,
@@ -408,7 +408,7 @@ abstract class FeesModel {
   final double? percentage;
 }
 
-/// Fees class
+/// Fees class.
 class Fees extends FeesModel {
   /// Initializes
   Fees({
@@ -443,7 +443,7 @@ class Fees extends FeesModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Fees copyWith({
     double? amount,
     String? currency,
@@ -457,9 +457,9 @@ class Fees extends FeesModel {
         percentage: percentage ?? this.percentage,
       );
 }
-/// From model class
+/// From model class.
 abstract class FromModel {
-  /// Initializes
+  /// Initializes.
   FromModel({
     this.loginid,
   });
@@ -468,7 +468,7 @@ abstract class FromModel {
   final String? loginid;
 }
 
-/// From class
+/// From class.
 class From extends FromModel {
   /// Initializes
   From({
@@ -491,7 +491,7 @@ class From extends FromModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   From copyWith({
     String? loginid,
   }) =>
@@ -499,9 +499,9 @@ class From extends FromModel {
         loginid: loginid ?? this.loginid,
       );
 }
-/// To model class
+/// To model class.
 abstract class ToModel {
-  /// Initializes
+  /// Initializes.
   ToModel({
     this.loginid,
   });
@@ -510,7 +510,7 @@ abstract class ToModel {
   final String? loginid;
 }
 
-/// To class
+/// To class.
 class To extends ToModel {
   /// Initializes
   To({
@@ -533,7 +533,7 @@ class To extends ToModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   To copyWith({
     String? loginid,
   }) =>

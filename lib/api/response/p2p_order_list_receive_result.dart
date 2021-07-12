@@ -12,9 +12,9 @@ import 'forget_all_receive_result.dart';
 import 'forget_receive_result.dart';
 import 'p2p_order_info_receive_result.dart';
 
-/// P2p order list response model class
+/// P2p order list response model class.
 abstract class P2pOrderListResponseModel {
-  /// Initializes
+  /// Initializes.
   P2pOrderListResponseModel({
     this.p2pOrderList,
     this.subscription,
@@ -27,7 +27,7 @@ abstract class P2pOrderListResponseModel {
   final Subscription? subscription;
 }
 
-/// P2p order list response class
+/// P2p order list response class.
 class P2pOrderListResponse extends P2pOrderListResponseModel {
   /// Initializes
   P2pOrderListResponse({
@@ -139,7 +139,7 @@ class P2pOrderListResponse extends P2pOrderListResponseModel {
   static Future<ForgetAllResponse> unsubscribeAllOrder() =>
       P2pOrderInfoResponse.unsubscribeAllOrder();
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pOrderListResponse copyWith({
     P2pOrderList? p2pOrderList,
     Subscription? subscription,
@@ -211,9 +211,9 @@ enum StatusEnum {
   /// dispute-completed.
   disputeCompleted,
 }
-/// P2p order list model class
+/// P2p order list model class.
 abstract class P2pOrderListModel {
-  /// Initializes
+  /// Initializes.
   P2pOrderListModel({
     required this.list,
   });
@@ -222,7 +222,7 @@ abstract class P2pOrderListModel {
   final List<ListItem> list;
 }
 
-/// P2p order list class
+/// P2p order list class.
 class P2pOrderList extends P2pOrderListModel {
   /// Initializes
   P2pOrderList({
@@ -253,7 +253,7 @@ class P2pOrderList extends P2pOrderListModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pOrderList copyWith({
     required List<ListItem> list,
   }) =>
@@ -261,9 +261,9 @@ class P2pOrderList extends P2pOrderListModel {
         list: list,
       );
 }
-/// List item model class
+/// List item model class.
 abstract class ListItemModel {
-  /// Initializes
+  /// Initializes.
   ListItemModel({
     required this.type,
     required this.status,
@@ -360,7 +360,7 @@ abstract class ListItemModel {
   final List<int>? paymentMethodIds;
 }
 
-/// List item class
+/// List item class.
 class ListItem extends ListItemModel {
   /// Initializes
   ListItem({
@@ -496,7 +496,7 @@ class ListItem extends ListItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ListItem copyWith({
     required String accountCurrency,
     required AdvertDetails advertDetails,
@@ -548,9 +548,9 @@ class ListItem extends ListItemModel {
         paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
       );
 }
-/// Advert details model class
+/// Advert details model class.
 abstract class AdvertDetailsModel {
-  /// Initializes
+  /// Initializes.
   AdvertDetailsModel({
     required this.type,
     required this.id,
@@ -571,7 +571,7 @@ abstract class AdvertDetailsModel {
   final String? paymentMethod;
 }
 
-/// Advert details class
+/// Advert details class.
 class AdvertDetails extends AdvertDetailsModel {
   /// Initializes
   AdvertDetails({
@@ -608,7 +608,7 @@ class AdvertDetails extends AdvertDetailsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AdvertDetails copyWith({
     required String description,
     required String id,
@@ -622,9 +622,9 @@ class AdvertDetails extends AdvertDetailsModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
-/// Advertiser details model class
+/// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
-  /// Initializes
+  /// Initializes.
   AdvertiserDetailsModel({
     required this.name,
     required this.loginid,
@@ -649,7 +649,7 @@ abstract class AdvertiserDetailsModel {
   final String? lastName;
 }
 
-/// Advertiser details class
+/// Advertiser details class.
 class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes
   AdvertiserDetails({
@@ -689,7 +689,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AdvertiserDetails copyWith({
     required String id,
     required String loginid,
@@ -705,9 +705,9 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         lastName: lastName ?? this.lastName,
       );
 }
-/// Dispute details model class
+/// Dispute details model class.
 abstract class DisputeDetailsModel {
-  /// Initializes
+  /// Initializes.
   DisputeDetailsModel({
     this.disputeReason,
     this.disputerLoginid,
@@ -720,7 +720,7 @@ abstract class DisputeDetailsModel {
   final String? disputerLoginid;
 }
 
-/// Dispute details class
+/// Dispute details class.
 class DisputeDetails extends DisputeDetailsModel {
   /// Initializes
   DisputeDetails({
@@ -747,7 +747,7 @@ class DisputeDetails extends DisputeDetailsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   DisputeDetails copyWith({
     String? disputeReason,
     String? disputerLoginid,
@@ -757,9 +757,9 @@ class DisputeDetails extends DisputeDetailsModel {
         disputerLoginid: disputerLoginid ?? this.disputerLoginid,
       );
 }
-/// Client details model class
+/// Client details model class.
 abstract class ClientDetailsModel {
-  /// Initializes
+  /// Initializes.
   ClientDetailsModel({
     required this.name,
     required this.loginid,
@@ -784,7 +784,7 @@ abstract class ClientDetailsModel {
   final String? lastName;
 }
 
-/// Client details class
+/// Client details class.
 class ClientDetails extends ClientDetailsModel {
   /// Initializes
   ClientDetails({
@@ -823,7 +823,7 @@ class ClientDetails extends ClientDetailsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ClientDetails copyWith({
     required String id,
     required String loginid,
@@ -839,9 +839,9 @@ class ClientDetails extends ClientDetailsModel {
         lastName: lastName ?? this.lastName,
       );
 }
-/// Subscription model class
+/// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes
+  /// Initializes.
   SubscriptionModel({
     required this.id,
   });
@@ -850,7 +850,7 @@ abstract class SubscriptionModel {
   final String id;
 }
 
-/// Subscription class
+/// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
@@ -873,7 +873,7 @@ class Subscription extends SubscriptionModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Subscription copyWith({
     required String id,
   }) =>

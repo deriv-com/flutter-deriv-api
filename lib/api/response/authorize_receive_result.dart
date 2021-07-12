@@ -6,9 +6,9 @@ import '../../helpers/helpers.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Authorize response model class
+/// Authorize response model class.
 abstract class AuthorizeResponseModel {
-  /// Initializes
+  /// Initializes.
   AuthorizeResponseModel({
     this.authorize,
   });
@@ -17,7 +17,7 @@ abstract class AuthorizeResponseModel {
   final Authorize? authorize;
 }
 
-/// Authorize response class
+/// Authorize response class.
 class AuthorizeResponse extends AuthorizeResponseModel {
   /// Initializes
   AuthorizeResponse({
@@ -67,7 +67,7 @@ class AuthorizeResponse extends AuthorizeResponseModel {
     return AuthorizeResponse.fromJson(response.authorize);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AuthorizeResponse copyWith({
     Authorize? authorize,
   }) =>
@@ -110,9 +110,9 @@ enum PlatformEnum {
   /// mt5.
   mt5,
 }
-/// Authorize model class
+/// Authorize model class.
 abstract class AuthorizeModel {
-  /// Initializes
+  /// Initializes.
   AuthorizeModel({
     this.accountList,
     this.balance,
@@ -185,7 +185,7 @@ abstract class AuthorizeModel {
   final AuthorizeWallet? wallet;
 }
 
-/// Authorize class
+/// Authorize class.
 class Authorize extends AuthorizeModel {
   /// Initializes
   Authorize({
@@ -325,7 +325,7 @@ class Authorize extends AuthorizeModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Authorize copyWith({
     List<AccountListItem>? accountList,
     double? balance,
@@ -367,9 +367,9 @@ class Authorize extends AuthorizeModel {
         wallet: wallet ?? this.wallet,
       );
 }
-/// Account list item model class
+/// Account list item model class.
 abstract class AccountListItemModel {
-  /// Initializes
+  /// Initializes.
   AccountListItemModel({
     this.accountType,
     this.currency,
@@ -410,7 +410,7 @@ abstract class AccountListItemModel {
   final Wallet? wallet;
 }
 
-/// Account list item class
+/// Account list item class.
 class AccountListItem extends AccountListItemModel {
   /// Initializes
   AccountListItem({
@@ -476,7 +476,7 @@ class AccountListItem extends AccountListItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AccountListItem copyWith({
     AccountTypeEnum? accountType,
     String? currency,
@@ -500,9 +500,9 @@ class AccountListItem extends AccountListItemModel {
         wallet: wallet ?? this.wallet,
       );
 }
-/// Trading model class
+/// Trading model class.
 abstract class TradingModel {
-  /// Initializes
+  /// Initializes.
   TradingModel({
     this.linkedTo,
   });
@@ -511,7 +511,7 @@ abstract class TradingModel {
   final List<LinkedToItem>? linkedTo;
 }
 
-/// Trading class
+/// Trading class.
 class Trading extends TradingModel {
   /// Initializes
   Trading({
@@ -546,7 +546,7 @@ class Trading extends TradingModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Trading copyWith({
     List<LinkedToItem>? linkedTo,
   }) =>
@@ -554,9 +554,9 @@ class Trading extends TradingModel {
         linkedTo: linkedTo ?? this.linkedTo,
       );
 }
-/// Linked to item model class
+/// Linked to item model class.
 abstract class LinkedToItemModel {
-  /// Initializes
+  /// Initializes.
   LinkedToItemModel({
     this.accountId,
     this.balance,
@@ -577,7 +577,7 @@ abstract class LinkedToItemModel {
   final String? paymentMethod;
 }
 
-/// Linked to item class
+/// Linked to item class.
 class LinkedToItem extends LinkedToItemModel {
   /// Initializes
   LinkedToItem({
@@ -612,7 +612,7 @@ class LinkedToItem extends LinkedToItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   LinkedToItem copyWith({
     String? accountId,
     String? balance,
@@ -626,9 +626,9 @@ class LinkedToItem extends LinkedToItemModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
-/// Wallet model class
+/// Wallet model class.
 abstract class WalletModel {
-  /// Initializes
+  /// Initializes.
   WalletModel({
     this.accountId,
     this.balance,
@@ -653,7 +653,7 @@ abstract class WalletModel {
   final String? paymentMethod;
 }
 
-/// Wallet class
+/// Wallet class.
 class Wallet extends WalletModel {
   /// Initializes
   Wallet({
@@ -704,7 +704,7 @@ class Wallet extends WalletModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Wallet copyWith({
     String? accountId,
     double? balance,
@@ -720,9 +720,9 @@ class Wallet extends WalletModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
-/// Wallet linked to item model class
+/// Wallet linked to item model class.
 abstract class WalletLinkedToItemModel {
-  /// Initializes
+  /// Initializes.
   WalletLinkedToItemModel({
     this.accountId,
     this.balance,
@@ -743,7 +743,7 @@ abstract class WalletLinkedToItemModel {
   final PlatformEnum? platform;
 }
 
-/// Wallet linked to item class
+/// Wallet linked to item class.
 class WalletLinkedToItem extends WalletLinkedToItemModel {
   /// Initializes
   WalletLinkedToItem({
@@ -784,7 +784,7 @@ class WalletLinkedToItem extends WalletLinkedToItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   WalletLinkedToItem copyWith({
     String? accountId,
     String? balance,
@@ -798,9 +798,9 @@ class WalletLinkedToItem extends WalletLinkedToItemModel {
         platform: platform ?? this.platform,
       );
 }
-/// Local currencies property model class
+/// Local currencies property model class.
 abstract class LocalCurrenciesPropertyModel {
-  /// Initializes
+  /// Initializes.
   LocalCurrenciesPropertyModel({
     required this.fractionalDigits,
   });
@@ -809,7 +809,7 @@ abstract class LocalCurrenciesPropertyModel {
   final int fractionalDigits;
 }
 
-/// Local currencies property class
+/// Local currencies property class.
 class LocalCurrenciesProperty extends LocalCurrenciesPropertyModel {
   /// Initializes
   LocalCurrenciesProperty({
@@ -833,7 +833,7 @@ class LocalCurrenciesProperty extends LocalCurrenciesPropertyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   LocalCurrenciesProperty copyWith({
     required int fractionalDigits,
   }) =>
@@ -841,9 +841,9 @@ class LocalCurrenciesProperty extends LocalCurrenciesPropertyModel {
         fractionalDigits: fractionalDigits,
       );
 }
-/// Authorize trading model class
+/// Authorize trading model class.
 abstract class AuthorizeTradingModel {
-  /// Initializes
+  /// Initializes.
   AuthorizeTradingModel({
     this.linkedTo,
   });
@@ -852,7 +852,7 @@ abstract class AuthorizeTradingModel {
   final List<TradingLinkedToItem>? linkedTo;
 }
 
-/// Authorize trading class
+/// Authorize trading class.
 class AuthorizeTrading extends AuthorizeTradingModel {
   /// Initializes
   AuthorizeTrading({
@@ -888,7 +888,7 @@ class AuthorizeTrading extends AuthorizeTradingModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AuthorizeTrading copyWith({
     List<TradingLinkedToItem>? linkedTo,
   }) =>
@@ -896,9 +896,9 @@ class AuthorizeTrading extends AuthorizeTradingModel {
         linkedTo: linkedTo ?? this.linkedTo,
       );
 }
-/// Trading linked to item model class
+/// Trading linked to item model class.
 abstract class TradingLinkedToItemModel {
-  /// Initializes
+  /// Initializes.
   TradingLinkedToItemModel({
     this.accountId,
     this.balance,
@@ -919,7 +919,7 @@ abstract class TradingLinkedToItemModel {
   final String? paymentMethod;
 }
 
-/// Trading linked to item class
+/// Trading linked to item class.
 class TradingLinkedToItem extends TradingLinkedToItemModel {
   /// Initializes
   TradingLinkedToItem({
@@ -955,7 +955,7 @@ class TradingLinkedToItem extends TradingLinkedToItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TradingLinkedToItem copyWith({
     String? accountId,
     String? balance,
@@ -969,9 +969,9 @@ class TradingLinkedToItem extends TradingLinkedToItemModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
-/// Authorize wallet model class
+/// Authorize wallet model class.
 abstract class AuthorizeWalletModel {
-  /// Initializes
+  /// Initializes.
   AuthorizeWalletModel({
     this.accountId,
     this.balance,
@@ -996,7 +996,7 @@ abstract class AuthorizeWalletModel {
   final String? paymentMethod;
 }
 
-/// Authorize wallet class
+/// Authorize wallet class.
 class AuthorizeWallet extends AuthorizeWalletModel {
   /// Initializes
   AuthorizeWallet({
@@ -1048,7 +1048,7 @@ class AuthorizeWallet extends AuthorizeWalletModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AuthorizeWallet copyWith({
     String? accountId,
     double? balance,
@@ -1064,9 +1064,9 @@ class AuthorizeWallet extends AuthorizeWalletModel {
         paymentMethod: paymentMethod ?? this.paymentMethod,
       );
 }
-/// Wallet linked to item2 model class
+/// Wallet linked to item2 model class.
 abstract class WalletLinkedToItem2Model {
-  /// Initializes
+  /// Initializes.
   WalletLinkedToItem2Model({
     this.accountId,
     this.balance,
@@ -1087,7 +1087,7 @@ abstract class WalletLinkedToItem2Model {
   final PlatformEnum? platform;
 }
 
-/// Wallet linked to item2 class
+/// Wallet linked to item2 class.
 class WalletLinkedToItem2 extends WalletLinkedToItem2Model {
   /// Initializes
   WalletLinkedToItem2({
@@ -1128,7 +1128,7 @@ class WalletLinkedToItem2 extends WalletLinkedToItem2Model {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   WalletLinkedToItem2 copyWith({
     String? accountId,
     String? balance,

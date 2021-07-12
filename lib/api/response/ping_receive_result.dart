@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Ping response model class
+/// Ping response model class.
 abstract class PingResponseModel {
-  /// Initializes
+  /// Initializes.
   PingResponseModel({
     this.ping,
   });
@@ -17,7 +17,7 @@ abstract class PingResponseModel {
   final PingEnum? ping;
 }
 
-/// Ping response class
+/// Ping response class.
 class PingResponse extends PingResponseModel {
   /// Initializes
   PingResponse({
@@ -67,7 +67,7 @@ class PingResponse extends PingResponseModel {
     return PingResponse.fromJson(response.ping);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   PingResponse copyWith({
     PingEnum? ping,
   }) =>

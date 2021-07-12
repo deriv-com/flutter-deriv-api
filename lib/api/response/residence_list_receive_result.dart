@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Residence list response model class
+/// Residence list response model class.
 abstract class ResidenceListResponseModel {
-  /// Initializes
+  /// Initializes.
   ResidenceListResponseModel({
     this.residenceList,
   });
@@ -17,7 +17,7 @@ abstract class ResidenceListResponseModel {
   final List<ResidenceListItem>? residenceList;
 }
 
-/// Residence list response class
+/// Residence list response class.
 class ResidenceListResponse extends ResidenceListResponseModel {
   /// Initializes
   ResidenceListResponse({
@@ -76,7 +76,7 @@ class ResidenceListResponse extends ResidenceListResponseModel {
     return ResidenceListResponse.fromJson(response.residenceList);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ResidenceListResponse copyWith({
     List<ResidenceListItem>? residenceList,
   }) =>
@@ -84,9 +84,9 @@ class ResidenceListResponse extends ResidenceListResponseModel {
         residenceList: residenceList ?? this.residenceList,
       );
 }
-/// Residence list item model class
+/// Residence list item model class.
 abstract class ResidenceListItemModel {
-  /// Initializes
+  /// Initializes.
   ResidenceListItemModel({
     this.identity,
     this.phoneIdd,
@@ -111,7 +111,7 @@ abstract class ResidenceListItemModel {
   final String? value;
 }
 
-/// Residence list item class
+/// Residence list item class.
 class ResidenceListItem extends ResidenceListItemModel {
   /// Initializes
   ResidenceListItem({
@@ -167,7 +167,7 @@ class ResidenceListItem extends ResidenceListItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ResidenceListItem copyWith({
     Identity? identity,
     String? phoneIdd,
@@ -183,9 +183,9 @@ class ResidenceListItem extends ResidenceListItemModel {
         value: value ?? this.value,
       );
 }
-/// Identity model class
+/// Identity model class.
 abstract class IdentityModel {
-  /// Initializes
+  /// Initializes.
   IdentityModel({
     this.services,
   });
@@ -194,7 +194,7 @@ abstract class IdentityModel {
   final Services? services;
 }
 
-/// Identity class
+/// Identity class.
 class Identity extends IdentityModel {
   /// Initializes
   Identity({
@@ -221,7 +221,7 @@ class Identity extends IdentityModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Identity copyWith({
     Services? services,
   }) =>
@@ -229,9 +229,9 @@ class Identity extends IdentityModel {
         services: services ?? this.services,
       );
 }
-/// Services model class
+/// Services model class.
 abstract class ServicesModel {
-  /// Initializes
+  /// Initializes.
   ServicesModel({
     this.idv,
     this.onfido,
@@ -244,7 +244,7 @@ abstract class ServicesModel {
   final Onfido? onfido;
 }
 
-/// Services class
+/// Services class.
 class Services extends ServicesModel {
   /// Initializes
   Services({
@@ -275,7 +275,7 @@ class Services extends ServicesModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Services copyWith({
     Idv? idv,
     Onfido? onfido,
@@ -285,9 +285,9 @@ class Services extends ServicesModel {
         onfido: onfido ?? this.onfido,
       );
 }
-/// Idv model class
+/// Idv model class.
 abstract class IdvModel {
-  /// Initializes
+  /// Initializes.
   IdvModel({
     this.documentsSupported,
     this.hasVisualSample,
@@ -304,7 +304,7 @@ abstract class IdvModel {
   final bool? isCountrySupported;
 }
 
-/// Idv class
+/// Idv class.
 class Idv extends IdvModel {
   /// Initializes
   Idv({
@@ -343,7 +343,7 @@ class Idv extends IdvModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Idv copyWith({
     Map<String, DocumentsSupportedProperty>? documentsSupported,
     bool? hasVisualSample,
@@ -355,9 +355,9 @@ class Idv extends IdvModel {
         isCountrySupported: isCountrySupported ?? this.isCountrySupported,
       );
 }
-/// Documents supported property model class
+/// Documents supported property model class.
 abstract class DocumentsSupportedPropertyModel {
-  /// Initializes
+  /// Initializes.
   DocumentsSupportedPropertyModel({
     this.displayName,
     this.format,
@@ -370,7 +370,7 @@ abstract class DocumentsSupportedPropertyModel {
   final String? format;
 }
 
-/// Documents supported property class
+/// Documents supported property class.
 class DocumentsSupportedProperty extends DocumentsSupportedPropertyModel {
   /// Initializes
   DocumentsSupportedProperty({
@@ -398,7 +398,7 @@ class DocumentsSupportedProperty extends DocumentsSupportedPropertyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   DocumentsSupportedProperty copyWith({
     String? displayName,
     String? format,
@@ -408,9 +408,9 @@ class DocumentsSupportedProperty extends DocumentsSupportedPropertyModel {
         format: format ?? this.format,
       );
 }
-/// Onfido model class
+/// Onfido model class.
 abstract class OnfidoModel {
-  /// Initializes
+  /// Initializes.
   OnfidoModel({
     this.documentsSupported,
     this.isCountrySupported,
@@ -424,7 +424,7 @@ abstract class OnfidoModel {
   final bool? isCountrySupported;
 }
 
-/// Onfido class
+/// Onfido class.
 class Onfido extends OnfidoModel {
   /// Initializes
   Onfido({
@@ -462,7 +462,7 @@ class Onfido extends OnfidoModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Onfido copyWith({
     Map<String, DocumentsSupportedDocumentsSupportedProperty>?
         documentsSupported,
@@ -473,9 +473,9 @@ class Onfido extends OnfidoModel {
         isCountrySupported: isCountrySupported ?? this.isCountrySupported,
       );
 }
-/// Documents supported documents supported property model class
+/// Documents supported documents supported property model class.
 abstract class DocumentsSupportedDocumentsSupportedPropertyModel {
-  /// Initializes
+  /// Initializes.
   DocumentsSupportedDocumentsSupportedPropertyModel({
     this.displayName,
     this.format,
@@ -488,7 +488,7 @@ abstract class DocumentsSupportedDocumentsSupportedPropertyModel {
   final String? format;
 }
 
-/// Documents supported documents supported property class
+/// Documents supported documents supported property class.
 class DocumentsSupportedDocumentsSupportedProperty
     extends DocumentsSupportedDocumentsSupportedPropertyModel {
   /// Initializes
@@ -518,7 +518,7 @@ class DocumentsSupportedDocumentsSupportedProperty
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   DocumentsSupportedDocumentsSupportedProperty copyWith({
     String? displayName,
     String? format,

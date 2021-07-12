@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Topup virtual response model class
+/// Topup virtual response model class.
 abstract class TopupVirtualResponseModel {
-  /// Initializes
+  /// Initializes.
   TopupVirtualResponseModel({
     this.topupVirtual,
   });
@@ -17,7 +17,7 @@ abstract class TopupVirtualResponseModel {
   final TopupVirtual? topupVirtual;
 }
 
-/// Topup virtual response class
+/// Topup virtual response class.
 class TopupVirtualResponse extends TopupVirtualResponseModel {
   /// Initializes
   TopupVirtualResponse({
@@ -69,7 +69,7 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
     return TopupVirtualResponse.fromJson(response.topupVirtual);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TopupVirtualResponse copyWith({
     TopupVirtual? topupVirtual,
   }) =>
@@ -77,9 +77,9 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
         topupVirtual: topupVirtual ?? this.topupVirtual,
       );
 }
-/// Topup virtual model class
+/// Topup virtual model class.
 abstract class TopupVirtualModel {
-  /// Initializes
+  /// Initializes.
   TopupVirtualModel({
     this.amount,
     this.currency,
@@ -92,7 +92,7 @@ abstract class TopupVirtualModel {
   final String? currency;
 }
 
-/// Topup virtual class
+/// Topup virtual class.
 class TopupVirtual extends TopupVirtualModel {
   /// Initializes
   TopupVirtual({
@@ -119,7 +119,7 @@ class TopupVirtual extends TopupVirtualModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TopupVirtual copyWith({
     double? amount,
     String? currency,

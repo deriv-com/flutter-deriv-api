@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Portfolio response model class
+/// Portfolio response model class.
 abstract class PortfolioResponseModel {
-  /// Initializes
+  /// Initializes.
   PortfolioResponseModel({
     this.portfolio,
   });
@@ -17,7 +17,7 @@ abstract class PortfolioResponseModel {
   final Portfolio? portfolio;
 }
 
-/// Portfolio response class
+/// Portfolio response class.
 class PortfolioResponse extends PortfolioResponseModel {
   /// Initializes
   PortfolioResponse({
@@ -63,7 +63,7 @@ class PortfolioResponse extends PortfolioResponseModel {
     return PortfolioResponse.fromJson(response.portfolio);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   PortfolioResponse copyWith({
     Portfolio? portfolio,
   }) =>
@@ -71,9 +71,9 @@ class PortfolioResponse extends PortfolioResponseModel {
         portfolio: portfolio ?? this.portfolio,
       );
 }
-/// Portfolio model class
+/// Portfolio model class.
 abstract class PortfolioModel {
-  /// Initializes
+  /// Initializes.
   PortfolioModel({
     required this.contracts,
   });
@@ -82,7 +82,7 @@ abstract class PortfolioModel {
   final List<ContractsItem> contracts;
 }
 
-/// Portfolio class
+/// Portfolio class.
 class Portfolio extends PortfolioModel {
   /// Initializes
   Portfolio({
@@ -113,7 +113,7 @@ class Portfolio extends PortfolioModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Portfolio copyWith({
     required List<ContractsItem> contracts,
   }) =>
@@ -121,9 +121,9 @@ class Portfolio extends PortfolioModel {
         contracts: contracts,
       );
 }
-/// Contracts item model class
+/// Contracts item model class.
 abstract class ContractsItemModel {
-  /// Initializes
+  /// Initializes.
   ContractsItemModel({
     this.appId,
     this.buyPrice,
@@ -176,7 +176,7 @@ abstract class ContractsItemModel {
   final int? transactionId;
 }
 
-/// Contracts item class
+/// Contracts item class.
 class ContractsItem extends ContractsItemModel {
   /// Initializes
   ContractsItem({
@@ -243,7 +243,7 @@ class ContractsItem extends ContractsItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ContractsItem copyWith({
     int? appId,
     double? buyPrice,

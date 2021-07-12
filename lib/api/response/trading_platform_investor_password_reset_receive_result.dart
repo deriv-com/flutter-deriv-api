@@ -1,9 +1,9 @@
 // TODO(unknown): Create methods file in lib/basic_api/generated/methods for this file.
  import '../../helpers/helpers.dart';
 
-/// Trading platform investor password reset response model class
+/// Trading platform investor password reset response model class.
 abstract class TradingPlatformInvestorPasswordResetResponseModel {
-  /// Initializes
+  /// Initializes.
   TradingPlatformInvestorPasswordResetResponseModel({
     this.tradingPlatformPasswordReset,
   });
@@ -12,7 +12,7 @@ abstract class TradingPlatformInvestorPasswordResetResponseModel {
   final bool? tradingPlatformPasswordReset;
 }
 
-/// Trading platform investor password reset response class
+/// Trading platform investor password reset response class.
 class TradingPlatformInvestorPasswordResetResponse
     extends TradingPlatformInvestorPasswordResetResponseModel {
   /// Initializes
@@ -39,7 +39,7 @@ class TradingPlatformInvestorPasswordResetResponse
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TradingPlatformInvestorPasswordResetResponse copyWith({
     bool? tradingPlatformPasswordReset,
   }) =>

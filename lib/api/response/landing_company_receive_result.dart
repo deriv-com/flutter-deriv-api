@@ -9,9 +9,9 @@ import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 import 'landing_company_details_receive_result.dart';
 
-/// Landing company response model class
+/// Landing company response model class.
 abstract class LandingCompanyResponseModel {
-  /// Initializes
+  /// Initializes.
   LandingCompanyResponseModel({
     this.landingCompany,
   });
@@ -20,7 +20,7 @@ abstract class LandingCompanyResponseModel {
   final LandingCompany? landingCompany;
 }
 
-/// Landing company response class
+/// Landing company response class.
 class LandingCompanyResponse extends LandingCompanyResponseModel {
   /// Initializes
   LandingCompanyResponse({
@@ -89,7 +89,7 @@ class LandingCompanyResponse extends LandingCompanyResponseModel {
         response.landingCompanyDetails);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   LandingCompanyResponse copyWith({
     LandingCompany? landingCompany,
   }) =>
@@ -97,9 +97,9 @@ class LandingCompanyResponse extends LandingCompanyResponseModel {
         landingCompany: landingCompany ?? this.landingCompany,
       );
 }
-/// Landing company model class
+/// Landing company model class.
 abstract class LandingCompanyModel {
-  /// Initializes
+  /// Initializes.
   LandingCompanyModel({
     this.dxtradeFinancialCompany,
     this.dxtradeGamingCompany,
@@ -136,7 +136,7 @@ abstract class LandingCompanyModel {
   final String? name;
 }
 
-/// Landing company class
+/// Landing company class.
 class LandingCompany extends LandingCompanyModel {
   /// Initializes
   LandingCompany({
@@ -213,7 +213,7 @@ class LandingCompany extends LandingCompanyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   LandingCompany copyWith({
     DxtradeFinancialCompany? dxtradeFinancialCompany,
     DxtradeGamingCompany? dxtradeGamingCompany,
@@ -236,9 +236,9 @@ class LandingCompany extends LandingCompanyModel {
         name: name ?? this.name,
       );
 }
-/// Dxtrade financial company model class
+/// Dxtrade financial company model class.
 abstract class DxtradeFinancialCompanyModel {
-  /// Initializes
+  /// Initializes.
   DxtradeFinancialCompanyModel({
     this.standard,
   });
@@ -247,7 +247,7 @@ abstract class DxtradeFinancialCompanyModel {
   final Standard? standard;
 }
 
-/// Dxtrade financial company class
+/// Dxtrade financial company class.
 class DxtradeFinancialCompany extends DxtradeFinancialCompanyModel {
   /// Initializes
   DxtradeFinancialCompany({
@@ -275,7 +275,7 @@ class DxtradeFinancialCompany extends DxtradeFinancialCompanyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   DxtradeFinancialCompany copyWith({
     Standard? standard,
   }) =>
@@ -283,9 +283,9 @@ class DxtradeFinancialCompany extends DxtradeFinancialCompanyModel {
         standard: standard ?? this.standard,
       );
 }
-/// Standard model class
+/// Standard model class.
 abstract class StandardModel {
-  /// Initializes
+  /// Initializes.
   StandardModel({
     this.address,
     this.country,
@@ -326,7 +326,7 @@ abstract class StandardModel {
   final String? shortcode;
 }
 
-/// Standard class
+/// Standard class.
 class Standard extends StandardModel {
   /// Initializes
   Standard({
@@ -431,7 +431,7 @@ class Standard extends StandardModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Standard copyWith({
     List<String>? address,
     String? country,
@@ -457,9 +457,9 @@ class Standard extends StandardModel {
         shortcode: shortcode ?? this.shortcode,
       );
 }
-/// Dxtrade gaming company model class
+/// Dxtrade gaming company model class.
 abstract class DxtradeGamingCompanyModel {
-  /// Initializes
+  /// Initializes.
   DxtradeGamingCompanyModel({
     this.standard,
   });
@@ -468,7 +468,7 @@ abstract class DxtradeGamingCompanyModel {
   final DxtradeGamingCompanyStandard? standard;
 }
 
-/// Dxtrade gaming company class
+/// Dxtrade gaming company class.
 class DxtradeGamingCompany extends DxtradeGamingCompanyModel {
   /// Initializes
   DxtradeGamingCompany({
@@ -496,7 +496,7 @@ class DxtradeGamingCompany extends DxtradeGamingCompanyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   DxtradeGamingCompany copyWith({
     DxtradeGamingCompanyStandard? standard,
   }) =>
@@ -504,9 +504,9 @@ class DxtradeGamingCompany extends DxtradeGamingCompanyModel {
         standard: standard ?? this.standard,
       );
 }
-/// Dxtrade gaming company standard model class
+/// Dxtrade gaming company standard model class.
 abstract class DxtradeGamingCompanyStandardModel {
-  /// Initializes
+  /// Initializes.
   DxtradeGamingCompanyStandardModel({
     this.address,
     this.country,
@@ -547,7 +547,7 @@ abstract class DxtradeGamingCompanyStandardModel {
   final String? shortcode;
 }
 
-/// Dxtrade gaming company standard class
+/// Dxtrade gaming company standard class.
 class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
   /// Initializes
   DxtradeGamingCompanyStandard({
@@ -653,7 +653,7 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   DxtradeGamingCompanyStandard copyWith({
     List<String>? address,
     String? country,
@@ -679,9 +679,9 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
         shortcode: shortcode ?? this.shortcode,
       );
 }
-/// Financial company model class
+/// Financial company model class.
 abstract class FinancialCompanyModel {
-  /// Initializes
+  /// Initializes.
   FinancialCompanyModel({
     this.address,
     this.changeableFields,
@@ -726,7 +726,7 @@ abstract class FinancialCompanyModel {
   final String? shortcode;
 }
 
-/// Financial company class
+/// Financial company class.
 class FinancialCompany extends FinancialCompanyModel {
   /// Initializes
   FinancialCompany({
@@ -836,7 +836,7 @@ class FinancialCompany extends FinancialCompanyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   FinancialCompany copyWith({
     List<String>? address,
     Map<String, dynamic>? changeableFields,
@@ -864,9 +864,9 @@ class FinancialCompany extends FinancialCompanyModel {
         shortcode: shortcode ?? this.shortcode,
       );
 }
-/// Gaming company model class
+/// Gaming company model class.
 abstract class GamingCompanyModel {
-  /// Initializes
+  /// Initializes.
   GamingCompanyModel({
     this.address,
     this.changeableFields,
@@ -907,7 +907,7 @@ abstract class GamingCompanyModel {
   final String? shortcode;
 }
 
-/// Gaming company class
+/// Gaming company class.
 class GamingCompany extends GamingCompanyModel {
   /// Initializes
   GamingCompany({
@@ -1012,7 +1012,7 @@ class GamingCompany extends GamingCompanyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   GamingCompany copyWith({
     List<String>? address,
     Map<String, dynamic>? changeableFields,
@@ -1038,9 +1038,9 @@ class GamingCompany extends GamingCompanyModel {
         shortcode: shortcode ?? this.shortcode,
       );
 }
-/// Mt financial company model class
+/// Mt financial company model class.
 abstract class MtFinancialCompanyModel {
-  /// Initializes
+  /// Initializes.
   MtFinancialCompanyModel({
     this.financial,
     this.financialStp,
@@ -1057,7 +1057,7 @@ abstract class MtFinancialCompanyModel {
   final SwapFree? swapFree;
 }
 
-/// Mt financial company class
+/// Mt financial company class.
 class MtFinancialCompany extends MtFinancialCompanyModel {
   /// Initializes
   MtFinancialCompany({
@@ -1101,7 +1101,7 @@ class MtFinancialCompany extends MtFinancialCompanyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   MtFinancialCompany copyWith({
     Financial? financial,
     FinancialStp? financialStp,
@@ -1113,9 +1113,9 @@ class MtFinancialCompany extends MtFinancialCompanyModel {
         swapFree: swapFree ?? this.swapFree,
       );
 }
-/// Financial model class
+/// Financial model class.
 abstract class FinancialModel {
-  /// Initializes
+  /// Initializes.
   FinancialModel({
     this.address,
     this.country,
@@ -1156,7 +1156,7 @@ abstract class FinancialModel {
   final String? shortcode;
 }
 
-/// Financial class
+/// Financial class.
 class Financial extends FinancialModel {
   /// Initializes
   Financial({
@@ -1261,7 +1261,7 @@ class Financial extends FinancialModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Financial copyWith({
     List<String>? address,
     String? country,
@@ -1287,9 +1287,9 @@ class Financial extends FinancialModel {
         shortcode: shortcode ?? this.shortcode,
       );
 }
-/// Financial stp model class
+/// Financial stp model class.
 abstract class FinancialStpModel {
-  /// Initializes
+  /// Initializes.
   FinancialStpModel({
     this.address,
     this.country,
@@ -1330,7 +1330,7 @@ abstract class FinancialStpModel {
   final String? shortcode;
 }
 
-/// Financial stp class
+/// Financial stp class.
 class FinancialStp extends FinancialStpModel {
   /// Initializes
   FinancialStp({
@@ -1435,7 +1435,7 @@ class FinancialStp extends FinancialStpModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   FinancialStp copyWith({
     List<String>? address,
     String? country,
@@ -1461,9 +1461,9 @@ class FinancialStp extends FinancialStpModel {
         shortcode: shortcode ?? this.shortcode,
       );
 }
-/// Swap free model class
+/// Swap free model class.
 abstract class SwapFreeModel {
-  /// Initializes
+  /// Initializes.
   SwapFreeModel({
     this.address,
     this.country,
@@ -1504,7 +1504,7 @@ abstract class SwapFreeModel {
   final String? shortcode;
 }
 
-/// Swap free class
+/// Swap free class.
 class SwapFree extends SwapFreeModel {
   /// Initializes
   SwapFree({
@@ -1609,7 +1609,7 @@ class SwapFree extends SwapFreeModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   SwapFree copyWith({
     List<String>? address,
     String? country,
@@ -1635,9 +1635,9 @@ class SwapFree extends SwapFreeModel {
         shortcode: shortcode ?? this.shortcode,
       );
 }
-/// Mt gaming company model class
+/// Mt gaming company model class.
 abstract class MtGamingCompanyModel {
-  /// Initializes
+  /// Initializes.
   MtGamingCompanyModel({
     this.financial,
     this.swapFree,
@@ -1650,7 +1650,7 @@ abstract class MtGamingCompanyModel {
   final MtGamingCompanySwapFree? swapFree;
 }
 
-/// Mt gaming company class
+/// Mt gaming company class.
 class MtGamingCompany extends MtGamingCompanyModel {
   /// Initializes
   MtGamingCompany({
@@ -1686,7 +1686,7 @@ class MtGamingCompany extends MtGamingCompanyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   MtGamingCompany copyWith({
     MtGamingCompanyFinancial? financial,
     MtGamingCompanySwapFree? swapFree,
@@ -1696,9 +1696,9 @@ class MtGamingCompany extends MtGamingCompanyModel {
         swapFree: swapFree ?? this.swapFree,
       );
 }
-/// Mt gaming company financial model class
+/// Mt gaming company financial model class.
 abstract class MtGamingCompanyFinancialModel {
-  /// Initializes
+  /// Initializes.
   MtGamingCompanyFinancialModel({
     this.address,
     this.country,
@@ -1739,7 +1739,7 @@ abstract class MtGamingCompanyFinancialModel {
   final String? shortcode;
 }
 
-/// Mt gaming company financial class
+/// Mt gaming company financial class.
 class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
   /// Initializes
   MtGamingCompanyFinancial({
@@ -1845,7 +1845,7 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   MtGamingCompanyFinancial copyWith({
     List<String>? address,
     String? country,
@@ -1871,9 +1871,9 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
         shortcode: shortcode ?? this.shortcode,
       );
 }
-/// Mt gaming company swap free model class
+/// Mt gaming company swap free model class.
 abstract class MtGamingCompanySwapFreeModel {
-  /// Initializes
+  /// Initializes.
   MtGamingCompanySwapFreeModel({
     this.address,
     this.country,
@@ -1914,7 +1914,7 @@ abstract class MtGamingCompanySwapFreeModel {
   final String? shortcode;
 }
 
-/// Mt gaming company swap free class
+/// Mt gaming company swap free class.
 class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
   /// Initializes
   MtGamingCompanySwapFree({
@@ -2020,7 +2020,7 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   MtGamingCompanySwapFree copyWith({
     List<String>? address,
     String? country,

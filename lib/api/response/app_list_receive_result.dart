@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// App list response model class
+/// App list response model class.
 abstract class AppListResponseModel {
-  /// Initializes
+  /// Initializes.
   AppListResponseModel({
     this.appList,
   });
@@ -17,7 +17,7 @@ abstract class AppListResponseModel {
   final List<AppListItem>? appList;
 }
 
-/// App list response class
+/// App list response class.
 class AppListResponse extends AppListResponseModel {
   /// Initializes
   AppListResponse({
@@ -75,7 +75,7 @@ class AppListResponse extends AppListResponseModel {
     return AppListResponse.fromJson(response.appList);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AppListResponse copyWith({
     List<AppListItem>? appList,
   }) =>
@@ -83,9 +83,10 @@ class AppListResponse extends AppListResponseModel {
         appList: appList ?? this.appList,
       );
 }
-/// App list item model class
+
+/// App list item model class.
 abstract class AppListItemModel {
-  /// Initializes
+  /// Initializes.
   AppListItemModel({
     required this.redirectUri,
     required this.name,
@@ -126,7 +127,7 @@ abstract class AppListItemModel {
   final String? verificationUri;
 }
 
-/// App list item class
+/// App list item class.
 class AppListItem extends AppListItemModel {
   /// Initializes
   AppListItem({
@@ -181,7 +182,7 @@ class AppListItem extends AppListItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AppListItem copyWith({
     required int appId,
     required double appMarkupPercentage,

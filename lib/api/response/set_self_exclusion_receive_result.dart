@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Set self exclusion response model class
+/// Set self exclusion response model class.
 abstract class SetSelfExclusionResponseModel {
-  /// Initializes
+  /// Initializes.
   SetSelfExclusionResponseModel({
     this.setSelfExclusion,
   });
@@ -17,7 +17,7 @@ abstract class SetSelfExclusionResponseModel {
   final int? setSelfExclusion;
 }
 
-/// Set self exclusion response class
+/// Set self exclusion response class.
 class SetSelfExclusionResponse extends SetSelfExclusionResponseModel {
   /// Initializes
   SetSelfExclusionResponse({
@@ -62,7 +62,7 @@ class SetSelfExclusionResponse extends SetSelfExclusionResponseModel {
     return SetSelfExclusionResponse.fromJson(response.setSelfExclusion);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   SetSelfExclusionResponse copyWith({
     int? setSelfExclusion,
   }) =>

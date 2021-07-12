@@ -16,9 +16,9 @@ import 'forget_all_receive_result.dart';
 import 'forget_receive_result.dart';
 import 'proposal_open_contract_receive_result.dart';
 
-/// Proposal response model class
+/// Proposal response model class.
 abstract class ProposalResponseModel {
-  /// Initializes
+  /// Initializes.
   ProposalResponseModel({
     this.proposal,
     this.subscription,
@@ -31,7 +31,7 @@ abstract class ProposalResponseModel {
   final Subscription? subscription;
 }
 
-/// Proposal response class
+/// Proposal response class.
 class ProposalResponse extends ProposalResponseModel {
   /// Initializes
   ProposalResponse({
@@ -169,7 +169,7 @@ class ProposalResponse extends ProposalResponseModel {
         price: price ?? proposal?.askPrice,
       ));
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ProposalResponse copyWith({
     Proposal? proposal,
     Subscription? subscription,
@@ -179,9 +179,9 @@ class ProposalResponse extends ProposalResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-/// Proposal model class
+/// Proposal model class.
 abstract class ProposalModel {
-  /// Initializes
+  /// Initializes.
   ProposalModel({
     required this.spotTime,
     required this.spot,
@@ -238,7 +238,7 @@ abstract class ProposalModel {
   final double? multiplier;
 }
 
-/// Proposal class
+/// Proposal class.
 class Proposal extends ProposalModel {
   /// Initializes
   Proposal({
@@ -317,7 +317,7 @@ class Proposal extends ProposalModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Proposal copyWith({
     required double askPrice,
     required DateTime dateStart,
@@ -349,9 +349,9 @@ class Proposal extends ProposalModel {
         multiplier: multiplier ?? this.multiplier,
       );
 }
-/// Cancellation model class
+/// Cancellation model class.
 abstract class CancellationModel {
-  /// Initializes
+  /// Initializes.
   CancellationModel({
     this.askPrice,
     this.dateExpiry,
@@ -364,7 +364,7 @@ abstract class CancellationModel {
   final DateTime? dateExpiry;
 }
 
-/// Cancellation class
+/// Cancellation class.
 class Cancellation extends CancellationModel {
   /// Initializes
   Cancellation({
@@ -391,7 +391,7 @@ class Cancellation extends CancellationModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Cancellation copyWith({
     double? askPrice,
     DateTime? dateExpiry,
@@ -401,9 +401,9 @@ class Cancellation extends CancellationModel {
         dateExpiry: dateExpiry ?? this.dateExpiry,
       );
 }
-/// Limit order model class
+/// Limit order model class.
 abstract class LimitOrderModel {
-  /// Initializes
+  /// Initializes.
   LimitOrderModel({
     this.stopLoss,
     this.stopOut,
@@ -420,7 +420,7 @@ abstract class LimitOrderModel {
   final TakeProfit? takeProfit;
 }
 
-/// Limit order class
+/// Limit order class.
 class LimitOrder extends LimitOrderModel {
   /// Initializes
   LimitOrder({
@@ -463,7 +463,7 @@ class LimitOrder extends LimitOrderModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   LimitOrder copyWith({
     StopLoss? stopLoss,
     StopOut? stopOut,
@@ -475,9 +475,9 @@ class LimitOrder extends LimitOrderModel {
         takeProfit: takeProfit ?? this.takeProfit,
       );
 }
-/// Stop loss model class
+/// Stop loss model class.
 abstract class StopLossModel {
-  /// Initializes
+  /// Initializes.
   StopLossModel({
     this.displayName,
     this.orderAmount,
@@ -498,7 +498,7 @@ abstract class StopLossModel {
   final String? value;
 }
 
-/// Stop loss class
+/// Stop loss class.
 class StopLoss extends StopLossModel {
   /// Initializes
   StopLoss({
@@ -533,7 +533,7 @@ class StopLoss extends StopLossModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   StopLoss copyWith({
     String? displayName,
     double? orderAmount,
@@ -547,9 +547,9 @@ class StopLoss extends StopLossModel {
         value: value ?? this.value,
       );
 }
-/// Stop out model class
+/// Stop out model class.
 abstract class StopOutModel {
-  /// Initializes
+  /// Initializes.
   StopOutModel({
     this.displayName,
     this.orderAmount,
@@ -570,7 +570,7 @@ abstract class StopOutModel {
   final String? value;
 }
 
-/// Stop out class
+/// Stop out class.
 class StopOut extends StopOutModel {
   /// Initializes
   StopOut({
@@ -605,7 +605,7 @@ class StopOut extends StopOutModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   StopOut copyWith({
     String? displayName,
     double? orderAmount,
@@ -619,9 +619,9 @@ class StopOut extends StopOutModel {
         value: value ?? this.value,
       );
 }
-/// Take profit model class
+/// Take profit model class.
 abstract class TakeProfitModel {
-  /// Initializes
+  /// Initializes.
   TakeProfitModel({
     this.displayName,
     this.orderAmount,
@@ -642,7 +642,7 @@ abstract class TakeProfitModel {
   final String? value;
 }
 
-/// Take profit class
+/// Take profit class.
 class TakeProfit extends TakeProfitModel {
   /// Initializes
   TakeProfit({
@@ -677,7 +677,7 @@ class TakeProfit extends TakeProfitModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TakeProfit copyWith({
     String? displayName,
     double? orderAmount,
@@ -691,9 +691,9 @@ class TakeProfit extends TakeProfitModel {
         value: value ?? this.value,
       );
 }
-/// Subscription model class
+/// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes
+  /// Initializes.
   SubscriptionModel({
     required this.id,
   });
@@ -702,7 +702,7 @@ abstract class SubscriptionModel {
   final String id;
 }
 
-/// Subscription class
+/// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
@@ -725,7 +725,7 @@ class Subscription extends SubscriptionModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Subscription copyWith({
     required String id,
   }) =>

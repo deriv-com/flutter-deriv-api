@@ -1,8 +1,8 @@
 import '../../helpers/helpers.dart';
 
-/// Sell contract for multiple accounts response model class
+/// Sell contract for multiple accounts response model class.
 abstract class SellContractForMultipleAccountsResponseModel {
-  /// Initializes
+  /// Initializes.
   SellContractForMultipleAccountsResponseModel({
     this.sellContractForMultipleAccounts,
   });
@@ -11,7 +11,7 @@ abstract class SellContractForMultipleAccountsResponseModel {
   final SellContractForMultipleAccounts? sellContractForMultipleAccounts;
 }
 
-/// Sell contract for multiple accounts response class
+/// Sell contract for multiple accounts response class.
 class SellContractForMultipleAccountsResponse
     extends SellContractForMultipleAccountsResponseModel {
   /// Initializes
@@ -45,7 +45,7 @@ class SellContractForMultipleAccountsResponse
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   SellContractForMultipleAccountsResponse copyWith({
     SellContractForMultipleAccounts? sellContractForMultipleAccounts,
   }) =>
@@ -54,9 +54,9 @@ class SellContractForMultipleAccountsResponse
             this.sellContractForMultipleAccounts,
       );
 }
-/// Sell contract for multiple accounts model class
+/// Sell contract for multiple accounts model class.
 abstract class SellContractForMultipleAccountsModel {
-  /// Initializes
+  /// Initializes.
   SellContractForMultipleAccountsModel({
     this.result,
   });
@@ -65,7 +65,7 @@ abstract class SellContractForMultipleAccountsModel {
   final List<Map<String, dynamic>>? result;
 }
 
-/// Sell contract for multiple accounts class
+/// Sell contract for multiple accounts class.
 class SellContractForMultipleAccounts
     extends SellContractForMultipleAccountsModel {
   /// Initializes
@@ -102,7 +102,7 @@ class SellContractForMultipleAccounts
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   SellContractForMultipleAccounts copyWith({
     List<Map<String, dynamic>>? result,
   }) =>

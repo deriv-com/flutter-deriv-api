@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Reality check response model class
+/// Reality check response model class.
 abstract class RealityCheckResponseModel {
-  /// Initializes
+  /// Initializes.
   RealityCheckResponseModel({
     this.realityCheck,
   });
@@ -17,7 +17,7 @@ abstract class RealityCheckResponseModel {
   final RealityCheck? realityCheck;
 }
 
-/// Reality check response class
+/// Reality check response class.
 class RealityCheckResponse extends RealityCheckResponseModel {
   /// Initializes
   RealityCheckResponse({
@@ -71,7 +71,7 @@ class RealityCheckResponse extends RealityCheckResponseModel {
     return RealityCheckResponse.fromJson(response.realityCheck);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   RealityCheckResponse copyWith({
     RealityCheck? realityCheck,
   }) =>
@@ -79,9 +79,9 @@ class RealityCheckResponse extends RealityCheckResponseModel {
         realityCheck: realityCheck ?? this.realityCheck,
       );
 }
-/// Reality check model class
+/// Reality check model class.
 abstract class RealityCheckModel {
-  /// Initializes
+  /// Initializes.
   RealityCheckModel({
     this.buyAmount,
     this.buyCount,
@@ -122,7 +122,7 @@ abstract class RealityCheckModel {
   final DateTime? startTime;
 }
 
-/// Reality check class
+/// Reality check class.
 class RealityCheck extends RealityCheckModel {
   /// Initializes
   RealityCheck({
@@ -177,7 +177,7 @@ class RealityCheck extends RealityCheckModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   RealityCheck copyWith({
     double? buyAmount,
     int? buyCount,

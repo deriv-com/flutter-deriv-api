@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Time response model class
+/// Time response model class.
 abstract class TimeResponseModel {
-  /// Initializes
+  /// Initializes.
   TimeResponseModel({
     this.time,
   });
@@ -17,7 +17,7 @@ abstract class TimeResponseModel {
   final DateTime? time;
 }
 
-/// Time response class
+/// Time response class.
 class TimeResponse extends TimeResponseModel {
   /// Initializes
   TimeResponse({
@@ -64,7 +64,7 @@ class TimeResponse extends TimeResponseModel {
     return TimeResponse.fromJson(response.time);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TimeResponse copyWith({
     DateTime? time,
   }) =>

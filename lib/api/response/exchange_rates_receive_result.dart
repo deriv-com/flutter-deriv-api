@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Exchange rates response model class
+/// Exchange rates response model class.
 abstract class ExchangeRatesResponseModel {
-  /// Initializes
+  /// Initializes.
   ExchangeRatesResponseModel({
     this.exchangeRates,
   });
@@ -17,7 +17,7 @@ abstract class ExchangeRatesResponseModel {
   final ExchangeRates? exchangeRates;
 }
 
-/// Exchange rates response class
+/// Exchange rates response class.
 class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   /// Initializes
   ExchangeRatesResponse({
@@ -69,7 +69,7 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
         : ExchangeRates.fromJson(response.exchangeRates!);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ExchangeRatesResponse copyWith({
     ExchangeRates? exchangeRates,
   }) =>
@@ -77,9 +77,9 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
         exchangeRates: exchangeRates ?? this.exchangeRates,
       );
 }
-/// Exchange rates model class
+/// Exchange rates model class.
 abstract class ExchangeRatesModel {
-  /// Initializes
+  /// Initializes.
   ExchangeRatesModel({
     this.baseCurrency,
     this.date,
@@ -96,7 +96,7 @@ abstract class ExchangeRatesModel {
   final Map<String, double>? rates;
 }
 
-/// Exchange rates class
+/// Exchange rates class.
 class ExchangeRates extends ExchangeRatesModel {
   /// Initializes
   ExchangeRates({
@@ -134,7 +134,7 @@ class ExchangeRates extends ExchangeRatesModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ExchangeRates copyWith({
     String? baseCurrency,
     DateTime? date,

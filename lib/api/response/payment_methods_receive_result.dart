@@ -5,9 +5,9 @@ import '../../basic_api/generated/payment_methods_send.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
 
-/// Payment methods response model class
+/// Payment methods response model class.
 abstract class PaymentMethodsResponseModel {
-  /// Initializes
+  /// Initializes.
   PaymentMethodsResponseModel({
     this.paymentMethods,
   });
@@ -16,7 +16,7 @@ abstract class PaymentMethodsResponseModel {
   final List<PaymentMethodsItem>? paymentMethods;
 }
 
-/// Payment methods response class
+/// Payment methods response class.
 class PaymentMethodsResponse extends PaymentMethodsResponseModel {
   /// Initializes
   PaymentMethodsResponse({
@@ -73,7 +73,7 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
     return PaymentMethodsResponse.fromJson(response.paymentMethods);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   PaymentMethodsResponse copyWith({
     List<PaymentMethodsItem>? paymentMethods,
   }) =>
@@ -81,9 +81,9 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
         paymentMethods: paymentMethods ?? this.paymentMethods,
       );
 }
-/// Payment methods item model class
+/// Payment methods item model class.
 abstract class PaymentMethodsItemModel {
-  /// Initializes
+  /// Initializes.
   PaymentMethodsItemModel({
     required this.withdrawalTime,
     required this.withdrawLimits,
@@ -140,7 +140,7 @@ abstract class PaymentMethodsItemModel {
   final Map<String, DepositLimitsProperty> depositLimits;
 }
 
-/// Payment methods item class
+/// Payment methods item class.
 class PaymentMethodsItem extends PaymentMethodsItemModel {
   /// Initializes
   PaymentMethodsItem({
@@ -242,7 +242,7 @@ class PaymentMethodsItem extends PaymentMethodsItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   PaymentMethodsItem copyWith({
     required Map<String, DepositLimitsProperty> depositLimits,
     required String depositTime,
@@ -274,9 +274,9 @@ class PaymentMethodsItem extends PaymentMethodsItemModel {
         withdrawalTime: withdrawalTime,
       );
 }
-/// Deposit limits property model class
+/// Deposit limits property model class.
 abstract class DepositLimitsPropertyModel {
-  /// Initializes
+  /// Initializes.
   DepositLimitsPropertyModel({
     required this.min,
     required this.max,
@@ -289,7 +289,7 @@ abstract class DepositLimitsPropertyModel {
   final int max;
 }
 
-/// Deposit limits property class
+/// Deposit limits property class.
 class DepositLimitsProperty extends DepositLimitsPropertyModel {
   /// Initializes
   DepositLimitsProperty({
@@ -317,7 +317,7 @@ class DepositLimitsProperty extends DepositLimitsPropertyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   DepositLimitsProperty copyWith({
     required int max,
     required int min,
@@ -327,9 +327,9 @@ class DepositLimitsProperty extends DepositLimitsPropertyModel {
         min: min,
       );
 }
-/// Withdraw limits property model class
+/// Withdraw limits property model class.
 abstract class WithdrawLimitsPropertyModel {
-  /// Initializes
+  /// Initializes.
   WithdrawLimitsPropertyModel({
     required this.min,
     required this.max,
@@ -342,7 +342,7 @@ abstract class WithdrawLimitsPropertyModel {
   final int max;
 }
 
-/// Withdraw limits property class
+/// Withdraw limits property class.
 class WithdrawLimitsProperty extends WithdrawLimitsPropertyModel {
   /// Initializes
   WithdrawLimitsProperty({
@@ -370,7 +370,7 @@ class WithdrawLimitsProperty extends WithdrawLimitsPropertyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   WithdrawLimitsProperty copyWith({
     required int max,
     required int min,

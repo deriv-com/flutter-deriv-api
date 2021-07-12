@@ -13,9 +13,9 @@ import '../models/enums.dart';
 import 'forget_all_receive_result.dart';
 import 'forget_receive_result.dart';
 
-/// Transaction response model class
+/// Transaction response model class.
 abstract class TransactionResponseModel {
-  /// Initializes
+  /// Initializes.
   TransactionResponseModel({
     this.transaction,
     this.subscription,
@@ -28,7 +28,7 @@ abstract class TransactionResponseModel {
   final Subscription? subscription;
 }
 
-/// Transaction response class
+/// Transaction response class.
 class TransactionResponse extends TransactionResponseModel {
   /// Initializes
   TransactionResponse({
@@ -131,7 +131,7 @@ class TransactionResponse extends TransactionResponseModel {
     return ForgetAllResponse.fromJson(response.forgetAll);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TransactionResponse copyWith({
     Transaction? transaction,
     Subscription? subscription,
@@ -180,9 +180,9 @@ enum ActionEnum {
   /// transfer.
   transfer,
 }
-/// Transaction model class
+/// Transaction model class.
 abstract class TransactionModel {
-  /// Initializes
+  /// Initializes.
   TransactionModel({
     this.action,
     this.amount,
@@ -263,7 +263,7 @@ abstract class TransactionModel {
   final DateTime? transactionTime;
 }
 
-/// Transaction class
+/// Transaction class.
 class Transaction extends TransactionModel {
   /// Initializes
   Transaction({
@@ -363,7 +363,7 @@ class Transaction extends TransactionModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Transaction copyWith({
     ActionEnum? action,
     double? amount,
@@ -407,9 +407,9 @@ class Transaction extends TransactionModel {
         transactionTime: transactionTime ?? this.transactionTime,
       );
 }
-/// Subscription model class
+/// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes
+  /// Initializes.
   SubscriptionModel({
     required this.id,
   });
@@ -418,7 +418,7 @@ abstract class SubscriptionModel {
   final String id;
 }
 
-/// Subscription class
+/// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
@@ -441,7 +441,7 @@ class Subscription extends SubscriptionModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Subscription copyWith({
     required String id,
   }) =>

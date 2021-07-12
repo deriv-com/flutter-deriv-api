@@ -1,8 +1,8 @@
 import '../../helpers/helpers.dart';
 
-/// Document upload response model class
+/// Document upload response model class.
 abstract class DocumentUploadResponseModel {
-  /// Initializes
+  /// Initializes.
   DocumentUploadResponseModel({
     this.documentUpload,
   });
@@ -11,7 +11,7 @@ abstract class DocumentUploadResponseModel {
   final DocumentUpload? documentUpload;
 }
 
-/// Document upload response class
+/// Document upload response class.
 class DocumentUploadResponse extends DocumentUploadResponseModel {
   /// Initializes
   DocumentUploadResponse({
@@ -41,7 +41,7 @@ class DocumentUploadResponse extends DocumentUploadResponseModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   DocumentUploadResponse copyWith({
     DocumentUpload? documentUpload,
   }) =>
@@ -49,9 +49,9 @@ class DocumentUploadResponse extends DocumentUploadResponseModel {
         documentUpload: documentUpload ?? this.documentUpload,
       );
 }
-/// Document upload model class
+/// Document upload model class.
 abstract class DocumentUploadModel {
-  /// Initializes
+  /// Initializes.
   DocumentUploadModel({
     required this.uploadId,
     required this.callType,
@@ -76,7 +76,7 @@ abstract class DocumentUploadModel {
   final String? status;
 }
 
-/// Document upload class
+/// Document upload class.
 class DocumentUpload extends DocumentUploadModel {
   /// Initializes
   DocumentUpload({
@@ -115,7 +115,7 @@ class DocumentUpload extends DocumentUploadModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   DocumentUpload copyWith({
     required double callType,
     required double uploadId,

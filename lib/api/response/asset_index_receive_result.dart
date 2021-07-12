@@ -6,9 +6,9 @@ import '../../helpers/helpers.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
 
-/// Asset index response model class
+/// Asset index response model class.
 abstract class AssetIndexResponseModel {
-  /// Initializes
+  /// Initializes.
   AssetIndexResponseModel({
     this.assetIndex,
   });
@@ -17,7 +17,7 @@ abstract class AssetIndexResponseModel {
   final List<dynamic>? assetIndex;
 }
 
-/// Asset index response class
+/// Asset index response class.
 class AssetIndexResponse extends AssetIndexResponseModel {
   /// Initializes
   AssetIndexResponse({
@@ -77,7 +77,7 @@ class AssetIndexResponse extends AssetIndexResponseModel {
     return AssetIndexResponse.fromJson(response.assetIndex);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AssetIndexResponse copyWith({
     List<dynamic>? assetIndex,
   }) =>

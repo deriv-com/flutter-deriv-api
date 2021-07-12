@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Copytrading statistics response model class
+/// Copytrading statistics response model class.
 abstract class CopytradingStatisticsResponseModel {
-  /// Initializes
+  /// Initializes.
   CopytradingStatisticsResponseModel({
     this.copytradingStatistics,
   });
@@ -17,7 +17,7 @@ abstract class CopytradingStatisticsResponseModel {
   final CopytradingStatistics? copytradingStatistics;
 }
 
-/// Copytrading statistics response class
+/// Copytrading statistics response class.
 class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
   /// Initializes
   CopytradingStatisticsResponse({
@@ -69,7 +69,7 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
         response.copytradingStatistics);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   CopytradingStatisticsResponse copyWith({
     CopytradingStatistics? copytradingStatistics,
   }) =>
@@ -78,9 +78,9 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
             copytradingStatistics ?? this.copytradingStatistics,
       );
 }
-/// Copytrading statistics model class
+/// Copytrading statistics model class.
 abstract class CopytradingStatisticsModel {
-  /// Initializes
+  /// Initializes.
   CopytradingStatisticsModel({
     required this.tradesProfitable,
     required this.tradesBreakdown,
@@ -133,7 +133,7 @@ abstract class CopytradingStatisticsModel {
   final Map<String, double>? yearlyProfitableTrades;
 }
 
-/// Copytrading statistics class
+/// Copytrading statistics class.
 class CopytradingStatistics extends CopytradingStatisticsModel {
   /// Initializes
   CopytradingStatistics({
@@ -216,7 +216,7 @@ class CopytradingStatistics extends CopytradingStatisticsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   CopytradingStatistics copyWith({
     required DateTime activeSince,
     required int avgDuration,

@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Trading durations response model class
+/// Trading durations response model class.
 abstract class TradingDurationsResponseModel {
-  /// Initializes
+  /// Initializes.
   TradingDurationsResponseModel({
     this.tradingDurations,
   });
@@ -17,7 +17,7 @@ abstract class TradingDurationsResponseModel {
   final List<TradingDurationsItem>? tradingDurations;
 }
 
-/// Trading durations response class
+/// Trading durations response class.
 class TradingDurationsResponse extends TradingDurationsResponseModel {
   /// Initializes
   TradingDurationsResponse({
@@ -76,7 +76,7 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
     return TradingDurationsResponse.fromJson(response.tradingDurations);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TradingDurationsResponse copyWith({
     List<TradingDurationsItem>? tradingDurations,
   }) =>
@@ -84,9 +84,9 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
         tradingDurations: tradingDurations ?? this.tradingDurations,
       );
 }
-/// Trading durations item model class
+/// Trading durations item model class.
 abstract class TradingDurationsItemModel {
-  /// Initializes
+  /// Initializes.
   TradingDurationsItemModel({
     this.data,
   });
@@ -95,7 +95,7 @@ abstract class TradingDurationsItemModel {
   final List<DataItem>? data;
 }
 
-/// Trading durations item class
+/// Trading durations item class.
 class TradingDurationsItem extends TradingDurationsItemModel {
   /// Initializes
   TradingDurationsItem({
@@ -131,7 +131,7 @@ class TradingDurationsItem extends TradingDurationsItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TradingDurationsItem copyWith({
     List<DataItem>? data,
   }) =>
@@ -139,9 +139,9 @@ class TradingDurationsItem extends TradingDurationsItemModel {
         data: data ?? this.data,
       );
 }
-/// Data item model class
+/// Data item model class.
 abstract class DataItemModel {
-  /// Initializes
+  /// Initializes.
   DataItemModel({
     this.market,
     this.submarket,
@@ -162,7 +162,7 @@ abstract class DataItemModel {
   final List<TradeDurationsItem>? tradeDurations;
 }
 
-/// Data item class
+/// Data item class.
 class DataItem extends DataItemModel {
   /// Initializes
   DataItem({
@@ -227,7 +227,7 @@ class DataItem extends DataItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   DataItem copyWith({
     Market? market,
     Submarket? submarket,
@@ -241,9 +241,9 @@ class DataItem extends DataItemModel {
         tradeDurations: tradeDurations ?? this.tradeDurations,
       );
 }
-/// Market model class
+/// Market model class.
 abstract class MarketModel {
-  /// Initializes
+  /// Initializes.
   MarketModel({
     this.displayName,
     this.name,
@@ -256,7 +256,7 @@ abstract class MarketModel {
   final String? name;
 }
 
-/// Market class
+/// Market class.
 class Market extends MarketModel {
   /// Initializes
   Market({
@@ -283,7 +283,7 @@ class Market extends MarketModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Market copyWith({
     String? displayName,
     String? name,
@@ -293,9 +293,9 @@ class Market extends MarketModel {
         name: name ?? this.name,
       );
 }
-/// Submarket model class
+/// Submarket model class.
 abstract class SubmarketModel {
-  /// Initializes
+  /// Initializes.
   SubmarketModel({
     this.displayName,
     this.name,
@@ -308,7 +308,7 @@ abstract class SubmarketModel {
   final String? name;
 }
 
-/// Submarket class
+/// Submarket class.
 class Submarket extends SubmarketModel {
   /// Initializes
   Submarket({
@@ -335,7 +335,7 @@ class Submarket extends SubmarketModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Submarket copyWith({
     String? displayName,
     String? name,
@@ -345,9 +345,9 @@ class Submarket extends SubmarketModel {
         name: name ?? this.name,
       );
 }
-/// Symbol item model class
+/// Symbol item model class.
 abstract class SymbolItemModel {
-  /// Initializes
+  /// Initializes.
   SymbolItemModel({
     this.displayName,
     this.name,
@@ -360,7 +360,7 @@ abstract class SymbolItemModel {
   final String? name;
 }
 
-/// Symbol item class
+/// Symbol item class.
 class SymbolItem extends SymbolItemModel {
   /// Initializes
   SymbolItem({
@@ -387,7 +387,7 @@ class SymbolItem extends SymbolItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   SymbolItem copyWith({
     String? displayName,
     String? name,
@@ -397,9 +397,9 @@ class SymbolItem extends SymbolItemModel {
         name: name ?? this.name,
       );
 }
-/// Trade durations item model class
+/// Trade durations item model class.
 abstract class TradeDurationsItemModel {
-  /// Initializes
+  /// Initializes.
   TradeDurationsItemModel({
     this.durations,
     this.tradeType,
@@ -412,7 +412,7 @@ abstract class TradeDurationsItemModel {
   final TradeType? tradeType;
 }
 
-/// Trade durations item class
+/// Trade durations item class.
 class TradeDurationsItem extends TradeDurationsItemModel {
   /// Initializes
   TradeDurationsItem({
@@ -456,7 +456,7 @@ class TradeDurationsItem extends TradeDurationsItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TradeDurationsItem copyWith({
     List<DurationsItem>? durations,
     TradeType? tradeType,
@@ -466,9 +466,9 @@ class TradeDurationsItem extends TradeDurationsItemModel {
         tradeType: tradeType ?? this.tradeType,
       );
 }
-/// Durations item model class
+/// Durations item model class.
 abstract class DurationsItemModel {
-  /// Initializes
+  /// Initializes.
   DurationsItemModel({
     this.displayName,
     this.max,
@@ -489,7 +489,7 @@ abstract class DurationsItemModel {
   final String? name;
 }
 
-/// Durations item class
+/// Durations item class.
 class DurationsItem extends DurationsItemModel {
   /// Initializes
   DurationsItem({
@@ -524,7 +524,7 @@ class DurationsItem extends DurationsItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   DurationsItem copyWith({
     String? displayName,
     int? max,
@@ -538,9 +538,9 @@ class DurationsItem extends DurationsItemModel {
         name: name ?? this.name,
       );
 }
-/// Trade type model class
+/// Trade type model class.
 abstract class TradeTypeModel {
-  /// Initializes
+  /// Initializes.
   TradeTypeModel({
     this.displayName,
     this.name,
@@ -553,7 +553,7 @@ abstract class TradeTypeModel {
   final String? name;
 }
 
-/// Trade type class
+/// Trade type class.
 class TradeType extends TradeTypeModel {
   /// Initializes
   TradeType({
@@ -580,7 +580,7 @@ class TradeType extends TradeTypeModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TradeType copyWith({
     String? displayName,
     String? name,

@@ -1,4 +1,13 @@
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/tools/schema_parser/json_schema_parser.dart';
 import 'package:recase/recase.dart';
+
+part 'helpers/from_json_helper.dart';
+part 'helpers/to_json_helper.dart';
+part 'helpers/copy_with_helper.dart';
+part 'helpers/constructor_helper.dart';
+part 'helpers/enum_helper.dart';
+part 'helpers/other_helpers.dart';
 
 /// Represents dynamic type. mostly used for unknown types.
 const String dynamicType = 'dynamic';
@@ -81,6 +90,33 @@ class SchemaModel extends Object {
 
   /// True if this model type is array.
   bool get isArray => schemaType == 'array';
+
+  /// Gets String of FromJson function for this model.
+  StringBuffer getFromJson({bool isRoot = false}) =>
+      _generateFromJson(model: this, isRoot: isRoot);
+
+  /// Gets String of ToJson function for this model.
+  StringBuffer getToJson() => _generateToJson(model: this);
+
+  /// Gets String of copyWith function for this model.
+  StringBuffer getCopyWith() => _generateCopyWith(model: this);
+
+  /// Gets String of constructor function for this model.
+  StringBuffer getConstructor({
+    required String className,
+    bool isSubclass = true,
+  }) =>
+      _generateConstructor(
+        model: this,
+        className: className,
+        isSubclass: isSubclass,
+      );
+
+  /// Gets String of enums for this model.
+  StringBuffer getEnum() => _generateEnums(model: this);
+
+  /// Gets String of properties for this model.
+  StringBuffer getProperties() => _generateProperties(model: this);
 
   @override
   String toString() => '''

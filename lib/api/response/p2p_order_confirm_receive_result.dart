@@ -1,9 +1,9 @@
 import 'package:meta/meta.dart';
 
 
-/// P2p order confirm response model class
+/// P2p order confirm response model class.
 abstract class P2pOrderConfirmResponseModel {
-  /// Initializes
+  /// Initializes.
   P2pOrderConfirmResponseModel({
     this.p2pOrderConfirm,
   });
@@ -12,7 +12,7 @@ abstract class P2pOrderConfirmResponseModel {
   final P2pOrderConfirm? p2pOrderConfirm;
 }
 
-/// P2p order confirm response class
+/// P2p order confirm response class.
 class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
   /// Initializes
   P2pOrderConfirmResponse({
@@ -42,7 +42,7 @@ class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pOrderConfirmResponse copyWith({
     P2pOrderConfirm? p2pOrderConfirm,
   }) =>
@@ -65,9 +65,9 @@ enum StatusEnum {
   /// completed.
   completed,
 }
-/// P2p order confirm model class
+/// P2p order confirm model class.
 abstract class P2pOrderConfirmModel {
-  /// Initializes
+  /// Initializes.
   P2pOrderConfirmModel({
     required this.status,
     required this.id,
@@ -80,7 +80,7 @@ abstract class P2pOrderConfirmModel {
   final String id;
 }
 
-/// P2p order confirm class
+/// P2p order confirm class.
 class P2pOrderConfirm extends P2pOrderConfirmModel {
   /// Initializes
   P2pOrderConfirm({
@@ -111,7 +111,7 @@ class P2pOrderConfirm extends P2pOrderConfirmModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pOrderConfirm copyWith({
     required String id,
     required StatusEnum status,

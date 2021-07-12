@@ -6,9 +6,9 @@ import '../../helpers/helpers.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// App update response model class
+/// App update response model class.
 abstract class AppUpdateResponseModel {
-  /// Initializes
+  /// Initializes.
   AppUpdateResponseModel({
     this.appUpdate,
   });
@@ -17,7 +17,7 @@ abstract class AppUpdateResponseModel {
   final AppUpdate? appUpdate;
 }
 
-/// App update response class
+/// App update response class.
 class AppUpdateResponse extends AppUpdateResponseModel {
   /// Initializes
   AppUpdateResponse({
@@ -65,7 +65,7 @@ class AppUpdateResponse extends AppUpdateResponseModel {
     return AppUpdateResponse.fromJson(response.appUpdate);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AppUpdateResponse copyWith({
     AppUpdate? appUpdate,
   }) =>
@@ -73,9 +73,9 @@ class AppUpdateResponse extends AppUpdateResponseModel {
         appUpdate: appUpdate ?? this.appUpdate,
       );
 }
-/// App update model class
+/// App update model class.
 abstract class AppUpdateModel {
-  /// Initializes
+  /// Initializes.
   AppUpdateModel({
     this.appId,
     this.appMarkupPercentage,
@@ -116,7 +116,7 @@ abstract class AppUpdateModel {
   final String? verificationUri;
 }
 
-/// App update class
+/// App update class.
 class AppUpdate extends AppUpdateModel {
   /// Initializes
   AppUpdate({
@@ -171,7 +171,7 @@ class AppUpdate extends AppUpdateModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AppUpdate copyWith({
     int? appId,
     double? appMarkupPercentage,

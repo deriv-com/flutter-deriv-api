@@ -10,9 +10,9 @@ import '../models/base_exception_model.dart';
 import 'p2p_advert_update_receive_result.dart';
 import 'p2p_order_create_receive_result.dart';
 
-/// P2p advert info response model class
+/// P2p advert info response model class.
 abstract class P2pAdvertInfoResponseModel {
-  /// Initializes
+  /// Initializes.
   P2pAdvertInfoResponseModel({
     this.p2pAdvertInfo,
   });
@@ -21,7 +21,7 @@ abstract class P2pAdvertInfoResponseModel {
   final P2pAdvertInfo? p2pAdvertInfo;
 }
 
-/// P2p advert info response class
+/// P2p advert info response class.
 class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
   /// Initializes
   P2pAdvertInfoResponse({
@@ -124,7 +124,7 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
         ),
       );
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pAdvertInfoResponse copyWith({
     P2pAdvertInfo? p2pAdvertInfo,
   }) =>
@@ -163,9 +163,9 @@ enum TypeEnum {
   /// sell.
   sell,
 }
-/// P2p advert info model class
+/// P2p advert info model class.
 abstract class P2pAdvertInfoModel {
-  /// Initializes
+  /// Initializes.
   P2pAdvertInfoModel({
     required this.type,
     required this.rateDisplay,
@@ -294,7 +294,7 @@ abstract class P2pAdvertInfoModel {
   final String? remainingAmountDisplay;
 }
 
-/// P2p advert info class
+/// P2p advert info class.
 class P2pAdvertInfo extends P2pAdvertInfoModel {
   /// Initializes
   P2pAdvertInfo({
@@ -457,7 +457,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pAdvertInfo copyWith({
     required String accountCurrency,
     required AdvertiserDetails advertiserDetails,
@@ -528,9 +528,9 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
             remainingAmountDisplay ?? this.remainingAmountDisplay,
       );
 }
-/// Advertiser details model class
+/// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
-  /// Initializes
+  /// Initializes.
   AdvertiserDetailsModel({
     required this.name,
     required this.id,
@@ -555,7 +555,7 @@ abstract class AdvertiserDetailsModel {
   final double? totalCompletionRate;
 }
 
-/// Advertiser details class
+/// Advertiser details class.
 class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes
   AdvertiserDetails({
@@ -595,7 +595,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AdvertiserDetails copyWith({
     required String id,
     required String name,

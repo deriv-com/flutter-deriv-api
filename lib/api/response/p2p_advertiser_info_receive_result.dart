@@ -13,9 +13,9 @@ import '../models/enums.dart';
 import 'forget_all_receive_result.dart';
 import 'forget_receive_result.dart';
 
-/// P2p advertiser info response model class
+/// P2p advertiser info response model class.
 abstract class P2pAdvertiserInfoResponseModel {
-  /// Initializes
+  /// Initializes.
   P2pAdvertiserInfoResponseModel({
     this.p2pAdvertiserInfo,
     this.subscription,
@@ -28,7 +28,7 @@ abstract class P2pAdvertiserInfoResponseModel {
   final Subscription? subscription;
 }
 
-/// P2p advertiser info response class
+/// P2p advertiser info response class.
 class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
   /// Initializes
   P2pAdvertiserInfoResponse({
@@ -151,7 +151,7 @@ class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
     return ForgetAllResponse.fromJson(response.forgetAll);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pAdvertiserInfoResponse copyWith({
     P2pAdvertiserInfo? p2pAdvertiserInfo,
     Subscription? subscription,
@@ -161,9 +161,9 @@ class P2pAdvertiserInfoResponse extends P2pAdvertiserInfoResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-/// P2p advertiser info model class
+/// P2p advertiser info model class.
 abstract class P2pAdvertiserInfoModel {
-  /// Initializes
+  /// Initializes.
   P2pAdvertiserInfoModel({
     required this.totalOrdersCount,
     required this.sellOrdersCount,
@@ -300,7 +300,7 @@ abstract class P2pAdvertiserInfoModel {
   final double? totalCompletionRate;
 }
 
-/// P2p advertiser info class
+/// P2p advertiser info class.
 class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
   /// Initializes
   P2pAdvertiserInfo({
@@ -452,7 +452,7 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pAdvertiserInfo copyWith({
     required int basicVerification,
     required int buyOrdersCount,
@@ -525,9 +525,9 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );
 }
-/// Subscription model class
+/// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes
+  /// Initializes.
   SubscriptionModel({
     required this.id,
   });
@@ -536,7 +536,7 @@ abstract class SubscriptionModel {
   final String id;
 }
 
-/// Subscription class
+/// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
@@ -559,7 +559,7 @@ class Subscription extends SubscriptionModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Subscription copyWith({
     required String id,
   }) =>

@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Get limits response model class
+/// Get limits response model class.
 abstract class GetLimitsResponseModel {
-  /// Initializes
+  /// Initializes.
   GetLimitsResponseModel({
     this.getLimits,
   });
@@ -17,7 +17,7 @@ abstract class GetLimitsResponseModel {
   final GetLimits? getLimits;
 }
 
-/// Get limits response class
+/// Get limits response class.
 class GetLimitsResponse extends GetLimitsResponseModel {
   /// Initializes
   GetLimitsResponse({
@@ -67,7 +67,7 @@ class GetLimitsResponse extends GetLimitsResponseModel {
     return GetLimitsResponse.fromJson(response.getLimits);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   GetLimitsResponse copyWith({
     GetLimits? getLimits,
   }) =>
@@ -75,9 +75,9 @@ class GetLimitsResponse extends GetLimitsResponseModel {
         getLimits: getLimits ?? this.getLimits,
       );
 }
-/// Get limits model class
+/// Get limits model class.
 abstract class GetLimitsModel {
-  /// Initializes
+  /// Initializes.
   GetLimitsModel({
     this.accountBalance,
     this.dailyTurnover,
@@ -134,7 +134,7 @@ abstract class GetLimitsModel {
   final double? withdrawalSinceInceptionMonetary;
 }
 
-/// Get limits class
+/// Get limits class.
 class GetLimits extends GetLimitsModel {
   /// Initializes
   GetLimits({
@@ -228,7 +228,7 @@ class GetLimits extends GetLimitsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   GetLimits copyWith({
     double? accountBalance,
     double? dailyTurnover,
@@ -263,9 +263,9 @@ class GetLimits extends GetLimitsModel {
             this.withdrawalSinceInceptionMonetary,
       );
 }
-/// Market specific property item model class
+/// Market specific property item model class.
 abstract class MarketSpecificPropertyItemModel {
-  /// Initializes
+  /// Initializes.
   MarketSpecificPropertyItemModel({
     this.name,
     this.payoutLimit,
@@ -286,7 +286,7 @@ abstract class MarketSpecificPropertyItemModel {
   final double? turnoverLimit;
 }
 
-/// Market specific property item class
+/// Market specific property item class.
 class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
   /// Initializes
   MarketSpecificPropertyItem({
@@ -322,7 +322,7 @@ class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   MarketSpecificPropertyItem copyWith({
     String? name,
     double? payoutLimit,
@@ -336,9 +336,9 @@ class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
         turnoverLimit: turnoverLimit ?? this.turnoverLimit,
       );
 }
-/// Payout per symbol model class
+/// Payout per symbol model class.
 abstract class PayoutPerSymbolModel {
-  /// Initializes
+  /// Initializes.
   PayoutPerSymbolModel({
     this.atm,
     this.nonAtm,
@@ -351,7 +351,7 @@ abstract class PayoutPerSymbolModel {
   final NonAtm? nonAtm;
 }
 
-/// Payout per symbol class
+/// Payout per symbol class.
 class PayoutPerSymbol extends PayoutPerSymbolModel {
   /// Initializes
   PayoutPerSymbol({
@@ -382,7 +382,7 @@ class PayoutPerSymbol extends PayoutPerSymbolModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   PayoutPerSymbol copyWith({
     double? atm,
     NonAtm? nonAtm,
@@ -392,9 +392,9 @@ class PayoutPerSymbol extends PayoutPerSymbolModel {
         nonAtm: nonAtm ?? this.nonAtm,
       );
 }
-/// Non atm model class
+/// Non atm model class.
 abstract class NonAtmModel {
-  /// Initializes
+  /// Initializes.
   NonAtmModel({
     this.lessThanSevenDays,
     this.moreThanSevenDays,
@@ -407,7 +407,7 @@ abstract class NonAtmModel {
   final double? moreThanSevenDays;
 }
 
-/// Non atm class
+/// Non atm class.
 class NonAtm extends NonAtmModel {
   /// Initializes
   NonAtm({
@@ -434,7 +434,7 @@ class NonAtm extends NonAtmModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   NonAtm copyWith({
     double? lessThanSevenDays,
     double? moreThanSevenDays,

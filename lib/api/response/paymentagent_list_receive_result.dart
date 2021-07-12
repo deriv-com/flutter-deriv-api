@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Paymentagent list response model class
+/// Paymentagent list response model class.
 abstract class PaymentagentListResponseModel {
-  /// Initializes
+  /// Initializes.
   PaymentagentListResponseModel({
     this.paymentagentList,
   });
@@ -17,7 +17,7 @@ abstract class PaymentagentListResponseModel {
   final PaymentagentList? paymentagentList;
 }
 
-/// Paymentagent list response class
+/// Paymentagent list response class.
 class PaymentagentListResponse extends PaymentagentListResponseModel {
   /// Initializes
   PaymentagentListResponse({
@@ -67,7 +67,7 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
     return PaymentagentListResponse.fromJson(response.paymentagentList);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   PaymentagentListResponse copyWith({
     PaymentagentList? paymentagentList,
   }) =>
@@ -75,9 +75,9 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
         paymentagentList: paymentagentList ?? this.paymentagentList,
       );
 }
-/// Paymentagent list model class
+/// Paymentagent list model class.
 abstract class PaymentagentListModel {
-  /// Initializes
+  /// Initializes.
   PaymentagentListModel({
     required this.list,
     this.availableCountries,
@@ -90,7 +90,7 @@ abstract class PaymentagentListModel {
   final List<List<String>>? availableCountries;
 }
 
-/// Paymentagent list class
+/// Paymentagent list class.
 class PaymentagentList extends PaymentagentListModel {
   /// Initializes
   PaymentagentList({
@@ -147,7 +147,7 @@ class PaymentagentList extends PaymentagentListModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   PaymentagentList copyWith({
     required List<ListItem> list,
     List<List<String>>? availableCountries,
@@ -157,9 +157,9 @@ class PaymentagentList extends PaymentagentListModel {
         availableCountries: availableCountries ?? this.availableCountries,
       );
 }
-/// List item model class
+/// List item model class.
 abstract class ListItemModel {
-  /// Initializes
+  /// Initializes.
   ListItemModel({
     this.currencies,
     this.depositCommission,
@@ -216,7 +216,7 @@ abstract class ListItemModel {
   final String? withdrawalCommission;
 }
 
-/// List item class
+/// List item class.
 class ListItem extends ListItemModel {
   /// Initializes
   ListItem({
@@ -287,7 +287,7 @@ class ListItem extends ListItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ListItem copyWith({
     String? currencies,
     String? depositCommission,

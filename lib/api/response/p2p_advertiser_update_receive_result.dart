@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// P2p advertiser update response model class
+/// P2p advertiser update response model class.
 abstract class P2pAdvertiserUpdateResponseModel {
-  /// Initializes
+  /// Initializes.
   P2pAdvertiserUpdateResponseModel({
     this.p2pAdvertiserUpdate,
   });
@@ -17,7 +17,7 @@ abstract class P2pAdvertiserUpdateResponseModel {
   final P2pAdvertiserUpdate? p2pAdvertiserUpdate;
 }
 
-/// P2p advertiser update response class
+/// P2p advertiser update response class.
 class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
   /// Initializes
   P2pAdvertiserUpdateResponse({
@@ -67,7 +67,7 @@ class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
     return P2pAdvertiserUpdateResponse.fromJson(response.p2pAdvertiserUpdate);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pAdvertiserUpdateResponse copyWith({
     P2pAdvertiserUpdate? p2pAdvertiserUpdate,
   }) =>
@@ -75,9 +75,9 @@ class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
         p2pAdvertiserUpdate: p2pAdvertiserUpdate ?? this.p2pAdvertiserUpdate,
       );
 }
-/// P2p advertiser update model class
+/// P2p advertiser update model class.
 abstract class P2pAdvertiserUpdateModel {
-  /// Initializes
+  /// Initializes.
   P2pAdvertiserUpdateModel({
     required this.totalOrdersCount,
     required this.sellOrdersCount,
@@ -214,7 +214,7 @@ abstract class P2pAdvertiserUpdateModel {
   final double? totalCompletionRate;
 }
 
-/// P2p advertiser update class
+/// P2p advertiser update class.
 class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
   /// Initializes
   P2pAdvertiserUpdate({
@@ -366,7 +366,7 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pAdvertiserUpdate copyWith({
     required int basicVerification,
     required int buyOrdersCount,

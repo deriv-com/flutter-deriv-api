@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Get financial assessment response model class
+/// Get financial assessment response model class.
 abstract class GetFinancialAssessmentResponseModel {
-  /// Initializes
+  /// Initializes.
   GetFinancialAssessmentResponseModel({
     this.getFinancialAssessment,
   });
@@ -17,7 +17,7 @@ abstract class GetFinancialAssessmentResponseModel {
   final GetFinancialAssessment? getFinancialAssessment;
 }
 
-/// Get financial assessment response class
+/// Get financial assessment response class.
 class GetFinancialAssessmentResponse
     extends GetFinancialAssessmentResponseModel {
   /// Initializes
@@ -71,7 +71,7 @@ class GetFinancialAssessmentResponse
         response.getFinancialAssessment);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   GetFinancialAssessmentResponse copyWith({
     GetFinancialAssessment? getFinancialAssessment,
   }) =>
@@ -80,9 +80,9 @@ class GetFinancialAssessmentResponse
             getFinancialAssessment ?? this.getFinancialAssessment,
       );
 }
-/// Get financial assessment model class
+/// Get financial assessment model class.
 abstract class GetFinancialAssessmentModel {
-  /// Initializes
+  /// Initializes.
   GetFinancialAssessmentModel({
     this.accountTurnover,
     this.binaryOptionsTradingExperience,
@@ -171,7 +171,7 @@ abstract class GetFinancialAssessmentModel {
   final int? tradingScore;
 }
 
-/// Get financial assessment class
+/// Get financial assessment class.
 class GetFinancialAssessment extends GetFinancialAssessmentModel {
   /// Initializes
   GetFinancialAssessment({
@@ -282,7 +282,7 @@ class GetFinancialAssessment extends GetFinancialAssessmentModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   GetFinancialAssessment copyWith({
     String? accountTurnover,
     String? binaryOptionsTradingExperience,

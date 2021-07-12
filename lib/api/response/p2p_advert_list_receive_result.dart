@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/p2p_advert_exception.dart';
 import '../models/base_exception_model.dart';
 
-/// P2p advert list response model class
+/// P2p advert list response model class.
 abstract class P2pAdvertListResponseModel {
-  /// Initializes
+  /// Initializes.
   P2pAdvertListResponseModel({
     this.p2pAdvertList,
   });
@@ -17,7 +17,7 @@ abstract class P2pAdvertListResponseModel {
   final P2pAdvertList? p2pAdvertList;
 }
 
-/// P2p advert list response class
+/// P2p advert list response class.
 class P2pAdvertListResponse extends P2pAdvertListResponseModel {
   /// Initializes
   P2pAdvertListResponse({
@@ -67,7 +67,7 @@ class P2pAdvertListResponse extends P2pAdvertListResponseModel {
     return P2pAdvertListResponse.fromJson(response.p2pAdvertList);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pAdvertListResponse copyWith({
     P2pAdvertList? p2pAdvertList,
   }) =>
@@ -106,9 +106,9 @@ enum TypeEnum {
   /// sell.
   sell,
 }
-/// P2p advert list model class
+/// P2p advert list model class.
 abstract class P2pAdvertListModel {
-  /// Initializes
+  /// Initializes.
   P2pAdvertListModel({
     required this.list,
   });
@@ -117,7 +117,7 @@ abstract class P2pAdvertListModel {
   final List<ListItem> list;
 }
 
-/// P2p advert list class
+/// P2p advert list class.
 class P2pAdvertList extends P2pAdvertListModel {
   /// Initializes
   P2pAdvertList({
@@ -148,7 +148,7 @@ class P2pAdvertList extends P2pAdvertListModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   P2pAdvertList copyWith({
     required List<ListItem> list,
   }) =>
@@ -156,9 +156,9 @@ class P2pAdvertList extends P2pAdvertListModel {
         list: list,
       );
 }
-/// List item model class
+/// List item model class.
 abstract class ListItemModel {
-  /// Initializes
+  /// Initializes.
   ListItemModel({
     required this.type,
     required this.rateDisplay,
@@ -287,7 +287,7 @@ abstract class ListItemModel {
   final String? remainingAmountDisplay;
 }
 
-/// List item class
+/// List item class.
 class ListItem extends ListItemModel {
   /// Initializes
   ListItem({
@@ -450,7 +450,7 @@ class ListItem extends ListItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ListItem copyWith({
     required String accountCurrency,
     required AdvertiserDetails advertiserDetails,
@@ -521,9 +521,9 @@ class ListItem extends ListItemModel {
             remainingAmountDisplay ?? this.remainingAmountDisplay,
       );
 }
-/// Advertiser details model class
+/// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
-  /// Initializes
+  /// Initializes.
   AdvertiserDetailsModel({
     required this.name,
     required this.id,
@@ -548,7 +548,7 @@ abstract class AdvertiserDetailsModel {
   final double? totalCompletionRate;
 }
 
-/// Advertiser details class
+/// Advertiser details class.
 class AdvertiserDetails extends AdvertiserDetailsModel {
   /// Initializes
   AdvertiserDetails({
@@ -588,7 +588,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AdvertiserDetails copyWith({
     required String id,
     required String name,

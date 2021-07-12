@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Trading times response model class
+/// Trading times response model class.
 abstract class TradingTimesResponseModel {
-  /// Initializes
+  /// Initializes.
   TradingTimesResponseModel({
     this.tradingTimes,
   });
@@ -17,7 +17,7 @@ abstract class TradingTimesResponseModel {
   final TradingTimes? tradingTimes;
 }
 
-/// Trading times response class
+/// Trading times response class.
 class TradingTimesResponse extends TradingTimesResponseModel {
   /// Initializes
   TradingTimesResponse({
@@ -67,7 +67,7 @@ class TradingTimesResponse extends TradingTimesResponseModel {
     return TradingTimesResponse.fromJson(response.tradingTimes);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TradingTimesResponse copyWith({
     TradingTimes? tradingTimes,
   }) =>
@@ -111,9 +111,9 @@ enum TradingDaysItemEnum {
   /// Sat.
   sat,
 }
-/// Trading times model class
+/// Trading times model class.
 abstract class TradingTimesModel {
-  /// Initializes
+  /// Initializes.
   TradingTimesModel({
     required this.markets,
   });
@@ -122,7 +122,7 @@ abstract class TradingTimesModel {
   final List<MarketsItem> markets;
 }
 
-/// Trading times class
+/// Trading times class.
 class TradingTimes extends TradingTimesModel {
   /// Initializes
   TradingTimes({
@@ -153,7 +153,7 @@ class TradingTimes extends TradingTimesModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TradingTimes copyWith({
     required List<MarketsItem> markets,
   }) =>
@@ -161,9 +161,9 @@ class TradingTimes extends TradingTimesModel {
         markets: markets,
       );
 }
-/// Markets item model class
+/// Markets item model class.
 abstract class MarketsItemModel {
-  /// Initializes
+  /// Initializes.
   MarketsItemModel({
     required this.name,
     this.submarkets,
@@ -176,7 +176,7 @@ abstract class MarketsItemModel {
   final List<SubmarketsItem>? submarkets;
 }
 
-/// Markets item class
+/// Markets item class.
 class MarketsItem extends MarketsItemModel {
   /// Initializes
   MarketsItem({
@@ -215,7 +215,7 @@ class MarketsItem extends MarketsItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   MarketsItem copyWith({
     required String name,
     List<SubmarketsItem>? submarkets,
@@ -225,9 +225,9 @@ class MarketsItem extends MarketsItemModel {
         submarkets: submarkets ?? this.submarkets,
       );
 }
-/// Submarkets item model class
+/// Submarkets item model class.
 abstract class SubmarketsItemModel {
-  /// Initializes
+  /// Initializes.
   SubmarketsItemModel({
     required this.name,
     this.symbols,
@@ -240,7 +240,7 @@ abstract class SubmarketsItemModel {
   final List<SymbolsItem>? symbols;
 }
 
-/// Submarkets item class
+/// Submarkets item class.
 class SubmarketsItem extends SubmarketsItemModel {
   /// Initializes
   SubmarketsItem({
@@ -279,7 +279,7 @@ class SubmarketsItem extends SubmarketsItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   SubmarketsItem copyWith({
     required String name,
     List<SymbolsItem>? symbols,
@@ -289,9 +289,9 @@ class SubmarketsItem extends SubmarketsItemModel {
         symbols: symbols ?? this.symbols,
       );
 }
-/// Symbols item model class
+/// Symbols item model class.
 abstract class SymbolsItemModel {
-  /// Initializes
+  /// Initializes.
   SymbolsItemModel({
     required this.symbol,
     required this.name,
@@ -316,7 +316,7 @@ abstract class SymbolsItemModel {
   final List<TradingDaysItemEnum>? tradingDays;
 }
 
-/// Symbols item class
+/// Symbols item class.
 class SymbolsItem extends SymbolsItemModel {
   /// Initializes
   SymbolsItem({
@@ -383,7 +383,7 @@ class SymbolsItem extends SymbolsItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   SymbolsItem copyWith({
     required String name,
     required String symbol,

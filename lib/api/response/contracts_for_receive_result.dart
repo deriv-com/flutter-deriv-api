@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Contracts for response model class
+/// Contracts for response model class.
 abstract class ContractsForResponseModel {
-  /// Initializes
+  /// Initializes.
   ContractsForResponseModel({
     this.contractsFor,
   });
@@ -17,7 +17,7 @@ abstract class ContractsForResponseModel {
   final ContractsFor? contractsFor;
 }
 
-/// Contracts for response class
+/// Contracts for response class.
 class ContractsForResponse extends ContractsForResponseModel {
   /// Initializes
   ContractsForResponse({
@@ -68,7 +68,7 @@ class ContractsForResponse extends ContractsForResponseModel {
     return ContractsForResponse.fromJson(response.contractsFor);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ContractsForResponse copyWith({
     ContractsFor? contractsFor,
   }) =>
@@ -76,9 +76,9 @@ class ContractsForResponse extends ContractsForResponseModel {
         contractsFor: contractsFor ?? this.contractsFor,
       );
 }
-/// Contracts for model class
+/// Contracts for model class.
 abstract class ContractsForModel {
-  /// Initializes
+  /// Initializes.
   ContractsForModel({
     required this.available,
     this.close,
@@ -107,7 +107,7 @@ abstract class ContractsForModel {
   final double? spot;
 }
 
-/// Contracts for class
+/// Contracts for class.
 class ContractsFor extends ContractsForModel {
   /// Initializes
   ContractsFor({
@@ -159,7 +159,7 @@ class ContractsFor extends ContractsForModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ContractsFor copyWith({
     required List<AvailableItem> available,
     DateTime? close,
@@ -177,9 +177,9 @@ class ContractsFor extends ContractsForModel {
         spot: spot ?? this.spot,
       );
 }
-/// Available item model class
+/// Available item model class.
 abstract class AvailableItemModel {
-  /// Initializes
+  /// Initializes.
   AvailableItemModel({
     required this.underlyingSymbol,
     required this.submarket,
@@ -264,7 +264,7 @@ abstract class AvailableItemModel {
   final Map<String, dynamic>? tradingPeriod;
 }
 
-/// Available item class
+/// Available item class.
 class AvailableItem extends AvailableItemModel {
   /// Initializes
   AvailableItem({
@@ -399,7 +399,7 @@ class AvailableItem extends AvailableItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AvailableItem copyWith({
     required String barrierCategory,
     required double barriers,
@@ -446,9 +446,9 @@ class AvailableItem extends AvailableItemModel {
         tradingPeriod: tradingPeriod ?? this.tradingPeriod,
       );
 }
-/// Forward starting options item model class
+/// Forward starting options item model class.
 abstract class ForwardStartingOptionsItemModel {
-  /// Initializes
+  /// Initializes.
   ForwardStartingOptionsItemModel({
     this.close,
     this.date,
@@ -465,7 +465,7 @@ abstract class ForwardStartingOptionsItemModel {
   final String? open;
 }
 
-/// Forward starting options item class
+/// Forward starting options item class.
 class ForwardStartingOptionsItem extends ForwardStartingOptionsItemModel {
   /// Initializes
   ForwardStartingOptionsItem({
@@ -497,7 +497,7 @@ class ForwardStartingOptionsItem extends ForwardStartingOptionsItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ForwardStartingOptionsItem copyWith({
     String? close,
     String? date,

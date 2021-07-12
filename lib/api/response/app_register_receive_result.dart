@@ -6,9 +6,9 @@ import '../../helpers/helpers.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// App register response model class
+/// App register response model class.
 abstract class AppRegisterResponseModel {
-  /// Initializes
+  /// Initializes.
   AppRegisterResponseModel({
     this.appRegister,
   });
@@ -17,7 +17,7 @@ abstract class AppRegisterResponseModel {
   final AppRegister? appRegister;
 }
 
-/// App register response class
+/// App register response class.
 class AppRegisterResponse extends AppRegisterResponseModel {
   /// Initializes
   AppRegisterResponse({
@@ -67,7 +67,7 @@ class AppRegisterResponse extends AppRegisterResponseModel {
     return AppRegisterResponse.fromJson(response.appRegister);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AppRegisterResponse copyWith({
     AppRegister? appRegister,
   }) =>
@@ -75,9 +75,9 @@ class AppRegisterResponse extends AppRegisterResponseModel {
         appRegister: appRegister ?? this.appRegister,
       );
 }
-/// App register model class
+/// App register model class.
 abstract class AppRegisterModel {
-  /// Initializes
+  /// Initializes.
   AppRegisterModel({
     required this.verificationUri,
     required this.redirectUri,
@@ -118,7 +118,7 @@ abstract class AppRegisterModel {
   final int appId;
 }
 
-/// App register class
+/// App register class.
 class AppRegister extends AppRegisterModel {
   /// Initializes
   AppRegister({
@@ -173,7 +173,7 @@ class AppRegister extends AppRegisterModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AppRegister copyWith({
     required int appId,
     required double appMarkupPercentage,

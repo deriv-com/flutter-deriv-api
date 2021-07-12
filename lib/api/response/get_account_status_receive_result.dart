@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Get account status response model class
+/// Get account status response model class.
 abstract class GetAccountStatusResponseModel {
-  /// Initializes
+  /// Initializes.
   GetAccountStatusResponseModel({
     this.getAccountStatus,
   });
@@ -17,7 +17,7 @@ abstract class GetAccountStatusResponseModel {
   final GetAccountStatus? getAccountStatus;
 }
 
-/// Get account status response class
+/// Get account status response class.
 class GetAccountStatusResponse extends GetAccountStatusResponseModel {
   /// Initializes
   GetAccountStatusResponse({
@@ -64,7 +64,7 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
     return GetAccountStatusResponse.fromJson(response.getAccountStatus);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   GetAccountStatusResponse copyWith({
     GetAccountStatus? getAccountStatus,
   }) =>
@@ -123,9 +123,9 @@ enum SocialIdentityProviderEnum {
   /// apple.
   apple,
 }
-/// Get account status model class
+/// Get account status model class.
 abstract class GetAccountStatusModel {
-  /// Initializes
+  /// Initializes.
   GetAccountStatusModel({
     required this.status,
     required this.riskClassification,
@@ -193,7 +193,7 @@ abstract class GetAccountStatusModel {
   final SocialIdentityProviderEnum? socialIdentityProvider;
 }
 
-/// Get account status class
+/// Get account status class.
 class GetAccountStatus extends GetAccountStatusModel {
   /// Initializes
   GetAccountStatus({
@@ -295,7 +295,7 @@ class GetAccountStatus extends GetAccountStatusModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   GetAccountStatus copyWith({
     required Map<String, CurrencyConfigProperty> currencyConfig,
     required int promptClientToAuthenticate,
@@ -318,9 +318,9 @@ class GetAccountStatus extends GetAccountStatusModel {
             socialIdentityProvider ?? this.socialIdentityProvider,
       );
 }
-/// Currency config property model class
+/// Currency config property model class.
 abstract class CurrencyConfigPropertyModel {
-  /// Initializes
+  /// Initializes.
   CurrencyConfigPropertyModel({
     this.isDepositSuspended,
     this.isWithdrawalSuspended,
@@ -333,7 +333,7 @@ abstract class CurrencyConfigPropertyModel {
   final bool? isWithdrawalSuspended;
 }
 
-/// Currency config property class
+/// Currency config property class.
 class CurrencyConfigProperty extends CurrencyConfigPropertyModel {
   /// Initializes
   CurrencyConfigProperty({
@@ -361,7 +361,7 @@ class CurrencyConfigProperty extends CurrencyConfigPropertyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   CurrencyConfigProperty copyWith({
     bool? isDepositSuspended,
     bool? isWithdrawalSuspended,
@@ -372,9 +372,9 @@ class CurrencyConfigProperty extends CurrencyConfigPropertyModel {
             isWithdrawalSuspended ?? this.isWithdrawalSuspended,
       );
 }
-/// Authentication model class
+/// Authentication model class.
 abstract class AuthenticationModel {
-  /// Initializes
+  /// Initializes.
   AuthenticationModel({
     required this.needsVerification,
     this.document,
@@ -391,7 +391,7 @@ abstract class AuthenticationModel {
   final Identity? identity;
 }
 
-/// Authentication class
+/// Authentication class.
 class Authentication extends AuthenticationModel {
   /// Initializes
   Authentication({
@@ -439,7 +439,7 @@ class Authentication extends AuthenticationModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Authentication copyWith({
     required List<String> needsVerification,
     Document? document,
@@ -451,9 +451,9 @@ class Authentication extends AuthenticationModel {
         identity: identity ?? this.identity,
       );
 }
-/// Document model class
+/// Document model class.
 abstract class DocumentModel {
-  /// Initializes
+  /// Initializes.
   DocumentModel({
     this.expiryDate,
     this.status,
@@ -466,7 +466,7 @@ abstract class DocumentModel {
   final StatusEnum? status;
 }
 
-/// Document class
+/// Document class.
 class Document extends DocumentModel {
   /// Initializes
   Document({
@@ -497,7 +497,7 @@ class Document extends DocumentModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Document copyWith({
     DateTime? expiryDate,
     StatusEnum? status,
@@ -507,9 +507,9 @@ class Document extends DocumentModel {
         status: status ?? this.status,
       );
 }
-/// Identity model class
+/// Identity model class.
 abstract class IdentityModel {
-  /// Initializes
+  /// Initializes.
   IdentityModel({
     this.expiryDate,
     this.services,
@@ -526,7 +526,7 @@ abstract class IdentityModel {
   final StatusEnum? status;
 }
 
-/// Identity class
+/// Identity class.
 class Identity extends IdentityModel {
   /// Initializes
   Identity({
@@ -565,7 +565,7 @@ class Identity extends IdentityModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Identity copyWith({
     DateTime? expiryDate,
     Services? services,
@@ -577,9 +577,9 @@ class Identity extends IdentityModel {
         status: status ?? this.status,
       );
 }
-/// Services model class
+/// Services model class.
 abstract class ServicesModel {
-  /// Initializes
+  /// Initializes.
   ServicesModel({
     this.idv,
     this.manual,
@@ -596,7 +596,7 @@ abstract class ServicesModel {
   final Onfido? onfido;
 }
 
-/// Services class
+/// Services class.
 class Services extends ServicesModel {
   /// Initializes
   Services({
@@ -633,7 +633,7 @@ class Services extends ServicesModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Services copyWith({
     Idv? idv,
     Manual? manual,
@@ -645,9 +645,9 @@ class Services extends ServicesModel {
         onfido: onfido ?? this.onfido,
       );
 }
-/// Idv model class
+/// Idv model class.
 abstract class IdvModel {
-  /// Initializes
+  /// Initializes.
   IdvModel({
     this.lastRejected,
     this.reportedProperties,
@@ -668,7 +668,7 @@ abstract class IdvModel {
   final int? submissionsLeft;
 }
 
-/// Idv class
+/// Idv class.
 class Idv extends IdvModel {
   /// Initializes
   Idv({
@@ -719,7 +719,7 @@ class Idv extends IdvModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Idv copyWith({
     List<String>? lastRejected,
     Map<String, dynamic>? reportedProperties,
@@ -733,9 +733,9 @@ class Idv extends IdvModel {
         submissionsLeft: submissionsLeft ?? this.submissionsLeft,
       );
 }
-/// Manual model class
+/// Manual model class.
 abstract class ManualModel {
-  /// Initializes
+  /// Initializes.
   ManualModel({
     this.status,
   });
@@ -744,7 +744,7 @@ abstract class ManualModel {
   final StatusEnum? status;
 }
 
-/// Manual class
+/// Manual class.
 class Manual extends ManualModel {
   /// Initializes
   Manual({
@@ -771,7 +771,7 @@ class Manual extends ManualModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Manual copyWith({
     StatusEnum? status,
   }) =>
@@ -779,9 +779,9 @@ class Manual extends ManualModel {
         status: status ?? this.status,
       );
 }
-/// Onfido model class
+/// Onfido model class.
 abstract class OnfidoModel {
-  /// Initializes
+  /// Initializes.
   OnfidoModel({
     this.countryCode,
     this.documents,
@@ -814,7 +814,7 @@ abstract class OnfidoModel {
   final int? submissionsLeft;
 }
 
-/// Onfido class
+/// Onfido class.
 class Onfido extends OnfidoModel {
   /// Initializes
   Onfido({
@@ -889,7 +889,7 @@ class Onfido extends OnfidoModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Onfido copyWith({
     String? countryCode,
     List<String>? documents,

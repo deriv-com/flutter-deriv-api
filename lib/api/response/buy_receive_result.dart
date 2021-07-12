@@ -17,9 +17,9 @@ import 'contract_update_receive_result.dart';
 import 'proposal_open_contract_receive_result.dart';
 import 'sell_receive_result.dart';
 
-/// Buy response model class
+/// Buy response model class.
 abstract class BuyResponseModel {
-  /// Initializes
+  /// Initializes.
   BuyResponseModel({
     this.buy,
     this.subscription,
@@ -32,7 +32,7 @@ abstract class BuyResponseModel {
   final Subscription? subscription;
 }
 
-/// Buy response class
+/// Buy response class.
 class BuyResponse extends BuyResponseModel {
   /// Initializes
   BuyResponse({
@@ -166,7 +166,7 @@ class BuyResponse extends BuyResponseModel {
         },
       ));
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   BuyResponse copyWith({
     Buy? buy,
     Subscription? subscription,
@@ -176,9 +176,9 @@ class BuyResponse extends BuyResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-/// Buy model class
+/// Buy model class.
 abstract class BuyModel {
-  /// Initializes
+  /// Initializes.
   BuyModel({
     required this.transactionId,
     required this.startTime,
@@ -219,7 +219,7 @@ abstract class BuyModel {
   final double balanceAfter;
 }
 
-/// Buy class
+/// Buy class.
 class Buy extends BuyModel {
   /// Initializes
   Buy({
@@ -274,7 +274,7 @@ class Buy extends BuyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Buy copyWith({
     required double balanceAfter,
     required double buyPrice,
@@ -298,9 +298,9 @@ class Buy extends BuyModel {
         transactionId: transactionId,
       );
 }
-/// Subscription model class
+/// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes
+  /// Initializes.
   SubscriptionModel({
     required this.id,
   });
@@ -309,7 +309,7 @@ abstract class SubscriptionModel {
   final String id;
 }
 
-/// Subscription class
+/// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
@@ -332,7 +332,7 @@ class Subscription extends SubscriptionModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Subscription copyWith({
     required String id,
   }) =>

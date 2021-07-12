@@ -1,8 +1,8 @@
 import 'package:meta/meta.dart';
 
-/// New account maltainvest response model class
+/// New account maltainvest response model class.
 abstract class NewAccountMaltainvestResponseModel {
-  /// Initializes
+  /// Initializes.
   NewAccountMaltainvestResponseModel({
     this.newAccountMaltainvest,
   });
@@ -11,7 +11,7 @@ abstract class NewAccountMaltainvestResponseModel {
   final NewAccountMaltainvest? newAccountMaltainvest;
 }
 
-/// New account maltainvest response class
+/// New account maltainvest response class.
 class NewAccountMaltainvestResponse extends NewAccountMaltainvestResponseModel {
   /// Initializes
   NewAccountMaltainvestResponse({
@@ -41,7 +41,7 @@ class NewAccountMaltainvestResponse extends NewAccountMaltainvestResponseModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   NewAccountMaltainvestResponse copyWith({
     NewAccountMaltainvest? newAccountMaltainvest,
   }) =>
@@ -50,9 +50,9 @@ class NewAccountMaltainvestResponse extends NewAccountMaltainvestResponseModel {
             newAccountMaltainvest ?? this.newAccountMaltainvest,
       );
 }
-/// New account maltainvest model class
+/// New account maltainvest model class.
 abstract class NewAccountMaltainvestModel {
-  /// Initializes
+  /// Initializes.
   NewAccountMaltainvestModel({
     required this.oauthToken,
     required this.landingCompany,
@@ -73,7 +73,7 @@ abstract class NewAccountMaltainvestModel {
   final String? landingCompanyShort;
 }
 
-/// New account maltainvest class
+/// New account maltainvest class.
 class NewAccountMaltainvest extends NewAccountMaltainvestModel {
   /// Initializes
   NewAccountMaltainvest({
@@ -109,7 +109,7 @@ class NewAccountMaltainvest extends NewAccountMaltainvestModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   NewAccountMaltainvest copyWith({
     required String clientId,
     required String landingCompany,

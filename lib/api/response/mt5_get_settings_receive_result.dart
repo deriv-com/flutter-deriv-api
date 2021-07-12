@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Mt5 get settings response model class
+/// Mt5 get settings response model class.
 abstract class Mt5GetSettingsResponseModel {
-  /// Initializes
+  /// Initializes.
   Mt5GetSettingsResponseModel({
     this.mt5GetSettings,
   });
@@ -17,7 +17,7 @@ abstract class Mt5GetSettingsResponseModel {
   final Mt5GetSettings? mt5GetSettings;
 }
 
-/// Mt5 get settings response class
+/// Mt5 get settings response class.
 class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
   /// Initializes
   Mt5GetSettingsResponse({
@@ -67,7 +67,7 @@ class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
     return Mt5GetSettingsResponse.fromJson(response.mt5GetSettings);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Mt5GetSettingsResponse copyWith({
     Mt5GetSettings? mt5GetSettings,
   }) =>
@@ -163,9 +163,9 @@ enum SubAccountTypeEnum {
   /// swap_free.
   swapFree,
 }
-/// Mt5 get settings model class
+/// Mt5 get settings model class.
 abstract class Mt5GetSettingsModel {
-  /// Initializes
+  /// Initializes.
   Mt5GetSettingsModel({
     this.accountType,
     this.address,
@@ -246,7 +246,7 @@ abstract class Mt5GetSettingsModel {
   final String? zipCode;
 }
 
-/// Mt5 get settings class
+/// Mt5 get settings class.
 class Mt5GetSettings extends Mt5GetSettingsModel {
   /// Initializes
   Mt5GetSettings({
@@ -361,7 +361,7 @@ class Mt5GetSettings extends Mt5GetSettingsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Mt5GetSettings copyWith({
     AccountTypeEnum? accountType,
     String? address,

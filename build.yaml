@@ -14,7 +14,7 @@ targets:
         enabled: true
 builders:
   apiParser:
-    import: './parser.dart'
+    import: './api_parser.dart'
     builder_factories: ["apiParser"]
     auto_apply: root_package
     build_extensions: {".json": ["_result.dart"]}

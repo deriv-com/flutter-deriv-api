@@ -18,9 +18,9 @@ import 'app_register_receive_result.dart';
 import 'app_update_receive_result.dart';
 import 'revoke_oauth_app_receive_result.dart';
 
-/// App get response model class
+/// App get response model class.
 abstract class AppGetResponseModel {
-  /// Initializes
+  /// Initializes.
   AppGetResponseModel({
     this.appGet,
   });
@@ -29,7 +29,7 @@ abstract class AppGetResponseModel {
   final AppGet? appGet;
 }
 
-/// App get response class
+/// App get response class.
 class AppGetResponse extends AppGetResponseModel {
   /// Initializes
   AppGetResponse({
@@ -174,7 +174,7 @@ class AppGetResponse extends AppGetResponseModel {
         RevokeOauthAppSend(revokeOauthApp: appGet?.appId),
       );
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AppGetResponse copyWith({
     AppGet? appGet,
   }) =>
@@ -182,9 +182,9 @@ class AppGetResponse extends AppGetResponseModel {
         appGet: appGet ?? this.appGet,
       );
 }
-/// App get model class
+/// App get model class.
 abstract class AppGetModel {
-  /// Initializes
+  /// Initializes.
   AppGetModel({
     required this.verificationUri,
     required this.redirectUri,
@@ -225,7 +225,7 @@ abstract class AppGetModel {
   final int appId;
 }
 
-/// App get class
+/// App get class.
 class AppGet extends AppGetModel {
   /// Initializes
   AppGet({
@@ -280,7 +280,7 @@ class AppGet extends AppGetModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AppGet copyWith({
     required int appId,
     required double appMarkupPercentage,

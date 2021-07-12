@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Paymentagent transfer response model class
+/// Paymentagent transfer response model class.
 abstract class PaymentagentTransferResponseModel {
-  /// Initializes
+  /// Initializes.
   PaymentagentTransferResponseModel({
     this.paymentagentTransfer,
     this.clientToFullName,
@@ -29,7 +29,7 @@ abstract class PaymentagentTransferResponseModel {
   final int? transactionId;
 }
 
-/// Paymentagent transfer response class
+/// Paymentagent transfer response class.
 class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
   /// Initializes
   PaymentagentTransferResponse({
@@ -96,7 +96,7 @@ class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
         response.transactionId);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   PaymentagentTransferResponse copyWith({
     int? paymentagentTransfer,
     String? clientToFullName,

@@ -13,9 +13,9 @@ import '../models/enums.dart';
 import 'forget_all_receive_result.dart';
 import 'forget_receive_result.dart';
 
-/// Balance response model class
+/// Balance response model class.
 abstract class BalanceResponseModel {
-  /// Initializes
+  /// Initializes.
   BalanceResponseModel({
     this.balance,
     this.subscription,
@@ -28,7 +28,7 @@ abstract class BalanceResponseModel {
   final Subscription? subscription;
 }
 
-/// Balance response class
+/// Balance response class.
 class BalanceResponse extends BalanceResponseModel {
   /// Initializes
   BalanceResponse({
@@ -143,7 +143,7 @@ class BalanceResponse extends BalanceResponseModel {
     return ForgetAllResponse.fromJson(response.forgetAll);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   BalanceResponse copyWith({
     Balance? balance,
     Subscription? subscription,
@@ -168,9 +168,9 @@ enum TypeEnum {
   /// deriv.
   deriv,
 }
-/// Balance model class
+/// Balance model class.
 abstract class BalanceModel {
-  /// Initializes
+  /// Initializes.
   BalanceModel({
     required this.loginid,
     required this.currency,
@@ -199,7 +199,7 @@ abstract class BalanceModel {
   final Total? total;
 }
 
-/// Balance class
+/// Balance class.
 class Balance extends BalanceModel {
   /// Initializes
   Balance({
@@ -251,7 +251,7 @@ class Balance extends BalanceModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Balance copyWith({
     required double balance,
     required String currency,
@@ -269,9 +269,9 @@ class Balance extends BalanceModel {
         total: total ?? this.total,
       );
 }
-/// Accounts property model class
+/// Accounts property model class.
 abstract class AccountsPropertyModel {
-  /// Initializes
+  /// Initializes.
   AccountsPropertyModel({
     required this.type,
     required this.status,
@@ -300,7 +300,7 @@ abstract class AccountsPropertyModel {
   final double balance;
 }
 
-/// Accounts property class
+/// Accounts property class.
 class AccountsProperty extends AccountsPropertyModel {
   /// Initializes
   AccountsProperty({
@@ -346,7 +346,7 @@ class AccountsProperty extends AccountsPropertyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AccountsProperty copyWith({
     required double balance,
     required double convertedAmount,
@@ -364,9 +364,9 @@ class AccountsProperty extends AccountsPropertyModel {
         type: type,
       );
 }
-/// Total model class
+/// Total model class.
 abstract class TotalModel {
-  /// Initializes
+  /// Initializes.
   TotalModel({
     this.deriv,
     this.derivDemo,
@@ -387,7 +387,7 @@ abstract class TotalModel {
   final Mt5Demo? mt5Demo;
 }
 
-/// Total class
+/// Total class.
 class Total extends TotalModel {
   /// Initializes
   Total({
@@ -434,7 +434,7 @@ class Total extends TotalModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Total copyWith({
     Deriv? deriv,
     DerivDemo? derivDemo,
@@ -448,9 +448,9 @@ class Total extends TotalModel {
         mt5Demo: mt5Demo ?? this.mt5Demo,
       );
 }
-/// Deriv model class
+/// Deriv model class.
 abstract class DerivModel {
-  /// Initializes
+  /// Initializes.
   DerivModel({
     required this.currency,
     required this.amount,
@@ -463,7 +463,7 @@ abstract class DerivModel {
   final double amount;
 }
 
-/// Deriv class
+/// Deriv class.
 class Deriv extends DerivModel {
   /// Initializes
   Deriv({
@@ -490,7 +490,7 @@ class Deriv extends DerivModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Deriv copyWith({
     required double amount,
     required String currency,
@@ -500,9 +500,9 @@ class Deriv extends DerivModel {
         currency: currency,
       );
 }
-/// Deriv demo model class
+/// Deriv demo model class.
 abstract class DerivDemoModel {
-  /// Initializes
+  /// Initializes.
   DerivDemoModel({
     required this.currency,
     required this.amount,
@@ -515,7 +515,7 @@ abstract class DerivDemoModel {
   final double amount;
 }
 
-/// Deriv demo class
+/// Deriv demo class.
 class DerivDemo extends DerivDemoModel {
   /// Initializes
   DerivDemo({
@@ -542,7 +542,7 @@ class DerivDemo extends DerivDemoModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   DerivDemo copyWith({
     required double amount,
     required String currency,
@@ -552,9 +552,9 @@ class DerivDemo extends DerivDemoModel {
         currency: currency,
       );
 }
-/// Mt5 model class
+/// Mt5 model class.
 abstract class Mt5Model {
-  /// Initializes
+  /// Initializes.
   Mt5Model({
     required this.currency,
     required this.amount,
@@ -567,7 +567,7 @@ abstract class Mt5Model {
   final double amount;
 }
 
-/// Mt5 class
+/// Mt5 class.
 class Mt5 extends Mt5Model {
   /// Initializes
   Mt5({
@@ -594,7 +594,7 @@ class Mt5 extends Mt5Model {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Mt5 copyWith({
     required double amount,
     required String currency,
@@ -604,9 +604,9 @@ class Mt5 extends Mt5Model {
         currency: currency,
       );
 }
-/// Mt5 demo model class
+/// Mt5 demo model class.
 abstract class Mt5DemoModel {
-  /// Initializes
+  /// Initializes.
   Mt5DemoModel({
     required this.currency,
     required this.amount,
@@ -619,7 +619,7 @@ abstract class Mt5DemoModel {
   final double amount;
 }
 
-/// Mt5 demo class
+/// Mt5 demo class.
 class Mt5Demo extends Mt5DemoModel {
   /// Initializes
   Mt5Demo({
@@ -646,7 +646,7 @@ class Mt5Demo extends Mt5DemoModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Mt5Demo copyWith({
     required double amount,
     required String currency,
@@ -656,9 +656,9 @@ class Mt5Demo extends Mt5DemoModel {
         currency: currency,
       );
 }
-/// Subscription model class
+/// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes
+  /// Initializes.
   SubscriptionModel({
     required this.id,
   });
@@ -667,7 +667,7 @@ abstract class SubscriptionModel {
   final String id;
 }
 
-/// Subscription class
+/// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
@@ -690,7 +690,7 @@ class Subscription extends SubscriptionModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Subscription copyWith({
     required String id,
   }) =>

@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Mt5 login list response model class
+/// Mt5 login list response model class.
 abstract class Mt5LoginListResponseModel {
-  /// Initializes
+  /// Initializes.
   Mt5LoginListResponseModel({
     this.mt5LoginList,
   });
@@ -17,7 +17,7 @@ abstract class Mt5LoginListResponseModel {
   final List<Mt5LoginListItem>? mt5LoginList;
 }
 
-/// Mt5 login list response class
+/// Mt5 login list response class.
 class Mt5LoginListResponse extends Mt5LoginListResponseModel {
   /// Initializes
   Mt5LoginListResponse({
@@ -75,7 +75,7 @@ class Mt5LoginListResponse extends Mt5LoginListResponseModel {
     return Mt5LoginListResponse.fromJson(response.mt5LoginList);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Mt5LoginListResponse copyWith({
     List<Mt5LoginListItem>? mt5LoginList,
   }) =>
@@ -191,9 +191,9 @@ enum SubAccountTypeEnum {
   /// swap_free.
   swapFree,
 }
-/// Mt5 login list item model class
+/// Mt5 login list item model class.
 abstract class Mt5LoginListItemModel {
-  /// Initializes
+  /// Initializes.
   Mt5LoginListItemModel({
     this.accountType,
     this.balance,
@@ -258,7 +258,7 @@ abstract class Mt5LoginListItemModel {
   final SubAccountTypeEnum? subAccountType;
 }
 
-/// Mt5 login list item class
+/// Mt5 login list item class.
 class Mt5LoginListItem extends Mt5LoginListItemModel {
   /// Initializes
   Mt5LoginListItem({
@@ -362,7 +362,7 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Mt5LoginListItem copyWith({
     AccountTypeEnum? accountType,
     double? balance,
@@ -398,9 +398,9 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
         subAccountType: subAccountType ?? this.subAccountType,
       );
 }
-/// Server info model class
+/// Server info model class.
 abstract class ServerInfoModel {
-  /// Initializes
+  /// Initializes.
   ServerInfoModel({
     this.environment,
     this.geolocation,
@@ -417,7 +417,7 @@ abstract class ServerInfoModel {
   final String? id;
 }
 
-/// Server info class
+/// Server info class.
 class ServerInfo extends ServerInfoModel {
   /// Initializes
   ServerInfo({
@@ -457,7 +457,7 @@ class ServerInfo extends ServerInfoModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ServerInfo copyWith({
     EnvironmentEnum? environment,
     Geolocation? geolocation,
@@ -469,9 +469,9 @@ class ServerInfo extends ServerInfoModel {
         id: id ?? this.id,
       );
 }
-/// Geolocation model class
+/// Geolocation model class.
 abstract class GeolocationModel {
-  /// Initializes
+  /// Initializes.
   GeolocationModel({
     this.location,
     this.region,
@@ -488,7 +488,7 @@ abstract class GeolocationModel {
   final int? sequence;
 }
 
-/// Geolocation class
+/// Geolocation class.
 class Geolocation extends GeolocationModel {
   /// Initializes
   Geolocation({
@@ -519,7 +519,7 @@ class Geolocation extends GeolocationModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Geolocation copyWith({
     String? location,
     String? region,

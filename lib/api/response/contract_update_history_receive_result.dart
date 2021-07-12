@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Contract update history response model class
+/// Contract update history response model class.
 abstract class ContractUpdateHistoryResponseModel {
-  /// Initializes
+  /// Initializes.
   ContractUpdateHistoryResponseModel({
     this.contractUpdateHistory,
   });
@@ -17,7 +17,7 @@ abstract class ContractUpdateHistoryResponseModel {
   final List<ContractUpdateHistoryItem>? contractUpdateHistory;
 }
 
-/// Contract update history response class
+/// Contract update history response class.
 class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
   /// Initializes
   ContractUpdateHistoryResponse({
@@ -76,7 +76,7 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
         response.contractUpdateHistory);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ContractUpdateHistoryResponse copyWith({
     List<ContractUpdateHistoryItem>? contractUpdateHistory,
   }) =>
@@ -85,9 +85,9 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
             contractUpdateHistory ?? this.contractUpdateHistory,
       );
 }
-/// Contract update history item model class
+/// Contract update history item model class.
 abstract class ContractUpdateHistoryItemModel {
-  /// Initializes
+  /// Initializes.
   ContractUpdateHistoryItemModel({
     this.displayName,
     this.orderAmount,
@@ -112,7 +112,7 @@ abstract class ContractUpdateHistoryItemModel {
   final String? value;
 }
 
-/// Contract update history item class
+/// Contract update history item class.
 class ContractUpdateHistoryItem extends ContractUpdateHistoryItemModel {
   /// Initializes
   ContractUpdateHistoryItem({
@@ -152,7 +152,7 @@ class ContractUpdateHistoryItem extends ContractUpdateHistoryItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ContractUpdateHistoryItem copyWith({
     String? displayName,
     String? orderAmount,

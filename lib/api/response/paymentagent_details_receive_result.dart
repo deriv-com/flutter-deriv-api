@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 
-/// Paymentagent details response model class
+/// Paymentagent details response model class.
 abstract class PaymentagentDetailsResponseModel {
-  /// Initializes
+  /// Initializes.
   PaymentagentDetailsResponseModel({
     this.paymentagentDetails,
   });
@@ -12,7 +12,7 @@ abstract class PaymentagentDetailsResponseModel {
   final PaymentagentDetails? paymentagentDetails;
 }
 
-/// Paymentagent details response class
+/// Paymentagent details response class.
 class PaymentagentDetailsResponse extends PaymentagentDetailsResponseModel {
   /// Initializes
   PaymentagentDetailsResponse({
@@ -42,7 +42,7 @@ class PaymentagentDetailsResponse extends PaymentagentDetailsResponseModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   PaymentagentDetailsResponse copyWith({
     PaymentagentDetails? paymentagentDetails,
   }) =>
@@ -50,9 +50,9 @@ class PaymentagentDetailsResponse extends PaymentagentDetailsResponseModel {
         paymentagentDetails: paymentagentDetails ?? this.paymentagentDetails,
       );
 }
-/// Paymentagent details model class
+/// Paymentagent details model class.
 abstract class PaymentagentDetailsModel {
-  /// Initializes
+  /// Initializes.
   PaymentagentDetailsModel({
     this.affiliateId,
     this.codeOfConductApproval,
@@ -121,7 +121,7 @@ abstract class PaymentagentDetailsModel {
   final String? url;
 }
 
-/// Paymentagent details class
+/// Paymentagent details class.
 class PaymentagentDetails extends PaymentagentDetailsModel {
   /// Initializes
   PaymentagentDetails({
@@ -217,7 +217,7 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   PaymentagentDetails copyWith({
     String? affiliateId,
     bool? codeOfConductApproval,

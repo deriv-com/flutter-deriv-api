@@ -1,0 +1,48 @@
+part of '../schema_model.dart';
+
+StringBuffer _generateConstructor({
+  required String className,
+  required SchemaModel model,
+  bool isSubclass = true,
+}) {
+  final List<SchemaModel> children = model.children;
+  final StringBuffer result = StringBuffer()
+    ..write(
+      '''
+          $className({
+        ''',
+    );
+
+  for (int i = 0; i < children.length; i++) {
+    final SchemaModel model = children[i];
+    if (children[i].isRequired) {
+      children.removeAt(i);
+      // ignore: cascade_invocations
+      children.insert(0, model);
+    }
+  }
+
+  for (final SchemaModel model in children) {
+    result
+      ..write('${model.isRequired ? 'required' : ''} ')
+      ..write(
+        isSubclass
+            ? '${model.classType}${model.isRequired ? '' : '?'} ${model.fieldName},'
+            : 'this.${model.fieldName},',
+      );
+  }
+
+  if (isSubclass) {
+    result.write('}) : super(');
+
+    for (final SchemaModel model in children) {
+      result.write('${model.fieldName}: ${model.fieldName},');
+    }
+
+    result.write(');');
+  } else {
+    result.write('});');
+  }
+
+  return result;
+}

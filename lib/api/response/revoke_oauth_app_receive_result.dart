@@ -6,9 +6,9 @@ import '../../helpers/helpers.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Revoke oauth app response model class
+/// Revoke oauth app response model class.
 abstract class RevokeOauthAppResponseModel {
-  /// Initializes
+  /// Initializes.
   RevokeOauthAppResponseModel({
     this.revokeOauthApp,
   });
@@ -17,7 +17,7 @@ abstract class RevokeOauthAppResponseModel {
   final int? revokeOauthApp;
 }
 
-/// Revoke oauth app response class
+/// Revoke oauth app response class.
 class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
   /// Initializes
   RevokeOauthAppResponse({
@@ -63,7 +63,7 @@ class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
     return RevokeOauthAppResponse.fromJson(response.revokeOauthApp);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   RevokeOauthAppResponse copyWith({
     int? revokeOauthApp,
   }) =>

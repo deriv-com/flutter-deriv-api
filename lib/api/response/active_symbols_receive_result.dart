@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Active symbols response model class
+/// Active symbols response model class.
 abstract class ActiveSymbolsResponseModel {
-  /// Initializes
+  /// Initializes.
   ActiveSymbolsResponseModel({
     this.activeSymbols,
   });
@@ -17,7 +17,7 @@ abstract class ActiveSymbolsResponseModel {
   final List<ActiveSymbolsItem>? activeSymbols;
 }
 
-/// Active symbols response class
+/// Active symbols response class.
 class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
   /// Initializes
   ActiveSymbolsResponse({
@@ -77,7 +77,7 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
     return ActiveSymbolsResponse.fromJson(response.activeSymbols);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ActiveSymbolsResponse copyWith({
     List<ActiveSymbolsItem>? activeSymbols,
   }) =>
@@ -85,9 +85,9 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
         activeSymbols: activeSymbols ?? this.activeSymbols,
       );
 }
-/// Active symbols item model class
+/// Active symbols item model class.
 abstract class ActiveSymbolsItemModel {
-  /// Initializes
+  /// Initializes.
   ActiveSymbolsItemModel({
     required this.symbolType,
     required this.symbol,
@@ -164,7 +164,7 @@ abstract class ActiveSymbolsItemModel {
   final String? spotTime;
 }
 
-/// Active symbols item class
+/// Active symbols item class.
 class ActiveSymbolsItem extends ActiveSymbolsItemModel {
   /// Initializes
   ActiveSymbolsItem({
@@ -256,7 +256,7 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ActiveSymbolsItem copyWith({
     required String displayName,
     required bool exchangeIsOpen,

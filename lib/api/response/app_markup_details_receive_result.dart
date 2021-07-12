@@ -6,9 +6,9 @@ import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
 import '../../helpers/helpers.dart';
 
-/// App markup details response model class
+/// App markup details response model class.
 abstract class AppMarkupDetailsResponseModel {
-  /// Initializes
+  /// Initializes.
   AppMarkupDetailsResponseModel({
     this.appMarkupDetails,
   });
@@ -17,7 +17,7 @@ abstract class AppMarkupDetailsResponseModel {
   final AppMarkupDetails? appMarkupDetails;
 }
 
-/// App markup details response class
+/// App markup details response class.
 class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
   /// Initializes
   AppMarkupDetailsResponse({
@@ -67,7 +67,7 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
     return AppMarkupDetailsResponse.fromJson(response.appMarkupDetails);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AppMarkupDetailsResponse copyWith({
     AppMarkupDetails? appMarkupDetails,
   }) =>
@@ -75,9 +75,9 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
         appMarkupDetails: appMarkupDetails ?? this.appMarkupDetails,
       );
 }
-/// App markup details model class
+/// App markup details model class.
 abstract class AppMarkupDetailsModel {
-  /// Initializes
+  /// Initializes.
   AppMarkupDetailsModel({
     this.transactions,
   });
@@ -86,7 +86,7 @@ abstract class AppMarkupDetailsModel {
   final List<TransactionsItem>? transactions;
 }
 
-/// App markup details class
+/// App markup details class.
 class AppMarkupDetails extends AppMarkupDetailsModel {
   /// Initializes
   AppMarkupDetails({
@@ -122,7 +122,7 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AppMarkupDetails copyWith({
     List<TransactionsItem>? transactions,
   }) =>
@@ -130,9 +130,9 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
         transactions: transactions ?? this.transactions,
       );
 }
-/// Transactions item model class
+/// Transactions item model class.
 abstract class TransactionsItemModel {
-  /// Initializes
+  /// Initializes.
   TransactionsItemModel({
     this.appId,
     this.appMarkup,
@@ -177,7 +177,7 @@ abstract class TransactionsItemModel {
   final String? transactionTime;
 }
 
-/// Transactions item class
+/// Transactions item class.
 class TransactionsItem extends TransactionsItemModel {
   /// Initializes
   TransactionsItem({
@@ -237,7 +237,7 @@ class TransactionsItem extends TransactionsItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TransactionsItem copyWith({
     int? appId,
     double? appMarkup,

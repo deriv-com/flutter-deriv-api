@@ -13,9 +13,9 @@ import '../models/enums.dart';
 import 'forget_all_receive_result.dart';
 import 'forget_receive_result.dart';
 
-/// Proposal open contract response model class
+/// Proposal open contract response model class.
 abstract class ProposalOpenContractResponseModel {
-  /// Initializes
+  /// Initializes.
   ProposalOpenContractResponseModel({
     this.proposalOpenContract,
     this.subscription,
@@ -28,7 +28,7 @@ abstract class ProposalOpenContractResponseModel {
   final Subscription? subscription;
 }
 
-/// Proposal open contract response class
+/// Proposal open contract response class.
 class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
   /// Initializes
   ProposalOpenContractResponse({
@@ -153,7 +153,7 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
     return ForgetAllResponse.fromJson(response.forgetAll);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ProposalOpenContractResponse copyWith({
     ProposalOpenContract? proposalOpenContract,
     Subscription? subscription,
@@ -194,9 +194,9 @@ enum StatusEnum {
   /// null.
   _null,
 }
-/// Proposal open contract model class
+/// Proposal open contract model class.
 abstract class ProposalOpenContractModel {
-  /// Initializes
+  /// Initializes.
   ProposalOpenContractModel({
     this.auditDetails,
     this.barrier,
@@ -429,7 +429,7 @@ abstract class ProposalOpenContractModel {
   final String? validationError;
 }
 
-/// Proposal open contract class
+/// Proposal open contract class.
 class ProposalOpenContract extends ProposalOpenContractModel {
   /// Initializes
   ProposalOpenContract({
@@ -710,7 +710,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ProposalOpenContract copyWith({
     AuditDetails? auditDetails,
     String? barrier,
@@ -833,9 +833,9 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         validationError: validationError ?? this.validationError,
       );
 }
-/// Audit details model class
+/// Audit details model class.
 abstract class AuditDetailsModel {
-  /// Initializes
+  /// Initializes.
   AuditDetailsModel({
     this.allTicks,
     this.contractEnd,
@@ -852,7 +852,7 @@ abstract class AuditDetailsModel {
   final List<ContractStartItem>? contractStart;
 }
 
-/// Audit details class
+/// Audit details class.
 class AuditDetails extends AuditDetailsModel {
   /// Initializes
   AuditDetails({
@@ -919,7 +919,7 @@ class AuditDetails extends AuditDetailsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AuditDetails copyWith({
     List<AllTicksItem>? allTicks,
     List<ContractEndItem>? contractEnd,
@@ -931,9 +931,9 @@ class AuditDetails extends AuditDetailsModel {
         contractStart: contractStart ?? this.contractStart,
       );
 }
-/// All ticks item model class
+/// All ticks item model class.
 abstract class AllTicksItemModel {
-  /// Initializes
+  /// Initializes.
   AllTicksItemModel({
     this.epoch,
     this.flag,
@@ -958,7 +958,7 @@ abstract class AllTicksItemModel {
   final String? tickDisplayValue;
 }
 
-/// All ticks item class
+/// All ticks item class.
 class AllTicksItem extends AllTicksItemModel {
   /// Initializes
   AllTicksItem({
@@ -997,7 +997,7 @@ class AllTicksItem extends AllTicksItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AllTicksItem copyWith({
     DateTime? epoch,
     String? flag,
@@ -1013,9 +1013,9 @@ class AllTicksItem extends AllTicksItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
-/// Contract end item model class
+/// Contract end item model class.
 abstract class ContractEndItemModel {
-  /// Initializes
+  /// Initializes.
   ContractEndItemModel({
     this.epoch,
     this.flag,
@@ -1040,7 +1040,7 @@ abstract class ContractEndItemModel {
   final String? tickDisplayValue;
 }
 
-/// Contract end item class
+/// Contract end item class.
 class ContractEndItem extends ContractEndItemModel {
   /// Initializes
   ContractEndItem({
@@ -1080,7 +1080,7 @@ class ContractEndItem extends ContractEndItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ContractEndItem copyWith({
     DateTime? epoch,
     String? flag,
@@ -1096,9 +1096,9 @@ class ContractEndItem extends ContractEndItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
-/// Contract start item model class
+/// Contract start item model class.
 abstract class ContractStartItemModel {
-  /// Initializes
+  /// Initializes.
   ContractStartItemModel({
     this.epoch,
     this.flag,
@@ -1123,7 +1123,7 @@ abstract class ContractStartItemModel {
   final String? tickDisplayValue;
 }
 
-/// Contract start item class
+/// Contract start item class.
 class ContractStartItem extends ContractStartItemModel {
   /// Initializes
   ContractStartItem({
@@ -1163,7 +1163,7 @@ class ContractStartItem extends ContractStartItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ContractStartItem copyWith({
     DateTime? epoch,
     String? flag,
@@ -1179,9 +1179,9 @@ class ContractStartItem extends ContractStartItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
-/// Cancellation model class
+/// Cancellation model class.
 abstract class CancellationModel {
-  /// Initializes
+  /// Initializes.
   CancellationModel({
     this.askPrice,
     this.dateExpiry,
@@ -1194,7 +1194,7 @@ abstract class CancellationModel {
   final DateTime? dateExpiry;
 }
 
-/// Cancellation class
+/// Cancellation class.
 class Cancellation extends CancellationModel {
   /// Initializes
   Cancellation({
@@ -1221,7 +1221,7 @@ class Cancellation extends CancellationModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Cancellation copyWith({
     double? askPrice,
     DateTime? dateExpiry,
@@ -1231,9 +1231,9 @@ class Cancellation extends CancellationModel {
         dateExpiry: dateExpiry ?? this.dateExpiry,
       );
 }
-/// Limit order model class
+/// Limit order model class.
 abstract class LimitOrderModel {
-  /// Initializes
+  /// Initializes.
   LimitOrderModel({
     this.stopLoss,
     this.stopOut,
@@ -1250,7 +1250,7 @@ abstract class LimitOrderModel {
   final TakeProfit? takeProfit;
 }
 
-/// Limit order class
+/// Limit order class.
 class LimitOrder extends LimitOrderModel {
   /// Initializes
   LimitOrder({
@@ -1293,7 +1293,7 @@ class LimitOrder extends LimitOrderModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   LimitOrder copyWith({
     StopLoss? stopLoss,
     StopOut? stopOut,
@@ -1305,9 +1305,9 @@ class LimitOrder extends LimitOrderModel {
         takeProfit: takeProfit ?? this.takeProfit,
       );
 }
-/// Stop loss model class
+/// Stop loss model class.
 abstract class StopLossModel {
-  /// Initializes
+  /// Initializes.
   StopLossModel({
     this.displayName,
     this.orderAmount,
@@ -1328,7 +1328,7 @@ abstract class StopLossModel {
   final String? value;
 }
 
-/// Stop loss class
+/// Stop loss class.
 class StopLoss extends StopLossModel {
   /// Initializes
   StopLoss({
@@ -1363,7 +1363,7 @@ class StopLoss extends StopLossModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   StopLoss copyWith({
     String? displayName,
     double? orderAmount,
@@ -1377,9 +1377,9 @@ class StopLoss extends StopLossModel {
         value: value ?? this.value,
       );
 }
-/// Stop out model class
+/// Stop out model class.
 abstract class StopOutModel {
-  /// Initializes
+  /// Initializes.
   StopOutModel({
     this.displayName,
     this.orderAmount,
@@ -1400,7 +1400,7 @@ abstract class StopOutModel {
   final String? value;
 }
 
-/// Stop out class
+/// Stop out class.
 class StopOut extends StopOutModel {
   /// Initializes
   StopOut({
@@ -1435,7 +1435,7 @@ class StopOut extends StopOutModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   StopOut copyWith({
     String? displayName,
     double? orderAmount,
@@ -1449,9 +1449,9 @@ class StopOut extends StopOutModel {
         value: value ?? this.value,
       );
 }
-/// Take profit model class
+/// Take profit model class.
 abstract class TakeProfitModel {
-  /// Initializes
+  /// Initializes.
   TakeProfitModel({
     this.displayName,
     this.orderAmount,
@@ -1472,7 +1472,7 @@ abstract class TakeProfitModel {
   final String? value;
 }
 
-/// Take profit class
+/// Take profit class.
 class TakeProfit extends TakeProfitModel {
   /// Initializes
   TakeProfit({
@@ -1507,7 +1507,7 @@ class TakeProfit extends TakeProfitModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TakeProfit copyWith({
     String? displayName,
     double? orderAmount,
@@ -1521,9 +1521,9 @@ class TakeProfit extends TakeProfitModel {
         value: value ?? this.value,
       );
 }
-/// Tick stream item model class
+/// Tick stream item model class.
 abstract class TickStreamItemModel {
-  /// Initializes
+  /// Initializes.
   TickStreamItemModel({
     this.epoch,
     this.tick,
@@ -1540,7 +1540,7 @@ abstract class TickStreamItemModel {
   final String? tickDisplayValue;
 }
 
-/// Tick stream item class
+/// Tick stream item class.
 class TickStreamItem extends TickStreamItemModel {
   /// Initializes
   TickStreamItem({
@@ -1571,7 +1571,7 @@ class TickStreamItem extends TickStreamItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TickStreamItem copyWith({
     DateTime? epoch,
     double? tick,
@@ -1583,9 +1583,9 @@ class TickStreamItem extends TickStreamItemModel {
         tickDisplayValue: tickDisplayValue ?? this.tickDisplayValue,
       );
 }
-/// Transaction ids model class
+/// Transaction ids model class.
 abstract class TransactionIdsModel {
-  /// Initializes
+  /// Initializes.
   TransactionIdsModel({
     this.buy,
     this.sell,
@@ -1598,7 +1598,7 @@ abstract class TransactionIdsModel {
   final int? sell;
 }
 
-/// Transaction ids class
+/// Transaction ids class.
 class TransactionIds extends TransactionIdsModel {
   /// Initializes
   TransactionIds({
@@ -1625,7 +1625,7 @@ class TransactionIds extends TransactionIdsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TransactionIds copyWith({
     int? buy,
     int? sell,
@@ -1635,9 +1635,9 @@ class TransactionIds extends TransactionIdsModel {
         sell: sell ?? this.sell,
       );
 }
-/// Subscription model class
+/// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes
+  /// Initializes.
   SubscriptionModel({
     required this.id,
   });
@@ -1646,7 +1646,7 @@ abstract class SubscriptionModel {
   final String id;
 }
 
-/// Subscription class
+/// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
@@ -1669,7 +1669,7 @@ class Subscription extends SubscriptionModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Subscription copyWith({
     required String id,
   }) =>

@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Transfer between accounts response model class
+/// Transfer between accounts response model class.
 abstract class TransferBetweenAccountsResponseModel {
-  /// Initializes
+  /// Initializes.
   TransferBetweenAccountsResponseModel({
     this.transferBetweenAccounts,
     this.accounts,
@@ -33,7 +33,7 @@ abstract class TransferBetweenAccountsResponseModel {
   final int? transactionId;
 }
 
-/// Transfer between accounts response class
+/// Transfer between accounts response class.
 class TransferBetweenAccountsResponse
     extends TransferBetweenAccountsResponseModel {
   /// Initializes
@@ -120,7 +120,7 @@ class TransferBetweenAccountsResponse
         response.transactionId);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TransferBetweenAccountsResponse copyWith({
     bool? transferBetweenAccounts,
     List<AccountsItem>? accounts,
@@ -181,9 +181,9 @@ enum MarketTypeEnum {
   /// synthetic.
   synthetic,
 }
-/// Accounts item model class
+/// Accounts item model class.
 abstract class AccountsItemModel {
-  /// Initializes
+  /// Initializes.
   AccountsItemModel({
     this.accountType,
     this.balance,
@@ -216,7 +216,7 @@ abstract class AccountsItemModel {
   final String? mt5Group;
 }
 
-/// Accounts item class
+/// Accounts item class.
 class AccountsItem extends AccountsItemModel {
   /// Initializes
   AccountsItem({
@@ -273,7 +273,7 @@ class AccountsItem extends AccountsItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   AccountsItem copyWith({
     AccountTypeEnum? accountType,
     String? balance,

@@ -10,9 +10,9 @@ import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 import 'sell_expired_receive_result.dart';
 
-/// Sell response model class
+/// Sell response model class.
 abstract class SellResponseModel {
-  /// Initializes
+  /// Initializes.
   SellResponseModel({
     this.sell,
   });
@@ -21,7 +21,7 @@ abstract class SellResponseModel {
   final Sell? sell;
 }
 
-/// Sell response class
+/// Sell response class.
 class SellResponse extends SellResponseModel {
   /// Initializes
   SellResponse({
@@ -85,7 +85,7 @@ class SellResponse extends SellResponseModel {
     return SellExpiredResponse.fromJson(response.sellExpired);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   SellResponse copyWith({
     Sell? sell,
   }) =>
@@ -93,9 +93,9 @@ class SellResponse extends SellResponseModel {
         sell: sell ?? this.sell,
       );
 }
-/// Sell model class
+/// Sell model class.
 abstract class SellModel {
-  /// Initializes
+  /// Initializes.
   SellModel({
     this.balanceAfter,
     this.contractId,
@@ -120,7 +120,7 @@ abstract class SellModel {
   final int? transactionId;
 }
 
-/// Sell class
+/// Sell class.
 class Sell extends SellModel {
   /// Initializes
   Sell({
@@ -159,7 +159,7 @@ class Sell extends SellModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Sell copyWith({
     double? balanceAfter,
     int? contractId,

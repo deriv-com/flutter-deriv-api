@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Mt5 password reset response model class
+/// Mt5 password reset response model class.
 abstract class Mt5PasswordResetResponseModel {
-  /// Initializes
+  /// Initializes.
   Mt5PasswordResetResponseModel({
     this.mt5PasswordReset,
   });
@@ -17,7 +17,7 @@ abstract class Mt5PasswordResetResponseModel {
   final int? mt5PasswordReset;
 }
 
-/// Mt5 password reset response class
+/// Mt5 password reset response class.
 class Mt5PasswordResetResponse extends Mt5PasswordResetResponseModel {
   /// Initializes
   Mt5PasswordResetResponse({
@@ -63,7 +63,7 @@ class Mt5PasswordResetResponse extends Mt5PasswordResetResponseModel {
     return Mt5PasswordResetResponse.fromJson(response.mt5PasswordReset);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Mt5PasswordResetResponse copyWith({
     int? mt5PasswordReset,
   }) =>

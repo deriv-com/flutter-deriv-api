@@ -6,9 +6,9 @@ import '../../helpers/helpers.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Cashier response model class
+/// Cashier response model class.
 abstract class CashierResponseModel {
-  /// Initializes
+  /// Initializes.
   CashierResponseModel({
     this.cashierString,
     this.cashierObject,
@@ -21,7 +21,7 @@ abstract class CashierResponseModel {
   final CashierObject? cashierObject;
 }
 
-/// Cashier response class
+/// Cashier response class.
 class CashierResponse extends CashierResponseModel {
   /// Initializes
   CashierResponse({
@@ -75,7 +75,7 @@ class CashierResponse extends CashierResponseModel {
     return CashierResponse.fromJson(response.cashier, response.cashier);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   CashierResponse copyWith({
     String? cashierString,
     CashierObject? cashierObject,
@@ -96,9 +96,9 @@ enum ActionEnum {
   /// deposit.
   deposit,
 }
-/// Cashier object model class
+/// Cashier object model class.
 abstract class CashierObjectModel {
-  /// Initializes
+  /// Initializes.
   CashierObjectModel({
     this.action,
     this.deposit,
@@ -111,7 +111,7 @@ abstract class CashierObjectModel {
   final Deposit? deposit;
 }
 
-/// Cashier object class
+/// Cashier object class.
 class CashierObject extends CashierObjectModel {
   /// Initializes
   CashierObject({
@@ -145,7 +145,7 @@ class CashierObject extends CashierObjectModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   CashierObject copyWith({
     ActionEnum? action,
     Deposit? deposit,
@@ -155,9 +155,9 @@ class CashierObject extends CashierObjectModel {
         deposit: deposit ?? this.deposit,
       );
 }
-/// Deposit model class
+/// Deposit model class.
 abstract class DepositModel {
-  /// Initializes
+  /// Initializes.
   DepositModel({
     this.address,
   });
@@ -166,7 +166,7 @@ abstract class DepositModel {
   final String? address;
 }
 
-/// Deposit class
+/// Deposit class.
 class Deposit extends DepositModel {
   /// Initializes
   Deposit({
@@ -189,7 +189,7 @@ class Deposit extends DepositModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Deposit copyWith({
     String? address,
   }) =>

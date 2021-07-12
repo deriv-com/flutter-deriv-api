@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Logout response model class
+/// Logout response model class.
 abstract class LogoutResponseModel {
-  /// Initializes
+  /// Initializes.
   LogoutResponseModel({
     this.logout,
   });
@@ -17,7 +17,7 @@ abstract class LogoutResponseModel {
   final int? logout;
 }
 
-/// Logout response class
+/// Logout response class.
 class LogoutResponse extends LogoutResponseModel {
   /// Initializes
   LogoutResponse({
@@ -65,7 +65,7 @@ class LogoutResponse extends LogoutResponseModel {
     return LogoutResponse.fromJson(response.logout);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   LogoutResponse copyWith({
     int? logout,
   }) =>

@@ -7,9 +7,9 @@ import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
 
-/// Forget response model class
+/// Forget response model class.
 abstract class ForgetResponseModel {
-  /// Initializes
+  /// Initializes.
   ForgetResponseModel({
     this.forget,
   });
@@ -18,7 +18,7 @@ abstract class ForgetResponseModel {
   final bool? forget;
 }
 
-/// Forget response class
+/// Forget response class.
 class ForgetResponse extends ForgetResponseModel {
   /// Initializes
   ForgetResponse({
@@ -64,7 +64,7 @@ class ForgetResponse extends ForgetResponseModel {
     return ForgetResponse.fromJson(response.forget);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   ForgetResponse copyWith({
     bool? forget,
   }) =>

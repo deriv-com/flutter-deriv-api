@@ -6,9 +6,9 @@ import '../../helpers/helpers.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
 
-/// New account virtual response model class
+/// New account virtual response model class.
 abstract class NewAccountVirtualResponseModel {
-  /// Initializes
+  /// Initializes.
   NewAccountVirtualResponseModel({
     this.newAccountVirtual,
   });
@@ -17,7 +17,7 @@ abstract class NewAccountVirtualResponseModel {
   final NewAccountVirtual? newAccountVirtual;
 }
 
-/// New account virtual response class
+/// New account virtual response class.
 class NewAccountVirtualResponse extends NewAccountVirtualResponseModel {
   /// Initializes
   NewAccountVirtualResponse({
@@ -67,7 +67,7 @@ class NewAccountVirtualResponse extends NewAccountVirtualResponseModel {
     return NewAccountVirtualResponse.fromJson(response.newAccountVirtual);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   NewAccountVirtualResponse copyWith({
     NewAccountVirtual? newAccountVirtual,
   }) =>
@@ -90,9 +90,9 @@ enum TypeEnum {
   /// wallet.
   wallet,
 }
-/// New account virtual model class
+/// New account virtual model class.
 abstract class NewAccountVirtualModel {
-  /// Initializes
+  /// Initializes.
   NewAccountVirtualModel({
     required this.oauthToken,
     required this.email,
@@ -121,7 +121,7 @@ abstract class NewAccountVirtualModel {
   final TypeEnum? type;
 }
 
-/// New account virtual class
+/// New account virtual class.
 class NewAccountVirtual extends NewAccountVirtualModel {
   /// Initializes
   NewAccountVirtual({
@@ -167,7 +167,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   NewAccountVirtual copyWith({
     required double balance,
     required String clientId,

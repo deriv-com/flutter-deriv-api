@@ -1,8 +1,8 @@
 import 'package:meta/meta.dart';
 
-/// Sell expired response model class
+/// Sell expired response model class.
 abstract class SellExpiredResponseModel {
-  /// Initializes
+  /// Initializes.
   SellExpiredResponseModel({
     this.sellExpired,
   });
@@ -11,7 +11,7 @@ abstract class SellExpiredResponseModel {
   final SellExpired? sellExpired;
 }
 
-/// Sell expired response class
+/// Sell expired response class.
 class SellExpiredResponse extends SellExpiredResponseModel {
   /// Initializes
   SellExpiredResponse({
@@ -41,7 +41,7 @@ class SellExpiredResponse extends SellExpiredResponseModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   SellExpiredResponse copyWith({
     SellExpired? sellExpired,
   }) =>
@@ -49,9 +49,9 @@ class SellExpiredResponse extends SellExpiredResponseModel {
         sellExpired: sellExpired ?? this.sellExpired,
       );
 }
-/// Sell expired model class
+/// Sell expired model class.
 abstract class SellExpiredModel {
-  /// Initializes
+  /// Initializes.
   SellExpiredModel({
     this.count,
   });
@@ -60,7 +60,7 @@ abstract class SellExpiredModel {
   final int? count;
 }
 
-/// Sell expired class
+/// Sell expired class.
 class SellExpired extends SellExpiredModel {
   /// Initializes
   SellExpired({
@@ -83,7 +83,7 @@ class SellExpired extends SellExpiredModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   SellExpired copyWith({
     int? count,
   }) =>

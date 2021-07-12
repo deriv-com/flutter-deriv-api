@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Set account currency response model class
+/// Set account currency response model class.
 abstract class SetAccountCurrencyResponseModel {
-  /// Initializes
+  /// Initializes.
   SetAccountCurrencyResponseModel({
     this.setAccountCurrency,
   });
@@ -17,7 +17,7 @@ abstract class SetAccountCurrencyResponseModel {
   final bool? setAccountCurrency;
 }
 
-/// Set account currency response class
+/// Set account currency response class.
 class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
   /// Initializes
   SetAccountCurrencyResponse({
@@ -65,7 +65,7 @@ class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
     return SetAccountCurrencyResponse.fromJson(response.setAccountCurrency);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   SetAccountCurrencyResponse copyWith({
     bool? setAccountCurrency,
   }) =>

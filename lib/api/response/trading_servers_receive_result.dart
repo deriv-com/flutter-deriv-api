@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Trading servers response model class
+/// Trading servers response model class.
 abstract class TradingServersResponseModel {
-  /// Initializes
+  /// Initializes.
   TradingServersResponseModel({
     this.tradingServers,
   });
@@ -17,7 +17,7 @@ abstract class TradingServersResponseModel {
   final List<TradingServersItem>? tradingServers;
 }
 
-/// Trading servers response class
+/// Trading servers response class.
 class TradingServersResponse extends TradingServersResponseModel {
   /// Initializes
   TradingServersResponse({
@@ -75,7 +75,7 @@ class TradingServersResponse extends TradingServersResponseModel {
     return TradingServersResponse.fromJson(response.tradingServers);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TradingServersResponse copyWith({
     List<TradingServersItem>? tradingServers,
   }) =>
@@ -130,9 +130,9 @@ enum IdEnum {
   /// p02_ts02.
   p02Ts02,
 }
-/// Trading servers item model class
+/// Trading servers item model class.
 abstract class TradingServersItemModel {
-  /// Initializes
+  /// Initializes.
   TradingServersItemModel({
     this.disabled,
     this.environment,
@@ -165,7 +165,7 @@ abstract class TradingServersItemModel {
   final List<String>? supportedAccounts;
 }
 
-/// Trading servers item class
+/// Trading servers item class.
 class TradingServersItem extends TradingServersItemModel {
   /// Initializes
   TradingServersItem({
@@ -236,7 +236,7 @@ class TradingServersItem extends TradingServersItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TradingServersItem copyWith({
     bool? disabled,
     EnvironmentEnum? environment,
@@ -256,9 +256,9 @@ class TradingServersItem extends TradingServersItemModel {
         supportedAccounts: supportedAccounts ?? this.supportedAccounts,
       );
 }
-/// Geolocation model class
+/// Geolocation model class.
 abstract class GeolocationModel {
-  /// Initializes
+  /// Initializes.
   GeolocationModel({
     this.location,
     this.region,
@@ -275,7 +275,7 @@ abstract class GeolocationModel {
   final int? sequence;
 }
 
-/// Geolocation class
+/// Geolocation class.
 class Geolocation extends GeolocationModel {
   /// Initializes
   Geolocation({
@@ -306,7 +306,7 @@ class Geolocation extends GeolocationModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Geolocation copyWith({
     String? location,
     String? region,

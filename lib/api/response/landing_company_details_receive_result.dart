@@ -1,9 +1,9 @@
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:meta/meta.dart';
 
-/// Landing company details response model class
+/// Landing company details response model class.
 abstract class LandingCompanyDetailsResponseModel {
-  /// Initializes
+  /// Initializes.
   LandingCompanyDetailsResponseModel({
     this.landingCompanyDetails,
   });
@@ -12,7 +12,7 @@ abstract class LandingCompanyDetailsResponseModel {
   final LandingCompanyDetails? landingCompanyDetails;
 }
 
-/// Landing company details response class
+/// Landing company details response class.
 class LandingCompanyDetailsResponse extends LandingCompanyDetailsResponseModel {
   /// Initializes
   LandingCompanyDetailsResponse({
@@ -42,7 +42,7 @@ class LandingCompanyDetailsResponse extends LandingCompanyDetailsResponseModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   LandingCompanyDetailsResponse copyWith({
     LandingCompanyDetails? landingCompanyDetails,
   }) =>
@@ -51,9 +51,9 @@ class LandingCompanyDetailsResponse extends LandingCompanyDetailsResponseModel {
             landingCompanyDetails ?? this.landingCompanyDetails,
       );
 }
-/// Landing company details model class
+/// Landing company details model class.
 abstract class LandingCompanyDetailsModel {
-  /// Initializes
+  /// Initializes.
   LandingCompanyDetailsModel({
     this.address,
     this.changeableFields,
@@ -106,7 +106,7 @@ abstract class LandingCompanyDetailsModel {
   final String? shortcode;
 }
 
-/// Landing company details class
+/// Landing company details class.
 class LandingCompanyDetails extends LandingCompanyDetailsModel {
   /// Initializes
   LandingCompanyDetails({
@@ -228,7 +228,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   LandingCompanyDetails copyWith({
     List<String>? address,
     Map<String, dynamic>? changeableFields,
@@ -260,9 +260,9 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
         shortcode: shortcode ?? this.shortcode,
       );
 }
-/// Currency config model class
+/// Currency config model class.
 abstract class CurrencyConfigModel {
-  /// Initializes
+  /// Initializes.
   CurrencyConfigModel({
     this.market,
   });
@@ -271,7 +271,7 @@ abstract class CurrencyConfigModel {
   final Market? market;
 }
 
-/// Currency config class
+/// Currency config class.
 class CurrencyConfig extends CurrencyConfigModel {
   /// Initializes
   CurrencyConfig({
@@ -296,7 +296,7 @@ class CurrencyConfig extends CurrencyConfigModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   CurrencyConfig copyWith({
     Market? market,
   }) =>
@@ -304,9 +304,9 @@ class CurrencyConfig extends CurrencyConfigModel {
         market: market ?? this.market,
       );
 }
-/// Market model class
+/// Market model class.
 abstract class MarketModel {
-  /// Initializes
+  /// Initializes.
   MarketModel({
     this.currency,
   });
@@ -315,7 +315,7 @@ abstract class MarketModel {
   final Currency? currency;
 }
 
-/// Market class
+/// Market class.
 class Market extends MarketModel {
   /// Initializes
   Market({
@@ -342,7 +342,7 @@ class Market extends MarketModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Market copyWith({
     Currency? currency,
   }) =>
@@ -350,9 +350,9 @@ class Market extends MarketModel {
         currency: currency ?? this.currency,
       );
 }
-/// Currency model class
+/// Currency model class.
 abstract class CurrencyModel {
-  /// Initializes
+  /// Initializes.
   CurrencyModel({
     this.maxPayout,
     this.minStake,
@@ -365,7 +365,7 @@ abstract class CurrencyModel {
   final int? minStake;
 }
 
-/// Currency class
+/// Currency class.
 class Currency extends CurrencyModel {
   /// Initializes
   Currency({
@@ -392,7 +392,7 @@ class Currency extends CurrencyModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Currency copyWith({
     int? maxPayout,
     int? minStake,

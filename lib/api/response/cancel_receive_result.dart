@@ -6,9 +6,9 @@ import '../../helpers/helpers.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Cancel response model class
+/// Cancel response model class.
 abstract class CancelResponseModel {
-  /// Initializes
+  /// Initializes.
   CancelResponseModel({
     this.cancel,
   });
@@ -17,7 +17,7 @@ abstract class CancelResponseModel {
   final Cancel? cancel;
 }
 
-/// Cancel response class
+/// Cancel response class.
 class CancelResponse extends CancelResponseModel {
   /// Initializes
   CancelResponse({
@@ -62,7 +62,7 @@ class CancelResponse extends CancelResponseModel {
     return CancelResponse.fromJson(response.cancel);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   CancelResponse copyWith({
     Cancel? cancel,
   }) =>
@@ -70,9 +70,9 @@ class CancelResponse extends CancelResponseModel {
         cancel: cancel ?? this.cancel,
       );
 }
-/// Cancel model class
+/// Cancel model class.
 abstract class CancelModel {
-  /// Initializes
+  /// Initializes.
   CancelModel({
     this.balanceAfter,
     this.contractId,
@@ -97,7 +97,7 @@ abstract class CancelModel {
   final int? transactionId;
 }
 
-/// Cancel class
+/// Cancel class.
 class Cancel extends CancelModel {
   /// Initializes
   Cancel({
@@ -136,7 +136,7 @@ class Cancel extends CancelModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Cancel copyWith({
     double? balanceAfter,
     int? contractId,

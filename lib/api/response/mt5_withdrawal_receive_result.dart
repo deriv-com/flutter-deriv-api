@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Mt5 withdrawal response model class
+/// Mt5 withdrawal response model class.
 abstract class Mt5WithdrawalResponseModel {
-  /// Initializes
+  /// Initializes.
   Mt5WithdrawalResponseModel({
     this.mt5Withdrawal,
     this.binaryTransactionId,
@@ -21,7 +21,7 @@ abstract class Mt5WithdrawalResponseModel {
   final int? binaryTransactionId;
 }
 
-/// Mt5 withdrawal response class
+/// Mt5 withdrawal response class.
 class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
   /// Initializes
   Mt5WithdrawalResponse({
@@ -75,7 +75,7 @@ class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
     );
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Mt5WithdrawalResponse copyWith({
     int? mt5Withdrawal,
     int? binaryTransactionId,

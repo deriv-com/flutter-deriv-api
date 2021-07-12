@@ -15,9 +15,9 @@ import '../manually/tick_base.dart';
 import '../manually/tick_history_subscription.dart';
 import '../models/base_exception_model.dart';
 
-/// Ticks history response model class
+/// Ticks history response model class.
 abstract class TicksHistoryResponseModel {
-  /// Initializes
+  /// Initializes.
   TicksHistoryResponseModel({
     this.candles,
     this.history,
@@ -38,7 +38,7 @@ abstract class TicksHistoryResponseModel {
   final Subscription? subscription;
 }
 
-/// Ticks history response class
+/// Ticks history response class.
 class TicksHistoryResponse extends TicksHistoryResponseModel {
   /// Initializes
   TicksHistoryResponse({
@@ -173,7 +173,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
     }
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   TicksHistoryResponse copyWith({
     List<CandlesItem>? candles,
     History? history,
@@ -187,9 +187,9 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
         subscription: subscription ?? this.subscription,
       );
 }
-/// Candles item model class
+/// Candles item model class.
 abstract class CandlesItemModel {
-  /// Initializes
+  /// Initializes.
   CandlesItemModel({
     this.close,
     this.epoch,
@@ -214,7 +214,7 @@ abstract class CandlesItemModel {
   final double? open;
 }
 
-/// Candles item class
+/// Candles item class.
 class CandlesItem extends CandlesItemModel {
   /// Initializes
   CandlesItem({
@@ -253,7 +253,7 @@ class CandlesItem extends CandlesItemModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   CandlesItem copyWith({
     double? close,
     DateTime? epoch,
@@ -269,9 +269,9 @@ class CandlesItem extends CandlesItemModel {
         open: open ?? this.open,
       );
 }
-/// History model class
+/// History model class.
 abstract class HistoryModel {
-  /// Initializes
+  /// Initializes.
   HistoryModel({
     this.prices,
     this.times,
@@ -284,7 +284,7 @@ abstract class HistoryModel {
   final List<DateTime>? times;
 }
 
-/// History class
+/// History class.
 class History extends HistoryModel {
   /// Initializes
   History({
@@ -335,7 +335,7 @@ class History extends HistoryModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   History copyWith({
     List<double>? prices,
     List<DateTime>? times,
@@ -345,9 +345,9 @@ class History extends HistoryModel {
         times: times ?? this.times,
       );
 }
-/// Subscription model class
+/// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes
+  /// Initializes.
   SubscriptionModel({
     required this.id,
   });
@@ -356,7 +356,7 @@ abstract class SubscriptionModel {
   final String id;
 }
 
-/// Subscription class
+/// Subscription class.
 class Subscription extends SubscriptionModel {
   /// Initializes
   Subscription({
@@ -379,7 +379,7 @@ class Subscription extends SubscriptionModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Subscription copyWith({
     required String id,
   }) =>

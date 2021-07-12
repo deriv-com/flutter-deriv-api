@@ -19,9 +19,9 @@ import 'mt5_password_check_receive_result.dart';
 import 'mt5_password_reset_receive_result.dart';
 import 'mt5_withdrawal_receive_result.dart';
 
-/// Mt5 new account response model class
+/// Mt5 new account response model class.
 abstract class Mt5NewAccountResponseModel {
-  /// Initializes
+  /// Initializes.
   Mt5NewAccountResponseModel({
     this.mt5NewAccount,
   });
@@ -30,7 +30,7 @@ abstract class Mt5NewAccountResponseModel {
   final Mt5NewAccount? mt5NewAccount;
 }
 
-/// Mt5 new account response class
+/// Mt5 new account response class.
 class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
   /// Initializes
   Mt5NewAccountResponse({
@@ -166,7 +166,7 @@ class Mt5NewAccountResponse extends Mt5NewAccountResponseModel {
         ),
       );
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Mt5NewAccountResponse copyWith({
     Mt5NewAccount? mt5NewAccount,
   }) =>
@@ -226,9 +226,9 @@ enum Mt5AccountTypeEnum {
   /// financial_stp.
   financialStp,
 }
-/// Mt5 new account model class
+/// Mt5 new account model class.
 abstract class Mt5NewAccountModel {
-  /// Initializes
+  /// Initializes.
   Mt5NewAccountModel({
     this.accountType,
     this.balance,
@@ -261,7 +261,7 @@ abstract class Mt5NewAccountModel {
   final Mt5AccountTypeEnum? mt5AccountType;
 }
 
-/// Mt5 new account class
+/// Mt5 new account class.
 class Mt5NewAccount extends Mt5NewAccountModel {
   /// Initializes
   Mt5NewAccount({
@@ -323,7 +323,7 @@ class Mt5NewAccount extends Mt5NewAccountModel {
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   Mt5NewAccount copyWith({
     AccountTypeEnum? accountType,
     double? balance,

@@ -1,9 +1,9 @@
 // TODO(unknown): Create methods file in lib/basic_api/generated/methods for this file.
  import '../../helpers/helpers.dart';
 
-/// Identity verification document add response model class
+/// Identity verification document add response model class.
 abstract class IdentityVerificationDocumentAddResponseModel {
-  /// Initializes
+  /// Initializes.
   IdentityVerificationDocumentAddResponseModel({
     this.identityVerificationDocumentAdd,
   });
@@ -12,7 +12,7 @@ abstract class IdentityVerificationDocumentAddResponseModel {
   final int? identityVerificationDocumentAdd;
 }
 
-/// Identity verification document add response class
+/// Identity verification document add response class.
 class IdentityVerificationDocumentAddResponse
     extends IdentityVerificationDocumentAddResponseModel {
   /// Initializes
@@ -40,7 +40,7 @@ class IdentityVerificationDocumentAddResponse
     return resultMap;
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   IdentityVerificationDocumentAddResponse copyWith({
     int? identityVerificationDocumentAdd,
   }) =>

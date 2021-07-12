@@ -6,9 +6,9 @@ import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
 import '../models/base_exception_model.dart';
 
-/// Verify email response model class
+/// Verify email response model class.
 abstract class VerifyEmailResponseModel {
-  /// Initializes
+  /// Initializes.
   VerifyEmailResponseModel({
     this.verifyEmail,
   });
@@ -17,7 +17,7 @@ abstract class VerifyEmailResponseModel {
   final bool? verifyEmail;
 }
 
-/// Verify email response class
+/// Verify email response class.
 class VerifyEmailResponse extends VerifyEmailResponseModel {
   /// Initializes
   VerifyEmailResponse({
@@ -64,7 +64,7 @@ class VerifyEmailResponse extends VerifyEmailResponseModel {
     return VerifyEmailResponse.fromJson(response.verifyEmail);
   }
 
-  /// Creates a copy of instance with given parameters
+  /// Creates a copy of instance with given parameters.
   VerifyEmailResponse copyWith({
     bool? verifyEmail,
   }) =>
