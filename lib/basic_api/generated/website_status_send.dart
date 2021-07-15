@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Website status send class.
-class WebsiteStatusSend extends Request {
-  /// Initialize WebsiteStatusSend.
-  const WebsiteStatusSend({
+/// Website status request class.
+class WebsiteStatusRequest extends Request {
+  /// Initialize WebsiteStatusRequest.
+  const WebsiteStatusRequest({
     this.subscribe,
     this.websiteStatus = true,
     Map<String, dynamic>? passthrough,
@@ -19,8 +19,8 @@ class WebsiteStatusSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory WebsiteStatusSend.fromJson(Map<String, dynamic> json) =>
-      WebsiteStatusSend(
+  factory WebsiteStatusRequest.fromJson(Map<String, dynamic> json) =>
+      WebsiteStatusRequest(
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         websiteStatus:
             json['website_status'] == null ? null : json['website_status'] == 1,
@@ -53,13 +53,13 @@ class WebsiteStatusSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  WebsiteStatusSend copyWith({
+  WebsiteStatusRequest copyWith({
     bool? subscribe,
     bool? websiteStatus,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      WebsiteStatusSend(
+      WebsiteStatusRequest(
         subscribe: subscribe ?? this.subscribe,
         websiteStatus: websiteStatus ?? this.websiteStatus,
         passthrough: passthrough ?? this.passthrough,

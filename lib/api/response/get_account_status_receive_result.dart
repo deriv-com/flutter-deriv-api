@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Get account status response model class.
 abstract class GetAccountStatusResponseModel {
-  /// Initializes.
+  /// Initializes Get account status response model class .
   GetAccountStatusResponseModel({
     this.getAccountStatus,
   });
@@ -19,14 +19,14 @@ abstract class GetAccountStatusResponseModel {
 
 /// Get account status response class.
 class GetAccountStatusResponse extends GetAccountStatusResponseModel {
-  /// Initializes
+  /// Initializes Get account status response class.
   GetAccountStatusResponse({
     GetAccountStatus? getAccountStatus,
   }) : super(
           getAccountStatus: getAccountStatus,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetAccountStatusResponse.fromJson(
     dynamic getAccountStatusJson,
   ) =>
@@ -36,7 +36,7 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
             : GetAccountStatus.fromJson(getAccountStatusJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -52,7 +52,7 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
   /// Gets the account's status
   static Future<GetAccountStatusResponse> fetchAccountStatus() async {
     final GetAccountStatusReceive response = await _api.call(
-      request: const GetAccountStatusSend(),
+      request: const GetAccountStatusRequest(),
     );
 
     checkException(
@@ -125,7 +125,7 @@ enum SocialIdentityProviderEnum {
 }
 /// Get account status model class.
 abstract class GetAccountStatusModel {
-  /// Initializes.
+  /// Initializes Get account status model class .
   GetAccountStatusModel({
     required this.status,
     required this.riskClassification,
@@ -195,7 +195,7 @@ abstract class GetAccountStatusModel {
 
 /// Get account status class.
 class GetAccountStatus extends GetAccountStatusModel {
-  /// Initializes
+  /// Initializes Get account status class.
   GetAccountStatus({
     required Map<String, CurrencyConfigProperty> currencyConfig,
     required int promptClientToAuthenticate,
@@ -216,7 +216,7 @@ class GetAccountStatus extends GetAccountStatusModel {
           socialIdentityProvider: socialIdentityProvider,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetAccountStatus.fromJson(Map<String, dynamic> json) =>
       GetAccountStatus(
         currencyConfig: Map<String, CurrencyConfigProperty>.fromEntries(
@@ -256,7 +256,7 @@ class GetAccountStatus extends GetAccountStatusModel {
                 json['social_identity_provider']]!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -320,7 +320,7 @@ class GetAccountStatus extends GetAccountStatusModel {
 }
 /// Currency config property model class.
 abstract class CurrencyConfigPropertyModel {
-  /// Initializes.
+  /// Initializes Currency config property model class .
   CurrencyConfigPropertyModel({
     this.isDepositSuspended,
     this.isWithdrawalSuspended,
@@ -335,7 +335,7 @@ abstract class CurrencyConfigPropertyModel {
 
 /// Currency config property class.
 class CurrencyConfigProperty extends CurrencyConfigPropertyModel {
-  /// Initializes
+  /// Initializes Currency config property class.
   CurrencyConfigProperty({
     bool? isDepositSuspended,
     bool? isWithdrawalSuspended,
@@ -344,14 +344,14 @@ class CurrencyConfigProperty extends CurrencyConfigPropertyModel {
           isWithdrawalSuspended: isWithdrawalSuspended,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CurrencyConfigProperty.fromJson(Map<String, dynamic> json) =>
       CurrencyConfigProperty(
         isDepositSuspended: getBool(json['is_deposit_suspended']),
         isWithdrawalSuspended: getBool(json['is_withdrawal_suspended']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -374,7 +374,7 @@ class CurrencyConfigProperty extends CurrencyConfigPropertyModel {
 }
 /// Authentication model class.
 abstract class AuthenticationModel {
-  /// Initializes.
+  /// Initializes Authentication model class .
   AuthenticationModel({
     required this.needsVerification,
     this.document,
@@ -393,7 +393,7 @@ abstract class AuthenticationModel {
 
 /// Authentication class.
 class Authentication extends AuthenticationModel {
-  /// Initializes
+  /// Initializes Authentication class.
   Authentication({
     required List<String> needsVerification,
     Document? document,
@@ -404,7 +404,7 @@ class Authentication extends AuthenticationModel {
           identity: identity,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Authentication.fromJson(Map<String, dynamic> json) => Authentication(
         needsVerification: List<String>.from(
           json['needs_verification'].map(
@@ -419,7 +419,7 @@ class Authentication extends AuthenticationModel {
             : Identity.fromJson(json['identity']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -453,7 +453,7 @@ class Authentication extends AuthenticationModel {
 }
 /// Document model class.
 abstract class DocumentModel {
-  /// Initializes.
+  /// Initializes Document model class .
   DocumentModel({
     this.expiryDate,
     this.status,
@@ -468,7 +468,7 @@ abstract class DocumentModel {
 
 /// Document class.
 class Document extends DocumentModel {
-  /// Initializes
+  /// Initializes Document class.
   Document({
     DateTime? expiryDate,
     StatusEnum? status,
@@ -477,14 +477,14 @@ class Document extends DocumentModel {
           status: status,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Document.fromJson(Map<String, dynamic> json) => Document(
         expiryDate: getDateTime(json['expiry_date']),
         status:
             json['status'] == null ? null : statusEnumMapper[json['status']]!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -509,7 +509,7 @@ class Document extends DocumentModel {
 }
 /// Identity model class.
 abstract class IdentityModel {
-  /// Initializes.
+  /// Initializes Identity model class .
   IdentityModel({
     this.expiryDate,
     this.services,
@@ -528,7 +528,7 @@ abstract class IdentityModel {
 
 /// Identity class.
 class Identity extends IdentityModel {
-  /// Initializes
+  /// Initializes Identity class.
   Identity({
     DateTime? expiryDate,
     Services? services,
@@ -539,7 +539,7 @@ class Identity extends IdentityModel {
           status: status,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Identity.fromJson(Map<String, dynamic> json) => Identity(
         expiryDate: getDateTime(json['expiry_date']),
         services: json['services'] == null
@@ -549,7 +549,7 @@ class Identity extends IdentityModel {
             json['status'] == null ? null : statusEnumMapper[json['status']]!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -579,7 +579,7 @@ class Identity extends IdentityModel {
 }
 /// Services model class.
 abstract class ServicesModel {
-  /// Initializes.
+  /// Initializes Services model class .
   ServicesModel({
     this.idv,
     this.manual,
@@ -598,7 +598,7 @@ abstract class ServicesModel {
 
 /// Services class.
 class Services extends ServicesModel {
-  /// Initializes
+  /// Initializes Services class.
   Services({
     Idv? idv,
     Manual? manual,
@@ -609,14 +609,14 @@ class Services extends ServicesModel {
           onfido: onfido,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Services.fromJson(Map<String, dynamic> json) => Services(
         idv: json['idv'] == null ? null : Idv.fromJson(json['idv']),
         manual: json['manual'] == null ? null : Manual.fromJson(json['manual']),
         onfido: json['onfido'] == null ? null : Onfido.fromJson(json['onfido']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -647,7 +647,7 @@ class Services extends ServicesModel {
 }
 /// Idv model class.
 abstract class IdvModel {
-  /// Initializes.
+  /// Initializes Idv model class .
   IdvModel({
     this.lastRejected,
     this.reportedProperties,
@@ -670,7 +670,7 @@ abstract class IdvModel {
 
 /// Idv class.
 class Idv extends IdvModel {
-  /// Initializes
+  /// Initializes Idv class.
   Idv({
     List<String>? lastRejected,
     Map<String, dynamic>? reportedProperties,
@@ -683,7 +683,7 @@ class Idv extends IdvModel {
           submissionsLeft: submissionsLeft,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Idv.fromJson(Map<String, dynamic> json) => Idv(
         lastRejected: json['last_rejected'] == null
             ? null
@@ -698,7 +698,7 @@ class Idv extends IdvModel {
         submissionsLeft: json['submissions_left'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -735,7 +735,7 @@ class Idv extends IdvModel {
 }
 /// Manual model class.
 abstract class ManualModel {
-  /// Initializes.
+  /// Initializes Manual model class .
   ManualModel({
     this.status,
   });
@@ -746,20 +746,20 @@ abstract class ManualModel {
 
 /// Manual class.
 class Manual extends ManualModel {
-  /// Initializes
+  /// Initializes Manual class.
   Manual({
     StatusEnum? status,
   }) : super(
           status: status,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Manual.fromJson(Map<String, dynamic> json) => Manual(
         status:
             json['status'] == null ? null : statusEnumMapper[json['status']]!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -781,7 +781,7 @@ class Manual extends ManualModel {
 }
 /// Onfido model class.
 abstract class OnfidoModel {
-  /// Initializes.
+  /// Initializes Onfido model class .
   OnfidoModel({
     this.countryCode,
     this.documents,
@@ -816,7 +816,7 @@ abstract class OnfidoModel {
 
 /// Onfido class.
 class Onfido extends OnfidoModel {
-  /// Initializes
+  /// Initializes Onfido class.
   Onfido({
     String? countryCode,
     List<String>? documents,
@@ -835,7 +835,7 @@ class Onfido extends OnfidoModel {
           submissionsLeft: submissionsLeft,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Onfido.fromJson(Map<String, dynamic> json) => Onfido(
         countryCode: json['country_code'],
         documents: json['documents'] == null
@@ -859,7 +859,7 @@ class Onfido extends OnfidoModel {
         submissionsLeft: json['submissions_left'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

@@ -9,7 +9,7 @@ void main() {
 
   test('Fetch States Test', () async {
     final StatesListResponse states = await StatesListResponse.fetchStatesList(
-      const StatesListSend(statesList: 'code'),
+      const StatesListRequest(statesList: 'code'),
     );
 
     expect(states.statesList!.first.text, 'Aceh');

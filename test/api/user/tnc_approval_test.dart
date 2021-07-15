@@ -9,7 +9,7 @@ void main() {
 
   test('Terms and Conditions Approval Test', () async {
     final TncApprovalResponse tncApproval =
-        await TncApprovalResponse.verify(const TncApprovalSend());
+        await TncApprovalResponse.verify(const TncApprovalRequest());
 
     expect(tncApproval.tncApproval, 1);
   });

@@ -10,7 +10,7 @@ void main() {
   test('Payment Methods Test', () async {
     final PaymentMethodsResponse methodsResponse =
         await PaymentMethodsResponse.updateApplication(
-            const PaymentMethodsSend(country: 'id'));
+            const PaymentMethodsRequest(country: 'id'));
 
     expect(methodsResponse.paymentMethods?.length, 44);
 

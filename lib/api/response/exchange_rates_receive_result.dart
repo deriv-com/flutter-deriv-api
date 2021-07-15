@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Exchange rates response model class.
 abstract class ExchangeRatesResponseModel {
-  /// Initializes.
+  /// Initializes Exchange rates response model class .
   ExchangeRatesResponseModel({
     this.exchangeRates,
   });
@@ -19,14 +19,14 @@ abstract class ExchangeRatesResponseModel {
 
 /// Exchange rates response class.
 class ExchangeRatesResponse extends ExchangeRatesResponseModel {
-  /// Initializes
+  /// Initializes Exchange rates response class.
   ExchangeRatesResponse({
     ExchangeRates? exchangeRates,
   }) : super(
           exchangeRates: exchangeRates,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ExchangeRatesResponse.fromJson(
     dynamic exchangeRatesJson,
   ) =>
@@ -36,7 +36,7 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
             : ExchangeRates.fromJson(exchangeRatesJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -54,7 +54,7 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
   /// For parameters information refer to [ExchangeRatesRequest].
   /// Throws an [ExchangeException] if API response contains an error
   static Future<ExchangeRates?> fetchExchangeRates(
-    ExchangeRatesSend request,
+    ExchangeRatesRequest request,
   ) async {
     final ExchangeRatesReceive response = await _api.call(request: request);
 
@@ -79,7 +79,7 @@ class ExchangeRatesResponse extends ExchangeRatesResponseModel {
 }
 /// Exchange rates model class.
 abstract class ExchangeRatesModel {
-  /// Initializes.
+  /// Initializes Exchange rates model class .
   ExchangeRatesModel({
     this.baseCurrency,
     this.date,
@@ -98,7 +98,7 @@ abstract class ExchangeRatesModel {
 
 /// Exchange rates class.
 class ExchangeRates extends ExchangeRatesModel {
-  /// Initializes
+  /// Initializes Exchange rates class.
   ExchangeRates({
     String? baseCurrency,
     DateTime? date,
@@ -109,7 +109,7 @@ class ExchangeRates extends ExchangeRatesModel {
           rates: rates,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ExchangeRates.fromJson(Map<String, dynamic> json) => ExchangeRates(
         baseCurrency: json['base_currency'],
         date: getDateTime(json['date']),
@@ -123,7 +123,7 @@ class ExchangeRates extends ExchangeRatesModel {
                             entry.key, getDouble(entry.value)!))),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

@@ -22,7 +22,7 @@ void main() {
     test('Create Order Test', () async {
       final order_create.P2pOrderCreateResponse orderResponse =
           await order_create.P2pOrderCreateResponse.create(
-        const P2pOrderCreateSend(
+        const P2pOrderCreateRequest(
             advertId: '8', amount: 50.0, paymentMethodIds: <int>[]),
       );
 
@@ -93,7 +93,7 @@ void main() {
     test('Fetch Order Information Test', () async {
       final order_info.P2pOrderInfoResponse orderResponse =
           await order_info.P2pOrderInfoResponse.fetchOrder(
-        const P2pOrderInfoSend(id: '108'),
+        const P2pOrderInfoRequest(id: '108'),
       );
 
       final order_info.P2pOrderInfo order = orderResponse.p2pOrderInfo!;
@@ -129,7 +129,7 @@ void main() {
     test('Order Confirm Test', () async {
       final order_info.P2pOrderInfoResponse order =
           await order_info.P2pOrderInfoResponse.fetchOrder(
-        const P2pOrderInfoSend(id: '107'),
+        const P2pOrderInfoRequest(id: '107'),
       );
 
       final order_confirm.P2pOrderConfirmResponse confirmedOrder =
@@ -142,7 +142,7 @@ void main() {
     test('Cancel Order Test', () async {
       final order_info.P2pOrderInfoResponse order =
           await order_info.P2pOrderInfoResponse.fetchOrder(
-        const P2pOrderInfoSend(id: '107'),
+        const P2pOrderInfoRequest(id: '107'),
       );
 
       final order_cancel.P2pOrderCancelResponse cancelledOrder =
@@ -154,7 +154,7 @@ void main() {
 
     test('Create and Subscribe to Order Test', () {
       order_create.P2pOrderCreateResponse.createAndSubscribe(
-          const P2pOrderCreateSend(
+          const P2pOrderCreateRequest(
         advertId: '8',
         amount: 50.0,
         paymentMethodIds: <int>[],
@@ -242,7 +242,7 @@ void main() {
 
     test('Order Info Subscription Test', () {
       order_info.P2pOrderInfoResponse.subscribeOrder(
-              const P2pOrderInfoSend(id: '107'))
+              const P2pOrderInfoRequest(id: '107'))
           .listen(expectAsync1(
         (order_info.P2pOrderInfoResponse? orderResponse) {
           final order_info.P2pOrderInfo order = orderResponse!.p2pOrderInfo!;

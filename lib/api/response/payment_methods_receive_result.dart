@@ -7,7 +7,7 @@ import '../../services/dependency_injector/injector.dart';
 
 /// Payment methods response model class.
 abstract class PaymentMethodsResponseModel {
-  /// Initializes.
+  /// Initializes Payment methods response model class .
   PaymentMethodsResponseModel({
     this.paymentMethods,
   });
@@ -18,14 +18,14 @@ abstract class PaymentMethodsResponseModel {
 
 /// Payment methods response class.
 class PaymentMethodsResponse extends PaymentMethodsResponseModel {
-  /// Initializes
+  /// Initializes Payment methods response class.
   PaymentMethodsResponse({
     List<PaymentMethodsItem>? paymentMethods,
   }) : super(
           paymentMethods: paymentMethods,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentMethodsResponse.fromJson(
     dynamic paymentMethodsJson,
   ) =>
@@ -39,7 +39,7 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -58,10 +58,10 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
 
   /// Get List of available payment methods for a given country.
   ///
-  /// For parameters information refer to [PaymentMethodsSend].
+  /// For parameters information refer to [PaymentMethodsRequest].
   /// Throws an [PaymentException] if API response contains an error
   static Future<PaymentMethodsResponse> updateApplication(
-      PaymentMethodsSend request) async {
+      PaymentMethodsRequest request) async {
     final PaymentMethodsReceive response = await _api.call(request: request);
 
     checkException(
@@ -83,7 +83,7 @@ class PaymentMethodsResponse extends PaymentMethodsResponseModel {
 }
 /// Payment methods item model class.
 abstract class PaymentMethodsItemModel {
-  /// Initializes.
+  /// Initializes Payment methods item model class .
   PaymentMethodsItemModel({
     required this.withdrawalTime,
     required this.withdrawLimits,
@@ -142,7 +142,7 @@ abstract class PaymentMethodsItemModel {
 
 /// Payment methods item class.
 class PaymentMethodsItem extends PaymentMethodsItemModel {
-  /// Initializes
+  /// Initializes Payment methods item class.
   PaymentMethodsItem({
     required Map<String, DepositLimitsProperty> depositLimits,
     required String depositTime,
@@ -173,7 +173,7 @@ class PaymentMethodsItem extends PaymentMethodsItemModel {
           withdrawalTime: withdrawalTime,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentMethodsItem.fromJson(Map<String, dynamic> json) =>
       PaymentMethodsItem(
         depositLimits: Map<String, DepositLimitsProperty>.fromEntries(
@@ -211,7 +211,7 @@ class PaymentMethodsItem extends PaymentMethodsItemModel {
         withdrawalTime: json['withdrawal_time'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -276,7 +276,7 @@ class PaymentMethodsItem extends PaymentMethodsItemModel {
 }
 /// Deposit limits property model class.
 abstract class DepositLimitsPropertyModel {
-  /// Initializes.
+  /// Initializes Deposit limits property model class .
   DepositLimitsPropertyModel({
     required this.min,
     required this.max,
@@ -291,7 +291,7 @@ abstract class DepositLimitsPropertyModel {
 
 /// Deposit limits property class.
 class DepositLimitsProperty extends DepositLimitsPropertyModel {
-  /// Initializes
+  /// Initializes Deposit limits property class.
   DepositLimitsProperty({
     required int max,
     required int min,
@@ -300,14 +300,14 @@ class DepositLimitsProperty extends DepositLimitsPropertyModel {
           min: min,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory DepositLimitsProperty.fromJson(Map<String, dynamic> json) =>
       DepositLimitsProperty(
         max: json['max'],
         min: json['min'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -329,7 +329,7 @@ class DepositLimitsProperty extends DepositLimitsPropertyModel {
 }
 /// Withdraw limits property model class.
 abstract class WithdrawLimitsPropertyModel {
-  /// Initializes.
+  /// Initializes Withdraw limits property model class .
   WithdrawLimitsPropertyModel({
     required this.min,
     required this.max,
@@ -344,7 +344,7 @@ abstract class WithdrawLimitsPropertyModel {
 
 /// Withdraw limits property class.
 class WithdrawLimitsProperty extends WithdrawLimitsPropertyModel {
-  /// Initializes
+  /// Initializes Withdraw limits property class.
   WithdrawLimitsProperty({
     required int max,
     required int min,
@@ -353,14 +353,14 @@ class WithdrawLimitsProperty extends WithdrawLimitsPropertyModel {
           min: min,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory WithdrawLimitsProperty.fromJson(Map<String, dynamic> json) =>
       WithdrawLimitsProperty(
         max: json['max'],
         min: json['min'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

@@ -12,7 +12,7 @@ void main() {
   group('Forget Group ->', () {
     test('Forget Test', () async {
       final ForgetResponse forget = await ForgetResponse.forgetMethod(
-        const ForgetSend(forget: 'd1ee7d0d-3ca9-fbb4-720b-5312d487185b'),
+        const ForgetRequest(forget: 'd1ee7d0d-3ca9-fbb4-720b-5312d487185b'),
       );
 
       expect(forget.forget, true);
@@ -21,7 +21,7 @@ void main() {
     test('Forget All Test', () async {
       final ForgetAllResponse forgetAll =
           await ForgetAllResponse.forgetAllMethod(
-              const ForgetAllSend(forgetAll: <String>['tick', 'p2p_order']));
+              const ForgetAllRequest(forgetAll: <String>['tick', 'p2p_order']));
 
       expect(forgetAll.forgetAll?.length, 2);
 

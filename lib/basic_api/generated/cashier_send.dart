@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Cashier send class.
-class CashierSend extends Request {
-  /// Initialize CashierSend.
-  const CashierSend({
+/// Cashier request class.
+class CashierRequest extends Request {
+  /// Initialize CashierRequest.
+  const CashierRequest({
     required this.cashier,
     this.provider,
     this.type,
@@ -21,7 +21,7 @@ class CashierSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory CashierSend.fromJson(Map<String, dynamic> json) => CashierSend(
+  factory CashierRequest.fromJson(Map<String, dynamic> json) => CashierRequest(
         cashier: json['cashier'] as String?,
         provider: json['provider'] as String?,
         type: json['type'] as String?,
@@ -55,7 +55,7 @@ class CashierSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  CashierSend copyWith({
+  CashierRequest copyWith({
     String? cashier,
     String? provider,
     String? type,
@@ -63,7 +63,7 @@ class CashierSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      CashierSend(
+      CashierRequest(
         cashier: cashier ?? this.cashier,
         provider: provider ?? this.provider,
         type: type ?? this.type,

@@ -10,7 +10,7 @@ void main() {
   test('Fetch Trading Duration Test', () async {
     final TradingDurationsResponse tradeDuration =
         await TradingDurationsResponse.fetchTradingDurations(
-      const TradingDurationsSend(),
+      const TradingDurationsRequest(),
     );
 
     expect(tradeDuration.tradingDurations?.length, 8);

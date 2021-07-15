@@ -14,7 +14,7 @@ void main() {
     test('Authorize Test', () async {
       final AuthorizeResponse authorize =
           await AuthorizeResponse.authorizeMethod(
-        const AuthorizeSend(
+        const AuthorizeRequest(
           authorize: 'sample_token_334da73d',
           addToLoginHistory: 1,
         ),

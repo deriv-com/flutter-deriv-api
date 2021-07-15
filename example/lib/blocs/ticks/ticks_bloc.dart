@@ -57,7 +57,7 @@ class TicksBloc extends Bloc<TicksEvent, TicksState> {
 
   Stream<TicksResponse?> _subscribeTick(ActiveSymbolsItem selectedSymbol) =>
       TicksResponse.subscribeTick(
-        TicksSend(ticks: selectedSymbol.symbol),
+        TicksRequest(ticks: selectedSymbol.symbol),
       );
 
   Future<ForgetAllResponse> _unsubscribeTick() =>

@@ -15,7 +15,7 @@ import 'forget_receive_result.dart';
 
 /// Website status response model class.
 abstract class WebsiteStatusResponseModel {
-  /// Initializes.
+  /// Initializes Website status response model class .
   WebsiteStatusResponseModel({
     this.websiteStatus,
     this.subscription,
@@ -30,7 +30,7 @@ abstract class WebsiteStatusResponseModel {
 
 /// Website status response class.
 class WebsiteStatusResponse extends WebsiteStatusResponseModel {
-  /// Initializes
+  /// Initializes Website status response class.
   WebsiteStatusResponse({
     WebsiteStatus? websiteStatus,
     Subscription? subscription,
@@ -39,7 +39,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
           subscription: subscription,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory WebsiteStatusResponse.fromJson(
     dynamic websiteStatusJson,
     dynamic subscriptionJson,
@@ -53,7 +53,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
             : Subscription.fromJson(subscriptionJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -73,10 +73,10 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
   ///
   /// Throws a [WebsiteStatusException] if API response contains an error
   static Future<WebsiteStatusResponse> fetchWebsiteStatus([
-    WebsiteStatusSend? request,
+    WebsiteStatusRequest? request,
   ]) async {
     final WebsiteStatusReceive response = await _api.call(
-      request: request ?? const WebsiteStatusSend(),
+      request: request ?? const WebsiteStatusRequest(),
     );
 
     checkException(
@@ -91,7 +91,7 @@ class WebsiteStatusResponse extends WebsiteStatusResponseModel {
 
   /// Subscribes to website status
   static Stream<WebsiteStatusResponse?> subscribeWebsiteStatus(
-    WebsiteStatusSend request, {
+    WebsiteStatusRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
       _api
@@ -196,7 +196,7 @@ enum SiteStatusEnum {
 }
 /// Website status model class.
 abstract class WebsiteStatusModel {
-  /// Initializes.
+  /// Initializes Website status model class .
   WebsiteStatusModel({
     required this.p2pConfig,
     required this.currenciesConfig,
@@ -239,7 +239,7 @@ abstract class WebsiteStatusModel {
 
 /// Website status class.
 class WebsiteStatus extends WebsiteStatusModel {
-  /// Initializes
+  /// Initializes Website status class.
   WebsiteStatus({
     required ApiCallLimits apiCallLimits,
     required Map<String, CryptoConfigProperty> cryptoConfig,
@@ -262,7 +262,7 @@ class WebsiteStatus extends WebsiteStatusModel {
           termsConditionsVersion: termsConditionsVersion,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory WebsiteStatus.fromJson(Map<String, dynamic> json) => WebsiteStatus(
         apiCallLimits: ApiCallLimits.fromJson(json['api_call_limits']),
         cryptoConfig: Map<String, CryptoConfigProperty>.fromEntries(
@@ -295,7 +295,7 @@ class WebsiteStatus extends WebsiteStatusModel {
         termsConditionsVersion: json['terms_conditions_version'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -350,7 +350,7 @@ class WebsiteStatus extends WebsiteStatusModel {
 }
 /// Api call limits model class.
 abstract class ApiCallLimitsModel {
-  /// Initializes.
+  /// Initializes Api call limits model class .
   ApiCallLimitsModel({
     required this.maxRequestsPricing,
     required this.maxRequestsOutcome,
@@ -373,7 +373,7 @@ abstract class ApiCallLimitsModel {
 
 /// Api call limits class.
 class ApiCallLimits extends ApiCallLimitsModel {
-  /// Initializes
+  /// Initializes Api call limits class.
   ApiCallLimits({
     required MaxProposalSubscription maxProposalSubscription,
     required MaxRequestesGeneral maxRequestesGeneral,
@@ -386,7 +386,7 @@ class ApiCallLimits extends ApiCallLimitsModel {
           maxRequestsPricing: maxRequestsPricing,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ApiCallLimits.fromJson(Map<String, dynamic> json) => ApiCallLimits(
         maxProposalSubscription:
             MaxProposalSubscription.fromJson(json['max_proposal_subscription']),
@@ -398,7 +398,7 @@ class ApiCallLimits extends ApiCallLimitsModel {
             MaxRequestsPricing.fromJson(json['max_requests_pricing']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -429,7 +429,7 @@ class ApiCallLimits extends ApiCallLimitsModel {
 }
 /// Max proposal subscription model class.
 abstract class MaxProposalSubscriptionModel {
-  /// Initializes.
+  /// Initializes Max proposal subscription model class .
   MaxProposalSubscriptionModel({
     required this.max,
     required this.appliesTo,
@@ -444,7 +444,7 @@ abstract class MaxProposalSubscriptionModel {
 
 /// Max proposal subscription class.
 class MaxProposalSubscription extends MaxProposalSubscriptionModel {
-  /// Initializes
+  /// Initializes Max proposal subscription class.
   MaxProposalSubscription({
     required String appliesTo,
     required double max,
@@ -453,14 +453,14 @@ class MaxProposalSubscription extends MaxProposalSubscriptionModel {
           max: max,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory MaxProposalSubscription.fromJson(Map<String, dynamic> json) =>
       MaxProposalSubscription(
         appliesTo: json['applies_to'],
         max: getDouble(json['max'])!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -482,7 +482,7 @@ class MaxProposalSubscription extends MaxProposalSubscriptionModel {
 }
 /// Max requestes general model class.
 abstract class MaxRequestesGeneralModel {
-  /// Initializes.
+  /// Initializes Max requestes general model class .
   MaxRequestesGeneralModel({
     required this.minutely,
     required this.hourly,
@@ -501,7 +501,7 @@ abstract class MaxRequestesGeneralModel {
 
 /// Max requestes general class.
 class MaxRequestesGeneral extends MaxRequestesGeneralModel {
-  /// Initializes
+  /// Initializes Max requestes general class.
   MaxRequestesGeneral({
     required String appliesTo,
     required double hourly,
@@ -512,7 +512,7 @@ class MaxRequestesGeneral extends MaxRequestesGeneralModel {
           minutely: minutely,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory MaxRequestesGeneral.fromJson(Map<String, dynamic> json) =>
       MaxRequestesGeneral(
         appliesTo: json['applies_to'],
@@ -520,7 +520,7 @@ class MaxRequestesGeneral extends MaxRequestesGeneralModel {
         minutely: getDouble(json['minutely'])!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -545,7 +545,7 @@ class MaxRequestesGeneral extends MaxRequestesGeneralModel {
 }
 /// Max requests outcome model class.
 abstract class MaxRequestsOutcomeModel {
-  /// Initializes.
+  /// Initializes Max requests outcome model class .
   MaxRequestsOutcomeModel({
     required this.minutely,
     required this.hourly,
@@ -564,7 +564,7 @@ abstract class MaxRequestsOutcomeModel {
 
 /// Max requests outcome class.
 class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
-  /// Initializes
+  /// Initializes Max requests outcome class.
   MaxRequestsOutcome({
     required String appliesTo,
     required double hourly,
@@ -575,7 +575,7 @@ class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
           minutely: minutely,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory MaxRequestsOutcome.fromJson(Map<String, dynamic> json) =>
       MaxRequestsOutcome(
         appliesTo: json['applies_to'],
@@ -583,7 +583,7 @@ class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
         minutely: getDouble(json['minutely'])!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -608,7 +608,7 @@ class MaxRequestsOutcome extends MaxRequestsOutcomeModel {
 }
 /// Max requests pricing model class.
 abstract class MaxRequestsPricingModel {
-  /// Initializes.
+  /// Initializes Max requests pricing model class .
   MaxRequestsPricingModel({
     required this.minutely,
     required this.hourly,
@@ -627,7 +627,7 @@ abstract class MaxRequestsPricingModel {
 
 /// Max requests pricing class.
 class MaxRequestsPricing extends MaxRequestsPricingModel {
-  /// Initializes
+  /// Initializes Max requests pricing class.
   MaxRequestsPricing({
     required String appliesTo,
     required double hourly,
@@ -638,7 +638,7 @@ class MaxRequestsPricing extends MaxRequestsPricingModel {
           minutely: minutely,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory MaxRequestsPricing.fromJson(Map<String, dynamic> json) =>
       MaxRequestsPricing(
         appliesTo: json['applies_to'],
@@ -646,7 +646,7 @@ class MaxRequestsPricing extends MaxRequestsPricingModel {
         minutely: getDouble(json['minutely'])!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -671,7 +671,7 @@ class MaxRequestsPricing extends MaxRequestsPricingModel {
 }
 /// Crypto config property model class.
 abstract class CryptoConfigPropertyModel {
-  /// Initializes.
+  /// Initializes Crypto config property model class .
   CryptoConfigPropertyModel({
     required this.minimumWithdrawal,
   });
@@ -682,20 +682,20 @@ abstract class CryptoConfigPropertyModel {
 
 /// Crypto config property class.
 class CryptoConfigProperty extends CryptoConfigPropertyModel {
-  /// Initializes
+  /// Initializes Crypto config property class.
   CryptoConfigProperty({
     required double minimumWithdrawal,
   }) : super(
           minimumWithdrawal: minimumWithdrawal,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CryptoConfigProperty.fromJson(Map<String, dynamic> json) =>
       CryptoConfigProperty(
         minimumWithdrawal: getDouble(json['minimum_withdrawal'])!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -714,7 +714,7 @@ class CryptoConfigProperty extends CryptoConfigPropertyModel {
 }
 /// Currencies config property model class.
 abstract class CurrenciesConfigPropertyModel {
-  /// Initializes.
+  /// Initializes Currencies config property model class .
   CurrenciesConfigPropertyModel({
     required this.type,
     required this.transferBetweenAccounts,
@@ -749,7 +749,7 @@ abstract class CurrenciesConfigPropertyModel {
 
 /// Currencies config property class.
 class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
-  /// Initializes
+  /// Initializes Currencies config property class.
   CurrenciesConfigProperty({
     required double fractionalDigits,
     required double isDepositSuspended,
@@ -768,7 +768,7 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
           type: type,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CurrenciesConfigProperty.fromJson(Map<String, dynamic> json) =>
       CurrenciesConfigProperty(
         fractionalDigits: getDouble(json['fractional_digits'])!,
@@ -781,7 +781,7 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
         type: typeEnumMapper[json['type']]!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -821,7 +821,7 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
 }
 /// Transfer between accounts model class.
 abstract class TransferBetweenAccountsModel {
-  /// Initializes.
+  /// Initializes Transfer between accounts model class .
   TransferBetweenAccountsModel({
     required this.limits,
     required this.fees,
@@ -836,7 +836,7 @@ abstract class TransferBetweenAccountsModel {
 
 /// Transfer between accounts class.
 class TransferBetweenAccounts extends TransferBetweenAccountsModel {
-  /// Initializes
+  /// Initializes Transfer between accounts class.
   TransferBetweenAccounts({
     required Map<String, double> fees,
     required Limits limits,
@@ -845,7 +845,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
           limits: limits,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TransferBetweenAccounts.fromJson(Map<String, dynamic> json) =>
       TransferBetweenAccounts(
         fees: Map<String, double>.fromEntries(json['fees']
@@ -855,7 +855,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
         limits: Limits.fromJson(json['limits']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -877,7 +877,7 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
 }
 /// Limits model class.
 abstract class LimitsModel {
-  /// Initializes.
+  /// Initializes Limits model class .
   LimitsModel({
     required this.min,
     this.max,
@@ -892,7 +892,7 @@ abstract class LimitsModel {
 
 /// Limits class.
 class Limits extends LimitsModel {
-  /// Initializes
+  /// Initializes Limits class.
   Limits({
     required double min,
     double? max,
@@ -901,13 +901,13 @@ class Limits extends LimitsModel {
           max: max,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Limits.fromJson(Map<String, dynamic> json) => Limits(
         min: getDouble(json['min'])!,
         max: getDouble(json['max']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -929,7 +929,7 @@ class Limits extends LimitsModel {
 }
 /// P2p config model class.
 abstract class P2pConfigModel {
-  /// Initializes.
+  /// Initializes P2p config model class .
   P2pConfigModel({
     required this.orderPaymentPeriod,
     required this.orderDailyLimit,
@@ -976,7 +976,7 @@ abstract class P2pConfigModel {
 
 /// P2p config class.
 class P2pConfig extends P2pConfigModel {
-  /// Initializes
+  /// Initializes P2p config class.
   P2pConfig({
     required int advertsActiveLimit,
     required int cancellationBlockDuration,
@@ -1001,7 +1001,7 @@ class P2pConfig extends P2pConfigModel {
           advertsArchivePeriod: advertsArchivePeriod,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pConfig.fromJson(Map<String, dynamic> json) => P2pConfig(
         advertsActiveLimit: json['adverts_active_limit'],
         cancellationBlockDuration: json['cancellation_block_duration'],
@@ -1015,7 +1015,7 @@ class P2pConfig extends P2pConfigModel {
         advertsArchivePeriod: json['adverts_archive_period'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1061,7 +1061,7 @@ class P2pConfig extends P2pConfigModel {
 }
 /// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes.
+  /// Initializes Subscription model class .
   SubscriptionModel({
     required this.id,
   });
@@ -1072,19 +1072,19 @@ abstract class SubscriptionModel {
 
 /// Subscription class.
 class Subscription extends SubscriptionModel {
-  /// Initializes
+  /// Initializes Subscription class.
   Subscription({
     required String id,
   }) : super(
           id: id,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(
         id: json['id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

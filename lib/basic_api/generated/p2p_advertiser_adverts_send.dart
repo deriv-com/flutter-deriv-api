@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// P2p advertiser adverts send class.
-class P2pAdvertiserAdvertsSend extends Request {
-  /// Initialize P2pAdvertiserAdvertsSend.
-  const P2pAdvertiserAdvertsSend({
+/// P2p advertiser adverts request class.
+class P2pAdvertiserAdvertsRequest extends Request {
+  /// Initialize P2pAdvertiserAdvertsRequest.
+  const P2pAdvertiserAdvertsRequest({
     this.limit,
     this.offset,
     this.p2pAdvertiserAdverts = true,
@@ -20,8 +20,8 @@ class P2pAdvertiserAdvertsSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory P2pAdvertiserAdvertsSend.fromJson(Map<String, dynamic> json) =>
-      P2pAdvertiserAdvertsSend(
+  factory P2pAdvertiserAdvertsRequest.fromJson(Map<String, dynamic> json) =>
+      P2pAdvertiserAdvertsRequest(
         limit: json['limit'] as int?,
         offset: json['offset'] as int?,
         p2pAdvertiserAdverts: json['p2p_advertiser_adverts'] == null
@@ -56,14 +56,14 @@ class P2pAdvertiserAdvertsSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pAdvertiserAdvertsSend copyWith({
+  P2pAdvertiserAdvertsRequest copyWith({
     int? limit,
     int? offset,
     bool? p2pAdvertiserAdverts,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      P2pAdvertiserAdvertsSend(
+      P2pAdvertiserAdvertsRequest(
         limit: limit ?? this.limit,
         offset: offset ?? this.offset,
         p2pAdvertiserAdverts: p2pAdvertiserAdverts ?? this.p2pAdvertiserAdverts,

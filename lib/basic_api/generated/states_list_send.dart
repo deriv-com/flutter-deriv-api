@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// States list send class.
-class StatesListSend extends Request {
-  /// Initialize StatesListSend.
-  const StatesListSend({
+/// States list request class.
+class StatesListRequest extends Request {
+  /// Initialize StatesListRequest.
+  const StatesListRequest({
     required this.statesList,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -18,7 +18,8 @@ class StatesListSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory StatesListSend.fromJson(Map<String, dynamic> json) => StatesListSend(
+  factory StatesListRequest.fromJson(Map<String, dynamic> json) =>
+      StatesListRequest(
         statesList: json['states_list'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -37,12 +38,12 @@ class StatesListSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  StatesListSend copyWith({
+  StatesListRequest copyWith({
     String? statesList,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      StatesListSend(
+      StatesListRequest(
         statesList: statesList ?? this.statesList,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

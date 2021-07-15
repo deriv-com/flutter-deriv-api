@@ -10,7 +10,7 @@ void main() {
   group('Balance Group ->', () {
     test('Fetch Balance Test', () async {
       final BalanceResponse balance = await BalanceResponse.fetchBalance(
-        const BalanceSend(
+        const BalanceRequest(
           account: 'all',
         ),
       );
@@ -31,7 +31,7 @@ void main() {
     });
 
     test('Subscribe Balance Test', () {
-      BalanceResponse.subscribeBalance(const BalanceSend(account: 'current'))
+      BalanceResponse.subscribeBalance(const BalanceRequest(account: 'current'))
           .listen(
         expectAsync1(
           (BalanceResponse? balance) {

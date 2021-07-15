@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Forget send class.
-class ForgetSend extends Request {
-  /// Initialize ForgetSend.
-  const ForgetSend({
+/// Forget request class.
+class ForgetRequest extends Request {
+  /// Initialize ForgetRequest.
+  const ForgetRequest({
     required this.forget,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -18,7 +18,7 @@ class ForgetSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory ForgetSend.fromJson(Map<String, dynamic> json) => ForgetSend(
+  factory ForgetRequest.fromJson(Map<String, dynamic> json) => ForgetRequest(
         forget: json['forget'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -37,12 +37,12 @@ class ForgetSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  ForgetSend copyWith({
+  ForgetRequest copyWith({
     String? forget,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      ForgetSend(
+      ForgetRequest(
         forget: forget ?? this.forget,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

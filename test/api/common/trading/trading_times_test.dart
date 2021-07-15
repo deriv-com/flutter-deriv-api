@@ -10,7 +10,7 @@ void main() {
   test('Fetch Trading Times Test', () async {
     final TradingTimesResponse tradingTimes =
         await TradingTimesResponse.fetchTradingTimes(
-      const TradingTimesSend(tradingTimes: '2015-09-14'),
+      const TradingTimesRequest(tradingTimes: '2015-09-14'),
     );
 
     expect(tradingTimes.tradingTimes?.markets.length, 1);

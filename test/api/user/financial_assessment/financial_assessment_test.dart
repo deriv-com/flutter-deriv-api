@@ -12,7 +12,7 @@ void main() {
     test('Fetch Assessment Test', () async {
       final GetFinancialAssessmentResponse financialAssessmentResponse =
           await GetFinancialAssessmentResponse.fetchAssessment(
-        const GetFinancialAssessmentSend(),
+        const GetFinancialAssessmentRequest(),
       );
 
       final GetFinancialAssessment financialAssessment =
@@ -56,7 +56,7 @@ void main() {
     test('Set Assessment Test', () async {
       final SetFinancialAssessmentResponse financialAssessmentModel =
           await SetFinancialAssessmentResponse.setAssessment(
-        const SetFinancialAssessmentSend(
+        const SetFinancialAssessmentRequest(
           educationLevel: 'Primary',
           estimatedWorth: 'Less than \$100,000',
           netIncome: 'Less than \$25,000',

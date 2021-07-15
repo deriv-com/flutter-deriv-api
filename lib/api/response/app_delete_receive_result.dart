@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// App delete response model class.
 abstract class AppDeleteResponseModel {
-  /// Initializes.
+  /// Initializes App delete response model class .
   AppDeleteResponseModel({
     this.appDelete,
   });
@@ -19,14 +19,14 @@ abstract class AppDeleteResponseModel {
 
 /// App delete response class.
 class AppDeleteResponse extends AppDeleteResponseModel {
-  /// Initializes
+  /// Initializes App delete response class.
   AppDeleteResponse({
     int? appDelete,
   }) : super(
           appDelete: appDelete,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppDeleteResponse.fromJson(
     dynamic appDeleteJson,
   ) =>
@@ -34,7 +34,7 @@ class AppDeleteResponse extends AppDeleteResponseModel {
         appDelete: appDeleteJson,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -50,7 +50,7 @@ class AppDeleteResponse extends AppDeleteResponseModel {
   /// For parameters information refer to [AppDeleteRequest].
   /// Throws an [AppException] if API response contains an error
   static Future<AppDeleteResponse> deleteApplication(
-      AppDeleteSend request) async {
+      AppDeleteRequest request) async {
     final AppDeleteReceive response = await _api.call(request: request);
 
     checkException(

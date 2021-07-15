@@ -8,7 +8,7 @@ import '../../helpers/helpers.dart';
 
 /// App markup details response model class.
 abstract class AppMarkupDetailsResponseModel {
-  /// Initializes.
+  /// Initializes App markup details response model class .
   AppMarkupDetailsResponseModel({
     this.appMarkupDetails,
   });
@@ -19,14 +19,14 @@ abstract class AppMarkupDetailsResponseModel {
 
 /// App markup details response class.
 class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
-  /// Initializes
+  /// Initializes App markup details response class.
   AppMarkupDetailsResponse({
     AppMarkupDetails? appMarkupDetails,
   }) : super(
           appMarkupDetails: appMarkupDetails,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppMarkupDetailsResponse.fromJson(
     dynamic appMarkupDetailsJson,
   ) =>
@@ -36,7 +36,7 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
             : AppMarkupDetails.fromJson(appMarkupDetailsJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -54,7 +54,7 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
   /// For parameters information refer to [AppMarkupDetailsRequest].
   /// Throws an [AppException] if API response contains an error
   static Future<AppMarkupDetailsResponse> fetchApplicationMarkupDetails(
-    AppMarkupDetailsSend request,
+    AppMarkupDetailsRequest request,
   ) async {
     final AppMarkupDetailsReceive response = await _api.call(request: request);
 
@@ -77,7 +77,7 @@ class AppMarkupDetailsResponse extends AppMarkupDetailsResponseModel {
 }
 /// App markup details model class.
 abstract class AppMarkupDetailsModel {
-  /// Initializes.
+  /// Initializes App markup details model class .
   AppMarkupDetailsModel({
     this.transactions,
   });
@@ -88,14 +88,14 @@ abstract class AppMarkupDetailsModel {
 
 /// App markup details class.
 class AppMarkupDetails extends AppMarkupDetailsModel {
-  /// Initializes
+  /// Initializes App markup details class.
   AppMarkupDetails({
     List<TransactionsItem>? transactions,
   }) : super(
           transactions: transactions,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppMarkupDetails.fromJson(Map<String, dynamic> json) =>
       AppMarkupDetails(
         transactions: json['transactions'] == null
@@ -107,7 +107,7 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -132,7 +132,7 @@ class AppMarkupDetails extends AppMarkupDetailsModel {
 }
 /// Transactions item model class.
 abstract class TransactionsItemModel {
-  /// Initializes.
+  /// Initializes Transactions item model class .
   TransactionsItemModel({
     this.appId,
     this.appMarkup,
@@ -179,7 +179,7 @@ abstract class TransactionsItemModel {
 
 /// Transactions item class.
 class TransactionsItem extends TransactionsItemModel {
-  /// Initializes
+  /// Initializes Transactions item class.
   TransactionsItem({
     int? appId,
     double? appMarkup,
@@ -204,7 +204,7 @@ class TransactionsItem extends TransactionsItemModel {
           transactionTime: transactionTime,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TransactionsItem.fromJson(Map<String, dynamic> json) =>
       TransactionsItem(
         appId: json['app_id'],
@@ -219,7 +219,7 @@ class TransactionsItem extends TransactionsItemModel {
         transactionTime: json['transaction_time'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

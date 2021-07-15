@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Reality check response model class.
 abstract class RealityCheckResponseModel {
-  /// Initializes.
+  /// Initializes Reality check response model class .
   RealityCheckResponseModel({
     this.realityCheck,
   });
@@ -19,14 +19,14 @@ abstract class RealityCheckResponseModel {
 
 /// Reality check response class.
 class RealityCheckResponse extends RealityCheckResponseModel {
-  /// Initializes
+  /// Initializes Reality check response class.
   RealityCheckResponse({
     RealityCheck? realityCheck,
   }) : super(
           realityCheck: realityCheck,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory RealityCheckResponse.fromJson(
     dynamic realityCheckJson,
   ) =>
@@ -36,7 +36,7 @@ class RealityCheckResponse extends RealityCheckResponseModel {
             : RealityCheck.fromJson(realityCheckJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -56,10 +56,10 @@ class RealityCheckResponse extends RealityCheckResponseModel {
   /// For parameters information refer to [RealityCheckRequest].
   /// Throws a [RealityCheckException] if API response contains an error
   static Future<RealityCheckResponse> check([
-    RealityCheckSend? request,
+    RealityCheckRequest? request,
   ]) async {
     final RealityCheckReceive response = await _api.call(
-      request: request ?? const RealityCheckSend(),
+      request: request ?? const RealityCheckRequest(),
     );
 
     checkException(
@@ -81,7 +81,7 @@ class RealityCheckResponse extends RealityCheckResponseModel {
 }
 /// Reality check model class.
 abstract class RealityCheckModel {
-  /// Initializes.
+  /// Initializes Reality check model class .
   RealityCheckModel({
     this.buyAmount,
     this.buyCount,
@@ -124,7 +124,7 @@ abstract class RealityCheckModel {
 
 /// Reality check class.
 class RealityCheck extends RealityCheckModel {
-  /// Initializes
+  /// Initializes Reality check class.
   RealityCheck({
     double? buyAmount,
     int? buyCount,
@@ -147,7 +147,7 @@ class RealityCheck extends RealityCheckModel {
           startTime: startTime,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory RealityCheck.fromJson(Map<String, dynamic> json) => RealityCheck(
         buyAmount: getDouble(json['buy_amount']),
         buyCount: json['buy_count'],
@@ -160,7 +160,7 @@ class RealityCheck extends RealityCheckModel {
         startTime: getDateTime(json['start_time']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

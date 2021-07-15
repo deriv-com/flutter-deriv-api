@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Paymentagent withdraw response model class.
 abstract class PaymentagentWithdrawResponseModel {
-  /// Initializes.
+  /// Initializes Paymentagent withdraw response model class .
   PaymentagentWithdrawResponseModel({
     this.paymentagentWithdraw,
     this.paymentagentName,
@@ -27,7 +27,7 @@ abstract class PaymentagentWithdrawResponseModel {
 
 /// Paymentagent withdraw response class.
 class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
-  /// Initializes
+  /// Initializes Paymentagent withdraw response class.
   PaymentagentWithdrawResponse({
     int? paymentagentWithdraw,
     String? paymentagentName,
@@ -38,7 +38,7 @@ class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
           transactionId: transactionId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentagentWithdrawResponse.fromJson(
     dynamic paymentagentWithdrawJson,
     dynamic paymentagentNameJson,
@@ -50,7 +50,7 @@ class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
         transactionId: transactionIdJson,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -68,7 +68,7 @@ class PaymentagentWithdrawResponse extends PaymentagentWithdrawResponseModel {
   /// For parameters information refer to [PaymentagentWithdrawRequest].
   /// Throws a [PaymentAgentException] if API response contains an error
   static Future<PaymentagentWithdrawResponse> withdraw(
-    PaymentagentWithdrawSend request,
+    PaymentagentWithdrawRequest request,
   ) async {
     final PaymentagentWithdrawReceive response =
         await _api.call(request: request);

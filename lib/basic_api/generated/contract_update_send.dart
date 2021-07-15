@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Contract update send class.
-class ContractUpdateSend extends Request {
-  /// Initialize ContractUpdateSend.
-  const ContractUpdateSend({
+/// Contract update request class.
+class ContractUpdateRequest extends Request {
+  /// Initialize ContractUpdateRequest.
+  const ContractUpdateRequest({
     required this.contractId,
     this.contractUpdate = true,
     required this.limitOrder,
@@ -20,8 +20,8 @@ class ContractUpdateSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory ContractUpdateSend.fromJson(Map<String, dynamic> json) =>
-      ContractUpdateSend(
+  factory ContractUpdateRequest.fromJson(Map<String, dynamic> json) =>
+      ContractUpdateRequest(
         contractId: json['contract_id'] as int?,
         contractUpdate: json['contract_update'] == null
             ? null
@@ -56,14 +56,14 @@ class ContractUpdateSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  ContractUpdateSend copyWith({
+  ContractUpdateRequest copyWith({
     int? contractId,
     bool? contractUpdate,
     Map<String, dynamic>? limitOrder,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      ContractUpdateSend(
+      ContractUpdateRequest(
         contractId: contractId ?? this.contractId,
         contractUpdate: contractUpdate ?? this.contractUpdate,
         limitOrder: limitOrder ?? this.limitOrder,

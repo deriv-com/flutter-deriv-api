@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Exchange rates send class.
-class ExchangeRatesSend extends Request {
-  /// Initialize ExchangeRatesSend.
-  const ExchangeRatesSend({
+/// Exchange rates request class.
+class ExchangeRatesRequest extends Request {
+  /// Initialize ExchangeRatesRequest.
+  const ExchangeRatesRequest({
     required this.baseCurrency,
     this.exchangeRates = true,
     Map<String, dynamic>? passthrough,
@@ -19,8 +19,8 @@ class ExchangeRatesSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory ExchangeRatesSend.fromJson(Map<String, dynamic> json) =>
-      ExchangeRatesSend(
+  factory ExchangeRatesRequest.fromJson(Map<String, dynamic> json) =>
+      ExchangeRatesRequest(
         baseCurrency: json['base_currency'] as String?,
         exchangeRates:
             json['exchange_rates'] == null ? null : json['exchange_rates'] == 1,
@@ -49,13 +49,13 @@ class ExchangeRatesSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  ExchangeRatesSend copyWith({
+  ExchangeRatesRequest copyWith({
     String? baseCurrency,
     bool? exchangeRates,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      ExchangeRatesSend(
+      ExchangeRatesRequest(
         baseCurrency: baseCurrency ?? this.baseCurrency,
         exchangeRates: exchangeRates ?? this.exchangeRates,
         passthrough: passthrough ?? this.passthrough,

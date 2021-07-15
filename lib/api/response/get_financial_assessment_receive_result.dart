@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Get financial assessment response model class.
 abstract class GetFinancialAssessmentResponseModel {
-  /// Initializes.
+  /// Initializes Get financial assessment response model class .
   GetFinancialAssessmentResponseModel({
     this.getFinancialAssessment,
   });
@@ -20,14 +20,14 @@ abstract class GetFinancialAssessmentResponseModel {
 /// Get financial assessment response class.
 class GetFinancialAssessmentResponse
     extends GetFinancialAssessmentResponseModel {
-  /// Initializes
+  /// Initializes Get financial assessment response class.
   GetFinancialAssessmentResponse({
     GetFinancialAssessment? getFinancialAssessment,
   }) : super(
           getFinancialAssessment: getFinancialAssessment,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetFinancialAssessmentResponse.fromJson(
     dynamic getFinancialAssessmentJson,
   ) =>
@@ -37,7 +37,7 @@ class GetFinancialAssessmentResponse
             : GetFinancialAssessment.fromJson(getFinancialAssessmentJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -56,7 +56,7 @@ class GetFinancialAssessmentResponse
   /// due to regulatory and KYC (know your client) requirements.
   /// Throws a [FinancialAssessmentException] if API response contains an error
   static Future<GetFinancialAssessmentResponse> fetchAssessment(
-    GetFinancialAssessmentSend request,
+    GetFinancialAssessmentRequest request,
   ) async {
     final GetFinancialAssessmentReceive response =
         await _api.call(request: request);
@@ -82,7 +82,7 @@ class GetFinancialAssessmentResponse
 }
 /// Get financial assessment model class.
 abstract class GetFinancialAssessmentModel {
-  /// Initializes.
+  /// Initializes Get financial assessment model class .
   GetFinancialAssessmentModel({
     this.accountTurnover,
     this.binaryOptionsTradingExperience,
@@ -173,7 +173,7 @@ abstract class GetFinancialAssessmentModel {
 
 /// Get financial assessment class.
 class GetFinancialAssessment extends GetFinancialAssessmentModel {
-  /// Initializes
+  /// Initializes Get financial assessment class.
   GetFinancialAssessment({
     String? accountTurnover,
     String? binaryOptionsTradingExperience,
@@ -220,7 +220,7 @@ class GetFinancialAssessment extends GetFinancialAssessmentModel {
           tradingScore: tradingScore,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetFinancialAssessment.fromJson(Map<String, dynamic> json) =>
       GetFinancialAssessment(
         accountTurnover: json['account_turnover'],
@@ -249,7 +249,7 @@ class GetFinancialAssessment extends GetFinancialAssessmentModel {
         tradingScore: json['trading_score'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

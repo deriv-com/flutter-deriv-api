@@ -23,7 +23,7 @@ void main() {
     test('Fetch Advert Information Test', () async {
       final advert_info.P2pAdvertInfoResponse advertResponse =
           await advert_info.P2pAdvertInfoResponse.fetchAdvert(
-              const P2pAdvertInfoSend(id: '21'));
+              const P2pAdvertInfoRequest(id: '21'));
 
       final advert_info.P2pAdvertInfo advert = advertResponse.p2pAdvertInfo!;
 
@@ -57,7 +57,7 @@ void main() {
     test('Fetch Advert List Test', () async {
       final advert_list.P2pAdvertListResponse advertsRes =
           await advert_list.P2pAdvertListResponse.fetchAdvertList(
-        const P2pAdvertListSend(counterpartyType: 'sell'),
+        const P2pAdvertListRequest(counterpartyType: 'sell'),
       );
       final List<advert_list.ListItem> adverts = advertsRes.p2pAdvertList!.list;
 
@@ -101,7 +101,7 @@ void main() {
     test('Create Advert Test', () async {
       final advert_create.P2pAdvertCreateResponse advertRes =
           await advert_create.P2pAdvertCreateResponse.createAdvert(
-        const P2pAdvertCreateSend(
+        const P2pAdvertCreateRequest(
           description: 'Please transfer to account number 1234',
           type: 'buy',
           amount: 100,
@@ -148,7 +148,7 @@ void main() {
     test('Update Advert Test', () async {
       final advert_info.P2pAdvertInfoResponse advert =
           await advert_info.P2pAdvertInfoResponse.fetchAdvert(
-              const P2pAdvertInfoSend(id: '25'));
+              const P2pAdvertInfoRequest(id: '25'));
 
       final advert_update.P2pAdvertUpdateResponse advertResponse =
           await advert.update(delete: false, isActive: false);
@@ -193,7 +193,7 @@ void main() {
     test('Activate Advert Test', () async {
       final advert_info.P2pAdvertInfoResponse advert =
           await advert_info.P2pAdvertInfoResponse.fetchAdvert(
-              const P2pAdvertInfoSend(id: '21'));
+              const P2pAdvertInfoRequest(id: '21'));
       final advert_update.P2pAdvertUpdateResponse advertResponse =
           await advert.activate();
 
@@ -236,7 +236,7 @@ void main() {
     test('Deactivate Advert Test', () async {
       final advert_info.P2pAdvertInfoResponse advert =
           await advert_info.P2pAdvertInfoResponse.fetchAdvert(
-              const P2pAdvertInfoSend(id: '25'));
+              const P2pAdvertInfoRequest(id: '25'));
 
       final advert_update.P2pAdvertUpdateResponse advertResponse =
           await advert.deactivate();
@@ -285,7 +285,7 @@ void main() {
     test('Delete Advert Test', () async {
       final advert_info.P2pAdvertInfoResponse advert =
           await advert_info.P2pAdvertInfoResponse.fetchAdvert(
-              const P2pAdvertInfoSend(id: '25'));
+              const P2pAdvertInfoRequest(id: '25'));
       final advert_update.P2pAdvertUpdateResponse deletedAdvertResponse =
           await advert.delete();
 
@@ -329,7 +329,7 @@ void main() {
     test('Create Order From Advert Test', () async {
       final advert_info.P2pAdvertInfoResponse advert =
           await advert_info.P2pAdvertInfoResponse.fetchAdvert(
-              const P2pAdvertInfoSend(id: '2'));
+              const P2pAdvertInfoRequest(id: '2'));
       final order_create.P2pOrderCreateResponse orderResponse =
           await advert.createOrder(amount: 50);
 

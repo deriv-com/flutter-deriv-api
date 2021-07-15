@@ -8,7 +8,7 @@ import '../../services/dependency_injector/injector.dart';
 
 /// Asset index response model class.
 abstract class AssetIndexResponseModel {
-  /// Initializes.
+  /// Initializes Asset index response model class .
   AssetIndexResponseModel({
     this.assetIndex,
   });
@@ -19,14 +19,14 @@ abstract class AssetIndexResponseModel {
 
 /// Asset index response class.
 class AssetIndexResponse extends AssetIndexResponseModel {
-  /// Initializes
+  /// Initializes Asset index response class.
   AssetIndexResponse({
     List<dynamic>? assetIndex,
   }) : super(
           assetIndex: assetIndex,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AssetIndexResponse.fromJson(
     dynamic assetIndexJson,
   ) =>
@@ -40,7 +40,7 @@ class AssetIndexResponse extends AssetIndexResponseModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -62,7 +62,7 @@ class AssetIndexResponse extends AssetIndexResponseModel {
   /// If the user is logged in, only the assets available for that user's landing company will be returned.
   /// Throws an [AssetIndexException] if API response contains an error
   static Future<AssetIndexResponse> fetchAssetIndices(
-    AssetIndexSend request,
+    AssetIndexRequest request,
   ) async {
     final AssetIndexReceive response = await _api.call(
       request: request,

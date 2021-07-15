@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// New account virtual send class.
-class NewAccountVirtualSend extends Request {
-  /// Initialize NewAccountVirtualSend.
-  const NewAccountVirtualSend({
+/// New account virtual request class.
+class NewAccountVirtualRequest extends Request {
+  /// Initialize NewAccountVirtualRequest.
+  const NewAccountVirtualRequest({
     this.affiliateToken,
     required this.clientPassword,
     this.dateFirstContact,
@@ -39,8 +39,8 @@ class NewAccountVirtualSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory NewAccountVirtualSend.fromJson(Map<String, dynamic> json) =>
-      NewAccountVirtualSend(
+  factory NewAccountVirtualRequest.fromJson(Map<String, dynamic> json) =>
+      NewAccountVirtualRequest(
         affiliateToken: json['affiliate_token'] as String?,
         clientPassword: json['client_password'] as String?,
         dateFirstContact: json['date_first_contact'] as String?,
@@ -170,7 +170,7 @@ class NewAccountVirtualSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  NewAccountVirtualSend copyWith({
+  NewAccountVirtualRequest copyWith({
     String? affiliateToken,
     String? clientPassword,
     String? dateFirstContact,
@@ -196,7 +196,7 @@ class NewAccountVirtualSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      NewAccountVirtualSend(
+      NewAccountVirtualRequest(
         affiliateToken: affiliateToken ?? this.affiliateToken,
         clientPassword: clientPassword ?? this.clientPassword,
         dateFirstContact: dateFirstContact ?? this.dateFirstContact,

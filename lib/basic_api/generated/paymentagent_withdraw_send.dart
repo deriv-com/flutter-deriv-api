@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Paymentagent withdraw send class.
-class PaymentagentWithdrawSend extends Request {
-  /// Initialize PaymentagentWithdrawSend.
-  const PaymentagentWithdrawSend({
+/// Paymentagent withdraw request class.
+class PaymentagentWithdrawRequest extends Request {
+  /// Initialize PaymentagentWithdrawRequest.
+  const PaymentagentWithdrawRequest({
     required this.amount,
     required this.currency,
     this.description,
@@ -24,8 +24,8 @@ class PaymentagentWithdrawSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory PaymentagentWithdrawSend.fromJson(Map<String, dynamic> json) =>
-      PaymentagentWithdrawSend(
+  factory PaymentagentWithdrawRequest.fromJson(Map<String, dynamic> json) =>
+      PaymentagentWithdrawRequest(
         amount: json['amount'] as num?,
         currency: json['currency'] as String?,
         description: json['description'] as String?,
@@ -84,7 +84,7 @@ class PaymentagentWithdrawSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  PaymentagentWithdrawSend copyWith({
+  PaymentagentWithdrawRequest copyWith({
     num? amount,
     String? currency,
     String? description,
@@ -95,7 +95,7 @@ class PaymentagentWithdrawSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      PaymentagentWithdrawSend(
+      PaymentagentWithdrawRequest(
         amount: amount ?? this.amount,
         currency: currency ?? this.currency,
         description: description ?? this.description,

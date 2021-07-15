@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Paymentagent list response model class.
 abstract class PaymentagentListResponseModel {
-  /// Initializes.
+  /// Initializes Paymentagent list response model class .
   PaymentagentListResponseModel({
     this.paymentagentList,
   });
@@ -19,14 +19,14 @@ abstract class PaymentagentListResponseModel {
 
 /// Paymentagent list response class.
 class PaymentagentListResponse extends PaymentagentListResponseModel {
-  /// Initializes
+  /// Initializes Paymentagent list response class.
   PaymentagentListResponse({
     PaymentagentList? paymentagentList,
   }) : super(
           paymentagentList: paymentagentList,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentagentListResponse.fromJson(
     dynamic paymentagentListJson,
   ) =>
@@ -36,7 +36,7 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
             : PaymentagentList.fromJson(paymentagentListJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -54,7 +54,7 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
   /// For parameters information refer to [PaymentagentListRequest].
   /// Throws a [PaymentAgentException] if API response contains an error
   static Future<PaymentagentListResponse> fetch(
-    PaymentagentListSend request,
+    PaymentagentListRequest request,
   ) async {
     final PaymentagentListReceive response = await _api.call(request: request);
 
@@ -77,7 +77,7 @@ class PaymentagentListResponse extends PaymentagentListResponseModel {
 }
 /// Paymentagent list model class.
 abstract class PaymentagentListModel {
-  /// Initializes.
+  /// Initializes Paymentagent list model class .
   PaymentagentListModel({
     required this.list,
     this.availableCountries,
@@ -92,7 +92,7 @@ abstract class PaymentagentListModel {
 
 /// Paymentagent list class.
 class PaymentagentList extends PaymentagentListModel {
-  /// Initializes
+  /// Initializes Paymentagent list class.
   PaymentagentList({
     required List<ListItem> list,
     List<List<String>>? availableCountries,
@@ -101,7 +101,7 @@ class PaymentagentList extends PaymentagentListModel {
           availableCountries: availableCountries,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentagentList.fromJson(Map<String, dynamic> json) =>
       PaymentagentList(
         list: List<ListItem>.from(
@@ -122,7 +122,7 @@ class PaymentagentList extends PaymentagentListModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -159,7 +159,7 @@ class PaymentagentList extends PaymentagentListModel {
 }
 /// List item model class.
 abstract class ListItemModel {
-  /// Initializes.
+  /// Initializes List item model class .
   ListItemModel({
     this.currencies,
     this.depositCommission,
@@ -218,7 +218,7 @@ abstract class ListItemModel {
 
 /// List item class.
 class ListItem extends ListItemModel {
-  /// Initializes
+  /// Initializes List item class.
   ListItem({
     String? currencies,
     String? depositCommission,
@@ -249,7 +249,7 @@ class ListItem extends ListItemModel {
           withdrawalCommission: withdrawalCommission,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ListItem.fromJson(Map<String, dynamic> json) => ListItem(
         currencies: json['currencies'],
         depositCommission: json['deposit_commission'],
@@ -266,7 +266,7 @@ class ListItem extends ListItemModel {
         withdrawalCommission: json['withdrawal_commission'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

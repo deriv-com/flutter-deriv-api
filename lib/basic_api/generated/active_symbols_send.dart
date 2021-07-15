@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Active symbols send class.
-class ActiveSymbolsSend extends Request {
-  /// Initialize ActiveSymbolsSend.
-  const ActiveSymbolsSend({
+/// Active symbols request class.
+class ActiveSymbolsRequest extends Request {
+  /// Initialize ActiveSymbolsRequest.
+  const ActiveSymbolsRequest({
     required this.activeSymbols,
     this.landingCompany,
     this.productType,
@@ -20,8 +20,8 @@ class ActiveSymbolsSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory ActiveSymbolsSend.fromJson(Map<String, dynamic> json) =>
-      ActiveSymbolsSend(
+  factory ActiveSymbolsRequest.fromJson(Map<String, dynamic> json) =>
+      ActiveSymbolsRequest(
         activeSymbols: json['active_symbols'] as String?,
         landingCompany: json['landing_company'] as String?,
         productType: json['product_type'] as String?,
@@ -50,14 +50,14 @@ class ActiveSymbolsSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  ActiveSymbolsSend copyWith({
+  ActiveSymbolsRequest copyWith({
     String? activeSymbols,
     String? landingCompany,
     String? productType,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      ActiveSymbolsSend(
+      ActiveSymbolsRequest(
         activeSymbols: activeSymbols ?? this.activeSymbols,
         landingCompany: landingCompany ?? this.landingCompany,
         productType: productType ?? this.productType,

@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Set financial assessment send class.
-class SetFinancialAssessmentSend extends Request {
-  /// Initialize SetFinancialAssessmentSend.
-  const SetFinancialAssessmentSend({
+/// Set financial assessment request class.
+class SetFinancialAssessmentRequest extends Request {
+  /// Initialize SetFinancialAssessmentRequest.
+  const SetFinancialAssessmentRequest({
     this.accountTurnover,
     this.binaryOptionsTradingExperience,
     this.binaryOptionsTradingFrequency,
@@ -35,8 +35,8 @@ class SetFinancialAssessmentSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory SetFinancialAssessmentSend.fromJson(Map<String, dynamic> json) =>
-      SetFinancialAssessmentSend(
+  factory SetFinancialAssessmentRequest.fromJson(Map<String, dynamic> json) =>
+      SetFinancialAssessmentRequest(
         accountTurnover: json['account_turnover'] as String?,
         binaryOptionsTradingExperience:
             json['binary_options_trading_experience'] as String?,
@@ -151,7 +151,7 @@ class SetFinancialAssessmentSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  SetFinancialAssessmentSend copyWith({
+  SetFinancialAssessmentRequest copyWith({
     String? accountTurnover,
     String? binaryOptionsTradingExperience,
     String? binaryOptionsTradingFrequency,
@@ -173,7 +173,7 @@ class SetFinancialAssessmentSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      SetFinancialAssessmentSend(
+      SetFinancialAssessmentRequest(
         accountTurnover: accountTurnover ?? this.accountTurnover,
         binaryOptionsTradingExperience: binaryOptionsTradingExperience ??
             this.binaryOptionsTradingExperience,

@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// P2p advert create response model class.
 abstract class P2pAdvertCreateResponseModel {
-  /// Initializes.
+  /// Initializes P2p advert create response model class .
   P2pAdvertCreateResponseModel({
     this.p2pAdvertCreate,
   });
@@ -19,14 +19,14 @@ abstract class P2pAdvertCreateResponseModel {
 
 /// P2p advert create response class.
 class P2pAdvertCreateResponse extends P2pAdvertCreateResponseModel {
-  /// Initializes
+  /// Initializes P2p advert create response class.
   P2pAdvertCreateResponse({
     P2pAdvertCreate? p2pAdvertCreate,
   }) : super(
           p2pAdvertCreate: p2pAdvertCreate,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertCreateResponse.fromJson(
     dynamic p2pAdvertCreateJson,
   ) =>
@@ -36,7 +36,7 @@ class P2pAdvertCreateResponse extends P2pAdvertCreateResponseModel {
             : P2pAdvertCreate.fromJson(p2pAdvertCreateJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -54,7 +54,7 @@ class P2pAdvertCreateResponse extends P2pAdvertCreateResponseModel {
   /// For parameters information refer to [P2pAdvertCreateRequest].
   /// Throws a [P2PAdvertException] if API response contains an error
   static Future<P2pAdvertCreateResponse> createAdvert(
-    P2pAdvertCreateSend request,
+    P2pAdvertCreateRequest request,
   ) async {
     final P2pAdvertCreateReceive response = await _api.call(request: request);
 
@@ -108,7 +108,7 @@ enum TypeEnum {
 }
 /// P2p advert create model class.
 abstract class P2pAdvertCreateModel {
-  /// Initializes.
+  /// Initializes P2p advert create model class .
   P2pAdvertCreateModel({
     required this.type,
     required this.remainingAmountDisplay,
@@ -219,7 +219,7 @@ abstract class P2pAdvertCreateModel {
 
 /// P2p advert create class.
 class P2pAdvertCreate extends P2pAdvertCreateModel {
-  /// Initializes
+  /// Initializes P2p advert create class.
   P2pAdvertCreate({
     required String accountCurrency,
     required AdvertiserDetails advertiserDetails,
@@ -276,7 +276,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
           paymentMethodIds: paymentMethodIds,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertCreate.fromJson(Map<String, dynamic> json) =>
       P2pAdvertCreate(
         accountCurrency: json['account_currency'],
@@ -315,7 +315,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -421,7 +421,7 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
 }
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
-  /// Initializes.
+  /// Initializes Advertiser details model class .
   AdvertiserDetailsModel({
     required this.name,
     required this.id,
@@ -448,7 +448,7 @@ abstract class AdvertiserDetailsModel {
 
 /// Advertiser details class.
 class AdvertiserDetails extends AdvertiserDetailsModel {
-  /// Initializes
+  /// Initializes Advertiser details class.
   AdvertiserDetails({
     required String id,
     required String name,
@@ -463,7 +463,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
           totalCompletionRate: totalCompletionRate,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AdvertiserDetails.fromJson(Map<String, dynamic> json) =>
       AdvertiserDetails(
         id: json['id'],
@@ -473,7 +473,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         totalCompletionRate: getDouble(json['total_completion_rate']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

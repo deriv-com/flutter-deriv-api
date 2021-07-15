@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Tnc approval send class.
-class TncApprovalSend extends Request {
-  /// Initialize TncApprovalSend.
-  const TncApprovalSend({
+/// Tnc approval request class.
+class TncApprovalRequest extends Request {
+  /// Initialize TncApprovalRequest.
+  const TncApprovalRequest({
     this.tncApproval = true,
     this.ukgcFundsProtection,
     Map<String, dynamic>? passthrough,
@@ -19,8 +19,8 @@ class TncApprovalSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory TncApprovalSend.fromJson(Map<String, dynamic> json) =>
-      TncApprovalSend(
+  factory TncApprovalRequest.fromJson(Map<String, dynamic> json) =>
+      TncApprovalRequest(
         tncApproval:
             json['tnc_approval'] == null ? null : json['tnc_approval'] == 1,
         ukgcFundsProtection: json['ukgc_funds_protection'] as int?,
@@ -49,13 +49,13 @@ class TncApprovalSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  TncApprovalSend copyWith({
+  TncApprovalRequest copyWith({
     bool? tncApproval,
     int? ukgcFundsProtection,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      TncApprovalSend(
+      TncApprovalRequest(
         tncApproval: tncApproval ?? this.tncApproval,
         ukgcFundsProtection: ukgcFundsProtection ?? this.ukgcFundsProtection,
         passthrough: passthrough ?? this.passthrough,

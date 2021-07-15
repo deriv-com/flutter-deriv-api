@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Mt5 password check send class.
-class Mt5PasswordCheckSend extends Request {
-  /// Initialize Mt5PasswordCheckSend.
-  const Mt5PasswordCheckSend({
+/// Mt5 password check request class.
+class Mt5PasswordCheckRequest extends Request {
+  /// Initialize Mt5PasswordCheckRequest.
+  const Mt5PasswordCheckRequest({
     required this.login,
     this.mt5PasswordCheck = true,
     required this.password,
@@ -21,8 +21,8 @@ class Mt5PasswordCheckSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory Mt5PasswordCheckSend.fromJson(Map<String, dynamic> json) =>
-      Mt5PasswordCheckSend(
+  factory Mt5PasswordCheckRequest.fromJson(Map<String, dynamic> json) =>
+      Mt5PasswordCheckRequest(
         login: json['login'] as String?,
         mt5PasswordCheck: json['mt5_password_check'] == null
             ? null
@@ -62,7 +62,7 @@ class Mt5PasswordCheckSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  Mt5PasswordCheckSend copyWith({
+  Mt5PasswordCheckRequest copyWith({
     String? login,
     bool? mt5PasswordCheck,
     String? password,
@@ -70,7 +70,7 @@ class Mt5PasswordCheckSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      Mt5PasswordCheckSend(
+      Mt5PasswordCheckRequest(
         login: login ?? this.login,
         mt5PasswordCheck: mt5PasswordCheck ?? this.mt5PasswordCheck,
         password: password ?? this.password,

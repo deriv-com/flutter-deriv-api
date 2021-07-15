@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Mt5 deposit send class.
-class Mt5DepositSend extends Request {
-  /// Initialize Mt5DepositSend.
-  const Mt5DepositSend({
+/// Mt5 deposit request class.
+class Mt5DepositRequest extends Request {
+  /// Initialize Mt5DepositRequest.
+  const Mt5DepositRequest({
     required this.amount,
     required this.fromBinary,
     this.mt5Deposit = true,
@@ -21,7 +21,8 @@ class Mt5DepositSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory Mt5DepositSend.fromJson(Map<String, dynamic> json) => Mt5DepositSend(
+  factory Mt5DepositRequest.fromJson(Map<String, dynamic> json) =>
+      Mt5DepositRequest(
         amount: json['amount'] as num?,
         fromBinary: json['from_binary'] as String?,
         mt5Deposit:
@@ -60,7 +61,7 @@ class Mt5DepositSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  Mt5DepositSend copyWith({
+  Mt5DepositRequest copyWith({
     num? amount,
     String? fromBinary,
     bool? mt5Deposit,
@@ -68,7 +69,7 @@ class Mt5DepositSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      Mt5DepositSend(
+      Mt5DepositRequest(
         amount: amount ?? this.amount,
         fromBinary: fromBinary ?? this.fromBinary,
         mt5Deposit: mt5Deposit ?? this.mt5Deposit,

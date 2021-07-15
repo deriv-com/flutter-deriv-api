@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Cancel response model class.
 abstract class CancelResponseModel {
-  /// Initializes.
+  /// Initializes Cancel response model class .
   CancelResponseModel({
     this.cancel,
   });
@@ -19,14 +19,14 @@ abstract class CancelResponseModel {
 
 /// Cancel response class.
 class CancelResponse extends CancelResponseModel {
-  /// Initializes
+  /// Initializes Cancel response class.
   CancelResponse({
     Cancel? cancel,
   }) : super(
           cancel: cancel,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CancelResponse.fromJson(
     dynamic cancelJson,
   ) =>
@@ -34,7 +34,7 @@ class CancelResponse extends CancelResponseModel {
         cancel: cancelJson == null ? null : Cancel.fromJson(cancelJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -50,7 +50,7 @@ class CancelResponse extends CancelResponseModel {
   /// Cancels a contract with parameters specified in [CancelRequest].
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  static Future<CancelResponse> cancelContract(CancelSend request) async {
+  static Future<CancelResponse> cancelContract(CancelRequest request) async {
     final CancelReceive response = await _api.call(request: request);
 
     checkException(
@@ -72,7 +72,7 @@ class CancelResponse extends CancelResponseModel {
 }
 /// Cancel model class.
 abstract class CancelModel {
-  /// Initializes.
+  /// Initializes Cancel model class .
   CancelModel({
     this.balanceAfter,
     this.contractId,
@@ -99,7 +99,7 @@ abstract class CancelModel {
 
 /// Cancel class.
 class Cancel extends CancelModel {
-  /// Initializes
+  /// Initializes Cancel class.
   Cancel({
     double? balanceAfter,
     int? contractId,
@@ -114,7 +114,7 @@ class Cancel extends CancelModel {
           transactionId: transactionId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Cancel.fromJson(Map<String, dynamic> json) => Cancel(
         balanceAfter: getDouble(json['balance_after']),
         contractId: json['contract_id'],
@@ -123,7 +123,7 @@ class Cancel extends CancelModel {
         transactionId: json['transaction_id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

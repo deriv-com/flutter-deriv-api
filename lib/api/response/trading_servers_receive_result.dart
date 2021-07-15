@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Trading servers response model class.
 abstract class TradingServersResponseModel {
-  /// Initializes.
+  /// Initializes Trading servers response model class .
   TradingServersResponseModel({
     this.tradingServers,
   });
@@ -19,14 +19,14 @@ abstract class TradingServersResponseModel {
 
 /// Trading servers response class.
 class TradingServersResponse extends TradingServersResponseModel {
-  /// Initializes
+  /// Initializes Trading servers response class.
   TradingServersResponse({
     List<TradingServersItem>? tradingServers,
   }) : super(
           tradingServers: tradingServers,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradingServersResponse.fromJson(
     dynamic tradingServersJson,
   ) =>
@@ -40,7 +40,7 @@ class TradingServersResponse extends TradingServersResponseModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -59,10 +59,10 @@ class TradingServersResponse extends TradingServersResponseModel {
 
   /// Get the list of servers for platform. Currently, only mt5 is supported
   ///
-  /// For parameters information refer to [TradingServersSend].
+  /// For parameters information refer to [TradingServersRequest].
   /// Throws a [TradingException] if API response contains an error
   static Future<TradingServersResponse> fetchTradingServers(
-    TradingServersSend request,
+    TradingServersRequest request,
   ) async {
     final TradingServersReceive response = await _api.call(request: request);
 
@@ -132,7 +132,7 @@ enum IdEnum {
 }
 /// Trading servers item model class.
 abstract class TradingServersItemModel {
-  /// Initializes.
+  /// Initializes Trading servers item model class .
   TradingServersItemModel({
     this.disabled,
     this.environment,
@@ -167,7 +167,7 @@ abstract class TradingServersItemModel {
 
 /// Trading servers item class.
 class TradingServersItem extends TradingServersItemModel {
-  /// Initializes
+  /// Initializes Trading servers item class.
   TradingServersItem({
     bool? disabled,
     EnvironmentEnum? environment,
@@ -186,7 +186,7 @@ class TradingServersItem extends TradingServersItemModel {
           supportedAccounts: supportedAccounts,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradingServersItem.fromJson(Map<String, dynamic> json) =>
       TradingServersItem(
         disabled: getBool(json['disabled']),
@@ -208,7 +208,7 @@ class TradingServersItem extends TradingServersItemModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -258,7 +258,7 @@ class TradingServersItem extends TradingServersItemModel {
 }
 /// Geolocation model class.
 abstract class GeolocationModel {
-  /// Initializes.
+  /// Initializes Geolocation model class .
   GeolocationModel({
     this.location,
     this.region,
@@ -277,7 +277,7 @@ abstract class GeolocationModel {
 
 /// Geolocation class.
 class Geolocation extends GeolocationModel {
-  /// Initializes
+  /// Initializes Geolocation class.
   Geolocation({
     String? location,
     String? region,
@@ -288,14 +288,14 @@ class Geolocation extends GeolocationModel {
           sequence: sequence,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Geolocation.fromJson(Map<String, dynamic> json) => Geolocation(
         location: json['location'],
         region: json['region'],
         sequence: json['sequence'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

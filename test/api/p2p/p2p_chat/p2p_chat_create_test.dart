@@ -10,7 +10,7 @@ void main() {
 
   test('Create P2P Chat Test', () async {
     final P2pChatCreateResponse createChat = await P2pChatCreateResponse.createChat(
-      const P2pChatCreateSend(orderId: '1234'),
+      const P2pChatCreateRequest(orderId: '1234'),
     );
 
     expect(createChat.p2pChatCreate?.channelUrl, 'channel_url');

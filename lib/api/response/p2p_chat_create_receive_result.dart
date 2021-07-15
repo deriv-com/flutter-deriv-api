@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// P2p chat create response model class.
 abstract class P2pChatCreateResponseModel {
-  /// Initializes.
+  /// Initializes P2p chat create response model class .
   P2pChatCreateResponseModel({
     this.p2pChatCreate,
   });
@@ -19,14 +19,14 @@ abstract class P2pChatCreateResponseModel {
 
 /// P2p chat create response class.
 class P2pChatCreateResponse extends P2pChatCreateResponseModel {
-  /// Initializes
+  /// Initializes P2p chat create response class.
   P2pChatCreateResponse({
     P2pChatCreate? p2pChatCreate,
   }) : super(
           p2pChatCreate: p2pChatCreate,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pChatCreateResponse.fromJson(
     dynamic p2pChatCreateJson,
   ) =>
@@ -36,7 +36,7 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
             : P2pChatCreate.fromJson(p2pChatCreateJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -54,7 +54,7 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
   /// For parameters information refer to [P2pChatCreateRequest].
   /// Throws a [P2PException] if API response contains an error
   static Future<P2pChatCreateResponse> createChat(
-    P2pChatCreateSend request,
+    P2pChatCreateRequest request,
   ) async {
     final P2pChatCreateReceive response = await _api.call(request: request);
 
@@ -77,7 +77,7 @@ class P2pChatCreateResponse extends P2pChatCreateResponseModel {
 }
 /// P2p chat create model class.
 abstract class P2pChatCreateModel {
-  /// Initializes.
+  /// Initializes P2p chat create model class .
   P2pChatCreateModel({
     required this.orderId,
     required this.channelUrl,
@@ -92,7 +92,7 @@ abstract class P2pChatCreateModel {
 
 /// P2p chat create class.
 class P2pChatCreate extends P2pChatCreateModel {
-  /// Initializes
+  /// Initializes P2p chat create class.
   P2pChatCreate({
     required String channelUrl,
     required String orderId,
@@ -101,13 +101,13 @@ class P2pChatCreate extends P2pChatCreateModel {
           orderId: orderId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pChatCreate.fromJson(Map<String, dynamic> json) => P2pChatCreate(
         channelUrl: json['channel_url'],
         orderId: json['order_id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

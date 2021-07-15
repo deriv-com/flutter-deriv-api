@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Mt5 password change response model class.
 abstract class Mt5PasswordChangeResponseModel {
-  /// Initializes.
+  /// Initializes Mt5 password change response model class .
   Mt5PasswordChangeResponseModel({
     this.mt5PasswordChange,
   });
@@ -19,14 +19,14 @@ abstract class Mt5PasswordChangeResponseModel {
 
 /// Mt5 password change response class.
 class Mt5PasswordChangeResponse extends Mt5PasswordChangeResponseModel {
-  /// Initializes
+  /// Initializes Mt5 password change response class.
   Mt5PasswordChangeResponse({
     int? mt5PasswordChange,
   }) : super(
           mt5PasswordChange: mt5PasswordChange,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5PasswordChangeResponse.fromJson(
     dynamic mt5PasswordChangeJson,
   ) =>
@@ -34,7 +34,7 @@ class Mt5PasswordChangeResponse extends Mt5PasswordChangeResponseModel {
         mt5PasswordChange: mt5PasswordChangeJson,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -50,7 +50,7 @@ class Mt5PasswordChangeResponse extends Mt5PasswordChangeResponseModel {
   /// For parameters information refer to [Mt5PasswordChangeRequest].
   /// Throws a [MT5Exception] if API response contains an error
   static Future<Mt5PasswordChangeResponse> changePassword(
-    Mt5PasswordChangeSend request,
+    Mt5PasswordChangeRequest request,
   ) async {
     final Mt5PasswordChangeReceive response = await _api.call(request: request);
 

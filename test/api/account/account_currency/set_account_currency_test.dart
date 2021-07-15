@@ -11,7 +11,7 @@ void main() {
   test('Set Account Currency Test', () async {
     final SetAccountCurrencyResponse setAccountCurrency =
         await SetAccountCurrencyResponse.setCurrency(
-      const SetAccountCurrencySend(setAccountCurrency: 'USD'),
+      const SetAccountCurrencyRequest(setAccountCurrency: 'USD'),
     );
 
     expect(setAccountCurrency.setAccountCurrency, true);

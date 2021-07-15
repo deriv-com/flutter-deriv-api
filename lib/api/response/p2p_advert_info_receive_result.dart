@@ -12,7 +12,7 @@ import 'p2p_order_create_receive_result.dart';
 
 /// P2p advert info response model class.
 abstract class P2pAdvertInfoResponseModel {
-  /// Initializes.
+  /// Initializes P2p advert info response model class .
   P2pAdvertInfoResponseModel({
     this.p2pAdvertInfo,
   });
@@ -23,14 +23,14 @@ abstract class P2pAdvertInfoResponseModel {
 
 /// P2p advert info response class.
 class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
-  /// Initializes
+  /// Initializes P2p advert info response class.
   P2pAdvertInfoResponse({
     P2pAdvertInfo? p2pAdvertInfo,
   }) : super(
           p2pAdvertInfo: p2pAdvertInfo,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertInfoResponse.fromJson(
     dynamic p2pAdvertInfoJson,
   ) =>
@@ -40,7 +40,7 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
             : P2pAdvertInfo.fromJson(p2pAdvertInfoJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -58,7 +58,7 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
   /// For parameters information refer to [P2pAdvertInfoRequest].
   /// Throws a [P2PAdvertException] if API response contains an error
   static Future<P2pAdvertInfoResponse> fetchAdvert(
-    P2pAdvertInfoSend request,
+    P2pAdvertInfoRequest request,
   ) async {
     final P2pAdvertInfoReceive response = await _api.call(request: request);
 
@@ -81,7 +81,7 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
     bool? isActive,
   }) =>
       P2pAdvertUpdateResponse.updateAdvert(
-        P2pAdvertUpdateSend(
+        P2pAdvertUpdateRequest(
           id: p2pAdvertInfo?.id,
           delete: delete ?? false,
           isActive: isActive ?? p2pAdvertInfo?.isActive,
@@ -115,7 +115,7 @@ class P2pAdvertInfoResponse extends P2pAdvertInfoResponseModel {
     String? paymentInfo,
   }) =>
       P2pOrderCreateResponse.create(
-        P2pOrderCreateSend(
+        P2pOrderCreateRequest(
           advertId: p2pAdvertInfo?.id,
           amount: amount,
           contactInfo: contactInfo,
@@ -165,7 +165,7 @@ enum TypeEnum {
 }
 /// P2p advert info model class.
 abstract class P2pAdvertInfoModel {
-  /// Initializes.
+  /// Initializes P2p advert info model class .
   P2pAdvertInfoModel({
     required this.type,
     required this.rateDisplay,
@@ -296,7 +296,7 @@ abstract class P2pAdvertInfoModel {
 
 /// P2p advert info class.
 class P2pAdvertInfo extends P2pAdvertInfoModel {
-  /// Initializes
+  /// Initializes P2p advert info class.
   P2pAdvertInfo({
     required String accountCurrency,
     required AdvertiserDetails advertiserDetails,
@@ -363,7 +363,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
           remainingAmountDisplay: remainingAmountDisplay,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertInfo.fromJson(Map<String, dynamic> json) => P2pAdvertInfo(
         accountCurrency: json['account_currency'],
         advertiserDetails:
@@ -406,7 +406,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
         remainingAmountDisplay: json['remaining_amount_display'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -530,7 +530,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
 }
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
-  /// Initializes.
+  /// Initializes Advertiser details model class .
   AdvertiserDetailsModel({
     required this.name,
     required this.id,
@@ -557,7 +557,7 @@ abstract class AdvertiserDetailsModel {
 
 /// Advertiser details class.
 class AdvertiserDetails extends AdvertiserDetailsModel {
-  /// Initializes
+  /// Initializes Advertiser details class.
   AdvertiserDetails({
     required String id,
     required String name,
@@ -572,7 +572,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
           totalCompletionRate: totalCompletionRate,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AdvertiserDetails.fromJson(Map<String, dynamic> json) =>
       AdvertiserDetails(
         id: json['id'],
@@ -582,7 +582,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         totalCompletionRate: getDouble(json['total_completion_rate']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

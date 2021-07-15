@@ -11,7 +11,7 @@ import 'set_settings_receive_result.dart';
 
 /// Get settings response model class.
 abstract class GetSettingsResponseModel {
-  /// Initializes.
+  /// Initializes Get settings response model class .
   GetSettingsResponseModel({
     this.getSettings,
   });
@@ -22,14 +22,14 @@ abstract class GetSettingsResponseModel {
 
 /// Get settings response class.
 class GetSettingsResponse extends GetSettingsResponseModel {
-  /// Initializes
+  /// Initializes Get settings response class.
   GetSettingsResponse({
     GetSettings? getSettings,
   }) : super(
           getSettings: getSettings,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetSettingsResponse.fromJson(
     dynamic getSettingsJson,
   ) =>
@@ -39,7 +39,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
             : GetSettings.fromJson(getSettingsJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -56,10 +56,10 @@ class GetSettingsResponse extends GetSettingsResponseModel {
   ///
   /// Throws an [AccountSettingsException] if API response contains an error
   static Future<GetSettingsResponse> fetchAccountSetting([
-    GetSettingsSend? request,
+    GetSettingsRequest? request,
   ]) async {
     final GetSettingsReceive response = await _api.call(
-      request: request ?? const GetSettingsSend(),
+      request: request ?? const GetSettingsRequest(),
     );
 
     checkException(
@@ -75,7 +75,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
   ///
   /// Throws an [AccountSettingsException] if API response contains an error
   static Future<SetSettingsResponse> changeAccountSetting(
-    SetSettingsSend request,
+    SetSettingsRequest request,
   ) async {
     final SetSettingsReceive response = await _api.call(request: request);
 
@@ -94,7 +94,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
     required String secretQuestion,
   }) =>
       changeAccountSetting(
-        SetSettingsSend(
+        SetSettingsRequest(
           accountOpeningReason: getSettings?.accountOpeningReason,
           addressCity: getSettings?.addressCity,
           addressLine1: getSettings?.addressLine1,
@@ -130,7 +130,7 @@ class GetSettingsResponse extends GetSettingsResponseModel {
 }
 /// Get settings model class.
 abstract class GetSettingsModel {
-  /// Initializes.
+  /// Initializes Get settings model class .
   GetSettingsModel({
     this.accountOpeningReason,
     this.addressCity,
@@ -257,7 +257,7 @@ abstract class GetSettingsModel {
 
 /// Get settings class.
 class GetSettings extends GetSettingsModel {
-  /// Initializes
+  /// Initializes Get settings class.
   GetSettings({
     String? accountOpeningReason,
     String? addressCity,
@@ -322,7 +322,7 @@ class GetSettings extends GetSettingsModel {
           userHash: userHash,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetSettings.fromJson(Map<String, dynamic> json) => GetSettings(
         accountOpeningReason: json['account_opening_reason'],
         addressCity: json['address_city'],
@@ -365,7 +365,7 @@ class GetSettings extends GetSettingsModel {
         userHash: json['user_hash'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -482,7 +482,7 @@ class GetSettings extends GetSettingsModel {
 }
 /// Feature flag model class.
 abstract class FeatureFlagModel {
-  /// Initializes.
+  /// Initializes Feature flag model class .
   FeatureFlagModel({
     this.wallet,
   });
@@ -493,19 +493,19 @@ abstract class FeatureFlagModel {
 
 /// Feature flag class.
 class FeatureFlag extends FeatureFlagModel {
-  /// Initializes
+  /// Initializes Feature flag class.
   FeatureFlag({
     bool? wallet,
   }) : super(
           wallet: wallet,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory FeatureFlag.fromJson(Map<String, dynamic> json) => FeatureFlag(
         wallet: getBool(json['wallet']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

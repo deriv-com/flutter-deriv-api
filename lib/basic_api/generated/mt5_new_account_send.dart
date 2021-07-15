@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Mt5 new account send class.
-class Mt5NewAccountSend extends Request {
-  /// Initialize Mt5NewAccountSend.
-  const Mt5NewAccountSend({
+/// Mt5 new account request class.
+class Mt5NewAccountRequest extends Request {
+  /// Initialize Mt5NewAccountRequest.
+  const Mt5NewAccountRequest({
     required this.accountType,
     this.address,
     this.city,
@@ -37,8 +37,8 @@ class Mt5NewAccountSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory Mt5NewAccountSend.fromJson(Map<String, dynamic> json) =>
-      Mt5NewAccountSend(
+  factory Mt5NewAccountRequest.fromJson(Map<String, dynamic> json) =>
+      Mt5NewAccountRequest(
         accountType: json['account_type'] as String?,
         address: json['address'] as String?,
         city: json['city'] as String?,
@@ -162,7 +162,7 @@ class Mt5NewAccountSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  Mt5NewAccountSend copyWith({
+  Mt5NewAccountRequest copyWith({
     String? accountType,
     String? address,
     String? city,
@@ -186,7 +186,7 @@ class Mt5NewAccountSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      Mt5NewAccountSend(
+      Mt5NewAccountRequest(
         accountType: accountType ?? this.accountType,
         address: address ?? this.address,
         city: city ?? this.city,

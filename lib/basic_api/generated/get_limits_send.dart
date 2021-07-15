@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Get limits send class.
-class GetLimitsSend extends Request {
-  /// Initialize GetLimitsSend.
-  const GetLimitsSend({
+/// Get limits request class.
+class GetLimitsRequest extends Request {
+  /// Initialize GetLimitsRequest.
+  const GetLimitsRequest({
     this.getLimits = true,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -18,7 +18,8 @@ class GetLimitsSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory GetLimitsSend.fromJson(Map<String, dynamic> json) => GetLimitsSend(
+  factory GetLimitsRequest.fromJson(Map<String, dynamic> json) =>
+      GetLimitsRequest(
         getLimits: json['get_limits'] == null ? null : json['get_limits'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -41,12 +42,12 @@ class GetLimitsSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  GetLimitsSend copyWith({
+  GetLimitsRequest copyWith({
     bool? getLimits,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      GetLimitsSend(
+      GetLimitsRequest(
         getLimits: getLimits ?? this.getLimits,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

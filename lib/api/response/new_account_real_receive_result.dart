@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// New account real response model class.
 abstract class NewAccountRealResponseModel {
-  /// Initializes.
+  /// Initializes New account real response model class .
   NewAccountRealResponseModel({
     this.newAccountReal,
   });
@@ -19,14 +19,14 @@ abstract class NewAccountRealResponseModel {
 
 /// New account real response class.
 class NewAccountRealResponse extends NewAccountRealResponseModel {
-  /// Initializes
+  /// Initializes New account real response class.
   NewAccountRealResponse({
     NewAccountReal? newAccountReal,
   }) : super(
           newAccountReal: newAccountReal,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory NewAccountRealResponse.fromJson(
     dynamic newAccountRealJson,
   ) =>
@@ -36,7 +36,7 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
             : NewAccountReal.fromJson(newAccountRealJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -54,7 +54,7 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
   /// For parameters information refer to [NewAccountRealRequest].
   /// Throws a [NewAccountException] ifAP
   static Future<NewAccountRealResponse> openNewRealAccount(
-    NewAccountRealSend request,
+    NewAccountRealRequest request,
   ) async {
     final NewAccountRealReceive response = await _api.call(request: request);
 
@@ -77,7 +77,7 @@ class NewAccountRealResponse extends NewAccountRealResponseModel {
 }
 /// New account real model class.
 abstract class NewAccountRealModel {
-  /// Initializes.
+  /// Initializes New account real model class .
   NewAccountRealModel({
     required this.oauthToken,
     required this.landingCompany,
@@ -100,7 +100,7 @@ abstract class NewAccountRealModel {
 
 /// New account real class.
 class NewAccountReal extends NewAccountRealModel {
-  /// Initializes
+  /// Initializes New account real class.
   NewAccountReal({
     required String clientId,
     required String landingCompany,
@@ -113,7 +113,7 @@ class NewAccountReal extends NewAccountRealModel {
           landingCompanyShort: landingCompanyShort,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory NewAccountReal.fromJson(Map<String, dynamic> json) => NewAccountReal(
         clientId: json['client_id'],
         landingCompany: json['landing_company'],
@@ -121,7 +121,7 @@ class NewAccountReal extends NewAccountRealModel {
         landingCompanyShort: json['landing_company_short'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

@@ -21,7 +21,7 @@ void main() {
     test('Fetch Application Details Test', () async {
       final AppGetResponse appDetails =
           await AppGetResponse.fetchApplicationDetails(
-        const AppGetSend(appGet: 1234),
+        const AppGetRequest(appGet: 1234),
       );
 
       expect(appDetails.appGet?.appId, 1234);
@@ -43,7 +43,7 @@ void main() {
     test('Fetch Application List Test', () async {
       final List<AppGetResponse?>? appList =
           await AppGetResponse.fetchApplicationList(
-        const AppListSend(),
+        const AppListRequest(),
       );
 
       expect(appList!.length, 1);
@@ -179,7 +179,7 @@ void main() {
 
     test('Application Update Test', () async {
       final AppUpdateResponse appRegister =
-          await AppUpdateResponse.updateApplication(const AppUpdateSend(
+          await AppUpdateResponse.updateApplication(const AppUpdateRequest(
               appUpdate: 1234,
               appstore: 'https://itunes.apple.com/test_app',
               github: 'https://github.com/test_org/app',
@@ -217,7 +217,7 @@ void main() {
     test('Revoke Oauth Application Test', () async {
       final RevokeOauthAppResponse revokeOauthApp =
           await RevokeOauthAppResponse.revokeOauthApplication(
-              const RevokeOauthAppSend(revokeOauthApp: 1234));
+              const RevokeOauthAppRequest(revokeOauthApp: 1234));
 
       expect(revokeOauthApp.revokeOauthApp, 1);
     });

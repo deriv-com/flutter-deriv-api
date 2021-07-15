@@ -2,7 +2,7 @@ import '../../helpers/helpers.dart';
 
 /// Economic calendar response model class.
 abstract class EconomicCalendarResponseModel {
-  /// Initializes.
+  /// Initializes Economic calendar response model class .
   EconomicCalendarResponseModel({
     this.economicCalendar,
   });
@@ -13,14 +13,14 @@ abstract class EconomicCalendarResponseModel {
 
 /// Economic calendar response class.
 class EconomicCalendarResponse extends EconomicCalendarResponseModel {
-  /// Initializes
+  /// Initializes Economic calendar response class.
   EconomicCalendarResponse({
     EconomicCalendar? economicCalendar,
   }) : super(
           economicCalendar: economicCalendar,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory EconomicCalendarResponse.fromJson(
     dynamic economicCalendarJson,
   ) =>
@@ -30,7 +30,7 @@ class EconomicCalendarResponse extends EconomicCalendarResponseModel {
             : EconomicCalendar.fromJson(economicCalendarJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -51,7 +51,7 @@ class EconomicCalendarResponse extends EconomicCalendarResponseModel {
 }
 /// Economic calendar model class.
 abstract class EconomicCalendarModel {
-  /// Initializes.
+  /// Initializes Economic calendar model class .
   EconomicCalendarModel({
     this.events,
   });
@@ -62,14 +62,14 @@ abstract class EconomicCalendarModel {
 
 /// Economic calendar class.
 class EconomicCalendar extends EconomicCalendarModel {
-  /// Initializes
+  /// Initializes Economic calendar class.
   EconomicCalendar({
     List<EventsItem>? events,
   }) : super(
           events: events,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory EconomicCalendar.fromJson(Map<String, dynamic> json) =>
       EconomicCalendar(
         events: json['events'] == null
@@ -81,7 +81,7 @@ class EconomicCalendar extends EconomicCalendarModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -106,7 +106,7 @@ class EconomicCalendar extends EconomicCalendarModel {
 }
 /// Events item model class.
 abstract class EventsItemModel {
-  /// Initializes.
+  /// Initializes Events item model class .
   EventsItemModel({
     this.actual,
     this.currency,
@@ -141,7 +141,7 @@ abstract class EventsItemModel {
 
 /// Events item class.
 class EventsItem extends EventsItemModel {
-  /// Initializes
+  /// Initializes Events item class.
   EventsItem({
     Actual? actual,
     String? currency,
@@ -160,7 +160,7 @@ class EventsItem extends EventsItemModel {
           releaseDate: releaseDate,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory EventsItem.fromJson(Map<String, dynamic> json) => EventsItem(
         actual: json['actual'] == null ? null : Actual.fromJson(json['actual']),
         currency: json['currency'],
@@ -175,7 +175,7 @@ class EventsItem extends EventsItemModel {
         releaseDate: getDateTime(json['release_date']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -218,7 +218,7 @@ class EventsItem extends EventsItemModel {
 }
 /// Actual model class.
 abstract class ActualModel {
-  /// Initializes.
+  /// Initializes Actual model class .
   ActualModel({
     this.displayValue,
   });
@@ -229,19 +229,19 @@ abstract class ActualModel {
 
 /// Actual class.
 class Actual extends ActualModel {
-  /// Initializes
+  /// Initializes Actual class.
   Actual({
     String? displayValue,
   }) : super(
           displayValue: displayValue,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Actual.fromJson(Map<String, dynamic> json) => Actual(
         displayValue: json['display_value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -260,7 +260,7 @@ class Actual extends ActualModel {
 }
 /// Forecast model class.
 abstract class ForecastModel {
-  /// Initializes.
+  /// Initializes Forecast model class .
   ForecastModel({
     this.displayValue,
   });
@@ -271,19 +271,19 @@ abstract class ForecastModel {
 
 /// Forecast class.
 class Forecast extends ForecastModel {
-  /// Initializes
+  /// Initializes Forecast class.
   Forecast({
     String? displayValue,
   }) : super(
           displayValue: displayValue,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Forecast.fromJson(Map<String, dynamic> json) => Forecast(
         displayValue: json['display_value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -302,7 +302,7 @@ class Forecast extends ForecastModel {
 }
 /// Previous model class.
 abstract class PreviousModel {
-  /// Initializes.
+  /// Initializes Previous model class .
   PreviousModel({
     this.displayValue,
   });
@@ -313,19 +313,19 @@ abstract class PreviousModel {
 
 /// Previous class.
 class Previous extends PreviousModel {
-  /// Initializes
+  /// Initializes Previous class.
   Previous({
     String? displayValue,
   }) : super(
           displayValue: displayValue,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Previous.fromJson(Map<String, dynamic> json) => Previous(
         displayValue: json['display_value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

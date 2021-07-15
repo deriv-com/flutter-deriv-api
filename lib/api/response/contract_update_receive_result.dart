@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Contract update response model class.
 abstract class ContractUpdateResponseModel {
-  /// Initializes.
+  /// Initializes Contract update response model class .
   ContractUpdateResponseModel({
     this.contractUpdate,
   });
@@ -19,14 +19,14 @@ abstract class ContractUpdateResponseModel {
 
 /// Contract update response class.
 class ContractUpdateResponse extends ContractUpdateResponseModel {
-  /// Initializes
+  /// Initializes Contract update response class.
   ContractUpdateResponse({
     ContractUpdate? contractUpdate,
   }) : super(
           contractUpdate: contractUpdate,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ContractUpdateResponse.fromJson(
     dynamic contractUpdateJson,
   ) =>
@@ -36,7 +36,7 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
             : ContractUpdate.fromJson(contractUpdateJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -53,7 +53,7 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   static Future<ContractUpdateResponse> updateContract(
-    ContractUpdateSend request,
+    ContractUpdateRequest request,
   ) async {
     final ContractUpdateReceive response = await _api.call(request: request);
 
@@ -76,7 +76,7 @@ class ContractUpdateResponse extends ContractUpdateResponseModel {
 }
 /// Contract update model class.
 abstract class ContractUpdateModel {
-  /// Initializes.
+  /// Initializes Contract update model class .
   ContractUpdateModel({
     this.stopLoss,
     this.takeProfit,
@@ -91,7 +91,7 @@ abstract class ContractUpdateModel {
 
 /// Contract update class.
 class ContractUpdate extends ContractUpdateModel {
-  /// Initializes
+  /// Initializes Contract update class.
   ContractUpdate({
     StopLoss? stopLoss,
     TakeProfit? takeProfit,
@@ -100,7 +100,7 @@ class ContractUpdate extends ContractUpdateModel {
           takeProfit: takeProfit,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ContractUpdate.fromJson(Map<String, dynamic> json) => ContractUpdate(
         stopLoss: json['stop_loss'] == null
             ? null
@@ -110,7 +110,7 @@ class ContractUpdate extends ContractUpdateModel {
             : TakeProfit.fromJson(json['take_profit']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -136,7 +136,7 @@ class ContractUpdate extends ContractUpdateModel {
 }
 /// Stop loss model class.
 abstract class StopLossModel {
-  /// Initializes.
+  /// Initializes Stop loss model class .
   StopLossModel({
     this.displayName,
     this.orderAmount,
@@ -159,7 +159,7 @@ abstract class StopLossModel {
 
 /// Stop loss class.
 class StopLoss extends StopLossModel {
-  /// Initializes
+  /// Initializes Stop loss class.
   StopLoss({
     String? displayName,
     double? orderAmount,
@@ -172,7 +172,7 @@ class StopLoss extends StopLossModel {
           value: value,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory StopLoss.fromJson(Map<String, dynamic> json) => StopLoss(
         displayName: json['display_name'],
         orderAmount: getDouble(json['order_amount']),
@@ -180,7 +180,7 @@ class StopLoss extends StopLossModel {
         value: json['value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -208,7 +208,7 @@ class StopLoss extends StopLossModel {
 }
 /// Take profit model class.
 abstract class TakeProfitModel {
-  /// Initializes.
+  /// Initializes Take profit model class .
   TakeProfitModel({
     this.displayName,
     this.orderAmount,
@@ -231,7 +231,7 @@ abstract class TakeProfitModel {
 
 /// Take profit class.
 class TakeProfit extends TakeProfitModel {
-  /// Initializes
+  /// Initializes Take profit class.
   TakeProfit({
     String? displayName,
     double? orderAmount,
@@ -244,7 +244,7 @@ class TakeProfit extends TakeProfitModel {
           value: value,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TakeProfit.fromJson(Map<String, dynamic> json) => TakeProfit(
         displayName: json['display_name'],
         orderAmount: getDouble(json['order_amount']),
@@ -252,7 +252,7 @@ class TakeProfit extends TakeProfitModel {
         value: json['value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

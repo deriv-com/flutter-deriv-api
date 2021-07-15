@@ -3,7 +3,7 @@ import 'package:meta/meta.dart';
 
 /// P2p order confirm response model class.
 abstract class P2pOrderConfirmResponseModel {
-  /// Initializes.
+  /// Initializes P2p order confirm response model class .
   P2pOrderConfirmResponseModel({
     this.p2pOrderConfirm,
   });
@@ -14,14 +14,14 @@ abstract class P2pOrderConfirmResponseModel {
 
 /// P2p order confirm response class.
 class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
-  /// Initializes
+  /// Initializes P2p order confirm response class.
   P2pOrderConfirmResponse({
     P2pOrderConfirm? p2pOrderConfirm,
   }) : super(
           p2pOrderConfirm: p2pOrderConfirm,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pOrderConfirmResponse.fromJson(
     dynamic p2pOrderConfirmJson,
   ) =>
@@ -31,7 +31,7 @@ class P2pOrderConfirmResponse extends P2pOrderConfirmResponseModel {
             : P2pOrderConfirm.fromJson(p2pOrderConfirmJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -67,7 +67,7 @@ enum StatusEnum {
 }
 /// P2p order confirm model class.
 abstract class P2pOrderConfirmModel {
-  /// Initializes.
+  /// Initializes P2p order confirm model class .
   P2pOrderConfirmModel({
     required this.status,
     required this.id,
@@ -82,7 +82,7 @@ abstract class P2pOrderConfirmModel {
 
 /// P2p order confirm class.
 class P2pOrderConfirm extends P2pOrderConfirmModel {
-  /// Initializes
+  /// Initializes P2p order confirm class.
   P2pOrderConfirm({
     required String id,
     required StatusEnum status,
@@ -91,14 +91,14 @@ class P2pOrderConfirm extends P2pOrderConfirmModel {
           status: status,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pOrderConfirm.fromJson(Map<String, dynamic> json) =>
       P2pOrderConfirm(
         id: json['id'],
         status: statusEnumMapper[json['status']]!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

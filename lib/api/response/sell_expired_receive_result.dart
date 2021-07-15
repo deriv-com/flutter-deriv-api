@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 
 /// Sell expired response model class.
 abstract class SellExpiredResponseModel {
-  /// Initializes.
+  /// Initializes Sell expired response model class .
   SellExpiredResponseModel({
     this.sellExpired,
   });
@@ -13,14 +13,14 @@ abstract class SellExpiredResponseModel {
 
 /// Sell expired response class.
 class SellExpiredResponse extends SellExpiredResponseModel {
-  /// Initializes
+  /// Initializes Sell expired response class.
   SellExpiredResponse({
     SellExpired? sellExpired,
   }) : super(
           sellExpired: sellExpired,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SellExpiredResponse.fromJson(
     dynamic sellExpiredJson,
   ) =>
@@ -30,7 +30,7 @@ class SellExpiredResponse extends SellExpiredResponseModel {
             : SellExpired.fromJson(sellExpiredJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -51,7 +51,7 @@ class SellExpiredResponse extends SellExpiredResponseModel {
 }
 /// Sell expired model class.
 abstract class SellExpiredModel {
-  /// Initializes.
+  /// Initializes Sell expired model class .
   SellExpiredModel({
     this.count,
   });
@@ -62,19 +62,19 @@ abstract class SellExpiredModel {
 
 /// Sell expired class.
 class SellExpired extends SellExpiredModel {
-  /// Initializes
+  /// Initializes Sell expired class.
   SellExpired({
     int? count,
   }) : super(
           count: count,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SellExpired.fromJson(Map<String, dynamic> json) => SellExpired(
         count: json['count'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

@@ -31,7 +31,7 @@ void main() {
     test('Fetch Copy Trading Statistics Test', () async {
       final CopytradingStatisticsResponse copyTradingStatistic =
           await CopytradingStatisticsResponse.fetchStatistics(
-        const CopytradingStatisticsSend(traderId: 'CR12345'),
+        const CopytradingStatisticsRequest(traderId: 'CR12345'),
       );
 
       // final List<MarketTradesBreakdownModel>? tradesBreakdown =

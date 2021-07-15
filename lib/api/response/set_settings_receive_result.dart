@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Set settings response model class.
 abstract class SetSettingsResponseModel {
-  /// Initializes.
+  /// Initializes Set settings response model class .
   SetSettingsResponseModel({
     this.setSettings,
   });
@@ -19,14 +19,14 @@ abstract class SetSettingsResponseModel {
 
 /// Set settings response class.
 class SetSettingsResponse extends SetSettingsResponseModel {
-  /// Initializes
+  /// Initializes Set settings response class.
   SetSettingsResponse({
     int? setSettings,
   }) : super(
           setSettings: setSettings,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SetSettingsResponse.fromJson(
     dynamic setSettingsJson,
   ) =>
@@ -34,7 +34,7 @@ class SetSettingsResponse extends SetSettingsResponseModel {
         setSettings: setSettingsJson,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -49,7 +49,7 @@ class SetSettingsResponse extends SetSettingsResponseModel {
   ///
   /// Throws an [AccountSettingsException] if API response contains an error
   static Future<SetSettingsResponse> changeAccountSetting(
-    SetSettingsSend request,
+    SetSettingsRequest request,
   ) async {
     final SetSettingsReceive response = await _api.call(request: request);
 

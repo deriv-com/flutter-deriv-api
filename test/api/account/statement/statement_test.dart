@@ -10,7 +10,7 @@ void main() {
 
   test('Statement Test', () async {
     final StatementResponse statement = await StatementResponse.fetch(
-      const StatementSend(
+      const StatementRequest(
         actionType: 'deposit',
         description: true,
       ),

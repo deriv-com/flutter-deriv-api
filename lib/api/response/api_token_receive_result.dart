@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Api token response model class.
 abstract class ApiTokenResponseModel {
-  /// Initializes.
+  /// Initializes Api token response model class .
   ApiTokenResponseModel({
     this.apiToken,
   });
@@ -19,14 +19,14 @@ abstract class ApiTokenResponseModel {
 
 /// Api token response class.
 class ApiTokenResponse extends ApiTokenResponseModel {
-  /// Initializes
+  /// Initializes Api token response class.
   ApiTokenResponse({
     ApiToken? apiToken,
   }) : super(
           apiToken: apiToken,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ApiTokenResponse.fromJson(
     dynamic apiTokenJson,
   ) =>
@@ -34,7 +34,7 @@ class ApiTokenResponse extends ApiTokenResponseModel {
         apiToken: apiTokenJson == null ? null : ApiToken.fromJson(apiTokenJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -60,7 +60,7 @@ class ApiTokenResponse extends ApiTokenResponseModel {
     bool? validForCurrentIPOnly,
   }) async {
     final ApiTokenReceive response = await _api.call(
-      request: ApiTokenSend(
+      request: ApiTokenRequest(
         newToken: name,
         newTokenScopes: getStringListFromEnums(scopes),
         validForCurrentIpOnly: validForCurrentIPOnly,
@@ -83,7 +83,7 @@ class ApiTokenResponse extends ApiTokenResponseModel {
     required String token,
   }) async {
     final ApiTokenReceive response = await _api.call(
-      request: ApiTokenSend(deleteToken: token),
+      request: ApiTokenRequest(deleteToken: token),
     );
 
     checkException(
@@ -133,7 +133,7 @@ enum ScopesItemEnum {
 }
 /// Api token model class.
 abstract class ApiTokenModel {
-  /// Initializes.
+  /// Initializes Api token model class .
   ApiTokenModel({
     this.deleteToken,
     this.newToken,
@@ -152,7 +152,7 @@ abstract class ApiTokenModel {
 
 /// Api token class.
 class ApiToken extends ApiTokenModel {
-  /// Initializes
+  /// Initializes Api token class.
   ApiToken({
     int? deleteToken,
     int? newToken,
@@ -163,7 +163,7 @@ class ApiToken extends ApiTokenModel {
           tokens: tokens,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ApiToken.fromJson(Map<String, dynamic> json) => ApiToken(
         deleteToken: json['delete_token'],
         newToken: json['new_token'],
@@ -176,7 +176,7 @@ class ApiToken extends ApiTokenModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -207,7 +207,7 @@ class ApiToken extends ApiTokenModel {
 }
 /// Tokens item model class.
 abstract class TokensItemModel {
-  /// Initializes.
+  /// Initializes Tokens item model class .
   TokensItemModel({
     this.displayName,
     this.lastUsed,
@@ -234,7 +234,7 @@ abstract class TokensItemModel {
 
 /// Tokens item class.
 class TokensItem extends TokensItemModel {
-  /// Initializes
+  /// Initializes Tokens item class.
   TokensItem({
     String? displayName,
     String? lastUsed,
@@ -249,7 +249,7 @@ class TokensItem extends TokensItemModel {
           validForIp: validForIp,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TokensItem.fromJson(Map<String, dynamic> json) => TokensItem(
         displayName: json['display_name'],
         lastUsed: json['last_used'],
@@ -265,7 +265,7 @@ class TokensItem extends TokensItemModel {
         validForIp: json['valid_for_ip'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

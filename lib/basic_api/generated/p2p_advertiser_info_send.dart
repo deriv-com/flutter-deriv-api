@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// P2p advertiser info send class.
-class P2pAdvertiserInfoSend extends Request {
-  /// Initialize P2pAdvertiserInfoSend.
-  const P2pAdvertiserInfoSend({
+/// P2p advertiser info request class.
+class P2pAdvertiserInfoRequest extends Request {
+  /// Initialize P2pAdvertiserInfoRequest.
+  const P2pAdvertiserInfoRequest({
     this.id,
     this.p2pAdvertiserInfo = true,
     this.subscribe,
@@ -20,8 +20,8 @@ class P2pAdvertiserInfoSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory P2pAdvertiserInfoSend.fromJson(Map<String, dynamic> json) =>
-      P2pAdvertiserInfoSend(
+  factory P2pAdvertiserInfoRequest.fromJson(Map<String, dynamic> json) =>
+      P2pAdvertiserInfoRequest(
         id: json['id'] as String?,
         p2pAdvertiserInfo: json['p2p_advertiser_info'] == null
             ? null
@@ -60,14 +60,14 @@ class P2pAdvertiserInfoSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pAdvertiserInfoSend copyWith({
+  P2pAdvertiserInfoRequest copyWith({
     String? id,
     bool? p2pAdvertiserInfo,
     bool? subscribe,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      P2pAdvertiserInfoSend(
+      P2pAdvertiserInfoRequest(
         id: id ?? this.id,
         p2pAdvertiserInfo: p2pAdvertiserInfo ?? this.p2pAdvertiserInfo,
         subscribe: subscribe ?? this.subscribe,
@@ -77,5 +77,5 @@ class P2pAdvertiserInfoSend extends Request {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object> get props => <Object>[id!];
 }

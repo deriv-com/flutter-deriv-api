@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Copy start response model class.
 abstract class CopyStartResponseModel {
-  /// Initializes.
+  /// Initializes Copy start response model class .
   CopyStartResponseModel({
     this.copyStart,
   });
@@ -19,14 +19,14 @@ abstract class CopyStartResponseModel {
 
 /// Copy start response class.
 class CopyStartResponse extends CopyStartResponseModel {
-  /// Initializes
+  /// Initializes Copy start response class.
   CopyStartResponse({
     int? copyStart,
   }) : super(
           copyStart: copyStart,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CopyStartResponse.fromJson(
     dynamic copyStartJson,
   ) =>
@@ -34,7 +34,7 @@ class CopyStartResponse extends CopyStartResponseModel {
         copyStart: copyStartJson,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -49,7 +49,7 @@ class CopyStartResponse extends CopyStartResponseModel {
   ///
   /// For parameters information refer to [CopyStartRequest].
   /// Throws a [CopyTradingException] if API response contains an error
-  static Future<CopyStartResponse> start(CopyStartSend request) async {
+  static Future<CopyStartResponse> start(CopyStartRequest request) async {
     final CopyStartReceive response = await _api.call(request: request);
 
     checkException(

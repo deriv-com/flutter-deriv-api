@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Paymentagent details send class.
-class PaymentagentDetailsSend extends Request {
-  /// Initialize PaymentagentDetailsSend.
-  const PaymentagentDetailsSend({
+/// Paymentagent details request class.
+class PaymentagentDetailsRequest extends Request {
+  /// Initialize PaymentagentDetailsRequest.
+  const PaymentagentDetailsRequest({
     this.paymentagentDetails = true,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -18,8 +18,8 @@ class PaymentagentDetailsSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory PaymentagentDetailsSend.fromJson(Map<String, dynamic> json) =>
-      PaymentagentDetailsSend(
+  factory PaymentagentDetailsRequest.fromJson(Map<String, dynamic> json) =>
+      PaymentagentDetailsRequest(
         paymentagentDetails: json['paymentagent_details'] == null
             ? null
             : json['paymentagent_details'] == 1,
@@ -44,12 +44,12 @@ class PaymentagentDetailsSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  PaymentagentDetailsSend copyWith({
+  PaymentagentDetailsRequest copyWith({
     bool? paymentagentDetails,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      PaymentagentDetailsSend(
+      PaymentagentDetailsRequest(
         paymentagentDetails: paymentagentDetails ?? this.paymentagentDetails,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

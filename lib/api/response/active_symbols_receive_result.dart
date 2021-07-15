@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Active symbols response model class.
 abstract class ActiveSymbolsResponseModel {
-  /// Initializes.
+  /// Initializes Active symbols response model class .
   ActiveSymbolsResponseModel({
     this.activeSymbols,
   });
@@ -19,14 +19,14 @@ abstract class ActiveSymbolsResponseModel {
 
 /// Active symbols response class.
 class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
-  /// Initializes
+  /// Initializes Active symbols response class.
   ActiveSymbolsResponse({
     List<ActiveSymbolsItem>? activeSymbols,
   }) : super(
           activeSymbols: activeSymbols,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ActiveSymbolsResponse.fromJson(
     dynamic activeSymbolsJson,
   ) =>
@@ -40,7 +40,7 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -62,7 +62,7 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
   /// For parameters information refer to [ActiveSymbolsRequest].
   /// Throws an [ActiveSymbolsException] if API response contains an error
   static Future<ActiveSymbolsResponse> fetchActiveSymbols(
-    ActiveSymbolsSend request,
+    ActiveSymbolsRequest request,
   ) async {
     final ActiveSymbolsReceive response = await _api.call(
       request: request,
@@ -85,9 +85,10 @@ class ActiveSymbolsResponse extends ActiveSymbolsResponseModel {
         activeSymbols: activeSymbols ?? this.activeSymbols,
       );
 }
+
 /// Active symbols item model class.
 abstract class ActiveSymbolsItemModel {
-  /// Initializes.
+  /// Initializes Active symbols item model class .
   ActiveSymbolsItemModel({
     required this.symbolType,
     required this.symbol,
@@ -166,7 +167,7 @@ abstract class ActiveSymbolsItemModel {
 
 /// Active symbols item class.
 class ActiveSymbolsItem extends ActiveSymbolsItemModel {
-  /// Initializes
+  /// Initializes Active symbols item class.
   ActiveSymbolsItem({
     required String displayName,
     required bool exchangeIsOpen,
@@ -207,7 +208,7 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
           spotTime: spotTime,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ActiveSymbolsItem.fromJson(Map<String, dynamic> json) =>
       ActiveSymbolsItem(
         displayName: json['display_name'],
@@ -230,7 +231,7 @@ class ActiveSymbolsItem extends ActiveSymbolsItemModel {
         spotTime: json['spot_time'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

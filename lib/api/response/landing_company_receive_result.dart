@@ -11,7 +11,7 @@ import 'landing_company_details_receive_result.dart';
 
 /// Landing company response model class.
 abstract class LandingCompanyResponseModel {
-  /// Initializes.
+  /// Initializes Landing company response model class .
   LandingCompanyResponseModel({
     this.landingCompany,
   });
@@ -22,14 +22,14 @@ abstract class LandingCompanyResponseModel {
 
 /// Landing company response class.
 class LandingCompanyResponse extends LandingCompanyResponseModel {
-  /// Initializes
+  /// Initializes Landing company response class.
   LandingCompanyResponse({
     LandingCompany? landingCompany,
   }) : super(
           landingCompany: landingCompany,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LandingCompanyResponse.fromJson(
     dynamic landingCompanyJson,
   ) =>
@@ -39,7 +39,7 @@ class LandingCompanyResponse extends LandingCompanyResponseModel {
             : LandingCompany.fromJson(landingCompanyJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -56,7 +56,7 @@ class LandingCompanyResponse extends LandingCompanyResponseModel {
   ///
   /// Throws a [LandingCompanyException] if API response contains an error
   static Future<LandingCompanyResponse> fetchLandingCompanies(
-    LandingCompanySend request,
+    LandingCompanyRequest request,
   ) async {
     final LandingCompanyReceive response = await _api.call(request: request);
 
@@ -73,7 +73,7 @@ class LandingCompanyResponse extends LandingCompanyResponseModel {
   ///
   /// Throws a [LandingCompanyException] if API response contains an error
   static Future<LandingCompanyDetailsResponse> fetchLandingCompanyDetails(
-    LandingCompanyDetailsSend request,
+    LandingCompanyDetailsRequest request,
   ) async {
     final LandingCompanyDetailsReceive response = await _api.call(
       request: request,
@@ -99,7 +99,7 @@ class LandingCompanyResponse extends LandingCompanyResponseModel {
 }
 /// Landing company model class.
 abstract class LandingCompanyModel {
-  /// Initializes.
+  /// Initializes Landing company model class .
   LandingCompanyModel({
     this.dxtradeFinancialCompany,
     this.dxtradeGamingCompany,
@@ -138,7 +138,7 @@ abstract class LandingCompanyModel {
 
 /// Landing company class.
 class LandingCompany extends LandingCompanyModel {
-  /// Initializes
+  /// Initializes Landing company class.
   LandingCompany({
     DxtradeFinancialCompany? dxtradeFinancialCompany,
     DxtradeGamingCompany? dxtradeGamingCompany,
@@ -159,7 +159,7 @@ class LandingCompany extends LandingCompanyModel {
           name: name,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LandingCompany.fromJson(Map<String, dynamic> json) => LandingCompany(
         dxtradeFinancialCompany: json['dxtrade_financial_company'] == null
             ? null
@@ -184,7 +184,7 @@ class LandingCompany extends LandingCompanyModel {
         name: json['name'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -238,7 +238,7 @@ class LandingCompany extends LandingCompanyModel {
 }
 /// Dxtrade financial company model class.
 abstract class DxtradeFinancialCompanyModel {
-  /// Initializes.
+  /// Initializes Dxtrade financial company model class .
   DxtradeFinancialCompanyModel({
     this.standard,
   });
@@ -249,14 +249,14 @@ abstract class DxtradeFinancialCompanyModel {
 
 /// Dxtrade financial company class.
 class DxtradeFinancialCompany extends DxtradeFinancialCompanyModel {
-  /// Initializes
+  /// Initializes Dxtrade financial company class.
   DxtradeFinancialCompany({
     Standard? standard,
   }) : super(
           standard: standard,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory DxtradeFinancialCompany.fromJson(Map<String, dynamic> json) =>
       DxtradeFinancialCompany(
         standard: json['standard'] == null
@@ -264,7 +264,7 @@ class DxtradeFinancialCompany extends DxtradeFinancialCompanyModel {
             : Standard.fromJson(json['standard']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -285,7 +285,7 @@ class DxtradeFinancialCompany extends DxtradeFinancialCompanyModel {
 }
 /// Standard model class.
 abstract class StandardModel {
-  /// Initializes.
+  /// Initializes Standard model class .
   StandardModel({
     this.address,
     this.country,
@@ -328,7 +328,7 @@ abstract class StandardModel {
 
 /// Standard class.
 class Standard extends StandardModel {
-  /// Initializes
+  /// Initializes Standard class.
   Standard({
     List<String>? address,
     String? country,
@@ -351,7 +351,7 @@ class Standard extends StandardModel {
           shortcode: shortcode,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Standard.fromJson(Map<String, dynamic> json) => Standard(
         address: json['address'] == null
             ? null
@@ -389,7 +389,7 @@ class Standard extends StandardModel {
         shortcode: json['shortcode'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -459,7 +459,7 @@ class Standard extends StandardModel {
 }
 /// Dxtrade gaming company model class.
 abstract class DxtradeGamingCompanyModel {
-  /// Initializes.
+  /// Initializes Dxtrade gaming company model class .
   DxtradeGamingCompanyModel({
     this.standard,
   });
@@ -470,14 +470,14 @@ abstract class DxtradeGamingCompanyModel {
 
 /// Dxtrade gaming company class.
 class DxtradeGamingCompany extends DxtradeGamingCompanyModel {
-  /// Initializes
+  /// Initializes Dxtrade gaming company class.
   DxtradeGamingCompany({
     DxtradeGamingCompanyStandard? standard,
   }) : super(
           standard: standard,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory DxtradeGamingCompany.fromJson(Map<String, dynamic> json) =>
       DxtradeGamingCompany(
         standard: json['standard'] == null
@@ -485,7 +485,7 @@ class DxtradeGamingCompany extends DxtradeGamingCompanyModel {
             : DxtradeGamingCompanyStandard.fromJson(json['standard']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -506,7 +506,7 @@ class DxtradeGamingCompany extends DxtradeGamingCompanyModel {
 }
 /// Dxtrade gaming company standard model class.
 abstract class DxtradeGamingCompanyStandardModel {
-  /// Initializes.
+  /// Initializes Dxtrade gaming company standard model class .
   DxtradeGamingCompanyStandardModel({
     this.address,
     this.country,
@@ -549,7 +549,7 @@ abstract class DxtradeGamingCompanyStandardModel {
 
 /// Dxtrade gaming company standard class.
 class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
-  /// Initializes
+  /// Initializes Dxtrade gaming company standard class.
   DxtradeGamingCompanyStandard({
     List<String>? address,
     String? country,
@@ -572,7 +572,7 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
           shortcode: shortcode,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory DxtradeGamingCompanyStandard.fromJson(Map<String, dynamic> json) =>
       DxtradeGamingCompanyStandard(
         address: json['address'] == null
@@ -611,7 +611,7 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
         shortcode: json['shortcode'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -681,7 +681,7 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
 }
 /// Financial company model class.
 abstract class FinancialCompanyModel {
-  /// Initializes.
+  /// Initializes Financial company model class .
   FinancialCompanyModel({
     this.address,
     this.changeableFields,
@@ -728,7 +728,7 @@ abstract class FinancialCompanyModel {
 
 /// Financial company class.
 class FinancialCompany extends FinancialCompanyModel {
-  /// Initializes
+  /// Initializes Financial company class.
   FinancialCompany({
     List<String>? address,
     Map<String, dynamic>? changeableFields,
@@ -753,7 +753,7 @@ class FinancialCompany extends FinancialCompanyModel {
           shortcode: shortcode,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory FinancialCompany.fromJson(Map<String, dynamic> json) =>
       FinancialCompany(
         address: json['address'] == null
@@ -793,7 +793,7 @@ class FinancialCompany extends FinancialCompanyModel {
         shortcode: json['shortcode'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -866,7 +866,7 @@ class FinancialCompany extends FinancialCompanyModel {
 }
 /// Gaming company model class.
 abstract class GamingCompanyModel {
-  /// Initializes.
+  /// Initializes Gaming company model class .
   GamingCompanyModel({
     this.address,
     this.changeableFields,
@@ -909,7 +909,7 @@ abstract class GamingCompanyModel {
 
 /// Gaming company class.
 class GamingCompany extends GamingCompanyModel {
-  /// Initializes
+  /// Initializes Gaming company class.
   GamingCompany({
     List<String>? address,
     Map<String, dynamic>? changeableFields,
@@ -932,7 +932,7 @@ class GamingCompany extends GamingCompanyModel {
           shortcode: shortcode,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GamingCompany.fromJson(Map<String, dynamic> json) => GamingCompany(
         address: json['address'] == null
             ? null
@@ -970,7 +970,7 @@ class GamingCompany extends GamingCompanyModel {
         shortcode: json['shortcode'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1040,7 +1040,7 @@ class GamingCompany extends GamingCompanyModel {
 }
 /// Mt financial company model class.
 abstract class MtFinancialCompanyModel {
-  /// Initializes.
+  /// Initializes Mt financial company model class .
   MtFinancialCompanyModel({
     this.financial,
     this.financialStp,
@@ -1059,7 +1059,7 @@ abstract class MtFinancialCompanyModel {
 
 /// Mt financial company class.
 class MtFinancialCompany extends MtFinancialCompanyModel {
-  /// Initializes
+  /// Initializes Mt financial company class.
   MtFinancialCompany({
     Financial? financial,
     FinancialStp? financialStp,
@@ -1070,7 +1070,7 @@ class MtFinancialCompany extends MtFinancialCompanyModel {
           swapFree: swapFree,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory MtFinancialCompany.fromJson(Map<String, dynamic> json) =>
       MtFinancialCompany(
         financial: json['financial'] == null
@@ -1084,7 +1084,7 @@ class MtFinancialCompany extends MtFinancialCompanyModel {
             : SwapFree.fromJson(json['swap_free']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1115,7 +1115,7 @@ class MtFinancialCompany extends MtFinancialCompanyModel {
 }
 /// Financial model class.
 abstract class FinancialModel {
-  /// Initializes.
+  /// Initializes Financial model class .
   FinancialModel({
     this.address,
     this.country,
@@ -1158,7 +1158,7 @@ abstract class FinancialModel {
 
 /// Financial class.
 class Financial extends FinancialModel {
-  /// Initializes
+  /// Initializes Financial class.
   Financial({
     List<String>? address,
     String? country,
@@ -1181,7 +1181,7 @@ class Financial extends FinancialModel {
           shortcode: shortcode,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Financial.fromJson(Map<String, dynamic> json) => Financial(
         address: json['address'] == null
             ? null
@@ -1219,7 +1219,7 @@ class Financial extends FinancialModel {
         shortcode: json['shortcode'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1289,7 +1289,7 @@ class Financial extends FinancialModel {
 }
 /// Financial stp model class.
 abstract class FinancialStpModel {
-  /// Initializes.
+  /// Initializes Financial stp model class .
   FinancialStpModel({
     this.address,
     this.country,
@@ -1332,7 +1332,7 @@ abstract class FinancialStpModel {
 
 /// Financial stp class.
 class FinancialStp extends FinancialStpModel {
-  /// Initializes
+  /// Initializes Financial stp class.
   FinancialStp({
     List<String>? address,
     String? country,
@@ -1355,7 +1355,7 @@ class FinancialStp extends FinancialStpModel {
           shortcode: shortcode,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory FinancialStp.fromJson(Map<String, dynamic> json) => FinancialStp(
         address: json['address'] == null
             ? null
@@ -1393,7 +1393,7 @@ class FinancialStp extends FinancialStpModel {
         shortcode: json['shortcode'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1463,7 +1463,7 @@ class FinancialStp extends FinancialStpModel {
 }
 /// Swap free model class.
 abstract class SwapFreeModel {
-  /// Initializes.
+  /// Initializes Swap free model class .
   SwapFreeModel({
     this.address,
     this.country,
@@ -1506,7 +1506,7 @@ abstract class SwapFreeModel {
 
 /// Swap free class.
 class SwapFree extends SwapFreeModel {
-  /// Initializes
+  /// Initializes Swap free class.
   SwapFree({
     List<String>? address,
     String? country,
@@ -1529,7 +1529,7 @@ class SwapFree extends SwapFreeModel {
           shortcode: shortcode,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SwapFree.fromJson(Map<String, dynamic> json) => SwapFree(
         address: json['address'] == null
             ? null
@@ -1567,7 +1567,7 @@ class SwapFree extends SwapFreeModel {
         shortcode: json['shortcode'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1637,7 +1637,7 @@ class SwapFree extends SwapFreeModel {
 }
 /// Mt gaming company model class.
 abstract class MtGamingCompanyModel {
-  /// Initializes.
+  /// Initializes Mt gaming company model class .
   MtGamingCompanyModel({
     this.financial,
     this.swapFree,
@@ -1652,7 +1652,7 @@ abstract class MtGamingCompanyModel {
 
 /// Mt gaming company class.
 class MtGamingCompany extends MtGamingCompanyModel {
-  /// Initializes
+  /// Initializes Mt gaming company class.
   MtGamingCompany({
     MtGamingCompanyFinancial? financial,
     MtGamingCompanySwapFree? swapFree,
@@ -1661,7 +1661,7 @@ class MtGamingCompany extends MtGamingCompanyModel {
           swapFree: swapFree,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory MtGamingCompany.fromJson(Map<String, dynamic> json) =>
       MtGamingCompany(
         financial: json['financial'] == null
@@ -1672,7 +1672,7 @@ class MtGamingCompany extends MtGamingCompanyModel {
             : MtGamingCompanySwapFree.fromJson(json['swap_free']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1698,7 +1698,7 @@ class MtGamingCompany extends MtGamingCompanyModel {
 }
 /// Mt gaming company financial model class.
 abstract class MtGamingCompanyFinancialModel {
-  /// Initializes.
+  /// Initializes Mt gaming company financial model class .
   MtGamingCompanyFinancialModel({
     this.address,
     this.country,
@@ -1741,7 +1741,7 @@ abstract class MtGamingCompanyFinancialModel {
 
 /// Mt gaming company financial class.
 class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
-  /// Initializes
+  /// Initializes Mt gaming company financial class.
   MtGamingCompanyFinancial({
     List<String>? address,
     String? country,
@@ -1764,7 +1764,7 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
           shortcode: shortcode,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory MtGamingCompanyFinancial.fromJson(Map<String, dynamic> json) =>
       MtGamingCompanyFinancial(
         address: json['address'] == null
@@ -1803,7 +1803,7 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
         shortcode: json['shortcode'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1873,7 +1873,7 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
 }
 /// Mt gaming company swap free model class.
 abstract class MtGamingCompanySwapFreeModel {
-  /// Initializes.
+  /// Initializes Mt gaming company swap free model class .
   MtGamingCompanySwapFreeModel({
     this.address,
     this.country,
@@ -1916,7 +1916,7 @@ abstract class MtGamingCompanySwapFreeModel {
 
 /// Mt gaming company swap free class.
 class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
-  /// Initializes
+  /// Initializes Mt gaming company swap free class.
   MtGamingCompanySwapFree({
     List<String>? address,
     String? country,
@@ -1939,7 +1939,7 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
           shortcode: shortcode,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory MtGamingCompanySwapFree.fromJson(Map<String, dynamic> json) =>
       MtGamingCompanySwapFree(
         address: json['address'] == null
@@ -1978,7 +1978,7 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
         shortcode: json['shortcode'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

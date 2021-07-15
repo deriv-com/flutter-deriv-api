@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// P2p advert create send class.
-class P2pAdvertCreateSend extends Request {
-  /// Initialize P2pAdvertCreateSend.
-  const P2pAdvertCreateSend({
+/// P2p advert create request class.
+class P2pAdvertCreateRequest extends Request {
+  /// Initialize P2pAdvertCreateRequest.
+  const P2pAdvertCreateRequest({
     required this.amount,
     this.contactInfo,
     this.description,
@@ -29,8 +29,8 @@ class P2pAdvertCreateSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory P2pAdvertCreateSend.fromJson(Map<String, dynamic> json) =>
-      P2pAdvertCreateSend(
+  factory P2pAdvertCreateRequest.fromJson(Map<String, dynamic> json) =>
+      P2pAdvertCreateRequest(
         amount: json['amount'] as num?,
         contactInfo: json['contact_info'] as String?,
         description: json['description'] as String?,
@@ -112,7 +112,7 @@ class P2pAdvertCreateSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pAdvertCreateSend copyWith({
+  P2pAdvertCreateRequest copyWith({
     num? amount,
     String? contactInfo,
     String? description,
@@ -128,7 +128,7 @@ class P2pAdvertCreateSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      P2pAdvertCreateSend(
+      P2pAdvertCreateRequest(
         amount: amount ?? this.amount,
         contactInfo: contactInfo ?? this.contactInfo,
         description: description ?? this.description,

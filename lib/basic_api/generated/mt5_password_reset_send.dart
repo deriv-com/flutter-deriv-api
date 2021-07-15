@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Mt5 password reset send class.
-class Mt5PasswordResetSend extends Request {
-  /// Initialize Mt5PasswordResetSend.
-  const Mt5PasswordResetSend({
+/// Mt5 password reset request class.
+class Mt5PasswordResetRequest extends Request {
+  /// Initialize Mt5PasswordResetRequest.
+  const Mt5PasswordResetRequest({
     required this.login,
     this.mt5PasswordReset = true,
     required this.newPassword,
@@ -22,8 +22,8 @@ class Mt5PasswordResetSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory Mt5PasswordResetSend.fromJson(Map<String, dynamic> json) =>
-      Mt5PasswordResetSend(
+  factory Mt5PasswordResetRequest.fromJson(Map<String, dynamic> json) =>
+      Mt5PasswordResetRequest(
         login: json['login'] as String?,
         mt5PasswordReset: json['mt5_password_reset'] == null
             ? null
@@ -68,7 +68,7 @@ class Mt5PasswordResetSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  Mt5PasswordResetSend copyWith({
+  Mt5PasswordResetRequest copyWith({
     String? login,
     bool? mt5PasswordReset,
     String? newPassword,
@@ -77,7 +77,7 @@ class Mt5PasswordResetSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      Mt5PasswordResetSend(
+      Mt5PasswordResetRequest(
         login: login ?? this.login,
         mt5PasswordReset: mt5PasswordReset ?? this.mt5PasswordReset,
         newPassword: newPassword ?? this.newPassword,

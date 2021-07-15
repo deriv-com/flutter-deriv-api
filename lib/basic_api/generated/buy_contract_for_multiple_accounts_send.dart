@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Buy contract for multiple accounts send class.
-class BuyContractForMultipleAccountsSend extends Request {
-  /// Initialize BuyContractForMultipleAccountsSend.
-  const BuyContractForMultipleAccountsSend({
+/// Buy contract for multiple accounts request class.
+class BuyContractForMultipleAccountsRequest extends Request {
+  /// Initialize BuyContractForMultipleAccountsRequest.
+  const BuyContractForMultipleAccountsRequest({
     required this.buyContractForMultipleAccounts,
     this.parameters,
     required this.price,
@@ -21,9 +21,9 @@ class BuyContractForMultipleAccountsSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory BuyContractForMultipleAccountsSend.fromJson(
+  factory BuyContractForMultipleAccountsRequest.fromJson(
           Map<String, dynamic> json) =>
-      BuyContractForMultipleAccountsSend(
+      BuyContractForMultipleAccountsRequest(
         buyContractForMultipleAccounts:
             json['buy_contract_for_multiple_accounts'] as String?,
         parameters: json['parameters'] as Map<String, dynamic>?,
@@ -60,7 +60,7 @@ class BuyContractForMultipleAccountsSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  BuyContractForMultipleAccountsSend copyWith({
+  BuyContractForMultipleAccountsRequest copyWith({
     String? buyContractForMultipleAccounts,
     Map<String, dynamic>? parameters,
     num? price,
@@ -68,7 +68,7 @@ class BuyContractForMultipleAccountsSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      BuyContractForMultipleAccountsSend(
+      BuyContractForMultipleAccountsRequest(
         buyContractForMultipleAccounts: buyContractForMultipleAccounts ??
             this.buyContractForMultipleAccounts,
         parameters: parameters ?? this.parameters,

@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Copy stop response model class.
 abstract class CopyStopResponseModel {
-  /// Initializes.
+  /// Initializes Copy stop response model class .
   CopyStopResponseModel({
     this.copyStop,
   });
@@ -19,14 +19,14 @@ abstract class CopyStopResponseModel {
 
 /// Copy stop response class.
 class CopyStopResponse extends CopyStopResponseModel {
-  /// Initializes
+  /// Initializes Copy stop response class.
   CopyStopResponse({
     int? copyStop,
   }) : super(
           copyStop: copyStop,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CopyStopResponse.fromJson(
     dynamic copyStopJson,
   ) =>
@@ -34,7 +34,7 @@ class CopyStopResponse extends CopyStopResponseModel {
         copyStop: copyStopJson,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -49,7 +49,7 @@ class CopyStopResponse extends CopyStopResponseModel {
   ///
   /// For parameters information refer to [CopyStopRequest].
   /// Throws a [CopyTradingException] if API response contains an error
-  static Future<CopyStopResponse> stop(CopyStopSend request) async {
+  static Future<CopyStopResponse> stop(CopyStopRequest request) async {
     final CopyStopReceive response = await _api.call(request: request);
 
     checkException(

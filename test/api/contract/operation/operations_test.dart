@@ -26,7 +26,7 @@ void main() {
       final ProposalResponse priceProposal =
           await ProposalResponse.fetchPriceForContract(
         // ignore: missing_required_param
-        const ProposalSend(
+        const ProposalRequest(
           symbol: 'frxUSDJPY',
           durationUnit: 'm',
           duration: 2,
@@ -52,7 +52,7 @@ void main() {
     test('Price Proposal Subscription Test', () async {
       ProposalResponse.subscribePriceForContract(
         // ignore: missing_required_param
-        const ProposalSend(
+        const ProposalRequest(
           symbol: 'frxUSDJPY',
           durationUnit: 'm',
           duration: 2,
@@ -77,7 +77,7 @@ void main() {
 
     test('Buy Contract Test', () async {
       final BuyResponse buyContract = await BuyResponse.buyMethod(
-        const BuySend(
+        const BuyRequest(
           buy: '042922fe-5664-09e4-c3bf-b3bbe98f31db',
           price: 100.0,
         ),
@@ -180,7 +180,7 @@ void main() {
 
     test('Sell Contract Test', () async {
       final SellResponse sellContract = await SellResponse.sellContract(
-        const SellSend(
+        const SellRequest(
           sell: 79939279308,
           price: 100.0,
         ),
@@ -196,7 +196,7 @@ void main() {
     test('Update Contract Test', () async {
       final ContractUpdateResponse updateContract =
           await ContractUpdateResponse.updateContract(
-        const ContractUpdateSend(
+        const ContractUpdateRequest(
           contractId: 79939279308,
           limitOrder: <String, dynamic>{'stop_loss': 120, 'take_profit': 100.0},
         ),
@@ -220,7 +220,7 @@ void main() {
     test('Fetch Contract Update History Test', () async {
       final ContractUpdateHistoryResponse updateHistory =
           await ContractUpdateHistoryResponse.fetchContractUpdateHistory(
-        const ContractUpdateHistorySend(
+        const ContractUpdateHistoryRequest(
           contractId: 79939279308,
         ),
       );
@@ -237,7 +237,7 @@ void main() {
 
     test('Cancel Contract Test', () async {
       final CancelResponse cancelContract = await CancelResponse.cancelContract(
-        const CancelSend(
+        const CancelRequest(
           cancel: 79939279308,
         ),
       );
@@ -253,7 +253,7 @@ void main() {
       final ProposalResponse priceProposal =
           await ProposalResponse.fetchPriceForContract(
         // ignore: missing_required_param
-        const ProposalSend(
+        const ProposalRequest(
           limitOrder: <String, dynamic>{},
           symbol: 'frxUSDJPY',
           durationUnit: 'm',
@@ -354,7 +354,7 @@ void main() {
 
     test('Open Contract Subscription Test', () {
       ProposalOpenContractResponse.subscribeContractState(
-        const ProposalOpenContractSend(contractId: 79944933588),
+        const ProposalOpenContractRequest(contractId: 79944933588),
       ).listen(
         expectAsync1((ProposalOpenContractResponse? openContract) {
           expect(openContract?.proposalOpenContract?.contractId, 79944933588);

@@ -2,7 +2,7 @@ import 'package:meta/meta.dart';
 
 /// New account maltainvest response model class.
 abstract class NewAccountMaltainvestResponseModel {
-  /// Initializes.
+  /// Initializes New account maltainvest response model class .
   NewAccountMaltainvestResponseModel({
     this.newAccountMaltainvest,
   });
@@ -13,14 +13,14 @@ abstract class NewAccountMaltainvestResponseModel {
 
 /// New account maltainvest response class.
 class NewAccountMaltainvestResponse extends NewAccountMaltainvestResponseModel {
-  /// Initializes
+  /// Initializes New account maltainvest response class.
   NewAccountMaltainvestResponse({
     NewAccountMaltainvest? newAccountMaltainvest,
   }) : super(
           newAccountMaltainvest: newAccountMaltainvest,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory NewAccountMaltainvestResponse.fromJson(
     dynamic newAccountMaltainvestJson,
   ) =>
@@ -30,7 +30,7 @@ class NewAccountMaltainvestResponse extends NewAccountMaltainvestResponseModel {
             : NewAccountMaltainvest.fromJson(newAccountMaltainvestJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -52,7 +52,7 @@ class NewAccountMaltainvestResponse extends NewAccountMaltainvestResponseModel {
 }
 /// New account maltainvest model class.
 abstract class NewAccountMaltainvestModel {
-  /// Initializes.
+  /// Initializes New account maltainvest model class .
   NewAccountMaltainvestModel({
     required this.oauthToken,
     required this.landingCompany,
@@ -75,7 +75,7 @@ abstract class NewAccountMaltainvestModel {
 
 /// New account maltainvest class.
 class NewAccountMaltainvest extends NewAccountMaltainvestModel {
-  /// Initializes
+  /// Initializes New account maltainvest class.
   NewAccountMaltainvest({
     required String clientId,
     required String landingCompany,
@@ -88,7 +88,7 @@ class NewAccountMaltainvest extends NewAccountMaltainvestModel {
           landingCompanyShort: landingCompanyShort,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory NewAccountMaltainvest.fromJson(Map<String, dynamic> json) =>
       NewAccountMaltainvest(
         clientId: json['client_id'],
@@ -97,7 +97,7 @@ class NewAccountMaltainvest extends NewAccountMaltainvestModel {
         landingCompanyShort: json['landing_company_short'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

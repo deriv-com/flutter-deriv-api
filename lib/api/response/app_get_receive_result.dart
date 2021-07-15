@@ -20,7 +20,7 @@ import 'revoke_oauth_app_receive_result.dart';
 
 /// App get response model class.
 abstract class AppGetResponseModel {
-  /// Initializes.
+  /// Initializes App get response model class .
   AppGetResponseModel({
     this.appGet,
   });
@@ -31,14 +31,14 @@ abstract class AppGetResponseModel {
 
 /// App get response class.
 class AppGetResponse extends AppGetResponseModel {
-  /// Initializes
+  /// Initializes App get response class.
   AppGetResponse({
     AppGet? appGet,
   }) : super(
           appGet: appGet,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppGetResponse.fromJson(
     dynamic appGetJson,
   ) =>
@@ -46,7 +46,7 @@ class AppGetResponse extends AppGetResponseModel {
         appGet: appGetJson == null ? null : AppGet.fromJson(appGetJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -64,7 +64,7 @@ class AppGetResponse extends AppGetResponseModel {
   /// For parameters information refer to [AppGetRequest].
   /// Throws an [AppException] if API response contains an error
   static Future<AppGetResponse> fetchApplicationDetails(
-    AppGetSend request,
+    AppGetRequest request,
   ) async {
     final AppGetReceive response = await _api.call(request: request);
 
@@ -82,7 +82,7 @@ class AppGetResponse extends AppGetResponseModel {
   /// For parameters information refer to [AppListRequest].
   /// Throws an [AppException] if API response contains an error
   static Future<List<AppGetResponse?>?> fetchApplicationList(
-    AppListSend request,
+    AppListRequest request,
   ) async {
     final AppListReceive response = await _api.call(request: request);
 
@@ -110,7 +110,7 @@ class AppGetResponse extends AppGetResponseModel {
     List<String>? sortFields,
   }) =>
       AppMarkupDetailsResponse.fetchApplicationMarkupDetails(
-        AppMarkupDetailsSend(
+        AppMarkupDetailsRequest(
           appId: appGet?.appId,
           clientLoginid: clientLoginId,
           dateFrom: dateFrom.toString(),
@@ -126,14 +126,14 @@ class AppGetResponse extends AppGetResponseModel {
   /// The request for deleting an application.
   Future<AppDeleteResponse> deleteApplication() =>
       AppDeleteResponse.deleteApplication(
-        AppDeleteSend(appDelete: appGet?.appId),
+        AppDeleteRequest(appDelete: appGet?.appId),
       );
 
   /// Register a new Oauth application.
   Future<AppRegisterResponse> registerApplication(
           {required List<TokenScope> scopes}) =>
       AppRegisterResponse.registerApplication(
-        AppRegisterSend(
+        AppRegisterRequest(
           appMarkupPercentage: appGet?.appMarkupPercentage,
           appstore: appGet?.appstore,
           github: appGet?.github,
@@ -152,7 +152,7 @@ class AppGetResponse extends AppGetResponseModel {
   Future<AppUpdateResponse> updateApplication(
           {required List<TokenScope> scopes}) =>
       AppUpdateResponse.updateApplication(
-        AppUpdateSend(
+        AppUpdateRequest(
           appMarkupPercentage: appGet?.appMarkupPercentage,
           appUpdate: appGet?.appId,
           appstore: appGet?.appstore,
@@ -171,7 +171,7 @@ class AppGetResponse extends AppGetResponseModel {
   /// Revoke access of particular app.
   Future<RevokeOauthAppResponse> revokeOauthApplication() =>
       RevokeOauthAppResponse.revokeOauthApplication(
-        RevokeOauthAppSend(revokeOauthApp: appGet?.appId),
+        RevokeOauthAppRequest(revokeOauthApp: appGet?.appId),
       );
 
   /// Creates a copy of instance with given parameters.
@@ -184,7 +184,7 @@ class AppGetResponse extends AppGetResponseModel {
 }
 /// App get model class.
 abstract class AppGetModel {
-  /// Initializes.
+  /// Initializes App get model class .
   AppGetModel({
     required this.verificationUri,
     required this.redirectUri,
@@ -227,7 +227,7 @@ abstract class AppGetModel {
 
 /// App get class.
 class AppGet extends AppGetModel {
-  /// Initializes
+  /// Initializes App get class.
   AppGet({
     required int appId,
     required double appMarkupPercentage,
@@ -250,7 +250,7 @@ class AppGet extends AppGetModel {
           verificationUri: verificationUri,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppGet.fromJson(Map<String, dynamic> json) => AppGet(
         appId: json['app_id'],
         appMarkupPercentage: getDouble(json['app_markup_percentage'])!,
@@ -263,7 +263,7 @@ class AppGet extends AppGetModel {
         verificationUri: json['verification_uri'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

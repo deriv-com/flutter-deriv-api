@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// P2p advert info send class.
-class P2pAdvertInfoSend extends Request {
-  /// Initialize P2pAdvertInfoSend.
-  const P2pAdvertInfoSend({
+/// P2p advert info request class.
+class P2pAdvertInfoRequest extends Request {
+  /// Initialize P2pAdvertInfoRequest.
+  const P2pAdvertInfoRequest({
     required this.id,
     this.p2pAdvertInfo = true,
     this.useClientLimits,
@@ -20,8 +20,8 @@ class P2pAdvertInfoSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory P2pAdvertInfoSend.fromJson(Map<String, dynamic> json) =>
-      P2pAdvertInfoSend(
+  factory P2pAdvertInfoRequest.fromJson(Map<String, dynamic> json) =>
+      P2pAdvertInfoRequest(
         id: json['id'] as String?,
         p2pAdvertInfo: json['p2p_advert_info'] == null
             ? null
@@ -62,14 +62,14 @@ class P2pAdvertInfoSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pAdvertInfoSend copyWith({
+  P2pAdvertInfoRequest copyWith({
     String? id,
     bool? p2pAdvertInfo,
     bool? useClientLimits,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      P2pAdvertInfoSend(
+      P2pAdvertInfoRequest(
         id: id ?? this.id,
         p2pAdvertInfo: p2pAdvertInfo ?? this.p2pAdvertInfo,
         useClientLimits: useClientLimits ?? this.useClientLimits,

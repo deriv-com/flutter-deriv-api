@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Mt5 login list response model class.
 abstract class Mt5LoginListResponseModel {
-  /// Initializes.
+  /// Initializes Mt5 login list response model class .
   Mt5LoginListResponseModel({
     this.mt5LoginList,
   });
@@ -19,14 +19,14 @@ abstract class Mt5LoginListResponseModel {
 
 /// Mt5 login list response class.
 class Mt5LoginListResponse extends Mt5LoginListResponseModel {
-  /// Initializes
+  /// Initializes Mt5 login list response class.
   Mt5LoginListResponse({
     List<Mt5LoginListItem>? mt5LoginList,
   }) : super(
           mt5LoginList: mt5LoginList,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5LoginListResponse.fromJson(
     dynamic mt5LoginListJson,
   ) =>
@@ -40,7 +40,7 @@ class Mt5LoginListResponse extends Mt5LoginListResponseModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -62,7 +62,7 @@ class Mt5LoginListResponse extends Mt5LoginListResponseModel {
   /// For parameters information refer to [Mt5LoginListRequest].
   /// Throws a [MT5Exception] if API response contains an error
   static Future<Mt5LoginListResponse> fetchLoginList(
-    Mt5LoginListSend request,
+    Mt5LoginListRequest request,
   ) async {
     final Mt5LoginListReceive response = await _api.call(request: request);
 
@@ -193,7 +193,7 @@ enum SubAccountTypeEnum {
 }
 /// Mt5 login list item model class.
 abstract class Mt5LoginListItemModel {
-  /// Initializes.
+  /// Initializes Mt5 login list item model class .
   Mt5LoginListItemModel({
     this.accountType,
     this.balance,
@@ -260,7 +260,7 @@ abstract class Mt5LoginListItemModel {
 
 /// Mt5 login list item class.
 class Mt5LoginListItem extends Mt5LoginListItemModel {
-  /// Initializes
+  /// Initializes Mt5 login list item class.
   Mt5LoginListItem({
     AccountTypeEnum? accountType,
     double? balance,
@@ -295,7 +295,7 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
           subAccountType: subAccountType,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5LoginListItem.fromJson(Map<String, dynamic> json) =>
       Mt5LoginListItem(
         accountType: json['account_type'] == null
@@ -325,7 +325,7 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
             : subAccountTypeEnumMapper[json['sub_account_type']]!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -400,7 +400,7 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
 }
 /// Server info model class.
 abstract class ServerInfoModel {
-  /// Initializes.
+  /// Initializes Server info model class .
   ServerInfoModel({
     this.environment,
     this.geolocation,
@@ -419,7 +419,7 @@ abstract class ServerInfoModel {
 
 /// Server info class.
 class ServerInfo extends ServerInfoModel {
-  /// Initializes
+  /// Initializes Server info class.
   ServerInfo({
     EnvironmentEnum? environment,
     Geolocation? geolocation,
@@ -430,7 +430,7 @@ class ServerInfo extends ServerInfoModel {
           id: id,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ServerInfo.fromJson(Map<String, dynamic> json) => ServerInfo(
         environment: json['environment'] == null
             ? null
@@ -441,7 +441,7 @@ class ServerInfo extends ServerInfoModel {
         id: json['id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -471,7 +471,7 @@ class ServerInfo extends ServerInfoModel {
 }
 /// Geolocation model class.
 abstract class GeolocationModel {
-  /// Initializes.
+  /// Initializes Geolocation model class .
   GeolocationModel({
     this.location,
     this.region,
@@ -490,7 +490,7 @@ abstract class GeolocationModel {
 
 /// Geolocation class.
 class Geolocation extends GeolocationModel {
-  /// Initializes
+  /// Initializes Geolocation class.
   Geolocation({
     String? location,
     String? region,
@@ -501,14 +501,14 @@ class Geolocation extends GeolocationModel {
           sequence: sequence,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Geolocation.fromJson(Map<String, dynamic> json) => Geolocation(
         location: json['location'],
         region: json['region'],
         sequence: json['sequence'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

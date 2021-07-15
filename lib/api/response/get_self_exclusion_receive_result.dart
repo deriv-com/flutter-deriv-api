@@ -10,7 +10,7 @@ import '../models/base_exception_model.dart';
 
 /// Get self exclusion response model class.
 abstract class GetSelfExclusionResponseModel {
-  /// Initializes.
+  /// Initializes Get self exclusion response model class .
   GetSelfExclusionResponseModel({
     this.getSelfExclusion,
   });
@@ -21,14 +21,14 @@ abstract class GetSelfExclusionResponseModel {
 
 /// Get self exclusion response class.
 class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
-  /// Initializes
+  /// Initializes Get self exclusion response class.
   GetSelfExclusionResponse({
     GetSelfExclusion? getSelfExclusion,
   }) : super(
           getSelfExclusion: getSelfExclusion,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetSelfExclusionResponse.fromJson(
     dynamic getSelfExclusionJson,
   ) =>
@@ -38,7 +38,7 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
             : GetSelfExclusion.fromJson(getSelfExclusionJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -58,10 +58,10 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
   /// For parameters information refer to [GetSelfExclusionRequest].
   /// Throws a [SelfExclusionException] if API response contains an error
   static Future<GetSelfExclusionResponse> fetchSelfExclusion([
-    GetSelfExclusionSend? request,
+    GetSelfExclusionRequest? request,
   ]) async {
     final GetSelfExclusionReceive response = await _api.call(
-      request: request ?? const GetSelfExclusionSend(),
+      request: request ?? const GetSelfExclusionRequest(),
     );
 
     checkException(
@@ -77,7 +77,7 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
   ///
   /// For parameters information refer to [SetSelfExclusionRequest].
   /// Throws a [SelfExclusionException] if API response contains an error
-  static Future<bool?> setSelfExclusion(SetSelfExclusionSend request) async {
+  static Future<bool?> setSelfExclusion(SetSelfExclusionRequest request) async {
     final SetSelfExclusionReceive response = await _api.call(request: request);
 
     checkException(
@@ -95,7 +95,7 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
   /// Throws a [SelfExclusionException] if API response contains an error
   Future<bool?> exclude() async {
     final SetSelfExclusionReceive response = await _api.call(
-      request: SetSelfExclusionSend(
+      request: SetSelfExclusionRequest(
         excludeUntil: getSelfExclusion?.excludeUntil,
         max30dayDeposit: getSelfExclusion?.max30dayDeposit,
         max30dayLosses: getSelfExclusion?.max30dayLosses,
@@ -133,7 +133,7 @@ class GetSelfExclusionResponse extends GetSelfExclusionResponseModel {
 }
 /// Get self exclusion model class.
 abstract class GetSelfExclusionModel {
-  /// Initializes.
+  /// Initializes Get self exclusion model class .
   GetSelfExclusionModel({
     this.excludeUntil,
     this.max30dayDeposit,
@@ -196,7 +196,7 @@ abstract class GetSelfExclusionModel {
 
 /// Get self exclusion class.
 class GetSelfExclusion extends GetSelfExclusionModel {
-  /// Initializes
+  /// Initializes Get self exclusion class.
   GetSelfExclusion({
     String? excludeUntil,
     double? max30dayDeposit,
@@ -229,7 +229,7 @@ class GetSelfExclusion extends GetSelfExclusionModel {
           timeoutUntil: timeoutUntil,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetSelfExclusion.fromJson(Map<String, dynamic> json) =>
       GetSelfExclusion(
         excludeUntil: json['exclude_until'],
@@ -248,7 +248,7 @@ class GetSelfExclusion extends GetSelfExclusionModel {
         timeoutUntil: getDateTime(json['timeout_until']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

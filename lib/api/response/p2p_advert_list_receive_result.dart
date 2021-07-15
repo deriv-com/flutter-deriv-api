@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// P2p advert list response model class.
 abstract class P2pAdvertListResponseModel {
-  /// Initializes.
+  /// Initializes P2p advert list response model class .
   P2pAdvertListResponseModel({
     this.p2pAdvertList,
   });
@@ -19,14 +19,14 @@ abstract class P2pAdvertListResponseModel {
 
 /// P2p advert list response class.
 class P2pAdvertListResponse extends P2pAdvertListResponseModel {
-  /// Initializes
+  /// Initializes P2p advert list response class.
   P2pAdvertListResponse({
     P2pAdvertList? p2pAdvertList,
   }) : super(
           p2pAdvertList: p2pAdvertList,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertListResponse.fromJson(
     dynamic p2pAdvertListJson,
   ) =>
@@ -36,7 +36,7 @@ class P2pAdvertListResponse extends P2pAdvertListResponseModel {
             : P2pAdvertList.fromJson(p2pAdvertListJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -54,7 +54,7 @@ class P2pAdvertListResponse extends P2pAdvertListResponseModel {
   /// For parameters information refer to [P2pAdvertListRequest].
   /// Throws a [P2PAdvertException] if API response contains an error
   static Future<P2pAdvertListResponse> fetchAdvertList(
-    P2pAdvertListSend request,
+    P2pAdvertListRequest request,
   ) async {
     final P2pAdvertListReceive response = await _api.call(request: request);
 
@@ -108,7 +108,7 @@ enum TypeEnum {
 }
 /// P2p advert list model class.
 abstract class P2pAdvertListModel {
-  /// Initializes.
+  /// Initializes P2p advert list model class .
   P2pAdvertListModel({
     required this.list,
   });
@@ -119,14 +119,14 @@ abstract class P2pAdvertListModel {
 
 /// P2p advert list class.
 class P2pAdvertList extends P2pAdvertListModel {
-  /// Initializes
+  /// Initializes P2p advert list class.
   P2pAdvertList({
     required List<ListItem> list,
   }) : super(
           list: list,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertList.fromJson(Map<String, dynamic> json) => P2pAdvertList(
         list: List<ListItem>.from(
           json['list'].map(
@@ -135,7 +135,7 @@ class P2pAdvertList extends P2pAdvertListModel {
         ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -158,7 +158,7 @@ class P2pAdvertList extends P2pAdvertListModel {
 }
 /// List item model class.
 abstract class ListItemModel {
-  /// Initializes.
+  /// Initializes List item model class .
   ListItemModel({
     required this.type,
     required this.rateDisplay,
@@ -289,7 +289,7 @@ abstract class ListItemModel {
 
 /// List item class.
 class ListItem extends ListItemModel {
-  /// Initializes
+  /// Initializes List item class.
   ListItem({
     required String accountCurrency,
     required AdvertiserDetails advertiserDetails,
@@ -356,7 +356,7 @@ class ListItem extends ListItemModel {
           remainingAmountDisplay: remainingAmountDisplay,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ListItem.fromJson(Map<String, dynamic> json) => ListItem(
         accountCurrency: json['account_currency'],
         advertiserDetails:
@@ -399,7 +399,7 @@ class ListItem extends ListItemModel {
         remainingAmountDisplay: json['remaining_amount_display'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -523,7 +523,7 @@ class ListItem extends ListItemModel {
 }
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
-  /// Initializes.
+  /// Initializes Advertiser details model class .
   AdvertiserDetailsModel({
     required this.name,
     required this.id,
@@ -550,7 +550,7 @@ abstract class AdvertiserDetailsModel {
 
 /// Advertiser details class.
 class AdvertiserDetails extends AdvertiserDetailsModel {
-  /// Initializes
+  /// Initializes Advertiser details class.
   AdvertiserDetails({
     required String id,
     required String name,
@@ -565,7 +565,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
           totalCompletionRate: totalCompletionRate,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AdvertiserDetails.fromJson(Map<String, dynamic> json) =>
       AdvertiserDetails(
         id: json['id'],
@@ -575,7 +575,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         totalCompletionRate: getDouble(json['total_completion_rate']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

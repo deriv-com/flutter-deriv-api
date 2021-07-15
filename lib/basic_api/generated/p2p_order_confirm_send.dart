@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// P2p order confirm send class.
-class P2pOrderConfirmSend extends Request {
-  /// Initialize P2pOrderConfirmSend.
-  const P2pOrderConfirmSend({
+/// P2p order confirm request class.
+class P2pOrderConfirmRequest extends Request {
+  /// Initialize P2pOrderConfirmRequest.
+  const P2pOrderConfirmRequest({
     required this.id,
     this.p2pOrderConfirm = true,
     Map<String, dynamic>? passthrough,
@@ -19,8 +19,8 @@ class P2pOrderConfirmSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory P2pOrderConfirmSend.fromJson(Map<String, dynamic> json) =>
-      P2pOrderConfirmSend(
+  factory P2pOrderConfirmRequest.fromJson(Map<String, dynamic> json) =>
+      P2pOrderConfirmRequest(
         id: json['id'] as String?,
         p2pOrderConfirm: json['p2p_order_confirm'] == null
             ? null
@@ -50,13 +50,13 @@ class P2pOrderConfirmSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pOrderConfirmSend copyWith({
+  P2pOrderConfirmRequest copyWith({
     String? id,
     bool? p2pOrderConfirm,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      P2pOrderConfirmSend(
+      P2pOrderConfirmRequest(
         id: id ?? this.id,
         p2pOrderConfirm: p2pOrderConfirm ?? this.p2pOrderConfirm,
         passthrough: passthrough ?? this.passthrough,

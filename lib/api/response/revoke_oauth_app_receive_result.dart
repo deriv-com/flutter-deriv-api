@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Revoke oauth app response model class.
 abstract class RevokeOauthAppResponseModel {
-  /// Initializes.
+  /// Initializes Revoke oauth app response model class .
   RevokeOauthAppResponseModel({
     this.revokeOauthApp,
   });
@@ -19,14 +19,14 @@ abstract class RevokeOauthAppResponseModel {
 
 /// Revoke oauth app response class.
 class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
-  /// Initializes
+  /// Initializes Revoke oauth app response class.
   RevokeOauthAppResponse({
     int? revokeOauthApp,
   }) : super(
           revokeOauthApp: revokeOauthApp,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory RevokeOauthAppResponse.fromJson(
     dynamic revokeOauthAppJson,
   ) =>
@@ -34,7 +34,7 @@ class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
         revokeOauthApp: revokeOauthAppJson,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -50,7 +50,7 @@ class RevokeOauthAppResponse extends RevokeOauthAppResponseModel {
   /// For parameters information refer to [RevokeOauthAppRequest].
   /// Throws an [AppException] if API response contains an error
   static Future<RevokeOauthAppResponse> revokeOauthApplication(
-    RevokeOauthAppSend request,
+    RevokeOauthAppRequest request,
   ) async {
     final RevokeOauthAppReceive response = await _api.call(request: request);
 

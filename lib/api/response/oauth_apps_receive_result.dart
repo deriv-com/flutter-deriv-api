@@ -8,7 +8,7 @@ import '../../services/dependency_injector/injector.dart';
 
 /// Oauth apps response model class.
 abstract class OauthAppsResponseModel {
-  /// Initializes.
+  /// Initializes Oauth apps response model class .
   OauthAppsResponseModel({
     this.oauthApps,
   });
@@ -19,14 +19,14 @@ abstract class OauthAppsResponseModel {
 
 /// Oauth apps response class.
 class OauthAppsResponse extends OauthAppsResponseModel {
-  /// Initializes
+  /// Initializes Oauth apps response class.
   OauthAppsResponse({
     List<OauthAppsItem>? oauthApps,
   }) : super(
           oauthApps: oauthApps,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory OauthAppsResponse.fromJson(
     dynamic oauthAppsJson,
   ) =>
@@ -40,7 +40,7 @@ class OauthAppsResponse extends OauthAppsResponseModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -61,10 +61,10 @@ class OauthAppsResponse extends OauthAppsResponseModel {
   ///
   /// Throws an [AppException] if API response contains an error
   static Future<OauthAppsResponse> fetchOauthApps([
-    OauthAppsSend? request,
+    OauthAppsRequest? request,
   ]) async {
     final OauthAppsReceive response = await _api.call(
-      request: request ?? const OauthAppsSend(),
+      request: request ?? const OauthAppsRequest(),
     );
 
     checkException(
@@ -86,7 +86,7 @@ class OauthAppsResponse extends OauthAppsResponseModel {
 }
 /// Oauth apps item model class.
 abstract class OauthAppsItemModel {
-  /// Initializes.
+  /// Initializes Oauth apps item model class .
   OauthAppsItemModel({
     required this.scopes,
     required this.name,
@@ -113,7 +113,7 @@ abstract class OauthAppsItemModel {
 
 /// Oauth apps item class.
 class OauthAppsItem extends OauthAppsItemModel {
-  /// Initializes
+  /// Initializes Oauth apps item class.
   OauthAppsItem({
     required int appId,
     required double appMarkupPercentage,
@@ -128,7 +128,7 @@ class OauthAppsItem extends OauthAppsItemModel {
           lastUsed: lastUsed,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory OauthAppsItem.fromJson(Map<String, dynamic> json) => OauthAppsItem(
         appId: json['app_id'],
         appMarkupPercentage: getDouble(json['app_markup_percentage'])!,
@@ -141,7 +141,7 @@ class OauthAppsItem extends OauthAppsItemModel {
         lastUsed: json['last_used'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

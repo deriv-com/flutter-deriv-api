@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Login history response model class.
 abstract class LoginHistoryResponseModel {
-  /// Initializes.
+  /// Initializes Login history response model class .
   LoginHistoryResponseModel({
     this.loginHistory,
   });
@@ -19,14 +19,14 @@ abstract class LoginHistoryResponseModel {
 
 /// Login history response class.
 class LoginHistoryResponse extends LoginHistoryResponseModel {
-  /// Initializes
+  /// Initializes Login history response class.
   LoginHistoryResponse({
     List<LoginHistoryItem>? loginHistory,
   }) : super(
           loginHistory: loginHistory,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LoginHistoryResponse.fromJson(
     dynamic loginHistoryJson,
   ) =>
@@ -40,7 +40,7 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -62,10 +62,10 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
   /// For parameters information refer to [LoginHistory].
   /// Throws an [AuthorizeException] if API response contains an error
   static Future<LoginHistoryResponse> fetchHistory([
-    LoginHistorySend? request,
+    LoginHistoryRequest? request,
   ]) async {
     final LoginHistoryReceive response = await _api.call(
-      request: request ?? const LoginHistorySend(limit: 10),
+      request: request ?? const LoginHistoryRequest(limit: 10),
     );
 
     checkException(
@@ -87,7 +87,7 @@ class LoginHistoryResponse extends LoginHistoryResponseModel {
 }
 /// Login history item model class.
 abstract class LoginHistoryItemModel {
-  /// Initializes.
+  /// Initializes Login history item model class .
   LoginHistoryItemModel({
     required this.time,
     required this.status,
@@ -110,7 +110,7 @@ abstract class LoginHistoryItemModel {
 
 /// Login history item class.
 class LoginHistoryItem extends LoginHistoryItemModel {
-  /// Initializes
+  /// Initializes Login history item class.
   LoginHistoryItem({
     required String action,
     required String environment,
@@ -123,7 +123,7 @@ class LoginHistoryItem extends LoginHistoryItemModel {
           time: time,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LoginHistoryItem.fromJson(Map<String, dynamic> json) =>
       LoginHistoryItem(
         action: json['action'],
@@ -132,7 +132,7 @@ class LoginHistoryItem extends LoginHistoryItemModel {
         time: getDateTime(json['time'])!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

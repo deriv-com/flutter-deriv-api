@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Trading platform investor password reset send class.
-class TradingPlatformInvestorPasswordResetSend extends Request {
-  /// Initialize TradingPlatformInvestorPasswordResetSend.
-  const TradingPlatformInvestorPasswordResetSend({
+/// Trading platform investor password reset request class.
+class TradingPlatformInvestorPasswordResetRequest extends Request {
+  /// Initialize TradingPlatformInvestorPasswordResetRequest.
+  const TradingPlatformInvestorPasswordResetRequest({
     required this.accountId,
     required this.newPassword,
     required this.platform,
@@ -22,9 +22,9 @@ class TradingPlatformInvestorPasswordResetSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory TradingPlatformInvestorPasswordResetSend.fromJson(
+  factory TradingPlatformInvestorPasswordResetRequest.fromJson(
           Map<String, dynamic> json) =>
-      TradingPlatformInvestorPasswordResetSend(
+      TradingPlatformInvestorPasswordResetRequest(
         accountId: json['account_id'] as String?,
         newPassword: json['new_password'] as String?,
         platform: json['platform'] as String?,
@@ -71,7 +71,7 @@ class TradingPlatformInvestorPasswordResetSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  TradingPlatformInvestorPasswordResetSend copyWith({
+  TradingPlatformInvestorPasswordResetRequest copyWith({
     String? accountId,
     String? newPassword,
     String? platform,
@@ -80,7 +80,7 @@ class TradingPlatformInvestorPasswordResetSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      TradingPlatformInvestorPasswordResetSend(
+      TradingPlatformInvestorPasswordResetRequest(
         accountId: accountId ?? this.accountId,
         newPassword: newPassword ?? this.newPassword,
         platform: platform ?? this.platform,

@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Oauth apps send class.
-class OauthAppsSend extends Request {
-  /// Initialize OauthAppsSend.
-  const OauthAppsSend({
+/// Oauth apps request class.
+class OauthAppsRequest extends Request {
+  /// Initialize OauthAppsRequest.
+  const OauthAppsRequest({
     this.oauthApps = true,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -18,7 +18,8 @@ class OauthAppsSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory OauthAppsSend.fromJson(Map<String, dynamic> json) => OauthAppsSend(
+  factory OauthAppsRequest.fromJson(Map<String, dynamic> json) =>
+      OauthAppsRequest(
         oauthApps: json['oauth_apps'] == null ? null : json['oauth_apps'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -41,12 +42,12 @@ class OauthAppsSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  OauthAppsSend copyWith({
+  OauthAppsRequest copyWith({
     bool? oauthApps,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      OauthAppsSend(
+      OauthAppsRequest(
         oauthApps: oauthApps ?? this.oauthApps,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

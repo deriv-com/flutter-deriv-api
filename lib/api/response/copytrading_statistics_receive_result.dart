@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Copytrading statistics response model class.
 abstract class CopytradingStatisticsResponseModel {
-  /// Initializes.
+  /// Initializes Copytrading statistics response model class .
   CopytradingStatisticsResponseModel({
     this.copytradingStatistics,
   });
@@ -19,14 +19,14 @@ abstract class CopytradingStatisticsResponseModel {
 
 /// Copytrading statistics response class.
 class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
-  /// Initializes
+  /// Initializes Copytrading statistics response class.
   CopytradingStatisticsResponse({
     CopytradingStatistics? copytradingStatistics,
   }) : super(
           copytradingStatistics: copytradingStatistics,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CopytradingStatisticsResponse.fromJson(
     dynamic copytradingStatisticsJson,
   ) =>
@@ -36,7 +36,7 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
             : CopytradingStatistics.fromJson(copytradingStatisticsJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -53,7 +53,7 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
   ///
   /// Throws a [CopyTradingException] if API response contains an error
   static Future<CopytradingStatisticsResponse> fetchStatistics(
-    CopytradingStatisticsSend request,
+    CopytradingStatisticsRequest request,
   ) async {
     final CopytradingStatisticsReceive response = await _api.call(
       request: request,
@@ -80,7 +80,7 @@ class CopytradingStatisticsResponse extends CopytradingStatisticsResponseModel {
 }
 /// Copytrading statistics model class.
 abstract class CopytradingStatisticsModel {
-  /// Initializes.
+  /// Initializes Copytrading statistics model class .
   CopytradingStatisticsModel({
     required this.tradesProfitable,
     required this.tradesBreakdown,
@@ -135,7 +135,7 @@ abstract class CopytradingStatisticsModel {
 
 /// Copytrading statistics class.
 class CopytradingStatistics extends CopytradingStatisticsModel {
-  /// Initializes
+  /// Initializes Copytrading statistics class.
   CopytradingStatistics({
     required DateTime activeSince,
     required int avgDuration,
@@ -164,7 +164,7 @@ class CopytradingStatistics extends CopytradingStatisticsModel {
           yearlyProfitableTrades: yearlyProfitableTrades,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CopytradingStatistics.fromJson(Map<String, dynamic> json) =>
       CopytradingStatistics(
         activeSince: getDateTime(json['active_since'])!,
@@ -196,7 +196,7 @@ class CopytradingStatistics extends CopytradingStatisticsModel {
                             entry.key, getDouble(entry.value)!))),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

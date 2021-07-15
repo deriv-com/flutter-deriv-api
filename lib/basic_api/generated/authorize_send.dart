@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Authorize send class.
-class AuthorizeSend extends Request {
-  /// Initialize AuthorizeSend.
-  const AuthorizeSend({
+/// Authorize request class.
+class AuthorizeRequest extends Request {
+  /// Initialize AuthorizeRequest.
+  const AuthorizeRequest({
     this.addToLoginHistory,
     required this.authorize,
     Map<String, dynamic>? passthrough,
@@ -19,7 +19,8 @@ class AuthorizeSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory AuthorizeSend.fromJson(Map<String, dynamic> json) => AuthorizeSend(
+  factory AuthorizeRequest.fromJson(Map<String, dynamic> json) =>
+      AuthorizeRequest(
         addToLoginHistory: json['add_to_login_history'] as int?,
         authorize: json['authorize'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -43,13 +44,13 @@ class AuthorizeSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  AuthorizeSend copyWith({
+  AuthorizeRequest copyWith({
     int? addToLoginHistory,
     String? authorize,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      AuthorizeSend(
+      AuthorizeRequest(
         addToLoginHistory: addToLoginHistory ?? this.addToLoginHistory,
         authorize: authorize ?? this.authorize,
         passthrough: passthrough ?? this.passthrough,

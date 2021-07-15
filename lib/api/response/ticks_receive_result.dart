@@ -13,7 +13,7 @@ import 'forget_all_receive_result.dart';
 
 /// Ticks response model class.
 abstract class TicksResponseModel {
-  /// Initializes.
+  /// Initializes Ticks response model class .
   TicksResponseModel({
     this.tick,
     this.subscription,
@@ -28,7 +28,7 @@ abstract class TicksResponseModel {
 
 /// Ticks response class.
 class TicksResponse extends TicksResponseModel {
-  /// Initializes
+  /// Initializes Ticks response class.
   TicksResponse({
     Tick? tick,
     Subscription? subscription,
@@ -37,7 +37,7 @@ class TicksResponse extends TicksResponseModel {
           subscription: subscription,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TicksResponse.fromJson(
     dynamic tickJson,
     dynamic subscriptionJson,
@@ -49,7 +49,7 @@ class TicksResponse extends TicksResponseModel {
             : Subscription.fromJson(subscriptionJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -69,7 +69,7 @@ class TicksResponse extends TicksResponseModel {
   ///
   /// Throws [TickException] if API response contains an error
   static Stream<TicksResponse?> subscribeTick(
-    TicksSend tickRequest, {
+    TicksRequest tickRequest, {
     RequestCompareFunction? comparePredicate,
   }) =>
       _api
@@ -119,7 +119,7 @@ class TicksResponse extends TicksResponseModel {
 }
 /// Tick model class.
 abstract class TickModel {
-  /// Initializes.
+  /// Initializes Tick model class .
   TickModel({
     required this.pipSize,
     this.ask,
@@ -154,7 +154,7 @@ abstract class TickModel {
 
 /// Tick class.
 class Tick extends TickModel {
-  /// Initializes
+  /// Initializes Tick class.
   Tick({
     required double pipSize,
     double? ask,
@@ -173,7 +173,7 @@ class Tick extends TickModel {
           symbol: symbol,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Tick.fromJson(Map<String, dynamic> json) => Tick(
         pipSize: getDouble(json['pip_size'])!,
         ask: getDouble(json['ask']),
@@ -184,7 +184,7 @@ class Tick extends TickModel {
         symbol: json['symbol'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -221,7 +221,7 @@ class Tick extends TickModel {
 }
 /// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes.
+  /// Initializes Subscription model class .
   SubscriptionModel({
     required this.id,
   });
@@ -232,19 +232,19 @@ abstract class SubscriptionModel {
 
 /// Subscription class.
 class Subscription extends SubscriptionModel {
-  /// Initializes
+  /// Initializes Subscription class.
   Subscription({
     required String id,
   }) : super(
           id: id,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(
         id: json['id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

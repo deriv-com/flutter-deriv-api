@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// App register response model class.
 abstract class AppRegisterResponseModel {
-  /// Initializes.
+  /// Initializes App register response model class .
   AppRegisterResponseModel({
     this.appRegister,
   });
@@ -19,14 +19,14 @@ abstract class AppRegisterResponseModel {
 
 /// App register response class.
 class AppRegisterResponse extends AppRegisterResponseModel {
-  /// Initializes
+  /// Initializes App register response class.
   AppRegisterResponse({
     AppRegister? appRegister,
   }) : super(
           appRegister: appRegister,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppRegisterResponse.fromJson(
     dynamic appRegisterJson,
   ) =>
@@ -36,7 +36,7 @@ class AppRegisterResponse extends AppRegisterResponseModel {
             : AppRegister.fromJson(appRegisterJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -54,7 +54,7 @@ class AppRegisterResponse extends AppRegisterResponseModel {
   /// For parameters information refer to [AppRegisterRequest].
   /// Throws an [AppException] if API response contains an error
   static Future<AppRegisterResponse> registerApplication(
-    AppRegisterSend request,
+    AppRegisterRequest request,
   ) async {
     final AppRegisterReceive response = await _api.call(request: request);
 
@@ -77,7 +77,7 @@ class AppRegisterResponse extends AppRegisterResponseModel {
 }
 /// App register model class.
 abstract class AppRegisterModel {
-  /// Initializes.
+  /// Initializes App register model class .
   AppRegisterModel({
     required this.verificationUri,
     required this.redirectUri,
@@ -120,7 +120,7 @@ abstract class AppRegisterModel {
 
 /// App register class.
 class AppRegister extends AppRegisterModel {
-  /// Initializes
+  /// Initializes App register class.
   AppRegister({
     required int appId,
     required double appMarkupPercentage,
@@ -143,7 +143,7 @@ class AppRegister extends AppRegisterModel {
           verificationUri: verificationUri,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppRegister.fromJson(Map<String, dynamic> json) => AppRegister(
         appId: json['app_id'],
         appMarkupPercentage: getDouble(json['app_markup_percentage'])!,
@@ -156,7 +156,7 @@ class AppRegister extends AppRegisterModel {
         verificationUri: json['verification_uri'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

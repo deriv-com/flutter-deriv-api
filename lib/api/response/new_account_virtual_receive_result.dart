@@ -8,7 +8,7 @@ import '../../services/dependency_injector/injector.dart';
 
 /// New account virtual response model class.
 abstract class NewAccountVirtualResponseModel {
-  /// Initializes.
+  /// Initializes New account virtual response model class .
   NewAccountVirtualResponseModel({
     this.newAccountVirtual,
   });
@@ -19,14 +19,14 @@ abstract class NewAccountVirtualResponseModel {
 
 /// New account virtual response class.
 class NewAccountVirtualResponse extends NewAccountVirtualResponseModel {
-  /// Initializes
+  /// Initializes New account virtual response class.
   NewAccountVirtualResponse({
     NewAccountVirtual? newAccountVirtual,
   }) : super(
           newAccountVirtual: newAccountVirtual,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory NewAccountVirtualResponse.fromJson(
     dynamic newAccountVirtualJson,
   ) =>
@@ -36,7 +36,7 @@ class NewAccountVirtualResponse extends NewAccountVirtualResponseModel {
             : NewAccountVirtual.fromJson(newAccountVirtualJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -54,7 +54,7 @@ class NewAccountVirtualResponse extends NewAccountVirtualResponseModel {
   /// For parameters information refer to [NewAccountVirtualRequest].
   /// Throws a [NewAccountException] if API response contains an error
   static Future<NewAccountVirtualResponse> openNewVirtualAccount(
-    NewAccountVirtualSend request,
+    NewAccountVirtualRequest request,
   ) async {
     final NewAccountVirtualReceive response = await _api.call(request: request);
 
@@ -92,7 +92,7 @@ enum TypeEnum {
 }
 /// New account virtual model class.
 abstract class NewAccountVirtualModel {
-  /// Initializes.
+  /// Initializes New account virtual model class .
   NewAccountVirtualModel({
     required this.oauthToken,
     required this.email,
@@ -123,7 +123,7 @@ abstract class NewAccountVirtualModel {
 
 /// New account virtual class.
 class NewAccountVirtual extends NewAccountVirtualModel {
-  /// Initializes
+  /// Initializes New account virtual class.
   NewAccountVirtual({
     required double balance,
     required String clientId,
@@ -140,7 +140,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
           type: type,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory NewAccountVirtual.fromJson(Map<String, dynamic> json) =>
       NewAccountVirtual(
         balance: getDouble(json['balance'])!,
@@ -151,7 +151,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
         type: json['type'] == null ? null : typeEnumMapper[json['type']]!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

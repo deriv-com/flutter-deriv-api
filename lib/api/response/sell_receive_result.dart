@@ -12,7 +12,7 @@ import 'sell_expired_receive_result.dart';
 
 /// Sell response model class.
 abstract class SellResponseModel {
-  /// Initializes.
+  /// Initializes Sell response model class .
   SellResponseModel({
     this.sell,
   });
@@ -23,14 +23,14 @@ abstract class SellResponseModel {
 
 /// Sell response class.
 class SellResponse extends SellResponseModel {
-  /// Initializes
+  /// Initializes Sell response class.
   SellResponse({
     Sell? sell,
   }) : super(
           sell: sell,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SellResponse.fromJson(
     dynamic sellJson,
   ) =>
@@ -38,7 +38,7 @@ class SellResponse extends SellResponseModel {
         sell: sellJson == null ? null : Sell.fromJson(sellJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -54,7 +54,7 @@ class SellResponse extends SellResponseModel {
   /// Sells a contract with parameters specified in [SellRequest].
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  static Future<SellResponse> sellContract(SellSend request) async {
+  static Future<SellResponse> sellContract(SellRequest request) async {
     final SellReceive response = await _api.call(request: request);
 
     checkException(
@@ -70,10 +70,10 @@ class SellResponse extends SellResponseModel {
   ///
   /// Throws [ContractOperationException] if API response contains an error
   static Future<SellExpiredResponse> sellExpiredContracts([
-    SellExpiredSend? request,
+    SellExpiredRequest? request,
   ]) async {
     final SellExpiredReceive response = await _api.call(
-      request: request ?? const SellExpiredSend(),
+      request: request ?? const SellExpiredRequest(),
     );
 
     checkException(
@@ -95,7 +95,7 @@ class SellResponse extends SellResponseModel {
 }
 /// Sell model class.
 abstract class SellModel {
-  /// Initializes.
+  /// Initializes Sell model class .
   SellModel({
     this.balanceAfter,
     this.contractId,
@@ -122,7 +122,7 @@ abstract class SellModel {
 
 /// Sell class.
 class Sell extends SellModel {
-  /// Initializes
+  /// Initializes Sell class.
   Sell({
     double? balanceAfter,
     int? contractId,
@@ -137,7 +137,7 @@ class Sell extends SellModel {
           transactionId: transactionId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Sell.fromJson(Map<String, dynamic> json) => Sell(
         balanceAfter: getDouble(json['balance_after']),
         contractId: json['contract_id'],
@@ -146,7 +146,7 @@ class Sell extends SellModel {
         transactionId: json['transaction_id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

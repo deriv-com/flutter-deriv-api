@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Payout currencies response model class.
 abstract class PayoutCurrenciesResponseModel {
-  /// Initializes.
+  /// Initializes Payout currencies response model class .
   PayoutCurrenciesResponseModel({
     this.payoutCurrencies,
   });
@@ -19,14 +19,14 @@ abstract class PayoutCurrenciesResponseModel {
 
 /// Payout currencies response class.
 class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
-  /// Initializes
+  /// Initializes Payout currencies response class.
   PayoutCurrenciesResponse({
     List<String>? payoutCurrencies,
   }) : super(
           payoutCurrencies: payoutCurrencies,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PayoutCurrenciesResponse.fromJson(
     dynamic payoutCurrenciesJson,
   ) =>
@@ -40,7 +40,7 @@ class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -62,10 +62,10 @@ class PayoutCurrenciesResponse extends PayoutCurrenciesResponseModel {
   /// If a user is logged in, only the currencies available for the account will be returned.
   /// Throws a [PayoutCurrencyException] if API response contains a error
   static Future<PayoutCurrenciesResponse> fetchPayoutCurrencies([
-    PayoutCurrenciesSend? request,
+    PayoutCurrenciesRequest? request,
   ]) async {
     final PayoutCurrenciesReceive response = await _api.call(
-      request: request ?? const PayoutCurrenciesSend(),
+      request: request ?? const PayoutCurrenciesRequest(),
     );
 
     checkException(

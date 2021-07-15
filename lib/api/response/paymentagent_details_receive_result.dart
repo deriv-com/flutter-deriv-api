@@ -3,7 +3,7 @@ import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Paymentagent details response model class.
 abstract class PaymentagentDetailsResponseModel {
-  /// Initializes.
+  /// Initializes Paymentagent details response model class .
   PaymentagentDetailsResponseModel({
     this.paymentagentDetails,
   });
@@ -14,14 +14,14 @@ abstract class PaymentagentDetailsResponseModel {
 
 /// Paymentagent details response class.
 class PaymentagentDetailsResponse extends PaymentagentDetailsResponseModel {
-  /// Initializes
+  /// Initializes Paymentagent details response class.
   PaymentagentDetailsResponse({
     PaymentagentDetails? paymentagentDetails,
   }) : super(
           paymentagentDetails: paymentagentDetails,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentagentDetailsResponse.fromJson(
     dynamic paymentagentDetailsJson,
   ) =>
@@ -31,7 +31,7 @@ class PaymentagentDetailsResponse extends PaymentagentDetailsResponseModel {
             : PaymentagentDetails.fromJson(paymentagentDetailsJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -52,7 +52,7 @@ class PaymentagentDetailsResponse extends PaymentagentDetailsResponseModel {
 }
 /// Paymentagent details model class.
 abstract class PaymentagentDetailsModel {
-  /// Initializes.
+  /// Initializes Paymentagent details model class .
   PaymentagentDetailsModel({
     this.affiliateId,
     this.codeOfConductApproval,
@@ -123,7 +123,7 @@ abstract class PaymentagentDetailsModel {
 
 /// Paymentagent details class.
 class PaymentagentDetails extends PaymentagentDetailsModel {
-  /// Initializes
+  /// Initializes Paymentagent details class.
   PaymentagentDetails({
     String? affiliateId,
     bool? codeOfConductApproval,
@@ -160,7 +160,7 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
           url: url,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentagentDetails.fromJson(Map<String, dynamic> json) =>
       PaymentagentDetails(
         affiliateId: json['affiliate_id'],
@@ -187,7 +187,7 @@ class PaymentagentDetails extends PaymentagentDetailsModel {
         url: json['url'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

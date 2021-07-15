@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Ping response model class.
 abstract class PingResponseModel {
-  /// Initializes.
+  /// Initializes Ping response model class .
   PingResponseModel({
     this.ping,
   });
@@ -19,14 +19,14 @@ abstract class PingResponseModel {
 
 /// Ping response class.
 class PingResponse extends PingResponseModel {
-  /// Initializes
+  /// Initializes Ping response class.
   PingResponse({
     PingEnum? ping,
   }) : super(
           ping: ping,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PingResponse.fromJson(
     dynamic pingJson,
   ) =>
@@ -34,7 +34,7 @@ class PingResponse extends PingResponseModel {
         ping: pingJson == null ? null : pingEnumMapper[pingJson]!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -47,15 +47,15 @@ class PingResponse extends PingResponseModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
-  /// Sends the ping request to the server.
+  /// Requests the ping request to the server.
   ///
   /// Mostly used to test the connection or to keep it alive.
   /// Throws a [PingException] if API response contains an error
   static Future<PingResponse> pingMethod([
-    PingSend? request,
+    PingRequest? request,
   ]) async {
     final PingReceive response = await _api.call(
-      request: request ?? const PingSend(),
+      request: request ?? const PingRequest(),
     );
 
     checkException(

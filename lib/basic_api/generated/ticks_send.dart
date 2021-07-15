@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Ticks send class.
-class TicksSend extends Request {
-  /// Initialize TicksSend.
-  const TicksSend({
+/// Ticks request class.
+class TicksRequest extends Request {
+  /// Initialize TicksRequest.
+  const TicksRequest({
     this.subscribe,
     this.ticks,
     Map<String, dynamic>? passthrough,
@@ -19,7 +19,7 @@ class TicksSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory TicksSend.fromJson(Map<String, dynamic> json) => TicksSend(
+  factory TicksRequest.fromJson(Map<String, dynamic> json) => TicksRequest(
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         ticks: json['ticks'] as dynamic,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -47,13 +47,13 @@ class TicksSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  TicksSend copyWith({
+  TicksRequest copyWith({
     bool? subscribe,
     dynamic ticks,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      TicksSend(
+      TicksRequest(
         subscribe: subscribe ?? this.subscribe,
         ticks: ticks ?? this.ticks,
         passthrough: passthrough ?? this.passthrough,
@@ -62,5 +62,5 @@ class TicksSend extends Request {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object> get props => <Object>[ticks!];
 }

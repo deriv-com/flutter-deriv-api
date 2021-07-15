@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// P2p advert update send class.
-class P2pAdvertUpdateSend extends Request {
-  /// Initialize P2pAdvertUpdateSend.
-  const P2pAdvertUpdateSend({
+/// P2p advert update request class.
+class P2pAdvertUpdateRequest extends Request {
+  /// Initialize P2pAdvertUpdateRequest.
+  const P2pAdvertUpdateRequest({
     this.delete,
     required this.id,
     this.isActive,
@@ -23,8 +23,8 @@ class P2pAdvertUpdateSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory P2pAdvertUpdateSend.fromJson(Map<String, dynamic> json) =>
-      P2pAdvertUpdateSend(
+  factory P2pAdvertUpdateRequest.fromJson(Map<String, dynamic> json) =>
+      P2pAdvertUpdateRequest(
         delete: json['delete'] == null ? null : json['delete'] == 1,
         id: json['id'] as String?,
         isActive: json['is_active'] == null ? null : json['is_active'] == 1,
@@ -84,7 +84,7 @@ class P2pAdvertUpdateSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pAdvertUpdateSend copyWith({
+  P2pAdvertUpdateRequest copyWith({
     bool? delete,
     String? id,
     bool? isActive,
@@ -94,7 +94,7 @@ class P2pAdvertUpdateSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      P2pAdvertUpdateSend(
+      P2pAdvertUpdateRequest(
         delete: delete ?? this.delete,
         id: id ?? this.id,
         isActive: isActive ?? this.isActive,

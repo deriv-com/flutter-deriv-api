@@ -15,7 +15,7 @@ import 'forget_receive_result.dart';
 
 /// Transaction response model class.
 abstract class TransactionResponseModel {
-  /// Initializes.
+  /// Initializes Transaction response model class .
   TransactionResponseModel({
     this.transaction,
     this.subscription,
@@ -30,7 +30,7 @@ abstract class TransactionResponseModel {
 
 /// Transaction response class.
 class TransactionResponse extends TransactionResponseModel {
-  /// Initializes
+  /// Initializes Transaction response class.
   TransactionResponse({
     Transaction? transaction,
     Subscription? subscription,
@@ -39,7 +39,7 @@ class TransactionResponse extends TransactionResponseModel {
           subscription: subscription,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TransactionResponse.fromJson(
     dynamic transactionJson,
     dynamic subscriptionJson,
@@ -53,7 +53,7 @@ class TransactionResponse extends TransactionResponseModel {
             : Subscription.fromJson(subscriptionJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -77,7 +77,7 @@ class TransactionResponse extends TransactionResponseModel {
   }) =>
       _api
           .subscribe(
-        request: const TransactionSend(),
+        request: const TransactionRequest(),
         comparePredicate: comparePredicate,
       )!
           .map<TransactionResponse?>((Response response) {
@@ -182,7 +182,7 @@ enum ActionEnum {
 }
 /// Transaction model class.
 abstract class TransactionModel {
-  /// Initializes.
+  /// Initializes Transaction model class .
   TransactionModel({
     this.action,
     this.amount,
@@ -265,7 +265,7 @@ abstract class TransactionModel {
 
 /// Transaction class.
 class Transaction extends TransactionModel {
-  /// Initializes
+  /// Initializes Transaction class.
   Transaction({
     ActionEnum? action,
     double? amount,
@@ -308,7 +308,7 @@ class Transaction extends TransactionModel {
           transactionTime: transactionTime,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
         action:
             json['action'] == null ? null : actionEnumMapper[json['action']]!,
@@ -332,7 +332,7 @@ class Transaction extends TransactionModel {
         transactionTime: getDateTime(json['transaction_time']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -409,7 +409,7 @@ class Transaction extends TransactionModel {
 }
 /// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes.
+  /// Initializes Subscription model class .
   SubscriptionModel({
     required this.id,
   });
@@ -420,19 +420,19 @@ abstract class SubscriptionModel {
 
 /// Subscription class.
 class Subscription extends SubscriptionModel {
-  /// Initializes
+  /// Initializes Subscription class.
   Subscription({
     required String id,
   }) : super(
           id: id,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(
         id: json['id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

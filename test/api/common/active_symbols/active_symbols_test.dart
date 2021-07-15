@@ -10,7 +10,7 @@ void main() {
   test('Fetch Active Symbols Test', () async {
     final ActiveSymbolsResponse activeSymbols =
         await ActiveSymbolsResponse.fetchActiveSymbols(
-      const ActiveSymbolsSend(
+      const ActiveSymbolsRequest(
         activeSymbols: 'brief',
         productType: 'basic',
       ),

@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Paymentagent list send class.
-class PaymentagentListSend extends Request {
-  /// Initialize PaymentagentListSend.
-  const PaymentagentListSend({
+/// Paymentagent list request class.
+class PaymentagentListRequest extends Request {
+  /// Initialize PaymentagentListRequest.
+  const PaymentagentListRequest({
     this.currency,
     required this.paymentagentList,
     Map<String, dynamic>? passthrough,
@@ -19,8 +19,8 @@ class PaymentagentListSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory PaymentagentListSend.fromJson(Map<String, dynamic> json) =>
-      PaymentagentListSend(
+  factory PaymentagentListRequest.fromJson(Map<String, dynamic> json) =>
+      PaymentagentListRequest(
         currency: json['currency'] as String?,
         paymentagentList: json['paymentagent_list'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -44,13 +44,13 @@ class PaymentagentListSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  PaymentagentListSend copyWith({
+  PaymentagentListRequest copyWith({
     String? currency,
     String? paymentagentList,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      PaymentagentListSend(
+      PaymentagentListRequest(
         currency: currency ?? this.currency,
         paymentagentList: paymentagentList ?? this.paymentagentList,
         passthrough: passthrough ?? this.passthrough,

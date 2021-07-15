@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Logout response model class.
 abstract class LogoutResponseModel {
-  /// Initializes.
+  /// Initializes Logout response model class .
   LogoutResponseModel({
     this.logout,
   });
@@ -19,14 +19,14 @@ abstract class LogoutResponseModel {
 
 /// Logout response class.
 class LogoutResponse extends LogoutResponseModel {
-  /// Initializes
+  /// Initializes Logout response class.
   LogoutResponse({
     int? logout,
   }) : super(
           logout: logout,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LogoutResponse.fromJson(
     dynamic logoutJson,
   ) =>
@@ -34,7 +34,7 @@ class LogoutResponse extends LogoutResponseModel {
         logout: logoutJson,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -50,10 +50,10 @@ class LogoutResponse extends LogoutResponseModel {
   /// For parameters information refer to [LogoutRequest].
   /// Throws an [AuthorizeException] if API response contains an error
   static Future<LogoutResponse> logoutMethod([
-    LogoutSend? request,
+    LogoutRequest? request,
   ]) async {
     final LogoutReceive response = await _api.call(
-      request: request ?? const LogoutSend(),
+      request: request ?? const LogoutRequest(),
     );
 
     checkException(

@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Set account currency response model class.
 abstract class SetAccountCurrencyResponseModel {
-  /// Initializes.
+  /// Initializes Set account currency response model class .
   SetAccountCurrencyResponseModel({
     this.setAccountCurrency,
   });
@@ -19,14 +19,14 @@ abstract class SetAccountCurrencyResponseModel {
 
 /// Set account currency response class.
 class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
-  /// Initializes
+  /// Initializes Set account currency response class.
   SetAccountCurrencyResponse({
     bool? setAccountCurrency,
   }) : super(
           setAccountCurrency: setAccountCurrency,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SetAccountCurrencyResponse.fromJson(
     dynamic setAccountCurrencyJson,
   ) =>
@@ -34,7 +34,7 @@ class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
         setAccountCurrency: getBool(setAccountCurrencyJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -51,7 +51,7 @@ class SetAccountCurrencyResponse extends SetAccountCurrencyResponseModel {
   /// For parameters information refer to [SetAccountCurrencyRequest].
   /// Throws an [AccountCurrencyException] if API response contains an error
   static Future<SetAccountCurrencyResponse> setCurrency(
-    SetAccountCurrencySend request,
+    SetAccountCurrencyRequest request,
   ) async {
     final SetAccountCurrencyReceive response =
         await _api.call(request: request);

@@ -15,7 +15,7 @@ void main() {
     test('Fetch Payment Agent List Test', () async {
       final PaymentagentListResponse paymentAgentList =
           await PaymentagentListResponse.fetch(
-        const PaymentagentListSend(paymentagentList: 'id'),
+        const PaymentagentListRequest(paymentagentList: 'id'),
       );
 
       final List<List<String>> countries =
@@ -48,7 +48,7 @@ void main() {
     test('Payment Agent Transfer Test', () async {
       final PaymentagentTransferResponse paymentAgentTransfer =
           await PaymentagentTransferResponse.transfer(
-        const PaymentagentTransferSend(
+        const PaymentagentTransferRequest(
           amount: 1000,
           currency: 'USD',
           transferTo: 'CR100001',
@@ -67,7 +67,7 @@ void main() {
     test('Payment Agent Withdraw Test', () async {
       final PaymentagentWithdrawResponse paymentAgentWithdraw =
           await PaymentagentWithdrawResponse.withdraw(
-        const PaymentagentWithdrawSend(
+        const PaymentagentWithdrawRequest(
           amount: 1000,
           currency: 'USD',
           paymentagentLoginid: 'CR100001',

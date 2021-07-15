@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Asset index send class.
-class AssetIndexSend extends Request {
-  /// Initialize AssetIndexSend.
-  const AssetIndexSend({
+/// Asset index request class.
+class AssetIndexRequest extends Request {
+  /// Initialize AssetIndexRequest.
+  const AssetIndexRequest({
     this.assetIndex = true,
     this.landingCompany,
     Map<String, dynamic>? passthrough,
@@ -19,7 +19,8 @@ class AssetIndexSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory AssetIndexSend.fromJson(Map<String, dynamic> json) => AssetIndexSend(
+  factory AssetIndexRequest.fromJson(Map<String, dynamic> json) =>
+      AssetIndexRequest(
         assetIndex:
             json['asset_index'] == null ? null : json['asset_index'] == 1,
         landingCompany: json['landing_company'] as String?,
@@ -48,13 +49,13 @@ class AssetIndexSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  AssetIndexSend copyWith({
+  AssetIndexRequest copyWith({
     bool? assetIndex,
     String? landingCompany,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      AssetIndexSend(
+      AssetIndexRequest(
         assetIndex: assetIndex ?? this.assetIndex,
         landingCompany: landingCompany ?? this.landingCompany,
         passthrough: passthrough ?? this.passthrough,

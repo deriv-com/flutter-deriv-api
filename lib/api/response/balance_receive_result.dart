@@ -15,7 +15,7 @@ import 'forget_receive_result.dart';
 
 /// Balance response model class.
 abstract class BalanceResponseModel {
-  /// Initializes.
+  /// Initializes Balance response model class .
   BalanceResponseModel({
     this.balance,
     this.subscription,
@@ -30,7 +30,7 @@ abstract class BalanceResponseModel {
 
 /// Balance response class.
 class BalanceResponse extends BalanceResponseModel {
-  /// Initializes
+  /// Initializes Balance response class.
   BalanceResponse({
     Balance? balance,
     Subscription? subscription,
@@ -39,7 +39,7 @@ class BalanceResponse extends BalanceResponseModel {
           subscription: subscription,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory BalanceResponse.fromJson(
     dynamic balanceJson,
     dynamic subscriptionJson,
@@ -51,7 +51,7 @@ class BalanceResponse extends BalanceResponseModel {
             : Subscription.fromJson(subscriptionJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -71,7 +71,7 @@ class BalanceResponse extends BalanceResponseModel {
   ///
   /// For parameters info refer to [BalanceRequest]
   /// Throws a [BalanceException] if API response contains an error
-  static Future<BalanceResponse> fetchBalance(BalanceSend request) async {
+  static Future<BalanceResponse> fetchBalance(BalanceRequest request) async {
     final BalanceReceive response = await _api.call(request: request);
 
     checkException(
@@ -87,7 +87,7 @@ class BalanceResponse extends BalanceResponseModel {
   ///
   /// Throws a [BalanceException] if API response contains an error
   static Stream<BalanceResponse?> subscribeBalance(
-    BalanceSend request, {
+    BalanceRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
       _api
@@ -170,7 +170,7 @@ enum TypeEnum {
 }
 /// Balance model class.
 abstract class BalanceModel {
-  /// Initializes.
+  /// Initializes Balance model class .
   BalanceModel({
     required this.loginid,
     required this.currency,
@@ -201,7 +201,7 @@ abstract class BalanceModel {
 
 /// Balance class.
 class Balance extends BalanceModel {
-  /// Initializes
+  /// Initializes Balance class.
   Balance({
     required double balance,
     required String currency,
@@ -218,7 +218,7 @@ class Balance extends BalanceModel {
           total: total,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Balance.fromJson(Map<String, dynamic> json) => Balance(
         balance: getDouble(json['balance'])!,
         currency: json['currency'],
@@ -235,7 +235,7 @@ class Balance extends BalanceModel {
         total: json['total'] == null ? null : Total.fromJson(json['total']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -271,7 +271,7 @@ class Balance extends BalanceModel {
 }
 /// Accounts property model class.
 abstract class AccountsPropertyModel {
-  /// Initializes.
+  /// Initializes Accounts property model class .
   AccountsPropertyModel({
     required this.type,
     required this.status,
@@ -302,7 +302,7 @@ abstract class AccountsPropertyModel {
 
 /// Accounts property class.
 class AccountsProperty extends AccountsPropertyModel {
-  /// Initializes
+  /// Initializes Accounts property class.
   AccountsProperty({
     required double balance,
     required double convertedAmount,
@@ -319,7 +319,7 @@ class AccountsProperty extends AccountsPropertyModel {
           type: type,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AccountsProperty.fromJson(Map<String, dynamic> json) =>
       AccountsProperty(
         balance: getDouble(json['balance'])!,
@@ -330,7 +330,7 @@ class AccountsProperty extends AccountsPropertyModel {
         type: typeEnumMapper[json['type']]!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -366,7 +366,7 @@ class AccountsProperty extends AccountsPropertyModel {
 }
 /// Total model class.
 abstract class TotalModel {
-  /// Initializes.
+  /// Initializes Total model class .
   TotalModel({
     this.deriv,
     this.derivDemo,
@@ -389,7 +389,7 @@ abstract class TotalModel {
 
 /// Total class.
 class Total extends TotalModel {
-  /// Initializes
+  /// Initializes Total class.
   Total({
     Deriv? deriv,
     DerivDemo? derivDemo,
@@ -402,7 +402,7 @@ class Total extends TotalModel {
           mt5Demo: mt5Demo,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Total.fromJson(Map<String, dynamic> json) => Total(
         deriv: json['deriv'] == null ? null : Deriv.fromJson(json['deriv']),
         derivDemo: json['deriv_demo'] == null
@@ -414,7 +414,7 @@ class Total extends TotalModel {
             : Mt5Demo.fromJson(json['mt5_demo']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -450,7 +450,7 @@ class Total extends TotalModel {
 }
 /// Deriv model class.
 abstract class DerivModel {
-  /// Initializes.
+  /// Initializes Deriv model class .
   DerivModel({
     required this.currency,
     required this.amount,
@@ -465,7 +465,7 @@ abstract class DerivModel {
 
 /// Deriv class.
 class Deriv extends DerivModel {
-  /// Initializes
+  /// Initializes Deriv class.
   Deriv({
     required double amount,
     required String currency,
@@ -474,13 +474,13 @@ class Deriv extends DerivModel {
           currency: currency,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Deriv.fromJson(Map<String, dynamic> json) => Deriv(
         amount: getDouble(json['amount'])!,
         currency: json['currency'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -502,7 +502,7 @@ class Deriv extends DerivModel {
 }
 /// Deriv demo model class.
 abstract class DerivDemoModel {
-  /// Initializes.
+  /// Initializes Deriv demo model class .
   DerivDemoModel({
     required this.currency,
     required this.amount,
@@ -517,7 +517,7 @@ abstract class DerivDemoModel {
 
 /// Deriv demo class.
 class DerivDemo extends DerivDemoModel {
-  /// Initializes
+  /// Initializes Deriv demo class.
   DerivDemo({
     required double amount,
     required String currency,
@@ -526,13 +526,13 @@ class DerivDemo extends DerivDemoModel {
           currency: currency,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory DerivDemo.fromJson(Map<String, dynamic> json) => DerivDemo(
         amount: getDouble(json['amount'])!,
         currency: json['currency'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -554,7 +554,7 @@ class DerivDemo extends DerivDemoModel {
 }
 /// Mt5 model class.
 abstract class Mt5Model {
-  /// Initializes.
+  /// Initializes Mt5 model class .
   Mt5Model({
     required this.currency,
     required this.amount,
@@ -569,7 +569,7 @@ abstract class Mt5Model {
 
 /// Mt5 class.
 class Mt5 extends Mt5Model {
-  /// Initializes
+  /// Initializes Mt5 class.
   Mt5({
     required double amount,
     required String currency,
@@ -578,13 +578,13 @@ class Mt5 extends Mt5Model {
           currency: currency,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5.fromJson(Map<String, dynamic> json) => Mt5(
         amount: getDouble(json['amount'])!,
         currency: json['currency'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -606,7 +606,7 @@ class Mt5 extends Mt5Model {
 }
 /// Mt5 demo model class.
 abstract class Mt5DemoModel {
-  /// Initializes.
+  /// Initializes Mt5 demo model class .
   Mt5DemoModel({
     required this.currency,
     required this.amount,
@@ -621,7 +621,7 @@ abstract class Mt5DemoModel {
 
 /// Mt5 demo class.
 class Mt5Demo extends Mt5DemoModel {
-  /// Initializes
+  /// Initializes Mt5 demo class.
   Mt5Demo({
     required double amount,
     required String currency,
@@ -630,13 +630,13 @@ class Mt5Demo extends Mt5DemoModel {
           currency: currency,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5Demo.fromJson(Map<String, dynamic> json) => Mt5Demo(
         amount: getDouble(json['amount'])!,
         currency: json['currency'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -658,7 +658,7 @@ class Mt5Demo extends Mt5DemoModel {
 }
 /// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes.
+  /// Initializes Subscription model class .
   SubscriptionModel({
     required this.id,
   });
@@ -669,19 +669,19 @@ abstract class SubscriptionModel {
 
 /// Subscription class.
 class Subscription extends SubscriptionModel {
-  /// Initializes
+  /// Initializes Subscription class.
   Subscription({
     required String id,
   }) : super(
           id: id,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(
         id: json['id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

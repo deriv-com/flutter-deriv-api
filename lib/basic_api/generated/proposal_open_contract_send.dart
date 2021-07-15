@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Proposal open contract send class.
-class ProposalOpenContractSend extends Request {
-  /// Initialize ProposalOpenContractSend.
-  const ProposalOpenContractSend({
+/// Proposal open contract request class.
+class ProposalOpenContractRequest extends Request {
+  /// Initialize ProposalOpenContractRequest.
+  const ProposalOpenContractRequest({
     this.contractId,
     this.proposalOpenContract = true,
     this.subscribe,
@@ -20,8 +20,8 @@ class ProposalOpenContractSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory ProposalOpenContractSend.fromJson(Map<String, dynamic> json) =>
-      ProposalOpenContractSend(
+  factory ProposalOpenContractRequest.fromJson(Map<String, dynamic> json) =>
+      ProposalOpenContractRequest(
         contractId: json['contract_id'] as int?,
         proposalOpenContract: json['proposal_open_contract'] == null
             ? null
@@ -60,14 +60,14 @@ class ProposalOpenContractSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  ProposalOpenContractSend copyWith({
+  ProposalOpenContractRequest copyWith({
     int? contractId,
     bool? proposalOpenContract,
     bool? subscribe,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      ProposalOpenContractSend(
+      ProposalOpenContractRequest(
         contractId: contractId ?? this.contractId,
         proposalOpenContract: proposalOpenContract ?? this.proposalOpenContract,
         subscribe: subscribe ?? this.subscribe,
@@ -77,5 +77,5 @@ class ProposalOpenContractSend extends Request {
 
   /// Override equatable class.
   @override
-  List<Object> get props => <Object>[];
+  List<Object> get props => <Object>[contractId!];
 }

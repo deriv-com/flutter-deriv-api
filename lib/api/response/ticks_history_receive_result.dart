@@ -17,7 +17,7 @@ import '../models/base_exception_model.dart';
 
 /// Ticks history response model class.
 abstract class TicksHistoryResponseModel {
-  /// Initializes.
+  /// Initializes Ticks history response model class .
   TicksHistoryResponseModel({
     this.candles,
     this.history,
@@ -40,7 +40,7 @@ abstract class TicksHistoryResponseModel {
 
 /// Ticks history response class.
 class TicksHistoryResponse extends TicksHistoryResponseModel {
-  /// Initializes
+  /// Initializes Ticks history response class.
   TicksHistoryResponse({
     List<CandlesItem>? candles,
     History? history,
@@ -53,7 +53,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
           subscription: subscription,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TicksHistoryResponse.fromJson(
     dynamic candlesJson,
     dynamic historyJson,
@@ -75,7 +75,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
             : Subscription.fromJson(subscriptionJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -103,7 +103,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
   ///
   /// Throws a [TickException] if API response contains an error
   static Future<TicksHistoryResponse> fetchTickHistory(
-    TicksHistorySend request,
+    TicksHistoryRequest request,
   ) async {
     final TicksHistoryReceive response = await _api.call(request: request);
 
@@ -121,7 +121,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
   ///
   /// Throws [TickException] if API response contains an error
   static Future<TickHistorySubscription?> fetchTicksAndSubscribe(
-    TicksHistorySend request, {
+    TicksHistoryRequest request, {
     RequestCompareFunction? comparePredicate,
     bool subscribe = true,
   }) async {
@@ -189,7 +189,7 @@ class TicksHistoryResponse extends TicksHistoryResponseModel {
 }
 /// Candles item model class.
 abstract class CandlesItemModel {
-  /// Initializes.
+  /// Initializes Candles item model class .
   CandlesItemModel({
     this.close,
     this.epoch,
@@ -216,7 +216,7 @@ abstract class CandlesItemModel {
 
 /// Candles item class.
 class CandlesItem extends CandlesItemModel {
-  /// Initializes
+  /// Initializes Candles item class.
   CandlesItem({
     double? close,
     DateTime? epoch,
@@ -231,7 +231,7 @@ class CandlesItem extends CandlesItemModel {
           open: open,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CandlesItem.fromJson(Map<String, dynamic> json) => CandlesItem(
         close: getDouble(json['close']),
         epoch: getDateTime(json['epoch']),
@@ -240,7 +240,7 @@ class CandlesItem extends CandlesItemModel {
         open: getDouble(json['open']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -271,7 +271,7 @@ class CandlesItem extends CandlesItemModel {
 }
 /// History model class.
 abstract class HistoryModel {
-  /// Initializes.
+  /// Initializes History model class .
   HistoryModel({
     this.prices,
     this.times,
@@ -286,7 +286,7 @@ abstract class HistoryModel {
 
 /// History class.
 class History extends HistoryModel {
-  /// Initializes
+  /// Initializes History class.
   History({
     List<double>? prices,
     List<DateTime>? times,
@@ -295,7 +295,7 @@ class History extends HistoryModel {
           times: times,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory History.fromJson(Map<String, dynamic> json) => History(
         prices: json['prices'] == null
             ? null
@@ -313,7 +313,7 @@ class History extends HistoryModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -347,7 +347,7 @@ class History extends HistoryModel {
 }
 /// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes.
+  /// Initializes Subscription model class .
   SubscriptionModel({
     required this.id,
   });
@@ -358,19 +358,19 @@ abstract class SubscriptionModel {
 
 /// Subscription class.
 class Subscription extends SubscriptionModel {
-  /// Initializes
+  /// Initializes Subscription class.
   Subscription({
     required String id,
   }) : super(
           id: id,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(
         id: json['id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

@@ -10,7 +10,7 @@ import '../models/base_exception_model.dart';
 
 /// P2p order create response model class.
 abstract class P2pOrderCreateResponseModel {
-  /// Initializes.
+  /// Initializes P2p order create response model class .
   P2pOrderCreateResponseModel({
     this.p2pOrderCreate,
     this.subscription,
@@ -25,7 +25,7 @@ abstract class P2pOrderCreateResponseModel {
 
 /// P2p order create response class.
 class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
-  /// Initializes
+  /// Initializes P2p order create response class.
   P2pOrderCreateResponse({
     P2pOrderCreate? p2pOrderCreate,
     Subscription? subscription,
@@ -34,7 +34,7 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
           subscription: subscription,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pOrderCreateResponse.fromJson(
     dynamic p2pOrderCreateJson,
     dynamic subscriptionJson,
@@ -48,7 +48,7 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
             : Subscription.fromJson(subscriptionJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -66,7 +66,7 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
 
   /// Creates order with parameters specified in [P2pOrderCreateRequest]
   static Future<P2pOrderCreateResponse> create(
-      P2pOrderCreateSend request) async {
+      P2pOrderCreateRequest request) async {
     final P2pOrderCreateReceive response = await _api.call(request: request);
 
     checkException(
@@ -83,7 +83,7 @@ class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
   ///
   /// Throws a [P2POrderException] if API response contains an error
   static Stream<P2pOrderCreateResponse?> createAndSubscribe(
-    P2pOrderCreateSend request, {
+    P2pOrderCreateRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
       _api.subscribe(request: request, comparePredicate: comparePredicate)!.map(
@@ -141,7 +141,7 @@ enum StatusEnum {
 }
 /// P2p order create model class.
 abstract class P2pOrderCreateModel {
-  /// Initializes.
+  /// Initializes P2p order create model class .
   P2pOrderCreateModel({
     required this.type,
     required this.status,
@@ -244,7 +244,7 @@ abstract class P2pOrderCreateModel {
 
 /// P2p order create class.
 class P2pOrderCreate extends P2pOrderCreateModel {
-  /// Initializes
+  /// Initializes P2p order create class.
   P2pOrderCreate({
     required String accountCurrency,
     required AdvertDetails advertDetails,
@@ -297,7 +297,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
           paymentMethodIds: paymentMethodIds,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pOrderCreate.fromJson(Map<String, dynamic> json) => P2pOrderCreate(
         accountCurrency: json['account_currency'],
         advertDetails: AdvertDetails.fromJson(json['advert_details']),
@@ -338,7 +338,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -447,7 +447,7 @@ class P2pOrderCreate extends P2pOrderCreateModel {
 }
 /// Advert details model class.
 abstract class AdvertDetailsModel {
-  /// Initializes.
+  /// Initializes Advert details model class .
   AdvertDetailsModel({
     required this.type,
     required this.id,
@@ -470,7 +470,7 @@ abstract class AdvertDetailsModel {
 
 /// Advert details class.
 class AdvertDetails extends AdvertDetailsModel {
-  /// Initializes
+  /// Initializes Advert details class.
   AdvertDetails({
     required String description,
     required String id,
@@ -483,7 +483,7 @@ class AdvertDetails extends AdvertDetailsModel {
           paymentMethod: paymentMethod,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AdvertDetails.fromJson(Map<String, dynamic> json) => AdvertDetails(
         description: json['description'],
         id: json['id'],
@@ -491,7 +491,7 @@ class AdvertDetails extends AdvertDetailsModel {
         paymentMethod: json['payment_method'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -521,7 +521,7 @@ class AdvertDetails extends AdvertDetailsModel {
 }
 /// Advertiser details model class.
 abstract class AdvertiserDetailsModel {
-  /// Initializes.
+  /// Initializes Advertiser details model class .
   AdvertiserDetailsModel({
     required this.name,
     required this.loginid,
@@ -548,7 +548,7 @@ abstract class AdvertiserDetailsModel {
 
 /// Advertiser details class.
 class AdvertiserDetails extends AdvertiserDetailsModel {
-  /// Initializes
+  /// Initializes Advertiser details class.
   AdvertiserDetails({
     required String id,
     required String loginid,
@@ -563,7 +563,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
           lastName: lastName,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AdvertiserDetails.fromJson(Map<String, dynamic> json) =>
       AdvertiserDetails(
         id: json['id'],
@@ -573,7 +573,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         lastName: json['last_name'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -604,7 +604,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
 }
 /// Client details model class.
 abstract class ClientDetailsModel {
-  /// Initializes.
+  /// Initializes Client details model class .
   ClientDetailsModel({
     required this.name,
     required this.loginid,
@@ -631,7 +631,7 @@ abstract class ClientDetailsModel {
 
 /// Client details class.
 class ClientDetails extends ClientDetailsModel {
-  /// Initializes
+  /// Initializes Client details class.
   ClientDetails({
     required String id,
     required String loginid,
@@ -646,7 +646,7 @@ class ClientDetails extends ClientDetailsModel {
           lastName: lastName,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ClientDetails.fromJson(Map<String, dynamic> json) => ClientDetails(
         id: json['id'],
         loginid: json['loginid'],
@@ -655,7 +655,7 @@ class ClientDetails extends ClientDetailsModel {
         lastName: json['last_name'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -686,7 +686,7 @@ class ClientDetails extends ClientDetailsModel {
 }
 /// Dispute details model class.
 abstract class DisputeDetailsModel {
-  /// Initializes.
+  /// Initializes Dispute details model class .
   DisputeDetailsModel({
     this.disputeReason,
     this.disputerLoginid,
@@ -701,7 +701,7 @@ abstract class DisputeDetailsModel {
 
 /// Dispute details class.
 class DisputeDetails extends DisputeDetailsModel {
-  /// Initializes
+  /// Initializes Dispute details class.
   DisputeDetails({
     String? disputeReason,
     String? disputerLoginid,
@@ -710,13 +710,13 @@ class DisputeDetails extends DisputeDetailsModel {
           disputerLoginid: disputerLoginid,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory DisputeDetails.fromJson(Map<String, dynamic> json) => DisputeDetails(
         disputeReason: json['dispute_reason'],
         disputerLoginid: json['disputer_loginid'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -738,7 +738,7 @@ class DisputeDetails extends DisputeDetailsModel {
 }
 /// Payment method details item model class.
 abstract class PaymentMethodDetailsItemModel {
-  /// Initializes.
+  /// Initializes Payment method details item model class .
   PaymentMethodDetailsItemModel({
     this.method,
   });
@@ -749,20 +749,20 @@ abstract class PaymentMethodDetailsItemModel {
 
 /// Payment method details item class.
 class PaymentMethodDetailsItem extends PaymentMethodDetailsItemModel {
-  /// Initializes
+  /// Initializes Payment method details item class.
   PaymentMethodDetailsItem({
     String? method,
   }) : super(
           method: method,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentMethodDetailsItem.fromJson(Map<String, dynamic> json) =>
       PaymentMethodDetailsItem(
         method: json['method'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -781,7 +781,7 @@ class PaymentMethodDetailsItem extends PaymentMethodDetailsItemModel {
 }
 /// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes.
+  /// Initializes Subscription model class .
   SubscriptionModel({
     required this.id,
   });
@@ -792,19 +792,19 @@ abstract class SubscriptionModel {
 
 /// Subscription class.
 class Subscription extends SubscriptionModel {
-  /// Initializes
+  /// Initializes Subscription class.
   Subscription({
     required String id,
   }) : super(
           id: id,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(
         id: json['id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

@@ -10,7 +10,7 @@ void main() {
 
   test('Fetch Profit Table Test', () async {
     final ProfitTableResponse profitTable = await ProfitTableResponse.fetch(
-      const ProfitTableSend(
+      const ProfitTableRequest(
         contractType: <String>[],
         description: true,
         limit: 25,

@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Paymentagent create send class.
-class PaymentagentCreateSend extends Request {
-  /// Initialize PaymentagentCreateSend.
-  const PaymentagentCreateSend({
+/// Paymentagent create request class.
+class PaymentagentCreateRequest extends Request {
+  /// Initialize PaymentagentCreateRequest.
+  const PaymentagentCreateRequest({
     this.affiliateId,
     required this.codeOfConductApproval,
     required this.commissionDeposit,
@@ -28,8 +28,8 @@ class PaymentagentCreateSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory PaymentagentCreateSend.fromJson(Map<String, dynamic> json) =>
-      PaymentagentCreateSend(
+  factory PaymentagentCreateRequest.fromJson(Map<String, dynamic> json) =>
+      PaymentagentCreateRequest(
         affiliateId: json['affiliate_id'] as String?,
         codeOfConductApproval: json['code_of_conduct_approval'] as int?,
         commissionDeposit: json['commission_deposit'] as num?,
@@ -107,7 +107,7 @@ class PaymentagentCreateSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  PaymentagentCreateSend copyWith({
+  PaymentagentCreateRequest copyWith({
     String? affiliateId,
     int? codeOfConductApproval,
     num? commissionDeposit,
@@ -122,7 +122,7 @@ class PaymentagentCreateSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      PaymentagentCreateSend(
+      PaymentagentCreateRequest(
         affiliateId: affiliateId ?? this.affiliateId,
         codeOfConductApproval:
             codeOfConductApproval ?? this.codeOfConductApproval,

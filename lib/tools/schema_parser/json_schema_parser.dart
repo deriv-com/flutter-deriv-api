@@ -14,10 +14,10 @@ import 'package:flutter_deriv_api/tools/schema_parser/schema_model.dart';
 class JsonSchemaParser {
   final List<StringBuffer> _result = <StringBuffer>[];
 
-  /// Containing all models which are enum type
+  /// Containing all models which are enum type.
   static final List<SchemaModel> enumModels = <SchemaModel>[];
 
-  /// Containing all generated classes name
+  /// Containing all generated classes name.
   static final List<String> classNamesArray = <String>[];
 
   static final Map<String, String> _typeMap = <String, String>{
@@ -355,7 +355,7 @@ class JsonSchemaParser {
 
   static String _getSchemaType(MapEntry<String, dynamic> entry) {
     String? type;
-    // Check if there are multiple types for this entry
+    // Check if there are multiple types for this entry.
     if (entry.value['type'] is List) {
       final List<dynamic> types = entry.value['type'];
       final bool isNullable =
@@ -389,12 +389,12 @@ class JsonSchemaParser {
       }
     } else {
       type = entry.value['type'];
-      // Check if it has patternProperties
+      // Check if it has patternProperties.
       if (type == objectType && entry.value['patternProperties'] != null) {
         type = patternObjectType;
       }
 
-      // Check if its Multi Type
+      // Check if its Multi Type.
       if (type == null && entry.value['oneOf'] != null) {
         // hard code
         if (entry.key == 'limits') {

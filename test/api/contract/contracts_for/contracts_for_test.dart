@@ -11,7 +11,7 @@ void main() {
   test('Fetch Contracts For Test', () async {
     final ContractsForResponse contractsFor =
         await ContractsForResponse.fetchContractsForSymbol(
-      const ContractsForSend(
+      const ContractsForRequest(
           contractsFor: 'R_50',
           currency: 'USD',
           landingCompany: 'svg',

@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Statement send class.
-class StatementSend extends Request {
-  /// Initialize StatementSend.
-  const StatementSend({
+/// Statement request class.
+class StatementRequest extends Request {
+  /// Initialize StatementRequest.
+  const StatementRequest({
     this.actionType,
     this.dateFrom,
     this.dateTo,
@@ -24,7 +24,8 @@ class StatementSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory StatementSend.fromJson(Map<String, dynamic> json) => StatementSend(
+  factory StatementRequest.fromJson(Map<String, dynamic> json) =>
+      StatementRequest(
         actionType: json['action_type'] as String?,
         dateFrom: json['date_from'] as int?,
         dateTo: json['date_to'] as int?,
@@ -82,7 +83,7 @@ class StatementSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  StatementSend copyWith({
+  StatementRequest copyWith({
     String? actionType,
     int? dateFrom,
     int? dateTo,
@@ -93,7 +94,7 @@ class StatementSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      StatementSend(
+      StatementRequest(
         actionType: actionType ?? this.actionType,
         dateFrom: dateFrom ?? this.dateFrom,
         dateTo: dateTo ?? this.dateTo,

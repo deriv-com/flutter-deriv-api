@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Copytrading list send class.
-class CopytradingListSend extends Request {
-  /// Initialize CopytradingListSend.
-  const CopytradingListSend({
+/// Copytrading list request class.
+class CopytradingListRequest extends Request {
+  /// Initialize CopytradingListRequest.
+  const CopytradingListRequest({
     this.copytradingList = true,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -18,8 +18,8 @@ class CopytradingListSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory CopytradingListSend.fromJson(Map<String, dynamic> json) =>
-      CopytradingListSend(
+  factory CopytradingListRequest.fromJson(Map<String, dynamic> json) =>
+      CopytradingListRequest(
         copytradingList: json['copytrading_list'] == null
             ? null
             : json['copytrading_list'] == 1,
@@ -44,12 +44,12 @@ class CopytradingListSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  CopytradingListSend copyWith({
+  CopytradingListRequest copyWith({
     bool? copytradingList,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      CopytradingListSend(
+      CopytradingListRequest(
         copytradingList: copytradingList ?? this.copytradingList,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

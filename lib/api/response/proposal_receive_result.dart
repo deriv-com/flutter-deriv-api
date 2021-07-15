@@ -18,7 +18,7 @@ import 'proposal_open_contract_receive_result.dart';
 
 /// Proposal response model class.
 abstract class ProposalResponseModel {
-  /// Initializes.
+  /// Initializes Proposal response model class .
   ProposalResponseModel({
     this.proposal,
     this.subscription,
@@ -33,7 +33,7 @@ abstract class ProposalResponseModel {
 
 /// Proposal response class.
 class ProposalResponse extends ProposalResponseModel {
-  /// Initializes
+  /// Initializes Proposal response class.
   ProposalResponse({
     Proposal? proposal,
     Subscription? subscription,
@@ -42,7 +42,7 @@ class ProposalResponse extends ProposalResponseModel {
           subscription: subscription,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ProposalResponse.fromJson(
     dynamic proposalJson,
     dynamic subscriptionJson,
@@ -54,7 +54,7 @@ class ProposalResponse extends ProposalResponseModel {
             : Subscription.fromJson(subscriptionJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -75,7 +75,7 @@ class ProposalResponse extends ProposalResponseModel {
   /// For parameters information refer to [ProposalRequest]
   /// Throws a [ContractOperationException] if API response contains an error
   static Future<ProposalResponse> fetchPriceForContract(
-    ProposalSend request,
+    ProposalRequest request,
   ) async {
     final ProposalReceive response = await _api.call(request: request);
 
@@ -93,7 +93,7 @@ class ProposalResponse extends ProposalResponseModel {
   /// For parameters information refer to [ProposalRequest]
   /// Throws a [ContractOperationException] if API response contains an error
   static Stream<ProposalResponse?> subscribePriceForContract(
-    ProposalSend request, {
+    ProposalRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
       _api
@@ -155,7 +155,7 @@ class ProposalResponse extends ProposalResponseModel {
   /// Buys this proposal contract with [price] specified.
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  Future<BuyResponse> buy({double? price}) => BuyResponse.buyMethod(BuySend(
+  Future<BuyResponse> buy({double? price}) => BuyResponse.buyMethod(BuyRequest(
         buy: proposal?.id,
         price: price ?? proposal?.askPrice,
       ));
@@ -164,7 +164,7 @@ class ProposalResponse extends ProposalResponseModel {
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   Stream<ProposalOpenContractResponse?> buyAndSubscribe({double? price}) =>
-      BuyResponse.buyAndSubscribe(BuySend(
+      BuyResponse.buyAndSubscribe(BuyRequest(
         buy: proposal?.id,
         price: price ?? proposal?.askPrice,
       ));
@@ -181,7 +181,7 @@ class ProposalResponse extends ProposalResponseModel {
 }
 /// Proposal model class.
 abstract class ProposalModel {
-  /// Initializes.
+  /// Initializes Proposal model class .
   ProposalModel({
     required this.spotTime,
     required this.spot,
@@ -240,7 +240,7 @@ abstract class ProposalModel {
 
 /// Proposal class.
 class Proposal extends ProposalModel {
-  /// Initializes
+  /// Initializes Proposal class.
   Proposal({
     required double askPrice,
     required DateTime dateStart,
@@ -271,7 +271,7 @@ class Proposal extends ProposalModel {
           multiplier: multiplier,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Proposal.fromJson(Map<String, dynamic> json) => Proposal(
         askPrice: getDouble(json['ask_price'])!,
         dateStart: getDateTime(json['date_start'])!,
@@ -292,7 +292,7 @@ class Proposal extends ProposalModel {
         multiplier: getDouble(json['multiplier']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -351,7 +351,7 @@ class Proposal extends ProposalModel {
 }
 /// Cancellation model class.
 abstract class CancellationModel {
-  /// Initializes.
+  /// Initializes Cancellation model class .
   CancellationModel({
     this.askPrice,
     this.dateExpiry,
@@ -366,7 +366,7 @@ abstract class CancellationModel {
 
 /// Cancellation class.
 class Cancellation extends CancellationModel {
-  /// Initializes
+  /// Initializes Cancellation class.
   Cancellation({
     double? askPrice,
     DateTime? dateExpiry,
@@ -375,13 +375,13 @@ class Cancellation extends CancellationModel {
           dateExpiry: dateExpiry,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Cancellation.fromJson(Map<String, dynamic> json) => Cancellation(
         askPrice: getDouble(json['ask_price']),
         dateExpiry: getDateTime(json['date_expiry']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -403,7 +403,7 @@ class Cancellation extends CancellationModel {
 }
 /// Limit order model class.
 abstract class LimitOrderModel {
-  /// Initializes.
+  /// Initializes Limit order model class .
   LimitOrderModel({
     this.stopLoss,
     this.stopOut,
@@ -422,7 +422,7 @@ abstract class LimitOrderModel {
 
 /// Limit order class.
 class LimitOrder extends LimitOrderModel {
-  /// Initializes
+  /// Initializes Limit order class.
   LimitOrder({
     StopLoss? stopLoss,
     StopOut? stopOut,
@@ -433,7 +433,7 @@ class LimitOrder extends LimitOrderModel {
           takeProfit: takeProfit,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LimitOrder.fromJson(Map<String, dynamic> json) => LimitOrder(
         stopLoss: json['stop_loss'] == null
             ? null
@@ -446,7 +446,7 @@ class LimitOrder extends LimitOrderModel {
             : TakeProfit.fromJson(json['take_profit']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -477,7 +477,7 @@ class LimitOrder extends LimitOrderModel {
 }
 /// Stop loss model class.
 abstract class StopLossModel {
-  /// Initializes.
+  /// Initializes Stop loss model class .
   StopLossModel({
     this.displayName,
     this.orderAmount,
@@ -500,7 +500,7 @@ abstract class StopLossModel {
 
 /// Stop loss class.
 class StopLoss extends StopLossModel {
-  /// Initializes
+  /// Initializes Stop loss class.
   StopLoss({
     String? displayName,
     double? orderAmount,
@@ -513,7 +513,7 @@ class StopLoss extends StopLossModel {
           value: value,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory StopLoss.fromJson(Map<String, dynamic> json) => StopLoss(
         displayName: json['display_name'],
         orderAmount: getDouble(json['order_amount']),
@@ -521,7 +521,7 @@ class StopLoss extends StopLossModel {
         value: json['value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -549,7 +549,7 @@ class StopLoss extends StopLossModel {
 }
 /// Stop out model class.
 abstract class StopOutModel {
-  /// Initializes.
+  /// Initializes Stop out model class .
   StopOutModel({
     this.displayName,
     this.orderAmount,
@@ -572,7 +572,7 @@ abstract class StopOutModel {
 
 /// Stop out class.
 class StopOut extends StopOutModel {
-  /// Initializes
+  /// Initializes Stop out class.
   StopOut({
     String? displayName,
     double? orderAmount,
@@ -585,7 +585,7 @@ class StopOut extends StopOutModel {
           value: value,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory StopOut.fromJson(Map<String, dynamic> json) => StopOut(
         displayName: json['display_name'],
         orderAmount: getDouble(json['order_amount']),
@@ -593,7 +593,7 @@ class StopOut extends StopOutModel {
         value: json['value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -621,7 +621,7 @@ class StopOut extends StopOutModel {
 }
 /// Take profit model class.
 abstract class TakeProfitModel {
-  /// Initializes.
+  /// Initializes Take profit model class .
   TakeProfitModel({
     this.displayName,
     this.orderAmount,
@@ -644,7 +644,7 @@ abstract class TakeProfitModel {
 
 /// Take profit class.
 class TakeProfit extends TakeProfitModel {
-  /// Initializes
+  /// Initializes Take profit class.
   TakeProfit({
     String? displayName,
     double? orderAmount,
@@ -657,7 +657,7 @@ class TakeProfit extends TakeProfitModel {
           value: value,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TakeProfit.fromJson(Map<String, dynamic> json) => TakeProfit(
         displayName: json['display_name'],
         orderAmount: getDouble(json['order_amount']),
@@ -665,7 +665,7 @@ class TakeProfit extends TakeProfitModel {
         value: json['value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -693,7 +693,7 @@ class TakeProfit extends TakeProfitModel {
 }
 /// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes.
+  /// Initializes Subscription model class .
   SubscriptionModel({
     required this.id,
   });
@@ -704,19 +704,19 @@ abstract class SubscriptionModel {
 
 /// Subscription class.
 class Subscription extends SubscriptionModel {
-  /// Initializes
+  /// Initializes Subscription class.
   Subscription({
     required String id,
   }) : super(
           id: id,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(
         id: json['id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

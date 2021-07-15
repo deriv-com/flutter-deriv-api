@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Portfolio response model class.
 abstract class PortfolioResponseModel {
-  /// Initializes.
+  /// Initializes Portfolio response model class .
   PortfolioResponseModel({
     this.portfolio,
   });
@@ -19,14 +19,14 @@ abstract class PortfolioResponseModel {
 
 /// Portfolio response class.
 class PortfolioResponse extends PortfolioResponseModel {
-  /// Initializes
+  /// Initializes Portfolio response class.
   PortfolioResponse({
     Portfolio? portfolio,
   }) : super(
           portfolio: portfolio,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PortfolioResponse.fromJson(
     dynamic portfolioJson,
   ) =>
@@ -35,7 +35,7 @@ class PortfolioResponse extends PortfolioResponseModel {
             portfolioJson == null ? null : Portfolio.fromJson(portfolioJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -51,7 +51,8 @@ class PortfolioResponse extends PortfolioResponseModel {
   /// Gets the portfolio fo logged-in account
   ///
   /// Throws a [PortfolioException] if API response contains an error
-  static Future<PortfolioResponse> fetchPortfolio(PortfolioSend request) async {
+  static Future<PortfolioResponse> fetchPortfolio(
+      PortfolioRequest request) async {
     final PortfolioReceive response = await _api.call(request: request);
 
     checkException(
@@ -73,7 +74,7 @@ class PortfolioResponse extends PortfolioResponseModel {
 }
 /// Portfolio model class.
 abstract class PortfolioModel {
-  /// Initializes.
+  /// Initializes Portfolio model class .
   PortfolioModel({
     required this.contracts,
   });
@@ -84,14 +85,14 @@ abstract class PortfolioModel {
 
 /// Portfolio class.
 class Portfolio extends PortfolioModel {
-  /// Initializes
+  /// Initializes Portfolio class.
   Portfolio({
     required List<ContractsItem> contracts,
   }) : super(
           contracts: contracts,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Portfolio.fromJson(Map<String, dynamic> json) => Portfolio(
         contracts: List<ContractsItem>.from(
           json['contracts'].map(
@@ -100,7 +101,7 @@ class Portfolio extends PortfolioModel {
         ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -123,7 +124,7 @@ class Portfolio extends PortfolioModel {
 }
 /// Contracts item model class.
 abstract class ContractsItemModel {
-  /// Initializes.
+  /// Initializes Contracts item model class .
   ContractsItemModel({
     this.appId,
     this.buyPrice,
@@ -178,7 +179,7 @@ abstract class ContractsItemModel {
 
 /// Contracts item class.
 class ContractsItem extends ContractsItemModel {
-  /// Initializes
+  /// Initializes Contracts item class.
   ContractsItem({
     int? appId,
     double? buyPrice,
@@ -207,7 +208,7 @@ class ContractsItem extends ContractsItemModel {
           transactionId: transactionId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ContractsItem.fromJson(Map<String, dynamic> json) => ContractsItem(
         appId: json['app_id'],
         buyPrice: getDouble(json['buy_price']),
@@ -223,7 +224,7 @@ class ContractsItem extends ContractsItemModel {
         transactionId: json['transaction_id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

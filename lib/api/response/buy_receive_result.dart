@@ -19,7 +19,7 @@ import 'sell_receive_result.dart';
 
 /// Buy response model class.
 abstract class BuyResponseModel {
-  /// Initializes.
+  /// Initializes Buy response model class .
   BuyResponseModel({
     this.buy,
     this.subscription,
@@ -34,7 +34,7 @@ abstract class BuyResponseModel {
 
 /// Buy response class.
 class BuyResponse extends BuyResponseModel {
-  /// Initializes
+  /// Initializes Buy response class.
   BuyResponse({
     Buy? buy,
     Subscription? subscription,
@@ -43,7 +43,7 @@ class BuyResponse extends BuyResponseModel {
           subscription: subscription,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory BuyResponse.fromJson(
     dynamic buyJson,
     dynamic subscriptionJson,
@@ -55,7 +55,7 @@ class BuyResponse extends BuyResponseModel {
             : Subscription.fromJson(subscriptionJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -74,7 +74,7 @@ class BuyResponse extends BuyResponseModel {
   /// Buys a contract with parameters specified in given [BuyRequest]
   ///
   /// Throws a [ContractOperationException] if API response contains an error
-  static Future<BuyResponse> buyMethod(BuySend request) async {
+  static Future<BuyResponse> buyMethod(BuyRequest request) async {
     final BuyReceive response = await _api.call(
       request: request,
     );
@@ -92,7 +92,7 @@ class BuyResponse extends BuyResponseModel {
   ///
   /// Throws a [ContractOperationException] is API response contains an error
   static Stream<ProposalOpenContractResponse?> buyAndSubscribe(
-    BuySend request, {
+    BuyRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
       _api
@@ -119,7 +119,7 @@ class BuyResponse extends BuyResponseModel {
   /// Throws a [ContractOperationException] if API response contains an error
   Future<ProposalOpenContractResponse> fetchState() =>
       ProposalOpenContractResponse.fetchContractState(
-        ProposalOpenContractSend(
+        ProposalOpenContractRequest(
           contractId: buy?.contractId,
         ),
       );
@@ -131,7 +131,7 @@ class BuyResponse extends BuyResponseModel {
     RequestCompareFunction? comparePredicate,
   }) =>
       ProposalOpenContractResponse.subscribeContractState(
-        ProposalOpenContractSend(contractId: buy?.contractId),
+        ProposalOpenContractRequest(contractId: buy?.contractId),
         comparePredicate: comparePredicate,
       );
 
@@ -140,14 +140,14 @@ class BuyResponse extends BuyResponseModel {
   /// [price] is the Minimum price at which to sell the contract,
   /// Default be 0 for 'sell at market'.
   /// Throws a [ContractOperationException] if API response contains an error
-  Future<SellResponse> sell({double price = 0}) =>
-      SellResponse.sellContract(SellSend(sell: buy?.contractId, price: price));
+  Future<SellResponse> sell({double price = 0}) => SellResponse.sellContract(
+      SellRequest(sell: buy?.contractId, price: price));
 
   /// Cancels this contract
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   Future<CancelResponse> cancel() =>
-      CancelResponse.cancelContract(CancelSend(cancel: buy?.contractId));
+      CancelResponse.cancelContract(CancelRequest(cancel: buy?.contractId));
 
   /// Updates this contract
   ///
@@ -158,7 +158,7 @@ class BuyResponse extends BuyResponseModel {
     double? stopLoss,
     double? takeProfit,
   }) =>
-      ContractUpdateResponse.updateContract(ContractUpdateSend(
+      ContractUpdateResponse.updateContract(ContractUpdateRequest(
         contractId: buy?.contractId,
         limitOrder: <String, dynamic>{
           'stop_loss': stopLoss,
@@ -178,7 +178,7 @@ class BuyResponse extends BuyResponseModel {
 }
 /// Buy model class.
 abstract class BuyModel {
-  /// Initializes.
+  /// Initializes Buy model class .
   BuyModel({
     required this.transactionId,
     required this.startTime,
@@ -221,7 +221,7 @@ abstract class BuyModel {
 
 /// Buy class.
 class Buy extends BuyModel {
-  /// Initializes
+  /// Initializes Buy class.
   Buy({
     required double balanceAfter,
     required double buyPrice,
@@ -244,7 +244,7 @@ class Buy extends BuyModel {
           transactionId: transactionId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Buy.fromJson(Map<String, dynamic> json) => Buy(
         balanceAfter: getDouble(json['balance_after'])!,
         buyPrice: getDouble(json['buy_price'])!,
@@ -257,7 +257,7 @@ class Buy extends BuyModel {
         transactionId: json['transaction_id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -300,7 +300,7 @@ class Buy extends BuyModel {
 }
 /// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes.
+  /// Initializes Subscription model class .
   SubscriptionModel({
     required this.id,
   });
@@ -311,19 +311,19 @@ abstract class SubscriptionModel {
 
 /// Subscription class.
 class Subscription extends SubscriptionModel {
-  /// Initializes
+  /// Initializes Subscription class.
   Subscription({
     required String id,
   }) : super(
           id: id,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(
         id: json['id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

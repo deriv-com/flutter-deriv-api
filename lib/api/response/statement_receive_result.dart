@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Statement response model class.
 abstract class StatementResponseModel {
-  /// Initializes.
+  /// Initializes Statement response model class .
   StatementResponseModel({
     this.statement,
   });
@@ -19,14 +19,14 @@ abstract class StatementResponseModel {
 
 /// Statement response class.
 class StatementResponse extends StatementResponseModel {
-  /// Initializes
+  /// Initializes Statement response class.
   StatementResponse({
     Statement? statement,
   }) : super(
           statement: statement,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory StatementResponse.fromJson(
     dynamic statementJson,
   ) =>
@@ -35,7 +35,7 @@ class StatementResponse extends StatementResponseModel {
             statementJson == null ? null : Statement.fromJson(statementJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -52,7 +52,7 @@ class StatementResponse extends StatementResponseModel {
   ///
   /// For parameters information refer to [StatementRequest].
   /// Throws a [StatementException] if API response contains an error
-  static Future<StatementResponse> fetch(StatementSend request) async {
+  static Future<StatementResponse> fetch(StatementRequest request) async {
     final StatementReceive response = await _api.call(request: request);
 
     checkException(
@@ -118,7 +118,7 @@ enum ActionTypeEnum {
 }
 /// Statement model class.
 abstract class StatementModel {
-  /// Initializes.
+  /// Initializes Statement model class .
   StatementModel({
     this.count,
     this.transactions,
@@ -133,7 +133,7 @@ abstract class StatementModel {
 
 /// Statement class.
 class Statement extends StatementModel {
-  /// Initializes
+  /// Initializes Statement class.
   Statement({
     double? count,
     List<TransactionsItem>? transactions,
@@ -142,7 +142,7 @@ class Statement extends StatementModel {
           transactions: transactions,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Statement.fromJson(Map<String, dynamic> json) => Statement(
         count: getDouble(json['count']),
         transactions: json['transactions'] == null
@@ -154,7 +154,7 @@ class Statement extends StatementModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -182,7 +182,7 @@ class Statement extends StatementModel {
 }
 /// Transactions item model class.
 abstract class TransactionsItemModel {
-  /// Initializes.
+  /// Initializes Transactions item model class .
   TransactionsItemModel({
     this.actionType,
     this.amount,
@@ -253,7 +253,7 @@ abstract class TransactionsItemModel {
 
 /// Transactions item class.
 class TransactionsItem extends TransactionsItemModel {
-  /// Initializes
+  /// Initializes Transactions item class.
   TransactionsItem({
     ActionTypeEnum? actionType,
     double? amount,
@@ -290,7 +290,7 @@ class TransactionsItem extends TransactionsItemModel {
           withdrawalDetails: withdrawalDetails,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TransactionsItem.fromJson(Map<String, dynamic> json) =>
       TransactionsItem(
         actionType: json['action_type'] == null
@@ -313,7 +313,7 @@ class TransactionsItem extends TransactionsItemModel {
         withdrawalDetails: json['withdrawal_details'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -387,7 +387,7 @@ class TransactionsItem extends TransactionsItemModel {
 }
 /// Fees model class.
 abstract class FeesModel {
-  /// Initializes.
+  /// Initializes Fees model class .
   FeesModel({
     this.amount,
     this.currency,
@@ -410,7 +410,7 @@ abstract class FeesModel {
 
 /// Fees class.
 class Fees extends FeesModel {
-  /// Initializes
+  /// Initializes Fees class.
   Fees({
     double? amount,
     String? currency,
@@ -423,7 +423,7 @@ class Fees extends FeesModel {
           percentage: percentage,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Fees.fromJson(Map<String, dynamic> json) => Fees(
         amount: getDouble(json['amount']),
         currency: json['currency'],
@@ -431,7 +431,7 @@ class Fees extends FeesModel {
         percentage: getDouble(json['percentage']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -459,7 +459,7 @@ class Fees extends FeesModel {
 }
 /// From model class.
 abstract class FromModel {
-  /// Initializes.
+  /// Initializes From model class .
   FromModel({
     this.loginid,
   });
@@ -470,19 +470,19 @@ abstract class FromModel {
 
 /// From class.
 class From extends FromModel {
-  /// Initializes
+  /// Initializes From class.
   From({
     String? loginid,
   }) : super(
           loginid: loginid,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory From.fromJson(Map<String, dynamic> json) => From(
         loginid: json['loginid'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -501,7 +501,7 @@ class From extends FromModel {
 }
 /// To model class.
 abstract class ToModel {
-  /// Initializes.
+  /// Initializes To model class .
   ToModel({
     this.loginid,
   });
@@ -512,19 +512,19 @@ abstract class ToModel {
 
 /// To class.
 class To extends ToModel {
-  /// Initializes
+  /// Initializes To class.
   To({
     String? loginid,
   }) : super(
           loginid: loginid,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory To.fromJson(Map<String, dynamic> json) => To(
         loginid: json['loginid'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

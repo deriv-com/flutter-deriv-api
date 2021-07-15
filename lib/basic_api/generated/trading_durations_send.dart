@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Trading durations send class.
-class TradingDurationsSend extends Request {
-  /// Initialize TradingDurationsSend.
-  const TradingDurationsSend({
+/// Trading durations request class.
+class TradingDurationsRequest extends Request {
+  /// Initialize TradingDurationsRequest.
+  const TradingDurationsRequest({
     this.landingCompany,
     this.tradingDurations = true,
     Map<String, dynamic>? passthrough,
@@ -19,8 +19,8 @@ class TradingDurationsSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory TradingDurationsSend.fromJson(Map<String, dynamic> json) =>
-      TradingDurationsSend(
+  factory TradingDurationsRequest.fromJson(Map<String, dynamic> json) =>
+      TradingDurationsRequest(
         landingCompany: json['landing_company'] as String?,
         tradingDurations: json['trading_durations'] == null
             ? null
@@ -50,13 +50,13 @@ class TradingDurationsSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  TradingDurationsSend copyWith({
+  TradingDurationsRequest copyWith({
     String? landingCompany,
     bool? tradingDurations,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      TradingDurationsSend(
+      TradingDurationsRequest(
         landingCompany: landingCompany ?? this.landingCompany,
         tradingDurations: tradingDurations ?? this.tradingDurations,
         passthrough: passthrough ?? this.passthrough,

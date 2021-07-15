@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Mt5 get settings response model class.
 abstract class Mt5GetSettingsResponseModel {
-  /// Initializes.
+  /// Initializes Mt5 get settings response model class .
   Mt5GetSettingsResponseModel({
     this.mt5GetSettings,
   });
@@ -19,14 +19,14 @@ abstract class Mt5GetSettingsResponseModel {
 
 /// Mt5 get settings response class.
 class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
-  /// Initializes
+  /// Initializes Mt5 get settings response class.
   Mt5GetSettingsResponse({
     Mt5GetSettings? mt5GetSettings,
   }) : super(
           mt5GetSettings: mt5GetSettings,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5GetSettingsResponse.fromJson(
     dynamic mt5GetSettingsJson,
   ) =>
@@ -36,7 +36,7 @@ class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
             : Mt5GetSettings.fromJson(mt5GetSettingsJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -54,7 +54,7 @@ class Mt5GetSettingsResponse extends Mt5GetSettingsResponseModel {
   /// For parameters information refer to [Mt5GetSettingsRequest].
   /// Throws a [MT5Exception] if API response contains an error
   static Future<Mt5GetSettingsResponse> fetchSettings(
-    Mt5GetSettingsSend request,
+    Mt5GetSettingsRequest request,
   ) async {
     final Mt5GetSettingsReceive response = await _api.call(request: request);
 
@@ -165,7 +165,7 @@ enum SubAccountTypeEnum {
 }
 /// Mt5 get settings model class.
 abstract class Mt5GetSettingsModel {
-  /// Initializes.
+  /// Initializes Mt5 get settings model class .
   Mt5GetSettingsModel({
     this.accountType,
     this.address,
@@ -248,7 +248,7 @@ abstract class Mt5GetSettingsModel {
 
 /// Mt5 get settings class.
 class Mt5GetSettings extends Mt5GetSettingsModel {
-  /// Initializes
+  /// Initializes Mt5 get settings class.
   Mt5GetSettings({
     AccountTypeEnum? accountType,
     String? address,
@@ -291,7 +291,7 @@ class Mt5GetSettings extends Mt5GetSettingsModel {
           zipCode: zipCode,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5GetSettings.fromJson(Map<String, dynamic> json) => Mt5GetSettings(
         accountType: json['account_type'] == null
             ? null
@@ -322,7 +322,7 @@ class Mt5GetSettings extends Mt5GetSettingsModel {
         zipCode: json['zipCode'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

@@ -17,7 +17,7 @@ void main() {
     test('Fetch Advertiser Information Test', () async {
       final P2pAdvertiserInfoResponse advertiserResponse =
           await P2pAdvertiserInfoResponse.fetchAdvertiserInformation(
-        const P2pAdvertiserInfoSend(id: '1'),
+        const P2pAdvertiserInfoRequest(id: '1'),
       );
 
       final P2pAdvertiserInfo advertiser =
@@ -40,7 +40,7 @@ void main() {
 
     test('Subscribe to Advertiser Test', () {
       P2pAdvertiserInfoResponse.subscribeAdvertiserInformation(
-        const P2pAdvertiserInfoSend(id: '1'),
+        const P2pAdvertiserInfoRequest(id: '1'),
       ).listen(
         expectAsync1((P2pAdvertiserInfoResponse? advertiser) {
           expect(
@@ -75,7 +75,7 @@ void main() {
     test('Create Advertiser Test', () async {
       final P2pAdvertiserCreateResponse advertiser =
           await P2pAdvertiserCreateResponse.createAdvertiser(
-        const P2pAdvertiserCreateSend(
+        const P2pAdvertiserCreateRequest(
           contactInfo: 'contract information',
           defaultAdvertDescription: 'default advert description',
           name: 'John Doe',
@@ -104,7 +104,7 @@ void main() {
 
     test('Create and Subscribe to Advertiser Test', () {
       P2pAdvertiserCreateResponse.createAdvertiserAndSubscribe(
-        const P2pAdvertiserCreateSend(
+        const P2pAdvertiserCreateRequest(
           contactInfo: 'contract information',
           defaultAdvertDescription: 'default advert description',
           name: 'John Doe',
@@ -144,7 +144,7 @@ void main() {
     test('Update Advertiser Test', () async {
       final P2pAdvertiserUpdateResponse advertiser =
           await P2pAdvertiserUpdateResponse.updateAdvertiser(
-        const P2pAdvertiserUpdateSend(
+        const P2pAdvertiserUpdateRequest(
           contactInfo: 'contract information',
           defaultAdvertDescription: 'default advert description',
           isListed: true,
@@ -174,7 +174,7 @@ void main() {
     test('Fetch Advertiser Adverts Test', () async {
       final P2pAdvertiserAdvertsResponse advertsResponse =
           await P2pAdvertiserAdvertsResponse.fetchAdvertiserAdverts(
-        const P2pAdvertiserAdvertsSend(limit: 10, offset: 0),
+        const P2pAdvertiserAdvertsRequest(limit: 10, offset: 0),
       );
 
       final List<ListItem> adverts = advertsResponse.p2pAdvertiserAdverts!.list;

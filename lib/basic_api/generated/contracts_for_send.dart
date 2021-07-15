@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Contracts for send class.
-class ContractsForSend extends Request {
-  /// Initialize ContractsForSend.
-  const ContractsForSend({
+/// Contracts for request class.
+class ContractsForRequest extends Request {
+  /// Initialize ContractsForRequest.
+  const ContractsForRequest({
     required this.contractsFor,
     this.currency,
     this.landingCompany,
@@ -21,8 +21,8 @@ class ContractsForSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory ContractsForSend.fromJson(Map<String, dynamic> json) =>
-      ContractsForSend(
+  factory ContractsForRequest.fromJson(Map<String, dynamic> json) =>
+      ContractsForRequest(
         contractsFor: json['contracts_for'] as String?,
         currency: json['currency'] as String?,
         landingCompany: json['landing_company'] as String?,
@@ -56,7 +56,7 @@ class ContractsForSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  ContractsForSend copyWith({
+  ContractsForRequest copyWith({
     String? contractsFor,
     String? currency,
     String? landingCompany,
@@ -64,7 +64,7 @@ class ContractsForSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      ContractsForSend(
+      ContractsForRequest(
         contractsFor: contractsFor ?? this.contractsFor,
         currency: currency ?? this.currency,
         landingCompany: landingCompany ?? this.landingCompany,

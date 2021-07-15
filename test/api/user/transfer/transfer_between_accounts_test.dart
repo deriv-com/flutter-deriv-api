@@ -11,7 +11,7 @@ void main() {
   test('Transfer Between Accounts Test', () async {
     final TransferBetweenAccountsResponse transferBetweenAccounts =
         await TransferBetweenAccountsResponse.transfer(
-      const TransferBetweenAccountsSend(
+      const TransferBetweenAccountsRequest(
         accountFrom: 'MLT100',
         accountTo: 'MF100',
         amount: 100,

@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Mt5 withdrawal response model class.
 abstract class Mt5WithdrawalResponseModel {
-  /// Initializes.
+  /// Initializes Mt5 withdrawal response model class .
   Mt5WithdrawalResponseModel({
     this.mt5Withdrawal,
     this.binaryTransactionId,
@@ -23,7 +23,7 @@ abstract class Mt5WithdrawalResponseModel {
 
 /// Mt5 withdrawal response class.
 class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
-  /// Initializes
+  /// Initializes Mt5 withdrawal response class.
   Mt5WithdrawalResponse({
     int? mt5Withdrawal,
     int? binaryTransactionId,
@@ -32,7 +32,7 @@ class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
           binaryTransactionId: binaryTransactionId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5WithdrawalResponse.fromJson(
     dynamic mt5WithdrawalJson,
     dynamic binaryTransactionIdJson,
@@ -42,7 +42,7 @@ class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
         binaryTransactionId: binaryTransactionIdJson,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -59,7 +59,7 @@ class Mt5WithdrawalResponse extends Mt5WithdrawalResponseModel {
   /// For parameters information refer to [Mt5WithdrawalRequest].
   /// Throws a [MT5Exception] if API response contains an error
   static Future<Mt5WithdrawalResponse> withdraw(
-    Mt5WithdrawalSend request,
+    Mt5WithdrawalRequest request,
   ) async {
     final Mt5WithdrawalReceive response = await _api.call(request: request);
 

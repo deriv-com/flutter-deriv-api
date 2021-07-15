@@ -11,7 +11,7 @@ import '../models/base_exception_model.dart';
 
 /// P2p advertiser create response model class.
 abstract class P2pAdvertiserCreateResponseModel {
-  /// Initializes.
+  /// Initializes P2p advertiser create response model class .
   P2pAdvertiserCreateResponseModel({
     this.p2pAdvertiserCreate,
     this.subscription,
@@ -26,7 +26,7 @@ abstract class P2pAdvertiserCreateResponseModel {
 
 /// P2p advertiser create response class.
 class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
-  /// Initializes
+  /// Initializes P2p advertiser create response class.
   P2pAdvertiserCreateResponse({
     P2pAdvertiserCreate? p2pAdvertiserCreate,
     Subscription? subscription,
@@ -35,7 +35,7 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
           subscription: subscription,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertiserCreateResponse.fromJson(
     dynamic p2pAdvertiserCreateJson,
     dynamic subscriptionJson,
@@ -49,7 +49,7 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
             : Subscription.fromJson(subscriptionJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -68,7 +68,7 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
   /// Registers the client as a P2P (peer to peer) advertiser.
   /// For parameters information refer to [P2pAdvertiserCreateRequest].
   static Future<P2pAdvertiserCreateResponse> createAdvertiser(
-    P2pAdvertiserCreateSend request,
+    P2pAdvertiserCreateRequest request,
   ) async {
     final P2pAdvertiserCreateReceive response = await _api.call(
       request: request.copyWith(subscribe: false),
@@ -87,7 +87,7 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
   /// Registers the client as a P2P (peer to peer) advertiser.
   /// For parameters information refer to [P2pAdvertiserCreateRequest].
   static Stream<P2pAdvertiserCreateResponse?> createAdvertiserAndSubscribe(
-    P2pAdvertiserCreateSend request, {
+    P2pAdvertiserCreateRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
       _api
@@ -121,7 +121,7 @@ class P2pAdvertiserCreateResponse extends P2pAdvertiserCreateResponseModel {
 }
 /// P2p advertiser create model class.
 abstract class P2pAdvertiserCreateModel {
-  /// Initializes.
+  /// Initializes P2p advertiser create model class .
   P2pAdvertiserCreateModel({
     required this.totalOrdersCount,
     required this.sellOrdersCount,
@@ -236,7 +236,7 @@ abstract class P2pAdvertiserCreateModel {
 
 /// P2p advertiser create class.
 class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
-  /// Initializes
+  /// Initializes P2p advertiser create class.
   P2pAdvertiserCreate({
     required int buyOrdersCount,
     required int cancelsRemaining,
@@ -295,7 +295,7 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
           totalCompletionRate: totalCompletionRate,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertiserCreate.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserCreate(
         buyOrdersCount: json['buy_orders_count'],
@@ -327,7 +327,7 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         totalCompletionRate: getDouble(json['total_completion_rate']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -425,7 +425,7 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
 }
 /// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes.
+  /// Initializes Subscription model class .
   SubscriptionModel({
     required this.id,
   });
@@ -436,19 +436,19 @@ abstract class SubscriptionModel {
 
 /// Subscription class.
 class Subscription extends SubscriptionModel {
-  /// Initializes
+  /// Initializes Subscription class.
   Subscription({
     required String id,
   }) : super(
           id: id,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(
         id: json['id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

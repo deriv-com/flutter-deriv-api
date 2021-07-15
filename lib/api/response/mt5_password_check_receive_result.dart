@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Mt5 password check response model class.
 abstract class Mt5PasswordCheckResponseModel {
-  /// Initializes.
+  /// Initializes Mt5 password check response model class .
   Mt5PasswordCheckResponseModel({
     this.mt5PasswordCheck,
   });
@@ -19,14 +19,14 @@ abstract class Mt5PasswordCheckResponseModel {
 
 /// Mt5 password check response class.
 class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
-  /// Initializes
+  /// Initializes Mt5 password check response class.
   Mt5PasswordCheckResponse({
     int? mt5PasswordCheck,
   }) : super(
           mt5PasswordCheck: mt5PasswordCheck,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5PasswordCheckResponse.fromJson(
     dynamic mt5PasswordCheckJson,
   ) =>
@@ -34,7 +34,7 @@ class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
         mt5PasswordCheck: mt5PasswordCheckJson,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -50,7 +50,7 @@ class Mt5PasswordCheckResponse extends Mt5PasswordCheckResponseModel {
   /// For parameters information refer to [Mt5PasswordCheckRequest].
   /// Throws a [MT5Exception] if API response contains an error
   static Future<Mt5PasswordCheckResponse> checkPassword(
-      Mt5PasswordCheckSend request) async {
+      Mt5PasswordCheckRequest request) async {
     final Mt5PasswordCheckReceive response = await _api.call(request: request);
 
     checkException(

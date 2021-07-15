@@ -10,7 +10,7 @@ void main() {
 
   test('Verify Email Test', () async {
     final VerifyEmailResponse verifyEmail = await VerifyEmailResponse.verify(
-      const VerifyEmailSend(
+      const VerifyEmailRequest(
         verifyEmail: 'test@mailinator.com',
         type: 'account_opening',
       ),

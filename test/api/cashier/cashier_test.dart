@@ -10,7 +10,7 @@ void main() {
   test('Fetch Cashier URL Test', () async {
     final CashierResponse cashierInformation =
         await CashierResponse.fetchInformation(
-      const CashierSend(
+      const CashierRequest(
         cashier: 'deposit',
         provider: 'provider1',
         verificationCode: '12123hjdshad',

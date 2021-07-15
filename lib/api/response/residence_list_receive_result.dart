@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Residence list response model class.
 abstract class ResidenceListResponseModel {
-  /// Initializes.
+  /// Initializes Residence list response model class .
   ResidenceListResponseModel({
     this.residenceList,
   });
@@ -19,14 +19,14 @@ abstract class ResidenceListResponseModel {
 
 /// Residence list response class.
 class ResidenceListResponse extends ResidenceListResponseModel {
-  /// Initializes
+  /// Initializes Residence list response class.
   ResidenceListResponse({
     List<ResidenceListItem>? residenceList,
   }) : super(
           residenceList: residenceList,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ResidenceListResponse.fromJson(
     dynamic residenceListJson,
   ) =>
@@ -40,7 +40,7 @@ class ResidenceListResponse extends ResidenceListResponseModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -61,10 +61,10 @@ class ResidenceListResponse extends ResidenceListResponseModel {
   ///
   /// Throws a [ResidenceException] if API response contains an error
   static Future<ResidenceListResponse> fetchResidenceList([
-    ResidenceListSend? request,
+    ResidenceListRequest? request,
   ]) async {
     final ResidenceListReceive response = await _api.call(
-      request: request ?? const ResidenceListSend(),
+      request: request ?? const ResidenceListRequest(),
     );
 
     checkException(
@@ -86,7 +86,7 @@ class ResidenceListResponse extends ResidenceListResponseModel {
 }
 /// Residence list item model class.
 abstract class ResidenceListItemModel {
-  /// Initializes.
+  /// Initializes Residence list item model class .
   ResidenceListItemModel({
     this.identity,
     this.phoneIdd,
@@ -113,7 +113,7 @@ abstract class ResidenceListItemModel {
 
 /// Residence list item class.
 class ResidenceListItem extends ResidenceListItemModel {
-  /// Initializes
+  /// Initializes Residence list item class.
   ResidenceListItem({
     Identity? identity,
     String? phoneIdd,
@@ -128,7 +128,7 @@ class ResidenceListItem extends ResidenceListItemModel {
           value: value,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ResidenceListItem.fromJson(Map<String, dynamic> json) =>
       ResidenceListItem(
         identity: json['identity'] == null
@@ -146,7 +146,7 @@ class ResidenceListItem extends ResidenceListItemModel {
         value: json['value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -185,7 +185,7 @@ class ResidenceListItem extends ResidenceListItemModel {
 }
 /// Identity model class.
 abstract class IdentityModel {
-  /// Initializes.
+  /// Initializes Identity model class .
   IdentityModel({
     this.services,
   });
@@ -196,21 +196,21 @@ abstract class IdentityModel {
 
 /// Identity class.
 class Identity extends IdentityModel {
-  /// Initializes
+  /// Initializes Identity class.
   Identity({
     Services? services,
   }) : super(
           services: services,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Identity.fromJson(Map<String, dynamic> json) => Identity(
         services: json['services'] == null
             ? null
             : Services.fromJson(json['services']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -231,7 +231,7 @@ class Identity extends IdentityModel {
 }
 /// Services model class.
 abstract class ServicesModel {
-  /// Initializes.
+  /// Initializes Services model class .
   ServicesModel({
     this.idv,
     this.onfido,
@@ -246,7 +246,7 @@ abstract class ServicesModel {
 
 /// Services class.
 class Services extends ServicesModel {
-  /// Initializes
+  /// Initializes Services class.
   Services({
     Idv? idv,
     Onfido? onfido,
@@ -255,13 +255,13 @@ class Services extends ServicesModel {
           onfido: onfido,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Services.fromJson(Map<String, dynamic> json) => Services(
         idv: json['idv'] == null ? null : Idv.fromJson(json['idv']),
         onfido: json['onfido'] == null ? null : Onfido.fromJson(json['onfido']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -287,7 +287,7 @@ class Services extends ServicesModel {
 }
 /// Idv model class.
 abstract class IdvModel {
-  /// Initializes.
+  /// Initializes Idv model class .
   IdvModel({
     this.documentsSupported,
     this.hasVisualSample,
@@ -306,7 +306,7 @@ abstract class IdvModel {
 
 /// Idv class.
 class Idv extends IdvModel {
-  /// Initializes
+  /// Initializes Idv class.
   Idv({
     Map<String, DocumentsSupportedProperty>? documentsSupported,
     bool? hasVisualSample,
@@ -317,7 +317,7 @@ class Idv extends IdvModel {
           isCountrySupported: isCountrySupported,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Idv.fromJson(Map<String, dynamic> json) => Idv(
         documentsSupported: json['documents_supported'] == null
             ? null
@@ -332,7 +332,7 @@ class Idv extends IdvModel {
         isCountrySupported: getBool(json['is_country_supported']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -357,7 +357,7 @@ class Idv extends IdvModel {
 }
 /// Documents supported property model class.
 abstract class DocumentsSupportedPropertyModel {
-  /// Initializes.
+  /// Initializes Documents supported property model class .
   DocumentsSupportedPropertyModel({
     this.displayName,
     this.format,
@@ -372,7 +372,7 @@ abstract class DocumentsSupportedPropertyModel {
 
 /// Documents supported property class.
 class DocumentsSupportedProperty extends DocumentsSupportedPropertyModel {
-  /// Initializes
+  /// Initializes Documents supported property class.
   DocumentsSupportedProperty({
     String? displayName,
     String? format,
@@ -381,14 +381,14 @@ class DocumentsSupportedProperty extends DocumentsSupportedPropertyModel {
           format: format,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory DocumentsSupportedProperty.fromJson(Map<String, dynamic> json) =>
       DocumentsSupportedProperty(
         displayName: json['display_name'],
         format: json['format'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -410,7 +410,7 @@ class DocumentsSupportedProperty extends DocumentsSupportedPropertyModel {
 }
 /// Onfido model class.
 abstract class OnfidoModel {
-  /// Initializes.
+  /// Initializes Onfido model class .
   OnfidoModel({
     this.documentsSupported,
     this.isCountrySupported,
@@ -426,7 +426,7 @@ abstract class OnfidoModel {
 
 /// Onfido class.
 class Onfido extends OnfidoModel {
-  /// Initializes
+  /// Initializes Onfido class.
   Onfido({
     Map<String, DocumentsSupportedDocumentsSupportedProperty>?
         documentsSupported,
@@ -436,7 +436,7 @@ class Onfido extends OnfidoModel {
           isCountrySupported: isCountrySupported,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Onfido.fromJson(Map<String, dynamic> json) => Onfido(
         documentsSupported: json['documents_supported'] == null
             ? null
@@ -452,7 +452,7 @@ class Onfido extends OnfidoModel {
         isCountrySupported: getBool(json['is_country_supported']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -475,7 +475,7 @@ class Onfido extends OnfidoModel {
 }
 /// Documents supported documents supported property model class.
 abstract class DocumentsSupportedDocumentsSupportedPropertyModel {
-  /// Initializes.
+  /// Initializes Documents supported documents supported property model class .
   DocumentsSupportedDocumentsSupportedPropertyModel({
     this.displayName,
     this.format,
@@ -491,7 +491,7 @@ abstract class DocumentsSupportedDocumentsSupportedPropertyModel {
 /// Documents supported documents supported property class.
 class DocumentsSupportedDocumentsSupportedProperty
     extends DocumentsSupportedDocumentsSupportedPropertyModel {
-  /// Initializes
+  /// Initializes Documents supported documents supported property class.
   DocumentsSupportedDocumentsSupportedProperty({
     String? displayName,
     String? format,
@@ -500,7 +500,7 @@ class DocumentsSupportedDocumentsSupportedProperty
           format: format,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory DocumentsSupportedDocumentsSupportedProperty.fromJson(
           Map<String, dynamic> json) =>
       DocumentsSupportedDocumentsSupportedProperty(
@@ -508,7 +508,7 @@ class DocumentsSupportedDocumentsSupportedProperty
         format: json['format'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

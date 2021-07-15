@@ -15,7 +15,7 @@ import 'forget_receive_result.dart';
 
 /// Proposal open contract response model class.
 abstract class ProposalOpenContractResponseModel {
-  /// Initializes.
+  /// Initializes Proposal open contract response model class .
   ProposalOpenContractResponseModel({
     this.proposalOpenContract,
     this.subscription,
@@ -30,7 +30,7 @@ abstract class ProposalOpenContractResponseModel {
 
 /// Proposal open contract response class.
 class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
-  /// Initializes
+  /// Initializes Proposal open contract response class.
   ProposalOpenContractResponse({
     ProposalOpenContract? proposalOpenContract,
     Subscription? subscription,
@@ -39,7 +39,7 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
           subscription: subscription,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ProposalOpenContractResponse.fromJson(
     dynamic proposalOpenContractJson,
     dynamic subscriptionJson,
@@ -53,7 +53,7 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
             : Subscription.fromJson(subscriptionJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -73,7 +73,7 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
   ///
   /// Throws a [ContractOperationException] if API response contains any error
   static Future<ProposalOpenContractResponse> fetchContractState(
-    ProposalOpenContractSend request,
+    ProposalOpenContractRequest request,
   ) async {
     final ProposalOpenContractReceive response = await _api.call(
       request: request,
@@ -93,7 +93,7 @@ class ProposalOpenContractResponse extends ProposalOpenContractResponseModel {
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   static Stream<ProposalOpenContractResponse?> subscribeContractState(
-    ProposalOpenContractSend request, {
+    ProposalOpenContractRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
       _api
@@ -196,7 +196,7 @@ enum StatusEnum {
 }
 /// Proposal open contract model class.
 abstract class ProposalOpenContractModel {
-  /// Initializes.
+  /// Initializes Proposal open contract model class .
   ProposalOpenContractModel({
     this.auditDetails,
     this.barrier,
@@ -431,7 +431,7 @@ abstract class ProposalOpenContractModel {
 
 /// Proposal open contract class.
 class ProposalOpenContract extends ProposalOpenContractModel {
-  /// Initializes
+  /// Initializes Proposal open contract class.
   ProposalOpenContract({
     AuditDetails? auditDetails,
     String? barrier,
@@ -550,7 +550,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
           validationError: validationError,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ProposalOpenContract.fromJson(Map<String, dynamic> json) =>
       ProposalOpenContract(
         auditDetails: json['audit_details'] == null
@@ -627,7 +627,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         validationError: json['validation_error'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -835,7 +835,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
 }
 /// Audit details model class.
 abstract class AuditDetailsModel {
-  /// Initializes.
+  /// Initializes Audit details model class .
   AuditDetailsModel({
     this.allTicks,
     this.contractEnd,
@@ -854,7 +854,7 @@ abstract class AuditDetailsModel {
 
 /// Audit details class.
 class AuditDetails extends AuditDetailsModel {
-  /// Initializes
+  /// Initializes Audit details class.
   AuditDetails({
     List<AllTicksItem>? allTicks,
     List<ContractEndItem>? contractEnd,
@@ -865,7 +865,7 @@ class AuditDetails extends AuditDetailsModel {
           contractStart: contractStart,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AuditDetails.fromJson(Map<String, dynamic> json) => AuditDetails(
         allTicks: json['all_ticks'] == null
             ? null
@@ -890,7 +890,7 @@ class AuditDetails extends AuditDetailsModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -933,7 +933,7 @@ class AuditDetails extends AuditDetailsModel {
 }
 /// All ticks item model class.
 abstract class AllTicksItemModel {
-  /// Initializes.
+  /// Initializes All ticks item model class .
   AllTicksItemModel({
     this.epoch,
     this.flag,
@@ -960,7 +960,7 @@ abstract class AllTicksItemModel {
 
 /// All ticks item class.
 class AllTicksItem extends AllTicksItemModel {
-  /// Initializes
+  /// Initializes All ticks item class.
   AllTicksItem({
     DateTime? epoch,
     String? flag,
@@ -975,7 +975,7 @@ class AllTicksItem extends AllTicksItemModel {
           tickDisplayValue: tickDisplayValue,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AllTicksItem.fromJson(Map<String, dynamic> json) => AllTicksItem(
         epoch: getDateTime(json['epoch']),
         flag: json['flag'],
@@ -984,7 +984,7 @@ class AllTicksItem extends AllTicksItemModel {
         tickDisplayValue: json['tick_display_value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1015,7 +1015,7 @@ class AllTicksItem extends AllTicksItemModel {
 }
 /// Contract end item model class.
 abstract class ContractEndItemModel {
-  /// Initializes.
+  /// Initializes Contract end item model class .
   ContractEndItemModel({
     this.epoch,
     this.flag,
@@ -1042,7 +1042,7 @@ abstract class ContractEndItemModel {
 
 /// Contract end item class.
 class ContractEndItem extends ContractEndItemModel {
-  /// Initializes
+  /// Initializes Contract end item class.
   ContractEndItem({
     DateTime? epoch,
     String? flag,
@@ -1057,7 +1057,7 @@ class ContractEndItem extends ContractEndItemModel {
           tickDisplayValue: tickDisplayValue,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ContractEndItem.fromJson(Map<String, dynamic> json) =>
       ContractEndItem(
         epoch: getDateTime(json['epoch']),
@@ -1067,7 +1067,7 @@ class ContractEndItem extends ContractEndItemModel {
         tickDisplayValue: json['tick_display_value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1098,7 +1098,7 @@ class ContractEndItem extends ContractEndItemModel {
 }
 /// Contract start item model class.
 abstract class ContractStartItemModel {
-  /// Initializes.
+  /// Initializes Contract start item model class .
   ContractStartItemModel({
     this.epoch,
     this.flag,
@@ -1125,7 +1125,7 @@ abstract class ContractStartItemModel {
 
 /// Contract start item class.
 class ContractStartItem extends ContractStartItemModel {
-  /// Initializes
+  /// Initializes Contract start item class.
   ContractStartItem({
     DateTime? epoch,
     String? flag,
@@ -1140,7 +1140,7 @@ class ContractStartItem extends ContractStartItemModel {
           tickDisplayValue: tickDisplayValue,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ContractStartItem.fromJson(Map<String, dynamic> json) =>
       ContractStartItem(
         epoch: getDateTime(json['epoch']),
@@ -1150,7 +1150,7 @@ class ContractStartItem extends ContractStartItemModel {
         tickDisplayValue: json['tick_display_value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1181,7 +1181,7 @@ class ContractStartItem extends ContractStartItemModel {
 }
 /// Cancellation model class.
 abstract class CancellationModel {
-  /// Initializes.
+  /// Initializes Cancellation model class .
   CancellationModel({
     this.askPrice,
     this.dateExpiry,
@@ -1196,7 +1196,7 @@ abstract class CancellationModel {
 
 /// Cancellation class.
 class Cancellation extends CancellationModel {
-  /// Initializes
+  /// Initializes Cancellation class.
   Cancellation({
     double? askPrice,
     DateTime? dateExpiry,
@@ -1205,13 +1205,13 @@ class Cancellation extends CancellationModel {
           dateExpiry: dateExpiry,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Cancellation.fromJson(Map<String, dynamic> json) => Cancellation(
         askPrice: getDouble(json['ask_price']),
         dateExpiry: getDateTime(json['date_expiry']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1233,7 +1233,7 @@ class Cancellation extends CancellationModel {
 }
 /// Limit order model class.
 abstract class LimitOrderModel {
-  /// Initializes.
+  /// Initializes Limit order model class .
   LimitOrderModel({
     this.stopLoss,
     this.stopOut,
@@ -1252,7 +1252,7 @@ abstract class LimitOrderModel {
 
 /// Limit order class.
 class LimitOrder extends LimitOrderModel {
-  /// Initializes
+  /// Initializes Limit order class.
   LimitOrder({
     StopLoss? stopLoss,
     StopOut? stopOut,
@@ -1263,7 +1263,7 @@ class LimitOrder extends LimitOrderModel {
           takeProfit: takeProfit,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LimitOrder.fromJson(Map<String, dynamic> json) => LimitOrder(
         stopLoss: json['stop_loss'] == null
             ? null
@@ -1276,7 +1276,7 @@ class LimitOrder extends LimitOrderModel {
             : TakeProfit.fromJson(json['take_profit']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1307,7 +1307,7 @@ class LimitOrder extends LimitOrderModel {
 }
 /// Stop loss model class.
 abstract class StopLossModel {
-  /// Initializes.
+  /// Initializes Stop loss model class .
   StopLossModel({
     this.displayName,
     this.orderAmount,
@@ -1330,7 +1330,7 @@ abstract class StopLossModel {
 
 /// Stop loss class.
 class StopLoss extends StopLossModel {
-  /// Initializes
+  /// Initializes Stop loss class.
   StopLoss({
     String? displayName,
     double? orderAmount,
@@ -1343,7 +1343,7 @@ class StopLoss extends StopLossModel {
           value: value,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory StopLoss.fromJson(Map<String, dynamic> json) => StopLoss(
         displayName: json['display_name'],
         orderAmount: getDouble(json['order_amount']),
@@ -1351,7 +1351,7 @@ class StopLoss extends StopLossModel {
         value: json['value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1379,7 +1379,7 @@ class StopLoss extends StopLossModel {
 }
 /// Stop out model class.
 abstract class StopOutModel {
-  /// Initializes.
+  /// Initializes Stop out model class .
   StopOutModel({
     this.displayName,
     this.orderAmount,
@@ -1402,7 +1402,7 @@ abstract class StopOutModel {
 
 /// Stop out class.
 class StopOut extends StopOutModel {
-  /// Initializes
+  /// Initializes Stop out class.
   StopOut({
     String? displayName,
     double? orderAmount,
@@ -1415,7 +1415,7 @@ class StopOut extends StopOutModel {
           value: value,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory StopOut.fromJson(Map<String, dynamic> json) => StopOut(
         displayName: json['display_name'],
         orderAmount: getDouble(json['order_amount']),
@@ -1423,7 +1423,7 @@ class StopOut extends StopOutModel {
         value: json['value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1451,7 +1451,7 @@ class StopOut extends StopOutModel {
 }
 /// Take profit model class.
 abstract class TakeProfitModel {
-  /// Initializes.
+  /// Initializes Take profit model class .
   TakeProfitModel({
     this.displayName,
     this.orderAmount,
@@ -1474,7 +1474,7 @@ abstract class TakeProfitModel {
 
 /// Take profit class.
 class TakeProfit extends TakeProfitModel {
-  /// Initializes
+  /// Initializes Take profit class.
   TakeProfit({
     String? displayName,
     double? orderAmount,
@@ -1487,7 +1487,7 @@ class TakeProfit extends TakeProfitModel {
           value: value,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TakeProfit.fromJson(Map<String, dynamic> json) => TakeProfit(
         displayName: json['display_name'],
         orderAmount: getDouble(json['order_amount']),
@@ -1495,7 +1495,7 @@ class TakeProfit extends TakeProfitModel {
         value: json['value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1523,7 +1523,7 @@ class TakeProfit extends TakeProfitModel {
 }
 /// Tick stream item model class.
 abstract class TickStreamItemModel {
-  /// Initializes.
+  /// Initializes Tick stream item model class .
   TickStreamItemModel({
     this.epoch,
     this.tick,
@@ -1542,7 +1542,7 @@ abstract class TickStreamItemModel {
 
 /// Tick stream item class.
 class TickStreamItem extends TickStreamItemModel {
-  /// Initializes
+  /// Initializes Tick stream item class.
   TickStreamItem({
     DateTime? epoch,
     double? tick,
@@ -1553,14 +1553,14 @@ class TickStreamItem extends TickStreamItemModel {
           tickDisplayValue: tickDisplayValue,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TickStreamItem.fromJson(Map<String, dynamic> json) => TickStreamItem(
         epoch: getDateTime(json['epoch']),
         tick: getDouble(json['tick']),
         tickDisplayValue: json['tick_display_value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1585,7 +1585,7 @@ class TickStreamItem extends TickStreamItemModel {
 }
 /// Transaction ids model class.
 abstract class TransactionIdsModel {
-  /// Initializes.
+  /// Initializes Transaction ids model class .
   TransactionIdsModel({
     this.buy,
     this.sell,
@@ -1600,7 +1600,7 @@ abstract class TransactionIdsModel {
 
 /// Transaction ids class.
 class TransactionIds extends TransactionIdsModel {
-  /// Initializes
+  /// Initializes Transaction ids class.
   TransactionIds({
     int? buy,
     int? sell,
@@ -1609,13 +1609,13 @@ class TransactionIds extends TransactionIdsModel {
           sell: sell,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TransactionIds.fromJson(Map<String, dynamic> json) => TransactionIds(
         buy: json['buy'],
         sell: json['sell'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1637,7 +1637,7 @@ class TransactionIds extends TransactionIdsModel {
 }
 /// Subscription model class.
 abstract class SubscriptionModel {
-  /// Initializes.
+  /// Initializes Subscription model class .
   SubscriptionModel({
     required this.id,
   });
@@ -1648,19 +1648,19 @@ abstract class SubscriptionModel {
 
 /// Subscription class.
 class Subscription extends SubscriptionModel {
-  /// Initializes
+  /// Initializes Subscription class.
   Subscription({
     required String id,
   }) : super(
           id: id,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Subscription.fromJson(Map<String, dynamic> json) => Subscription(
         id: json['id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

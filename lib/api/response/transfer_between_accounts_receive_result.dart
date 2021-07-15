@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Transfer between accounts response model class.
 abstract class TransferBetweenAccountsResponseModel {
-  /// Initializes.
+  /// Initializes Transfer between accounts response model class .
   TransferBetweenAccountsResponseModel({
     this.transferBetweenAccounts,
     this.accounts,
@@ -36,7 +36,7 @@ abstract class TransferBetweenAccountsResponseModel {
 /// Transfer between accounts response class.
 class TransferBetweenAccountsResponse
     extends TransferBetweenAccountsResponseModel {
-  /// Initializes
+  /// Initializes Transfer between accounts response class.
   TransferBetweenAccountsResponse({
     bool? transferBetweenAccounts,
     List<AccountsItem>? accounts,
@@ -51,7 +51,7 @@ class TransferBetweenAccountsResponse
           transactionId: transactionId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TransferBetweenAccountsResponse.fromJson(
     dynamic transferBetweenAccountsJson,
     dynamic accountsJson,
@@ -73,7 +73,7 @@ class TransferBetweenAccountsResponse
         transactionId: transactionIdJson,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -101,7 +101,7 @@ class TransferBetweenAccountsResponse
   /// For parameters information refer to [TransferBetweenAccountsRequest].
   /// Throws a [TransferException] if API response contains an error
   static Future<TransferBetweenAccountsResponse> transfer(
-    TransferBetweenAccountsSend request,
+    TransferBetweenAccountsRequest request,
   ) async {
     final TransferBetweenAccountsReceive response =
         await _api.call(request: request);
@@ -183,7 +183,7 @@ enum MarketTypeEnum {
 }
 /// Accounts item model class.
 abstract class AccountsItemModel {
-  /// Initializes.
+  /// Initializes Accounts item model class .
   AccountsItemModel({
     this.accountType,
     this.balance,
@@ -218,7 +218,7 @@ abstract class AccountsItemModel {
 
 /// Accounts item class.
 class AccountsItem extends AccountsItemModel {
-  /// Initializes
+  /// Initializes Accounts item class.
   AccountsItem({
     AccountTypeEnum? accountType,
     String? balance,
@@ -237,7 +237,7 @@ class AccountsItem extends AccountsItemModel {
           mt5Group: mt5Group,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AccountsItem.fromJson(Map<String, dynamic> json) => AccountsItem(
         accountType: json['account_type'] == null
             ? null
@@ -252,7 +252,7 @@ class AccountsItem extends AccountsItemModel {
         mt5Group: json['mt5_group'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

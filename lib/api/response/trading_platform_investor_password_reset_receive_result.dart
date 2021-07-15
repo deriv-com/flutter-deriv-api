@@ -3,7 +3,7 @@
 
 /// Trading platform investor password reset response model class.
 abstract class TradingPlatformInvestorPasswordResetResponseModel {
-  /// Initializes.
+  /// Initializes Trading platform investor password reset response model class .
   TradingPlatformInvestorPasswordResetResponseModel({
     this.tradingPlatformPasswordReset,
   });
@@ -15,14 +15,14 @@ abstract class TradingPlatformInvestorPasswordResetResponseModel {
 /// Trading platform investor password reset response class.
 class TradingPlatformInvestorPasswordResetResponse
     extends TradingPlatformInvestorPasswordResetResponseModel {
-  /// Initializes
+  /// Initializes Trading platform investor password reset response class.
   TradingPlatformInvestorPasswordResetResponse({
     bool? tradingPlatformPasswordReset,
   }) : super(
           tradingPlatformPasswordReset: tradingPlatformPasswordReset,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradingPlatformInvestorPasswordResetResponse.fromJson(
     dynamic tradingPlatformPasswordResetJson,
   ) =>
@@ -30,7 +30,7 @@ class TradingPlatformInvestorPasswordResetResponse
         tradingPlatformPasswordReset: getBool(tradingPlatformPasswordResetJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

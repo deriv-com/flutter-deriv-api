@@ -2,7 +2,7 @@ import '../../helpers/helpers.dart';
 
 /// Sell contract for multiple accounts response model class.
 abstract class SellContractForMultipleAccountsResponseModel {
-  /// Initializes.
+  /// Initializes Sell contract for multiple accounts response model class .
   SellContractForMultipleAccountsResponseModel({
     this.sellContractForMultipleAccounts,
   });
@@ -14,14 +14,14 @@ abstract class SellContractForMultipleAccountsResponseModel {
 /// Sell contract for multiple accounts response class.
 class SellContractForMultipleAccountsResponse
     extends SellContractForMultipleAccountsResponseModel {
-  /// Initializes
+  /// Initializes Sell contract for multiple accounts response class.
   SellContractForMultipleAccountsResponse({
     SellContractForMultipleAccounts? sellContractForMultipleAccounts,
   }) : super(
           sellContractForMultipleAccounts: sellContractForMultipleAccounts,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SellContractForMultipleAccountsResponse.fromJson(
     dynamic sellContractForMultipleAccountsJson,
   ) =>
@@ -33,7 +33,7 @@ class SellContractForMultipleAccountsResponse
                     sellContractForMultipleAccountsJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -56,7 +56,7 @@ class SellContractForMultipleAccountsResponse
 }
 /// Sell contract for multiple accounts model class.
 abstract class SellContractForMultipleAccountsModel {
-  /// Initializes.
+  /// Initializes Sell contract for multiple accounts model class .
   SellContractForMultipleAccountsModel({
     this.result,
   });
@@ -68,14 +68,14 @@ abstract class SellContractForMultipleAccountsModel {
 /// Sell contract for multiple accounts class.
 class SellContractForMultipleAccounts
     extends SellContractForMultipleAccountsModel {
-  /// Initializes
+  /// Initializes Sell contract for multiple accounts class.
   SellContractForMultipleAccounts({
     List<Map<String, dynamic>>? result,
   }) : super(
           result: result,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SellContractForMultipleAccounts.fromJson(Map<String, dynamic> json) =>
       SellContractForMultipleAccounts(
         result: json['result'] == null
@@ -87,7 +87,7 @@ class SellContractForMultipleAccounts
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

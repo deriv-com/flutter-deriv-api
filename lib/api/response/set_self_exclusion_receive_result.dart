@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Set self exclusion response model class.
 abstract class SetSelfExclusionResponseModel {
-  /// Initializes.
+  /// Initializes Set self exclusion response model class .
   SetSelfExclusionResponseModel({
     this.setSelfExclusion,
   });
@@ -19,14 +19,14 @@ abstract class SetSelfExclusionResponseModel {
 
 /// Set self exclusion response class.
 class SetSelfExclusionResponse extends SetSelfExclusionResponseModel {
-  /// Initializes
+  /// Initializes Set self exclusion response class.
   SetSelfExclusionResponse({
     int? setSelfExclusion,
   }) : super(
           setSelfExclusion: setSelfExclusion,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SetSelfExclusionResponse.fromJson(
     dynamic setSelfExclusionJson,
   ) =>
@@ -34,7 +34,7 @@ class SetSelfExclusionResponse extends SetSelfExclusionResponseModel {
         setSelfExclusion: setSelfExclusionJson,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -50,7 +50,7 @@ class SetSelfExclusionResponse extends SetSelfExclusionResponseModel {
   /// For parameters information refer to [SetSelfExclusionRequest].
   /// Throws a [SelfExclusionException] if API response contains an error
   static Future<SetSelfExclusionResponse> setSelfExclusionMethod(
-      SetSelfExclusionSend request) async {
+      SetSelfExclusionRequest request) async {
     final SetSelfExclusionReceive response = await _api.call(request: request);
 
     checkException(

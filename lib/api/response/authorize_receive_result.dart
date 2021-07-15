@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Authorize response model class.
 abstract class AuthorizeResponseModel {
-  /// Initializes.
+  /// Initializes Authorize response model class .
   AuthorizeResponseModel({
     this.authorize,
   });
@@ -19,14 +19,14 @@ abstract class AuthorizeResponseModel {
 
 /// Authorize response class.
 class AuthorizeResponse extends AuthorizeResponseModel {
-  /// Initializes
+  /// Initializes Authorize response class.
   AuthorizeResponse({
     Authorize? authorize,
   }) : super(
           authorize: authorize,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AuthorizeResponse.fromJson(
     dynamic authorizeJson,
   ) =>
@@ -35,7 +35,7 @@ class AuthorizeResponse extends AuthorizeResponseModel {
             authorizeJson == null ? null : Authorize.fromJson(authorizeJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -53,7 +53,7 @@ class AuthorizeResponse extends AuthorizeResponseModel {
   /// For parameters information refer to [AuthorizeRequest].
   /// Throws an [AuthorizeException] if API response contains an error
   static Future<AuthorizeResponse> authorizeMethod(
-      AuthorizeSend request) async {
+      AuthorizeRequest request) async {
     final AuthorizeReceive response = await _api.call(
       request: request,
     );
@@ -112,7 +112,7 @@ enum PlatformEnum {
 }
 /// Authorize model class.
 abstract class AuthorizeModel {
-  /// Initializes.
+  /// Initializes Authorize model class .
   AuthorizeModel({
     this.accountList,
     this.balance,
@@ -187,7 +187,7 @@ abstract class AuthorizeModel {
 
 /// Authorize class.
 class Authorize extends AuthorizeModel {
-  /// Initializes
+  /// Initializes Authorize class.
   Authorize({
     List<AccountListItem>? accountList,
     double? balance,
@@ -226,7 +226,7 @@ class Authorize extends AuthorizeModel {
           wallet: wallet,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Authorize.fromJson(Map<String, dynamic> json) => Authorize(
         accountList: json['account_list'] == null
             ? null
@@ -278,7 +278,7 @@ class Authorize extends AuthorizeModel {
             : AuthorizeWallet.fromJson(json['wallet']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -369,7 +369,7 @@ class Authorize extends AuthorizeModel {
 }
 /// Account list item model class.
 abstract class AccountListItemModel {
-  /// Initializes.
+  /// Initializes Account list item model class .
   AccountListItemModel({
     this.accountType,
     this.currency,
@@ -412,7 +412,7 @@ abstract class AccountListItemModel {
 
 /// Account list item class.
 class AccountListItem extends AccountListItemModel {
-  /// Initializes
+  /// Initializes Account list item class.
   AccountListItem({
     AccountTypeEnum? accountType,
     String? currency,
@@ -435,7 +435,7 @@ class AccountListItem extends AccountListItemModel {
           wallet: wallet,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AccountListItem.fromJson(Map<String, dynamic> json) =>
       AccountListItem(
         accountType: json['account_type'] == null
@@ -452,7 +452,7 @@ class AccountListItem extends AccountListItemModel {
         wallet: json['wallet'] == null ? null : Wallet.fromJson(json['wallet']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -502,7 +502,7 @@ class AccountListItem extends AccountListItemModel {
 }
 /// Trading model class.
 abstract class TradingModel {
-  /// Initializes.
+  /// Initializes Trading model class .
   TradingModel({
     this.linkedTo,
   });
@@ -513,14 +513,14 @@ abstract class TradingModel {
 
 /// Trading class.
 class Trading extends TradingModel {
-  /// Initializes
+  /// Initializes Trading class.
   Trading({
     List<LinkedToItem>? linkedTo,
   }) : super(
           linkedTo: linkedTo,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Trading.fromJson(Map<String, dynamic> json) => Trading(
         linkedTo: json['linked_to'] == null
             ? null
@@ -531,7 +531,7 @@ class Trading extends TradingModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -556,7 +556,7 @@ class Trading extends TradingModel {
 }
 /// Linked to item model class.
 abstract class LinkedToItemModel {
-  /// Initializes.
+  /// Initializes Linked to item model class .
   LinkedToItemModel({
     this.accountId,
     this.balance,
@@ -579,7 +579,7 @@ abstract class LinkedToItemModel {
 
 /// Linked to item class.
 class LinkedToItem extends LinkedToItemModel {
-  /// Initializes
+  /// Initializes Linked to item class.
   LinkedToItem({
     String? accountId,
     String? balance,
@@ -592,7 +592,7 @@ class LinkedToItem extends LinkedToItemModel {
           paymentMethod: paymentMethod,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LinkedToItem.fromJson(Map<String, dynamic> json) => LinkedToItem(
         accountId: json['account_id'],
         balance: json['balance'],
@@ -600,7 +600,7 @@ class LinkedToItem extends LinkedToItemModel {
         paymentMethod: json['payment_method'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -628,7 +628,7 @@ class LinkedToItem extends LinkedToItemModel {
 }
 /// Wallet model class.
 abstract class WalletModel {
-  /// Initializes.
+  /// Initializes Wallet model class .
   WalletModel({
     this.accountId,
     this.balance,
@@ -655,7 +655,7 @@ abstract class WalletModel {
 
 /// Wallet class.
 class Wallet extends WalletModel {
-  /// Initializes
+  /// Initializes Wallet class.
   Wallet({
     String? accountId,
     double? balance,
@@ -670,7 +670,7 @@ class Wallet extends WalletModel {
           paymentMethod: paymentMethod,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Wallet.fromJson(Map<String, dynamic> json) => Wallet(
         accountId: json['account_id'],
         balance: getDouble(json['balance']),
@@ -685,7 +685,7 @@ class Wallet extends WalletModel {
         paymentMethod: json['payment_method'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -722,7 +722,7 @@ class Wallet extends WalletModel {
 }
 /// Wallet linked to item model class.
 abstract class WalletLinkedToItemModel {
-  /// Initializes.
+  /// Initializes Wallet linked to item model class .
   WalletLinkedToItemModel({
     this.accountId,
     this.balance,
@@ -745,7 +745,7 @@ abstract class WalletLinkedToItemModel {
 
 /// Wallet linked to item class.
 class WalletLinkedToItem extends WalletLinkedToItemModel {
-  /// Initializes
+  /// Initializes Wallet linked to item class.
   WalletLinkedToItem({
     String? accountId,
     String? balance,
@@ -758,7 +758,7 @@ class WalletLinkedToItem extends WalletLinkedToItemModel {
           platform: platform,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory WalletLinkedToItem.fromJson(Map<String, dynamic> json) =>
       WalletLinkedToItem(
         accountId: json['account_id'],
@@ -769,7 +769,7 @@ class WalletLinkedToItem extends WalletLinkedToItemModel {
             : platformEnumMapper[json['platform']]!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -800,7 +800,7 @@ class WalletLinkedToItem extends WalletLinkedToItemModel {
 }
 /// Local currencies property model class.
 abstract class LocalCurrenciesPropertyModel {
-  /// Initializes.
+  /// Initializes Local currencies property model class .
   LocalCurrenciesPropertyModel({
     required this.fractionalDigits,
   });
@@ -811,20 +811,20 @@ abstract class LocalCurrenciesPropertyModel {
 
 /// Local currencies property class.
 class LocalCurrenciesProperty extends LocalCurrenciesPropertyModel {
-  /// Initializes
+  /// Initializes Local currencies property class.
   LocalCurrenciesProperty({
     required int fractionalDigits,
   }) : super(
           fractionalDigits: fractionalDigits,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LocalCurrenciesProperty.fromJson(Map<String, dynamic> json) =>
       LocalCurrenciesProperty(
         fractionalDigits: json['fractional_digits'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -843,7 +843,7 @@ class LocalCurrenciesProperty extends LocalCurrenciesPropertyModel {
 }
 /// Authorize trading model class.
 abstract class AuthorizeTradingModel {
-  /// Initializes.
+  /// Initializes Authorize trading model class .
   AuthorizeTradingModel({
     this.linkedTo,
   });
@@ -854,14 +854,14 @@ abstract class AuthorizeTradingModel {
 
 /// Authorize trading class.
 class AuthorizeTrading extends AuthorizeTradingModel {
-  /// Initializes
+  /// Initializes Authorize trading class.
   AuthorizeTrading({
     List<TradingLinkedToItem>? linkedTo,
   }) : super(
           linkedTo: linkedTo,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AuthorizeTrading.fromJson(Map<String, dynamic> json) =>
       AuthorizeTrading(
         linkedTo: json['linked_to'] == null
@@ -873,7 +873,7 @@ class AuthorizeTrading extends AuthorizeTradingModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -898,7 +898,7 @@ class AuthorizeTrading extends AuthorizeTradingModel {
 }
 /// Trading linked to item model class.
 abstract class TradingLinkedToItemModel {
-  /// Initializes.
+  /// Initializes Trading linked to item model class .
   TradingLinkedToItemModel({
     this.accountId,
     this.balance,
@@ -921,7 +921,7 @@ abstract class TradingLinkedToItemModel {
 
 /// Trading linked to item class.
 class TradingLinkedToItem extends TradingLinkedToItemModel {
-  /// Initializes
+  /// Initializes Trading linked to item class.
   TradingLinkedToItem({
     String? accountId,
     String? balance,
@@ -934,7 +934,7 @@ class TradingLinkedToItem extends TradingLinkedToItemModel {
           paymentMethod: paymentMethod,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradingLinkedToItem.fromJson(Map<String, dynamic> json) =>
       TradingLinkedToItem(
         accountId: json['account_id'],
@@ -943,7 +943,7 @@ class TradingLinkedToItem extends TradingLinkedToItemModel {
         paymentMethod: json['payment_method'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -971,7 +971,7 @@ class TradingLinkedToItem extends TradingLinkedToItemModel {
 }
 /// Authorize wallet model class.
 abstract class AuthorizeWalletModel {
-  /// Initializes.
+  /// Initializes Authorize wallet model class .
   AuthorizeWalletModel({
     this.accountId,
     this.balance,
@@ -998,7 +998,7 @@ abstract class AuthorizeWalletModel {
 
 /// Authorize wallet class.
 class AuthorizeWallet extends AuthorizeWalletModel {
-  /// Initializes
+  /// Initializes Authorize wallet class.
   AuthorizeWallet({
     String? accountId,
     double? balance,
@@ -1013,7 +1013,7 @@ class AuthorizeWallet extends AuthorizeWalletModel {
           paymentMethod: paymentMethod,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AuthorizeWallet.fromJson(Map<String, dynamic> json) =>
       AuthorizeWallet(
         accountId: json['account_id'],
@@ -1029,7 +1029,7 @@ class AuthorizeWallet extends AuthorizeWalletModel {
         paymentMethod: json['payment_method'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -1066,7 +1066,7 @@ class AuthorizeWallet extends AuthorizeWalletModel {
 }
 /// Wallet linked to item2 model class.
 abstract class WalletLinkedToItem2Model {
-  /// Initializes.
+  /// Initializes Wallet linked to item2 model class .
   WalletLinkedToItem2Model({
     this.accountId,
     this.balance,
@@ -1089,7 +1089,7 @@ abstract class WalletLinkedToItem2Model {
 
 /// Wallet linked to item2 class.
 class WalletLinkedToItem2 extends WalletLinkedToItem2Model {
-  /// Initializes
+  /// Initializes Wallet linked to item2 class.
   WalletLinkedToItem2({
     String? accountId,
     String? balance,
@@ -1102,7 +1102,7 @@ class WalletLinkedToItem2 extends WalletLinkedToItem2Model {
           platform: platform,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory WalletLinkedToItem2.fromJson(Map<String, dynamic> json) =>
       WalletLinkedToItem2(
         accountId: json['account_id'],
@@ -1113,7 +1113,7 @@ class WalletLinkedToItem2 extends WalletLinkedToItem2Model {
             : platformEnumMapper[json['platform']]!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

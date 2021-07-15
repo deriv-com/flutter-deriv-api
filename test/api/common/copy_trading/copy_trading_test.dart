@@ -13,7 +13,7 @@ void main() {
   group('Copy Trading Group ->', () {
     test('Start Copy Trading Test', () async {
       final CopyStartResponse copyTradingStart = await CopyStartResponse.start(
-        const CopyStartSend(copyStart: 'sample_token_3fe45f324ge'),
+        const CopyStartRequest(copyStart: 'sample_token_3fe45f324ge'),
       );
 
       expect(copyTradingStart.copyStart, 1);
@@ -21,7 +21,7 @@ void main() {
 
     test('Stop Copy Trading Test', () async {
       final CopyStopResponse copyTradingStop = await CopyStopResponse.stop(
-        const CopyStopSend(copyStop: 'sample_token_3fe45f324ge'),
+        const CopyStopRequest(copyStop: 'sample_token_3fe45f324ge'),
       );
 
       expect(copyTradingStop.copyStop, 1);

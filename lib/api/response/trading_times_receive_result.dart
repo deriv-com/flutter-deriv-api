@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Trading times response model class.
 abstract class TradingTimesResponseModel {
-  /// Initializes.
+  /// Initializes Trading times response model class .
   TradingTimesResponseModel({
     this.tradingTimes,
   });
@@ -19,14 +19,14 @@ abstract class TradingTimesResponseModel {
 
 /// Trading times response class.
 class TradingTimesResponse extends TradingTimesResponseModel {
-  /// Initializes
+  /// Initializes Trading times response class.
   TradingTimesResponse({
     TradingTimes? tradingTimes,
   }) : super(
           tradingTimes: tradingTimes,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradingTimesResponse.fromJson(
     dynamic tradingTimesJson,
   ) =>
@@ -36,7 +36,7 @@ class TradingTimesResponse extends TradingTimesResponseModel {
             : TradingTimes.fromJson(tradingTimesJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -54,7 +54,7 @@ class TradingTimesResponse extends TradingTimesResponseModel {
   /// For parameters information refer to [TradingTimesRequest].
   /// Throws a [TradingException] if API response contains an error
   static Future<TradingTimesResponse> fetchTradingTimes(
-    TradingTimesSend request,
+    TradingTimesRequest request,
   ) async {
     final TradingTimesReceive response = await _api.call(request: request);
 
@@ -113,7 +113,7 @@ enum TradingDaysItemEnum {
 }
 /// Trading times model class.
 abstract class TradingTimesModel {
-  /// Initializes.
+  /// Initializes Trading times model class .
   TradingTimesModel({
     required this.markets,
   });
@@ -124,14 +124,14 @@ abstract class TradingTimesModel {
 
 /// Trading times class.
 class TradingTimes extends TradingTimesModel {
-  /// Initializes
+  /// Initializes Trading times class.
   TradingTimes({
     required List<MarketsItem> markets,
   }) : super(
           markets: markets,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradingTimes.fromJson(Map<String, dynamic> json) => TradingTimes(
         markets: List<MarketsItem>.from(
           json['markets'].map(
@@ -140,7 +140,7 @@ class TradingTimes extends TradingTimesModel {
         ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -163,7 +163,7 @@ class TradingTimes extends TradingTimesModel {
 }
 /// Markets item model class.
 abstract class MarketsItemModel {
-  /// Initializes.
+  /// Initializes Markets item model class .
   MarketsItemModel({
     required this.name,
     this.submarkets,
@@ -178,7 +178,7 @@ abstract class MarketsItemModel {
 
 /// Markets item class.
 class MarketsItem extends MarketsItemModel {
-  /// Initializes
+  /// Initializes Markets item class.
   MarketsItem({
     required String name,
     List<SubmarketsItem>? submarkets,
@@ -187,7 +187,7 @@ class MarketsItem extends MarketsItemModel {
           submarkets: submarkets,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory MarketsItem.fromJson(Map<String, dynamic> json) => MarketsItem(
         name: json['name'],
         submarkets: json['submarkets'] == null
@@ -199,7 +199,7 @@ class MarketsItem extends MarketsItemModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -227,7 +227,7 @@ class MarketsItem extends MarketsItemModel {
 }
 /// Submarkets item model class.
 abstract class SubmarketsItemModel {
-  /// Initializes.
+  /// Initializes Submarkets item model class .
   SubmarketsItemModel({
     required this.name,
     this.symbols,
@@ -242,7 +242,7 @@ abstract class SubmarketsItemModel {
 
 /// Submarkets item class.
 class SubmarketsItem extends SubmarketsItemModel {
-  /// Initializes
+  /// Initializes Submarkets item class.
   SubmarketsItem({
     required String name,
     List<SymbolsItem>? symbols,
@@ -251,7 +251,7 @@ class SubmarketsItem extends SubmarketsItemModel {
           symbols: symbols,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SubmarketsItem.fromJson(Map<String, dynamic> json) => SubmarketsItem(
         name: json['name'],
         symbols: json['symbols'] == null
@@ -263,7 +263,7 @@ class SubmarketsItem extends SubmarketsItemModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -291,7 +291,7 @@ class SubmarketsItem extends SubmarketsItemModel {
 }
 /// Symbols item model class.
 abstract class SymbolsItemModel {
-  /// Initializes.
+  /// Initializes Symbols item model class .
   SymbolsItemModel({
     required this.symbol,
     required this.name,
@@ -318,7 +318,7 @@ abstract class SymbolsItemModel {
 
 /// Symbols item class.
 class SymbolsItem extends SymbolsItemModel {
-  /// Initializes
+  /// Initializes Symbols item class.
   SymbolsItem({
     required String name,
     required String symbol,
@@ -333,7 +333,7 @@ class SymbolsItem extends SymbolsItemModel {
           tradingDays: tradingDays,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SymbolsItem.fromJson(Map<String, dynamic> json) => SymbolsItem(
         name: json['name'],
         symbol: json['symbol'],
@@ -355,7 +355,7 @@ class SymbolsItem extends SymbolsItemModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

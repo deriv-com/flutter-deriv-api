@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Paymentagent transfer response model class.
 abstract class PaymentagentTransferResponseModel {
-  /// Initializes.
+  /// Initializes Paymentagent transfer response model class .
   PaymentagentTransferResponseModel({
     this.paymentagentTransfer,
     this.clientToFullName,
@@ -31,7 +31,7 @@ abstract class PaymentagentTransferResponseModel {
 
 /// Paymentagent transfer response class.
 class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
-  /// Initializes
+  /// Initializes Paymentagent transfer response class.
   PaymentagentTransferResponse({
     int? paymentagentTransfer,
     String? clientToFullName,
@@ -44,7 +44,7 @@ class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
           transactionId: transactionId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PaymentagentTransferResponse.fromJson(
     dynamic paymentagentTransferJson,
     dynamic clientToFullNameJson,
@@ -58,7 +58,7 @@ class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
         transactionId: transactionIdJson,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -78,7 +78,7 @@ class PaymentagentTransferResponse extends PaymentagentTransferResponseModel {
   /// For parameters information refer to [PaymentagentTransferRequest].
   /// Throws a [PaymentAgentException] if API response contains an error
   static Future<PaymentagentTransferResponse> transfer(
-    PaymentagentTransferSend request,
+    PaymentagentTransferRequest request,
   ) async {
     final PaymentagentTransferReceive response =
         await _api.call(request: request);

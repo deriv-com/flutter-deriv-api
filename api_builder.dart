@@ -34,7 +34,7 @@ class APIBuilder extends Builder {
   };
 
   static const Map<String, String> schemaTypeMap = <String, String>{
-    'send': 'Send',
+    'send': 'Request',
     'receive': 'Receive',
   };
 

@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// App update response model class.
 abstract class AppUpdateResponseModel {
-  /// Initializes.
+  /// Initializes App update response model class .
   AppUpdateResponseModel({
     this.appUpdate,
   });
@@ -19,14 +19,14 @@ abstract class AppUpdateResponseModel {
 
 /// App update response class.
 class AppUpdateResponse extends AppUpdateResponseModel {
-  /// Initializes
+  /// Initializes App update response class.
   AppUpdateResponse({
     AppUpdate? appUpdate,
   }) : super(
           appUpdate: appUpdate,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppUpdateResponse.fromJson(
     dynamic appUpdateJson,
   ) =>
@@ -35,7 +35,7 @@ class AppUpdateResponse extends AppUpdateResponseModel {
             appUpdateJson == null ? null : AppUpdate.fromJson(appUpdateJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -53,7 +53,7 @@ class AppUpdateResponse extends AppUpdateResponseModel {
   /// For parameters information refer to [AppUpdateRequest].
   /// Throws an [AppException] if API response contains an error
   static Future<AppUpdateResponse> updateApplication(
-      AppUpdateSend request) async {
+      AppUpdateRequest request) async {
     final AppUpdateReceive response = await _api.call(request: request);
 
     checkException(
@@ -75,7 +75,7 @@ class AppUpdateResponse extends AppUpdateResponseModel {
 }
 /// App update model class.
 abstract class AppUpdateModel {
-  /// Initializes.
+  /// Initializes App update model class .
   AppUpdateModel({
     this.appId,
     this.appMarkupPercentage,
@@ -118,7 +118,7 @@ abstract class AppUpdateModel {
 
 /// App update class.
 class AppUpdate extends AppUpdateModel {
-  /// Initializes
+  /// Initializes App update class.
   AppUpdate({
     int? appId,
     double? appMarkupPercentage,
@@ -141,7 +141,7 @@ class AppUpdate extends AppUpdateModel {
           verificationUri: verificationUri,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppUpdate.fromJson(Map<String, dynamic> json) => AppUpdate(
         appId: json['app_id'],
         appMarkupPercentage: getDouble(json['app_markup_percentage']),
@@ -154,7 +154,7 @@ class AppUpdate extends AppUpdateModel {
         verificationUri: json['verification_uri'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

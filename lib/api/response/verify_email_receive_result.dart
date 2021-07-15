@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Verify email response model class.
 abstract class VerifyEmailResponseModel {
-  /// Initializes.
+  /// Initializes Verify email response model class .
   VerifyEmailResponseModel({
     this.verifyEmail,
   });
@@ -19,14 +19,14 @@ abstract class VerifyEmailResponseModel {
 
 /// Verify email response class.
 class VerifyEmailResponse extends VerifyEmailResponseModel {
-  /// Initializes
+  /// Initializes Verify email response class.
   VerifyEmailResponse({
     bool? verifyEmail,
   }) : super(
           verifyEmail: verifyEmail,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory VerifyEmailResponse.fromJson(
     dynamic verifyEmailJson,
   ) =>
@@ -34,7 +34,7 @@ class VerifyEmailResponse extends VerifyEmailResponseModel {
         verifyEmail: getBool(verifyEmailJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -51,7 +51,7 @@ class VerifyEmailResponse extends VerifyEmailResponseModel {
   /// For parameters information refer to [VerifyEmailRequest].
   /// Throws a [UserException] if API response contains an error
   static Future<VerifyEmailResponse> verify(
-    VerifyEmailSend request,
+    VerifyEmailRequest request,
   ) async {
     final VerifyEmailReceive response = await _api.call(request: request);
 

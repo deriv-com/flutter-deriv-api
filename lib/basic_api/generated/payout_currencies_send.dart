@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Payout currencies send class.
-class PayoutCurrenciesSend extends Request {
-  /// Initialize PayoutCurrenciesSend.
-  const PayoutCurrenciesSend({
+/// Payout currencies request class.
+class PayoutCurrenciesRequest extends Request {
+  /// Initialize PayoutCurrenciesRequest.
+  const PayoutCurrenciesRequest({
     this.payoutCurrencies = true,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -18,8 +18,8 @@ class PayoutCurrenciesSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory PayoutCurrenciesSend.fromJson(Map<String, dynamic> json) =>
-      PayoutCurrenciesSend(
+  factory PayoutCurrenciesRequest.fromJson(Map<String, dynamic> json) =>
+      PayoutCurrenciesRequest(
         payoutCurrencies: json['payout_currencies'] == null
             ? null
             : json['payout_currencies'] == 1,
@@ -44,12 +44,12 @@ class PayoutCurrenciesSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  PayoutCurrenciesSend copyWith({
+  PayoutCurrenciesRequest copyWith({
     bool? payoutCurrencies,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      PayoutCurrenciesSend(
+      PayoutCurrenciesRequest(
         payoutCurrencies: payoutCurrencies ?? this.payoutCurrencies,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Contract update history response model class.
 abstract class ContractUpdateHistoryResponseModel {
-  /// Initializes.
+  /// Initializes Contract update history response model class .
   ContractUpdateHistoryResponseModel({
     this.contractUpdateHistory,
   });
@@ -19,14 +19,14 @@ abstract class ContractUpdateHistoryResponseModel {
 
 /// Contract update history response class.
 class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
-  /// Initializes
+  /// Initializes Contract update history response class.
   ContractUpdateHistoryResponse({
     List<ContractUpdateHistoryItem>? contractUpdateHistory,
   }) : super(
           contractUpdateHistory: contractUpdateHistory,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ContractUpdateHistoryResponse.fromJson(
     dynamic contractUpdateHistoryJson,
   ) =>
@@ -40,7 +40,7 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -61,7 +61,7 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
   ///
   /// Throws a [ContractOperationException] if API response contains an error
   static Future<ContractUpdateHistoryResponse> fetchContractUpdateHistory(
-    ContractUpdateHistorySend request,
+    ContractUpdateHistoryRequest request,
   ) async {
     final ContractUpdateHistoryReceive response =
         await _api.call(request: request);
@@ -87,7 +87,7 @@ class ContractUpdateHistoryResponse extends ContractUpdateHistoryResponseModel {
 }
 /// Contract update history item model class.
 abstract class ContractUpdateHistoryItemModel {
-  /// Initializes.
+  /// Initializes Contract update history item model class .
   ContractUpdateHistoryItemModel({
     this.displayName,
     this.orderAmount,
@@ -114,7 +114,7 @@ abstract class ContractUpdateHistoryItemModel {
 
 /// Contract update history item class.
 class ContractUpdateHistoryItem extends ContractUpdateHistoryItemModel {
-  /// Initializes
+  /// Initializes Contract update history item class.
   ContractUpdateHistoryItem({
     String? displayName,
     String? orderAmount,
@@ -129,7 +129,7 @@ class ContractUpdateHistoryItem extends ContractUpdateHistoryItemModel {
           value: value,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ContractUpdateHistoryItem.fromJson(Map<String, dynamic> json) =>
       ContractUpdateHistoryItem(
         displayName: json['display_name'],
@@ -139,7 +139,7 @@ class ContractUpdateHistoryItem extends ContractUpdateHistoryItemModel {
         value: json['value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

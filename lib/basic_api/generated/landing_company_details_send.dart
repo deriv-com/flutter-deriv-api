@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Landing company details send class.
-class LandingCompanyDetailsSend extends Request {
-  /// Initialize LandingCompanyDetailsSend.
-  const LandingCompanyDetailsSend({
+/// Landing company details request class.
+class LandingCompanyDetailsRequest extends Request {
+  /// Initialize LandingCompanyDetailsRequest.
+  const LandingCompanyDetailsRequest({
     required this.landingCompanyDetails,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -18,8 +18,8 @@ class LandingCompanyDetailsSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory LandingCompanyDetailsSend.fromJson(Map<String, dynamic> json) =>
-      LandingCompanyDetailsSend(
+  factory LandingCompanyDetailsRequest.fromJson(Map<String, dynamic> json) =>
+      LandingCompanyDetailsRequest(
         landingCompanyDetails: json['landing_company_details'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -38,12 +38,12 @@ class LandingCompanyDetailsSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  LandingCompanyDetailsSend copyWith({
+  LandingCompanyDetailsRequest copyWith({
     String? landingCompanyDetails,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      LandingCompanyDetailsSend(
+      LandingCompanyDetailsRequest(
         landingCompanyDetails:
             landingCompanyDetails ?? this.landingCompanyDetails,
         passthrough: passthrough ?? this.passthrough,

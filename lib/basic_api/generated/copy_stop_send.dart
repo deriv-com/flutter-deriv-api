@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Copy stop send class.
-class CopyStopSend extends Request {
-  /// Initialize CopyStopSend.
-  const CopyStopSend({
+/// Copy stop request class.
+class CopyStopRequest extends Request {
+  /// Initialize CopyStopRequest.
+  const CopyStopRequest({
     required this.copyStop,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -18,7 +18,8 @@ class CopyStopSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory CopyStopSend.fromJson(Map<String, dynamic> json) => CopyStopSend(
+  factory CopyStopRequest.fromJson(Map<String, dynamic> json) =>
+      CopyStopRequest(
         copyStop: json['copy_stop'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -37,12 +38,12 @@ class CopyStopSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  CopyStopSend copyWith({
+  CopyStopRequest copyWith({
     String? copyStop,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      CopyStopSend(
+      CopyStopRequest(
         copyStop: copyStop ?? this.copyStop,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

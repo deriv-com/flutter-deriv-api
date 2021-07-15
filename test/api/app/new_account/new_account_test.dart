@@ -13,7 +13,7 @@ void main() {
     test('Open New Account Real Test', () async {
       final NewAccountRealResponse newAccountReal =
           await NewAccountRealResponse.openNewRealAccount(
-        const NewAccountRealSend(
+        const NewAccountRealRequest(
           accountOpeningReason: 'Speculative',
           accountTurnover: 'Less than \$25,000',
           addressCity: 'Melbourne',
@@ -46,7 +46,7 @@ void main() {
     test('Open New Account Virtual Test', () async {
       final NewAccountVirtualResponse newAccountVirtual =
           await NewAccountVirtualResponse.openNewVirtualAccount(
-        const NewAccountVirtualSend(
+        const NewAccountVirtualRequest(
           clientPassword: 'Abc123de',
           residence: 'id',
           type: 'trading',

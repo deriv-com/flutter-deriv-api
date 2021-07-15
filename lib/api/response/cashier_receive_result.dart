@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Cashier response model class.
 abstract class CashierResponseModel {
-  /// Initializes.
+  /// Initializes Cashier response model class .
   CashierResponseModel({
     this.cashierString,
     this.cashierObject,
@@ -23,7 +23,7 @@ abstract class CashierResponseModel {
 
 /// Cashier response class.
 class CashierResponse extends CashierResponseModel {
-  /// Initializes
+  /// Initializes Cashier response class.
   CashierResponse({
     String? cashierString,
     CashierObject? cashierObject,
@@ -32,7 +32,7 @@ class CashierResponse extends CashierResponseModel {
           cashierObject: cashierObject,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CashierResponse.fromJson(
     dynamic cashierStringJson,
     dynamic cashierObjectJson,
@@ -46,7 +46,7 @@ class CashierResponse extends CashierResponseModel {
             : null,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -62,7 +62,7 @@ class CashierResponse extends CashierResponseModel {
 
   /// Gets the cashier URL for given [CashierRequest]
   static Future<CashierResponse> fetchInformation(
-    CashierSend request,
+    CashierRequest request,
   ) async {
     final CashierReceive response = await _api.call(request: request);
 
@@ -98,7 +98,7 @@ enum ActionEnum {
 }
 /// Cashier object model class.
 abstract class CashierObjectModel {
-  /// Initializes.
+  /// Initializes Cashier object model class .
   CashierObjectModel({
     this.action,
     this.deposit,
@@ -113,7 +113,7 @@ abstract class CashierObjectModel {
 
 /// Cashier object class.
 class CashierObject extends CashierObjectModel {
-  /// Initializes
+  /// Initializes Cashier object class.
   CashierObject({
     ActionEnum? action,
     Deposit? deposit,
@@ -122,7 +122,7 @@ class CashierObject extends CashierObjectModel {
           deposit: deposit,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CashierObject.fromJson(Map<String, dynamic> json) => CashierObject(
         action:
             json['action'] == null ? null : actionEnumMapper[json['action']]!,
@@ -130,7 +130,7 @@ class CashierObject extends CashierObjectModel {
             json['deposit'] == null ? null : Deposit.fromJson(json['deposit']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -157,7 +157,7 @@ class CashierObject extends CashierObjectModel {
 }
 /// Deposit model class.
 abstract class DepositModel {
-  /// Initializes.
+  /// Initializes Deposit model class .
   DepositModel({
     this.address,
   });
@@ -168,19 +168,19 @@ abstract class DepositModel {
 
 /// Deposit class.
 class Deposit extends DepositModel {
-  /// Initializes
+  /// Initializes Deposit class.
   Deposit({
     String? address,
   }) : super(
           address: address,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Deposit.fromJson(Map<String, dynamic> json) => Deposit(
         address: json['address'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// P2p advertiser update response model class.
 abstract class P2pAdvertiserUpdateResponseModel {
-  /// Initializes.
+  /// Initializes P2p advertiser update response model class .
   P2pAdvertiserUpdateResponseModel({
     this.p2pAdvertiserUpdate,
   });
@@ -19,14 +19,14 @@ abstract class P2pAdvertiserUpdateResponseModel {
 
 /// P2p advertiser update response class.
 class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
-  /// Initializes
+  /// Initializes P2p advertiser update response class.
   P2pAdvertiserUpdateResponse({
     P2pAdvertiserUpdate? p2pAdvertiserUpdate,
   }) : super(
           p2pAdvertiserUpdate: p2pAdvertiserUpdate,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertiserUpdateResponse.fromJson(
     dynamic p2pAdvertiserUpdateJson,
   ) =>
@@ -36,7 +36,7 @@ class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
             : P2pAdvertiserUpdate.fromJson(p2pAdvertiserUpdateJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -53,7 +53,7 @@ class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
   /// Can only be used by an approved P2P advertiser.
   /// For parameters information refer to [P2pAdvertiserUpdateRequest].
   static Future<P2pAdvertiserUpdateResponse> updateAdvertiser(
-    P2pAdvertiserUpdateSend request,
+    P2pAdvertiserUpdateRequest request,
   ) async {
     final P2pAdvertiserUpdateReceive response =
         await _api.call(request: request);
@@ -77,7 +77,7 @@ class P2pAdvertiserUpdateResponse extends P2pAdvertiserUpdateResponseModel {
 }
 /// P2p advertiser update model class.
 abstract class P2pAdvertiserUpdateModel {
-  /// Initializes.
+  /// Initializes P2p advertiser update model class .
   P2pAdvertiserUpdateModel({
     required this.totalOrdersCount,
     required this.sellOrdersCount,
@@ -216,7 +216,7 @@ abstract class P2pAdvertiserUpdateModel {
 
 /// P2p advertiser update class.
 class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
-  /// Initializes
+  /// Initializes P2p advertiser update class.
   P2pAdvertiserUpdate({
     required int basicVerification,
     required int buyOrdersCount,
@@ -287,7 +287,7 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
           totalCompletionRate: totalCompletionRate,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pAdvertiserUpdate.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserUpdate(
         basicVerification: json['basic_verification'],
@@ -325,7 +325,7 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
         totalCompletionRate: getDouble(json['total_completion_rate']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

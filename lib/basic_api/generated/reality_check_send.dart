@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Reality check send class.
-class RealityCheckSend extends Request {
-  /// Initialize RealityCheckSend.
-  const RealityCheckSend({
+/// Reality check request class.
+class RealityCheckRequest extends Request {
+  /// Initialize RealityCheckRequest.
+  const RealityCheckRequest({
     this.realityCheck = true,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -18,8 +18,8 @@ class RealityCheckSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory RealityCheckSend.fromJson(Map<String, dynamic> json) =>
-      RealityCheckSend(
+  factory RealityCheckRequest.fromJson(Map<String, dynamic> json) =>
+      RealityCheckRequest(
         realityCheck:
             json['reality_check'] == null ? null : json['reality_check'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -43,12 +43,12 @@ class RealityCheckSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  RealityCheckSend copyWith({
+  RealityCheckRequest copyWith({
     bool? realityCheck,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      RealityCheckSend(
+      RealityCheckRequest(
         realityCheck: realityCheck ?? this.realityCheck,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// P2p order list send class.
-class P2pOrderListSend extends Request {
-  /// Initialize P2pOrderListSend.
-  const P2pOrderListSend({
+/// P2p order list request class.
+class P2pOrderListRequest extends Request {
+  /// Initialize P2pOrderListRequest.
+  const P2pOrderListRequest({
     this.active,
     this.advertId,
     this.limit,
@@ -23,8 +23,8 @@ class P2pOrderListSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory P2pOrderListSend.fromJson(Map<String, dynamic> json) =>
-      P2pOrderListSend(
+  factory P2pOrderListRequest.fromJson(Map<String, dynamic> json) =>
+      P2pOrderListRequest(
         active: json['active'] as num?,
         advertId: json['advert_id'] as String?,
         limit: json['limit'] as int?,
@@ -77,7 +77,7 @@ class P2pOrderListSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  P2pOrderListSend copyWith({
+  P2pOrderListRequest copyWith({
     num? active,
     String? advertId,
     int? limit,
@@ -87,7 +87,7 @@ class P2pOrderListSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      P2pOrderListSend(
+      P2pOrderListRequest(
         active: active ?? this.active,
         advertId: advertId ?? this.advertId,
         limit: limit ?? this.limit,

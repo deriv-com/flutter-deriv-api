@@ -10,7 +10,7 @@ void main() {
 
   test('Fetch Portfolio Test', () async {
     final PortfolioResponse portfolio = await PortfolioResponse.fetchPortfolio(
-      const PortfolioSend(contractType: <String>[]),
+      const PortfolioRequest(contractType: <String>[]),
     );
 
     expect(portfolio.portfolio?.contracts.first.currency, 'USD');

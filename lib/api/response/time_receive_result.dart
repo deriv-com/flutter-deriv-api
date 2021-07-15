@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Time response model class.
 abstract class TimeResponseModel {
-  /// Initializes.
+  /// Initializes Time response model class .
   TimeResponseModel({
     this.time,
   });
@@ -19,14 +19,14 @@ abstract class TimeResponseModel {
 
 /// Time response class.
 class TimeResponse extends TimeResponseModel {
-  /// Initializes
+  /// Initializes Time response class.
   TimeResponse({
     DateTime? time,
   }) : super(
           time: time,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TimeResponse.fromJson(
     dynamic timeJson,
   ) =>
@@ -34,7 +34,7 @@ class TimeResponse extends TimeResponseModel {
         time: getDateTime(timeJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -49,10 +49,10 @@ class TimeResponse extends TimeResponseModel {
   ///
   /// Throws a [ServerTimeException] if API response contains an error
   static Future<TimeResponse> fetchTime([
-    TimeSend? request,
+    TimeRequest? request,
   ]) async {
     final TimeReceive response = await _api.call(
-      request: request ?? const TimeSend(),
+      request: request ?? const TimeRequest(),
     );
 
     checkException(

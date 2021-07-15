@@ -21,7 +21,7 @@ void main() {
     test('Create New MT5 Account Test', () async {
       final new_account.Mt5NewAccountResponse mt5Account =
           await new_account.Mt5NewAccountResponse.createNewAccount(
-        const Mt5NewAccountSend(
+        const Mt5NewAccountRequest(
           accountType: 'demo',
           address: 'Dummy address',
           city: 'Valletta',
@@ -53,7 +53,7 @@ void main() {
     test('MT5 Login List Test', () async {
       final Mt5LoginListResponse mt5LoginList =
           await Mt5LoginListResponse.fetchLoginList(
-        const Mt5LoginListSend(),
+        const Mt5LoginListRequest(),
       );
 
       expect(mt5LoginList.mt5LoginList?.length, 1);

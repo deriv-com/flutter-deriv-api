@@ -61,7 +61,7 @@ class AvailableContractsBloc
   Future<ContractsForResponse> _fetchAvailableContracts(
     ActiveSymbolsItem? selectedSymbol,
   ) async =>
-      ContractsForResponse.fetchContractsForSymbol(ContractsForSend(
+      ContractsForResponse.fetchContractsForSymbol(ContractsForRequest(
         contractsFor: selectedSymbol?.symbol,
       ));
 }

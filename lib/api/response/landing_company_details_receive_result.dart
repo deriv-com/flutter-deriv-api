@@ -3,7 +3,7 @@ import 'package:meta/meta.dart';
 
 /// Landing company details response model class.
 abstract class LandingCompanyDetailsResponseModel {
-  /// Initializes.
+  /// Initializes Landing company details response model class .
   LandingCompanyDetailsResponseModel({
     this.landingCompanyDetails,
   });
@@ -14,14 +14,14 @@ abstract class LandingCompanyDetailsResponseModel {
 
 /// Landing company details response class.
 class LandingCompanyDetailsResponse extends LandingCompanyDetailsResponseModel {
-  /// Initializes
+  /// Initializes Landing company details response class.
   LandingCompanyDetailsResponse({
     LandingCompanyDetails? landingCompanyDetails,
   }) : super(
           landingCompanyDetails: landingCompanyDetails,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LandingCompanyDetailsResponse.fromJson(
     dynamic landingCompanyDetailsJson,
   ) =>
@@ -31,7 +31,7 @@ class LandingCompanyDetailsResponse extends LandingCompanyDetailsResponseModel {
             : LandingCompanyDetails.fromJson(landingCompanyDetailsJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -53,7 +53,7 @@ class LandingCompanyDetailsResponse extends LandingCompanyDetailsResponseModel {
 }
 /// Landing company details model class.
 abstract class LandingCompanyDetailsModel {
-  /// Initializes.
+  /// Initializes Landing company details model class .
   LandingCompanyDetailsModel({
     this.address,
     this.changeableFields,
@@ -108,7 +108,7 @@ abstract class LandingCompanyDetailsModel {
 
 /// Landing company details class.
 class LandingCompanyDetails extends LandingCompanyDetailsModel {
-  /// Initializes
+  /// Initializes Landing company details class.
   LandingCompanyDetails({
     List<String>? address,
     Map<String, dynamic>? changeableFields,
@@ -137,7 +137,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
           shortcode: shortcode,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory LandingCompanyDetails.fromJson(Map<String, dynamic> json) =>
       LandingCompanyDetails(
         address: json['address'] == null
@@ -181,7 +181,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
         shortcode: json['shortcode'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -262,7 +262,7 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
 }
 /// Currency config model class.
 abstract class CurrencyConfigModel {
-  /// Initializes.
+  /// Initializes Currency config model class .
   CurrencyConfigModel({
     this.market,
   });
@@ -273,19 +273,19 @@ abstract class CurrencyConfigModel {
 
 /// Currency config class.
 class CurrencyConfig extends CurrencyConfigModel {
-  /// Initializes
+  /// Initializes Currency config class.
   CurrencyConfig({
     Market? market,
   }) : super(
           market: market,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CurrencyConfig.fromJson(Map<String, dynamic> json) => CurrencyConfig(
         market: json['market'] == null ? null : Market.fromJson(json['market']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -306,7 +306,7 @@ class CurrencyConfig extends CurrencyConfigModel {
 }
 /// Market model class.
 abstract class MarketModel {
-  /// Initializes.
+  /// Initializes Market model class .
   MarketModel({
     this.currency,
   });
@@ -317,21 +317,21 @@ abstract class MarketModel {
 
 /// Market class.
 class Market extends MarketModel {
-  /// Initializes
+  /// Initializes Market class.
   Market({
     Currency? currency,
   }) : super(
           currency: currency,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Market.fromJson(Map<String, dynamic> json) => Market(
         currency: json['currency'] == null
             ? null
             : Currency.fromJson(json['currency']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -352,7 +352,7 @@ class Market extends MarketModel {
 }
 /// Currency model class.
 abstract class CurrencyModel {
-  /// Initializes.
+  /// Initializes Currency model class .
   CurrencyModel({
     this.maxPayout,
     this.minStake,
@@ -367,7 +367,7 @@ abstract class CurrencyModel {
 
 /// Currency class.
 class Currency extends CurrencyModel {
-  /// Initializes
+  /// Initializes Currency class.
   Currency({
     int? maxPayout,
     int? minStake,
@@ -376,13 +376,13 @@ class Currency extends CurrencyModel {
           minStake: minStake,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Currency.fromJson(Map<String, dynamic> json) => Currency(
         maxPayout: json['max_payout'],
         minStake: json['min_stake'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

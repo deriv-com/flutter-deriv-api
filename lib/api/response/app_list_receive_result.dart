@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// App list response model class.
 abstract class AppListResponseModel {
-  /// Initializes.
+  /// Initializes App list response model class .
   AppListResponseModel({
     this.appList,
   });
@@ -19,14 +19,14 @@ abstract class AppListResponseModel {
 
 /// App list response class.
 class AppListResponse extends AppListResponseModel {
-  /// Initializes
+  /// Initializes App list response class.
   AppListResponse({
     List<AppListItem>? appList,
   }) : super(
           appList: appList,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppListResponse.fromJson(
     dynamic appListJson,
   ) =>
@@ -40,7 +40,7 @@ class AppListResponse extends AppListResponseModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -62,7 +62,7 @@ class AppListResponse extends AppListResponseModel {
   /// For parameters information refer to [AppListRequest].
   /// Throws an [AppException] if API response contains an error
   static Future<AppListResponse> fetchApplicationList(
-    AppListSend request,
+    AppListRequest request,
   ) async {
     final AppListReceive response = await _api.call(request: request);
 
@@ -83,10 +83,9 @@ class AppListResponse extends AppListResponseModel {
         appList: appList ?? this.appList,
       );
 }
-
 /// App list item model class.
 abstract class AppListItemModel {
-  /// Initializes.
+  /// Initializes App list item model class .
   AppListItemModel({
     required this.redirectUri,
     required this.name,
@@ -129,7 +128,7 @@ abstract class AppListItemModel {
 
 /// App list item class.
 class AppListItem extends AppListItemModel {
-  /// Initializes
+  /// Initializes App list item class.
   AppListItem({
     required int appId,
     required double appMarkupPercentage,
@@ -152,7 +151,7 @@ class AppListItem extends AppListItemModel {
           verificationUri: verificationUri,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AppListItem.fromJson(Map<String, dynamic> json) => AppListItem(
         appId: json['app_id'],
         appMarkupPercentage: getDouble(json['app_markup_percentage'])!,
@@ -165,7 +164,7 @@ class AppListItem extends AppListItemModel {
         verificationUri: json['verification_uri'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

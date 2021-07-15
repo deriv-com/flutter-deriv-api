@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Tnc approval response model class.
 abstract class TncApprovalResponseModel {
-  /// Initializes.
+  /// Initializes Tnc approval response model class .
   TncApprovalResponseModel({
     this.tncApproval,
   });
@@ -19,14 +19,14 @@ abstract class TncApprovalResponseModel {
 
 /// Tnc approval response class.
 class TncApprovalResponse extends TncApprovalResponseModel {
-  /// Initializes
+  /// Initializes Tnc approval response class.
   TncApprovalResponse({
     int? tncApproval,
   }) : super(
           tncApproval: tncApproval,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TncApprovalResponse.fromJson(
     dynamic tncApprovalJson,
   ) =>
@@ -34,7 +34,7 @@ class TncApprovalResponse extends TncApprovalResponseModel {
         tncApproval: tncApprovalJson,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -50,7 +50,7 @@ class TncApprovalResponse extends TncApprovalResponseModel {
   /// For parameters information refer to [TncApprovalRequest].
   /// Throws a [UserException] if API response contains an error
   static Future<TncApprovalResponse> verify(
-    TncApprovalSend request,
+    TncApprovalRequest request,
   ) async {
     final TncApprovalReceive response = await _api.call(request: request);
 

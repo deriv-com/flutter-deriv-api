@@ -13,7 +13,7 @@ void main() {
     test('Fetch Landing Companies Test', () async {
       final LandingCompanyResponse landingCompany =
           await LandingCompanyResponse.fetchLandingCompanies(
-        const LandingCompanySend(landingCompany: 'CountryCode'),
+        const LandingCompanyRequest(landingCompany: 'CountryCode'),
       );
 
       // expect(landingCompany.config.taxDetailsRequired, true);
@@ -53,7 +53,7 @@ void main() {
     test('Fetch Landing Company Details Test', () async {
       final LandingCompanyDetailsResponse landingCompanyDetail =
           await LandingCompanyResponse.fetchLandingCompanyDetails(
-        const LandingCompanyDetailsSend(landingCompanyDetails: 'LC Code'),
+        const LandingCompanyDetailsRequest(landingCompanyDetails: 'LC Code'),
       );
 
       expect(landingCompanyDetail.landingCompanyDetails?.address?.length, 4);

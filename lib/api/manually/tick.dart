@@ -63,7 +63,7 @@ class Tick extends TickBase {
   ///
   /// Throws [TickException] if API response contains an error
   static Stream<Tick?> subscribeTick(
-    TicksSend tickRequest, {
+    TicksRequest tickRequest, {
     RequestCompareFunction? comparePredicate,
   }) =>
       _api

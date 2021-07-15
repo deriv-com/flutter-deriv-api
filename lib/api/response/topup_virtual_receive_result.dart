@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Topup virtual response model class.
 abstract class TopupVirtualResponseModel {
-  /// Initializes.
+  /// Initializes Topup virtual response model class .
   TopupVirtualResponseModel({
     this.topupVirtual,
   });
@@ -19,14 +19,14 @@ abstract class TopupVirtualResponseModel {
 
 /// Topup virtual response class.
 class TopupVirtualResponse extends TopupVirtualResponseModel {
-  /// Initializes
+  /// Initializes Topup virtual response class.
   TopupVirtualResponse({
     TopupVirtual? topupVirtual,
   }) : super(
           topupVirtual: topupVirtual,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TopupVirtualResponse.fromJson(
     dynamic topupVirtualJson,
   ) =>
@@ -36,7 +36,7 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
             : TopupVirtual.fromJson(topupVirtualJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -54,10 +54,10 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
   /// For parameters information refer to [TopupVirtualRequest].
   /// Throws a [TopUpVirtualException] if API response contains an error
   static Future<TopupVirtualResponse> topUp([
-    TopupVirtualSend? request,
+    TopupVirtualRequest? request,
   ]) async {
     final TopupVirtualReceive response = await _api.call(
-      request: request ?? const TopupVirtualSend(),
+      request: request ?? const TopupVirtualRequest(),
     );
 
     checkException(
@@ -79,7 +79,7 @@ class TopupVirtualResponse extends TopupVirtualResponseModel {
 }
 /// Topup virtual model class.
 abstract class TopupVirtualModel {
-  /// Initializes.
+  /// Initializes Topup virtual model class .
   TopupVirtualModel({
     this.amount,
     this.currency,
@@ -94,7 +94,7 @@ abstract class TopupVirtualModel {
 
 /// Topup virtual class.
 class TopupVirtual extends TopupVirtualModel {
-  /// Initializes
+  /// Initializes Topup virtual class.
   TopupVirtual({
     double? amount,
     String? currency,
@@ -103,13 +103,13 @@ class TopupVirtual extends TopupVirtualModel {
           currency: currency,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TopupVirtual.fromJson(Map<String, dynamic> json) => TopupVirtual(
         amount: getDouble(json['amount']),
         currency: json['currency'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

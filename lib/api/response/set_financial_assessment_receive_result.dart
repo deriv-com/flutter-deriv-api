@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Set financial assessment response model class.
 abstract class SetFinancialAssessmentResponseModel {
-  /// Initializes.
+  /// Initializes Set financial assessment response model class .
   SetFinancialAssessmentResponseModel({
     this.setFinancialAssessment,
   });
@@ -20,14 +20,14 @@ abstract class SetFinancialAssessmentResponseModel {
 /// Set financial assessment response class.
 class SetFinancialAssessmentResponse
     extends SetFinancialAssessmentResponseModel {
-  /// Initializes
+  /// Initializes Set financial assessment response class.
   SetFinancialAssessmentResponse({
     SetFinancialAssessment? setFinancialAssessment,
   }) : super(
           setFinancialAssessment: setFinancialAssessment,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SetFinancialAssessmentResponse.fromJson(
     dynamic setFinancialAssessmentJson,
   ) =>
@@ -37,7 +37,7 @@ class SetFinancialAssessmentResponse
             : SetFinancialAssessment.fromJson(setFinancialAssessmentJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -57,7 +57,7 @@ class SetFinancialAssessmentResponse
   /// For parameters information refer to [SetFinancialAssessmentRequest].
   /// Throws a [FinancialAssessmentException] if API response contains an error
   static Future<SetFinancialAssessmentResponse> setAssessment(
-    SetFinancialAssessmentSend request,
+    SetFinancialAssessmentRequest request,
   ) async {
     final SetFinancialAssessmentReceive response =
         await _api.call(request: request);
@@ -83,7 +83,7 @@ class SetFinancialAssessmentResponse
 }
 /// Set financial assessment model class.
 abstract class SetFinancialAssessmentModel {
-  /// Initializes.
+  /// Initializes Set financial assessment model class .
   SetFinancialAssessmentModel({
     this.cfdScore,
     this.financialInformationScore,
@@ -106,7 +106,7 @@ abstract class SetFinancialAssessmentModel {
 
 /// Set financial assessment class.
 class SetFinancialAssessment extends SetFinancialAssessmentModel {
-  /// Initializes
+  /// Initializes Set financial assessment class.
   SetFinancialAssessment({
     int? cfdScore,
     int? financialInformationScore,
@@ -119,7 +119,7 @@ class SetFinancialAssessment extends SetFinancialAssessmentModel {
           tradingScore: tradingScore,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SetFinancialAssessment.fromJson(Map<String, dynamic> json) =>
       SetFinancialAssessment(
         cfdScore: json['cfd_score'],
@@ -128,7 +128,7 @@ class SetFinancialAssessment extends SetFinancialAssessmentModel {
         tradingScore: json['trading_score'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

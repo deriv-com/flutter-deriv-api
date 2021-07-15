@@ -2,7 +2,7 @@ import '../../helpers/helpers.dart';
 
 /// Buy contract for multiple accounts response model class.
 abstract class BuyContractForMultipleAccountsResponseModel {
-  /// Initializes.
+  /// Initializes Buy contract for multiple accounts response model class .
   BuyContractForMultipleAccountsResponseModel({
     this.buyContractForMultipleAccounts,
   });
@@ -14,14 +14,14 @@ abstract class BuyContractForMultipleAccountsResponseModel {
 /// Buy contract for multiple accounts response class.
 class BuyContractForMultipleAccountsResponse
     extends BuyContractForMultipleAccountsResponseModel {
-  /// Initializes
+  /// Initializes Buy contract for multiple accounts response class.
   BuyContractForMultipleAccountsResponse({
     BuyContractForMultipleAccounts? buyContractForMultipleAccounts,
   }) : super(
           buyContractForMultipleAccounts: buyContractForMultipleAccounts,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory BuyContractForMultipleAccountsResponse.fromJson(
     dynamic buyContractForMultipleAccountsJson,
   ) =>
@@ -33,7 +33,7 @@ class BuyContractForMultipleAccountsResponse
                     buyContractForMultipleAccountsJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -56,7 +56,7 @@ class BuyContractForMultipleAccountsResponse
 }
 /// Buy contract for multiple accounts model class.
 abstract class BuyContractForMultipleAccountsModel {
-  /// Initializes.
+  /// Initializes Buy contract for multiple accounts model class .
   BuyContractForMultipleAccountsModel({
     required this.result,
   });
@@ -68,14 +68,14 @@ abstract class BuyContractForMultipleAccountsModel {
 /// Buy contract for multiple accounts class.
 class BuyContractForMultipleAccounts
     extends BuyContractForMultipleAccountsModel {
-  /// Initializes
+  /// Initializes Buy contract for multiple accounts class.
   BuyContractForMultipleAccounts({
     required List<Map<String, dynamic>> result,
   }) : super(
           result: result,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory BuyContractForMultipleAccounts.fromJson(Map<String, dynamic> json) =>
       BuyContractForMultipleAccounts(
         result: List<Map<String, dynamic>>.from(
@@ -85,7 +85,7 @@ class BuyContractForMultipleAccounts
         ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

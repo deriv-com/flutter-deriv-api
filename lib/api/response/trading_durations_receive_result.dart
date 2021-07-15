@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Trading durations response model class.
 abstract class TradingDurationsResponseModel {
-  /// Initializes.
+  /// Initializes Trading durations response model class .
   TradingDurationsResponseModel({
     this.tradingDurations,
   });
@@ -19,14 +19,14 @@ abstract class TradingDurationsResponseModel {
 
 /// Trading durations response class.
 class TradingDurationsResponse extends TradingDurationsResponseModel {
-  /// Initializes
+  /// Initializes Trading durations response class.
   TradingDurationsResponse({
     List<TradingDurationsItem>? tradingDurations,
   }) : super(
           tradingDurations: tradingDurations,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradingDurationsResponse.fromJson(
     dynamic tradingDurationsJson,
   ) =>
@@ -40,7 +40,7 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -63,7 +63,7 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
   /// For parameters information refer to [TradingDurationsRequest].
   /// Throws a [TradingException] if API response contains an error
   static Future<TradingDurationsResponse> fetchTradingDurations(
-    TradingDurationsSend request,
+    TradingDurationsRequest request,
   ) async {
     final TradingDurationsReceive response = await _api.call(request: request);
 
@@ -86,7 +86,7 @@ class TradingDurationsResponse extends TradingDurationsResponseModel {
 }
 /// Trading durations item model class.
 abstract class TradingDurationsItemModel {
-  /// Initializes.
+  /// Initializes Trading durations item model class .
   TradingDurationsItemModel({
     this.data,
   });
@@ -97,14 +97,14 @@ abstract class TradingDurationsItemModel {
 
 /// Trading durations item class.
 class TradingDurationsItem extends TradingDurationsItemModel {
-  /// Initializes
+  /// Initializes Trading durations item class.
   TradingDurationsItem({
     List<DataItem>? data,
   }) : super(
           data: data,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradingDurationsItem.fromJson(Map<String, dynamic> json) =>
       TradingDurationsItem(
         data: json['data'] == null
@@ -116,7 +116,7 @@ class TradingDurationsItem extends TradingDurationsItemModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -141,7 +141,7 @@ class TradingDurationsItem extends TradingDurationsItemModel {
 }
 /// Data item model class.
 abstract class DataItemModel {
-  /// Initializes.
+  /// Initializes Data item model class .
   DataItemModel({
     this.market,
     this.submarket,
@@ -164,7 +164,7 @@ abstract class DataItemModel {
 
 /// Data item class.
 class DataItem extends DataItemModel {
-  /// Initializes
+  /// Initializes Data item class.
   DataItem({
     Market? market,
     Submarket? submarket,
@@ -177,7 +177,7 @@ class DataItem extends DataItemModel {
           tradeDurations: tradeDurations,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory DataItem.fromJson(Map<String, dynamic> json) => DataItem(
         market: json['market'] == null ? null : Market.fromJson(json['market']),
         submarket: json['submarket'] == null
@@ -199,7 +199,7 @@ class DataItem extends DataItemModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -243,7 +243,7 @@ class DataItem extends DataItemModel {
 }
 /// Market model class.
 abstract class MarketModel {
-  /// Initializes.
+  /// Initializes Market model class .
   MarketModel({
     this.displayName,
     this.name,
@@ -258,7 +258,7 @@ abstract class MarketModel {
 
 /// Market class.
 class Market extends MarketModel {
-  /// Initializes
+  /// Initializes Market class.
   Market({
     String? displayName,
     String? name,
@@ -267,13 +267,13 @@ class Market extends MarketModel {
           name: name,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Market.fromJson(Map<String, dynamic> json) => Market(
         displayName: json['display_name'],
         name: json['name'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -295,7 +295,7 @@ class Market extends MarketModel {
 }
 /// Submarket model class.
 abstract class SubmarketModel {
-  /// Initializes.
+  /// Initializes Submarket model class .
   SubmarketModel({
     this.displayName,
     this.name,
@@ -310,7 +310,7 @@ abstract class SubmarketModel {
 
 /// Submarket class.
 class Submarket extends SubmarketModel {
-  /// Initializes
+  /// Initializes Submarket class.
   Submarket({
     String? displayName,
     String? name,
@@ -319,13 +319,13 @@ class Submarket extends SubmarketModel {
           name: name,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Submarket.fromJson(Map<String, dynamic> json) => Submarket(
         displayName: json['display_name'],
         name: json['name'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -347,7 +347,7 @@ class Submarket extends SubmarketModel {
 }
 /// Symbol item model class.
 abstract class SymbolItemModel {
-  /// Initializes.
+  /// Initializes Symbol item model class .
   SymbolItemModel({
     this.displayName,
     this.name,
@@ -362,7 +362,7 @@ abstract class SymbolItemModel {
 
 /// Symbol item class.
 class SymbolItem extends SymbolItemModel {
-  /// Initializes
+  /// Initializes Symbol item class.
   SymbolItem({
     String? displayName,
     String? name,
@@ -371,13 +371,13 @@ class SymbolItem extends SymbolItemModel {
           name: name,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory SymbolItem.fromJson(Map<String, dynamic> json) => SymbolItem(
         displayName: json['display_name'],
         name: json['name'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -399,7 +399,7 @@ class SymbolItem extends SymbolItemModel {
 }
 /// Trade durations item model class.
 abstract class TradeDurationsItemModel {
-  /// Initializes.
+  /// Initializes Trade durations item model class .
   TradeDurationsItemModel({
     this.durations,
     this.tradeType,
@@ -414,7 +414,7 @@ abstract class TradeDurationsItemModel {
 
 /// Trade durations item class.
 class TradeDurationsItem extends TradeDurationsItemModel {
-  /// Initializes
+  /// Initializes Trade durations item class.
   TradeDurationsItem({
     List<DurationsItem>? durations,
     TradeType? tradeType,
@@ -423,7 +423,7 @@ class TradeDurationsItem extends TradeDurationsItemModel {
           tradeType: tradeType,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradeDurationsItem.fromJson(Map<String, dynamic> json) =>
       TradeDurationsItem(
         durations: json['durations'] == null
@@ -438,7 +438,7 @@ class TradeDurationsItem extends TradeDurationsItemModel {
             : TradeType.fromJson(json['trade_type']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -468,7 +468,7 @@ class TradeDurationsItem extends TradeDurationsItemModel {
 }
 /// Durations item model class.
 abstract class DurationsItemModel {
-  /// Initializes.
+  /// Initializes Durations item model class .
   DurationsItemModel({
     this.displayName,
     this.max,
@@ -491,7 +491,7 @@ abstract class DurationsItemModel {
 
 /// Durations item class.
 class DurationsItem extends DurationsItemModel {
-  /// Initializes
+  /// Initializes Durations item class.
   DurationsItem({
     String? displayName,
     int? max,
@@ -504,7 +504,7 @@ class DurationsItem extends DurationsItemModel {
           name: name,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory DurationsItem.fromJson(Map<String, dynamic> json) => DurationsItem(
         displayName: json['display_name'],
         max: json['max'],
@@ -512,7 +512,7 @@ class DurationsItem extends DurationsItemModel {
         name: json['name'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -540,7 +540,7 @@ class DurationsItem extends DurationsItemModel {
 }
 /// Trade type model class.
 abstract class TradeTypeModel {
-  /// Initializes.
+  /// Initializes Trade type model class .
   TradeTypeModel({
     this.displayName,
     this.name,
@@ -555,7 +555,7 @@ abstract class TradeTypeModel {
 
 /// Trade type class.
 class TradeType extends TradeTypeModel {
-  /// Initializes
+  /// Initializes Trade type class.
   TradeType({
     String? displayName,
     String? name,
@@ -564,13 +564,13 @@ class TradeType extends TradeTypeModel {
           name: name,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradeType.fromJson(Map<String, dynamic> json) => TradeType(
         displayName: json['display_name'],
         name: json['name'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

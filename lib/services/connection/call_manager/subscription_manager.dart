@@ -111,9 +111,9 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
       return const ForgetReceive(forget: true, msgType: 'forget');
     }
 
-    // Send forget request
+    // Request forget request
     final Response response = await api.call(
-      request: ForgetSend(forget: getSubscriptionId(requestId)),
+      request: ForgetRequest(forget: getSubscriptionId(requestId)),
     );
 
     if (response.error == null) {
@@ -139,7 +139,7 @@ class SubscriptionManager extends BaseCallManager<Stream<Response>> {
     ).toList();
 
     final ForgetAllReceive response = await api.call(
-      request: ForgetAllSend(forgetAll: methodName),
+      request: ForgetAllRequest(forgetAll: methodName),
     );
 
     if (response.error == null) {

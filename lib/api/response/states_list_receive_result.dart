@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// States list response model class.
 abstract class StatesListResponseModel {
-  /// Initializes.
+  /// Initializes States list response model class .
   StatesListResponseModel({
     this.statesList,
   });
@@ -19,14 +19,14 @@ abstract class StatesListResponseModel {
 
 /// States list response class.
 class StatesListResponse extends StatesListResponseModel {
-  /// Initializes
+  /// Initializes States list response class.
   StatesListResponse({
     List<StatesListItem>? statesList,
   }) : super(
           statesList: statesList,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory StatesListResponse.fromJson(
     dynamic statesListJson,
   ) =>
@@ -40,7 +40,7 @@ class StatesListResponse extends StatesListResponseModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -61,7 +61,7 @@ class StatesListResponse extends StatesListResponseModel {
   ///
   /// Throws a [StateException] if API response contains an error
   static Future<StatesListResponse> fetchStatesList(
-      StatesListSend request) async {
+      StatesListRequest request) async {
     final StatesListReceive response = await _api.call(request: request);
 
     checkException(
@@ -83,7 +83,7 @@ class StatesListResponse extends StatesListResponseModel {
 }
 /// States list item model class.
 abstract class StatesListItemModel {
-  /// Initializes.
+  /// Initializes States list item model class .
   StatesListItemModel({
     this.text,
     this.value,
@@ -98,7 +98,7 @@ abstract class StatesListItemModel {
 
 /// States list item class.
 class StatesListItem extends StatesListItemModel {
-  /// Initializes
+  /// Initializes States list item class.
   StatesListItem({
     String? text,
     String? value,
@@ -107,13 +107,13 @@ class StatesListItem extends StatesListItemModel {
           value: value,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory StatesListItem.fromJson(Map<String, dynamic> json) => StatesListItem(
         text: json['text'],
         value: json['value'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Mt5 withdrawal send class.
-class Mt5WithdrawalSend extends Request {
-  /// Initialize Mt5WithdrawalSend.
-  const Mt5WithdrawalSend({
+/// Mt5 withdrawal request class.
+class Mt5WithdrawalRequest extends Request {
+  /// Initialize Mt5WithdrawalRequest.
+  const Mt5WithdrawalRequest({
     required this.amount,
     required this.fromMt5,
     this.mt5Withdrawal = true,
@@ -21,8 +21,8 @@ class Mt5WithdrawalSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory Mt5WithdrawalSend.fromJson(Map<String, dynamic> json) =>
-      Mt5WithdrawalSend(
+  factory Mt5WithdrawalRequest.fromJson(Map<String, dynamic> json) =>
+      Mt5WithdrawalRequest(
         amount: json['amount'] as num?,
         fromMt5: json['from_mt5'] as String?,
         mt5Withdrawal:
@@ -61,7 +61,7 @@ class Mt5WithdrawalSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  Mt5WithdrawalSend copyWith({
+  Mt5WithdrawalRequest copyWith({
     num? amount,
     String? fromMt5,
     bool? mt5Withdrawal,
@@ -69,7 +69,7 @@ class Mt5WithdrawalSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      Mt5WithdrawalSend(
+      Mt5WithdrawalRequest(
         amount: amount ?? this.amount,
         fromMt5: fromMt5 ?? this.fromMt5,
         mt5Withdrawal: mt5Withdrawal ?? this.mt5Withdrawal,

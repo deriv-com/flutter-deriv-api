@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Balance send class.
-class BalanceSend extends Request {
-  /// Initialize BalanceSend.
-  const BalanceSend({
+/// Balance request class.
+class BalanceRequest extends Request {
+  /// Initialize BalanceRequest.
+  const BalanceRequest({
     this.account,
     this.balance = true,
     this.subscribe,
@@ -20,7 +20,7 @@ class BalanceSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory BalanceSend.fromJson(Map<String, dynamic> json) => BalanceSend(
+  factory BalanceRequest.fromJson(Map<String, dynamic> json) => BalanceRequest(
         account: json['account'] as String?,
         balance: json['balance'] == null ? null : json['balance'] == 1,
         subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
@@ -57,14 +57,14 @@ class BalanceSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  BalanceSend copyWith({
+  BalanceRequest copyWith({
     String? account,
     bool? balance,
     bool? subscribe,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      BalanceSend(
+      BalanceRequest(
         account: account ?? this.account,
         balance: balance ?? this.balance,
         subscribe: subscribe ?? this.subscribe,

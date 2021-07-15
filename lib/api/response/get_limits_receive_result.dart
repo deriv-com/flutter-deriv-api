@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Get limits response model class.
 abstract class GetLimitsResponseModel {
-  /// Initializes.
+  /// Initializes Get limits response model class .
   GetLimitsResponseModel({
     this.getLimits,
   });
@@ -19,14 +19,14 @@ abstract class GetLimitsResponseModel {
 
 /// Get limits response class.
 class GetLimitsResponse extends GetLimitsResponseModel {
-  /// Initializes
+  /// Initializes Get limits response class.
   GetLimitsResponse({
     GetLimits? getLimits,
   }) : super(
           getLimits: getLimits,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetLimitsResponse.fromJson(
     dynamic getLimitsJson,
   ) =>
@@ -35,7 +35,7 @@ class GetLimitsResponse extends GetLimitsResponseModel {
             getLimitsJson == null ? null : GetLimits.fromJson(getLimitsJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -52,10 +52,10 @@ class GetLimitsResponse extends GetLimitsResponseModel {
   ///
   /// Throws an [AccountLimitsException] if API response contains an error
   static Future<GetLimitsResponse> fetchAccountLimits([
-    GetLimitsSend? request,
+    GetLimitsRequest? request,
   ]) async {
     final GetLimitsReceive response = await _api.call(
-      request: request ?? const GetLimitsSend(),
+      request: request ?? const GetLimitsRequest(),
     );
 
     checkException(
@@ -77,7 +77,7 @@ class GetLimitsResponse extends GetLimitsResponseModel {
 }
 /// Get limits model class.
 abstract class GetLimitsModel {
-  /// Initializes.
+  /// Initializes Get limits model class .
   GetLimitsModel({
     this.accountBalance,
     this.dailyTurnover,
@@ -136,7 +136,7 @@ abstract class GetLimitsModel {
 
 /// Get limits class.
 class GetLimits extends GetLimitsModel {
-  /// Initializes
+  /// Initializes Get limits class.
   GetLimits({
     double? accountBalance,
     double? dailyTurnover,
@@ -167,7 +167,7 @@ class GetLimits extends GetLimitsModel {
           withdrawalSinceInceptionMonetary: withdrawalSinceInceptionMonetary,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory GetLimits.fromJson(Map<String, dynamic> json) => GetLimits(
         accountBalance: getDouble(json['account_balance']),
         dailyTurnover: getDouble(json['daily_turnover']),
@@ -203,7 +203,7 @@ class GetLimits extends GetLimitsModel {
             getDouble(json['withdrawal_since_inception_monetary']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -265,7 +265,7 @@ class GetLimits extends GetLimitsModel {
 }
 /// Market specific property item model class.
 abstract class MarketSpecificPropertyItemModel {
-  /// Initializes.
+  /// Initializes Market specific property item model class .
   MarketSpecificPropertyItemModel({
     this.name,
     this.payoutLimit,
@@ -288,7 +288,7 @@ abstract class MarketSpecificPropertyItemModel {
 
 /// Market specific property item class.
 class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
-  /// Initializes
+  /// Initializes Market specific property item class.
   MarketSpecificPropertyItem({
     String? name,
     double? payoutLimit,
@@ -301,7 +301,7 @@ class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
           turnoverLimit: turnoverLimit,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory MarketSpecificPropertyItem.fromJson(Map<String, dynamic> json) =>
       MarketSpecificPropertyItem(
         name: json['name'],
@@ -310,7 +310,7 @@ class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
         turnoverLimit: getDouble(json['turnover_limit']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -338,7 +338,7 @@ class MarketSpecificPropertyItem extends MarketSpecificPropertyItemModel {
 }
 /// Payout per symbol model class.
 abstract class PayoutPerSymbolModel {
-  /// Initializes.
+  /// Initializes Payout per symbol model class .
   PayoutPerSymbolModel({
     this.atm,
     this.nonAtm,
@@ -353,7 +353,7 @@ abstract class PayoutPerSymbolModel {
 
 /// Payout per symbol class.
 class PayoutPerSymbol extends PayoutPerSymbolModel {
-  /// Initializes
+  /// Initializes Payout per symbol class.
   PayoutPerSymbol({
     double? atm,
     NonAtm? nonAtm,
@@ -362,7 +362,7 @@ class PayoutPerSymbol extends PayoutPerSymbolModel {
           nonAtm: nonAtm,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory PayoutPerSymbol.fromJson(Map<String, dynamic> json) =>
       PayoutPerSymbol(
         atm: getDouble(json['atm']),
@@ -370,7 +370,7 @@ class PayoutPerSymbol extends PayoutPerSymbolModel {
             json['non_atm'] == null ? null : NonAtm.fromJson(json['non_atm']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -394,7 +394,7 @@ class PayoutPerSymbol extends PayoutPerSymbolModel {
 }
 /// Non atm model class.
 abstract class NonAtmModel {
-  /// Initializes.
+  /// Initializes Non atm model class .
   NonAtmModel({
     this.lessThanSevenDays,
     this.moreThanSevenDays,
@@ -409,7 +409,7 @@ abstract class NonAtmModel {
 
 /// Non atm class.
 class NonAtm extends NonAtmModel {
-  /// Initializes
+  /// Initializes Non atm class.
   NonAtm({
     double? lessThanSevenDays,
     double? moreThanSevenDays,
@@ -418,13 +418,13 @@ class NonAtm extends NonAtmModel {
           moreThanSevenDays: moreThanSevenDays,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory NonAtm.fromJson(Map<String, dynamic> json) => NonAtm(
         lessThanSevenDays: getDouble(json['less_than_seven_days']),
         moreThanSevenDays: getDouble(json['more_than_seven_days']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

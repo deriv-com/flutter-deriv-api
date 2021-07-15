@@ -2,7 +2,7 @@ import '../../helpers/helpers.dart';
 
 /// Document upload response model class.
 abstract class DocumentUploadResponseModel {
-  /// Initializes.
+  /// Initializes Document upload response model class .
   DocumentUploadResponseModel({
     this.documentUpload,
   });
@@ -13,14 +13,14 @@ abstract class DocumentUploadResponseModel {
 
 /// Document upload response class.
 class DocumentUploadResponse extends DocumentUploadResponseModel {
-  /// Initializes
+  /// Initializes Document upload response class.
   DocumentUploadResponse({
     DocumentUpload? documentUpload,
   }) : super(
           documentUpload: documentUpload,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory DocumentUploadResponse.fromJson(
     dynamic documentUploadJson,
   ) =>
@@ -30,7 +30,7 @@ class DocumentUploadResponse extends DocumentUploadResponseModel {
             : DocumentUpload.fromJson(documentUploadJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -51,7 +51,7 @@ class DocumentUploadResponse extends DocumentUploadResponseModel {
 }
 /// Document upload model class.
 abstract class DocumentUploadModel {
-  /// Initializes.
+  /// Initializes Document upload model class .
   DocumentUploadModel({
     required this.uploadId,
     required this.callType,
@@ -78,7 +78,7 @@ abstract class DocumentUploadModel {
 
 /// Document upload class.
 class DocumentUpload extends DocumentUploadModel {
-  /// Initializes
+  /// Initializes Document upload class.
   DocumentUpload({
     required double callType,
     required double uploadId,
@@ -93,7 +93,7 @@ class DocumentUpload extends DocumentUploadModel {
           status: status,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory DocumentUpload.fromJson(Map<String, dynamic> json) => DocumentUpload(
         callType: getDouble(json['call_type'])!,
         uploadId: getDouble(json['upload_id'])!,
@@ -102,7 +102,7 @@ class DocumentUpload extends DocumentUploadModel {
         status: json['status'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

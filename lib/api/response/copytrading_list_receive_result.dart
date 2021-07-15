@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Copytrading list response model class.
 abstract class CopytradingListResponseModel {
-  /// Initializes.
+  /// Initializes Copytrading list response model class .
   CopytradingListResponseModel({
     this.copytradingList,
   });
@@ -19,14 +19,14 @@ abstract class CopytradingListResponseModel {
 
 /// Copytrading list response class.
 class CopytradingListResponse extends CopytradingListResponseModel {
-  /// Initializes
+  /// Initializes Copytrading list response class.
   CopytradingListResponse({
     CopytradingList? copytradingList,
   }) : super(
           copytradingList: copytradingList,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CopytradingListResponse.fromJson(
     dynamic copytradingListJson,
   ) =>
@@ -36,7 +36,7 @@ class CopytradingListResponse extends CopytradingListResponseModel {
             : CopytradingList.fromJson(copytradingListJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -53,10 +53,10 @@ class CopytradingListResponse extends CopytradingListResponseModel {
   ///
   /// Throws a [CopyTradingException] if API response contains an error
   static Future<CopytradingListResponse> fetchList([
-    CopytradingListSend? request,
+    CopytradingListRequest? request,
   ]) async {
     final CopytradingListReceive response = await _api.call(
-      request: request ?? const CopytradingListSend(),
+      request: request ?? const CopytradingListRequest(),
     );
 
     checkException(
@@ -78,7 +78,7 @@ class CopytradingListResponse extends CopytradingListResponseModel {
 }
 /// Copytrading list model class.
 abstract class CopytradingListModel {
-  /// Initializes.
+  /// Initializes Copytrading list model class .
   CopytradingListModel({
     required this.traders,
     required this.copiers,
@@ -93,7 +93,7 @@ abstract class CopytradingListModel {
 
 /// Copytrading list class.
 class CopytradingList extends CopytradingListModel {
-  /// Initializes
+  /// Initializes Copytrading list class.
   CopytradingList({
     required List<CopiersItem> copiers,
     required List<TradersItem> traders,
@@ -102,7 +102,7 @@ class CopytradingList extends CopytradingListModel {
           traders: traders,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CopytradingList.fromJson(Map<String, dynamic> json) =>
       CopytradingList(
         copiers: List<CopiersItem>.from(
@@ -117,7 +117,7 @@ class CopytradingList extends CopytradingListModel {
         ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -148,7 +148,7 @@ class CopytradingList extends CopytradingListModel {
 }
 /// Copiers item model class.
 abstract class CopiersItemModel {
-  /// Initializes.
+  /// Initializes Copiers item model class .
   CopiersItemModel({
     required this.loginid,
   });
@@ -159,19 +159,19 @@ abstract class CopiersItemModel {
 
 /// Copiers item class.
 class CopiersItem extends CopiersItemModel {
-  /// Initializes
+  /// Initializes Copiers item class.
   CopiersItem({
     required String loginid,
   }) : super(
           loginid: loginid,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory CopiersItem.fromJson(Map<String, dynamic> json) => CopiersItem(
         loginid: json['loginid'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -190,7 +190,7 @@ class CopiersItem extends CopiersItemModel {
 }
 /// Traders item model class.
 abstract class TradersItemModel {
-  /// Initializes.
+  /// Initializes Traders item model class .
   TradersItemModel({
     this.assets,
     this.loginid,
@@ -221,7 +221,7 @@ abstract class TradersItemModel {
 
 /// Traders item class.
 class TradersItem extends TradersItemModel {
-  /// Initializes
+  /// Initializes Traders item class.
   TradersItem({
     List<String>? assets,
     String? loginid,
@@ -238,7 +238,7 @@ class TradersItem extends TradersItemModel {
           tradeTypes: tradeTypes,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TradersItem.fromJson(Map<String, dynamic> json) => TradersItem(
         assets: json['assets'] == null
             ? null
@@ -260,7 +260,7 @@ class TradersItem extends TradersItemModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

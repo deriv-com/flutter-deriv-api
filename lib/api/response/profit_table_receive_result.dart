@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Profit table response model class.
 abstract class ProfitTableResponseModel {
-  /// Initializes.
+  /// Initializes Profit table response model class .
   ProfitTableResponseModel({
     this.profitTable,
   });
@@ -19,14 +19,14 @@ abstract class ProfitTableResponseModel {
 
 /// Profit table response class.
 class ProfitTableResponse extends ProfitTableResponseModel {
-  /// Initializes
+  /// Initializes Profit table response class.
   ProfitTableResponse({
     ProfitTable? profitTable,
   }) : super(
           profitTable: profitTable,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ProfitTableResponse.fromJson(
     dynamic profitTableJson,
   ) =>
@@ -36,7 +36,7 @@ class ProfitTableResponse extends ProfitTableResponseModel {
             : ProfitTable.fromJson(profitTableJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -53,7 +53,7 @@ class ProfitTableResponse extends ProfitTableResponseModel {
   ///
   /// For parameters information refer to [ProfitTableRequest].
   /// Throws a [ProfitTableException] if API response contains an error
-  static Future<ProfitTableResponse> fetch(ProfitTableSend request) async {
+  static Future<ProfitTableResponse> fetch(ProfitTableRequest request) async {
     final ProfitTableReceive response = await _api.call(request: request);
 
     checkException(
@@ -75,7 +75,7 @@ class ProfitTableResponse extends ProfitTableResponseModel {
 }
 /// Profit table model class.
 abstract class ProfitTableModel {
-  /// Initializes.
+  /// Initializes Profit table model class .
   ProfitTableModel({
     this.count,
     this.transactions,
@@ -90,7 +90,7 @@ abstract class ProfitTableModel {
 
 /// Profit table class.
 class ProfitTable extends ProfitTableModel {
-  /// Initializes
+  /// Initializes Profit table class.
   ProfitTable({
     double? count,
     List<TransactionsItem>? transactions,
@@ -99,7 +99,7 @@ class ProfitTable extends ProfitTableModel {
           transactions: transactions,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ProfitTable.fromJson(Map<String, dynamic> json) => ProfitTable(
         count: getDouble(json['count']),
         transactions: json['transactions'] == null
@@ -111,7 +111,7 @@ class ProfitTable extends ProfitTableModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -139,7 +139,7 @@ class ProfitTable extends ProfitTableModel {
 }
 /// Transactions item model class.
 abstract class TransactionsItemModel {
-  /// Initializes.
+  /// Initializes Transactions item model class .
   TransactionsItemModel({
     this.appId,
     this.buyPrice,
@@ -186,7 +186,7 @@ abstract class TransactionsItemModel {
 
 /// Transactions item class.
 class TransactionsItem extends TransactionsItemModel {
-  /// Initializes
+  /// Initializes Transactions item class.
   TransactionsItem({
     int? appId,
     double? buyPrice,
@@ -211,7 +211,7 @@ class TransactionsItem extends TransactionsItemModel {
           transactionId: transactionId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory TransactionsItem.fromJson(Map<String, dynamic> json) =>
       TransactionsItem(
         appId: json['app_id'],
@@ -226,7 +226,7 @@ class TransactionsItem extends TransactionsItemModel {
         transactionId: json['transaction_id'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

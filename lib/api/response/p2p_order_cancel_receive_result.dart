@@ -3,7 +3,7 @@ import 'package:meta/meta.dart';
 
 /// P2p order cancel response model class.
 abstract class P2pOrderCancelResponseModel {
-  /// Initializes.
+  /// Initializes P2p order cancel response model class .
   P2pOrderCancelResponseModel({
     this.p2pOrderCancel,
   });
@@ -14,14 +14,14 @@ abstract class P2pOrderCancelResponseModel {
 
 /// P2p order cancel response class.
 class P2pOrderCancelResponse extends P2pOrderCancelResponseModel {
-  /// Initializes
+  /// Initializes P2p order cancel response class.
   P2pOrderCancelResponse({
     P2pOrderCancel? p2pOrderCancel,
   }) : super(
           p2pOrderCancel: p2pOrderCancel,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pOrderCancelResponse.fromJson(
     dynamic p2pOrderCancelJson,
   ) =>
@@ -31,7 +31,7 @@ class P2pOrderCancelResponse extends P2pOrderCancelResponseModel {
             : P2pOrderCancel.fromJson(p2pOrderCancelJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -63,7 +63,7 @@ enum StatusEnum {
 }
 /// P2p order cancel model class.
 abstract class P2pOrderCancelModel {
-  /// Initializes.
+  /// Initializes P2p order cancel model class .
   P2pOrderCancelModel({
     required this.status,
     required this.id,
@@ -78,7 +78,7 @@ abstract class P2pOrderCancelModel {
 
 /// P2p order cancel class.
 class P2pOrderCancel extends P2pOrderCancelModel {
-  /// Initializes
+  /// Initializes P2p order cancel class.
   P2pOrderCancel({
     required String id,
     required StatusEnum status,
@@ -87,13 +87,13 @@ class P2pOrderCancel extends P2pOrderCancelModel {
           status: status,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory P2pOrderCancel.fromJson(Map<String, dynamic> json) => P2pOrderCancel(
         id: json['id'],
         status: statusEnumMapper[json['status']]!,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

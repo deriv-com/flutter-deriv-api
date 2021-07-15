@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Contracts for response model class.
 abstract class ContractsForResponseModel {
-  /// Initializes.
+  /// Initializes Contracts for response model class .
   ContractsForResponseModel({
     this.contractsFor,
   });
@@ -19,14 +19,14 @@ abstract class ContractsForResponseModel {
 
 /// Contracts for response class.
 class ContractsForResponse extends ContractsForResponseModel {
-  /// Initializes
+  /// Initializes Contracts for response class.
   ContractsForResponse({
     ContractsFor? contractsFor,
   }) : super(
           contractsFor: contractsFor,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ContractsForResponse.fromJson(
     dynamic contractsForJson,
   ) =>
@@ -36,7 +36,7 @@ class ContractsForResponse extends ContractsForResponseModel {
             : ContractsFor.fromJson(contractsForJson),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -53,7 +53,7 @@ class ContractsForResponse extends ContractsForResponseModel {
   ///
   /// Throws a [ContractsForSymbolException] if API response contains an error
   static Future<ContractsForResponse> fetchContractsForSymbol(
-    ContractsForSend request,
+    ContractsForRequest request,
   ) async {
     final ContractsForReceive response = await _api.call(
       request: request,
@@ -78,7 +78,7 @@ class ContractsForResponse extends ContractsForResponseModel {
 }
 /// Contracts for model class.
 abstract class ContractsForModel {
-  /// Initializes.
+  /// Initializes Contracts for model class .
   ContractsForModel({
     required this.available,
     this.close,
@@ -109,7 +109,7 @@ abstract class ContractsForModel {
 
 /// Contracts for class.
 class ContractsFor extends ContractsForModel {
-  /// Initializes
+  /// Initializes Contracts for class.
   ContractsFor({
     required List<AvailableItem> available,
     DateTime? close,
@@ -126,7 +126,7 @@ class ContractsFor extends ContractsForModel {
           spot: spot,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ContractsFor.fromJson(Map<String, dynamic> json) => ContractsFor(
         available: List<AvailableItem>.from(
           json['available'].map(
@@ -140,7 +140,7 @@ class ContractsFor extends ContractsForModel {
         spot: getDouble(json['spot']),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -179,7 +179,7 @@ class ContractsFor extends ContractsForModel {
 }
 /// Available item model class.
 abstract class AvailableItemModel {
-  /// Initializes.
+  /// Initializes Available item model class .
   AvailableItemModel({
     required this.underlyingSymbol,
     required this.submarket,
@@ -266,7 +266,7 @@ abstract class AvailableItemModel {
 
 /// Available item class.
 class AvailableItem extends AvailableItemModel {
-  /// Initializes
+  /// Initializes Available item class.
   AvailableItem({
     required String barrierCategory,
     required double barriers,
@@ -311,7 +311,7 @@ class AvailableItem extends AvailableItemModel {
           tradingPeriod: tradingPeriod,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory AvailableItem.fromJson(Map<String, dynamic> json) => AvailableItem(
         barrierCategory: json['barrier_category'],
         barriers: getDouble(json['barriers'])!,
@@ -353,7 +353,7 @@ class AvailableItem extends AvailableItemModel {
         tradingPeriod: json['trading_period'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -448,7 +448,7 @@ class AvailableItem extends AvailableItemModel {
 }
 /// Forward starting options item model class.
 abstract class ForwardStartingOptionsItemModel {
-  /// Initializes.
+  /// Initializes Forward starting options item model class .
   ForwardStartingOptionsItemModel({
     this.close,
     this.date,
@@ -467,7 +467,7 @@ abstract class ForwardStartingOptionsItemModel {
 
 /// Forward starting options item class.
 class ForwardStartingOptionsItem extends ForwardStartingOptionsItemModel {
-  /// Initializes
+  /// Initializes Forward starting options item class.
   ForwardStartingOptionsItem({
     String? close,
     String? date,
@@ -478,7 +478,7 @@ class ForwardStartingOptionsItem extends ForwardStartingOptionsItemModel {
           open: open,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ForwardStartingOptionsItem.fromJson(Map<String, dynamic> json) =>
       ForwardStartingOptionsItem(
         close: json['close'],
@@ -486,7 +486,7 @@ class ForwardStartingOptionsItem extends ForwardStartingOptionsItemModel {
         open: json['open'],
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

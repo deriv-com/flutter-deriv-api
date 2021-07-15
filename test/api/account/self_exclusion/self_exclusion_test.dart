@@ -31,7 +31,7 @@ void main() {
 
     test('Set Self Exclusive Test', () async {
       final bool? setSelfExclusion = await GetSelfExclusionResponse.setSelfExclusion(
-        const SetSelfExclusionSend(
+        const SetSelfExclusionRequest(
           excludeUntil: '2020-01-01',
           max30dayDeposit: 700000,
           max30dayLosses: 100000,

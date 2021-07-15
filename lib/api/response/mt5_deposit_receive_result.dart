@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Mt5 deposit response model class.
 abstract class Mt5DepositResponseModel {
-  /// Initializes.
+  /// Initializes Mt5 deposit response model class .
   Mt5DepositResponseModel({
     this.mt5Deposit,
     this.binaryTransactionId,
@@ -23,7 +23,7 @@ abstract class Mt5DepositResponseModel {
 
 /// Mt5 deposit response class.
 class Mt5DepositResponse extends Mt5DepositResponseModel {
-  /// Initializes
+  /// Initializes Mt5 deposit response class.
   Mt5DepositResponse({
     int? mt5Deposit,
     int? binaryTransactionId,
@@ -32,7 +32,7 @@ class Mt5DepositResponse extends Mt5DepositResponseModel {
           binaryTransactionId: binaryTransactionId,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory Mt5DepositResponse.fromJson(
     dynamic mt5DepositJson,
     dynamic binaryTransactionIdJson,
@@ -42,7 +42,7 @@ class Mt5DepositResponse extends Mt5DepositResponseModel {
         binaryTransactionId: binaryTransactionIdJson,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -58,7 +58,7 @@ class Mt5DepositResponse extends Mt5DepositResponseModel {
   ///
   /// For parameters information refer to [Mt5DepositRequest].
   /// Throws a [MT5Exception] if API response contains an error
-  static Future<Mt5DepositResponse> deposit(Mt5DepositSend request) async {
+  static Future<Mt5DepositResponse> deposit(Mt5DepositRequest request) async {
     final Mt5DepositReceive response = await _api.call(request: request);
 
     checkException(

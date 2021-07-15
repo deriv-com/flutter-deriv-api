@@ -8,7 +8,7 @@ import '../models/base_exception_model.dart';
 
 /// Forget all response model class.
 abstract class ForgetAllResponseModel {
-  /// Initializes.
+  /// Initializes Forget all response model class .
   ForgetAllResponseModel({
     this.forgetAll,
   });
@@ -19,14 +19,14 @@ abstract class ForgetAllResponseModel {
 
 /// Forget all response class.
 class ForgetAllResponse extends ForgetAllResponseModel {
-  /// Initializes
+  /// Initializes Forget all response class.
   ForgetAllResponse({
     List<dynamic>? forgetAll,
   }) : super(
           forgetAll: forgetAll,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory ForgetAllResponse.fromJson(
     dynamic forgetAllJson,
   ) =>
@@ -40,7 +40,7 @@ class ForgetAllResponse extends ForgetAllResponseModel {
               ),
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
@@ -62,7 +62,7 @@ class ForgetAllResponse extends ForgetAllResponseModel {
   /// For parameters information refer to [ForgetAllRequest].
   /// Throws a [ForgetException] if API response contains an error
   static Future<ForgetAllResponse> forgetAllMethod(
-    ForgetAllSend request,
+    ForgetAllRequest request,
   ) async {
     final ForgetAllReceive response = await _api.call(request: request);
 

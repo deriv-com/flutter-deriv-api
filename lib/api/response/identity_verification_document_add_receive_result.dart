@@ -3,7 +3,7 @@
 
 /// Identity verification document add response model class.
 abstract class IdentityVerificationDocumentAddResponseModel {
-  /// Initializes.
+  /// Initializes Identity verification document add response model class .
   IdentityVerificationDocumentAddResponseModel({
     this.identityVerificationDocumentAdd,
   });
@@ -15,14 +15,14 @@ abstract class IdentityVerificationDocumentAddResponseModel {
 /// Identity verification document add response class.
 class IdentityVerificationDocumentAddResponse
     extends IdentityVerificationDocumentAddResponseModel {
-  /// Initializes
+  /// Initializes Identity verification document add response class.
   IdentityVerificationDocumentAddResponse({
     int? identityVerificationDocumentAdd,
   }) : super(
           identityVerificationDocumentAdd: identityVerificationDocumentAdd,
         );
 
-  /// Creates an instance from JSON
+  /// Creates an instance from JSON.
   factory IdentityVerificationDocumentAddResponse.fromJson(
     dynamic identityVerificationDocumentAddJson,
   ) =>
@@ -30,7 +30,7 @@ class IdentityVerificationDocumentAddResponse
         identityVerificationDocumentAdd: identityVerificationDocumentAddJson,
       );
 
-  /// Converts an instance to JSON
+  /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 

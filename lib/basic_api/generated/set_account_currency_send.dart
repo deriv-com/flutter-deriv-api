@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Set account currency send class.
-class SetAccountCurrencySend extends Request {
-  /// Initialize SetAccountCurrencySend.
-  const SetAccountCurrencySend({
+/// Set account currency request class.
+class SetAccountCurrencyRequest extends Request {
+  /// Initialize SetAccountCurrencyRequest.
+  const SetAccountCurrencyRequest({
     required this.setAccountCurrency,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -18,8 +18,8 @@ class SetAccountCurrencySend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory SetAccountCurrencySend.fromJson(Map<String, dynamic> json) =>
-      SetAccountCurrencySend(
+  factory SetAccountCurrencyRequest.fromJson(Map<String, dynamic> json) =>
+      SetAccountCurrencyRequest(
         setAccountCurrency: json['set_account_currency'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -38,12 +38,12 @@ class SetAccountCurrencySend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  SetAccountCurrencySend copyWith({
+  SetAccountCurrencyRequest copyWith({
     String? setAccountCurrency,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      SetAccountCurrencySend(
+      SetAccountCurrencyRequest(
         setAccountCurrency: setAccountCurrency ?? this.setAccountCurrency,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Get settings send class.
-class GetSettingsSend extends Request {
-  /// Initialize GetSettingsSend.
-  const GetSettingsSend({
+/// Get settings request class.
+class GetSettingsRequest extends Request {
+  /// Initialize GetSettingsRequest.
+  const GetSettingsRequest({
     this.getSettings = true,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -18,8 +18,8 @@ class GetSettingsSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory GetSettingsSend.fromJson(Map<String, dynamic> json) =>
-      GetSettingsSend(
+  factory GetSettingsRequest.fromJson(Map<String, dynamic> json) =>
+      GetSettingsRequest(
         getSettings:
             json['get_settings'] == null ? null : json['get_settings'] == 1,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
@@ -43,12 +43,12 @@ class GetSettingsSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  GetSettingsSend copyWith({
+  GetSettingsRequest copyWith({
     bool? getSettings,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      GetSettingsSend(
+      GetSettingsRequest(
         getSettings: getSettings ?? this.getSettings,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// New account maltainvest send class.
-class NewAccountMaltainvestSend extends Request {
-  /// Initialize NewAccountMaltainvestSend.
-  const NewAccountMaltainvestSend({
+/// New account maltainvest request class.
+class NewAccountMaltainvestRequest extends Request {
+  /// Initialize NewAccountMaltainvestRequest.
+  const NewAccountMaltainvestRequest({
     required this.acceptRisk,
     this.accountOpeningReason,
     this.accountTurnover,
@@ -57,8 +57,8 @@ class NewAccountMaltainvestSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory NewAccountMaltainvestSend.fromJson(Map<String, dynamic> json) =>
-      NewAccountMaltainvestSend(
+  factory NewAccountMaltainvestRequest.fromJson(Map<String, dynamic> json) =>
+      NewAccountMaltainvestRequest(
         acceptRisk:
             json['accept_risk'] == null ? null : json['accept_risk'] == 1,
         accountOpeningReason: json['account_opening_reason'] as String?,
@@ -288,7 +288,7 @@ class NewAccountMaltainvestSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  NewAccountMaltainvestSend copyWith({
+  NewAccountMaltainvestRequest copyWith({
     bool? acceptRisk,
     String? accountOpeningReason,
     String? accountTurnover,
@@ -332,7 +332,7 @@ class NewAccountMaltainvestSend extends Request {
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      NewAccountMaltainvestSend(
+      NewAccountMaltainvestRequest(
         acceptRisk: acceptRisk ?? this.acceptRisk,
         accountOpeningReason: accountOpeningReason ?? this.accountOpeningReason,
         accountTurnover: accountTurnover ?? this.accountTurnover,

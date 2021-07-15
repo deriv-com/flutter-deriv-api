@@ -4,10 +4,10 @@
 
 import '../request.dart';
 
-/// Cancel send class.
-class CancelSend extends Request {
-  /// Initialize CancelSend.
-  const CancelSend({
+/// Cancel request class.
+class CancelRequest extends Request {
+  /// Initialize CancelRequest.
+  const CancelRequest({
     required this.cancel,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -18,7 +18,7 @@ class CancelSend extends Request {
         );
 
   /// Creates an instance from JSON.
-  factory CancelSend.fromJson(Map<String, dynamic> json) => CancelSend(
+  factory CancelRequest.fromJson(Map<String, dynamic> json) => CancelRequest(
         cancel: json['cancel'] as int?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
@@ -37,12 +37,12 @@ class CancelSend extends Request {
 
   /// Creates a copy of instance with given parameters
   @override
-  CancelSend copyWith({
+  CancelRequest copyWith({
     int? cancel,
     Map<String, dynamic>? passthrough,
     int? reqId,
   }) =>
-      CancelSend(
+      CancelRequest(
         cancel: cancel ?? this.cancel,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

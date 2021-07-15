@@ -12,7 +12,7 @@ void main() {
   test('Fetch Exchange Rates', () async {
     final ExchangeRates? exchangeRates =
         await ExchangeRatesResponse.fetchExchangeRates(
-      const ExchangeRatesSend(baseCurrency: 'USD'),
+      const ExchangeRatesRequest(baseCurrency: 'USD'),
     );
 
     expect(exchangeRates?.baseCurrency, 'USD');
