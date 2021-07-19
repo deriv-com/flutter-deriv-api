@@ -1,17 +1,19 @@
-import '../../basic_api/generated/forget_all_receive.dart';
-import '../../basic_api/generated/forget_receive.dart';
-import '../../basic_api/generated/transaction_receive.dart';
-import '../../basic_api/generated/transaction_send.dart';
-import '../../basic_api/response.dart';
-import '../../helpers/helpers.dart';
-import '../../services/connection/api_manager/base_api.dart';
-import '../../services/connection/call_manager/base_call_manager.dart';
-import '../../services/dependency_injector/injector.dart';
-import '../exceptions/exceptions.dart';
-import '../models/base_exception_model.dart';
-import '../models/enums.dart';
-import 'forget_all_receive_result.dart';
-import 'forget_receive_result.dart';
+// ignore_for_file: prefer_single_quotes
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/api/response/forget_all_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/forget_receive_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/transaction_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/transaction_send.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+
 
 /// Transaction response model class.
 abstract class TransactionResponseModel {
@@ -215,7 +217,7 @@ abstract class TransactionModel {
   final double? balance;
 
   /// Barrier of the contract. Only applicable to single barrier contracts. Could be undefined if a contract does not have a barrier.
-  final dynamic? barrier;
+  final dynamic barrier;
 
   /// It is the contract ID.
   final int? contractId;
@@ -230,7 +232,7 @@ abstract class TransactionModel {
   final String? displayName;
 
   /// The high barrier of a contract. Only applicable to double barrier contracts.
-  final dynamic? highBarrier;
+  final dynamic highBarrier;
 
   /// A per-connection unique identifier. Can be passed to the `forget` API call to unsubscribe.
   final String? id;
@@ -270,12 +272,12 @@ class Transaction extends TransactionModel {
     ActionEnum? action,
     double? amount,
     double? balance,
-    dynamic? barrier,
+    dynamic barrier,
     int? contractId,
     String? currency,
     DateTime? dateExpiry,
     String? displayName,
-    dynamic? highBarrier,
+    dynamic highBarrier,
     String? id,
     String? longcode,
     String? lowBarrier,
@@ -368,12 +370,12 @@ class Transaction extends TransactionModel {
     ActionEnum? action,
     double? amount,
     double? balance,
-    dynamic? barrier,
+    dynamic barrier,
     int? contractId,
     String? currency,
     DateTime? dateExpiry,
     String? displayName,
-    dynamic? highBarrier,
+    dynamic highBarrier,
     String? id,
     String? longcode,
     String? lowBarrier,

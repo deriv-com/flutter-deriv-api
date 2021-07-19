@@ -1,19 +1,21 @@
+// ignore_for_file: prefer_single_quotes
 
-import '../../basic_api/generated/ticks_history_receive.dart';
-import '../../basic_api/generated/ticks_history_send.dart';
-import '../../basic_api/generated/ticks_receive.dart';
-import '../../basic_api/response.dart';
-import '../../helpers/helpers.dart';
-import '../../services/connection/api_manager/base_api.dart';
-import '../../services/connection/call_manager/base_call_manager.dart';
-import '../../services/dependency_injector/injector.dart';
-import '../exceptions/exceptions.dart';
-import '../manually/ohlc_receive.dart';
-import '../manually/ohlc_receive_result.dart';
-import '../manually/tick.dart';
-import '../manually/tick_base.dart';
-import '../manually/tick_history_subscription.dart';
-import '../models/base_exception_model.dart';
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/manually/ohlc_receive.dart';
+import 'package:flutter_deriv_api/api/manually/ohlc_receive_result.dart';
+import 'package:flutter_deriv_api/api/manually/tick.dart';
+import 'package:flutter_deriv_api/api/manually/tick_base.dart';
+import 'package:flutter_deriv_api/api/manually/tick_history_subscription.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/basic_api/generated/ticks_history_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/ticks_history_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/ticks_receive.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+
 
 /// Ticks history response model class.
 abstract class TicksHistoryResponseModel {

@@ -1,13 +1,15 @@
-import '../../basic_api/generated/landing_company_details_receive.dart';
-import '../../basic_api/generated/landing_company_details_send.dart';
-import '../../basic_api/generated/landing_company_receive.dart';
-import '../../basic_api/generated/landing_company_send.dart';
-import '../../helpers/helpers.dart';
-import '../../services/connection/api_manager/base_api.dart';
-import '../../services/dependency_injector/injector.dart';
-import '../exceptions/exceptions.dart';
-import '../models/base_exception_model.dart';
-import 'landing_company_details_receive_result.dart';
+// ignore_for_file: prefer_single_quotes
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/api/response/landing_company_details_receive_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/landing_company_details_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/landing_company_details_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/landing_company_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/landing_company_send.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+
 
 /// Landing company response model class.
 abstract class LandingCompanyResponseModel {

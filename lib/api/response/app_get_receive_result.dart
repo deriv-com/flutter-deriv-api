@@ -1,22 +1,24 @@
-import '../../basic_api/generated/app_delete_send.dart';
-import '../../basic_api/generated/app_get_receive.dart';
-import '../../basic_api/generated/app_get_send.dart';
-import '../../basic_api/generated/app_list_receive.dart';
-import '../../basic_api/generated/app_list_send.dart';
-import '../../basic_api/generated/app_markup_details_send.dart';
-import '../../basic_api/generated/app_register_send.dart';
-import '../../basic_api/generated/app_update_send.dart';
-import '../../basic_api/generated/revoke_oauth_app_send.dart';
-import '../../services/connection/api_manager/base_api.dart';
-import '../../services/dependency_injector/injector.dart';
-import '../../helpers/helpers.dart';
-import '../exceptions/exceptions.dart';
-import '../models/enums.dart';
-import 'app_delete_receive_result.dart';
-import 'app_markup_details_receive_result.dart';
-import 'app_register_receive_result.dart';
-import 'app_update_receive_result.dart';
-import 'revoke_oauth_app_receive_result.dart';
+// ignore_for_file: prefer_single_quotes
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/api/response/app_delete_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/app_markup_details_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/app_register_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/app_update_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/revoke_oauth_app_receive_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/app_delete_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/app_get_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/app_get_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/app_list_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/app_list_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/app_markup_details_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/app_register_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/app_update_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/revoke_oauth_app_send.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+
 
 /// App get response model class.
 abstract class AppGetResponseModel {
@@ -100,9 +102,9 @@ class AppGetResponse extends AppGetResponseModel {
 
   /// Retrieves details of app markup according to criteria specified.
   Future<AppMarkupDetailsResponse> fetchApplicationMarkupDetails({
-    String? clientLoginId,
     required DateTime dateFrom,
     required DateTime dateTo,
+    String? clientLoginId,
     bool? description,
     int? limit,
     int? offset,

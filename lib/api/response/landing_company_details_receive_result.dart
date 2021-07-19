@@ -1,5 +1,5 @@
+// ignore_for_file: prefer_single_quotes
 import 'package:flutter_deriv_api/helpers/helpers.dart';
-import 'package:meta/meta.dart';
 
 /// Landing company details response model class.
 abstract class LandingCompanyDetailsResponseModel {

@@ -1,7 +1,5 @@
 import '../../basic_api/response.dart';
 
-part 'ohlc_receive.g.dart';
-
 /// JSON conversion for OHLC response.
 class OHLCResponse extends Response {
   /// Initialize OHLCResponse.

@@ -1,13 +1,15 @@
-import '../../basic_api/generated/get_settings_receive.dart';
-import '../../basic_api/generated/get_settings_send.dart';
-import '../../basic_api/generated/set_settings_receive.dart';
-import '../../basic_api/generated/set_settings_send.dart';
-import '../../helpers/helpers.dart';
-import '../../services/connection/api_manager/base_api.dart';
-import '../../services/dependency_injector/injector.dart';
-import '../exceptions/exceptions.dart';
-import '../models/base_exception_model.dart';
-import 'set_settings_receive_result.dart';
+// ignore_for_file: prefer_single_quotes
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/api/response/set_settings_receive_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/get_settings_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/get_settings_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/set_settings_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/set_settings_send.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+
 
 /// Get settings response model class.
 abstract class GetSettingsResponseModel {

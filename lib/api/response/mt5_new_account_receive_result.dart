@@ -1,23 +1,25 @@
-import '../../basic_api/generated/mt5_deposit_send.dart';
-import '../../basic_api/generated/mt5_get_settings_send.dart';
-import '../../basic_api/generated/mt5_new_account_receive.dart';
-import '../../basic_api/generated/mt5_new_account_send.dart';
-import '../../basic_api/generated/mt5_password_change_send.dart';
-import '../../basic_api/generated/mt5_password_check_send.dart';
-import '../../basic_api/generated/mt5_password_reset_send.dart';
-import '../../basic_api/generated/mt5_withdrawal_send.dart';
-import '../../helpers/helpers.dart';
-import '../../services/connection/api_manager/base_api.dart';
-import '../../services/dependency_injector/injector.dart';
-import '../exceptions/exceptions.dart';
-import '../models/base_exception_model.dart';
-import '../models/enums.dart';
-import 'mt5_deposit_receive_result.dart';
-import 'mt5_get_settings_receive_result.dart';
-import 'mt5_password_change_receive_result.dart';
-import 'mt5_password_check_receive_result.dart';
-import 'mt5_password_reset_receive_result.dart';
-import 'mt5_withdrawal_receive_result.dart';
+// ignore_for_file: prefer_single_quotes
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/api/response/mt5_deposit_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/mt5_get_settings_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/mt5_password_change_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/mt5_password_check_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/mt5_password_reset_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/mt5_withdrawal_receive_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/mt5_deposit_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/mt5_get_settings_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/mt5_new_account_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/mt5_new_account_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/mt5_password_change_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/mt5_password_check_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/mt5_password_reset_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/mt5_withdrawal_send.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+
 
 /// Mt5 new account response model class.
 abstract class Mt5NewAccountResponseModel {

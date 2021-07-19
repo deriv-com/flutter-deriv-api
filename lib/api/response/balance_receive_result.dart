@@ -1,17 +1,19 @@
-import '../../basic_api/generated/balance_receive.dart';
-import '../../basic_api/generated/balance_send.dart';
-import '../../basic_api/generated/forget_all_receive.dart';
-import '../../basic_api/generated/forget_receive.dart';
-import '../../basic_api/response.dart';
-import '../../services/connection/api_manager/base_api.dart';
-import '../../services/connection/call_manager/base_call_manager.dart';
-import '../../services/dependency_injector/injector.dart';
-import '../../helpers/helpers.dart';
-import '../exceptions/exceptions.dart';
-import '../models/base_exception_model.dart';
-import '../models/enums.dart';
-import 'forget_all_receive_result.dart';
-import 'forget_receive_result.dart';
+// ignore_for_file: prefer_single_quotes
+import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/api/response/forget_all_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/forget_receive_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/balance_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/balance_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+
 
 /// Balance response model class.
 abstract class BalanceResponseModel {

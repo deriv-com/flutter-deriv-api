@@ -1,4 +1,5 @@
-import '../../helpers/helpers.dart';
+// ignore_for_file: prefer_single_quotes
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 /// Economic calendar response model class.
 abstract class EconomicCalendarResponseModel {

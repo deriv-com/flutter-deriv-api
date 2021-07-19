@@ -23,11 +23,17 @@ StringBuffer _generateConstructor({
   }
 
   for (final SchemaModel model in children) {
+    final String typePostfix = model.classType == 'dynamic'
+        ? ''
+        : model.isRequired
+            ? ''
+            : '?';
+
     result
       ..write('${model.isRequired ? 'required' : ''} ')
       ..write(
         isSubclass
-            ? '${model.classType}${model.isRequired ? '' : '?'} ${model.fieldName},'
+            ? '${model.classType}$typePostfix ${model.fieldName},'
             : 'this.${model.fieldName},',
       );
   }

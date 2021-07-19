@@ -4,10 +4,16 @@ StringBuffer _generateProperties({required SchemaModel model}) {
   final StringBuffer result = StringBuffer();
 
   for (final SchemaModel model in model.children) {
+    final String typePostfix = model.classType == 'dynamic'
+        ? ''
+        : model.isRequired
+            ? ''
+            : '?';
+
     result.write(
       '''
           /// ${model.description}
-          final ${model.classType}${model.isRequired ? '' : '?'} ${model.fieldName};
+          final ${model.classType}$typePostfix ${model.fieldName};
         ''',
     );
   }

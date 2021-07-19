@@ -1,4 +1,4 @@
-import 'package:meta/meta.dart';
+// ignore_for_file: prefer_single_quotes
 
 
 /// P2p order confirm response model class.

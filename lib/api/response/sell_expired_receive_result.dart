@@ -1,4 +1,5 @@
-import 'package:meta/meta.dart';
+// ignore_for_file: prefer_single_quotes
+
 
 /// Sell expired response model class.
 abstract class SellExpiredResponseModel {

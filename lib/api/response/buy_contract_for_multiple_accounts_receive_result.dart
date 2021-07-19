@@ -1,4 +1,5 @@
-import '../../helpers/helpers.dart';
+// ignore_for_file: prefer_single_quotes
+
 
 /// Buy contract for multiple accounts response model class.
 abstract class BuyContractForMultipleAccountsResponseModel {

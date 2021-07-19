@@ -47,11 +47,13 @@ class APIParser extends Builder {
         isRoot: true,
       );
 
-      final List<StringBuffer> result = _addImports(
+      List<StringBuffer> result = _addImports(
         source: source,
         imports: methodsJSON?['imports'] ??
-            "// TODO(unknown): Create methods file in lib/basic_api/generated/methods for this file.\n import '../../helpers/helpers.dart';",
+            "// TODO(unknown): Create methods file in lib/basic_api/generated/methods for this file.\n import 'package:flutter_deriv_api/helpers/helpers.dart';",
       );
+
+      result = _addLinterSilencers(source: result);
 
       final File output =
           File('lib/api/response/${fileBaseName}_receive_result.dart');
@@ -85,4 +87,11 @@ List<StringBuffer> _addImports(
   final StringBuffer baseImports = StringBuffer(imports)..write('\n\n');
 
   return <StringBuffer>[baseImports, ...source];
+}
+
+List<StringBuffer> _addLinterSilencers({required List<StringBuffer> source}) {
+  final StringBuffer silencers =
+      StringBuffer('// ignore_for_file: prefer_single_quotes\n');
+
+  return <StringBuffer>[silencers, ...source];
 }

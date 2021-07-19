@@ -1,20 +1,22 @@
-import '../../basic_api/generated/buy_send.dart';
-import '../../basic_api/generated/forget_all_receive.dart';
-import '../../basic_api/generated/forget_receive.dart';
-import '../../basic_api/generated/proposal_receive.dart';
-import '../../basic_api/generated/proposal_send.dart';
-import '../../basic_api/response.dart';
-import '../../helpers/helpers.dart';
-import '../../services/connection/api_manager/base_api.dart';
-import '../../services/connection/call_manager/base_call_manager.dart';
-import '../../services/dependency_injector/injector.dart';
-import '../exceptions/contract_operations_exception.dart';
-import '../models/base_exception_model.dart';
-import '../models/enums.dart';
-import 'buy_receive_result.dart';
-import 'forget_all_receive_result.dart';
-import 'forget_receive_result.dart';
-import 'proposal_open_contract_receive_result.dart';
+// ignore_for_file: prefer_single_quotes
+import 'package:flutter_deriv_api/api/exceptions/contract_operations_exception.dart';
+import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
+import 'package:flutter_deriv_api/api/models/enums.dart';
+import 'package:flutter_deriv_api/api/response/buy_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/forget_all_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/forget_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/proposal_open_contract_receive_result.dart';
+import 'package:flutter_deriv_api/basic_api/generated/buy_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/proposal_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/proposal_send.dart';
+import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
+import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
+import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
+import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
+
 
 /// Proposal response model class.
 abstract class ProposalResponseModel {

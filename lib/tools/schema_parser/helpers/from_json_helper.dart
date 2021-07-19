@@ -16,7 +16,7 @@ StringBuffer _generateFromJson({
     if (model.fieldName == 'cashierObject' ||
         model.fieldName == 'cashierString') {
       result.write('''
-    ${model.fieldName}: ${model.fieldName}Json is ${model.fieldName == 'cashierObject' ? 'Map<String,dynamic>' : 'String'}  ? ${_getFromJsonForModel(model: model, isRoot: isRoot)} : null ,
+    ${model.fieldName}: ${model.fieldName}Json is ${model.fieldName == 'cashierObject' ? 'Map<String,dynamic>?' : 'String'}  ? ${_getFromJsonForModel(model: model, isRoot: isRoot)} : null ,
     ''');
       continue;
     }
