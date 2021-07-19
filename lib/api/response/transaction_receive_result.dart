@@ -313,7 +313,7 @@ class Transaction extends TransactionModel {
   /// Creates an instance from JSON.
   factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
         action:
-            json['action'] == null ? null : actionEnumMapper[json['action']]!,
+            json['action'] == null ? null : actionEnumMapper[json['action']],
         amount: getDouble(json['amount']),
         balance: getDouble(json['balance']),
         barrier: json['barrier'],

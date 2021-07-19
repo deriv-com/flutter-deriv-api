@@ -33,7 +33,7 @@ class PingResponse extends PingResponseModel {
     dynamic pingJson,
   ) =>
       PingResponse(
-        ping: pingJson == null ? null : pingEnumMapper[pingJson]!,
+        ping: pingJson == null ? null : pingEnumMapper[pingJson],
       );
 
   /// Converts an instance to JSON.

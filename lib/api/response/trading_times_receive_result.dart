@@ -352,7 +352,7 @@ class SymbolsItem extends SymbolsItemModel {
             : List<TradingDaysItemEnum>.from(
                 json['trading_days']?.map(
                   (dynamic item) =>
-                      item == null ? null : tradingDaysItemEnumMapper[item]!,
+                      item == null ? null : tradingDaysItemEnumMapper[item],
                 ),
               ),
       );

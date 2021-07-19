@@ -47,7 +47,7 @@ StringBuffer _generateToJson({
       default:
         model.isEnum
             ? result.write(
-                'resultMap[\'$schemaTitle\'] = ${model.enumName.camelCase}Mapper.entries.firstWhere((MapEntry<String, ${model.enumName}> entry) => entry.value == $title).key;')
+                'resultMap[\'$schemaTitle\'] = ${model.classType!.camelCase}Mapper.entries.firstWhere((MapEntry<String, ${model.classType}> entry) => entry.value == $title).key;')
             : result.write('resultMap[\'$schemaTitle\'] = $title;');
     }
   }
@@ -71,7 +71,7 @@ String _getToJsonFromArray(
     }
 
     return model.isEnum
-        ? '${model.enumName.camelCase}Mapper.entries.firstWhere((MapEntry<String, ${model.enumName}> entry) => entry.value == item).key'
+        ? '${model.classType!.camelCase}Mapper.entries.firstWhere((MapEntry<String, ${model.classType}> entry) => entry.value == item).key'
         : 'item';
   }
 

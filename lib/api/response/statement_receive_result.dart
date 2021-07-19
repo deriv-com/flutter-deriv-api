@@ -297,7 +297,7 @@ class TransactionsItem extends TransactionsItemModel {
       TransactionsItem(
         actionType: json['action_type'] == null
             ? null
-            : actionTypeEnumMapper[json['action_type']]!,
+            : actionTypeEnumMapper[json['action_type']],
         amount: getDouble(json['amount']),
         appId: json['app_id'],
         balanceAfter: getDouble(json['balance_after']),

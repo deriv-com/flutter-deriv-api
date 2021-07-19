@@ -12,6 +12,7 @@ class P2pAdvertListRequest extends Request {
     this.advertiserName,
     this.amount,
     this.counterpartyType,
+    this.favouritesOnly,
     this.limit,
     this.localCurrency,
     this.offset,
@@ -34,6 +35,9 @@ class P2pAdvertListRequest extends Request {
         advertiserName: json['advertiser_name'] as String?,
         amount: json['amount'] as num?,
         counterpartyType: json['counterparty_type'] as String?,
+        favouritesOnly: json['favourites_only'] == null
+            ? null
+            : json['favourites_only'] == 1,
         limit: json['limit'] as int?,
         localCurrency: json['local_currency'] as String?,
         offset: json['offset'] as int?,
@@ -63,6 +67,9 @@ class P2pAdvertListRequest extends Request {
   /// [Optional] Filter the adverts by `counterparty_type`.
   final String? counterpartyType;
 
+  /// [Optional] Only show adverts from favourite advertisers. Default is `false`.
+  final bool? favouritesOnly;
+
   /// [Optional] Used for paging.
   final int? limit;
 
@@ -91,6 +98,11 @@ class P2pAdvertListRequest extends Request {
         'advertiser_name': advertiserName,
         'amount': amount,
         'counterparty_type': counterpartyType,
+        'favourites_only': favouritesOnly == null
+            ? null
+            : favouritesOnly!
+                ? 1
+                : 0,
         'limit': limit,
         'local_currency': localCurrency,
         'offset': offset,
@@ -117,6 +129,7 @@ class P2pAdvertListRequest extends Request {
     String? advertiserName,
     num? amount,
     String? counterpartyType,
+    bool? favouritesOnly,
     int? limit,
     String? localCurrency,
     int? offset,
@@ -132,6 +145,7 @@ class P2pAdvertListRequest extends Request {
         advertiserName: advertiserName ?? this.advertiserName,
         amount: amount ?? this.amount,
         counterpartyType: counterpartyType ?? this.counterpartyType,
+        favouritesOnly: favouritesOnly ?? this.favouritesOnly,
         limit: limit ?? this.limit,
         localCurrency: localCurrency ?? this.localCurrency,
         offset: offset ?? this.offset,

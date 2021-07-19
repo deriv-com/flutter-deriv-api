@@ -302,7 +302,7 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
       Mt5LoginListItem(
         accountType: json['account_type'] == null
             ? null
-            : accountTypeEnumMapper[json['account_type']]!,
+            : accountTypeEnumMapper[json['account_type']],
         balance: getDouble(json['balance']),
         country: json['country'],
         currency: json['currency'],
@@ -311,12 +311,12 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
         group: json['group'],
         landingCompanyShort: json['landing_company_short'] == null
             ? null
-            : landingCompanyShortEnumMapper[json['landing_company_short']]!,
+            : landingCompanyShortEnumMapper[json['landing_company_short']],
         leverage: getDouble(json['leverage']),
         login: json['login'],
         marketType: json['market_type'] == null
             ? null
-            : marketTypeEnumMapper[json['market_type']]!,
+            : marketTypeEnumMapper[json['market_type']],
         name: json['name'],
         server: json['server'],
         serverInfo: json['server_info'] == null
@@ -324,7 +324,7 @@ class Mt5LoginListItem extends Mt5LoginListItemModel {
             : ServerInfo.fromJson(json['server_info']),
         subAccountType: json['sub_account_type'] == null
             ? null
-            : subAccountTypeEnumMapper[json['sub_account_type']]!,
+            : subAccountTypeEnumMapper[json['sub_account_type']],
       );
 
   /// Converts an instance to JSON.
@@ -436,7 +436,7 @@ class ServerInfo extends ServerInfoModel {
   factory ServerInfo.fromJson(Map<String, dynamic> json) => ServerInfo(
         environment: json['environment'] == null
             ? null
-            : environmentEnumMapper[json['environment']]!,
+            : environmentEnumMapper[json['environment']],
         geolocation: json['geolocation'] == null
             ? null
             : Geolocation.fromJson(json['geolocation']),

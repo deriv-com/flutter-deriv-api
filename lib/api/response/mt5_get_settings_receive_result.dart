@@ -297,7 +297,7 @@ class Mt5GetSettings extends Mt5GetSettingsModel {
   factory Mt5GetSettings.fromJson(Map<String, dynamic> json) => Mt5GetSettings(
         accountType: json['account_type'] == null
             ? null
-            : accountTypeEnumMapper[json['account_type']]!,
+            : accountTypeEnumMapper[json['account_type']],
         address: json['address'],
         balance: json['balance'],
         city: json['city'],
@@ -308,19 +308,19 @@ class Mt5GetSettings extends Mt5GetSettingsModel {
         group: json['group'],
         landingCompanyShort: json['landing_company_short'] == null
             ? null
-            : landingCompanyShortEnumMapper[json['landing_company_short']]!,
+            : landingCompanyShortEnumMapper[json['landing_company_short']],
         leverage: getDouble(json['leverage']),
         login: json['login'],
         marketType: json['market_type'] == null
             ? null
-            : marketTypeEnumMapper[json['market_type']]!,
+            : marketTypeEnumMapper[json['market_type']],
         name: json['name'],
         phone: json['phone'],
         phonePassword: json['phonePassword'],
         state: json['state'],
         subAccountType: json['sub_account_type'] == null
             ? null
-            : subAccountTypeEnumMapper[json['sub_account_type']]!,
+            : subAccountTypeEnumMapper[json['sub_account_type']],
         zipCode: json['zipCode'],
       );
 

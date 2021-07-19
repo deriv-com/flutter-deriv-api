@@ -80,7 +80,7 @@ String _getFromJsonForModel({
 
     default:
       fromJsonStr = model.isEnum
-          ? '$nullCheck ${model.enumName.camelCase}Mapper[$sourceFieldName]!'
+          ? '$nullCheck ${model.classType!.camelCase}Mapper[$sourceFieldName]${model.isRequired ? '!' : ''}'
           : '$sourceFieldName';
   }
 
@@ -107,7 +107,7 @@ String _getFromJsonFromArray(
     }
 
     return model.isEnum
-        ? '$nullCheck ${model.enumName.camelCase}Mapper[item]!'
+        ? '$nullCheck ${model.classType!.camelCase}Mapper[item]${model.isRequired ? '!' : ''}'
         : 'item';
   }
 

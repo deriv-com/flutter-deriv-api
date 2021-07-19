@@ -442,7 +442,7 @@ class AccountListItem extends AccountListItemModel {
       AccountListItem(
         accountType: json['account_type'] == null
             ? null
-            : accountTypeEnumMapper[json['account_type']]!,
+            : accountTypeEnumMapper[json['account_type']],
         currency: json['currency'],
         excludedUntil: getDateTime(json['excluded_until']),
         isDisabled: json['is_disabled'],
@@ -768,7 +768,7 @@ class WalletLinkedToItem extends WalletLinkedToItemModel {
         currency: json['currency'],
         platform: json['platform'] == null
             ? null
-            : platformEnumMapper[json['platform']]!,
+            : platformEnumMapper[json['platform']],
       );
 
   /// Converts an instance to JSON.
@@ -1112,7 +1112,7 @@ class WalletLinkedToItem2 extends WalletLinkedToItem2Model {
         currency: json['currency'],
         platform: json['platform'] == null
             ? null
-            : platformEnumMapper[json['platform']]!,
+            : platformEnumMapper[json['platform']],
       );
 
   /// Converts an instance to JSON.

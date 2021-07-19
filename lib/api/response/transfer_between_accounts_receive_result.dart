@@ -243,14 +243,14 @@ class AccountsItem extends AccountsItemModel {
   factory AccountsItem.fromJson(Map<String, dynamic> json) => AccountsItem(
         accountType: json['account_type'] == null
             ? null
-            : accountTypeEnumMapper[json['account_type']]!,
+            : accountTypeEnumMapper[json['account_type']],
         balance: json['balance'],
         currency: json['currency'],
         demoAccount: getBool(json['demo_account']),
         loginid: json['loginid'],
         marketType: json['market_type'] == null
             ? null
-            : marketTypeEnumMapper[json['market_type']]!,
+            : marketTypeEnumMapper[json['market_type']],
         mt5Group: json['mt5_group'],
       );
 

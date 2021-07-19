@@ -259,7 +259,7 @@ class TokensItem extends TokensItemModel {
             : List<ScopesItemEnum>.from(
                 json['scopes']?.map(
                   (dynamic item) =>
-                      item == null ? null : scopesItemEnumMapper[item]!,
+                      item == null ? null : scopesItemEnumMapper[item],
                 ),
               ),
         token: json['token'],

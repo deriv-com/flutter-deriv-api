@@ -150,7 +150,7 @@ class NewAccountVirtual extends NewAccountVirtualModel {
         currency: json['currency'],
         email: json['email'],
         oauthToken: json['oauth_token'],
-        type: json['type'] == null ? null : typeEnumMapper[json['type']]!,
+        type: json['type'] == null ? null : typeEnumMapper[json['type']],
       );
 
   /// Converts an instance to JSON.

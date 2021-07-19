@@ -7,6 +7,7 @@ const String p2pAdvertiserInfoResponse = '''
   "msg_type": "p2p_advertiser_info",
   "p2p_advertiser_info": {
     "basic_verification" : 1,
+    "favourited" : 1,
     "buy_orders_count" : 1,
     "full_verification" : 1,
     "sell_orders_count" : 1,

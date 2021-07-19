@@ -613,7 +613,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         sellTime: getDateTime(json['sell_time']),
         shortcode: json['shortcode'],
         status:
-            json['status'] == null ? null : statusEnumMapper[json['status']]!,
+            json['status'] == null ? null : statusEnumMapper[json['status']],
         tickCount: json['tick_count'],
         tickStream: json['tick_stream'] == null
             ? null

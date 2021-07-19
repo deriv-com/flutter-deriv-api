@@ -1,4 +1,3 @@
-import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/tools/schema_parser/json_schema_parser.dart';
 import 'package:recase/recase.dart';
 
@@ -6,7 +5,6 @@ part 'helpers/from_json_helper.dart';
 part 'helpers/to_json_helper.dart';
 part 'helpers/copy_with_helper.dart';
 part 'helpers/constructor_helper.dart';
-part 'helpers/enum_helper.dart';
 part 'helpers/other_helpers.dart';
 
 /// Represents dynamic type. mostly used for unknown types.
@@ -111,9 +109,6 @@ class SchemaModel extends Object {
         className: className,
         isSubclass: isSubclass,
       );
-
-  /// Gets String of enums for this model.
-  StringBuffer getEnum() => _generateEnums(model: this);
 
   /// Gets String of properties for this model.
   StringBuffer getProperties() => _generateProperties(model: this);

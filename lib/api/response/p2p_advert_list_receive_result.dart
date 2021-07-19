@@ -190,7 +190,7 @@ abstract class ListItemModel {
     this.minOrderAmountDisplay,
     this.paymentInfo,
     this.paymentMethod,
-    this.paymentMethodIds,
+    this.paymentMethodNames,
     this.remainingAmount,
     this.remainingAmountDisplay,
   });
@@ -276,11 +276,11 @@ abstract class ListItemModel {
   /// Payment instructions. Only applicable for 'sell adverts'.
   final String? paymentInfo;
 
-  /// Supported payment methods. Comma separated list.
+  /// Supported payment methods. Comma separated list of identifiers.
   final String? paymentMethod;
 
-  /// IDs of payment methods.
-  final List<int>? paymentMethodIds;
+  /// Names of supported payment methods.
+  final List<String>? paymentMethodNames;
 
   /// Amount currently available for orders, in `account_currency`. It is only visible for advertisers.
   final double? remainingAmount;
@@ -321,7 +321,7 @@ class ListItem extends ListItemModel {
     String? minOrderAmountDisplay,
     String? paymentInfo,
     String? paymentMethod,
-    List<int>? paymentMethodIds,
+    List<String>? paymentMethodNames,
     double? remainingAmount,
     String? remainingAmountDisplay,
   }) : super(
@@ -353,7 +353,7 @@ class ListItem extends ListItemModel {
           minOrderAmountDisplay: minOrderAmountDisplay,
           paymentInfo: paymentInfo,
           paymentMethod: paymentMethod,
-          paymentMethodIds: paymentMethodIds,
+          paymentMethodNames: paymentMethodNames,
           remainingAmount: remainingAmount,
           remainingAmountDisplay: remainingAmountDisplay,
         );
@@ -390,10 +390,10 @@ class ListItem extends ListItemModel {
         minOrderAmountDisplay: json['min_order_amount_display'],
         paymentInfo: json['payment_info'],
         paymentMethod: json['payment_method'],
-        paymentMethodIds: json['payment_method_ids'] == null
+        paymentMethodNames: json['payment_method_names'] == null
             ? null
-            : List<int>.from(
-                json['payment_method_ids']?.map(
+            : List<String>.from(
+                json['payment_method_names']?.map(
                   (dynamic item) => item,
                 ),
               ),
@@ -439,10 +439,10 @@ class ListItem extends ListItemModel {
     resultMap['min_order_amount_display'] = minOrderAmountDisplay;
     resultMap['payment_info'] = paymentInfo;
     resultMap['payment_method'] = paymentMethod;
-    if (paymentMethodIds != null) {
-      resultMap['payment_method_ids'] = paymentMethodIds!
+    if (paymentMethodNames != null) {
+      resultMap['payment_method_names'] = paymentMethodNames!
           .map<dynamic>(
-            (int item) => item,
+            (String item) => item,
           )
           .toList();
     }
@@ -482,7 +482,7 @@ class ListItem extends ListItemModel {
     String? minOrderAmountDisplay,
     String? paymentInfo,
     String? paymentMethod,
-    List<int>? paymentMethodIds,
+    List<String>? paymentMethodNames,
     double? remainingAmount,
     String? remainingAmountDisplay,
   }) =>
@@ -517,7 +517,7 @@ class ListItem extends ListItemModel {
             minOrderAmountDisplay ?? this.minOrderAmountDisplay,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         paymentMethod: paymentMethod ?? this.paymentMethod,
-        paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
+        paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
         remainingAmount: remainingAmount ?? this.remainingAmount,
         remainingAmountDisplay:
             remainingAmountDisplay ?? this.remainingAmountDisplay,
@@ -530,6 +530,7 @@ abstract class AdvertiserDetailsModel {
     required this.name,
     required this.id,
     this.firstName,
+    this.isFavourite,
     this.lastName,
     this.totalCompletionRate,
   });
@@ -542,6 +543,9 @@ abstract class AdvertiserDetailsModel {
 
   /// The advertiser's first name.
   final String? firstName;
+
+  /// Indicates that the advertiser is a favourite.
+  final int? isFavourite;
 
   /// The advertiser's last name.
   final String? lastName;
@@ -557,12 +561,14 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     required String id,
     required String name,
     String? firstName,
+    int? isFavourite,
     String? lastName,
     double? totalCompletionRate,
   }) : super(
           id: id,
           name: name,
           firstName: firstName,
+          isFavourite: isFavourite,
           lastName: lastName,
           totalCompletionRate: totalCompletionRate,
         );
@@ -573,6 +579,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         id: json['id'],
         name: json['name'],
         firstName: json['first_name'],
+        isFavourite: json['is_favourite'],
         lastName: json['last_name'],
         totalCompletionRate: getDouble(json['total_completion_rate']),
       );
@@ -584,6 +591,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     resultMap['id'] = id;
     resultMap['name'] = name;
     resultMap['first_name'] = firstName;
+    resultMap['is_favourite'] = isFavourite;
     resultMap['last_name'] = lastName;
     resultMap['total_completion_rate'] = totalCompletionRate;
 
@@ -595,6 +603,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     required String id,
     required String name,
     String? firstName,
+    int? isFavourite,
     String? lastName,
     double? totalCompletionRate,
   }) =>
@@ -602,6 +611,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         id: id,
         name: name,
         firstName: firstName ?? this.firstName,
+        isFavourite: isFavourite ?? this.isFavourite,
         lastName: lastName ?? this.lastName,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );

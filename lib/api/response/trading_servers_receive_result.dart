@@ -194,11 +194,11 @@ class TradingServersItem extends TradingServersItemModel {
         disabled: getBool(json['disabled']),
         environment: json['environment'] == null
             ? null
-            : environmentEnumMapper[json['environment']]!,
+            : environmentEnumMapper[json['environment']],
         geolocation: json['geolocation'] == null
             ? null
             : Geolocation.fromJson(json['geolocation']),
-        id: json['id'] == null ? null : idEnumMapper[json['id']]!,
+        id: json['id'] == null ? null : idEnumMapper[json['id']],
         messageToClient: json['message_to_client'],
         recommended: getBool(json['recommended']),
         supportedAccounts: json['supported_accounts'] == null

@@ -6,7 +6,7 @@ const String getAccountStatusResponse = '''{
   "get_account_status": {
     "authentication": {
       "document": {
-        "status": "none"
+        "status": "pending"
       },
       "identity": {
         "services": {
@@ -37,7 +37,7 @@ const String getAccountStatusResponse = '''{
             "submissions_left": 3
           }
         },
-        "status": "none"
+        "status": "pending"
       },
       "needs_verification": [
 

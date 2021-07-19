@@ -8,6 +8,8 @@ import '../request.dart';
 class CashierRequest extends Request {
   /// Initialize CashierRequest.
   const CashierRequest({
+    this.address,
+    this.amount,
     required this.cashier,
     this.provider,
     this.type,
@@ -22,6 +24,8 @@ class CashierRequest extends Request {
 
   /// Creates an instance from JSON.
   factory CashierRequest.fromJson(Map<String, dynamic> json) => CashierRequest(
+        address: json['address'] as String?,
+        amount: json['amount'] as num?,
         cashier: json['cashier'] as String?,
         provider: json['provider'] as String?,
         type: json['type'] as String?,
@@ -30,13 +34,19 @@ class CashierRequest extends Request {
         reqId: json['req_id'] as int?,
       );
 
+  /// [Optional] Address for crypto withdrawal. Only applicable for `api` type.
+  final String? address;
+
+  /// [Optional] Amount for crypto withdrawal. Only applicable for `api` type.
+  final num? amount;
+
   /// Operation which needs to be requested from cashier
   final String? cashier;
 
   /// [Optional] Cashier provider. `crypto` will be default option for crypto currency accounts.
   final String? provider;
 
-  /// [Optional] Data need to be returned from cashier. `api` is supported only for `crypto` provider with `deposit` operation.
+  /// [Optional] Data need to be returned from cashier. `api` is supported only for `crypto` provider.
   final String? type;
 
   /// [Optional] Email verification code (received from a `verify_email` call, which must be done first)
@@ -45,6 +55,8 @@ class CashierRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'address': address,
+        'amount': amount,
         'cashier': cashier,
         'provider': provider,
         'type': type,
@@ -56,6 +68,8 @@ class CashierRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   CashierRequest copyWith({
+    String? address,
+    num? amount,
     String? cashier,
     String? provider,
     String? type,
@@ -64,6 +78,8 @@ class CashierRequest extends Request {
     int? reqId,
   }) =>
       CashierRequest(
+        address: address ?? this.address,
+        amount: amount ?? this.amount,
         cashier: cashier ?? this.cashier,
         provider: provider ?? this.provider,
         type: type ?? this.type,

@@ -288,17 +288,17 @@ class Mt5NewAccount extends Mt5NewAccountModel {
   factory Mt5NewAccount.fromJson(Map<String, dynamic> json) => Mt5NewAccount(
         accountType: json['account_type'] == null
             ? null
-            : accountTypeEnumMapper[json['account_type']]!,
+            : accountTypeEnumMapper[json['account_type']],
         balance: getDouble(json['balance']),
         currency: json['currency'],
         displayBalance: json['display_balance'],
         login: json['login'],
         mt5AccountCategory: json['mt5_account_category'] == null
             ? null
-            : mt5AccountCategoryEnumMapper[json['mt5_account_category']]!,
+            : mt5AccountCategoryEnumMapper[json['mt5_account_category']],
         mt5AccountType: json['mt5_account_type'] == null
             ? null
-            : mt5AccountTypeEnumMapper[json['mt5_account_type']]!,
+            : mt5AccountTypeEnumMapper[json['mt5_account_type']],
       );
 
   /// Converts an instance to JSON.

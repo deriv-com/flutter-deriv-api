@@ -1,4 +1,5 @@
 import 'package:dart_style/dart_style.dart';
+import 'package:flutter_deriv_api/helpers/helpers.dart';
 
 import 'package:recase/recase.dart';
 
@@ -94,7 +95,7 @@ class JsonSchemaParser {
             ${model.getCopyWith()}
           }
 
-          ${model.getEnum()}
+          ${_generateEnums()}
         ''',
       );
 
@@ -244,10 +245,20 @@ class JsonSchemaParser {
     }
 
     if (model.isEnum) {
-      if (enumModels.any((SchemaModel previousModel) =>
-          previousModel.schemaTitle == model.schemaTitle)) {
+      if (enumModels.any(
+        (SchemaModel oldEnum) => _isEnumsEqual(lhs: oldEnum, rhs: model),
+      )) {
         return model.enumName;
       }
+
+      for (final SchemaModel previousEnumModel in enumModels) {
+        if (previousEnumModel.schemaTitle == model.schemaTitle) {
+          enumModels.add(model);
+
+          return '${model.enumName}2';
+        }
+      }
+
       enumModels.add(model);
 
       return model.enumName;
@@ -289,6 +300,54 @@ class JsonSchemaParser {
       default:
         return _typeMap[model.schemaType] ?? dynamicType;
     }
+  }
+
+  static bool _isEnumsEqual({
+    required SchemaModel lhs,
+    required SchemaModel rhs,
+  }) {
+    if (lhs.schemaTitle != rhs.schemaTitle) {
+      return false;
+    }
+    if (lhs.enumValues!.length == rhs.enumValues!.length) {
+      for (int i = 0; i < lhs.enumValues!.length; i++) {
+        if (lhs.enumValues![i] != rhs.enumValues![i]) {
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
+  }
+
+  /// Generating enums and it's mappers from given models.
+  static StringBuffer _generateEnums() {
+    final StringBuffer result = StringBuffer();
+
+    final String enumString =
+        JsonSchemaParser.enumModels.map((SchemaModel model) {
+      final String enumName = model.classType!;
+      final String mapString = model.enumValues!
+          .map((String enumValue) =>
+              '"${enumValue.replaceAll(r'$', r'\$')}": $enumName.${getEnumName(enumValue)},')
+          .join();
+
+      return '''
+        /// $enumName mapper.
+        final Map<String,$enumName> ${enumName.camelCase}Mapper = <String,$enumName>{
+            $mapString
+          };
+
+        /// ${model.schemaTitle.pascalCase} Enum.
+        enum $enumName{
+          ${model.enumValues!.map((String enumValue) => '/// $enumValue.\n${getEnumName(enumValue)},').join('\n')}
+          }
+
+        ''';
+    }).join('\n');
+    result.write(enumString);
+    JsonSchemaParser.enumModels.clear();
+    return result;
   }
 
   static bool _isDateTime(SchemaModel model) {
@@ -403,11 +462,11 @@ class JsonSchemaParser {
           return cashierMultiType;
         }
       }
-      if (type == objectType && entry.value['properties'] == null) {
-        // This is where the provided entry is [object] but doesn't have [properties],
-        // Assume this case as Map<String,dynamic> at the end.
-        type = objectUnknownType;
-      }
+    }
+    if (type == objectType && entry.value['properties'] == null) {
+      // This is where the provided entry is [object] but doesn't have [properties],
+      // Assume this case as Map<String,dynamic> at the end.
+      type = objectUnknownType;
     }
 
     return type ?? objectUnknownType;

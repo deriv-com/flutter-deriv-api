@@ -286,7 +286,7 @@ class WebsiteStatus extends WebsiteStatusModel {
         message: json['message'],
         siteStatus: json['site_status'] == null
             ? null
-            : siteStatusEnumMapper[json['site_status']]!,
+            : siteStatusEnumMapper[json['site_status']],
         supportedLanguages: json['supported_languages'] == null
             ? null
             : List<String>.from(
