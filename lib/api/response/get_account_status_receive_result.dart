@@ -718,7 +718,7 @@ abstract class IdentityModel {
   final Services? services;
 
   /// This represent the current status for proof of identity document submitted for authentication.
-  final StatusEnum? status;
+  final StatusEnum2? status;
 }
 
 /// Identity class.
@@ -727,7 +727,7 @@ class Identity extends IdentityModel {
   Identity({
     DateTime? expiryDate,
     Services? services,
-    StatusEnum? status,
+    StatusEnum2? status,
   }) : super(
           expiryDate: expiryDate,
           services: services,
@@ -741,7 +741,7 @@ class Identity extends IdentityModel {
             ? null
             : Services.fromJson(json['services']),
         status:
-            json['status'] == null ? null : statusEnumMapper[json['status']],
+            json['status'] == null ? null : statusEnum2Mapper[json['status']],
       );
 
   /// Converts an instance to JSON.
@@ -752,9 +752,9 @@ class Identity extends IdentityModel {
     if (services != null) {
       resultMap['services'] = services!.toJson();
     }
-    resultMap['status'] = statusEnumMapper.entries
+    resultMap['status'] = statusEnum2Mapper.entries
         .firstWhere(
-            (MapEntry<String, StatusEnum> entry) => entry.value == status)
+            (MapEntry<String, StatusEnum2> entry) => entry.value == status)
         .key;
 
     return resultMap;
@@ -764,7 +764,7 @@ class Identity extends IdentityModel {
   Identity copyWith({
     DateTime? expiryDate,
     Services? services,
-    StatusEnum? status,
+    StatusEnum2? status,
   }) =>
       Identity(
         expiryDate: expiryDate ?? this.expiryDate,
@@ -857,7 +857,7 @@ abstract class IdvModel {
   final Map<String, dynamic>? reportedProperties;
 
   /// This represents the status of the latest IDV check.
-  final StatusEnum? status;
+  final StatusEnum2? status;
 
   /// This shows the number of IDV submissions left for the client
   final int? submissionsLeft;
@@ -869,7 +869,7 @@ class Idv extends IdvModel {
   Idv({
     List<String>? lastRejected,
     Map<String, dynamic>? reportedProperties,
-    StatusEnum? status,
+    StatusEnum2? status,
     int? submissionsLeft,
   }) : super(
           lastRejected: lastRejected,
@@ -889,7 +889,7 @@ class Idv extends IdvModel {
               ),
         reportedProperties: json['reported_properties'],
         status:
-            json['status'] == null ? null : statusEnumMapper[json['status']],
+            json['status'] == null ? null : statusEnum2Mapper[json['status']],
         submissionsLeft: json['submissions_left'],
       );
 
@@ -905,9 +905,9 @@ class Idv extends IdvModel {
           .toList();
     }
     resultMap['reported_properties'] = reportedProperties;
-    resultMap['status'] = statusEnumMapper.entries
+    resultMap['status'] = statusEnum2Mapper.entries
         .firstWhere(
-            (MapEntry<String, StatusEnum> entry) => entry.value == status)
+            (MapEntry<String, StatusEnum2> entry) => entry.value == status)
         .key;
     resultMap['submissions_left'] = submissionsLeft;
 
@@ -918,7 +918,7 @@ class Idv extends IdvModel {
   Idv copyWith({
     List<String>? lastRejected,
     Map<String, dynamic>? reportedProperties,
-    StatusEnum? status,
+    StatusEnum2? status,
     int? submissionsLeft,
   }) =>
       Idv(
@@ -936,14 +936,14 @@ abstract class ManualModel {
   });
 
   /// This represents the status of the current manual POI check.
-  final StatusEnum? status;
+  final StatusEnum2? status;
 }
 
 /// Manual class.
 class Manual extends ManualModel {
   /// Initializes Manual class.
   Manual({
-    StatusEnum? status,
+    StatusEnum2? status,
   }) : super(
           status: status,
         );
@@ -951,16 +951,16 @@ class Manual extends ManualModel {
   /// Creates an instance from JSON.
   factory Manual.fromJson(Map<String, dynamic> json) => Manual(
         status:
-            json['status'] == null ? null : statusEnumMapper[json['status']],
+            json['status'] == null ? null : statusEnum2Mapper[json['status']],
       );
 
   /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    resultMap['status'] = statusEnumMapper.entries
+    resultMap['status'] = statusEnum2Mapper.entries
         .firstWhere(
-            (MapEntry<String, StatusEnum> entry) => entry.value == status)
+            (MapEntry<String, StatusEnum2> entry) => entry.value == status)
         .key;
 
     return resultMap;
@@ -968,7 +968,7 @@ class Manual extends ManualModel {
 
   /// Creates a copy of instance with given parameters.
   Manual copyWith({
-    StatusEnum? status,
+    StatusEnum2? status,
   }) =>
       Manual(
         status: status ?? this.status,
@@ -1003,7 +1003,7 @@ abstract class OnfidoModel {
   final Map<String, dynamic>? reportedProperties;
 
   /// This represents the status of the latest Onfido check.
-  final StatusEnum? status;
+  final StatusEnum2? status;
 
   /// This shows the number of Onfido submissions left for the client
   final int? submissionsLeft;
@@ -1018,7 +1018,7 @@ class Onfido extends OnfidoModel {
     int? isCountrySupported,
     List<String>? lastRejected,
     Map<String, dynamic>? reportedProperties,
-    StatusEnum? status,
+    StatusEnum2? status,
     int? submissionsLeft,
   }) : super(
           countryCode: countryCode,
@@ -1050,7 +1050,7 @@ class Onfido extends OnfidoModel {
               ),
         reportedProperties: json['reported_properties'],
         status:
-            json['status'] == null ? null : statusEnumMapper[json['status']],
+            json['status'] == null ? null : statusEnum2Mapper[json['status']],
         submissionsLeft: json['submissions_left'],
       );
 
@@ -1075,9 +1075,9 @@ class Onfido extends OnfidoModel {
           .toList();
     }
     resultMap['reported_properties'] = reportedProperties;
-    resultMap['status'] = statusEnumMapper.entries
+    resultMap['status'] = statusEnum2Mapper.entries
         .firstWhere(
-            (MapEntry<String, StatusEnum> entry) => entry.value == status)
+            (MapEntry<String, StatusEnum2> entry) => entry.value == status)
         .key;
     resultMap['submissions_left'] = submissionsLeft;
 
@@ -1091,7 +1091,7 @@ class Onfido extends OnfidoModel {
     int? isCountrySupported,
     List<String>? lastRejected,
     Map<String, dynamic>? reportedProperties,
-    StatusEnum? status,
+    StatusEnum2? status,
     int? submissionsLeft,
   }) =>
       Onfido(

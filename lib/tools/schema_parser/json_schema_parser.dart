@@ -248,7 +248,7 @@ class JsonSchemaParser {
       if (enumModels.any(
         (SchemaModel oldEnum) => _isEnumsEqual(lhs: oldEnum, rhs: model),
       )) {
-        return model.enumName;
+        return model.classType!;
       }
 
       for (final SchemaModel previousEnumModel in enumModels) {
@@ -315,6 +315,7 @@ class JsonSchemaParser {
           return false;
         }
       }
+      rhs.classType = lhs.classType;
       return true;
     }
     return false;
