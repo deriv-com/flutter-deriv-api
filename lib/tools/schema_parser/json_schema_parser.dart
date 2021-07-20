@@ -474,12 +474,16 @@ class JsonSchemaParser {
   }
 
   static bool _isBoolean(dynamic entry) {
-    final bool hasTwoElement = entry.value['enum']?.length == 2;
-    final bool isSuccessType = hasTwoElement &&
-        entry.value['enum'][0] == 0 &&
-        entry.value['enum'][1] == 1;
+    final List<dynamic> enumValues = entry.value['enum'] ?? <dynamic>[];
+    final String description = entry.value['description'] ?? '';
+    final bool hasTwoElement = enumValues.length == 2;
+    final bool isSuccessType =
+        hasTwoElement && enumValues.contains(1) && enumValues.contains(0);
+    final bool isDescriptiveBool = description.contains('Must be `1`') ||
+        description.contains('Must be 1');
+    final bool isInteger = entry.value['type'] == 'integer';
 
-    return entry.value['type'] == 'integer' && isSuccessType;
+    return isInteger && isSuccessType || isDescriptiveBool;
   }
 
   static String _preparePropertyDescription({

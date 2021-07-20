@@ -199,8 +199,8 @@ abstract class P2pAdvertiserCreateModel {
   /// Amount of funds available to sell on P2P. May be less than account balance according to deposit methods used.
   final double? balanceAvailable;
 
-  /// Boolean value: 1 or 0, indicating whether the advertiser's identify has been verified.
-  final int? basicVerification;
+  /// Boolean value: `true` or `false`, indicating whether the advertiser's identify has been verified.
+  final bool? basicVerification;
 
   /// The percentage of completed orders out of total orders as a buyer within the past 30 days.
   final double? buyCompletionRate;
@@ -223,8 +223,8 @@ abstract class P2pAdvertiserCreateModel {
   /// Default description that can be used every time an advert is created.
   final String? defaultAdvertDescription;
 
-  /// Boolean value: 1 or 0, indicating whether the advertiser's address has been verified.
-  final int? fullVerification;
+  /// Boolean value: `true` or `false`, indicating whether the advertiser's address has been verified.
+  final bool? fullVerification;
 
   /// The average time in seconds taken to release funds as a seller within the past 30 days.
   final int? releaseTimeAvg;
@@ -258,7 +258,7 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
     required int sellOrdersCount,
     required int totalOrdersCount,
     double? balanceAvailable,
-    int? basicVerification,
+    bool? basicVerification,
     double? buyCompletionRate,
     int? cancelTimeAvg,
     String? dailyBuy,
@@ -266,7 +266,7 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
     String? dailySell,
     String? dailySellLimit,
     String? defaultAdvertDescription,
-    int? fullVerification,
+    bool? fullVerification,
     int? releaseTimeAvg,
     double? sellCompletionRate,
     bool? showName,
@@ -320,7 +320,7 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         sellOrdersCount: json['sell_orders_count'],
         totalOrdersCount: json['total_orders_count'],
         balanceAvailable: getDouble(json['balance_available']),
-        basicVerification: json['basic_verification'],
+        basicVerification: getBool(json['basic_verification']),
         buyCompletionRate: getDouble(json['buy_completion_rate']),
         cancelTimeAvg: json['cancel_time_avg'],
         dailyBuy: json['daily_buy'],
@@ -328,7 +328,7 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         dailySell: json['daily_sell'],
         dailySellLimit: json['daily_sell_limit'],
         defaultAdvertDescription: json['default_advert_description'],
-        fullVerification: json['full_verification'],
+        fullVerification: getBool(json['full_verification']),
         releaseTimeAvg: json['release_time_avg'],
         sellCompletionRate: getDouble(json['sell_completion_rate']),
         showName: getBool(json['show_name']),
@@ -388,7 +388,7 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
     required int sellOrdersCount,
     required int totalOrdersCount,
     double? balanceAvailable,
-    int? basicVerification,
+    bool? basicVerification,
     double? buyCompletionRate,
     int? cancelTimeAvg,
     String? dailyBuy,
@@ -396,7 +396,7 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
     String? dailySell,
     String? dailySellLimit,
     String? defaultAdvertDescription,
-    int? fullVerification,
+    bool? fullVerification,
     int? releaseTimeAvg,
     double? sellCompletionRate,
     bool? showName,

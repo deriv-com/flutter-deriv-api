@@ -247,14 +247,17 @@ class APIBuilder extends Builder {
                   ? 'bool'
                   : property.type?.toString();
 
-  static bool _isBoolean(String key, JsonSchema property) =>
-      key == 'subscribe' ||
-      property.description!.contains('Must be `1`') ||
-      property.description!.contains('Must be 1') ||
-      property.type?.toString() == 'integer' &&
-          property.enumValues?.length == 2 &&
-          property.enumValues!.first == 0 &&
-          property.enumValues!.last == 1;
+  static bool _isBoolean(String key, JsonSchema property) {
+    final List<dynamic> enumValues = property.enumValues ?? <dynamic>[];
+    
+    return key == 'subscribe' ||
+        property.description!.contains('Must be `1`') ||
+        property.description!.contains('Must be 1') ||
+        property.type?.toString() == 'integer' &&
+            enumValues.length == 2 &&
+            enumValues.contains(0) &&
+            enumValues.contains(1);
+  }
 
   static StringBuffer _getFromJsonMethod(
     String classFullName,

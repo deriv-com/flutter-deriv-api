@@ -196,7 +196,7 @@ abstract class GetAccountStatusModel {
   final String riskClassification;
 
   /// Indicates whether the client should be prompted to authenticate their account.
-  final int promptClientToAuthenticate;
+  final bool promptClientToAuthenticate;
 
   /// Provides cashier details for client currency.
   final Map<String, CurrencyConfigProperty> currencyConfig;
@@ -219,7 +219,7 @@ class GetAccountStatus extends GetAccountStatusModel {
   /// Initializes Get account status class.
   GetAccountStatus({
     required Map<String, CurrencyConfigProperty> currencyConfig,
-    required int promptClientToAuthenticate,
+    required bool promptClientToAuthenticate,
     required String riskClassification,
     required List<String> status,
     Authentication? authentication,
@@ -247,7 +247,8 @@ class GetAccountStatus extends GetAccountStatusModel {
                     (MapEntry<String, dynamic> entry) =>
                         MapEntry<String, CurrencyConfigProperty>(entry.key,
                             CurrencyConfigProperty.fromJson(entry.value)))),
-        promptClientToAuthenticate: json['prompt_client_to_authenticate'],
+        promptClientToAuthenticate:
+            getBool(json['prompt_client_to_authenticate'])!,
         riskClassification: json['risk_classification'],
         status: List<String>.from(
           json['status'].map(
@@ -319,7 +320,7 @@ class GetAccountStatus extends GetAccountStatusModel {
   /// Creates a copy of instance with given parameters.
   GetAccountStatus copyWith({
     required Map<String, CurrencyConfigProperty> currencyConfig,
-    required int promptClientToAuthenticate,
+    required bool promptClientToAuthenticate,
     required String riskClassification,
     required List<String> status,
     Authentication? authentication,
@@ -994,7 +995,7 @@ abstract class OnfidoModel {
   final List<String>? documents;
 
   /// This shows the information if the country is supported by Onfido
-  final int? isCountrySupported;
+  final bool? isCountrySupported;
 
   /// Show the last Onfido reported reasons for the rejected cases
   final List<String>? lastRejected;
@@ -1015,7 +1016,7 @@ class Onfido extends OnfidoModel {
   Onfido({
     String? countryCode,
     List<String>? documents,
-    int? isCountrySupported,
+    bool? isCountrySupported,
     List<String>? lastRejected,
     Map<String, dynamic>? reportedProperties,
     StatusEnum2? status,
@@ -1040,7 +1041,7 @@ class Onfido extends OnfidoModel {
                   (dynamic item) => item,
                 ),
               ),
-        isCountrySupported: json['is_country_supported'],
+        isCountrySupported: getBool(json['is_country_supported']),
         lastRejected: json['last_rejected'] == null
             ? null
             : List<String>.from(
@@ -1088,7 +1089,7 @@ class Onfido extends OnfidoModel {
   Onfido copyWith({
     String? countryCode,
     List<String>? documents,
-    int? isCountrySupported,
+    bool? isCountrySupported,
     List<String>? lastRejected,
     Map<String, dynamic>? reportedProperties,
     StatusEnum2? status,

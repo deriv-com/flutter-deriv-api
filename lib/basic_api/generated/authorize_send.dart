@@ -21,14 +21,16 @@ class AuthorizeRequest extends Request {
   /// Creates an instance from JSON.
   factory AuthorizeRequest.fromJson(Map<String, dynamic> json) =>
       AuthorizeRequest(
-        addToLoginHistory: json['add_to_login_history'] as int?,
+        addToLoginHistory: json['add_to_login_history'] == null
+            ? null
+            : json['add_to_login_history'] == 1,
         authorize: json['authorize'] as String?,
         passthrough: json['passthrough'] as Map<String, dynamic>?,
         reqId: json['req_id'] as int?,
       );
 
   /// [Optional] Send this when you use api tokens for authorization and want to track activity using `login_history` call.
-  final int? addToLoginHistory;
+  final bool? addToLoginHistory;
 
   /// Authentication token. May be retrieved from https://www.binary.com/en/user/security/api_tokenws.html
   final String? authorize;
@@ -36,7 +38,11 @@ class AuthorizeRequest extends Request {
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'add_to_login_history': addToLoginHistory,
+        'add_to_login_history': addToLoginHistory == null
+            ? null
+            : addToLoginHistory!
+                ? 1
+                : 0,
         'authorize': authorize,
         'passthrough': passthrough,
         'req_id': reqId,
@@ -45,7 +51,7 @@ class AuthorizeRequest extends Request {
   /// Creates a copy of instance with given parameters
   @override
   AuthorizeRequest copyWith({
-    int? addToLoginHistory,
+    bool? addToLoginHistory,
     String? authorize,
     Map<String, dynamic>? passthrough,
     int? reqId,

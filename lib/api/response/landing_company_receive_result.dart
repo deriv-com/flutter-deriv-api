@@ -706,8 +706,8 @@ abstract class FinancialCompanyModel {
   /// Landing Company country of incorporation
   final String? country;
 
-  /// Flag to indicate whether reality check is applicable for this Landing Company. `1`: applicable, `0`: not applicable. The Reality Check is a feature that gives a summary of the client's trades and account balances on a regular basis throughout his session, and is a regulatory requirement for certain Landing Companies.
-  final int? hasRealityCheck;
+  /// Flag to indicate whether reality check is applicable for this Landing Company. `true`: applicable, `false`: not applicable. The Reality Check is a feature that gives a summary of the client's trades and account balances on a regular basis throughout his session, and is a regulatory requirement for certain Landing Companies.
+  final bool? hasRealityCheck;
 
   /// Allowed contract types for this Landing Company
   final List<String>? legalAllowedContractCategories;
@@ -735,7 +735,7 @@ class FinancialCompany extends FinancialCompanyModel {
     List<String>? address,
     Map<String, dynamic>? changeableFields,
     String? country,
-    int? hasRealityCheck,
+    bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
@@ -767,7 +767,7 @@ class FinancialCompany extends FinancialCompanyModel {
               ),
         changeableFields: json['changeable_fields'],
         country: json['country'],
-        hasRealityCheck: json['has_reality_check'],
+        hasRealityCheck: getBool(json['has_reality_check']),
         legalAllowedContractCategories:
             json['legal_allowed_contract_categories'] == null
                 ? null
@@ -843,7 +843,7 @@ class FinancialCompany extends FinancialCompanyModel {
     List<String>? address,
     Map<String, dynamic>? changeableFields,
     String? country,
-    int? hasRealityCheck,
+    bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,

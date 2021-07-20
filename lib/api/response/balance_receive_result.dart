@@ -286,8 +286,8 @@ abstract class AccountsPropertyModel {
   /// Type of account.
   final TypeEnum type;
 
-  /// Boolean value of 1 or 0. Indicates the status of account. 1 indicates account is good and accessible.
-  final int status;
+  /// Boolean value of `true` or `false`. Indicates the status of account. `true` indicates account is good and accessible.
+  final bool status;
 
   /// If set to `true`, this is a demo account.
   final bool demoAccount;
@@ -310,7 +310,7 @@ class AccountsProperty extends AccountsPropertyModel {
     required double convertedAmount,
     required String currency,
     required bool demoAccount,
-    required int status,
+    required bool status,
     required TypeEnum type,
   }) : super(
           balance: balance,
@@ -328,7 +328,7 @@ class AccountsProperty extends AccountsPropertyModel {
         convertedAmount: getDouble(json['converted_amount'])!,
         currency: json['currency'],
         demoAccount: getBool(json['demo_account'])!,
-        status: json['status'],
+        status: getBool(json['status'])!,
         type: typeEnumMapper[json['type']]!,
       );
 
@@ -354,7 +354,7 @@ class AccountsProperty extends AccountsPropertyModel {
     required double convertedAmount,
     required String currency,
     required bool demoAccount,
-    required int status,
+    required bool status,
     required TypeEnum type,
   }) =>
       AccountsProperty(

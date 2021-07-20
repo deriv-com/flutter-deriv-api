@@ -223,8 +223,8 @@ abstract class P2pAdvertiserInfoModel {
   /// The advertiser's identification number.
   final String id;
 
-  /// Boolean value: 1 or 0, indicating whether the advertiser's address has been verified.
-  final int fullVerification;
+  /// Boolean value: `true` or `false`, indicating whether the advertiser's address has been verified.
+  final bool fullVerification;
 
   /// Number of other users who have favourited this advertiser.
   final int favourited;
@@ -235,8 +235,8 @@ abstract class P2pAdvertiserInfoModel {
   /// The number of buy order completed within the past 30 days.
   final int buyOrdersCount;
 
-  /// Boolean value: 1 or 0, indicating whether the advertiser's identify has been verified.
-  final int basicVerification;
+  /// Boolean value: `true` or `false`, indicating whether the advertiser's identify has been verified.
+  final bool basicVerification;
 
   /// Amount of funds available to sell on P2P. May be less than account balance according to deposit methods used.
   final double? balanceAvailable;
@@ -318,11 +318,11 @@ abstract class P2pAdvertiserInfoModel {
 class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
   /// Initializes P2p advertiser info class.
   P2pAdvertiserInfo({
-    required int basicVerification,
+    required bool basicVerification,
     required int buyOrdersCount,
     required DateTime createdTime,
     required int favourited,
-    required int fullVerification,
+    required bool fullVerification,
     required String id,
     required bool isApproved,
     required bool isListed,
@@ -396,11 +396,11 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
   /// Creates an instance from JSON.
   factory P2pAdvertiserInfo.fromJson(Map<String, dynamic> json) =>
       P2pAdvertiserInfo(
-        basicVerification: json['basic_verification'],
+        basicVerification: getBool(json['basic_verification'])!,
         buyOrdersCount: json['buy_orders_count'],
         createdTime: getDateTime(json['created_time'])!,
         favourited: json['favourited'],
-        fullVerification: json['full_verification'],
+        fullVerification: getBool(json['full_verification'])!,
         id: json['id'],
         isApproved: getBool(json['is_approved'])!,
         isListed: getBool(json['is_listed'])!,
@@ -480,11 +480,11 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
 
   /// Creates a copy of instance with given parameters.
   P2pAdvertiserInfo copyWith({
-    required int basicVerification,
+    required bool basicVerification,
     required int buyOrdersCount,
     required DateTime createdTime,
     required int favourited,
-    required int fullVerification,
+    required bool fullVerification,
     required String id,
     required bool isApproved,
     required bool isListed,
