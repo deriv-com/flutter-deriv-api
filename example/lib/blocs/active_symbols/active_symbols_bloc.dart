@@ -10,7 +10,6 @@ part 'active_symbols_state.dart';
 
 /// ActiveSymbolsBloc
 class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
-  
   /// ActiveSymbolsBloc initializer
   ActiveSymbolsBloc() : super(ActiveSymbolsLoading());
 
@@ -27,7 +26,6 @@ class ActiveSymbolsBloc extends Bloc<ActiveSymbolsEvent, ActiveSymbolsState> {
       }
     } else if (event is SelectActiveSymbol) {
       if (state is ActiveSymbolsLoaded) {
-        // ignore: avoid_as
         final ActiveSymbolsLoaded loadedState = state as ActiveSymbolsLoaded;
 
         yield ActiveSymbolsLoaded(
