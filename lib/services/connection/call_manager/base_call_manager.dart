@@ -78,7 +78,7 @@ abstract class BaseCallManager<T> {
 
     callHistory.pushOutgoing(
       timestamp: DateTime.now().millisecondsSinceEpoch,
-      method: requestWithId.msgType,
+      method: requestWithId.msgType ?? 'unknown',
       message: prepareRequest,
     );
 

@@ -28,7 +28,5 @@ class SubscriptionStream<T> {
   void add(T message) => _streamController.add(message);
 
   /// Whenever the request is unsubscribed, this method will be invoked to broadcast cast done message to all of its listeners.
-  Future<void> closeStream() async {
-    await _streamController.close();
-  }
+  Future<void> closeStream() async => _streamController.close();
 }
