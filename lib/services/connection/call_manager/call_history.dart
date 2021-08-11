@@ -22,16 +22,12 @@ class CallHistory {
 
   /// Record a message that was received from the remote endpoint
   void pushIncoming({
-    int? timestamp,
-    String? method,
-    Object? message,
+    required int timestamp,
+    required String method,
+    required Object message,
   }) {
     incoming.add(
-      CallHistoryEntry(
-        timeStamp: timestamp,
-        method: method,
-        message: message,
-      ),
+      CallHistoryEntry(timeStamp: timestamp, method: method, message: message),
     );
 
     trimIncoming();
@@ -39,16 +35,12 @@ class CallHistory {
 
   /// Record a message being sent to the remote endpoint
   void pushOutgoing({
-    int? timestamp,
-    String? method,
-    Object? message,
+    required int timestamp,
+    required String method,
+    required Object message,
   }) {
     outgoing.add(
-      CallHistoryEntry(
-        timeStamp: timestamp,
-        method: method,
-        message: message,
-      ),
+      CallHistoryEntry(timeStamp: timestamp, method: method, message: message),
     );
 
     trimOutgoing();

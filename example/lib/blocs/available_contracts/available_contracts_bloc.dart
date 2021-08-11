@@ -20,9 +20,11 @@ class AvailableContractsBloc
       : super(AvailableContractsLoading()) {
     activeSymbolsBloc.stream.listen((ActiveSymbolsState activeSymbolsState) {
       if (activeSymbolsState is ActiveSymbolsLoaded) {
-        add(FetchAvailableContracts(
-          activeSymbol: activeSymbolsState.selectedSymbol,
-        ));
+        add(
+          FetchAvailableContracts(
+            activeSymbol: activeSymbolsState.selectedSymbol,
+          ),
+        );
       }
     });
   }
@@ -44,8 +46,8 @@ class AvailableContractsBloc
       }
     } else if (event is SelectContract) {
       if (state is AvailableContractsLoaded) {
-        // ignore: avoid_as
-        final AvailableContractsLoaded loadedState = state as AvailableContractsLoaded;
+        final AvailableContractsLoaded loadedState =
+            state as AvailableContractsLoaded;
 
         yield AvailableContractsLoaded(
           contracts: loadedState.contracts,
@@ -62,7 +64,7 @@ class AvailableContractsBloc
   Future<ContractsForSymbol> _fetchAvailableContracts(
     ActiveSymbol selectedSymbol,
   ) async =>
-      ContractsForSymbol.fetchContractsForSymbol(ContractsForRequest(
-        contractsFor: selectedSymbol.symbol,
-      ));
+      ContractsForSymbol.fetchContractsForSymbol(
+        ContractsForRequest(contractsFor: selectedSymbol.symbol),
+      );
 }
