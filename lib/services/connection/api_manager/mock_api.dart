@@ -122,9 +122,7 @@ class MockAPI extends BaseAPI {
   void addToChannel(Map<String, dynamic> request) {}
 
   @override
-  Future<T> call<T>({
-    required Request request,
-  }) =>
+  Future<T> call<T>({required Request request}) =>
       _getFutureResponse<T>(request);
 
   @override
@@ -135,9 +133,7 @@ class MockAPI extends BaseAPI {
       _getStreamResponse(request);
 
   @override
-  Future<ForgetResponse> unsubscribe({
-    required String? subscriptionId,
-  }) async =>
+  Future<ForgetResponse> unsubscribe({required String? subscriptionId}) async =>
       const ForgetResponse(forget: true);
 
   @override
@@ -157,7 +153,6 @@ class MockAPI extends BaseAPI {
           );
 
           if (response is T) {
-            // ignore: avoid_as
             return response as T;
           }
 
