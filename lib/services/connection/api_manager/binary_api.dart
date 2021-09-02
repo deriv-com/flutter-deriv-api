@@ -9,6 +9,7 @@ import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
+import 'package:flutter_deriv_api/helpers/miscellaneous_helper.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/connection_information.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/base_call_manager.dart';
@@ -16,7 +17,6 @@ import 'package:flutter_deriv_api/services/connection/call_manager/call_history.
 import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
-import 'package:flutter_deriv_api/utils/user_agent.dart';
 
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/status.dart' as status;
