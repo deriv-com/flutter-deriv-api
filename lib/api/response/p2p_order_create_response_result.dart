@@ -1,19 +1,8 @@
 // ignore_for_file: prefer_single_quotes
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
-import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/response/forget_all_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/forget_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/p2p_order_cancel_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/p2p_order_confirm_receive_result.dart';
-import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/p2p_order_cancel_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/p2p_order_cancel_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/p2p_order_confirm_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/p2p_order_confirm_send.dart';
-import 'package:flutter_deriv_api/basic_api/generated/p2p_order_info_receive.dart';
-import 'package:flutter_deriv_api/basic_api/generated/p2p_order_info_send.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_order_create_receive.dart';
+import 'package:flutter_deriv_api/basic_api/generated/p2p_order_create_send.dart';
 import 'package:flutter_deriv_api/basic_api/response.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 import 'package:flutter_deriv_api/services/connection/api_manager/base_api.dart';
@@ -21,41 +10,41 @@ import 'package:flutter_deriv_api/services/connection/call_manager/base_call_man
 import 'package:flutter_deriv_api/services/dependency_injector/injector.dart';
 
 
-/// P2p order info response model class.
-abstract class P2pOrderInfoResponseModel {
-  /// Initializes P2p order info response model class .
-  P2pOrderInfoResponseModel({
-    this.p2pOrderInfo,
+/// P2p order create response model class.
+abstract class P2pOrderCreateResponseModel {
+  /// Initializes P2p order create response model class .
+  P2pOrderCreateResponseModel({
+    this.p2pOrderCreate,
     this.subscription,
   });
 
-  /// The information of P2P order.
-  final P2pOrderInfo? p2pOrderInfo;
+  /// Information of the creates P2P order.
+  final P2pOrderCreate? p2pOrderCreate;
 
   /// For subscription requests only.
   final Subscription? subscription;
 }
 
-/// P2p order info response class.
-class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
-  /// Initializes P2p order info response class.
-  P2pOrderInfoResponse({
-    P2pOrderInfo? p2pOrderInfo,
+/// P2p order create response class.
+class P2pOrderCreateResponse extends P2pOrderCreateResponseModel {
+  /// Initializes P2p order create response class.
+  P2pOrderCreateResponse({
+    P2pOrderCreate? p2pOrderCreate,
     Subscription? subscription,
   }) : super(
-          p2pOrderInfo: p2pOrderInfo,
+          p2pOrderCreate: p2pOrderCreate,
           subscription: subscription,
         );
 
   /// Creates an instance from JSON.
-  factory P2pOrderInfoResponse.fromJson(
-    dynamic p2pOrderInfoJson,
+  factory P2pOrderCreateResponse.fromJson(
+    dynamic p2pOrderCreateJson,
     dynamic subscriptionJson,
   ) =>
-      P2pOrderInfoResponse(
-        p2pOrderInfo: p2pOrderInfoJson == null
+      P2pOrderCreateResponse(
+        p2pOrderCreate: p2pOrderCreateJson == null
             ? null
-            : P2pOrderInfo.fromJson(p2pOrderInfoJson),
+            : P2pOrderCreate.fromJson(p2pOrderCreateJson),
         subscription: subscriptionJson == null
             ? null
             : Subscription.fromJson(subscriptionJson),
@@ -65,8 +54,8 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    if (p2pOrderInfo != null) {
-      resultMap['p2p_order_info'] = p2pOrderInfo!.toJson();
+    if (p2pOrderCreate != null) {
+      resultMap['p2p_order_create'] = p2pOrderCreate!.toJson();
     }
     if (subscription != null) {
       resultMap['subscription'] = subscription!.toJson();
@@ -77,12 +66,10 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
 
   static final BaseAPI _api = Injector.getInjector().get<BaseAPI>()!;
 
-  /// Gets order with parameters specified in [P2pOrderInfoRequest]
-  ///
-  /// Throws a [P2POrderException] if API response contains an error
-  static Future<P2pOrderInfoResponse> fetchOrder(
-      P2pOrderInfoRequest request) async {
-    final P2pOrderInfoReceive response = await _api.call(request: request);
+  /// Creates order with parameters specified in [P2pOrderCreateRequest]
+  static Future<P2pOrderCreateResponse> create(
+      P2pOrderCreateRequest request) async {
+    final P2pOrderCreateReceive response = await _api.call(request: request);
 
     checkException(
       response: response,
@@ -90,29 +77,18 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
           P2POrderException(baseExceptionModel: baseExceptionModel),
     );
 
-    return P2pOrderInfoResponse.fromJson(
-        response.p2pOrderInfo, response.subscription);
+    return P2pOrderCreateResponse.fromJson(
+        response.p2pOrderCreate, response.subscription);
   }
 
-  /// Subscribes to this order
-  Stream<P2pOrderInfoResponse?> subscribe({
-    RequestCompareFunction? comparePredicate,
-  }) =>
-      subscribeOrder(
-        P2pOrderInfoRequest(id: p2pOrderInfo?.id),
-        comparePredicate: comparePredicate,
-      );
-
-  /// Subscribes to order with parameters specified in [P2pOrderInfoRequest]
+  /// Creates order and subscribes to the result with parameters specified in [P2pOrderCreateRequest]
   ///
   /// Throws a [P2POrderException] if API response contains an error
-  static Stream<P2pOrderInfoResponse?> subscribeOrder(
-    P2pOrderInfoRequest request, {
+  static Stream<P2pOrderCreateResponse?> createAndSubscribe(
+    P2pOrderCreateRequest request, {
     RequestCompareFunction? comparePredicate,
   }) =>
-      _api
-          .subscribe(request: request, comparePredicate: comparePredicate)!
-          .map<P2pOrderInfoResponse?>(
+      _api.subscribe(request: request, comparePredicate: comparePredicate)!.map(
         (Response response) {
           checkException(
             response: response,
@@ -120,92 +96,22 @@ class P2pOrderInfoResponse extends P2pOrderInfoResponseModel {
                 P2POrderException(baseExceptionModel: baseExceptionModel),
           );
 
-          return response is P2pOrderInfoReceive
-              ? P2pOrderInfoResponse.fromJson(
-                  response.p2pOrderInfo,
+          return response is P2pOrderCreateReceive
+              ? P2pOrderCreateResponse.fromJson(
+                  response.p2pOrderCreate,
                   response.subscription,
                 )
               : null;
         },
       );
 
-  /// Unsubscribes from order subscription.
-  ///
-  /// Throws a [P2POrderException] if API response contains an error
-  Future<ForgetResponse?> unsubscribeOrder() async {
-    if (subscription == null) {
-      return null;
-    }
-
-    final ForgetReceive response =
-        await _api.unsubscribe(subscriptionId: subscription!.id);
-
-    checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2POrderException(baseExceptionModel: baseExceptionModel),
-    );
-
-    return ForgetResponse.fromJson(response.forget);
-  }
-
-  /// Unsubscribes all order subscriptions (Subscriptions to a single order or list).
-  ///
-  /// Throws a [P2POrderException] if API response contains an error
-  static Future<ForgetAllResponse> unsubscribeAllOrder() async {
-    final ForgetAllReceive response =
-        await _api.unsubscribeAll(method: ForgetStreamType.p2pOrder);
-
-    checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2POrderException(baseExceptionModel: baseExceptionModel),
-    );
-
-    return ForgetAllResponse.fromJson(response.forgetAll);
-  }
-
-  /// Cancels this order
-  ///
-  /// Returns an order with updated status if successful.
-  /// Throws a [P2POrderException] if API response contains an error
-  Future<P2pOrderCancelResponse> cancel() async {
-    final P2pOrderCancelReceive response =
-        await _api.call(request: P2pOrderCancelRequest(id: p2pOrderInfo?.id));
-
-    checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2POrderException(baseExceptionModel: baseExceptionModel),
-    );
-
-    return P2pOrderCancelResponse.fromJson(response.p2pOrderCancel);
-  }
-
-  /// Confirms this order
-  ///
-  /// Returns an order with updated status if successful.
-  /// Throws a [P2POrderException] if API response contains an error
-  Future<P2pOrderConfirmResponse> confirm() async {
-    final P2pOrderConfirmReceive response =
-        await _api.call(request: P2pOrderConfirmRequest(id: p2pOrderInfo?.id));
-
-    checkException(
-      response: response,
-      exceptionCreator: ({BaseExceptionModel? baseExceptionModel}) =>
-          P2POrderException(baseExceptionModel: baseExceptionModel),
-    );
-
-    return P2pOrderConfirmResponse.fromJson(response.p2pOrderConfirm);
-  }
-
   /// Creates a copy of instance with given parameters.
-  P2pOrderInfoResponse copyWith({
-    P2pOrderInfo? p2pOrderInfo,
+  P2pOrderCreateResponse copyWith({
+    P2pOrderCreate? p2pOrderCreate,
     Subscription? subscription,
   }) =>
-      P2pOrderInfoResponse(
-        p2pOrderInfo: p2pOrderInfo ?? this.p2pOrderInfo,
+      P2pOrderCreateResponse(
+        p2pOrderCreate: p2pOrderCreate ?? this.p2pOrderCreate,
         subscription: subscription ?? this.subscription,
       );
 }
@@ -225,71 +131,20 @@ enum TypeEnum {
   sell,
 }
 
-/// TypeEnum2 mapper.
-final Map<String, TypeEnum2> typeEnum2Mapper = <String, TypeEnum2>{
-  "text": TypeEnum2.text,
-  "memo": TypeEnum2.memo,
-};
-
-/// Type Enum.
-enum TypeEnum2 {
-  /// text.
-  text,
-
-  /// memo.
-  memo,
-}
-
 /// StatusEnum mapper.
 final Map<String, StatusEnum> statusEnumMapper = <String, StatusEnum>{
   "pending": StatusEnum.pending,
-  "buyer-confirmed": StatusEnum.buyerConfirmed,
-  "cancelled": StatusEnum.cancelled,
-  "timed-out": StatusEnum.timedOut,
-  "blocked": StatusEnum.blocked,
-  "refunded": StatusEnum.refunded,
-  "completed": StatusEnum.completed,
-  "disputed": StatusEnum.disputed,
-  "dispute-refunded": StatusEnum.disputeRefunded,
-  "dispute-completed": StatusEnum.disputeCompleted,
 };
 
 /// Status Enum.
 enum StatusEnum {
   /// pending.
   pending,
-
-  /// buyer-confirmed.
-  buyerConfirmed,
-
-  /// cancelled.
-  cancelled,
-
-  /// timed-out.
-  timedOut,
-
-  /// blocked.
-  blocked,
-
-  /// refunded.
-  refunded,
-
-  /// completed.
-  completed,
-
-  /// disputed.
-  disputed,
-
-  /// dispute-refunded.
-  disputeRefunded,
-
-  /// dispute-completed.
-  disputeCompleted,
 }
-/// P2p order info model class.
-abstract class P2pOrderInfoModel {
-  /// Initializes P2p order info model class .
-  P2pOrderInfoModel({
+/// P2p order create model class.
+abstract class P2pOrderCreateModel {
+  /// Initializes P2p order create model class .
+  P2pOrderCreateModel({
     required this.type,
     required this.status,
     required this.rateDisplay,
@@ -313,12 +168,13 @@ abstract class P2pOrderInfoModel {
     required this.accountCurrency,
     this.paymentMethod,
     this.paymentMethodDetails,
+    this.paymentMethodIds,
   });
 
-  /// Whether this is a buy or a sell.
+  /// Type of the order.
   final TypeEnum type;
 
-  /// Current order status.
+  /// The status of the created order.
   final StatusEnum status;
 
   /// Conversion rate of the order, formatted to appropriate decimal places.
@@ -382,13 +238,16 @@ abstract class P2pOrderInfoModel {
   final String? paymentMethod;
 
   /// Details of available payment methods.
-  final Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails;
+  final List<PaymentMethodDetailsItem>? paymentMethodDetails;
+
+  /// IDs of payment methods.
+  final List<int>? paymentMethodIds;
 }
 
-/// P2p order info class.
-class P2pOrderInfo extends P2pOrderInfoModel {
-  /// Initializes P2p order info class.
-  P2pOrderInfo({
+/// P2p order create class.
+class P2pOrderCreate extends P2pOrderCreateModel {
+  /// Initializes P2p order create class.
+  P2pOrderCreate({
     required String accountCurrency,
     required AdvertDetails advertDetails,
     required AdvertiserDetails advertiserDetails,
@@ -411,7 +270,8 @@ class P2pOrderInfo extends P2pOrderInfoModel {
     required StatusEnum status,
     required TypeEnum type,
     String? paymentMethod,
-    Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
+    List<PaymentMethodDetailsItem>? paymentMethodDetails,
+    List<int>? paymentMethodIds,
   }) : super(
           accountCurrency: accountCurrency,
           advertDetails: advertDetails,
@@ -436,10 +296,11 @@ class P2pOrderInfo extends P2pOrderInfoModel {
           type: type,
           paymentMethod: paymentMethod,
           paymentMethodDetails: paymentMethodDetails,
+          paymentMethodIds: paymentMethodIds,
         );
 
   /// Creates an instance from JSON.
-  factory P2pOrderInfo.fromJson(Map<String, dynamic> json) => P2pOrderInfo(
+  factory P2pOrderCreate.fromJson(Map<String, dynamic> json) => P2pOrderCreate(
         accountCurrency: json['account_currency'],
         advertDetails: AdvertDetails.fromJson(json['advert_details']),
         advertiserDetails:
@@ -465,15 +326,18 @@ class P2pOrderInfo extends P2pOrderInfoModel {
         paymentMethod: json['payment_method'],
         paymentMethodDetails: json['payment_method_details'] == null
             ? null
-            : Map<String, PaymentMethodDetailsProperty>.fromEntries(
-                json['payment_method_details']
-                    .entries
-                    .map<MapEntry<String, PaymentMethodDetailsProperty>>(
-                        (MapEntry<String, dynamic> entry) =>
-                            MapEntry<String, PaymentMethodDetailsProperty>(
-                                entry.key,
-                                PaymentMethodDetailsProperty.fromJson(
-                                    entry.value)))),
+            : List<PaymentMethodDetailsItem>.from(
+                json['payment_method_details']?.map(
+                  (dynamic item) => PaymentMethodDetailsItem.fromJson(item),
+                ),
+              ),
+        paymentMethodIds: json['payment_method_ids'] == null
+            ? null
+            : List<int>.from(
+                json['payment_method_ids']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
       );
 
   /// Converts an instance to JSON.
@@ -511,13 +375,26 @@ class P2pOrderInfo extends P2pOrderInfoModel {
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
     resultMap['payment_method'] = paymentMethod;
-    resultMap['payment_method_details'] = paymentMethodDetails;
+    if (paymentMethodDetails != null) {
+      resultMap['payment_method_details'] = paymentMethodDetails!
+          .map<dynamic>(
+            (PaymentMethodDetailsItem item) => item.toJson(),
+          )
+          .toList();
+    }
+    if (paymentMethodIds != null) {
+      resultMap['payment_method_ids'] = paymentMethodIds!
+          .map<dynamic>(
+            (int item) => item,
+          )
+          .toList();
+    }
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters.
-  P2pOrderInfo copyWith({
+  P2pOrderCreate copyWith({
     required String accountCurrency,
     required AdvertDetails advertDetails,
     required AdvertiserDetails advertiserDetails,
@@ -540,9 +417,10 @@ class P2pOrderInfo extends P2pOrderInfoModel {
     required StatusEnum status,
     required TypeEnum type,
     String? paymentMethod,
-    Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
+    List<PaymentMethodDetailsItem>? paymentMethodDetails,
+    List<int>? paymentMethodIds,
   }) =>
-      P2pOrderInfo(
+      P2pOrderCreate(
         accountCurrency: accountCurrency,
         advertDetails: advertDetails,
         advertiserDetails: advertiserDetails,
@@ -566,6 +444,7 @@ class P2pOrderInfo extends P2pOrderInfoModel {
         type: type,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,
+        paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
       );
 }
 /// Advert details model class.
@@ -859,156 +738,47 @@ class DisputeDetails extends DisputeDetailsModel {
         disputerLoginid: disputerLoginid ?? this.disputerLoginid,
       );
 }
-/// Payment method details property model class.
-abstract class PaymentMethodDetailsPropertyModel {
-  /// Initializes Payment method details property model class .
-  PaymentMethodDetailsPropertyModel({
-    required this.method,
-    required this.isEnabled,
-    required this.fields,
-    this.displayName,
+/// Payment method details item model class.
+abstract class PaymentMethodDetailsItemModel {
+  /// Initializes Payment method details item model class .
+  PaymentMethodDetailsItemModel({
+    this.method,
   });
 
   /// Payment method identifier.
-  final String method;
-
-  /// Indicates whether method is enabled.
-  final bool isEnabled;
-
-  /// Payment method fields.
-  final Map<String, FieldsProperty> fields;
-
-  /// Display name of payment method.
-  final String? displayName;
+  final String? method;
 }
 
-/// Payment method details property class.
-class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
-  /// Initializes Payment method details property class.
-  PaymentMethodDetailsProperty({
-    required Map<String, FieldsProperty> fields,
-    required bool isEnabled,
-    required String method,
-    String? displayName,
+/// Payment method details item class.
+class PaymentMethodDetailsItem extends PaymentMethodDetailsItemModel {
+  /// Initializes Payment method details item class.
+  PaymentMethodDetailsItem({
+    String? method,
   }) : super(
-          fields: fields,
-          isEnabled: isEnabled,
           method: method,
-          displayName: displayName,
         );
 
   /// Creates an instance from JSON.
-  factory PaymentMethodDetailsProperty.fromJson(Map<String, dynamic> json) =>
-      PaymentMethodDetailsProperty(
-        fields: Map<String, FieldsProperty>.fromEntries(json['fields']
-            .entries
-            .map<MapEntry<String, FieldsProperty>>(
-                (MapEntry<String, dynamic> entry) =>
-                    MapEntry<String, FieldsProperty>(
-                        entry.key, FieldsProperty.fromJson(entry.value)))),
-        isEnabled: getBool(json['is_enabled'])!,
+  factory PaymentMethodDetailsItem.fromJson(Map<String, dynamic> json) =>
+      PaymentMethodDetailsItem(
         method: json['method'],
-        displayName: json['display_name'],
       );
 
   /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    resultMap['fields'] = fields;
-    resultMap['is_enabled'] = isEnabled;
     resultMap['method'] = method;
-    resultMap['display_name'] = displayName;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters.
-  PaymentMethodDetailsProperty copyWith({
-    required Map<String, FieldsProperty> fields,
-    required bool isEnabled,
-    required String method,
-    String? displayName,
+  PaymentMethodDetailsItem copyWith({
+    String? method,
   }) =>
-      PaymentMethodDetailsProperty(
-        fields: fields,
-        isEnabled: isEnabled,
-        method: method,
-        displayName: displayName ?? this.displayName,
-      );
-}
-/// Fields property model class.
-abstract class FieldsPropertyModel {
-  /// Initializes Fields property model class .
-  FieldsPropertyModel({
-    required this.value,
-    required this.type,
-    required this.required,
-    required this.displayName,
-  });
-
-  /// Current value of payment method field.
-  final String value;
-
-  /// Field type.
-  final TypeEnum2 type;
-
-  /// Is field required or optional.
-  final int required;
-
-  /// Display name of payment method field.
-  final String displayName;
-}
-
-/// Fields property class.
-class FieldsProperty extends FieldsPropertyModel {
-  /// Initializes Fields property class.
-  FieldsProperty({
-    required String displayName,
-    required int required,
-    required TypeEnum2 type,
-    required String value,
-  }) : super(
-          displayName: displayName,
-          required: required,
-          type: type,
-          value: value,
-        );
-
-  /// Creates an instance from JSON.
-  factory FieldsProperty.fromJson(Map<String, dynamic> json) => FieldsProperty(
-        displayName: json['display_name'],
-        required: json['required'],
-        type: typeEnum2Mapper[json['type']]!,
-        value: json['value'],
-      );
-
-  /// Converts an instance to JSON.
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    resultMap['display_name'] = displayName;
-    resultMap['required'] = required;
-    resultMap['type'] = typeEnum2Mapper.entries
-        .firstWhere((MapEntry<String, TypeEnum2> entry) => entry.value == type)
-        .key;
-    resultMap['value'] = value;
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters.
-  FieldsProperty copyWith({
-    required String displayName,
-    required int required,
-    required TypeEnum2 type,
-    required String value,
-  }) =>
-      FieldsProperty(
-        displayName: displayName,
-        required: required,
-        type: type,
-        value: value,
+      PaymentMethodDetailsItem(
+        method: method ?? this.method,
       );
 }
 /// Subscription model class.

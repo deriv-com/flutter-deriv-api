@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:connectivity/connectivity.dart';
-import 'package:flutter_deriv_api/api/response/ping_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/ping_response_result.dart';
 
 import 'package:flutter_deriv_api/services/connection/connection_status.dart';
 import 'package:flutter_deriv_api/state/connection/connection_bloc.dart';

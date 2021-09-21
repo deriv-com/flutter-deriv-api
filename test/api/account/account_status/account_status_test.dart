@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/response/get_account_status_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/get_account_status_response_result.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
@@ -29,11 +29,11 @@ void main() {
     //   accountStatus.status[1],
     //   AccountStatusType.tradingExperienceNotComplete,
     // );
-    expect(accountStatus.getAccountStatus?.promptClientToAuthenticate, 0);
+    expect(accountStatus.getAccountStatus?.promptClientToAuthenticate, false);
     expect(accountStatus.getAccountStatus?.riskClassification, 'low');
     expect(
       accountStatus.getAccountStatus?.authentication?.document?.status,
-      StatusEnum2.pending,
+      StatusEnum.pending,
     );
     expect(
       accountStatus.getAccountStatus?.authentication?.identity?.status,

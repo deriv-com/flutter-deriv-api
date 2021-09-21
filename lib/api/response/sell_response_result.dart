@@ -2,7 +2,7 @@
 
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
-import 'package:flutter_deriv_api/api/response/sell_expired_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/sell_expired_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/sell_expired_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/sell_expired_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/sell_receive.dart';

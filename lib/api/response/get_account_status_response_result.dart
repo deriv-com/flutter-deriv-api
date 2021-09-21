@@ -77,35 +77,16 @@ class GetAccountStatusResponse extends GetAccountStatusResponseModel {
 
 /// StatusEnum mapper.
 final Map<String, StatusEnum> statusEnumMapper = <String, StatusEnum>{
-  "verified": StatusEnum.verified,
-  "rejected": StatusEnum.rejected,
+  "none": StatusEnum.none,
   "pending": StatusEnum.pending,
+  "rejected": StatusEnum.rejected,
+  "verified": StatusEnum.verified,
+  "expired": StatusEnum.expired,
+  "suspected": StatusEnum.suspected,
 };
 
 /// Status Enum.
 enum StatusEnum {
-  /// verified.
-  verified,
-
-  /// rejected.
-  rejected,
-
-  /// pending.
-  pending,
-}
-
-/// StatusEnum2 mapper.
-final Map<String, StatusEnum2> statusEnum2Mapper = <String, StatusEnum2>{
-  "none": StatusEnum2.none,
-  "pending": StatusEnum2.pending,
-  "rejected": StatusEnum2.rejected,
-  "verified": StatusEnum2.verified,
-  "expired": StatusEnum2.expired,
-  "suspected": StatusEnum2.suspected,
-};
-
-/// Status Enum.
-enum StatusEnum2 {
   /// none.
   none,
 
@@ -399,16 +380,12 @@ abstract class AuthenticationModel {
   /// Initializes Authentication model class .
   AuthenticationModel({
     required this.needsVerification,
-    this.attempts,
     this.document,
     this.identity,
   });
 
   /// An array containing the list of required authentication.
   final List<String> needsVerification;
-
-  /// POI attempts made by the client
-  final Attempts? attempts;
 
   /// The authentication status for document.
   final Document? document;
@@ -422,12 +399,10 @@ class Authentication extends AuthenticationModel {
   /// Initializes Authentication class.
   Authentication({
     required List<String> needsVerification,
-    Attempts? attempts,
     Document? document,
     Identity? identity,
   }) : super(
           needsVerification: needsVerification,
-          attempts: attempts,
           document: document,
           identity: identity,
         );
@@ -439,9 +414,6 @@ class Authentication extends AuthenticationModel {
             (dynamic item) => item,
           ),
         ),
-        attempts: json['attempts'] == null
-            ? null
-            : Attempts.fromJson(json['attempts']),
         document: json['document'] == null
             ? null
             : Document.fromJson(json['document']),
@@ -460,9 +432,6 @@ class Authentication extends AuthenticationModel {
         )
         .toList();
 
-    if (attempts != null) {
-      resultMap['attempts'] = attempts!.toJson();
-    }
     if (document != null) {
       resultMap['document'] = document!.toJson();
     }
@@ -476,175 +445,13 @@ class Authentication extends AuthenticationModel {
   /// Creates a copy of instance with given parameters.
   Authentication copyWith({
     required List<String> needsVerification,
-    Attempts? attempts,
     Document? document,
     Identity? identity,
   }) =>
       Authentication(
         needsVerification: needsVerification,
-        attempts: attempts ?? this.attempts,
         document: document ?? this.document,
         identity: identity ?? this.identity,
-      );
-}
-/// Attempts model class.
-abstract class AttemptsModel {
-  /// Initializes Attempts model class .
-  AttemptsModel({
-    this.count,
-    this.history,
-    this.latest,
-  });
-
-  /// A number of POI attempts made by the client
-  final int? count;
-
-  /// A list of POI attempts made by the client in chronological descending order
-  final List<HistoryItem>? history;
-
-  /// The latest POI attempt made by the client
-  final Map<String, dynamic>? latest;
-}
-
-/// Attempts class.
-class Attempts extends AttemptsModel {
-  /// Initializes Attempts class.
-  Attempts({
-    int? count,
-    List<HistoryItem>? history,
-    Map<String, dynamic>? latest,
-  }) : super(
-          count: count,
-          history: history,
-          latest: latest,
-        );
-
-  /// Creates an instance from JSON.
-  factory Attempts.fromJson(Map<String, dynamic> json) => Attempts(
-        count: json['count'],
-        history: json['history'] == null
-            ? null
-            : List<HistoryItem>.from(
-                json['history']?.map(
-                  (dynamic item) => HistoryItem.fromJson(item),
-                ),
-              ),
-        latest: json['latest'],
-      );
-
-  /// Converts an instance to JSON.
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    resultMap['count'] = count;
-    if (history != null) {
-      resultMap['history'] = history!
-          .map<dynamic>(
-            (HistoryItem item) => item.toJson(),
-          )
-          .toList();
-    }
-    resultMap['latest'] = latest;
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters.
-  Attempts copyWith({
-    int? count,
-    List<HistoryItem>? history,
-    Map<String, dynamic>? latest,
-  }) =>
-      Attempts(
-        count: count ?? this.count,
-        history: history ?? this.history,
-        latest: latest ?? this.latest,
-      );
-}
-/// History item model class.
-abstract class HistoryItemModel {
-  /// Initializes History item model class .
-  HistoryItemModel({
-    this.countryCode,
-    this.id,
-    this.service,
-    this.status,
-    this.timestamp,
-  });
-
-  /// 2-letter country code used to request the attempt.
-  final String? countryCode;
-
-  /// The id of the attempt.
-  final String? id;
-
-  /// The service used to make the verification.
-  final String? service;
-
-  /// Status of the attempt.
-  final StatusEnum? status;
-
-  /// The epoch of the attempt.
-  final DateTime? timestamp;
-}
-
-/// History item class.
-class HistoryItem extends HistoryItemModel {
-  /// Initializes History item class.
-  HistoryItem({
-    String? countryCode,
-    String? id,
-    String? service,
-    StatusEnum? status,
-    DateTime? timestamp,
-  }) : super(
-          countryCode: countryCode,
-          id: id,
-          service: service,
-          status: status,
-          timestamp: timestamp,
-        );
-
-  /// Creates an instance from JSON.
-  factory HistoryItem.fromJson(Map<String, dynamic> json) => HistoryItem(
-        countryCode: json['country_code'],
-        id: json['id'],
-        service: json['service'],
-        status:
-            json['status'] == null ? null : statusEnumMapper[json['status']],
-        timestamp: getDateTime(json['timestamp']),
-      );
-
-  /// Converts an instance to JSON.
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    resultMap['country_code'] = countryCode;
-    resultMap['id'] = id;
-    resultMap['service'] = service;
-    resultMap['status'] = statusEnumMapper.entries
-        .firstWhere(
-            (MapEntry<String, StatusEnum> entry) => entry.value == status)
-        .key;
-    resultMap['timestamp'] = getSecondsSinceEpochDateTime(timestamp);
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters.
-  HistoryItem copyWith({
-    String? countryCode,
-    String? id,
-    String? service,
-    StatusEnum? status,
-    DateTime? timestamp,
-  }) =>
-      HistoryItem(
-        countryCode: countryCode ?? this.countryCode,
-        id: id ?? this.id,
-        service: service ?? this.service,
-        status: status ?? this.status,
-        timestamp: timestamp ?? this.timestamp,
       );
 }
 /// Document model class.
@@ -659,7 +466,7 @@ abstract class DocumentModel {
   final DateTime? expiryDate;
 
   /// This represents the current status of the proof of address document submitted for authentication.
-  final StatusEnum2? status;
+  final StatusEnum? status;
 }
 
 /// Document class.
@@ -667,7 +474,7 @@ class Document extends DocumentModel {
   /// Initializes Document class.
   Document({
     DateTime? expiryDate,
-    StatusEnum2? status,
+    StatusEnum? status,
   }) : super(
           expiryDate: expiryDate,
           status: status,
@@ -677,7 +484,7 @@ class Document extends DocumentModel {
   factory Document.fromJson(Map<String, dynamic> json) => Document(
         expiryDate: getDateTime(json['expiry_date']),
         status:
-            json['status'] == null ? null : statusEnum2Mapper[json['status']],
+            json['status'] == null ? null : statusEnumMapper[json['status']],
       );
 
   /// Converts an instance to JSON.
@@ -685,9 +492,9 @@ class Document extends DocumentModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['expiry_date'] = getSecondsSinceEpochDateTime(expiryDate);
-    resultMap['status'] = statusEnum2Mapper.entries
+    resultMap['status'] = statusEnumMapper.entries
         .firstWhere(
-            (MapEntry<String, StatusEnum2> entry) => entry.value == status)
+            (MapEntry<String, StatusEnum> entry) => entry.value == status)
         .key;
 
     return resultMap;
@@ -696,7 +503,7 @@ class Document extends DocumentModel {
   /// Creates a copy of instance with given parameters.
   Document copyWith({
     DateTime? expiryDate,
-    StatusEnum2? status,
+    StatusEnum? status,
   }) =>
       Document(
         expiryDate: expiryDate ?? this.expiryDate,
@@ -719,7 +526,7 @@ abstract class IdentityModel {
   final Services? services;
 
   /// This represent the current status for proof of identity document submitted for authentication.
-  final StatusEnum2? status;
+  final StatusEnum? status;
 }
 
 /// Identity class.
@@ -728,7 +535,7 @@ class Identity extends IdentityModel {
   Identity({
     DateTime? expiryDate,
     Services? services,
-    StatusEnum2? status,
+    StatusEnum? status,
   }) : super(
           expiryDate: expiryDate,
           services: services,
@@ -742,7 +549,7 @@ class Identity extends IdentityModel {
             ? null
             : Services.fromJson(json['services']),
         status:
-            json['status'] == null ? null : statusEnum2Mapper[json['status']],
+            json['status'] == null ? null : statusEnumMapper[json['status']],
       );
 
   /// Converts an instance to JSON.
@@ -753,9 +560,9 @@ class Identity extends IdentityModel {
     if (services != null) {
       resultMap['services'] = services!.toJson();
     }
-    resultMap['status'] = statusEnum2Mapper.entries
+    resultMap['status'] = statusEnumMapper.entries
         .firstWhere(
-            (MapEntry<String, StatusEnum2> entry) => entry.value == status)
+            (MapEntry<String, StatusEnum> entry) => entry.value == status)
         .key;
 
     return resultMap;
@@ -765,7 +572,7 @@ class Identity extends IdentityModel {
   Identity copyWith({
     DateTime? expiryDate,
     Services? services,
-    StatusEnum2? status,
+    StatusEnum? status,
   }) =>
       Identity(
         expiryDate: expiryDate ?? this.expiryDate,
@@ -858,7 +665,7 @@ abstract class IdvModel {
   final Map<String, dynamic>? reportedProperties;
 
   /// This represents the status of the latest IDV check.
-  final StatusEnum2? status;
+  final StatusEnum? status;
 
   /// This shows the number of IDV submissions left for the client
   final int? submissionsLeft;
@@ -870,7 +677,7 @@ class Idv extends IdvModel {
   Idv({
     List<String>? lastRejected,
     Map<String, dynamic>? reportedProperties,
-    StatusEnum2? status,
+    StatusEnum? status,
     int? submissionsLeft,
   }) : super(
           lastRejected: lastRejected,
@@ -890,7 +697,7 @@ class Idv extends IdvModel {
               ),
         reportedProperties: json['reported_properties'],
         status:
-            json['status'] == null ? null : statusEnum2Mapper[json['status']],
+            json['status'] == null ? null : statusEnumMapper[json['status']],
         submissionsLeft: json['submissions_left'],
       );
 
@@ -906,9 +713,9 @@ class Idv extends IdvModel {
           .toList();
     }
     resultMap['reported_properties'] = reportedProperties;
-    resultMap['status'] = statusEnum2Mapper.entries
+    resultMap['status'] = statusEnumMapper.entries
         .firstWhere(
-            (MapEntry<String, StatusEnum2> entry) => entry.value == status)
+            (MapEntry<String, StatusEnum> entry) => entry.value == status)
         .key;
     resultMap['submissions_left'] = submissionsLeft;
 
@@ -919,7 +726,7 @@ class Idv extends IdvModel {
   Idv copyWith({
     List<String>? lastRejected,
     Map<String, dynamic>? reportedProperties,
-    StatusEnum2? status,
+    StatusEnum? status,
     int? submissionsLeft,
   }) =>
       Idv(
@@ -937,14 +744,14 @@ abstract class ManualModel {
   });
 
   /// This represents the status of the current manual POI check.
-  final StatusEnum2? status;
+  final StatusEnum? status;
 }
 
 /// Manual class.
 class Manual extends ManualModel {
   /// Initializes Manual class.
   Manual({
-    StatusEnum2? status,
+    StatusEnum? status,
   }) : super(
           status: status,
         );
@@ -952,16 +759,16 @@ class Manual extends ManualModel {
   /// Creates an instance from JSON.
   factory Manual.fromJson(Map<String, dynamic> json) => Manual(
         status:
-            json['status'] == null ? null : statusEnum2Mapper[json['status']],
+            json['status'] == null ? null : statusEnumMapper[json['status']],
       );
 
   /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
-    resultMap['status'] = statusEnum2Mapper.entries
+    resultMap['status'] = statusEnumMapper.entries
         .firstWhere(
-            (MapEntry<String, StatusEnum2> entry) => entry.value == status)
+            (MapEntry<String, StatusEnum> entry) => entry.value == status)
         .key;
 
     return resultMap;
@@ -969,7 +776,7 @@ class Manual extends ManualModel {
 
   /// Creates a copy of instance with given parameters.
   Manual copyWith({
-    StatusEnum2? status,
+    StatusEnum? status,
   }) =>
       Manual(
         status: status ?? this.status,
@@ -1004,7 +811,7 @@ abstract class OnfidoModel {
   final Map<String, dynamic>? reportedProperties;
 
   /// This represents the status of the latest Onfido check.
-  final StatusEnum2? status;
+  final StatusEnum? status;
 
   /// This shows the number of Onfido submissions left for the client
   final int? submissionsLeft;
@@ -1019,7 +826,7 @@ class Onfido extends OnfidoModel {
     bool? isCountrySupported,
     List<String>? lastRejected,
     Map<String, dynamic>? reportedProperties,
-    StatusEnum2? status,
+    StatusEnum? status,
     int? submissionsLeft,
   }) : super(
           countryCode: countryCode,
@@ -1051,7 +858,7 @@ class Onfido extends OnfidoModel {
               ),
         reportedProperties: json['reported_properties'],
         status:
-            json['status'] == null ? null : statusEnum2Mapper[json['status']],
+            json['status'] == null ? null : statusEnumMapper[json['status']],
         submissionsLeft: json['submissions_left'],
       );
 
@@ -1076,9 +883,9 @@ class Onfido extends OnfidoModel {
           .toList();
     }
     resultMap['reported_properties'] = reportedProperties;
-    resultMap['status'] = statusEnum2Mapper.entries
+    resultMap['status'] = statusEnumMapper.entries
         .firstWhere(
-            (MapEntry<String, StatusEnum2> entry) => entry.value == status)
+            (MapEntry<String, StatusEnum> entry) => entry.value == status)
         .key;
     resultMap['submissions_left'] = submissionsLeft;
 
@@ -1092,7 +899,7 @@ class Onfido extends OnfidoModel {
     bool? isCountrySupported,
     List<String>? lastRejected,
     Map<String, dynamic>? reportedProperties,
-    StatusEnum2? status,
+    StatusEnum? status,
     int? submissionsLeft,
   }) =>
       Onfido(

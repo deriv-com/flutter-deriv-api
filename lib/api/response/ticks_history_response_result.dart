@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_single_quotes
 
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
-import 'package:flutter_deriv_api/api/manually/ohlc_receive.dart';
-import 'package:flutter_deriv_api/api/manually/ohlc_receive_result.dart';
+import 'package:flutter_deriv_api/api/manually/ohlc_response.dart';
+import 'package:flutter_deriv_api/api/manually/ohlc_response_result.dart';
 import 'package:flutter_deriv_api/api/manually/tick.dart';
 import 'package:flutter_deriv_api/api/manually/tick_base.dart';
 import 'package:flutter_deriv_api/api/manually/tick_history_subscription.dart';

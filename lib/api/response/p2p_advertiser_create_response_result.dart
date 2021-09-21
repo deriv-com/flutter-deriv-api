@@ -131,7 +131,6 @@ abstract class P2pAdvertiserCreateModel {
     required this.isListed,
     required this.isApproved,
     required this.id,
-    required this.favourited,
     required this.createdTime,
     required this.contactInfo,
     required this.chatUserId,
@@ -174,9 +173,6 @@ abstract class P2pAdvertiserCreateModel {
 
   /// The advertiser's identification number.
   final String id;
-
-  /// Number of other users who have favourited this advertiser.
-  final int favourited;
 
   /// The epoch time that the client became an advertiser.
   final DateTime createdTime;
@@ -249,7 +245,6 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
     required String chatUserId,
     required String contactInfo,
     required DateTime createdTime,
-    required int favourited,
     required String id,
     required bool isApproved,
     required bool isListed,
@@ -278,7 +273,6 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
           chatUserId: chatUserId,
           contactInfo: contactInfo,
           createdTime: createdTime,
-          favourited: favourited,
           id: id,
           isApproved: isApproved,
           isListed: isListed,
@@ -311,7 +305,6 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         chatUserId: json['chat_user_id'],
         contactInfo: json['contact_info'],
         createdTime: getDateTime(json['created_time'])!,
-        favourited: json['favourited'],
         id: json['id'],
         isApproved: getBool(json['is_approved'])!,
         isListed: getBool(json['is_listed'])!,
@@ -345,7 +338,6 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
     resultMap['chat_user_id'] = chatUserId;
     resultMap['contact_info'] = contactInfo;
     resultMap['created_time'] = getSecondsSinceEpochDateTime(createdTime);
-    resultMap['favourited'] = favourited;
     resultMap['id'] = id;
     resultMap['is_approved'] = isApproved;
     resultMap['is_listed'] = isListed;
@@ -379,7 +371,6 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
     required String chatUserId,
     required String contactInfo,
     required DateTime createdTime,
-    required int favourited,
     required String id,
     required bool isApproved,
     required bool isListed,
@@ -409,7 +400,6 @@ class P2pAdvertiserCreate extends P2pAdvertiserCreateModel {
         chatUserId: chatUserId,
         contactInfo: contactInfo,
         createdTime: createdTime,
-        favourited: favourited,
         id: id,
         isApproved: isApproved,
         isListed: isListed,

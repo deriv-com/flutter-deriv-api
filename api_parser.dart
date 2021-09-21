@@ -56,7 +56,7 @@ class APIParser extends Builder {
       result = _addLinterSilencers(source: result);
 
       final File output =
-          File('lib/api/response/${fileBaseName}_receive_result.dart');
+          File('lib/api/response/${fileBaseName}_response_result.dart');
 
       if (!output.existsSync()) {
         output.createSync(recursive: true);

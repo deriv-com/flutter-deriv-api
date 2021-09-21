@@ -1,7 +1,7 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/response/app_delete_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/app_register_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/revoke_oauth_app_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/app_delete_response_result.dart';
+import 'package:flutter_deriv_api/api/response/app_register_response_result.dart';
+import 'package:flutter_deriv_api/api/response/revoke_oauth_app_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_get_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_list_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_update_send.dart';
@@ -10,9 +10,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 
-import 'package:flutter_deriv_api/api/response/app_update_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/app_get_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/app_markup_details_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/app_update_response_result.dart';
+import 'package:flutter_deriv_api/api/response/app_get_response_result.dart';
+import 'package:flutter_deriv_api/api/response/app_markup_details_response_result.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));

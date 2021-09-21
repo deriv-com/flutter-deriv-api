@@ -2,7 +2,7 @@ import 'package:flutter_deriv_api/basic_api/generated/trading_durations_send.dar
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/response/trading_durations_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/trading_durations_response_result.dart';
 
 void main() {
   setUp(() => APIInitializer().initialize(isMock: true));

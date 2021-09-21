@@ -91,28 +91,12 @@ class CashierResponse extends CashierResponseModel {
 /// ActionEnum mapper.
 final Map<String, ActionEnum> actionEnumMapper = <String, ActionEnum>{
   "deposit": ActionEnum.deposit,
-  "withdraw": ActionEnum.withdraw,
 };
 
 /// Action Enum.
 enum ActionEnum {
   /// deposit.
   deposit,
-
-  /// withdraw.
-  withdraw,
-}
-
-/// StatusCodeEnum mapper.
-final Map<String, StatusCodeEnum> statusCodeEnumMapper =
-    <String, StatusCodeEnum>{
-  "LOCKED": StatusCodeEnum.locked,
-};
-
-/// StatusCode Enum.
-enum StatusCodeEnum {
-  /// LOCKED.
-  locked,
 }
 /// Cashier object model class.
 abstract class CashierObjectModel {
@@ -120,7 +104,6 @@ abstract class CashierObjectModel {
   CashierObjectModel({
     this.action,
     this.deposit,
-    this.withdraw,
   });
 
   /// Type of operation, which is requested.
@@ -128,9 +111,6 @@ abstract class CashierObjectModel {
 
   /// [Optional] Result for deposit operation.
   final Deposit? deposit;
-
-  /// [Optional] Result for withdraw operation.
-  final Withdraw? withdraw;
 }
 
 /// Cashier object class.
@@ -139,11 +119,9 @@ class CashierObject extends CashierObjectModel {
   CashierObject({
     ActionEnum? action,
     Deposit? deposit,
-    Withdraw? withdraw,
   }) : super(
           action: action,
           deposit: deposit,
-          withdraw: withdraw,
         );
 
   /// Creates an instance from JSON.
@@ -152,9 +130,6 @@ class CashierObject extends CashierObjectModel {
             json['action'] == null ? null : actionEnumMapper[json['action']],
         deposit:
             json['deposit'] == null ? null : Deposit.fromJson(json['deposit']),
-        withdraw: json['withdraw'] == null
-            ? null
-            : Withdraw.fromJson(json['withdraw']),
       );
 
   /// Converts an instance to JSON.
@@ -168,9 +143,6 @@ class CashierObject extends CashierObjectModel {
     if (deposit != null) {
       resultMap['deposit'] = deposit!.toJson();
     }
-    if (withdraw != null) {
-      resultMap['withdraw'] = withdraw!.toJson();
-    }
 
     return resultMap;
   }
@@ -179,12 +151,10 @@ class CashierObject extends CashierObjectModel {
   CashierObject copyWith({
     ActionEnum? action,
     Deposit? deposit,
-    Withdraw? withdraw,
   }) =>
       CashierObject(
         action: action ?? this.action,
         deposit: deposit ?? this.deposit,
-        withdraw: withdraw ?? this.withdraw,
       );
 }
 /// Deposit model class.
@@ -227,72 +197,5 @@ class Deposit extends DepositModel {
   }) =>
       Deposit(
         address: address ?? this.address,
-      );
-}
-/// Withdraw model class.
-abstract class WithdrawModel {
-  /// Initializes Withdraw model class .
-  WithdrawModel({
-    this.id,
-    this.statusCode,
-    this.statusMessage,
-  });
-
-  /// The unique identifier for the transaction.
-  final String? id;
-
-  /// The status code of the withdrawal.
-  final StatusCodeEnum? statusCode;
-
-  /// The status message of the withdrawal.
-  final String? statusMessage;
-}
-
-/// Withdraw class.
-class Withdraw extends WithdrawModel {
-  /// Initializes Withdraw class.
-  Withdraw({
-    String? id,
-    StatusCodeEnum? statusCode,
-    String? statusMessage,
-  }) : super(
-          id: id,
-          statusCode: statusCode,
-          statusMessage: statusMessage,
-        );
-
-  /// Creates an instance from JSON.
-  factory Withdraw.fromJson(Map<String, dynamic> json) => Withdraw(
-        id: json['id'],
-        statusCode: json['status_code'] == null
-            ? null
-            : statusCodeEnumMapper[json['status_code']],
-        statusMessage: json['status_message'],
-      );
-
-  /// Converts an instance to JSON.
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    resultMap['id'] = id;
-    resultMap['status_code'] = statusCodeEnumMapper.entries
-        .firstWhere((MapEntry<String, StatusCodeEnum> entry) =>
-            entry.value == statusCode)
-        .key;
-    resultMap['status_message'] = statusMessage;
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters.
-  Withdraw copyWith({
-    String? id,
-    StatusCodeEnum? statusCode,
-    String? statusMessage,
-  }) =>
-      Withdraw(
-        id: id ?? this.id,
-        statusCode: statusCode ?? this.statusCode,
-        statusMessage: statusMessage ?? this.statusMessage,
       );
 }

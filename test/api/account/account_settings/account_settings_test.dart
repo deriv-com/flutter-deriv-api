@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/response/get_settings_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/set_settings_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/get_settings_response_result.dart';
+import 'package:flutter_deriv_api/api/response/set_settings_response_result.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));

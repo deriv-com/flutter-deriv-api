@@ -3,8 +3,8 @@ import 'package:flutter_deriv_api/basic_api/generated/new_account_virtual_send.d
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/response/new_account_real_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/new_account_virtual_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/new_account_real_response_result.dart';
+import 'package:flutter_deriv_api/api/response/new_account_virtual_response_result.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));

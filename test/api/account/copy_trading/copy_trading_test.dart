@@ -1,5 +1,5 @@
-import 'package:flutter_deriv_api/api/response/copytrading_list_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/copytrading_statistics_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/copytrading_list_response_result.dart';
+import 'package:flutter_deriv_api/api/response/copytrading_statistics_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/copytrading_statistics_send.dart';
 import 'package:flutter_test/flutter_test.dart';
 

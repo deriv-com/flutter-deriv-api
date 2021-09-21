@@ -1,18 +1,18 @@
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/response/mt5_login_list_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/mt5_new_account_receive_result.dart'
+import 'package:flutter_deriv_api/api/response/mt5_login_list_response_result.dart';
+import 'package:flutter_deriv_api/api/response/mt5_new_account_response_result.dart'
     as new_account;
 import 'package:flutter_deriv_api/basic_api/generated/mt5_login_list_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/mt5_new_account_send.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/response/mt5_deposit_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/mt5_password_change_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/mt5_password_check_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/mt5_password_reset_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/mt5_get_settings_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/mt5_withdrawal_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/mt5_deposit_response_result.dart';
+import 'package:flutter_deriv_api/api/response/mt5_password_change_response_result.dart';
+import 'package:flutter_deriv_api/api/response/mt5_password_check_response_result.dart';
+import 'package:flutter_deriv_api/api/response/mt5_password_reset_response_result.dart';
+import 'package:flutter_deriv_api/api/response/mt5_get_settings_response_result.dart';
+import 'package:flutter_deriv_api/api/response/mt5_withdrawal_response_result.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));

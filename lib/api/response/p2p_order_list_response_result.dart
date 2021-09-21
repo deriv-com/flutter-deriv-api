@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_single_quotes
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
-import 'package:flutter_deriv_api/api/response/forget_all_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/forget_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/p2p_order_info_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/forget_all_response_result.dart';
+import 'package:flutter_deriv_api/api/response/forget_response_result.dart';
+import 'package:flutter_deriv_api/api/response/p2p_order_info_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_list_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_order_list_send.dart';
@@ -289,7 +289,7 @@ abstract class ListItemModel {
     required this.accountCurrency,
     this.clientDetails,
     this.paymentMethod,
-    this.paymentMethodNames,
+    this.paymentMethodIds,
   });
 
   /// Whether this is a buy or a sell.
@@ -355,11 +355,11 @@ abstract class ListItemModel {
   /// Details of the client who created the order.
   final ClientDetails? clientDetails;
 
-  /// Supported payment methods. Comma separated list of identifiers.
+  /// Supported payment methods. Comma separated list.
   final String? paymentMethod;
 
-  /// Names of supported payment methods.
-  final List<String>? paymentMethodNames;
+  /// IDs of payment methods.
+  final List<int>? paymentMethodIds;
 }
 
 /// List item class.
@@ -388,7 +388,7 @@ class ListItem extends ListItemModel {
     required TypeEnum type,
     ClientDetails? clientDetails,
     String? paymentMethod,
-    List<String>? paymentMethodNames,
+    List<int>? paymentMethodIds,
   }) : super(
           accountCurrency: accountCurrency,
           advertDetails: advertDetails,
@@ -412,7 +412,7 @@ class ListItem extends ListItemModel {
           type: type,
           clientDetails: clientDetails,
           paymentMethod: paymentMethod,
-          paymentMethodNames: paymentMethodNames,
+          paymentMethodIds: paymentMethodIds,
         );
 
   /// Creates an instance from JSON.
@@ -442,10 +442,10 @@ class ListItem extends ListItemModel {
             ? null
             : ClientDetails.fromJson(json['client_details']),
         paymentMethod: json['payment_method'],
-        paymentMethodNames: json['payment_method_names'] == null
+        paymentMethodIds: json['payment_method_ids'] == null
             ? null
-            : List<String>.from(
-                json['payment_method_names']?.map(
+            : List<int>.from(
+                json['payment_method_ids']?.map(
                   (dynamic item) => item,
                 ),
               ),
@@ -487,10 +487,10 @@ class ListItem extends ListItemModel {
       resultMap['client_details'] = clientDetails!.toJson();
     }
     resultMap['payment_method'] = paymentMethod;
-    if (paymentMethodNames != null) {
-      resultMap['payment_method_names'] = paymentMethodNames!
+    if (paymentMethodIds != null) {
+      resultMap['payment_method_ids'] = paymentMethodIds!
           .map<dynamic>(
-            (String item) => item,
+            (int item) => item,
           )
           .toList();
     }
@@ -522,7 +522,7 @@ class ListItem extends ListItemModel {
     required TypeEnum type,
     ClientDetails? clientDetails,
     String? paymentMethod,
-    List<String>? paymentMethodNames,
+    List<int>? paymentMethodIds,
   }) =>
       ListItem(
         accountCurrency: accountCurrency,
@@ -547,7 +547,7 @@ class ListItem extends ListItemModel {
         type: type,
         clientDetails: clientDetails ?? this.clientDetails,
         paymentMethod: paymentMethod ?? this.paymentMethod,
-        paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
+        paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
       );
 }
 /// Advert details model class.

@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/response/statement_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/statement_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/statement_send.dart';
 import 'package:flutter_test/flutter_test.dart';
 

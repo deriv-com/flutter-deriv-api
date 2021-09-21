@@ -2,10 +2,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
-import 'package:flutter_deriv_api/api/response/active_symbols_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/active_symbols_response_result.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
-import 'package:flutter_deriv_api/api/response/ticks_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/forget_all_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/ticks_response_result.dart';
+import 'package:flutter_deriv_api/api/response/forget_all_response_result.dart';
 
 import '../active_symbols/active_symbols_bloc.dart';
 

@@ -2,8 +2,8 @@
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/response/forget_all_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/forget_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/forget_all_response_result.dart';
+import 'package:flutter_deriv_api/api/response/forget_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_info_receive.dart';
@@ -174,7 +174,6 @@ abstract class P2pAdvertiserInfoModel {
     required this.isApproved,
     required this.id,
     required this.fullVerification,
-    required this.favourited,
     required this.createdTime,
     required this.buyOrdersCount,
     required this.basicVerification,
@@ -192,8 +191,6 @@ abstract class P2pAdvertiserInfoModel {
     this.dailySellLimit,
     this.defaultAdvertDescription,
     this.firstName,
-    this.isBlocked,
-    this.isFavourite,
     this.lastName,
     this.maxOrderAmount,
     this.minBalance,
@@ -225,9 +222,6 @@ abstract class P2pAdvertiserInfoModel {
 
   /// Boolean value: `true` or `false`, indicating whether the advertiser's address has been verified.
   final bool fullVerification;
-
-  /// Number of other users who have favourited this advertiser.
-  final int favourited;
 
   /// The epoch time that the client became an advertiser.
   final DateTime createdTime;
@@ -280,12 +274,6 @@ abstract class P2pAdvertiserInfoModel {
   /// The advertiser's first name.
   final String? firstName;
 
-  /// Indicates that the advertiser is blocked by the current user.
-  final int? isBlocked;
-
-  /// Indicates that the advertiser is a favourite of the current user
-  final int? isFavourite;
-
   /// The advertiser's last name.
   final String? lastName;
 
@@ -321,7 +309,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     required bool basicVerification,
     required int buyOrdersCount,
     required DateTime createdTime,
-    required int favourited,
     required bool fullVerification,
     required String id,
     required bool isApproved,
@@ -343,8 +330,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     String? dailySellLimit,
     String? defaultAdvertDescription,
     String? firstName,
-    int? isBlocked,
-    int? isFavourite,
     String? lastName,
     String? maxOrderAmount,
     String? minBalance,
@@ -358,7 +343,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
           basicVerification: basicVerification,
           buyOrdersCount: buyOrdersCount,
           createdTime: createdTime,
-          favourited: favourited,
           fullVerification: fullVerification,
           id: id,
           isApproved: isApproved,
@@ -380,8 +364,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
           dailySellLimit: dailySellLimit,
           defaultAdvertDescription: defaultAdvertDescription,
           firstName: firstName,
-          isBlocked: isBlocked,
-          isFavourite: isFavourite,
           lastName: lastName,
           maxOrderAmount: maxOrderAmount,
           minBalance: minBalance,
@@ -399,7 +381,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
         basicVerification: getBool(json['basic_verification'])!,
         buyOrdersCount: json['buy_orders_count'],
         createdTime: getDateTime(json['created_time'])!,
-        favourited: json['favourited'],
         fullVerification: getBool(json['full_verification'])!,
         id: json['id'],
         isApproved: getBool(json['is_approved'])!,
@@ -421,8 +402,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
         dailySellLimit: json['daily_sell_limit'],
         defaultAdvertDescription: json['default_advert_description'],
         firstName: json['first_name'],
-        isBlocked: json['is_blocked'],
-        isFavourite: json['is_favourite'],
         lastName: json['last_name'],
         maxOrderAmount: json['max_order_amount'],
         minBalance: json['min_balance'],
@@ -441,7 +420,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     resultMap['basic_verification'] = basicVerification;
     resultMap['buy_orders_count'] = buyOrdersCount;
     resultMap['created_time'] = getSecondsSinceEpochDateTime(createdTime);
-    resultMap['favourited'] = favourited;
     resultMap['full_verification'] = fullVerification;
     resultMap['id'] = id;
     resultMap['is_approved'] = isApproved;
@@ -463,8 +441,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     resultMap['daily_sell_limit'] = dailySellLimit;
     resultMap['default_advert_description'] = defaultAdvertDescription;
     resultMap['first_name'] = firstName;
-    resultMap['is_blocked'] = isBlocked;
-    resultMap['is_favourite'] = isFavourite;
     resultMap['last_name'] = lastName;
     resultMap['max_order_amount'] = maxOrderAmount;
     resultMap['min_balance'] = minBalance;
@@ -483,7 +459,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     required bool basicVerification,
     required int buyOrdersCount,
     required DateTime createdTime,
-    required int favourited,
     required bool fullVerification,
     required String id,
     required bool isApproved,
@@ -505,8 +480,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
     String? dailySellLimit,
     String? defaultAdvertDescription,
     String? firstName,
-    int? isBlocked,
-    int? isFavourite,
     String? lastName,
     String? maxOrderAmount,
     String? minBalance,
@@ -521,7 +494,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
         basicVerification: basicVerification,
         buyOrdersCount: buyOrdersCount,
         createdTime: createdTime,
-        favourited: favourited,
         fullVerification: fullVerification,
         id: id,
         isApproved: isApproved,
@@ -544,8 +516,6 @@ class P2pAdvertiserInfo extends P2pAdvertiserInfoModel {
         defaultAdvertDescription:
             defaultAdvertDescription ?? this.defaultAdvertDescription,
         firstName: firstName ?? this.firstName,
-        isBlocked: isBlocked ?? this.isBlocked,
-        isFavourite: isFavourite ?? this.isFavourite,
         lastName: lastName ?? this.lastName,
         maxOrderAmount: maxOrderAmount ?? this.maxOrderAmount,
         minBalance: minBalance ?? this.minBalance,

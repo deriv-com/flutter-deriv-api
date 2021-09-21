@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/response/transfer_between_accounts_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/transfer_between_accounts_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/transfer_between_accounts_send.dart';
 import 'package:flutter_test/flutter_test.dart';
 

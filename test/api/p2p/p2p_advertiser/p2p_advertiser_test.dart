@@ -3,10 +3,10 @@ import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_create_send
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_info_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advertiser_update_send.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_deriv_api/api/response/p2p_advertiser_info_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/p2p_advertiser_create_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/p2p_advertiser_update_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/p2p_advertiser_adverts_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/p2p_advertiser_info_response_result.dart';
+import 'package:flutter_deriv_api/api/response/p2p_advertiser_create_response_result.dart';
+import 'package:flutter_deriv_api/api/response/p2p_advertiser_update_response_result.dart';
+import 'package:flutter_deriv_api/api/response/p2p_advertiser_adverts_response_result.dart';
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 

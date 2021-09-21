@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/response/ping_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/ping_response_result.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';

@@ -1,7 +1,7 @@
-import 'package:flutter_deriv_api/api/response/cancel_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/contract_update_history_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/proposal_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/sell_expired_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/cancel_response_result.dart';
+import 'package:flutter_deriv_api/api/response/contract_update_history_response_result.dart';
+import 'package:flutter_deriv_api/api/response/proposal_response_result.dart';
+import 'package:flutter_deriv_api/api/response/sell_expired_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/buy_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/cancel_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/contract_update_history_send.dart';
@@ -12,11 +12,11 @@ import 'package:flutter_deriv_api/basic_api/generated/sell_send.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/response/buy_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/buy_response_result.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
-import 'package:flutter_deriv_api/api/response/proposal_open_contract_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/sell_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/contract_update_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/proposal_open_contract_response_result.dart';
+import 'package:flutter_deriv_api/api/response/sell_response_result.dart';
+import 'package:flutter_deriv_api/api/response/contract_update_response_result.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));

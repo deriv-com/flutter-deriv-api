@@ -3,8 +3,8 @@ import '../../helpers/helpers.dart';
 import '../../services/connection/api_manager/base_api.dart';
 import '../../services/dependency_injector/injector.dart';
 import '../exceptions/exceptions.dart';
-import '../response/forget_receive_result.dart';
-import '../response/ticks_history_receive_result.dart';
+import '../response/forget_response_result.dart';
+import '../response/ticks_history_response_result.dart';
 import 'tick_base.dart';
 
 /// Consists of stream of type [TickBase] and its history as [TickHistory]

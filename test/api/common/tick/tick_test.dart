@@ -2,8 +2,8 @@ import 'package:flutter_deriv_api/api/manually/tick_history_subscription.dart';
 import 'package:flutter_deriv_api/basic_api/generated/ticks_history_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/ticks_send.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_deriv_api/api/response/ticks_history_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/ticks_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/ticks_history_response_result.dart';
+import 'package:flutter_deriv_api/api/response/ticks_response_result.dart';
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
 

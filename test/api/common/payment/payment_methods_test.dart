@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
-import 'package:flutter_deriv_api/api/response/payment_methods_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/payment_methods_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/payment_methods_send.dart';
 
 void main() {

@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_single_quotes
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
-import 'package:flutter_deriv_api/api/response/p2p_advert_update_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/p2p_order_create_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/p2p_advert_update_response_result.dart';
+import 'package:flutter_deriv_api/api/response/p2p_order_create_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_info_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_info_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_update_send.dart';
@@ -153,27 +153,12 @@ enum CounterpartyTypeEnum {
 
 /// TypeEnum mapper.
 final Map<String, TypeEnum> typeEnumMapper = <String, TypeEnum>{
-  "text": TypeEnum.text,
-  "memo": TypeEnum.memo,
+  "buy": TypeEnum.buy,
+  "sell": TypeEnum.sell,
 };
 
 /// Type Enum.
 enum TypeEnum {
-  /// text.
-  text,
-
-  /// memo.
-  memo,
-}
-
-/// TypeEnum2 mapper.
-final Map<String, TypeEnum2> typeEnum2Mapper = <String, TypeEnum2>{
-  "buy": TypeEnum2.buy,
-  "sell": TypeEnum2.sell,
-};
-
-/// Type Enum.
-enum TypeEnum2 {
   /// buy.
   buy,
 
@@ -212,14 +197,13 @@ abstract class P2pAdvertInfoModel {
     this.minOrderAmountDisplay,
     this.paymentInfo,
     this.paymentMethod,
-    this.paymentMethodDetails,
-    this.paymentMethodNames,
+    this.paymentMethodIds,
     this.remainingAmount,
     this.remainingAmountDisplay,
   });
 
   /// Whether this is a buy or a sell.
-  final TypeEnum2 type;
+  final TypeEnum type;
 
   /// Conversion rate from account currency to local currency, formatted to appropriate decimal places.
   final String rateDisplay;
@@ -299,14 +283,11 @@ abstract class P2pAdvertInfoModel {
   /// Payment instructions. Only applicable for 'sell adverts'.
   final String? paymentInfo;
 
-  /// Supported payment methods. Comma separated list of identifiers.
+  /// Supported payment methods. Comma separated list.
   final String? paymentMethod;
 
-  /// Details of available payment methods.
-  final Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails;
-
-  /// Names of supported payment methods.
-  final List<String>? paymentMethodNames;
+  /// IDs of payment methods.
+  final List<int>? paymentMethodIds;
 
   /// Amount currently available for orders, in `account_currency`. It is only visible for advertisers.
   final double? remainingAmount;
@@ -336,7 +317,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     required String priceDisplay,
     required double rate,
     required String rateDisplay,
-    required TypeEnum2 type,
+    required TypeEnum type,
     double? amount,
     String? amountDisplay,
     String? contactInfo,
@@ -347,8 +328,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     String? minOrderAmountDisplay,
     String? paymentInfo,
     String? paymentMethod,
-    Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
-    List<String>? paymentMethodNames,
+    List<int>? paymentMethodIds,
     double? remainingAmount,
     String? remainingAmountDisplay,
   }) : super(
@@ -380,8 +360,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
           minOrderAmountDisplay: minOrderAmountDisplay,
           paymentInfo: paymentInfo,
           paymentMethod: paymentMethod,
-          paymentMethodDetails: paymentMethodDetails,
-          paymentMethodNames: paymentMethodNames,
+          paymentMethodIds: paymentMethodIds,
           remainingAmount: remainingAmount,
           remainingAmountDisplay: remainingAmountDisplay,
         );
@@ -407,7 +386,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
         priceDisplay: json['price_display'],
         rate: getDouble(json['rate'])!,
         rateDisplay: json['rate_display'],
-        type: typeEnum2Mapper[json['type']]!,
+        type: typeEnumMapper[json['type']]!,
         amount: getDouble(json['amount']),
         amountDisplay: json['amount_display'],
         contactInfo: json['contact_info'],
@@ -418,21 +397,10 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
         minOrderAmountDisplay: json['min_order_amount_display'],
         paymentInfo: json['payment_info'],
         paymentMethod: json['payment_method'],
-        paymentMethodDetails: json['payment_method_details'] == null
+        paymentMethodIds: json['payment_method_ids'] == null
             ? null
-            : Map<String, PaymentMethodDetailsProperty>.fromEntries(
-                json['payment_method_details']
-                    .entries
-                    .map<MapEntry<String, PaymentMethodDetailsProperty>>(
-                        (MapEntry<String, dynamic> entry) =>
-                            MapEntry<String, PaymentMethodDetailsProperty>(
-                                entry.key,
-                                PaymentMethodDetailsProperty.fromJson(
-                                    entry.value)))),
-        paymentMethodNames: json['payment_method_names'] == null
-            ? null
-            : List<String>.from(
-                json['payment_method_names']?.map(
+            : List<int>.from(
+                json['payment_method_ids']?.map(
                   (dynamic item) => item,
                 ),
               ),
@@ -465,8 +433,8 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     resultMap['price_display'] = priceDisplay;
     resultMap['rate'] = rate;
     resultMap['rate_display'] = rateDisplay;
-    resultMap['type'] = typeEnum2Mapper.entries
-        .firstWhere((MapEntry<String, TypeEnum2> entry) => entry.value == type)
+    resultMap['type'] = typeEnumMapper.entries
+        .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
     resultMap['amount'] = amount;
     resultMap['amount_display'] = amountDisplay;
@@ -478,11 +446,10 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     resultMap['min_order_amount_display'] = minOrderAmountDisplay;
     resultMap['payment_info'] = paymentInfo;
     resultMap['payment_method'] = paymentMethod;
-    resultMap['payment_method_details'] = paymentMethodDetails;
-    if (paymentMethodNames != null) {
-      resultMap['payment_method_names'] = paymentMethodNames!
+    if (paymentMethodIds != null) {
+      resultMap['payment_method_ids'] = paymentMethodIds!
           .map<dynamic>(
-            (String item) => item,
+            (int item) => item,
           )
           .toList();
     }
@@ -511,7 +478,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     required String priceDisplay,
     required double rate,
     required String rateDisplay,
-    required TypeEnum2 type,
+    required TypeEnum type,
     double? amount,
     String? amountDisplay,
     String? contactInfo,
@@ -522,8 +489,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
     String? minOrderAmountDisplay,
     String? paymentInfo,
     String? paymentMethod,
-    Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
-    List<String>? paymentMethodNames,
+    List<int>? paymentMethodIds,
     double? remainingAmount,
     String? remainingAmountDisplay,
   }) =>
@@ -558,8 +524,7 @@ class P2pAdvertInfo extends P2pAdvertInfoModel {
             minOrderAmountDisplay ?? this.minOrderAmountDisplay,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         paymentMethod: paymentMethod ?? this.paymentMethod,
-        paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,
-        paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
+        paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
         remainingAmount: remainingAmount ?? this.remainingAmount,
         remainingAmountDisplay:
             remainingAmountDisplay ?? this.remainingAmountDisplay,
@@ -572,8 +537,6 @@ abstract class AdvertiserDetailsModel {
     required this.name,
     required this.id,
     this.firstName,
-    this.isBlocked,
-    this.isFavourite,
     this.lastName,
     this.totalCompletionRate,
   });
@@ -586,12 +549,6 @@ abstract class AdvertiserDetailsModel {
 
   /// The advertiser's first name.
   final String? firstName;
-
-  /// Indicates that the advertiser is blocked by the current user.
-  final int? isBlocked;
-
-  /// Indicates that the advertiser is a favourite of the current user.
-  final int? isFavourite;
 
   /// The advertiser's last name.
   final String? lastName;
@@ -607,16 +564,12 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     required String id,
     required String name,
     String? firstName,
-    int? isBlocked,
-    int? isFavourite,
     String? lastName,
     double? totalCompletionRate,
   }) : super(
           id: id,
           name: name,
           firstName: firstName,
-          isBlocked: isBlocked,
-          isFavourite: isFavourite,
           lastName: lastName,
           totalCompletionRate: totalCompletionRate,
         );
@@ -627,8 +580,6 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         id: json['id'],
         name: json['name'],
         firstName: json['first_name'],
-        isBlocked: json['is_blocked'],
-        isFavourite: json['is_favourite'],
         lastName: json['last_name'],
         totalCompletionRate: getDouble(json['total_completion_rate']),
       );
@@ -640,8 +591,6 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     resultMap['id'] = id;
     resultMap['name'] = name;
     resultMap['first_name'] = firstName;
-    resultMap['is_blocked'] = isBlocked;
-    resultMap['is_favourite'] = isFavourite;
     resultMap['last_name'] = lastName;
     resultMap['total_completion_rate'] = totalCompletionRate;
 
@@ -653,8 +602,6 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     required String id,
     required String name,
     String? firstName,
-    int? isBlocked,
-    int? isFavourite,
     String? lastName,
     double? totalCompletionRate,
   }) =>
@@ -662,161 +609,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         id: id,
         name: name,
         firstName: firstName ?? this.firstName,
-        isBlocked: isBlocked ?? this.isBlocked,
-        isFavourite: isFavourite ?? this.isFavourite,
         lastName: lastName ?? this.lastName,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
-      );
-}
-/// Payment method details property model class.
-abstract class PaymentMethodDetailsPropertyModel {
-  /// Initializes Payment method details property model class .
-  PaymentMethodDetailsPropertyModel({
-    required this.method,
-    required this.isEnabled,
-    required this.fields,
-    this.displayName,
-  });
-
-  /// Payment method identifier.
-  final String method;
-
-  /// Indicates whether method is enabled.
-  final bool isEnabled;
-
-  /// Payment method fields.
-  final Map<String, FieldsProperty> fields;
-
-  /// Display name of payment method.
-  final String? displayName;
-}
-
-/// Payment method details property class.
-class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
-  /// Initializes Payment method details property class.
-  PaymentMethodDetailsProperty({
-    required Map<String, FieldsProperty> fields,
-    required bool isEnabled,
-    required String method,
-    String? displayName,
-  }) : super(
-          fields: fields,
-          isEnabled: isEnabled,
-          method: method,
-          displayName: displayName,
-        );
-
-  /// Creates an instance from JSON.
-  factory PaymentMethodDetailsProperty.fromJson(Map<String, dynamic> json) =>
-      PaymentMethodDetailsProperty(
-        fields: Map<String, FieldsProperty>.fromEntries(json['fields']
-            .entries
-            .map<MapEntry<String, FieldsProperty>>(
-                (MapEntry<String, dynamic> entry) =>
-                    MapEntry<String, FieldsProperty>(
-                        entry.key, FieldsProperty.fromJson(entry.value)))),
-        isEnabled: getBool(json['is_enabled'])!,
-        method: json['method'],
-        displayName: json['display_name'],
-      );
-
-  /// Converts an instance to JSON.
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    resultMap['fields'] = fields;
-    resultMap['is_enabled'] = isEnabled;
-    resultMap['method'] = method;
-    resultMap['display_name'] = displayName;
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters.
-  PaymentMethodDetailsProperty copyWith({
-    required Map<String, FieldsProperty> fields,
-    required bool isEnabled,
-    required String method,
-    String? displayName,
-  }) =>
-      PaymentMethodDetailsProperty(
-        fields: fields,
-        isEnabled: isEnabled,
-        method: method,
-        displayName: displayName ?? this.displayName,
-      );
-}
-/// Fields property model class.
-abstract class FieldsPropertyModel {
-  /// Initializes Fields property model class .
-  FieldsPropertyModel({
-    required this.value,
-    required this.type,
-    required this.required,
-    required this.displayName,
-  });
-
-  /// Current value of payment method field.
-  final String value;
-
-  /// Field type.
-  final TypeEnum type;
-
-  /// Is field required or optional.
-  final int required;
-
-  /// Display name of payment method field.
-  final String displayName;
-}
-
-/// Fields property class.
-class FieldsProperty extends FieldsPropertyModel {
-  /// Initializes Fields property class.
-  FieldsProperty({
-    required String displayName,
-    required int required,
-    required TypeEnum type,
-    required String value,
-  }) : super(
-          displayName: displayName,
-          required: required,
-          type: type,
-          value: value,
-        );
-
-  /// Creates an instance from JSON.
-  factory FieldsProperty.fromJson(Map<String, dynamic> json) => FieldsProperty(
-        displayName: json['display_name'],
-        required: json['required'],
-        type: typeEnumMapper[json['type']]!,
-        value: json['value'],
-      );
-
-  /// Converts an instance to JSON.
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> resultMap = <String, dynamic>{};
-
-    resultMap['display_name'] = displayName;
-    resultMap['required'] = required;
-    resultMap['type'] = typeEnumMapper.entries
-        .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
-        .key;
-    resultMap['value'] = value;
-
-    return resultMap;
-  }
-
-  /// Creates a copy of instance with given parameters.
-  FieldsProperty copyWith({
-    required String displayName,
-    required int required,
-    required TypeEnum type,
-    required String value,
-  }) =>
-      FieldsProperty(
-        displayName: displayName,
-        required: required,
-        type: type,
-        value: value,
       );
 }

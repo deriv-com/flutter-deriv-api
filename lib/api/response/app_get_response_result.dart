@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_single_quotes
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/response/app_delete_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/app_markup_details_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/app_register_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/app_update_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/revoke_oauth_app_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/app_delete_response_result.dart';
+import 'package:flutter_deriv_api/api/response/app_markup_details_response_result.dart';
+import 'package:flutter_deriv_api/api/response/app_register_response_result.dart';
+import 'package:flutter_deriv_api/api/response/app_update_response_result.dart';
+import 'package:flutter_deriv_api/api/response/revoke_oauth_app_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_delete_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_get_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/app_get_send.dart';

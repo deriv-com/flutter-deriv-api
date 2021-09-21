@@ -1,8 +1,8 @@
 import 'package:flutter_deriv_api/basic_api/generated/landing_company_details_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/landing_company_send.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_deriv_api/api/response/landing_company_details_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/landing_company_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/landing_company_details_response_result.dart';
+import 'package:flutter_deriv_api/api/response/landing_company_response_result.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 
@@ -25,7 +25,7 @@ void main() {
       final FinancialCompany financialCompany =
           landingCompany.landingCompany!.financialCompany!;
 
-      expect(financialCompany.hasRealityCheck, 0);
+      expect(financialCompany.hasRealityCheck, false);
       expect(financialCompany.legalDefaultCurrency?.length, 3);
       expect(financialCompany.legalAllowedContractCategories?.length, 13);
       expect(financialCompany.legalDefaultCurrency, 'USD');

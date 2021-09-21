@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/response/profit_table_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/profit_table_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/profit_table_send.dart';
 import 'package:flutter_test/flutter_test.dart';
 

@@ -1,4 +1,4 @@
-import 'package:flutter_deriv_api/api/response/oauth_apps_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/oauth_apps_response_result.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';

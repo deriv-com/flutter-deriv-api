@@ -2,9 +2,9 @@ import 'package:flutter_deriv_api/basic_api/generated/authorize_send.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_deriv_api/api/api_initializer.dart';
 import 'package:flutter_deriv_api/helpers/helpers.dart';
-import 'package:flutter_deriv_api/api/response/authorize_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/logout_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/login_history_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/authorize_response_result.dart';
+import 'package:flutter_deriv_api/api/response/logout_response_result.dart';
+import 'package:flutter_deriv_api/api/response/login_history_response_result.dart';
 
 void main() {
   setUpAll(() => APIInitializer().initialize(isMock: true));
@@ -16,7 +16,7 @@ void main() {
           await AuthorizeResponse.authorizeMethod(
         const AuthorizeRequest(
           authorize: 'sample_token_334da73d',
-          addToLoginHistory: 1,
+          addToLoginHistory: true,
         ),
       );
 
@@ -34,8 +34,8 @@ void main() {
         firstAccount?.excludedUntil,
         DateTime.fromMillisecondsSinceEpoch(1587486726000, isUtc: true),
       );
-      expect(firstAccount?.isDisabled, 0);
-      expect(firstAccount?.isVirtual, 0);
+      expect(firstAccount?.isDisabled, false);
+      expect(firstAccount?.isVirtual, false);
       expect(firstAccount?.landingCompanyName, 'svg');
       expect(firstAccount?.loginid, 'CR90000028');
 
@@ -44,8 +44,8 @@ void main() {
         secondAccount?.excludedUntil,
         DateTime.fromMillisecondsSinceEpoch(1587486726000, isUtc: true),
       );
-      expect(secondAccount?.isDisabled, 0);
-      expect(secondAccount?.isVirtual, 1);
+      expect(secondAccount?.isDisabled, false);
+      expect(secondAccount?.isVirtual, true);
       expect(secondAccount?.landingCompanyName, 'virtual');
       expect(secondAccount?.loginid, 'VRTC90000028');
 

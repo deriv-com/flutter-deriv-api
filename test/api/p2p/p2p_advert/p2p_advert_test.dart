@@ -1,16 +1,16 @@
-import 'package:flutter_deriv_api/api/response/p2p_advert_create_receive_result.dart'
+import 'package:flutter_deriv_api/api/response/p2p_advert_create_response_result.dart'
     as advert_create;
-import 'package:flutter_deriv_api/api/response/p2p_advert_info_receive_result.dart'
+import 'package:flutter_deriv_api/api/response/p2p_advert_info_response_result.dart'
     as advert_info;
-import 'package:flutter_deriv_api/api/response/p2p_advert_list_receive_result.dart'
+import 'package:flutter_deriv_api/api/response/p2p_advert_list_response_result.dart'
     as advert_list;
-import 'package:flutter_deriv_api/api/response/p2p_order_create_receive_result.dart'
+import 'package:flutter_deriv_api/api/response/p2p_order_create_response_result.dart'
     as order_create;
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_create_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_info_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/p2p_advert_list_send.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_deriv_api/api/response/p2p_advert_update_receive_result.dart'
+import 'package:flutter_deriv_api/api/response/p2p_advert_update_response_result.dart'
     as advert_update;
 
 import 'package:flutter_deriv_api/api/api_initializer.dart';
@@ -51,7 +51,7 @@ void main() {
       expect(advert.priceDisplay, '2.30');
       expect(advert.rate, 2.3);
       expect(advert.rateDisplay, '2.30');
-      expect(advert.type, advert_info.TypeEnum2.buy);
+      expect(advert.type, advert_info.TypeEnum.buy);
     });
 
     test('Fetch Advert List Test', () async {
@@ -142,7 +142,7 @@ void main() {
       expect(advert.rateDisplay, '2.70');
       expect(advert.remainingAmount, 50);
       expect(advert.remainingAmountDisplay, '50.00');
-      expect(advert.type, advert_create.TypeEnum2.sell);
+      expect(advert.type, advert_create.TypeEnum.sell);
     });
 
     test('Update Advert Test', () async {
@@ -187,7 +187,7 @@ void main() {
       expect(updatedAdvert.rateDisplay, '2.70');
       expect(updatedAdvert.remainingAmount, 50);
       expect(updatedAdvert.remainingAmountDisplay, '50.00');
-      expect(updatedAdvert.type, advert_update.TypeEnum2.sell);
+      expect(updatedAdvert.type, advert_update.TypeEnum.sell);
     });
 
     test('Activate Advert Test', () async {
@@ -230,7 +230,7 @@ void main() {
       expect(activatedAdvert.rateDisplay, '2.70');
       expect(activatedAdvert.remainingAmount, 50);
       expect(activatedAdvert.remainingAmountDisplay, '50.00');
-      expect(activatedAdvert.type, advert_update.TypeEnum2.sell);
+      expect(activatedAdvert.type, advert_update.TypeEnum.sell);
     });
 
     test('Deactivate Advert Test', () async {
@@ -279,7 +279,7 @@ void main() {
       expect(deactivatedAdvert.rateDisplay, '2.70');
       expect(deactivatedAdvert.remainingAmount, 50);
       expect(deactivatedAdvert.remainingAmountDisplay, '50.00');
-      expect(deactivatedAdvert.type, advert_update.TypeEnum2.sell);
+      expect(deactivatedAdvert.type, advert_update.TypeEnum.sell);
     });
 
     test('Delete Advert Test', () async {
@@ -323,7 +323,7 @@ void main() {
       expect(deletedAdvert.rateDisplay, '2.70');
       expect(deletedAdvert.remainingAmount, 50);
       expect(deletedAdvert.remainingAmountDisplay, '50.00');
-      expect(deletedAdvert.type, advert_update.TypeEnum2.sell);
+      expect(deletedAdvert.type, advert_update.TypeEnum.sell);
     });
 
     test('Create Order From Advert Test', () async {

@@ -2,8 +2,8 @@
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
 import 'package:flutter_deriv_api/api/models/enums.dart';
-import 'package:flutter_deriv_api/api/response/forget_all_receive_result.dart';
-import 'package:flutter_deriv_api/api/response/forget_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/forget_all_response_result.dart';
+import 'package:flutter_deriv_api/api/response/forget_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/balance_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/balance_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/forget_all_receive.dart';

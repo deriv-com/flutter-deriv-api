@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
 import 'package:flutter_deriv_api/api/models/base_exception_model.dart';
-import 'package:flutter_deriv_api/api/response/landing_company_details_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/landing_company_details_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/landing_company_details_receive.dart';
 import 'package:flutter_deriv_api/basic_api/generated/landing_company_details_send.dart';
 import 'package:flutter_deriv_api/basic_api/generated/landing_company_receive.dart';

@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_deriv_api/api/response/contracts_for_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/contracts_for_response_result.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/api/exceptions/exceptions.dart';
-import 'package:flutter_deriv_api/api/response/active_symbols_receive_result.dart';
+import 'package:flutter_deriv_api/api/response/active_symbols_response_result.dart';
 
 import '../active_symbols/active_symbols_bloc.dart';
 
