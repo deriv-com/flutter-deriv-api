@@ -5,6 +5,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import 'package:websocket_manager/websocket_manager.dart';
+
 import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:flutter_deriv_api/basic_api/generated/api.dart';
 import 'package:flutter_deriv_api/basic_api/request.dart';
@@ -18,24 +20,16 @@ import 'package:flutter_deriv_api/services/connection/call_manager/call_manager.
 import 'package:flutter_deriv_api/services/connection/call_manager/exceptions/call_manager_exception.dart';
 import 'package:flutter_deriv_api/services/connection/call_manager/subscription_manager.dart';
 
-import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/status.dart' as status;
-
 /// This class is for handling Binary API connection and calling Binary APIs.
 class BinaryAPI extends BaseAPI {
   /// Initializes binary api.
   BinaryAPI(UniqueKey uniqueKey) : super(uniqueKey);
 
-  static const Duration _wsConnectTimeOut = Duration(seconds: 10);
-
   /// Indicates current connection status - only set `true` once we have established SSL *and* web socket handshake steps.
   bool _connected = false;
 
   /// Represents the active web socket connection.
-  IOWebSocketChannel? _webSocketChannel;
-
-  /// Stream subscription to API data.
-  StreamSubscription<Map<String, dynamic>?>? _webSocketListener;
+  WebsocketManager? _webSocketManager;
 
   /// Call manager instance.
   CallManager? _callManager;
@@ -76,38 +70,19 @@ class BinaryAPI extends BaseAPI {
 
     await _setUserAgent();
 
-    // Initialize connection to web socket server.
-    _webSocketChannel = IOWebSocketChannel.connect(
-      uri.toString(),
-      pingInterval: _wsConnectTimeOut,
-    );
+    _webSocketManager = WebsocketManager(uri.toString());
 
-    _webSocketListener = _webSocketChannel?.stream
-        .map<Map<String, dynamic>?>(
-            (Object? result) => jsonDecode(result.toString()))
-        .listen(
-      (Map<String, dynamic>? message) {
-        _connected = true;
+    _webSocketManager?.onMessage((dynamic message) {
+      final Map<String, dynamic> result = jsonDecode(message.toString());
 
-        onOpen?.call(uniqueKey);
+      _connected = true;
 
-        if (message != null) {
-          _handleResponse(message);
-        }
-      },
-      onError: (Object error) {
-        dev.log('the web socket connection is closed: $error.');
+      onOpen?.call(uniqueKey);
 
-        onError?.call(uniqueKey);
-      },
-      onDone: () async {
-        dev.log('web socket is closed.');
-
-        _connected = false;
-
-        onDone?.call(uniqueKey);
-      },
-    );
+      if (message != null) {
+        _handleResponse(result);
+      }
+    });
 
     dev.log('send initial message.');
   }
@@ -119,7 +94,7 @@ class BinaryAPI extends BaseAPI {
 
   @override
   void addToChannel(Map<String, dynamic> request) =>
-      _webSocketChannel?.sink.add(utf8.encode(jsonEncode(request)));
+      _webSocketManager?.send(utf8.encode(jsonEncode(request)).toString());
 
   @override
   Future<T> call<T>({required Request request}) async {
@@ -160,16 +135,7 @@ class BinaryAPI extends BaseAPI {
           .unsubscribeAll(method: method);
 
   @override
-  Future<void> disconnect() async {
-    await _webSocketListener?.cancel();
-
-    if (_connected) {
-      await _webSocketChannel?.sink.close(status.goingAway);
-    }
-
-    _webSocketListener = null;
-    _webSocketChannel = null;
-  }
+  Future<void> disconnect() async => await _webSocketManager?.close();
 
   /// Handles responses that come from server, by using its reqId,
   /// and completes caller's Future or add the response to caller's stream if it was a subscription call.

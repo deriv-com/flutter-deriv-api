@@ -42,6 +42,11 @@ dev_dependencies:
   path: ^1.8.0
   test: ^1.16.5
 
+  websocket_manager:
+    git:
+      url: git@github.com:hamed-fs/flutter_websocket_plugin.git
+      ref: master
+
 flutter:
   plugin:
     platforms:
