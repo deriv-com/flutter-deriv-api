@@ -172,6 +172,7 @@ abstract class ListItemModel {
     required this.maxOrderAmountLimitDisplay,
     required this.maxOrderAmountLimit,
     required this.localCurrency,
+    required this.isVisible,
     required this.isActive,
     required this.id,
     required this.description,
@@ -190,7 +191,7 @@ abstract class ListItemModel {
     this.minOrderAmountDisplay,
     this.paymentInfo,
     this.paymentMethod,
-    this.paymentMethodIds,
+    this.paymentMethodNames,
     this.remainingAmount,
     this.remainingAmountDisplay,
   });
@@ -225,6 +226,9 @@ abstract class ListItemModel {
   /// Local currency for this advert. This is the form of payment to be arranged directly between advertiser and client.
   final String localCurrency;
 
+  /// Indicates that this advert will appear on the main advert list.
+  final bool isVisible;
+
   /// The activation status of the advert.
   final bool isActive;
 
@@ -249,10 +253,10 @@ abstract class ListItemModel {
   /// Currency for this advert. This is the system currency to be transferred between advertiser and client.
   final String accountCurrency;
 
-  /// The total amount specified in advert, in `account_currency`. It is only visible for advertisers.
+  /// The total amount specified in advert, in `account_currency`. It is only visible to the advert owner.
   final double? amount;
 
-  /// The total amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible for advertisers.
+  /// The total amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible to the advert owner.
   final String? amountDisplay;
 
   /// Advertiser contact information. Only applicable for 'sell adverts'.
@@ -264,28 +268,28 @@ abstract class ListItemModel {
   /// Maximum order amount specified in advert, in `account_currency`. It is only visible for advertisers.
   final double? maxOrderAmount;
 
-  /// Maximum order amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible for advertisers.
+  /// Maximum order amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible to the advert owner.
   final String? maxOrderAmountDisplay;
 
   /// Minimum order amount specified in advert, in `account_currency`. It is only visible for advertisers.
   final double? minOrderAmount;
 
-  /// Minimum order amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible for advertisers.
+  /// Minimum order amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible to the advert owner.
   final String? minOrderAmountDisplay;
 
   /// Payment instructions. Only applicable for 'sell adverts'.
   final String? paymentInfo;
 
-  /// Supported payment methods. Comma separated list.
+  /// Supported payment methods. Comma separated list of identifiers.
   final String? paymentMethod;
 
-  /// IDs of payment methods.
-  final List<int>? paymentMethodIds;
+  /// Names of supported payment methods.
+  final List<String>? paymentMethodNames;
 
-  /// Amount currently available for orders, in `account_currency`. It is only visible for advertisers.
+  /// Amount currently available for orders, in `account_currency`. It is only visible to the advert owner.
   final double? remainingAmount;
 
-  /// Amount currently available for orders, in `account_currency`, formatted to appropriate decimal places. It is only visible for advertisers.
+  /// Amount currently available for orders, in `account_currency`, formatted to appropriate decimal places. It is only visible to the advert owner.
   final String? remainingAmountDisplay;
 }
 
@@ -301,6 +305,7 @@ class ListItem extends ListItemModel {
     required String description,
     required String id,
     required bool isActive,
+    required bool isVisible,
     required String localCurrency,
     required double maxOrderAmountLimit,
     required String maxOrderAmountLimitDisplay,
@@ -321,7 +326,7 @@ class ListItem extends ListItemModel {
     String? minOrderAmountDisplay,
     String? paymentInfo,
     String? paymentMethod,
-    List<int>? paymentMethodIds,
+    List<String>? paymentMethodNames,
     double? remainingAmount,
     String? remainingAmountDisplay,
   }) : super(
@@ -333,6 +338,7 @@ class ListItem extends ListItemModel {
           description: description,
           id: id,
           isActive: isActive,
+          isVisible: isVisible,
           localCurrency: localCurrency,
           maxOrderAmountLimit: maxOrderAmountLimit,
           maxOrderAmountLimitDisplay: maxOrderAmountLimitDisplay,
@@ -353,7 +359,7 @@ class ListItem extends ListItemModel {
           minOrderAmountDisplay: minOrderAmountDisplay,
           paymentInfo: paymentInfo,
           paymentMethod: paymentMethod,
-          paymentMethodIds: paymentMethodIds,
+          paymentMethodNames: paymentMethodNames,
           remainingAmount: remainingAmount,
           remainingAmountDisplay: remainingAmountDisplay,
         );
@@ -370,6 +376,7 @@ class ListItem extends ListItemModel {
         description: json['description'],
         id: json['id'],
         isActive: getBool(json['is_active'])!,
+        isVisible: getBool(json['is_visible'])!,
         localCurrency: json['local_currency'],
         maxOrderAmountLimit: getDouble(json['max_order_amount_limit'])!,
         maxOrderAmountLimitDisplay: json['max_order_amount_limit_display'],
@@ -390,10 +397,10 @@ class ListItem extends ListItemModel {
         minOrderAmountDisplay: json['min_order_amount_display'],
         paymentInfo: json['payment_info'],
         paymentMethod: json['payment_method'],
-        paymentMethodIds: json['payment_method_ids'] == null
+        paymentMethodNames: json['payment_method_names'] == null
             ? null
-            : List<int>.from(
-                json['payment_method_ids']?.map(
+            : List<String>.from(
+                json['payment_method_names']?.map(
                   (dynamic item) => item,
                 ),
               ),
@@ -417,6 +424,7 @@ class ListItem extends ListItemModel {
     resultMap['description'] = description;
     resultMap['id'] = id;
     resultMap['is_active'] = isActive;
+    resultMap['is_visible'] = isVisible;
     resultMap['local_currency'] = localCurrency;
     resultMap['max_order_amount_limit'] = maxOrderAmountLimit;
     resultMap['max_order_amount_limit_display'] = maxOrderAmountLimitDisplay;
@@ -439,10 +447,10 @@ class ListItem extends ListItemModel {
     resultMap['min_order_amount_display'] = minOrderAmountDisplay;
     resultMap['payment_info'] = paymentInfo;
     resultMap['payment_method'] = paymentMethod;
-    if (paymentMethodIds != null) {
-      resultMap['payment_method_ids'] = paymentMethodIds!
+    if (paymentMethodNames != null) {
+      resultMap['payment_method_names'] = paymentMethodNames!
           .map<dynamic>(
-            (int item) => item,
+            (String item) => item,
           )
           .toList();
     }
@@ -462,6 +470,7 @@ class ListItem extends ListItemModel {
     required String description,
     required String id,
     required bool isActive,
+    required bool isVisible,
     required String localCurrency,
     required double maxOrderAmountLimit,
     required String maxOrderAmountLimitDisplay,
@@ -482,7 +491,7 @@ class ListItem extends ListItemModel {
     String? minOrderAmountDisplay,
     String? paymentInfo,
     String? paymentMethod,
-    List<int>? paymentMethodIds,
+    List<String>? paymentMethodNames,
     double? remainingAmount,
     String? remainingAmountDisplay,
   }) =>
@@ -495,6 +504,7 @@ class ListItem extends ListItemModel {
         description: description,
         id: id,
         isActive: isActive,
+        isVisible: isVisible,
         localCurrency: localCurrency,
         maxOrderAmountLimit: maxOrderAmountLimit,
         maxOrderAmountLimitDisplay: maxOrderAmountLimitDisplay,
@@ -517,7 +527,7 @@ class ListItem extends ListItemModel {
             minOrderAmountDisplay ?? this.minOrderAmountDisplay,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         paymentMethod: paymentMethod ?? this.paymentMethod,
-        paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
+        paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
         remainingAmount: remainingAmount ?? this.remainingAmount,
         remainingAmountDisplay:
             remainingAmountDisplay ?? this.remainingAmountDisplay,
@@ -530,6 +540,7 @@ abstract class AdvertiserDetailsModel {
     required this.name,
     required this.id,
     this.firstName,
+    this.isFavourite,
     this.lastName,
     this.totalCompletionRate,
   });
@@ -542,6 +553,9 @@ abstract class AdvertiserDetailsModel {
 
   /// The advertiser's first name.
   final String? firstName;
+
+  /// Indicates that the advertiser is a favourite.
+  final int? isFavourite;
 
   /// The advertiser's last name.
   final String? lastName;
@@ -557,12 +571,14 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     required String id,
     required String name,
     String? firstName,
+    int? isFavourite,
     String? lastName,
     double? totalCompletionRate,
   }) : super(
           id: id,
           name: name,
           firstName: firstName,
+          isFavourite: isFavourite,
           lastName: lastName,
           totalCompletionRate: totalCompletionRate,
         );
@@ -573,6 +589,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         id: json['id'],
         name: json['name'],
         firstName: json['first_name'],
+        isFavourite: json['is_favourite'],
         lastName: json['last_name'],
         totalCompletionRate: getDouble(json['total_completion_rate']),
       );
@@ -584,6 +601,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     resultMap['id'] = id;
     resultMap['name'] = name;
     resultMap['first_name'] = firstName;
+    resultMap['is_favourite'] = isFavourite;
     resultMap['last_name'] = lastName;
     resultMap['total_completion_rate'] = totalCompletionRate;
 
@@ -595,6 +613,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
     required String id,
     required String name,
     String? firstName,
+    int? isFavourite,
     String? lastName,
     double? totalCompletionRate,
   }) =>
@@ -602,6 +621,7 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         id: id,
         name: name,
         firstName: firstName ?? this.firstName,
+        isFavourite: isFavourite ?? this.isFavourite,
         lastName: lastName ?? this.lastName,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
       );

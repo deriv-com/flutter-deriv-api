@@ -725,6 +725,7 @@ abstract class CurrenciesConfigPropertyModel {
     required this.isSuspended,
     required this.isDepositSuspended,
     required this.fractionalDigits,
+    this.name,
   });
 
   /// Type of the currency.
@@ -747,6 +748,9 @@ abstract class CurrenciesConfigPropertyModel {
 
   /// Number of fractional digits.
   final double fractionalDigits;
+
+  /// Name of the currency.
+  final String? name;
 }
 
 /// Currencies config property class.
@@ -760,6 +764,7 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
     required double stakeDefault,
     required TransferBetweenAccounts transferBetweenAccounts,
     required TypeEnum type,
+    String? name,
   }) : super(
           fractionalDigits: fractionalDigits,
           isDepositSuspended: isDepositSuspended,
@@ -768,6 +773,7 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
           stakeDefault: stakeDefault,
           transferBetweenAccounts: transferBetweenAccounts,
           type: type,
+          name: name,
         );
 
   /// Creates an instance from JSON.
@@ -781,6 +787,7 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
         transferBetweenAccounts:
             TransferBetweenAccounts.fromJson(json['transfer_between_accounts']),
         type: typeEnumMapper[json['type']]!,
+        name: json['name'],
       );
 
   /// Converts an instance to JSON.
@@ -797,6 +804,7 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
     resultMap['type'] = typeEnumMapper.entries
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
+    resultMap['name'] = name;
 
     return resultMap;
   }
@@ -810,6 +818,7 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
     required double stakeDefault,
     required TransferBetweenAccounts transferBetweenAccounts,
     required TypeEnum type,
+    String? name,
   }) =>
       CurrenciesConfigProperty(
         fractionalDigits: fractionalDigits,
@@ -819,6 +828,7 @@ class CurrenciesConfigProperty extends CurrenciesConfigPropertyModel {
         stakeDefault: stakeDefault,
         transferBetweenAccounts: transferBetweenAccounts,
         type: type,
+        name: name ?? this.name,
       );
 }
 /// Transfer between accounts model class.
@@ -827,6 +837,8 @@ abstract class TransferBetweenAccountsModel {
   TransferBetweenAccountsModel({
     required this.limits,
     required this.fees,
+    this.limitsDxtrade,
+    this.limitsMt5,
   });
 
   ///
@@ -834,6 +846,12 @@ abstract class TransferBetweenAccountsModel {
 
   /// The fee that applies for transfer between accounts with different types of currencies.
   final Map<String, double> fees;
+
+  /// Range of allowed amount for transfer between dxtrade accounts.
+  final Map<String, dynamic>? limitsDxtrade;
+
+  /// Range of allowed amount for transfer between mt5 accounts.
+  final Map<String, dynamic>? limitsMt5;
 }
 
 /// Transfer between accounts class.
@@ -842,9 +860,13 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
   TransferBetweenAccounts({
     required Map<String, double> fees,
     required Limits limits,
+    Map<String, dynamic>? limitsDxtrade,
+    Map<String, dynamic>? limitsMt5,
   }) : super(
           fees: fees,
           limits: limits,
+          limitsDxtrade: limitsDxtrade,
+          limitsMt5: limitsMt5,
         );
 
   /// Creates an instance from JSON.
@@ -855,6 +877,8 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
             .map<MapEntry<String, double>>((MapEntry<String, dynamic> entry) =>
                 MapEntry<String, double>(entry.key, getDouble(entry.value)!))),
         limits: Limits.fromJson(json['limits']),
+        limitsDxtrade: json['limits_dxtrade'],
+        limitsMt5: json['limits_mt5'],
       );
 
   /// Converts an instance to JSON.
@@ -864,6 +888,9 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
     resultMap['fees'] = fees;
     resultMap['limits'] = limits.toJson();
 
+    resultMap['limits_dxtrade'] = limitsDxtrade;
+    resultMap['limits_mt5'] = limitsMt5;
+
     return resultMap;
   }
 
@@ -871,10 +898,14 @@ class TransferBetweenAccounts extends TransferBetweenAccountsModel {
   TransferBetweenAccounts copyWith({
     required Map<String, double> fees,
     required Limits limits,
+    Map<String, dynamic>? limitsDxtrade,
+    Map<String, dynamic>? limitsMt5,
   }) =>
       TransferBetweenAccounts(
         fees: fees,
         limits: limits,
+        limitsDxtrade: limitsDxtrade ?? this.limitsDxtrade,
+        limitsMt5: limitsMt5 ?? this.limitsMt5,
       );
 }
 /// Limits model class.
@@ -937,6 +968,7 @@ abstract class P2pConfigModel {
     required this.orderDailyLimit,
     required this.maximumOrderAmount,
     required this.maximumAdvertAmount,
+    required this.disabled,
     required this.cancellationLimit,
     required this.cancellationGracePeriod,
     required this.cancellationCountPeriod,
@@ -956,6 +988,9 @@ abstract class P2pConfigModel {
 
   /// Maximum amount of an advert, in USD.
   final double maximumAdvertAmount;
+
+  /// When `true`, the P2P service is unavailable.
+  final bool disabled;
 
   /// A buyer will be temporarily barred after marking this number of cancellations within cancellation_period.
   final int cancellationLimit;
@@ -985,6 +1020,7 @@ class P2pConfig extends P2pConfigModel {
     required int cancellationCountPeriod,
     required int cancellationGracePeriod,
     required int cancellationLimit,
+    required bool disabled,
     required double maximumAdvertAmount,
     required double maximumOrderAmount,
     required int orderDailyLimit,
@@ -996,6 +1032,7 @@ class P2pConfig extends P2pConfigModel {
           cancellationCountPeriod: cancellationCountPeriod,
           cancellationGracePeriod: cancellationGracePeriod,
           cancellationLimit: cancellationLimit,
+          disabled: disabled,
           maximumAdvertAmount: maximumAdvertAmount,
           maximumOrderAmount: maximumOrderAmount,
           orderDailyLimit: orderDailyLimit,
@@ -1010,6 +1047,7 @@ class P2pConfig extends P2pConfigModel {
         cancellationCountPeriod: json['cancellation_count_period'],
         cancellationGracePeriod: json['cancellation_grace_period'],
         cancellationLimit: json['cancellation_limit'],
+        disabled: getBool(json['disabled'])!,
         maximumAdvertAmount: getDouble(json['maximum_advert_amount'])!,
         maximumOrderAmount: getDouble(json['maximum_order_amount'])!,
         orderDailyLimit: json['order_daily_limit'],
@@ -1026,6 +1064,7 @@ class P2pConfig extends P2pConfigModel {
     resultMap['cancellation_count_period'] = cancellationCountPeriod;
     resultMap['cancellation_grace_period'] = cancellationGracePeriod;
     resultMap['cancellation_limit'] = cancellationLimit;
+    resultMap['disabled'] = disabled;
     resultMap['maximum_advert_amount'] = maximumAdvertAmount;
     resultMap['maximum_order_amount'] = maximumOrderAmount;
     resultMap['order_daily_limit'] = orderDailyLimit;
@@ -1042,6 +1081,7 @@ class P2pConfig extends P2pConfigModel {
     required int cancellationCountPeriod,
     required int cancellationGracePeriod,
     required int cancellationLimit,
+    required bool disabled,
     required double maximumAdvertAmount,
     required double maximumOrderAmount,
     required int orderDailyLimit,
@@ -1054,6 +1094,7 @@ class P2pConfig extends P2pConfigModel {
         cancellationCountPeriod: cancellationCountPeriod,
         cancellationGracePeriod: cancellationGracePeriod,
         cancellationLimit: cancellationLimit,
+        disabled: disabled,
         maximumAdvertAmount: maximumAdvertAmount,
         maximumOrderAmount: maximumOrderAmount,
         orderDailyLimit: orderDailyLimit,

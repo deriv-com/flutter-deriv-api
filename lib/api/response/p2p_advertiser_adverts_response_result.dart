@@ -171,11 +171,16 @@ abstract class ListItemModel {
     required this.priceDisplay,
     required this.price,
     required this.paymentInfo,
+    required this.minOrderAmountLimitDisplay,
+    required this.minOrderAmountLimit,
     required this.minOrderAmountDisplay,
     required this.minOrderAmount,
+    required this.maxOrderAmountLimitDisplay,
+    required this.maxOrderAmountLimit,
     required this.maxOrderAmountDisplay,
     required this.maxOrderAmount,
     required this.localCurrency,
+    required this.isVisible,
     required this.isActive,
     required this.id,
     required this.description,
@@ -189,16 +194,16 @@ abstract class ListItemModel {
     required this.accountCurrency,
     this.daysUntilArchive,
     this.paymentMethod,
-    this.paymentMethodIds,
+    this.paymentMethodNames,
   });
 
   /// Whether this is a buy or a sell.
   final TypeEnum type;
 
-  /// Amount currently available for orders, in `account_currency`, formatted to appropriate decimal places. It is only visible for advertisers.
+  /// Amount currently available for orders, in `account_currency`, formatted to appropriate decimal places.
   final String remainingAmountDisplay;
 
-  /// Amount currently available for orders, in `account_currency`. It is only visible for advertisers.
+  /// Amount currently available for orders, in `account_currency`.
   final double remainingAmount;
 
   /// Conversion rate from account currency to local currency, formatted to appropriate decimal places.
@@ -216,11 +221,23 @@ abstract class ListItemModel {
   /// Payment instructions. Only applicable for 'sell adverts'.
   final String paymentInfo;
 
+  /// Minimum order amount at this time, in `account_currency`, formatted to appropriate decimal places.
+  final String minOrderAmountLimitDisplay;
+
+  /// Minimum order amount at this time, in `account_currency`.
+  final double minOrderAmountLimit;
+
   /// Minimum order amount, in `account_currency`, formatted to appropriate decimal places.
   final String minOrderAmountDisplay;
 
   /// Minimum order amount, in `account_currency`.
   final double minOrderAmount;
+
+  /// Maximum order amount at this time, in `account_currency`, formatted to appropriate decimal places.
+  final String maxOrderAmountLimitDisplay;
+
+  /// Maximum order amount at this time, in `account_currency`.
+  final double maxOrderAmountLimit;
 
   /// Maximum order amount, in `account_currency`, formatted to appropriate decimal places.
   final String maxOrderAmountDisplay;
@@ -230,6 +247,9 @@ abstract class ListItemModel {
 
   /// Local currency for this advert. This is the form of payment to be arranged directly between advertiser and client.
   final String localCurrency;
+
+  /// Indicates that this advert will appear on the main advert list.
+  final bool isVisible;
 
   /// The activation status of the advert.
   final bool isActive;
@@ -252,10 +272,10 @@ abstract class ListItemModel {
   /// Advertiser contact information. Only applicable for 'sell adverts'.
   final String contactInfo;
 
-  /// The total amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible for advertisers.
+  /// The total amount specified in advert, in `account_currency`, formatted to appropriate decimal places.
   final String amountDisplay;
 
-  /// The total amount specified in advert, in `account_currency`. It is only visible for advertisers.
+  /// The total amount specified in advert, in `account_currency`.
   final double amount;
 
   /// Details of the advertiser for this advert.
@@ -267,11 +287,11 @@ abstract class ListItemModel {
   /// Days until automatic inactivation of this ad, if no activity occurs.
   final int? daysUntilArchive;
 
-  /// Supported payment methods. Comma separated list.
+  /// Supported payment methods. Comma separated list of identifiers.
   final String? paymentMethod;
 
-  /// IDs of payment methods.
-  final List<int>? paymentMethodIds;
+  /// Names of supported payment methods.
+  final List<String>? paymentMethodNames;
 }
 
 /// List item class.
@@ -289,11 +309,16 @@ class ListItem extends ListItemModel {
     required String description,
     required String id,
     required bool isActive,
+    required bool isVisible,
     required String localCurrency,
     required double maxOrderAmount,
     required String maxOrderAmountDisplay,
+    required double maxOrderAmountLimit,
+    required String maxOrderAmountLimitDisplay,
     required double minOrderAmount,
     required String minOrderAmountDisplay,
+    required double minOrderAmountLimit,
+    required String minOrderAmountLimitDisplay,
     required String paymentInfo,
     required double price,
     required String priceDisplay,
@@ -304,7 +329,7 @@ class ListItem extends ListItemModel {
     required TypeEnum type,
     int? daysUntilArchive,
     String? paymentMethod,
-    List<int>? paymentMethodIds,
+    List<String>? paymentMethodNames,
   }) : super(
           accountCurrency: accountCurrency,
           advertiserDetails: advertiserDetails,
@@ -317,11 +342,16 @@ class ListItem extends ListItemModel {
           description: description,
           id: id,
           isActive: isActive,
+          isVisible: isVisible,
           localCurrency: localCurrency,
           maxOrderAmount: maxOrderAmount,
           maxOrderAmountDisplay: maxOrderAmountDisplay,
+          maxOrderAmountLimit: maxOrderAmountLimit,
+          maxOrderAmountLimitDisplay: maxOrderAmountLimitDisplay,
           minOrderAmount: minOrderAmount,
           minOrderAmountDisplay: minOrderAmountDisplay,
+          minOrderAmountLimit: minOrderAmountLimit,
+          minOrderAmountLimitDisplay: minOrderAmountLimitDisplay,
           paymentInfo: paymentInfo,
           price: price,
           priceDisplay: priceDisplay,
@@ -332,7 +362,7 @@ class ListItem extends ListItemModel {
           type: type,
           daysUntilArchive: daysUntilArchive,
           paymentMethod: paymentMethod,
-          paymentMethodIds: paymentMethodIds,
+          paymentMethodNames: paymentMethodNames,
         );
 
   /// Creates an instance from JSON.
@@ -350,11 +380,16 @@ class ListItem extends ListItemModel {
         description: json['description'],
         id: json['id'],
         isActive: getBool(json['is_active'])!,
+        isVisible: getBool(json['is_visible'])!,
         localCurrency: json['local_currency'],
         maxOrderAmount: getDouble(json['max_order_amount'])!,
         maxOrderAmountDisplay: json['max_order_amount_display'],
+        maxOrderAmountLimit: getDouble(json['max_order_amount_limit'])!,
+        maxOrderAmountLimitDisplay: json['max_order_amount_limit_display'],
         minOrderAmount: getDouble(json['min_order_amount'])!,
         minOrderAmountDisplay: json['min_order_amount_display'],
+        minOrderAmountLimit: getDouble(json['min_order_amount_limit'])!,
+        minOrderAmountLimitDisplay: json['min_order_amount_limit_display'],
         paymentInfo: json['payment_info'],
         price: getDouble(json['price'])!,
         priceDisplay: json['price_display'],
@@ -365,10 +400,10 @@ class ListItem extends ListItemModel {
         type: typeEnumMapper[json['type']]!,
         daysUntilArchive: json['days_until_archive'],
         paymentMethod: json['payment_method'],
-        paymentMethodIds: json['payment_method_ids'] == null
+        paymentMethodNames: json['payment_method_names'] == null
             ? null
-            : List<int>.from(
-                json['payment_method_ids']?.map(
+            : List<String>.from(
+                json['payment_method_names']?.map(
                   (dynamic item) => item,
                 ),
               ),
@@ -393,11 +428,16 @@ class ListItem extends ListItemModel {
     resultMap['description'] = description;
     resultMap['id'] = id;
     resultMap['is_active'] = isActive;
+    resultMap['is_visible'] = isVisible;
     resultMap['local_currency'] = localCurrency;
     resultMap['max_order_amount'] = maxOrderAmount;
     resultMap['max_order_amount_display'] = maxOrderAmountDisplay;
+    resultMap['max_order_amount_limit'] = maxOrderAmountLimit;
+    resultMap['max_order_amount_limit_display'] = maxOrderAmountLimitDisplay;
     resultMap['min_order_amount'] = minOrderAmount;
     resultMap['min_order_amount_display'] = minOrderAmountDisplay;
+    resultMap['min_order_amount_limit'] = minOrderAmountLimit;
+    resultMap['min_order_amount_limit_display'] = minOrderAmountLimitDisplay;
     resultMap['payment_info'] = paymentInfo;
     resultMap['price'] = price;
     resultMap['price_display'] = priceDisplay;
@@ -410,10 +450,10 @@ class ListItem extends ListItemModel {
         .key;
     resultMap['days_until_archive'] = daysUntilArchive;
     resultMap['payment_method'] = paymentMethod;
-    if (paymentMethodIds != null) {
-      resultMap['payment_method_ids'] = paymentMethodIds!
+    if (paymentMethodNames != null) {
+      resultMap['payment_method_names'] = paymentMethodNames!
           .map<dynamic>(
-            (int item) => item,
+            (String item) => item,
           )
           .toList();
     }
@@ -434,11 +474,16 @@ class ListItem extends ListItemModel {
     required String description,
     required String id,
     required bool isActive,
+    required bool isVisible,
     required String localCurrency,
     required double maxOrderAmount,
     required String maxOrderAmountDisplay,
+    required double maxOrderAmountLimit,
+    required String maxOrderAmountLimitDisplay,
     required double minOrderAmount,
     required String minOrderAmountDisplay,
+    required double minOrderAmountLimit,
+    required String minOrderAmountLimitDisplay,
     required String paymentInfo,
     required double price,
     required String priceDisplay,
@@ -449,7 +494,7 @@ class ListItem extends ListItemModel {
     required TypeEnum type,
     int? daysUntilArchive,
     String? paymentMethod,
-    List<int>? paymentMethodIds,
+    List<String>? paymentMethodNames,
   }) =>
       ListItem(
         accountCurrency: accountCurrency,
@@ -463,11 +508,16 @@ class ListItem extends ListItemModel {
         description: description,
         id: id,
         isActive: isActive,
+        isVisible: isVisible,
         localCurrency: localCurrency,
         maxOrderAmount: maxOrderAmount,
         maxOrderAmountDisplay: maxOrderAmountDisplay,
+        maxOrderAmountLimit: maxOrderAmountLimit,
+        maxOrderAmountLimitDisplay: maxOrderAmountLimitDisplay,
         minOrderAmount: minOrderAmount,
         minOrderAmountDisplay: minOrderAmountDisplay,
+        minOrderAmountLimit: minOrderAmountLimit,
+        minOrderAmountLimitDisplay: minOrderAmountLimitDisplay,
         paymentInfo: paymentInfo,
         price: price,
         priceDisplay: priceDisplay,
@@ -478,7 +528,7 @@ class ListItem extends ListItemModel {
         type: type,
         daysUntilArchive: daysUntilArchive ?? this.daysUntilArchive,
         paymentMethod: paymentMethod ?? this.paymentMethod,
-        paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
+        paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
       );
 }
 /// Advertiser details model class.

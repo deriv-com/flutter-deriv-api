@@ -33,11 +33,11 @@ void main() {
     expect(accountStatus.getAccountStatus?.riskClassification, 'low');
     expect(
       accountStatus.getAccountStatus?.authentication?.document?.status,
-      StatusEnum.pending,
+      DocumentStatusEnum.pending,
     );
     expect(
       accountStatus.getAccountStatus?.authentication?.identity?.status,
-      StatusEnum.pending,
+      DocumentStatusEnum.pending,
     );
 
     // expect(

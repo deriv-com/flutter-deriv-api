@@ -79,6 +79,7 @@ class AppUpdateResponse extends AppUpdateResponseModel {
 abstract class AppUpdateModel {
   /// Initializes App update model class .
   AppUpdateModel({
+    this.active,
     this.appId,
     this.appMarkupPercentage,
     this.appstore,
@@ -87,8 +88,12 @@ abstract class AppUpdateModel {
     this.homepage,
     this.name,
     this.redirectUri,
+    this.scopes,
     this.verificationUri,
   });
+
+  /// Active.
+  final int? active;
 
   /// Application ID.
   final int? appId;
@@ -114,6 +119,9 @@ abstract class AppUpdateModel {
   /// The URL to redirect to after a successful login.
   final String? redirectUri;
 
+  /// Scope Details.
+  final List<String>? scopes;
+
   /// Used when `verify_email` called. If available, a URL containing the verification token will be sent to the client's email, otherwise only the token will be sent.
   final String? verificationUri;
 }
@@ -122,6 +130,7 @@ abstract class AppUpdateModel {
 class AppUpdate extends AppUpdateModel {
   /// Initializes App update class.
   AppUpdate({
+    int? active,
     int? appId,
     double? appMarkupPercentage,
     String? appstore,
@@ -130,8 +139,10 @@ class AppUpdate extends AppUpdateModel {
     String? homepage,
     String? name,
     String? redirectUri,
+    List<String>? scopes,
     String? verificationUri,
   }) : super(
+          active: active,
           appId: appId,
           appMarkupPercentage: appMarkupPercentage,
           appstore: appstore,
@@ -140,11 +151,13 @@ class AppUpdate extends AppUpdateModel {
           homepage: homepage,
           name: name,
           redirectUri: redirectUri,
+          scopes: scopes,
           verificationUri: verificationUri,
         );
 
   /// Creates an instance from JSON.
   factory AppUpdate.fromJson(Map<String, dynamic> json) => AppUpdate(
+        active: json['active'],
         appId: json['app_id'],
         appMarkupPercentage: getDouble(json['app_markup_percentage']),
         appstore: json['appstore'],
@@ -153,6 +166,13 @@ class AppUpdate extends AppUpdateModel {
         homepage: json['homepage'],
         name: json['name'],
         redirectUri: json['redirect_uri'],
+        scopes: json['scopes'] == null
+            ? null
+            : List<String>.from(
+                json['scopes']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
         verificationUri: json['verification_uri'],
       );
 
@@ -160,6 +180,7 @@ class AppUpdate extends AppUpdateModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['active'] = active;
     resultMap['app_id'] = appId;
     resultMap['app_markup_percentage'] = appMarkupPercentage;
     resultMap['appstore'] = appstore;
@@ -168,6 +189,13 @@ class AppUpdate extends AppUpdateModel {
     resultMap['homepage'] = homepage;
     resultMap['name'] = name;
     resultMap['redirect_uri'] = redirectUri;
+    if (scopes != null) {
+      resultMap['scopes'] = scopes!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
     resultMap['verification_uri'] = verificationUri;
 
     return resultMap;
@@ -175,6 +203,7 @@ class AppUpdate extends AppUpdateModel {
 
   /// Creates a copy of instance with given parameters.
   AppUpdate copyWith({
+    int? active,
     int? appId,
     double? appMarkupPercentage,
     String? appstore,
@@ -183,9 +212,11 @@ class AppUpdate extends AppUpdateModel {
     String? homepage,
     String? name,
     String? redirectUri,
+    List<String>? scopes,
     String? verificationUri,
   }) =>
       AppUpdate(
+        active: active ?? this.active,
         appId: appId ?? this.appId,
         appMarkupPercentage: appMarkupPercentage ?? this.appMarkupPercentage,
         appstore: appstore ?? this.appstore,
@@ -194,6 +225,7 @@ class AppUpdate extends AppUpdateModel {
         homepage: homepage ?? this.homepage,
         name: name ?? this.name,
         redirectUri: redirectUri ?? this.redirectUri,
+        scopes: scopes ?? this.scopes,
         verificationUri: verificationUri ?? this.verificationUri,
       );
 }

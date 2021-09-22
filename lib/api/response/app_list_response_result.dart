@@ -93,10 +93,12 @@ abstract class AppListItemModel {
     required this.name,
     required this.appMarkupPercentage,
     required this.appId,
+    this.active,
     this.appstore,
     this.github,
     this.googleplay,
     this.homepage,
+    this.scopes,
     this.verificationUri,
   });
 
@@ -112,6 +114,9 @@ abstract class AppListItemModel {
   /// Application ID.
   final int appId;
 
+  /// Active.
+  final int? active;
+
   /// Application's App Store URL.
   final String? appstore;
 
@@ -123,6 +128,9 @@ abstract class AppListItemModel {
 
   /// Application's homepage URL.
   final String? homepage;
+
+  /// Scope Details.
+  final List<String>? scopes;
 
   /// Used when `verify_email` called. If available, a URL containing the verification token will send to the client's email, otherwise only the token will be sent.
   final String? verificationUri;
@@ -136,20 +144,24 @@ class AppListItem extends AppListItemModel {
     required double appMarkupPercentage,
     required String name,
     required String redirectUri,
+    int? active,
     String? appstore,
     String? github,
     String? googleplay,
     String? homepage,
+    List<String>? scopes,
     String? verificationUri,
   }) : super(
           appId: appId,
           appMarkupPercentage: appMarkupPercentage,
           name: name,
           redirectUri: redirectUri,
+          active: active,
           appstore: appstore,
           github: github,
           googleplay: googleplay,
           homepage: homepage,
+          scopes: scopes,
           verificationUri: verificationUri,
         );
 
@@ -159,10 +171,18 @@ class AppListItem extends AppListItemModel {
         appMarkupPercentage: getDouble(json['app_markup_percentage'])!,
         name: json['name'],
         redirectUri: json['redirect_uri'],
+        active: json['active'],
         appstore: json['appstore'],
         github: json['github'],
         googleplay: json['googleplay'],
         homepage: json['homepage'],
+        scopes: json['scopes'] == null
+            ? null
+            : List<String>.from(
+                json['scopes']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
         verificationUri: json['verification_uri'],
       );
 
@@ -174,10 +194,18 @@ class AppListItem extends AppListItemModel {
     resultMap['app_markup_percentage'] = appMarkupPercentage;
     resultMap['name'] = name;
     resultMap['redirect_uri'] = redirectUri;
+    resultMap['active'] = active;
     resultMap['appstore'] = appstore;
     resultMap['github'] = github;
     resultMap['googleplay'] = googleplay;
     resultMap['homepage'] = homepage;
+    if (scopes != null) {
+      resultMap['scopes'] = scopes!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
     resultMap['verification_uri'] = verificationUri;
 
     return resultMap;
@@ -189,10 +217,12 @@ class AppListItem extends AppListItemModel {
     required double appMarkupPercentage,
     required String name,
     required String redirectUri,
+    int? active,
     String? appstore,
     String? github,
     String? googleplay,
     String? homepage,
+    List<String>? scopes,
     String? verificationUri,
   }) =>
       AppListItem(
@@ -200,10 +230,12 @@ class AppListItem extends AppListItemModel {
         appMarkupPercentage: appMarkupPercentage,
         name: name,
         redirectUri: redirectUri,
+        active: active ?? this.active,
         appstore: appstore ?? this.appstore,
         github: github ?? this.github,
         googleplay: googleplay ?? this.googleplay,
         homepage: homepage ?? this.homepage,
+        scopes: scopes ?? this.scopes,
         verificationUri: verificationUri ?? this.verificationUri,
       );
 }

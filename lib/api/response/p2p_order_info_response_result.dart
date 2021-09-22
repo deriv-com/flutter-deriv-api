@@ -225,6 +225,22 @@ enum TypeEnum {
   sell,
 }
 
+/// FieldsPropertyTypeEnum mapper.
+final Map<String, FieldsPropertyTypeEnum> fieldsPropertyTypeEnumMapper =
+    <String, FieldsPropertyTypeEnum>{
+  "text": FieldsPropertyTypeEnum.text,
+  "memo": FieldsPropertyTypeEnum.memo,
+};
+
+/// Type Enum.
+enum FieldsPropertyTypeEnum {
+  /// text.
+  text,
+
+  /// memo.
+  memo,
+}
+
 /// StatusEnum mapper.
 final Map<String, StatusEnum> statusEnumMapper = <String, StatusEnum>{
   "pending": StatusEnum.pending,
@@ -298,7 +314,6 @@ abstract class P2pOrderInfoModel {
     required this.accountCurrency,
     this.paymentMethod,
     this.paymentMethodDetails,
-    this.paymentMethodIds,
   });
 
   /// Whether this is a buy or a sell.
@@ -367,11 +382,8 @@ abstract class P2pOrderInfoModel {
   /// Supported payment methods. Comma separated list.
   final String? paymentMethod;
 
-  /// Details of available payment methods, only for unpaid orders.
-  final List<PaymentMethodDetailsItem>? paymentMethodDetails;
-
-  /// IDs of payment methods.
-  final List<int>? paymentMethodIds;
+  /// Details of available payment methods.
+  final Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails;
 }
 
 /// P2p order info class.
@@ -400,8 +412,7 @@ class P2pOrderInfo extends P2pOrderInfoModel {
     required StatusEnum status,
     required TypeEnum type,
     String? paymentMethod,
-    List<PaymentMethodDetailsItem>? paymentMethodDetails,
-    List<int>? paymentMethodIds,
+    Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
   }) : super(
           accountCurrency: accountCurrency,
           advertDetails: advertDetails,
@@ -426,7 +437,6 @@ class P2pOrderInfo extends P2pOrderInfoModel {
           type: type,
           paymentMethod: paymentMethod,
           paymentMethodDetails: paymentMethodDetails,
-          paymentMethodIds: paymentMethodIds,
         );
 
   /// Creates an instance from JSON.
@@ -456,18 +466,15 @@ class P2pOrderInfo extends P2pOrderInfoModel {
         paymentMethod: json['payment_method'],
         paymentMethodDetails: json['payment_method_details'] == null
             ? null
-            : List<PaymentMethodDetailsItem>.from(
-                json['payment_method_details']?.map(
-                  (dynamic item) => PaymentMethodDetailsItem.fromJson(item),
-                ),
-              ),
-        paymentMethodIds: json['payment_method_ids'] == null
-            ? null
-            : List<int>.from(
-                json['payment_method_ids']?.map(
-                  (dynamic item) => item,
-                ),
-              ),
+            : Map<String, PaymentMethodDetailsProperty>.fromEntries(
+                json['payment_method_details']
+                    .entries
+                    .map<MapEntry<String, PaymentMethodDetailsProperty>>(
+                        (MapEntry<String, dynamic> entry) =>
+                            MapEntry<String, PaymentMethodDetailsProperty>(
+                                entry.key,
+                                PaymentMethodDetailsProperty.fromJson(
+                                    entry.value)))),
       );
 
   /// Converts an instance to JSON.
@@ -505,20 +512,7 @@ class P2pOrderInfo extends P2pOrderInfoModel {
         .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
         .key;
     resultMap['payment_method'] = paymentMethod;
-    if (paymentMethodDetails != null) {
-      resultMap['payment_method_details'] = paymentMethodDetails!
-          .map<dynamic>(
-            (PaymentMethodDetailsItem item) => item.toJson(),
-          )
-          .toList();
-    }
-    if (paymentMethodIds != null) {
-      resultMap['payment_method_ids'] = paymentMethodIds!
-          .map<dynamic>(
-            (int item) => item,
-          )
-          .toList();
-    }
+    resultMap['payment_method_details'] = paymentMethodDetails;
 
     return resultMap;
   }
@@ -547,8 +541,7 @@ class P2pOrderInfo extends P2pOrderInfoModel {
     required StatusEnum status,
     required TypeEnum type,
     String? paymentMethod,
-    List<PaymentMethodDetailsItem>? paymentMethodDetails,
-    List<int>? paymentMethodIds,
+    Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
   }) =>
       P2pOrderInfo(
         accountCurrency: accountCurrency,
@@ -574,7 +567,6 @@ class P2pOrderInfo extends P2pOrderInfoModel {
         type: type,
         paymentMethod: paymentMethod ?? this.paymentMethod,
         paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,
-        paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
       );
 }
 /// Advert details model class.
@@ -868,47 +860,157 @@ class DisputeDetails extends DisputeDetailsModel {
         disputerLoginid: disputerLoginid ?? this.disputerLoginid,
       );
 }
-/// Payment method details item model class.
-abstract class PaymentMethodDetailsItemModel {
-  /// Initializes Payment method details item model class .
-  PaymentMethodDetailsItemModel({
-    this.method,
+/// Payment method details property model class.
+abstract class PaymentMethodDetailsPropertyModel {
+  /// Initializes Payment method details property model class .
+  PaymentMethodDetailsPropertyModel({
+    required this.method,
+    required this.isEnabled,
+    required this.fields,
+    this.displayName,
   });
 
   /// Payment method identifier.
-  final String? method;
+  final String method;
+
+  /// Indicates whether method is enabled.
+  final bool isEnabled;
+
+  /// Payment method fields.
+  final Map<String, FieldsProperty> fields;
+
+  /// Display name of payment method.
+  final String? displayName;
 }
 
-/// Payment method details item class.
-class PaymentMethodDetailsItem extends PaymentMethodDetailsItemModel {
-  /// Initializes Payment method details item class.
-  PaymentMethodDetailsItem({
-    String? method,
+/// Payment method details property class.
+class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
+  /// Initializes Payment method details property class.
+  PaymentMethodDetailsProperty({
+    required Map<String, FieldsProperty> fields,
+    required bool isEnabled,
+    required String method,
+    String? displayName,
   }) : super(
+          fields: fields,
+          isEnabled: isEnabled,
           method: method,
+          displayName: displayName,
         );
 
   /// Creates an instance from JSON.
-  factory PaymentMethodDetailsItem.fromJson(Map<String, dynamic> json) =>
-      PaymentMethodDetailsItem(
+  factory PaymentMethodDetailsProperty.fromJson(Map<String, dynamic> json) =>
+      PaymentMethodDetailsProperty(
+        fields: Map<String, FieldsProperty>.fromEntries(json['fields']
+            .entries
+            .map<MapEntry<String, FieldsProperty>>(
+                (MapEntry<String, dynamic> entry) =>
+                    MapEntry<String, FieldsProperty>(
+                        entry.key, FieldsProperty.fromJson(entry.value)))),
+        isEnabled: getBool(json['is_enabled'])!,
         method: json['method'],
+        displayName: json['display_name'],
       );
 
   /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['fields'] = fields;
+    resultMap['is_enabled'] = isEnabled;
     resultMap['method'] = method;
+    resultMap['display_name'] = displayName;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters.
-  PaymentMethodDetailsItem copyWith({
-    String? method,
+  PaymentMethodDetailsProperty copyWith({
+    required Map<String, FieldsProperty> fields,
+    required bool isEnabled,
+    required String method,
+    String? displayName,
   }) =>
-      PaymentMethodDetailsItem(
-        method: method ?? this.method,
+      PaymentMethodDetailsProperty(
+        fields: fields,
+        isEnabled: isEnabled,
+        method: method,
+        displayName: displayName ?? this.displayName,
+      );
+}
+/// Fields property model class.
+abstract class FieldsPropertyModel {
+  /// Initializes Fields property model class .
+  FieldsPropertyModel({
+    required this.value,
+    required this.type,
+    required this.required,
+    required this.displayName,
+  });
+
+  /// Current value of payment method field.
+  final String value;
+
+  /// Field type.
+  final FieldsPropertyTypeEnum type;
+
+  /// Is field required or optional.
+  final int required;
+
+  /// Display name of payment method field.
+  final String displayName;
+}
+
+/// Fields property class.
+class FieldsProperty extends FieldsPropertyModel {
+  /// Initializes Fields property class.
+  FieldsProperty({
+    required String displayName,
+    required int required,
+    required FieldsPropertyTypeEnum type,
+    required String value,
+  }) : super(
+          displayName: displayName,
+          required: required,
+          type: type,
+          value: value,
+        );
+
+  /// Creates an instance from JSON.
+  factory FieldsProperty.fromJson(Map<String, dynamic> json) => FieldsProperty(
+        displayName: json['display_name'],
+        required: json['required'],
+        type: fieldsPropertyTypeEnumMapper[json['type']]!,
+        value: json['value'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['display_name'] = displayName;
+    resultMap['required'] = required;
+    resultMap['type'] = fieldsPropertyTypeEnumMapper.entries
+        .firstWhere((MapEntry<String, FieldsPropertyTypeEnum> entry) =>
+            entry.value == type)
+        .key;
+    resultMap['value'] = value;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  FieldsProperty copyWith({
+    required String displayName,
+    required int required,
+    required FieldsPropertyTypeEnum type,
+    required String value,
+  }) =>
+      FieldsProperty(
+        displayName: displayName,
+        required: required,
+        type: type,
+        value: value,
       );
 }
 /// Subscription model class.

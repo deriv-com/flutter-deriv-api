@@ -198,9 +198,15 @@ abstract class AvailableItemModel {
     required this.barriers,
     required this.barrierCategory,
     this.availableBarriers,
+    this.barrier,
+    this.cancellationRange,
     this.contractDisplay,
     this.expiredBarriers,
     this.forwardStartingOptions,
+    this.highBarrier,
+    this.lastDigitRange,
+    this.lowBarrier,
+    this.multiplierRange,
     this.payoutLimit,
     this.tradingPeriod,
   });
@@ -250,6 +256,12 @@ abstract class AvailableItemModel {
   /// Array of available barriers for a predefined trading period
   final List<dynamic>? availableBarriers;
 
+  /// Barrier Details.
+  final String? barrier;
+
+  /// Cancellation range
+  final List<dynamic>? cancellationRange;
+
   /// Display name for the type of contract.
   final String? contractDisplay;
 
@@ -258,6 +270,18 @@ abstract class AvailableItemModel {
 
   /// Array of returned forward starting options
   final List<ForwardStartingOptionsItem>? forwardStartingOptions;
+
+  /// High barrier Details.
+  final String? highBarrier;
+
+  /// Last digit range
+  final List<dynamic>? lastDigitRange;
+
+  /// Low barrier Details.
+  final String? lowBarrier;
+
+  /// Multiplier range.
+  final List<dynamic>? multiplierRange;
 
   /// Maximum payout.
   final double? payoutLimit;
@@ -285,9 +309,15 @@ class AvailableItem extends AvailableItemModel {
     required String submarket,
     required String underlyingSymbol,
     List<dynamic>? availableBarriers,
+    String? barrier,
+    List<dynamic>? cancellationRange,
     String? contractDisplay,
     List<dynamic>? expiredBarriers,
     List<ForwardStartingOptionsItem>? forwardStartingOptions,
+    String? highBarrier,
+    List<dynamic>? lastDigitRange,
+    String? lowBarrier,
+    List<dynamic>? multiplierRange,
     double? payoutLimit,
     Map<String, dynamic>? tradingPeriod,
   }) : super(
@@ -306,9 +336,15 @@ class AvailableItem extends AvailableItemModel {
           submarket: submarket,
           underlyingSymbol: underlyingSymbol,
           availableBarriers: availableBarriers,
+          barrier: barrier,
+          cancellationRange: cancellationRange,
           contractDisplay: contractDisplay,
           expiredBarriers: expiredBarriers,
           forwardStartingOptions: forwardStartingOptions,
+          highBarrier: highBarrier,
+          lastDigitRange: lastDigitRange,
+          lowBarrier: lowBarrier,
+          multiplierRange: multiplierRange,
           payoutLimit: payoutLimit,
           tradingPeriod: tradingPeriod,
         );
@@ -336,6 +372,14 @@ class AvailableItem extends AvailableItemModel {
                   (dynamic item) => item,
                 ),
               ),
+        barrier: json['barrier'],
+        cancellationRange: json['cancellation_range'] == null
+            ? null
+            : List<dynamic>.from(
+                json['cancellation_range']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
         contractDisplay: json['contract_display'],
         expiredBarriers: json['expired_barriers'] == null
             ? null
@@ -349,6 +393,22 @@ class AvailableItem extends AvailableItemModel {
             : List<ForwardStartingOptionsItem>.from(
                 json['forward_starting_options']?.map(
                   (dynamic item) => ForwardStartingOptionsItem.fromJson(item),
+                ),
+              ),
+        highBarrier: json['high_barrier'],
+        lastDigitRange: json['last_digit_range'] == null
+            ? null
+            : List<dynamic>.from(
+                json['last_digit_range']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        lowBarrier: json['low_barrier'],
+        multiplierRange: json['multiplier_range'] == null
+            ? null
+            : List<dynamic>.from(
+                json['multiplier_range']?.map(
+                  (dynamic item) => item,
                 ),
               ),
         payoutLimit: getDouble(json['payout_limit']),
@@ -380,6 +440,14 @@ class AvailableItem extends AvailableItemModel {
           )
           .toList();
     }
+    resultMap['barrier'] = barrier;
+    if (cancellationRange != null) {
+      resultMap['cancellation_range'] = cancellationRange!
+          .map<dynamic>(
+            (dynamic item) => item,
+          )
+          .toList();
+    }
     resultMap['contract_display'] = contractDisplay;
     if (expiredBarriers != null) {
       resultMap['expired_barriers'] = expiredBarriers!
@@ -392,6 +460,22 @@ class AvailableItem extends AvailableItemModel {
       resultMap['forward_starting_options'] = forwardStartingOptions!
           .map<dynamic>(
             (ForwardStartingOptionsItem item) => item.toJson(),
+          )
+          .toList();
+    }
+    resultMap['high_barrier'] = highBarrier;
+    if (lastDigitRange != null) {
+      resultMap['last_digit_range'] = lastDigitRange!
+          .map<dynamic>(
+            (dynamic item) => item,
+          )
+          .toList();
+    }
+    resultMap['low_barrier'] = lowBarrier;
+    if (multiplierRange != null) {
+      resultMap['multiplier_range'] = multiplierRange!
+          .map<dynamic>(
+            (dynamic item) => item,
           )
           .toList();
     }
@@ -418,9 +502,15 @@ class AvailableItem extends AvailableItemModel {
     required String submarket,
     required String underlyingSymbol,
     List<dynamic>? availableBarriers,
+    String? barrier,
+    List<dynamic>? cancellationRange,
     String? contractDisplay,
     List<dynamic>? expiredBarriers,
     List<ForwardStartingOptionsItem>? forwardStartingOptions,
+    String? highBarrier,
+    List<dynamic>? lastDigitRange,
+    String? lowBarrier,
+    List<dynamic>? multiplierRange,
     double? payoutLimit,
     Map<String, dynamic>? tradingPeriod,
   }) =>
@@ -440,10 +530,16 @@ class AvailableItem extends AvailableItemModel {
         submarket: submarket,
         underlyingSymbol: underlyingSymbol,
         availableBarriers: availableBarriers ?? this.availableBarriers,
+        barrier: barrier ?? this.barrier,
+        cancellationRange: cancellationRange ?? this.cancellationRange,
         contractDisplay: contractDisplay ?? this.contractDisplay,
         expiredBarriers: expiredBarriers ?? this.expiredBarriers,
         forwardStartingOptions:
             forwardStartingOptions ?? this.forwardStartingOptions,
+        highBarrier: highBarrier ?? this.highBarrier,
+        lastDigitRange: lastDigitRange ?? this.lastDigitRange,
+        lowBarrier: lowBarrier ?? this.lowBarrier,
+        multiplierRange: multiplierRange ?? this.multiplierRange,
         payoutLimit: payoutLimit ?? this.payoutLimit,
         tradingPeriod: tradingPeriod ?? this.tradingPeriod,
       );
@@ -452,10 +548,14 @@ class AvailableItem extends AvailableItemModel {
 abstract class ForwardStartingOptionsItemModel {
   /// Initializes Forward starting options item model class .
   ForwardStartingOptionsItemModel({
+    this.blackouts,
     this.close,
     this.date,
     this.open,
   });
+
+  /// The epoch value for the blackouts of forward starting session.
+  final List<dynamic>? blackouts;
 
   /// The epoch value for the closing date of forward starting session.
   final String? close;
@@ -471,10 +571,12 @@ abstract class ForwardStartingOptionsItemModel {
 class ForwardStartingOptionsItem extends ForwardStartingOptionsItemModel {
   /// Initializes Forward starting options item class.
   ForwardStartingOptionsItem({
+    List<dynamic>? blackouts,
     String? close,
     String? date,
     String? open,
   }) : super(
+          blackouts: blackouts,
           close: close,
           date: date,
           open: open,
@@ -483,6 +585,13 @@ class ForwardStartingOptionsItem extends ForwardStartingOptionsItemModel {
   /// Creates an instance from JSON.
   factory ForwardStartingOptionsItem.fromJson(Map<String, dynamic> json) =>
       ForwardStartingOptionsItem(
+        blackouts: json['blackouts'] == null
+            ? null
+            : List<dynamic>.from(
+                json['blackouts']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
         close: json['close'],
         date: json['date'],
         open: json['open'],
@@ -492,6 +601,13 @@ class ForwardStartingOptionsItem extends ForwardStartingOptionsItemModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    if (blackouts != null) {
+      resultMap['blackouts'] = blackouts!
+          .map<dynamic>(
+            (dynamic item) => item,
+          )
+          .toList();
+    }
     resultMap['close'] = close;
     resultMap['date'] = date;
     resultMap['open'] = open;
@@ -501,11 +617,13 @@ class ForwardStartingOptionsItem extends ForwardStartingOptionsItemModel {
 
   /// Creates a copy of instance with given parameters.
   ForwardStartingOptionsItem copyWith({
+    List<dynamic>? blackouts,
     String? close,
     String? date,
     String? open,
   }) =>
       ForwardStartingOptionsItem(
+        blackouts: blackouts ?? this.blackouts,
         close: close ?? this.close,
         date: date ?? this.date,
         open: open ?? this.open,

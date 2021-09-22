@@ -82,6 +82,7 @@ abstract class GetLimitsModel {
   /// Initializes Get limits model class .
   GetLimitsModel({
     this.accountBalance,
+    this.dailyTransfers,
     this.dailyTurnover,
     this.lifetimeLimit,
     this.marketSpecific,
@@ -98,6 +99,9 @@ abstract class GetLimitsModel {
 
   /// Maximum account cash balance
   final double? accountBalance;
+
+  /// Daily transfers
+  final Map<String, dynamic>? dailyTransfers;
 
   /// Maximum daily turnover
   final double? dailyTurnover;
@@ -141,6 +145,7 @@ class GetLimits extends GetLimitsModel {
   /// Initializes Get limits class.
   GetLimits({
     double? accountBalance,
+    Map<String, dynamic>? dailyTransfers,
     double? dailyTurnover,
     double? lifetimeLimit,
     Map<String, List<MarketSpecificPropertyItem>>? marketSpecific,
@@ -155,6 +160,7 @@ class GetLimits extends GetLimitsModel {
     double? withdrawalSinceInceptionMonetary,
   }) : super(
           accountBalance: accountBalance,
+          dailyTransfers: dailyTransfers,
           dailyTurnover: dailyTurnover,
           lifetimeLimit: lifetimeLimit,
           marketSpecific: marketSpecific,
@@ -172,6 +178,7 @@ class GetLimits extends GetLimitsModel {
   /// Creates an instance from JSON.
   factory GetLimits.fromJson(Map<String, dynamic> json) => GetLimits(
         accountBalance: getDouble(json['account_balance']),
+        dailyTransfers: json['daily_transfers'],
         dailyTurnover: getDouble(json['daily_turnover']),
         lifetimeLimit: getDouble(json['lifetime_limit']),
         marketSpecific: json['market_specific'] == null
@@ -210,6 +217,7 @@ class GetLimits extends GetLimitsModel {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
     resultMap['account_balance'] = accountBalance;
+    resultMap['daily_transfers'] = dailyTransfers;
     resultMap['daily_turnover'] = dailyTurnover;
     resultMap['lifetime_limit'] = lifetimeLimit;
     resultMap['market_specific'] = marketSpecific;
@@ -233,6 +241,7 @@ class GetLimits extends GetLimitsModel {
   /// Creates a copy of instance with given parameters.
   GetLimits copyWith({
     double? accountBalance,
+    Map<String, dynamic>? dailyTransfers,
     double? dailyTurnover,
     double? lifetimeLimit,
     Map<String, List<MarketSpecificPropertyItem>>? marketSpecific,
@@ -248,6 +257,7 @@ class GetLimits extends GetLimitsModel {
   }) =>
       GetLimits(
         accountBalance: accountBalance ?? this.accountBalance,
+        dailyTransfers: dailyTransfers ?? this.dailyTransfers,
         dailyTurnover: dailyTurnover ?? this.dailyTurnover,
         lifetimeLimit: lifetimeLimit ?? this.lifetimeLimit,
         marketSpecific: marketSpecific ?? this.marketSpecific,

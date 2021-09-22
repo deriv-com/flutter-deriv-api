@@ -289,7 +289,7 @@ abstract class ListItemModel {
     required this.accountCurrency,
     this.clientDetails,
     this.paymentMethod,
-    this.paymentMethodIds,
+    this.paymentMethodNames,
   });
 
   /// Whether this is a buy or a sell.
@@ -355,11 +355,11 @@ abstract class ListItemModel {
   /// Details of the client who created the order.
   final ClientDetails? clientDetails;
 
-  /// Supported payment methods. Comma separated list.
+  /// Supported payment methods. Comma separated list of identifiers.
   final String? paymentMethod;
 
-  /// IDs of payment methods.
-  final List<int>? paymentMethodIds;
+  /// Names of supported payment methods.
+  final List<String>? paymentMethodNames;
 }
 
 /// List item class.
@@ -388,7 +388,7 @@ class ListItem extends ListItemModel {
     required TypeEnum type,
     ClientDetails? clientDetails,
     String? paymentMethod,
-    List<int>? paymentMethodIds,
+    List<String>? paymentMethodNames,
   }) : super(
           accountCurrency: accountCurrency,
           advertDetails: advertDetails,
@@ -412,7 +412,7 @@ class ListItem extends ListItemModel {
           type: type,
           clientDetails: clientDetails,
           paymentMethod: paymentMethod,
-          paymentMethodIds: paymentMethodIds,
+          paymentMethodNames: paymentMethodNames,
         );
 
   /// Creates an instance from JSON.
@@ -442,10 +442,10 @@ class ListItem extends ListItemModel {
             ? null
             : ClientDetails.fromJson(json['client_details']),
         paymentMethod: json['payment_method'],
-        paymentMethodIds: json['payment_method_ids'] == null
+        paymentMethodNames: json['payment_method_names'] == null
             ? null
-            : List<int>.from(
-                json['payment_method_ids']?.map(
+            : List<String>.from(
+                json['payment_method_names']?.map(
                   (dynamic item) => item,
                 ),
               ),
@@ -487,10 +487,10 @@ class ListItem extends ListItemModel {
       resultMap['client_details'] = clientDetails!.toJson();
     }
     resultMap['payment_method'] = paymentMethod;
-    if (paymentMethodIds != null) {
-      resultMap['payment_method_ids'] = paymentMethodIds!
+    if (paymentMethodNames != null) {
+      resultMap['payment_method_names'] = paymentMethodNames!
           .map<dynamic>(
-            (int item) => item,
+            (String item) => item,
           )
           .toList();
     }
@@ -522,7 +522,7 @@ class ListItem extends ListItemModel {
     required TypeEnum type,
     ClientDetails? clientDetails,
     String? paymentMethod,
-    List<int>? paymentMethodIds,
+    List<String>? paymentMethodNames,
   }) =>
       ListItem(
         accountCurrency: accountCurrency,
@@ -547,7 +547,7 @@ class ListItem extends ListItemModel {
         type: type,
         clientDetails: clientDetails ?? this.clientDetails,
         paymentMethod: paymentMethod ?? this.paymentMethod,
-        paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
+        paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
       );
 }
 /// Advert details model class.

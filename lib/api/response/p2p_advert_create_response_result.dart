@@ -96,12 +96,28 @@ enum CounterpartyTypeEnum {
 
 /// TypeEnum mapper.
 final Map<String, TypeEnum> typeEnumMapper = <String, TypeEnum>{
-  "buy": TypeEnum.buy,
-  "sell": TypeEnum.sell,
+  "text": TypeEnum.text,
+  "memo": TypeEnum.memo,
 };
 
 /// Type Enum.
 enum TypeEnum {
+  /// text.
+  text,
+
+  /// memo.
+  memo,
+}
+
+/// P2pAdvertCreateTypeEnum mapper.
+final Map<String, P2pAdvertCreateTypeEnum> p2pAdvertCreateTypeEnumMapper =
+    <String, P2pAdvertCreateTypeEnum>{
+  "buy": P2pAdvertCreateTypeEnum.buy,
+  "sell": P2pAdvertCreateTypeEnum.sell,
+};
+
+/// Type Enum.
+enum P2pAdvertCreateTypeEnum {
   /// buy.
   buy,
 
@@ -119,11 +135,16 @@ abstract class P2pAdvertCreateModel {
     required this.rate,
     required this.priceDisplay,
     required this.price,
+    required this.minOrderAmountLimitDisplay,
+    required this.minOrderAmountLimit,
     required this.minOrderAmountDisplay,
     required this.minOrderAmount,
+    required this.maxOrderAmountLimitDisplay,
+    required this.maxOrderAmountLimit,
     required this.maxOrderAmountDisplay,
     required this.maxOrderAmount,
     required this.localCurrency,
+    required this.isVisible,
     required this.isActive,
     required this.id,
     required this.description,
@@ -137,16 +158,17 @@ abstract class P2pAdvertCreateModel {
     this.contactInfo,
     this.paymentInfo,
     this.paymentMethod,
-    this.paymentMethodIds,
+    this.paymentMethodDetails,
+    this.paymentMethodNames,
   });
 
   /// Whether this is a buy or a sell.
-  final TypeEnum type;
+  final P2pAdvertCreateTypeEnum type;
 
-  /// Amount currently available for orders, in `account_currency`, formatted to appropriate decimal places. It is only visible for advertisers.
+  /// Amount currently available for orders, in `account_currency`, formatted to appropriate decimal places.
   final String remainingAmountDisplay;
 
-  /// Amount currently available for orders, in `account_currency`. It is only visible for advertisers.
+  /// Amount currently available for orders, in `account_currency`.
   final double remainingAmount;
 
   /// Conversion rate from account currency to local currency, formatted to appropriate decimal places.
@@ -161,20 +183,35 @@ abstract class P2pAdvertCreateModel {
   /// Cost of the advert in local currency.
   final double price;
 
-  /// Minimum order amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible for advertisers.
+  /// Minimum order amount at this time, in `account_currency`, formatted to appropriate decimal places.
+  final String minOrderAmountLimitDisplay;
+
+  /// Minimum order amount at this time, in `account_currency`.
+  final double minOrderAmountLimit;
+
+  /// Minimum order amount specified in advert, in `account_currency`, formatted to appropriate decimal places.
   final String minOrderAmountDisplay;
 
-  /// Minimum order amount specified in advert, in `account_currency`. It is only visible for advertisers.
+  /// Minimum order amount specified in advert, in `account_currency`.
   final double minOrderAmount;
 
-  /// Maximum order amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible for advertisers.
+  /// Maximum order amount at this time, in `account_currency`, formatted to appropriate decimal places.
+  final String maxOrderAmountLimitDisplay;
+
+  /// Maximum order amount at this time, in `account_currency`.
+  final double maxOrderAmountLimit;
+
+  /// Maximum order amount specified in advert, in `account_currency`, formatted to appropriate decimal places.
   final String maxOrderAmountDisplay;
 
-  /// Maximum order amount specified in advert, in `account_currency`. It is only visible for advertisers.
+  /// Maximum order amount specified in advert, in `account_currency`.
   final double maxOrderAmount;
 
   /// Local currency for this advert. This is the form of payment to be arranged directly between advertiser and client.
   final String localCurrency;
+
+  /// Indicates that this advert will appear on the main advert list.
+  final bool isVisible;
 
   /// The activation status of the advert.
   final bool isActive;
@@ -194,10 +231,10 @@ abstract class P2pAdvertCreateModel {
   /// Type of transaction from the opposite party's perspective.
   final CounterpartyTypeEnum counterpartyType;
 
-  /// The total amount specified in advert, in `account_currency`, formatted to appropriate decimal places. It is only visible for advertisers.
+  /// The total amount specified in advert, in `account_currency`, formatted to appropriate decimal places.
   final String amountDisplay;
 
-  /// The total amount specified in advert, in `account_currency`. It is only visible for advertisers.
+  /// The total amount specified in advert, in `account_currency`.
   final double amount;
 
   /// Details of the advertiser for this advert.
@@ -215,8 +252,11 @@ abstract class P2pAdvertCreateModel {
   /// Supported payment methods. Comma separated list.
   final String? paymentMethod;
 
-  /// IDs of payment methods.
-  final List<int>? paymentMethodIds;
+  /// Details of available payment methods.
+  final Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails;
+
+  /// Names of supported payment methods.
+  final List<String>? paymentMethodNames;
 }
 
 /// P2p advert create class.
@@ -233,22 +273,28 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     required String description,
     required String id,
     required bool isActive,
+    required bool isVisible,
     required String localCurrency,
     required double maxOrderAmount,
     required String maxOrderAmountDisplay,
+    required double maxOrderAmountLimit,
+    required String maxOrderAmountLimitDisplay,
     required double minOrderAmount,
     required String minOrderAmountDisplay,
+    required double minOrderAmountLimit,
+    required String minOrderAmountLimitDisplay,
     required double price,
     required String priceDisplay,
     required double rate,
     required String rateDisplay,
     required double remainingAmount,
     required String remainingAmountDisplay,
-    required TypeEnum type,
+    required P2pAdvertCreateTypeEnum type,
     String? contactInfo,
     String? paymentInfo,
     String? paymentMethod,
-    List<int>? paymentMethodIds,
+    Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
+    List<String>? paymentMethodNames,
   }) : super(
           accountCurrency: accountCurrency,
           advertiserDetails: advertiserDetails,
@@ -260,11 +306,16 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
           description: description,
           id: id,
           isActive: isActive,
+          isVisible: isVisible,
           localCurrency: localCurrency,
           maxOrderAmount: maxOrderAmount,
           maxOrderAmountDisplay: maxOrderAmountDisplay,
+          maxOrderAmountLimit: maxOrderAmountLimit,
+          maxOrderAmountLimitDisplay: maxOrderAmountLimitDisplay,
           minOrderAmount: minOrderAmount,
           minOrderAmountDisplay: minOrderAmountDisplay,
+          minOrderAmountLimit: minOrderAmountLimit,
+          minOrderAmountLimitDisplay: minOrderAmountLimitDisplay,
           price: price,
           priceDisplay: priceDisplay,
           rate: rate,
@@ -275,7 +326,8 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
           contactInfo: contactInfo,
           paymentInfo: paymentInfo,
           paymentMethod: paymentMethod,
-          paymentMethodIds: paymentMethodIds,
+          paymentMethodDetails: paymentMethodDetails,
+          paymentMethodNames: paymentMethodNames,
         );
 
   /// Creates an instance from JSON.
@@ -293,25 +345,41 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
         description: json['description'],
         id: json['id'],
         isActive: getBool(json['is_active'])!,
+        isVisible: getBool(json['is_visible'])!,
         localCurrency: json['local_currency'],
         maxOrderAmount: getDouble(json['max_order_amount'])!,
         maxOrderAmountDisplay: json['max_order_amount_display'],
+        maxOrderAmountLimit: getDouble(json['max_order_amount_limit'])!,
+        maxOrderAmountLimitDisplay: json['max_order_amount_limit_display'],
         minOrderAmount: getDouble(json['min_order_amount'])!,
         minOrderAmountDisplay: json['min_order_amount_display'],
+        minOrderAmountLimit: getDouble(json['min_order_amount_limit'])!,
+        minOrderAmountLimitDisplay: json['min_order_amount_limit_display'],
         price: getDouble(json['price'])!,
         priceDisplay: json['price_display'],
         rate: getDouble(json['rate'])!,
         rateDisplay: json['rate_display'],
         remainingAmount: getDouble(json['remaining_amount'])!,
         remainingAmountDisplay: json['remaining_amount_display'],
-        type: typeEnumMapper[json['type']]!,
+        type: p2pAdvertCreateTypeEnumMapper[json['type']]!,
         contactInfo: json['contact_info'],
         paymentInfo: json['payment_info'],
         paymentMethod: json['payment_method'],
-        paymentMethodIds: json['payment_method_ids'] == null
+        paymentMethodDetails: json['payment_method_details'] == null
             ? null
-            : List<int>.from(
-                json['payment_method_ids']?.map(
+            : Map<String, PaymentMethodDetailsProperty>.fromEntries(
+                json['payment_method_details']
+                    .entries
+                    .map<MapEntry<String, PaymentMethodDetailsProperty>>(
+                        (MapEntry<String, dynamic> entry) =>
+                            MapEntry<String, PaymentMethodDetailsProperty>(
+                                entry.key,
+                                PaymentMethodDetailsProperty.fromJson(
+                                    entry.value)))),
+        paymentMethodNames: json['payment_method_names'] == null
+            ? null
+            : List<String>.from(
+                json['payment_method_names']?.map(
                   (dynamic item) => item,
                 ),
               ),
@@ -335,27 +403,34 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     resultMap['description'] = description;
     resultMap['id'] = id;
     resultMap['is_active'] = isActive;
+    resultMap['is_visible'] = isVisible;
     resultMap['local_currency'] = localCurrency;
     resultMap['max_order_amount'] = maxOrderAmount;
     resultMap['max_order_amount_display'] = maxOrderAmountDisplay;
+    resultMap['max_order_amount_limit'] = maxOrderAmountLimit;
+    resultMap['max_order_amount_limit_display'] = maxOrderAmountLimitDisplay;
     resultMap['min_order_amount'] = minOrderAmount;
     resultMap['min_order_amount_display'] = minOrderAmountDisplay;
+    resultMap['min_order_amount_limit'] = minOrderAmountLimit;
+    resultMap['min_order_amount_limit_display'] = minOrderAmountLimitDisplay;
     resultMap['price'] = price;
     resultMap['price_display'] = priceDisplay;
     resultMap['rate'] = rate;
     resultMap['rate_display'] = rateDisplay;
     resultMap['remaining_amount'] = remainingAmount;
     resultMap['remaining_amount_display'] = remainingAmountDisplay;
-    resultMap['type'] = typeEnumMapper.entries
-        .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
+    resultMap['type'] = p2pAdvertCreateTypeEnumMapper.entries
+        .firstWhere((MapEntry<String, P2pAdvertCreateTypeEnum> entry) =>
+            entry.value == type)
         .key;
     resultMap['contact_info'] = contactInfo;
     resultMap['payment_info'] = paymentInfo;
     resultMap['payment_method'] = paymentMethod;
-    if (paymentMethodIds != null) {
-      resultMap['payment_method_ids'] = paymentMethodIds!
+    resultMap['payment_method_details'] = paymentMethodDetails;
+    if (paymentMethodNames != null) {
+      resultMap['payment_method_names'] = paymentMethodNames!
           .map<dynamic>(
-            (int item) => item,
+            (String item) => item,
           )
           .toList();
     }
@@ -375,22 +450,28 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
     required String description,
     required String id,
     required bool isActive,
+    required bool isVisible,
     required String localCurrency,
     required double maxOrderAmount,
     required String maxOrderAmountDisplay,
+    required double maxOrderAmountLimit,
+    required String maxOrderAmountLimitDisplay,
     required double minOrderAmount,
     required String minOrderAmountDisplay,
+    required double minOrderAmountLimit,
+    required String minOrderAmountLimitDisplay,
     required double price,
     required String priceDisplay,
     required double rate,
     required String rateDisplay,
     required double remainingAmount,
     required String remainingAmountDisplay,
-    required TypeEnum type,
+    required P2pAdvertCreateTypeEnum type,
     String? contactInfo,
     String? paymentInfo,
     String? paymentMethod,
-    List<int>? paymentMethodIds,
+    Map<String, PaymentMethodDetailsProperty>? paymentMethodDetails,
+    List<String>? paymentMethodNames,
   }) =>
       P2pAdvertCreate(
         accountCurrency: accountCurrency,
@@ -403,11 +484,16 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
         description: description,
         id: id,
         isActive: isActive,
+        isVisible: isVisible,
         localCurrency: localCurrency,
         maxOrderAmount: maxOrderAmount,
         maxOrderAmountDisplay: maxOrderAmountDisplay,
+        maxOrderAmountLimit: maxOrderAmountLimit,
+        maxOrderAmountLimitDisplay: maxOrderAmountLimitDisplay,
         minOrderAmount: minOrderAmount,
         minOrderAmountDisplay: minOrderAmountDisplay,
+        minOrderAmountLimit: minOrderAmountLimit,
+        minOrderAmountLimitDisplay: minOrderAmountLimitDisplay,
         price: price,
         priceDisplay: priceDisplay,
         rate: rate,
@@ -418,7 +504,8 @@ class P2pAdvertCreate extends P2pAdvertCreateModel {
         contactInfo: contactInfo ?? this.contactInfo,
         paymentInfo: paymentInfo ?? this.paymentInfo,
         paymentMethod: paymentMethod ?? this.paymentMethod,
-        paymentMethodIds: paymentMethodIds ?? this.paymentMethodIds,
+        paymentMethodDetails: paymentMethodDetails ?? this.paymentMethodDetails,
+        paymentMethodNames: paymentMethodNames ?? this.paymentMethodNames,
       );
 }
 /// Advertiser details model class.
@@ -502,5 +589,157 @@ class AdvertiserDetails extends AdvertiserDetailsModel {
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         totalCompletionRate: totalCompletionRate ?? this.totalCompletionRate,
+      );
+}
+/// Payment method details property model class.
+abstract class PaymentMethodDetailsPropertyModel {
+  /// Initializes Payment method details property model class .
+  PaymentMethodDetailsPropertyModel({
+    required this.method,
+    required this.isEnabled,
+    required this.fields,
+    this.displayName,
+  });
+
+  /// Payment method identifier.
+  final String method;
+
+  /// Indicates whether method is enabled.
+  final bool isEnabled;
+
+  /// Payment method fields.
+  final Map<String, FieldsProperty> fields;
+
+  /// Display name of payment method.
+  final String? displayName;
+}
+
+/// Payment method details property class.
+class PaymentMethodDetailsProperty extends PaymentMethodDetailsPropertyModel {
+  /// Initializes Payment method details property class.
+  PaymentMethodDetailsProperty({
+    required Map<String, FieldsProperty> fields,
+    required bool isEnabled,
+    required String method,
+    String? displayName,
+  }) : super(
+          fields: fields,
+          isEnabled: isEnabled,
+          method: method,
+          displayName: displayName,
+        );
+
+  /// Creates an instance from JSON.
+  factory PaymentMethodDetailsProperty.fromJson(Map<String, dynamic> json) =>
+      PaymentMethodDetailsProperty(
+        fields: Map<String, FieldsProperty>.fromEntries(json['fields']
+            .entries
+            .map<MapEntry<String, FieldsProperty>>(
+                (MapEntry<String, dynamic> entry) =>
+                    MapEntry<String, FieldsProperty>(
+                        entry.key, FieldsProperty.fromJson(entry.value)))),
+        isEnabled: getBool(json['is_enabled'])!,
+        method: json['method'],
+        displayName: json['display_name'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['fields'] = fields;
+    resultMap['is_enabled'] = isEnabled;
+    resultMap['method'] = method;
+    resultMap['display_name'] = displayName;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  PaymentMethodDetailsProperty copyWith({
+    required Map<String, FieldsProperty> fields,
+    required bool isEnabled,
+    required String method,
+    String? displayName,
+  }) =>
+      PaymentMethodDetailsProperty(
+        fields: fields,
+        isEnabled: isEnabled,
+        method: method,
+        displayName: displayName ?? this.displayName,
+      );
+}
+/// Fields property model class.
+abstract class FieldsPropertyModel {
+  /// Initializes Fields property model class .
+  FieldsPropertyModel({
+    required this.value,
+    required this.type,
+    required this.required,
+    required this.displayName,
+  });
+
+  /// Current value of payment method field.
+  final String value;
+
+  /// Field type.
+  final TypeEnum type;
+
+  /// Is field required or optional.
+  final int required;
+
+  /// Display name of payment method field.
+  final String displayName;
+}
+
+/// Fields property class.
+class FieldsProperty extends FieldsPropertyModel {
+  /// Initializes Fields property class.
+  FieldsProperty({
+    required String displayName,
+    required int required,
+    required TypeEnum type,
+    required String value,
+  }) : super(
+          displayName: displayName,
+          required: required,
+          type: type,
+          value: value,
+        );
+
+  /// Creates an instance from JSON.
+  factory FieldsProperty.fromJson(Map<String, dynamic> json) => FieldsProperty(
+        displayName: json['display_name'],
+        required: json['required'],
+        type: typeEnumMapper[json['type']]!,
+        value: json['value'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['display_name'] = displayName;
+    resultMap['required'] = required;
+    resultMap['type'] = typeEnumMapper.entries
+        .firstWhere((MapEntry<String, TypeEnum> entry) => entry.value == type)
+        .key;
+    resultMap['value'] = value;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  FieldsProperty copyWith({
+    required String displayName,
+    required int required,
+    required TypeEnum type,
+    required String value,
+  }) =>
+      FieldsProperty(
+        displayName: displayName,
+        required: required,
+        type: type,
+        value: value,
       );
 }

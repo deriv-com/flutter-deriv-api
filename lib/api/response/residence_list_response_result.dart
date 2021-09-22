@@ -90,18 +90,26 @@ class ResidenceListResponse extends ResidenceListResponseModel {
 abstract class ResidenceListItemModel {
   /// Initializes Residence list item model class .
   ResidenceListItemModel({
+    this.disabled,
     this.identity,
     this.phoneIdd,
+    this.selected,
     this.text,
     this.tinFormat,
     this.value,
   });
+
+  /// Disabled.
+  final String? disabled;
 
   /// Information about identity options available
   final Identity? identity;
 
   /// IDD code of country
   final String? phoneIdd;
+
+  /// Selected.
+  final String? selected;
 
   /// Country full name
   final String? text;
@@ -117,14 +125,18 @@ abstract class ResidenceListItemModel {
 class ResidenceListItem extends ResidenceListItemModel {
   /// Initializes Residence list item class.
   ResidenceListItem({
+    String? disabled,
     Identity? identity,
     String? phoneIdd,
+    String? selected,
     String? text,
     List<String>? tinFormat,
     String? value,
   }) : super(
+          disabled: disabled,
           identity: identity,
           phoneIdd: phoneIdd,
+          selected: selected,
           text: text,
           tinFormat: tinFormat,
           value: value,
@@ -133,10 +145,12 @@ class ResidenceListItem extends ResidenceListItemModel {
   /// Creates an instance from JSON.
   factory ResidenceListItem.fromJson(Map<String, dynamic> json) =>
       ResidenceListItem(
+        disabled: json['disabled'],
         identity: json['identity'] == null
             ? null
             : Identity.fromJson(json['identity']),
         phoneIdd: json['phone_idd'],
+        selected: json['selected'],
         text: json['text'],
         tinFormat: json['tin_format'] == null
             ? null
@@ -152,10 +166,12 @@ class ResidenceListItem extends ResidenceListItemModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['disabled'] = disabled;
     if (identity != null) {
       resultMap['identity'] = identity!.toJson();
     }
     resultMap['phone_idd'] = phoneIdd;
+    resultMap['selected'] = selected;
     resultMap['text'] = text;
     if (tinFormat != null) {
       resultMap['tin_format'] = tinFormat!
@@ -171,15 +187,19 @@ class ResidenceListItem extends ResidenceListItemModel {
 
   /// Creates a copy of instance with given parameters.
   ResidenceListItem copyWith({
+    String? disabled,
     Identity? identity,
     String? phoneIdd,
+    String? selected,
     String? text,
     List<String>? tinFormat,
     String? value,
   }) =>
       ResidenceListItem(
+        disabled: disabled ?? this.disabled,
         identity: identity ?? this.identity,
         phoneIdd: phoneIdd ?? this.phoneIdd,
+        selected: selected ?? this.selected,
         text: text ?? this.text,
         tinFormat: tinFormat ?? this.tinFormat,
         value: value ?? this.value,

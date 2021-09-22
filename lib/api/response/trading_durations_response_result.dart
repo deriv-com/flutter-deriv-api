@@ -91,10 +91,18 @@ abstract class TradingDurationsItemModel {
   /// Initializes Trading durations item model class .
   TradingDurationsItemModel({
     this.data,
+    this.market,
+    this.submarket,
   });
 
   /// Available contract types and trading duration boundaries
   final List<DataItem>? data;
+
+  /// The market in which the underlyings listed in `symbol` located.
+  final TradingDurationsItemMarket? market;
+
+  /// The submarket in which the underlyings listed in `symbol` located.
+  final TradingDurationsItemSubmarket? submarket;
 }
 
 /// Trading durations item class.
@@ -102,8 +110,12 @@ class TradingDurationsItem extends TradingDurationsItemModel {
   /// Initializes Trading durations item class.
   TradingDurationsItem({
     List<DataItem>? data,
+    TradingDurationsItemMarket? market,
+    TradingDurationsItemSubmarket? submarket,
   }) : super(
           data: data,
+          market: market,
+          submarket: submarket,
         );
 
   /// Creates an instance from JSON.
@@ -116,6 +128,12 @@ class TradingDurationsItem extends TradingDurationsItemModel {
                   (dynamic item) => DataItem.fromJson(item),
                 ),
               ),
+        market: json['market'] == null
+            ? null
+            : TradingDurationsItemMarket.fromJson(json['market']),
+        submarket: json['submarket'] == null
+            ? null
+            : TradingDurationsItemSubmarket.fromJson(json['submarket']),
       );
 
   /// Converts an instance to JSON.
@@ -129,6 +147,12 @@ class TradingDurationsItem extends TradingDurationsItemModel {
           )
           .toList();
     }
+    if (market != null) {
+      resultMap['market'] = market!.toJson();
+    }
+    if (submarket != null) {
+      resultMap['submarket'] = submarket!.toJson();
+    }
 
     return resultMap;
   }
@@ -136,9 +160,13 @@ class TradingDurationsItem extends TradingDurationsItemModel {
   /// Creates a copy of instance with given parameters.
   TradingDurationsItem copyWith({
     List<DataItem>? data,
+    TradingDurationsItemMarket? market,
+    TradingDurationsItemSubmarket? submarket,
   }) =>
       TradingDurationsItem(
         data: data ?? this.data,
+        market: market ?? this.market,
+        submarket: submarket ?? this.submarket,
       );
 }
 /// Data item model class.
@@ -588,6 +616,112 @@ class TradeType extends TradeTypeModel {
     String? name,
   }) =>
       TradeType(
+        displayName: displayName ?? this.displayName,
+        name: name ?? this.name,
+      );
+}
+/// Trading durations item market model class.
+abstract class TradingDurationsItemMarketModel {
+  /// Initializes Trading durations item market model class .
+  TradingDurationsItemMarketModel({
+    this.displayName,
+    this.name,
+  });
+
+  /// Translated market name.
+  final String? displayName;
+
+  /// Market name.
+  final String? name;
+}
+
+/// Trading durations item market class.
+class TradingDurationsItemMarket extends TradingDurationsItemMarketModel {
+  /// Initializes Trading durations item market class.
+  TradingDurationsItemMarket({
+    String? displayName,
+    String? name,
+  }) : super(
+          displayName: displayName,
+          name: name,
+        );
+
+  /// Creates an instance from JSON.
+  factory TradingDurationsItemMarket.fromJson(Map<String, dynamic> json) =>
+      TradingDurationsItemMarket(
+        displayName: json['display_name'],
+        name: json['name'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['display_name'] = displayName;
+    resultMap['name'] = name;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  TradingDurationsItemMarket copyWith({
+    String? displayName,
+    String? name,
+  }) =>
+      TradingDurationsItemMarket(
+        displayName: displayName ?? this.displayName,
+        name: name ?? this.name,
+      );
+}
+/// Trading durations item submarket model class.
+abstract class TradingDurationsItemSubmarketModel {
+  /// Initializes Trading durations item submarket model class .
+  TradingDurationsItemSubmarketModel({
+    this.displayName,
+    this.name,
+  });
+
+  /// Translated submarket name.
+  final String? displayName;
+
+  /// Submarket name.
+  final String? name;
+}
+
+/// Trading durations item submarket class.
+class TradingDurationsItemSubmarket extends TradingDurationsItemSubmarketModel {
+  /// Initializes Trading durations item submarket class.
+  TradingDurationsItemSubmarket({
+    String? displayName,
+    String? name,
+  }) : super(
+          displayName: displayName,
+          name: name,
+        );
+
+  /// Creates an instance from JSON.
+  factory TradingDurationsItemSubmarket.fromJson(Map<String, dynamic> json) =>
+      TradingDurationsItemSubmarket(
+        displayName: json['display_name'],
+        name: json['name'],
+      );
+
+  /// Converts an instance to JSON.
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> resultMap = <String, dynamic>{};
+
+    resultMap['display_name'] = displayName;
+    resultMap['name'] = name;
+
+    return resultMap;
+  }
+
+  /// Creates a copy of instance with given parameters.
+  TradingDurationsItemSubmarket copyWith({
+    String? displayName,
+    String? name,
+  }) =>
+      TradingDurationsItemSubmarket(
         displayName: displayName ?? this.displayName,
         name: name ?? this.name,
       );

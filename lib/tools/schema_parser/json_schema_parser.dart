@@ -250,13 +250,15 @@ class JsonSchemaParser {
       )) {
         return model.classType!;
       }
+      if (enumModels.any((SchemaModel previousEnumModel) =>
+          previousEnumModel.schemaTitle == model.schemaTitle)) {
+        enumModels.add(model);
 
-      for (final SchemaModel previousEnumModel in enumModels) {
-        if (previousEnumModel.schemaTitle == model.schemaTitle) {
-          enumModels.add(model);
+        final String? parentName = model.parent?.className;
 
-          return '${model.enumName}2';
-        }
+        return parentName == null
+            ? '${model.enumName}2'
+            : '$parentName${model.enumName}';
       }
 
       enumModels.add(model);

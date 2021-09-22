@@ -200,6 +200,7 @@ enum StatusEnum {
 abstract class ProposalOpenContractModel {
   /// Initializes Proposal open contract model class .
   ProposalOpenContractModel({
+    this.accountId,
     this.auditDetails,
     this.barrier,
     this.barrierCount,
@@ -207,6 +208,7 @@ abstract class ProposalOpenContractModel {
     this.buyPrice,
     this.cancellation,
     this.commision,
+    this.commission,
     this.contractId,
     this.contractType,
     this.currency,
@@ -226,6 +228,7 @@ abstract class ProposalOpenContractModel {
     this.exitTick,
     this.exitTickDisplayValue,
     this.exitTickTime,
+    this.expiryTime,
     this.highBarrier,
     this.id,
     this.isExpired,
@@ -259,6 +262,9 @@ abstract class ProposalOpenContractModel {
     this.validationError,
   });
 
+  /// Account Id
+  final double? accountId;
+
   /// Tick details around contract start and end time.
   final AuditDetails? auditDetails;
 
@@ -279,6 +285,9 @@ abstract class ProposalOpenContractModel {
 
   /// Commission in payout currency amount.
   final double? commision;
+
+  /// Commission in payout currency amount.
+  final double? commission;
 
   /// The internal contract identifier
   final int? contractId;
@@ -336,6 +345,9 @@ abstract class ProposalOpenContractModel {
 
   /// This is the epoch time of the exit tick. Note that since certain instruments don't tick every second, the exit tick time may be a few seconds before the end time.
   final DateTime? exitTickTime;
+
+  /// This is the expiry time.
+  final DateTime? expiryTime;
 
   /// High barrier of the contract (if any).
   final String? highBarrier;
@@ -435,6 +447,7 @@ abstract class ProposalOpenContractModel {
 class ProposalOpenContract extends ProposalOpenContractModel {
   /// Initializes Proposal open contract class.
   ProposalOpenContract({
+    double? accountId,
     AuditDetails? auditDetails,
     String? barrier,
     double? barrierCount,
@@ -442,6 +455,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     double? buyPrice,
     Cancellation? cancellation,
     double? commision,
+    double? commission,
     int? contractId,
     String? contractType,
     String? currency,
@@ -461,6 +475,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     double? exitTick,
     String? exitTickDisplayValue,
     DateTime? exitTickTime,
+    DateTime? expiryTime,
     String? highBarrier,
     String? id,
     bool? isExpired,
@@ -493,6 +508,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     String? underlying,
     String? validationError,
   }) : super(
+          accountId: accountId,
           auditDetails: auditDetails,
           barrier: barrier,
           barrierCount: barrierCount,
@@ -500,6 +516,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
           buyPrice: buyPrice,
           cancellation: cancellation,
           commision: commision,
+          commission: commission,
           contractId: contractId,
           contractType: contractType,
           currency: currency,
@@ -519,6 +536,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
           exitTick: exitTick,
           exitTickDisplayValue: exitTickDisplayValue,
           exitTickTime: exitTickTime,
+          expiryTime: expiryTime,
           highBarrier: highBarrier,
           id: id,
           isExpired: isExpired,
@@ -555,6 +573,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
   /// Creates an instance from JSON.
   factory ProposalOpenContract.fromJson(Map<String, dynamic> json) =>
       ProposalOpenContract(
+        accountId: getDouble(json['account_id']),
         auditDetails: json['audit_details'] == null
             ? null
             : AuditDetails.fromJson(json['audit_details']),
@@ -566,6 +585,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
             ? null
             : Cancellation.fromJson(json['cancellation']),
         commision: getDouble(json['commision']),
+        commission: getDouble(json['commission']),
         contractId: json['contract_id'],
         contractType: json['contract_type'],
         currency: json['currency'],
@@ -585,6 +605,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         exitTick: getDouble(json['exit_tick']),
         exitTickDisplayValue: json['exit_tick_display_value'],
         exitTickTime: getDateTime(json['exit_tick_time']),
+        expiryTime: getDateTime(json['expiry_time']),
         highBarrier: json['high_barrier'],
         id: json['id'],
         isExpired: getBool(json['is_expired']),
@@ -633,6 +654,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['account_id'] = accountId;
     if (auditDetails != null) {
       resultMap['audit_details'] = auditDetails!.toJson();
     }
@@ -644,6 +666,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
       resultMap['cancellation'] = cancellation!.toJson();
     }
     resultMap['commision'] = commision;
+    resultMap['commission'] = commission;
     resultMap['contract_id'] = contractId;
     resultMap['contract_type'] = contractType;
     resultMap['currency'] = currency;
@@ -664,6 +687,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     resultMap['exit_tick'] = exitTick;
     resultMap['exit_tick_display_value'] = exitTickDisplayValue;
     resultMap['exit_tick_time'] = getSecondsSinceEpochDateTime(exitTickTime);
+    resultMap['expiry_time'] = getSecondsSinceEpochDateTime(expiryTime);
     resultMap['high_barrier'] = highBarrier;
     resultMap['id'] = id;
     resultMap['is_expired'] = isExpired;
@@ -714,6 +738,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
 
   /// Creates a copy of instance with given parameters.
   ProposalOpenContract copyWith({
+    double? accountId,
     AuditDetails? auditDetails,
     String? barrier,
     double? barrierCount,
@@ -721,6 +746,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     double? buyPrice,
     Cancellation? cancellation,
     double? commision,
+    double? commission,
     int? contractId,
     String? contractType,
     String? currency,
@@ -740,6 +766,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     double? exitTick,
     String? exitTickDisplayValue,
     DateTime? exitTickTime,
+    DateTime? expiryTime,
     String? highBarrier,
     String? id,
     bool? isExpired,
@@ -773,6 +800,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
     String? validationError,
   }) =>
       ProposalOpenContract(
+        accountId: accountId ?? this.accountId,
         auditDetails: auditDetails ?? this.auditDetails,
         barrier: barrier ?? this.barrier,
         barrierCount: barrierCount ?? this.barrierCount,
@@ -780,6 +808,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         buyPrice: buyPrice ?? this.buyPrice,
         cancellation: cancellation ?? this.cancellation,
         commision: commision ?? this.commision,
+        commission: commission ?? this.commission,
         contractId: contractId ?? this.contractId,
         contractType: contractType ?? this.contractType,
         currency: currency ?? this.currency,
@@ -802,6 +831,7 @@ class ProposalOpenContract extends ProposalOpenContractModel {
         exitTick: exitTick ?? this.exitTick,
         exitTickDisplayValue: exitTickDisplayValue ?? this.exitTickDisplayValue,
         exitTickTime: exitTickTime ?? this.exitTickTime,
+        expiryTime: expiryTime ?? this.expiryTime,
         highBarrier: highBarrier ?? this.highBarrier,
         id: id ?? this.id,
         isExpired: isExpired ?? this.isExpired,

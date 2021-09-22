@@ -8,8 +8,9 @@ import '../request.dart';
 class P2pAdvertInfoRequest extends Request {
   /// Initialize P2pAdvertInfoRequest.
   const P2pAdvertInfoRequest({
-    required this.id,
+    this.id,
     this.p2pAdvertInfo = true,
+    this.subscribe,
     this.useClientLimits,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -26,6 +27,7 @@ class P2pAdvertInfoRequest extends Request {
         p2pAdvertInfo: json['p2p_advert_info'] == null
             ? null
             : json['p2p_advert_info'] == 1,
+        subscribe: json['subscribe'] == null ? null : json['subscribe'] == 1,
         useClientLimits: json['use_client_limits'] == null
             ? null
             : json['use_client_limits'] == 1,
@@ -33,11 +35,14 @@ class P2pAdvertInfoRequest extends Request {
         reqId: json['req_id'] as int?,
       );
 
-  /// The unique identifier for this advert.
+  /// [Optional] The unique identifier for this advert. Optional when subscribe is 1. If not provided, all advertiser adverts will be subscribed.
   final String? id;
 
   /// Must be `true`
   final bool? p2pAdvertInfo;
+
+  /// [Optional] If set to `true`, will send updates when changes occur. Optional when id is provided.
+  final bool? subscribe;
 
   /// [Optional] If set to `true`, the maximum order amount will be adjusted to the current balance and turnover limits of the account.
   final bool? useClientLimits;
@@ -49,6 +54,11 @@ class P2pAdvertInfoRequest extends Request {
         'p2p_advert_info': p2pAdvertInfo == null
             ? null
             : p2pAdvertInfo!
+                ? 1
+                : 0,
+        'subscribe': subscribe == null
+            ? null
+            : subscribe!
                 ? 1
                 : 0,
         'use_client_limits': useClientLimits == null
@@ -65,6 +75,7 @@ class P2pAdvertInfoRequest extends Request {
   P2pAdvertInfoRequest copyWith({
     String? id,
     bool? p2pAdvertInfo,
+    bool? subscribe,
     bool? useClientLimits,
     Map<String, dynamic>? passthrough,
     int? reqId,
@@ -72,6 +83,7 @@ class P2pAdvertInfoRequest extends Request {
       P2pAdvertInfoRequest(
         id: id ?? this.id,
         p2pAdvertInfo: p2pAdvertInfo ?? this.p2pAdvertInfo,
+        subscribe: subscribe ?? this.subscribe,
         useClientLimits: useClientLimits ?? this.useClientLimits,
         passthrough: passthrough ?? this.passthrough,
         reqId: reqId ?? this.reqId,

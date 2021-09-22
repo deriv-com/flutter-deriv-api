@@ -90,6 +90,8 @@ abstract class AppRegisterModel {
     required this.appstore,
     required this.appMarkupPercentage,
     required this.appId,
+    this.active,
+    this.scopes,
   });
 
   /// Used when `verify_email` called. If available, a URL containing the verification token will send to the client's email, otherwise only the token will be sent.
@@ -118,6 +120,12 @@ abstract class AppRegisterModel {
 
   /// Application ID.
   final int appId;
+
+  /// Active.
+  final int? active;
+
+  /// Scope Details.
+  final List<String>? scopes;
 }
 
 /// App register class.
@@ -133,6 +141,8 @@ class AppRegister extends AppRegisterModel {
     required String name,
     required String redirectUri,
     required String verificationUri,
+    int? active,
+    List<String>? scopes,
   }) : super(
           appId: appId,
           appMarkupPercentage: appMarkupPercentage,
@@ -143,6 +153,8 @@ class AppRegister extends AppRegisterModel {
           name: name,
           redirectUri: redirectUri,
           verificationUri: verificationUri,
+          active: active,
+          scopes: scopes,
         );
 
   /// Creates an instance from JSON.
@@ -156,6 +168,14 @@ class AppRegister extends AppRegisterModel {
         name: json['name'],
         redirectUri: json['redirect_uri'],
         verificationUri: json['verification_uri'],
+        active: json['active'],
+        scopes: json['scopes'] == null
+            ? null
+            : List<String>.from(
+                json['scopes']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
       );
 
   /// Converts an instance to JSON.
@@ -171,6 +191,14 @@ class AppRegister extends AppRegisterModel {
     resultMap['name'] = name;
     resultMap['redirect_uri'] = redirectUri;
     resultMap['verification_uri'] = verificationUri;
+    resultMap['active'] = active;
+    if (scopes != null) {
+      resultMap['scopes'] = scopes!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
 
     return resultMap;
   }
@@ -186,6 +214,8 @@ class AppRegister extends AppRegisterModel {
     required String name,
     required String redirectUri,
     required String verificationUri,
+    int? active,
+    List<String>? scopes,
   }) =>
       AppRegister(
         appId: appId,
@@ -197,5 +227,7 @@ class AppRegister extends AppRegisterModel {
         name: name,
         redirectUri: redirectUri,
         verificationUri: verificationUri,
+        active: active ?? this.active,
+        scopes: scopes ?? this.scopes,
       );
 }

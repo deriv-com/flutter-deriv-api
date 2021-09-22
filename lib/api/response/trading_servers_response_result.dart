@@ -86,6 +86,22 @@ class TradingServersResponse extends TradingServersResponseModel {
       );
 }
 
+/// AccountTypeEnum mapper.
+final Map<String, AccountTypeEnum> accountTypeEnumMapper =
+    <String, AccountTypeEnum>{
+  "demo": AccountTypeEnum.demo,
+  "real": AccountTypeEnum.real,
+};
+
+/// AccountType Enum.
+enum AccountTypeEnum {
+  /// demo.
+  demo,
+
+  /// real.
+  real,
+}
+
 /// EnvironmentEnum mapper.
 final Map<String, EnvironmentEnum> environmentEnumMapper =
     <String, EnvironmentEnum>{
@@ -136,14 +152,19 @@ enum IdEnum {
 abstract class TradingServersItemModel {
   /// Initializes Trading servers item model class .
   TradingServersItemModel({
+    this.accountType,
     this.disabled,
     this.environment,
     this.geolocation,
     this.id,
+    this.marketType,
     this.messageToClient,
     this.recommended,
     this.supportedAccounts,
   });
+
+  /// Supported trading account type.
+  final AccountTypeEnum? accountType;
 
   /// Flag to represent if this server is currently disabled or not
   final bool? disabled;
@@ -156,6 +177,9 @@ abstract class TradingServersItemModel {
 
   /// Server unique id.
   final IdEnum? id;
+
+  /// Market type
+  final String? marketType;
 
   /// Error message to client when server is disabled
   final String? messageToClient;
@@ -171,18 +195,22 @@ abstract class TradingServersItemModel {
 class TradingServersItem extends TradingServersItemModel {
   /// Initializes Trading servers item class.
   TradingServersItem({
+    AccountTypeEnum? accountType,
     bool? disabled,
     EnvironmentEnum? environment,
     Geolocation? geolocation,
     IdEnum? id,
+    String? marketType,
     String? messageToClient,
     bool? recommended,
     List<String>? supportedAccounts,
   }) : super(
+          accountType: accountType,
           disabled: disabled,
           environment: environment,
           geolocation: geolocation,
           id: id,
+          marketType: marketType,
           messageToClient: messageToClient,
           recommended: recommended,
           supportedAccounts: supportedAccounts,
@@ -191,6 +219,9 @@ class TradingServersItem extends TradingServersItemModel {
   /// Creates an instance from JSON.
   factory TradingServersItem.fromJson(Map<String, dynamic> json) =>
       TradingServersItem(
+        accountType: json['account_type'] == null
+            ? null
+            : accountTypeEnumMapper[json['account_type']],
         disabled: getBool(json['disabled']),
         environment: json['environment'] == null
             ? null
@@ -199,6 +230,7 @@ class TradingServersItem extends TradingServersItemModel {
             ? null
             : Geolocation.fromJson(json['geolocation']),
         id: json['id'] == null ? null : idEnumMapper[json['id']],
+        marketType: json['market_type'],
         messageToClient: json['message_to_client'],
         recommended: getBool(json['recommended']),
         supportedAccounts: json['supported_accounts'] == null
@@ -214,6 +246,10 @@ class TradingServersItem extends TradingServersItemModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['account_type'] = accountTypeEnumMapper.entries
+        .firstWhere((MapEntry<String, AccountTypeEnum> entry) =>
+            entry.value == accountType)
+        .key;
     resultMap['disabled'] = disabled;
     resultMap['environment'] = environmentEnumMapper.entries
         .firstWhere((MapEntry<String, EnvironmentEnum> entry) =>
@@ -225,6 +261,7 @@ class TradingServersItem extends TradingServersItemModel {
     resultMap['id'] = idEnumMapper.entries
         .firstWhere((MapEntry<String, IdEnum> entry) => entry.value == id)
         .key;
+    resultMap['market_type'] = marketType;
     resultMap['message_to_client'] = messageToClient;
     resultMap['recommended'] = recommended;
     if (supportedAccounts != null) {
@@ -240,19 +277,23 @@ class TradingServersItem extends TradingServersItemModel {
 
   /// Creates a copy of instance with given parameters.
   TradingServersItem copyWith({
+    AccountTypeEnum? accountType,
     bool? disabled,
     EnvironmentEnum? environment,
     Geolocation? geolocation,
     IdEnum? id,
+    String? marketType,
     String? messageToClient,
     bool? recommended,
     List<String>? supportedAccounts,
   }) =>
       TradingServersItem(
+        accountType: accountType ?? this.accountType,
         disabled: disabled ?? this.disabled,
         environment: environment ?? this.environment,
         geolocation: geolocation ?? this.geolocation,
         id: id ?? this.id,
+        marketType: marketType ?? this.marketType,
         messageToClient: messageToClient ?? this.messageToClient,
         recommended: recommended ?? this.recommended,
         supportedAccounts: supportedAccounts ?? this.supportedAccounts,

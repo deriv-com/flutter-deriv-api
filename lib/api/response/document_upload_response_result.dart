@@ -57,6 +57,7 @@ abstract class DocumentUploadModel {
     required this.uploadId,
     required this.callType,
     this.checksum,
+    this.documentIssuingCountry,
     this.size,
     this.status,
   });
@@ -69,6 +70,9 @@ abstract class DocumentUploadModel {
 
   /// Hex encoded SHA-1 checksum of the file
   final String? checksum;
+
+  /// 2-letter country code
+  final String? documentIssuingCountry;
 
   /// File size
   final double? size;
@@ -84,12 +88,14 @@ class DocumentUpload extends DocumentUploadModel {
     required double callType,
     required double uploadId,
     String? checksum,
+    String? documentIssuingCountry,
     double? size,
     String? status,
   }) : super(
           callType: callType,
           uploadId: uploadId,
           checksum: checksum,
+          documentIssuingCountry: documentIssuingCountry,
           size: size,
           status: status,
         );
@@ -99,6 +105,7 @@ class DocumentUpload extends DocumentUploadModel {
         callType: getDouble(json['call_type'])!,
         uploadId: getDouble(json['upload_id'])!,
         checksum: json['checksum'],
+        documentIssuingCountry: json['document_issuing_country'],
         size: getDouble(json['size']),
         status: json['status'],
       );
@@ -110,6 +117,7 @@ class DocumentUpload extends DocumentUploadModel {
     resultMap['call_type'] = callType;
     resultMap['upload_id'] = uploadId;
     resultMap['checksum'] = checksum;
+    resultMap['document_issuing_country'] = documentIssuingCountry;
     resultMap['size'] = size;
     resultMap['status'] = status;
 
@@ -121,6 +129,7 @@ class DocumentUpload extends DocumentUploadModel {
     required double callType,
     required double uploadId,
     String? checksum,
+    String? documentIssuingCountry,
     double? size,
     String? status,
   }) =>
@@ -128,6 +137,8 @@ class DocumentUpload extends DocumentUploadModel {
         callType: callType,
         uploadId: uploadId,
         checksum: checksum ?? this.checksum,
+        documentIssuingCountry:
+            documentIssuingCountry ?? this.documentIssuingCountry,
         size: size ?? this.size,
         status: status ?? this.status,
       );

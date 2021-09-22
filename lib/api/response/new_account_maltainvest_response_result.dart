@@ -59,6 +59,7 @@ abstract class NewAccountMaltainvestModel {
     required this.landingCompany,
     required this.clientId,
     this.landingCompanyShort,
+    this.landingCompanyShortcode,
   });
 
   /// OAuth token for client's login session
@@ -72,6 +73,9 @@ abstract class NewAccountMaltainvestModel {
 
   /// Landing company shortcode
   final String? landingCompanyShort;
+
+  /// Landing company shortcode
+  final String? landingCompanyShortcode;
 }
 
 /// New account maltainvest class.
@@ -82,11 +86,13 @@ class NewAccountMaltainvest extends NewAccountMaltainvestModel {
     required String landingCompany,
     required String oauthToken,
     String? landingCompanyShort,
+    String? landingCompanyShortcode,
   }) : super(
           clientId: clientId,
           landingCompany: landingCompany,
           oauthToken: oauthToken,
           landingCompanyShort: landingCompanyShort,
+          landingCompanyShortcode: landingCompanyShortcode,
         );
 
   /// Creates an instance from JSON.
@@ -96,6 +102,7 @@ class NewAccountMaltainvest extends NewAccountMaltainvestModel {
         landingCompany: json['landing_company'],
         oauthToken: json['oauth_token'],
         landingCompanyShort: json['landing_company_short'],
+        landingCompanyShortcode: json['landing_company_shortcode'],
       );
 
   /// Converts an instance to JSON.
@@ -106,6 +113,7 @@ class NewAccountMaltainvest extends NewAccountMaltainvestModel {
     resultMap['landing_company'] = landingCompany;
     resultMap['oauth_token'] = oauthToken;
     resultMap['landing_company_short'] = landingCompanyShort;
+    resultMap['landing_company_shortcode'] = landingCompanyShortcode;
 
     return resultMap;
   }
@@ -116,11 +124,14 @@ class NewAccountMaltainvest extends NewAccountMaltainvestModel {
     required String landingCompany,
     required String oauthToken,
     String? landingCompanyShort,
+    String? landingCompanyShortcode,
   }) =>
       NewAccountMaltainvest(
         clientId: clientId,
         landingCompany: landingCompany,
         oauthToken: oauthToken,
         landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
+        landingCompanyShortcode:
+            landingCompanyShortcode ?? this.landingCompanyShortcode,
       );
 }

@@ -29,8 +29,8 @@ void main() {
 
       expect(advert.accountCurrency, 'USD');
 
-      expect(advert.advertiserDetails.id, '2');
-      expect(advert.advertiserDetails.name, 'za advertiser 1010');
+      expect(advert.advertiserDetails?.id, '2');
+      expect(advert.advertiserDetails?.name, 'za advertiser 1010');
 
       expect(advert.counterpartyType, advert_info.CounterpartyTypeEnum.sell);
       expect(advert.country, 'za');
@@ -51,7 +51,7 @@ void main() {
       expect(advert.priceDisplay, '2.30');
       expect(advert.rate, 2.3);
       expect(advert.rateDisplay, '2.30');
-      expect(advert.type, advert_info.TypeEnum.buy);
+      expect(advert.type, advert_info.P2pAdvertInfoTypeEnum.buy);
     });
 
     test('Fetch Advert List Test', () async {
@@ -142,7 +142,7 @@ void main() {
       expect(advert.rateDisplay, '2.70');
       expect(advert.remainingAmount, 50);
       expect(advert.remainingAmountDisplay, '50.00');
-      expect(advert.type, advert_create.TypeEnum.sell);
+      expect(advert.type, advert_create.P2pAdvertCreateTypeEnum.sell);
     });
 
     test('Update Advert Test', () async {
@@ -158,8 +158,8 @@ void main() {
 
       expect(updatedAdvert.accountCurrency, 'USD');
 
-      expect(updatedAdvert.advertiserDetails.id, '3');
-      expect(updatedAdvert.advertiserDetails.name, 'za advertiser 1010');
+      expect(updatedAdvert.advertiserDetails?.id, '3');
+      expect(updatedAdvert.advertiserDetails?.name, 'za advertiser 1010');
 
       expect(updatedAdvert.amount, 100);
       expect(updatedAdvert.amountDisplay, '100.00');
@@ -187,7 +187,7 @@ void main() {
       expect(updatedAdvert.rateDisplay, '2.70');
       expect(updatedAdvert.remainingAmount, 50);
       expect(updatedAdvert.remainingAmountDisplay, '50.00');
-      expect(updatedAdvert.type, advert_update.TypeEnum.sell);
+      expect(updatedAdvert.type, advert_update.P2pAdvertUpdateTypeEnum.sell);
     });
 
     test('Activate Advert Test', () async {
@@ -201,8 +201,8 @@ void main() {
           advertResponse.p2pAdvertUpdate!;
       expect(activatedAdvert.accountCurrency, 'USD');
 
-      expect(activatedAdvert.advertiserDetails.id, '3');
-      expect(activatedAdvert.advertiserDetails.name, 'za advertiser 1010');
+      expect(activatedAdvert.advertiserDetails?.id, '3');
+      expect(activatedAdvert.advertiserDetails?.name, 'za advertiser 1010');
 
       expect(activatedAdvert.amount, 100);
       expect(activatedAdvert.amountDisplay, '100.00');
@@ -230,7 +230,7 @@ void main() {
       expect(activatedAdvert.rateDisplay, '2.70');
       expect(activatedAdvert.remainingAmount, 50);
       expect(activatedAdvert.remainingAmountDisplay, '50.00');
-      expect(activatedAdvert.type, advert_update.TypeEnum.sell);
+      expect(activatedAdvert.type, advert_update.P2pAdvertUpdateTypeEnum.sell);
     });
 
     test('Deactivate Advert Test', () async {
@@ -250,8 +250,8 @@ void main() {
 
       expect(deactivatedAdvert.accountCurrency, 'USD');
 
-      expect(deactivatedAdvert.advertiserDetails.id, '3');
-      expect(deactivatedAdvert.advertiserDetails.name, 'za advertiser 1010');
+      expect(deactivatedAdvert.advertiserDetails?.id, '3');
+      expect(deactivatedAdvert.advertiserDetails?.name, 'za advertiser 1010');
 
       expect(deactivatedAdvert.amount, 100);
       expect(deactivatedAdvert.amountDisplay, '100.00');
@@ -279,7 +279,7 @@ void main() {
       expect(deactivatedAdvert.rateDisplay, '2.70');
       expect(deactivatedAdvert.remainingAmount, 50);
       expect(deactivatedAdvert.remainingAmountDisplay, '50.00');
-      expect(deactivatedAdvert.type, advert_update.TypeEnum.sell);
+      expect(deactivatedAdvert.type, advert_update.P2pAdvertUpdateTypeEnum.sell);
     });
 
     test('Delete Advert Test', () async {
@@ -294,8 +294,8 @@ void main() {
 
       expect(deletedAdvert.accountCurrency, 'USD');
 
-      expect(deletedAdvert.advertiserDetails.id, '3');
-      expect(deletedAdvert.advertiserDetails.name, 'za advertiser 1010');
+      expect(deletedAdvert.advertiserDetails?.id, '3');
+      expect(deletedAdvert.advertiserDetails?.name, 'za advertiser 1010');
 
       expect(deletedAdvert.amount, 100);
       expect(deletedAdvert.amountDisplay, '100.00');
@@ -323,7 +323,7 @@ void main() {
       expect(deletedAdvert.rateDisplay, '2.70');
       expect(deletedAdvert.remainingAmount, 50);
       expect(deletedAdvert.remainingAmountDisplay, '50.00');
-      expect(deletedAdvert.type, advert_update.TypeEnum.sell);
+      expect(deletedAdvert.type, advert_update.P2pAdvertUpdateTypeEnum.sell);
     });
 
     test('Create Order From Advert Test', () async {

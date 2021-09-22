@@ -197,6 +197,8 @@ abstract class AppGetModel {
     required this.appstore,
     required this.appMarkupPercentage,
     required this.appId,
+    this.active,
+    this.scopes,
   });
 
   /// Used when `verify_email` called. If available, a URL containing the verification token will send to the client's email, otherwise only the token will be sent.
@@ -225,6 +227,12 @@ abstract class AppGetModel {
 
   /// Application ID.
   final int appId;
+
+  /// Active.
+  final int? active;
+
+  /// Scope Details.
+  final List<String>? scopes;
 }
 
 /// App get class.
@@ -240,6 +248,8 @@ class AppGet extends AppGetModel {
     required String name,
     required String redirectUri,
     required String verificationUri,
+    int? active,
+    List<String>? scopes,
   }) : super(
           appId: appId,
           appMarkupPercentage: appMarkupPercentage,
@@ -250,6 +260,8 @@ class AppGet extends AppGetModel {
           name: name,
           redirectUri: redirectUri,
           verificationUri: verificationUri,
+          active: active,
+          scopes: scopes,
         );
 
   /// Creates an instance from JSON.
@@ -263,6 +275,14 @@ class AppGet extends AppGetModel {
         name: json['name'],
         redirectUri: json['redirect_uri'],
         verificationUri: json['verification_uri'],
+        active: json['active'],
+        scopes: json['scopes'] == null
+            ? null
+            : List<String>.from(
+                json['scopes']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
       );
 
   /// Converts an instance to JSON.
@@ -278,6 +298,14 @@ class AppGet extends AppGetModel {
     resultMap['name'] = name;
     resultMap['redirect_uri'] = redirectUri;
     resultMap['verification_uri'] = verificationUri;
+    resultMap['active'] = active;
+    if (scopes != null) {
+      resultMap['scopes'] = scopes!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
 
     return resultMap;
   }
@@ -293,6 +321,8 @@ class AppGet extends AppGetModel {
     required String name,
     required String redirectUri,
     required String verificationUri,
+    int? active,
+    List<String>? scopes,
   }) =>
       AppGet(
         appId: appId,
@@ -304,5 +334,7 @@ class AppGet extends AppGetModel {
         name: name,
         redirectUri: redirectUri,
         verificationUri: verificationUri,
+        active: active ?? this.active,
+        scopes: scopes ?? this.scopes,
       );
 }

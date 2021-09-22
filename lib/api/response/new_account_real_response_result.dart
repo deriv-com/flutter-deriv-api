@@ -84,7 +84,9 @@ abstract class NewAccountRealModel {
     required this.oauthToken,
     required this.landingCompany,
     required this.clientId,
+    this.currency,
     this.landingCompanyShort,
+    this.landingCompanyShortcode,
   });
 
   /// OAuth token for client's login session
@@ -96,8 +98,14 @@ abstract class NewAccountRealModel {
   /// Client ID of new real money account
   final String clientId;
 
+  /// Currency of an account
+  final String? currency;
+
   /// Landing company shortcode
   final String? landingCompanyShort;
+
+  /// Landing company shortcode
+  final String? landingCompanyShortcode;
 }
 
 /// New account real class.
@@ -107,12 +115,16 @@ class NewAccountReal extends NewAccountRealModel {
     required String clientId,
     required String landingCompany,
     required String oauthToken,
+    String? currency,
     String? landingCompanyShort,
+    String? landingCompanyShortcode,
   }) : super(
           clientId: clientId,
           landingCompany: landingCompany,
           oauthToken: oauthToken,
+          currency: currency,
           landingCompanyShort: landingCompanyShort,
+          landingCompanyShortcode: landingCompanyShortcode,
         );
 
   /// Creates an instance from JSON.
@@ -120,7 +132,9 @@ class NewAccountReal extends NewAccountRealModel {
         clientId: json['client_id'],
         landingCompany: json['landing_company'],
         oauthToken: json['oauth_token'],
+        currency: json['currency'],
         landingCompanyShort: json['landing_company_short'],
+        landingCompanyShortcode: json['landing_company_shortcode'],
       );
 
   /// Converts an instance to JSON.
@@ -130,7 +144,9 @@ class NewAccountReal extends NewAccountRealModel {
     resultMap['client_id'] = clientId;
     resultMap['landing_company'] = landingCompany;
     resultMap['oauth_token'] = oauthToken;
+    resultMap['currency'] = currency;
     resultMap['landing_company_short'] = landingCompanyShort;
+    resultMap['landing_company_shortcode'] = landingCompanyShortcode;
 
     return resultMap;
   }
@@ -140,12 +156,17 @@ class NewAccountReal extends NewAccountRealModel {
     required String clientId,
     required String landingCompany,
     required String oauthToken,
+    String? currency,
     String? landingCompanyShort,
+    String? landingCompanyShortcode,
   }) =>
       NewAccountReal(
         clientId: clientId,
         landingCompany: landingCompany,
         oauthToken: oauthToken,
+        currency: currency ?? this.currency,
         landingCompanyShort: landingCompanyShort ?? this.landingCompanyShort,
+        landingCompanyShortcode:
+            landingCompanyShortcode ?? this.landingCompanyShortcode,
       );
 }

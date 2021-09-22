@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart' show IterableExtension;
+import 'package:flutter_deriv_api/api/models/enums.dart';
 import 'package:recase/recase.dart';
 
 /// Enum case type
@@ -97,3 +98,35 @@ List<T?>? getEnumListFromStrings<T>({
                   enumCase: enumCase,
                 ))
             .toList();
+
+/// Get a string name from an enum
+String getEnumValueString(String enumToString) {
+  final List<String> paths = enumToString.split('.');
+
+  return paths.last;
+}
+
+/// This extension helps to convert raw strings to related enums.
+extension EnumConverter on String {
+  /// Converts string to `AccountRiskClassification` enum.
+  AccountRiskClassification? get toAccountRiskClassificationEnum =>
+      getEnumFromString(name: this, values: AccountRiskClassification.values);
+
+  /// Converts string to `VerificationType` enum.
+  VerificationType? get toVerificationTypeEnum =>
+      getEnumFromString(name: this, values: VerificationType.values);
+
+  /// Converts string to `AccountStatusType` enum.
+  AccountStatusType? get toAccountStatusTypeEnum => getEnumFromString(
+        name: this,
+        values: AccountStatusType.values,
+        enumCase: EnumCase.snakeCase,
+      );
+
+  /// Converts string to `ContractType` enum.
+  ContractType? get toContractTypeEnum => getEnumFromString(
+        name: this,
+        values: ContractType.values,
+        // enumCase: EnumCase.snakeCase // TODO(mohammad): check if this should be snakeCase
+      );
+}

@@ -91,45 +91,55 @@ class CashierResponse extends CashierResponseModel {
 /// ActionEnum mapper.
 final Map<String, ActionEnum> actionEnumMapper = <String, ActionEnum>{
   "deposit": ActionEnum.deposit,
+  "withdraw": ActionEnum.withdraw,
 };
 
 /// Action Enum.
 enum ActionEnum {
   /// deposit.
   deposit,
+
+  /// withdraw.
+  withdraw,
 }
 /// Cashier object model class.
 abstract class CashierObjectModel {
   /// Initializes Cashier object model class .
   CashierObjectModel({
-    this.action,
+    required this.action,
     this.deposit,
+    this.withdraw,
   });
 
   /// Type of operation, which is requested.
-  final ActionEnum? action;
+  final ActionEnum action;
 
-  /// [Optional] Result for deposit operation.
+  /// [Optional] Result for `deposit` action.
   final Deposit? deposit;
+
+  /// [Optional] Result for `withdraw` action.
+  final Map<String, dynamic>? withdraw;
 }
 
 /// Cashier object class.
 class CashierObject extends CashierObjectModel {
   /// Initializes Cashier object class.
   CashierObject({
-    ActionEnum? action,
+    required ActionEnum action,
     Deposit? deposit,
+    Map<String, dynamic>? withdraw,
   }) : super(
           action: action,
           deposit: deposit,
+          withdraw: withdraw,
         );
 
   /// Creates an instance from JSON.
   factory CashierObject.fromJson(Map<String, dynamic> json) => CashierObject(
-        action:
-            json['action'] == null ? null : actionEnumMapper[json['action']],
+        action: actionEnumMapper[json['action']]!,
         deposit:
             json['deposit'] == null ? null : Deposit.fromJson(json['deposit']),
+        withdraw: json['withdraw'],
       );
 
   /// Converts an instance to JSON.
@@ -143,36 +153,39 @@ class CashierObject extends CashierObjectModel {
     if (deposit != null) {
       resultMap['deposit'] = deposit!.toJson();
     }
+    resultMap['withdraw'] = withdraw;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters.
   CashierObject copyWith({
-    ActionEnum? action,
+    required ActionEnum action,
     Deposit? deposit,
+    Map<String, dynamic>? withdraw,
   }) =>
       CashierObject(
-        action: action ?? this.action,
+        action: action,
         deposit: deposit ?? this.deposit,
+        withdraw: withdraw ?? this.withdraw,
       );
 }
 /// Deposit model class.
 abstract class DepositModel {
   /// Initializes Deposit model class .
   DepositModel({
-    this.address,
+    required this.address,
   });
 
   /// Address for crypto deposit.
-  final String? address;
+  final String address;
 }
 
 /// Deposit class.
 class Deposit extends DepositModel {
   /// Initializes Deposit class.
   Deposit({
-    String? address,
+    required String address,
   }) : super(
           address: address,
         );
@@ -193,9 +206,9 @@ class Deposit extends DepositModel {
 
   /// Creates a copy of instance with given parameters.
   Deposit copyWith({
-    String? address,
+    required String address,
   }) =>
       Deposit(
-        address: address ?? this.address,
+        address: address,
       );
 }

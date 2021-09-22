@@ -1,5 +1,3 @@
-// ignore_for_file: directives_ordering
-
 export 'active_symbols_receive.dart';
 export 'active_symbols_send.dart';
 export 'api_token_receive.dart';

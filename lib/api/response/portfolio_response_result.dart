@@ -138,6 +138,7 @@ abstract class ContractsItemModel {
     this.longcode,
     this.payout,
     this.purchaseTime,
+    this.shortcode,
     this.symbol,
     this.transactionId,
   });
@@ -172,6 +173,9 @@ abstract class ContractsItemModel {
   /// Epoch of purchase time
   final DateTime? purchaseTime;
 
+  /// Contract short code description
+  final String? shortcode;
+
   /// Symbol code
   final String? symbol;
 
@@ -193,6 +197,7 @@ class ContractsItem extends ContractsItemModel {
     String? longcode,
     double? payout,
     DateTime? purchaseTime,
+    String? shortcode,
     String? symbol,
     int? transactionId,
   }) : super(
@@ -206,6 +211,7 @@ class ContractsItem extends ContractsItemModel {
           longcode: longcode,
           payout: payout,
           purchaseTime: purchaseTime,
+          shortcode: shortcode,
           symbol: symbol,
           transactionId: transactionId,
         );
@@ -222,6 +228,7 @@ class ContractsItem extends ContractsItemModel {
         longcode: json['longcode'],
         payout: getDouble(json['payout']),
         purchaseTime: getDateTime(json['purchase_time']),
+        shortcode: json['shortcode'],
         symbol: json['symbol'],
         transactionId: json['transaction_id'],
       );
@@ -240,6 +247,7 @@ class ContractsItem extends ContractsItemModel {
     resultMap['longcode'] = longcode;
     resultMap['payout'] = payout;
     resultMap['purchase_time'] = getSecondsSinceEpochDateTime(purchaseTime);
+    resultMap['shortcode'] = shortcode;
     resultMap['symbol'] = symbol;
     resultMap['transaction_id'] = transactionId;
 
@@ -258,6 +266,7 @@ class ContractsItem extends ContractsItemModel {
     String? longcode,
     double? payout,
     DateTime? purchaseTime,
+    String? shortcode,
     String? symbol,
     int? transactionId,
   }) =>
@@ -272,6 +281,7 @@ class ContractsItem extends ContractsItemModel {
         longcode: longcode ?? this.longcode,
         payout: payout ?? this.payout,
         purchaseTime: purchaseTime ?? this.purchaseTime,
+        shortcode: shortcode ?? this.shortcode,
         symbol: symbol ?? this.symbol,
         transactionId: transactionId ?? this.transactionId,
       );

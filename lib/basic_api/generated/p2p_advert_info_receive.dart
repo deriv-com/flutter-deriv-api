@@ -9,6 +9,7 @@ class P2pAdvertInfoReceive extends Response {
   /// Initialize P2pAdvertInfoReceive.
   const P2pAdvertInfoReceive({
     this.p2pAdvertInfo,
+    this.subscription,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
@@ -24,6 +25,7 @@ class P2pAdvertInfoReceive extends Response {
   factory P2pAdvertInfoReceive.fromJson(Map<String, dynamic> json) =>
       P2pAdvertInfoReceive(
         p2pAdvertInfo: json['p2p_advert_info'] as Map<String, dynamic>?,
+        subscription: json['subscription'] as Map<String, dynamic>?,
         echoReq: json['echo_req'] as Map<String, dynamic>?,
         error: json['error'] as Map<String, dynamic>?,
         msgType: json['msg_type'] as String?,
@@ -33,10 +35,14 @@ class P2pAdvertInfoReceive extends Response {
   /// P2P advert information.
   final Map<String, dynamic>? p2pAdvertInfo;
 
+  /// For subscription requests only.
+  final Map<String, dynamic>? subscription;
+
   /// Converts this instance to JSON
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
         'p2p_advert_info': p2pAdvertInfo,
+        'subscription': subscription,
         'echo_req': echoReq,
         'error': error,
         'msg_type': msgType,
@@ -47,6 +53,7 @@ class P2pAdvertInfoReceive extends Response {
   @override
   P2pAdvertInfoReceive copyWith({
     Map<String, dynamic>? p2pAdvertInfo,
+    Map<String, dynamic>? subscription,
     Map<String, dynamic>? echoReq,
     Map<String, dynamic>? error,
     String? msgType,
@@ -54,6 +61,7 @@ class P2pAdvertInfoReceive extends Response {
   }) =>
       P2pAdvertInfoReceive(
         p2pAdvertInfo: p2pAdvertInfo ?? this.p2pAdvertInfo,
+        subscription: subscription ?? this.subscription,
         echoReq: echoReq ?? this.echoReq,
         error: error ?? this.error,
         msgType: msgType ?? this.msgType,

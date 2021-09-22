@@ -233,6 +233,7 @@ abstract class Mt5NewAccountModel {
   /// Initializes Mt5 new account model class .
   Mt5NewAccountModel({
     this.accountType,
+    this.agent,
     this.balance,
     this.currency,
     this.displayBalance,
@@ -243,6 +244,9 @@ abstract class Mt5NewAccountModel {
 
   /// Account type.
   final AccountTypeEnum? accountType;
+
+  /// Agent Details.
+  final String? agent;
 
   /// Account balance.
   final double? balance;
@@ -268,6 +272,7 @@ class Mt5NewAccount extends Mt5NewAccountModel {
   /// Initializes Mt5 new account class.
   Mt5NewAccount({
     AccountTypeEnum? accountType,
+    String? agent,
     double? balance,
     String? currency,
     String? displayBalance,
@@ -276,6 +281,7 @@ class Mt5NewAccount extends Mt5NewAccountModel {
     Mt5AccountTypeEnum? mt5AccountType,
   }) : super(
           accountType: accountType,
+          agent: agent,
           balance: balance,
           currency: currency,
           displayBalance: displayBalance,
@@ -289,6 +295,7 @@ class Mt5NewAccount extends Mt5NewAccountModel {
         accountType: json['account_type'] == null
             ? null
             : accountTypeEnumMapper[json['account_type']],
+        agent: json['agent'],
         balance: getDouble(json['balance']),
         currency: json['currency'],
         displayBalance: json['display_balance'],
@@ -309,6 +316,7 @@ class Mt5NewAccount extends Mt5NewAccountModel {
         .firstWhere((MapEntry<String, AccountTypeEnum> entry) =>
             entry.value == accountType)
         .key;
+    resultMap['agent'] = agent;
     resultMap['balance'] = balance;
     resultMap['currency'] = currency;
     resultMap['display_balance'] = displayBalance;
@@ -328,6 +336,7 @@ class Mt5NewAccount extends Mt5NewAccountModel {
   /// Creates a copy of instance with given parameters.
   Mt5NewAccount copyWith({
     AccountTypeEnum? accountType,
+    String? agent,
     double? balance,
     String? currency,
     String? displayBalance,
@@ -337,6 +346,7 @@ class Mt5NewAccount extends Mt5NewAccountModel {
   }) =>
       Mt5NewAccount(
         accountType: accountType ?? this.accountType,
+        agent: agent ?? this.agent,
         balance: balance ?? this.balance,
         currency: currency ?? this.currency,
         displayBalance: displayBalance ?? this.displayBalance,

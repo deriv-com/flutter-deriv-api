@@ -264,44 +264,94 @@ class LandingCompanyDetails extends LandingCompanyDetailsModel {
 abstract class CurrencyConfigModel {
   /// Initializes Currency config model class .
   CurrencyConfigModel({
+    this.commodities,
+    this.cryptocurrency,
+    this.forex,
+    this.indices,
     this.market,
+    this.syntheticIndex,
   });
+
+  /// Name of commodities.
+  final Map<String, dynamic>? commodities;
+
+  /// Name of cryptocurrency.
+  final Map<String, dynamic>? cryptocurrency;
+
+  /// Name of forex.
+  final Map<String, dynamic>? forex;
+
+  /// Name of indices.
+  final Map<String, dynamic>? indices;
 
   /// Name of market.
   final Market? market;
+
+  /// Name of synthetic index.
+  final Map<String, dynamic>? syntheticIndex;
 }
 
 /// Currency config class.
 class CurrencyConfig extends CurrencyConfigModel {
   /// Initializes Currency config class.
   CurrencyConfig({
+    Map<String, dynamic>? commodities,
+    Map<String, dynamic>? cryptocurrency,
+    Map<String, dynamic>? forex,
+    Map<String, dynamic>? indices,
     Market? market,
+    Map<String, dynamic>? syntheticIndex,
   }) : super(
+          commodities: commodities,
+          cryptocurrency: cryptocurrency,
+          forex: forex,
+          indices: indices,
           market: market,
+          syntheticIndex: syntheticIndex,
         );
 
   /// Creates an instance from JSON.
   factory CurrencyConfig.fromJson(Map<String, dynamic> json) => CurrencyConfig(
+        commodities: json['commodities'],
+        cryptocurrency: json['cryptocurrency'],
+        forex: json['forex'],
+        indices: json['indices'],
         market: json['market'] == null ? null : Market.fromJson(json['market']),
+        syntheticIndex: json['synthetic_index'],
       );
 
   /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['commodities'] = commodities;
+    resultMap['cryptocurrency'] = cryptocurrency;
+    resultMap['forex'] = forex;
+    resultMap['indices'] = indices;
     if (market != null) {
       resultMap['market'] = market!.toJson();
     }
+    resultMap['synthetic_index'] = syntheticIndex;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters.
   CurrencyConfig copyWith({
+    Map<String, dynamic>? commodities,
+    Map<String, dynamic>? cryptocurrency,
+    Map<String, dynamic>? forex,
+    Map<String, dynamic>? indices,
     Market? market,
+    Map<String, dynamic>? syntheticIndex,
   }) =>
       CurrencyConfig(
+        commodities: commodities ?? this.commodities,
+        cryptocurrency: cryptocurrency ?? this.cryptocurrency,
+        forex: forex ?? this.forex,
+        indices: indices ?? this.indices,
         market: market ?? this.market,
+        syntheticIndex: syntheticIndex ?? this.syntheticIndex,
       );
 }
 /// Market model class.

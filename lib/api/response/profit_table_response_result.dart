@@ -146,6 +146,7 @@ abstract class TransactionsItemModel {
     this.appId,
     this.buyPrice,
     this.contractId,
+    this.durationType,
     this.longcode,
     this.payout,
     this.purchaseTime,
@@ -163,6 +164,9 @@ abstract class TransactionsItemModel {
 
   /// The unique contract identifier.
   final int? contractId;
+
+  /// The duration type of the contract.
+  final String? durationType;
 
   /// The description of contract purchased if description is set to 1
   final String? longcode;
@@ -193,6 +197,7 @@ class TransactionsItem extends TransactionsItemModel {
     int? appId,
     double? buyPrice,
     int? contractId,
+    String? durationType,
     String? longcode,
     double? payout,
     DateTime? purchaseTime,
@@ -204,6 +209,7 @@ class TransactionsItem extends TransactionsItemModel {
           appId: appId,
           buyPrice: buyPrice,
           contractId: contractId,
+          durationType: durationType,
           longcode: longcode,
           payout: payout,
           purchaseTime: purchaseTime,
@@ -219,6 +225,7 @@ class TransactionsItem extends TransactionsItemModel {
         appId: json['app_id'],
         buyPrice: getDouble(json['buy_price']),
         contractId: json['contract_id'],
+        durationType: json['duration_type'],
         longcode: json['longcode'],
         payout: getDouble(json['payout']),
         purchaseTime: getDateTime(json['purchase_time']),
@@ -235,6 +242,7 @@ class TransactionsItem extends TransactionsItemModel {
     resultMap['app_id'] = appId;
     resultMap['buy_price'] = buyPrice;
     resultMap['contract_id'] = contractId;
+    resultMap['duration_type'] = durationType;
     resultMap['longcode'] = longcode;
     resultMap['payout'] = payout;
     resultMap['purchase_time'] = getSecondsSinceEpochDateTime(purchaseTime);
@@ -251,6 +259,7 @@ class TransactionsItem extends TransactionsItemModel {
     int? appId,
     double? buyPrice,
     int? contractId,
+    String? durationType,
     String? longcode,
     double? payout,
     DateTime? purchaseTime,
@@ -263,6 +272,7 @@ class TransactionsItem extends TransactionsItemModel {
         appId: appId ?? this.appId,
         buyPrice: buyPrice ?? this.buyPrice,
         contractId: contractId ?? this.contractId,
+        durationType: durationType ?? this.durationType,
         longcode: longcode ?? this.longcode,
         payout: payout ?? this.payout,
         purchaseTime: purchaseTime ?? this.purchaseTime,

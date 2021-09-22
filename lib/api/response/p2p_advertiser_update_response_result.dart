@@ -88,6 +88,7 @@ abstract class P2pAdvertiserUpdateModel {
     required this.isApproved,
     required this.id,
     required this.fullVerification,
+    required this.favourited,
     required this.createdTime,
     required this.buyOrdersCount,
     required this.basicVerification,
@@ -136,6 +137,9 @@ abstract class P2pAdvertiserUpdateModel {
 
   /// Boolean value: `true` or `false`, indicating whether the advertiser's address has been verified.
   final bool fullVerification;
+
+  /// Number of other users who have favourited this advertiser.
+  final int favourited;
 
   /// The epoch time that the client became an advertiser.
   final DateTime createdTime;
@@ -223,6 +227,7 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
     required bool basicVerification,
     required int buyOrdersCount,
     required DateTime createdTime,
+    required int favourited,
     required bool fullVerification,
     required String id,
     required bool isApproved,
@@ -257,6 +262,7 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
           basicVerification: basicVerification,
           buyOrdersCount: buyOrdersCount,
           createdTime: createdTime,
+          favourited: favourited,
           fullVerification: fullVerification,
           id: id,
           isApproved: isApproved,
@@ -295,6 +301,7 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
         basicVerification: getBool(json['basic_verification'])!,
         buyOrdersCount: json['buy_orders_count'],
         createdTime: getDateTime(json['created_time'])!,
+        favourited: json['favourited'],
         fullVerification: getBool(json['full_verification'])!,
         id: json['id'],
         isApproved: getBool(json['is_approved'])!,
@@ -334,6 +341,7 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
     resultMap['basic_verification'] = basicVerification;
     resultMap['buy_orders_count'] = buyOrdersCount;
     resultMap['created_time'] = getSecondsSinceEpochDateTime(createdTime);
+    resultMap['favourited'] = favourited;
     resultMap['full_verification'] = fullVerification;
     resultMap['id'] = id;
     resultMap['is_approved'] = isApproved;
@@ -373,6 +381,7 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
     required bool basicVerification,
     required int buyOrdersCount,
     required DateTime createdTime,
+    required int favourited,
     required bool fullVerification,
     required String id,
     required bool isApproved,
@@ -408,6 +417,7 @@ class P2pAdvertiserUpdate extends P2pAdvertiserUpdateModel {
         basicVerification: basicVerification,
         buyOrdersCount: buyOrdersCount,
         createdTime: createdTime,
+        favourited: favourited,
         fullVerification: fullVerification,
         id: id,
         isApproved: isApproved,

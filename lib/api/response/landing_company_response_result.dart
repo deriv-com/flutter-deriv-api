@@ -103,15 +103,39 @@ class LandingCompanyResponse extends LandingCompanyResponseModel {
 abstract class LandingCompanyModel {
   /// Initializes Landing company model class .
   LandingCompanyModel({
+    this.addressParseable,
+    this.config,
     this.dxtradeFinancialCompany,
     this.dxtradeGamingCompany,
     this.financialCompany,
+    this.forbiddenPostcodePattern,
     this.gamingCompany,
+    this.gamstopCompany,
+    this.hasProveid,
     this.id,
+    this.isIdvSupported,
+    this.lcToOpenMfAccount,
+    this.minimumAge,
+    this.mt5AgeVerification,
     this.mtFinancialCompany,
     this.mtGamingCompany,
     this.name,
+    this.needSetMaxTurnoverLimit,
+    this.noProvince,
+    this.requireAddressPostcode,
+    this.requireAgeVerifiedForSynthetic,
+    this.requirePoi,
+    this.requireVerificationWhenNotAgeVerified,
+    this.skipDepositVerification,
+    this.ukgcFundsProtection,
+    this.virtualCompany,
   });
+
+  /// Flag to indicate if address parseable or not
+  final bool? addressParseable;
+
+  /// Config structure with document types ,taxRequired ,tin format details.
+  final Map<String, dynamic>? config;
 
   /// Available Deriv X financial account types (all except Synthetic Indices).
   final DxtradeFinancialCompany? dxtradeFinancialCompany;
@@ -122,11 +146,32 @@ abstract class LandingCompanyModel {
   /// Landing Company for financial contracts (all except Synthetic Indices)
   final FinancialCompany? financialCompany;
 
+  /// Forbidden postcode pattern
+  final String? forbiddenPostcodePattern;
+
   /// Landing Company for gaming contracts (Synthetic Indices)
   final GamingCompany? gamingCompany;
 
+  /// Gamestop company details.
+  final List<String>? gamstopCompany;
+
+  /// Flag to indicate if proveid is present or not
+  final bool? hasProveid;
+
   /// Country code
   final String? id;
+
+  /// Flag to indicate if idv is supported or not
+  final bool? isIdvSupported;
+
+  /// Open mf account lc details.
+  final String? lcToOpenMfAccount;
+
+  /// Minimum age
+  final int? minimumAge;
+
+  /// Flag to indicate if mt5 age verification detail.
+  final bool? mt5AgeVerification;
 
   /// Landing Company for MT5 financial contracts (all except Synthetic Indices), currently divided into Financial STP, Financial (standard), and Swap-Free as subtypes.
   final MtFinancialCompany? mtFinancialCompany;
@@ -136,33 +181,99 @@ abstract class LandingCompanyModel {
 
   /// Country name
   final String? name;
+
+  /// Flag to indicate whether max turnover limit settings.
+  final bool? needSetMaxTurnoverLimit;
+
+  /// Flag to indicate province settings.
+  final bool? noProvince;
+
+  /// Flag to indicate whether address postcode is required or not.
+  final bool? requireAddressPostcode;
+
+  /// Flag to indicate whether age verification required ofr synthetic or not.
+  final bool? requireAgeVerifiedForSynthetic;
+
+  /// Flag to indicate whether poi is required.
+  final bool? requirePoi;
+
+  /// Flag to indicate whether verification required if age not verified.
+  final bool? requireVerificationWhenNotAgeVerified;
+
+  /// Flag to indicate whether to skip deposit verifcation or not.
+  final bool? skipDepositVerification;
+
+  /// Flag to indicate ukgc funds protection setting.
+  final bool? ukgcFundsProtection;
+
+  /// Virtual Company
+  final String? virtualCompany;
 }
 
 /// Landing company class.
 class LandingCompany extends LandingCompanyModel {
   /// Initializes Landing company class.
   LandingCompany({
+    bool? addressParseable,
+    Map<String, dynamic>? config,
     DxtradeFinancialCompany? dxtradeFinancialCompany,
     DxtradeGamingCompany? dxtradeGamingCompany,
     FinancialCompany? financialCompany,
+    String? forbiddenPostcodePattern,
     GamingCompany? gamingCompany,
+    List<String>? gamstopCompany,
+    bool? hasProveid,
     String? id,
+    bool? isIdvSupported,
+    String? lcToOpenMfAccount,
+    int? minimumAge,
+    bool? mt5AgeVerification,
     MtFinancialCompany? mtFinancialCompany,
     MtGamingCompany? mtGamingCompany,
     String? name,
+    bool? needSetMaxTurnoverLimit,
+    bool? noProvince,
+    bool? requireAddressPostcode,
+    bool? requireAgeVerifiedForSynthetic,
+    bool? requirePoi,
+    bool? requireVerificationWhenNotAgeVerified,
+    bool? skipDepositVerification,
+    bool? ukgcFundsProtection,
+    String? virtualCompany,
   }) : super(
+          addressParseable: addressParseable,
+          config: config,
           dxtradeFinancialCompany: dxtradeFinancialCompany,
           dxtradeGamingCompany: dxtradeGamingCompany,
           financialCompany: financialCompany,
+          forbiddenPostcodePattern: forbiddenPostcodePattern,
           gamingCompany: gamingCompany,
+          gamstopCompany: gamstopCompany,
+          hasProveid: hasProveid,
           id: id,
+          isIdvSupported: isIdvSupported,
+          lcToOpenMfAccount: lcToOpenMfAccount,
+          minimumAge: minimumAge,
+          mt5AgeVerification: mt5AgeVerification,
           mtFinancialCompany: mtFinancialCompany,
           mtGamingCompany: mtGamingCompany,
           name: name,
+          needSetMaxTurnoverLimit: needSetMaxTurnoverLimit,
+          noProvince: noProvince,
+          requireAddressPostcode: requireAddressPostcode,
+          requireAgeVerifiedForSynthetic: requireAgeVerifiedForSynthetic,
+          requirePoi: requirePoi,
+          requireVerificationWhenNotAgeVerified:
+              requireVerificationWhenNotAgeVerified,
+          skipDepositVerification: skipDepositVerification,
+          ukgcFundsProtection: ukgcFundsProtection,
+          virtualCompany: virtualCompany,
         );
 
   /// Creates an instance from JSON.
   factory LandingCompany.fromJson(Map<String, dynamic> json) => LandingCompany(
+        addressParseable: getBool(json['address_parseable']),
+        config: json['config'],
         dxtradeFinancialCompany: json['dxtrade_financial_company'] == null
             ? null
             : DxtradeFinancialCompany.fromJson(
@@ -173,10 +284,23 @@ class LandingCompany extends LandingCompanyModel {
         financialCompany: json['financial_company'] == null
             ? null
             : FinancialCompany.fromJson(json['financial_company']),
+        forbiddenPostcodePattern: json['forbidden_postcode_pattern'],
         gamingCompany: json['gaming_company'] == null
             ? null
             : GamingCompany.fromJson(json['gaming_company']),
+        gamstopCompany: json['gamstop_company'] == null
+            ? null
+            : List<String>.from(
+                json['gamstop_company']?.map(
+                  (dynamic item) => item,
+                ),
+              ),
+        hasProveid: getBool(json['has_proveid']),
         id: json['id'],
+        isIdvSupported: getBool(json['is_idv_supported']),
+        lcToOpenMfAccount: json['lc_to_open_mf_account'],
+        minimumAge: json['minimum_age'],
+        mt5AgeVerification: getBool(json['mt5_age_verification']),
         mtFinancialCompany: json['mt_financial_company'] == null
             ? null
             : MtFinancialCompany.fromJson(json['mt_financial_company']),
@@ -184,12 +308,25 @@ class LandingCompany extends LandingCompanyModel {
             ? null
             : MtGamingCompany.fromJson(json['mt_gaming_company']),
         name: json['name'],
+        needSetMaxTurnoverLimit: getBool(json['need_set_max_turnover_limit']),
+        noProvince: getBool(json['no_province']),
+        requireAddressPostcode: getBool(json['require_address_postcode']),
+        requireAgeVerifiedForSynthetic:
+            getBool(json['require_age_verified_for_synthetic']),
+        requirePoi: getBool(json['require_poi']),
+        requireVerificationWhenNotAgeVerified:
+            getBool(json['require_verification_when_not_age_verified']),
+        skipDepositVerification: getBool(json['skip_deposit_verification']),
+        ukgcFundsProtection: getBool(json['ukgc_funds_protection']),
+        virtualCompany: json['virtual_company'],
       );
 
   /// Converts an instance to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> resultMap = <String, dynamic>{};
 
+    resultMap['address_parseable'] = addressParseable;
+    resultMap['config'] = config;
     if (dxtradeFinancialCompany != null) {
       resultMap['dxtrade_financial_company'] =
           dxtradeFinancialCompany!.toJson();
@@ -200,10 +337,23 @@ class LandingCompany extends LandingCompanyModel {
     if (financialCompany != null) {
       resultMap['financial_company'] = financialCompany!.toJson();
     }
+    resultMap['forbidden_postcode_pattern'] = forbiddenPostcodePattern;
     if (gamingCompany != null) {
       resultMap['gaming_company'] = gamingCompany!.toJson();
     }
+    if (gamstopCompany != null) {
+      resultMap['gamstop_company'] = gamstopCompany!
+          .map<dynamic>(
+            (String item) => item,
+          )
+          .toList();
+    }
+    resultMap['has_proveid'] = hasProveid;
     resultMap['id'] = id;
+    resultMap['is_idv_supported'] = isIdvSupported;
+    resultMap['lc_to_open_mf_account'] = lcToOpenMfAccount;
+    resultMap['minimum_age'] = minimumAge;
+    resultMap['mt5_age_verification'] = mt5AgeVerification;
     if (mtFinancialCompany != null) {
       resultMap['mt_financial_company'] = mtFinancialCompany!.toJson();
     }
@@ -211,31 +361,85 @@ class LandingCompany extends LandingCompanyModel {
       resultMap['mt_gaming_company'] = mtGamingCompany!.toJson();
     }
     resultMap['name'] = name;
+    resultMap['need_set_max_turnover_limit'] = needSetMaxTurnoverLimit;
+    resultMap['no_province'] = noProvince;
+    resultMap['require_address_postcode'] = requireAddressPostcode;
+    resultMap['require_age_verified_for_synthetic'] =
+        requireAgeVerifiedForSynthetic;
+    resultMap['require_poi'] = requirePoi;
+    resultMap['require_verification_when_not_age_verified'] =
+        requireVerificationWhenNotAgeVerified;
+    resultMap['skip_deposit_verification'] = skipDepositVerification;
+    resultMap['ukgc_funds_protection'] = ukgcFundsProtection;
+    resultMap['virtual_company'] = virtualCompany;
 
     return resultMap;
   }
 
   /// Creates a copy of instance with given parameters.
   LandingCompany copyWith({
+    bool? addressParseable,
+    Map<String, dynamic>? config,
     DxtradeFinancialCompany? dxtradeFinancialCompany,
     DxtradeGamingCompany? dxtradeGamingCompany,
     FinancialCompany? financialCompany,
+    String? forbiddenPostcodePattern,
     GamingCompany? gamingCompany,
+    List<String>? gamstopCompany,
+    bool? hasProveid,
     String? id,
+    bool? isIdvSupported,
+    String? lcToOpenMfAccount,
+    int? minimumAge,
+    bool? mt5AgeVerification,
     MtFinancialCompany? mtFinancialCompany,
     MtGamingCompany? mtGamingCompany,
     String? name,
+    bool? needSetMaxTurnoverLimit,
+    bool? noProvince,
+    bool? requireAddressPostcode,
+    bool? requireAgeVerifiedForSynthetic,
+    bool? requirePoi,
+    bool? requireVerificationWhenNotAgeVerified,
+    bool? skipDepositVerification,
+    bool? ukgcFundsProtection,
+    String? virtualCompany,
   }) =>
       LandingCompany(
+        addressParseable: addressParseable ?? this.addressParseable,
+        config: config ?? this.config,
         dxtradeFinancialCompany:
             dxtradeFinancialCompany ?? this.dxtradeFinancialCompany,
         dxtradeGamingCompany: dxtradeGamingCompany ?? this.dxtradeGamingCompany,
         financialCompany: financialCompany ?? this.financialCompany,
+        forbiddenPostcodePattern:
+            forbiddenPostcodePattern ?? this.forbiddenPostcodePattern,
         gamingCompany: gamingCompany ?? this.gamingCompany,
+        gamstopCompany: gamstopCompany ?? this.gamstopCompany,
+        hasProveid: hasProveid ?? this.hasProveid,
         id: id ?? this.id,
+        isIdvSupported: isIdvSupported ?? this.isIdvSupported,
+        lcToOpenMfAccount: lcToOpenMfAccount ?? this.lcToOpenMfAccount,
+        minimumAge: minimumAge ?? this.minimumAge,
+        mt5AgeVerification: mt5AgeVerification ?? this.mt5AgeVerification,
         mtFinancialCompany: mtFinancialCompany ?? this.mtFinancialCompany,
         mtGamingCompany: mtGamingCompany ?? this.mtGamingCompany,
         name: name ?? this.name,
+        needSetMaxTurnoverLimit:
+            needSetMaxTurnoverLimit ?? this.needSetMaxTurnoverLimit,
+        noProvince: noProvince ?? this.noProvince,
+        requireAddressPostcode:
+            requireAddressPostcode ?? this.requireAddressPostcode,
+        requireAgeVerifiedForSynthetic: requireAgeVerifiedForSynthetic ??
+            this.requireAgeVerifiedForSynthetic,
+        requirePoi: requirePoi ?? this.requirePoi,
+        requireVerificationWhenNotAgeVerified:
+            requireVerificationWhenNotAgeVerified ??
+                this.requireVerificationWhenNotAgeVerified,
+        skipDepositVerification:
+            skipDepositVerification ?? this.skipDepositVerification,
+        ukgcFundsProtection: ukgcFundsProtection ?? this.ukgcFundsProtection,
+        virtualCompany: virtualCompany ?? this.virtualCompany,
       );
 }
 /// Dxtrade financial company model class.
@@ -290,7 +494,10 @@ abstract class StandardModel {
   /// Initializes Standard model class .
   StandardModel({
     this.address,
+    this.changeableFields,
     this.country,
+    this.currencyConfig,
+    this.hasRealityCheck,
     this.legalAllowedContractCategories,
     this.legalAllowedCurrencies,
     this.legalAllowedMarkets,
@@ -303,8 +510,17 @@ abstract class StandardModel {
   /// Landing Company address
   final List<String>? address;
 
+  /// Special conditions for changing sensitive fields
+  final Map<String, dynamic>? changeableFields;
+
   /// Landing Company country of incorporation
   final String? country;
+
+  /// The configuration of each currency.
+  final Map<String, dynamic>? currencyConfig;
+
+  /// Flag to indicate whether reality check is applicable for this Landing Company. `true`: applicable, `false`: not applicable. The Reality Check is a feature that gives a summary of the client's trades and account balances on a regular basis throughout his session, and is a regulatory requirement for certain Landing Companies.
+  final bool? hasRealityCheck;
 
   /// Allowed contract types
   final List<String>? legalAllowedContractCategories;
@@ -333,7 +549,10 @@ class Standard extends StandardModel {
   /// Initializes Standard class.
   Standard({
     List<String>? address,
+    Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
+    bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
@@ -343,7 +562,10 @@ class Standard extends StandardModel {
     String? shortcode,
   }) : super(
           address: address,
+          changeableFields: changeableFields,
           country: country,
+          currencyConfig: currencyConfig,
+          hasRealityCheck: hasRealityCheck,
           legalAllowedContractCategories: legalAllowedContractCategories,
           legalAllowedCurrencies: legalAllowedCurrencies,
           legalAllowedMarkets: legalAllowedMarkets,
@@ -362,7 +584,10 @@ class Standard extends StandardModel {
                   (dynamic item) => item,
                 ),
               ),
+        changeableFields: json['changeable_fields'],
         country: json['country'],
+        currencyConfig: json['currency_config'],
+        hasRealityCheck: getBool(json['has_reality_check']),
         legalAllowedContractCategories:
             json['legal_allowed_contract_categories'] == null
                 ? null
@@ -402,7 +627,10 @@ class Standard extends StandardModel {
           )
           .toList();
     }
+    resultMap['changeable_fields'] = changeableFields;
     resultMap['country'] = country;
+    resultMap['currency_config'] = currencyConfig;
+    resultMap['has_reality_check'] = hasRealityCheck;
     if (legalAllowedContractCategories != null) {
       resultMap['legal_allowed_contract_categories'] =
           legalAllowedContractCategories!
@@ -436,7 +664,10 @@ class Standard extends StandardModel {
   /// Creates a copy of instance with given parameters.
   Standard copyWith({
     List<String>? address,
+    Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
+    bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
@@ -447,7 +678,10 @@ class Standard extends StandardModel {
   }) =>
       Standard(
         address: address ?? this.address,
+        changeableFields: changeableFields ?? this.changeableFields,
         country: country ?? this.country,
+        currencyConfig: currencyConfig ?? this.currencyConfig,
+        hasRealityCheck: hasRealityCheck ?? this.hasRealityCheck,
         legalAllowedContractCategories: legalAllowedContractCategories ??
             this.legalAllowedContractCategories,
         legalAllowedCurrencies:
@@ -511,7 +745,10 @@ abstract class DxtradeGamingCompanyStandardModel {
   /// Initializes Dxtrade gaming company standard model class .
   DxtradeGamingCompanyStandardModel({
     this.address,
+    this.changeableFields,
     this.country,
+    this.currencyConfig,
+    this.hasRealityCheck,
     this.legalAllowedContractCategories,
     this.legalAllowedCurrencies,
     this.legalAllowedMarkets,
@@ -524,8 +761,17 @@ abstract class DxtradeGamingCompanyStandardModel {
   /// Landing Company address
   final List<String>? address;
 
+  /// Special conditions for changing sensitive fields
+  final Map<String, dynamic>? changeableFields;
+
   /// Landing Company country of incorporation
   final String? country;
+
+  /// The configuration of each currency.
+  final Map<String, dynamic>? currencyConfig;
+
+  /// Flag to indicate whether reality check is applicable for this Landing Company. `true`: applicable, `false`: not applicable. The Reality Check is a feature that gives a summary of the client's trades and account balances on a regular basis throughout his session, and is a regulatory requirement for certain Landing Companies.
+  final bool? hasRealityCheck;
 
   /// Allowed contract types
   final List<String>? legalAllowedContractCategories;
@@ -554,7 +800,10 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
   /// Initializes Dxtrade gaming company standard class.
   DxtradeGamingCompanyStandard({
     List<String>? address,
+    Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
+    bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
@@ -564,7 +813,10 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
     String? shortcode,
   }) : super(
           address: address,
+          changeableFields: changeableFields,
           country: country,
+          currencyConfig: currencyConfig,
+          hasRealityCheck: hasRealityCheck,
           legalAllowedContractCategories: legalAllowedContractCategories,
           legalAllowedCurrencies: legalAllowedCurrencies,
           legalAllowedMarkets: legalAllowedMarkets,
@@ -584,7 +836,10 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
                   (dynamic item) => item,
                 ),
               ),
+        changeableFields: json['changeable_fields'],
         country: json['country'],
+        currencyConfig: json['currency_config'],
+        hasRealityCheck: getBool(json['has_reality_check']),
         legalAllowedContractCategories:
             json['legal_allowed_contract_categories'] == null
                 ? null
@@ -624,7 +879,10 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
           )
           .toList();
     }
+    resultMap['changeable_fields'] = changeableFields;
     resultMap['country'] = country;
+    resultMap['currency_config'] = currencyConfig;
+    resultMap['has_reality_check'] = hasRealityCheck;
     if (legalAllowedContractCategories != null) {
       resultMap['legal_allowed_contract_categories'] =
           legalAllowedContractCategories!
@@ -658,7 +916,10 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
   /// Creates a copy of instance with given parameters.
   DxtradeGamingCompanyStandard copyWith({
     List<String>? address,
+    Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
+    bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
@@ -669,7 +930,10 @@ class DxtradeGamingCompanyStandard extends DxtradeGamingCompanyStandardModel {
   }) =>
       DxtradeGamingCompanyStandard(
         address: address ?? this.address,
+        changeableFields: changeableFields ?? this.changeableFields,
         country: country ?? this.country,
+        currencyConfig: currencyConfig ?? this.currencyConfig,
+        hasRealityCheck: hasRealityCheck ?? this.hasRealityCheck,
         legalAllowedContractCategories: legalAllowedContractCategories ??
             this.legalAllowedContractCategories,
         legalAllowedCurrencies:
@@ -688,12 +952,14 @@ abstract class FinancialCompanyModel {
     this.address,
     this.changeableFields,
     this.country,
+    this.currencyConfig,
     this.hasRealityCheck,
     this.legalAllowedContractCategories,
     this.legalAllowedCurrencies,
     this.legalAllowedMarkets,
     this.legalDefaultCurrency,
     this.name,
+    this.requirements,
     this.shortcode,
   });
 
@@ -705,6 +971,9 @@ abstract class FinancialCompanyModel {
 
   /// Landing Company country of incorporation
   final String? country;
+
+  /// The configuration of each currency.
+  final Map<String, dynamic>? currencyConfig;
 
   /// Flag to indicate whether reality check is applicable for this Landing Company. `true`: applicable, `false`: not applicable. The Reality Check is a feature that gives a summary of the client's trades and account balances on a regular basis throughout his session, and is a regulatory requirement for certain Landing Companies.
   final bool? hasRealityCheck;
@@ -724,6 +993,9 @@ abstract class FinancialCompanyModel {
   /// Landing Company legal name
   final String? name;
 
+  /// Legal requirements for the Landing Company
+  final Map<String, dynamic>? requirements;
+
   /// Landing Company short code
   final String? shortcode;
 }
@@ -735,23 +1007,27 @@ class FinancialCompany extends FinancialCompanyModel {
     List<String>? address,
     Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
     bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
+    Map<String, dynamic>? requirements,
     String? shortcode,
   }) : super(
           address: address,
           changeableFields: changeableFields,
           country: country,
+          currencyConfig: currencyConfig,
           hasRealityCheck: hasRealityCheck,
           legalAllowedContractCategories: legalAllowedContractCategories,
           legalAllowedCurrencies: legalAllowedCurrencies,
           legalAllowedMarkets: legalAllowedMarkets,
           legalDefaultCurrency: legalDefaultCurrency,
           name: name,
+          requirements: requirements,
           shortcode: shortcode,
         );
 
@@ -767,6 +1043,7 @@ class FinancialCompany extends FinancialCompanyModel {
               ),
         changeableFields: json['changeable_fields'],
         country: json['country'],
+        currencyConfig: json['currency_config'],
         hasRealityCheck: getBool(json['has_reality_check']),
         legalAllowedContractCategories:
             json['legal_allowed_contract_categories'] == null
@@ -792,6 +1069,7 @@ class FinancialCompany extends FinancialCompanyModel {
               ),
         legalDefaultCurrency: json['legal_default_currency'],
         name: json['name'],
+        requirements: json['requirements'],
         shortcode: json['shortcode'],
       );
 
@@ -808,6 +1086,7 @@ class FinancialCompany extends FinancialCompanyModel {
     }
     resultMap['changeable_fields'] = changeableFields;
     resultMap['country'] = country;
+    resultMap['currency_config'] = currencyConfig;
     resultMap['has_reality_check'] = hasRealityCheck;
     if (legalAllowedContractCategories != null) {
       resultMap['legal_allowed_contract_categories'] =
@@ -833,6 +1112,7 @@ class FinancialCompany extends FinancialCompanyModel {
     }
     resultMap['legal_default_currency'] = legalDefaultCurrency;
     resultMap['name'] = name;
+    resultMap['requirements'] = requirements;
     resultMap['shortcode'] = shortcode;
 
     return resultMap;
@@ -843,18 +1123,21 @@ class FinancialCompany extends FinancialCompanyModel {
     List<String>? address,
     Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
     bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
+    Map<String, dynamic>? requirements,
     String? shortcode,
   }) =>
       FinancialCompany(
         address: address ?? this.address,
         changeableFields: changeableFields ?? this.changeableFields,
         country: country ?? this.country,
+        currencyConfig: currencyConfig ?? this.currencyConfig,
         hasRealityCheck: hasRealityCheck ?? this.hasRealityCheck,
         legalAllowedContractCategories: legalAllowedContractCategories ??
             this.legalAllowedContractCategories,
@@ -863,6 +1146,7 @@ class FinancialCompany extends FinancialCompanyModel {
         legalAllowedMarkets: legalAllowedMarkets ?? this.legalAllowedMarkets,
         legalDefaultCurrency: legalDefaultCurrency ?? this.legalDefaultCurrency,
         name: name ?? this.name,
+        requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
       );
 }
@@ -873,11 +1157,14 @@ abstract class GamingCompanyModel {
     this.address,
     this.changeableFields,
     this.country,
+    this.currencyConfig,
+    this.hasRealityCheck,
     this.legalAllowedContractCategories,
     this.legalAllowedCurrencies,
     this.legalAllowedMarkets,
     this.legalDefaultCurrency,
     this.name,
+    this.requirements,
     this.shortcode,
   });
 
@@ -889,6 +1176,12 @@ abstract class GamingCompanyModel {
 
   /// Landing Company country of incorporation
   final String? country;
+
+  /// The configuration of each currency.
+  final Map<String, dynamic>? currencyConfig;
+
+  /// Flag to indicate whether reality check is applicable for this Landing Company. `true`: applicable, `false`: not applicable. The Reality Check is a feature that gives a summary of the client's trades and account balances on a regular basis throughout his session, and is a regulatory requirement for certain Landing Companies.
+  final bool? hasRealityCheck;
 
   /// Allowed contract types
   final List<String>? legalAllowedContractCategories;
@@ -905,6 +1198,9 @@ abstract class GamingCompanyModel {
   /// Landing Company legal name
   final String? name;
 
+  /// Legal requirements for the Landing Company
+  final Map<String, dynamic>? requirements;
+
   /// Landing Company short code
   final String? shortcode;
 }
@@ -916,21 +1212,27 @@ class GamingCompany extends GamingCompanyModel {
     List<String>? address,
     Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
+    bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
+    Map<String, dynamic>? requirements,
     String? shortcode,
   }) : super(
           address: address,
           changeableFields: changeableFields,
           country: country,
+          currencyConfig: currencyConfig,
+          hasRealityCheck: hasRealityCheck,
           legalAllowedContractCategories: legalAllowedContractCategories,
           legalAllowedCurrencies: legalAllowedCurrencies,
           legalAllowedMarkets: legalAllowedMarkets,
           legalDefaultCurrency: legalDefaultCurrency,
           name: name,
+          requirements: requirements,
           shortcode: shortcode,
         );
 
@@ -945,6 +1247,8 @@ class GamingCompany extends GamingCompanyModel {
               ),
         changeableFields: json['changeable_fields'],
         country: json['country'],
+        currencyConfig: json['currency_config'],
+        hasRealityCheck: getBool(json['has_reality_check']),
         legalAllowedContractCategories:
             json['legal_allowed_contract_categories'] == null
                 ? null
@@ -969,6 +1273,7 @@ class GamingCompany extends GamingCompanyModel {
               ),
         legalDefaultCurrency: json['legal_default_currency'],
         name: json['name'],
+        requirements: json['requirements'],
         shortcode: json['shortcode'],
       );
 
@@ -985,6 +1290,8 @@ class GamingCompany extends GamingCompanyModel {
     }
     resultMap['changeable_fields'] = changeableFields;
     resultMap['country'] = country;
+    resultMap['currency_config'] = currencyConfig;
+    resultMap['has_reality_check'] = hasRealityCheck;
     if (legalAllowedContractCategories != null) {
       resultMap['legal_allowed_contract_categories'] =
           legalAllowedContractCategories!
@@ -1009,6 +1316,7 @@ class GamingCompany extends GamingCompanyModel {
     }
     resultMap['legal_default_currency'] = legalDefaultCurrency;
     resultMap['name'] = name;
+    resultMap['requirements'] = requirements;
     resultMap['shortcode'] = shortcode;
 
     return resultMap;
@@ -1019,17 +1327,22 @@ class GamingCompany extends GamingCompanyModel {
     List<String>? address,
     Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
+    bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
+    Map<String, dynamic>? requirements,
     String? shortcode,
   }) =>
       GamingCompany(
         address: address ?? this.address,
         changeableFields: changeableFields ?? this.changeableFields,
         country: country ?? this.country,
+        currencyConfig: currencyConfig ?? this.currencyConfig,
+        hasRealityCheck: hasRealityCheck ?? this.hasRealityCheck,
         legalAllowedContractCategories: legalAllowedContractCategories ??
             this.legalAllowedContractCategories,
         legalAllowedCurrencies:
@@ -1037,6 +1350,7 @@ class GamingCompany extends GamingCompanyModel {
         legalAllowedMarkets: legalAllowedMarkets ?? this.legalAllowedMarkets,
         legalDefaultCurrency: legalDefaultCurrency ?? this.legalDefaultCurrency,
         name: name ?? this.name,
+        requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
       );
 }
@@ -1120,21 +1434,30 @@ abstract class FinancialModel {
   /// Initializes Financial model class .
   FinancialModel({
     this.address,
+    this.changeableFields,
     this.country,
+    this.currencyConfig,
     this.hasRealityCheck,
     this.legalAllowedContractCategories,
     this.legalAllowedCurrencies,
     this.legalAllowedMarkets,
     this.legalDefaultCurrency,
     this.name,
+    this.requirements,
     this.shortcode,
   });
 
   /// Landing Company address
   final List<String>? address;
 
+  /// Special conditions for changing sensitive fields
+  final Map<String, dynamic>? changeableFields;
+
   /// Landing Company country of incorporation
   final String? country;
+
+  /// The configuration of each currency.
+  final Map<String, dynamic>? currencyConfig;
 
   /// Flag to indicate whether reality check is applicable for this Landing Company. `true`: applicable, `false`: not applicable. The Reality Check is a feature that gives a summary of the client's trades and account balances on a regular basis throughout his session, and is a regulatory requirement for certain Landing Companies.
   final bool? hasRealityCheck;
@@ -1154,6 +1477,9 @@ abstract class FinancialModel {
   /// Landing Company legal name
   final String? name;
 
+  /// Legal requirements for the Landing Company
+  final Map<String, dynamic>? requirements;
+
   /// Landing Company short code
   final String? shortcode;
 }
@@ -1163,23 +1489,29 @@ class Financial extends FinancialModel {
   /// Initializes Financial class.
   Financial({
     List<String>? address,
+    Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
     bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
+    Map<String, dynamic>? requirements,
     String? shortcode,
   }) : super(
           address: address,
+          changeableFields: changeableFields,
           country: country,
+          currencyConfig: currencyConfig,
           hasRealityCheck: hasRealityCheck,
           legalAllowedContractCategories: legalAllowedContractCategories,
           legalAllowedCurrencies: legalAllowedCurrencies,
           legalAllowedMarkets: legalAllowedMarkets,
           legalDefaultCurrency: legalDefaultCurrency,
           name: name,
+          requirements: requirements,
           shortcode: shortcode,
         );
 
@@ -1192,7 +1524,9 @@ class Financial extends FinancialModel {
                   (dynamic item) => item,
                 ),
               ),
+        changeableFields: json['changeable_fields'],
         country: json['country'],
+        currencyConfig: json['currency_config'],
         hasRealityCheck: getBool(json['has_reality_check']),
         legalAllowedContractCategories:
             json['legal_allowed_contract_categories'] == null
@@ -1218,6 +1552,7 @@ class Financial extends FinancialModel {
               ),
         legalDefaultCurrency: json['legal_default_currency'],
         name: json['name'],
+        requirements: json['requirements'],
         shortcode: json['shortcode'],
       );
 
@@ -1232,7 +1567,9 @@ class Financial extends FinancialModel {
           )
           .toList();
     }
+    resultMap['changeable_fields'] = changeableFields;
     resultMap['country'] = country;
+    resultMap['currency_config'] = currencyConfig;
     resultMap['has_reality_check'] = hasRealityCheck;
     if (legalAllowedContractCategories != null) {
       resultMap['legal_allowed_contract_categories'] =
@@ -1258,6 +1595,7 @@ class Financial extends FinancialModel {
     }
     resultMap['legal_default_currency'] = legalDefaultCurrency;
     resultMap['name'] = name;
+    resultMap['requirements'] = requirements;
     resultMap['shortcode'] = shortcode;
 
     return resultMap;
@@ -1266,18 +1604,23 @@ class Financial extends FinancialModel {
   /// Creates a copy of instance with given parameters.
   Financial copyWith({
     List<String>? address,
+    Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
     bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
+    Map<String, dynamic>? requirements,
     String? shortcode,
   }) =>
       Financial(
         address: address ?? this.address,
+        changeableFields: changeableFields ?? this.changeableFields,
         country: country ?? this.country,
+        currencyConfig: currencyConfig ?? this.currencyConfig,
         hasRealityCheck: hasRealityCheck ?? this.hasRealityCheck,
         legalAllowedContractCategories: legalAllowedContractCategories ??
             this.legalAllowedContractCategories,
@@ -1286,6 +1629,7 @@ class Financial extends FinancialModel {
         legalAllowedMarkets: legalAllowedMarkets ?? this.legalAllowedMarkets,
         legalDefaultCurrency: legalDefaultCurrency ?? this.legalDefaultCurrency,
         name: name ?? this.name,
+        requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
       );
 }
@@ -1294,21 +1638,30 @@ abstract class FinancialStpModel {
   /// Initializes Financial stp model class .
   FinancialStpModel({
     this.address,
+    this.changeableFields,
     this.country,
+    this.currencyConfig,
     this.hasRealityCheck,
     this.legalAllowedContractCategories,
     this.legalAllowedCurrencies,
     this.legalAllowedMarkets,
     this.legalDefaultCurrency,
     this.name,
+    this.requirements,
     this.shortcode,
   });
 
   /// Landing Company address
   final List<String>? address;
 
+  /// Special conditions for changing sensitive fields
+  final Map<String, dynamic>? changeableFields;
+
   /// Landing Company country of incorporation
   final String? country;
+
+  /// The configuration of each currency.
+  final Map<String, dynamic>? currencyConfig;
 
   /// Flag to indicate whether reality check is applicable for this Landing Company. `true`: applicable, `false`: not applicable. The Reality Check is a feature that gives a summary of the client's trades and account balances on a regular basis throughout his session, and is a regulatory requirement for certain Landing Companies.
   final bool? hasRealityCheck;
@@ -1328,6 +1681,9 @@ abstract class FinancialStpModel {
   /// Landing Company legal name
   final String? name;
 
+  /// Legal requirements for the Landing Company
+  final Map<String, dynamic>? requirements;
+
   /// Landing Company short code
   final String? shortcode;
 }
@@ -1337,23 +1693,29 @@ class FinancialStp extends FinancialStpModel {
   /// Initializes Financial stp class.
   FinancialStp({
     List<String>? address,
+    Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
     bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
+    Map<String, dynamic>? requirements,
     String? shortcode,
   }) : super(
           address: address,
+          changeableFields: changeableFields,
           country: country,
+          currencyConfig: currencyConfig,
           hasRealityCheck: hasRealityCheck,
           legalAllowedContractCategories: legalAllowedContractCategories,
           legalAllowedCurrencies: legalAllowedCurrencies,
           legalAllowedMarkets: legalAllowedMarkets,
           legalDefaultCurrency: legalDefaultCurrency,
           name: name,
+          requirements: requirements,
           shortcode: shortcode,
         );
 
@@ -1366,7 +1728,9 @@ class FinancialStp extends FinancialStpModel {
                   (dynamic item) => item,
                 ),
               ),
+        changeableFields: json['changeable_fields'],
         country: json['country'],
+        currencyConfig: json['currency_config'],
         hasRealityCheck: getBool(json['has_reality_check']),
         legalAllowedContractCategories:
             json['legal_allowed_contract_categories'] == null
@@ -1392,6 +1756,7 @@ class FinancialStp extends FinancialStpModel {
               ),
         legalDefaultCurrency: json['legal_default_currency'],
         name: json['name'],
+        requirements: json['requirements'],
         shortcode: json['shortcode'],
       );
 
@@ -1406,7 +1771,9 @@ class FinancialStp extends FinancialStpModel {
           )
           .toList();
     }
+    resultMap['changeable_fields'] = changeableFields;
     resultMap['country'] = country;
+    resultMap['currency_config'] = currencyConfig;
     resultMap['has_reality_check'] = hasRealityCheck;
     if (legalAllowedContractCategories != null) {
       resultMap['legal_allowed_contract_categories'] =
@@ -1432,6 +1799,7 @@ class FinancialStp extends FinancialStpModel {
     }
     resultMap['legal_default_currency'] = legalDefaultCurrency;
     resultMap['name'] = name;
+    resultMap['requirements'] = requirements;
     resultMap['shortcode'] = shortcode;
 
     return resultMap;
@@ -1440,18 +1808,23 @@ class FinancialStp extends FinancialStpModel {
   /// Creates a copy of instance with given parameters.
   FinancialStp copyWith({
     List<String>? address,
+    Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
     bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
+    Map<String, dynamic>? requirements,
     String? shortcode,
   }) =>
       FinancialStp(
         address: address ?? this.address,
+        changeableFields: changeableFields ?? this.changeableFields,
         country: country ?? this.country,
+        currencyConfig: currencyConfig ?? this.currencyConfig,
         hasRealityCheck: hasRealityCheck ?? this.hasRealityCheck,
         legalAllowedContractCategories: legalAllowedContractCategories ??
             this.legalAllowedContractCategories,
@@ -1460,6 +1833,7 @@ class FinancialStp extends FinancialStpModel {
         legalAllowedMarkets: legalAllowedMarkets ?? this.legalAllowedMarkets,
         legalDefaultCurrency: legalDefaultCurrency ?? this.legalDefaultCurrency,
         name: name ?? this.name,
+        requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
       );
 }
@@ -1468,21 +1842,30 @@ abstract class SwapFreeModel {
   /// Initializes Swap free model class .
   SwapFreeModel({
     this.address,
+    this.changeableFields,
     this.country,
+    this.currencyConfig,
     this.hasRealityCheck,
     this.legalAllowedContractCategories,
     this.legalAllowedCurrencies,
     this.legalAllowedMarkets,
     this.legalDefaultCurrency,
     this.name,
+    this.requirements,
     this.shortcode,
   });
 
   /// Landing Company address
   final List<String>? address;
 
+  /// Special conditions for changing sensitive fields
+  final Map<String, dynamic>? changeableFields;
+
   /// Landing Company country of incorporation
   final String? country;
+
+  /// The configuration of each currency.
+  final Map<String, dynamic>? currencyConfig;
 
   /// Flag to indicate whether reality check is applicable for this Landing Company. `true`: applicable, `false`: not applicable. The Reality Check is a feature that gives a summary of the client's trades and account balances on a regular basis throughout his session, and is a regulatory requirement for certain Landing Companies.
   final bool? hasRealityCheck;
@@ -1502,6 +1885,9 @@ abstract class SwapFreeModel {
   /// Landing Company legal name
   final String? name;
 
+  /// Legal requirements for the Landing Company
+  final Map<String, dynamic>? requirements;
+
   /// Landing Company short code
   final String? shortcode;
 }
@@ -1511,23 +1897,29 @@ class SwapFree extends SwapFreeModel {
   /// Initializes Swap free class.
   SwapFree({
     List<String>? address,
+    Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
     bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
+    Map<String, dynamic>? requirements,
     String? shortcode,
   }) : super(
           address: address,
+          changeableFields: changeableFields,
           country: country,
+          currencyConfig: currencyConfig,
           hasRealityCheck: hasRealityCheck,
           legalAllowedContractCategories: legalAllowedContractCategories,
           legalAllowedCurrencies: legalAllowedCurrencies,
           legalAllowedMarkets: legalAllowedMarkets,
           legalDefaultCurrency: legalDefaultCurrency,
           name: name,
+          requirements: requirements,
           shortcode: shortcode,
         );
 
@@ -1540,7 +1932,9 @@ class SwapFree extends SwapFreeModel {
                   (dynamic item) => item,
                 ),
               ),
+        changeableFields: json['changeable_fields'],
         country: json['country'],
+        currencyConfig: json['currency_config'],
         hasRealityCheck: getBool(json['has_reality_check']),
         legalAllowedContractCategories:
             json['legal_allowed_contract_categories'] == null
@@ -1566,6 +1960,7 @@ class SwapFree extends SwapFreeModel {
               ),
         legalDefaultCurrency: json['legal_default_currency'],
         name: json['name'],
+        requirements: json['requirements'],
         shortcode: json['shortcode'],
       );
 
@@ -1580,7 +1975,9 @@ class SwapFree extends SwapFreeModel {
           )
           .toList();
     }
+    resultMap['changeable_fields'] = changeableFields;
     resultMap['country'] = country;
+    resultMap['currency_config'] = currencyConfig;
     resultMap['has_reality_check'] = hasRealityCheck;
     if (legalAllowedContractCategories != null) {
       resultMap['legal_allowed_contract_categories'] =
@@ -1606,6 +2003,7 @@ class SwapFree extends SwapFreeModel {
     }
     resultMap['legal_default_currency'] = legalDefaultCurrency;
     resultMap['name'] = name;
+    resultMap['requirements'] = requirements;
     resultMap['shortcode'] = shortcode;
 
     return resultMap;
@@ -1614,18 +2012,23 @@ class SwapFree extends SwapFreeModel {
   /// Creates a copy of instance with given parameters.
   SwapFree copyWith({
     List<String>? address,
+    Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
     bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
     String? legalDefaultCurrency,
     String? name,
+    Map<String, dynamic>? requirements,
     String? shortcode,
   }) =>
       SwapFree(
         address: address ?? this.address,
+        changeableFields: changeableFields ?? this.changeableFields,
         country: country ?? this.country,
+        currencyConfig: currencyConfig ?? this.currencyConfig,
         hasRealityCheck: hasRealityCheck ?? this.hasRealityCheck,
         legalAllowedContractCategories: legalAllowedContractCategories ??
             this.legalAllowedContractCategories,
@@ -1634,6 +2037,7 @@ class SwapFree extends SwapFreeModel {
         legalAllowedMarkets: legalAllowedMarkets ?? this.legalAllowedMarkets,
         legalDefaultCurrency: legalDefaultCurrency ?? this.legalDefaultCurrency,
         name: name ?? this.name,
+        requirements: requirements ?? this.requirements,
         shortcode: shortcode ?? this.shortcode,
       );
 }
@@ -1703,7 +2107,10 @@ abstract class MtGamingCompanyFinancialModel {
   /// Initializes Mt gaming company financial model class .
   MtGamingCompanyFinancialModel({
     this.address,
+    this.changeableFields,
     this.country,
+    this.currencyConfig,
+    this.hasRealityCheck,
     this.legalAllowedContractCategories,
     this.legalAllowedCurrencies,
     this.legalAllowedMarkets,
@@ -1716,8 +2123,17 @@ abstract class MtGamingCompanyFinancialModel {
   /// Landing Company address
   final List<String>? address;
 
+  /// Special conditions for changing sensitive fields
+  final Map<String, dynamic>? changeableFields;
+
   /// Landing Company country of incorporation
   final String? country;
+
+  /// The configuration of each currency.
+  final Map<String, dynamic>? currencyConfig;
+
+  /// Flag to indicate whether reality check is applicable for this Landing Company. `true`: applicable, `false`: not applicable. The Reality Check is a feature that gives a summary of the client's trades and account balances on a regular basis throughout his session, and is a regulatory requirement for certain Landing Companies.
+  final bool? hasRealityCheck;
 
   /// Allowed contract types
   final List<String>? legalAllowedContractCategories;
@@ -1746,7 +2162,10 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
   /// Initializes Mt gaming company financial class.
   MtGamingCompanyFinancial({
     List<String>? address,
+    Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
+    bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
@@ -1756,7 +2175,10 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
     String? shortcode,
   }) : super(
           address: address,
+          changeableFields: changeableFields,
           country: country,
+          currencyConfig: currencyConfig,
+          hasRealityCheck: hasRealityCheck,
           legalAllowedContractCategories: legalAllowedContractCategories,
           legalAllowedCurrencies: legalAllowedCurrencies,
           legalAllowedMarkets: legalAllowedMarkets,
@@ -1776,7 +2198,10 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
                   (dynamic item) => item,
                 ),
               ),
+        changeableFields: json['changeable_fields'],
         country: json['country'],
+        currencyConfig: json['currency_config'],
+        hasRealityCheck: getBool(json['has_reality_check']),
         legalAllowedContractCategories:
             json['legal_allowed_contract_categories'] == null
                 ? null
@@ -1816,7 +2241,10 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
           )
           .toList();
     }
+    resultMap['changeable_fields'] = changeableFields;
     resultMap['country'] = country;
+    resultMap['currency_config'] = currencyConfig;
+    resultMap['has_reality_check'] = hasRealityCheck;
     if (legalAllowedContractCategories != null) {
       resultMap['legal_allowed_contract_categories'] =
           legalAllowedContractCategories!
@@ -1850,7 +2278,10 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
   /// Creates a copy of instance with given parameters.
   MtGamingCompanyFinancial copyWith({
     List<String>? address,
+    Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
+    bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
@@ -1861,7 +2292,10 @@ class MtGamingCompanyFinancial extends MtGamingCompanyFinancialModel {
   }) =>
       MtGamingCompanyFinancial(
         address: address ?? this.address,
+        changeableFields: changeableFields ?? this.changeableFields,
         country: country ?? this.country,
+        currencyConfig: currencyConfig ?? this.currencyConfig,
+        hasRealityCheck: hasRealityCheck ?? this.hasRealityCheck,
         legalAllowedContractCategories: legalAllowedContractCategories ??
             this.legalAllowedContractCategories,
         legalAllowedCurrencies:
@@ -1878,7 +2312,10 @@ abstract class MtGamingCompanySwapFreeModel {
   /// Initializes Mt gaming company swap free model class .
   MtGamingCompanySwapFreeModel({
     this.address,
+    this.changeableFields,
     this.country,
+    this.currencyConfig,
+    this.hasRealityCheck,
     this.legalAllowedContractCategories,
     this.legalAllowedCurrencies,
     this.legalAllowedMarkets,
@@ -1891,8 +2328,17 @@ abstract class MtGamingCompanySwapFreeModel {
   /// Landing Company address
   final List<String>? address;
 
+  /// Special conditions for changing sensitive fields
+  final Map<String, dynamic>? changeableFields;
+
   /// Landing Company country of incorporation
   final String? country;
+
+  /// The configuration of each currency.
+  final Map<String, dynamic>? currencyConfig;
+
+  /// Flag to indicate whether reality check is applicable for this Landing Company. `true`: applicable, `false`: not applicable. The Reality Check is a feature that gives a summary of the client's trades and account balances on a regular basis throughout his session, and is a regulatory requirement for certain Landing Companies.
+  final bool? hasRealityCheck;
 
   /// Allowed contract types
   final List<String>? legalAllowedContractCategories;
@@ -1921,7 +2367,10 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
   /// Initializes Mt gaming company swap free class.
   MtGamingCompanySwapFree({
     List<String>? address,
+    Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
+    bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
@@ -1931,7 +2380,10 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
     String? shortcode,
   }) : super(
           address: address,
+          changeableFields: changeableFields,
           country: country,
+          currencyConfig: currencyConfig,
+          hasRealityCheck: hasRealityCheck,
           legalAllowedContractCategories: legalAllowedContractCategories,
           legalAllowedCurrencies: legalAllowedCurrencies,
           legalAllowedMarkets: legalAllowedMarkets,
@@ -1951,7 +2403,10 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
                   (dynamic item) => item,
                 ),
               ),
+        changeableFields: json['changeable_fields'],
         country: json['country'],
+        currencyConfig: json['currency_config'],
+        hasRealityCheck: getBool(json['has_reality_check']),
         legalAllowedContractCategories:
             json['legal_allowed_contract_categories'] == null
                 ? null
@@ -1991,7 +2446,10 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
           )
           .toList();
     }
+    resultMap['changeable_fields'] = changeableFields;
     resultMap['country'] = country;
+    resultMap['currency_config'] = currencyConfig;
+    resultMap['has_reality_check'] = hasRealityCheck;
     if (legalAllowedContractCategories != null) {
       resultMap['legal_allowed_contract_categories'] =
           legalAllowedContractCategories!
@@ -2025,7 +2483,10 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
   /// Creates a copy of instance with given parameters.
   MtGamingCompanySwapFree copyWith({
     List<String>? address,
+    Map<String, dynamic>? changeableFields,
     String? country,
+    Map<String, dynamic>? currencyConfig,
+    bool? hasRealityCheck,
     List<String>? legalAllowedContractCategories,
     List<String>? legalAllowedCurrencies,
     List<String>? legalAllowedMarkets,
@@ -2036,7 +2497,10 @@ class MtGamingCompanySwapFree extends MtGamingCompanySwapFreeModel {
   }) =>
       MtGamingCompanySwapFree(
         address: address ?? this.address,
+        changeableFields: changeableFields ?? this.changeableFields,
         country: country ?? this.country,
+        currencyConfig: currencyConfig ?? this.currencyConfig,
+        hasRealityCheck: hasRealityCheck ?? this.hasRealityCheck,
         legalAllowedContractCategories: legalAllowedContractCategories ??
             this.legalAllowedContractCategories,
         legalAllowedCurrencies:
