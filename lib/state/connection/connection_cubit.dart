@@ -55,41 +55,57 @@ class ConnectionCubit extends Cubit<ConnectionState> {
 
   /// Connects to the web socket. This function MUST NOT be called outside of this package.
   Future<void> connect() async {
-    emit(Reconnecting());
+    emit(Connecting());
 
-    await _api!.disconnect().timeout(_callTimeOut);
-    await _api!.connect(connectionInformation,
-        onDone: (UniqueKey uniqueKey) async {
-      if (_uniqueKey == uniqueKey) {
-        await _api!.disconnect();
-      }
-    }, onOpen: (UniqueKey uniqueKey) {
-      if (_uniqueKey == uniqueKey) {
-        emit(Connected());
-      }
-    }, onError: (UniqueKey uniqueKey) {
-      // ignore reporting errors if there is no connection
-      if (_uniqueKey == uniqueKey && state is! Disconnected) {
-        emit(ConnectionError(''));
-      }
-    });
+    await _api?.disconnect();
+
+    emit(Disconnected());
+
+    await _api?.connect(
+      connectionInformation,
+      onDone: (UniqueKey uniqueKey) async {
+        if (_uniqueKey == uniqueKey) {
+          await _api!.disconnect();
+
+          emit(Disconnected());
+        }
+      },
+      onOpen: (UniqueKey uniqueKey) {
+        if (_uniqueKey == uniqueKey) {
+          emit(Connected());
+        }
+      },
+      onError: (UniqueKey uniqueKey) {
+        // ignore reporting errors if there is no connection
+        if (_uniqueKey == uniqueKey && state is! Disconnected) {
+          emit(ConnectionError(''));
+        }
+      },
+    );
   }
 
   /// Reconnects to the web socket.
   Future<void> reconnect({
-    bool reconfigure = false,
     ConnectionInformation? connectionInformation,
   }) async {
-    if (reconfigure) {
+    if (state is Reconnecting) {
+      return;
+    }
+
+    emit(Reconnecting());
+
+    if (connectionInformation != null) {
       _connectionInformation = connectionInformation;
     }
 
     try {
-      await _api!.disconnect().timeout(_callTimeOut);
+      await _api!.disconnect();
 
       emit(Connected());
     } on Exception catch (e) {
       dev.log(e.toString(), error: e);
+
+      emit(ConnectionError(e.toString()));
     }
   }
 
@@ -103,6 +119,7 @@ class ConnectionCubit extends Cubit<ConnectionState> {
   @override
   Future<void> close() {
     _internetListener?.cancel();
+    _internetListener = null;
 
     return super.close();
   }
