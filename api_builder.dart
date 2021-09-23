@@ -464,11 +464,13 @@ class GeneratedResponseJson extends Comparable<GeneratedResponseJson> {
     this.msgType,
     this.fileName,
     this.fullClassName,
+    this.isManual = false,
   });
 
   final String? msgType;
   final String? fileName;
   final String? fullClassName;
+  final bool isManual;
 
   @override
   int compareTo(GeneratedResponseJson other) =>

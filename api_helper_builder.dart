@@ -18,12 +18,8 @@ class APIHelperBuilder extends Builder {
   @override
   Future<void> build(BuildStep buildStep) async {
     try {
-      final List<String?> importFileNames = generatedResponses
-          .map<String?>((GeneratedResponseJson response) => response.fileName)
-          .toList()
-            ..sort();
-
       generatedResponses.sort();
+      _addManualClasses();
 
       await buildStep.writeAsString(
         buildStep.inputId.changeExtension('.helper.dart'),
@@ -34,9 +30,8 @@ class APIHelperBuilder extends Builder {
             // uses collected `msg_type`s from the 1st step to create a helper
             // function that maps the `msg_type`s to equivalent Response objects
             
-            ${importFileNames.map((String? fileName) => 'import \'../generated/$fileName.dart\';').join('\n')}
+            ${generatedResponses.map((GeneratedResponseJson? response) => 'import \'../${response!.isManual ? 'manually' : 'generated'}/${response.fileName}.dart\';').join('\n')}
             import '../response.dart';
-
             /// A function that create a sub-type of [Response] based on
             /// [responseMap]'s 'msg_type' 
             Response getGeneratedResponse(Map<String, dynamic> responseMap) {
@@ -44,7 +39,6 @@ class APIHelperBuilder extends Builder {
               ${generatedResponses.map((GeneratedResponseJson response) => '''case '${response.msgType}':
                 return ${response.fullClassName}.fromJson(responseMap);
               ''').join()}
-
               default:
                 return Response.fromJson(responseMap);
               }
@@ -58,5 +52,15 @@ class APIHelperBuilder extends Builder {
         ..severe('Stack trace $stack');
       return;
     }
+  }
+
+  void _addManualClasses() {
+    generatedResponses.add(
+      GeneratedResponseJson(
+          msgType: 'reset_password',
+          fileName: 'reset_password_receive',
+          fullClassName: 'ResetPasswordResponse',
+          isManual: true),
+    );
   }
 }
